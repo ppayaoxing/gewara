@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<info primitiveTypes="element">
-	<element name="memberCountList">
-		<element name="memberCount" property="memberCountList"/>
-		<addDefaults/>
-	</element>
-</info>
