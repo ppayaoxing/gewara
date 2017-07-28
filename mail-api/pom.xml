@@ -5,7 +5,7 @@
     <artifactId>gewara-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>mall-api</artifactId>
+  <artifactId>mail-api</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<dependencies>
 		<dependency>
