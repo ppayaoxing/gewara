@@ -47,10 +47,10 @@ public class ValidateUtil implements Util4Script {
 
 	public static ErrorCode validatePassword(String pass1, String pass2) {
 		return !StringUtils.isBlank(pass1) && !StringUtils.isBlank(pass2)
-				? (!StringUtils.equals(pass1, pass2) ? ErrorCode.getFailure("Á½´ÎÊäÈëµÄÃÜÂë²»Ò»ÖÂ!")
-						: (!isPassword(pass1) ? ErrorCode.getFailure("ÃÜÂë¸ñÊ½²»ÕıÈ·,Ö»ÄÜÊÇ×ÖÄ¸£¬Êı×Ö£¬Ó¢ÎÄ±êµã£¬³¤¶È6¡ª14Î»£¡")
-								: (isSimplePass(pass1) ? ErrorCode.getFailure("ÃÜÂë¹ıÓÚ¼òµ¥£¬ÇëÖØĞÂÊäÈë£¡") : ErrorCode.SUCCESS)))
-				: ErrorCode.getFailure("ÃÜÂë±ØĞë!");
+				? (!StringUtils.equals(pass1, pass2) ? ErrorCode.getFailure("ä¸¤æ¬¡è¾“å…¥çš„å¯†ç ä¸ä¸€è‡´!")
+						: (!isPassword(pass1) ? ErrorCode.getFailure("å¯†ç æ ¼å¼ä¸æ­£ç¡®,åªèƒ½æ˜¯å­—æ¯ï¼Œæ•°å­—ï¼Œè‹±æ–‡æ ‡ç‚¹ï¼Œé•¿åº¦6â€”14ä½ï¼")
+								: (isSimplePass(pass1) ? ErrorCode.getFailure("å¯†ç è¿‡äºç®€å•ï¼Œè¯·é‡æ–°è¾“å…¥ï¼") : ErrorCode.SUCCESS)))
+				: ErrorCode.getFailure("å¯†ç å¿…é¡»!");
 	}
 
 	private static boolean isSimplePass(String plainPass) {
@@ -68,7 +68,7 @@ public class ValidateUtil implements Util4Script {
 	}
 
 	public static boolean isCNVariable(String variable, int length1, int length2) {
-      return StringUtils.isBlank(variable)?false:StringUtil.regMatch(variable, "^[\\w+$\Ò»-\ı›]{" + length1 + "," + length2 + "}$", true);
+      return StringUtils.isBlank(variable)?false:StringUtil.regMatch(variable, "^[\\w+$\ä¸€-\é¾¥]{" + length1 + "," + length2 + "}$", true);
    }
 
 	public static boolean isPhone(String phone) {
@@ -140,7 +140,7 @@ public class ValidateUtil implements Util4Script {
 				"157", "158", "159", "182", "183", "187", "188", "184", "178" });
 		ltMobile = Arrays.asList(new String[] { "130", "131", "132", "155", "156", "185", "186", "176", "145" });
 		dxMobile = Arrays.asList(new String[] { "133", "153", "177", "180", "181", "189" });
-		cncharRange = new char[] { 'Ò»', 'ı›' };
-		spcharList = "¡«£¡£¤¡­£¨£©¡ª¡ª£º¡°¡¶¡·£¿/£¬¡¢£»¡®¡¯¡°¡±¡¾¡¿¡¤¡£¡ï¡î¡ğ¡ñ¡ò¡ó¡ô¡õ¡ö¡÷¡ø¡ù¡ú¡û¡ü¡ı";
+		cncharRange = new char[] { 'ä¸€', 'é¾¥' };
+		spcharList = "ï½ï¼ï¿¥â€¦ï¼ˆï¼‰â€”â€”ï¼šâ€œã€Šã€‹ï¼Ÿ/ï¼Œã€ï¼›â€˜â€™â€œâ€ã€ã€‘Â·ã€‚â˜…â˜†â—‹â—â—â—‡â—†â–¡â– â–³â–²â€»â†’â†â†‘â†“";
 	}
 }
