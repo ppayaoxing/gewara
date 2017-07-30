@@ -4,10 +4,10 @@ package com.gewara.util;
 public class BCConvert {
 	static final char DBC_CHAR_START = '!';
 	static final char DBC_CHAR_END = '~';
-	static final char SBC_CHAR_START = '£°';
-	static final char SBC_CHAR_END = '°´';
+	static final char SBC_CHAR_START = 'ÔºÅ';
+	static final char SBC_CHAR_END = 'ÔΩû';
 	static final int CONVERT_STEP = 65248;
-	static final char SBC_SPACE = '°°';
+	static final char SBC_SPACE = '„ÄÄ';
 	static final char DBC_SPACE = ' ';
 
 	public static String DBC2SBC(String src) {
@@ -19,9 +19,9 @@ public class BCConvert {
 
 			for (int i = 0; i < ca.length; ++i) {
 				if (ca[i] == 32) {
-					buf.append('°°');
+					buf.append('„ÄÄ');
 				} else if (ca[i] >= 33 && ca[i] <= 126) {
-					buf.append((char) (ca[i] + '?'));
+					buf.append((char) (ca[i] + 'Ôª†'));
 				} else {
 					buf.append(ca[i]);
 				}
@@ -39,8 +39,8 @@ public class BCConvert {
 			char[] ca = src.toCharArray();
 
 			for (int i = 0; i < src.length(); ++i) {
-				if (ca[i] >= '£°' && ca[i] <= '°´') {
-					buf.append((char) (ca[i] - '?'));
+				if (ca[i] >= 'ÔºÅ' && ca[i] <= 'ÔΩû') {
+					buf.append((char) (ca[i] - 'Ôª†'));
 				} else if (ca[i] == 12288) {
 					buf.append(' ');
 				} else {
