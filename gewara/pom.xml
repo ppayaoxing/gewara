@@ -6,7 +6,7 @@
 		<artifactId>gewara-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>com.gewara</artifactId>
+	<artifactId>com-gewara</artifactId>
 	<packaging>war</packaging>
 	<dependencies>
 		
@@ -233,26 +233,7 @@
 			<artifactId>simple</artifactId>
 		</dependency>
 		<!-- end of pay related -->
-		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>gw-hbase</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>gw-mongo</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>web-commons</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>gewamail-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>gpticket-api</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
@@ -291,5 +272,36 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.ning</groupId>
+			<artifactId>async-http-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.asynchttpclient</groupId>
+			<artifactId>async-http-client</artifactId>
+		</dependency>
+
+		<!-- =========  gewara  start ======-->
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gw-hbase</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gw-mongo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>web-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gewamail-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gpticket-api</artifactId>
+		</dependency>
+		<!-- ==========  gewara  end==========-->
 	</dependencies>
 </project>
