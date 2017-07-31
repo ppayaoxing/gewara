@@ -1,10 +1,9 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.cmd.order;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class SearchRefundCommandVo implements Serializable {
+public class SearchRefundCommandVo implements Serializable{
 	private static final long serialVersionUID = 2730869767514567184L;
 	private String tradeno;
 	private String mobile;
@@ -18,117 +17,91 @@ public class SearchRefundCommandVo implements Serializable {
 	private Timestamp addtimeto;
 	private Timestamp refundtimefrom;
 	private Timestamp refundtimeto;
-	private String origin;
+	private String origin;		// ÍË¿îÀ´Ô´
 	private boolean excludeGewaRefund;
-
+	
 	public String getTradeno() {
-		return this.tradeno;
+		return tradeno;
 	}
-
 	public void setTradeno(String tradeno) {
 		this.tradeno = tradeno;
 	}
-
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
-
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
+	
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	public String getRetback() {
-		return this.retback;
+		return retback;
 	}
-
 	public void setRetback(String retback) {
 		this.retback = retback;
 	}
-
 	public String getRefundtype() {
-		return this.refundtype;
+		return refundtype;
 	}
-
 	public void setRefundtype(String refundtype) {
 		this.refundtype = refundtype;
 	}
-
 	public Long getPlaceid() {
-		return this.placeid;
+		return placeid;
 	}
-
 	public void setPlaceid(Long placeid) {
 		this.placeid = placeid;
 	}
-
 	public Timestamp getAddtimefrom() {
-		return this.addtimefrom;
+		return addtimefrom;
 	}
-
 	public void setAddtimefrom(Timestamp addtimefrom) {
 		this.addtimefrom = addtimefrom;
 	}
-
 	public Timestamp getAddtimeto() {
-		return this.addtimeto;
+		return addtimeto;
 	}
-
 	public void setAddtimeto(Timestamp addtimeto) {
 		this.addtimeto = addtimeto;
 	}
-
 	public Timestamp getRefundtimefrom() {
-		return this.refundtimefrom;
+		return refundtimefrom;
 	}
-
 	public void setRefundtimefrom(Timestamp refundtimefrom) {
 		this.refundtimefrom = refundtimefrom;
 	}
-
 	public Timestamp getRefundtimeto() {
-		return this.refundtimeto;
+		return refundtimeto;
 	}
-
 	public void setRefundtimeto(Timestamp refundtimeto) {
 		this.refundtimeto = refundtimeto;
 	}
-
 	public String getOrdertype() {
-		return this.ordertype;
+		return ordertype;
 	}
-
 	public void setOrdertype(String ordertype) {
 		this.ordertype = ordertype;
 	}
-
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
-
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
-
 	public boolean isExcludeGewaRefund() {
-		return this.excludeGewaRefund;
+		return excludeGewaRefund;
 	}
-
 	public void setExcludeGewaRefund(boolean excludeGewaRefund) {
 		this.excludeGewaRefund = excludeGewaRefund;
 	}

@@ -1,5 +1,6 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.service.refund;
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.cmd.order.ParamsVo;
@@ -7,32 +8,27 @@ import com.gewara.api.vo.pay.AccountRefundVo;
 import com.gewara.api.vo.pay.PayGatewayVo;
 import com.gewara.api.vo.pay.PayMerchantVo;
 import com.gewara.api.vo.pay.RefundMerchantVo;
-import java.util.List;
 
 public interface AccountRefundVoService {
-	ResultCode<List<AccountRefundVo>> getAccountRefundList(ParamsVo arg0);
-
-	ResultCode<Integer> getAccountRefundCount(ParamsVo arg0);
-
-	ResultCode<List<AccountRefundVo>> getAccountRefundListByDepartment(ParamsVo arg0);
-
-	ResultCode<Integer> getAccountRefundCountByDepartment(ParamsVo arg0);
-
-	ResultCode<List<AccountRefundVo>> getRefundListForTradenoBack(ParamsVo arg0);
-
-	ResultCode<List<AccountRefundVo>> getRefundListByDepForTradenoBack(ParamsVo arg0);
-
+	ResultCode<List<AccountRefundVo>> getAccountRefundList(ParamsVo param);
+	
+	ResultCode<Integer> getAccountRefundCount(ParamsVo param);
+	
+	/**
+	 * 根据部门查询退款信息
+	 * @param param
+	 * @return
+	 */
+	ResultCode<List<AccountRefundVo>> getAccountRefundListByDepartment(ParamsVo param);
+	ResultCode<Integer> getAccountRefundCountByDepartment(ParamsVo param);
+	ResultCode<List<AccountRefundVo>> getRefundListForTradenoBack(ParamsVo param);
+	ResultCode<List<AccountRefundVo>> getRefundListByDepForTradenoBack(ParamsVo param);
 	ResultCode<List<PayGatewayVo>> getAllSynGateway();
-
 	ResultCode<List<RefundMerchantVo>> getAllRefundMerchant();
-
-	ResultCode<List<RefundMerchantVo>> getRefundMerchantListByGatewayId(Long arg0);
-
-	ResultCode<PayGatewayVo> getSynGatewayByGatewayCode(String arg0);
-
+	ResultCode<List<RefundMerchantVo>> getRefundMerchantListByGatewayId(Long gatewayId);
+	ResultCode<PayGatewayVo> getSynGatewayByGatewayCode(String gatewayCode);
 	ResultCode<List<PayMerchantVo>> getAllPayMerchant();
+	ResultCode<List<PayMerchantVo>> getMerchantCodeByGatewayCode(String gatewayCode);
+	ResultCode<List<PayGatewayVo>> getGatewayBySupportRefund(String supportRefund);
 
-	ResultCode<List<PayMerchantVo>> getMerchantCodeByGatewayCode(String arg0);
-
-	ResultCode<List<PayGatewayVo>> getGatewayBySupportRefund(String arg0);
 }

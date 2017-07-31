@@ -1,123 +1,155 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.movie;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class SubscribeVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class SubscribeVo extends BaseVo{
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -2766848283011728638L;
 	public static final String ALEARY_PUSH_N = "N";
 	public static final String ALEARY_PUSH_Y = "Y";
 	public static final String ALEARY_OPEN_N = "N";
 	public static final String ALEARY_OPEN_Y = "Y";
-	private Long memberid;
+	
+    private Long memberid;
 	private Long cinemaid;
-	private Long movieid;
-	private String addtime;
-	private String special;
-	private String timeindex;
-	private String aleryPush;
-	private String _id;
-	private Integer isSub;
-	private String citycode;
-	private String time;
-	private String isopen;
-
+    private Long movieid;
+    private String addtime;//预约日期
+    private String special;//特效
+    private String timeindex;//时段
+    private String aleryPush;
+    
+    private String _id;
+    private Integer isSub;
+    private String citycode;
+    private String time;//添加时间
+    private String isopen;//是否开放场次
+    
+    
+	@Override
 	public Serializable realId() {
-		return this._id;
+		return _id;
 	}
+
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
+
 
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
 
+
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
+
 
 	public void setCinemaid(Long cinemaid) {
 		this.cinemaid = cinemaid;
 	}
 
+
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
+
 
 	public void setMovieid(Long movieid) {
 		this.movieid = movieid;
 	}
 
+
 	public String getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
+
 
 	public void setAddtime(String addtime) {
 		this.addtime = addtime;
 	}
 
+
 	public String getSpecial() {
-		return this.special;
+		return special;
 	}
+
 
 	public void setSpecial(String special) {
 		this.special = special;
 	}
 
+
 	public String getTimeindex() {
-		return this.timeindex;
+		return timeindex;
 	}
+
 
 	public void setTimeindex(String timeindex) {
 		this.timeindex = timeindex;
 	}
 
+
 	public String getAleryPush() {
-		return this.aleryPush;
+		return aleryPush;
 	}
+
 
 	public void setAleryPush(String aleryPush) {
 		this.aleryPush = aleryPush;
 	}
 
+
 	public String get_id() {
-		return this._id;
+		return _id;
 	}
+
 
 	public void set_id(String _id) {
 		this._id = _id;
 	}
 
+
 	public Integer getIsSub() {
-		return this.isSub;
+		return isSub;
 	}
+
 
 	public void setIsSub(Integer isSub) {
 		this.isSub = isSub;
 	}
 
+
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
+
 
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
 
+
 	public String getTime() {
-		return this.time;
+		return time;
 	}
+
 
 	public void setTime(String time) {
 		this.time = time;
 	}
 
+
 	public String getIsopen() {
-		return this.isopen;
+		return isopen;
 	}
+
 
 	public void setIsopen(String isopen) {
 		this.isopen = isopen;

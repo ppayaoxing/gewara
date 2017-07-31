@@ -1,14 +1,15 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gewampi.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 
-public class GoodsGiftVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class GoodsGiftVo extends BaseVo{
 	private static final long serialVersionUID = -6365244088215093692L;
 	private Long id;
 	private Long goodsid;
@@ -17,185 +18,152 @@ public class GoodsGiftVo extends BaseVo {
 	private String pageDisplayFlag;
 	private Long cinemaid;
 	private Long movieid;
-	private Long mpid;
-	private String rateinfo;
-	private String week;
-	private String mpidlist;
+	private Long mpid;			
+	private String rateinfo;	//比率
+	private String week;			
+	private String mpidlist;	//场次列表
 	private Timestamp fromtime;
 	private Timestamp totime;
-	private Integer everydayLimit;
-	private String startTime;
-	private String endTime;
-	private String timescope;
-	private String movieids;
+	private Integer everydayLimit;//每天限量
+	private String startTime;//下单开始时段
+	private String endTime;//下单结束时段
+	private String timescope;	//场次时段
+	private String movieids;	// 影片编号列表，用英文逗号隔开
 	private String opiTimeFlg;
-
+	
+	public GoodsGiftVo(){
+		
+	}
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public Long getGoodsid() {
-		return this.goodsid;
+		return goodsid;
 	}
-
 	public void setGoodsid(Long goodsid) {
 		this.goodsid = goodsid;
 	}
-
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
-
 	public void setCinemaid(Long cinemaid) {
 		this.cinemaid = cinemaid;
 	}
-
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
-
 	public void setMovieid(Long movieid) {
 		this.movieid = movieid;
 	}
-
 	public Long getMpid() {
-		return this.mpid;
+		return mpid;
 	}
-
 	public void setMpid(Long mpid) {
 		this.mpid = mpid;
 	}
-
 	public String getRateinfo() {
-		return this.rateinfo;
+		return rateinfo;
 	}
-
 	public void setRateinfo(String rateinfo) {
 		this.rateinfo = rateinfo;
 	}
-
+	
 	public Timestamp getFromtime() {
-		return this.fromtime;
+		return fromtime;
 	}
-
 	public void setFromtime(Timestamp fromtime) {
 		this.fromtime = fromtime;
 	}
-
 	public Timestamp getTotime() {
-		return this.totime;
+		return totime;
 	}
-
 	public void setTotime(Timestamp totime) {
 		this.totime = totime;
 	}
 
-	public Map<String, Integer> gainRateMap() {
-		HashMap m = new HashMap();
+	public Map<String, Integer> gainRateMap(){
+		Map<String, Integer> m = new HashMap<String, Integer>();
 		String info = this.rateinfo;
-		if (StringUtils.isNotBlank(info)) {
+		if(StringUtils.isNotBlank(info)){
 			String[] args = info.split(",");
-			if (args != null && args.length > 0) {
-				String[] arg3 = args;
-				int arg4 = args.length;
-
-				for (int arg5 = 0; arg5 < arg4; ++arg5) {
-					String arg = arg3[arg5];
+			if(args!=null && args.length>0){
+				for(String arg : args){
 					String[] tmp = arg.split(":");
-					if (tmp != null && tmp.length > 1) {
-						m.put(tmp[0], Integer.valueOf(tmp[1]));
-					}
+					if(tmp!=null && tmp.length>1) m.put(tmp[0], Integer.valueOf(tmp[1]));
 				}
 			}
 		}
-
 		return m;
 	}
-
-	public Integer gainRatenum(Integer q) {
-		String key = q + "";
-		Integer num = (Integer) this.gainRateMap().get(key);
-		return num != null ? num : Integer.valueOf(0);
+	public Integer gainRatenum(Integer q){
+		String key = q+"";
+		Integer num = gainRateMap().get(key);
+		if(num!=null) return num;
+		return 0;
 	}
-
-	public boolean isGainGift(Integer q) {
-		return this.gainRatenum(q).intValue() > 0;
+	public boolean isGainGift(Integer q){
+		return gainRatenum(q)>0;
 	}
-
 	public String getWeek() {
-		return this.week;
+		return week;
 	}
-
 	public void setWeek(String week) {
 		this.week = week;
 	}
-
 	public String getMpidlist() {
-		return this.mpidlist;
+		return mpidlist;
 	}
-
 	public void setMpidlist(String mpidlist) {
 		this.mpidlist = mpidlist;
 	}
-
 	public Integer getEverydayLimit() {
-		return this.everydayLimit;
+		return everydayLimit;
 	}
-
 	public void setEverydayLimit(Integer everydayLimit) {
 		this.everydayLimit = everydayLimit;
 	}
-
 	public String getStartTime() {
-		return this.startTime;
+		return startTime;
 	}
-
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-
 	public String getEndTime() {
-		return this.endTime;
+		return endTime;
 	}
-
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-
+	
 	public String getTimescope() {
-		return this.timescope;
+		return timescope;
 	}
-
 	public void setTimescope(String timescope) {
 		this.timescope = timescope;
 	}
-
 	public String getMovieids() {
-		return this.movieids;
+		return movieids;
 	}
-
 	public void setMovieids(String movieids) {
 		this.movieids = movieids;
 	}
-
 	public String getOpiTimeFlg() {
-		return this.opiTimeFlg;
+		return opiTimeFlg;
 	}
-
 	public void setOpiTimeFlg(String opiTimeFlg) {
 		this.opiTimeFlg = opiTimeFlg;
 	}
 
 	public Integer getUnitprice() {
-		return this.unitprice;
+		return unitprice;
 	}
 
 	public void setUnitprice(Integer unitprice) {
@@ -203,7 +171,7 @@ public class GoodsGiftVo extends BaseVo {
 	}
 
 	public String getPartners() {
-		return this.partners;
+		return partners;
 	}
 
 	public void setPartners(String partners) {
@@ -211,7 +179,7 @@ public class GoodsGiftVo extends BaseVo {
 	}
 
 	public String getPageDisplayFlag() {
-		return this.pageDisplayFlag;
+		return pageDisplayFlag;
 	}
 
 	public void setPageDisplayFlag(String pageDisplayFlag) {

@@ -1,24 +1,26 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.res.vo;
 
-import com.gewara.api.partner.res.vo.RoomSeatVo;
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OpiSeatVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class OpiSeatVo extends BaseVo{
 	private static final long serialVersionUID = -7108809287484191737L;
 	private Long roomid;
 	private String cacheseat;
+	//private Integer maxseat;
 	private Integer linenum;
 	private Integer ranknum;
 	private String secid;
-	private Map<Integer, String> rowMap = new HashMap();
-	private Map<String, RoomSeatVo> seatMap = new HashMap();
-
+	private Map<Integer, String> rowMap = new HashMap<Integer, String>();
+	private Map<String, RoomSeatVo> seatMap = new HashMap<String, RoomSeatVo>();
+	public OpiSeatVo(){
+		
+	}
 	public String getCacheseat() {
-		return this.cacheseat;
+		return cacheseat;
 	}
 
 	public void setCacheseat(String cacheseat) {
@@ -26,7 +28,7 @@ public class OpiSeatVo extends BaseVo {
 	}
 
 	public Integer getLinenum() {
-		return this.linenum;
+		return linenum;
 	}
 
 	public void setLinenum(Integer linenum) {
@@ -34,7 +36,7 @@ public class OpiSeatVo extends BaseVo {
 	}
 
 	public Integer getRanknum() {
-		return this.ranknum;
+		return ranknum;
 	}
 
 	public void setRanknum(Integer ranknum) {
@@ -42,37 +44,31 @@ public class OpiSeatVo extends BaseVo {
 	}
 
 	public String getSecid() {
-		return this.secid;
+		return secid;
 	}
 
 	public void setSecid(String secid) {
 		this.secid = secid;
 	}
-
 	public Map<Integer, String> getRowMap() {
-		return this.rowMap;
+		return rowMap;
 	}
-
 	public void setRowMap(Map<Integer, String> rowMap) {
 		this.rowMap = rowMap;
 	}
-
 	public Map<String, RoomSeatVo> getSeatMap() {
-		return this.seatMap;
+		return seatMap;
 	}
-
 	public void setSeatMap(Map<String, RoomSeatVo> seatMap) {
 		this.seatMap = seatMap;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.roomid;
+		return roomid;
 	}
-
 	public Long getRoomid() {
-		return this.roomid;
+		return roomid;
 	}
-
 	public void setRoomid(Long roomid) {
 		this.roomid = roomid;
 	}

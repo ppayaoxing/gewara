@@ -1,102 +1,85 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class DiscountVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class DiscountVo extends BaseVo{
 	private static final long serialVersionUID = -8589068211776703733L;
-	private Long id;
-	private Long orderid;
-	private String tag;
-	private Long relatedid;
-	private Long goodsid;
-	private String description;
-	private String cardtype;
-	private Integer amount;
-	private Long batchid;
-	private String status;
-
+	private Long id;				//ID
+	private Long orderid;			//订单ID
+	private String tag;				//折扣类型
+	private Long relatedid;			//关联对象(如卡号,用户ID,商家ID)
+	private Long goodsid;			//抵消的物品
+	private String description;		//描述
+	private String cardtype;		//折扣卡类
+	private Integer amount;			//折扣金额
+	private Long batchid;			//批次ID
+	private String status;			//状态：参见OrderConstant.DISCOUNT_STATUS
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Long getBatchid() {
-		return this.batchid;
+		return batchid;
 	}
 
 	public void setBatchid(Long batchid) {
 		this.batchid = batchid;
 	}
 
+	public DiscountVo(){}
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
-
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
-
 	public void setRelatedid(Long relatedid) {
 		this.relatedid = relatedid;
 	}
-
 	public Long getOrderid() {
-		return this.orderid;
+		return orderid;
 	}
-
 	public void setOrderid(Long orderid) {
 		this.orderid = orderid;
 	}
-
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public Integer getAmount() {
-		return this.amount;
+		return amount;
 	}
-
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
-
 	public Long getGoodsid() {
-		return this.goodsid;
+		return goodsid;
 	}
-
 	public void setGoodsid(Long goodsid) {
 		this.goodsid = goodsid;
 	}
-
 	public String getCardtype() {
-		return this.cardtype;
+		return cardtype;
 	}
-
 	public void setCardtype(String cardtype) {
 		this.cardtype = cardtype;
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}

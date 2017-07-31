@@ -1,23 +1,27 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.goods;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
+
+import com.gewara.api.vo.BaseVo;
 
 public class GoodsStockDataVo extends BaseVo {
 	private static final long serialVersionUID = -5396346712368888868L;
-	private Long goodsId;
-	private int sellRatio;
-	private int allGoodsStock;
-	private int remainderGoodsStock;
-	private int sellCount;
+	
+	private Long goodsId;					//物品ID
+	private int sellRatio;					//物品-已售比率  
+	private int allGoodsStock;				//物品-总库存 (这里的库存有可能是虚拟的数据)
+	private int remainderGoodsStock;		//物品-剩余库存
+	private int sellCount; 					//已售多少
+	
+	public GoodsStockDataVo(){}
 
+	@Override
 	public Serializable realId() {
-		return this.goodsId;
+		return goodsId;
 	}
 
 	public Long getGoodsId() {
-		return this.goodsId;
+		return goodsId;
 	}
 
 	public void setGoodsId(Long goodsId) {
@@ -25,7 +29,7 @@ public class GoodsStockDataVo extends BaseVo {
 	}
 
 	public int getSellRatio() {
-		return this.sellRatio;
+		return sellRatio;
 	}
 
 	public void setSellRatio(int sellRatio) {
@@ -33,7 +37,7 @@ public class GoodsStockDataVo extends BaseVo {
 	}
 
 	public int getAllGoodsStock() {
-		return this.allGoodsStock;
+		return allGoodsStock;
 	}
 
 	public void setAllGoodsStock(int allGoodsStock) {
@@ -41,7 +45,7 @@ public class GoodsStockDataVo extends BaseVo {
 	}
 
 	public int getRemainderGoodsStock() {
-		return this.remainderGoodsStock;
+		return remainderGoodsStock;
 	}
 
 	public void setRemainderGoodsStock(int remainderGoodsStock) {
@@ -49,10 +53,11 @@ public class GoodsStockDataVo extends BaseVo {
 	}
 
 	public int getSellCount() {
-		return this.sellCount;
+		return sellCount;
 	}
 
 	public void setSellCount(int sellCount) {
 		this.sellCount = sellCount;
 	}
+	
 }

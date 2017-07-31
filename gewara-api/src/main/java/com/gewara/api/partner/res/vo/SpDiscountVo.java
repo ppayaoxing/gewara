@@ -1,130 +1,108 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.res.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class SpDiscountVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class SpDiscountVo extends BaseVo{
 	private static final long serialVersionUID = 1706595364713204120L;
 	private Long id;
-	private String title;
+	private String title;				
 	private String description;
-	private Integer isenable;
-	private String validUrl;
-	private Integer needBindMobile;
-	private Long usedDiscountId;
-	private String cancelable;
-	private String paymethod;
-	private Integer needSpcode;
-	private Integer discount;
+	private Integer isenable;			//不支持此场次活动  1支持  0不支持
+	private String validUrl;			//验证url 例如输入卡号
+	private Integer needBindMobile;		//需要绑定手机号
+	private Long usedDiscountId;		//已经使用参生的折扣id
+	private String cancelable;			//是否能取消
+	private String paymethod;			//支付方式
+	private Integer needSpcode;			//是否需要特价活动码
+	private Integer discount;           
 	private String discountType;
 	private String otherinfo;
-
+	public SpDiscountVo(){
+		
+	}
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public Integer getIsenable() {
-		return this.isenable;
+		return isenable;
 	}
-
 	public void setIsenable(Integer isenable) {
 		this.isenable = isenable;
 	}
-
 	public String getValidUrl() {
-		return this.validUrl;
+		return validUrl;
 	}
-
 	public void setValidUrl(String validUrl) {
 		this.validUrl = validUrl;
 	}
-
 	public Integer getNeedBindMobile() {
-		return this.needBindMobile;
+		return needBindMobile;
 	}
-
 	public void setNeedBindMobile(Integer needBindMobile) {
 		this.needBindMobile = needBindMobile;
 	}
-
 	public Long getUsedDiscountId() {
-		return this.usedDiscountId;
+		return usedDiscountId;
 	}
-
 	public void setUsedDiscountId(Long usedDiscountId) {
 		this.usedDiscountId = usedDiscountId;
 	}
-
 	public String getCancelable() {
-		return this.cancelable;
+		return cancelable;
 	}
-
 	public void setCancelable(String cancelable) {
 		this.cancelable = cancelable;
 	}
-
 	public String getPaymethod() {
-		return this.paymethod;
+		return paymethod;
 	}
-
 	public void setPaymethod(String paymethod) {
 		this.paymethod = paymethod;
 	}
-
 	public Integer getNeedSpcode() {
-		return this.needSpcode;
+		return needSpcode;
 	}
-
 	public void setNeedSpcode(Integer needSpcode) {
 		this.needSpcode = needSpcode;
 	}
-
 	public Integer getDiscount() {
-		return this.discount;
+		return discount;
 	}
-
 	public void setDiscount(Integer discount) {
 		this.discount = discount;
 	}
-
 	public String getDiscountType() {
-		return this.discountType;
+		return discountType;
 	}
-
 	public void setDiscountType(String discountType) {
 		this.discountType = discountType;
 	}
-
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
-
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
+	
 }

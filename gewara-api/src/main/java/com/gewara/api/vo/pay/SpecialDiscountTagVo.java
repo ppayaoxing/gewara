@@ -1,8 +1,8 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
+
+import com.gewara.api.vo.BaseVo;
 
 public class SpecialDiscountTagVo extends BaseVo implements Serializable {
 	private static final long serialVersionUID = 5874675414503642541L;
@@ -13,7 +13,7 @@ public class SpecialDiscountTagVo extends BaseVo implements Serializable {
 	private String updatetime;
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -21,7 +21,7 @@ public class SpecialDiscountTagVo extends BaseVo implements Serializable {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -29,7 +29,7 @@ public class SpecialDiscountTagVo extends BaseVo implements Serializable {
 	}
 
 	public String getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(String addtime) {
@@ -37,7 +37,7 @@ public class SpecialDiscountTagVo extends BaseVo implements Serializable {
 	}
 
 	public String getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(String updatetime) {
@@ -45,14 +45,15 @@ public class SpecialDiscountTagVo extends BaseVo implements Serializable {
 	}
 
 	public Long getSpdid() {
-		return this.spdid;
+		return spdid;
 	}
 
 	public void setSpdid(Long spdid) {
 		this.spdid = spdid;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.spdid;
+		return spdid;
 	}
 }

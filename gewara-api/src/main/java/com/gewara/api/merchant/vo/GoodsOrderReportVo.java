@@ -1,24 +1,23 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.merchant.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class GoodsOrderReportVo extends BaseVo {
 	private static final long serialVersionUID = -103046049017884416L;
-	private String tradeNo;
-	private String goodsname;
-	private Timestamp addtime;
-	private Timestamp taketime;
-	private int costprice;
-	private int quantity;
-	private int totalcost;
-
-	public GoodsOrderReportVo() {
-	}
-
-	public GoodsOrderReportVo(String tradeNo, String goodsname, Timestamp addtime, int costprice, int quantity) {
+	private String tradeNo;    //订单号
+	private String goodsname; //套餐名称
+	private Timestamp addtime;		//用户下单时间
+	private Timestamp taketime;    //用户取票时间
+	private int costprice;//单价
+	private int quantity; //票数 、份数
+	private int totalcost;//金额
+	
+	public GoodsOrderReportVo(){}
+	
+	public GoodsOrderReportVo(String tradeNo,String goodsname,Timestamp addtime,int costprice,int quantity){
 		this.tradeNo = tradeNo;
 		this.goodsname = goodsname;
 		this.addtime = addtime;
@@ -26,9 +25,9 @@ public class GoodsOrderReportVo extends BaseVo {
 		this.costprice = costprice;
 		this.totalcost = this.quantity * this.costprice;
 	}
-
+	
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -36,7 +35,7 @@ public class GoodsOrderReportVo extends BaseVo {
 	}
 
 	public String getGoodsname() {
-		return this.goodsname;
+		return goodsname;
 	}
 
 	public void setGoodsname(String goodsname) {
@@ -44,7 +43,7 @@ public class GoodsOrderReportVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -52,7 +51,7 @@ public class GoodsOrderReportVo extends BaseVo {
 	}
 
 	public Timestamp getTaketime() {
-		return this.taketime;
+		return taketime;
 	}
 
 	public void setTaketime(Timestamp taketime) {
@@ -60,7 +59,7 @@ public class GoodsOrderReportVo extends BaseVo {
 	}
 
 	public int getCostprice() {
-		return this.costprice;
+		return costprice;
 	}
 
 	public void setCostprice(int costprice) {
@@ -68,7 +67,7 @@ public class GoodsOrderReportVo extends BaseVo {
 	}
 
 	public int getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(int quantity) {
@@ -76,14 +75,16 @@ public class GoodsOrderReportVo extends BaseVo {
 	}
 
 	public int getTotalcost() {
-		return this.totalcost;
+		return totalcost;
 	}
 
 	public void setTotalcost(int totalcost) {
 		this.totalcost = totalcost;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.tradeNo;
+		return tradeNo;
 	}
+
 }

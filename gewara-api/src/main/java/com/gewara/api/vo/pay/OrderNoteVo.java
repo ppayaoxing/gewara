@@ -1,55 +1,60 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+
 public class OrderNoteVo extends BaseVo {
+
 	private static final long serialVersionUID = -135038508746485007L;
 	private Long id;
-	private Long orderid;
-	private String tradeno;
-	private String ordertype;
-	private String mobile;
-	private String placename;
-	private String placetype;
-	private Long placeid;
-	private String itemname;
-	private String itemtype;
-	private Long itemid;
-	private String checkpass;
-	private Integer ticketnum;
-	private String smallitemtype;
-	private Long smallitemid;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private Timestamp validtime;
-	private String message;
-	private Timestamp playtime;
-	private Timestamp taketime;
+	private Long orderid;				//订单ID
+	private String tradeno;				//订单号
+	private String ordertype;			//订单类型
+	private String mobile;				//手机号
+	private String placename;			//场馆名称
+	private String placetype;			//场馆类型
+	private Long placeid;				//场馆ID
+	private String itemname;			//项目名称
+	private String itemtype;			//项目类型
+	private Long itemid;				//项目ID
+	private String checkpass;			//取票密码
+	private Integer ticketnum;			//票数量
+	private String smallitemtype;		//关联类型
+	private Long smallitemid;			//关联对象(场次或物品)
+	private Timestamp addtime;			//添加时间
+	private Timestamp updatetime;		//更新时间
+	private Timestamp validtime;		//有效时间
+	private String message;				//短信内容
+	
+	private Timestamp playtime;			//放映时间
+	private Timestamp taketime;			//取票时间
 	private String status;
-	private String serialno;
-	private Timestamp modifytime;
-	private String result;
-	private String description;
+	private String serialno;			//流水号
+	private Timestamp modifytime;		//一体机同步
+	private String result;				//同步状态
+	private String description;			//说明
+	
 	private String fromup;
 	private String express;
 	private String otherinfo;
-	private Integer convertnum;
-	private String converttype;
-	private Integer totalfee;
-	private Integer totaldisfee;
-	private Integer convertfee;
-	private Integer convertdisfee;
-
+	private Integer convertnum;				//换票数
+	private String converttype;				//操作类型
+	private Integer totalfee;					//总费用
+	private Integer totaldisfee;				//总套票优惠
+	private Integer convertfee;				//兑换费用
+	private Integer convertdisfee;			//兑换套票优惠费用
+	public OrderNoteVo(){}
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -57,39 +62,35 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public Long getOrderid() {
-		return this.orderid;
+		return orderid;
 	}
-
+	
 	public void setOrderid(Long orderid) {
 		this.orderid = orderid;
 	}
-
+	
 	public String getTradeno() {
-		return this.tradeno;
+		return tradeno;
 	}
-
+	
 	public void setTradeno(String tradeno) {
 		this.tradeno = tradeno;
 	}
-
+	
 	public String getOrdertype() {
-		return this.ordertype;
+		return ordertype;
 	}
-
 	public void setOrdertype(String ordertype) {
 		this.ordertype = ordertype;
 	}
-
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
-
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
 	public String getPlacename() {
-		return this.placename;
+		return placename;
 	}
 
 	public void setPlacename(String placename) {
@@ -97,7 +98,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public String getPlacetype() {
-		return this.placetype;
+		return placetype;
 	}
 
 	public void setPlacetype(String placetype) {
@@ -105,7 +106,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public Long getPlaceid() {
-		return this.placeid;
+		return placeid;
 	}
 
 	public void setPlaceid(Long placeid) {
@@ -113,7 +114,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public String getItemname() {
-		return this.itemname;
+		return itemname;
 	}
 
 	public void setItemname(String itemname) {
@@ -121,7 +122,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public String getItemtype() {
-		return this.itemtype;
+		return itemtype;
 	}
 
 	public void setItemtype(String itemtype) {
@@ -129,7 +130,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public Long getItemid() {
-		return this.itemid;
+		return itemid;
 	}
 
 	public void setItemid(Long itemid) {
@@ -137,7 +138,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public String getCheckpass() {
-		return this.checkpass;
+		return checkpass;
 	}
 
 	public void setCheckpass(String checkpass) {
@@ -145,7 +146,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public Integer getTicketnum() {
-		return this.ticketnum;
+		return ticketnum;
 	}
 
 	public void setTicketnum(Integer ticketnum) {
@@ -153,7 +154,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public String getSmallitemtype() {
-		return this.smallitemtype;
+		return smallitemtype;
 	}
 
 	public void setSmallitemtype(String smallitemtype) {
@@ -161,7 +162,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public Long getSmallitemid() {
-		return this.smallitemid;
+		return smallitemid;
 	}
 
 	public void setSmallitemid(Long smallitemid) {
@@ -169,7 +170,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -177,7 +178,7 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -185,154 +186,122 @@ public class OrderNoteVo extends BaseVo {
 	}
 
 	public Timestamp getValidtime() {
-		return this.validtime;
+		return validtime;
 	}
-
 	public void setValidtime(Timestamp validtime) {
 		this.validtime = validtime;
 	}
-
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public String getResult() {
-		return this.result;
+		return result;
 	}
-
 	public void setResult(String result) {
 		this.result = result;
 	}
-
 	public String getMessage() {
-		return this.message;
+		return message;
 	}
-
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-	public String gainSynchtype() {
-		return StringUtils.equals(this.result, "U") ? "1" : (StringUtils.equals(this.result, "D") ? "2" : "0");
+	public String gainSynchtype(){
+		if(StringUtils.equals(result, "U")) return "1";
+		if(StringUtils.equals(result, "D")) return "2";
+		return "0";
 	}
-
+	
 	public Timestamp getModifytime() {
-		return this.modifytime;
+		return modifytime;
 	}
-
 	public void setModifytime(Timestamp modifytime) {
 		this.modifytime = modifytime;
 	}
-
 	public String getSerialno() {
-		return this.serialno;
+		return serialno;
 	}
-
 	public void setSerialno(String serialno) {
 		this.serialno = serialno;
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public String gainSmsKey() {
-		return this.tradeno + this.smallitemtype + this.smallitemid;
+	public String gainSmsKey(){
+		return tradeno + smallitemtype + smallitemid;
 	}
-
 	public Timestamp getTaketime() {
-		return this.taketime;
+		return taketime;
 	}
-
 	public void setTaketime(Timestamp taketime) {
 		this.taketime = taketime;
 	}
-
 	public String getFromup() {
-		return this.fromup;
+		return fromup;
 	}
-
 	public void setFromup(String fromup) {
 		this.fromup = fromup;
 	}
-
 	public Timestamp getPlaytime() {
-		return this.playtime;
+		return playtime;
 	}
-
 	public void setPlaytime(Timestamp playtime) {
 		this.playtime = playtime;
 	}
-
 	public String getExpress() {
-		return this.express;
+		return express;
 	}
-
 	public void setExpress(String express) {
 		this.express = express;
 	}
-
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
-
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
-
 	public Integer getConvertnum() {
-		return this.convertnum;
+		return convertnum;
 	}
-
 	public void setConvertnum(Integer convertnum) {
 		this.convertnum = convertnum;
 	}
-
 	public String getConverttype() {
-		return this.converttype;
+		return converttype;
 	}
-
 	public void setConverttype(String converttype) {
 		this.converttype = converttype;
 	}
-
 	public Integer getTotalfee() {
-		return this.totalfee;
+		return totalfee;
 	}
-
 	public void setTotalfee(Integer totalfee) {
 		this.totalfee = totalfee;
 	}
-
 	public Integer getTotaldisfee() {
-		return this.totaldisfee;
+		return totaldisfee;
 	}
-
 	public void setTotaldisfee(Integer totaldisfee) {
 		this.totaldisfee = totaldisfee;
 	}
-
 	public Integer getConvertfee() {
-		return this.convertfee;
+		return convertfee;
 	}
-
 	public void setConvertfee(Integer convertfee) {
 		this.convertfee = convertfee;
 	}
-
 	public Integer getConvertdisfee() {
-		return this.convertdisfee;
+		return convertdisfee;
 	}
-
 	public void setConvertdisfee(Integer convertdisfee) {
 		this.convertdisfee = convertdisfee;
 	}
+	
 }

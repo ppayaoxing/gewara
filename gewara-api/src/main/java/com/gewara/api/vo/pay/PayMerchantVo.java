@@ -1,30 +1,33 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class PayMerchantVo extends BaseVo {
-	private static final long serialVersionUID = 5328656468568314767L;
-	private Long id;
-	private Long gatewayId;
-	private String merchantCode;
-	private String cityCode;
-	private String acquiringBank;
-	private String description;
-	private String status;
-	private Timestamp updateTime;
-	private String isDefault;
-	private Timestamp modifyTime;
-	private String modifyUser;
+import com.gewara.api.vo.BaseVo;
 
+public class PayMerchantVo extends BaseVo {
+	
+	private static final long serialVersionUID = 5328656468568314767L;
+	
+	private Long id;	//主键
+	private Long gatewayId;	//支配配置ID
+	private String merchantCode;	//商户号标识
+	private String cityCode;	//城市
+	private String acquiringBank;	//收单行
+	private String description;	//商户号说明
+	private String status;	//商户号状态：NO_USE：未启用；IN_USE：使用中；DESUETUDE：废弃；
+	private Timestamp updateTime;	//同步时间	
+	private String isDefault;	//是否默认
+	private Timestamp modifyTime;	//修改时间
+	private String modifyUser;	//最后修改人
+
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -32,7 +35,7 @@ public class PayMerchantVo extends BaseVo {
 	}
 
 	public Long getGatewayId() {
-		return this.gatewayId;
+		return gatewayId;
 	}
 
 	public void setGatewayId(Long gatewayId) {
@@ -40,7 +43,7 @@ public class PayMerchantVo extends BaseVo {
 	}
 
 	public String getMerchantCode() {
-		return this.merchantCode;
+		return merchantCode;
 	}
 
 	public void setMerchantCode(String merchantCode) {
@@ -48,7 +51,7 @@ public class PayMerchantVo extends BaseVo {
 	}
 
 	public String getCityCode() {
-		return this.cityCode;
+		return cityCode;
 	}
 
 	public void setCityCode(String cityCode) {
@@ -56,7 +59,7 @@ public class PayMerchantVo extends BaseVo {
 	}
 
 	public String getAcquiringBank() {
-		return this.acquiringBank;
+		return acquiringBank;
 	}
 
 	public void setAcquiringBank(String acquiringBank) {
@@ -64,7 +67,7 @@ public class PayMerchantVo extends BaseVo {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -72,7 +75,7 @@ public class PayMerchantVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -80,7 +83,7 @@ public class PayMerchantVo extends BaseVo {
 	}
 
 	public Timestamp getUpdateTime() {
-		return this.updateTime;
+		return updateTime;
 	}
 
 	public void setUpdateTime(Timestamp updateTime) {
@@ -88,7 +91,7 @@ public class PayMerchantVo extends BaseVo {
 	}
 
 	public String getIsDefault() {
-		return this.isDefault;
+		return isDefault;
 	}
 
 	public void setIsDefault(String isDefault) {
@@ -96,7 +99,7 @@ public class PayMerchantVo extends BaseVo {
 	}
 
 	public Timestamp getModifyTime() {
-		return this.modifyTime;
+		return modifyTime;
 	}
 
 	public void setModifyTime(Timestamp modifyTime) {
@@ -104,10 +107,11 @@ public class PayMerchantVo extends BaseVo {
 	}
 
 	public String getModifyUser() {
-		return this.modifyUser;
+		return modifyUser;
 	}
 
 	public void setModifyUser(String modifyUser) {
 		this.modifyUser = modifyUser;
 	}
+
 }

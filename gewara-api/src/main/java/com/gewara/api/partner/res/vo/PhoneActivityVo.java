@@ -1,11 +1,11 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.res.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class PhoneActivityVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class PhoneActivityVo extends BaseVo{
 	private static final long serialVersionUID = -4047545723681730742L;
 	private String id;
 	private String title;
@@ -23,14 +23,15 @@ public class PhoneActivityVo extends BaseVo {
 	private String citycode;
 	private String status;
 	private String contentLogo;
-	private Integer rank;
-
+	private Integer rank;//≈≈–Ú
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -38,7 +39,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -46,7 +47,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
 
 	public void setLogo(String logo) {
@@ -54,7 +55,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public Date getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Date starttime) {
@@ -62,7 +63,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public Date getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Date endtime) {
@@ -70,7 +71,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getAddress() {
-		return this.address;
+		return address;
 	}
 
 	public void setAddress(String address) {
@@ -78,7 +79,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -86,7 +87,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
@@ -94,7 +95,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getOpiinfo() {
-		return this.opiinfo;
+		return opiinfo;
 	}
 
 	public void setOpiinfo(String opiinfo) {
@@ -102,7 +103,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getApptype() {
-		return this.apptype;
+		return apptype;
 	}
 
 	public void setApptype(String apptype) {
@@ -110,7 +111,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getOstype() {
-		return this.ostype;
+		return ostype;
 	}
 
 	public void setOstype(String ostype) {
@@ -118,7 +119,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public Date getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Date addtime) {
@@ -126,7 +127,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -134,7 +135,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -142,7 +143,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getContentLogo() {
-		return this.contentLogo;
+		return contentLogo;
 	}
 
 	public void setContentLogo(String contentLogo) {
@@ -150,7 +151,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public Integer getRank() {
-		return this.rank;
+		return rank;
 	}
 
 	public void setRank(Integer rank) {
@@ -158,7 +159,7 @@ public class PhoneActivityVo extends BaseVo {
 	}
 
 	public String getFullLogo() {
-		return this.fullLogo;
+		return fullLogo;
 	}
 
 	public void setFullLogo(String fullLogo) {

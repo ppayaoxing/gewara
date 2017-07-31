@@ -1,11 +1,10 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.api.vo.pay.PayMethodDescVo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.gewara.api.vo.BaseVo;
 
 public class PayMethodInfoVo extends BaseVo {
 	private static final long serialVersionUID = 5801913340643625866L;
@@ -14,14 +13,15 @@ public class PayMethodInfoVo extends BaseVo {
 	private Integer totalAmount;
 	private Integer due;
 	private String status;
-	private List<PayMethodDescVo> paymethodList = new ArrayList();
-
+	private List<PayMethodDescVo> paymethodList = new ArrayList<PayMethodDescVo>();
+	
+	@Override
 	public Serializable realId() {
-		return this.tradeno;
+		return tradeno;
 	}
 
 	public String getTradeno() {
-		return this.tradeno;
+		return tradeno;
 	}
 
 	public void setTradeno(String tradeno) {
@@ -29,7 +29,7 @@ public class PayMethodInfoVo extends BaseVo {
 	}
 
 	public Integer getDiscountAmount() {
-		return this.discountAmount;
+		return discountAmount;
 	}
 
 	public void setDiscountAmount(Integer discountAmount) {
@@ -37,7 +37,7 @@ public class PayMethodInfoVo extends BaseVo {
 	}
 
 	public Integer getTotalAmount() {
-		return this.totalAmount;
+		return totalAmount;
 	}
 
 	public void setTotalAmount(Integer totalAmount) {
@@ -45,7 +45,7 @@ public class PayMethodInfoVo extends BaseVo {
 	}
 
 	public Integer getDue() {
-		return this.due;
+		return due;
 	}
 
 	public void setDue(Integer due) {
@@ -53,7 +53,7 @@ public class PayMethodInfoVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -61,10 +61,11 @@ public class PayMethodInfoVo extends BaseVo {
 	}
 
 	public List<PayMethodDescVo> getPaymethodList() {
-		return this.paymethodList;
+		return paymethodList;
 	}
 
 	public void setPaymethodList(List<PayMethodDescVo> paymethodList) {
 		this.paymethodList = paymethodList;
 	}
+
 }

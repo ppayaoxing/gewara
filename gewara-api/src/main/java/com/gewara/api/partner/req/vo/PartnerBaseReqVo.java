@@ -1,16 +1,14 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.req.vo;
 
 import java.io.Serializable;
 
 public class PartnerBaseReqVo implements Serializable {
 	private static final long serialVersionUID = -678888982991963704L;
-	protected String appkey;
+	protected String appkey;		// 合作商APPKEY
 	protected String citycode;
-	protected String remoteIp;
-
+	protected String remoteIp;	// 城市编码
 	public String getRemoteIp() {
-		return this.remoteIp;
+		return remoteIp;
 	}
 
 	public void setRemoteIp(String remoteIp) {
@@ -18,7 +16,7 @@ public class PartnerBaseReqVo implements Serializable {
 	}
 
 	public String getAppkey() {
-		return this.appkey;
+		return appkey;
 	}
 
 	public void setAppkey(String appkey) {
@@ -26,7 +24,7 @@ public class PartnerBaseReqVo implements Serializable {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {

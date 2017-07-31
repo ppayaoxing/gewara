@@ -1,18 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.draw;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.DateUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
+
+import com.gewara.api.vo.BaseVo;
+import com.gewara.cons.Status;
+import com.gewara.util.DateUtil;
 
 public class DrawActivityVo extends BaseVo {
 	private static final long serialVersionUID = -4034911891988110414L;
 	public static final String SHOWSITE_WAP = "wap";
 	public static final String SHOWSITE_WEB = "web";
 	public static final String TAG_NEWTASK = "newtask";
-	public static final String MOBILE_DRAW_TAG = "mobile_invite";
+	public static final String MOBILE_DRAW_TAG="mobile_invite";
+	
 	private Long id;
 	private String name;
 	private String tag;
@@ -22,24 +25,26 @@ public class DrawActivityVo extends BaseVo {
 	private Timestamp addtime;
 	private String showsite;
 	private String otherinfo;
-	private Integer limitnum;
-	private String projectid;
-
-	public DrawActivityVo() {
+	private Integer limitnum;			//限制次数
+	private String projectid;			//项目id
+	
+	public DrawActivityVo(){
+		
 	}
-
-	public DrawActivityVo(String name, String tag, Timestamp startime, Timestamp endtime, String showsite) {
+	
+	public DrawActivityVo(String name,String tag,Timestamp startime,Timestamp endtime,String showsite){
 		this.name = name;
 		this.tag = tag;
 		this.starttime = startime;
 		this.endtime = endtime;
-		this.status = "Y_NEW";
+		this.status = Status.Y_NEW;
 		this.addtime = new Timestamp(System.currentTimeMillis());
 		this.showsite = showsite;
 	}
-
+	
+	
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -47,7 +52,7 @@ public class DrawActivityVo extends BaseVo {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -55,7 +60,7 @@ public class DrawActivityVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -63,7 +68,7 @@ public class DrawActivityVo extends BaseVo {
 	}
 
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Timestamp starttime) {
@@ -71,7 +76,7 @@ public class DrawActivityVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -79,19 +84,18 @@ public class DrawActivityVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -99,42 +103,38 @@ public class DrawActivityVo extends BaseVo {
 	}
 
 	public String getShowsite() {
-		return this.showsite;
+		return showsite;
 	}
 
 	public void setShowsite(String showsite) {
 		this.showsite = showsite;
 	}
-
+	
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
-
-	public boolean isOpen() {
-		return this.starttime == null ? false : this.starttime.before(new Timestamp(System.currentTimeMillis()));
+	
+	public boolean isOpen(){
+		if(starttime==null) return false;
+		return starttime.before(new Timestamp(System.currentTimeMillis()));
 	}
-
 	public boolean isClosed() {
-		if (this.endtime == null) {
-			return true;
-		} else {
-			Timestamp cur = new Timestamp(System.currentTimeMillis());
-			return cur.after(this.endtime);
-		}
+		if(endtime==null) return true;
+		Timestamp cur = new Timestamp(System.currentTimeMillis());
+		return cur.after(endtime);
 	}
-
-	public boolean isJoin() {
+	
+	public boolean isJoin(){
 		Timestamp curtime = DateUtil.getCurFullTimestamp();
-		return StringUtils.equals("Y_NEW", this.status) && curtime.after(this.starttime)
-				&& curtime.before(this.endtime);
+		return StringUtils.equals(Status.Y_NEW, status) && curtime.after(starttime) && curtime.before(endtime);
 	}
 
 	public Integer getLimitnum() {
-		return this.limitnum;
+		return limitnum;
 	}
 
 	public void setLimitnum(Integer limitnum) {
@@ -142,7 +142,7 @@ public class DrawActivityVo extends BaseVo {
 	}
 
 	public String getProjectid() {
-		return this.projectid;
+		return projectid;
 	}
 
 	public void setProjectid(String projectid) {

@@ -1,37 +1,39 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.mongo;
+
+import java.io.Serializable;
 
 import com.gewara.api.vo.BaseVo;
 import com.gewara.util.DateUtil;
 import com.gewara.util.ObjectId;
-import java.io.Serializable;
 
-public class FriendCardCfgVo extends BaseVo {
+public class FriendCardCfgVo extends BaseVo{
+
 	private String _id;
-	private String title;
-	private Integer amount;
-	private String description;
-	private Long sdid;
-	private String centerTitle;
-	private String centerSubtitle;
-	private String abstractText;
-	private String icon;
-	private String img;
-	private String imgText;
-	private String addtime;
-	private String cardId;
-
-	public FriendCardCfgVo() {
-		this.set_id(ObjectId.uuid());
+	private String title;				//券名称
+	private Integer amount;				//优惠金额
+	private String description;			//描述（使用范围）
+	private Long sdid;					//特价活动id
+	private String centerTitle;			//按钮文字
+	private String centerSubtitle;		//按钮下面的文字
+	private String abstractText;		//代金券详情下面的文字
+	private String icon;				//代金券详情下面的文字下面的图片
+	private String img;					//详情页面下的（图文介绍)
+	private String imgText;				//详情页面（图片文字介绍）
+	private String addtime;				//添加时间
+	
+	private String cardId;				//微信接口返回的card_id
+	public FriendCardCfgVo(){
+		set_id(ObjectId.uuid());
 		this.addtime = DateUtil.getCurFullTimestampStr();
 	}
 
+	@Override
 	public Serializable realId() {
-		return this._id;
+		return _id;
 	}
 
 	public String get_id() {
-		return this._id;
+		return _id;
 	}
 
 	public void set_id(String _id) {
@@ -39,7 +41,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -47,7 +49,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public Integer getAmount() {
-		return this.amount;
+		return amount;
 	}
 
 	public void setAmount(Integer amount) {
@@ -55,7 +57,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -63,7 +65,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public Long getSdid() {
-		return this.sdid;
+		return sdid;
 	}
 
 	public void setSdid(Long sdid) {
@@ -71,7 +73,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public String getCenterTitle() {
-		return this.centerTitle;
+		return centerTitle;
 	}
 
 	public void setCenterTitle(String centerTitle) {
@@ -79,7 +81,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public String getCenterSubtitle() {
-		return this.centerSubtitle;
+		return centerSubtitle;
 	}
 
 	public void setCenterSubtitle(String centerSubtitle) {
@@ -87,7 +89,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public String getAbstractText() {
-		return this.abstractText;
+		return abstractText;
 	}
 
 	public void setAbstractText(String abstractText) {
@@ -95,7 +97,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public String getIcon() {
-		return this.icon;
+		return icon;
 	}
 
 	public void setIcon(String icon) {
@@ -103,7 +105,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public String getImg() {
-		return this.img;
+		return img;
 	}
 
 	public void setImg(String img) {
@@ -111,7 +113,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public String getImgText() {
-		return this.imgText;
+		return imgText;
 	}
 
 	public void setImgText(String imgText) {
@@ -119,7 +121,7 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public String getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(String addtime) {
@@ -127,10 +129,11 @@ public class FriendCardCfgVo extends BaseVo {
 	}
 
 	public String getCardId() {
-		return this.cardId;
+		return cardId;
 	}
 
 	public void setCardId(String cardId) {
 		this.cardId = cardId;
 	}
+
 }

@@ -1,34 +1,36 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.res.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class ApiUserVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class ApiUserVo extends BaseVo{
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 9050518635941028420L;
-	public static final String STATUS_OPEN = "open";
-	public static final String STATUS_PAUSE = "pause";
-	public static final String STATUS_STOP = "stop";
+	public static final String STATUS_OPEN = "open";	//正常使用
+	public static final String STATUS_PAUSE = "pause";	//暂停使用
+	public static final String STATUS_STOP = "stop";	//停止使用
+
 	private Long id;
-	private String partnername;
-
+	private String partnername;		//合作伙伴名称
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getPartnername() {
-		return this.partnername;
+		return partnername;
 	}
-
 	public void setPartnername(String partnername) {
 		this.partnername = partnername;
 	}
+	
+	
 }

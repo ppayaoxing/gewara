@@ -1,32 +1,46 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.req.vo;
 
-import com.gewara.api.partner.req.vo.PartnerBaseReqVo;
 import java.util.Map;
+
 import org.apache.commons.codec.binary.StringUtils;
 
+
+/**
+ * 创建订单
+ */
 public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	private static final long serialVersionUID = -9010424348846855963L;
+	// 楼上楼下标识
 	private String secid;
+	// 用户ID
 	private String memberEncode;
+	// 合作商用户标识
 	private String ukey;
+	// 场次ID
 	private Long mpid;
+	// 手机号
 	private String mobile;
+	// 座位信息
 	private String seatLable;
+	// 物品ID
 	private Long goodsId;
+	// 购买物品数量
 	private Integer quantity;
+	// 特价活动ID
 	private Long discountId;
+	// 来源接入
 	private String origin;
 	private String paybank;
 	private String paymethod;
-	private String ignoreSeatPosValid = "N";
+	private String ignoreSeatPosValid = "N";//忽略孤座验证
 	private Map<String, String> otherinfoMap;
 
+	
 	public PartnerAddOrderReqVo() {
+		
 	}
-
-	public PartnerAddOrderReqVo(String appkey, Long mpid, String mobile, String seatLabel, String secid, String ukey,
-			String memberEncode) {
+	
+	public PartnerAddOrderReqVo(String appkey, Long mpid, String mobile, String seatLabel, String secid, String ukey, String memberEncode) {
 		this.appkey = appkey;
 		this.mpid = mpid;
 		this.mobile = mobile;
@@ -35,9 +49,9 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 		this.ukey = ukey;
 		this.memberEncode = memberEncode;
 	}
-
+	
 	public String getSecid() {
-		return this.secid;
+		return secid;
 	}
 
 	public void setSecid(String secid) {
@@ -45,7 +59,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public Long getMpid() {
-		return this.mpid;
+		return mpid;
 	}
 
 	public void setMpid(Long mpid) {
@@ -53,7 +67,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -61,7 +75,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getSeatLable() {
-		return this.seatLable;
+		return seatLable;
 	}
 
 	public void setSeatLable(String seatLable) {
@@ -69,7 +83,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public Long getGoodsId() {
-		return this.goodsId;
+		return goodsId;
 	}
 
 	public void setGoodsId(Long goodsId) {
@@ -77,7 +91,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -85,7 +99,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -93,7 +107,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getPaybank() {
-		return this.paybank;
+		return paybank;
 	}
 
 	public void setPaybank(String paybank) {
@@ -101,15 +115,15 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getPaymethod() {
-		return this.paymethod;
+		return paymethod;
 	}
 
 	public void setPaymethod(String paymethod) {
 		this.paymethod = paymethod;
 	}
-
+	
 	public Long getDiscountId() {
-		return this.discountId;
+		return discountId;
 	}
 
 	public void setDiscountId(Long discountId) {
@@ -117,7 +131,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getUkey() {
-		return this.ukey;
+		return ukey;
 	}
 
 	public void setUkey(String ukey) {
@@ -125,7 +139,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getMemberEncode() {
-		return this.memberEncode;
+		return memberEncode;
 	}
 
 	public void setMemberEncode(String memberEncode) {
@@ -133,7 +147,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public Map<String, String> getOtherinfoMap() {
-		return this.otherinfoMap;
+		return otherinfoMap;
 	}
 
 	public void setOtherinfoMap(Map<String, String> otherinfoMap) {
@@ -141,14 +155,17 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getIgnoreSeatPosValid() {
-		return this.ignoreSeatPosValid;
+		return ignoreSeatPosValid;
 	}
 
 	public void setIgnoreSeatPosValid(String ignoreSeatPosValid) {
 		this.ignoreSeatPosValid = ignoreSeatPosValid;
 	}
-
-	public boolean ignoreSeatPos() {
-		return StringUtils.equals("Y", this.ignoreSeatPosValid);
+	/**
+	 * 忽略孤座验证
+	 * @return
+	 */
+	public boolean ignoreSeatPos(){
+		return StringUtils.equals("Y", ignoreSeatPosValid);
 	}
 }

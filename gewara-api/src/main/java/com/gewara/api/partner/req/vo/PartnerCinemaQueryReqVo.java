@@ -1,26 +1,43 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.req.vo;
 
-import com.gewara.api.partner.req.vo.PartnerPageReqVo;
 import java.util.Date;
 
+/**
+ * 影院查询
+ * 
+ */
 public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 6903767757594858880L;
+	//
 	private String quyuType;
+	// 影院服务
 	private String serviceType;
+	// 电影ID
 	private Long movieId;
+	// 特价活动ID
 	private Long discountId;
+	// 区县code
 	private String countycode;
+	// 排序字段
 	private String orderField;
+	// 地铁ID
 	private Long subwayId;
+	// 商圈ID
 	private String indexareacode;
+	// 开放日期
 	private Date playDate;
+	// pointx
 	private Double pointx;
+	// pointy
 	private Double pointy;
+	
 	private Long memberid;
 
 	public String getQuyuType() {
-		return this.quyuType;
+		return quyuType;
 	}
 
 	public void setQuyuType(String quyuType) {
@@ -28,7 +45,7 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public String getServiceType() {
-		return this.serviceType;
+		return serviceType;
 	}
 
 	public void setServiceType(String serviceType) {
@@ -36,7 +53,7 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public Long getMovieId() {
-		return this.movieId;
+		return movieId;
 	}
 
 	public void setMovieId(Long movieId) {
@@ -44,7 +61,7 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public Long getDiscountId() {
-		return this.discountId;
+		return discountId;
 	}
 
 	public void setDiscountId(Long discountId) {
@@ -52,7 +69,7 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public String getCountycode() {
-		return this.countycode;
+		return countycode;
 	}
 
 	public void setCountycode(String countycode) {
@@ -60,7 +77,7 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public String getOrderField() {
-		return this.orderField;
+		return orderField;
 	}
 
 	public void setOrderField(String orderField) {
@@ -68,7 +85,7 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public Long getSubwayId() {
-		return this.subwayId;
+		return subwayId;
 	}
 
 	public void setSubwayId(Long subwayId) {
@@ -76,7 +93,7 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public String getIndexareacode() {
-		return this.indexareacode;
+		return indexareacode;
 	}
 
 	public void setIndexareacode(String indexareacode) {
@@ -84,7 +101,7 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public Date getPlayDate() {
-		return this.playDate;
+		return playDate;
 	}
 
 	public void setPlayDate(Date playDate) {
@@ -92,7 +109,7 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public Double getPointx() {
-		return this.pointx;
+		return pointx;
 	}
 
 	public void setPointx(Double pointx) {
@@ -100,7 +117,7 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public Double getPointy() {
-		return this.pointy;
+		return pointy;
 	}
 
 	public void setPointy(Double pointy) {
@@ -108,10 +125,13 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
+
+	
+	
 }

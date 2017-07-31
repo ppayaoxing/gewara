@@ -1,94 +1,78 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.res.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class BaseMemberVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class BaseMemberVo extends BaseVo{
 	private static final long serialVersionUID = 7900654577749680105L;
 	protected Long id;
 	protected String nickname;
-	protected String headpic;
-	protected String sex;
+	protected String headpic;				//用户logo
+	protected String sex;					//性别
 	protected String source;
-	protected Integer pointvalue;
+	protected Integer pointvalue;				//积分
 	protected String otherinfo;
-	protected Timestamp addtime;
-
 	public String getSource() {
-		return this.source;
+		return source;
 	}
-
 	public void setSource(String source) {
 		this.source = source;
 	}
-
+	protected Timestamp addtime;
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getUsername() {
-		return this.nickname;
+		return nickname;
 	}
-
 	public Long getMemberid() {
-		return this.id;
+		return id;
 	}
-
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-
 	public String getHeadpic() {
-		return this.headpic;
+		return headpic;
 	}
-
 	public void setHeadpic(String headpic) {
 		this.headpic = headpic;
 	}
-
 	public String getSex() {
-		return this.sex;
+		return sex;
 	}
-
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
-
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
-
 	public Integer getPointvalue() {
-		return this.pointvalue;
+		return pointvalue;
 	}
-
 	public void setPointvalue(Integer pointvalue) {
 		this.pointvalue = pointvalue;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
-	}
+		return id;
+	}			
+	
 }

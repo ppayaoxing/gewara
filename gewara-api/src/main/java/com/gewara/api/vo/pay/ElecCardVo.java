@@ -1,35 +1,36 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.api.vo.pay.ElecCardBatchVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ElecCardVo extends BaseVo {
+
 	private static final long serialVersionUID = 3978900461424543223L;
 	private Long id;
-	private String cardno;
-	private String status;
-	private ElecCardBatchVo ebatch;
-	private Long deluserid;
-	private Timestamp deltime;
-	private Long possessor;
-	private Long gainer;
-	private String mobile;
-	private Long orderid;
-	private Integer version;
+	private String cardno;			//卡号
+	private String status;			//状态
+	private ElecCardBatchVo ebatch;	//批次
+	private Long deluserid;			//废弃人
+	private Timestamp deltime;		//废弃时间
+	private Long possessor;			//拥有者
+	private Long gainer;			//领取者
+	private String mobile;			//获取手机或绑定标志
+	private Long orderid;			//使用的订单号
+	private Integer version;		//
 	private Timestamp begintime;
 	private Timestamp endtime;
-	private String remark;
-	private Double useAmount;
-
+	private String remark;  //废弃备注说明
+	private Double useAmount; //使用金额
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -37,7 +38,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public String getCardno() {
-		return this.cardno;
+		return cardno;
 	}
 
 	public void setCardno(String cardno) {
@@ -45,7 +46,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -53,7 +54,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public ElecCardBatchVo getEbatch() {
-		return this.ebatch;
+		return ebatch;
 	}
 
 	public void setEbatchVo(ElecCardBatchVo ebatch) {
@@ -61,7 +62,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public Long getDeluserid() {
-		return this.deluserid;
+		return deluserid;
 	}
 
 	public void setDeluserid(Long deluserid) {
@@ -69,7 +70,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public Timestamp getDeltime() {
-		return this.deltime;
+		return deltime;
 	}
 
 	public void setDeltime(Timestamp deltime) {
@@ -77,7 +78,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public Long getPossessor() {
-		return this.possessor;
+		return possessor;
 	}
 
 	public void setPossessor(Long possessor) {
@@ -85,7 +86,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public Long getGainer() {
-		return this.gainer;
+		return gainer;
 	}
 
 	public void setGainer(Long gainer) {
@@ -93,7 +94,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -101,7 +102,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public Long getOrderid() {
-		return this.orderid;
+		return orderid;
 	}
 
 	public void setOrderid(Long orderid) {
@@ -109,7 +110,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -117,7 +118,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public Timestamp getBegintime() {
-		return this.begintime;
+		return begintime;
 	}
 
 	public void setBegintime(Timestamp begintime) {
@@ -125,7 +126,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -133,7 +134,7 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -141,10 +142,11 @@ public class ElecCardVo extends BaseVo {
 	}
 
 	public Double getUseAmount() {
-		return this.useAmount;
+		return useAmount;
 	}
 
 	public void setUseAmount(Double useAmount) {
 		this.useAmount = useAmount;
 	}
+	
 }

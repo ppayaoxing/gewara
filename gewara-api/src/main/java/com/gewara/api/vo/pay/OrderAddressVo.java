@@ -1,11 +1,12 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class OrderAddressVo extends BaseVo {
+
 	private static final long serialVersionUID = -8227413676440639244L;
 	private String tradeno;
 	private Long usefulAddressId;
@@ -22,13 +23,16 @@ public class OrderAddressVo extends BaseVo {
 	private String countyname;
 	private String expresstype;
 	private String address;
-
+	
+	public OrderAddressVo(){}
+	
+	@Override
 	public Serializable realId() {
-		return this.tradeno;
+		return tradeno;
 	}
 
 	public String getTradeno() {
-		return this.tradeno;
+		return tradeno;
 	}
 
 	public void setTradeno(String tradeno) {
@@ -36,7 +40,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getRealname() {
-		return this.realname;
+		return realname;
 	}
 
 	public void setRealname(String realname) {
@@ -44,7 +48,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getPostalcode() {
-		return this.postalcode;
+		return postalcode;
 	}
 
 	public void setPostalcode(String postalcode) {
@@ -52,7 +56,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -60,7 +64,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -68,7 +72,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -76,7 +80,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getAddress() {
-		return this.address;
+		return address;
 	}
 
 	public void setAddress(String address) {
@@ -84,7 +88,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getProvincecode() {
-		return this.provincecode;
+		return provincecode;
 	}
 
 	public void setProvincecode(String provincecode) {
@@ -92,7 +96,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getProvincename() {
-		return this.provincename;
+		return provincename;
 	}
 
 	public void setProvincename(String provincename) {
@@ -100,7 +104,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -108,7 +112,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getCityname() {
-		return this.cityname;
+		return cityname;
 	}
 
 	public void setCityname(String cityname) {
@@ -116,7 +120,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getCountycode() {
-		return this.countycode;
+		return countycode;
 	}
 
 	public void setCountycode(String countycode) {
@@ -124,7 +128,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getCountyname() {
-		return this.countyname;
+		return countyname;
 	}
 
 	public void setCountyname(String countyname) {
@@ -132,7 +136,7 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public String getExpresstype() {
-		return this.expresstype;
+		return expresstype;
 	}
 
 	public void setExpresstype(String expresstype) {
@@ -140,14 +144,14 @@ public class OrderAddressVo extends BaseVo {
 	}
 
 	public Long getUsefulAddressId() {
-		return this.usefulAddressId;
+		return usefulAddressId;
 	}
 
 	public void setUsefulAddressId(Long usefulAddressId) {
 		this.usefulAddressId = usefulAddressId;
 	}
-
-	public String gainAddress() {
+	
+	public String gainAddress(){
 		return this.provincename + " " + this.cityname + " " + this.countyname + " " + this.address;
 	}
 }

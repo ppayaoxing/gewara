@@ -1,16 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.service.movie;
 
-import com.gewara.api.vo.ResultCode;
 import java.util.List;
 
+import com.gewara.api.vo.ResultCode;
+
 public interface QryResponseVoService {
-	ResultCode removeLockSeatFromQryResponse(Long arg0, String arg1, List<String> arg2);
-
-	ResultCode addLockSeatToQryResponse(Long arg0, String arg1, List<String> arg2);
-
-	ResultCode<List<String>> updateRemoteLockSeat1(Long arg0, String arg1, String arg2, String arg3);
-
-	ResultCode<List<String>> updateRemoteLockSeat2(Long arg0, String arg1, String arg2, String arg3, int arg4,
-			boolean arg5);
+	ResultCode removeLockSeatFromQryResponse(Long mpid, String secid, List<String> lockedSeatStrList);
+	ResultCode addLockSeatToQryResponse(Long mpid, String secid, List<String> lockedSeatStrList);
+	/**
+	 * @param mpid
+	 * @param opentype
+	 * @param secid
+	 * @param seqNo
+	 * @param expireSeconds
+	 * @param refresh
+	 * @return
+	 */
+	ResultCode<List<String>> updateRemoteLockSeat1(Long mpid, String opentype, String secid, String seqNo);
+	
+	/**
+	 * @param mpid
+	 * @param opentype
+	 * @param secid
+	 * @param seqNo
+	 * @param expireSeconds
+	 * @param refresh
+	 * @return
+	 */
+	ResultCode<List<String>> updateRemoteLockSeat2(Long mpid, String opentype, String secid, String seqNo, int expireSeconds, boolean refresh);
 }

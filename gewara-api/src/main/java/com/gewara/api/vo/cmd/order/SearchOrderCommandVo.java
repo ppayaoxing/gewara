@@ -1,28 +1,35 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.cmd.order;
 
-import com.gewara.util.DateUtil;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.cons.OrderConstant;
+import com.gewara.util.DateUtil;
+
+/**
+ * 搜索订单Bean
+ * @author acerge(acerge@163.com)
+ * @since 12:13:41 PM Oct 17, 2009
+ */
 public class SearchOrderCommandVo {
-	private String ordertype;
+	private String ordertype;	//订单类型
 	private String pricategory;
 	private String category;
 	private String placetype;
 	private Long placeid;
 	private String itemtype;
 	private String mptype;
-	private Long cid;
-	private Long movieid;
-	private Long orderid;
-	private Long mpid;
-	private Long memberid;
-	private Integer minute;
-	private String mobile;
-	private String tradeNo;
-	private String status = "paid";
-	private Timestamp timeFrom;
+	private Long cid;				//CinemaID
+	private Long movieid;		//MOVIEID
+	private Long orderid;		//orderID
+	private Long mpid;			//场次ID
+	private Long memberid;		//用户ID
+	private Integer minute;		//查询分钟
+	private String mobile;		//手机号
+	private String tradeNo;		//交易号
+	private String status = OrderConstant.STATUS_PAID;
+	private Timestamp timeFrom;//下单时间范围
 	private Timestamp timeTo;
 	private Long goodsid;
 	private Long dramaid;
@@ -34,246 +41,182 @@ public class SearchOrderCommandVo {
 	private String expressid;
 	private Long areaid;
 	private Long mctid;
-
 	public String getCard() {
-		return this.card;
+		return card;
 	}
-
 	public void setCard(String card) {
 		this.card = card;
 	}
-
 	public String getTakemethod() {
-		return this.takemethod;
+		return takemethod;
 	}
-
 	public void setTakemethod(String takemethod) {
 		this.takemethod = takemethod;
 	}
-
 	public String getSno() {
-		return this.sno;
+		return sno;
 	}
-
 	public void setSno(String sno) {
 		this.sno = sno;
 	}
-
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
-
 	public void setDramaid(Long dramaid) {
 		this.dramaid = dramaid;
 	}
-
 	public Long getTheatrid() {
-		return this.theatrid;
+		return theatrid;
 	}
-
 	public void setTheatrid(Long theatrid) {
 		this.theatrid = theatrid;
 	}
-
 	public Long getGoodsid() {
-		return this.goodsid;
+		return goodsid;
 	}
-
 	public void setGoodsid(Long goodsid) {
 		this.goodsid = goodsid;
 	}
-
 	public Timestamp getTimeFrom() {
-		return this.timeFrom;
+		return timeFrom;
 	}
-
 	public void setTimeFrom(Timestamp timeFrom) {
 		this.timeFrom = timeFrom;
 	}
-
 	public Timestamp getTimeTo() {
-		return this.timeTo;
+		return timeTo;
 	}
-
 	public void setTimeTo(Timestamp timeTo) {
 		this.timeTo = timeTo;
 	}
-
 	public String getOrdertype() {
-		return this.ordertype;
+		return ordertype;
 	}
-
 	public void setOrdertype(String ordertype) {
 		this.ordertype = ordertype;
 	}
-
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
-
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
-
 	public void setTradeNo(String tradeNo) {
 		this.tradeNo = tradeNo;
 	}
-
 	public Long getMpid() {
-		return this.mpid;
+		return mpid;
 	}
-
 	public void setMpid(Long mpid) {
 		this.mpid = mpid;
 	}
-
 	public Long getOrderid() {
-		return this.orderid;
+		return orderid;
 	}
-
 	public void setOrderid(Long orderid) {
 		this.orderid = orderid;
 	}
-
 	public Integer getMinute() {
-		return this.minute;
+		return minute;
 	}
-
 	public void setMinute(Integer minute) {
-		if (minute != null && minute.intValue() > 14400) {
-			this.minute = Integer.valueOf(14400);
-		} else {
-			this.minute = minute;
-		}
-
+		if(minute!=null && minute>14400) this.minute=14400;
+		else this.minute = minute;
 	}
-
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
-	public boolean isBlankCond() {
-		return (this.minute == null
-				|| this.minute.intValue() > 1440 && !StringUtils.startsWith(this.ordertype, "paid_failure"))
-				&& (this.timeFrom == null || this.timeTo == null
-						|| ((Timestamp) DateUtil.addDay(this.timeFrom, 30)).before(this.timeTo))
-				&& this.mpid == null && this.orderid == null && StringUtils.length(this.tradeNo) != 16
-				&& StringUtils.length(this.mobile) != 11;
+	public boolean isBlankCond(){
+		return (minute == null || minute > 1440 && !StringUtils.startsWith(ordertype, OrderConstant.STATUS_PAID_FAILURE))
+				&&(timeFrom == null || timeTo == null || DateUtil.addDay(timeFrom, 30).before(timeTo))
+				&& mpid == null && orderid == null && StringUtils.length(tradeNo) != 16 && StringUtils.length(mobile) != 11;
 	}
-
-	public boolean hasBlankCond() {
-		return this.isBlankCond() && this.placeid == null;
+	public boolean hasBlankCond(){
+		return isBlankCond() && placeid == null;
 	}
-
 	public Long getCid() {
-		return this.cid;
+		return cid;
 	}
-
 	public void setCid(Long cid) {
 		this.cid = cid;
 	}
-
 	public String getPricategory() {
-		return this.pricategory;
+		return pricategory;
 	}
-
 	public void setPricategory(String pricategory) {
 		this.pricategory = pricategory;
 	}
-
 	public String getCategory() {
-		return this.category;
+		return category;
 	}
-
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
-
 	public void setMovieid(Long movieid) {
 		this.movieid = movieid;
 	}
-
-	public String getCitycode() {
-		return this.citycode;
+	public String getCitycode(){
+		return citycode;
 	}
-
-	public void setCitycode(String citycode) {
+	public void setCitycode(String citycode){
 		this.citycode = citycode;
 	}
-
 	public String getPlacetype() {
-		return this.placetype;
+		return placetype;
 	}
-
 	public void setPlacetype(String placetype) {
 		this.placetype = placetype;
 	}
-
 	public String getItemtype() {
-		return this.itemtype;
+		return itemtype;
 	}
-
 	public void setItemtype(String itemtype) {
 		this.itemtype = itemtype;
 	}
-
 	public String getMptype() {
-		return this.mptype;
+		return mptype;
 	}
-
 	public void setMptype(String mptype) {
 		this.mptype = mptype;
 	}
-
 	public Long getPlaceid() {
-		return this.placeid;
+		return placeid;
 	}
-
 	public void setPlaceid(Long placeid) {
 		this.placeid = placeid;
 	}
-
 	public String getExpressid() {
-		return this.expressid;
+		return expressid;
 	}
-
 	public void setExpressid(String expressid) {
 		this.expressid = expressid;
 	}
-
 	public Long getAreaid() {
-		return this.areaid;
+		return areaid;
 	}
-
 	public void setAreaid(Long areaid) {
 		this.areaid = areaid;
 	}
-
 	public Long getMctid() {
-		return this.mctid;
+		return mctid;
 	}
-
 	public void setMctid(Long mctid) {
 		this.mctid = mctid;
 	}
+	
 }

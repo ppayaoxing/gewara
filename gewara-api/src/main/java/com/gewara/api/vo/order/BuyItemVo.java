@@ -1,9 +1,9 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.order;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class BuyItemVo extends BaseVo {
 	private static final long serialVersionUID = 1769434405086656774L;
@@ -11,43 +11,49 @@ public class BuyItemVo extends BaseVo {
 	private Long orderid;
 	private String checkpass;
 	private Long memberid;
-	private String tag;
-	private Long relatedid;
+	private String tag;					//商品或场次类型
+	private Long relatedid;				//商品或场次ID
 	private String goodsname;
 	private Integer quantity;
-	private Integer unitprice;
+	private Integer unitprice;			//单价
 	private String summary;
 	private Timestamp validtime;
 	private Timestamp addtime;
-	private String bundle;
-	private Timestamp playtime;
-	private Integer costprice;
-	private Integer oriprice;
-	private Integer totalcost;
-	private Integer totalfee;
-	private Integer discount;
-	private String disreason;
-	private String placetype;
-	private Long placeid;
-	private String itemtype;
-	private Long itemid;
-	private String otherinfo;
-	private String description;
-	private String smallitemtype;
-	private Long smallitemid;
-	private Long disid;
-	private Integer disfee;
-	private String express;
-	private Long settleid;
+	
+	private String bundle;				//是否赠品
+	private Timestamp playtime;			//消费时间
+	private Integer costprice;			//成本价
+	private Integer oriprice;			//市场价、场馆价、原价
+	private Integer totalcost;			//总成本价
+	private Integer totalfee;			//商品总金额
+	private Integer discount;			//商品优惠
+	private String disreason;			//优惠理由
+	private String placetype;			//场馆类型
+	private Long placeid;				//场馆ID
+	private String itemtype;			//项目类型
+	private Long itemid;				//项目ID
+	private String otherinfo;			//其他信息
+	private String description;			//商品描述
+	private String smallitemtype;		//商品卖出方式(价格)
+	private Long smallitemid;			//关联对象ID(如价格)
+	private Long disid;					//优惠套票ID
+	private Integer disfee;				//优惠套票
+	private String express;				//是否快递
+	
+	private Long settleid;				//结算折扣
+	
 	private String fromup;
-	private Long tipid;
-
+	private Long tipid;					//演出场次价格ID
+	
+	public BuyItemVo(){}
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -55,79 +61,65 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Long getOrderid() {
-		return this.orderid;
+		return orderid;
 	}
-
 	public void setOrderid(Long orderid) {
 		this.orderid = orderid;
 	}
-
 	public String getGoodsname() {
-		return this.goodsname;
+		return goodsname;
 	}
-
 	public void setGoodsname(String goodsname) {
 		this.goodsname = goodsname;
 	}
-
+	
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
-
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-
 	public Integer getUnitprice() {
-		return this.unitprice;
+		return unitprice;
 	}
-
 	public void setUnitprice(Integer unitprice) {
 		this.unitprice = unitprice;
 	}
 
 	public Timestamp getValidtime() {
-		return this.validtime;
+		return validtime;
 	}
-
 	public void setValidtime(Timestamp validtime) {
 		this.validtime = validtime;
 	}
-
 	public String getSummary() {
-		return this.summary;
+		return summary;
 	}
-
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-
+	
 	public String getCheckpass() {
-		return this.checkpass;
+		return checkpass;
 	}
-
 	public void setCheckpass(String checkpass) {
 		this.checkpass = checkpass;
 	}
 
 	public String getBundle() {
-		return this.bundle;
+		return bundle;
 	}
 
 	public void setBundle(String bundle) {
@@ -135,19 +127,19 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
 
-	public Long getGoodsid() {
-		return this.getRelatedid();
+	public Long getGoodsid(){
+		return getRelatedid();
 	}
-
+	
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -155,7 +147,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Timestamp getPlaytime() {
-		return this.playtime;
+		return playtime;
 	}
 
 	public void setPlaytime(Timestamp playtime) {
@@ -163,7 +155,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public String getPlacetype() {
-		return this.placetype;
+		return placetype;
 	}
 
 	public void setPlacetype(String placetype) {
@@ -171,7 +163,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Long getPlaceid() {
-		return this.placeid;
+		return placeid;
 	}
 
 	public void setPlaceid(Long placeid) {
@@ -179,7 +171,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public String getItemtype() {
-		return this.itemtype;
+		return itemtype;
 	}
 
 	public void setItemtype(String itemtype) {
@@ -187,7 +179,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Long getItemid() {
-		return this.itemid;
+		return itemid;
 	}
 
 	public void setItemid(Long itemid) {
@@ -195,7 +187,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Integer getCostprice() {
-		return this.costprice;
+		return costprice;
 	}
 
 	public void setCostprice(Integer costprice) {
@@ -203,7 +195,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Integer getTotalcost() {
-		return this.totalcost;
+		return totalcost;
 	}
 
 	public void setTotalcost(Integer totalcost) {
@@ -211,7 +203,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Integer getDiscount() {
-		return this.discount;
+		return discount;
 	}
 
 	public void setDiscount(Integer discount) {
@@ -219,7 +211,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public String getDisreason() {
-		return this.disreason;
+		return disreason;
 	}
 
 	public void setDisreason(String disreason) {
@@ -227,7 +219,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -235,28 +227,27 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public Integer getTotalfee() {
-		return this.totalfee;
+		return totalfee;
 	}
-
+	
 	public void setTotalfee(Integer totalfee) {
 		this.totalfee = totalfee;
 	}
 
-	public Integer getDue() {
-		int due = this.totalfee.intValue() - this.disfee.intValue() - this.discount.intValue();
-		return Integer.valueOf(due < 0 ? 0 : due);
+	public Integer getDue(){
+		int due = totalfee - disfee - discount;
+		return due < 0 ? 0 : due;
 	}
-
+	
 	public String getSmallitemtype() {
-		return this.smallitemtype;
+		return smallitemtype;
 	}
 
 	public void setSmallitemtype(String smallitemtype) {
@@ -264,7 +255,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Long getSmallitemid() {
-		return this.smallitemid;
+		return smallitemid;
 	}
 
 	public void setSmallitemid(Long smallitemid) {
@@ -272,7 +263,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Long getDisid() {
-		return this.disid;
+		return disid;
 	}
 
 	public void setDisid(Long disid) {
@@ -280,7 +271,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Integer getDisfee() {
-		return this.disfee;
+		return disfee;
 	}
 
 	public void setDisfee(Integer disfee) {
@@ -288,11 +279,11 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public String getExpress() {
-		return this.express;
+		return express;
 	}
 
 	public Integer getOriprice() {
-		return this.oriprice;
+		return oriprice;
 	}
 
 	public void setOriprice(Integer oriprice) {
@@ -304,7 +295,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Long getSettleid() {
-		return this.settleid;
+		return settleid;
 	}
 
 	public void setSettleid(Long settleid) {
@@ -312,7 +303,7 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public String getFromup() {
-		return this.fromup;
+		return fromup;
 	}
 
 	public void setFromup(String fromup) {
@@ -320,10 +311,11 @@ public class BuyItemVo extends BaseVo {
 	}
 
 	public Long getTipid() {
-		return this.tipid;
+		return tipid;
 	}
 
 	public void setTipid(Long tipid) {
 		this.tipid = tipid;
 	}
+	
 }

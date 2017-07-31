@@ -1,9 +1,12 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.req.drama.vo;
 
 import com.gewara.api.partner.req.vo.PartnerBaseReqVo;
 
 public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 5456581803863691933L;
 	protected Long dpid;
 	protected Long areaid;
@@ -12,14 +15,18 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	protected Long addressid;
 	protected String origin;
 	protected String takemethod;
+	// 用户ID
 	protected String memberEncode;
+	// 合作商用户标识
 	protected String ukey;
 	protected String idnumber;
+	
 	protected String greetings;
+	
 	protected String joinCrm;
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -27,7 +34,7 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public Long getAreaid() {
-		return this.areaid;
+		return areaid;
 	}
 
 	public void setAreaid(Long areaid) {
@@ -35,7 +42,7 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -43,7 +50,7 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public Long getDisid() {
-		return this.disid;
+		return disid;
 	}
 
 	public void setDisid(Long disid) {
@@ -51,7 +58,7 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public Long getAddressid() {
-		return this.addressid;
+		return addressid;
 	}
 
 	public void setAddressid(Long addressid) {
@@ -59,7 +66,7 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -67,7 +74,7 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getMemberEncode() {
-		return this.memberEncode;
+		return memberEncode;
 	}
 
 	public void setMemberEncode(String memberEncode) {
@@ -75,7 +82,7 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getUkey() {
-		return this.ukey;
+		return ukey;
 	}
 
 	public void setUkey(String ukey) {
@@ -83,7 +90,7 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getTakemethod() {
-		return this.takemethod;
+		return takemethod;
 	}
 
 	public void setTakemethod(String takemethod) {
@@ -91,7 +98,7 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getIdnumber() {
-		return this.idnumber;
+		return idnumber;
 	}
 
 	public void setIdnumber(String idnumber) {
@@ -99,7 +106,7 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getGreetings() {
-		return this.greetings;
+		return greetings;
 	}
 
 	public void setGreetings(String greetings) {
@@ -107,10 +114,11 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getJoinCrm() {
-		return this.joinCrm;
+		return joinCrm;
 	}
 
 	public void setJoinCrm(String joinCrm) {
 		this.joinCrm = joinCrm;
 	}
+
 }

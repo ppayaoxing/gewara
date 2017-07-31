@@ -1,31 +1,81 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.service.drama;
 
+import java.util.List;
 import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.cmd.order.OrderParamsVo;
 import com.gewara.api.vo.order.BuyItemVo;
 import com.gewara.api.vo.order.GewaOrderVo;
 import com.gewara.api.vo.pay.OrderOtherVo;
-import java.util.List;
+import com.gewara.drama.vo.cmd.AreaSeatParamsVo;
+import com.gewara.drama.vo.cmd.ItemSeatMapVo;
 
 public interface DramaOrderVoService {
-	ResultCode<List<GewaOrderVo>> getDramaOrderVoList(OrderParamsVo arg0, int arg1, int arg2);
-
-	ResultCode<List<BuyItemVo>> getItemList(Long arg0);
-
-	@Deprecated
-	ResultCode<GewaOrderVo> getDramaOrderVo(Long arg0);
-
-	ResultCode<GewaOrderVo> getLastUnpaidDramaOrder(Long arg0, String arg1, Long arg2);
-
-	ResultCode<List<String>> getDramaOrderSeatLabelList(Long arg0);
-
-	ResultCode<OrderOtherVo> getDramaOrderOtherData(Long arg0);
-
-	@Deprecated
-	ResultCode checkPriorizite(Long arg0, Long arg1);
-
-	ResultCode saveOrderPrintInfo(Long arg0, String arg1);
-
-	ResultCode<Integer> saveOrderAddress(Long arg0, Long arg1);
+	
+	public ResultCode<ItemSeatMapVo> getChooseSeat(AreaSeatParamsVo paramsVo) ;
+	/**
+	 * 查询演出订单
+	 * @param command
+	 * @return
+	 */
+	ResultCode<List<GewaOrderVo>> getDramaOrderVoList(OrderParamsVo command, int from, int maxnum);
+	
+	/**
+	 * 获取购买列表				
+	 * @param orderId 订单id
+	 * @return
+	 * @author 赵雄鹰
+	 * @date 2014年10月23日 14:37:58
+	 */
+	ResultCode<List<BuyItemVo>> getItemList(Long orderId);
+	
+	/**
+	 * 查询演出订单
+	 * @param orderid
+	 * @deprecated 见gworder接口
+	 * @see com.gewara.api.gworder.service.GwOrderService.getOrderById
+	 * @return
+	 */
+	@Deprecated 
+	ResultCode<GewaOrderVo> getDramaOrderVo(Long orderid);
+	
+	ResultCode<GewaOrderVo> getLastUnpaidDramaOrder(Long memberid, String ukey, Long areaid);
+	
+	ResultCode<List<String>> getDramaOrderSeatLabelList(Long orderid);
+	
+	
+	/*****
+	 * 
+	* @Title: 
+	* @Description: 获取积分
+	* @param orderid
+	* @return
+	* @return ResultCode<OrderOtherVo>
+	 */
+	ResultCode<OrderOtherVo> getDramaOrderOtherData(Long orderid);
+	
+	/**
+	 * 验证用户票券问题
+	 * @param dramaid
+	 * @param memberid
+	 * @return 
+	 * @see DramaPrioritizeVoService.checkDramaPrioritize
+	 */
+	@Deprecated 
+	ResultCode checkPriorizite(Long dramaid, Long memberid);
+	
+	/**
+	 * 保存远程打票信息
+	 * @param orderid
+	 * @param remotePrintInfo
+	 * @return
+	 */
+	ResultCode saveOrderPrintInfo(Long orderid, String remotePrintInfo);
+	
+	/**
+	 * 保存订单快递信息
+	 * @param orderid
+	 * @param addressid
+	 * @return
+	 */
+	ResultCode<Integer> saveOrderAddress(Long orderid, Long addressid);
 }

@@ -1,30 +1,29 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.res.vo;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.api.vo.common.GewaCityVo;
 import java.io.Serializable;
 import java.util.List;
 
-public class OpenCityVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+import com.gewara.api.vo.common.GewaCityVo;
+
+public class OpenCityVo extends BaseVo{
 	private static final long serialVersionUID = -878465769784391979L;
 	private String provincename;
 	private List<GewaCityVo> cityList;
-
+	@Override
 	public Serializable realId() {
-		return this.provincename;
+		return provincename;
 	}
-
+	
 	public List<GewaCityVo> getCityList() {
-		return this.cityList;
+		return cityList;
 	}
-
 	public void setCityList(List<GewaCityVo> cityList) {
 		this.cityList = cityList;
 	}
 
 	public String getProvincename() {
-		return this.provincename;
+		return provincename;
 	}
 
 	public void setProvincename(String provincename) {

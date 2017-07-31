@@ -1,15 +1,23 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.common;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class CountyVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28下午02:05:17
+ */
+public class CountyVo  extends BaseVo{
+	//1=洲，2=国家，3=省，7=市，8=区县，10=商圈
 	private static final long serialVersionUID = -886944461240705718L;
 	private String countycode;
 	private String briefname;
 	private String citycode;
 	private String countyname;
+	
+	public CountyVo() {
+	}
 
 	public String getCountycode() {
 		return this.countycode;
@@ -26,25 +34,27 @@ public class CountyVo extends BaseVo {
 	public void setCountyname(String county) {
 		this.countyname = county;
 	}
-
+	/**
+	 * for manage perpose
+	 * @return
+	 */
 	public String getId() {
-		return this.countycode;
+		return countycode;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.countycode;
+		return countycode;
 	}
-
-	public String getCode() {
-		return this.countycode;
+	public String getCode(){
+		return countycode;
 	}
-
-	public String getName() {
-		return this.countyname;
+	
+	public String getName(){
+		return countyname;
 	}
 
 	public String getBriefname() {
-		return this.briefname;
+		return briefname;
 	}
 
 	public void setBriefname(String briefname) {
@@ -52,7 +62,7 @@ public class CountyVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {

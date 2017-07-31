@@ -1,14 +1,33 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.service.gewacity;
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.common.GewaCityVo;
-import java.util.List;
 
+/**
+ * 格瓦拉城市Service
+ *
+ */
 public interface GewaCityVoService {
-	ResultCode<List<GewaCityVo>> getGewaCityListByCityCodes(String arg0);
-
+	/**
+	 * 根据CityCode数组获取GewaCity列表
+	 * @param cityCodes
+	 * @return
+	 */
+	ResultCode<List<GewaCityVo>> getGewaCityListByCityCodes(String cityCodes);
+	
+	
+	/**
+	 * 获取所有城市编码
+	 * @return
+	 */
 	ResultCode<List<String>> getCityCodes();
-
+	
+	/**
+	 * 获取城市总数
+	 * @return
+	 */
 	ResultCode<Integer> getGewaCityCount();
+	
 }

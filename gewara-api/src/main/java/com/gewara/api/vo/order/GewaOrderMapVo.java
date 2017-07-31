@@ -1,75 +1,68 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.order;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.api.vo.order.BuyItemVo;
-import com.gewara.api.vo.order.GewaOrderVo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+
 public class GewaOrderMapVo extends BaseVo implements Serializable {
+	
 	private static final long serialVersionUID = -2087716993799697315L;
 	private Long id;
 	private String tradeNo;
 	private String ordertype;
 	private GewaOrderVo order;
-	private List<BuyItemVo> buyItemList = new ArrayList();
-	private BaseVo place;
-	private BaseVo profile;
-	private BaseVo item;
-	private BaseVo schedule;
-	private BaseVo relate;
-
-	public GewaOrderMapVo() {
-	}
-
-	public GewaOrderMapVo(GewaOrderVo order) {
+	private List<BuyItemVo> buyItemList = new ArrayList<BuyItemVo>();
+	private BaseVo place;											//场馆
+	private BaseVo profile;											//场馆扩展
+	private BaseVo item;											//项目
+	private BaseVo schedule;										//场次，物品，卡
+	private BaseVo relate;											//关联活动
+	
+	public GewaOrderMapVo(){}
+	
+	public GewaOrderMapVo(GewaOrderVo order){
 		this.order = order;
 		this.id = order.getId();
 		this.tradeNo = order.getTradeNo();
 		this.ordertype = order.getOrdertype();
 	}
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
-
+	
 	public String getOrdertype() {
-		return this.ordertype;
+		return ordertype;
 	}
-
+	
 	public GewaOrderVo getOrder() {
-		return this.order;
+		return order;
 	}
-
 	public void setOrder(GewaOrderVo order) {
 		this.order = order;
 	}
-
 	public List<BuyItemVo> getBuyItemList() {
-		return this.buyItemList;
+		return buyItemList;
 	}
-
 	public void setBuyItemList(List<BuyItemVo> buyItemList) {
 		this.buyItemList = buyItemList;
 	}
-
 	public Object getPlace() {
-		return this.place;
+		return place;
 	}
-
 	public void setPlace(BaseVo place) {
 		this.place = place;
 	}
-
 	public Object getProfile() {
-		return this.profile;
+		return profile;
 	}
 
 	public void setProfile(BaseVo profile) {
@@ -77,47 +70,49 @@ public class GewaOrderMapVo extends BaseVo implements Serializable {
 	}
 
 	public Object getItem() {
-		return this.item;
+		return item;
 	}
-
 	public void setItem(BaseVo item) {
 		this.item = item;
 	}
-
 	public static long getSerialversionuid() {
-		return -2087716993799697315L;
+		return serialVersionUID;
 	}
 
 	public Object getSchedule() {
-		return this.schedule;
+		return schedule;
 	}
 
 	public void setSchedule(BaseVo schedule) {
 		this.schedule = schedule;
 	}
-
+	
 	public Object getRelate() {
-		return this.relate;
+		return relate;
 	}
 
 	public void setRelate(BaseVo relate) {
 		this.relate = relate;
 	}
 
-	public boolean hasOrdertype(String orderType) {
-		return StringUtils.isBlank(orderType) ? false : StringUtils.equals(orderType, this.ordertype);
+	public boolean hasOrdertype(String orderType){
+		if(StringUtils.isBlank(orderType)){
+			return false;
+		}
+		return StringUtils.equals(orderType, this.ordertype);
 	}
 
-	public String getOrdertitle() {
+	public String getOrdertitle(){
 		String title = "";
 		return title;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 }

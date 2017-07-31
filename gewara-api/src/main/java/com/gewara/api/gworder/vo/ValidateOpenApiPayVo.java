@@ -1,24 +1,34 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gworder.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class ValidateOpenApiPayVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class ValidateOpenApiPayVo extends BaseVo{
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -5641516643707695035L;
+
 	private String tradeNo;
+	
+	/**
+	 * 返回success,表示成功，否则是错误信息
+	 */
 	private String result;
-	private String briefname;
-	private String partnerip;
-	private String partnerkey;
+
+	private String briefname;		//简称
+	private String partnerip;		//合作伙伴IP
+	private String partnerkey;		//验证身份key
 	private String timeoutReturn;
 
+	@Override
 	public Serializable realId() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public String getResult() {
-		return this.result;
+		return result;
 	}
 
 	public void setResult(String result) {
@@ -26,7 +36,7 @@ public class ValidateOpenApiPayVo extends BaseVo {
 	}
 
 	public String getPartnerip() {
-		return this.partnerip;
+		return partnerip;
 	}
 
 	public void setPartnerip(String partnerip) {
@@ -34,7 +44,7 @@ public class ValidateOpenApiPayVo extends BaseVo {
 	}
 
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -42,7 +52,7 @@ public class ValidateOpenApiPayVo extends BaseVo {
 	}
 
 	public String getBriefname() {
-		return this.briefname;
+		return briefname;
 	}
 
 	public void setBriefname(String briefname) {
@@ -50,7 +60,7 @@ public class ValidateOpenApiPayVo extends BaseVo {
 	}
 
 	public String getPartnerkey() {
-		return this.partnerkey;
+		return partnerkey;
 	}
 
 	public void setPartnerkey(String partnerkey) {
@@ -58,10 +68,11 @@ public class ValidateOpenApiPayVo extends BaseVo {
 	}
 
 	public String getTimeoutReturn() {
-		return this.timeoutReturn;
+		return timeoutReturn;
 	}
 
 	public void setTimeoutReturn(String timeoutReturn) {
 		this.timeoutReturn = timeoutReturn;
 	}
+
 }

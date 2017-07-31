@@ -1,41 +1,45 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class OtherFeeRefundVo extends BaseVo {
 	private static final long serialVersionUID = 7420087805465434371L;
-	private Long id;
-	private Integer version;
-	private String tradeno;
-	private String ordertype;
-	private Long memberid;
-	private Long partnerid;
-	private String mobile;
-	private String orderstatus;
-	private String origin;
-	private String reason;
-	private Integer gewaRetAmount;
-	private Integer oldFeeAmount;
-	private String retback;
-	private Long applyuser;
-	private String applyinfo;
-	private String otherinfo;
-	private Timestamp addtime;
-	private Timestamp refundtime;
-	private String status;
-	private Long dealuser;
-	private String dealinfo;
-	private Long batch;
 
+	private Long id;
+	private Integer version;			//版本
+	private String tradeno;				//订单号
+	private String ordertype;			//订单类型
+	private Long memberid;				//用户ID
+	private Long partnerid;				//合作商ID
+	private String mobile;				//手机号
+	private String orderstatus;			//状态类型：paid_failure: 待处理订单  paid_success: 成交订单 paid_failure_unfix: 座位待处理
+	private String origin;				//来源，费用类型
+	private String reason;				//原因
+	private Integer gewaRetAmount;		//Gewara退款
+	private Integer oldFeeAmount;		//
+	private String retback;				//是否要原路返回：Y：需要，N：不需要，O：未知, 参见描述(Other)，S: 已提交账务(Submit) R：财务已经返还(Refund)，F：财务返还出错(Failure)
+	private Long applyuser;				//申请人
+	private String applyinfo;			//申请信息
+	private String otherinfo;			//其他信息：处理人，财务返回信息
+	private Timestamp addtime;			//增加日期
+	private Timestamp refundtime; 		//退款时间
+	private String status;				//状态
+	private Long dealuser;				//处理人
+	private String dealinfo;			//处理信息
+	private Long batch;					//批次标识
+
+	public OtherFeeRefundVo(){}
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -43,7 +47,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -51,7 +55,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public String getTradeno() {
-		return this.tradeno;
+		return tradeno;
 	}
 
 	public void setTradeno(String tradeno) {
@@ -59,7 +63,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public String getOrdertype() {
-		return this.ordertype;
+		return ordertype;
 	}
 
 	public void setOrdertype(String ordertype) {
@@ -67,15 +71,15 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public Long getPartnerid() {
-		return this.partnerid;
+		return partnerid;
 	}
-
+	
 	public void setPartnerid(Long partnerid) {
 		this.partnerid = partnerid;
 	}
-
+	
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -83,7 +87,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -91,15 +95,14 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public Integer getOldFeeAmount() {
-		return this.oldFeeAmount;
+		return oldFeeAmount;
 	}
-
+	
 	public void setOldFeeAmount(Integer oldFeeAmount) {
 		this.oldFeeAmount = oldFeeAmount;
 	}
-
 	public String getOrderstatus() {
-		return this.orderstatus;
+		return orderstatus;
 	}
 
 	public void setOrderstatus(String orderstatus) {
@@ -107,7 +110,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -115,7 +118,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public String getReason() {
-		return this.reason;
+		return reason;
 	}
 
 	public void setReason(String reason) {
@@ -123,7 +126,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public Integer getGewaRetAmount() {
-		return this.gewaRetAmount;
+		return gewaRetAmount;
 	}
 
 	public void setGewaRetAmount(Integer gewaRetAmount) {
@@ -131,7 +134,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public String getRetback() {
-		return this.retback;
+		return retback;
 	}
 
 	public void setRetback(String retback) {
@@ -139,7 +142,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public Long getApplyuser() {
-		return this.applyuser;
+		return applyuser;
 	}
 
 	public void setApplyuser(Long applyuser) {
@@ -147,7 +150,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public String getApplyinfo() {
-		return this.applyinfo;
+		return applyinfo;
 	}
 
 	public void setApplyinfo(String applyinfo) {
@@ -155,7 +158,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -163,7 +166,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -171,7 +174,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public Timestamp getRefundtime() {
-		return this.refundtime;
+		return refundtime;
 	}
 
 	public void setRefundtime(Timestamp refundtime) {
@@ -179,7 +182,7 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -187,26 +190,25 @@ public class OtherFeeRefundVo extends BaseVo {
 	}
 
 	public Long getDealuser() {
-		return this.dealuser;
+		return dealuser;
 	}
-
 	public void setDealuser(Long dealuser) {
 		this.dealuser = dealuser;
 	}
-
 	public String getDealinfo() {
-		return this.dealinfo;
+		return dealinfo;
 	}
 
 	public void setDealinfo(String dealinfo) {
 		this.dealinfo = dealinfo;
 	}
-
+	
 	public Long getBatch() {
-		return this.batch;
+		return batch;
 	}
-
+	
 	public void setBatch(Long batch) {
 		this.batch = batch;
 	}
+
 }

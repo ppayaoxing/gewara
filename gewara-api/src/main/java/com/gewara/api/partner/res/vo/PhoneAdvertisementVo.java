@@ -1,73 +1,76 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.res.vo;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.DateUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class PhoneAdvertisementVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+import com.gewara.util.DateUtil;
+
+public class PhoneAdvertisementVo extends BaseVo{
 	private static final long serialVersionUID = 4961436964379898448L;
+	
 	private Long id;
 	private String advlink;
 	private String link;
 	private String title;
-	private String apptype;
-	private String osType;
+	private String apptype;//应用类型(cinema)
+	private String osType;//系统类型(ANDROID,IPHONE)
 	private String citycode;
 	private Timestamp addtime;
-	private String isshow;
+	private String isshow;//是否显示
 	private String status;
 	private Timestamp starttime;
 	private Timestamp endtime;
+	
 	private String tag;
 	private Long relatedid;
 	private String relatedids;
 	private String summary;
-	private Integer rank;
-	private String advertType;
+	
+	private Integer rank;//排序
+	private String advertType;//活动类型 
 	private String sharefriend;
 	private String appSource;
 	private Long discountid;
 	private String sdlogo;
-	private String sharepic;
-	private String tips;
-	private String advdesc;
+	private String sharepic; //分享图片地址
+	private String tips;	// 提示语
+	private String advdesc;	// 说明
 	private String sharetitle;
-	private String linkedid;
-	private String tabname;
-	private String otherinfo;
-	private String batchid;
-
-	public PhoneAdvertisementVo() {
-	}
-
-	public PhoneAdvertisementVo(Timestamp addtime) {
+	private String linkedid;	//关联其它活动ID	(for wap)
+	private String tabname;		//tab标签显示的名称	(for wap)
+	private String otherinfo;	//其他设置 json格式， 存放配置信息等
+	private String batchid;		//批次ID，标识同一批活动
+	public PhoneAdvertisementVo() {}
+	
+	public PhoneAdvertisementVo(Timestamp addtime){
 		this.addtime = addtime;
 	}
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public String getSummary() {
-		return this.summary;
+		return summary;
 	}
 
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
 	public String getApptype() {
-		return this.apptype;
+		return apptype;
 	}
 
 	public void setApptype(String apptype) {
@@ -75,7 +78,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getOsType() {
-		return this.osType;
+		return osType;
 	}
 
 	public void setOsType(String osType) {
@@ -83,15 +86,16 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
 
+
 	public String getIsshow() {
-		return this.isshow;
+		return isshow;
 	}
 
 	public void setIsshow(String isshow) {
@@ -99,15 +103,16 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -115,7 +120,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Timestamp starttime) {
@@ -123,21 +128,27 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
 		this.endtime = endtime;
 	}
-
-	public Integer getTimeTag() {
+	
+	public Integer getTimeTag(){
 		Timestamp curTime = DateUtil.getCurFullTimestamp();
-		return curTime.before(this.starttime) ? Integer.valueOf(-1)
-				: (curTime.after(this.endtime) ? Integer.valueOf(1) : Integer.valueOf(0));
+		if(curTime.before(starttime)){
+			return -1;
+		}else if(curTime.after(endtime)){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
-
+	
+	
 	public String getAdvlink() {
-		return this.advlink;
+		return advlink;
 	}
 
 	public void setAdvlink(String advlink) {
@@ -145,7 +156,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getLink() {
-		return this.link;
+		return link;
 	}
 
 	public void setLink(String link) {
@@ -153,7 +164,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -161,7 +172,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public Integer getRank() {
-		return this.rank;
+		return rank;
 	}
 
 	public void setRank(Integer rank) {
@@ -169,7 +180,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getAdvertType() {
-		return this.advertType;
+		return advertType;
 	}
 
 	public void setAdvertType(String advertType) {
@@ -177,7 +188,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -185,7 +196,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -193,7 +204,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getSharefriend() {
-		return this.sharefriend;
+		return sharefriend;
 	}
 
 	public void setSharefriend(String sharefriend) {
@@ -201,7 +212,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getAppSource() {
-		return this.appSource;
+		return appSource;
 	}
 
 	public void setAppSource(String appSource) {
@@ -209,7 +220,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public Long getDiscountid() {
-		return this.discountid;
+		return discountid;
 	}
 
 	public void setDiscountid(Long discountid) {
@@ -217,7 +228,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getSdlogo() {
-		return this.sdlogo;
+		return sdlogo;
 	}
 
 	public void setSdlogo(String sdlogo) {
@@ -225,7 +236,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getSharepic() {
-		return this.sharepic;
+		return sharepic;
 	}
 
 	public void setSharepic(String sharepic) {
@@ -233,7 +244,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getRelatedids() {
-		return this.relatedids;
+		return relatedids;
 	}
 
 	public void setRelatedids(String relatedids) {
@@ -241,7 +252,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getTips() {
-		return this.tips;
+		return tips;
 	}
 
 	public void setTips(String tips) {
@@ -249,7 +260,7 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getAdvdesc() {
-		return this.advdesc;
+		return advdesc;
 	}
 
 	public void setAdvdesc(String advdesc) {
@@ -257,15 +268,14 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getSharetitle() {
-		return this.sharetitle;
+		return sharetitle;
 	}
 
 	public void setSharetitle(String sharetitle) {
 		this.sharetitle = sharetitle;
 	}
-
 	public String getLinkedid() {
-		return this.linkedid;
+		return linkedid;
 	}
 
 	public void setLinkedid(String linkedid) {
@@ -273,15 +283,15 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getTabname() {
-		return this.tabname;
+		return tabname;
 	}
 
 	public void setTabname(String tabname) {
 		this.tabname = tabname;
 	}
-
+	
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -289,10 +299,11 @@ public class PhoneAdvertisementVo extends BaseVo {
 	}
 
 	public String getBatchid() {
-		return this.batchid;
+		return batchid;
 	}
 
 	public void setBatchid(String batchid) {
 		this.batchid = batchid;
 	}
+	
 }

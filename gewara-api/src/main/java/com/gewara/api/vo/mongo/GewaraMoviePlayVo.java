@@ -1,11 +1,12 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.mongo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.util.List;
 
-public class GewaraMoviePlayVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class GewaraMoviePlayVo extends BaseVo{
+
 	private static final long serialVersionUID = -5676159088294979451L;
 	private String _id;
 	private String title;
@@ -16,18 +17,19 @@ public class GewaraMoviePlayVo extends BaseVo {
 	private String movieIdList;
 	private List<String> cityList;
 	private Integer orderSort;
-	private String pattern;
-	private String singularpattern;
-	private String oneword;
-	private String advlogo;
-	private String logourl;
-
+	private String pattern;//模式，单片或者影展 单片只能有一部电影，影展可以有3部
+	private String singularpattern;//单片模式：点映还是招募
+	private String oneword;//一句话点评
+	private String advlogo;//上传单片的横幅海报
+	private String logourl;//电影海报的URL
+	
+	@Override
 	public Serializable realId() {
-		return this._id;
+		return _id;
 	}
 
 	public String get_id() {
-		return this._id;
+		return _id;
 	}
 
 	public void set_id(String _id) {
@@ -35,7 +37,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -43,7 +45,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
@@ -51,7 +53,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getH5url() {
-		return this.h5url;
+		return h5url;
 	}
 
 	public void setH5url(String h5url) {
@@ -59,7 +61,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getStartTime() {
-		return this.startTime;
+		return startTime;
 	}
 
 	public void setStartTime(String startTime) {
@@ -67,7 +69,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getEndTime() {
-		return this.endTime;
+		return endTime;
 	}
 
 	public void setEndTime(String endTime) {
@@ -75,7 +77,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getMovieIdList() {
-		return this.movieIdList;
+		return movieIdList;
 	}
 
 	public void setMovieIdList(String movieIdList) {
@@ -83,7 +85,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public List<String> getCityList() {
-		return this.cityList;
+		return cityList;
 	}
 
 	public void setCityList(List<String> cityList) {
@@ -91,7 +93,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public Integer getOrderSort() {
-		return this.orderSort;
+		return orderSort;
 	}
 
 	public void setOrderSort(Integer orderSort) {
@@ -99,7 +101,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getPattern() {
-		return this.pattern;
+		return pattern;
 	}
 
 	public void setPattern(String pattern) {
@@ -107,7 +109,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getSingularpattern() {
-		return this.singularpattern;
+		return singularpattern;
 	}
 
 	public void setSingularpattern(String singularpattern) {
@@ -115,7 +117,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getOneword() {
-		return this.oneword;
+		return oneword;
 	}
 
 	public void setOneword(String oneword) {
@@ -123,7 +125,7 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getAdvlogo() {
-		return this.advlogo;
+		return advlogo;
 	}
 
 	public void setAdvlogo(String advlogo) {
@@ -131,10 +133,11 @@ public class GewaraMoviePlayVo extends BaseVo {
 	}
 
 	public String getLogourl() {
-		return this.logourl;
+		return logourl;
 	}
 
 	public void setLogourl(String logourl) {
 		this.logourl = logourl;
 	}
+
 }

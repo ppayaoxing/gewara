@@ -1,18 +1,23 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.mongo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class RoomOuterRingSeatVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class RoomOuterRingSeatVo extends BaseVo{
+
 	private static final long serialVersionUID = -423096761881065659L;
+
 	private String _id;
+	
 	private String addTime;
+	
 	private Long roomId;
+	
 	private String outerRingSeat;
 
 	public String get_id() {
-		return this._id;
+		return _id;
 	}
 
 	public void set_id(String _id) {
@@ -20,7 +25,7 @@ public class RoomOuterRingSeatVo extends BaseVo {
 	}
 
 	public String getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
 
 	public void setAddTime(String addTime) {
@@ -28,7 +33,7 @@ public class RoomOuterRingSeatVo extends BaseVo {
 	}
 
 	public Long getRoomId() {
-		return this.roomId;
+		return roomId;
 	}
 
 	public void setRoomId(Long roomId) {
@@ -36,14 +41,15 @@ public class RoomOuterRingSeatVo extends BaseVo {
 	}
 
 	public String getOuterRingSeat() {
-		return this.outerRingSeat;
+		return outerRingSeat;
 	}
 
 	public void setOuterRingSeat(String outerRingSeat) {
 		this.outerRingSeat = outerRingSeat;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this._id;
+		return _id;
 	}
 }

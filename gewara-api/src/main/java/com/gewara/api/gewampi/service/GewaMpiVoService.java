@@ -1,15 +1,26 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gewampi.service;
+
+import java.util.List;
 
 import com.gewara.api.gewampi.vo.GoodsGiftVo;
 import com.gewara.api.gewampi.vo.PartnerCloseRuleVo;
 import com.gewara.api.vo.ResultCode;
-import java.util.List;
 
 public interface GewaMpiVoService {
-	ResultCode<PartnerCloseRuleVo> getPartnerCloseRuleVoById(Long arg0);
-
+	/**
+	 * 获取屏蔽场次的规则
+	 * @return
+	 */
+	ResultCode<PartnerCloseRuleVo> getPartnerCloseRuleVoById(Long id);
+	/**
+	 * 获取绑定的套餐列表
+	 * @return
+	 */
 	ResultCode<List<GoodsGiftVo>> getGoodsGiftList();
-
-	ResultCode<GoodsGiftVo> getGoodsGiftById(Long arg0);
+	/**
+	 * 获取绑定的套餐
+	 * @param id
+	 * @return
+	 */
+	ResultCode<GoodsGiftVo> getGoodsGiftById(Long id);
 }

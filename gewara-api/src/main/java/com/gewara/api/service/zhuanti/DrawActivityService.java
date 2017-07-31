@@ -1,9 +1,16 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.service.zhuanti;
 
-import com.gewara.api.vo.ResultCode;
 import java.util.Map;
 
+import com.gewara.api.vo.ResultCode;
+
 public interface DrawActivityService {
-	ResultCode<Map> findDrawDetailById(Long arg0);
+
+	/**
+	 * 根据专题模板id获取抽奖信息
+	 * @param drawId
+	 * @return
+	 */
+	ResultCode<Map> findDrawDetailById(Long drawId);
+
 }

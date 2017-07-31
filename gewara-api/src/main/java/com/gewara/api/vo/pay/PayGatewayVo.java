@@ -1,33 +1,38 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class PayGatewayVo extends BaseVo {
 	private static final long serialVersionUID = 5328656468568314767L;
+	
+	/**是否支持API退款*/
 	public static final String IS_SUPPORT_Y = "Y";
 	public static final String IS_SUPPORT_N = "N";
-	private Long id;
-	private String gatewayCode;
-	private String gatewayName;
-	private String supportBank;
-	private String gatewayType;
-	private String status;
-	private String bankTypeKey;
-	private Timestamp updateTime;
-	private String routeStatus;
-	private Timestamp modifyTime;
-	private String modifyUser;
-	private String supportRefund;
+	
+	private Long id ;
+	private String gatewayCode;	//支付网关
+	private String gatewayName;	//支付网关名称
+	private String supportBank;	//是否支持银行
+	private String gatewayType;	//类型：PLATFORM：支付平台；BANK：银行直连；CARD：卡支付
+	private String status;		//状态：NO_USE：未启用；IN_USE：使用中；DESUETUDE：废弃；
+	private String bankTypeKey;	//银行类型key，这里只放特殊的，形如{"C":"信用卡","KJ":"快捷信用卡支付"}
+	private Timestamp updateTime;	//同步时间
+	private String routeStatus; //商户号路由状态：OPEN：开启；CLOSE：关闭；默认：CLOSE
+	private Timestamp modifyTime;	//修改时间
+	private String modifyUser;	//最后修改人
+	private String supportRefund;//是否支持API退款（N：不支持；Y：支持）
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
+	
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -35,7 +40,7 @@ public class PayGatewayVo extends BaseVo {
 	}
 
 	public String getGatewayCode() {
-		return this.gatewayCode;
+		return gatewayCode;
 	}
 
 	public void setGatewayCode(String gatewayCode) {
@@ -43,7 +48,7 @@ public class PayGatewayVo extends BaseVo {
 	}
 
 	public String getGatewayName() {
-		return this.gatewayName;
+		return gatewayName;
 	}
 
 	public void setGatewayName(String gatewayName) {
@@ -51,7 +56,7 @@ public class PayGatewayVo extends BaseVo {
 	}
 
 	public String getSupportBank() {
-		return this.supportBank;
+		return supportBank;
 	}
 
 	public void setSupportBank(String supportBank) {
@@ -59,7 +64,7 @@ public class PayGatewayVo extends BaseVo {
 	}
 
 	public String getGatewayType() {
-		return this.gatewayType;
+		return gatewayType;
 	}
 
 	public void setGatewayType(String gatewayType) {
@@ -67,7 +72,7 @@ public class PayGatewayVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -75,7 +80,7 @@ public class PayGatewayVo extends BaseVo {
 	}
 
 	public String getBankTypeKey() {
-		return this.bankTypeKey;
+		return bankTypeKey;
 	}
 
 	public void setBankTypeKey(String bankTypeKey) {
@@ -83,7 +88,7 @@ public class PayGatewayVo extends BaseVo {
 	}
 
 	public Timestamp getUpdateTime() {
-		return this.updateTime;
+		return updateTime;
 	}
 
 	public void setUpdateTime(Timestamp updateTime) {
@@ -91,7 +96,7 @@ public class PayGatewayVo extends BaseVo {
 	}
 
 	public String getRouteStatus() {
-		return this.routeStatus;
+		return routeStatus;
 	}
 
 	public void setRouteStatus(String routeStatus) {
@@ -99,7 +104,7 @@ public class PayGatewayVo extends BaseVo {
 	}
 
 	public Timestamp getModifyTime() {
-		return this.modifyTime;
+		return modifyTime;
 	}
 
 	public void setModifyTime(Timestamp modifyTime) {
@@ -107,18 +112,22 @@ public class PayGatewayVo extends BaseVo {
 	}
 
 	public String getModifyUser() {
-		return this.modifyUser;
+		return modifyUser;
 	}
 
 	public void setModifyUser(String modifyUser) {
 		this.modifyUser = modifyUser;
 	}
 
+
 	public String getSupportRefund() {
-		return this.supportRefund;
+		return supportRefund;
 	}
+
 
 	public void setSupportRefund(String supportRefund) {
 		this.supportRefund = supportRefund;
 	}
+	
+
 }

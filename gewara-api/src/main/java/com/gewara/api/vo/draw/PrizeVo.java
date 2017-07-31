@@ -1,99 +1,92 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.draw;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class PrizeVo extends BaseVo {
 	private static final long serialVersionUID = -953298279131566566L;
 	public static final String PRIZE_TYPE_DRAMA = "drama";
-	public static final String PRIZE_REMARK = "remark";
-	public static final String PRIZE_TYPE_WAIBI = "waibi";
-	public static final String PRIZE_TYPE_SPDISCOUNT = "sd";
+	public static final String PRIZE_REMARK = "remark";//其他奖品
+	public static final String PRIZE_TYPE_WAIBI="waibi";//瓦币
+	public static final String PRIZE_TYPE_SPDISCOUNT="sd";//特价活动名额
+	
+	
 	private Long id;
 	private Long activityid;
-	private String ptype;
-	private Integer pvalue;
-	private Integer chancenum;
-	private Integer pnumber;
-	private Integer psendout;
+	private String ptype;			//奖品类型
+	private Integer pvalue;			//面值
+	private Integer chancenum; 		//概率值
+	private Integer pnumber;		//奖品数量
+	private Integer psendout;		//此奖品已出多少
 	private Timestamp addtime;
 	private String remark;
-	private String tag;
-	private String plevel;
-	private String msgcontent;
-	private String otype;
+	private String tag;				//对应不同电子券的标识
+	private String plevel;			//奖品级别
+	private String msgcontent;  	//短信模板
+	private String otype;			//其它奖品类型(自定义)
 	private String otherinfo;
-	private String topPrize;
-
+	private String topPrize;		//是否是大奖（禁止黄牛中大奖）
+	
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
-
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
-
 	public String getMsgcontent() {
-		return this.msgcontent;
+		return msgcontent;
 	}
-
 	public void setMsgcontent(String msgcontent) {
 		this.msgcontent = msgcontent;
 	}
-
-	public Integer getLeavenum() {
-		return Integer.valueOf(this.pnumber.intValue() - this.psendout.intValue());
+	public Integer getLeavenum(){
+		return pnumber - psendout;
 	}
-
-	public void addPsendout() {
-		this.psendout = Integer.valueOf(this.psendout.intValue() + 1);
+	public void addPsendout(){
+		this.psendout +=1;
 	}
-
+	
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
-	public PrizeVo() {
-	}
-
-	public PrizeVo(String tag) {
-		this.pvalue = Integer.valueOf(0);
-		this.pnumber = Integer.valueOf(0);
-		this.psendout = Integer.valueOf(0);
+	
+	public PrizeVo() {}
+	
+	public PrizeVo(String tag){
+		this.pvalue = 0;
+		this.pnumber = 0;
+		this.psendout = 0;
 		this.addtime = new Timestamp(System.currentTimeMillis());
 		this.tag = tag;
 		this.topPrize = "N";
 	}
-
-	public PrizeVo(Long activityid, String ptype, Integer pvalue, Integer pnumber, String remark, String tag,
-			String plevel, String msgcontent, String otype) {
+	public PrizeVo(Long activityid, String ptype,Integer pvalue,Integer pnumber,String remark,String tag,String plevel,String msgcontent, String otype){
 		this.activityid = activityid;
 		this.ptype = ptype;
 		this.pvalue = pvalue;
 		this.pnumber = pnumber;
 		this.remark = remark;
 		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.psendout = Integer.valueOf(0);
+		this.psendout = 0;
 		this.tag = tag;
 		this.plevel = plevel;
 		this.msgcontent = msgcontent;
-		this.chancenum = Integer.valueOf(0);
+		this.chancenum = 0;
 		this.otype = otype;
 		this.topPrize = "N";
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -101,7 +94,7 @@ public class PrizeVo extends BaseVo {
 	}
 
 	public Long getActivityid() {
-		return this.activityid;
+		return activityid;
 	}
 
 	public void setActivityid(Long activityid) {
@@ -109,7 +102,7 @@ public class PrizeVo extends BaseVo {
 	}
 
 	public String getPtype() {
-		return this.ptype;
+		return ptype;
 	}
 
 	public void setPtype(String ptype) {
@@ -117,7 +110,7 @@ public class PrizeVo extends BaseVo {
 	}
 
 	public Integer getPvalue() {
-		return this.pvalue;
+		return pvalue;
 	}
 
 	public void setPvalue(Integer pvalue) {
@@ -125,7 +118,7 @@ public class PrizeVo extends BaseVo {
 	}
 
 	public Integer getPnumber() {
-		return this.pnumber;
+		return pnumber;
 	}
 
 	public void setPnumber(Integer pnumber) {
@@ -133,7 +126,7 @@ public class PrizeVo extends BaseVo {
 	}
 
 	public Integer getPsendout() {
-		return this.psendout;
+		return psendout;
 	}
 
 	public void setPsendout(Integer psendout) {
@@ -141,15 +134,14 @@ public class PrizeVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -157,33 +149,29 @@ public class PrizeVo extends BaseVo {
 	}
 
 	public String getPlevel() {
-		return this.plevel;
+		return plevel;
 	}
 
 	public void setPlevel(String plevel) {
 		this.plevel = plevel;
 	}
-
 	public Integer getChancenum() {
-		return this.chancenum;
+		return chancenum;
 	}
 
 	public void setChancenum(Integer chancenum) {
 		this.chancenum = chancenum;
 	}
-
 	public String getOtype() {
-		return this.otype;
+		return otype;
 	}
-
+	
 	public void setOtype(String otype) {
 		this.otype = otype;
 	}
-
 	public String getTopPrize() {
-		return this.topPrize;
+		return topPrize;
 	}
-
 	public void setTopPrize(String topPrize) {
 		this.topPrize = topPrize;
 	}

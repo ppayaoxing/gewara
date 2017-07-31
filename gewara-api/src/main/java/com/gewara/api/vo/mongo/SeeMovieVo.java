@@ -1,30 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.mongo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class SeeMovieVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class SeeMovieVo extends BaseVo{
 	private static final long serialVersionUID = 7450073239733151695L;
 	private String id;
-	private Long relatedid;
-	private Long placeid;
-	private String tag;
-	private Long memberid;
-	private String tradeNo;
-	private String adddate;
-	private Date paidtime;
-	private Date playDate;
-	private String effect;
-	private String effectFlag;
+    private Long relatedid;	//movieid, drameid
+    private Long placeid;		//cinemaid
+    private String tag;
+    private Long memberid;
+    private String tradeNo;
+    private String adddate;
+    private Date paidtime;
+    private Date playDate;
+	private String effect;      //版本   例如：2D、IMAX
+	private String effectFlag;  //特效标识
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -32,7 +33,7 @@ public class SeeMovieVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -40,7 +41,7 @@ public class SeeMovieVo extends BaseVo {
 	}
 
 	public Long getPlaceid() {
-		return this.placeid;
+		return placeid;
 	}
 
 	public void setPlaceid(Long placeid) {
@@ -48,7 +49,7 @@ public class SeeMovieVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -56,7 +57,7 @@ public class SeeMovieVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -64,7 +65,7 @@ public class SeeMovieVo extends BaseVo {
 	}
 
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -72,7 +73,7 @@ public class SeeMovieVo extends BaseVo {
 	}
 
 	public String getAdddate() {
-		return this.adddate;
+		return adddate;
 	}
 
 	public void setAdddate(String adddate) {
@@ -80,7 +81,7 @@ public class SeeMovieVo extends BaseVo {
 	}
 
 	public Date getPaidtime() {
-		return this.paidtime;
+		return paidtime;
 	}
 
 	public void setPaidtime(Date paidtime) {
@@ -88,7 +89,7 @@ public class SeeMovieVo extends BaseVo {
 	}
 
 	public Date getPlayDate() {
-		return this.playDate;
+		return playDate;
 	}
 
 	public void setPlayDate(Date playDate) {
@@ -96,7 +97,7 @@ public class SeeMovieVo extends BaseVo {
 	}
 
 	public String getEffect() {
-		return this.effect;
+		return effect;
 	}
 
 	public void setEffect(String effect) {
@@ -104,10 +105,11 @@ public class SeeMovieVo extends BaseVo {
 	}
 
 	public String getEffectFlag() {
-		return this.effectFlag;
+		return effectFlag;
 	}
 
 	public void setEffectFlag(String effectFlag) {
 		this.effectFlag = effectFlag;
 	}
+
 }

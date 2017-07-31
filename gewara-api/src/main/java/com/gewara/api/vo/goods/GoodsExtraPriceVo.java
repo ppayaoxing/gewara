@@ -1,26 +1,29 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.goods;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class GoodsExtraPriceVo extends BaseVo {
+
 	private static final long serialVersionUID = -2299597753587495910L;
+
 	private Long id;
 	private Long goodsid;
-	private Integer price;
-	private Integer num;
-	private Long priceid;
+	private Integer price;		//价格
+	private Integer num;			//数量
+	private Long priceid;		//价格id
 	private Timestamp addtime;
 	private Timestamp updatetime;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getGoodsid() {
-		return this.goodsid;
+		return goodsid;
 	}
 
 	public void setGoodsid(Long goodsid) {
@@ -28,7 +31,7 @@ public class GoodsExtraPriceVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -36,7 +39,7 @@ public class GoodsExtraPriceVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -44,7 +47,7 @@ public class GoodsExtraPriceVo extends BaseVo {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -52,7 +55,7 @@ public class GoodsExtraPriceVo extends BaseVo {
 	}
 
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Integer price) {
@@ -60,7 +63,7 @@ public class GoodsExtraPriceVo extends BaseVo {
 	}
 
 	public Integer getNum() {
-		return this.num;
+		return num;
 	}
 
 	public void setNum(Integer num) {
@@ -68,10 +71,11 @@ public class GoodsExtraPriceVo extends BaseVo {
 	}
 
 	public Long getPriceid() {
-		return this.priceid;
+		return priceid;
 	}
 
 	public void setPriceid(Long priceid) {
 		this.priceid = priceid;
 	}
+	
 }

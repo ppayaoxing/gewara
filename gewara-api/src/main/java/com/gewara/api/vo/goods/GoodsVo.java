@@ -1,85 +1,105 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.goods;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.DateUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
+
+import com.gewara.api.vo.BaseVo;
+import com.gewara.cons.GoodsConstant;
+import com.gewara.cons.Status;
+import com.gewara.util.DateUtil;
 
 public class GoodsVo extends BaseVo {
 	private static final long serialVersionUID = 4914995483381697551L;
-	private Long id;
-	private Long describeid;
-	private String itemtype;
-	private Long itemid;
-	private String goodstype;
-	private String tag;
-	private Long relatedid;
-	private String goodsname;
-	private String highlight;
-	private Integer oriprice;
-	private Integer unitprice;
-	private Integer costprice;
-	private Integer maxprice;
-	private Integer minprice;
-	private Integer limitnum;
-	private Integer allowaddnum;
-	private Integer quantity;
-	private Integer maxbuy;
-	private Integer sales;
-	private Integer minpoint;
-	private Integer maxpoint;
-	private Integer goodssort;
-	private String deliver;
-	private String spflag;
-	private String partners;
-	private Long clerkid;
-	private String manager;
-	private String shortname;
-	private String printcontent;
-	private String ordermsg;
-	private String notifymsg;
-	private String status;
-	private String otherinfo;
-	private String citycode;
-	private String summary;
-	private String description;
-	private String logo;
-	private String biglogo;
-	private String banklogo;
-	private Timestamp releasetime;
-	private Timestamp fromtime;
-	private Timestamp totime;
-	private Timestamp addtime;
-	private Timestamp fromvalidtime;
-	private Timestamp tovalidtime;
+
+	private Long id; 						// ID
+	private Long describeid; 			// 物品ID
+	private String itemtype; 			// 项目分类(movie,drama)
+	private Long itemid; 				// 项目ID
+	private String goodstype; 			// 物品类型
+	private String tag; 					// 场馆类型（cinema,theatre)
+	private Long relatedid; 			// 场馆ID
+	private String goodsname; 			// 商品名称
+	private String highlight;			//推荐说明
+
+	private Integer oriprice; 			// 原价
+	private Integer unitprice; 		// 单价
+	private Integer costprice; 		// 成本价
+
+	private Integer maxprice; 			// 最大价格
+	private Integer minprice; 			// 最小价格
+
+	private Integer limitnum; 			// 支付限购数量
+	private Integer allowaddnum; 		// 下单数量限制，防止因同事下单人数过多，而导致库存不足
+
+	private Integer quantity; 			// 原始的库存数量，不随订单的增加而减少
+	private Integer maxbuy; 			// 每次最多购买的数量
+	private Integer sales; 				// 卖出数量
+
+	private Integer minpoint; 			// 使用积分下限
+	private Integer maxpoint; 			// 使用积分上限
+
+	private Integer goodssort; 		// 商品排序
+	private String deliver; 			// 是否需要地址//N,Y
+	private String spflag;				// 特价活动标识
+
+	private String partners; 			// 该物品适用于合作商，如我们的android，ihphone，wap
+
+	private Long clerkid; 				// 加入人
+	private String manager; 			// 创建人类别
+
+	private String shortname; 			// 商品简称[打票使用]
+	private String printcontent; 		// 票纸打印内容
+	private String ordermsg; 			// 订单短信
+	private String notifymsg; 			// 3小时提醒短息
+
+	private String status; 				// 状态
+	private String otherinfo; 			// 其他设置 json格式， 存放支付配置信息等
+	private String citycode; 			// 城市代码
+	private String summary; 			// 描述摘要
+	private String description; 		// 商品描述
+	private String logo; 				// 图片
+	private String biglogo; 			// 大图
+	private String banklogo; 			// 银行logo
+
+	private Timestamp releasetime;	// 展示时间
+	private Timestamp fromtime;		// 开卖时间
+	private Timestamp totime;			// 结束时间
+	private Timestamp addtime; 		// 加入时间
+	private Timestamp fromvalidtime; // 通票入场时间
+	private Timestamp tovalidtime;	// 通票入场结束时间
+
 	private String elecard;
-	private String expressid;
-	private String period;
-	private Integer msgMinute;
-	private String barcode;
-	private String feetype;
-	private String servicetype;
-	private String seotitle;
-	private String seodescription;
+	private String expressid;			// 配送方式id
+	private String period;				// 是否有时段
+	private Integer msgMinute;			// 短信提前发送时间(分钟)
+
+	private String barcode; 			// 条形码
+	private String feetype; 			// 业务模式
+	private String servicetype; 		// 服务板块
+	private String seotitle; 			// SEO关键字
+	private String seodescription; 	// SEO描述
 	private Integer clickedtimes;
-	private String preType;
-	private String category;
-	private String smalltype;
-	private Long smallid;
-	private Long settleid;
-	private String measurement;
-	private String colour;
-	private String takemethod;
-	private String rateinfo;
-	private Long spcounterid;
-	private String sellOutMark;
+	private String preType; 			// 预售类型
+	private String category; 			// 衍生品分类
+	private String smalltype; 			// 分类:如：爆米花，预售，衍生品,活动
+	private Long smallid; 				// 预售（券批次），活动（ID）
+
+	private Long settleid; 				// 结算ID
+	private String measurement; 		// 分类，如，物品尺寸
+	private String colour; 				// 分类，如，颜色
+	private String takemethod;			// 取票方式
+	
+	private String rateinfo;			// 强制绑定的比例
+	
+	private Long spcounterid;			//使用数量控制器的ID
+	private String sellOutMark;			//是否缺货登记
 
 	public String getCategory() {
-		return this.category;
+		return category;
 	}
 
 	public void setCategory(String category) {
@@ -87,19 +107,20 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getExpressid() {
-		return this.expressid;
+		return expressid;
 	}
 
 	public void setExpressid(String expressid) {
 		this.expressid = expressid;
 	}
 
+	@Override
 	public final Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Timestamp getFromvalidtime() {
-		return this.fromvalidtime;
+		return fromvalidtime;
 	}
 
 	public void setFromvalidtime(Timestamp fromvalidtime) {
@@ -107,7 +128,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Timestamp getTovalidtime() {
-		return this.tovalidtime;
+		return tovalidtime;
 	}
 
 	public void setTovalidtime(Timestamp tovalidtime) {
@@ -115,7 +136,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -123,7 +144,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -131,7 +152,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getSummary() {
-		return this.summary;
+		return summary;
 	}
 
 	public void setSummary(String summary) {
@@ -139,7 +160,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getPrintcontent() {
-		return this.printcontent;
+		return printcontent;
 	}
 
 	public void setPrintcontent(String printcontent) {
@@ -147,7 +168,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getOriprice() {
-		return this.oriprice;
+		return oriprice;
 	}
 
 	public void setOriprice(Integer oriprice) {
@@ -155,7 +176,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getBiglogo() {
-		return this.biglogo;
+		return biglogo;
 	}
 
 	public void setBiglogo(String biglogo) {
@@ -163,11 +184,11 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getOrdermsg() {
-		return this.ordermsg;
+		return ordermsg;
 	}
 
 	public Timestamp getReleasetime() {
-		return this.releasetime;
+		return releasetime;
 	}
 
 	public void setReleasetime(Timestamp releasetime) {
@@ -179,7 +200,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getNotifymsg() {
-		return this.notifymsg;
+		return notifymsg;
 	}
 
 	public void setNotifymsg(String notifymsg) {
@@ -187,7 +208,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getGoodsname() {
-		return this.goodsname;
+		return goodsname;
 	}
 
 	public void setGoodsname(String goodsname) {
@@ -195,7 +216,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -203,7 +224,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -211,7 +232,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -219,7 +240,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getItemtype() {
-		return this.itemtype;
+		return itemtype;
 	}
 
 	public void setItemtype(String itemtype) {
@@ -227,7 +248,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Long getItemid() {
-		return this.itemid;
+		return itemid;
 	}
 
 	public void setItemid(Long itemid) {
@@ -235,7 +256,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -243,7 +264,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getUnitprice() {
-		return this.unitprice;
+		return unitprice;
 	}
 
 	public void setUnitprice(Integer unitprice) {
@@ -251,7 +272,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Long getClerkid() {
-		return this.clerkid;
+		return clerkid;
 	}
 
 	public void setClerkid(Long clerkid) {
@@ -259,7 +280,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getManager() {
-		return this.manager;
+		return manager;
 	}
 
 	public void setManager(String manager) {
@@ -267,7 +288,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -275,11 +296,13 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
 
 	public String getLimg() {
-		return StringUtils.isBlank(this.logo) ? "img/default_head.png" : this.logo;
+		if (StringUtils.isBlank(logo))
+			return "img/default_head.png";
+		return logo;
 	}
 
 	public void setLogo(String logo) {
@@ -287,7 +310,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -295,7 +318,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getMinpoint() {
-		return this.minpoint;
+		return minpoint;
 	}
 
 	public void setMinpoint(Integer minpoint) {
@@ -303,7 +326,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getMaxpoint() {
-		return this.maxpoint;
+		return maxpoint;
 	}
 
 	public void setMaxpoint(Integer maxpoint) {
@@ -311,7 +334,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Timestamp getFromtime() {
-		return this.fromtime;
+		return fromtime;
 	}
 
 	public void setFromtime(Timestamp fromtime) {
@@ -319,7 +342,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Timestamp getTotime() {
-		return this.totime;
+		return totime;
 	}
 
 	public void setTotime(Timestamp totime) {
@@ -327,7 +350,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getGoodssort() {
-		return this.goodssort;
+		return goodssort;
 	}
 
 	public void setGoodssort(Integer goodssort) {
@@ -335,7 +358,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getLimitnum() {
-		return this.limitnum;
+		return limitnum;
 	}
 
 	public void setLimitnum(Integer limitnum) {
@@ -344,28 +367,30 @@ public class GoodsVo extends BaseVo {
 
 	public boolean isStart() {
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
-		return cur.before(this.fromtime);
+		return cur.before(fromtime);
 	}
 
 	public boolean isEnd() {
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
-		return cur.after(this.totime);
+		return cur.after(totime);
 	}
 
 	public boolean isNeedDeliver() {
-		return "entity".equals(this.deliver);
+		return GoodsConstant.DELIVER_ENTITY.equals(deliver);
 	}
 
 	public Integer getRealpoint() {
-		return Integer.valueOf(this.unitprice.intValue() * 100);
+		return this.unitprice * 100;
 	}
 
 	public String getReallogo() {
-		return StringUtils.isBlank(this.logo) ? "img/default_head.png" : this.logo;
+		if (StringUtils.isBlank(logo))
+			return "img/default_head.png";
+		return logo;
 	}
 
 	public String getDeliver() {
-		return this.deliver;
+		return deliver;
 	}
 
 	public void setDeliver(String deliver) {
@@ -373,7 +398,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getShortname() {
-		return this.shortname;
+		return shortname;
 	}
 
 	public void setShortname(String shortname) {
@@ -381,7 +406,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getCostprice() {
-		return this.costprice;
+		return costprice;
 	}
 
 	public void setCostprice(Integer costprice) {
@@ -389,11 +414,11 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public boolean isPointType() {
-		return "point".equals(this.tag);
+		return GoodsConstant.GOODS_TAG_POINT.equals(tag);
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -401,7 +426,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getSpflag() {
-		return this.spflag;
+		return spflag;
 	}
 
 	public void setSpflag(String spflag) {
@@ -410,27 +435,29 @@ public class GoodsVo extends BaseVo {
 
 	public String getTipMsg() {
 		String result = "";
-		if (StringUtils.isNotBlank(this.ordermsg)) {
-			result = this.ordermsg.replaceAll("quantity", "X").replaceAll("password", "******");
+		if (StringUtils.isNotBlank(ordermsg)) {
+			result = ordermsg.replaceAll("quantity", "X").replaceAll("password", "******");
 		}
-
 		return result;
 	}
 
 	public List getSummaryList() {
-		return StringUtils.isNotBlank(this.summary) ? Arrays.asList(StringUtils.split(this.summary, ",")) : null;
+		if (StringUtils.isNotBlank(this.summary)) {
+			return Arrays.asList(StringUtils.split(this.summary, ","));
+		}
+		return null;
 	}
 
 	public boolean isOpenPointPay() {
-		return this.maxpoint != null && this.maxpoint.intValue() > 0;
+		return maxpoint != null && maxpoint > 0;
 	}
 
 	public boolean isOpenCardPay() {
-		return StringUtils.containsAny(this.elecard, "ABD");
+		return StringUtils.containsAny(elecard, "ABD");
 	}
 
 	public String getElecard() {
-		return this.elecard;
+		return elecard;
 	}
 
 	public void setElecard(String elecard) {
@@ -438,7 +465,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getAllowaddnum() {
-		return this.allowaddnum;
+		return allowaddnum;
 	}
 
 	public void setAllowaddnum(Integer allowaddnum) {
@@ -446,7 +473,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getMaxbuy() {
-		return this.maxbuy;
+		return maxbuy;
 	}
 
 	public void setMaxbuy(Integer maxbuy) {
@@ -454,7 +481,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getPartners() {
-		return this.partners;
+		return partners;
 	}
 
 	public void setPartners(String partners) {
@@ -462,7 +489,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getSales() {
-		return this.sales;
+		return sales;
 	}
 
 	public void setSales(Integer sales) {
@@ -474,11 +501,11 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public boolean hasExpired() {
-		return this.tovalidtime.before(DateUtil.getCurFullTimestamp());
+		return tovalidtime.before(DateUtil.getCurFullTimestamp());
 	}
 
 	public String getPeriod() {
-		return this.period;
+		return period;
 	}
 
 	public void setPeriod(String period) {
@@ -486,11 +513,13 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public boolean hasPeriod() {
-		return StringUtils.isBlank(this.period) ? false : StringUtils.equals(this.period, "Y");
+		if (StringUtils.isBlank(this.period))
+			return false;
+		return StringUtils.equals(this.period, GoodsConstant.PERIOD_Y);
 	}
 
 	public Integer getMsgMinute() {
-		return this.msgMinute;
+		return msgMinute;
 	}
 
 	public void setMsgMinute(Integer msgMinute) {
@@ -498,11 +527,11 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public boolean isOpenBarcode() {
-		return StringUtils.equals(this.barcode, "Y");
+		return StringUtils.equals(barcode, Status.Y);
 	}
 
 	public String getBarcode() {
-		return this.barcode;
+		return barcode;
 	}
 
 	public void setBarcode(String barcode) {
@@ -514,7 +543,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getSeotitle() {
-		return this.seotitle;
+		return seotitle;
 	}
 
 	public void setSeotitle(String seotitle) {
@@ -522,7 +551,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getSeodescription() {
-		return this.seodescription;
+		return seodescription;
 	}
 
 	public void setSeodescription(String seodescription) {
@@ -530,7 +559,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getMaxprice() {
-		return this.maxprice;
+		return maxprice;
 	}
 
 	public void setMaxprice(Integer maxprice) {
@@ -538,7 +567,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getMinprice() {
-		return this.minprice;
+		return minprice;
 	}
 
 	public void setMinprice(Integer minprice) {
@@ -546,11 +575,11 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getFeetype() {
-		return this.feetype;
+		return feetype;
 	}
 
 	public String getGoodstype() {
-		return this.goodstype;
+		return goodstype;
 	}
 
 	public void setGoodstype(String goodstype) {
@@ -566,7 +595,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Integer getClickedtimes() {
-		return this.clickedtimes;
+		return clickedtimes;
 	}
 
 	public void setClickedtimes(Integer clickedtimes) {
@@ -574,7 +603,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getServicetype() {
-		return this.servicetype;
+		return servicetype;
 	}
 
 	public void setServicetype(String servicetype) {
@@ -582,7 +611,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Long getDescribeid() {
-		return this.describeid;
+		return describeid;
 	}
 
 	public void setDescribeid(Long describeid) {
@@ -590,7 +619,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getSmalltype() {
-		return this.smalltype;
+		return smalltype;
 	}
 
 	public void setSmalltype(String smalltype) {
@@ -598,7 +627,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Long getSmallid() {
-		return this.smallid;
+		return smallid;
 	}
 
 	public void setSmallid(Long smallid) {
@@ -606,7 +635,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public Long getSettleid() {
-		return this.settleid;
+		return settleid;
 	}
 
 	public void setSettleid(Long settleid) {
@@ -614,7 +643,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getMeasurement() {
-		return this.measurement;
+		return measurement;
 	}
 
 	public void setMeasurement(String measurement) {
@@ -622,7 +651,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getColour() {
-		return this.colour;
+		return colour;
 	}
 
 	public void setColour(String colour) {
@@ -630,20 +659,23 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getTakemethod() {
-		return this.takemethod;
+		return takemethod;
 	}
 
 	public void setTakemethod(String takemethod) {
 		this.takemethod = takemethod;
 	}
 
+	/**
+	 * 在预售期
+	 */
 	public boolean hasBooking() {
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
-		return cur.after(this.fromtime) && cur.before(this.totime) && StringUtils.equals(this.status, "Y");
+		return cur.after(fromtime) && cur.before(totime) && StringUtils.equals(this.status, Status.Y);
 	}
 
 	public String getPreType() {
-		return this.preType;
+		return preType;
 	}
 
 	public void setPreType(String preType) {
@@ -651,7 +683,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getBanklogo() {
-		return this.banklogo;
+		return banklogo;
 	}
 
 	public void setBanklogo(String banklogo) {
@@ -659,7 +691,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getRateinfo() {
-		return this.rateinfo;
+		return rateinfo;
 	}
 
 	public void setRateinfo(String rateinfo) {
@@ -667,15 +699,15 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getHighlight() {
-		return this.highlight;
+		return highlight;
 	}
 
 	public void setHighlight(String highlight) {
 		this.highlight = highlight;
 	}
-
+	
 	public Long getSpcounterid() {
-		return this.spcounterid;
+		return spcounterid;
 	}
 
 	public void setSpcounterid(Long spcounterid) {
@@ -683,10 +715,11 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getSellOutMark() {
-		return this.sellOutMark;
+		return sellOutMark;
 	}
 
 	public void setSellOutMark(String sellOutMark) {
 		this.sellOutMark = sellOutMark;
 	}
+	
 }

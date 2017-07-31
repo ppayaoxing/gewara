@@ -1,19 +1,26 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.req.vo;
 
-import com.gewara.api.partner.req.vo.PartnerPageReqVo;
 import java.util.Date;
 
+
+/**
+ * MPI 
+ */
 public class PartnerMpiReqVo extends PartnerPageReqVo {
 	private static final long serialVersionUID = -752034056399243324L;
+	// 影院ID
 	private Long cinemaId;
+	// 影片ID
 	private Long movieId;
+	// 特价活动ID
 	private Long discountId;
+	// 日期
 	private Date playdate;
+	// 特效厅，如IMAX等
 	private String characteristic;
 
 	public Long getCinemaId() {
-		return this.cinemaId;
+		return cinemaId;
 	}
 
 	public void setCinemaId(Long cinemaId) {
@@ -21,7 +28,7 @@ public class PartnerMpiReqVo extends PartnerPageReqVo {
 	}
 
 	public Long getMovieId() {
-		return this.movieId;
+		return movieId;
 	}
 
 	public void setMovieId(Long movieId) {
@@ -29,7 +36,7 @@ public class PartnerMpiReqVo extends PartnerPageReqVo {
 	}
 
 	public Long getDiscountId() {
-		return this.discountId;
+		return discountId;
 	}
 
 	public void setDiscountId(Long discountId) {
@@ -37,7 +44,7 @@ public class PartnerMpiReqVo extends PartnerPageReqVo {
 	}
 
 	public Date getPlaydate() {
-		return this.playdate;
+		return playdate;
 	}
 
 	public void setPlaydate(Date playdate) {
@@ -45,10 +52,11 @@ public class PartnerMpiReqVo extends PartnerPageReqVo {
 	}
 
 	public String getCharacteristic() {
-		return this.characteristic;
+		return characteristic;
 	}
 
 	public void setCharacteristic(String characteristic) {
 		this.characteristic = characteristic;
 	}
+
 }

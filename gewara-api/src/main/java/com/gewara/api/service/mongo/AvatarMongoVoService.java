@@ -1,5 +1,7 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.service.mongo;
+
+import java.util.List;
+import java.util.Map;
 
 import com.gewara.api.partner.res.vo.MovieAppIconVo;
 import com.gewara.api.partner.res.vo.PhoneActivityVo;
@@ -11,37 +13,114 @@ import com.gewara.api.vo.mongo.RoomOuterRingSeatVo;
 import com.gewara.api.vo.mongo.SeeMovieVo;
 import com.gewara.api.vo.mongo.SpecilMpiAppIconVo;
 import com.gewara.api.vo.mongo.WeixinFriendCardVo;
-import java.util.List;
-import java.util.Map;
 
 public interface AvatarMongoVoService {
+
+	/**
+	 * 获取购票排行
+	 * @return
+	 */
 	ResultCode<List<Map>> getBuyTicketRankingList();
-
-	ResultCode<List<Map>> getIndexPageEffectRoomListByCityCodeAsc(String arg0);
-
-	ResultCode<List<SeeMovieVo>> getSeeMovieList(String arg0, Long arg1, int arg2, int arg3);
-
-	ResultCode<String> saveShortUrl(String arg0, int arg1);
-
-	ResultCode<List<FriendCardCfgVo>> getFriendCardCfgListByCardId(String arg0);
-
-	ResultCode<List<WeixinFriendCardVo>> getWeixinFriendCardList(String arg0, String arg1, String arg2);
-
-	ResultCode saveWeixinFriendCard(WeixinFriendCardVo arg0);
-
+	
+	/**
+	 * 根据城市编码查询IndexPageEffectRoom列表 ,按order字段排序
+	 * @param cityCode
+	 * @return
+	 */
+	ResultCode<List<Map>> getIndexPageEffectRoomListByCityCodeAsc(String cityCode);
+	
+	/**
+	 * 查询SeeMovie列表
+	 * @param tag 			不能为空
+	 * @param relatedId
+	 * @param from			不能为空
+	 * @param maxnum		不能为空
+	 * @return
+	 */
+	ResultCode<List<SeeMovieVo>> getSeeMovieList(String tag, Long relatedId, int from, int maxnum);
+	
+	/**
+	 * 保存ShortUrl
+	 * @param tradeNo
+	 * @param addNum
+	 * @return
+	 */
+	ResultCode<String> saveShortUrl(String tradeNo, int addNum);
+	
+	/**
+	 * 查询 FriendCardCfg 列表
+	 * @param cardId
+	 * @return
+	 */
+	ResultCode<List<FriendCardCfgVo>> getFriendCardCfgListByCardId(String cardId);
+	
+	/**
+	 * 查询微信朋友卡券列表
+	 * @param cardId
+	 * @param openId
+	 * @param cardCode
+	 * @return
+	 */
+	ResultCode<List<WeixinFriendCardVo>> getWeixinFriendCardList(String cardId, String openId, String cardCode);
+	
+	/**
+	 * 新增微信朋友卡券
+	 * @param friendCard
+	 * @return
+	 */
+	ResultCode saveWeixinFriendCard(WeixinFriendCardVo friendCard);
+	
+	/**
+	 * 获取格瓦拉放映
+	 * @return
+	 */
 	ResultCode<List<GewaraMoviePlayVo>> getGewaraMoviePlayList();
-
+	
+	/**
+	 * 获取MovieAppIcon列表 
+	 * @return
+	 */
 	ResultCode<List<MovieAppIconVo>> getMovieAppIconList();
-
-	ResultCode<SpecilMpiAppIconVo> getSpecilMpiAppIconById(String arg0);
-
+	
+	/**
+	 * 根据ID查询电影APP特殊场次打标
+	 * @param id
+	 * @return
+	 */
+	ResultCode<SpecilMpiAppIconVo> getSpecilMpiAppIconById(String id);
+	
+	/**
+	 * 根据当前时间查询PersonalSeat 列表
+	 * 查询时间> stoptime
+	 * @return
+	 */
 	ResultCode<List<PersonalSeatVo>> getPersonalSeatListGTStopTime();
-
+	
+	/**
+	 * 根据当前时间查询PersonalSeat 列表
+	 * 查询时间>= stoptime
+	 * @return
+	 */
 	ResultCode<List<PersonalSeatVo>> getPersonalSeatListGTEStopTime();
-
-	ResultCode<PhoneActivityVo> getPhoneActivityById(String arg0);
-
-	ResultCode<List<RoomOuterRingSeatVo>> getRoomOuterRingSeatListByRoomId(Long arg0);
-
-	ResultCode saveOrUpdateRoomOuterRingSeat(RoomOuterRingSeatVo arg0);
+	
+	/**
+	 * 根据ID查询PhoneActivity
+	 * @param activityId
+	 * @return
+	 */
+	ResultCode<PhoneActivityVo> getPhoneActivityById(String activityId);
+	
+	/**
+	 * 根据roomId查询 RoomOuterRingSeat列表
+	 * @param roomId
+	 * @return
+	 */
+	ResultCode<List<RoomOuterRingSeatVo>> getRoomOuterRingSeatListByRoomId(Long roomId);
+	
+	/**
+	 * 新增 RoomOuterRingSeat
+	 * @param outerRingSeat
+	 * @return
+	 */
+	ResultCode saveOrUpdateRoomOuterRingSeat(RoomOuterRingSeatVo outerRingSeat);
 }

@@ -1,10 +1,10 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.goods;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class GoodsSellOutRegisterVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class GoodsSellOutRegisterVo extends BaseVo{
 	private static final long serialVersionUID = -1452511463664537830L;
 	private String id;
 	private Long memberid;
@@ -14,9 +14,13 @@ public class GoodsSellOutRegisterVo extends BaseVo {
 	private String mobile;
 	private String remark;
 	private String addTime;
+	
+	public GoodsSellOutRegisterVo(){
+	}
+	
 
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -24,7 +28,7 @@ public class GoodsSellOutRegisterVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -32,7 +36,7 @@ public class GoodsSellOutRegisterVo extends BaseVo {
 	}
 
 	public Long getItemid() {
-		return this.itemid;
+		return itemid;
 	}
 
 	public void setItemid(Long itemid) {
@@ -40,7 +44,7 @@ public class GoodsSellOutRegisterVo extends BaseVo {
 	}
 
 	public Long getNum() {
-		return this.num;
+		return num;
 	}
 
 	public void setNum(Long num) {
@@ -48,7 +52,7 @@ public class GoodsSellOutRegisterVo extends BaseVo {
 	}
 
 	public Double getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Double price) {
@@ -56,7 +60,7 @@ public class GoodsSellOutRegisterVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -64,7 +68,7 @@ public class GoodsSellOutRegisterVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -72,14 +76,16 @@ public class GoodsSellOutRegisterVo extends BaseVo {
 	}
 
 	public String getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
 
 	public void setAddTime(String addTime) {
 		this.addTime = addTime;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
+	
 }

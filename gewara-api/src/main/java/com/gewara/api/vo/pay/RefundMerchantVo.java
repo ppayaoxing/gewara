@@ -1,28 +1,30 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class RefundMerchantVo extends BaseVo {
 	private static final long serialVersionUID = 6029378080103301843L;
-	private Long id;
-	private Long gatewayId;
-	private String merchantNo;
-	private String merchantCode;
-	private String cityCode;
-	private String acquiringBank;
-	private String description;
-	private String status;
-	private Timestamp updateTime;
+	
+	private Long id;	//主键
+	private Long gatewayId;	//支配配置ID
+	private String merchantNo;	//商户号
+	private String merchantCode;	//商户号标识
+	private String cityCode;	//城市
+	private String acquiringBank;	//收单行
+	private String description;	//商户号说明
+	private String status;	//商户号状态：NO_USE：未启用；IN_USE：使用中；DESUETUDE：废弃；
+	private Timestamp updateTime;	//同步时间	
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -30,7 +32,7 @@ public class RefundMerchantVo extends BaseVo {
 	}
 
 	public Long getGatewayId() {
-		return this.gatewayId;
+		return gatewayId;
 	}
 
 	public void setGatewayId(Long gatewayId) {
@@ -38,7 +40,7 @@ public class RefundMerchantVo extends BaseVo {
 	}
 
 	public String getMerchantNo() {
-		return this.merchantNo;
+		return merchantNo;
 	}
 
 	public void setMerchantNo(String merchantNo) {
@@ -46,7 +48,7 @@ public class RefundMerchantVo extends BaseVo {
 	}
 
 	public String getMerchantCode() {
-		return this.merchantCode;
+		return merchantCode;
 	}
 
 	public void setMerchantCode(String merchantCode) {
@@ -54,7 +56,7 @@ public class RefundMerchantVo extends BaseVo {
 	}
 
 	public String getCityCode() {
-		return this.cityCode;
+		return cityCode;
 	}
 
 	public void setCityCode(String cityCode) {
@@ -62,7 +64,7 @@ public class RefundMerchantVo extends BaseVo {
 	}
 
 	public String getAcquiringBank() {
-		return this.acquiringBank;
+		return acquiringBank;
 	}
 
 	public void setAcquiringBank(String acquiringBank) {
@@ -70,7 +72,7 @@ public class RefundMerchantVo extends BaseVo {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -78,7 +80,7 @@ public class RefundMerchantVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -86,10 +88,11 @@ public class RefundMerchantVo extends BaseVo {
 	}
 
 	public Timestamp getUpdateTime() {
-		return this.updateTime;
+		return updateTime;
 	}
 
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
+
 }

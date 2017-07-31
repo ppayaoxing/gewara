@@ -1,11 +1,12 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.goods;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class TeamShareVo extends BaseVo {
+
 	private static final long serialVersionUID = -523579776327538390L;
 	private Long id;
 	private Integer version;
@@ -21,13 +22,14 @@ public class TeamShareVo extends BaseVo {
 	private String sharestatus;
 	private Timestamp addtime;
 	private Timestamp updatetime;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -35,7 +37,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -43,7 +45,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -51,7 +53,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -59,7 +61,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Long getGoodsid() {
-		return this.goodsid;
+		return goodsid;
 	}
 
 	public void setGoodsid(Long goodsid) {
@@ -67,7 +69,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Integer getOrdernum() {
-		return this.ordernum;
+		return ordernum;
 	}
 
 	public void setOrdernum(Integer ordernum) {
@@ -75,7 +77,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Integer getTicketnum() {
-		return this.ticketnum;
+		return ticketnum;
 	}
 
 	public void setTicketnum(Integer ticketnum) {
@@ -83,7 +85,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Long getExtid() {
-		return this.extid;
+		return extid;
 	}
 
 	public void setExtid(Long extid) {
@@ -91,7 +93,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Long getLastextid() {
-		return this.lastextid;
+		return lastextid;
 	}
 
 	public void setLastextid(Long lastextid) {
@@ -99,7 +101,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -107,7 +109,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public String getNotice() {
-		return this.notice;
+		return notice;
 	}
 
 	public void setNotice(String notice) {
@@ -115,7 +117,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Integer getAllowtotalnum() {
-		return this.allowtotalnum;
+		return allowtotalnum;
 	}
 
 	public void setAllowtotalnum(Integer allowtotalnum) {
@@ -123,7 +125,7 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public Integer getAllowticketnum() {
-		return this.allowticketnum;
+		return allowticketnum;
 	}
 
 	public void setAllowticketnum(Integer allowticketnum) {
@@ -131,10 +133,11 @@ public class TeamShareVo extends BaseVo {
 	}
 
 	public String getSharestatus() {
-		return this.sharestatus;
+		return sharestatus;
 	}
 
 	public void setSharestatus(String sharestatus) {
 		this.sharestatus = sharestatus;
 	}
+	
 }

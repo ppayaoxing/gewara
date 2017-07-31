@@ -1,11 +1,11 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.res.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class MemberECardVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class MemberECardVo extends BaseVo{
 	private static final long serialVersionUID = -9002804759726715451L;
 	private String cardno;
 	private String name;
@@ -15,8 +15,8 @@ public class MemberECardVo extends BaseVo {
 	private String status;
 	private String edition;
 	private Integer amount;
-	private Integer fullTotalfee;
-	private Integer opiMinPrice;
+	private Integer fullTotalfee;	//满多少才参与优惠（包含）
+	private Integer opiMinPrice;	//场次最低价格
 	private String cardtag;
 	private String channelinfo;
 	private String exchangetype;
@@ -24,144 +24,117 @@ public class MemberECardVo extends BaseVo {
 	private String validmovie;
 	private String statusText;
 	private String cardRemark;
-
-	public String getCardno() {
-		return this.cardno;
+	public MemberECardVo(){
+		
 	}
-
+	public String getCardno() {
+		return cardno;
+	}
 	public void setCardno(String cardno) {
 		this.cardno = cardno;
 	}
-
 	public String getName() {
-		return this.name;
+		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getCardtype() {
-		return this.cardtype;
+		return cardtype;
 	}
-
 	public void setCardtype(String cardtype) {
 		this.cardtype = cardtype;
 	}
-
+	
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	public String getEdition() {
-		return this.edition;
+		return edition;
 	}
-
 	public void setEdition(String edition) {
 		this.edition = edition;
 	}
-
+	
 	public String getCardtag() {
-		return this.cardtag;
+		return cardtag;
 	}
-
 	public void setCardtag(String cardtag) {
 		this.cardtag = cardtag;
 	}
-
 	public String getChannelinfo() {
-		return this.channelinfo;
+		return channelinfo;
 	}
-
 	public void setChannelinfo(String channelinfo) {
 		this.channelinfo = channelinfo;
 	}
-
 	public String getExchangetype() {
-		return this.exchangetype;
+		return exchangetype;
 	}
-
 	public void setExchangetype(String exchangetype) {
 		this.exchangetype = exchangetype;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.cardno;
+		return cardno;
 	}
-
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
-
 	public void setStarttime(Timestamp starttime) {
 		this.starttime = starttime;
 	}
-
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
-
 	public void setEndtime(Timestamp endtime) {
 		this.endtime = endtime;
 	}
-
 	public Integer getAmount() {
-		return this.amount;
+		return amount;
 	}
-
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
-
 	public String getSoldType() {
-		return this.soldType;
+		return soldType;
 	}
-
 	public void setSoldType(String soldType) {
 		this.soldType = soldType;
 	}
-
 	public String getValidmovie() {
-		return this.validmovie;
+		return validmovie;
 	}
-
 	public void setValidmovie(String validmovie) {
 		this.validmovie = validmovie;
 	}
-
 	public String getStatusText() {
-		return this.statusText;
+		return statusText;
 	}
-
 	public void setStatusText(String statusText) {
 		this.statusText = statusText;
 	}
-
 	public String getCardRemark() {
-		return this.cardRemark;
+		return cardRemark;
 	}
-
 	public void setCardRemark(String cardRemark) {
 		this.cardRemark = cardRemark;
 	}
-
 	public Integer getFullTotalfee() {
-		return this.fullTotalfee;
+		return fullTotalfee;
 	}
-
 	public void setFullTotalfee(Integer fullTotalfee) {
 		this.fullTotalfee = fullTotalfee;
 	}
-
 	public Integer getOpiMinPrice() {
-		return this.opiMinPrice;
+		return opiMinPrice;
 	}
-
 	public void setOpiMinPrice(Integer opiMinPrice) {
 		this.opiMinPrice = opiMinPrice;
 	}
+	
+	
 }

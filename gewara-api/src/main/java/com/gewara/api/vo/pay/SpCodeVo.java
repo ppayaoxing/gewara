@@ -1,78 +1,70 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+
 public class SpCodeVo extends BaseVo {
+
 	private static final long serialVersionUID = -6167296620246800818L;
-	public static final String PASSPRE = "I";
+	public static final String PASSPRE = "I";	//码前缀
 	private Long id;
-	private Integer version;
-	private Long sdid;
-	private Long memberid;
-	private String mobile;
-	private Timestamp sendtime;
-	private Long orderid;
-	private Integer usedcount;
+	private Integer version;	//
+	private Long sdid;			//特价活动
+	private Long memberid;		//用户ID	
+	private String mobile;		//手机
+	private Timestamp sendtime;	//发出时间
+	private Long orderid;		//关联订单
+	private Integer usedcount;	//使用次数
 	private String temppass;
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
-	public boolean hasBound() {
-		return this.memberid.longValue() > 0L || StringUtils.length(this.mobile) == 11 || this.usedcount.intValue() > 0;
+	public boolean hasBound(){//已经绑定的券
+		return this.memberid > 0 || StringUtils.length(mobile) == 11 || this.usedcount > 0;
 	}
-
-	public boolean canUseByMember(Long mid) {
-		return this.memberid.longValue() <= 0L || this.memberid.equals(mid);
+	public boolean canUseByMember(Long mid){//是否被他人占用
+		return memberid<=0 || memberid.equals(mid);
 	}
-
+	
 	public Long getSdid() {
-		return this.sdid;
+		return sdid;
 	}
-
 	public void setSdid(Long sdid) {
 		this.sdid = sdid;
 	}
-
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
-
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
 	public Long getOrderid() {
-		return this.orderid;
+		return orderid;
 	}
-
 	public void setOrderid(Long orderid) {
 		this.orderid = orderid;
 	}
-
 	public Timestamp getSendtime() {
-		return this.sendtime;
+		return sendtime;
 	}
-
 	public void setSendtime(Timestamp sendtime) {
 		this.sendtime = sendtime;
 	}
 
 	public Integer getUsedcount() {
-		return this.usedcount;
+		return usedcount;
 	}
 
 	public void setUsedcount(Integer usedcount) {
@@ -80,7 +72,7 @@ public class SpCodeVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -88,7 +80,7 @@ public class SpCodeVo extends BaseVo {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -96,10 +88,11 @@ public class SpCodeVo extends BaseVo {
 	}
 
 	public String gainTemppass() {
-		return this.temppass;
+		return temppass;
 	}
 
 	public void setTemppass(String temppass) {
 		this.temppass = temppass;
 	}
+	
 }

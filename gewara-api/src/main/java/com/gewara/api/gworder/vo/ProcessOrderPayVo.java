@@ -1,21 +1,26 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gworder.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class ProcessOrderPayVo extends BaseVo {
-	private static final long serialVersionUID = 4894151622349595385L;
-	private String tradeNo;
-	private String checkpass;
-	protected String orderFlagStatus;
+import com.gewara.api.vo.BaseVo;
 
+public class ProcessOrderPayVo extends BaseVo{
+
+	private static final long serialVersionUID = 4894151622349595385L;
+
+	private String tradeNo;
+	
+	private String checkpass;//取材密码
+
+	protected String orderFlagStatus;	//订单标识状态
+			
+	@Override
 	public Serializable realId() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -23,7 +28,7 @@ public class ProcessOrderPayVo extends BaseVo {
 	}
 
 	public String getCheckpass() {
-		return this.checkpass;
+		return checkpass;
 	}
 
 	public void setCheckpass(String checkpass) {
@@ -31,10 +36,11 @@ public class ProcessOrderPayVo extends BaseVo {
 	}
 
 	public String getOrderFlagStatus() {
-		return this.orderFlagStatus;
+		return orderFlagStatus;
 	}
 
 	public void setOrderFlagStatus(String orderFlagStatus) {
 		this.orderFlagStatus = orderFlagStatus;
 	}
+
 }

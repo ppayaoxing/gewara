@@ -1,35 +1,37 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.BeanUtil;
-import com.gewara.util.DateUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+import com.gewara.cons.Status;
+import com.gewara.util.BeanUtil;
+import com.gewara.util.DateUtil;
+
 public class PubSaleVo extends BaseVo {
+	
 	private static final long serialVersionUID = 1058839210087103092L;
 	public static final String SALETYPE_GOODS = "goods";
 	public static final String SALETYPE_CARD = "card";
 	private Long id;
-	private String name;
-	private Integer lowerprice;
-	private Integer curprice;
-	private String dupprice;
-	private Integer needpoint;
-	private Integer countdown;
-	private Integer ordernum;
-	private Timestamp begintime;
-	private Timestamp endtime;
-	private String status;
+	private String name; 			// 名称
+	private Integer lowerprice; 	// 低价 单位分 不是元
+	private Integer curprice; 		// 当前竞拍价 单位分 不是元
+	private String dupprice; 		// 每次提升金额 单位分 不是元
+	private Integer needpoint; 	// 每次竞拍需要积分
+	private Integer countdown; 	// 倒计时
+	private Integer ordernum; 		// 排序
+	private Timestamp begintime; 	// 开始时间
+	private Timestamp endtime; 	// 结束时间
+	private String status; 			// 状态 N, Y, N_DELETE 
 	private String logo;
-	private String source;
-	private String remark;
-	private String description;
+	private String source;			//来源
+	private String remark; 			// 描述
+	private String description;	// 详细
 	private Integer version;
 	private String nickname;
 	private Long memberid;
@@ -38,17 +40,16 @@ public class PubSaleVo extends BaseVo {
 	private String cardpass;
 	private String citycode;
 	private Long goodsid;
-	private Integer pubperiod;
-	private Integer pubnumber;
-	private Integer unitMinute;
+	private Integer pubperiod;			//可拍周期
+	private Integer pubnumber;			//可拍周期次数
+	private Integer unitMinute;			//成功后分钟数
 	private String expressid;
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public String getCardpass() {
-		return this.cardpass;
+		return cardpass;
 	}
 
 	public void setCardpass(String cardpass) {
@@ -56,7 +57,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public String getSaletype() {
-		return this.saletype;
+		return saletype;
 	}
 
 	public void setSaletype(String saletype) {
@@ -64,24 +65,23 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public Timestamp getLasttime() {
-		return this.lasttime;
+		return lasttime;
 	}
 
 	public void setLasttime(Timestamp lasttime) {
 		this.lasttime = lasttime;
 	}
-
-	public PubSaleVo() {
-	}
-
+	
+	public PubSaleVo() {}
+	
 	public PubSaleVo(String name) {
-		this.ordernum = Integer.valueOf(0);
-		this.status = "N";
+		this.ordernum = 0;
+		this.status = Status.N;
 		this.name = name;
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -89,7 +89,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -97,7 +97,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -105,7 +105,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -113,7 +113,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -121,7 +121,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public Integer getNeedpoint() {
-		return this.needpoint;
+		return needpoint;
 	}
 
 	public void setNeedpoint(Integer needpoint) {
@@ -129,7 +129,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public Timestamp getBegintime() {
-		return this.begintime;
+		return begintime;
 	}
 
 	public void setBegintime(Timestamp begintime) {
@@ -137,7 +137,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -145,7 +145,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public Integer getCountdown() {
-		return this.countdown;
+		return countdown;
 	}
 
 	public void setCountdown(Integer countdown) {
@@ -153,7 +153,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public Integer getOrdernum() {
-		return this.ordernum;
+		return ordernum;
 	}
 
 	public void setOrdernum(Integer ordernum) {
@@ -161,7 +161,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
 
 	public void setLogo(String logo) {
@@ -169,97 +169,89 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public String getLimg() {
-		return StringUtils.isBlank(this.logo) ? "img/default_head.png" : this.logo;
+		if (StringUtils.isBlank(logo))
+			return "img/default_head.png";
+		return logo;
 	}
 
+
 	public String getTitle() {
-		return this.name;
+		return name;
 	}
 
 	public boolean isProgress() {
 		Timestamp curtime = new Timestamp(System.currentTimeMillis());
-		return this.endtime == null ? this.begintime.before(curtime)
-				: this.begintime.before(curtime) && this.endtime.after(curtime);
+		if(endtime != null)
+			return begintime.before(curtime) && endtime.after(curtime);
+		return begintime.before(curtime);
 	}
-
 	public boolean isEnd(Timestamp curtime) {
-		return this.endtime == null ? false : this.endtime.before(curtime);
+		if(endtime == null) return false;
+		return endtime.before(curtime);
 	}
-
 	public boolean isEnd2() {
-		if (this.endtime == null) {
-			return false;
-		} else {
-			Timestamp curtime = new Timestamp(System.currentTimeMillis());
-			return curtime.after(this.endtime);
-		}
+		if(endtime == null) return false;
+		Timestamp curtime = new Timestamp(System.currentTimeMillis());
+		return curtime.after(endtime);
 	}
-
 	public boolean isEnd3() {
-		if (this.endtime == null) {
-			return "N".equals(this.status);
-		} else {
-			Timestamp curtime = new Timestamp(System.currentTimeMillis());
-			Timestamp endt = (Timestamp) DateUtil.addMinute(this.endtime, 5);
-			return endt.after(curtime);
+		if(endtime == null){
+			if(Status.N.equals(status))
+				return true;
+			else  return false;
 		}
+		Timestamp curtime = new Timestamp(System.currentTimeMillis());
+		Timestamp endt = DateUtil.addMinute(endtime, 5);
+		return endt.after(curtime);
 	}
-
 	public boolean isEnd4(Timestamp curtime) {
-		if (this.endtime == null) {
-			return !"N".equals(this.status);
-		} else {
-			Timestamp t = (Timestamp) DateUtil.addSecond(curtime, -2);
-			return t.after(this.endtime);
+		if(endtime == null){
+			if(Status.N.equals(status))
+				return false;
+			else return true;
 		}
+		Timestamp t = DateUtil.addSecond(curtime, -2);
+		return t.after(endtime);
 	}
-
 	public boolean isSoon() {
 		Timestamp curtime = new Timestamp(System.currentTimeMillis());
-		return this.begintime.after(curtime);
+		return begintime.after(curtime);
 	}
-
 	public boolean isJoin() {
-		return this.isProgress() && "N".equals(this.status);
+		return isProgress() && Status.N.equals(status);
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public void addCurprice(Integer price) {
-		if (price != null) {
-			this.curprice = Integer.valueOf(this.curprice.intValue() + price.intValue());
+	public void addCurprice(Integer price){
+		if(price != null){
+			this.curprice +=  price;
 		}
-
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
-
 	public boolean saleSuccess() {
-		return this.memberid != null && "Y".equals(this.status);
+		return memberid!=null && Status.Y.equals(status);
 	}
-
-	public boolean isGoods() {
-		return "goods".equals(this.saletype);
+	public boolean isGoods(){
+		return SALETYPE_GOODS.equals(saletype);
 	}
-
-	public boolean isCard() {
-		return "card".equals(this.saletype);
+	public boolean isCard(){
+		return SALETYPE_CARD.equals(saletype);
 	}
 
 	public Integer getLowerprice() {
-		return this.lowerprice;
+		return lowerprice;
 	}
 
 	public void setLowerprice(Integer lowerprice) {
@@ -267,7 +259,7 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public Integer getCurprice() {
-		return this.curprice;
+		return curprice;
 	}
 
 	public void setCurprice(Integer curprice) {
@@ -275,46 +267,34 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public String getDupprice() {
-		return this.dupprice;
+		return dupprice;
 	}
 
 	public void setDupprice(String dupprice) {
 		this.dupprice = dupprice;
 	}
-
-	public Double gainRprice(Integer p) {
-		if (p == null) {
-			return Double.valueOf(0.0D);
-		} else {
-			Double d = Double.valueOf((double) p.intValue() / 100.0D);
-			return d;
-		}
+	public Double gainRprice(Integer p){
+		if(p == null) return 0.0;
+		Double d = p/100.00;
+		return d;
 	}
-
-	public List<Double> gainDupprice() {
-		ArrayList dList = new ArrayList();
-		if (StringUtils.isBlank(this.dupprice)) {
-			return dList;
-		} else {
-			List tmpList = BeanUtil.getIntgerList(this.dupprice, ",");
-
-			try {
-				Iterator arg2 = tmpList.iterator();
-
-				while (arg2.hasNext()) {
-					Integer tmp = (Integer) arg2.next();
-					dList.add(this.gainRprice(tmp));
-				}
-			} catch (Exception arg4) {
-				;
+	
+	public List<Double> gainDupprice(){
+		List<Double> dList = new ArrayList<Double>();
+		if(StringUtils.isBlank(this.dupprice)) return dList;
+		List<Integer> tmpList = BeanUtil.getIntgerList(this.dupprice, ",");
+		try{
+			for (Integer tmp : tmpList) {
+				dList.add(gainRprice(tmp));
 			}
-
-			return dList;
+		}catch(Exception e){
+			
 		}
+		return dList;
 	}
-
+	
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -322,62 +302,50 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public String getSource() {
-		return this.source;
+		return source;
 	}
 
 	public void setSource(String source) {
 		this.source = source;
 	}
-
-	public boolean isClose() {
-		return "N_DELETE".equals(this.status);
+	public boolean isClose(){
+		return Status.N_DELETE.equals(status);
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
 	public Long getGoodsid() {
-		return this.goodsid;
+		return goodsid;
 	}
-
 	public void setGoodsid(Long goodsid) {
 		this.goodsid = goodsid;
 	}
-
 	public Integer getPubnumber() {
-		return this.pubnumber;
+		return pubnumber;
 	}
-
 	public void setPubnumber(Integer pubnumber) {
 		this.pubnumber = pubnumber;
 	}
-
 	public Integer getUnitMinute() {
-		return this.unitMinute;
+		return unitMinute;
 	}
-
 	public void setUnitMinute(Integer unitMinute) {
 		this.unitMinute = unitMinute;
 	}
-
 	public Integer getPubperiod() {
-		return this.pubperiod;
+		return pubperiod;
 	}
-
 	public void setPubperiod(Integer pubperiod) {
 		this.pubperiod = pubperiod;
 	}
-
 	public String getExpressid() {
-		return this.expressid;
+		return expressid;
 	}
-
 	public void setExpressid(String expressid) {
 		this.expressid = expressid;
 	}
+	
 }

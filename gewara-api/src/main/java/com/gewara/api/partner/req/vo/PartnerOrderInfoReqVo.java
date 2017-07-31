@@ -1,10 +1,8 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.req.vo;
 
-import com.gewara.api.partner.req.vo.PartnerBaseReqVo;
 import java.util.Map;
 
-public class PartnerOrderInfoReqVo extends PartnerBaseReqVo {
+public class PartnerOrderInfoReqVo extends PartnerBaseReqVo{
 	private static final long serialVersionUID = -8611527357724405278L;
 	private String memberEncode;
 	private String ukey;
@@ -14,55 +12,49 @@ public class PartnerOrderInfoReqVo extends PartnerBaseReqVo {
 	private Long discountId;
 	private String payPass;
 	private String chargePayMethod;
+	
 	private String cardno;
 	private String cardpass;
 	private Long spid;
+	
 	private Map<String, String> otherinfoMap;
 	private Map<String, String> extraMap;
-
+	
 	public Long getSpid() {
-		return this.spid;
+		return spid;
 	}
-
 	public void setSpid(Long spid) {
 		this.spid = spid;
 	}
-
+	
 	public Long getOrderId() {
-		return this.orderId;
+		return orderId;
 	}
-
 	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
-
 	public String getCardno() {
-		return this.cardno;
+		return cardno;
 	}
-
 	public void setCardno(String cardno) {
 		this.cardno = cardno;
 	}
-
 	public String getCardpass() {
-		return this.cardpass;
+		return cardpass;
 	}
-
 	public void setCardpass(String cardpass) {
 		this.cardpass = cardpass;
 	}
-
-	public PartnerOrderInfoReqVo() {
+	public PartnerOrderInfoReqVo(){
+		
 	}
-
-	public PartnerOrderInfoReqVo(String appkey, String tradeNo, String remoteIp) {
+	public PartnerOrderInfoReqVo(String appkey, String tradeNo, String remoteIp){
 		this.appkey = appkey;
 		this.tradeNo = tradeNo;
 		this.remoteIp = remoteIp;
 	}
-
 	public String getPayPass() {
-		return this.payPass;
+		return payPass;
 	}
 
 	public void setPayPass(String payPass) {
@@ -70,7 +62,7 @@ public class PartnerOrderInfoReqVo extends PartnerBaseReqVo {
 	}
 
 	public Long getDiscountId() {
-		return this.discountId;
+		return discountId;
 	}
 
 	public void setDiscountId(Long discountId) {
@@ -78,7 +70,7 @@ public class PartnerOrderInfoReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getMemberEncode() {
-		return this.memberEncode;
+		return memberEncode;
 	}
 
 	public void setMemberEncode(String memberEncode) {
@@ -86,7 +78,7 @@ public class PartnerOrderInfoReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getUkey() {
-		return this.ukey;
+		return ukey;
 	}
 
 	public void setUkey(String ukey) {
@@ -94,7 +86,7 @@ public class PartnerOrderInfoReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -102,34 +94,29 @@ public class PartnerOrderInfoReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getPayMethod() {
-		return this.payMethod;
+		return payMethod;
 	}
 
 	public void setPayMethod(String payMethod) {
 		this.payMethod = payMethod;
 	}
-
 	public Map<String, String> getOtherinfoMap() {
-		return this.otherinfoMap;
+		return otherinfoMap;
 	}
-
 	public void setOtherinfoMap(Map<String, String> otherinfoMap) {
 		this.otherinfoMap = otherinfoMap;
 	}
-
 	public String getChargePayMethod() {
-		return this.chargePayMethod;
+		return chargePayMethod;
 	}
-
 	public void setChargePayMethod(String chargePayMethod) {
 		this.chargePayMethod = chargePayMethod;
 	}
-
 	public Map<String, String> getExtraMap() {
-		return this.extraMap;
+		return extraMap;
 	}
-
 	public void setExtraMap(Map<String, String> extraMap) {
 		this.extraMap = extraMap;
 	}
+
 }

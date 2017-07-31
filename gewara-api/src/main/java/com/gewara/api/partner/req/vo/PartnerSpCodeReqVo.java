@@ -1,9 +1,7 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.partner.req.vo;
 
-import com.gewara.api.partner.req.vo.PartnerBaseReqVo;
 
-public class PartnerSpCodeReqVo extends PartnerBaseReqVo {
+public class PartnerSpCodeReqVo extends PartnerBaseReqVo{
 	private static final long serialVersionUID = -2653251556198892366L;
 	private Long spid;
 	private String memberEncode;
@@ -12,19 +10,18 @@ public class PartnerSpCodeReqVo extends PartnerBaseReqVo {
 	private Long discountId;
 	private Integer from;
 	private Integer maxnum;
-
-	public PartnerSpCodeReqVo() {
+	
+	public PartnerSpCodeReqVo(){
+		
 	}
-
-	public PartnerSpCodeReqVo(Long spid, String memberEncode, Integer from, Integer maxnum) {
+	public PartnerSpCodeReqVo(Long spid, String memberEncode, Integer from, Integer maxnum){
 		this.spid = spid;
 		this.memberEncode = memberEncode;
 		this.from = from;
 		this.maxnum = maxnum;
 	}
-
 	public Long getSpid() {
-		return this.spid;
+		return spid;
 	}
 
 	public void setSpid(Long spid) {
@@ -32,7 +29,7 @@ public class PartnerSpCodeReqVo extends PartnerBaseReqVo {
 	}
 
 	public Integer getFrom() {
-		return this.from;
+		return from;
 	}
 
 	public void setFrom(Integer from) {
@@ -40,42 +37,37 @@ public class PartnerSpCodeReqVo extends PartnerBaseReqVo {
 	}
 
 	public Integer getMaxnum() {
-		return this.maxnum;
+		return maxnum;
 	}
 
 	public void setMaxnum(Integer maxnum) {
 		this.maxnum = maxnum;
 	}
-
 	public String getMemberEncode() {
-		return this.memberEncode;
+		return memberEncode;
 	}
 
 	public void setMemberEncode(String memberEncode) {
 		this.memberEncode = memberEncode;
 	}
-
 	public Long getOrderId() {
-		return this.orderId;
+		return orderId;
 	}
-
 	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
-
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
-
 	public void setTradeNo(String tradeNo) {
 		this.tradeNo = tradeNo;
 	}
-
 	public Long getDiscountId() {
-		return this.discountId;
+		return discountId;
 	}
-
 	public void setDiscountId(Long discountId) {
 		this.discountId = discountId;
 	}
+	
+	
 }

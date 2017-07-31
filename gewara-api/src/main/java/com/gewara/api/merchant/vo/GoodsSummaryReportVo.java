@@ -1,29 +1,30 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.merchant.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
+import com.gewara.api.vo.BaseVo;
+
 public class GoodsSummaryReportVo extends BaseVo {
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -8891835892123821785L;
 	private Long cinemaId;
 	private String cinemaName;
 	private String citycode;
-	private int orderCount;
-	private int quantity;
-	private int totalcost;
-
-	public GoodsSummaryReportVo() {
-	}
-
-	public GoodsSummaryReportVo(long cinemaId, String cinemaName, String citycode) {
-		this.cinemaId = Long.valueOf(cinemaId);
+	private int orderCount;//订单数
+	private int quantity; //票数 、份数
+	private int totalcost;//金额
+	
+	public GoodsSummaryReportVo(){}
+	
+	public GoodsSummaryReportVo(long cinemaId,String cinemaName,String citycode){
+		this.cinemaId = cinemaId;
 		this.cinemaName = cinemaName;
 		this.citycode = citycode;
 	}
-
 	public Long getCinemaId() {
-		return this.cinemaId;
+		return cinemaId;
 	}
 
 	public void setCinemaId(Long cinemaId) {
@@ -31,7 +32,7 @@ public class GoodsSummaryReportVo extends BaseVo {
 	}
 
 	public String getCinemaName() {
-		return this.cinemaName;
+		return cinemaName;
 	}
 
 	public void setCinemaName(String cinemaName) {
@@ -39,7 +40,7 @@ public class GoodsSummaryReportVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -47,7 +48,7 @@ public class GoodsSummaryReportVo extends BaseVo {
 	}
 
 	public int getOrderCount() {
-		return this.orderCount;
+		return orderCount;
 	}
 
 	public void setOrderCount(int orderCount) {
@@ -55,7 +56,7 @@ public class GoodsSummaryReportVo extends BaseVo {
 	}
 
 	public int getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(int quantity) {
@@ -63,14 +64,16 @@ public class GoodsSummaryReportVo extends BaseVo {
 	}
 
 	public int getTotalcost() {
-		return this.totalcost;
+		return totalcost;
 	}
 
 	public void setTotalcost(int totalcost) {
 		this.totalcost = totalcost;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.cinemaId;
+		return cinemaId;
 	}
+
 }

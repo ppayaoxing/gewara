@@ -1,22 +1,33 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.terminal.service;
+
+import java.util.List;
+import java.util.Map;
 
 import com.gewara.api.terminal.vo.MachineAdVo;
 import com.gewara.api.terminal.vo.MachineVo;
 import com.gewara.api.vo.ResultCode;
-import java.util.List;
-import java.util.Map;
 
+/**
+ * terminal 提供的dubbo服务
+ *
+ */
 public interface TerminalMachineVoSerice {
-	ResultCode<List<MachineVo>> getMachineList(List<Long> arg0, String arg1);
 
-	ResultCode<List<MachineAdVo>> getMachineAdList(List<Long> arg0);
+	ResultCode<List<MachineVo>> getMachineList(List<Long> placeIdList, String monitorType);
 
-	ResultCode<MachineAdVo> getMachineAd(Long arg0);
+	ResultCode<List<MachineAdVo>> getMachineAdList(List<Long> placeIdList);
 
-	ResultCode<String> delMachineAd(Long arg0);
+	ResultCode<MachineAdVo> getMachineAd(Long adid);
 
-	ResultCode<MachineAdVo> saveMachine(MachineAdVo arg0, String arg1);
+	ResultCode<String> delMachineAd(Long adid);
 
-	ResultCode<List<Object>> getMachineCinemaList(Map<String, Object> arg0);
+	ResultCode<MachineAdVo> saveMachine(MachineAdVo adVo, String realname);
+
+	/**
+	 * 根据查询条件，查询已有终端机的影院信息
+	 * @param params
+	 * @return
+	 */
+	ResultCode<List<Object>> getMachineCinemaList(Map<String, Object> params);
+	
 }

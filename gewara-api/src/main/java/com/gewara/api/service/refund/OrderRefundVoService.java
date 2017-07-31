@@ -1,17 +1,36 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.service.refund;
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.cmd.order.SearchRefundCommandVo;
 import com.gewara.api.vo.pay.OrderRefundVo;
-import java.util.List;
 
 public interface OrderRefundVoService {
-	ResultCode<List<OrderRefundVo>> getOrderRefundList(SearchRefundCommandVo arg0, String arg1, int arg2, int arg3);
-
-	ResultCode<Integer> getOrderRefundCount(SearchRefundCommandVo arg0);
-
-	ResultCode<OrderRefundVo> getOrderRefundByTradeNo(String arg0);
-
+	
+	/**
+	 * 查询订单退款列表
+	 * @param command
+	 * @param order
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<OrderRefundVo>> getOrderRefundList(SearchRefundCommandVo command, String order, int from, int maxnum);
+	
+	/**
+	 * 查询订单退款数量
+	 * @param command
+	 * @return
+	 */
+	ResultCode<Integer> getOrderRefundCount(SearchRefundCommandVo command);
+	
+	/**
+	 * 根据订单号查询订单退款
+	 * @param tradeNo
+	 * @return
+	 */
+	ResultCode<OrderRefundVo> getOrderRefundByTradeNo(String tradeNo);
+	
 	ResultCode<List<String>> getRefundTemplateList2();
 }

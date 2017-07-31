@@ -1,143 +1,124 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
-public class OrderOtherVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class OrderOtherVo extends BaseVo{
+	
+	
 	private static final long serialVersionUID = -135038508746485007L;
 	public static final String PAY_CARD = "ABD";
 	public static final String PAY_DISCOUNT = "M";
-	private Long id;
-	private String takemethod;
-	private String expressid;
+	private  Long id;
+	private String takemethod;		//(A 电子票  、E 快递  、I 身份证电子票、 A,E,I 电子票+快递+身份证电子票)
+	private String expressid;		//快递方式
 	private String elecard;
 	private boolean openPointPay;
 	private int minpoint;
 	private int maxpoint;
-	private boolean ewarning;
+	private boolean ewarning;		//是否包含电子票
 	private boolean greetings;
-
+	
+	public OrderOtherVo(){}
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getTakemethod() {
-		return this.takemethod;
+		return takemethod;
 	}
-
 	public void setTakemethod(String takemethod) {
 		this.takemethod = takemethod;
 	}
-
 	public boolean isExpress() {
-		return StringUtils.isNotBlank(this.expressid);
+		return StringUtils.isNotBlank(expressid);
 	}
-
 	public boolean isOpenCardPay() {
-		return StringUtils.containsAny(this.elecard, "ABD");
+		return StringUtils.containsAny(this.elecard, PAY_CARD);
 	}
-
+	
 	public boolean isOpenPointPay() {
-		return this.openPointPay;
+		return openPointPay;
 	}
-
-	public boolean isDisCountPay() {
-		return StringUtils.contains(this.elecard, "M");
+	
+	public boolean isDisCountPay(){
+		return StringUtils.contains(this.elecard, PAY_DISCOUNT);
 	}
-
 	public void setOpenPointPay(boolean openPointPay) {
 		this.openPointPay = openPointPay;
 	}
-
 	public int getMinpoint() {
-		return this.minpoint;
+		return minpoint;
 	}
-
 	public void setMinpoint(int minpoint) {
 		this.minpoint = minpoint;
 	}
-
 	public int getMaxpoint() {
-		return this.maxpoint;
+		return maxpoint;
 	}
-
 	public void setMaxpoint(int maxpoint) {
 		this.maxpoint = maxpoint;
 	}
-
+	
 	public String getExpressid() {
-		return this.expressid;
+		return expressid;
 	}
-
 	public String getElecard() {
-		return this.elecard;
+		return elecard;
 	}
-
 	public void setElecard(String elecard) {
 		this.elecard = elecard;
 	}
-
 	public void setExpressid(String expressid) {
 		this.expressid = expressid;
 	}
-
 	public boolean isEwarning() {
-		return this.ewarning;
+		return ewarning;
 	}
-
 	public void setEwarning(boolean ewarning) {
 		this.ewarning = ewarning;
 	}
-
 	public boolean isGreetings() {
-		return this.greetings;
+		return greetings;
 	}
-
 	public void setGreetings(boolean greetings) {
 		this.greetings = greetings;
 	}
-
-	public boolean hasTakemethod(String... methods) {
-		if (ArrayUtils.isEmpty(methods)) {
-			return false;
-		} else {
-			String[] arg1 = methods;
-			int arg2 = methods.length;
-
-			for (int arg3 = 0; arg3 < arg2; ++arg3) {
-				String method = arg1[arg3];
-				if (!StringUtils.contains(this.takemethod, method)) {
-					return false;
-				}
+	public boolean hasTakemethod(String... methods){
+		if(ArrayUtils.isEmpty(methods)) return false;
+		for (String method : methods) {
+			if(!StringUtils.contains(this.takemethod, method)){
+				return false;
 			}
-
-			return true;
+		}
+		return true;
+	}
+	
+	public void insertElecard(String ecard){
+		if(isOpenCardPay() && isDisCountPay() || StringUtils.isBlank(ecard)){
+			return;
+		}
+		if(StringUtils.isBlank(this.elecard)){
+			this.elecard = ecard;
+		}else if(StringUtils.equals(ecard, PAY_CARD)){
+			if(!StringUtils.contains(this.elecard, ecard)){
+				this.elecard = ecard + this.elecard;
+			}
+		}else if(StringUtils.equals(ecard,PAY_DISCOUNT)){
+			if(!StringUtils.contains(this.elecard, ecard)){
+				this.elecard += ecard;
+			}
 		}
 	}
-
-	public void insertElecard(String ecard) {
-		if ((!this.isOpenCardPay() || !this.isDisCountPay()) && !StringUtils.isBlank(ecard)) {
-			if (StringUtils.isBlank(this.elecard)) {
-				this.elecard = ecard;
-			} else if (StringUtils.equals(ecard, "ABD")) {
-				if (!StringUtils.contains(this.elecard, ecard)) {
-					this.elecard = ecard + this.elecard;
-				}
-			} else if (StringUtils.equals(ecard, "M") && !StringUtils.contains(this.elecard, ecard)) {
-				this.elecard = this.elecard + ecard;
-			}
-
-		}
-	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 }

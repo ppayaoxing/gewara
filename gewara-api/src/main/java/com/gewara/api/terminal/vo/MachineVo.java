@@ -1,181 +1,186 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.terminal.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
+
+import com.gewara.api.vo.BaseVo;
 
 public class MachineVo extends BaseVo {
 	private static final long serialVersionUID = -5104357767286680035L;
-	private Long id;
-	private String macno;
-	private String macname;
-	private String openfireName;
-	private String openfirepwd;
-	private Long placeid;
-	private String placeName;
-	private String placeAddress;
-	private String citycode;
-	private String cityname;
-	private String tag;
-	private String privatekey;
-	private String ticketNum;
-	private Timestamp chgTickettime;
+	private Long id;				
+	private String macno;				//机器编号
+	private String macname;				//机器名称
+	private String openfireName;		//opfire登录名
+	private String openfirepwd;			//opfire密码
+	private Long placeid;				//场馆id
+	private String placeName;			//场馆名称
+	private String placeAddress;		//场馆名称
+	private String citycode;			//城市代码
+	private String cityname;			//城市名称
+	private String tag;					//场馆类型
+	
+	private String privatekey;			//校验码
+	
+	private String ticketNum;			//当前剩余票纸数量
+	private Timestamp chgTickettime;	//换票时间
+	
 	private Timestamp lastSynchtime;
 	private Timestamp synchtime;
+	
 	private Timestamp lastSuctime;
 	private Timestamp suctime;
+	
 	private String macType;
 	private String mainMac;
+	
 	private String description;
-	private Timestamp addtime;
-	private Integer unitTime;
-	private String defClosetime;
-	private String monitor;
+	private Timestamp addtime;			//添加时间
+	
+	private Integer unitTime;			//单位时间
+	private String defClosetime;		//关机时间
+	
+	private String monitor;				//是否监控
 	private String ip;
+	
 	private Long selfcityid;
 	private String systag;
-	private String filmtag;
-	private String orderType;
+	private String filmtag;				//电影节机器（专门取电影节的票，普通机器不取  film,film_vip）
+	private String orderType;	// 取票类型Y所有，Y_M：电影，Y_G:物品,N：什么都不取
+	/**
+	 * 剩余票纸数量(单台机器)
+	 */
 	private Integer remainTicketNum;
+	// 可以装的总票纸数
 	private Integer totalTicketNum;
 	private String synTicketNumFlg;
-	private Timestamp manualTicketnumTime;
+	/**
+	 * 手工添加票纸的时间
+	 */
+	private Timestamp  manualTicketnumTime;
+	
+	/**
+	 * 机器状态
+	 */
 	private String macStatus;
+	
+	/**
+	 * 屏保版本
+	 */
 	private String screenVersion;
+	
+	/**
+	 * 当前系统版本号
+	 */
 	private String systemVersion;
 	private Timestamp barcodeTime;
+	// 维护类型(影院全网取票、格瓦拉维护、影院协助维护)
 	private String maintain_type;
+	// 取票机类型(1代机、1.5代机、2代机、3代机、3.5代机、4代机、5代机)
 	private String machine_type;
+	// 是否监控(正常监控、等待回收、暂停监控)
 	private String monitor_type;
 
+	public MachineVo(){}
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getMacno() {
-		return this.macno;
+		return macno;
 	}
-
 	public void setMacno(String macno) {
 		this.macno = macno;
 	}
-
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
-
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public String getPrivatekey() {
-		return this.privatekey;
+		return privatekey;
 	}
-
 	public void setPrivatekey(String privatekey) {
 		this.privatekey = privatekey;
 	}
-
 	public Long getPlaceid() {
-		return this.placeid;
+		return placeid;
 	}
-
 	public void setPlaceid(Long placeid) {
 		this.placeid = placeid;
 	}
-
 	public String getTicketNum() {
-		return this.ticketNum;
+		return ticketNum;
 	}
-
 	public void setTicketNum(String ticketNum) {
 		this.ticketNum = ticketNum;
 	}
-
 	public Timestamp getChgTickettime() {
-		return this.chgTickettime;
+		return chgTickettime;
 	}
-
 	public void setChgTickettime(Timestamp chgTickettime) {
 		this.chgTickettime = chgTickettime;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Timestamp getLastSynchtime() {
-		return this.lastSynchtime;
+		return lastSynchtime;
 	}
-
 	public void setLastSynchtime(Timestamp lastSynchtime) {
 		this.lastSynchtime = lastSynchtime;
 	}
-
 	public Timestamp getSynchtime() {
-		return this.synchtime;
+		return synchtime;
 	}
-
 	public void setSynchtime(Timestamp synchtime) {
 		this.synchtime = synchtime;
 	}
-
 	public Timestamp getLastSuctime() {
-		return this.lastSuctime;
+		return lastSuctime;
 	}
-
 	public void setLastSuctime(Timestamp lastSuctime) {
 		this.lastSuctime = lastSuctime;
 	}
-
 	public Timestamp getSuctime() {
-		return this.suctime;
+		return suctime;
 	}
-
 	public void setSuctime(Timestamp suctime) {
 		this.suctime = suctime;
 	}
-
 	public String getMacType() {
-		return this.macType;
+		return macType;
 	}
-
 	public void setMacType(String macType) {
 		this.macType = macType;
 	}
-
 	public String getMainMac() {
-		return this.mainMac;
+		return mainMac;
 	}
-
 	public void setMainMac(String mainMac) {
 		this.mainMac = mainMac;
 	}
-
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
 	public String getPlaceAddress() {
-		return this.placeAddress;
+		return placeAddress;
 	}
 
 	public void setPlaceAddress(String placeAddress) {
@@ -183,7 +188,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getPlaceName() {
-		return this.placeName;
+		return placeName;
 	}
 
 	public void setPlaceName(String placeName) {
@@ -191,7 +196,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public Integer getUnitTime() {
-		return this.unitTime;
+		return unitTime;
 	}
 
 	public void setUnitTime(Integer unitTime) {
@@ -199,7 +204,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getDefClosetime() {
-		return this.defClosetime;
+		return defClosetime;
 	}
 
 	public void setDefClosetime(String defClosetime) {
@@ -207,7 +212,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -215,7 +220,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getMacname() {
-		return this.macname;
+		return macname;
 	}
 
 	public void setMacname(String macname) {
@@ -223,7 +228,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getMonitor() {
-		return this.monitor;
+		return monitor;
 	}
 
 	public void setMonitor(String monitor) {
@@ -231,7 +236,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getIp() {
-		return this.ip;
+		return ip;
 	}
 
 	public void setIp(String ip) {
@@ -239,7 +244,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getCityname() {
-		return this.cityname;
+		return cityname;
 	}
 
 	public void setCityname(String cityname) {
@@ -247,7 +252,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public Long getSelfcityid() {
-		return this.selfcityid;
+		return selfcityid;
 	}
 
 	public void setSelfcityid(Long selfcityid) {
@@ -255,7 +260,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getOpenfireName() {
-		return this.openfireName;
+		return openfireName;
 	}
 
 	public void setOpenfireName(String openfireName) {
@@ -263,7 +268,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getSystag() {
-		return this.systag;
+		return systag;
 	}
 
 	public void setSystag(String systag) {
@@ -271,7 +276,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public Integer getRemainTicketNum() {
-		return this.remainTicketNum;
+		return remainTicketNum;
 	}
 
 	public void setRemainTicketNum(Integer remainTicketNum) {
@@ -279,7 +284,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getMacStatus() {
-		return this.macStatus;
+		return macStatus;
 	}
 
 	public void setMacStatus(String macStatus) {
@@ -287,7 +292,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getScreenVersion() {
-		return this.screenVersion;
+		return screenVersion;
 	}
 
 	public void setScreenVersion(String screenVersion) {
@@ -295,7 +300,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getSystemVersion() {
-		return this.systemVersion;
+		return systemVersion;
 	}
 
 	public void setSystemVersion(String systemVersion) {
@@ -303,19 +308,18 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getFilmtag() {
-		return this.filmtag;
+		return filmtag;
 	}
 
 	public void setFilmtag(String filmtag) {
 		this.filmtag = filmtag;
 	}
-
-	public boolean hasFilmtag(String ft) {
-		return StringUtils.equals(this.filmtag, ft);
+	public boolean hasFilmtag(String ft){
+		return StringUtils.equals(filmtag, ft);
 	}
 
 	public String getOpenfirepwd() {
-		return this.openfirepwd;
+		return openfirepwd;
 	}
 
 	public void setOpenfirepwd(String openfirepwd) {
@@ -323,7 +327,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public Timestamp getManualTicketnumTime() {
-		return this.manualTicketnumTime;
+		return manualTicketnumTime;
 	}
 
 	public void setManualTicketnumTime(Timestamp manualTicketnumTime) {
@@ -331,7 +335,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public Timestamp getBarcodeTime() {
-		return this.barcodeTime;
+		return barcodeTime;
 	}
 
 	public void setBarcodeTime(Timestamp barcodeTime) {
@@ -339,7 +343,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getOrderType() {
-		return this.orderType;
+		return orderType;
 	}
 
 	public void setOrderType(String orderType) {
@@ -347,7 +351,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public Integer getTotalTicketNum() {
-		return this.totalTicketNum;
+		return totalTicketNum;
 	}
 
 	public void setTotalTicketNum(Integer totalTicketNum) {
@@ -355,15 +359,16 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getSynTicketNumFlg() {
-		return this.synTicketNumFlg;
+		return synTicketNumFlg;
 	}
 
 	public void setSynTicketNumFlg(String synTicketNumFlg) {
 		this.synTicketNumFlg = synTicketNumFlg;
 	}
 
+
 	public String getMachine_type() {
-		return this.machine_type;
+		return machine_type;
 	}
 
 	public void setMachine_type(String machine_type) {
@@ -371,7 +376,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getMonitor_type() {
-		return this.monitor_type;
+		return monitor_type;
 	}
 
 	public void setMonitor_type(String monitor_type) {
@@ -379,7 +384,7 @@ public class MachineVo extends BaseVo {
 	}
 
 	public String getMaintain_type() {
-		return this.maintain_type;
+		return maintain_type;
 	}
 
 	public void setMaintain_type(String maintain_type) {

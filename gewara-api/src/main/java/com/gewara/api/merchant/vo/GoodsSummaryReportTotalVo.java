@@ -1,83 +1,69 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.merchant.vo;
 
-import com.gewara.api.merchant.vo.GoodsOrderReportVo;
-import com.gewara.api.merchant.vo.GoodsSummaryReportVo;
 import java.io.Serializable;
 import java.util.List;
 
-public class GoodsSummaryReportTotalVo implements Serializable {
+public class GoodsSummaryReportTotalVo implements Serializable{
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -4212158813102851671L;
 	private List<GoodsSummaryReportVo> goodsSummaryReportVoList;
 	private List<GoodsOrderReportVo> goodsOrderReportVoList;
 	private Integer cinemaCount;
-	private Integer totalGoods;
-	private Integer quantity;
-	private Integer totalAmount;
-	private Integer orderCount;
-	private Integer totalCount;
-
+	private Integer totalGoods; //套餐数
+	private Integer quantity; //票数
+	private Integer totalAmount; //总金额
+	private Integer orderCount; //总订单数
+	private Integer totalCount; //总条数
 	public List<GoodsSummaryReportVo> getGoodsSummaryReportVoList() {
-		return this.goodsSummaryReportVoList;
+		return goodsSummaryReportVoList;
 	}
-
-	public void setGoodsSummaryReportVoList(List<GoodsSummaryReportVo> goodsSummaryReportVoList) {
+	public void setGoodsSummaryReportVoList(
+			List<GoodsSummaryReportVo> goodsSummaryReportVoList) {
 		this.goodsSummaryReportVoList = goodsSummaryReportVoList;
 	}
-
 	public Integer getCinemaCount() {
-		return this.cinemaCount;
+		return cinemaCount;
 	}
-
 	public void setCinemaCount(Integer cinemaCount) {
 		this.cinemaCount = cinemaCount;
 	}
-
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
-
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-
 	public Integer getTotalAmount() {
-		return this.totalAmount;
+		return totalAmount;
 	}
-
 	public void setTotalAmount(Integer totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-
 	public Integer getOrderCount() {
-		return this.orderCount;
+		return orderCount;
 	}
-
 	public void setOrderCount(Integer orderCount) {
 		this.orderCount = orderCount;
 	}
-
 	public Integer getTotalCount() {
-		return this.totalCount;
+		return totalCount;
 	}
-
 	public void setTotalCount(Integer totalCount) {
 		this.totalCount = totalCount;
 	}
-
 	public Integer getTotalGoods() {
-		return this.totalGoods;
+		return totalGoods;
 	}
-
 	public void setTotalGoods(Integer totalGoods) {
 		this.totalGoods = totalGoods;
 	}
-
 	public List<GoodsOrderReportVo> getGoodsOrderReportVoList() {
-		return this.goodsOrderReportVoList;
+		return goodsOrderReportVoList;
 	}
-
 	public void setGoodsOrderReportVoList(List<GoodsOrderReportVo> goodsOrderReportVoList) {
 		this.goodsOrderReportVoList = goodsOrderReportVoList;
 	}
+	
 }

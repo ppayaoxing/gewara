@@ -1,73 +1,74 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ElecCardBatchVo extends BaseVo {
+
 	private static final long serialVersionUID = 8738747879676531874L;
-	public static String COSTTYPE_MINADD = "minadd";
-	public static String COSTTYPE_FIXED = "fixed";
-	public static String ACTIVATION_Y = "Y";
-	public static String ACTIVATION_N = "N";
-	public static String EXCHANGETYPE_A = "A";
-	public static String EXCHANGETYPE_B = "B";
-	public static String EXCHANGETYPE_D = "D";
-	public static String EXCHANGETYPE_E = "E";
-	public static String SOLD_TYPE_P = "P";
-	public static String SOLD_TYPE_S = "S";
+	public static String COSTTYPE_MINADD = "minadd"; 		//影片最底价加x元
+	public static String COSTTYPE_FIXED = "fixed"; 			//固定价格
+	public static String ACTIVATION_Y = "Y"; 				//需要激活
+	public static String ACTIVATION_N = "N";				//不需激活
+	public static String EXCHANGETYPE_A = "A";				//兑换券类别：橙券
+	public static String EXCHANGETYPE_B = "B";				//兑换券类别：蓝券
+	public static String EXCHANGETYPE_D = "D";				//兑换券类别：兑换券
+	public static String EXCHANGETYPE_E = "E";				//兑换券类别：IMAX券
+	public static String SOLD_TYPE_P = "P";					//P 赠券  S销售
+	public static String SOLD_TYPE_S = "S";					//销售
 	public static String OTHERINFO_CINEMA = "validcinema";
 	public static String OTHERINFO_MOVIE = "validmovie";
 	public static String OTHERINFO_ITEM = "validitem";
-	private Long id;
-	private Long pid;
-	private String tag;
-	private Integer amount;
-	private String addtime1;
-	private String addtime2;
-	private String addweek;
-	private String opentime;
-	private String closetime;
-	private String weektype;
-	private String validcinema;
-	private String validmovie;
-	private String validitem;
-	private String validprice;
-	private String bindpay;
-	private String remark;
-	private Timestamp timefrom;
-	private Timestamp timeto;
-	private String cardtype;
-	private String notifymsg;
-	private Integer daynum;
-	private String citycode;
-	private String citypattern;
-	private String validpartner;
-	private Long bindgoods;
-	private Integer bindratio;
-	private String costtype;
-	private Integer costnum;
-	private Integer costnum3D;
-	private String edition;
-	private String limitdesc;
-	private String activation;
-	private String exchangetype;
-	private String channelinfo;
-	private Integer appoint;
-	private String soldType;
-	private Integer delayDays;
-	private Integer delayUseDays;
-	private Integer delayFee;
-	private String otherinfo;
-	private String bindmobile;
-
+	private Long id;				//ID
+	private Long pid;				//父批次ID
+	private String tag;				//标识：movie drama
+	private Integer amount;			//抵用金额
+	private String addtime1;		//下单时段限定1：0000
+	private String addtime2;		//下单时段限定2：2400
+	private String addweek;			//下单周几
+	private String opentime;		//场次时段：开始 0600
+	private String closetime;		//场次时段：结束 2300
+	private String weektype;		//场次周几
+	private String validcinema;		//可用影院
+	private String validmovie;		//可用影片
+	private String validitem;		//可用场次
+	private String validprice;		//可用场次下的价格id
+	private String bindpay;			//绑定支付方式
+	private String remark;			//说明
+	private Timestamp timefrom;		//卡有效开始时间
+	private Timestamp timeto;		//卡有效结束时间
+	private String cardtype;		//卡类型
+	private String notifymsg;		//短信模板
+	private Integer daynum;			//有效天数（发送奖品之日起的有效天数）
+	private String citycode;		//适用城市
+	private String citypattern;		//包含还是排除？
+	private String validpartner;	//可用商家
+	private Long bindgoods;			//绑定套餐
+	private Integer bindratio;		//套餐兑换比例：X张券兑换1份
+	private String costtype;		//成本价类型：影片最底价加x元，结算价加x元
+	private Integer costnum;		//成本价增量
+	private Integer costnum3D;		//3D版本对应成本价
+	private String edition;			//可用影片版本：2D、3D、All(2D+3D)、IMAX、4D、4D+IMAX
+	private String limitdesc;		//A卡超出限额出错给用户提示
+	private String activation;		//是否需要激活
+	private String exchangetype;	//兑换券类别
+	private String channelinfo;		//渠道说明
+	private Integer appoint;		//最大绑定数量
+	private String soldType;   //销售类型， P 赠券  S销售
+	private Integer delayDays; //可申请延期天数
+	private Integer delayUseDays;  // 延期通过后使用天数
+	private Integer delayFee;   // 延期费用
+	private String otherinfo; // 控制validcinema validmovie validitem 是可用还是不可以用
+	private String bindmobile;		//是否需要绑定手机号
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -75,7 +76,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Long getPid() {
-		return this.pid;
+		return pid;
 	}
 
 	public void setPid(Long pid) {
@@ -83,7 +84,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -91,7 +92,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Integer getAmount() {
-		return this.amount;
+		return amount;
 	}
 
 	public void setAmount(Integer amount) {
@@ -99,7 +100,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getAddtime1() {
-		return this.addtime1;
+		return addtime1;
 	}
 
 	public void setAddtime1(String addtime1) {
@@ -107,7 +108,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getAddtime2() {
-		return this.addtime2;
+		return addtime2;
 	}
 
 	public void setAddtime2(String addtime2) {
@@ -115,7 +116,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getAddweek() {
-		return this.addweek;
+		return addweek;
 	}
 
 	public void setAddweek(String addweek) {
@@ -123,7 +124,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getOpentime() {
-		return this.opentime;
+		return opentime;
 	}
 
 	public void setOpentime(String opentime) {
@@ -131,7 +132,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getClosetime() {
-		return this.closetime;
+		return closetime;
 	}
 
 	public void setClosetime(String closetime) {
@@ -139,7 +140,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getWeektype() {
-		return this.weektype;
+		return weektype;
 	}
 
 	public void setWeektype(String weektype) {
@@ -147,7 +148,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getValidcinema() {
-		return this.validcinema;
+		return validcinema;
 	}
 
 	public void setValidcinema(String validcinema) {
@@ -155,7 +156,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getValidmovie() {
-		return this.validmovie;
+		return validmovie;
 	}
 
 	public void setValidmovie(String validmovie) {
@@ -163,7 +164,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getValiditem() {
-		return this.validitem;
+		return validitem;
 	}
 
 	public void setValiditem(String validitem) {
@@ -171,7 +172,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getValidprice() {
-		return this.validprice;
+		return validprice;
 	}
 
 	public void setValidprice(String validprice) {
@@ -179,7 +180,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getBindpay() {
-		return this.bindpay;
+		return bindpay;
 	}
 
 	public void setBindpay(String bindpay) {
@@ -187,7 +188,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -195,7 +196,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Timestamp getTimefrom() {
-		return this.timefrom;
+		return timefrom;
 	}
 
 	public void setTimefrom(Timestamp timefrom) {
@@ -203,7 +204,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Timestamp getTimeto() {
-		return this.timeto;
+		return timeto;
 	}
 
 	public void setTimeto(Timestamp timeto) {
@@ -211,7 +212,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getCardtype() {
-		return this.cardtype;
+		return cardtype;
 	}
 
 	public void setCardtype(String cardtype) {
@@ -219,7 +220,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getNotifymsg() {
-		return this.notifymsg;
+		return notifymsg;
 	}
 
 	public void setNotifymsg(String notifymsg) {
@@ -227,7 +228,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Integer getDaynum() {
-		return this.daynum;
+		return daynum;
 	}
 
 	public void setDaynum(Integer daynum) {
@@ -235,7 +236,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -243,7 +244,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getCitypattern() {
-		return this.citypattern;
+		return citypattern;
 	}
 
 	public void setCitypattern(String citypattern) {
@@ -251,7 +252,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getValidpartner() {
-		return this.validpartner;
+		return validpartner;
 	}
 
 	public void setValidpartner(String validpartner) {
@@ -259,7 +260,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Long getBindgoods() {
-		return this.bindgoods;
+		return bindgoods;
 	}
 
 	public void setBindgoods(Long bindgoods) {
@@ -267,7 +268,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Integer getBindratio() {
-		return this.bindratio;
+		return bindratio;
 	}
 
 	public void setBindratio(Integer bindratio) {
@@ -275,7 +276,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getCosttype() {
-		return this.costtype;
+		return costtype;
 	}
 
 	public void setCosttype(String costtype) {
@@ -283,7 +284,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Integer getCostnum() {
-		return this.costnum;
+		return costnum;
 	}
 
 	public void setCostnum(Integer costnum) {
@@ -291,15 +292,15 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Integer getCostnum3D() {
-		return this.costnum3D;
+		return costnum3D;
 	}
 
 	public void setCostnum3D(Integer costnum3d) {
-		this.costnum3D = costnum3d;
+		costnum3D = costnum3d;
 	}
 
 	public String getEdition() {
-		return this.edition;
+		return edition;
 	}
 
 	public void setEdition(String edition) {
@@ -307,7 +308,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getLimitdesc() {
-		return this.limitdesc;
+		return limitdesc;
 	}
 
 	public void setLimitdesc(String limitdesc) {
@@ -315,7 +316,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getActivation() {
-		return this.activation;
+		return activation;
 	}
 
 	public void setActivation(String activation) {
@@ -323,7 +324,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getExchangetype() {
-		return this.exchangetype;
+		return exchangetype;
 	}
 
 	public void setExchangetype(String exchangetype) {
@@ -331,7 +332,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getChannelinfo() {
-		return this.channelinfo;
+		return channelinfo;
 	}
 
 	public void setChannelinfo(String channelinfo) {
@@ -339,7 +340,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Integer getAppoint() {
-		return this.appoint;
+		return appoint;
 	}
 
 	public void setAppoint(Integer appoint) {
@@ -347,7 +348,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getSoldType() {
-		return this.soldType;
+		return soldType;
 	}
 
 	public void setSoldType(String soldType) {
@@ -355,7 +356,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Integer getDelayDays() {
-		return this.delayDays;
+		return delayDays;
 	}
 
 	public void setDelayDays(Integer delayDays) {
@@ -363,7 +364,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Integer getDelayUseDays() {
-		return this.delayUseDays;
+		return delayUseDays;
 	}
 
 	public void setDelayUseDays(Integer delayUseDays) {
@@ -371,7 +372,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public Integer getDelayFee() {
-		return this.delayFee;
+		return delayFee;
 	}
 
 	public void setDelayFee(Integer delayFee) {
@@ -379,7 +380,7 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -387,10 +388,11 @@ public class ElecCardBatchVo extends BaseVo {
 	}
 
 	public String getBindmobile() {
-		return this.bindmobile;
+		return bindmobile;
 	}
 
 	public void setBindmobile(String bindmobile) {
 		this.bindmobile = bindmobile;
 	}
+
 }

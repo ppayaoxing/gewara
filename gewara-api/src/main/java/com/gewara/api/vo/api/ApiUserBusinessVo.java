@@ -1,44 +1,81 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.api;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ApiUserBusinessVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class ApiUserBusinessVo extends BaseVo{
 	private static final long serialVersionUID = 1570825734279704022L;
 	private Long id;
-	private String showModel;
-	private String coopModel;
-	private String createOrder;
-	private String moneyto;
-	private String gewaBusUser;
-	private String gewaTecUser;
-	private String partnerBusUser;
-	private String partnerTecUser;
-	private Timestamp onTime;
-	private Timestamp offTime;
-	private String webSite;
-	private String email;
+	private String showModel;		//展现方式 android ios wap pc 终端机、电视机
+	private String coopModel;		//合作模式
+	private String createOrder;		//是否产生订单
+	private String moneyto;			//收款方
+	private String gewaBusUser;		//格瓦拉商务负责人
+	private String gewaTecUser;		//格瓦拉技术负责人
+	private String partnerBusUser;	//合作商商务联系人
+	private String partnerTecUser;	//合作商技术联系人
+	private Timestamp onTime;		//上线日期
+	private Timestamp offTime;		//下线日期
+	private String webSite;			//线上地址
+	private String email;			//合作商用户email 用户发账户信息
 	private String remark;
+	
+	/** 
+	 * 退款部门
+	 * 0:财务
+	 * 1:客服
+	 */
 	private Integer refundDepartment;
+	
+	/** 
+	 * 退款方式  
+	 * 0:原路退回
+	 * 1:通知合作方退款
+	 * 2:格瓦拉线下退款
+	 * 3:待确定中
+	 */
 	private Integer refundWay;
+	
+	/** 商户查询链接 */
 	private String queryLink;
+	
+	/** 合作方退款联系人 */
 	private String partnerRefundMan;
+	
+	/** 合作方退款邮箱 */
 	private String partnerRefundEmail;
+	
+	/** 合作方退款电话 */
 	private String partnerRefundMobile;
+	
+	/** 退款其他备注 */
 	private String refundRemark;
+	
+	/** 合作商报表类别 */
 	private String reportType;
+	
+	/** 发票开具 (向用户/向合作商)*/
 	private String invoiceDraw;
+	
+	/** 发票开具金额(全额/差额) */
 	private String invoiceAmount;
+	
+	/** 结算周期及费率(开始时间-结束时间-费率(json格式))*/
 	private String cycleRates;
-
+	
+	public ApiUserBusinessVo(){
+		
+	}
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -46,7 +83,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getShowModel() {
-		return this.showModel;
+		return showModel;
 	}
 
 	public void setShowModel(String showModel) {
@@ -54,7 +91,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getCoopModel() {
-		return this.coopModel;
+		return coopModel;
 	}
 
 	public void setCoopModel(String coopModel) {
@@ -62,7 +99,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getCreateOrder() {
-		return this.createOrder;
+		return createOrder;
 	}
 
 	public void setCreateOrder(String createOrder) {
@@ -70,7 +107,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getMoneyto() {
-		return this.moneyto;
+		return moneyto;
 	}
 
 	public void setMoneyto(String moneyto) {
@@ -78,7 +115,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getGewaBusUser() {
-		return this.gewaBusUser;
+		return gewaBusUser;
 	}
 
 	public void setGewaBusUser(String gewaBusUser) {
@@ -86,7 +123,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getGewaTecUser() {
-		return this.gewaTecUser;
+		return gewaTecUser;
 	}
 
 	public void setGewaTecUser(String gewaTecUser) {
@@ -94,7 +131,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getPartnerBusUser() {
-		return this.partnerBusUser;
+		return partnerBusUser;
 	}
 
 	public void setPartnerBusUser(String partnerBusUser) {
@@ -102,7 +139,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getPartnerTecUser() {
-		return this.partnerTecUser;
+		return partnerTecUser;
 	}
 
 	public void setPartnerTecUser(String partnerTecUser) {
@@ -110,7 +147,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public Timestamp getOnTime() {
-		return this.onTime;
+		return onTime;
 	}
 
 	public void setOnTime(Timestamp onTime) {
@@ -118,7 +155,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public Timestamp getOffTime() {
-		return this.offTime;
+		return offTime;
 	}
 
 	public void setOffTime(Timestamp offTime) {
@@ -126,7 +163,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getWebSite() {
-		return this.webSite;
+		return webSite;
 	}
 
 	public void setWebSite(String webSite) {
@@ -134,71 +171,71 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
+	
 	public Integer getRefundDepartment() {
-		return this.refundDepartment;
+		return refundDepartment;
 	}
-
+	
 	public void setRefundDepartment(Integer refundDepartment) {
 		this.refundDepartment = refundDepartment;
 	}
-
+	
 	public Integer getRefundWay() {
-		return this.refundWay;
+		return refundWay;
 	}
-
+	
 	public void setRefundWay(Integer refundWay) {
 		this.refundWay = refundWay;
 	}
-
+	
 	public String getQueryLink() {
-		return this.queryLink;
+		return queryLink;
 	}
-
+	
 	public void setQueryLink(String queryLink) {
 		this.queryLink = queryLink;
 	}
-
+	
 	public String getPartnerRefundMan() {
-		return this.partnerRefundMan;
+		return partnerRefundMan;
 	}
-
+	
 	public void setPartnerRefundMan(String partnerRefundMan) {
 		this.partnerRefundMan = partnerRefundMan;
 	}
-
+	
 	public String getPartnerRefundEmail() {
-		return this.partnerRefundEmail;
+		return partnerRefundEmail;
 	}
-
+	
 	public void setPartnerRefundEmail(String partnerRefundEmail) {
 		this.partnerRefundEmail = partnerRefundEmail;
 	}
-
+	
 	public String getPartnerRefundMobile() {
-		return this.partnerRefundMobile;
+		return partnerRefundMobile;
 	}
-
+	
 	public void setPartnerRefundMobile(String partnerRefundMobile) {
 		this.partnerRefundMobile = partnerRefundMobile;
 	}
-
+	
 	public String getRefundRemark() {
-		return this.refundRemark;
+		return refundRemark;
 	}
-
+	
 	public void setRefundRemark(String refundRemark) {
 		this.refundRemark = refundRemark;
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -206,7 +243,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getReportType() {
-		return this.reportType;
+		return reportType;
 	}
 
 	public void setReportType(String reportType) {
@@ -214,7 +251,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getInvoiceDraw() {
-		return this.invoiceDraw;
+		return invoiceDraw;
 	}
 
 	public void setInvoiceDraw(String invoiceDraw) {
@@ -222,7 +259,7 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getInvoiceAmount() {
-		return this.invoiceAmount;
+		return invoiceAmount;
 	}
 
 	public void setInvoiceAmount(String invoiceAmount) {
@@ -230,10 +267,11 @@ public class ApiUserBusinessVo extends BaseVo {
 	}
 
 	public String getCycleRates() {
-		return this.cycleRates;
+		return cycleRates;
 	}
 
 	public void setCycleRates(String cycleRates) {
 		this.cycleRates = cycleRates;
 	}
+	
 }

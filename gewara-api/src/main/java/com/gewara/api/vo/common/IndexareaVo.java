@@ -1,18 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.common;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.api.vo.common.CountyVo;
 import java.io.Serializable;
 
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28下午02:05:17
+ */
 public class IndexareaVo extends BaseVo {
+	//1=洲，2=国家，3=省，7=市，8=区县，10=商圈
 	private static final long serialVersionUID = -886944461240705718L;
 	private String indexareacode;
 	private CountyVo county;
 	private String indexareaname;
-
 	public String getIndexareacode() {
-		return this.indexareacode;
+		return indexareacode;
 	}
 
 	public void setIndexareacode(String indexareacode) {
@@ -20,7 +23,7 @@ public class IndexareaVo extends BaseVo {
 	}
 
 	public String getIndexareaname() {
-		return this.indexareaname;
+		return indexareaname;
 	}
 
 	public void setIndexareaname(String indexareaname) {
@@ -31,23 +34,25 @@ public class IndexareaVo extends BaseVo {
 		this.county = county;
 	}
 
+	public IndexareaVo() {
+	}
+
 	public CountyVo getCounty() {
-		return this.county;
+		return county;
 	}
-
 	public String getId() {
-		return this.indexareacode;
+		return indexareacode;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.indexareacode;
+		return indexareacode;
 	}
 
-	public String getCode() {
-		return this.indexareacode;
+	public String getCode(){
+		return indexareacode;
 	}
 
-	public String getName() {
-		return this.indexareaname;
+	public String getName(){
+		return indexareaname;
 	}
 }

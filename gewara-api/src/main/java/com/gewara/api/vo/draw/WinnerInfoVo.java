@@ -1,17 +1,23 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.draw;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+import com.gewara.cons.Status;
+
+/**
+ * 获奖用户信息
+ * @author Administrator
+ */
 public class WinnerInfoVo extends BaseVo {
 	private static final long serialVersionUID = -7691160993786955260L;
 	public static final String TAG_SYSTEM = "system";
 	public static final String TAG_USER = "user";
-	public static final String SUM_PRIZECOUNT = "sumprizecount";
-	public static final String PROBABILTY_STATUS = "probabiltystatus";
+	public final static String SUM_PRIZECOUNT = "sumprizecount";//奖品总数
+	public final static String PROBABILTY_STATUS = "probabiltystatus";//判断几率是是否是第一次生成
 	private Long id;
 	private Long activityid;
 	private Long memberid;
@@ -19,31 +25,28 @@ public class WinnerInfoVo extends BaseVo {
 	private Long prizeid;
 	private String mobile;
 	private Timestamp addtime;
-	private String status;
-	private String tag;
-	private Long relatedid;
-	private String remark;
+	private String status;//奖品是否已经送出Y:已送出，N：未送出
+	private String tag;//默认system,管理员后台添加user
+	private Long relatedid; 	//奖品关联ID，如卡ID
+	private String remark;		//奖品说明，如卡号等
 	private String ip;
-
-	public WinnerInfoVo() {
+	public WinnerInfoVo(){
 	}
-
-	public WinnerInfoVo(Long activityid, Timestamp addtime) {
+	public WinnerInfoVo(Long activityid, Timestamp addtime){
 		this.addtime = addtime;
-		this.status = "N";
-		this.tag = "system";
+		this.status = Status.N;
+		this.tag = TAG_SYSTEM;
 		this.activityid = activityid;
 	}
-
-	public WinnerInfoVo(Long activityid, Long prizeid, String mobile, Timestamp addtime, String tag) {
+	public WinnerInfoVo(Long activityid, Long prizeid, String mobile, Timestamp addtime, String tag){
 		this(activityid, addtime);
 		this.prizeid = prizeid;
 		this.mobile = mobile;
 		this.tag = tag;
 	}
-
+	
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -51,7 +54,7 @@ public class WinnerInfoVo extends BaseVo {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -59,7 +62,7 @@ public class WinnerInfoVo extends BaseVo {
 	}
 
 	public Long getActivityid() {
-		return this.activityid;
+		return activityid;
 	}
 
 	public void setActivityid(Long activityid) {
@@ -67,7 +70,7 @@ public class WinnerInfoVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -75,7 +78,7 @@ public class WinnerInfoVo extends BaseVo {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -83,7 +86,7 @@ public class WinnerInfoVo extends BaseVo {
 	}
 
 	public Long getPrizeid() {
-		return this.prizeid;
+		return prizeid;
 	}
 
 	public void setPrizeid(Long prizeid) {
@@ -91,7 +94,7 @@ public class WinnerInfoVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -99,7 +102,7 @@ public class WinnerInfoVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -107,42 +110,38 @@ public class WinnerInfoVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
-
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
-
 	public void setRelatedid(Long relatedid) {
 		this.relatedid = relatedid;
 	}
-
-	public String getEnmobile() {
-		String result = this.mobile;
-		return StringUtils.length(result) <= 4 ? result : "*******" + result.substring(result.length() - 4);
+	public String getEnmobile(){
+		String result = mobile;
+		if(StringUtils.length(result)<=4) return result;
+		return "*******" + result.substring(result.length()-4);
 	}
-
 	public String getIp() {
-		return this.ip;
+		return ip;
 	}
-
 	public void setIp(String ip) {
 		this.ip = ip;
 	}

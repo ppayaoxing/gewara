@@ -1,12 +1,22 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.service.goods;
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.goods.GoodsStockDataVo;
-import java.util.List;
 
 public interface GoodsUntransVoService {
-	ResultCode<List<Long>> getItemIdListByItemtype(String arg0, String arg1);
-
-	ResultCode<GoodsStockDataVo> getGoodsStockDataVoByGoodsId(Long arg0);
+	/**
+	 * 根据项目类型与物品类型查询项目ID集合
+	 * @param itemtype
+	 * @param smalltype
+	 * @return
+	 */
+	ResultCode<List<Long>> getItemIdListByItemtype(String itemtype, String smalltype);
+	/**
+	 * 根据物品ID获得物品库存信息
+	 * @param goodsId
+	 * @return
+	 */
+	ResultCode<GoodsStockDataVo> getGoodsStockDataVoByGoodsId(Long goodsId);
 }

@@ -1,26 +1,38 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.merchant.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class EverydayMpiReportVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+/**
+ * 按天统计的场次
+ * @author gang.liu
+ *
+ */
+public class EverydayMpiReportVo extends BaseVo{
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -4481307586398663355L;
-	private Date playDate;
-	private int cinemaCount;
-	private int mpiCinemaCount;
-	private int mpiCount;
-	private List<Map<String, Long>> movieMpiCount;
-	private List<Map<String, Long>> goleMovieMpiCount;
 
-	public EverydayMpiReportVo() {
-	}
-
-	public EverydayMpiReportVo(Date playDate, int cinemaCount, int mpiCinemaCount, int mpiCount,
-			List<Map<String, Long>> movieMpiCount, List<Map<String, Long>> goleMovieMpiCount) {
+	private Date playDate; //日期
+	
+	private int cinemaCount;//统计影院数： 格瓦拉 格瓦拉 系统直连计到的影院 总数，含不排片影院 
+	
+	private int mpiCinemaCount;// 排片影院数
+	
+	private int mpiCount; //总场次数
+	
+	private List<Map<String,Long>> movieMpiCount ;// 每部影片 每天的场次数 Map的key值 对应含义：movieId 电影id mpiCount：对应电影某天的排片数
+	
+	private List<Map<String,Long>> goleMovieMpiCount ;// 黄金时段每部影片 每天的场次数 Map的key值 对应含义：movieId 电影id mpiCount：对应电影某天的排片数
+	
+	public EverydayMpiReportVo(){}
+	
+	public EverydayMpiReportVo(Date playDate,int cinemaCount,int mpiCinemaCount,int mpiCount,
+			List<Map<String,Long>> movieMpiCount,List<Map<String,Long>> goleMovieMpiCount){
 		this.playDate = playDate;
 		this.cinemaCount = cinemaCount;
 		this.mpiCinemaCount = mpiCinemaCount;
@@ -28,9 +40,9 @@ public class EverydayMpiReportVo extends BaseVo {
 		this.movieMpiCount = movieMpiCount;
 		this.goleMovieMpiCount = goleMovieMpiCount;
 	}
-
+	
 	public Date getPlayDate() {
-		return this.playDate;
+		return playDate;
 	}
 
 	public void setPlayDate(Date playDate) {
@@ -38,7 +50,7 @@ public class EverydayMpiReportVo extends BaseVo {
 	}
 
 	public int getCinemaCount() {
-		return this.cinemaCount;
+		return cinemaCount;
 	}
 
 	public void setCinemaCount(int cinemaCount) {
@@ -46,7 +58,7 @@ public class EverydayMpiReportVo extends BaseVo {
 	}
 
 	public int getMpiCinemaCount() {
-		return this.mpiCinemaCount;
+		return mpiCinemaCount;
 	}
 
 	public void setMpiCinemaCount(int mpiCinemaCount) {
@@ -54,7 +66,7 @@ public class EverydayMpiReportVo extends BaseVo {
 	}
 
 	public int getMpiCount() {
-		return this.mpiCount;
+		return mpiCount;
 	}
 
 	public void setMpiCount(int mpiCount) {
@@ -62,7 +74,7 @@ public class EverydayMpiReportVo extends BaseVo {
 	}
 
 	public List<Map<String, Long>> getMovieMpiCount() {
-		return this.movieMpiCount;
+		return movieMpiCount;
 	}
 
 	public void setMovieMpiCount(List<Map<String, Long>> movieMpiCount) {
@@ -70,14 +82,16 @@ public class EverydayMpiReportVo extends BaseVo {
 	}
 
 	public List<Map<String, Long>> getGoleMovieMpiCount() {
-		return this.goleMovieMpiCount;
+		return goleMovieMpiCount;
 	}
 
 	public void setGoleMovieMpiCount(List<Map<String, Long>> goleMovieMpiCount) {
 		this.goleMovieMpiCount = goleMovieMpiCount;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.playDate;
+		return playDate;
 	}
+
 }

@@ -1,136 +1,111 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.movie;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class TakeInfoVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class TakeInfoVo extends BaseVo{
+
 	private static final long serialVersionUID = -1177004058479369237L;
-	private Long id;
-	private String tradeno;
-	private String serialno;
+	private Long id;				
+	private String tradeno;			//订单号
+	private String serialno;		
 	private Timestamp playtime;
-	private String ordertype;
-	private Long placeid;
-	private Timestamp synchtime;
-	private Timestamp callbacktime;
-	private Timestamp taketime;
-	private Timestamp updatetime;
-	private String synchtype;
-	private String callback;
-	private String synch;
-	private Integer synchNum;
-
+	private String ordertype;		//订单类型
+	private Long placeid;			//场馆id
+	private Timestamp synchtime;	//同步时间
+	private Timestamp callbacktime;	//下载回传时间
+	private Timestamp taketime;		//取票时间
+	private Timestamp updatetime;	//更新时间
+	private String synchtype;		//同步类型
+	private String callback;		//下载回传
+	private String synch;			//是否同步
+	private Integer synchNum;		//同步次数
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getTradeno() {
-		return this.tradeno;
+		return tradeno;
 	}
-
 	public void setTradeno(String tradeno) {
 		this.tradeno = tradeno;
 	}
-
 	public String getSerialno() {
-		return this.serialno;
+		return serialno;
 	}
-
 	public void setSerialno(String serialno) {
 		this.serialno = serialno;
 	}
-
 	public Timestamp getPlaytime() {
-		return this.playtime;
+		return playtime;
 	}
-
 	public void setPlaytime(Timestamp playtime) {
 		this.playtime = playtime;
 	}
-
 	public String getOrdertype() {
-		return this.ordertype;
+		return ordertype;
 	}
-
 	public void setOrdertype(String ordertype) {
 		this.ordertype = ordertype;
 	}
-
 	public Long getPlaceid() {
-		return this.placeid;
+		return placeid;
 	}
-
 	public void setPlaceid(Long placeid) {
 		this.placeid = placeid;
 	}
-
 	public Timestamp getSynchtime() {
-		return this.synchtime;
+		return synchtime;
 	}
-
 	public void setSynchtime(Timestamp synchtime) {
 		this.synchtime = synchtime;
 	}
-
 	public Timestamp getCallbacktime() {
-		return this.callbacktime;
+		return callbacktime;
 	}
-
 	public void setCallbacktime(Timestamp callbacktime) {
 		this.callbacktime = callbacktime;
 	}
-
 	public Timestamp getTaketime() {
-		return this.taketime;
+		return taketime;
 	}
-
 	public void setTaketime(Timestamp taketime) {
 		this.taketime = taketime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
 	public String getSynchtype() {
-		return this.synchtype;
+		return synchtype;
 	}
-
 	public void setSynchtype(String synchtype) {
 		this.synchtype = synchtype;
 	}
-
 	public String getCallback() {
-		return this.callback;
+		return callback;
 	}
-
 	public void setCallback(String callback) {
 		this.callback = callback;
 	}
-
 	public String getSynch() {
-		return this.synch;
+		return synch;
 	}
-
 	public void setSynch(String synch) {
 		this.synch = synch;
 	}
-
 	public Integer getSynchNum() {
-		return this.synchNum;
+		return synchNum;
 	}
-
 	public void setSynchNum(Integer synchNum) {
 		this.synchNum = synchNum;
 	}
+	
 }

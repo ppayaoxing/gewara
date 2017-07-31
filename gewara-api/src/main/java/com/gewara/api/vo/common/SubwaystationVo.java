@@ -1,28 +1,34 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.common;
-
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class SubwaystationVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28ÏÂÎç02:05:17
+ */
+public class SubwaystationVo  extends BaseVo {
 	private static final long serialVersionUID = -1449397931879372657L;
 	private Long id;
 	private String stationname;
 	private String citycode;
-
 	public SubwaystationVo(String stationname) {
 		this.stationname = stationname;
 	}
 
 	public SubwaystationVo() {
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
+	/**
+	 * for manage perpose
+	 * @return
+	 */
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -30,7 +36,7 @@ public class SubwaystationVo extends BaseVo {
 	}
 
 	public String getStationname() {
-		return this.stationname;
+		return stationname;
 	}
 
 	public void setStationname(String stationname) {
@@ -38,7 +44,7 @@ public class SubwaystationVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {

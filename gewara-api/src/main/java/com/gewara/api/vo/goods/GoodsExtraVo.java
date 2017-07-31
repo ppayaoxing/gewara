@@ -1,40 +1,48 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.goods;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class GoodsExtraVo extends BaseVo {
+
 	private static final long serialVersionUID = 8621222313371273059L;
+
 	private Long goodsid;
-	private String msgbefore;
-	private String msgpro;
-	private String msgafter;
-	private String msgover;
-	private String restriction;
-	private String timeexp;
-	private String rule;
-	private String otherexp;
-	private String department;
-	private String appPresaleName;
-	private String subsidyUnit;
-	private Integer subsidyMoney;
-	private String preType;
-	private Integer hintnum;
-	private Integer defnum;
-	private Integer defSalesnum;
-	private Integer defTotalnum;
-	private String otherinfo;
+	private String msgbefore;				//活动开始前短信提醒内容
+	private String msgpro;					//拼团活动升级短信提醒内容
+	private String msgafter;				//拼团活动满团短信提醒内容
+	private String msgover;					//拼团活动结束短信提醒内容
+	private String restriction;			//活动限制
+	private String timeexp;					//时间说明
+	private String rule;						//活动规则
+	private String otherexp;				//其它说明
+	private String department;				//需求部门
+	private String appPresaleName;		//APP按钮的名称
+	private String subsidyUnit;			//补贴单位：order, quantity
+	private Integer subsidyMoney;			//补贴金额
+	private String preType;					//扩展类型，T演出团销
+	private Integer hintnum;				//实际预约提醒短信数量
+	private Integer defnum;					//虚拟已售出数量 --->wantedBuyNum
+	private Integer defSalesnum;			//虚拟已售初始值inventedHaveSalesInitNum
+	private Integer defTotalnum;			//虚拟总数量--->inventedTotalNum
+	private String otherinfo;		
+	
 	private Timestamp addtime;
 	private Timestamp updatetime;
-
+	
+	public GoodsExtraVo(){
+		
+	}
+	
+	@Override
 	public Serializable realId() {
-		return this.goodsid;
+		return goodsid;
 	}
 
 	public Long getGoodsid() {
-		return this.goodsid;
+		return goodsid;
 	}
 
 	public void setGoodsid(Long goodsid) {
@@ -42,7 +50,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getMsgbefore() {
-		return this.msgbefore;
+		return msgbefore;
 	}
 
 	public void setMsgbefore(String msgbefore) {
@@ -50,11 +58,11 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getRestriction() {
-		return this.restriction;
+		return restriction;
 	}
 
 	public String getAppPresaleName() {
-		return this.appPresaleName;
+		return appPresaleName;
 	}
 
 	public void setAppPresaleName(String appPresaleName) {
@@ -66,7 +74,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getTimeexp() {
-		return this.timeexp;
+		return timeexp;
 	}
 
 	public void setTimeexp(String timeexp) {
@@ -74,7 +82,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getRule() {
-		return this.rule;
+		return rule;
 	}
 
 	public void setRule(String rule) {
@@ -82,7 +90,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getOtherexp() {
-		return this.otherexp;
+		return otherexp;
 	}
 
 	public void setOtherexp(String otherexp) {
@@ -90,7 +98,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getDepartment() {
-		return this.department;
+		return department;
 	}
 
 	public void setDepartment(String department) {
@@ -98,7 +106,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getSubsidyUnit() {
-		return this.subsidyUnit;
+		return subsidyUnit;
 	}
 
 	public void setSubsidyUnit(String subsidyUnit) {
@@ -106,7 +114,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public Integer getSubsidyMoney() {
-		return this.subsidyMoney;
+		return subsidyMoney;
 	}
 
 	public void setSubsidyMoney(Integer subsidyMoney) {
@@ -114,7 +122,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public Integer getHintnum() {
-		return this.hintnum;
+		return hintnum;
 	}
 
 	public void setHintnum(Integer hintnum) {
@@ -122,7 +130,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public Integer getDefnum() {
-		return this.defnum;
+		return defnum;
 	}
 
 	public void setDefnum(Integer defnum) {
@@ -130,7 +138,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public Integer getDefSalesnum() {
-		return this.defSalesnum;
+		return defSalesnum;
 	}
 
 	public void setDefSalesnum(Integer defSalesnum) {
@@ -138,7 +146,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public Integer getDefTotalnum() {
-		return this.defTotalnum;
+		return defTotalnum;
 	}
 
 	public void setDefTotalnum(Integer defTotalnum) {
@@ -146,7 +154,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -154,7 +162,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -162,7 +170,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -170,7 +178,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getPreType() {
-		return this.preType;
+		return preType;
 	}
 
 	public void setPreType(String preType) {
@@ -178,7 +186,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getMsgpro() {
-		return this.msgpro;
+		return msgpro;
 	}
 
 	public void setMsgpro(String msgpro) {
@@ -186,7 +194,7 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getMsgafter() {
-		return this.msgafter;
+		return msgafter;
 	}
 
 	public void setMsgafter(String msgafter) {
@@ -194,10 +202,11 @@ public class GoodsExtraVo extends BaseVo {
 	}
 
 	public String getMsgover() {
-		return this.msgover;
+		return msgover;
 	}
 
 	public void setMsgover(String msgover) {
 		this.msgover = msgover;
 	}
+
 }

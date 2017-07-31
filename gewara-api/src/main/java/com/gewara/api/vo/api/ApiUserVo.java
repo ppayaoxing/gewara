@@ -1,37 +1,39 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.api;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ApiUserVo extends BaseVo {
+
 	private static final long serialVersionUID = -8764502160288937246L;
 	private Long id;
-	private String usertype;
-	private String category;
-	private String partnername;
-	private String briefname;
-	private String partnerip;
-	private String content;
-	private Timestamp updatetime;
-	private Long clerk;
-	private String status;
-	private String logo;
-	private String roles;
-	private String partnerpath;
-	private String citycode;
-	private String defaultCity;
+	private String usertype;		//用户类型：gewa,partner
+	private String category;		//分类：ticket....
+	private String partnername;		//合作伙伴名称
+	private String briefname;		//简称
+	private String partnerip;		//合作伙伴IP
+	private String content;			//描述
+	private Timestamp updatetime;	//更新时间
+	private Long clerk;				//操作人
+	private String status;			//当前状态：暂停使用、禁用、正常使用
+	private String logo;			//公司LOGO
+	private String roles;			//分配的角色
+	private String partnerpath;		//公司Path
+	private String citycode;		//开放的城市
+	private String defaultCity;		//默认城市
 	private String partnerkey;
 	private String otherinfo;
 	private String privatekey;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -39,7 +41,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getUsertype() {
-		return this.usertype;
+		return usertype;
 	}
 
 	public void setUsertype(String usertype) {
@@ -47,7 +49,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getCategory() {
-		return this.category;
+		return category;
 	}
 
 	public void setCategory(String category) {
@@ -55,7 +57,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getPartnername() {
-		return this.partnername;
+		return partnername;
 	}
 
 	public void setPartnername(String partnername) {
@@ -63,7 +65,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getBriefname() {
-		return this.briefname;
+		return briefname;
 	}
 
 	public void setBriefname(String briefname) {
@@ -71,7 +73,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getPartnerip() {
-		return this.partnerip;
+		return partnerip;
 	}
 
 	public void setPartnerip(String partnerip) {
@@ -79,7 +81,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
@@ -87,7 +89,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -95,7 +97,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public Long getClerk() {
-		return this.clerk;
+		return clerk;
 	}
 
 	public void setClerk(Long clerk) {
@@ -103,7 +105,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -111,7 +113,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
 
 	public void setLogo(String logo) {
@@ -119,7 +121,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getRoles() {
-		return this.roles;
+		return roles;
 	}
 
 	public void setRoles(String roles) {
@@ -127,7 +129,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getPartnerpath() {
-		return this.partnerpath;
+		return partnerpath;
 	}
 
 	public void setPartnerpath(String partnerpath) {
@@ -135,7 +137,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -143,7 +145,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getDefaultCity() {
-		return this.defaultCity;
+		return defaultCity;
 	}
 
 	public void setDefaultCity(String defaultCity) {
@@ -151,7 +153,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getPartnerkey() {
-		return this.partnerkey;
+		return partnerkey;
 	}
 
 	public void setPartnerkey(String partnerkey) {
@@ -159,7 +161,7 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -167,10 +169,11 @@ public class ApiUserVo extends BaseVo {
 	}
 
 	public String getPrivatekey() {
-		return this.privatekey;
+		return privatekey;
 	}
 
 	public void setPrivatekey(String privatekey) {
 		this.privatekey = privatekey;
 	}
+
 }

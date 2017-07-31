@@ -1,35 +1,37 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo.pay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
+
+import com.gewara.api.vo.BaseVo;
+import com.gewara.cons.OrderConstant;
 
 public class OrderExtraVo extends BaseVo {
 	private static final long serialVersionUID = 4821814105905969549L;
 	public static final String LEVEL_INIT = "init";
 	public static final String LEVEL_MAIN = "main";
 	public static final String LEVEL_FINISH = "finish";
-	private Long id;
-	private String tradeno;
-	private String status;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private String invoice;
-	private String pretype;
-	private Long memberid;
-	private Long partnerid;
-	private String ordertype;
-	private String expressnote;
-	private String expresstype;
-	private String processLevel;
-	private String expressStatus;
-	private String dealStatus;
-	private Long dealUser;
-
+	
+	private Long id;					//订单ID
+	private String tradeno;			//订单号
+	private String status;			//订单状态gewOrder ---> status
+	private Timestamp addtime;		//下单时间
+	private Timestamp updatetime;		//更新时间
+	private String invoice;			//是否可开发票,Y已开,N可开,F不可开
+	private String pretype;			//代售E、主营M
+	private Long memberid;			//用户ID
+	private Long partnerid;			//合作商ID
+	private String ordertype;			//订单类型
+	private String expressnote;		//快递单号
+	private String expresstype;		//快递类型
+	private String processLevel;		//后期处理进程
+	private String expressStatus;		//快递状态
+	private String dealStatus;		//处理状态
+	private Long dealUser;			//处理用户
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -37,7 +39,7 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public String getTradeno() {
-		return this.tradeno;
+		return tradeno;
 	}
 
 	public void setTradeno(String tradeno) {
@@ -45,7 +47,7 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -53,15 +55,15 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
+	
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -69,15 +71,15 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public String getInvoice() {
-		return this.invoice;
+		return invoice;
 	}
 
 	public void setInvoice(String invoice) {
 		this.invoice = invoice;
 	}
-
+	
 	public String getPretype() {
-		return this.pretype;
+		return pretype;
 	}
 
 	public void setPretype(String pretype) {
@@ -85,7 +87,7 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -93,7 +95,7 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public Long getPartnerid() {
-		return this.partnerid;
+		return partnerid;
 	}
 
 	public void setPartnerid(Long partnerid) {
@@ -101,7 +103,7 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public String getOrdertype() {
-		return this.ordertype;
+		return ordertype;
 	}
 
 	public void setOrdertype(String ordertype) {
@@ -109,7 +111,7 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public String getExpressnote() {
-		return this.expressnote;
+		return expressnote;
 	}
 
 	public void setExpressnote(String expressnote) {
@@ -117,27 +119,28 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public String getExpresstype() {
-		return this.expresstype;
+		return expresstype;
 	}
 
 	public void setExpresstype(String expresstype) {
 		this.expresstype = expresstype;
 	}
 
-	public boolean hasExpressType(String type) {
+	public boolean hasExpressType(String type){
 		return StringUtils.equals(this.expresstype, type);
 	}
-
-	public boolean hasPaidSuccess() {
-		return StringUtils.equals(this.status, "paid_success");
+	
+	public boolean hasPaidSuccess(){
+		return StringUtils.equals(this.status, OrderConstant.STATUS_PAID_SUCCESS);
 	}
-
-	public Serializable realId() {
-		return this.id;
+	
+	@Override
+	public Serializable realId(){
+		return id;
 	}
 
 	public String getProcessLevel() {
-		return this.processLevel;
+		return processLevel;
 	}
 
 	public void setProcessLevel(String processLevel) {
@@ -145,7 +148,7 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public String getExpressStatus() {
-		return this.expressStatus;
+		return expressStatus;
 	}
 
 	public void setExpressStatus(String expressStatus) {
@@ -153,7 +156,7 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public String getDealStatus() {
-		return this.dealStatus;
+		return dealStatus;
 	}
 
 	public void setDealStatus(String dealStatus) {
@@ -161,7 +164,7 @@ public class OrderExtraVo extends BaseVo {
 	}
 
 	public Long getDealUser() {
-		return this.dealUser;
+		return dealUser;
 	}
 
 	public void setDealUser(Long dealUser) {

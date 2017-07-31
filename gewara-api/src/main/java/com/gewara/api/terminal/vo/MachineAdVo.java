@@ -1,115 +1,95 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.terminal.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class MachineAdVo extends BaseVo {
 	public static final String FILE_TYPE_WALLPAPER = "wallpaper";
 	public static final String FILE_TYPE_SCREENSAVER = "screensaver";
+	
 	private static final long serialVersionUID = 8091397268335515143L;
-	private Long id;
-	private String placeid;
-	private String adversion;
-	private String zipurl;
-	private String remark;
+	private Long id;			
+	private String placeid;		//场馆id
+	private String adversion;	//版本
+	private String zipurl;		//压缩包地址
+	private String remark;		//描述
 	private Timestamp addtime;
-	private Timestamp startTime;
-	private Timestamp endTime;
-	private String type;
-	private String nickName;
-	private String filetype;
-
+	private Timestamp startTime; //广告有效开始时间
+	private Timestamp endTime; //广告有效结束时间
+	private String type;//场馆类型
+	private String nickName;//添加人id
+	private String filetype;	// 壁纸or屏保
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getPlaceid() {
-		return this.placeid;
+		return placeid;
 	}
-
 	public void setPlaceid(String placeid) {
 		this.placeid = placeid;
 	}
-
 	public String getAdversion() {
-		return this.adversion;
+		return adversion;
 	}
-
 	public void setAdversion(String adversion) {
 		this.adversion = adversion;
 	}
-
 	public String getZipurl() {
-		return this.zipurl;
+		return zipurl;
 	}
-
 	public void setZipurl(String zipurl) {
 		this.zipurl = zipurl;
 	}
-
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
-
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Timestamp getStartTime() {
-		return this.startTime;
+		return startTime;
 	}
-
 	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
 	}
-
 	public Timestamp getEndTime() {
-		return this.endTime;
+		return endTime;
 	}
-
 	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
-
 	public String getType() {
-		return this.type;
+		return type;
 	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
-
 	public String getNickName() {
-		return this.nickName;
+		return nickName;
 	}
-
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-
 	public String getFiletype() {
-		return this.filetype;
+		return filetype;
 	}
-
 	public void setFiletype(String filetype) {
 		this.filetype = filetype;
 	}
+	
 }
