@@ -1,8 +1,5 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package de.idyl.winzipaes.impl;
 
-import de.idyl.winzipaes.impl.ExtZipEntry;
-import de.idyl.winzipaes.impl.ZipConstants;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,132 +9,179 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.zip.ZipEntry;
 
+/**
+ * Write zip entries to Zip-File, encrypted or not encrypted.
+ * 
+ * @author olaf@merkert.de
+ */
 public class ExtZipOutputStream implements ZipConstants {
-	protected String comment;
-	protected OutputStream out;
-	protected int written;
-	protected static final short ZIP_VERSION = 20;
-	private List<ExtZipEntry> entries = new ArrayList();
 
 	public ExtZipOutputStream(File file) throws IOException {
-		this.out = new FileOutputStream(file);
+		out = new FileOutputStream(file);
 	}
 
 	public ExtZipOutputStream(OutputStream out) {
 		this.out = out;
 	}
 
+	protected String comment;
+	
+	protected OutputStream out;
+
+	/** number of bytes written to out */
+	protected int written;
+
 	public int getWritten() {
 		return this.written;
 	}
 
 	public void writeBytes(byte[] b) throws IOException {
-		this.out.write(b);
-		this.written += b.length;
+		out.write(b);
+		written += b.length;
 	}
 
 	public void writeShort(int v) throws IOException {
-		this.out.write(v >>> 0 & 255);
-		this.out.write(v >>> 8 & 255);
-		this.written += 2;
+		out.write((v >>> 0) & 0xff);
+		out.write((v >>> 8) & 0xff);
+		written += 2;
 	}
 
 	public void writeInt(long v) throws IOException {
-		this.out.write((int) (v >>> 0 & 255L));
-		this.out.write((int) (v >>> 8 & 255L));
-		this.out.write((int) (v >>> 16 & 255L));
-		this.out.write((int) (v >>> 24 & 255L));
-		this.written += 4;
+		out.write((int) ((v >>> 0) & 0xff));
+		out.write((int) ((v >>> 8) & 0xff));
+		out.write((int) ((v >>> 16) & 0xff));
+		out.write((int) ((v >>> 24) & 0xff));
+		written += 4;
 	}
 
 	public void writeBytes(byte[] b, int off, int len) throws IOException {
-		this.out.write(b, off, len);
-		this.written += len;
+		out.write(b, off, len);
+		written += len;
 	}
+
+	// --------------------------------------------------------------------------
+
+	protected final static short ZIP_VERSION = 20; // version set by
+													// java.util.zip
 
 	protected void writeFileInfo(ExtZipEntry entry) throws IOException {
-		this.writeShort(20);
-		this.writeShort(entry.getFlag());
-		this.writeShort(entry.getPrimaryCompressionMethod());
-		this.writeInt(entry.getDosTime());
-		this.writeInt(entry.getCrc());
-		this.writeInt((long) ((int) entry.getCompressedSize()));
-		this.writeInt((long) ((int) entry.getSize()));
-		this.writeShort(entry.getName().length());
-		if (entry.getExtra() != null) {
-			this.writeShort(entry.getExtra().length);
-		} else {
-			this.writeShort(0);
-		}
+		writeShort(ZIP_VERSION); // version needed to extract
 
+		// general purpose bit flag - 0x0001 indicates encryption 2 bytes
+		writeShort(entry.getFlag());
+
+		writeShort(entry.getPrimaryCompressionMethod()); // primary compression
+															// method -
+															// 0x63==encryption
+
+		writeInt(entry.getDosTime()); // 2 bytes last mod file time + 2 bytes
+										// last mod file date
+
+		writeInt(entry.getCrc());
+
+		// 28 bytes is the encryption overhead (caused by 256-bit AES key)
+		// 2 bytes pwVerification + 16 bytes SALT + 10 bytes AUTHENTICATION
+
+		writeInt((int) entry.getCompressedSize()); // compressed size
+		writeInt((int) entry.getSize()); // uncompressed size
+
+		writeShort(entry.getName().length()); // file name length
+		if (entry.getExtra() != null) {
+			writeShort(entry.getExtra().length); // extra field length
+		} else {
+			writeShort(0);
+		}
 	}
 
+	private List<ExtZipEntry> entries = new ArrayList<ExtZipEntry>();
+
 	protected void writeDirEntry(ExtZipEntry entry) throws IOException {
-		this.writeInt(33639248L);
-		this.writeShort(20);
-		this.writeFileInfo(entry);
-		this.writeShort(0);
-		this.writeShort(0);
-		this.writeShort(0);
-		this.writeInt(0L);
-		this.writeInt((long) entry.getOffset());
-		this.writeBytes(entry.getName().getBytes("gbk"));
-		this.writeExtraBytes(entry);
+		writeInt(CENSIG); // writeBytes( new byte[] { 0x50, 0x4b, 0x01, 0x02 }
+							// ); // directory signature
+		writeShort(ZIP_VERSION); // version made by
+		writeFileInfo(entry);
+
+		writeShort(0x00); // file comment length 2 bytes
+		writeShort(0x00); // disk number start (unused) 2 bytes
+		writeShort(0x00); // internal file attributes (unsued) 2 bytes
+		writeInt(0x00); // external file attributes (unused) 4 bytes
+
+		writeInt(entry.getOffset()); // relative offset of local header 4 bytes
+
+		writeBytes(entry.getName().getBytes("gbk"));
+
+		writeExtraBytes(entry);
 	}
 
 	protected void writeExtraBytes(ZipEntry entry) throws IOException {
 		byte[] extraBytes = entry.getExtra();
 		if (extraBytes != null) {
-			this.writeBytes(extraBytes);
+			writeBytes(extraBytes);
 		}
-
 	}
+
+	// --------------------------------------------------------------------------
 
 	public void putNextEntry(ExtZipEntry entry) throws IOException {
-		this.entries.add(entry);
-		entry.setOffset(this.written);
-		this.writeInt(67324752L);
-		this.writeFileInfo(entry);
-		this.writeBytes(entry.getName().getBytes("gbk"));
-		this.writeExtraBytes(entry);
+		entries.add(entry);
+
+		entry.setOffset(written);
+
+		// file header signature
+		writeInt(LOCSIG);
+
+		writeFileInfo(entry);
+		writeBytes(entry.getName().getBytes("gbk"));
+		writeExtraBytes(entry);
 	}
 
+	/**
+	 * Finishes writing the contents of the ZIP output stream.
+	 */
 	public void finish() throws IOException {
-		int dirOffset = this.written;
-		int startOfCentralDirectory = this.written;
-		Iterator it = this.entries.iterator();
+		int dirOffset = written; // central directory (at end of zip file)
+								 // starts here
 
+		int startOfCentralDirectory = written;
+
+		Iterator<ExtZipEntry> it = entries.iterator();
 		while (it.hasNext()) {
-			ExtZipEntry centralDirectorySize = (ExtZipEntry) it.next();
-			this.writeDirEntry(centralDirectorySize);
+			ExtZipEntry entry = it.next();
+			writeDirEntry(entry);
+		}
+		int centralDirectorySize = written - startOfCentralDirectory;
+
+		writeInt(ENDSIG); // end of central dir signature 4 bytes
+
+		writeShort(0x00); // number of this disk 2 bytes
+		writeShort(0x00); // number of the disk with the start of the central directory 2 bytes
+
+		writeShort(entries.size()); // total number of entries in central directory on this disk 2 bytes
+		writeShort(entries.size()); // total number of entries in the central directory 2 bytes
+
+		writeInt(centralDirectorySize); // size of the central directory 4 bytes
+
+		writeInt(dirOffset);	// offset of start of central dir, with respect to starting disk 4 bytes
+		
+		byte[] commentBytes = this.comment!=null ? this.comment.getBytes("gbk") : new byte[0];		
+		writeShort(commentBytes.length); // .ZIP file comment length 2 bytes
+		if( commentBytes.length>0 ) {
+			writeBytes(commentBytes);
 		}
 
-		int centralDirectorySize1 = this.written - startOfCentralDirectory;
-		this.writeInt(101010256L);
-		this.writeShort(0);
-		this.writeShort(0);
-		this.writeShort(this.entries.size());
-		this.writeShort(this.entries.size());
-		this.writeInt((long) centralDirectorySize1);
-		this.writeInt((long) dirOffset);
-		byte[] commentBytes = this.comment != null ? this.comment.getBytes("gbk") : new byte[0];
-		this.writeShort(commentBytes.length);
-		if (commentBytes.length > 0) {
-			this.writeBytes(commentBytes);
-		}
-
-		this.out.close();
+		out.close();
 	}
-
+	
 	public void close() throws IOException {
-		this.out.close();
+		out.close();
 	}
 
 	public String getComment() {
-		return this.comment;
+		return comment;
 	}
 
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
 }

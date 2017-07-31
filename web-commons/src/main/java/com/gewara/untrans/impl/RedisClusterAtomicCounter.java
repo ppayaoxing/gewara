@@ -1,42 +1,50 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.impl;
 
-import com.gewara.support.concurrent.AtomicCounter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.support.atomic.RedisAtomicLong;
 
+import com.gewara.support.concurrent.AtomicCounter;
+
 public class RedisClusterAtomicCounter implements AtomicCounter {
 	private RedisAtomicLong atomic;
-
-	public RedisClusterAtomicCounter(String key, RedisConnectionFactory masterFactory) {
-		this.atomic = new RedisAtomicLong(key, masterFactory);
+	
+	public RedisClusterAtomicCounter(String key, RedisConnectionFactory masterFactory){
+		atomic = new RedisAtomicLong(key, masterFactory);
 	}
-
+	
+	@Override
 	public long get() {
-		return this.atomic.get();
+		return atomic.get();
 	}
 
+	@Override
 	public void set(long newValue) {
-		this.atomic.set(newValue);
+		atomic.set(newValue);
 	}
 
+	@Override
 	public long getAndAdd(long delta) {
-		return this.atomic.getAndAdd(delta);
+		return atomic.getAndAdd(delta);
 	}
 
+	@Override
 	public long getAndDecrement() {
-		return this.atomic.getAndDecrement();
+		return atomic.getAndDecrement();
 	}
 
+	@Override
 	public long getAndIncrement() {
-		return this.atomic.getAndIncrement();
+		return atomic.getAndIncrement();
 	}
 
+	@Override
 	public long getAndSet(long newValue) {
-		return this.atomic.getAndSet(newValue);
+		return atomic.getAndSet(newValue);
 	}
 
+	@Override
 	public long incrementAndGet() {
-		return this.atomic.incrementAndGet();
+		return atomic.incrementAndGet();
 	}
+
 }

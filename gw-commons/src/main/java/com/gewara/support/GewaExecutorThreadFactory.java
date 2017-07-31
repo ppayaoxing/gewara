@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.support;
 
 import java.util.concurrent.ThreadFactory;
@@ -12,20 +11,18 @@ public class GewaExecutorThreadFactory implements ThreadFactory {
 
 	public GewaExecutorThreadFactory(String prefix) {
 		SecurityManager s = System.getSecurityManager();
-		this.group = s != null ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
-		this.namePrefix = prefix + poolNumber.getAndIncrement() + "-thread-";
+		group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
+		namePrefix = prefix + poolNumber.getAndIncrement() + "-thread-";
 	}
 
+	@Override
 	public Thread newThread(Runnable r) {
-		Thread t = new Thread(this.group, r, this.namePrefix + this.threadNumber.getAndIncrement(), 0L);
-		if (t.isDaemon()) {
+		Thread t = new Thread(group, r, namePrefix + threadNumber.getAndIncrement(), 0);
+		//from DefaultFactory
+		if (t.isDaemon())
 			t.setDaemon(false);
-		}
-
-		if (t.getPriority() != 5) {
-			t.setPriority(5);
-		}
-
+		if (t.getPriority() != Thread.NORM_PRIORITY)
+			t.setPriority(Thread.NORM_PRIORITY);
 		return t;
 	}
 }

@@ -1,33 +1,38 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.web.menu;
 
-import com.gewara.util.BeanUtil;
-import com.gewara.web.menu.MenuRepository;
-import com.gewara.web.support.SecurityModule;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.util.BeanUtil;
+import com.gewara.web.support.SecurityModule;
+
+/**
+ * Create the javascript required for the Xtree menu functionality
+ * 
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28下午02:05:17
+ */
 public class GBMenuDataBuilder<T extends SecurityModule> {
 	public static final String MENU_DATA_KEY = "com.gewara.web.menu.MENU_DATA_KEY";
 	private String basePath = "";
 	private Set<String> roles;
-	private MenuRepository<T> repository;
+	private MenuRepository<T>  repository;
 
 	public GBMenuDataBuilder(String basePath, String[] roles, MenuRepository<T> repository) {
 		this.basePath = basePath;
-		this.roles = new TreeSet(Arrays.asList(roles));
+		this.roles = new TreeSet<String>(Arrays.asList(roles));
 		this.repository = repository;
 	}
 
 	public String getBasePath() {
-		return this.basePath;
+		return basePath;
 	}
 
 	public void setBasePath(String basePath) {
@@ -36,213 +41,158 @@ public class GBMenuDataBuilder<T extends SecurityModule> {
 
 	public StringBuilder getMenuData() {
 		StringBuilder sb = new StringBuilder();
-		this.buildMenuRepository(sb);
+		buildMenuRepository(sb);
 		return sb;
 	}
 
 	public List getMenuTop() {
-		ArrayList lst = new ArrayList();
-		Iterator arg1 = this.repository.topMenuList.iterator();
 
-		while (true) {
-			SecurityModule menu;
-			do {
-				if (!arg1.hasNext()) {
-					return lst;
-				}
-
-				menu = (SecurityModule) arg1.next();
-			} while (!"1".equals(menu.getDisplay()) && !"Y".equals(menu.getDisplay()));
-
-			if (this.isAllowed(menu)) {
+		List lst = new ArrayList();
+		for (T menu : repository.topMenuList) {
+			if (("1".equals(menu.getDisplay())||"Y".equals(menu.getDisplay()))&&isAllowed(menu)) {
 				lst.add(menu);
 			}
 		}
+		return lst;
 	}
 
 	private void buildMenuRepository(StringBuilder sb) {
 		sb.append("{");
-		sb.append("\'id\':\'0\',");
-		sb.append("\'text\':\'主菜单\',");
-		sb.append("\'iconCls\':\'icon-pkg\',");
-		sb.append("\'cls\':\'package\',");
-		sb.append("\'singleClickExpand\':true,");
-		sb.append("\'children\':[");
-		Iterator arg1 = this.repository.topMenuList.iterator();
+		sb.append("'id':'0',");
+		sb.append("'text':'主菜单',");
+		sb.append("'iconCls':'icon-pkg',");
+		sb.append("'cls':'package',");
+		sb.append("'singleClickExpand':true,");
+		sb.append("'children':[");
 
-		while (true) {
-			SecurityModule menu;
-			do {
-				if (!arg1.hasNext()) {
-					sb.deleteCharAt(sb.length() - 1);
+		for (T menu : repository.topMenuList) {
+			if (isAllowed(menu)) {
+				sb.append("{");
+				sb.append("'id':'" + menu.getMenucode() + "',");
+				sb.append("'text':'" + menu.getMenutitle() + "',");
+				List<T> subList = repository.menuMap.get(menu.getMenucode());
+				if (subList != null && subList.size() > 0) {
+					sb.append("'iconCls':'icon-pkg',");
+					sb.append("'cls':'package',");
+					sb.append("'singleClickExpand':true,");
+					sb.append("'children':[");
+					boolean hasSub = false;
+					for (T subMenu : subList) {
+						if (isAllowed(subMenu))
+							hasSub = true;
+						buildMenuData(subMenu, sb);
+					}
+					if (hasSub) {
+						sb.deleteCharAt(sb.length() - 1);
+					}
 					sb.append("]");
-					sb.append("}");
-					return;
+				} else {
+					String href = "";
+					if (StringUtils.startsWith(menu.getModuleurl(), "http://"))
+						href = menu.getModuleurl();
+					else
+						href = basePath + menu.getModuleurl();
+					sb.append("'href':'" + href + "',");
+					if (StringUtils.isNotBlank(menu.getTarget()))
+						sb.append("'target':'" + menu.getTarget() + "',");
+					sb.append("'isClass':true,'iconCls':'icon-cls','cls':'cls','leaf':true");
 				}
+				sb.append("},");
+			}
+		}
+		sb.deleteCharAt(sb.length() - 1);
+		sb.append("]");
+		sb.append("}");
+	}
 
-				menu = (SecurityModule) arg1.next();
-			} while (!this.isAllowed(menu));
-
-			sb.append("{");
-			sb.append("\'id\':\'" + menu.getMenucode() + "\',");
-			sb.append("\'text\':\'" + menu.getMenutitle() + "\',");
-			List subList = (List) this.repository.menuMap.get(menu.getMenucode());
+	public List<T> getAllSubModule(){
+		List<T> subModuleList = new ArrayList<T>();
+		for (T menu : repository.topMenuList) {
+			List<T> subList = repository.menuMap.get(menu.getMenucode());
 			if (subList != null && subList.size() > 0) {
-				sb.append("\'iconCls\':\'icon-pkg\',");
-				sb.append("\'cls\':\'package\',");
-				sb.append("\'singleClickExpand\':true,");
-				sb.append("\'children\':[");
-				boolean href1 = false;
-
-				SecurityModule subMenu;
-				for (Iterator arg5 = subList.iterator(); arg5.hasNext(); this.buildMenuData(subMenu, sb)) {
-					subMenu = (SecurityModule) arg5.next();
-					if (this.isAllowed(subMenu)) {
-						href1 = true;
+				for (T subMenu : subList) {
+					if (isAllowed(subMenu)){
+						subModuleList.add(subMenu);
 					}
-				}
-
-				if (href1) {
-					sb.deleteCharAt(sb.length() - 1);
-				}
-
-				sb.append("]");
-			} else {
-				String href = "";
-				if (StringUtils.startsWith(menu.getModuleurl(), "http://")) {
-					href = menu.getModuleurl();
-				} else {
-					href = this.basePath + menu.getModuleurl();
-				}
-
-				sb.append("\'href\':\'" + href + "\',");
-				if (StringUtils.isNotBlank(menu.getTarget())) {
-					sb.append("\'target\':\'" + menu.getTarget() + "\',");
-				}
-
-				sb.append("\'isClass\':true,\'iconCls\':\'icon-cls\',\'cls\':\'cls\',\'leaf\':true");
-			}
-
-			sb.append("},");
-		}
-	}
-
-	public List<T> getAllSubModule() {
-		ArrayList subModuleList = new ArrayList();
-		Iterator arg1 = this.repository.topMenuList.iterator();
-
-		while (true) {
-			List subList;
-			do {
-				do {
-					if (!arg1.hasNext()) {
-						return subModuleList;
-					}
-
-					SecurityModule menu = (SecurityModule) arg1.next();
-					subList = (List) this.repository.menuMap.get(menu.getMenucode());
-				} while (subList == null);
-			} while (subList.size() <= 0);
-
-			Iterator arg4 = subList.iterator();
-
-			while (arg4.hasNext()) {
-				SecurityModule subMenu = (SecurityModule) arg4.next();
-				if (this.isAllowed(subMenu)) {
-					subModuleList.add(subMenu);
 				}
 			}
 		}
+		return subModuleList;
 	}
-
 	private void buildMenuData(T menu, StringBuilder sb) {
-		if (this.isAllowed(menu)) {
-			sb.append("{");
-			sb.append("\'id\':\'" + menu.getMenucode() + "\',");
-			sb.append("\'text\':\'" + menu.getMenutitle() + "\',");
-			String href = "";
-			if (StringUtils.isNotBlank(menu.getModuleurl())) {
-				if (menu.getModuleurl().startsWith("http://")) {
-					href = menu.getModuleurl();
-				} else {
-					href = this.basePath + menu.getModuleurl().substring(1);
-				}
-
-				sb.append("\'href\':\'" + href + "\',");
-			}
-
-			if (StringUtils.isNotBlank(menu.getTarget())) {
-				sb.append("\'target\':\'" + menu.getTarget() + "\',");
-			}
-
-			sb.append("\'isClass\':true,\'iconCls\':\'icon-cls\',\'cls\':\'cls\',\'leaf\':true");
-			sb.append("},");
+		if (!isAllowed(menu))
+			return;
+		sb.append("{");
+		sb.append("'id':'" + menu.getMenucode() + "',");
+		sb.append("'text':'" + menu.getMenutitle() + "',");
+		String href = "";
+		if (StringUtils.isNotBlank(menu.getModuleurl())) {
+			if (menu.getModuleurl().startsWith("http://"))
+				href = menu.getModuleurl();
+			else
+				href = basePath + menu.getModuleurl().substring(1);
+			sb.append("'href':'" + href + "',");
 		}
+		if (StringUtils.isNotBlank(menu.getTarget()))
+			sb.append("'target':'" + menu.getTarget() + "',");
+		sb.append("'isClass':true,'iconCls':'icon-cls','cls':'cls','leaf':true");
+		sb.append("},");
 	}
 
+	/**
+	 * If the menu is allowed, this should return true.
+	 * 
+	 * @return whether or not the menu is allowed.
+	 */
 	private boolean isAllowed(T menu) {
 		String menuRoles = menu.getRolenames();
-		if (StringUtils.isBlank(menuRoles)) {
+		// 无角色，默认允许
+		if (StringUtils.isBlank(menuRoles))
 			return false;
-		} else {
-			String[] mroles = StringUtils.split(menuRoles, ",");
-
-			for (int i = 0; i < mroles.length; ++i) {
-				if (this.roles.contains(mroles[i])) {
-					return true;
-				}
-			}
-
-			return false;
+		String[] mroles = StringUtils.split(menuRoles, ",");
+		for (int i = 0; i < mroles.length; i++) {
+			if (roles.contains(mroles[i]))
+				return true;
 		}
+		return false;
 	}
-
-	public Map<Map, List<Map>> getMenuTree() {
-		LinkedHashMap menuMap = new LinkedHashMap();
-		Iterator arg1 = this.repository.topMenuList.iterator();
-
-		while (true) {
-			SecurityModule menu;
-			do {
-				if (!arg1.hasNext()) {
-					return menuMap;
-				}
-
-				menu = (SecurityModule) arg1.next();
-			} while (!this.isAllowed(menu));
-
-			List tmp = (List) this.repository.menuMap.get(menu.getMenucode());
-			ArrayList subList = new ArrayList();
-			if (tmp != null && tmp.size() > 0) {
-				Iterator arg5 = tmp.iterator();
-
-				while (arg5.hasNext()) {
-					SecurityModule subMenu = (SecurityModule) arg5.next();
-					if (this.isAllowed(subMenu)) {
-						Map tmpMap = BeanUtil.getBeanMapWithKey(subMenu,
-								new String[] { "menutitle", "target", "display" });
-						String href = "";
-						if (subMenu.getModuleurl().startsWith("http://")) {
-							href = subMenu.getModuleurl();
-						} else if (StringUtils.isNotBlank(subMenu.getModuleurl())) {
-							href = this.basePath + subMenu.getModuleurl().substring(1);
+	
+	/**
+	 * @return menuMap<menutitle, target, display, href>
+	 */
+	public Map<Map, List<Map>> getMenuTree(){
+		Map<Map, List<Map>> menuMap = new LinkedHashMap<Map, List<Map>>();
+		for(T menu: repository.topMenuList){
+			if (isAllowed(menu)) {
+				List<T> tmp = repository.menuMap.get(menu.getMenucode());
+				List<Map> subList = new ArrayList<Map>();
+				if(tmp!=null && tmp.size()>0){
+					for(T subMenu: tmp){
+						if(isAllowed(subMenu)) {
+							Map tmpMap = BeanUtil.getBeanMapWithKey(subMenu, "menutitle", "target", "display");
+							String href = "";
+							if(subMenu.getModuleurl().startsWith("http://")) href = subMenu.getModuleurl();
+							else if(StringUtils.isNotBlank(subMenu.getModuleurl())) href = basePath + subMenu.getModuleurl().substring(1);
+							tmpMap.put("href", href);
+							subList.add(tmpMap);
 						}
-
-						tmpMap.put("href", href);
-						subList.add(tmpMap);
 					}
 				}
+				menuMap.put(BeanUtil.getBeanMapWithKey(menu, "menutitle", "target", "display"), subList);
 			}
-
-			menuMap.put(BeanUtil.getBeanMapWithKey(menu, new String[] { "menutitle", "target", "display" }), subList);
 		}
+		return menuMap;
 	}
 
-	public MenuRepository<T> getRepository() {
-		return this.repository;
+	public MenuRepository<T>  getRepository() {
+		return repository;
 	}
 
 	public void setRepository(MenuRepository repository) {
 		this.repository = repository;
 	}
+	
+	
+	
+	
 }

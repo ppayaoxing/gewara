@@ -1,40 +1,53 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans;
 
-import com.gewara.json.PageView;
-import com.gewara.untrans.PageParams;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gewara.json.PageView;
+
 public interface PageCacheService {
 	String NOT_USE_CACHE_KEY = "notUseCache";
-
-	PageView getPageView(String arg0, PageParams arg1, String arg2, String arg3);
-
-	PageView getPageView(HttpServletRequest arg0, String arg1, PageParams arg2, String arg3);
-
-	boolean refreshPageView(String arg0, PageParams arg1, String arg2);
-
-	void updatePageView(String arg0, PageParams arg1, String arg2, String arg3);
-
-	void clearPageView(String arg0, PageParams arg1, String arg2);
-
+	/**
+	 * 获取页面缓存
+	 * @param request
+	 * @param pageUrl 页面地址
+	 * @param params
+	 * @param citycode
+	 * @param cacheMin 缓存分钟
+	 * @return
+	 */
+	PageView getPageView(String pageUrl, PageParams params, String citycode, String ip);
+	PageView getPageView(HttpServletRequest request, String pageUrl, PageParams params, String citycode);
+	boolean refreshPageView(String pageUrl, PageParams params, String citycode);
+	void updatePageView(String pageUrl, PageParams params, String citycode, String content);
+	void clearPageView(String pageUrl, PageParams params, String citycode);
 	String refreshKeyVersion();
-
 	Map<String, Integer> getCacheMinMap();
-
-	void refreashCacheMin(String arg0, Integer arg1);
-
-	Integer getCacheMin(String arg0);
-
-	boolean isUseCache(HttpServletRequest arg0);
-
-	boolean isUpdated(String arg0, String arg1, Long arg2, PageParams arg3);
-
-	void processPageView(String arg0, Map<String, String> arg1, Map<String, String[]> arg2, String arg3);
-
-	void setEnableCache(boolean arg0);
-
-	void setPageCacheHeader(boolean arg0, HttpServletRequest arg1, HttpServletResponse arg2);
+	void refreashCacheMin(String pageUrl, Integer minute);
+	Integer getCacheMin(String pageUrl);
+	boolean isUseCache(HttpServletRequest request);
+	/**
+	 * 判断是否是最新缓存
+	 * @param pageParams
+	 * @return
+	 */
+	boolean isUpdated(String pageUrl, String citycode, Long cur, PageParams pageParams);
+	/**
+	 * 处理更新缓存
+	 * @param pageUrl
+	 * @param params
+	 * @param citycode
+	 */
+	void processPageView(String pageUrl, Map<String, String> params, Map<String, String[]> cookieMap, String citycode);
+	void setEnableCache(boolean enableCache);
+	
+	/**
+	 * 设置页面缓存头：如果outerAllow && isUseCache(request) 则设置缓存相关头
+	 * @param allow
+	 * @param request
+	 * @param response
+	 */
+	void setPageCacheHeader(boolean outerAllow, HttpServletRequest request, HttpServletResponse response);
 }

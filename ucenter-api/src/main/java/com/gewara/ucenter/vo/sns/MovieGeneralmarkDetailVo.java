@@ -1,21 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.vo.sns;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class MovieGeneralmarkDetailVo extends BaseVo {
-	private static final long serialVersionUID = -5015270045343038649L;
-	private String name;
-	private int value;
-	private long percent;
-	private int pointY;
-	private int pointN;
-	private long percenY;
-	private long percenN;
+import com.gewara.api.vo.BaseVo;
 
+public class MovieGeneralmarkDetailVo extends BaseVo{
+	private static final long serialVersionUID = -5015270045343038649L;
+	private String name; //等级描述   如 9-10分
+	private int value; //等级评分总数  例如 9-10分100个用户评 ，这里100就是value的值
+	private long percent; //占比   例如：9-10分 所在的比例  20  就表示20%
+	private int pointY; // 购票用户评分数  例如：9-10分里面购票的人数
+	private int pointN; // 非购票用户评分总数 例如：9-10分里面非购票人数
+	private long percenY; //购票用户评分占比
+	private long percenN; //非购票用户评分占比
+	
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -23,7 +23,7 @@ public class MovieGeneralmarkDetailVo extends BaseVo {
 	}
 
 	public int getValue() {
-		return this.value;
+		return value;
 	}
 
 	public void setValue(int value) {
@@ -31,7 +31,7 @@ public class MovieGeneralmarkDetailVo extends BaseVo {
 	}
 
 	public long getPercent() {
-		return this.percent;
+		return percent;
 	}
 
 	public void setPercent(long percent) {
@@ -39,7 +39,7 @@ public class MovieGeneralmarkDetailVo extends BaseVo {
 	}
 
 	public int getPointY() {
-		return this.pointY;
+		return pointY;
 	}
 
 	public void setPointY(int pointY) {
@@ -47,7 +47,7 @@ public class MovieGeneralmarkDetailVo extends BaseVo {
 	}
 
 	public int getPointN() {
-		return this.pointN;
+		return pointN;
 	}
 
 	public void setPointN(int pointN) {
@@ -55,7 +55,7 @@ public class MovieGeneralmarkDetailVo extends BaseVo {
 	}
 
 	public long getPercenY() {
-		return this.percenY;
+		return percenY;
 	}
 
 	public void setPercenY(long percenY) {
@@ -63,7 +63,7 @@ public class MovieGeneralmarkDetailVo extends BaseVo {
 	}
 
 	public long getPercenN() {
-		return this.percenN;
+		return percenN;
 	}
 
 	public void setPercenN(long percenN) {
@@ -71,10 +71,12 @@ public class MovieGeneralmarkDetailVo extends BaseVo {
 	}
 
 	public static long getSerialversionuid() {
-		return -5015270045343038649L;
+		return serialVersionUID;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.name;
+		return name;
 	}
+
 }

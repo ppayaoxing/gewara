@@ -1,117 +1,122 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.model.acl;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.gewara.model.BaseObject;
 import com.gewara.web.support.SecurityModule;
-import java.io.Serializable;
-import org.apache.commons.lang.StringUtils;
 
-public class WebModule extends BaseObject implements SecurityModule {
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28下午02:05:17
+ */
+public class WebModule extends BaseObject implements SecurityModule{
 	public static final String TAG_GEWA = "G";
 	public static final String TAG_PARTNER = "GP";
 	public static final String TAG_API = "A";
 	private static final long serialVersionUID = -7871445315999186011L;
+	
 	private Long id;
 	private String moduleurl;
-	private Integer matchorder;
+	private Integer matchorder; //在权限分配时的匹配顺序
 	private String menucode;
 	private String menutitle;
 	private String target;
-	private String display;
-	private String tag;
+	private String display; //是否
+	private String tag;		//分类：gewa，partner
 	private String rolenames;
+	
 	private boolean top;
-
 	public Integer getMatchorder() {
-		return this.matchorder;
+		return matchorder;
 	}
-
 	public void setMatchorder(Integer matchorder) {
 		this.matchorder = matchorder;
 	}
-
+	public WebModule() {
+	}
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
+	@Override
 	public String getModuleurl() {
-		return this.moduleurl;
+		return moduleurl;
 	}
-
 	public void setModuleurl(String moduleurl) {
 		this.moduleurl = moduleurl;
 	}
-
+	@Override
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	@Override
 	public String getMenucode() {
-		return this.menucode;
+		return menucode;
 	}
-
 	public void setMenucode(String menucode) {
 		this.menucode = menucode;
 	}
-
+	@Override
 	public String getMenutitle() {
-		return this.menutitle;
+		return menutitle;
 	}
-
 	public void setMenutitle(String menutitle) {
 		this.menutitle = menutitle;
 	}
-
+	@Override
 	public String getTarget() {
-		return this.target;
+		return target;
 	}
-
 	public void setTarget(String target) {
 		this.target = target;
 	}
-
+	@Override
 	public String getDisplay() {
-		return this.display;
+		return display;
 	}
-
 	public void setDisplay(String display) {
 		this.display = display;
 	}
-
+	@Override
 	public boolean isTop() {
-		return this.top ? this.top : StringUtils.length(this.menucode) == 2;
+		if(top){
+			return top;
+		}
+		return StringUtils.length(menucode)==2;
 	}
-
+	@Override
 	public String getParentcode() {
-		return StringUtils.substring(this.menucode, 0, 2);
+		return StringUtils.substring(menucode, 0, 2);
 	}
-
+	@Override
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
-
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
+	@Override
 	public String getTopMenucode() {
-		return StringUtils.isNotBlank(this.menucode) && this.menucode.length() == 4 ? this.menucode.substring(0, 2)
-				: null;
+		if(StringUtils.isNotBlank(menucode) && menucode.length()==4) {
+			return menucode.substring(0, 2);
+		}
+		return null;
 	}
-
+	@Override
 	public String getRolenames() {
-		return this.rolenames;
+		return rolenames;
 	}
-
 	public void setRolenames(String rolenames) {
 		this.rolenames = rolenames;
 	}
-
 	public void setTop(boolean top) {
 		this.top = top;
 	}
+	
+	
 }

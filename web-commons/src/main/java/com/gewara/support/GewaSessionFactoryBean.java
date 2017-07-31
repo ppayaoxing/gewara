@@ -1,14 +1,27 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support;
+/*
+ * Copyright 2002-2015 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import com.gewara.support.GcacheInvalidator;
-import com.gewara.untrans.GcacheNotifier;
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Properties;
 import java.util.TreeSet;
+
 import javax.sql.DataSource;
+
 import org.hibernate.Interceptor;
 import org.hibernate.MappingException;
 import org.hibernate.SessionFactory;
@@ -33,196 +46,329 @@ import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 
-public class GewaSessionFactoryBean extends HibernateExceptionTranslator
-		implements
-			FactoryBean<SessionFactory>,
-			ResourceLoaderAware,
-			InitializingBean,
-			DisposableBean {
-	private DataSource dataSource;
-	private Resource[] configLocations;
-	private String[] mappingResources;
-	private Resource[] mappingLocations;
-	private Resource[] cacheableMappingLocations;
-	private Resource[] mappingJarLocations;
-	private Resource[] mappingDirectoryLocations;
-	private Interceptor entityInterceptor;
-	private ImplicitNamingStrategy implicitNamingStrategy;
-	private PhysicalNamingStrategy physicalNamingStrategy;
-	private Object jtaTransactionManager;
-	private CurrentTenantIdentifierResolver currentTenantIdentifierResolver;
-	private TypeFilter[] entityTypeFilters;
-	private Properties hibernateProperties;
-	private Class<?>[] annotatedClasses;
-	private String[] annotatedPackages;
-	private String[] packagesToScan;
-	private ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
-	private Configuration configuration;
-	private SessionFactory sessionFactory;
-	private GcacheNotifier gcacheNotifier;
+import com.gewara.untrans.GcacheNotifier;
 
+/**
+ * {@link FactoryBean} that creates a Hibernate
+ * {@link SessionFactory}. This is the usual way to set up a shared
+ * Hibernate SessionFactory in a Spring application context; the SessionFactory can
+ * then be passed to Hibernate-based data access objects via dependency injection.
+ *
+ * <p>This class is similar in role to the same-named class in the {@code orm.hibernate3}
+ * package. However, in practice, it is closer to {@code AnnotationSessionFactoryBean}
+ * since its core purpose is to bootstrap a {@code SessionFactory} from package scanning.
+ *
+ * @author Juergen Hoeller
+ * @since 4.2
+ * @see #setDataSource
+ * @see #setPackagesToScan
+ * @see LocalSessionFactoryBuilder
+ */
+public class GewaSessionFactoryBean extends HibernateExceptionTranslator
+		implements FactoryBean<SessionFactory>, ResourceLoaderAware, InitializingBean, DisposableBean {
+
+	private DataSource dataSource;
+
+	private Resource[] configLocations;
+
+	private String[] mappingResources;
+
+	private Resource[] mappingLocations;
+
+	private Resource[] cacheableMappingLocations;
+
+	private Resource[] mappingJarLocations;
+
+	private Resource[] mappingDirectoryLocations;
+
+	private Interceptor entityInterceptor;
+
+	private ImplicitNamingStrategy implicitNamingStrategy;
+
+	private PhysicalNamingStrategy physicalNamingStrategy;
+
+	private Object jtaTransactionManager;
+
+	private CurrentTenantIdentifierResolver currentTenantIdentifierResolver;
+
+	private TypeFilter[] entityTypeFilters;
+
+	private Properties hibernateProperties;
+
+	private Class<?>[] annotatedClasses;
+
+	private String[] annotatedPackages;
+
+	private String[] packagesToScan;
+
+	private ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
+
+	private Configuration configuration;
+
+	private SessionFactory sessionFactory;
+	
+	private GcacheNotifier gcacheNotifier;
+	
+
+	/**
+	 * Set the DataSource to be used by the SessionFactory.
+	 * If set, this will override corresponding settings in Hibernate properties.
+	 * <p>If this is set, the Hibernate settings should not define
+	 * a connection provider to avoid meaningless double configuration.
+	 */
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
+	/**
+	 * Set the location of a single Hibernate XML config file, for example as
+	 * classpath resource "classpath:hibernate.cfg.xml".
+	 * <p>Note: Can be omitted when all necessary properties and mapping
+	 * resources are specified locally via this bean.
+	 * @see Configuration#configure(java.net.URL)
+	 */
 	public void setConfigLocation(Resource configLocation) {
-		this.configLocations = new Resource[]{configLocation};
+		this.configLocations = new Resource[] {configLocation};
 	}
 
+	/**
+	 * Set the locations of multiple Hibernate XML config files, for example as
+	 * classpath resources "classpath:hibernate.cfg.xml,classpath:extension.cfg.xml".
+	 * <p>Note: Can be omitted when all necessary properties and mapping
+	 * resources are specified locally via this bean.
+	 * @see Configuration#configure(java.net.URL)
+	 */
 	public void setConfigLocations(Resource... configLocations) {
 		this.configLocations = configLocations;
 	}
 
+	/**
+	 * Set Hibernate mapping resources to be found in the class path,
+	 * like "example.hbm.xml" or "mypackage/example.hbm.xml".
+	 * Analogous to mapping entries in a Hibernate XML config file.
+	 * Alternative to the more generic setMappingLocations method.
+	 * <p>Can be used to add to mappings from a Hibernate XML config file,
+	 * or to specify all mappings locally.
+	 * @see #setMappingLocations
+	 * @see Configuration#addResource
+	 */
 	public void setMappingResources(String... mappingResources) {
 		this.mappingResources = mappingResources;
 	}
 
+	/**
+	 * Set locations of Hibernate mapping files, for example as classpath
+	 * resource "classpath:example.hbm.xml". Supports any resource location
+	 * via Spring's resource abstraction, for example relative paths like
+	 * "WEB-INF/mappings/example.hbm.xml" when running in an application context.
+	 * <p>Can be used to add to mappings from a Hibernate XML config file,
+	 * or to specify all mappings locally.
+	 * @see Configuration#addInputStream
+	 */
 	public void setMappingLocations(Resource... mappingLocations) {
 		this.mappingLocations = mappingLocations;
 	}
 
+	/**
+	 * Set locations of cacheable Hibernate mapping files, for example as web app
+	 * resource "/WEB-INF/mapping/example.hbm.xml". Supports any resource location
+	 * via Spring's resource abstraction, as long as the resource can be resolved
+	 * in the file system.
+	 * <p>Can be used to add to mappings from a Hibernate XML config file,
+	 * or to specify all mappings locally.
+	 * @see Configuration#addCacheableFile(File)
+	 */
 	public void setCacheableMappingLocations(Resource... cacheableMappingLocations) {
 		this.cacheableMappingLocations = cacheableMappingLocations;
 	}
 
+	/**
+	 * Set locations of jar files that contain Hibernate mapping resources,
+	 * like "WEB-INF/lib/example.hbm.jar".
+	 * <p>Can be used to add to mappings from a Hibernate XML config file,
+	 * or to specify all mappings locally.
+	 * @see Configuration#addJar(File)
+	 */
 	public void setMappingJarLocations(Resource... mappingJarLocations) {
 		this.mappingJarLocations = mappingJarLocations;
 	}
 
+	/**
+	 * Set locations of directories that contain Hibernate mapping resources,
+	 * like "WEB-INF/mappings".
+	 * <p>Can be used to add to mappings from a Hibernate XML config file,
+	 * or to specify all mappings locally.
+	 * @see Configuration#addDirectory(File)
+	 */
 	public void setMappingDirectoryLocations(Resource... mappingDirectoryLocations) {
 		this.mappingDirectoryLocations = mappingDirectoryLocations;
 	}
 
+	/**
+	 * Set a Hibernate entity interceptor that allows to inspect and change
+	 * property values before writing to and reading from the database.
+	 * Will get applied to any new Session created by this factory.
+	 * @see Configuration#setInterceptor
+	 */
 	public void setEntityInterceptor(Interceptor entityInterceptor) {
 		this.entityInterceptor = entityInterceptor;
 	}
 
+	/**
+	 * Set a Hibernate 5.0 ImplicitNamingStrategy for the SessionFactory.
+	 * @see Configuration#setImplicitNamingStrategy
+	 */
 	public void setImplicitNamingStrategy(ImplicitNamingStrategy implicitNamingStrategy) {
 		this.implicitNamingStrategy = implicitNamingStrategy;
 	}
 
+	/**
+	 * Set a Hibernate 5.0 PhysicalNamingStrategy for the SessionFactory.
+	 * @see Configuration#setPhysicalNamingStrategy
+	 */
 	public void setPhysicalNamingStrategy(PhysicalNamingStrategy physicalNamingStrategy) {
 		this.physicalNamingStrategy = physicalNamingStrategy;
 	}
 
+	/**
+	 * Set the Spring {@link org.springframework.transaction.jta.JtaTransactionManager}
+	 * or the JTA {@link javax.transaction.TransactionManager} to be used with Hibernate,
+	 * if any. Implicitly sets up {@code JtaPlatform}.
+	 * @see LocalSessionFactoryBuilder#setJtaTransactionManager
+	 */
 	public void setJtaTransactionManager(Object jtaTransactionManager) {
 		this.jtaTransactionManager = jtaTransactionManager;
 	}
 
+	/**
+	 * Set a {@link CurrentTenantIdentifierResolver} to be passed on to the SessionFactory.
+	 * @see LocalSessionFactoryBuilder#setCurrentTenantIdentifierResolver
+	 */
 	public void setCurrentTenantIdentifierResolver(CurrentTenantIdentifierResolver currentTenantIdentifierResolver) {
 		this.currentTenantIdentifierResolver = currentTenantIdentifierResolver;
 	}
 
+	/**
+	 * Specify custom type filters for Spring-based scanning for entity classes.
+	 * <p>Default is to search all specified packages for classes annotated with
+	 * {@code @javax.persistence.Entity}, {@code @javax.persistence.Embeddable}
+	 * or {@code @javax.persistence.MappedSuperclass}.
+	 * @since 4.2
+	 * @see #setPackagesToScan
+	 */
 	public void setEntityTypeFilters(TypeFilter... entityTypeFilters) {
 		this.entityTypeFilters = entityTypeFilters;
 	}
 
+	/**
+	 * Set Hibernate properties, such as "hibernate.dialect".
+	 * <p>Note: Do not specify a transaction provider here when using
+	 * Spring-driven transactions. It is also advisable to omit connection
+	 * provider settings and use a Spring-set DataSource instead.
+	 * @see #setDataSource
+	 */
 	public void setHibernateProperties(Properties hibernateProperties) {
 		this.hibernateProperties = hibernateProperties;
 	}
 
+	/**
+	 * Return the Hibernate properties, if any. Mainly available for
+	 * configuration through property paths that specify individual keys.
+	 */
 	public Properties getHibernateProperties() {
 		if (this.hibernateProperties == null) {
 			this.hibernateProperties = new Properties();
 		}
-
 		return this.hibernateProperties;
 	}
 
-	public void setAnnotatedClasses(Class... annotatedClasses) {
+	/**
+	 * Specify annotated entity classes to register with this Hibernate SessionFactory.
+	 * @see Configuration#addAnnotatedClass(Class)
+	 */
+	public void setAnnotatedClasses(Class<?>... annotatedClasses) {
 		this.annotatedClasses = annotatedClasses;
 	}
 
+	/**
+	 * Specify the names of annotated packages, for which package-level
+	 * annotation metadata will be read.
+	 * @see Configuration#addPackage(String)
+	 */
 	public void setAnnotatedPackages(String... annotatedPackages) {
 		this.annotatedPackages = annotatedPackages;
 	}
 
+	/**
+	 * Specify packages to search for autodetection of your entity classes in the
+	 * classpath. This is analogous to Spring's component-scan feature
+	 * ({@link org.springframework.context.annotation.ClassPathBeanDefinitionScanner}).
+	 */
 	public void setPackagesToScan(String... packagesToScan) {
 		this.packagesToScan = packagesToScan;
 	}
 
+	@Override
 	public void setResourceLoader(ResourceLoader resourceLoader) {
 		this.resourcePatternResolver = ResourcePatternUtils.getResourcePatternResolver(resourceLoader);
 	}
 
+
+	@Override
 	public void afterPropertiesSet() throws IOException {
 		LocalSessionFactoryBuilder sfb = new LocalSessionFactoryBuilder(this.dataSource, this.resourcePatternResolver);
-		Resource[] registry;
-		int invalidate;
-		int arg3;
-		Resource resource;
-		if (this.configLocations != null) {
-			registry = this.configLocations;
-			invalidate = registry.length;
 
-			for (arg3 = 0; arg3 < invalidate; ++arg3) {
-				resource = registry[arg3];
+		if (this.configLocations != null) {
+			for (Resource resource : this.configLocations) {
+				// Load Hibernate configuration from given location.
 				sfb.configure(resource.getURL());
 			}
 		}
 
 		if (this.mappingResources != null) {
-			String[] arg9 = this.mappingResources;
-			invalidate = arg9.length;
-
-			for (arg3 = 0; arg3 < invalidate; ++arg3) {
-				String arg12 = arg9[arg3];
-				ClassPathResource file = new ClassPathResource(arg12.trim(),
-						this.resourcePatternResolver.getClassLoader());
-				sfb.addInputStream(file.getInputStream());
+			// Register given Hibernate mapping definitions, contained in resource files.
+			for (String mapping : this.mappingResources) {
+				Resource mr = new ClassPathResource(mapping.trim(), this.resourcePatternResolver.getClassLoader());
+				sfb.addInputStream(mr.getInputStream());
 			}
 		}
 
 		if (this.mappingLocations != null) {
-			registry = this.mappingLocations;
-			invalidate = registry.length;
-
-			for (arg3 = 0; arg3 < invalidate; ++arg3) {
-				resource = registry[arg3];
+			// Register given Hibernate mapping definitions, contained in resource files.
+			for (Resource resource : this.mappingLocations) {
 				sfb.addInputStream(resource.getInputStream());
 			}
 		}
 
 		if (this.cacheableMappingLocations != null) {
-			registry = this.cacheableMappingLocations;
-			invalidate = registry.length;
-
-			for (arg3 = 0; arg3 < invalidate; ++arg3) {
-				resource = registry[arg3];
+			// Register given cacheable Hibernate mapping definitions, read from the file system.
+			for (Resource resource : this.cacheableMappingLocations) {
 				sfb.addCacheableFile(resource.getFile());
 			}
 		}
 
 		if (this.mappingJarLocations != null) {
-			registry = this.mappingJarLocations;
-			invalidate = registry.length;
-
-			for (arg3 = 0; arg3 < invalidate; ++arg3) {
-				resource = registry[arg3];
+			// Register given Hibernate mapping definitions, contained in jar files.
+			for (Resource resource : this.mappingJarLocations) {
 				sfb.addJar(resource.getFile());
 			}
 		}
 
 		if (this.mappingDirectoryLocations != null) {
-			registry = this.mappingDirectoryLocations;
-			invalidate = registry.length;
-
-			for (arg3 = 0; arg3 < invalidate; ++arg3) {
-				resource = registry[arg3];
-				File arg13 = resource.getFile();
-				if (!arg13.isDirectory()) {
+			// Register all Hibernate mapping definitions in the given directories.
+			for (Resource resource : this.mappingDirectoryLocations) {
+				File file = resource.getFile();
+				if (!file.isDirectory()) {
 					throw new IllegalArgumentException(
 							"Mapping directory location [" + resource + "] does not denote a directory");
 				}
-
-				TreeSet sorted = new TreeSet();
-				this.add2FileList(arg13, sorted);
-				Iterator arg7 = sorted.iterator();
-
-				while (arg7.hasNext()) {
-					File hbm = (File) arg7.next();
-					sfb.addFile(hbm);
+				//解决多台Hibernate生成sql语句不一致问题（org.hibernate.mapping.Table.uniqueInteger）
+				TreeSet<File> sorted = new TreeSet<>();
+				add2FileList(file, sorted);
+				for(File hbm:sorted){
+					sfb.addFile(hbm);	
 				}
+				
 			}
 		}
 
@@ -266,59 +412,72 @@ public class GewaSessionFactoryBean extends HibernateExceptionTranslator
 			sfb.scanPackages(this.packagesToScan);
 		}
 
+		// Build SessionFactory instance.
 		this.configuration = sfb;
-		this.sessionFactory = this.buildSessionFactory(sfb);
-		if (this.gcacheNotifier != null) {
-			EventListenerRegistry arg10 = (EventListenerRegistry) ((SessionFactoryImpl) this.sessionFactory)
-					.getServiceRegistry().getService(EventListenerRegistry.class);
-			GcacheInvalidator arg11 = new GcacheInvalidator(this.gcacheNotifier);
-			arg10.getEventListenerGroup(EventType.POST_INSERT).appendListener(arg11);
-			arg10.getEventListenerGroup(EventType.POST_UPDATE).appendListener(arg11);
-			arg10.getEventListenerGroup(EventType.POST_DELETE).appendListener(arg11);
+		this.sessionFactory = buildSessionFactory(sfb);
+		if(gcacheNotifier!=null){
+			EventListenerRegistry registry = ((SessionFactoryImpl)this.sessionFactory).getServiceRegistry().getService(EventListenerRegistry.class);
+			GcacheInvalidator invalidate =  new GcacheInvalidator(gcacheNotifier);
+			registry.getEventListenerGroup(EventType.POST_INSERT).appendListener(invalidate);
+			registry.getEventListenerGroup(EventType.POST_UPDATE).appendListener(invalidate);
+			registry.getEventListenerGroup(EventType.POST_DELETE).appendListener(invalidate);
 		}
-
 	}
-
 	private void add2FileList(File dir, TreeSet<File> fileList) throws MappingException {
 		File[] files = dir.listFiles();
-		File[] arg3 = files;
-		int arg4 = files.length;
-
-		for (int arg5 = 0; arg5 < arg4; ++arg5) {
-			File file = arg3[arg5];
-			if (file.isDirectory()) {
-				this.add2FileList(file, fileList);
-			} else if (file.getName().endsWith(".hbm.xml")) {
+		for(File file: files){
+			if (file.isDirectory() ) {
+				add2FileList(file, fileList);
+			}else if ( file.getName().endsWith( ".hbm.xml" ) ) {
 				fileList.add(file);
 			}
 		}
-
 	}
-
+	/**
+	 * Subclasses can override this method to perform custom initialization
+	 * of the SessionFactory instance, creating it via the given Configuration
+	 * object that got prepared by this LocalSessionFactoryBean.
+	 * <p>The default implementation invokes LocalSessionFactoryBuilder's buildSessionFactory.
+	 * A custom implementation could prepare the instance in a specific way (e.g. applying
+	 * a custom ServiceRegistry) or use a custom SessionFactoryImpl subclass.
+	 * @param sfb LocalSessionFactoryBuilder prepared by this LocalSessionFactoryBean
+	 * @return the SessionFactory instance
+	 * @see LocalSessionFactoryBuilder#buildSessionFactory
+	 */
 	protected SessionFactory buildSessionFactory(LocalSessionFactoryBuilder sfb) {
 		return sfb.buildSessionFactory();
 	}
 
+	/**
+	 * Return the Hibernate Configuration object used to build the SessionFactory.
+	 * Allows for access to configuration metadata stored there (rarely needed).
+	 * @throws IllegalStateException if the Configuration object has not been initialized yet
+	 */
 	public final Configuration getConfiguration() {
 		if (this.configuration == null) {
 			throw new IllegalStateException("Configuration not initialized yet");
-		} else {
-			return this.configuration;
 		}
+		return this.configuration;
 	}
 
+
+	@Override
 	public SessionFactory getObject() {
 		return this.sessionFactory;
 	}
 
+	@Override
 	public Class<?> getObjectType() {
-		return this.sessionFactory != null ? this.sessionFactory.getClass() : SessionFactory.class;
+		return (this.sessionFactory != null ? this.sessionFactory.getClass() : SessionFactory.class);
 	}
 
+	@Override
 	public boolean isSingleton() {
 		return true;
 	}
 
+
+	@Override
 	public void destroy() {
 		this.sessionFactory.close();
 	}
@@ -326,4 +485,7 @@ public class GewaSessionFactoryBean extends HibernateExceptionTranslator
 	public void setGcacheNotifier(GcacheNotifier gcacheNotifier) {
 		this.gcacheNotifier = gcacheNotifier;
 	}
+
+
+
 }

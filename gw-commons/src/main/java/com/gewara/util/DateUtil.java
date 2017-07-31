@@ -1,7 +1,5 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
-import com.gewara.util.Util4Script;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,726 +7,749 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
 import org.apache.commons.lang.StringUtils;
-
-public class DateUtil implements Util4Script {
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28 02:05:17
+ */
+public class DateUtil implements Util4Script{
 	public static final DateUtil instance = new DateUtil();
-	public static final long m_second = 1000L;
-	public static final long m_minute = 60000L;
-	public static final long m_hour = 3600000L;
-	public static final long m_day = 86400000L;
-	private static int[] chweek = new int[] { 0, 7, 1, 2, 3, 4, 5, 6 };
-	private static String[] cnweek = new String[] { "", "Âë®Êó•", "Âë®‰∏Ä", "Âë®‰∫å", "Âë®‰∏â", "Âë®Âõõ", "Âë®‰∫î", "Âë®ÂÖ≠" };
-	private static String[] cnSimpleweek = new String[] { "", "Êó•", "‰∏Ä", "‰∫å", "‰∏â", "Âõõ", "‰∫î", "ÂÖ≠" };
-
-	public static final long timeMillis() {
+	public static final long m_second=1000;
+	public static final long m_minute=m_second*60;
+	public static final long m_hour=m_minute*60;
+	public static final long m_day=m_hour*24;
+	/**
+	* <p>DateUtil instances should NOT be constructed in standard programming.</p>
+	* <p>This constructor is public to permit tools that require a JavaBean instance
+	* to operate.</p>
+	 */
+	public DateUtil(){}
+	
+	/**
+	 * ªÒ»°œµÕ≥ ±º‰¥¡£¨∫¡√Îº∂
+	 * @return
+	 */
+	public static final long timeMillis(){
 		return System.currentTimeMillis();
 	}
-
-	public static final String currentDateStr() {
+	
+	/**
+	 * µ±«∞»’∆⁄◊÷∑˚¥Æ£¨yyyy-MM-dd
+	 * @return
+	 */
+	public static final String currentDateStr(){
 		return formatDate(currentTime());
 	}
-
-	public static final Date currentTime() {
+	
+	/**
+	 * ªÒ»°µ±«∞»’∆⁄
+	 * <br>≤Œº˚{@link #timeMillis()}
+	 * @return
+	 */
+	public static final Date currentTime(){
 		return new Date();
 	}
-
-	public static final String getCurFullTimestampStr() {
-		return formatTimestamp((Date) getCurFullTimestamp());
+	
+	/**
+	 * µ±«∞timestamp◊÷∑˚¥Æ£¨yyyy-MM-dd HH:mm:ss
+	 * <br>≤Œº˚{@link #format(Date, String)}
+	 * @return
+	 */
+	public static final String getCurFullTimestampStr(){
+		return formatTimestamp(getCurFullTimestamp());
 	}
-
-	public static final Timestamp getCurFullTimestamp() {
+	
+	/**
+	 * µ±«∞timestamp
+	 * <br>◊÷∑˚¥Æ¿‡–Õ∑µªÿ£¨≤Œº˚{@link  #currentTimestampStr()}
+	 * @return
+	 */
+	public static final Timestamp getCurFullTimestamp(){
 		return new Timestamp(System.currentTimeMillis());
 	}
-
-	public static final int nextMonth() {
+	
+	/**
+	 * µ±«∞‘¬∑›µƒœ¬“ª∏ˆ‘¬
+	 * <br>1‘¬∑›µƒœ¬“ª∏ˆ‘¬Œ™ 2£¨12‘¬∑›µƒœ¬“ª∏ˆ‘¬Œ™1
+	 * @return
+	 */
+	public static final int nextMonth(){
 		String next = format(new Date(), "M");
 		int nextMonth = Integer.parseInt(next) + 1;
-		return nextMonth == 13 ? 1 : nextMonth;
+		if(nextMonth==13) return 1;
+		return nextMonth;
 	}
-
-	public static final Date parseDate(String strDate) {
+	/**
+	 * parse date using default pattern yyyy-MM-dd
+	 * @param strDate
+	 * @return  ß∞‹∑µªÿnull
+	 */
+	public static final Date parseDate(String strDate){
 		Date date = null;
-
 		try {
-			SimpleDateFormat pe = new SimpleDateFormat("yyyy-MM-dd");
-			date = pe.parse(strDate);
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			date = dateFormat.parse(strDate);
 			return date;
-		} catch (Exception arg2) {
+		} catch (Exception pe) {
 			return null;
 		}
 	}
-
-	public static int getWeekOfYear(Timestamp time) {
+	public static int getWeekOfYear(Timestamp time){
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(getDateFromTimestamp(time));
-		int week = cal.get(3);
+		cal.setTime(DateUtil.getDateFromTimestamp(time));
+		int week = cal.get(Calendar.WEEK_OF_YEAR);
 		return week;
 	}
-
-	public static int getCnWeekOfYear(Timestamp time) {
+	/**
+	 * ÷–π˙¥´Õ≥“‚“Âµƒ÷‹£¨÷‹“ª◊ˆŒ™ø™ º
+	 * @param time
+	 * @return
+	 */
+	public static int getCnWeekOfYear(Timestamp time){
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(getDateFromTimestamp(time));
-		cal.setFirstDayOfWeek(2);
-		int week = cal.get(3);
+		cal.setTime(DateUtil.getDateFromTimestamp(time));
+		cal.setFirstDayOfWeek(Calendar.MONDAY);
+		int week = cal.get(Calendar.WEEK_OF_YEAR);
 		return week;
 	}
-
-	public static final Timestamp parseTimestamp(String strDate) {
+	/**
+	 * ∏˘æ›date◊÷∑˚¥Æ£¨ªÒ»°timestamp
+	 * @param strDate ±ÿ–ÎŒ™ yyyy-MM-dd hh:mm:ss[.fffffffff]∏Ò Ω
+	 * @return  ß∞‹∑µªÿnull
+	 */
+	public static final Timestamp parseTimestamp(String strDate){
 		try {
-			Timestamp pe = Timestamp.valueOf(strDate);
-			return pe;
-		} catch (Exception arg1) {
+			// Timestamp format must be yyyy-mm-dd hh:mm:ss[.fffffffff]
+			Timestamp result = Timestamp.valueOf(strDate);
+			return result;
+		} catch (Exception pe) {
 			return null;
 		}
 	}
-
-	public static final Timestamp parseTimestamp(String strDate, String pattern) {
+	/**
+	 * @param strDate
+	 * @param format
+	 * @return
+	 */
+	public static final Timestamp parseTimestamp(String strDate, String pattern){
 		Date date = null;
-
 		try {
-			SimpleDateFormat pe = new SimpleDateFormat(pattern);
-			date = pe.parse(strDate);
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			date = dateFormat.parse(strDate);
 			return new Timestamp(date.getTime());
-		} catch (Exception arg3) {
+		} catch (Exception pe) {
 			return null;
 		}
 	}
 
-	public static final Date parseDate(String strDate, String pattern) {
+
+	/**
+	 * @param strDate
+	 * @param pattern
+	 * @return
+	 */
+	public static final Date parseDate(String strDate, String pattern){
 		SimpleDateFormat df = null;
 		Date date = null;
 		df = new SimpleDateFormat(pattern);
-
 		try {
 			date = df.parse(strDate);
 			return date;
-		} catch (Exception arg4) {
+		} catch (Exception pe) {
 			return null;
 		}
 	}
 
+	/**
+	 * @param date
+	 * @return formated date by yyyy-MM-dd
+	 */
 	public static final <T extends Date> String formatDate(T date) {
-		if (date == null) {
-			return null;
-		} else {
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			return dateFormat.format(date);
-		}
+		if(date==null) return null;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		return dateFormat.format(date);
 	}
 
+	/**
+	 * @param aDate
+	 * @return formated time by HH:mm:ss
+	 */
 	public static final <T extends Date> String formatTime(T date) {
-		if (date == null) {
-			return null;
-		} else {
-			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-			return timeFormat.format(date);
-		}
+		if(date==null) return null;
+		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+		return timeFormat.format(date);
 	}
-
+	/**
+	 * @param aDate
+	 * @return formated time by yyyy-MM-dd HH:mm:ss
+	 */
 	public static final <T extends Date> String formatTimestamp(T date) {
-		if (date == null) {
-			return null;
-		} else {
-			SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			return timestampFormat.format(date);
-		}
+		if(date==null) return null;
+		SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return timestampFormat.format(date);
+	}
+	public static final String formatTimestamp(Long mills){
+		return formatTimestamp(new Date(mills));
 	}
 
-	public static final String formatTimestamp(Long mills) {
-		return formatTimestamp(new Date(mills.longValue()));
-	}
-
+	/**
+	 * @param date
+	 * @param pattern: Date format pattern
+	 * @return
+	 */
 	public static final <T extends Date> String format(T date, String pattern) {
-		if (date == null) {
+		if(date==null) return null;
+		try{
+			SimpleDateFormat df = new SimpleDateFormat(pattern);
+			String result = df.format(date);
+			return result;
+		}catch(Exception e){
 			return null;
-		} else {
-			try {
-				SimpleDateFormat e = new SimpleDateFormat(pattern);
-				String result = e.format(date);
-				return result;
-			} catch (Exception arg3) {
-				return null;
-			}
 		}
 	}
 
-	public static final <T extends Date> T addTime(T original, int days, int hours, int minutes, int seconds) {
-		if (original == null) {
-			return null;
-		} else {
-			long newTime = original.getTime() + 86400000L * (long) days + 3600000L * (long) hours
-					+ 60000L * (long) minutes + 1000L * (long) seconds;
-			Date another = (Date) original.clone();
-			another.setTime(newTime);
-			return another;
-		}
+	/**
+	 * @param original
+	 * @param days
+	 * @param hours
+	 * @param minutes
+	 * @param seconds
+	 * @param mill
+	 * @return original+day+hour+minutes+seconds+millseconds
+	 */
+	public static final <T extends Date> T addTime(T original,int days, int hours, int minutes, int seconds){
+		if(original==null) return null;
+		long newTime=original.getTime()+m_day*days+m_hour*hours+m_minute*minutes+m_second*seconds;
+		T another = (T) original.clone();
+		another.setTime(newTime);
+		return another;
 	}
-
-	public static final <T extends Date> T addDay(T original, int days) {
-		if (original == null) {
-			return null;
-		} else {
-			long newTime = original.getTime() + 86400000L * (long) days;
-			Date another = (Date) original.clone();
-			another.setTime(newTime);
-			return another;
-		}
+	public static final <T extends Date> T addDay(T original,int days){
+		if(original==null) return null;
+		long newTime=original.getTime() + m_day * days;
+		T another = (T) original.clone();
+		another.setTime(newTime);
+		return another;
 	}
-
-	public static final <T extends Date> T addHour(T original, int hours) {
-		if (original == null) {
-			return null;
-		} else {
-			long newTime = original.getTime() + 3600000L * (long) hours;
-			Date another = (Date) original.clone();
-			another.setTime(newTime);
-			return another;
-		}
+	public static final <T extends Date> T addHour(T original, int hours){
+		if(original==null) return null;
+		long newTime=original.getTime()+m_hour*hours;
+		T another = (T) original.clone();
+		another.setTime(newTime);
+		return another;
 	}
-
-	public static final <T extends Date> T addMinute(T original, int minutes) {
-		if (original == null) {
-			return null;
-		} else {
-			long newTime = original.getTime() + 60000L * (long) minutes;
-			Date another = (Date) original.clone();
-			another.setTime(newTime);
-			return another;
-		}
+	public static final <T extends Date> T addMinute(T original, int minutes){
+		if(original==null) return null;
+		long newTime=original.getTime() + m_minute*minutes;
+		T another = (T) original.clone();
+		another.setTime(newTime);
+		return another;
 	}
-
-	public static final <T extends Date> T addSecond(T original, int second) {
-		if (original == null) {
-			return null;
-		} else {
-			long newTime = original.getTime() + 1000L * (long) second;
-			Date another = (Date) original.clone();
-			another.setTime(newTime);
-			return another;
-		}
+	public static final <T extends Date> T addSecond(T original, int second){
+		if(original==null) return null;
+		long newTime=original.getTime() + m_second*second;
+		T another = (T) original.clone();
+		another.setTime(newTime);
+		return another;
 	}
-
-	public static final <T extends Date> T getBeginningTimeOfDay(T day) {
-		if (day == null) {
-			return null;
-		} else {
-			String strDate = formatDate(day);
-			Long mill = Long.valueOf(parseDate(strDate).getTime());
-			Date another = (Date) day.clone();
-			another.setTime(mill.longValue());
-			return another;
-		}
+	
+	/**
+	 * @param day
+	 * @return for example ,1997/01/02 22:03:00,return 1997/01/02 00:00:00.0
+	 */
+	public static final <T extends Date> T getBeginningTimeOfDay(T day){
+		if(day==null) return null;
+		//new Date(0)=Thu Jan 01 08:00:00 CST 1970
+		String strDate = formatDate(day);
+		Long mill = parseDate(strDate).getTime();
+		T another = (T) day.clone();
+		another.setTime(mill);
+		return another;
 	}
-
-	public static final <T extends Date> T getLastTimeOfDay(T day) {
-		if (day == null) {
-			return null;
-		} else {
-			Long mill = Long.valueOf(getBeginningTimeOfDay(day).getTime() + 86400000L - 1L);
-			Date another = (Date) day.clone();
-			another.setTime(mill.longValue());
-			return another;
-		}
+	/**
+	 * @param day
+	 * @return for example ,1997/01/02 22:03:00,return 1997/01/02 23:59:59.999
+	 */
+	public static final <T extends Date> T getLastTimeOfDay(T day){
+		if(day==null) return null;
+		Long mill = getBeginningTimeOfDay(day).getTime() + m_day - 1;
+		T another = (T) day.clone();
+		another.setTime(mill);
+		return another;
 	}
-
-	public static final String formatTime(String time) {
-		if (time == null) {
-			return null;
-		} else {
-			time = StringUtils.trim(time);
-			if (StringUtils.isBlank(time)) {
-				throw new IllegalArgumentException("Êó∂Èó¥Ê†ºÂºèÊúâÈîôËØØÔºÅ");
-			} else {
-				time = time.replace('Ôºö', ':');
-				String[] times = time.split(":");
-				String result = "";
-				if (times[0].length() < 2) {
-					result = result + "0" + times[0] + ":";
-				} else {
-					result = result + times[0] + ":";
-				}
-
-				if (times.length > 1) {
-					if (times[1].length() < 2) {
-						result = result + "0" + times[1];
-					} else {
-						result = result + times[1];
-					}
-				} else {
-					result = result + "00";
-				}
-
-				Timestamp.valueOf("2001-01-01 " + result + ":00");
-				return result;
-			}
+	/**
+	 * 09:00:00,09:07:00 ---> 9:00,9:7:00
+	 * @param time
+	 * @return
+	 */
+	public static final String formatTime(String time){
+		if(time==null) return null;
+		time = StringUtils.trim(time);
+		if(StringUtils.isBlank(time)) throw new IllegalArgumentException(" ±º‰∏Ò Ω”–¥ÌŒÛ£°");
+		time = time.replace('£∫', ':');
+		String[] times = time.split(":");
+		String result="";
+		if(times[0].length()<2) result += "0" + times[0]+":";
+		else result += times[0]+":";
+		if(times.length > 1){
+			if(times[1].length()<2) result += "0" + times[1];
+			else result += times[1];
+		}else{
+			result += "00";
 		}
+		java.sql.Timestamp.valueOf("2001-01-01 " + result + ":00");
+		return result;
 	}
-
 	public static boolean isTomorrow(Date date) {
-		return date == null ? false : formatDate(addTime(new Date(), 1, 0, 0, 0)).equals(formatDate(date));
+		if(date==null) return false;
+		if(formatDate(addTime(new Date(), 1, 0, 0, 0)).equals(formatDate(date))) return true;
+		return false;
 	}
-
+	/***
+	 * @param date
+	 * @return 1,2,3,4,5,6,7
+	 */
+	private static int[] chweek = new int[]{0,7,1,2,3,4,5,6};
+	/**
+	 * @param date
+	 * @return 1,2,3,4,5,6,7
+	 */
 	public static Integer getWeek(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			return Integer.valueOf(chweek[c.get(7)]);
-		}
+		if(date==null) return null;
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		return chweek[c.get(Calendar.DAY_OF_WEEK)];
 	}
-
-	public static Date getCurDateByWeek(Integer week) {
-		if (week != null && week.intValue() >= 0 && week.intValue() <= 7) {
-			Calendar calendar = Calendar.getInstance();
-			calendar.set(7, week.intValue());
-			return calendar.getTime();
-		} else {
-			return currentTime();
-		}
+	
+	public static Date getCurDateByWeek(Integer week){
+		if(week == null || week<0 || week >7) return DateUtil.currentTime();
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DAY_OF_WEEK, week);
+		return calendar.getTime();
 	}
-
-	public static String getCnWeek(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			return cnweek[c.get(7)];
-		}
+	
+	private static String[] cnweek = new String[]{"", "÷‹»’", "÷‹“ª", "÷‹∂˛", "÷‹»˝", "÷‹Àƒ", "÷‹ŒÂ", "÷‹¡˘"};
+	private static String[] cnSimpleweek = new String[]{"", "»’", "“ª", "∂˛", "»˝", "Àƒ", "ŒÂ", "¡˘"};
+	/**
+	 * @param date
+	 * @return "÷‹»’", "÷‹“ª", "÷‹∂˛", "÷‹»˝", "÷‹Àƒ", "÷‹ŒÂ", "÷‹¡˘"
+	 */
+	public static String getCnWeek(Date date){
+		if(date==null) return null;
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		return cnweek[c.get(Calendar.DAY_OF_WEEK)];
 	}
-
-	public static String getCnSimpleWeek(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			return cnSimpleweek[c.get(7)];
-		}
+	/**
+	 * @param date
+	 * @return "»’", "“ª", "∂˛", "»˝", "Àƒ", "ŒÂ", "¡˘"
+	 */
+	public static String getCnSimpleWeek(Date date){
+		if(date==null) return null;
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		return cnSimpleweek[c.get(Calendar.DAY_OF_WEEK)];
 	}
-
-	public static Integer getCurrentDay() {
+	public static Integer getCurrentDay(){
 		return getDay(new Date());
 	}
-
-	public static Integer getCurrentMonth() {
+	public static Integer getCurrentMonth(){
 		return getMonth(new Date());
 	}
-
 	public static Integer getCurrentYear() {
 		return getYear(new Date());
 	}
-
 	public static Integer getYear(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			String year = format(date, "yyyy");
-			return Integer.valueOf(Integer.parseInt(year));
-		}
+		if(date==null) return null;
+		String year = DateUtil.format(date, "yyyy");
+		return Integer.parseInt(year);
 	}
-
 	public static Integer getDay(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			String year = format(date, "d");
-			return Integer.valueOf(Integer.parseInt(year));
-		}
+		if(date==null) return null;
+		String year = DateUtil.format(date, "d");
+		return Integer.parseInt(year);
 	}
-
+	/**
+	 * @param date
+	 * @return »’∆⁄À˘‘⁄‘¬∑›
+	 */
 	public static Integer getMonth(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			String month = format(date, "M");
-			return Integer.valueOf(Integer.parseInt(month));
-		}
+		if(date==null) return null;
+		String month = format(date, "M");
+		return Integer.parseInt(month);
 	}
 
 	public static Integer getCurrentHour(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			String hour = format(date, "H");
-			return Integer.valueOf(Integer.parseInt(hour));
-		}
+		if(date==null) return null;
+		String hour = DateUtil.format(date, "H");
+		return Integer.parseInt(hour);
 	}
-
 	public static Integer getCurrentMin(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			String hour = format(date, "m");
-			return Integer.valueOf(Integer.parseInt(hour));
+		if(date==null) return null;
+		String hour = DateUtil.format(date, "m");
+		return Integer.parseInt(hour);
+	}
+	public static String getCurDateStr(){
+		return DateUtil.formatDate(new Date());
+	}
+	public static String getCurTimeStr(){
+		return DateUtil.formatTimestamp(new Date());
+	}
+	public static boolean isAfter(Date date){
+		if(date == null) return false;
+		if(date.after(new Date())){
+			return true;
 		}
+		return false;
 	}
-
-	public static String getCurDateStr() {
-		return formatDate(new Date());
-	}
-
-	public static String getCurTimeStr() {
-		return formatTimestamp(new Date());
-	}
-
-	public static boolean isAfter(Date date) {
-		return date == null ? false : date.after(new Date());
-	}
-
+	/**
+	 * ªÒ»°dateÀ˘‘⁄‘¬∑›µƒ–«∆⁄Œ™weektype«“»’∆⁄‘⁄date÷Æ∫Û£®ªÚµ»”⁄£©µƒÀ˘”–»’∆⁄
+	 * @param weektype
+	 * @return
+	 */
 	public static List<Date> getWeekDateList(Date date, String weektype) {
-		int curMonth = getMonth(date).intValue();
+		int curMonth = getMonth(date);
 		int week = Integer.parseInt(weektype);
-		int curWeek = getWeek(date).intValue();
+		int curWeek = getWeek(date);
 		int sub = (7 + week - curWeek) % 7;
 		Date next = addDay(date, sub);
-
-		ArrayList result;
-		for (result = new ArrayList(); getMonth(next).intValue() == curMonth; next = addDay(next, 7)) {
-			result.add(next);
-		}
-
-		return result;
-	}
-
-	public static List<Date> getWeekDateList(Date date, String weektype, int num) {
-		int week = Integer.parseInt(weektype);
-		int curWeek = getWeek(date).intValue();
-		ArrayList result = new ArrayList();
-		int sub = (7 + week - curWeek) % 7;
-		Date next = addDay(date, sub);
-
-		for (int i = 0; i < num; ++i) {
+		List<Date> result = new ArrayList<Date>();
+		while(getMonth(next) == curMonth){
 			result.add(next);
 			next = addDay(next, 7);
 		}
-
 		return result;
 	}
-
-	public static List<Date> getCurWeekDateList(Date date) {
-		int curWeek = getWeek(date).intValue();
-		ArrayList dateList = new ArrayList();
-
-		for (int i = 1; i <= 7; ++i) {
-			dateList.add(addDay(date, -curWeek + i));
+	/**
+	 * ªÒ»°date÷Æ∫Û(∞¸¿®date)µƒnum∏ˆ–«∆⁄Œ™weektype»’∆⁄£®≤ªœﬁ÷∆‘¬∑›£©
+	 * @param weektype
+	 * @return
+	 */
+	public static List<Date> getWeekDateList(Date date, String weektype, int num) {
+		int week = Integer.parseInt(weektype);
+		int curWeek = getWeek(date);
+		List<Date> result = new ArrayList<Date>();
+		int sub = (7 + week - curWeek) % 7;
+		Date next = addDay(date, sub);
+		for(int i=0; i<num; i++){
+			result.add(next);
+			next = addDay(next, 7);
 		}
-
+		return result;
+	}
+	/**
+	 * ªÒ»°dateÀ˘‘⁄–«∆⁄µƒ÷‹“ª÷¡÷‹»’µƒ»’∆⁄
+	 * @param date
+	 * @return
+	 */
+	public static List<Date> getCurWeekDateList(Date date){
+		int curWeek = getWeek(date);
+		List<Date> dateList = new ArrayList<Date>();
+		for(int i=1;i<=7;i++) dateList.add(DateUtil.addDay(date, -curWeek + i ));
 		return dateList;
 	}
-
-	public static Date getWeekLastDay(Date date) {
-		int curWeek = getWeek(date).intValue();
-		return addDay(date, 7 - curWeek);
+	public static Date getWeekLastDay(Date date){
+		int curWeek = getWeek(date);
+		return DateUtil.addDay(date, 7 - curWeek);
 	}
-
-	public static Date getCurDate() {
+	public static Date getCurDate(){
 		return getBeginningTimeOfDay(new Date());
 	}
-
+	/**
+	 * ªÒ»°»’∆⁄À˘‘⁄‘¬∑›µƒµ⁄“ªÃÏ
+	 * @param date
+	 * @return
+	 */
 	public static <T extends Date> T getMonthFirstDay(T date) {
-		if (date == null) {
-			return null;
-		} else {
-			String dateStr = format(date, "yyyy-MM") + "-01";
-			Long mill = Long.valueOf(parseDate(dateStr).getTime());
-			Date another = (Date) date.clone();
-			another.setTime(mill.longValue());
-			return another;
-		}
+		if(date == null) return null;
+		String dateStr = format(date, "yyyy-MM") + "-01";
+		Long mill = parseDate(dateStr).getTime();
+		T another = (T) date.clone();
+		another.setTime(mill);
+		return another;
 	}
-
+	
 	public static <T extends Date> T getNextMonthFirstDay(T day) {
-		if (day == null) {
-			return null;
-		} else {
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(day);
-			int month = calendar.get(2);
-			calendar.set(2, month + 1);
-			calendar.set(5, 1);
-			String datefor = format(calendar.getTime(), "yyyy-MM-dd");
-			Long mill = Long.valueOf(parseDate(datefor).getTime());
-			Date another = (Date) day.clone();
-			another.setTime(mill.longValue());
-			return another;
-		}
+		if(day==null) return null;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(day);
+		int month = calendar.get(Calendar.MONTH);
+		calendar.set(Calendar.MONTH, month +1);
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		String datefor = format(calendar.getTime(), "yyyy-MM-dd");
+		Long mill = parseDate(datefor).getTime();
+		T another = (T) day.clone();
+		another.setTime(mill);
+		return  another;
 	}
-
-	public static <T extends Date> T getMonthLastDay(T date) {
-		if (date == null) {
-			return null;
-		} else {
-			Calendar c = Calendar.getInstance();
-			c.setTime(date);
-			String dateStr = format(date, "yyyy-MM") + "-" + c.getActualMaximum(5);
-			Long mill = Long.valueOf(parseDate(dateStr).getTime());
-			Date another = (Date) date.clone();
-			another.setTime(mill.longValue());
-			return another;
-		}
+	/**
+	 * ªÒ»°»’∆⁄À˘‘⁄‘¬∑›µƒ◊Ó∫Û“ªÃÏ
+	 * @param days
+	 * @return
+	 */
+	public static <T extends Date> T  getMonthLastDay(T date){
+		if(date == null) return null;
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		String dateStr = format(date, "yyyy-MM") + "-" + c.getActualMaximum(Calendar.DAY_OF_MONTH);
+		Long mill = parseDate(dateStr).getTime();
+		T another = (T) date.clone();
+		another.setTime(mill);
+		return another;
 	}
-
-	public static String formatDate(int days) {
+	
+	public static String formatDate(int days){
 		return formatDate(addDay(new Date(), days));
 	}
-
+	/**
+	 * Ωÿ»° ±∑÷√Î∫Ûµƒ ±º‰
+	 * @return
+	 */
 	public static Timestamp getCurTruncTimestamp() {
-		return (Timestamp) getBeginningTimeOfDay(new Timestamp(System.currentTimeMillis()));
+		return getBeginningTimeOfDay(new Timestamp(System.currentTimeMillis()));
 	}
-
 	public static Integer getHour(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			String hour = format(date, "H");
-			return Integer.valueOf(Integer.parseInt(hour));
-		}
+		if(date==null) return null;
+		String hour = format(date, "H");
+		return Integer.parseInt(hour);
 	}
-
 	public static Integer getMinute(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			String m = format(date, "m");
-			return Integer.valueOf(Integer.parseInt(m));
-		}
+		if(date==null) return null;
+		String m = format(date, "m");
+		return Integer.parseInt(m);
 	}
-
 	public static String getTimeDesc(Timestamp time) {
-		if (time == null) {
-			return "";
-		} else {
-			Long ss = Long.valueOf(System.currentTimeMillis() - time.getTime());
-			Long minute = Long.valueOf(ss.longValue() / 60000L);
-			String timeContent;
-			Long hour;
-			if (minute.longValue() < 1L) {
-				hour = Long.valueOf(ss.longValue() / 1000L);
-				timeContent = hour + "ÁßíÂâç";
-			} else if (minute.longValue() >= 60L) {
-				hour = Long.valueOf(minute.longValue() / 60L);
-				if (hour.longValue() >= 24L) {
-					if (hour.longValue() > 720L) {
-						timeContent = "1ÊúàÂâç";
-					} else if (hour.longValue() > 168L && hour.longValue() <= 720L) {
-						timeContent = hour.longValue() / 168L + "Âë®Ââç";
-					} else {
-						timeContent = hour.longValue() / 24L + "Â§©Ââç";
-					}
-				} else {
-					timeContent = hour + "Â∞èÊó∂Ââç";
-				}
-			} else {
-				timeContent = minute + "ÂàÜÈíüÂâç";
+		if(time==null) return "";
+		String timeContent;
+		Long ss = System.currentTimeMillis()-time.getTime();
+		Long minute = ss/60000;
+		if (minute<1) {
+			Long second = ss/1000;
+			timeContent =  second+"√Î«∞";
+		}else if(minute>=60){
+			Long hour = minute/60;
+			if(hour>=24){
+				if(hour>720)timeContent= "1‘¬«∞";
+				else if(hour>168 && hour<=720) timeContent= (hour/168)+"÷‹«∞";
+				else timeContent = (hour/24)+"ÃÏ«∞";
+			}else{
+				timeContent =  hour+"–° ±«∞";
 			}
-
-			return timeContent;
+		}else{
+			timeContent = minute+"∑÷÷”«∞";
 		}
+		return timeContent;
 	}
-
+	
 	public static String getDateDesc(Date time) {
-		if (time == null) {
-			return "";
-		} else {
-			Long ss = Long.valueOf(System.currentTimeMillis() - time.getTime());
-			Long minute = Long.valueOf(ss.longValue() / 60000L);
-			String timeContent;
-			Long hour;
-			if (minute.longValue() < 1L) {
-				hour = Long.valueOf(ss.longValue() / 1000L);
-				timeContent = hour + "ÁßíÂâç";
-			} else if (minute.longValue() >= 60L) {
-				hour = Long.valueOf(minute.longValue() / 60L);
-				if (hour.longValue() >= 24L) {
-					if (hour.longValue() > 720L) {
-						timeContent = "1ÊúàÂâç";
-					} else if (hour.longValue() > 168L && hour.longValue() <= 720L) {
-						timeContent = hour.longValue() / 168L + "Âë®Ââç";
-					} else {
-						timeContent = hour.longValue() / 24L + "Â§©Ââç";
-					}
-				} else {
-					timeContent = hour + "Â∞èÊó∂Ââç";
-				}
-			} else {
-				timeContent = minute + "ÂàÜÈíüÂâç";
+		if(time==null) return "";
+		String timeContent;
+		Long ss = System.currentTimeMillis()-time.getTime();
+		Long minute = ss/60000;
+		if (minute<1) {
+			Long second = ss/1000;
+			timeContent = second+"√Î«∞";
+		}else if(minute>=60){
+			Long hour = minute/60;
+			if(hour>=24){
+				if(hour>720)timeContent= "1‘¬«∞";
+				else if(hour>168 && hour<=720) timeContent= (hour/168)+"÷‹«∞";
+				else timeContent = (hour/24)+"ÃÏ«∞";
+			}else{
+				timeContent =  hour+"–° ±«∞";
 			}
-
-			return timeContent;
+		}else{
+			timeContent = minute+"∑÷÷”«∞";
 		}
+		return timeContent;
 	}
-
-	public static String getMonthAndDay(Date date) {
+	
+	/**
+	 *  author: bob
+	 *  date:	20100729
+	 *  Ωÿ»°»’∆⁄, »•µÙƒÍ∑›
+	 *  param: 	date1
+	 *  eg. ¥´»Î"1986-07-28", ∑µªÿ 07-28 
+	 */
+	public static String getMonthAndDay(Date date){
 		return formatDate(date).substring(5);
 	}
-
-	public static Date getMillDate() {
+	public static Date getMillDate(){
 		return new Date();
 	}
-
-	public static Timestamp getMillTimestamp() {
+	public static Timestamp getMillTimestamp(){
 		return new Timestamp(System.currentTimeMillis());
 	}
-
-	public static final <T extends Date> String getDiffDayStr(T day1, T day2) {
-		if (day1 != null && day2 != null) {
-			long diff = day1.getTime() - day2.getTime();
-			long sign = diff / Math.abs(diff);
-			if (sign < 0L) {
-				return "Â∑≤ÁªèËøáÊúü";
-			} else {
-				diff = Math.abs(diff) / 1000L;
-				long day = diff / 3600L / 24L;
-				long hour = (diff - day * 3600L * 24L) / 3600L;
-				long minu = diff % 3600L / 60L;
-				return (day == 0L ? "" : day + "Â§©") + (hour == 0L ? "" : hour + "Â∞èÊó∂") + (minu == 0L ? "" : minu + "ÂàÜ");
-			}
-		} else {
-			return "---";
-		}
+	/**
+	 *  ±º‰≤Ó£∫day1-day2
+	 * @param day1
+	 * @param day2
+	 * @return
+	 */
+	public static final <T extends Date> String getDiffDayStr(T day1, T day2){
+		if(day1==null || day2==null) return "---";
+		long diff = day1.getTime() - day2.getTime();
+		long sign = diff/Math.abs(diff);
+		if(sign < 0) return "“—æ≠π˝∆⁄";
+		diff = Math.abs(diff)/1000;
+		long day = diff/3600/24;
+		long hour = (diff-(day*3600*24))/3600;
+		long minu = diff%3600/60;
+		return (day==0?"":day+"ÃÏ") + (hour==0?"":hour+"–° ±") + (minu==0?"":minu+"∑÷");
 	}
-
-	public static final <T extends Date> String getDiffStr(T day1, T day2) {
-		if (day1 != null && day2 != null) {
-			long diff = day1.getTime() - day2.getTime();
-			long sign = diff / Math.abs(diff);
-			diff = Math.abs(diff) / 1000L;
-			long hour = diff / 3600L;
-			long minu = diff % 3600L / 60L;
-			long second = diff % 60L;
-			return (sign < 0L ? "-" : "+") + (hour == 0L ? "" : hour + "Â∞èÊó∂") + (minu == 0L ? "" : minu + "ÂàÜ")
-					+ (second == 0L ? "" : second + "Áßí");
-		} else {
-			return "---";
-		}
+	/**
+	 *  ±º‰≤Ó£∫day1-day2
+	 * @param day1
+	 * @param day2
+	 * @return
+	 */
+	public static final <T extends Date> String getDiffStr(T day1, T day2){
+		if(day1==null || day2==null) return "---";
+		long diff = day1.getTime() - day2.getTime();
+		long sign = diff/Math.abs(diff);
+		diff = Math.abs(diff)/1000;
+		long hour = diff/3600;
+		long minu = diff%3600/60;
+		long second = diff%60;
+		return (sign<0?"-":"+") + (hour==0?"":hour+"–° ±") + (minu==0?"":minu+"∑÷") + (second==0?"":second+"√Î");
 	}
-
-	public static final <T extends Date> long getDiffSecond(T day1, T day2) {
-		if (day1 != null && day2 != null) {
-			long diff = day1.getTime() - day2.getTime();
-			if (diff == 0L) {
-				return 0L;
-			} else {
-				long sign = diff / Math.abs(diff);
-				diff = Math.abs(diff) / 1000L;
-				return sign * diff;
-			}
-		} else {
-			return 0L;
-		}
+	/**
+	 *  ±º‰≤Ó£®√Î£©£∫day1-day2
+	 * @param day1
+	 * @param day2
+	 * @return
+	 */
+	public static final <T extends Date> long getDiffSecond(T day1, T day2){
+		if(day1==null || day2==null) return 0;
+		long diff = day1.getTime() - day2.getTime();
+		if(diff == 0) return 0;
+		long sign = diff/Math.abs(diff);
+		diff = Math.abs(diff)/1000;
+		return sign * diff;
 	}
-
-	public static final <T extends Date> double getDiffMinu(T day1, T day2) {
-		if (day1 != null && day2 != null) {
-			long diff = day1.getTime() - day2.getTime();
-			if (diff == 0L) {
-				return 0.0D;
-			} else {
-				long sign = diff / Math.abs(diff);
-				diff = Math.abs(diff) / 1000L;
-				return (double) Math.round((double) diff * 1.0D * 10.0D / 6.0D) / 100.0D * (double) sign;
-			}
-		} else {
-			return 0.0D;
-		}
+	/**
+	 *  ±º‰≤Ó£®∑÷÷”£©£∫day1-day2
+	 * @param day1
+	 * @param day2
+	 * @return
+	 */
+	public static final <T extends Date> double getDiffMinu(T day1, T day2){
+		if(day1==null || day2==null) return 0;
+		long diff = day1.getTime() - day2.getTime();
+		if(diff == 0) return 0;
+		long sign = diff/Math.abs(diff);
+		diff = Math.abs(diff)/1000;
+		return Math.round(diff * 1.0d * 10/6.0)/100.0 * sign;//¡ΩŒª–° ˝
 	}
-
-	public static final double getMillDiffMinu(long time1, long time2) {
+	/**
+	 *  ±º‰≤Ó£®∑÷£©£∫time1 - time2
+	 * @param time1
+	 * @param time2
+	 * @return
+	 */
+	public static final double getMillDiffMinu(long time1, long time2){
 		long diff = time1 - time2;
-		if (diff == 0L) {
-			return 0.0D;
-		} else {
-			long sign = diff / Math.abs(diff);
-			diff = Math.abs(diff) / 1000L;
-			return (double) Math.round((double) diff * 1.0D * 10.0D / 6.0D) / 100.0D * (double) sign;
+		if(diff == 0) return 0;
+		long sign = diff/Math.abs(diff);
+		diff = Math.abs(diff)/1000;
+		return Math.round(diff * 1.0d * 10/6.0)/100.0 * sign;//¡ΩŒª–° ˝
+	}
+	/**
+	 *  ±º‰≤Ó£®–° ±£©£∫day1 - day2
+	 * @param day1
+	 * @param day2
+	 * @return
+	 */
+	public static final <T extends Date> double getDiffHour(T day1, T day2){
+		if(day1==null || day2==null) return 0;
+		long diff = day1.getTime() - day2.getTime();
+		long sign = diff/Math.abs(diff);
+		diff = Math.abs(diff)/1000;
+		return Math.round(diff * 1.0d /3.6)/1000.0 * sign;//»˝Œª–° ˝
+	}
+	/**
+	 * @param day1
+	 * @param day2
+	 * @return »’∆⁄œ‡≤Ó’˚ ˝round(abs£®day1-day2))
+	 */
+	public static final <T extends Date> int getDiffDay(T day1, T day2){
+		if(day1==null || day2==null) return 0;
+		long diff = day1.getTime() - day2.getTime();
+		diff = Math.abs(diff)/1000;
+		return Math.round(diff/(3600*24));
+	}
+	public static boolean isAfterOneHour(Date date,String time){
+		String datetime = formatDate(date)+" "+time+":00";
+		if(addHour(parseTimestamp(datetime),-1).after(getMillTimestamp())){
+			return true;
 		}
+		return false;
 	}
-
-	public static final <T extends Date> double getDiffHour(T day1, T day2) {
-		if (day1 != null && day2 != null) {
-			long diff = day1.getTime() - day2.getTime();
-			long sign = diff / Math.abs(diff);
-			diff = Math.abs(diff) / 1000L;
-			return (double) Math.round((double) diff * 1.0D / 3.6D) / 1000.0D * (double) sign;
-		} else {
-			return 0.0D;
-		}
-	}
-
-	public static final <T extends Date> int getDiffDay(T day1, T day2) {
-		if (day1 != null && day2 != null) {
-			long diff = day1.getTime() - day2.getTime();
-			diff = Math.abs(diff) / 1000L;
-			return Math.round((float) (diff / 86400L));
-		} else {
-			return 0;
-		}
-	}
-
-	public static boolean isAfterOneHour(Date date, String time) {
-		String datetime = formatDate(date) + " " + time + ":00";
-		return ((Timestamp) addHour(parseTimestamp(datetime), -1)).after(getMillTimestamp());
-	}
-
 	public static boolean isValidDate(String fyrq) {
-		return parseDate(fyrq) != null;
+		return DateUtil.parseDate(fyrq)!=null;
 	}
-
-	public static <T extends Date> long getCurDateMills(T date) {
-		return date == null ? 0L : date.getTime();
+	
+	public static <T extends Date> long getCurDateMills(T date){
+		if(date == null) return 0;
+		return date.getTime();
 	}
-
-	public static Timestamp getBeginTimestamp(Date date) {
+	
+	/**
+	 *  eg.  1997/01/02 22:03:00,return 1997/01/02 00:00:00.0
+	 **/
+	public static Timestamp getBeginTimestamp(Date date){
 		return new Timestamp(getBeginningTimeOfDay(date).getTime());
 	}
-
-	public static Timestamp getEndTimestamp(Date date) {
+	public static Timestamp getEndTimestamp(Date date){
 		return new Timestamp(getLastTimeOfDay(date).getTime());
 	}
-
-	public static Date getDateFromTimestamp(Timestamp timestamp) {
-		return timestamp == null ? null : new Date(timestamp.getTime());
+	/**
+	 * @param timestamp
+	 * @return
+	 */
+	public static Date getDateFromTimestamp(Timestamp timestamp){
+		if(timestamp==null) return null;
+		return new Date(timestamp.getTime());
 	}
-
-	public static int after(Date date1, Date date2) {
+	
+	public static int after(Date date1, Date date2){
 		date1 = getBeginningTimeOfDay(date1);
 		date2 = getBeginningTimeOfDay(date2);
 		return date1.compareTo(date2);
 	}
-
-	public static Timestamp mill2Timestamp(Long mill) {
-		return mill == null ? null : new Timestamp(mill.longValue());
+	public static Timestamp mill2Timestamp(Long mill){
+		if(mill==null) return null;
+		return new Timestamp(mill);
 	}
-
-	public static int subCurTimeSend() {
-		Timestamp curtime = getCurFullTimestamp();
-		Timestamp endtime = (Timestamp) getLastTimeOfDay(curtime);
-		Long scopeSecond = Long.valueOf(getDiffSecond(endtime, curtime));
+	
+	public static int subCurTimeSend(){
+		Timestamp curtime = DateUtil.getCurFullTimestamp();
+		Timestamp endtime = DateUtil.getLastTimeOfDay(curtime);
+		Long scopeSecond = DateUtil.getDiffSecond(endtime, curtime);
 		return scopeSecond.intValue();
 	}
-
+	/**
+	 * @param date
+	 * @param pattern: Date format pattern
+	 * @return
+	 */
 	public static final <T extends Date> String formatEn(T date, String pattern) {
-		if (date == null) {
+		if(date==null) return null;
+		try{
+			SimpleDateFormat df = new SimpleDateFormat(pattern, Locale.ENGLISH);
+			String result = df.format(date);
+			return result;
+		}catch(Exception e){
 			return null;
-		} else {
-			try {
-				SimpleDateFormat e = new SimpleDateFormat(pattern, Locale.ENGLISH);
-				String result = e.format(date);
-				return result;
-			} catch (Exception arg3) {
-				return null;
-			}
 		}
 	}
-
-	public static String getCurrAddHour(int hour) {
-		return formatTimestamp(Long.valueOf(System.currentTimeMillis() + 3600000L * (long) hour));
+	
+	public static String getCurrAddHour(int hour){
+		return formatTimestamp(System.currentTimeMillis() + m_hour * hour);
 	}
-
-	public static String getCurrAddDay(int day) {
-		return formatTimestamp(Long.valueOf(System.currentTimeMillis() + 86400000L * (long) day));
+	
+	public static String getCurrAddDay(int day){
+		return formatTimestamp(System.currentTimeMillis() + m_day * day);
 	}
 }

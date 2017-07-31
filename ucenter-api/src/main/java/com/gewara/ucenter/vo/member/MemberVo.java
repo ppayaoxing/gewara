@@ -1,28 +1,37 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
+/**
+ * 
+ */
 package com.gewara.ucenter.vo.member;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
-public class MemberVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+import com.gewara.ucenter.constant.MemberConstant;
+
+/**
+ * @author hxs(ncng_2006@hotmail.com)
+ * @since Jan 27, 2010 10:18:24 AM
+ */
+public class MemberVo extends BaseVo{
 	private static final long serialVersionUID = -5010141453720441090L;
 	private Long id;
 	private String nickname;
 	private String email;
 	private String mobile;
 	private String rejected;
-	private String bindStatus;
+	private String bindStatus;		
 	private String headpicUrl;
 	private Timestamp addtime;
-	private long lastLoginTime;
-	private String needValid;
+	private long lastLoginTime; //用户最后登录时间戳
+	private String needValid;	//黄牛可能性：Y 需要短信回复验证，N：不需要验证，U：暂不需要验证
 	private String memberEncode;
 	private String gewara_uskey_;
-
+	
 	public String getNeedValid() {
-		return this.needValid;
+		return needValid;
 	}
 
 	public void setNeedValid(String needValid) {
@@ -30,7 +39,7 @@ public class MemberVo extends BaseVo {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -38,7 +47,7 @@ public class MemberVo extends BaseVo {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -46,7 +55,7 @@ public class MemberVo extends BaseVo {
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -54,19 +63,20 @@ public class MemberVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public String getRejected() {
-		return this.rejected;
+		return rejected;
 	}
 
 	public void setRejected(String rejected) {
@@ -74,7 +84,7 @@ public class MemberVo extends BaseVo {
 	}
 
 	public String getBindStatus() {
-		return this.bindStatus;
+		return bindStatus;
 	}
 
 	public void setBindStatus(String bindStatus) {
@@ -82,7 +92,7 @@ public class MemberVo extends BaseVo {
 	}
 
 	public String getHeadpicUrl() {
-		return this.headpicUrl;
+		return headpicUrl;
 	}
 
 	public void setHeadpicUrl(String headpicUrl) {
@@ -90,7 +100,7 @@ public class MemberVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -98,7 +108,7 @@ public class MemberVo extends BaseVo {
 	}
 
 	public long getLastLoginTime() {
-		return this.lastLoginTime;
+		return lastLoginTime;
 	}
 
 	public void setLastLoginTime(long lastLoginTime) {
@@ -112,20 +122,23 @@ public class MemberVo extends BaseVo {
 	public void setGewara_uskey_(String gewara_uskey_) {
 		this.gewara_uskey_ = gewara_uskey_;
 	}
-
-	public String getHeadpic() {
-		return this.headpicUrl;
+	public String getHeadpic(){
+		return headpicUrl;
 	}
 
-	public String gainMemberEncodeOrSessid() {
-		return StringUtils.isNotBlank(this.memberEncode) ? this.memberEncode : this.gewara_uskey_;
+	public String gainMemberEncodeOrSessid(){
+		if(StringUtils.isNotBlank(memberEncode)){
+			return memberEncode;
+		}else{
+			return gewara_uskey_;
+		}
 	}
-
+	
 	public boolean isEnabled() {
-		return "N".equals(this.rejected);
+		return "N".equals(rejected);
 	}
-
-	public boolean isBindMobile() {
-		return StringUtils.isNotBlank(this.mobile) && StringUtils.startsWith(this.bindStatus, "Y");
+	
+	public boolean isBindMobile(){
+		return StringUtils.isNotBlank(mobile) && StringUtils.startsWith(bindStatus, MemberConstant.BINDMOBILE_STATUS_Y);
 	}
 }

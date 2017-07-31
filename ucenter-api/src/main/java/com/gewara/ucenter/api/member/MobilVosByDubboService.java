@@ -1,10 +1,12 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.api.member;
-
 import com.gewara.support.ErrorCode;
-
+/*
+ * 根据手机号、tag校验验证码用dubbo实现定义的接口
+ * 彭迪
+ * 2014年10月28日
+ */
 public interface MobilVosByDubboService {
-	ErrorCode<String> validateMobileCheckByTag(String arg0, String arg1, String arg2);
-
-	ErrorCode<String> sendMobileCheckByTag(String arg0, String arg1, String arg2);
+	public ErrorCode<String> validateMobileCheckByTag(String mobile, String tag, String checkpass);
+	public ErrorCode<String> sendMobileCheckByTag(String mobile, String tag,String ip);
+  
 }

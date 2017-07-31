@@ -1,5 +1,8 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
+/**
+ * 只用于GroovyScript改进
+ */
 public interface Util4Script {
+
 }

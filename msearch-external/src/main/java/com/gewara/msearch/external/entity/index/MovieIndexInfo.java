@@ -1,45 +1,84 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.msearch.external.entity.index;
 
-import com.gewara.msearch.external.entity.index.IndexData;
 import java.util.List;
 
-public class MovieIndexInfo extends IndexData {
+/**
+ * 电影的信息
+ * 
+ * @author 董明
+ * @createDate 2015年6月3日
+ */
+public class MovieIndexInfo  extends IndexData {
+
 	private static final long serialVersionUID = 7074469411495043856L;
-	private String name = null;
-	private String ename = null;
-	private List<String> aliases = null;
-	private List<String> directors = null;
-	private List<String> protagonists = null;
-	private List<String> actors = null;
-	private String desc = null;
+	
+	private String name = null;//中文名称
+	private String ename = null;//英文名称
+	private List<String> aliases=null;//电影别名
+	
 
+	private List<String> directors = null; //导演列表
+	private List<String> protagonists = null;//演员列表
+	private List<String> actors = null;//角色列表
+	private String desc = null;//电影简介
+	
+	
+	/**
+	 * 影片的别名
+	 * @return
+	 */
 	public List<String> getAliases() {
-		return this.aliases;
+		return aliases;
 	}
 
+	
+	
+	/**
+	 * 影片中文名称
+	 * @return
+	 */
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
+	/**
+	 * 影片英文名称
+	 * @return
+	 */
 	public String getEname() {
-		return this.ename;
+		return ename;
 	}
 
+	/**
+	 * 影片的导演列表
+	 * @return
+	 */
 	public List<String> getDirectors() {
-		return this.directors;
+		return directors;
 	}
 
+	/**
+	 * 影片的演员列表
+	 * @return
+	 */
 	public List<String> getProtagonists() {
-		return this.protagonists;
+		return protagonists;
 	}
 
+	/**
+	 * 影片的角色列表
+	 * @return
+	 */
 	public List<String> getActors() {
-		return this.actors;
+		return actors;
 	}
 
+	/**
+	 * 影片的简介
+	 * @return
+	 */
 	public String getDesc() {
-		return this.desc;
+		return desc;
 	}
 
 	public void setName(String name) {
@@ -65,8 +104,9 @@ public class MovieIndexInfo extends IndexData {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-
+	
 	public void setAliases(List<String> aliases) {
 		this.aliases = aliases;
 	}
+
 }

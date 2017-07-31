@@ -1,140 +1,128 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support.magent;
 
-import com.gewara.Config;
-import com.gewara.monitor.JVMHelper;
-import com.gewara.support.magent.CmdMessage;
-import com.gewara.support.magent.CommandProcessor;
-import com.gewara.support.magent.CommandProcessorGroup;
-import com.gewara.util.DateUtil;
-import com.gewara.util.JsonUtils;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.Config;
+import com.gewara.monitor.JVMHelper;
+import com.gewara.util.DateUtil;
+import com.gewara.util.JsonUtils;
+
 public class JVMCommandProcessorGroup implements CommandProcessorGroup {
+
+	@Override
 	public String getGroupName() {
 		return "jvm";
 	}
 
+	@Override
 	public List<CommandProcessor> getCommandList() {
-		ArrayList result = new ArrayList();
-		result.add(new JVMCommandProcessorGroup.ThreadDumpCmd());
-		result.add(new JVMCommandProcessorGroup.ThreadDumpCmd2());
+		List<CommandProcessor> result = new ArrayList<CommandProcessor>();
+		result.add(new ThreadDumpCmd());
+		result.add(new ThreadDumpCmd2());
 		return result;
 	}
 
-	private class ThreadDumpCmd2 implements CommandProcessor {
-		private ThreadDumpCmd2() {
-		}
-
-		public String getName() {
-			return "dth2";
-		}
-
-		public String getGroup() {
-			return JVMCommandProcessorGroup.this.getGroupName();
-		}
-
-		public String getHelp() {
-			return "[json]åŒdthï¼Œä½†åŒ…å«é”ä¿¡æ¯ï¼Œæ¯”è¾ƒå…¨é¢";
-		}
-
-		public String getReply(CmdMessage cmdMsg) {
-			File savePath = new File("/opt/lamp/weblog/dump/");
-			if (!savePath.exists()) {
-				savePath.mkdirs();
-			}
-
-			String file = "full_" + Config.getHostname() + "_" + Config.SYSTEMID.toLowerCase() + "_"
-					+ DateUtil.format(new Date(), "yyyyMMddHHmmss") + ".tdump";
-			File dump = new File(savePath, file);
-			BufferedWriter writer = null;
-			HashMap result = new HashMap();
-
-			try {
-				writer = new BufferedWriter(new FileWriter(dump));
-				Map e = JVMHelper.exportMBeanThread(writer);
-				result.putAll(e);
-			} catch (Exception arg15) {
-				result.put("exception", arg15.getMessage());
-			} finally {
-				try {
-					writer.close();
-				} catch (Exception arg14) {
-					;
-				}
-
-			}
-
-			if (dump.exists()) {
-				result.put("file", file);
-				result.put("filesize", "" + dump.length());
-			}
-
-			return StringUtils.equals(cmdMsg.getParams(), "json")
-					? JsonUtils.writeMapToJson(result)
-					: result.toString().replace('{', ' ').replace('}', ' ');
-		}
-	}
-
 	private class ThreadDumpCmd implements CommandProcessor {
-		private ThreadDumpCmd() {
-		}
 
+		@Override
 		public String getName() {
 			return "dth";
 		}
 
+		@Override
 		public String getGroup() {
-			return JVMCommandProcessorGroup.this.getGroupName();
+			return getGroupName();
 		}
 
+		@Override
 		public String getHelp() {
-			return "[json] dumpå½“å‰çº¿ç¨‹ï¼Œä¿å­˜åœ¨â€œ/opt/lamp/weblog/dump/hostname_systemid_yyMMddHHmmss.tdump]â€ç›®å½•ä¸­ã€‚jsonè¡¨ç¤ºç»“æœè¿”å›Jsonæ ¼å¼(æœºå™¨ä¹‹é—´)";
+			return "[json] dumpµ±Ç°Ïß³Ì£¬±£´æÔÚ¡°/opt/lamp/weblog/dump/hostname_systemid_yyMMddHHmmss.tdump]¡±Ä¿Â¼ÖĞ¡£json±íÊ¾½á¹û·µ»ØJson¸ñÊ½(»úÆ÷Ö®¼ä)";
 		}
 
+		@Override
 		public String getReply(CmdMessage cmdMsg) {
 			File savePath = new File("/opt/lamp/weblog/dump/");
 			if (!savePath.exists()) {
 				savePath.mkdirs();
 			}
-
-			String file = Config.getHostname() + "_" + Config.SYSTEMID.toLowerCase() + "_"
-					+ DateUtil.format(new Date(), "yyyyMMddHHmmss") + ".tdump";
+			String file = Config.getHostname() + "_" + Config.SYSTEMID.toLowerCase() + "_" + DateUtil.format(new Date(), "yyyyMMddHHmmss") + ".tdump";
 			File dump = new File(savePath, file);
-			BufferedWriter writer = null;
-			HashMap result = new HashMap();
-
-			try {
+			Writer writer = null;
+			Map<String, String> result = new HashMap<String, String>();
+			try{
 				writer = new BufferedWriter(new FileWriter(dump));
-				Map e = JVMHelper.exportThread(writer);
-				result.putAll(e);
-			} catch (Exception arg15) {
-				result.put("exception", arg15.getMessage());
-			} finally {
-				try {
-					writer.close();
-				} catch (Exception arg14) {
-					;
-				}
-
+				Map<String, String> exp = JVMHelper.exportThread(writer);
+				result.putAll(exp);
+			}catch(Exception e){
+				result.put("exception", e.getMessage());
+			}finally{
+				try{writer.close();}catch(Exception e){}
 			}
-
 			result.put("file", file);
-			if (dump.exists()) {
+			if(dump.exists()){
 				result.put("filesize", "" + dump.length());
 			}
+			if (StringUtils.equals(cmdMsg.getParams(), "json")) {
+				return JsonUtils.writeMapToJson(result);
+			}
+			return result.toString().replace('{', ' ').replace('}', ' ');
+		}
+	}
 
-			return StringUtils.equals(cmdMsg.getParams(), "json")
-					? JsonUtils.writeMapToJson(result)
-					: result.toString().replace('{', ' ').replace('}', ' ');
+	private class ThreadDumpCmd2 implements CommandProcessor {
+
+		@Override
+		public String getName() {
+			return "dth2";
+		}
+
+		@Override
+		public String getGroup() {
+			return getGroupName();
+		}
+
+		@Override
+		public String getHelp() {
+			return "[json]Í¬dth£¬µ«°üº¬ËøĞÅÏ¢£¬±È½ÏÈ«Ãæ";
+		}
+
+		@Override
+		public String getReply(CmdMessage cmdMsg) {
+			File savePath = new File("/opt/lamp/weblog/dump/");
+			if (!savePath.exists()) {
+				savePath.mkdirs();
+			}
+			String file = "full_" + Config.getHostname() + "_" + Config.SYSTEMID.toLowerCase() + "_" + DateUtil.format(new Date(), "yyyyMMddHHmmss") + ".tdump";
+			File dump = new File(savePath, file);
+			Writer writer = null;
+			Map<String, String> result = new HashMap<String, String>();
+			try{
+				writer = new BufferedWriter(new FileWriter(dump));
+				Map<String, String> exp = JVMHelper.exportMBeanThread(writer);
+				result.putAll(exp);
+			}catch(Exception e){
+				result.put("exception", e.getMessage());
+			}finally{
+				try{writer.close();}catch(Exception e){}
+			}
+			if(dump.exists()){
+				 result.put("file", file);
+				 result.put("filesize", "" + dump.length());	
+			}
+			if (StringUtils.equals(cmdMsg.getParams(), "json")) {
+				return JsonUtils.writeMapToJson(result);
+			}
+			return result.toString().replace('{', ' ').replace('}', ' ');
 		}
 	}
 }

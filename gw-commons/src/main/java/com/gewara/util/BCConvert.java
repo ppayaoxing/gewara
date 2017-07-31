@@ -1,54 +1,91 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
+/**
+ * <PRE>
+ * Ìá¹©¶Ô×Ö·û´®µÄÈ«½Ç-&gt;°ë½Ç£¬°ë½Ç-&gt;È«½Ç×ª»»
+ * </PRE>
+ */
 public class BCConvert {
-	static final char DBC_CHAR_START = '!';
-	static final char DBC_CHAR_END = '~';
-	static final char SBC_CHAR_START = 'ï¼';
-	static final char SBC_CHAR_END = 'ï½';
-	static final int CONVERT_STEP = 65248;
-	static final char SBC_SPACE = 'ã€€';
-	static final char DBC_SPACE = ' ';
+	/**
+	 * ASCII±íÖĞ¿É¼û×Ö·û´Ó!¿ªÊ¼£¬Æ«ÒÆÎ»ÖµÎª33(Decimal)
+	 */
+	static final char DBC_CHAR_START = 33; // °ë½Ç!
 
+	/**
+	 * ASCII±íÖĞ¿É¼û×Ö·ûµ½~½áÊø£¬Æ«ÒÆÎ»ÖµÎª126(Decimal)
+	 */
+	static final char DBC_CHAR_END = 126; // °ë½Ç~
+
+	/**
+	 * È«½Ç¶ÔÓ¦ÓÚASCII±íµÄ¿É¼û×Ö·û´Ó£¡¿ªÊ¼£¬Æ«ÒÆÖµÎª65281
+	 */
+	static final char SBC_CHAR_START = 65281; // È«½Ç£¡
+
+	/**
+	 * È«½Ç¶ÔÓ¦ÓÚASCII±íµÄ¿É¼û×Ö·ûµ½¡«½áÊø£¬Æ«ÒÆÖµÎª65374
+	 */
+	static final char SBC_CHAR_END = 65374; // È«½Ç¡«
+
+	/**
+	 * ASCII±íÖĞ³ı¿Õ¸ñÍâµÄ¿É¼û×Ö·ûÓë¶ÔÓ¦µÄÈ«½Ç×Ö·ûµÄÏà¶ÔÆ«ÒÆ
+	 */
+	static final int CONVERT_STEP = 65248; // È«½Ç°ë½Ç×ª»»¼ä¸ô
+
+	/**
+	 * È«½Ç¿Õ¸ñµÄÖµ£¬ËüÃ»ÓĞ×ñ´ÓÓëASCIIµÄÏà¶ÔÆ«ÒÆ£¬±ØĞëµ¥¶À´¦Àí
+	 */
+	static final char SBC_SPACE = 12288; // È«½Ç¿Õ¸ñ 12288
+
+	/**
+	 * °ë½Ç¿Õ¸ñµÄÖµ£¬ÔÚASCIIÖĞÎª32(Decimal)
+	 */
+	static final char DBC_SPACE = ' '; // °ë½Ç¿Õ¸ñ
+
+	/**
+	 * <PRE>
+	 * °ë½Ç×Ö·û->È«½Ç×Ö·û×ª»»  
+	 * Ö»´¦Àí¿Õ¸ñ£¬!µ½&tilde;Ö®¼äµÄ×Ö·û£¬ºöÂÔÆäËû
+	 * </PRE>
+	 */
 	public static String DBC2SBC(String src) {
 		if (src == null) {
 			return src;
-		} else {
-			StringBuilder buf = new StringBuilder(src.length());
-			char[] ca = src.toCharArray();
-
-			for (int i = 0; i < ca.length; ++i) {
-				if (ca[i] == 32) {
-					buf.append('ã€€');
-				} else if (ca[i] >= 33 && ca[i] <= 126) {
-					buf.append((char) (ca[i] + 'ï» '));
-				} else {
-					buf.append(ca[i]);
-				}
-			}
-
-			return buf.toString();
 		}
+		StringBuilder buf = new StringBuilder(src.length());
+		char[] ca = src.toCharArray();
+		for (int i = 0; i < ca.length; i++) {
+			if (ca[i] == DBC_SPACE) { // Èç¹ûÊÇ°ë½Ç¿Õ¸ñ£¬Ö±½ÓÓÃÈ«½Ç¿Õ¸ñÌæ´ú
+				buf.append(SBC_SPACE);
+			} else if ((ca[i] >= DBC_CHAR_START) && (ca[i] <= DBC_CHAR_END)) { // ×Ö·ûÊÇ!µ½~Ö®¼äµÄ¿É¼û×Ö·û
+				buf.append((char) (ca[i] + CONVERT_STEP));
+			} else { // ²»¶Ô¿Õ¸ñÒÔ¼°ascii±íÖĞÆäËû¿É¼û×Ö·ûÖ®ÍâµÄ×Ö·û×öÈÎºÎ´¦Àí
+				buf.append(ca[i]);
+			}
+		}
+		return buf.toString();
 	}
 
+	/**
+	 * <PRE>
+	 * È«½Ç×Ö·û->°ë½Ç×Ö·û×ª»»  
+	 * Ö»´¦ÀíÈ«½ÇµÄ¿Õ¸ñ£¬È«½Ç£¡µ½È«½Ç¡«Ö®¼äµÄ×Ö·û£¬ºöÂÔÆäËû
+	 * </PRE>
+	 */
 	public static String SBC2DBC(String src) {
 		if (src == null) {
 			return src;
-		} else {
-			StringBuilder buf = new StringBuilder(src.length());
-			char[] ca = src.toCharArray();
-
-			for (int i = 0; i < src.length(); ++i) {
-				if (ca[i] >= 'ï¼' && ca[i] <= 'ï½') {
-					buf.append((char) (ca[i] - 'ï» '));
-				} else if (ca[i] == 12288) {
-					buf.append(' ');
-				} else {
-					buf.append(ca[i]);
-				}
-			}
-
-			return buf.toString();
 		}
+		StringBuilder buf = new StringBuilder(src.length());
+		char[] ca = src.toCharArray();
+		for (int i = 0; i < src.length(); i++) {
+			if (ca[i] >= SBC_CHAR_START && ca[i] <= SBC_CHAR_END) { // Èç¹ûÎ»ÓÚÈ«½Ç£¡µ½È«½Ç¡«Çø¼äÄÚ
+				buf.append((char) (ca[i] - CONVERT_STEP));
+			} else if (ca[i] == SBC_SPACE) { // Èç¹ûÊÇÈ«½Ç¿Õ¸ñ
+				buf.append(DBC_SPACE);
+			} else { // ²»´¦ÀíÈ«½Ç¿Õ¸ñ£¬È«½Ç£¡µ½È«½Ç¡«Çø¼äÍâµÄ×Ö·û
+				buf.append(ca[i]);
+			}
+		}
+		return buf.toString();
 	}
 }

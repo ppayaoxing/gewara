@@ -1,15 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.filter.library;
 
-import org.patchca.filter.library.AbstractTransformImageOp;
-
 public class RippleImageOp extends AbstractTransformImageOp {
-	protected double xWavelength = 20.0D;
-	protected double yWavelength = 10.0D;
-	protected double xAmplitude = 5.0D;
-	protected double yAmplitude = 5.0D;
-	protected double xRandom = 5.0D * Math.random();
-	protected double yRandom = 5.0D * Math.random();
+	protected double xWavelength;
+	protected double yWavelength;
+	protected double xAmplitude;
+	protected double yAmplitude;
+	protected double xRandom;
+	protected double yRandom;
+
+	public RippleImageOp() {
+		this.xWavelength = 20.0D;
+		this.yWavelength = 10.0D;
+		this.xAmplitude = 5.0D;
+		this.yAmplitude = 5.0D;
+		this.xRandom = (5.0D * Math.random());
+		this.yRandom = (5.0D * Math.random());
+	}
 
 	public double getxWavelength() {
 		return this.xWavelength;
@@ -44,9 +50,9 @@ public class RippleImageOp extends AbstractTransformImageOp {
 	}
 
 	protected void transform(int x, int y, double[] t) {
-		double tx = Math.sin((double) y / this.yWavelength + this.yRandom);
-		double ty = Math.cos((double) x / this.xWavelength + this.xRandom);
-		t[0] = (double) x + this.xAmplitude * tx;
-		t[1] = (double) y + this.yAmplitude * ty;
+		double tx = Math.sin(y / this.yWavelength + this.yRandom);
+		double ty = Math.cos(x / this.xWavelength + this.xRandom);
+		t[0] = (x + this.xAmplitude * tx);
+		t[1] = (y + this.yAmplitude * ty);
 	}
 }

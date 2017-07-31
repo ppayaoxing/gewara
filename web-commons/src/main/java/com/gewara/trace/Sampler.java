@@ -1,32 +1,41 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.trace;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 采样率<br>
+ * 基数，每秒100<br>
+ * 超过100按10%采样
+ * @author quzhuping
+ *
+ */
 public class Sampler {
 	private AtomicInteger count = new AtomicInteger();
-	private int baseNumber = 100;
-	private Long lastTime = Long.valueOf(-1L);
+    private int baseNumber = 100;
+    private Long lastTime = -1L;
 
-	public Sampler() {
-		this.lastTime = Long.valueOf(System.currentTimeMillis());
-	}
+    public Sampler(){
+        lastTime = System.currentTimeMillis();
+    }
 
-	public boolean isSample() {
-		boolean isSample = true;
-		long n = (long) this.count.incrementAndGet();
-		if (System.currentTimeMillis() - this.lastTime.longValue() < 1000L) {
-			if (n > (long) this.baseNumber) {
-				n %= 10L;
-				if (n != 0L) {
-					isSample = false;
-				}
-			}
-		} else {
-			this.count.getAndSet(0);
-			this.lastTime = Long.valueOf(System.currentTimeMillis());
-		}
-
-		return isSample;
-	}
+    /**
+     * 是否采样
+     * @return true采样
+     */
+    public boolean isSample(){
+       boolean isSample = true;
+       long n = count.incrementAndGet();
+       if(System.currentTimeMillis() - lastTime  < 1000){
+           if(n > baseNumber){
+               n = n%10;
+               if(n != 0){
+                   isSample = false;
+               }
+           }
+       }else{
+           count.getAndSet(0);
+           lastTime = System.currentTimeMillis();//
+       }
+       return isSample;
+    }
 }

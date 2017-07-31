@@ -1,22 +1,25 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.util;
 
-import com.gewara.util.JsonUtils;
-import com.gewara.web.support.DirectOut;
 import java.io.Writer;
 
-public class JsonDirectOut implements DirectOut {
+import com.gewara.web.support.DirectOut;
+
+/**
+ * 直接输出json流，少一次大的String转换
+ * @param req
+ * @param obj
+ */
+public class JsonDirectOut implements DirectOut{
 	private Writer writer;
 	private Object json;
-
-	public JsonDirectOut(Object json) {
+	public JsonDirectOut(Object json){
 		this.json = json;
 	}
-
-	public void write() {
-		JsonUtils.writeObjectToWriter(this.writer, this.json, false);
+	@Override
+	public void write(){
+		JsonUtils.writeObjectToWriter(writer, json, false);
 	}
-
+	@Override
 	public void setWriter(Writer writer) {
 		this.writer = writer;
 	}

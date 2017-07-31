@@ -1,16 +1,27 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.api.mobile;
 
 import com.gewara.api.vo.ResultCode;
 
 public interface ChangeCodeOptionVoService {
-
+	/**
+	 * 切换动态码发送选项   语音或短信
+	 * @param option
+	 */
 	@Deprecated
-	void updateSendOptionsMessage(String arg0);
-
-	ResultCode updateSendOptionsMessage2(String arg0);
-
-	ResultCode resendMessageByAdmin(String arg0, String arg1);
-
-	ResultCode resetSendCount(String arg0, Long arg1, boolean arg2);
+	void updateSendOptionsMessage(String option);
+	ResultCode updateSendOptionsMessage2(String option);
+	/**
+	 * 后台管理重发用户手机动态码
+	 * @param memberid 用户id
+	 * @param sendtype 发送类型 语音或短信
+	 * @return
+	 */
+	ResultCode resendMessageByAdmin(String mobile, String sendtype);
+	/**
+	 * 重置发送次数
+	 * @param mobile 手机号码
+	 * @param adminid 后台管理员id
+	 * @return
+	 */
+	ResultCode resetSendCount(String mobile, Long adminid, boolean clearAll);
 }

@@ -1,40 +1,42 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.service.impl;
 
-import com.gewara.dao.Dao;
-import com.gewara.model.acl.GewaraUser;
-import com.gewara.model.acl.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public abstract class AbstractAclService implements UserDetailsService {
-	@Autowired
-	@Qualifier("baseDao")
-	protected Dao baseDao;
-	protected ThreadLocal<String> LOGON_TYPE = new ThreadLocal();
-	protected boolean copyAuthorities = false;
+import com.gewara.dao.Dao;
+import com.gewara.model.acl.GewaraUser;
+import com.gewara.model.acl.User;
 
+/**
+ * @author acerge(acerge@163.com)
+ * @since 1:59:19 PM Aug 11, 2009
+ */
+
+public abstract class AbstractAclService implements UserDetailsService {
+	@Autowired@Qualifier("baseDao")
+	protected Dao baseDao;
 	public void setBaseDao(Dao baseDao) {
 		this.baseDao = baseDao;
 	}
-
-	public void setLogonType(String logonType) {
+	
+	protected ThreadLocal<String> LOGON_TYPE = new ThreadLocal<String>();
+	public void setLogonType(String logonType){
 		this.LOGON_TYPE.set(logonType);
 	}
-
+	protected boolean copyAuthorities = false;
 	public void setCopyAuthorities(boolean copyAuthorities) {
 		this.copyAuthorities = copyAuthorities;
 	}
-
+	@Override
 	public GewaraUser loadUserByUsername(String username) throws UsernameNotFoundException {
-		this.LOGON_TYPE.set((Object) null);
-		GewaraUser user = (GewaraUser) this.baseDao.getObjectByUkey(User.class, "username", username);
+		LOGON_TYPE.set(null);
+		GewaraUser user = baseDao.getObjectByUkey(User.class, "username", username);
 		return user;
 	}
 
 	public boolean isCopyAuthorities() {
-		return this.copyAuthorities;
+		return copyAuthorities;
 	}
 }

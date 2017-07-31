@@ -1,18 +1,23 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.monitor;
-
-public enum SysLogType {
-	asynchTask("å¼‚æ­¥ä»»åŠ¡é˜Ÿåˆ—"), userlogin("ç”¨æˆ·ç™»å½•"), reqStats("Requestè¯·æ±‚ç»Ÿè®¡æ—¥å¿—"), SMSERR("çŸ­ä¿¡å‘é€å¤±è´¥"), order("è®¢å•æ—¥å¿—"), hitCache(
-			"å‘½ä¸­åº§ä½ç¼“å­˜"), useElecCard("ä½¿ç”¨ç”µå­åˆ¸"), monitor("ç›‘æ§æ•°æ®"), smswarn(
-					"æŠ¥è­¦çŸ­ä¿¡"), terminalLog("ç»ˆç«¯ç›‘æ§æ—¥å¿—"), openapiLog("openapiç›‘æ§æ—¥å¿—"), userOp("ç”¨æˆ·é‡è¦æ“ä½œ"), saOp("SAåŠ¨ä½œ");
-
+public enum SysLogType{
+	asynchTask("Òì²½ÈÎÎñ¶ÓÁĞ"), 
+	userlogin("ÓÃ»§µÇÂ¼"),
+	reqStats("RequestÇëÇóÍ³¼ÆÈÕÖ¾"),
+	SMSERR("¶ÌĞÅ·¢ËÍÊ§°Ü"),
+	order("¶©µ¥ÈÕÖ¾"),
+	hitCache("ÃüÖĞ×ùÎ»»º´æ"),
+	useElecCard("Ê¹ÓÃµç×ÓÈ¯"),
+	monitor("¼à¿ØÊı¾İ"),
+	smswarn("±¨¾¯¶ÌĞÅ"),
+	terminalLog("ÖÕ¶Ë¼à¿ØÈÕÖ¾"),
+	openapiLog("openapi¼à¿ØÈÕÖ¾"),
+	userOp("ÓÃ»§ÖØÒª²Ù×÷"),
+	saOp("SA¶¯×÷");
 	private String description;
-
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
-
-	private SysLogType(String description) {
+	private SysLogType(String description){
 		this.description = description;
 	}
 }

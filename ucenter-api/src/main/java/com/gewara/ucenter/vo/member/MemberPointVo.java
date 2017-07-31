@@ -1,51 +1,36 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.vo.member;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.ucenter.vo.member.MemberPointTypeVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gewara.api.vo.BaseVo;
+
 public class MemberPointVo extends BaseVo {
+	
 	private static final long serialVersionUID = 2495173855721498326L;
 	private Long memberid;
-	private Long id;
-	private Integer pointvalue = Integer.valueOf(0);
-	private String pointtype;
-	private Timestamp pointtime;
-	private String pointstatus;
-	private String tips;
-	private String pointinfo;
-	private List<MemberPointTypeVo> pointTypeList = new ArrayList();
-	private String reason;
-	private Integer point;
-	private Timestamp addtime;
-	private String nickname;
-	private String headpic;
-	private String remark;
-	private String tag;
-	private Integer continunum;
-
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
 
+	private Long id;
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/** 总积分 */
+	private Integer pointvalue = 0;
+	
 	public Integer getPointvalue() {
-		return this.pointvalue;
+		return pointvalue;
 	}
 
 	public void setPointvalue(Integer pointvalue) {
@@ -53,7 +38,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public String getPointtype() {
-		return this.pointtype;
+		return pointtype;
 	}
 
 	public void setPointtype(String pointtype) {
@@ -61,7 +46,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public Timestamp getPointtime() {
-		return this.pointtime;
+		return pointtime;
 	}
 
 	public void setPointtime(Timestamp pointtime) {
@@ -69,7 +54,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public String getPointstatus() {
-		return this.pointstatus;
+		return pointstatus;
 	}
 
 	public void setPointstatus(String pointstatus) {
@@ -77,7 +62,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public String getTips() {
-		return this.tips;
+		return tips;
 	}
 
 	public void setTips(String tips) {
@@ -85,7 +70,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public String getPointinfo() {
-		return this.pointinfo;
+		return pointinfo;
 	}
 
 	public void setPointinfo(String pointinfo) {
@@ -93,7 +78,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public List<MemberPointTypeVo> getPointTypeList() {
-		return this.pointTypeList;
+		return pointTypeList;
 	}
 
 	public void setPointTypeList(List<MemberPointTypeVo> pointTypeList) {
@@ -101,7 +86,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public String getReason() {
-		return this.reason;
+		return reason;
 	}
 
 	public void setReason(String reason) {
@@ -109,7 +94,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public Integer getPoint() {
-		return this.point;
+		return point;
 	}
 
 	public void setPoint(Integer point) {
@@ -117,7 +102,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -125,7 +110,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -133,7 +118,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public String getHeadpic() {
-		return this.headpic;
+		return headpic;
 	}
 
 	public void setHeadpic(String headpic) {
@@ -141,7 +126,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -149,7 +134,7 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -157,14 +142,63 @@ public class MemberPointVo extends BaseVo {
 	}
 
 	public Integer getContinunum() {
-		return this.continunum;
+		return continunum;
 	}
 
 	public void setContinunum(Integer continunum) {
 		this.continunum = continunum;
 	}
 
+	private String pointtype;
+	
+	private Timestamp pointtime;
+
+	/**
+	 * 状态(fail(当日未领过)/success(当日领过))
+	 */
+	private String pointstatus;
+
+	/**
+	 * 提示
+	 */
+	private String tips;
+
+	/**
+	 * 红包信息
+	 */
+	private String pointinfo;
+
+	/**
+	 * 红包方式集合
+	 */
+	private List<MemberPointTypeVo> pointTypeList = new ArrayList<MemberPointTypeVo>();
+	
+	/** 领取方式 */
+	private String reason;
+	
+	/** 领取分值 */
+	private Integer point;
+	
+	/** 领取时间  */
+	private Timestamp addtime;
+	
+	/** 昵称 */
+	private String nickname;
+	
+	/** 头像 */
+	private String headpic;
+	
+	/** 备注 */
+	private String remark;
+	
+	/** 积分获取类型  */
+	private String tag;
+	
+	/** 连续领取天数 */
+	private Integer continunum;
+
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 }

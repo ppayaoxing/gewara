@@ -1,4 +1,3 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.web.util;
 
 public class PageInfo {
@@ -8,52 +7,41 @@ public class PageInfo {
 	private boolean currentPage;
 	private boolean nextPage;
 	private int realPageNo;
-
 	public boolean isCurrentPage() {
-		return this.currentPage;
+		return currentPage;
 	}
-
 	public void setCurrentPage(boolean currentPage) {
 		this.currentPage = currentPage;
 	}
-
 	public boolean isPrePage() {
-		return this.prePage;
+		return prePage;
 	}
-
 	public void setPrePage(boolean prePage) {
 		this.prePage = prePage;
 	}
-
 	public boolean isNextPage() {
-		return this.nextPage;
+		return nextPage;
 	}
-
 	public void setNextPage(boolean nextPage) {
 		this.nextPage = nextPage;
 	}
-
 	public String getUrl() {
-		return this.url;
+		return url;
 	}
-
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
 	public String getPageNo() {
-		return this.pageNo;
+		return pageNo;
 	}
-
 	public void setPageNo(String pageNo) {
 		this.pageNo = pageNo;
 	}
-
 	public int getRealPageNo() {
-		return this.realPageNo;
+		return realPageNo;
 	}
-
 	public void setRealPageNo(int realPageNo) {
 		this.realPageNo = realPageNo;
 	}
+	
 }

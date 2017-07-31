@@ -1,21 +1,34 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.vo.member;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class MemberOperationVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class MemberOperationVo extends BaseVo{
 	private static final long serialVersionUID = -3522154958693872559L;
+	/**
+	 * 修改密码
+	 */
 	public static String OPS_PW = "W";
+	/**
+	 * 绑定手机
+	 */
 	public static String OPS_BIND = "B";
+	/**
+	 * 解除手机绑定
+	 */
 	public static String OPS_UNBIND = "U";
+	/**
+	 * 重置支付密码
+	 */
 	public static String OPS_PAYCODE = "P";
+
 	private Long id;
 	private Long userid;
 	private Long memberid;
 	private String applyIp;
-	private Long applyUserid;
-	private Long auditUserid;
+	private Long applyUserid;	//申请人
+	private Long auditUserid;	//审核人
 	private String auditIp;
 	private String mobile;
 	private String email;
@@ -26,17 +39,16 @@ public class MemberOperationVo extends BaseVo {
 	private String status;
 	private String createdTime;
 	private String extraMsg;
-
-	public MemberOperationVo() {
+	
+	public MemberOperationVo(){
 	}
-
-	public MemberOperationVo(String applyIp, Long applyUserid) {
+	public MemberOperationVo(String applyIp, Long applyUserid){
 		this.applyIp = applyIp;
 		this.applyUserid = applyUserid;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -44,7 +56,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -52,7 +64,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -60,7 +72,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getCallNumber() {
-		return this.callNumber;
+		return callNumber;
 	}
 
 	public void setCallNumber(String callNumber) {
@@ -68,7 +80,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getForReason() {
-		return this.forReason;
+		return forReason;
 	}
 
 	public void setForReason(String forReason) {
@@ -76,7 +88,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getOpsType() {
-		return this.opsType;
+		return opsType;
 	}
 
 	public void setOpsType(String opsType) {
@@ -84,7 +96,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getOperator() {
-		return this.operator;
+		return operator;
 	}
 
 	public void setOperator(String operator) {
@@ -92,7 +104,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -100,7 +112,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getCreatedTime() {
-		return this.createdTime;
+		return createdTime;
 	}
 
 	public void setCreatedTime(String createdTime) {
@@ -108,7 +120,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getExtraMsg() {
-		return this.extraMsg;
+		return extraMsg;
 	}
 
 	public void setExtraMsg(String extraMsg) {
@@ -116,7 +128,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public Long getApplyUserid() {
-		return this.applyUserid;
+		return applyUserid;
 	}
 
 	public void setApplyUserid(Long applyUserid) {
@@ -124,7 +136,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public Long getAuditUserid() {
-		return this.auditUserid;
+		return auditUserid;
 	}
 
 	public void setAuditUserid(Long auditUserid) {
@@ -132,7 +144,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -140,7 +152,7 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getApplyIp() {
-		return this.applyIp;
+		return applyIp;
 	}
 
 	public void setApplyIp(String applyIp) {
@@ -148,22 +160,20 @@ public class MemberOperationVo extends BaseVo {
 	}
 
 	public String getAuditIp() {
-		return this.auditIp;
+		return auditIp;
 	}
 
 	public void setAuditIp(String auditIp) {
 		this.auditIp = auditIp;
 	}
-
 	public Long getUserid() {
-		return this.userid;
+		return userid;
 	}
-
 	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 }

@@ -1,30 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.msearch.external.entity;
 
-import com.gewara.msearch.external.entity.KVObject;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class PageQueryResult<K, V> {
-	private int pageNo = 1;
-	private int pageSize = 30;
-	private int total = 0;
-	private Collection<KVObject<K, V>> datas = null;
+
+public class PageQueryResult<K,V> {
+	private int pageNo=1;
+	private int pageSize=30;
+	private int total=0;
+	
+	private Collection<KVObject<K,V>> datas=null;
 
 	public int getPageNo() {
-		return this.pageNo;
+		return pageNo;
 	}
 
 	public int getPageSize() {
-		return this.pageSize;
+		return pageSize;
 	}
 
 	public int getTotal() {
-		return this.total;
+		return total;
 	}
 
 	public Collection<KVObject<K, V>> getDatas() {
-		return (Collection) (this.datas == null ? new ArrayList(0) : this.datas);
+		if(datas==null) return new ArrayList<>(0);
+		return datas;
 	}
 
 	public void setPageNo(int pageNo) {
@@ -39,7 +40,8 @@ public class PageQueryResult<K, V> {
 		this.total = total;
 	}
 
-	public void setDatas(Collection<KVObject<K, V>> datas) {
+	public void setDatas(Collection<KVObject<K,V>> datas) {
 		this.datas = datas;
 	}
+	
 }

@@ -1,20 +1,14 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.kafka.consumer;
 
-import com.gewara.kafka.consumer.KafkaConsumerMsgListener;
-import com.gewara.support.GewaExecutorThreadFactory;
-import com.gewara.support.TraceErrorException;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.TimerHelper;
-import com.gewara.util.WebLogger;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -24,13 +18,52 @@ import org.apache.kafka.common.errors.WakeupException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class KafkaConsumerGroupFactory implements InitializingBean, DisposableBean {
-	private final transient GewaLogger dbLogger = WebLogger.getLogger(this.getClass());
-	private String brokers;
-	private List<KafkaConsumerMsgListener> listenerList = new ArrayList();
-	private List<KafkaConsumerGroupFactory.KafkaConsumerRunner> consumerRunnerList = new ArrayList();
-	ExecutorService executor;
+import com.gewara.support.GewaExecutorThreadFactory;
+import com.gewara.support.TraceErrorException;
+import com.gewara.util.DateUtil;
+import com.gewara.util.GewaLogger;
+import com.gewara.util.TimerHelper;
+import com.gewara.util.WebLogger;
 
+/**
+ * 使用方法:
+ * 
+ * <pre>
+ * &lt;bean id=&quot;kafkaConsumerGroupFactory&quot; class=&quot;com.gewara.kafka.consumer.KafkaConsumerGroupFactory&quot;>
+ * 	&lt;property name=&quot;brokers&quot; value=&quot;192.168.2.254:9092,192.168.2.250:9092,192.168.2.249:9092&quot;/>
+ * 	&lt;property name=&quot;listenerList&quot;>
+ * 		&lt;list>
+ * 			&lt;ref bean=&quot;dtKafkaConsumerMsgListener&quot;/>
+ * 		&lt;/list>
+ * 	&lt;/property>
+ * &lt;/bean>
+ * &lt;bean id=&quot;dtKafkaConsumerMsgListener&quot; class=&quot;com.gewara.kafka.consumer.KafkaConsumerMsgListener&quot;>
+ * 	&lt;property name=&quot;topic&quot; value=&quot;DT_TRACE_INFO&quot; />
+ * 	&lt;property name=&quot;groupId&quot; value=&quot;traceGroup-1&quot; />
+ * 	&lt;property name=&quot;callbackGroup&quot; ref=&quot;dtKafkaConsumerCallbackGroup&quot;>&lt;/property>
+ * &lt;/bean>
+ * &lt;bean id=&quot;dtKafkaConsumerCallbackGroup&quot; class=&quot;com.gewara.kafka.consumer.KafkaConsumerCallbackGroup&quot;>
+ * 	&lt;property name=&quot;callbackList&quot;>
+ * 		&lt;list>
+ * 			&lt;ref bean=&quot;dtKafkaConumserCallback&quot;/>
+ * 		&lt;/list>
+ * 	&lt;/property>
+ * &lt;/bean>
+ * &lt;bean id=&quot;dtKafkaConumserCallback&quot; class=&quot;com.gewara.untrans.impl.KafkaConsumerCallbackImpl&quot; />
+ * 
+ * </pre>
+ * 
+ * 注意：KafkaConsumerCallback中消费topic的消息时请实现异步消费
+ * 
+ * @author quzhuping
+ * 
+ */
+public class KafkaConsumerGroupFactory implements InitializingBean, DisposableBean {
+	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
+
+	private String brokers;
+	private List<KafkaConsumerMsgListener> listenerList = new ArrayList<>();
+	private List<KafkaConsumerRunner> consumerRunnerList = new ArrayList<>();
 	public void setBrokers(String brokers) {
 		this.brokers = brokers;
 	}
@@ -39,49 +72,35 @@ public class KafkaConsumerGroupFactory implements InitializingBean, DisposableBe
 		this.listenerList = listenerList;
 	}
 
+	ExecutorService executor;
+
+	@Override
 	public void afterPropertiesSet() throws Exception {
-		if (StringUtils.isBlank(this.brokers)) {
+		if (StringUtils.isBlank(brokers)) {
 			throw new TraceErrorException("brolers is blank");
-		} else if (CollectionUtils.isEmpty(this.listenerList)) {
-			throw new TraceErrorException("KafkaConsumerListeners is empty");
-		} else {
-			this.executor = Executors.newFixedThreadPool(this.listenerList.size(),
-					new GewaExecutorThreadFactory("kafkaConsumerGroup"));
-			Iterator arg0 = this.listenerList.iterator();
+		}
+		if (CollectionUtils.isEmpty(listenerList)) {
+			throw new TraceErrorException( "KafkaConsumerListeners is empty");
+		}
+		executor = Executors.newFixedThreadPool(listenerList.size(), new GewaExecutorThreadFactory("kafkaConsumerGroup"));
 
-			while (arg0.hasNext()) {
-				final KafkaConsumerMsgListener listener = (KafkaConsumerMsgListener) arg0.next();
-				TimerHelper.TIMER.schedule(new Runnable() {
-					public void run() {
-						KafkaConsumerGroupFactory.this.startConsumer(listener);
-					}
-				}, 60000L);
-			}
-
+		for (KafkaConsumerMsgListener listener : listenerList) {
+			final KafkaConsumerMsgListener lsnr = listener;
+			TimerHelper.TIMER.schedule(new Runnable() {
+				@Override
+				public void run() {
+					startConsumer(lsnr);
+				}
+			}, DateUtil.m_minute);
 		}
 	}
 
-	private void startConsumer(KafkaConsumerMsgListener listener) {
-		KafkaConsumerGroupFactory.KafkaConsumerRunner consumerRunner = new KafkaConsumerGroupFactory.KafkaConsumerRunner(
-				listener);
-		this.consumerRunnerList.add(consumerRunner);
-		this.executor.submit(consumerRunner);
-	}
-
-	public void destroy() throws Exception {
-		Iterator arg0 = this.consumerRunnerList.iterator();
-
-		while (arg0.hasNext()) {
-			KafkaConsumerGroupFactory.KafkaConsumerRunner consumerRunner = (KafkaConsumerGroupFactory.KafkaConsumerRunner) arg0
-					.next();
-
-			try {
-				consumerRunner.shutdown();
-			} catch (Exception arg3) {
-				this.dbLogger.error(arg3, 10);
-			}
-		}
-
+	private void startConsumer(final KafkaConsumerMsgListener listener) {
+		
+		KafkaConsumerRunner consumerRunner = new KafkaConsumerRunner(listener);
+		consumerRunnerList.add(consumerRunner);
+		
+		executor.submit(consumerRunner);
 	}
 
 	private class KafkaConsumerRunner implements Runnable {
@@ -90,48 +109,58 @@ public class KafkaConsumerGroupFactory implements InitializingBean, DisposableBe
 		private final KafkaConsumer consumer;
 
 		public KafkaConsumerRunner(KafkaConsumerMsgListener listener) {
-			KafkaConsumerGroupFactory.this.dbLogger
-					.warn("start consumer:" + listener.getGroupId() + "=>" + listener.getTopic());
+			dbLogger.warn("start consumer:" + listener.getGroupId() + "=>" + listener.getTopic());
+			
 			this.listener = listener;
 			Properties props = new Properties();
-			props.put("bootstrap.servers", KafkaConsumerGroupFactory.this.brokers);
+			props.put("bootstrap.servers", brokers);
 			props.put("group.id", listener.getGroupId());
 			props.put("enable.auto.commit", "true");
 			props.put("auto.commit.interval.ms", "1000");
 			props.put("session.timeout.ms", "30000");
-			props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-			props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-			this.consumer = new KafkaConsumer(props);
-			List topicList = Arrays.asList(new String[]{listener.getTopic()});
-			this.consumer.subscribe(topicList);
-			KafkaConsumerGroupFactory.this.dbLogger
-					.warn("start consumer complete:" + listener.getGroupId() + "=>" + listener.getTopic());
+			props.put("key.deserializer",
+					"org.apache.kafka.common.serialization.StringDeserializer");
+			props.put("value.deserializer",
+					"org.apache.kafka.common.serialization.StringDeserializer");
+			consumer = new KafkaConsumer<String, String>(props);
+			Collection<String> topicList = Arrays.asList(listener.getTopic());
+			consumer.subscribe(topicList);
+			
+			dbLogger.warn("start consumer complete:" + listener.getGroupId() + "=>" + listener.getTopic());
 		}
 
+		@Override
 		public void run() {
 			try {
-				while (!this.closed.get()) {
-					ConsumerRecords e = this.consumer.poll((long) this.listener.getPollInterval());
-					Iterator arg1 = e.iterator();
-
-					while (arg1.hasNext()) {
-						ConsumerRecord record = (ConsumerRecord) arg1.next();
-						this.listener.doMessage(record.topic(), (String) record.value());
+				while (!closed.get()) {
+					ConsumerRecords<String, String> records = consumer.poll(listener.getPollInterval());
+					for (ConsumerRecord<String, String> record : records) {
+						listener.doMessage(record.topic(), record.value());
 					}
 				}
-			} catch (WakeupException arg6) {
-				if (!this.closed.get()) {
-					throw arg6;
-				}
+			} catch (WakeupException e) {
+				if (!closed.get())
+					throw e;
 			} finally {
-				this.consumer.close();
+				consumer.close();
 			}
-
 		}
-
+		
 		public void shutdown() {
-			this.closed.set(true);
-			this.consumer.wakeup();
+			closed.set(true);
+			consumer.wakeup();
 		}
 	}
+
+	@Override
+	public void destroy() throws Exception {
+		for (KafkaConsumerRunner consumerRunner : consumerRunnerList) {
+			try {
+				consumerRunner.shutdown();
+			} catch (Exception ex) {
+				dbLogger.error(ex, 10);
+			}
+		}
+	}
+
 }

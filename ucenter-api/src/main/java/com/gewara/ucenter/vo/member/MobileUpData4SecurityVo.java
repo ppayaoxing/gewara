@@ -1,94 +1,78 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.vo.member;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class MobileUpData4SecurityVo extends BaseVo {
-	private String _id;
-	private Long memberid;
-	private String deviceId;
-	private String yys;
-	private String mobile;
-	private String checkpass;
-	private Timestamp addtime;
-	private String status;
-	private Timestamp replytime;
-
+	private String _id;				//key
+	private Long memberid;			//用户id
+	private String deviceId;		//设备id
+	private String yys;				//运营商【联通、移动、电信】
+	private String mobile;			//手机号
+	private String checkpass;		//校验码
+	private Timestamp addtime;		//添加时间
+	private String status;			//状态
+	private Timestamp replytime;	//回复时间
+	
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
 	public String getYys() {
-		return this.yys;
+		return yys;
 	}
-
 	public void setYys(String yys) {
 		this.yys = yys;
 	}
-
 	public String getCheckpass() {
-		return this.checkpass;
+		return checkpass;
 	}
-
 	public void setCheckpass(String checkpass) {
 		this.checkpass = checkpass;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
+	
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
-
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	public Timestamp getReplytime() {
-		return this.replytime;
+		return replytime;
 	}
-
 	public void setReplytime(Timestamp replytime) {
 		this.replytime = replytime;
 	}
-
 	public String get_id() {
-		return this._id;
+		return _id;
 	}
-
 	public void set_id(String _id) {
 		this._id = _id;
 	}
-
 	public String getDeviceId() {
-		return this.deviceId;
+		return deviceId;
 	}
-
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this._id;
+		return _id;
 	}
 }

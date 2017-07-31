@@ -1,5 +1,8 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,102 +11,105 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers.DateDeserializer;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers.SqlDateDeserializer;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer;
-import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class GewaDateSerializers {
-	public static final GewaDateSerializers.GewaDateDeserializer dateDeserializer = new GewaDateSerializers.GewaDateDeserializer();
-	public static final GewaDateSerializers.GewaTimestampDeserializer timestampDeserializer = new GewaDateSerializers.GewaTimestampDeserializer();
-	public static final GewaDateSerializers.GewaSqlDateDeserializer sqlDateDeserializer = new GewaDateSerializers.GewaSqlDateDeserializer();
-
-	public static class GewaSqlDateDeserializer extends SqlDateDeserializer {
-		private static final long serialVersionUID = -8049402816880830231L;
-
-		protected Date _parseDate(JsonParser jp, DeserializationContext ctxt)
-				throws IOException, JsonProcessingException {
-			JsonToken t = jp.getCurrentToken();
-
-			try {
-				if (t == JsonToken.VALUE_NUMBER_INT) {
-					return new Date(jp.getLongValue());
-				} else if (t == JsonToken.VALUE_STRING) {
-					String iae = jp.getText().trim();
-					if (iae.length() == 0) {
-						return null;
-					} else {
-						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-						return new Date(formatter.parse(iae).getTime());
-					}
-				} else {
-					throw ctxt.mappingException(this._valueClass);
-				}
-			} catch (ParseException arg5) {
-				throw ctxt.mappingException(this._valueClass);
-			} catch (IllegalArgumentException arg6) {
-				throw ctxt.weirdStringException((String) null, this._valueClass,
-						"not a valid representation (error: " + arg6.getMessage() + ")");
-			}
-		}
-	}
-
-	public static class GewaTimestampDeserializer extends TimestampDeserializer {
-		private static final long serialVersionUID = -8049402816880830231L;
-
-		protected java.util.Date _parseDate(JsonParser jp, DeserializationContext ctxt)
-				throws IOException, JsonProcessingException {
-			JsonToken t = jp.getCurrentToken();
-
-			try {
-				if (t == JsonToken.VALUE_NUMBER_INT) {
-					return new java.util.Date(jp.getLongValue());
-				} else if (t == JsonToken.VALUE_STRING) {
-					String iae = jp.getText().trim();
-					if (iae.length() == 0) {
-						return null;
-					} else {
-						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-						return formatter.parse(iae);
-					}
-				} else {
-					throw ctxt.mappingException(this._valueClass);
-				}
-			} catch (ParseException arg5) {
-				throw ctxt.mappingException(this._valueClass);
-			} catch (IllegalArgumentException arg6) {
-				throw ctxt.weirdStringException((String) null, this._valueClass,
-						"not a valid representation (error: " + arg6.getMessage() + ")");
-			}
-		}
-	}
-
+	public static final GewaDateDeserializer dateDeserializer= new GewaDateDeserializer();
+	public static final GewaTimestampDeserializer timestampDeserializer= new GewaTimestampDeserializer();
+	public static final GewaSqlDateDeserializer sqlDateDeserializer= new GewaSqlDateDeserializer();
+	
 	public static class GewaDateDeserializer extends DateDeserializer {
 		private static final long serialVersionUID = -8049402816880830231L;
 
-		protected java.util.Date _parseDate(JsonParser jp, DeserializationContext ctxt)
+		@Override
+		protected java.util.Date _parseDate(JsonParser jp, DeserializationContext ctxt) 
 				throws IOException, JsonProcessingException {
 			JsonToken t = jp.getCurrentToken();
-
 			try {
 				if (t == JsonToken.VALUE_NUMBER_INT) {
 					return new java.util.Date(jp.getLongValue());
-				} else if (t == JsonToken.VALUE_STRING) {
-					String iae = jp.getText().trim();
-					if (iae.length() == 0) {
-						return null;
-					} else {
-						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-						return formatter.parse(iae);
-					}
-				} else {
-					throw ctxt.mappingException(this._valueClass);
 				}
-			} catch (ParseException arg5) {
-				throw ctxt.mappingException(this._valueClass);
-			} catch (IllegalArgumentException arg6) {
-				throw ctxt.weirdStringException((String) null, this._valueClass,
-						"not a valid representation (error: " + arg6.getMessage() + ")");
+				if (t == JsonToken.VALUE_STRING) {
+					/*
+					 * As per [JACKSON-203], take empty Strings to mean null
+					 */
+					String str = jp.getText().trim();
+					if (str.length() == 0) {
+						return null;
+					}
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					return formatter.parse(str);
+				}
+				throw ctxt.mappingException(_valueClass);
+			} catch (ParseException e) {
+				throw ctxt.mappingException(_valueClass);
+			} catch (IllegalArgumentException iae) {
+				throw ctxt.weirdStringException(null, _valueClass,
+						"not a valid representation (error: " + iae.getMessage()
+								+ ")");
+			}
+		}
+	}
+	public static class GewaTimestampDeserializer extends TimestampDeserializer {
+		private static final long serialVersionUID = -8049402816880830231L;
+
+		@Override
+		protected java.util.Date _parseDate(JsonParser jp, DeserializationContext ctxt) 
+				throws IOException, JsonProcessingException {
+			JsonToken t = jp.getCurrentToken();
+			try {
+				if (t == JsonToken.VALUE_NUMBER_INT) {
+					return new java.util.Date(jp.getLongValue());
+				}
+				if (t == JsonToken.VALUE_STRING) {
+					/*
+					 * As per [JACKSON-203], take empty Strings to mean null
+					 */
+					String str = jp.getText().trim();
+					if (str.length() == 0) {
+						return null;
+					}
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					return formatter.parse(str);
+				}
+				throw ctxt.mappingException(_valueClass);
+			} catch (ParseException e) {
+				throw ctxt.mappingException(_valueClass);
+			} catch (IllegalArgumentException iae) {
+				throw ctxt.weirdStringException(null, _valueClass,
+						"not a valid representation (error: " + iae.getMessage()
+								+ ")");
+			}
+		}
+	}
+	public static class GewaSqlDateDeserializer extends SqlDateDeserializer {
+		private static final long serialVersionUID = -8049402816880830231L;
+
+		@Override
+		protected java.sql.Date _parseDate(JsonParser jp, DeserializationContext ctxt) 
+				throws IOException, JsonProcessingException {
+			JsonToken t = jp.getCurrentToken();
+			try {
+				if (t == JsonToken.VALUE_NUMBER_INT) {
+					return new java.sql.Date(jp.getLongValue());
+				}
+				if (t == JsonToken.VALUE_STRING) {
+					/*
+					 * As per [JACKSON-203], take empty Strings to mean null
+					 */
+					String str = jp.getText().trim();
+					if (str.length() == 0) {
+						return null;
+					}
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					return new java.sql.Date(formatter.parse(str).getTime());
+				}
+				throw ctxt.mappingException(_valueClass);
+			} catch (ParseException e) {
+				throw ctxt.mappingException(_valueClass);
+			} catch (IllegalArgumentException iae) {
+				throw ctxt.weirdStringException(null, _valueClass,
+						"not a valid representation (error: " + iae.getMessage()
+								+ ")");
 			}
 		}
 	}

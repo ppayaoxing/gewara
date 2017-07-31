@@ -1,59 +1,53 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.model;
+
+import java.io.Serializable;
 
 import com.gewara.support.LocalCachable;
 import com.gewara.support.TraceErrorException;
-import java.io.Serializable;
 
+/**
+ * equals() and hashCode();
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28下午02:05:17
+ */
 public abstract class BaseObject implements LocalCachable, Serializable {
 	private static final long serialVersionUID = -3658698824540003392L;
-
+	/**
+	 * @return 数据的真实ID，不加get方法减少相关反射输出
+	 */
 	public abstract Serializable realId();
-
+	@Override
 	public final int hashCode() {
-		return this.realId() == null ? 0 : this.realId().hashCode();
+		return (realId() == null) ? 0 : realId().hashCode();
 	}
-
+	
+	@Override
 	public final boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		} else if (this.getClass() != obj.getClass()) {
+		if (getClass() != obj.getClass())
 			return false;
-		} else {
-			boolean arg9999;
-			label34: {
-				BaseObject other = (BaseObject) obj;
-				if (this.realId() != null) {
-					if (this.realId().equals(other.realId())) {
-						break label34;
-					}
-				} else if (other.realId() == null) {
-					break label34;
-				}
-
-				arg9999 = false;
-				return arg9999;
-			}
-
-			arg9999 = true;
-			return arg9999;
-		}
+		BaseObject other = (BaseObject) obj;
+		return !(this.realId() != null ? !(this.realId().equals(other.realId())) : (other.realId() != null));
 	}
-
+	@Override
 	public boolean fromCache() {
+		//subclass imp it
 		return false;
 	}
-
+	@Override
 	public void fix2Cache() {
+		//nothing, for subclass 
 	}
-
+	@Override
 	public boolean cachable() {
+		//subclass imp it 
 		return false;
 	}
-
-	public void checkSetAllow() {
-		if (this.fromCache()) {
+	public void checkSetAllow(){
+		if(fromCache()){
 			throw new TraceErrorException("LocalCachable set Error!");
 		}
 	}
+	
 }

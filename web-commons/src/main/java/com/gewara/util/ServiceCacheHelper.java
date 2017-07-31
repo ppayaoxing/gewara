@@ -1,19 +1,25 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.util;
 
-import com.gewara.util.CachableCall;
 import java.util.Map;
 
+/**
+ * Service方法缓存，每个Service一个
+ * @author gebiao(ge.biao@gewara.com)
+ * @since Nov 5, 2013 10:25:21 PM
+ */
 public interface ServiceCacheHelper {
-	Map getStats();
-
-	Map getAndResetStats();
-
-	boolean isLocal();
-
-	<T> T cacheCall(Integer arg0, CachableCall<T> arg1, String arg2, Object... arg3);
-
-	<T> T cacheCallRefresh(Integer arg0, CachableCall<T> arg1, String arg2, boolean arg3, Object... arg4);
-
-	void updateCache(Object arg0, Integer arg1, String arg2, Object... arg3);
+	public Map getStats();
+	public Map getAndResetStats();
+	public boolean isLocal();
+	
+	/**
+	 * 不需要同步
+	 * @param key
+	 * @param call
+	 * @param cacheSeconds:缓存时间
+	 * @return
+	 */
+	public <T> T cacheCall(Integer cacheSeconds, CachableCall<T> call, String ukey, Object...params);
+	public <T> T cacheCallRefresh(Integer cacheSeconds, CachableCall<T> call, String ukey, boolean forceRefresh, Object...params);
+	public void updateCache(Object value, Integer cacheSeconds, String ukey, Object...params);
 }

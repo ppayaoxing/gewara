@@ -1,14 +1,8 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.job;
 
-import com.gewara.untrans.GewaLeaderLatchListener;
-import com.gewara.untrans.LeaderElectionService;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.TimerHelper;
-import com.gewara.util.WebLogger;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
+
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
@@ -17,82 +11,88 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.gewara.untrans.GewaLeaderLatchListener;
+import com.gewara.untrans.LeaderElectionService;
+import com.gewara.util.GewaLogger;
+import com.gewara.util.TimerHelper;
+import com.gewara.util.WebLogger;
+
 public class ElectionLoadJobBean implements InitializingBean {
-	private final transient GewaLogger dbLogger = WebLogger.getLogger(this.getClass());
-	@Autowired
-	@Qualifier("scheduler")
+
+	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
+	
+	@Autowired@Qualifier("scheduler")
 	private Scheduler scheduler;
-	@Autowired(required = false)
-	@Qualifier("leaderElectionService")
+	
+	@Autowired(required=false)@Qualifier("leaderElectionService")
 	private LeaderElectionService leaderElectionService;
+	
+	
 	private List<Trigger> triggers;
 
+	@Override
 	public void afterPropertiesSet() throws Exception {
-		TimerHelper.TIMER.schedule(new Runnable() {
+		TimerHelper.TIMER.schedule(new Runnable(){
+			@Override
 			public void run() {
 				try {
-					ElectionLoadJobBean.this.registerTriggers();
-				} catch (Exception arg1) {
-					ElectionLoadJobBean.this.dbLogger.error(" registerTriggers error: ", arg1);
+					registerTriggers();
+				} catch (Exception e) {
+					dbLogger.error(" registerTriggers error: ", e);
 				}
-
-			}
-		}, 30000L);
+			}			
+		}, 30000);
 	}
 
 	private void registerTriggers() throws SchedulerException {
 		try {
 			if (this.triggers != null) {
-				Iterator ex = this.triggers.iterator();
-
-				while (ex.hasNext()) {
-					Trigger trigger = (Trigger) ex.next();
-					this.addTriggerToScheduler(trigger);
+				for (Trigger trigger : this.triggers) {
+					addTriggerToScheduler(trigger);
 				}
 			}
-
-		} catch (Throwable arg2) {
-			if (arg2 instanceof SchedulerException) {
-				throw (SchedulerException) arg2;
-			} else if (arg2 instanceof Exception) {
-				throw new SchedulerException("Registration of jobs and triggers failed: " + arg2.getMessage(), arg2);
-			} else {
-				throw new SchedulerException("Registration of jobs and triggers failed: " + arg2.getMessage());
+		}catch (Throwable ex) {
+			if (ex instanceof SchedulerException) {
+				throw (SchedulerException) ex;
 			}
+			if (ex instanceof Exception) {
+				throw new SchedulerException("Registration of jobs and triggers failed: " + ex.getMessage(), ex);
+			}
+			throw new SchedulerException("Registration of jobs and triggers failed: " + ex.getMessage());
 		}
 	}
-
-	private boolean addTriggerToScheduler(final Trigger trigger) throws Exception {
+	
+	private boolean addTriggerToScheduler(final Trigger trigger) throws Exception {		
 		final JobDetail jobDetail = (JobDetail) trigger.getJobDataMap().remove("jobDetail");
 		String electionKey = "eljb." + trigger.getKey().toString();
-		this.leaderElectionService.createElection(electionKey, new GewaLeaderLatchListener() {
+		leaderElectionService.createElection(electionKey, new GewaLeaderLatchListener(){
+			@Override
 			public void isLeader() {
-				ElectionLoadJobBean.this.dbLogger.error(trigger.getKey() + ": isLeader");
-
+				dbLogger.error(trigger.getKey() + ": isLeader");
 				try {
-					boolean e = ElectionLoadJobBean.this.scheduler.getTrigger(trigger.getKey()) != null;
-					if (e) {
-						ElectionLoadJobBean.this.scheduler.rescheduleJob(trigger.getKey(), trigger);
-					} else if (jobDetail != null
-							&& ElectionLoadJobBean.this.scheduler.getJobDetail(jobDetail.getKey()) == null) {
-						ElectionLoadJobBean.this.scheduler.scheduleJob(jobDetail, trigger);
-					} else {
-						ElectionLoadJobBean.this.scheduler.scheduleJob(trigger);
+					boolean triggerExists = (scheduler.getTrigger(trigger.getKey()) != null);
+					if (triggerExists) {
+						scheduler.rescheduleJob(trigger.getKey(), trigger);
+					}else {						
+						if (jobDetail != null && scheduler.getJobDetail(jobDetail.getKey()) == null) {
+							scheduler.scheduleJob(jobDetail, trigger);
+						}else {
+							scheduler.scheduleJob(trigger);
+						}						
 					}
-				} catch (Exception arg1) {
-					ElectionLoadJobBean.this.dbLogger.error(trigger.getKey() + " scheduled error: ", arg1);
+				} catch (Exception e) {
+					dbLogger.error(trigger.getKey() + " scheduled error: ", e);
 				}
-
 			}
-
+			
+			@Override
 			public void notLeader() {
 				try {
-					ElectionLoadJobBean.this.dbLogger.error(trigger.getKey() + ": notLeader");
-					ElectionLoadJobBean.this.scheduler.unscheduleJob(trigger.getKey());
-				} catch (Exception arg1) {
-					ElectionLoadJobBean.this.dbLogger.error(trigger.getKey() + " pauseTrigger error: ", arg1);
+					dbLogger.error(trigger.getKey() + ": notLeader");
+					scheduler.unscheduleJob(trigger.getKey());
+				} catch (Exception e) {
+					dbLogger.error(trigger.getKey() + " pauseTrigger error: ", e);
 				}
-
 			}
 		});
 		return true;

@@ -1,26 +1,25 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.web.util;
 
-import com.gewara.web.util.PageInfo;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.util.HtmlUtils;
 
 public class PageUtil {
+	//request 中定义的参数名称
 	public static final String PARAM_PAGE_NUM = "pageNo";
 	public static final String PARAM_ROWS_COUNT = "rowsCount";
-	public static final String PARAM_ROWS_PER_PAGE = "rowsPerPage";
-	private int currentPage;
-	private int rowsCount;
-	private int startNum;
-	private int endNum;
-	private int pageCount;
-	private int rowsPerPage;
+	public static final String PARAM_ROWS_PER_PAGE ="rowsPerPage";
+	private int currentPage;//当前页
+	private int rowsCount;//记录数
+	private int startNum;//显示的第一页码
+	private int endNum;//显示的最后
+	private int pageCount;//分页数量
+	private int rowsPerPage;//每页显示数量
 	private boolean isShowFirst;
 	private boolean isShowLast;
 	private String scriptParams;
@@ -32,276 +31,195 @@ public class PageUtil {
 	private String encode = "UTF-8";
 	private List<PageInfo> pageInfoList;
 	private String baseUrl;
-
 	public String getEncode() {
-		return this.encode;
+		return encode;
 	}
-
 	public void setEncode(String encode) {
 		this.encode = encode;
 	}
-
 	public List<PageInfo> getPageInfoList() {
-		return this.pageInfoList;
+		return pageInfoList;
 	}
-
 	public int getCurrentPage() {
-		return this.currentPage;
+		return currentPage;
 	}
-
 	public int getRowsCount() {
-		return this.rowsCount;
+		return rowsCount;
 	}
-
 	public int getRowsPerPage() {
-		return this.rowsPerPage;
+		return rowsPerPage;
 	}
-
 	public int getPageCount() {
-		return this.pageCount;
+		return pageCount;
 	}
-
-	public PageUtil(int rowsCount, int rowsPerPage, int currentPage, String url) {
+	public PageUtil(int rowsCount, int rowsPerPage, int currentPage, String url){
 		this.rowsCount = rowsCount;
 		this.rowsPerPage = rowsPerPage;
 		this.currentPage = currentPage;
-		this.pageCount = (rowsCount - 1) / rowsPerPage + 1;
+		this.pageCount = (rowsCount-1)/rowsPerPage + 1;
 		this.startNum = Math.max(0, currentPage - 3);
-		this.endNum = Math.min(this.startNum + 6, this.pageCount);
-		if (StringUtils.isBlank(url)) {
-			this.baseUrl = "";
-		} else {
-			this.baseUrl = url;
-		}
-
+		this.endNum = Math.min(startNum + 6 , pageCount);
+		if(StringUtils.isBlank(url)) this.baseUrl="";
+		else this.baseUrl = url;
 	}
-
-	public PageUtil(int rowsCount, int rowsPerPage, int currentPage, String url, boolean isShowFirst,
-			boolean isShowLast) {
+	public PageUtil(int rowsCount, int rowsPerPage, int currentPage, String url, boolean isShowFirst, boolean isShowLast){
 		this.rowsCount = rowsCount;
 		this.rowsPerPage = rowsPerPage;
 		this.currentPage = currentPage;
-		this.pageCount = (rowsCount - 1) / rowsPerPage + 1;
+		this.pageCount = (rowsCount-1)/rowsPerPage + 1;
 		this.startNum = Math.max(0, currentPage - 3);
-		this.endNum = Math.min(this.startNum + 6, this.pageCount);
-		if (StringUtils.isBlank(url)) {
-			this.baseUrl = "";
-		} else {
-			this.baseUrl = url;
-		}
-
+		this.endNum = Math.min(startNum + 6, pageCount);
+		if(StringUtils.isBlank(url)) this.baseUrl="";
+		else this.baseUrl = url;
 		this.isShowFirst = isShowFirst;
 		this.isShowLast = isShowLast;
 	}
-
-	public void initPageInfo(Map params, List paramNames) {
-		this.pageInfoList = new ArrayList();
+	/**
+	 * 获取不同分页的URI query查询串，如<br>
+	 * param1=xxxx&param2=YYYYY&pageNo=0<br>
+	 * param1=TTTT&param2=SSSSS&pageNo=1<br>
+	 * .......
+	 **/
+	public void initPageInfo(Map params, List paramNames){
+		pageInfoList = new ArrayList<PageInfo>();
+		//1、获取查询串
 		String commonParam = "";
 		String scriptParam = "{";
-		if (params != null) {
-			if (paramNames == null) {
-				paramNames = new ArrayList(params.keySet());
-			}
-
-			Iterator pn = ((List) paramNames).iterator();
-
-			label105 : while (true) {
-				Object pageInfo;
-				Object tmpUrl;
-				do {
-					do {
-						if (!pn.hasNext()) {
-							break label105;
-						}
-
-						pageInfo = pn.next();
-					} while (pageInfo.equals("pageNo"));
-
-					tmpUrl = params.get(pageInfo);
-				} while (tmpUrl == null);
-
+		if(params != null){
+			if(paramNames==null) paramNames = new ArrayList(params.keySet());
+			for(Object paramName: paramNames){
+				if(paramName.equals("pageNo")) continue;
+				Object values = params.get(paramName);
+				if(values==null) continue;
 				String[] tmp = null;
-				if (tmpUrl instanceof String[]) {
-					tmp = (String[]) ((String[]) tmpUrl);
-				} else {
-					tmp = new String[]{"" + tmpUrl};
-				}
-
-				String[] arg8 = tmp;
-				int arg9 = tmp.length;
-
-				for (int arg10 = 0; arg10 < arg9; ++arg10) {
-					String value = arg8[arg10];
-					if (StringUtils.isNotBlank(value)) {
+				if(values instanceof String[]) tmp = (String[])values;
+				else tmp = new String[]{"" + values};
+				for(String value:tmp){
+					if(StringUtils.isNotBlank(value)){
 						try {
-							commonParam = commonParam + "&" + pageInfo + "=" + URLEncoder.encode(value, this.encode);
-							scriptParam = scriptParam + "\'" + pageInfo + "\':\'" + HtmlUtils.htmlEscape(value) + "\',";
-						} catch (UnsupportedEncodingException arg13) {
-							;
+							commonParam += "&" + paramName + "=" + URLEncoder.encode(value,encode);
+							scriptParam += "'" + paramName + "':'" + HtmlUtils.htmlEscape(value) + "',";
+						} catch (UnsupportedEncodingException e) {
 						}
 					}
 				}
 			}
 		}
-
-		if (scriptParam.length() > 1) {
-			this.scriptParams = scriptParam.substring(0, scriptParam.length() - 1) + "}";
-		}
-
+		//2、整理出页码链接
+		if(scriptParam.length() > 1) this.scriptParams = scriptParam.substring(0, scriptParam.length()-1) + "}";
 		this.commonParams = commonParam;
-		if (this.isPrePage()) {
-			String arg14 = this.baseUrl;
-			int arg15 = this.currentPage - 1;
-			if (arg15 == 0) {
-				if (StringUtils.isNotBlank(commonParam)) {
-					arg14 = arg14 + "?" + StringUtils.substring(commonParam, 1);
-				}
-			} else {
-				arg14 = arg14 + "?pageNo=" + arg15 + commonParam;
-			}
-
-			this.preurl = arg14;
+		if(isPrePage()){//有上一页
+			String tmpUrl = baseUrl;
+			int pn = currentPage-1;
+			if(pn == 0){
+				if(StringUtils.isNotBlank(commonParam))
+					tmpUrl += "?" + StringUtils.substring(commonParam,1);
+			}else tmpUrl += "?pageNo=" + pn + commonParam;
+			this.preurl = tmpUrl;
 		}
-
-		for (int arg16 = this.startNum; arg16 < this.endNum; ++arg16) {
-			PageInfo arg17 = new PageInfo();
-			String arg18 = this.baseUrl;
-			if (arg16 == 0) {
-				if (StringUtils.isNotBlank(commonParam)) {
-					arg18 = arg18 + "?" + StringUtils.substring(commonParam, 1);
-				}
-			} else {
-				arg18 = arg18 + "?pageNo=" + arg16 + commonParam;
-			}
-
-			arg17.setUrl(arg18);
-			arg17.setPageNo("" + (arg16 + 1));
-			arg17.setRealPageNo(arg16);
-			if (arg16 == this.currentPage) {
-				arg17.setCurrentPage(true);
-			}
-
-			if (this.isLastPage()) {
-				if (arg16 + 1 != this.pageCount) {
-					this.pageInfoList.add(arg17);
-				}
-			} else {
-				this.pageInfoList.add(arg17);
-			}
+		for(int pn=startNum; pn<endNum; pn++){
+			PageInfo pageInfo = new PageInfo();
+			String tmpUrl = baseUrl;
+			if(pn == 0){
+				if(StringUtils.isNotBlank(commonParam))
+					tmpUrl += "?" + StringUtils.substring(commonParam,1);
+			}else tmpUrl += "?pageNo=" + pn + commonParam;
+			pageInfo.setUrl(tmpUrl);
+			pageInfo.setPageNo(""+(pn+1));//显示的页码
+			pageInfo.setRealPageNo(pn);
+			if(pn == currentPage) pageInfo.setCurrentPage(true);
+			if(isLastPage()) {
+				if((pn+1)!=pageCount)pageInfoList.add(pageInfo);
+			}else pageInfoList.add(pageInfo);
 		}
-
-		if (this.isNextPage()) {
-			this.nexturl = this.baseUrl + "?pageNo=" + (this.currentPage + 1) + commonParam;
+		if(isNextPage()){//有下一页
+			this.nexturl = baseUrl + "?pageNo=" + (currentPage + 1) + commonParam;
 		}
-
-		if (this.isFirstPage()) {
-			if (StringUtils.isNotBlank(commonParam)) {
-				this.firsturl = this.baseUrl + "?" + StringUtils.substring(commonParam, 1);
-			} else {
-				this.firsturl = this.baseUrl;
-			}
+		if(isFirstPage()){
+			if(StringUtils.isNotBlank(commonParam))	this.firsturl = baseUrl +"?" + StringUtils.substring(commonParam, 1);
+			else this.firsturl = baseUrl;
 		}
-
-		if (this.isLastPage()) {
-			this.lasturl = this.baseUrl + "?pageNo=" + (this.pageCount - 1) + commonParam;
+		if(isLastPage()){
+			this.lasturl = baseUrl + "?pageNo=" + (pageCount-1) + commonParam;
 		}
-
 	}
-
-	public void initPageInfo() {
-		this.initPageInfo((Map) null);
+	public void initPageInfo(){
+		initPageInfo(null);
 	}
-
-	public void initPageInfo(Map<String, ?> params) {
-		this.initPageInfo(params, (List) null);
+	public void initPageInfo(Map<String,?> params){
+		initPageInfo(params, null);
 	}
-
 	public String getCommonParams() {
-		return this.commonParams;
+		return commonParams;
 	}
-
 	public void setCommonParams(String commonParams) {
 		this.commonParams = commonParams;
 	}
-
 	public String getScriptParams() {
-		return this.scriptParams;
+		return scriptParams;
 	}
-
 	public void setScriptParams(String scriptParams) {
 		this.scriptParams = scriptParams;
 	}
-
 	public boolean getIsShowFirst() {
-		return this.isShowFirst;
+		return isShowFirst;
 	}
-
 	public void setIsShowFirst(boolean isShowFirst) {
 		this.isShowFirst = isShowFirst;
 	}
-
 	public boolean getIsShowLast() {
-		return this.isShowLast;
+		return isShowLast;
 	}
-
 	public void setIsShowLast(boolean isShowLast) {
 		this.isShowLast = isShowLast;
 	}
-
 	public String getFirsturl() {
-		return this.firsturl;
+		return firsturl;
 	}
-
 	public void setFirsturl(String firsturl) {
 		this.firsturl = firsturl;
 	}
-
 	public String getPreurl() {
-		return this.preurl;
+		return preurl;
 	}
-
 	public void setPreurl(String preurl) {
 		this.preurl = preurl;
 	}
-
 	public String getNexturl() {
-		return this.nexturl;
+		return nexturl;
 	}
-
 	public void setNexturl(String nexturl) {
 		this.nexturl = nexturl;
 	}
-
 	public String getLasturl() {
-		return this.lasturl;
+		return lasturl;
 	}
-
 	public void setLasturl(String lasturl) {
 		this.lasturl = lasturl;
 	}
-
-	public boolean isFirstPage() {
-		return this.isShowFirst && this.currentPage > 5;
+	
+	public boolean isFirstPage(){
+		if(this.isShowFirst && currentPage>5) return true;
+		return false;
 	}
-
-	public boolean isPrePage() {
-		return this.currentPage > 0;
+	
+	public boolean isPrePage(){
+		if(this.currentPage>0) return true;
+		return false;
 	}
-
-	public boolean isNextPage() {
-		return this.currentPage + 1 < this.pageCount;
+	
+	public boolean isNextPage(){
+		if(this.currentPage+1 < this.pageCount)	return true;
+		return false;
 	}
-
-	public boolean isLastPage() {
-		return this.isShowLast && this.pageCount > 5;
+	
+	public boolean isLastPage(){
+		if(this.isShowLast && pageCount>5) return true;
+		return false;
 	}
-
-	public boolean isOnLast(String pageNo) {
-		if (StringUtils.isBlank(pageNo)) {
-			pageNo = "0";
-		}
-
-		return this.isLastPage()
-				&& StringUtils.equals(Integer.valueOf(pageNo).intValue() + 1 + "", this.pageCount + "");
+	public boolean isOnLast(String pageNo ){
+		if(StringUtils.isBlank(pageNo)) pageNo="0";
+		if(isLastPage() && StringUtils.equals((Integer.valueOf(pageNo)+1)+"", pageCount+"")) return true;
+		return false;
 	}
 }

@@ -1,39 +1,34 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 
+/**
+ * 用来做系统出错定位跟踪
+ * @author gebiao(ge.biao@gewara.com)
+ * @since Jan 18, 2014 3:12:29 PM
+ */
 public class LogTraceUtil {
-	private static List<LogTraceUtil.LogTrace> traceList = new ArrayList();
-
-	public static void addTrace(LogTraceUtil.LogTrace trace) {
+	private static List<LogTrace> traceList = new ArrayList<LogTrace>();
+	public static void addTrace(LogTrace trace){
 		traceList.add(trace);
 	}
-
-	public static List<String> getTraceInfo() {
-		ArrayList result = new ArrayList();
-		Iterator arg0 = traceList.iterator();
-
-		while (arg0.hasNext()) {
-			LogTraceUtil.LogTrace trace = (LogTraceUtil.LogTrace) arg0.next();
-
-			try {
+	public static List<String> getTraceInfo(){
+		List<String> result = new ArrayList<String>();
+		for(LogTrace trace: traceList){
+			try{
 				String ts = trace.getTrace();
-				if (StringUtils.isNotBlank(ts)) {
+				if(StringUtils.isNotBlank(ts)){
 					result.add(ts);
 				}
-			} catch (Throwable arg3) {
-				;
+			}catch(Throwable e){
 			}
 		}
-
 		return result;
 	}
-
-	public interface LogTrace {
+	public static interface LogTrace{
 		String getTrace();
 	}
 }

@@ -1,102 +1,86 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.monitor;
 
-import com.gewara.untrans.monitor.ConfigTrigger;
-import com.gewara.util.BeanUtil;
-import com.gewara.util.DateUtil;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Map;
+
 import org.apache.commons.beanutils.PropertyUtils;
 
-public abstract class ConfigData implements ConfigTrigger {
-	private Object data;
+import com.gewara.util.BeanUtil;
+import com.gewara.util.DateUtil;
 
-	public ConfigData(Map data) {
+/**
+ * @author gebiao
+ * Map 的值必须是 简单类型或Map
+ * 可以嵌套查询，如：getLong("member.id") 获取Map中member的id 
+ */
+public abstract class ConfigData implements ConfigTrigger{
+	private Object data;
+	public ConfigData(Map data){
 		this.data = data;
 	}
-
-	public Integer getInteger(String key) {
-		Object value = BeanUtil.get(this.data, key);
-		if (value != null) {
-			try {
-				return Integer.valueOf(Integer.parseInt(value.toString()));
-			} catch (Exception arg3) {
-				;
+	public Integer getInteger(String key){
+		Object value = BeanUtil.get(data, key);
+		if(value!=null){
+			try{
+				return Integer.parseInt(value.toString());
+			}catch(Exception e){//ignore
 			}
 		}
-
 		return null;
 	}
-
-	public Long getLong(String key) {
-		Object value = BeanUtil.get(this.data, key);
-		if (value != null) {
-			try {
-				return Long.valueOf(Long.parseLong(value.toString()));
-			} catch (Exception arg3) {
-				;
+	public Long getLong(String key){
+		Object value = BeanUtil.get(data, key);
+		if(value!=null){
+			try{
+				return Long.parseLong(value.toString());
+			}catch(Exception e){//ignore
 			}
 		}
-
 		return null;
 	}
-
-	public Date getDate(String key) {
-		Object value = BeanUtil.get(this.data, key);
-		if (value != null) {
-			try {
+	public Date getDate(String key){
+		Object value = BeanUtil.get(data, key);
+		if(value!=null){
+			try{
 				return DateUtil.parseDate(value.toString());
-			} catch (Exception arg3) {
-				;
+			}catch(Exception e){//ignore
 			}
 		}
-
 		return null;
 	}
-
-	public Timestamp getTimestamp(String key) {
-		Object value = BeanUtil.get(this.data, key);
-		if (value != null) {
-			try {
+	public Timestamp getTimestamp(String key){
+		Object value = BeanUtil.get(data, key);
+		if(value!=null){
+			try{
 				return DateUtil.parseTimestamp(value.toString());
-			} catch (Exception arg3) {
-				;
+			}catch(Exception e){//ignore
 			}
 		}
-
 		return null;
-	}
 
-	public String getString(String key) {
-		Object value = BeanUtil.get(this.data, key);
-		if (value != null) {
-			try {
+	}
+	public String getString(String key){
+		Object value = BeanUtil.get(data, key);
+		if(value!=null){
+			try{
 				return value.toString();
-			} catch (Exception arg3) {
-				;
+			}catch(Exception e){//ignore
 			}
 		}
-
 		return null;
 	}
-
 	public Object get(String property) {
 		try {
-			return PropertyUtils.getNestedProperty(this.data, property);
-		} catch (IllegalAccessException arg2) {
-			;
-		} catch (InvocationTargetException arg3) {
-			;
-		} catch (NoSuchMethodException arg4) {
-			;
-		} catch (Exception arg5) {
-			;
+			return PropertyUtils.getNestedProperty(data, property);
+		} catch (IllegalAccessException e) {
+		} catch (InvocationTargetException e) {
+		} catch (NoSuchMethodException e) {
+		} catch (Exception e) {
 		}
-
 		return null;
 	}
-
-	public abstract void refreshCurrent(String arg0);
+	@Override
+	public abstract void refreshCurrent(String newConfig);
 }

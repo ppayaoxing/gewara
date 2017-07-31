@@ -1,6 +1,8 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.web.support;
 
 public interface WebAppPostProcessor {
+	/**
+	 * WEB容器启动后期处理
+	 */
 	void init();
 }

@@ -1,7 +1,5 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
-import com.gewara.util.DateUtil;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
@@ -10,87 +8,93 @@ import java.util.Set;
 
 public class DataMap implements Map {
 	private Map map;
-
-	public DataMap(Map map) {
+	public DataMap(Map map){
 		this.map = map;
 	}
-
-	public Long longValue(String key) {
-		Object value = this.map.get(key);
-		return value == null ? null : Long.valueOf(Long.parseLong(value.toString()));
+	public Long longValue(String key){
+		Object value = map.get(key);
+		if(value==null) return null;
+		return Long.parseLong(value.toString());
 	}
-
-	public Integer intValue(String key) {
-		Object value = this.map.get(key);
-		return value == null ? null : Integer.valueOf(Integer.parseInt(value.toString()));
+	public Integer intValue(String key){
+		Object value = map.get(key);
+		if(value==null) return null;
+		return Integer.parseInt(value.toString());
 	}
-
-	public Double doubleValue(String key) {
-		Object value = this.map.get(key);
-		return value == null ? null : Double.valueOf(Double.parseDouble(value.toString()));
+	public Double doubleValue(String key){
+		Object value = map.get(key);
+		if(value==null) return null;
+		return Double.parseDouble(value.toString());
 	}
-
-	public Timestamp timestampValue(String key) {
-		Object value = this.map.get(key);
-		return value == null ? null
-				: (value instanceof Timestamp ? (Timestamp) value : DateUtil.parseTimestamp("" + value));
+	public Timestamp timestampValue(String key){
+		Object value = map.get(key);
+		if(value==null) return null;
+		if(value instanceof Timestamp){
+			return (Timestamp) value;
+		}else{
+			return DateUtil.parseTimestamp(""+value);
+		}
 	}
-
-	public Date dateValue(String key) {
-		Object value = this.map.get(key);
-		return value == null ? null : (value instanceof Date ? (Date) value : DateUtil.parseDate("" + value));
+	public Date dateValue(String key){
+		Object value = map.get(key);
+		if(value==null) return null;
+		if(value instanceof Date){
+			return (Date) value;	
+		}
+		return DateUtil.parseDate(""+value); 
 	}
-
-	public String stringValue(String key) {
-		Object value = this.map.get(key);
-		return value == null ? null : value.toString();
+	public String stringValue(String key){
+		Object value = map.get(key);
+		if(value==null) return null;
+		return value.toString();
 	}
-
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	@Override
 	public int size() {
-		return this.map.size();
+		return map.size();
 	}
-
+	@Override
 	public boolean isEmpty() {
-		return this.map == null || this.map.isEmpty();
+		return map==null || map.isEmpty();
 	}
-
+	@Override
 	public boolean containsKey(Object key) {
-		return this.map.containsKey(key);
+		return map.containsKey(key);
 	}
-
+	@Override
 	public boolean containsValue(Object value) {
-		return this.map.containsValue(value);
+		return map.containsValue(value);
 	}
-
+	@Override
 	public Object get(Object key) {
-		return this.map.get(key);
+		return map.get(key);
 	}
-
+	@Override
 	public Object put(Object key, Object value) {
-		return this.map.put(key, value);
+		return map.put(key, value);
 	}
-
+	@Override
 	public Object remove(Object key) {
-		return this.map.remove(key);
+		return map.remove(key);
 	}
-
+	@Override
 	public void putAll(Map m) {
-		this.map.putAll(m);
+		map.putAll(m);
 	}
-
+	@Override
 	public void clear() {
-		this.map.clear();
+		map.clear();
 	}
-
+	@Override
 	public Set keySet() {
-		return this.map.keySet();
+		return map.keySet();
 	}
-
+	@Override
 	public Collection values() {
-		return this.map.values();
+		return map.values();
 	}
-
+	@Override
 	public Set entrySet() {
-		return this.map.entrySet();
+		return map.entrySet();
 	}
 }

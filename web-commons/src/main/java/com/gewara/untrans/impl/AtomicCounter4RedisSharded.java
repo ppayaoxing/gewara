@@ -1,155 +1,128 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.impl;
 
-import com.gewara.support.concurrent.AtomicCounter;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.Assert;
+
+import com.gewara.support.concurrent.AtomicCounter;
+
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
 public class AtomicCounter4RedisSharded implements AtomicCounter {
 	private ShardedJedisPool pool;
 	private String key;
-
-	public AtomicCounter4RedisSharded(String key, ShardedJedisPool pool) {
-		this(key, pool, 0L);
+	
+	public AtomicCounter4RedisSharded(String key, ShardedJedisPool pool){
+		this(key, pool, 0);
 	}
-
-	public AtomicCounter4RedisSharded(String key, ShardedJedisPool pool, long initValue) {
+	
+	public AtomicCounter4RedisSharded(String key, ShardedJedisPool pool, long initValue){
 		Assert.hasText(key, "key not blank");
-		Assert.notNull(pool, "shardedJedisPool must not null");
+		Assert.notNull(pool, "shardedJedisPool must not null");	
 		this.key = key;
 		this.pool = pool;
-		if (initValue == 0L) {
-			if (this.get() == 0L) {
-				this.set(0L);
+		if(initValue == 0){
+			if(this.get() == 0L){
+				set(0);
 			}
-		} else {
-			this.set(initValue);
+		}else{
+			set(initValue);
 		}
-
 	}
-
+	
+	@Override
 	public long get() {
 		ShardedJedis jedis = null;
-
-		long arg2;
-		try {
-			jedis = this.pool.getResource();
-			String rv = jedis.get(this.key);
-			if (StringUtils.isBlank(rv)) {
-				arg2 = 0L;
-				return arg2;
+		try{
+			jedis = pool.getResource();
+			String rv = jedis.get(key);
+			if(StringUtils.isBlank(rv)){
+				return 0;
 			}
-
-			arg2 = Long.valueOf(rv).longValue();
-		} finally {
-			if (jedis != null) {
+			return Long.valueOf(rv);
+		}finally{
+			if(jedis != null){
 				jedis.close();
 			}
-
 		}
-
-		return arg2;
 	}
 
+	@Override
 	public void set(long newValue) {
 		ShardedJedis jedis = null;
-
-		try {
-			jedis = this.pool.getResource();
-			jedis.set(this.key, String.valueOf(newValue));
-		} finally {
-			if (jedis != null) {
+		try{
+			jedis = pool.getResource();
+			jedis.set(key, String.valueOf(newValue));
+		}finally{
+			if(jedis != null){
 				jedis.close();
 			}
-
 		}
-
 	}
 
+	@Override
 	public long getAndAdd(long delta) {
 		ShardedJedis jedis = null;
-
-		long arg3;
-		try {
-			jedis = this.pool.getResource();
-			arg3 = jedis.incrBy(this.key, delta).longValue() - delta;
-		} finally {
-			if (jedis != null) {
+		try{
+			jedis = pool.getResource();
+			return jedis.incrBy(key, delta) - delta;
+		}finally{
+			if(jedis != null){
 				jedis.close();
 			}
-
 		}
-
-		return arg3;
 	}
 
+	@Override
 	public long getAndDecrement() {
 		ShardedJedis jedis = null;
-
-		long arg1;
-		try {
-			jedis = this.pool.getResource();
-			arg1 = jedis.decr(this.key).longValue() + 1L;
-		} finally {
-			if (jedis != null) {
+		try{
+			jedis = pool.getResource();
+			return jedis.decr(key) + 1;
+		}finally{
+			if(jedis != null){
 				jedis.close();
 			}
-
 		}
-
-		return arg1;
 	}
 
+	@Override
 	public long getAndIncrement() {
 		ShardedJedis jedis = null;
-
-		long arg1;
-		try {
-			jedis = this.pool.getResource();
-			arg1 = jedis.incr(this.key).longValue() - 1L;
-		} finally {
-			if (jedis != null) {
+		try{
+			jedis = pool.getResource();
+			return jedis.incr(key) -1L;
+		}finally{
+			if(jedis != null){
 				jedis.close();
 			}
-
 		}
-
-		return arg1;
 	}
 
+	@Override
 	public long getAndSet(long newValue) {
 		ShardedJedis jedis = null;
-
-		long arg3;
-		try {
-			jedis = this.pool.getResource();
-			arg3 = Long.valueOf(jedis.getSet(this.key, String.valueOf(newValue))).longValue();
-		} finally {
-			if (jedis != null) {
+		try{
+			jedis = pool.getResource();
+			return Long.valueOf(jedis.getSet(key, String.valueOf(newValue)));
+		}finally{
+			if(jedis != null){
 				jedis.close();
 			}
-
 		}
-
-		return arg3;
 	}
 
+	@Override
 	public long incrementAndGet() {
 		ShardedJedis jedis = null;
-
-		long arg1;
-		try {
-			jedis = this.pool.getResource();
-			arg1 = jedis.incr(this.key).longValue();
-		} finally {
-			if (jedis != null) {
+		try{
+			jedis = pool.getResource();
+			return jedis.incr(key);
+		}finally{
+			if(jedis != null){
 				jedis.close();
 			}
-
 		}
-
-		return arg1;
 	}
+
 }

@@ -1,18 +1,18 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.text.renderer;
 
 import java.awt.image.BufferedImage;
+
 import org.patchca.color.ColorFactory;
 import org.patchca.font.FontFactory;
 
-public interface TextRenderer {
-	void setLeftMargin(int arg0);
+public abstract interface TextRenderer {
+	public abstract void setLeftMargin(int paramInt);
 
-	void setRightMargin(int arg0);
+	public abstract void setRightMargin(int paramInt);
 
-	void setTopMargin(int arg0);
+	public abstract void setTopMargin(int paramInt);
 
-	void setBottomMargin(int arg0);
+	public abstract void setBottomMargin(int paramInt);
 
-	void draw(String arg0, BufferedImage arg1, FontFactory arg2, ColorFactory arg3);
+	public abstract void draw(String paramString, BufferedImage paramBufferedImage, FontFactory paramFontFactory, ColorFactory paramColorFactory);
 }

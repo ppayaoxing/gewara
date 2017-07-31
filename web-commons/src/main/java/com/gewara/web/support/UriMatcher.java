@@ -1,6 +1,4 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.web.support;
-
 public interface UriMatcher {
-	boolean matches(String arg0);
+    boolean matches(String path);
 }

@@ -1,86 +1,139 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mdb.operation;
 
-import com.gewara.util.Util4Script;
-import com.mongodb.client.model.Filters;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
+
 import org.bson.BsonDocument;
 import org.bson.BsonDocumentWriter;
 import org.bson.BsonType;
+import org.bson.codecs.Encoder;
 import org.bson.codecs.EncoderContext;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.conversions.Bson;
 
-public class Expression implements Util4Script {
-	public static final String MongoDB_ID_FieldName = "_id";
-	protected final Expression.LogicRelate logic;
-	protected final List<Bson> condition;
+import com.gewara.util.Util4Script;
+import com.mongodb.client.model.Filters;
 
+/**
+ * 表达式。
+ * 
+ * @author 董明
+ * @createDate 2015年7月27日
+ * @link org.bson.conversions.Bson.Filters
+ */
+public class Expression implements Util4Script{
+	public static enum LogicRelate {
+		AND, OR, NOT, NOR
+	};
+
+	/**
+	 * @author Administrator
+	 *
+	 */
+	public static enum OpenCloseState {
+		
+		/**
+		 * [min,max)
+		 */
+		CO, 
+		/**
+		 *(min,max)
+		 */
+		OO, 
+		/**
+		 *(min,max]
+		 */
+		OC, 
+		/**
+		 *[min,max]
+		 */
+		CC
+	};
+
+	public final static String MongoDB_ID_FieldName = "_id";
+
+	protected final LogicRelate logic;
+	protected final List<Bson> condition = new ArrayList<Bson>();
+
+	/**
+	 * 默认为And关系。
+	 */
 	public Expression() {
-		this(Expression.LogicRelate.AND);
+		this(LogicRelate.AND);
 	}
 
-	public Expression(Expression.LogicRelate logic) {
-		this.condition = new ArrayList();
+	/**
+	 * 用来指明在该表达式中，每个操作之间的关系。
+	 * 
+	 * @param logic
+	 */
+	public Expression(LogicRelate logic) {
 		this.logic = logic;
 	}
 
-	public Expression eq(String fieldName, Object value) {
-		this.condition.add(Filters.eq(fieldName, value));
+	public Expression eq(final String fieldName, final Object value) {
+		condition.add(Filters.eq(fieldName, value));
 		return this;
 	}
 
-	public Expression ne(String fieldName, Object value) {
-		this.condition.add(Filters.ne(fieldName, value));
+	public Expression ne(final String fieldName, final Object value) {
+		condition.add(Filters.ne(fieldName, value));
 		return this;
 	}
 
-	public Expression gt(String fieldName, Object value) {
-		this.condition.add(Filters.gt(fieldName, value));
+	public Expression gt(final String fieldName, final Object value) {
+		condition.add(Filters.gt(fieldName, value));
 		return this;
 	}
 
-	public Expression lt(String fieldName, Object value) {
-		this.condition.add(Filters.lt(fieldName, value));
+	public Expression lt(final String fieldName, final Object value) {
+		condition.add(Filters.lt(fieldName, value));
 		return this;
 	}
 
-	public Expression gte(String fieldName, Object value) {
-		this.condition.add(Filters.gte(fieldName, value));
+	public Expression gte(final String fieldName, final Object value) {
+		condition.add(Filters.gte(fieldName, value));
 		return this;
 	}
 
-	public Expression lte(String fieldName, Object value) {
-		this.condition.add(Filters.lte(fieldName, value));
+	public Expression lte(final String fieldName, final Object value) {
+		condition.add(Filters.lte(fieldName, value));
 		return this;
 	}
 
-	public Expression between(final String fieldName, final Object min, final Object max,
-			final Expression.OpenCloseState range) {
-		this.condition.add(new Bson() {
-			public <TDocument> BsonDocument toBsonDocument(Class<TDocument> documentClass,
-					CodecRegistry codecRegistry) {
-				String from = null;
-				String to = null;
-				switch (null.$SwitchMap$com$gewara$mdb$operation$Expression$OpenCloseState[range.ordinal()]) {
-				case 1:
+	/**
+	 * @param fieldName
+	 * @param min
+	 * @param max
+	 * @param range
+	 *           用来指定其闭合状态。
+	 * @return
+	 */
+	public Expression between(final String fieldName, final Object min, final Object max, final OpenCloseState range) {
+		condition.add(new Bson() {
+			@Override
+			public <TDocument> BsonDocument toBsonDocument(Class<TDocument> documentClass, CodecRegistry codecRegistry) {
+				String from = null, to = null;
+				switch (range) {
+				case CO:
 					from = "$gte";
 					to = "$lt";
 					break;
-				case 2:
+				case OO:
 					from = "$gt";
 					to = "$lt";
 					break;
-				case 3:
+				case OC:
 					from = "$gt";
 					to = "$lte";
 					break;
-				case 4:
+				case CC:
 					from = "$gte";
 					to = "$lte";
+					break;
 				}
 
 				BsonDocumentWriter writer = new BsonDocumentWriter(new BsonDocument());
@@ -88,155 +141,156 @@ public class Expression implements Util4Script {
 				writer.writeName(fieldName);
 				writer.writeStartDocument();
 				writer.writeName(from);
-				Expression.encodeValue(writer, min, codecRegistry);
+				encodeValue(writer, min, codecRegistry);
 				writer.writeName(to);
-				Expression.encodeValue(writer, max, codecRegistry);
+				encodeValue(writer, max, codecRegistry);
 				writer.writeEndDocument();
 				writer.writeEndDocument();
+
 				return writer.getDocument();
 			}
 		});
 		return this;
 	}
 
-	private static void encodeValue(BsonDocumentWriter writer, Object value, CodecRegistry codecRegistry) {
+	@SuppressWarnings("unchecked")
+	private static void encodeValue(final BsonDocumentWriter writer, final Object value, final CodecRegistry codecRegistry) {
 		if (value == null) {
 			writer.writeNull();
 		} else if (value instanceof Bson) {
-			codecRegistry.get(BsonDocument.class).encode(writer,
-					((Bson) value).toBsonDocument(BsonDocument.class, codecRegistry), EncoderContext.builder().build());
+			((Encoder) codecRegistry.get(BsonDocument.class)).encode(writer, ((Bson) value).toBsonDocument(BsonDocument.class, codecRegistry), EncoderContext.builder().build());
 		} else {
-			codecRegistry.get(value.getClass()).encode(writer, value, EncoderContext.builder().build());
+			((Encoder) codecRegistry.get(value.getClass())).encode(writer, value, EncoderContext.builder().build());
 		}
-
 	}
 
-	public Expression in(String fieldName, Object[] values) {
-		this.condition.add(Filters.in(fieldName, values));
+	public Expression in(final String fieldName, final Object[] values) {
+		condition.add(Filters.in(fieldName, values));
 		return this;
 	}
 
-	public Expression in(String fieldName, Iterable values) {
-		this.condition.add(Filters.in(fieldName, values));
+	public Expression in(final String fieldName, final Iterable values) {
+		condition.add(Filters.in(fieldName, values));
 		return this;
 	}
 
-	public Expression nin(String fieldName, Object[] values) {
-		this.condition.add(Filters.nin(fieldName, values));
+	public Expression nin(final String fieldName, final Object[] values) {
+		condition.add(Filters.nin(fieldName, values));
 		return this;
 	}
 
-	public Expression nin(String fieldName, Iterable values) {
-		this.condition.add(Filters.nin(fieldName, values));
+	public Expression nin(final String fieldName, final Iterable values) {
+		condition.add(Filters.nin(fieldName, values));
 		return this;
 	}
 
-	public Expression exists(String fieldName, boolean exists) {
-		this.condition.add(Filters.exists(fieldName, exists));
+	public Expression exists(final String fieldName, final boolean exists) {
+		condition.add(Filters.exists(fieldName, exists));
 		return this;
 	}
 
-	public Expression type(String fieldName, BsonType type) {
-		this.condition.add(Filters.type(fieldName, type));
+	public Expression type(final String fieldName, final BsonType type) {
+		condition.add(Filters.type(fieldName, type));
 		return this;
 	}
 
-	public Expression mod(String fieldName, long divisor, long remainder) {
-		this.condition.add(Filters.mod(fieldName, divisor, remainder));
+	public Expression mod(final String fieldName, final long divisor, final long remainder) {
+		condition.add(Filters.mod(fieldName, divisor, remainder));
 		return this;
 	}
 
-	public Expression regex(String fieldName, String pattern) {
-		this.condition.add(Filters.regex(fieldName, pattern));
+	public Expression regex(final String fieldName, final String pattern) {
+		condition.add(Filters.regex(fieldName, pattern));
 		return this;
 	}
 
-	public Expression regex(String fieldName, String pattern, String options) {
-		this.condition.add(Filters.regex(fieldName, pattern, options));
+	public Expression regex(final String fieldName, final String pattern, final String options) {
+		condition.add(Filters.regex(fieldName, pattern, options));
 		return this;
 	}
 
-	public Expression regex(String fieldName, Pattern pattern) {
-		this.condition.add(Filters.regex(fieldName, pattern));
+	public Expression regex(final String fieldName, final Pattern pattern) {
+		condition.add(Filters.regex(fieldName, pattern));
 		return this;
 	}
 
-	public Expression text(String search) {
-		this.condition.add(Filters.text(search));
+	public Expression text(final String search) {
+		condition.add(Filters.text(search));
 		return this;
 	}
 
-	public Expression where(String javaScriptExpression) {
-		this.condition.add(Filters.where(javaScriptExpression));
+	public Expression where(final String javaScriptExpression) {
+		condition.add(Filters.where(javaScriptExpression));
 		return this;
 	}
 
-	public Expression all4Array(String fieldName, Object... values) {
-		this.condition.add(Filters.all(fieldName, values));
+	public Expression all4Array(final String fieldName, final Object... values) {
+		condition.add(Filters.all(fieldName, values));
 		return this;
 	}
 
-	public Expression all4Array(String fieldName, Iterable values) {
-		this.condition.add(Filters.all(fieldName, values));
+	public Expression all4Array(final String fieldName, final Iterable values) {
+		condition.add(Filters.all(fieldName, values));
 		return this;
 	}
 
-	public Expression elemMatch4Array(String fieldName, Expression matchCondition) {
-		this.condition.add(Filters.elemMatch(fieldName, matchCondition.toBson()));
+	public Expression elemMatch4Array(final String fieldName, final Expression matchCondition) {
+		condition.add(Filters.elemMatch(fieldName, matchCondition.toBson()));
 		return this;
 	}
 
-	public Expression size4Array(String fieldName, int size) {
-		this.condition.add(Filters.size(fieldName, size));
+	public Expression size4Array(final String fieldName, final int size) {
+		condition.add(Filters.size(fieldName, size));
 		return this;
 	}
 
+	/**
+	 * 添加其他的查询表达式 这个方法主要是为了兼容3.0以前的api。 不是必须的情况下，请不要调用该方法。
+	 * 
+	 * @param bsons
+	 * @return
+	 */
 	public Expression bson(Bson... bsons) {
-		Bson[] arg1 = bsons;
-		int arg2 = bsons.length;
-
-		for (int arg3 = 0; arg3 < arg2; ++arg3) {
-			Bson bson = arg1[arg3];
-			this.condition.add(bson);
+		for (Bson bson : bsons) {
+			condition.add(bson);
 		}
-
 		return this;
 	}
 
 	public Expression expression(Expression... expressions) {
-		Expression[] arg1 = expressions;
-		int arg2 = expressions.length;
-
-		for (int arg3 = 0; arg3 < arg2; ++arg3) {
-			Expression expression = arg1[arg3];
-			this.condition.add(expression.toBson());
+		for (Expression expression : expressions) {
+			condition.add(expression.toBson());
 		}
-
 		return this;
 	}
 
+	/**
+	 * 将指定express 转化为Bson对象
+	 * 
+	 * @param matchCondition
+	 * @return
+	 */
 	public Bson toBson() {
 		if (!this.condition.isEmpty()) {
 			Bson bson = null;
 			if (this.condition.size() == 1) {
-				bson = this.logic == Expression.LogicRelate.NOT ? Filters.not((Bson) this.condition.get(0))
-						: (Bson) this.condition.get(0);
+				bson = this.logic == LogicRelate.NOT ? Filters.not(this.condition.get(0)) : this.condition.get(0);
 			} else {
-				switch (null.$SwitchMap$com$gewara$mdb$operation$Expression$LogicRelate[this.logic.ordinal()]) {
-				case 1:
+				switch (this.logic) {
+				case AND:
 					bson = Filters.and(this.condition);
 					break;
-				case 2:
+				case OR:
 					bson = Filters.or(this.condition);
 					break;
-				case 3:
+				case NOT:
 					bson = Filters.not(Filters.and(this.condition));
 					break;
-				case 4:
+				case NOR:
 					bson = Filters.nor(this.condition);
+					break;
 				}
 			}
-
 			return bson;
 		} else {
 			return new BsonDocument();
@@ -244,19 +298,12 @@ public class Expression implements Util4Script {
 	}
 
 	public static void main(String[] args) {
-		HashMap map = new HashMap();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("key1", "1");
 		map.put("key2", "2");
-		Expression exp = new Expression(Expression.LogicRelate.OR);
+		Expression exp = new Expression(LogicRelate.OR);
 		Bson b = exp.toBson();
 		System.out.println(b.toString());
 	}
 
-	public static enum OpenCloseState {
-		CO, OO, OC, CC;
-	}
-
-	public static enum LogicRelate {
-		AND, OR, NOT, NOR;
-	}
 }

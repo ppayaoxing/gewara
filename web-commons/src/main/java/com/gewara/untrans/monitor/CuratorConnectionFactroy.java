@@ -1,11 +1,16 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.monitor;
 
 import java.io.IOException;
+
 import org.apache.curator.framework.CuratorFramework;
 
 public interface CuratorConnectionFactroy {
-	CuratorFramework getCuratorFramework() throws IOException;
-
+	/**
+	 * 获取初始化后的CuratorFramework
+	 * @return
+	 * @throws IOException 未初始化完成
+	 */
+	CuratorFramework getCuratorFramework() throws IOException ;
+	
 	void init() throws IOException;
 }

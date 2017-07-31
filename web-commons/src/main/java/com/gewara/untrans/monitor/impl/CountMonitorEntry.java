@@ -1,17 +1,17 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.monitor.impl;
+
+
 
 public class CountMonitorEntry {
 	private String key;
 	private long amount;
-	private long time = System.currentTimeMillis();
+	private long time;
 	private long count;
 	private boolean countMin;
 	private boolean countHour;
 	private boolean countDay;
-
-	public CountMonitorEntry(String key, long amount, long count, boolean countMin, boolean countHour,
-			boolean countDay) {
+	public CountMonitorEntry(String key, long amount, long count, boolean countMin, boolean countHour, boolean countDay){
+		this.time = System.currentTimeMillis();
 		this.countMin = countMin;
 		this.countHour = countHour;
 		this.countDay = countDay;
@@ -19,59 +19,45 @@ public class CountMonitorEntry {
 		this.count = count;
 		this.key = key;
 	}
-
 	public long getAmount() {
-		return this.amount;
+		return amount;
 	}
-
 	public void setAmount(long amount) {
 		this.amount = amount;
 	}
-
 	public long getTime() {
-		return this.time;
+		return time;
 	}
-
 	public void setTime(long time) {
 		this.time = time;
 	}
-
 	public boolean isCountMin() {
-		return this.countMin;
+		return countMin;
 	}
-
 	public void setCountMin(boolean countMin) {
 		this.countMin = countMin;
 	}
-
 	public boolean isCountHour() {
-		return this.countHour;
+		return countHour;
 	}
-
 	public void setCountHour(boolean countHour) {
 		this.countHour = countHour;
 	}
-
 	public boolean isCountDay() {
-		return this.countDay;
+		return countDay;
 	}
-
 	public void setCountDay(boolean countDay) {
 		this.countDay = countDay;
 	}
-
 	public String getKey() {
-		return this.key;
+		return key;
 	}
-
 	public void setKey(String key) {
 		this.key = key;
 	}
-
 	public long getCount() {
-		return this.count;
+		return count;
 	}
-
 	public void setCount(long count) {
 		this.count = count;
 	}

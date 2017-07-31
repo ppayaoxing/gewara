@@ -1,16 +1,5 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.web.component.mon;
 
-import com.gewara.Config;
-import com.gewara.bean.BlackMatcher;
-import com.gewara.untrans.AttackTestService;
-import com.gewara.untrans.monitor.SysSelfCheckingService;
-import com.gewara.untrans.monitor.ZookeeperService;
-import com.gewara.util.BaseWebUtils;
-import com.gewara.util.DateUtil;
-import com.gewara.util.GewaIpConfig;
-import com.gewara.util.JsonUtils;
-import com.gewara.util.TimerHelper;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.net.SocketAddress;
@@ -22,9 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TimerTask;
-import java.util.Map.Entry;
+
 import javax.servlet.http.HttpServletRequest;
-import net.spy.memcached.MemcachedClient;
+
 import org.apache.commons.lang.StringUtils;
 import org.quartz.Scheduler;
 import org.springframework.beans.BeansException;
@@ -38,6 +27,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.gewara.Config;
+import com.gewara.bean.BlackMatcher;
+import com.gewara.untrans.AttackTestService;
+import com.gewara.untrans.monitor.SysSelfCheckingService;
+import com.gewara.untrans.monitor.ZookeeperService;
+import com.gewara.util.BaseWebUtils;
+import com.gewara.util.DateUtil;
+import com.gewara.util.GewaIpConfig;
+import com.gewara.util.JsonUtils;
+import com.gewara.util.TimerHelper;
+
+import net.spy.memcached.MemcachedClient;
+
 @Controller("_serverStatusController_")
 public class ServerStatusController implements ApplicationContextAware, InitializingBean {
 	@Autowired(required = false)
@@ -48,167 +50,159 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 	@Autowired(required = false)
 	private MemcachedClient memcachedClient;
 
-	@RequestMapping({"/server.xhtml"})
+	/**
+	 * ºÏ≤‚∑˛ŒÒ∆˜◊¥Ã¨
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/server.xhtml")
 	@ResponseBody
 	public String serverD(ModelMap model, HttpServletRequest request) {
-		return this.server(model, request);
+		return server(model, request);
 	}
-
-	@RequestMapping({"/ip.xhtml"})
+	@RequestMapping("/ip.xhtml")
 	@ResponseBody
 	public String ip(HttpServletRequest request) {
 		return BaseWebUtils.getRemoteIp(request);
 	}
-
-	@RequestMapping({"/sysmgr/server.xhtml"})
+	
+	/**
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/sysmgr/server.xhtml")
 	@ResponseBody
 	public String server(ModelMap model, HttpServletRequest request) {
 		String ip = BaseWebUtils.getRemoteIp(request);
 		if (!GewaIpConfig.allowOffice(ip)) {
 			return "invalid ip!";
-		} else {
-			try {
-				SysSelfCheckingService e = (SysSelfCheckingService) this.applicationContext
-						.getBean(SysSelfCheckingService.class);
-				if (e == null) {
-					return "noCheckList";
-				} else {
-					Map map = e.checkSysStatus();
-					StringBuilder sb = new StringBuilder(100);
-					Iterator arg6 = map.entrySet().iterator();
-
-					while (true) {
-						while (arg6.hasNext()) {
-							Entry entry = (Entry) arg6.next();
-							if (((String) entry.getKey()).equals("TASK") && !"false".equals(entry.getValue())) {
-								sb.append((String) entry.getKey() + "=<span title=\'" + (String) entry.getValue()
-										+ "\'>true</span><br/>");
-							} else {
-								sb.append((String) entry.getKey() + "=" + (String) entry.getValue() + "<br/>");
-							}
-						}
-
-						return sb.toString();
-					}
-				}
-			} catch (Exception arg8) {
-				return "error" + arg8;
+		}
+		try {
+			SysSelfCheckingService sysSelfCheckingService = this.applicationContext.getBean(SysSelfCheckingService.class);
+			if (sysSelfCheckingService == null) {
+				return "noCheckList";
 			}
+			Map<String, String> map = sysSelfCheckingService.checkSysStatus();
+			StringBuilder sb = new StringBuilder(100);
+			for (java.util.Map.Entry<String, String> entry : map.entrySet()) {
+				if (entry.getKey().equals("TASK") && !"false".equals(entry.getValue())) {
+					sb.append(entry.getKey() + "=<span title='" + entry.getValue() + "'>" + "true</span><br/>");
+				} else {
+					sb.append(entry.getKey() + "=" + entry.getValue() + "<br/>");
+				}
+			}
+			return sb.toString();
+		} catch (Exception e) {
+			return "error" + e;
 		}
 	}
 
-	@RequestMapping({"/sysmgr/getPid.xhtml"})
+	@RequestMapping("/sysmgr/getPid.xhtml")
 	@ResponseBody
 	public String getPid(HttpServletRequest req) {
 		String ip = BaseWebUtils.getRemoteIp(req);
 		GewaIpConfig.filterOfficeIp(ip);
 		RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
 		String name = runtime.getName();
-
 		try {
-			return name.substring(0, name.indexOf(64));
-		} catch (Exception arg5) {
-			return "error:" + arg5;
+			return name.substring(0, name.indexOf('@'));
+		} catch (Exception e) {
+			return "error:" + e;
 		}
 	}
 
-	@RequestMapping({"/sysmgr/vmArgs.xhtml"})
+	@RequestMapping("/sysmgr/vmArgs.xhtml")
 	@ResponseBody
 	public String getVmParams(HttpServletRequest req) {
 		String ip = BaseWebUtils.getRemoteIp(req);
 		GewaIpConfig.filterOfficeIp(ip);
-		List vmParams = ManagementFactory.getRuntimeMXBean().getInputArguments();
+		List<String> vmParams = ManagementFactory.getRuntimeMXBean().getInputArguments();
 		return JsonUtils.writeObjectToJson(vmParams);
 	}
 
-	@RequestMapping({"/sysmgr/vmStartTime.xhtml"})
+	@RequestMapping("/sysmgr/vmStartTime.xhtml")
 	@ResponseBody
 	public String getVmStartTime() {
-		return DateUtil.formatTimestamp(Long.valueOf(ManagementFactory.getRuntimeMXBean().getStartTime()));
+		return DateUtil.formatTimestamp(ManagementFactory.getRuntimeMXBean().getStartTime());
 	}
 
-	@RequestMapping({"/sysmgr/attack.xhtml"})
+	@RequestMapping("/sysmgr/attack.xhtml")
 	public String showAttackLogService(HttpServletRequest req, ModelMap model) {
 		String ip = BaseWebUtils.getRemoteIp(req);
 		GewaIpConfig.filterOfficeIp(ip);
 		StringBuilder sb = new StringBuilder();
-		sb.append("ÂΩìÂâçÁ≥ªÁªü : " + Config.SYSTEMID + "," + Config.getHostname());
-		sb.append("@@Èò≤ÂäüÂáªÊòØÂê¶ÂºÄÂêØ : " + (this.attackTestService.isDisabled() ? "ÂÖ≥Èó≠" : "ÂºÄÂêØ"));
-		sb.append("@@ÈªëÂêçÂçïÊï∞Èáè: " + this.attackTestService.getBlackMap().size());
-		sb.append("@@ÁôΩÂêçÂçïÊï∞Èáè: " + this.attackTestService.getWhiteList().size());
-		sb.append("@@ÂΩìÂâçÁ≥ªÁªüÁî®‰∫éËøáÊª§ÁöÑÈªëÂêçÂçï : @@" + this.turnBlackMap(this.attackTestService.getBlackMap()));
-		sb.append("@@ÂΩìÂâçÁ≥ªÁªüÁî®‰∫éËøáÊª§ÁöÑÁôΩÂêçÂçï: @@" + this.parseWhiteList(new ArrayList(this.attackTestService.getWhiteList())));
-		sb.append("@@ÂΩìÂâçÁ≥ªÁªüÁî®‰∫éËøáÊª§ÁöÑÈªëÂêçÂçï2 : @@" + this.turnBlackMap(this.attackTestService.getBlackMap2()));
-		return this.forwardMessage(model, sb.toString());
+		sb.append("µ±«∞œµÕ≥ : " + Config.SYSTEMID + "," + Config.getHostname());
+		sb.append("@@∑¿π¶ª˜ «∑Òø™∆Ù : " + (attackTestService.isDisabled() ? "πÿ±’" : "ø™∆Ù"));
+		sb.append("@@∫⁄√˚µ• ˝¡ø: " + attackTestService.getBlackMap().size());
+		sb.append("@@∞◊√˚µ• ˝¡ø: " + attackTestService.getWhiteList().size());
+		sb.append("@@µ±«∞œµÕ≥”√”⁄π˝¬Àµƒ∫⁄√˚µ• : @@" + turnBlackMap(attackTestService.getBlackMap()));
+		sb.append("@@µ±«∞œµÕ≥”√”⁄π˝¬Àµƒ∞◊√˚µ•: @@" + parseWhiteList(new ArrayList<String>(attackTestService.getWhiteList())));
+		sb.append("@@µ±«∞œµÕ≥”√”⁄π˝¬Àµƒ∫⁄√˚µ•2 : @@" + turnBlackMap(attackTestService.getBlackMap2()));
+
+		return forwardMessage(model, sb.toString());
 	}
 
-	@RequestMapping({"/sysmgr/mcStats.xhtml"})
+	@RequestMapping("/sysmgr/mcStats.xhtml")
 	@ResponseBody
 	public String memcacheStats() {
-		if (this.memcachedClient == null) {
+		if (memcachedClient == null) {
 			return "not install memcachedClient!";
-		} else {
-			Map stats = this.memcachedClient.getStats();
-			LinkedHashMap result = new LinkedHashMap(stats.size());
-			Set entrySet = stats.entrySet();
-			Iterator arg3 = entrySet.iterator();
-
-			while (arg3.hasNext()) {
-				Entry entry = (Entry) arg3.next();
-				Map value = (Map) entry.getValue();
-				if (value != null) {
-					result.put(((SocketAddress) entry.getKey()).toString(), value.get("pid") != null ? "OK" : "ERROR");
-				} else {
-					result.put(((SocketAddress) entry.getKey()).toString(), "OK");
-				}
-			}
-
-			return "" + result;
 		}
+		Map<SocketAddress, Map<String, String>> stats = memcachedClient.getStats();
+		Map<String, String> result = new LinkedHashMap<String, String>(stats.size());
+		Set<Map.Entry<SocketAddress, Map<String, String>>> entrySet = stats.entrySet();
+		for (Map.Entry<SocketAddress, Map<String, String>> entry : entrySet) {
+			Map<String, String> value = entry.getValue();
+			if (value != null) {
+				result.put(entry.getKey().toString(), (value.get("pid") != null ? "OK" : "ERROR"));
+			} else {
+				result.put(entry.getKey().toString(), "OK");
+			}
+		}
+		return "" + result;
 	}
 
-	@RequestMapping({"/sysmgr/stopScheduler.xhtml"})
+	@RequestMapping("/sysmgr/stopScheduler.xhtml")
 	@ResponseBody
 	public String stopScheduler(HttpServletRequest req) {
 		String ip = BaseWebUtils.getRemoteIp(req);
 		if (!GewaIpConfig.isGewaInnerIp(ip)) {
 			return "ipError";
-		} else {
-			try {
-				Scheduler e = (Scheduler) this.applicationContext.getBean(Scheduler.class);
-				if (e != null) {
-					e.shutdown(true);
-					return "stopSuccess";
-				} else {
-					return "noscheduler";
-				}
-			} catch (Exception arg3) {
-				return "stopError:" + arg3;
+		}
+		try {
+			Scheduler scheduler = applicationContext.getBean(Scheduler.class);
+			if (scheduler != null) {
+				scheduler.shutdown(true);
+				return "stopSuccess";
 			}
+			return "noscheduler";
+		} catch (Exception e) {
+			return "stopError:" + e;
 		}
 	}
 
-	@RequestMapping({"/sysmgr/startScheduler.xhtml"})
+	@RequestMapping("/sysmgr/startScheduler.xhtml")
 	@ResponseBody
 	public String startScheduler(HttpServletRequest req) {
 		String ip = BaseWebUtils.getRemoteIp(req);
 		if (!GewaIpConfig.isGewaInnerIp(ip)) {
 			return "ipError";
-		} else {
-			try {
-				Scheduler e = (Scheduler) this.applicationContext.getBean(Scheduler.class);
-				if (e != null) {
-					e.start();
-					return "startSuccess";
-				} else {
-					return "noscheduler";
-				}
-			} catch (Exception arg3) {
-				return "startError:" + arg3;
+		}
+		try {
+			Scheduler scheduler = applicationContext.getBean(Scheduler.class);
+			if (scheduler != null) {
+				scheduler.start();
+				return "startSuccess";
 			}
+			return "noscheduler";
+		} catch (Exception e) {
+			return "startError:" + e;
 		}
 	}
 
+	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = (WebApplicationContext) applicationContext;
 	}
@@ -216,42 +210,32 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 	private String parseWhiteList(List<String> whiteList) {
 		Collections.sort(whiteList);
 		StringBuffer whitesb = new StringBuffer();
-
-		for (int i = 0; i < whiteList.size(); ++i) {
-			if (i % 12 == 0) {
+		for (int i = 0; i < whiteList.size(); i++) {
+			if (i % 12 == 0)
 				whitesb.append("@@");
-			}
-
-			String ip = (String) whiteList.get(i);
+			String ip = whiteList.get(i);
 			whitesb.append(ip + StringUtils.rightPad("", (15 - ip.length()) * 6, " ") + " , ");
 		}
-
 		return whitesb.toString();
 	}
 
 	private String turnBlackMap(Map<String, BlackMatcher> blackMap) {
-		if (blackMap != null && !blackMap.isEmpty()) {
-			StringBuilder sb = new StringBuilder();
-			Iterator it = blackMap.entrySet().iterator();
-
-			while (it.hasNext()) {
-				Entry entry = (Entry) it.next();
-				sb.append("ip=" + (String) entry.getKey() + ":");
-				Iterator mit = ((BlackMatcher) entry.getValue()).getMatcherMap().entrySet().iterator();
-
-				while (mit.hasNext()) {
-					Entry mentry = (Entry) mit.next();
-					sb.append("uri=" + (String) mentry.getKey() + ", releaseTime="
-							+ DateUtil.formatTimestamp((Long) mentry.getValue()) + ";");
-				}
-
-				sb.append("@@");
-			}
-
-			return sb.toString();
-		} else {
+		if (blackMap == null || blackMap.isEmpty()) {
 			return "";
 		}
+		StringBuilder sb = new StringBuilder();
+		Iterator<Map.Entry<String, BlackMatcher>> it = blackMap.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, BlackMatcher> entry = it.next();
+			sb.append("ip=" + entry.getKey() + ":");
+			Iterator<Map.Entry<String, Long>> mit = entry.getValue().getMatcherMap().entrySet().iterator();
+			while (mit.hasNext()) {
+				Map.Entry<String, Long> mentry = mit.next();
+				sb.append("uri=" + mentry.getKey() + ", releaseTime=" + DateUtil.formatTimestamp(mentry.getValue()) + ";");
+			}
+			sb.append("@@");
+		}
+		return sb.toString();
 	}
 
 	private final String forwardMessage(ModelMap model, String msg) {
@@ -259,92 +243,77 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 		return "showResult.vm";
 	}
 
+	@Override
 	public void afterPropertiesSet() throws Exception {
-		if (this.keeperService != null) {
+		if (keeperService != null) {
 			TimerHelper.TIMER.schedule(new TimerTask() {
+				@Override
 				public void run() {
-					ServerStatusController.this.processServiceRegistry();
+					processServiceRegistry();
 				}
 			}, 30000L);
 		}
-
 	}
 
 	private void processServiceRegistry() {
-		this.registerMongo();
-		this.registerScheduler();
-		this.registerCamel();
+		registerMongo();
+		registerScheduler();
+		registerCamel();
 	}
 
 	private void registerMongo() {
+		// 1°¢mongo
 		Class mongo = null;
-
 		try {
 			mongo = Class.forName("com.gewara.mongo.MongoService3");
-		} catch (Exception arg4) {
-			;
+		} catch (Exception e) {
 		}
-
 		if (mongo != null) {
 			try {
-				Object mongoBean = this.applicationContext.getBean(mongo);
+				Object mongoBean = applicationContext.getBean(mongo);
 				if (mongoBean != null) {
 					String path = "/server/mongo/" + Config.SYSTEMID;
-					if (!this.keeperService.exist(path)) {
-						this.keeperService.addPresistentNode(path, System.currentTimeMillis() + "");
+					if (!keeperService.exist(path)) {
+						keeperService.addPresistentNode(path, System.currentTimeMillis() + "");
 					}
-
-					this.keeperService.registerNode(path + "/s", Config.getServerIp() + "|" + Config.getHostname() + "|"
-							+ DateUtil.formatTimestamp(Long.valueOf(System.currentTimeMillis())));
+					keeperService.registerNode(path + "/s", Config.getServerIp() + "|" + Config.getHostname() + "|" + DateUtil.formatTimestamp(System.currentTimeMillis()));
 				}
-			} catch (Exception arg3) {
-				;
+			} catch (Exception e) {
 			}
 		}
-
 	}
 
 	private void registerScheduler() {
 		try {
-			Scheduler scheduler = (Scheduler) this.applicationContext.getBean(Scheduler.class);
+			Scheduler scheduler = applicationContext.getBean(Scheduler.class);
 			if (scheduler != null) {
 				String path = "/server/scheduler/" + Config.SYSTEMID;
-				if (!this.keeperService.exist(path)) {
-					this.keeperService.addPresistentNode(path, System.currentTimeMillis() + "");
+				if (!keeperService.exist(path)) {
+					keeperService.addPresistentNode(path, System.currentTimeMillis() + "");
 				}
-
-				this.keeperService.registerNode(path + "/s", Config.getServerIp() + "|" + Config.getHostname() + "|"
-						+ DateUtil.formatTimestamp(Long.valueOf(System.currentTimeMillis())));
+				keeperService.registerNode(path + "/s", Config.getServerIp() + "|" + Config.getHostname() + "|" + DateUtil.formatTimestamp(System.currentTimeMillis()));
 			}
-		} catch (Exception arg2) {
-			;
+		} catch (Exception e) {
 		}
-
 	}
 
 	private void registerCamel() {
 		Class camel = null;
-
 		try {
 			camel = Class.forName("org.apache.camel.CamelContext");
-		} catch (Exception arg4) {
-			;
+		} catch (Exception e) {
 		}
-
 		if (camel != null) {
 			try {
-				Object context = this.applicationContext.getBean("camel", camel);
+				Object context = applicationContext.getBean("camel", camel);
 				if (context != null) {
 					String path = "/server/camel/" + Config.SYSTEMID;
-					if (!this.keeperService.exist(path)) {
-						this.keeperService.addPresistentNode(path, System.currentTimeMillis() + "");
+					if (!keeperService.exist(path)) {
+						keeperService.addPresistentNode(path, System.currentTimeMillis() + "");
 					}
-
-					this.keeperService.registerNode(path + "/s", Config.getServerIp() + "|" + Config.getHostname() + "|"
-							+ DateUtil.formatTimestamp(Long.valueOf(System.currentTimeMillis())));
+					keeperService.registerNode(path + "/s", Config.getServerIp() + "|" + Config.getHostname() + "|" + DateUtil.formatTimestamp(System.currentTimeMillis()));
 				}
-			} catch (Exception arg3) {
-				;
+			} catch (Exception e) {
 			}
 		}
 

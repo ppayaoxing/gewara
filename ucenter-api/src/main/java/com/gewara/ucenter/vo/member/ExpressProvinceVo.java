@@ -1,27 +1,28 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.vo.member;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.DateUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+import com.gewara.util.DateUtil;
+
 public class ExpressProvinceVo extends BaseVo {
+
 	private static final long serialVersionUID = -6669986405172603038L;
+	
 	private Long id;
-	private String name;
-	private String provincename;
-	private String provincecode;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private String expressid;
-	private Integer expressfee;
-	private Integer freelimit;
+	private String name;			//配送区域名称
+	private String provincename;	//配送省份名称
+	private String provincecode;	//配送省份代码
+	private Timestamp addtime;		//添加时间
+	private Timestamp updatetime;	//更新时间
+	private String expressid;		//配送方式id
+	private Integer expressfee;		//寄件费用
+	private Integer freelimit;		//免费额度(例如：购买物品满300元免快递费)
 
-	public ExpressProvinceVo() {
-	}
-
-	public ExpressProvinceVo(String provincecode, String expressid, Integer expressfee, Integer freelimit) {
+	public ExpressProvinceVo(){}
+	
+	public ExpressProvinceVo(String provincecode, String expressid, Integer expressfee,Integer freelimit){
 		this.provincecode = provincecode;
 		this.expressid = expressid;
 		this.expressfee = expressfee;
@@ -29,13 +30,13 @@ public class ExpressProvinceVo extends BaseVo {
 		this.addtime = DateUtil.getCurFullTimestamp();
 		this.updatetime = this.addtime;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -47,7 +48,7 @@ public class ExpressProvinceVo extends BaseVo {
 	}
 
 	public String getProvincename() {
-		return this.provincename;
+		return provincename;
 	}
 
 	public void setProvincename(String provincename) {
@@ -55,7 +56,7 @@ public class ExpressProvinceVo extends BaseVo {
 	}
 
 	public String getProvincecode() {
-		return this.provincecode;
+		return provincecode;
 	}
 
 	public void setProvincecode(String provincecode) {
@@ -63,7 +64,7 @@ public class ExpressProvinceVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -71,7 +72,7 @@ public class ExpressProvinceVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -79,7 +80,7 @@ public class ExpressProvinceVo extends BaseVo {
 	}
 
 	public String getExpressid() {
-		return this.expressid;
+		return expressid;
 	}
 
 	public void setExpressid(String expressid) {
@@ -87,7 +88,7 @@ public class ExpressProvinceVo extends BaseVo {
 	}
 
 	public Integer getExpressfee() {
-		return this.expressfee;
+		return expressfee;
 	}
 
 	public void setExpressfee(Integer expressfee) {
@@ -95,14 +96,16 @@ public class ExpressProvinceVo extends BaseVo {
 	}
 
 	public Integer getFreelimit() {
-		return this.freelimit;
+		return freelimit;
 	}
 
 	public void setFreelimit(Integer freelimit) {
 		this.freelimit = freelimit;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
+	
 }

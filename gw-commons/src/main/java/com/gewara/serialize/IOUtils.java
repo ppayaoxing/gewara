@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.serialize;
 
 import java.io.BufferedReader;
@@ -16,126 +15,190 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.List;
 
 public class IOUtils {
-	private static final int BUFFER_SIZE = 8192;
+	private static final int BUFFER_SIZE = 1024 * 8;
 
-	public static long write(InputStream is, OutputStream os) throws IOException {
-		return write((InputStream) is, (OutputStream) os, 8192);
+	private IOUtils() {
 	}
 
-	public static long write(InputStream is, OutputStream os, int bufferSize) throws IOException {
-		long total = 0L;
-		byte[] buff = new byte[bufferSize];
+	/**
+	 * write.
+	 * 
+	 * @param is InputStream instance.
+	 * @param os OutputStream instance.
+	 * @return count.
+	 * @throws IOException.
+	 */
+	public static long write(InputStream is, OutputStream os) throws IOException {
+		return write(is, os, BUFFER_SIZE);
+	}
 
+	/**
+	 * write.
+	 * 
+	 * @param is InputStream instance.
+	 * @param os OutputStream instance.
+	 * @param bufferSize buffer size.
+	 * @return count.
+	 * @throws IOException.
+	 */
+	public static long write(InputStream is, OutputStream os, int bufferSize) throws IOException {
+		int read;
+		long total = 0;
+		byte[] buff = new byte[bufferSize];
 		while (is.available() > 0) {
-			int read = is.read(buff, 0, buff.length);
+			read = is.read(buff, 0, buff.length);
 			if (read > 0) {
 				os.write(buff, 0, read);
-				total += (long) read;
+				total += read;
 			}
 		}
-
 		return total;
 	}
 
+	/**
+	 * read string.
+	 * 
+	 * @param reader Reader instance.
+	 * @return String.
+	 * @throws IOException
+	 */
 	public static String read(Reader reader) throws IOException {
 		StringWriter writer = new StringWriter();
-
-		String arg1;
 		try {
-			write((Reader) reader, (Writer) writer);
-			arg1 = writer.getBuffer().toString();
+			write(reader, writer);
+			return writer.getBuffer().toString();
 		} finally {
 			writer.close();
 		}
-
-		return arg1;
 	}
 
+	/**
+	 * write string.
+	 * 
+	 * @param writer Writer instance.
+	 * @param string String.
+	 * @throws IOException
+	 */
 	public static long write(Writer writer, String string) throws IOException {
-		StringReader reader = new StringReader(string);
-
-		long arg2;
+		Reader reader = new StringReader(string);
 		try {
-			arg2 = write((Reader) reader, (Writer) writer);
+			return write(reader, writer);
 		} finally {
 			reader.close();
 		}
-
-		return arg2;
 	}
 
+	/**
+	 * write.
+	 * 
+	 * @param reader Reader.
+	 * @param writer Writer.
+	 * @return count.
+	 * @throws IOException
+	 */
 	public static long write(Reader reader, Writer writer) throws IOException {
-		return write((Reader) reader, (Writer) writer, 8192);
+		return write(reader, writer, BUFFER_SIZE);
 	}
 
+	/**
+	 * write.
+	 * 
+	 * @param reader Reader.
+	 * @param writer Writer.
+	 * @param bufferSize buffer size.
+	 * @return count.
+	 * @throws IOException
+	 */
 	public static long write(Reader reader, Writer writer, int bufferSize) throws IOException {
-		long total = 0L;
-
 		int read;
-		for (char[] buf = new char[8192]; (read = reader.read(buf)) != -1; total += (long) read) {
+		long total = 0;
+		char[] buf = new char[BUFFER_SIZE];
+		while ((read = reader.read(buf)) != -1) {
 			writer.write(buf, 0, read);
+			total += read;
 		}
-
 		return total;
 	}
 
+	/**
+	 * read lines.
+	 * 
+	 * @param file file.
+	 * @return lines.
+	 * @throws IOException
+	 */
 	public static String[] readLines(File file) throws IOException {
-		return file != null && file.exists() && file.canRead() ? readLines((InputStream) (new FileInputStream(file)))
-				: new String[0];
+		if (file == null || !file.exists() || !file.canRead())
+			return new String[0];
+
+		return readLines(new FileInputStream(file));
 	}
 
+	/**
+	 * read lines.
+	 * 
+	 * @param is input stream.
+	 * @return lines.
+	 * @throws IOException
+	 */
 	public static String[] readLines(InputStream is) throws IOException {
-		ArrayList lines = new ArrayList();
+		List<String> lines = new ArrayList<String>();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-
-		String[] arg3;
 		try {
 			String line;
-			while ((line = reader.readLine()) != null) {
+			while ((line = reader.readLine()) != null)
 				lines.add(line);
-			}
-
-			arg3 = (String[]) lines.toArray(new String[0]);
+			return lines.toArray(new String[0]);
 		} finally {
 			reader.close();
 		}
-
-		return arg3;
 	}
 
+	/**
+	 * write lines.
+	 * 
+	 * @param os output stream.
+	 * @param lines lines.
+	 * @throws IOException
+	 */
 	public static void writeLines(OutputStream os, String[] lines) throws IOException {
 		PrintWriter writer = new PrintWriter(new OutputStreamWriter(os));
-
 		try {
-			String[] arg2 = lines;
-			int arg3 = lines.length;
-
-			for (int arg4 = 0; arg4 < arg3; ++arg4) {
-				String line = arg2[arg4];
+			for (String line : lines)
 				writer.println(line);
-			}
-
 			writer.flush();
 		} finally {
 			writer.close();
 		}
 	}
 
+	/**
+	 * write lines.
+	 * 
+	 * @param file file.
+	 * @param lines lines.
+	 * @throws IOException
+	 */
 	public static void writeLines(File file, String[] lines) throws IOException {
-		if (file == null) {
+		if (file == null)
 			throw new IOException("File is null.");
-		} else {
-			writeLines((OutputStream) (new FileOutputStream(file)), lines);
-		}
+		writeLines(new FileOutputStream(file), lines);
 	}
 
+	/**
+	 * append lines.
+	 * 
+	 * @param file file.
+	 * @param lines lines.
+	 * @throws IOException
+	 */
 	public static void appendLines(File file, String[] lines) throws IOException {
-		if (file == null) {
+		if (file == null)
 			throw new IOException("File is null.");
-		} else {
-			writeLines((OutputStream) (new FileOutputStream(file, true)), lines);
-		}
+		writeLines(new FileOutputStream(file, true), lines);
 	}
+
 }

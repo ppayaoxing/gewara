@@ -1,31 +1,40 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.service;
+
+import java.util.List;
 
 import com.gewara.model.acl.Role;
 import com.gewara.model.acl.User;
 import com.gewara.model.acl.WebModule;
-import java.util.List;
 
+/**
+ * Business Service Interface to handle communication between web and
+ * persistence layer.
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28下午02:05:17
+ */
 public interface AclManager {
-	Role getRole(String arg0);
+	Role getRole(String rolename);
+	void removeRole(String rolename);
+	Role addRole(String rolename, String description, String tag);
+	List<WebModule> getMainMenuList(String tag, boolean showAll);
+	String getMainMenuNextSubCode(String mainmenucode);
+	String getMainMenuNextCode(String tag);
+	List<WebModule> getSubMenuList(String tag, String mainmenucode, boolean showAll);
+	List<Role> getRoleListByTag(String tag);
+	/**
+	 * 获取未关联某角色的用户
+	 * @param roleId
+	 * @return
+	 */
+	List<User> getUnrelatedUsersByRole(Long roleId);
+	/**
+	 * 获取关联角色的用户
+	 * @param roleId
+	 * @return
+	 */
+	List<User> getRelatedUsersByRole(Long roleId);
+	List<Long> getRelatedModulesByRole(Long roleId);
+	//List<Long> getUnrelatedModulesByRole(Long roleId);
 
-	void removeRole(String arg0);
-
-	Role addRole(String arg0, String arg1, String arg2);
-
-	List<WebModule> getMainMenuList(String arg0, boolean arg1);
-
-	String getMainMenuNextSubCode(String arg0);
-
-	String getMainMenuNextCode(String arg0);
-
-	List<WebModule> getSubMenuList(String arg0, String arg1, boolean arg2);
-
-	List<Role> getRoleListByTag(String arg0);
-
-	List<User> getUnrelatedUsersByRole(Long arg0);
-
-	List<User> getRelatedUsersByRole(Long arg0);
-
-	List<Long> getRelatedModulesByRole(Long arg0);
+	//WebModule getWebModuleBySubMenucode(String submenucode);
 }

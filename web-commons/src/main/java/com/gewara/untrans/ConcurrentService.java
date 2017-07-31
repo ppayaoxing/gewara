@@ -1,15 +1,28 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans;
 
-import com.gewara.support.concurrent.AtomicCounter;
 import java.util.concurrent.BlockingQueue;
 
+import com.gewara.support.concurrent.AtomicCounter;
+
 public interface ConcurrentService {
-	AtomicCounter getAtomicCounter(String arg0);
+	/**
+	 * 获取全局计数器
+	 * @param key
+	 * @return
+	 */
+	AtomicCounter getAtomicCounter(String key);
+	/**
+	 * 获取cluster计数器（如果支持）
+	 * @param key
+	 * @return
+	 */
+	AtomicCounter getLocalAtomicCounter(String key);
+	/**
+	 * 获取clusterQueue（如果支持）
+	 * @param key
+	 * @return
+	 */
+	BlockingQueue<Object> getBlockQueue(String key);
+	void unregisterBlockQueue(String key);
 
-	AtomicCounter getLocalAtomicCounter(String arg0);
-
-	BlockingQueue<Object> getBlockQueue(String arg0);
-
-	void unregisterBlockQueue(String arg0);
 }

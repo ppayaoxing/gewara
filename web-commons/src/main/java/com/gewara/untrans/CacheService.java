@@ -1,39 +1,85 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans;
 
-import com.gewara.support.CachePair;
-import com.gewara.untrans.CacheTools;
 import java.util.Collection;
 import java.util.Map;
 
+import com.gewara.support.CachePair;
+
 public interface CacheService extends CacheTools {
+	//固定区域
 	String REGION_TENMIN = "tenMin";
 	String REGION_ONEHOUR = "oneHour";
-	String REGION_LOGINAUTH = "loginAuth";
-	String REGION_SERVICE = "service";
-	String REGION_FIVEDAY = "fiveDay";
-
-	Map<String, Object> getBulk(String arg0, Collection<String> arg1);
-
-	void set(String arg0, String arg1, Object arg2, int arg3);
-
-	void updateValue(String arg0, String arg1, String arg2);
-
+	String REGION_LOGINAUTH = "loginAuth";	//2hour
+	String REGION_SERVICE = "service";		//12 hour
+	String REGION_FIVEDAY = "fiveDay";			//5day
+	/**
+	 * @function 多个key
+	 */
+	Map<String, Object> getBulk(String regionName, Collection<String> keys);
+	/**
+	 * 使用独立的超时时间
+	 * @param regionName
+	 * @param key
+	 * @param value
+	 * @param timeoutSecond 超时秒数
+	 */
+	void set(String regionName, String key, Object value, int timeoutSecond);
+	/**
+	 *  直接更新缓存
+	 * */
+	void updateValue(String regionName, String key, String newvalue);
 	void refreshVersion();
-
-	Integer getCacheTime(String arg0);
-
-	int incr(String arg0, String arg1, int arg2, int arg3);
-
-	int incrementAndGet(String arg0, String arg1, int arg2, int arg3);
-
-	CachePair getCachePair(String arg0, String arg1);
-
-	boolean setCachePair(String arg0, String arg1, long arg2, Object arg4, int arg5);
-
-	void add(String arg0, String arg1, Object arg2, int arg3);
-
-	int decrAndGet(String arg0, String arg1, int arg2, int arg3);
-
-	int incrementAndGet(String arg0, String arg1, int arg2, int arg3, int arg4);
+	Integer getCacheTime(String region);
+	
+	/**
+	 * 增加计数，非原子操作
+	 * @param key
+	 * @param by 添加值
+	 * @param defvalue 默认值
+	 * @return
+	 */
+	int incr(String regionName, String key, int by, int defvalue);
+	
+	/**
+	 * 原子加
+	 * @param regionName
+	 * @param key
+	 * @param by 增加
+	 * @param def 默认值
+	 * @return the new value, or -1 if we were unable to increment or add
+	 */
+	int incrementAndGet(String regionName, String key, int by, int def);
+	
+	CachePair getCachePair(String regionName, String key);
+	/**
+	 * @param regionName
+	 * @param key
+	 * @param version
+	 * @param value
+	 * @param expSeconds
+	 * @return
+	 */
+	boolean setCachePair(String regionName, String key, long version, Object value, int expSeconds);
+	void add(String regionName, String key, Object value, int expSeconds);
+	
+	/**
+	 * 原子减
+	 * @param regionName
+	 * @param key
+	 * @param by
+	 * @param def the default value (if the counter does not exist)
+	 * @return the new value, or -1 if we were unable to decrement or add
+	 */
+	int decrAndGet(String regionName, String key, int by, int def);
+	
+	/**
+	 * 原子加
+	 * @param regionName
+	 * @param key
+	 * @param by
+	 * @param def
+	 * @param exp 超时时间,秒
+	 * @return
+	 */
+	int incrementAndGet(String regionName, String key, int by, int def, int exp);
 }

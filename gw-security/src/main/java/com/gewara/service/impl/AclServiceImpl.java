@@ -1,33 +1,39 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.service.impl;
+
+import java.util.List;
 
 import com.gewara.model.acl.GewaraUser;
 import com.gewara.model.acl.Role;
 import com.gewara.model.acl.User;
 import com.gewara.model.acl.WebModule;
-import com.gewara.service.impl.AbstractAclService;
 import com.gewara.web.support.AclService;
-import java.util.List;
+
+/**
+ * @author acerge(acerge@163.com)
+ * @since 1:59:19 PM Aug 11, 2009
+ */
 
 public class AclServiceImpl extends AbstractAclService implements AclService<WebModule> {
+	@Override
 	public GewaraUser getGewaraUser(Long userid, String logonType) {
-		return (GewaraUser) this.baseDao.getObject(User.class, userid);
+		return baseDao.getObject(User.class, userid);
 	}
-
+	
+	@Override
 	public List<WebModule> getMenuList(String tag) {
-		String query = "from WebModule where display=\'Y\' and tag = ? order by menucode";
-		List result = this.baseDao.findByHql(query, new Object[] { tag });
+		String query = "from WebModule where display='Y' and tag = ? order by menucode";
+		List result = baseDao.findByHql(query, tag);
 		return result;
 	}
-
+	@Override
 	public List<WebModule> getSecurityModuleList() {
 		String query = "from WebModule where moduleurl is not null and tag like ? order by matchorder";
-		List result = this.baseDao.findByHql(query, new Object[] { "G%" });
+		List result = baseDao.findByHql(query, WebModule.TAG_GEWA+"%");
 		return result;
 	}
-
+	@Override
 	public List<String> getRolenameList() {
-		List result = this.baseDao.getObjectPropertyList(Role.class, "name");
+		List result = baseDao.getObjectPropertyList(Role.class, "name");
 		return result;
 	}
 }

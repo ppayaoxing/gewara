@@ -1,22 +1,24 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mdb.builder;
 
-import com.gewara.util.BeanUtil;
-import com.mongodb.client.model.InsertManyOptions;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import com.gewara.util.BeanUtil;
+import com.mongodb.client.model.InsertManyOptions;
+
 public class InsertBuilder<T> {
 	private Class<T> sourceType = null;
-	private List<Document> sources = new ArrayList();
+	private List<Document> sources = new ArrayList<Document>();
 	private Bson id = null;
+
 	private InsertManyOptions insertManyOptions = new InsertManyOptions();
 	private boolean autoCreateID = true;
+
 	private String collectionName = null;
 
 	public InsertBuilder(String collectionName) {
@@ -28,17 +30,21 @@ public class InsertBuilder<T> {
 		this.sourceType = mapping;
 	}
 
+	/**
+	 * 选择插入模式.多条数据插入时有影响 默认的情况是，顺序插入，如果有一个失败，则停止。 独立插入是指，每个doc的插入是独立的，互不影响。
+	 * 
+	 * @param alone
+	 * @return
+	 */
 	public InsertBuilder<T> setInsertModel(boolean alone) {
 		if (alone) {
-			this.insertManyOptions = (new InsertManyOptions()).ordered(false);
+			insertManyOptions = new InsertManyOptions().ordered(false);
 		}
-
 		return this;
 	}
 
 	private void addDataSource(T data) {
-		assert data != null;
-
+		assert (data != null);
 		Map map = null;
 		if (data instanceof Map) {
 			map = (Map) data;
@@ -49,60 +55,68 @@ public class InsertBuilder<T> {
 		if (map != null && !map.isEmpty()) {
 			Document doc = new Document();
 			doc.putAll(map);
-			this.sources.add(doc);
+			sources.add(doc);
 		}
-
 	}
 
+	/**
+	 * 添加记录，一个bean对应一条记录 <br/>
+	 * 如果有设置了主键名称，那么在自动从bean中获取对应的字段的值作为主键的值。 <br/>
+	 * 如果未指定，则使用系统默认的主键生成机制。
+	 * 
+	 * @param data
+	 *           需要添加的数据。如果有设置
+	 * @return
+	 */
 	public InsertBuilder<T> addData4Bean(T... datas) {
-		Object[] arg1 = datas;
-		int arg2 = datas.length;
-
-		for (int arg3 = 0; arg3 < arg2; ++arg3) {
-			Object data = arg1[arg3];
-			this.addDataSource(data);
+		for (T data : datas) {
+			addDataSource(data);
 		}
-
 		return this;
 	}
 
+	/**
+	 * 
+	 *
+	 * @param datas
+	 * @return
+	 */
 	public InsertBuilder<T> setData4Bean(Collection<T> datas) {
-		this.sources = new ArrayList();
-		Iterator arg1 = datas.iterator();
-
-		while (arg1.hasNext()) {
-			Object data = arg1.next();
-			this.addDataSource(data);
+		this.sources = new ArrayList<Document>();
+		for (T data : datas) {
+			addDataSource(data);
 		}
-
 		return this;
 	}
 
 	public Class<T> getSourceType() {
-		return this.sourceType;
+		return sourceType;
 	}
+
+	/*public Bson getQueryCondition(){
+		if(condition!=null) return condition;
+		return new BsonDocument();
+	}*/
 
 	public List<Document> getSources() {
-		return this.sources;
+		return sources;
 	}
-
-	public Document getTop() {
-		return (Document) this.sources.get(0);
+	public Document getTop(){
+		return sources.get(0);
 	}
-
 	public Bson getId() {
-		return this.id;
+		return id;
 	}
 
 	public InsertManyOptions getInsertManyOptions() {
-		return this.insertManyOptions;
+		return insertManyOptions;
 	}
 
 	public boolean isAutoCreateID() {
-		return this.autoCreateID;
+		return autoCreateID;
 	}
 
 	public String getCollectionName() {
-		return this.collectionName;
+		return collectionName;
 	}
 }

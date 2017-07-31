@@ -1,13 +1,11 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.word;
 
 import java.util.Random;
-import org.patchca.word.WordFactory;
 
 public class RandomWordFactory implements WordFactory {
-	protected String characters = "absdegkmnopwx23456789";
-	protected int minLength = 6;
-	protected int maxLength = 6;
+	protected String characters;
+	protected int minLength;
+	protected int maxLength;
 
 	public void setCharacters(String characters) {
 		this.characters = characters;
@@ -21,16 +19,25 @@ public class RandomWordFactory implements WordFactory {
 		this.maxLength = maxLength;
 	}
 
+	public RandomWordFactory() {
+		this.characters = "absdegkmnopwx23456789";
+		this.minLength = 6;
+		this.maxLength = 6;
+	}
+
 	public String getNextWord() {
 		Random rnd = new Random();
 		StringBuffer sb = new StringBuffer();
-		int l = this.minLength + (this.maxLength > this.minLength ? rnd.nextInt(this.maxLength - this.minLength) : 0);
-
+		int l = this.minLength + ((this.maxLength > this.minLength) ? rnd.nextInt(this.maxLength - this.minLength) : 0);
 		for (int i = 0; i < l; ++i) {
 			int j = rnd.nextInt(this.characters.length());
 			sb.append(this.characters.charAt(j));
 		}
-
 		return sb.toString();
 	}
 }
+
+/*
+ * Location: C:\Documents and Settings\Administrator\桌面\patchca-0.5.0.jar
+ * Qualified Name: org.patchca.word.RandomWordFactory JD-Core Version: 0.5.3
+ */

@@ -1,52 +1,49 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mdb;
 
 public class GWMongoAccount {
-	private String database;
-	private String user;
-	private String password;
-
-	public GWMongoAccount(String database, String userName, String pwd) {
-		this.database = null;
-		this.user = null;
-		this.password = null;
-		this.database = database;
-		this.user = userName;
-		this.password = pwd;
+	private String database = null;
+	private String user = null;
+	private String password = null;
+	
+	public GWMongoAccount(String database,String userName,String pwd){
+		this.database=database;
+		this.user=userName;
+		this.password=pwd;
 	}
-
-	protected GWMongoAccount(String[] accountInfo) {
-		this.database = null;
-		this.user = null;
-		this.password = null;
-
-		assert accountInfo == null || accountInfo.length != 3;
-
-		this.database = accountInfo[0];
-		this.user = accountInfo[1];
-		this.password = accountInfo[2];
+	
+	/**
+	 * 该构造方式主要是为了字符串方式构造使用。
+	 * 
+	 * @param accountInfo  必须长度为3，并且其信息依次为 database,username,password.
+	 */
+	protected GWMongoAccount(String[] accountInfo){
+		assert(accountInfo==null||accountInfo.length!=3);
+		this.database=accountInfo[0];
+		this.user=accountInfo[1];
+		this.password=accountInfo[2];
 	}
-
-	protected GWMongoAccount(String accountInfo, String separator) {
+	
+	/**
+	 * 该构造方式主要是为了字符串方式构造使用。
+	 * 
+	 * @param accountInfo  必须长度为3，并且其信息依次为 database,username,password.
+	 */
+	protected GWMongoAccount(String accountInfo,String separator){
 		this(accountInfo.split(separator));
 	}
-
-	public GWMongoAccount() {
-		this.database = null;
-		this.user = null;
-		this.password = null;
-	}
+	
+	public GWMongoAccount(){}
 
 	public String getDatabase() {
-		return this.database;
+		return database;
 	}
 
 	public String getUser() {
-		return this.user;
+		return user;
 	}
 
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
 
 	public void setDatabase(String database) {

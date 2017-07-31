@@ -1,11 +1,22 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.api.openlogin;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.ucenter.vo.member.OpenResultVo;
 
+/**
+ * APP端支付宝登陆相关API
+ * 
+ */
 public interface OpenApiMobileAliVoService {
-	ResultCode<OpenResultVo> aliUserDetail(String arg0, String arg1, String arg2, String arg3);
+	
+	ResultCode<OpenResultVo> aliUserDetail(String authcode, String userid,
+			String appId, String remoteIp);
+	/**
+	 * 支付宝钱包用户登录 
+	 * @param accessToken
+	 * @param remoteIp
+	 * @return
+	 */
+	ResultCode<OpenResultVo> alipayLogin(String accessToken, String remoteIp);
 
-	ResultCode<OpenResultVo> alipayLogin(String arg0, String arg1);
 }

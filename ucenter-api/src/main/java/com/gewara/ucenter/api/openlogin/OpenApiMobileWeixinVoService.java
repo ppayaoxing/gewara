@@ -1,14 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.api.openlogin;
+
+import java.util.Map;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.ucenter.vo.member.MemberVo;
-import java.util.Map;
 
+/**
+ * APP微信联名登陆相关API
+ * 
+ */
 public interface OpenApiMobileWeixinVoService {
-	ResultCode<MemberVo> getUserByCodeForApp(String arg0, Long arg1, String arg2);
 
-	ResultCode<Map<String, Object>> getWeixinUser(String arg0, Long arg1);
+	ResultCode<MemberVo> getUserByCodeForApp(String code,Long partnerid,String remoteIp);
 
-	ResultCode<Map<String, Object>> loginScan(String arg0, String arg1, String arg2, String arg3, String arg4);
+	ResultCode<Map<String, Object>> getWeixinUser(String userid,Long partnerid);
+	/**
+	 * AndroidTV 扫码
+	 */
+	ResultCode<Map<String,Object>> loginScan(String deviceId, String code, String state,String callBack, String remoteIp);
 }

@@ -1,112 +1,172 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package de.idyl.winzipaes.impl;
 
-import de.idyl.winzipaes.impl.CentralDirectoryEntry;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.zip.ZipEntry;
 
+/**
+ * information about one zip entry that is written to an encrypted zip archive
+ * or read from one
+ * 
+ * @author olaf@merkert.de
+ */
 public class ExtZipEntry extends ZipEntry {
-	private CentralDirectoryEntry centralDirectoryEntry;
-	protected int flag;
-	protected int offset;
-	protected int primaryCompressionMethod;
 
+	private CentralDirectoryEntry centralDirectoryEntry;
+	
+	/** empty instance with only a name */
 	public ExtZipEntry(String name) {
 		super(name);
 	}
 
+	/** copy all "non-compression" attributes */
 	public ExtZipEntry(ExtZipEntry entry) {
 		super(entry.getName());
-		this.setCompressedSize(entry.getCompressedSize());
-		this.setSize(entry.getSize());
-		this.setComment(entry.getComment());
-		this.setTime(entry.getTime());
-		this.setMethod(entry.getMethod());
+		setCompressedSize(entry.getCompressedSize());
+		setSize(entry.getSize());
+		setComment(entry.getComment());
+		setTime(entry.getTime());
+		setMethod(entry.getMethod());
 	}
 
-	public ExtZipEntry(String name, CentralDirectoryEntry centralDirectoryEntry) {
+	public ExtZipEntry(String name,CentralDirectoryEntry centralDirectoryEntry) {
 		super(name);
 		this.centralDirectoryEntry = centralDirectoryEntry;
 	}
-
+	
 	public void initEncryptedEntry() {
-		this.setCrc(0L);
-		this.flag |= 1;
-		this.primaryCompressionMethod = 99;
+		setCrc(0); // CRC-32 / for encrypted files it's 0 as AES/MAC checks integritiy
+
+		this.flag |= 1; // bit0 - encrypted
+		// flag |= 8; // bit3 - use data descriptor
+
+		this.primaryCompressionMethod = 0x63;
+
 		byte[] extraBytes = new byte[11];
-		extraBytes = new byte[]{1, -103, 7, 0, 2, 0, 65, 69, 3, (byte) (this.getMethod() & 255),
-				(byte) ((this.getMethod() & '＀') >> 8)};
-		this.setExtra(extraBytes);
+		extraBytes = new byte[11];
+
+		// extra data header ID for AES encryption is 0x9901
+		extraBytes[0] = 0x01;
+		extraBytes[1] = (byte)0x99;
+
+		// data size (currently 7, but subject to possible increase in the
+		// future)
+		extraBytes[2] = 0x07; // data size
+		extraBytes[3] = 0x00; // data size
+
+		// Integer version number specific to the zip vendor
+		extraBytes[4] = 0x02; // version number
+		extraBytes[5] = 0x00; // version number
+
+		// 2-character vendor ID
+		extraBytes[6] = 0x41; // vendor id
+		extraBytes[7] = 0x45; // vendor id
+
+		// AES encryption strength - 1=128, 2=192, 3=256
+		extraBytes[8] = 0x03;
+
+		// actual compression method - 0x0000==stored (no compression) - 2 bytes
+		extraBytes[9] = (byte) (getMethod() & 0xff);
+		extraBytes[10] = (byte) ((getMethod() & 0xff00) >> 8);
+
+		setExtra(extraBytes);
 	}
+
+	protected int flag;
 
 	public int getFlag() {
 		return this.flag;
 	}
 
 	public boolean isAesEncrypted() {
-		return this.isEncrypted() && this.centralDirectoryEntry != null && this.centralDirectoryEntry.isAesEncrypted();
+		return isEncrypted() && centralDirectoryEntry!=null && centralDirectoryEntry.isAesEncrypted();
+	}
+	
+	public boolean isEncrypted() {
+		return (flag & 1) > 0;
 	}
 
-	public boolean isEncrypted() {
-		return (this.flag & 1) > 0;
-	}
+	protected int offset;
 
 	public int getOffset() {
-		return this.offset;
+		return offset;
 	}
 
 	public void setOffset(int offset) {
 		this.offset = offset;
 	}
 
+	// 0x63 for encryption
+	protected int primaryCompressionMethod;
+
 	public int getPrimaryCompressionMethod() {
-		return this.primaryCompressionMethod;
+		return primaryCompressionMethod;
 	}
 
 	public void setPrimaryCompressionMethod(int primaryCompressionMethod) {
 		this.primaryCompressionMethod = primaryCompressionMethod;
 	}
 
+	/**
+	 * Encrypted files: Note that the value in the "compressed size" fields of
+	 * the local file header and the central directory entry is the total size
+	 * of all the items listed above. In other words, it is the total size of
+	 * the salt value, password verification value, encrypted data, and
+	 * authentication code.
+	 * 
+	 * @return data size only
+	 */
 	public long getEncryptedDataSize() {
-		return this.getCompressedSize() - 10L - 16L - 2L;
+		// authentication (10), salt (16), verification (2)
+		return getCompressedSize() - 10 - 16 - 2;
 	}
 
 	public CentralDirectoryEntry getCentralDirectoryEntry() {
-		return this.centralDirectoryEntry;
+		return centralDirectoryEntry;
 	}
 
+	@Override
 	public void setSize(long size) {
-		if (size < 0L) {
-			size &= 4294967295L;
+		if( size<0 ) {
+			size = (size & 0xffffffffL);
 		}
-
 		super.setSize(size);
 	}
+	
+	// --------------------------------------------------------------------------
 
+	/**
+	 * ZipEntry (my superclass) uses dosTime internally. On getTime() you get a
+	 * java time based long value. This method provides the DOS value that is
+	 * stored in the zip file.
+	 */
 	public long getDosTime() {
-		return javaToDosTime(this.getTime());
+		return javaToDosTime(getTime());
 	}
 
 	public static long javaToDosTime(long javaTime) {
 		Date d = new Date(javaTime);
 		Calendar ca = Calendar.getInstance();
 		ca.setTime(d);
-		int year = ca.get(1);
-		return year < 1980
-				? 2162688L
-				: (long) (year - 1980 << 25 | ca.get(2) + 1 << 21 | ca.get(5) << 16 | ca.get(11) << 11 | ca.get(12) << 5
-						| ca.get(13) >> 1);
+		int year = ca.get(Calendar.YEAR);
+		if (year < 1980) {
+			return (1 << 21) | (1 << 16);
+		}
+		return (year - 1980) << 25 | (ca.get(Calendar.MONTH) + 1) << 21
+				| ca.get(Calendar.DAY_OF_MONTH) << 16
+				| ca.get(Calendar.HOUR_OF_DAY) << 11
+				| ca.get(Calendar.MINUTE) << 5 | ca.get(Calendar.SECOND) >> 1;
 	}
 
 	public static long dosToJavaTime(long dosTime) {
 		Calendar ca = Calendar.getInstance();
-		ca.set(1, (int) (dosTime >> 25 & 127L) + 1980);
-		ca.set(2, (int) (dosTime >> 21 & 15L) - 1);
-		ca.set(5, (int) (dosTime >> 16) & 31);
-		ca.set(11, (int) (dosTime >> 11) & 31);
-		ca.set(12, (int) (dosTime >> 5) & 63);
-		ca.set(13, (int) (dosTime << 1) & 62);
+		ca.set(Calendar.YEAR, (int) ((dosTime >> 25) & 0x7f) + 1980);
+		ca.set(Calendar.MONTH, (int) ((dosTime >> 21) & 0x0f) - 1);
+		ca.set(Calendar.DATE, (int) (dosTime >> 16) & 0x1f);
+		ca.set(Calendar.HOUR_OF_DAY, (int) (dosTime >> 11) & 0x1f);
+		ca.set(Calendar.MINUTE, (int) (dosTime >> 5) & 0x3f);
+		ca.set(Calendar.SECOND, (int) (dosTime << 1) & 0x3e);
 		return ca.getTime().getTime();
 	}
+
 }

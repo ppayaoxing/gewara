@@ -1,22 +1,29 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mongo;
 
-import com.gewara.json.mongo.MaintainInfo;
 import java.util.List;
 import java.util.Map;
 
+import com.gewara.json.mongo.MaintainInfo;
+
+
 public interface MongoAdminService {
-	List<Map> getSlowestQuery(String arg0, Integer arg1);
-
-	Map<String, Integer> getSlowestQueryForJob(Integer arg0, Integer arg1, Integer arg2);
-
-	Map getCollectionStat(String arg0);
-
+	//Map<String, Object> serverStatusMap();
+	List<Map> getSlowestQuery(String op, Integer mills);
+	/**
+	 * 获取几分钟内的慢查询
+	 * @param ms
+	 * @param multiple 倍数比值：scan/return
+	 * @param min
+	 * @return
+	 */
+	Map<String, Integer> getSlowestQueryForJob(Integer ms, Integer multiple, Integer min);
+	Map getCollectionStat(String collectionName);
+	/**
+	 * for job used
+	 */
 	List<MaintainInfo> addNewCollections();
+	List<MaintainInfo> getMaintainInfoList(String system);
+	MaintainInfo getMaintainInfoByName(String name);
+	void updateMaintainInfo(MaintainInfo info);
 
-	List<MaintainInfo> getMaintainInfoList(String arg0);
-
-	MaintainInfo getMaintainInfoByName(String arg0);
-
-	void updateMaintainInfo(MaintainInfo arg0);
 }

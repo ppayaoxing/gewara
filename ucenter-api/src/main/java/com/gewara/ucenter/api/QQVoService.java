@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.api;
 
 import com.gewara.api.vo.ResultCode;
@@ -6,15 +5,28 @@ import com.gewara.ucenter.vo.member.MemberVo;
 import com.gewara.ucenter.vo.sns.QQUserVo;
 
 public interface QQVoService {
-	ResultCode<MemberVo> bindQQGewa(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5);
+	/**
+	 * QQ公众号手动绑定格瓦拉账号
+	 */
+	ResultCode<MemberVo> bindQQGewa(String appkey, String userid, String unionid, String username, String password, String remoteIp);
+	
+	/**
+	 * 根据code获取QQ用户信息
+	 */
+	ResultCode<MemberVo> getUserByCode(String appkey, String code, String remoteIp);
+	
+	ResultCode<QQUserVo> getQQUserByCode(String appkey, String code);
+	
+	ResultCode<QQUserVo> getQQUserByUserid(String appkey, String userid, String unionid);
+	
+	/**
+	 * 取消绑定
+	 */
+	ResultCode cancelQQUser(String appkey, String userid);
+	
+	/**
+	 * 获取QQ公众号会话token
+	 */
+	ResultCode<String> getAccessToken(String appkey);
 
-	ResultCode<MemberVo> getUserByCode(String arg0, String arg1, String arg2);
-
-	ResultCode<QQUserVo> getQQUserByCode(String arg0, String arg1);
-
-	ResultCode<QQUserVo> getQQUserByUserid(String arg0, String arg1, String arg2);
-
-	ResultCode cancelQQUser(String arg0, String arg1);
-
-	ResultCode<String> getAccessToken(String arg0);
 }

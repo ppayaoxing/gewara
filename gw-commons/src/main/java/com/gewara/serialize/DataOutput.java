@@ -1,28 +1,94 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.serialize;
 
 import java.io.IOException;
 
 public interface DataOutput {
-	void writeBool(boolean arg0) throws IOException;
 
-	void writeByte(byte arg0) throws IOException;
+	/**
+	 * Write boolean.
+	 * 
+	 * @param v value.
+	 * @throws IOException
+	 */
+	void writeBool(boolean v) throws IOException;
 
-	void writeShort(short arg0) throws IOException;
+	/**
+	 * Write byte.
+	 * 
+	 * @param v value.
+	 * @throws IOException
+	 */
+	void writeByte(byte v) throws IOException;
 
-	void writeInt(int arg0) throws IOException;
+	/**
+	 * Write short.
+	 * 
+	 * @param v value.
+	 * @throws IOException
+	 */
+	void writeShort(short v) throws IOException;
 
-	void writeLong(long arg0) throws IOException;
+	/**
+	 * Write integer.
+	 * 
+	 * @param v value.
+	 * @throws IOException
+	 */
+	void writeInt(int v) throws IOException;
 
-	void writeFloat(float arg0) throws IOException;
+	/**
+	 * Write long.
+	 * 
+	 * @param v value.
+	 * @throws IOException
+	 */
+	void writeLong(long v) throws IOException;
 
-	void writeDouble(double arg0) throws IOException;
+	/**
+	 * Write float.
+	 * 
+	 * @param v value.
+	 * @throws IOException
+	 */
+	void writeFloat(float v) throws IOException;
 
-	void writeUTF(String arg0) throws IOException;
+	/**
+	 * Write double.
+	 * 
+	 * @param v value.
+	 * @throws IOException
+	 */
+	void writeDouble(double v) throws IOException;
 
-	void writeBytes(byte[] arg0) throws IOException;
+	/**
+	 * 
+	 * @param v value.
+	 * @throws IOException
+	 */
+	void writeUTF(String v) throws IOException;
 
-	void writeBytes(byte[] arg0, int arg1, int arg2) throws IOException;
+	/**
+	 * Write byte array.
+	 * 
+	 * @param v value.
+	 * @throws IOException
+	 */
+	void writeBytes(byte[] v) throws IOException;
 
+	/**
+	 * Write byte array.
+	 * 
+	 * @param v value.
+	 * @param off offset.
+	 * @param len length.
+	 * @throws IOException
+	 */
+	void writeBytes(byte[] v, int off, int len) throws IOException;
+
+	/**
+	 * Flush buffer.
+	 * 
+	 * @throws IOException
+	 */
 	void flushBuffer() throws IOException;
 }

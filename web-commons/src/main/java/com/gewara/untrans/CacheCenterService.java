@@ -1,23 +1,42 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans;
 
-import com.gewara.util.ServiceCacheHelper;
 import java.util.Map;
 
+import com.gewara.util.ServiceCacheHelper;
+
 public interface CacheCenterService {
-	ServiceCacheHelper getServiceCacheHelper(Class arg0);
-
-	ServiceCacheHelper getServiceCacheHelperByName(String arg0);
-
-	ServiceCacheHelper getLocalServiceCacheHelper(Class arg0);
-
-	ServiceCacheHelper getLocalServiceCacheHelperByName(String arg0);
-
+	/**
+	 * @param clazz service class
+	 * @return
+	 */
+	ServiceCacheHelper getServiceCacheHelper(Class clazz);
+	/**
+	 * @param serviceName from clazz.getSimpleName()
+	 * @return
+	 */
+	ServiceCacheHelper getServiceCacheHelperByName(String serviceName);
+	/**
+	 * @param clazz service class
+	 * @return
+	 */
+	ServiceCacheHelper getLocalServiceCacheHelper(Class clazz);
+	/**
+	 * @param serviceName from clazz.getSimpleName()
+	 * @return
+	 */
+	ServiceCacheHelper getLocalServiceCacheHelperByName(String serviceName);
 	Map<String, ServiceCacheHelper> getHelperMap();
-
-	void clearCache(Class arg0, String arg1, Object... arg2);
-
-	void clearCacheByName(String arg0, String arg1, Object... arg2);
-
-	void startClear(String arg0);
+	/**
+	 * @param clazz service class
+	 * @param ukey
+	 * @param params
+	 */
+	void clearCache(Class clazz, String ukey, Object...params);
+	/**
+	 * @param serviceName from clazz.getSimpleName()
+	 * @param ukey
+	 * @param params
+	 */
+	void clearCacheByName(String serviceName, String ukey, Object...params);
+	void startClear(String clazzName);
 }

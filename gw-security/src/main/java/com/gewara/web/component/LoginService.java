@@ -1,23 +1,28 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.web.component;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.core.Authentication;
 
 import com.gewara.model.acl.GewaraUser;
 import com.gewara.support.ErrorCode;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.security.core.Authentication;
 
 public interface LoginService {
-	ErrorCode<Map> autoLogin(HttpServletRequest arg0, HttpServletResponse arg1, String arg2, String arg3);
-
-	GewaraUser getLogonGewaraUserBySessid(String arg0, String arg1);
-
-	Authentication loadAuthentication(String arg0, String arg1);
-
-	boolean isGewaraUserLogon(HttpServletRequest arg0, String arg1);
-
-	ErrorCode<Map> ssoAutoLogin(HttpServletRequest arg0, HttpServletResponse arg1, String arg2);
-
-	void removeInvalidSessid(String arg0);
+	
+	/**
+	 * @param request
+	 * @param response
+	 * @param username
+	 * @param password
+	 * @return Map(id,realname)
+	 */
+	ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, String username, String password);
+	GewaraUser getLogonGewaraUserBySessid(String ip, String sessid);
+	Authentication loadAuthentication(String ip, String sessid);
+	boolean isGewaraUserLogon(HttpServletRequest request, String sessid);
+	ErrorCode<Map> ssoAutoLogin(HttpServletRequest request, HttpServletResponse response, String sessid);
+	void removeInvalidSessid(String sessid);
 }

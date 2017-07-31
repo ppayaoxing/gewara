@@ -1,12 +1,13 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.text.renderer;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import org.patchca.text.renderer.TextCharacter;
 
 public class TextString {
-	private ArrayList<TextCharacter> characters = new ArrayList();
+	private ArrayList<TextCharacter> characters;
+
+	public TextString() {
+		this.characters = new ArrayList();
+	}
 
 	public void clear() {
 		this.characters.clear();
@@ -24,10 +25,7 @@ public class TextString {
 		double minx = 0.0D;
 		double maxx = 0.0D;
 		boolean first = true;
-		Iterator arg5 = this.characters.iterator();
-
-		while (arg5.hasNext()) {
-			TextCharacter tc = (TextCharacter) arg5.next();
+		for (TextCharacter tc : this.characters) {
 			if (first) {
 				minx = tc.getX();
 				maxx = tc.getX() + tc.getWidth();
@@ -36,24 +34,20 @@ public class TextString {
 				if (minx > tc.getX()) {
 					minx = tc.getX();
 				}
-
 				if (maxx < tc.getX() + tc.getWidth()) {
 					maxx = tc.getX() + tc.getWidth();
 				}
 			}
 		}
 
-		return maxx - minx;
+		return (maxx - minx);
 	}
 
 	public double getHeight() {
 		double miny = 0.0D;
 		double maxy = 0.0D;
 		boolean first = true;
-		Iterator arg5 = this.characters.iterator();
-
-		while (arg5.hasNext()) {
-			TextCharacter tc = (TextCharacter) arg5.next();
+		for (TextCharacter tc : this.characters) {
 			if (first) {
 				miny = tc.getY();
 				maxy = tc.getY() + tc.getHeight();
@@ -62,13 +56,12 @@ public class TextString {
 				if (miny > tc.getY()) {
 					miny = tc.getY();
 				}
-
 				if (maxy < tc.getY() + tc.getHeight()) {
 					maxy = tc.getY() + tc.getHeight();
 				}
 			}
 		}
 
-		return maxy - miny;
+		return (maxy - miny);
 	}
 }

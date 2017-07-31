@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.api.openlogin;
 
 import com.gewara.api.vo.ResultCode;
@@ -6,9 +5,29 @@ import com.gewara.ucenter.vo.member.MemberVo;
 import com.gewara.ucenter.vo.member.OpenResultVo;
 
 public interface QQAuthorizeVoService {
-	ResultCode<String> getRedirectUrl(String arg0, String arg1);
-
-	ResultCode<MemberVo> callBackLogin(String arg0, String arg1, String arg2);
-
-	ResultCode<OpenResultVo> callBackWebLogin(String arg0, String arg1, String arg2, String arg3, String arg4);
+	/**
+	 * 联名登陆获取授权URL
+	 * @param partnerName 
+	 * @param callback
+	 * @return
+	 */
+	ResultCode<String> getRedirectUrl(String partnerName, String callback);
+	
+	/**
+	 * WAP联名登陆回调
+	 * @param code
+	 * @param callback
+	 * @param remoteIp
+	 * @return
+	 */
+	ResultCode<MemberVo> callBackLogin(String code,String callback, String remoteIp);
+	
+	/**
+	 * PC联名登陆回调
+	 * @param code
+	 * @param callback
+	 * @param remoteIp
+	 * @return
+	 */
+	ResultCode<OpenResultVo> callBackWebLogin(String code, String callback, String type, String sessid, String remoteIp);
 }

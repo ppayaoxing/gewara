@@ -1,51 +1,54 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.hbase.util;
 
-import com.gewara.hbase.util.FilterBuilder;
-import com.gewara.util.Util4Script;
 import java.io.IOException;
+
 import org.apache.hadoop.hbase.client.Scan;
 
+import com.gewara.util.Util4Script;
+
+/**
+ * TODO:
+ * 1,add return columns
+ * 2,add groovy expression
+ */
 public class ScanBuilder implements Util4Script {
 	private FilterBuilder fb;
-
-	public ScanBuilder() {
+	public ScanBuilder(){
+		
 	}
-
-	public ScanBuilder(FilterBuilder fb) {
+	public ScanBuilder(FilterBuilder fb){
 		this.fb = fb;
 	}
-
-	public Scan buildScan() {
+	
+	/**
+	 * build scan
+	 * @return
+	 */
+	public Scan buildScan(){
 		Scan scan = new Scan();
-		if (this.fb.startRow != null) {
-			scan.setStartRow(this.fb.startRow);
+		if(fb.startRow!=null){
+			scan.setStartRow(fb.startRow);
 		}
-
-		if (this.fb.stopRow != null) {
-			scan.setStopRow(this.fb.stopRow);
+		if(fb.stopRow!=null){
+			scan.setStopRow(fb.stopRow);
 		}
-
-		if (this.fb != null && !this.fb.isEmptyCondition()) {
-			scan.setFilter(this.fb.buildFilters());
+		if(fb!=null && !fb.isEmptyCondition()){
+			scan.setFilter(fb.buildFilters());
 		}
-
-		if (this.fb.minStamp != null && this.fb.maxStamp != null) {
+		if(fb.minStamp!=null && fb.maxStamp!=null){
 			try {
-				scan.setTimeRange(this.fb.minStamp.longValue(), this.fb.maxStamp.longValue());
-			} catch (IOException arg2) {
-				;
+				scan.setTimeRange(fb.minStamp, fb.maxStamp);
+			} catch (IOException e) {
 			}
 		}
-
 		return scan;
 	}
-
-	public boolean isEmptyCondition() {
-		return this.fb.isEmptyCondition();
+	
+	public boolean isEmptyCondition(){
+		return fb.isEmptyCondition();
 	}
 
 	public FilterBuilder getFb() {
-		return this.fb;
+		return fb;
 	}
 }

@@ -1,20 +1,20 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.web.support;
 
-import com.gewara.util.BaseWebUtils;
-import com.gewara.util.ServiceCacheHelper;
-import com.gewara.web.support.DynamicStats;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
+
+import com.gewara.util.BaseWebUtils;
+import com.gewara.util.ServiceCacheHelper;
+
 
 public class ResourceStatsUtil {
 	private static DynamicStats badUrlStats = new DynamicStats("badurl");
@@ -23,11 +23,15 @@ public class ResourceStatsUtil {
 	private static DynamicStats jmsStats = new DynamicStats("jms");
 	private static DynamicStats pageCacheStats = new DynamicStats("pageCache");
 	private static DynamicStats apiMethodStats = new DynamicStats("apiMethod");
+	//各类错误统计
 	private static DynamicStats errorStats = new DynamicStats("errorStats");
-	private static List<ServiceCacheHelper> schList = new ArrayList();
-	private static Map<Integer, HttpServletRequest> requestMap = new ConcurrentHashMap(4096, 0.75F, 32);
+	private static List<ServiceCacheHelper> schList = new ArrayList<ServiceCacheHelper>();
+	//异步请求的Url，Spring的DefferedResult
+	
+	
+	//记录当前请求
+	private static Map<Integer, HttpServletRequest> requestMap = new ConcurrentHashMap<Integer, HttpServletRequest>(4096, 0.75f, 32);
 	private static AtomicInteger curreqLoc = new AtomicInteger(0);
-
 	public static DynamicStats getErrorStats() {
 		return errorStats;
 	}
@@ -35,124 +39,116 @@ public class ResourceStatsUtil {
 	public static DynamicStats getBadUrlStats() {
 		return badUrlStats;
 	}
-
 	public static DynamicStats getUriStats() {
 		return uriStats;
 	}
-
 	public static DynamicStats getCallStats() {
 		return callStats;
 	}
-
-	public static DynamicStats getJmsStats() {
+	public static DynamicStats getJmsStats(){
 		return jmsStats;
 	}
-
-	public static DynamicStats getPageCacheStats() {
+	public static DynamicStats getPageCacheStats(){
 		return pageCacheStats;
 	}
-
-	public static List<ServiceCacheHelper> getServiceCacheHelperList() {
-		return new ArrayList(schList);
+	public static List<ServiceCacheHelper> getServiceCacheHelperList(){
+		return new ArrayList<ServiceCacheHelper>(schList);
 	}
-
-	public static void addServiceCacheHelper(ServiceCacheHelper sch) {
+	public static void addServiceCacheHelper(ServiceCacheHelper sch){
 		schList.add(sch);
 	}
-
-	public static DynamicStats getApiMethodStats() {
+	public static DynamicStats getApiMethodStats(){
 		return apiMethodStats;
 	}
 
+	/**
+	 * 记录请求引用
+	 * @param request
+	 * @param multiPart
+	 * @return
+	 */
 	public static Integer recordRequest(HttpServletRequest request, boolean multiPart) {
-		if (multiPart) {
-			return Integer.valueOf(-1);
-		} else {
-			Integer loc = Integer.valueOf(curreqLoc.getAndIncrement());
-			requestMap.put(loc, request);
-			return loc;
-		}
+		if(multiPart) return -1;
+		Integer loc = curreqLoc.getAndIncrement();
+		requestMap.put(loc, request);
+		return loc;
 	}
-
-	public static List<Map> dumpRequest(int max) {
-		ArrayList result = new ArrayList();
-		Iterator arg1 = requestMap.entrySet().iterator();
-
-		while (arg1.hasNext()) {
-			Entry entry = (Entry) arg1.next();
-			HttpServletRequest req = (HttpServletRequest) entry.getValue();
-			if (req != null) {
-				LinkedHashMap reqMap = new LinkedHashMap();
+	/**
+	 * 下载正在处理的请求参数
+	 * @param max
+	 * @return
+	 */
+	public static List<Map> dumpRequest(int max){
+		List<Map> result = new ArrayList<Map>();
+		for(Map.Entry<Integer, HttpServletRequest> entry: requestMap.entrySet()){
+			HttpServletRequest req = entry.getValue();
+			if(req!=null){
+				Map reqMap = new LinkedHashMap();
 				reqMap.put("uri", req.getRequestURI());
-				reqMap.put("params", BaseWebUtils.getParamStr(req, true, new String[0]));
+				reqMap.put("params", BaseWebUtils.getParamStr(req, true));
 				reqMap.put("header", BaseWebUtils.getHeaderStr(req));
 				result.add(reqMap);
 			}
 		}
-
 		return result;
 	}
 
+	/**
+	 * 清除请求引用
+	 * @param loc
+	 */
 	public static void clearRequest(Integer loc) {
-		if (loc.intValue() >= 0) {
+		if(loc>=0) {
 			requestMap.remove(loc);
 		}
-
 	}
-
-	public static void addUrlNoHandler(String uri) {
+	
+	/**
+	 * 不存在的URI
+	 * @param uri
+	 */
+	public static void addUrlNoHandler(String uri){
 		badUrlStats.incrementCount(uri);
 	}
-
 	public static Map<String, Integer> clearUriIfMaxClick(int maxcount) {
-		Map result = badUrlStats.getStatsAndClear(maxcount);
+		Map<String, Integer> result = badUrlStats.getStatsAndClear(maxcount);
 		return result;
 	}
-
-	public static void registerUri(Set<String> uriList, String contextPath) {
-		if (!StringUtils.isBlank(contextPath) && !StringUtils.equals(contextPath, "/")) {
-			if (contextPath.endsWith("/")) {
-				contextPath = contextPath.substring(0, contextPath.length() - 1);
-			}
-		} else {
+	
+	/**
+	 * 注册监控列表
+	 * @return
+	 */
+	public static void registerUri(Set<String> uriList, String contextPath){
+		if(StringUtils.isBlank(contextPath)||StringUtils.equals(contextPath, "/")){
 			contextPath = "";
+		}else if(contextPath.endsWith("/")){
+			contextPath = contextPath.substring(0, contextPath.length()-1);
 		}
-
 		long cur = System.currentTimeMillis();
-		Iterator arg3 = uriList.iterator();
-
-		while (arg3.hasNext()) {
-			String uri = (String) arg3.next();
+		for(String uri: uriList){
 			uriStats.register(contextPath + uri, cur);
 		}
-
 		uriStats.setInit(true);
 	}
 
-	public static void registerCall(String callName) {
+	public static void registerCall(String callName){
 		long cur = System.currentTimeMillis();
 		callStats.register(callName, cur);
 	}
-
+	
 	public static Map<String, String> updateUriProcessTime(String uri, long elapsed, int maxcount) {
 		return uriStats.updateProcessTime(uri, elapsed, maxcount);
 	}
-
-	public static void addAsynchUri(Set<String> uriList, String contextPath) {
-		if (!StringUtils.isBlank(contextPath) && !StringUtils.equals(contextPath, "/")) {
-			if (contextPath.endsWith("/")) {
-				contextPath = contextPath.substring(0, contextPath.length() - 1);
-			}
-		} else {
+	public static void addAsynchUri(Set<String> uriList, String contextPath){
+		if(StringUtils.isBlank(contextPath)||StringUtils.equals(contextPath, "/")){
 			contextPath = "";
+		}else if(contextPath.endsWith("/")){
+			contextPath = contextPath.substring(0, contextPath.length()-1);
 		}
-
-		Iterator arg1 = uriList.iterator();
-
-		while (arg1.hasNext()) {
-			String uri = (String) arg1.next();
+		for(String uri: uriList){
 			uriStats.addSpecialType(contextPath + uri, "asynch");
 		}
-
 	}
+	
 }

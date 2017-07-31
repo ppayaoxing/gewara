@@ -1,12 +1,16 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
+/**
+ * 
+ */
 package com.gewara.json;
 
-import com.gewara.util.DateUtil;
 import java.io.Serializable;
 import java.util.Date;
+
 import org.apache.commons.lang.StringUtils;
 
-public class SysWarn implements Serializable {
+import com.gewara.util.DateUtil;
+
+public class SysWarn implements Serializable{
 	private static final long serialVersionUID = -6022767342336750391L;
 	private String title;
 	private String tag;
@@ -17,13 +21,13 @@ public class SysWarn implements Serializable {
 	private String role;
 	private String adddate;
 	private String addtime;
-	private String vuser;
-	private String auser;
-	private String fuser;
+	private String vuser;		//view查看过的人
+	private String auser;		//accept接受此任务的人
+	private String fuser;		//fixed完成此任务的人
 	private String otherinfo;
-
+	
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -31,7 +35,7 @@ public class SysWarn implements Serializable {
 	}
 
 	public String getVuser() {
-		return this.vuser;
+		return vuser;
 	}
 
 	public void setVuser(String vuser) {
@@ -39,7 +43,7 @@ public class SysWarn implements Serializable {
 	}
 
 	public String getAuser() {
-		return this.auser;
+		return auser;
 	}
 
 	public void setAuser(String auser) {
@@ -47,7 +51,7 @@ public class SysWarn implements Serializable {
 	}
 
 	public String getFuser() {
-		return this.fuser;
+		return fuser;
 	}
 
 	public void setFuser(String fuser) {
@@ -67,7 +71,8 @@ public class SysWarn implements Serializable {
 		this.role = role;
 	}
 
-	public SysWarn(String title, String tag, Long relatedid, String content, String role) {
+	public SysWarn(String title, String tag, Long relatedid, String content,
+			String role) {
 		this();
 		this.title = title;
 		this.tag = tag;
@@ -77,7 +82,7 @@ public class SysWarn implements Serializable {
 	}
 
 	public String getAdddate() {
-		return this.adddate;
+		return adddate;
 	}
 
 	public void setAdddate(String adddate) {
@@ -85,15 +90,14 @@ public class SysWarn implements Serializable {
 	}
 
 	public String getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(String addtime) {
 		this.addtime = addtime;
 	}
-
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -101,7 +105,7 @@ public class SysWarn implements Serializable {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -109,7 +113,7 @@ public class SysWarn implements Serializable {
 	}
 
 	public Serializable getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Serializable relatedid) {
@@ -117,7 +121,7 @@ public class SysWarn implements Serializable {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
@@ -125,7 +129,7 @@ public class SysWarn implements Serializable {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -133,55 +137,34 @@ public class SysWarn implements Serializable {
 	}
 
 	public String getRole() {
-		return this.role;
+		return role;
 	}
 
 	public void setRole(String role) {
 		this.role = role;
 	}
-
 	public void addView(String user) {
-		if (StringUtils.isBlank(this.vuser)) {
-			this.vuser = user;
-		} else {
-			this.vuser = this.vuser + user;
-		}
-
+		if(StringUtils.isBlank(vuser)) vuser = user;
+		else vuser += user;
 	}
-
 	public boolean isViewed(String user) {
-		return StringUtils.contains(this.vuser, user);
+		return StringUtils.contains(vuser, user);
 	}
-
 	public void addAccept(String user) {
-		if (StringUtils.isBlank(this.auser)) {
-			this.auser = user;
-		} else {
-			this.auser = this.auser + user;
-		}
-
+		if(StringUtils.isBlank(auser)) auser = user;
+		else auser += user;
 	}
-
 	public void addFixed(String user) {
-		if (StringUtils.isBlank(this.fuser)) {
-			this.fuser = user;
-		} else {
-			this.fuser = this.fuser + user;
-		}
-
+		if(StringUtils.isBlank(fuser)) fuser = user;
+		else fuser += user;
 	}
-
-	public void addOtherInfo(String other) {
-		if (StringUtils.isBlank(this.otherinfo)) {
-			this.otherinfo = other;
-		} else {
-			this.otherinfo = this.otherinfo + other;
-		}
-
+	public void addOtherInfo(String other){
+		if(StringUtils.isBlank(otherinfo)) otherinfo = other;
+		else otherinfo += other;
 	}
 
 	public String getLevel() {
-		return this.level;
+		return level;
 	}
 
 	public void setLevel(String level) {

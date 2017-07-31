@@ -1,16 +1,12 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support.magent;
 
-import com.gewara.support.GewaExecutorThreadFactory;
-import com.gewara.support.magent.MessageCommandCenter;
-import com.gewara.util.BeanUtil;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.WebLogger;
 import java.util.Map;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.lang.StringUtils;
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManagerListener;
@@ -20,171 +16,162 @@ import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.packet.Message.Type;
 import org.jivesoftware.smack.packet.Presence;
-import org.jivesoftware.smack.packet.Presence.Type;
+
+import com.gewara.support.GewaExecutorThreadFactory;
+import com.gewara.util.BeanUtil;
+import com.gewara.util.GewaLogger;
+import com.gewara.util.WebLogger;
 
 public class SmackMonitorAgentClient {
 	private static final transient GewaLogger dbLogger = WebLogger.getLogger(SmackMonitorAgentClient.class);
-	private String hostname;
+	private String hostname;	//ª˙∆˜√˚£¨≤ª“™”√localhost
 	private String username;
 	private String password;
 	private boolean available = false;
 	private MessageCommandCenter resolver;
 	private MessageListener listener;
 	private XMPPConnection conn;
-	private Map<String, Chat> chatMap = new ConcurrentHashMap();
+	private Map<String, Chat> chatMap = new ConcurrentHashMap<String, Chat>();
 	private ThreadPoolExecutor executor;
-
-	public SmackMonitorAgentClient(String hostname, String username, String password, MessageCommandCenter resolver) {
+	public SmackMonitorAgentClient(String hostname, String username, String password, MessageCommandCenter resolver){
 		this.hostname = hostname;
 		this.username = username;
 		this.password = password;
 		this.resolver = resolver;
-		this.listener = new SmackMonitorAgentClient.MonitorMessageListener(null);
-		LinkedBlockingQueue taskQueue = new LinkedBlockingQueue();
-		this.executor = new ThreadPoolExecutor(10, 10, 0L, TimeUnit.SECONDS, taskQueue,
-				new GewaExecutorThreadFactory("GWSmackMsgProcessor"));
+		this.listener = new MonitorMessageListener();
+		BlockingQueue<Runnable> taskQueue = new LinkedBlockingQueue<Runnable>();
+		this.executor=  new ThreadPoolExecutor(10, 10, 0L, TimeUnit.SECONDS, taskQueue, new GewaExecutorThreadFactory("GWSmackMsgProcessor"));
+		
 	}
-
 	public void init() {
-		this.createConnect();
+		this.createConnect();		
 		this.login();
 	}
-
-	public void sendMsg(String to, String msg) {
+	public void sendMsg(String to, String msg){
 		try {
-			Chat e = this.getOrCreateChat(to);
-			e.sendMessage(msg);
-		} catch (Exception arg3) {
-			dbLogger.warn(this.username, arg3);
+			Chat chat = getOrCreateChat(to);
+			chat.sendMessage(msg);
+		} catch (Exception e) {
+			dbLogger.warn(username, e);
 		}
-
 	}
-
-	private Chat getOrCreateChat(String to) {
-		if (!StringUtils.contains(to, this.hostname)) {
-			to = to + "@" + this.hostname;
+	
+	
+	private Chat getOrCreateChat(String to){
+		if(!StringUtils.contains(to, hostname)) {
+			to += "@" + hostname;
 		}
-
-		Chat chat = (Chat) this.chatMap.get(to);
-		if (chat == null) {
-			Map arg2 = this.chatMap;
-			synchronized (this.chatMap) {
-				chat = (Chat) this.chatMap.get(to);
-				if (chat == null) {
-					chat = this.conn.getChatManager().createChat(to, this.listener);
-					this.chatMap.put(to, chat);
+		Chat chat = chatMap.get(to);
+		if(chat==null){
+			synchronized(chatMap){
+				chat = chatMap.get(to);
+				if(chat==null){
+					chat = conn.getChatManager().createChat(to, listener);
+					chatMap.put(to, chat);
 				}
 			}
 		}
-
 		return chat;
 	}
-
 	private void createConnect() {
 		try {
-			ConnectionConfiguration e = new ConnectionConfiguration(this.hostname, 5222);
-			this.conn = new XMPPConnection(e);
-			this.conn.connect();
-			this.conn.getChatManager().addChatListener(new ChatManagerListener() {
+			ConnectionConfiguration config = new ConnectionConfiguration(hostname, 5222);
+			conn = new XMPPConnection(config);
+			conn.connect();
+			conn.getChatManager().addChatListener(new ChatManagerListener(){
+				@Override
 				public void chatCreated(Chat chat, boolean createdLocally) {
-					if (!createdLocally) {
-						chat.addMessageListener(SmackMonitorAgentClient.this.listener);
+					if(!createdLocally){
+						chat.addMessageListener(listener);
 					}
-
 				}
 			});
-			this.conn.addConnectionListener(new ConnectionListener() {
+			conn.addConnectionListener(new ConnectionListener() {
+				@Override
 				public void connectionClosed() {
-					SmackMonitorAgentClient.this.available = false;
-					SmackMonitorAgentClient.dbLogger.warn("connectionClosed!");
+					available = false;
+					dbLogger.warn("connectionClosed!");
 				}
 
+				@Override
 				public void connectionClosedOnError(Exception e) {
-					SmackMonitorAgentClient.dbLogger.warn("connection closed error!", e);
+					dbLogger.warn("connection closed error!", e);
 				}
 
+				@Override
 				public void reconnectingIn(int seconds) {
-					SmackMonitorAgentClient.dbLogger.warn("reconnect in:" + seconds);
+					dbLogger.warn("reconnect in:" + seconds);
 				}
 
+				@Override
 				public void reconnectionFailed(Exception e) {
-					SmackMonitorAgentClient.dbLogger.warn("reconnect failed!", e);
+					dbLogger.warn("reconnect failed!", e);
 				}
 
+				@Override
 				public void reconnectionSuccessful() {
-					SmackMonitorAgentClient.dbLogger.warn("reconnect success!");
-					SmackMonitorAgentClient.this.available = true;
+					dbLogger.warn("reconnect success!");
+					available = true;
 				}
 			});
-			this.available = true;
-		} catch (Exception arg1) {
-			dbLogger.warn(this.username, arg1);
+			available = true;
+		} catch (Exception e) {
+			dbLogger.warn(username, e);
 		}
-
 	}
 
 	private void login() {
 		try {
-			this.conn.login(this.username, this.password);
-			Presence e = new Presence(Type.available);
-			e.setStatus("I am " + this.username);
-			this.conn.sendPacket(e);
-		} catch (Exception arg1) {
-			dbLogger.warn(this.username, arg1);
+			conn.login(username, password);
+			Presence presence = new Presence(Presence.Type.available);
+			presence.setStatus("I am " + username);
+			conn.sendPacket(presence);
+		} catch (Exception e) {
+			
+			dbLogger.warn(username, e);
 		}
-
 	}
-
 	public boolean isAvailable() {
-		return this.available;
+		return available;
 	}
-
-	private class MonitorMessageListener implements MessageListener {
-		private int replycount;
-
-		private MonitorMessageListener() {
-			this.replycount = 0;
-		}
-
+	private class MonitorMessageListener implements MessageListener{
+		private int replycount = 0;
+		@Override
 		public void processMessage(final Chat chat, final Message message) {
-			SmackMonitorAgentClient.this.executor.execute(new Runnable() {
+			executor.execute(new Runnable(){
+				@Override
 				public void run() {
-					try {
-						if (StringUtils.isNotBlank(message.getBody())) {
-							if (message.getType() != org.jivesoftware.smack.packet.Message.Type.chat
-									&& message.getType() != org.jivesoftware.smack.packet.Message.Type.normal
-									&& message.getType() != org.jivesoftware.smack.packet.Message.Type.groupchat) {
-								SmackMonitorAgentClient.dbLogger
-										.warn(chat.toString() + ":" + BeanUtil.getBeanMap(message));
-							} else if (!StringUtils.startsWith(message.getBody(), "reply") && !StringUtils
-									.equals("unknown command, please type ‚Äúhelp‚Äù for help!", message.getBody())) {
-								try {
-									String e = SmackMonitorAgentClient.this.resolver.execCommand(message.getBody(),
-											message.getFrom());
-									if (StringUtils.equals("unknown command, please type ‚Äúhelp‚Äù for help!",
-											message.getBody())) {
-										e = "reply:" + e;
+					try{
+						if(StringUtils.isNotBlank(message.getBody())){
+							if(message.getType() == Type.chat || message.getType() == Type.normal || message.getType()==Type.groupchat){
+								if(StringUtils.startsWith(message.getBody(), "reply") || StringUtils.equals(CommandProcessor.UNKNOWN, message.getBody())){
+									replycount ++;
+									if(replycount % 20 == 0){
+										dbLogger.warn(message.getBody() + ",replycount:" + replycount);
 									}
-
-									if (StringUtils.isNotBlank(e) && !StringUtils.equals("reply:success", e)) {
-										chat.sendMessage(e);
+								}else{
+									try {
+										String reply = resolver.execCommand(message.getBody(), message.getFrom());
+										if(StringUtils.equals(CommandProcessor.UNKNOWN, message.getBody())){
+											reply = "reply:" + reply;
+										}
+										if(StringUtils.isNotBlank(reply) && !StringUtils.equals(CommandProcessor.SUCCESS, reply)){
+											//≥…π¶µƒ∫ˆ¬‘ªÿ¥´œ˚œ¢
+											chat.sendMessage(reply);
+										}
+									} catch (XMPPException e) {
+										dbLogger.error("", e);
 									}
-								} catch (XMPPException arg1) {
-									SmackMonitorAgentClient.dbLogger.error("", arg1);
 								}
-							} else {
-								MonitorMessageListener.this.replycount++;
-								if (MonitorMessageListener.this.replycount % 20 == 0) {
-									SmackMonitorAgentClient.dbLogger.warn(message.getBody() + ",replycount:"
-											+ MonitorMessageListener.this.replycount);
-								}
+							}else{
+								dbLogger.warn(chat.toString() + ":" + BeanUtil.getBeanMap(message));
 							}
 						}
-					} catch (Throwable arg2) {
-						SmackMonitorAgentClient.dbLogger.error("SMACKException", arg2);
+					} catch (Throwable e){
+						dbLogger.error("SMACKException", e);
 					}
-
 				}
 			});
 		}

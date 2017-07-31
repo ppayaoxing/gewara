@@ -1,26 +1,22 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.model.acl;
 
-import com.gewara.model.BaseObject;
-import com.gewara.model.acl.Role;
 import java.io.Serializable;
 
+import com.gewara.model.BaseObject;
 public class User2Role extends BaseObject {
 	private static final long serialVersionUID = -5801762779064940301L;
 	private Long id;
 	private Long userid;
 	private Role role;
-
 	public User2Role() {
 	}
-
 	public User2Role(Long userid, Role role) {
 		this.userid = userid;
 		this.role = role;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -28,22 +24,23 @@ public class User2Role extends BaseObject {
 	}
 
 	public Long getUserid() {
-		return this.userid;
+		return userid;
 	}
 
 	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Role getRole() {
-		return this.role;
+		return role;
 	}
-
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
 }

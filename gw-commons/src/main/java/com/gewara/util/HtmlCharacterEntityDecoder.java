@@ -1,117 +1,153 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
+/*
+ * Copyright 2002-2008 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.gewara.util;
 
-import com.gewara.util.HtmlCharacterEntityReferences;
-
+/**
+ * Helper for decoding HTML Strings by replacing character
+ * entity references with the referred character.
+ *
+ * @author Juergen Hoeller
+ * @author Martin Kersten
+ * @since 1.2.1
+ */
 class HtmlCharacterEntityDecoder {
+
 	private static final int MAX_REFERENCE_SIZE = 10;
+
+
 	private final HtmlCharacterEntityReferences characterEntityReferences;
+
 	private final String originalMessage;
+
 	private final StringBuilder decodedMessage;
+
 	private int currentPosition = 0;
+
 	private int nextPotentialReferencePosition = -1;
+
 	private int nextSemicolonPosition = -2;
+
 
 	public HtmlCharacterEntityDecoder(HtmlCharacterEntityReferences characterEntityReferences, String original) {
 		this.characterEntityReferences = characterEntityReferences;
 		this.originalMessage = original;
-		this.decodedMessage = new StringBuilder(this.originalMessage.length());
+		this.decodedMessage = new StringBuilder(originalMessage.length());
 	}
 
 	public String decode() {
-		while (this.currentPosition < this.originalMessage.length()) {
-			this.findNextPotentialReference(this.currentPosition);
-			this.copyCharactersTillPotentialReference();
-			this.processPossibleReference();
+		while (currentPosition < originalMessage.length()) {
+			findNextPotentialReference(currentPosition);
+			copyCharactersTillPotentialReference();
+			processPossibleReference();
 		}
-
-		return this.decodedMessage.toString();
+		return decodedMessage.toString();
 	}
 
 	private void findNextPotentialReference(int startPosition) {
-		this.nextPotentialReferencePosition = Math.max(startPosition, this.nextSemicolonPosition - 10);
+		nextPotentialReferencePosition = Math.max(startPosition, nextSemicolonPosition - MAX_REFERENCE_SIZE);
 
 		do {
-			this.nextPotentialReferencePosition = this.originalMessage.indexOf(38, this.nextPotentialReferencePosition);
-			if (this.nextSemicolonPosition != -1 && this.nextSemicolonPosition < this.nextPotentialReferencePosition) {
-				this.nextSemicolonPosition = this.originalMessage.indexOf(59, this.nextPotentialReferencePosition + 1);
-			}
+			nextPotentialReferencePosition =
+					originalMessage.indexOf('&', nextPotentialReferencePosition);
 
-			boolean isPotentialReference = this.nextPotentialReferencePosition != -1 && this.nextSemicolonPosition != -1
-					&& this.nextPotentialReferencePosition - this.nextSemicolonPosition < 10;
-			if (isPotentialReference || this.nextPotentialReferencePosition == -1) {
+			if (nextSemicolonPosition != -1 &&
+					nextSemicolonPosition < nextPotentialReferencePosition)
+				nextSemicolonPosition = originalMessage.indexOf(';', nextPotentialReferencePosition + 1);
+
+			boolean isPotentialReference =
+					nextPotentialReferencePosition != -1
+					&& nextSemicolonPosition != -1
+					&& nextPotentialReferencePosition - nextSemicolonPosition < MAX_REFERENCE_SIZE;
+
+			if (isPotentialReference) {
+				break;
+			}
+			if (nextPotentialReferencePosition == -1) {
+				break;
+			}
+			if (nextSemicolonPosition == -1) {
+				nextPotentialReferencePosition = -1;
 				break;
 			}
 
-			if (this.nextSemicolonPosition == -1) {
-				this.nextPotentialReferencePosition = -1;
-				break;
-			}
-
-			++this.nextPotentialReferencePosition;
-		} while (this.nextPotentialReferencePosition != -1);
-
+			nextPotentialReferencePosition = nextPotentialReferencePosition + 1;
+		}
+		while (nextPotentialReferencePosition != -1);
 	}
 
+
 	private void copyCharactersTillPotentialReference() {
-		if (this.nextPotentialReferencePosition != this.currentPosition) {
-			int skipUntilIndex = this.nextPotentialReferencePosition != -1 ? this.nextPotentialReferencePosition
-					: this.originalMessage.length();
-			if (skipUntilIndex - this.currentPosition > 3) {
-				this.decodedMessage.append(this.originalMessage.substring(this.currentPosition, skipUntilIndex));
-				this.currentPosition = skipUntilIndex;
-			} else {
-				while (this.currentPosition < skipUntilIndex) {
-					this.decodedMessage.append(this.originalMessage.charAt(this.currentPosition++));
-				}
+		if (nextPotentialReferencePosition != currentPosition) {
+			int skipUntilIndex = nextPotentialReferencePosition != -1 ?
+					nextPotentialReferencePosition : originalMessage.length();
+			if (skipUntilIndex - currentPosition > 3) {
+				decodedMessage.append(originalMessage.substring(currentPosition, skipUntilIndex));
+				currentPosition = skipUntilIndex;
+			}
+			else {
+				while (currentPosition < skipUntilIndex)
+					decodedMessage.append(originalMessage.charAt(currentPosition++));
 			}
 		}
-
 	}
 
 	private void processPossibleReference() {
-		if (this.nextPotentialReferencePosition != -1) {
-			boolean isNumberedReference = this.originalMessage.charAt(this.currentPosition + 1) == 35;
-			boolean wasProcessable = isNumberedReference ? this.processNumberedReference()
-					: this.processNamedReference();
+		if (nextPotentialReferencePosition != -1) {
+			boolean isNumberedReference = originalMessage.charAt(currentPosition + 1) == '#';
+			boolean wasProcessable = isNumberedReference ? processNumberedReference() : processNamedReference();
 			if (wasProcessable) {
-				this.currentPosition = this.nextSemicolonPosition + 1;
-			} else {
-				char currentChar = this.originalMessage.charAt(this.currentPosition);
-				this.decodedMessage.append(currentChar);
-				++this.currentPosition;
+				currentPosition = nextSemicolonPosition + 1;
+			}
+			else {
+				char currentChar = originalMessage.charAt(currentPosition);
+				decodedMessage.append(currentChar);
+				currentPosition++;
 			}
 		}
-
 	}
 
 	private boolean processNumberedReference() {
-		boolean isHexNumberedReference = this.originalMessage.charAt(this.nextPotentialReferencePosition + 2) == 120
-				|| this.originalMessage.charAt(this.nextPotentialReferencePosition + 2) == 88;
-
+		boolean isHexNumberedReference =
+				originalMessage.charAt(nextPotentialReferencePosition + 2) == 'x' ||
+				originalMessage.charAt(nextPotentialReferencePosition + 2) == 'X';
 		try {
-			int ex = !isHexNumberedReference ? Integer.parseInt(this.getReferenceSubstring(2))
-					: Integer.parseInt(this.getReferenceSubstring(3), 16);
-			this.decodedMessage.append((char) ex);
+			int value = (!isHexNumberedReference) ?
+					Integer.parseInt(getReferenceSubstring(2)) :
+					Integer.parseInt(getReferenceSubstring(3), 16);
+			decodedMessage.append((char) value);
 			return true;
-		} catch (NumberFormatException arg2) {
+		}
+		catch (NumberFormatException ex) {
 			return false;
 		}
 	}
 
 	private boolean processNamedReference() {
-		String referenceName = this.getReferenceSubstring(1);
-		char mappedCharacter = this.characterEntityReferences.convertToCharacter(referenceName);
-		if (mappedCharacter != '?') {
-			this.decodedMessage.append(mappedCharacter);
+		String referenceName = getReferenceSubstring(1);
+		char mappedCharacter = characterEntityReferences.convertToCharacter(referenceName);
+		if (mappedCharacter != HtmlCharacterEntityReferences.CHAR_NULL) {
+			decodedMessage.append(mappedCharacter);
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	private String getReferenceSubstring(int referenceOffset) {
-		return this.originalMessage.substring(this.nextPotentialReferencePosition + referenceOffset,
-				this.nextSemicolonPosition);
+		return originalMessage.substring(nextPotentialReferencePosition + referenceOffset, nextSemicolonPosition);
 	}
+
 }

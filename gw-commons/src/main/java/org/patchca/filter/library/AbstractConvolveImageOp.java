@@ -1,7 +1,4 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.filter.library;
-
-import org.patchca.filter.library.AbstractImageOp;
 
 public abstract class AbstractConvolveImageOp extends AbstractImageOp {
 	private float[][] matrix;
@@ -15,37 +12,31 @@ public abstract class AbstractConvolveImageOp extends AbstractImageOp {
 		int matrixHeight = this.matrix.length;
 		int mattrixLeft = -matrixWidth / 2;
 		int matrixTop = -matrixHeight / 2;
-
 		for (int y = 0; y < height; ++y) {
 			int ytop = y + matrixTop;
 			int ybottom = y + matrixTop + matrixHeight;
-
 			for (int x = 0; x < width; ++x) {
-				float[] sum = new float[] { 0.5F, 0.5F, 0.5F, 0.5F };
+				float[] sum = { 0.5F, 0.5F, 0.5F, 0.5F };
 				int xleft = x + mattrixLeft;
 				int xright = x + mattrixLeft + matrixWidth;
 				int matrixY = 0;
-
 				for (int my = ytop; my < ybottom; ++matrixY) {
 					int matrixX = 0;
-
 					for (int mx = xleft; mx < xright; ++matrixX) {
-						int pixel = this.getPixel(inPixels, mx, my, width, height);
+						int pixel = getPixel(inPixels, mx, my, width, height);
 						float m = this.matrix[matrixY][matrixX];
-						sum[0] += m * (float) (pixel >> 24 & 255);
-						sum[1] += m * (float) (pixel >> 16 & 255);
-						sum[2] += m * (float) (pixel >> 8 & 255);
-						sum[3] += m * (float) (pixel & 255);
+						sum[0] += m * (pixel >> 24 & 0xFF);
+						sum[1] += m * (pixel >> 16 & 0xFF);
+						sum[2] += m * (pixel >> 8 & 0xFF);
+						sum[3] += m * (pixel & 0xFF);
+
 						++mx;
 					}
-
 					++my;
 				}
 
-				outPixels[x + y * width] = this.limitByte((int) sum[0]) << 24 | this.limitByte((int) sum[1]) << 16
-						| this.limitByte((int) sum[2]) << 8 | this.limitByte((int) sum[3]);
+				outPixels[(x + y * width)] = (limitByte((int) sum[0]) << 24 | limitByte((int) sum[1]) << 16 | limitByte((int) sum[2]) << 8 | limitByte((int) sum[3]));
 			}
 		}
-
 	}
 }

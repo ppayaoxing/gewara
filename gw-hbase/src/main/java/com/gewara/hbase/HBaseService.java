@@ -1,83 +1,144 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.hbase;
 
-import com.gewara.hbase.AggregateData;
-import com.gewara.hbase.Row;
-import com.gewara.hbase.RowDataCallback;
-import com.gewara.hbase.RowFilter;
-import com.gewara.hbase.util.FilterBuilder;
-import com.gewara.hbase.util.GroupFields;
 import java.util.List;
 import java.util.Map;
 
+import com.gewara.hbase.util.FilterBuilder;
+import com.gewara.hbase.util.GroupFields;
+
+/**
+ * @author gebiao
+ * 本程序是调用HBase的接口，有些局限性：
+ * 1）不考虑修改记录
+ * 2）数据格式要规范，key必须为正常的key
+ */
 public interface HBaseService {
+	
+	/////////////////////接口常量/////////////////////
 	String COUNT_FLAG_HOUR = "hour";
 	String COUNT_FLAG_MIN = "min";
 	String COUNT_FLAG_DAY = "day";
-	String COLUMN_ADDTIME = "addtime";
-	int CACHE_SIZE = 500;
-
-	void saveRow(String arg0, Map<String, String> arg1);
-
-	void saveRow(String arg0, byte[] arg1, Map<String, String> arg2);
-
-	void saveRow(String arg0, String arg1, Map<String, String> arg2);
-
-	void saveRowListByStrId(String arg0, String arg1, List<Map<String, String>> arg2);
-
-	void saveRowListByHex(String arg0, String arg1, List<Map<String, String>> arg2);
-
-	void saveRowList(String arg0, List<Row> arg1);
-
-	void removeRowById(String arg0, byte[] arg1);
-
-	void removeRowByHex(String arg0, String arg1);
-
-	void removeRowList(String arg0, List<byte[]> arg1);
-
-	void removeRowListByHex(String arg0, String[] arg1);
-
-	void removeRowListByHex(String arg0, List<String> arg1);
-
-	int removeByRange(String arg0, FilterBuilder arg1, Long arg2, Long arg3, String arg4);
-
+	String COLUMN_ADDTIME ="addtime";	//客户化保留字段，用于存储记录的产生时间,范围查询时做时间比较
+	int CACHE_SIZE = 500;	//SCAN 缓存条数
+	
+	/////////////////////添加单条记录 API/////////////////////
+	/**
+	 * 保存记录，自动产生rowid,rowid 的规则是基于时间 timestamp[32bit]
+	 * @param tablename
+	 * @param rowdata
+	 */
+	void saveRow(String tablename, Map<String, String> rowdata);
+	/**
+	 * 保存记录，使用自定义的 rowid格式,二进制数据
+	 * @param tablename
+	 * @param rowid
+	 * @param rowdata
+	 */
+	void saveRow(String tablename, byte[] rowid, Map<String, String> rowdata);
+	/**
+	 * 保存记录，使用自定义的 rowid格式,hexid为byte[]的hex编码,16进制编码
+	 * @param tablename
+	 * @param hexid
+	 * @param row
+	 */
+	void saveRow(String tablename, String hexid, Map<String, String> row);
+	
+	/////////////////////添加多条记录 API/////////////////////
+	void saveRowListByStrId(String tablename, String idName, List<Map<String, String>> rowList);
+	void saveRowListByHex(String tablename, String hexidName, List<Map<String, String>> rowList);
+	void saveRowList(String tablename, List<Row> rowList);
+	
+	/////////////////////删除 API/////////////////////
+	void removeRowById(String tablename, byte[] rowid);
+	void removeRowByHex(String tablename, String hexid);
+	void removeRowList(String tablename, List<byte[]> rowidList);
+	void removeRowListByHex(String tablename, String[] hexidList);
+	void removeRowListByHex(String tablename, List<String> hexidList);
+	int removeByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime, String column);
+	
+	/////////////////////查询 API/////////////////////
 	boolean isAvaliable();
 
-	Row getRowByHex(String arg0, String arg1);
+	Row getRowByHex(String tablename, String hexid);
+	Row getRowByStrId(String tablename, String strId);
+	Row getRowById(String tablename, byte[] rowid);
+	/**
+	 * 获取多次修改的记录
+	 * @param tablename
+	 * @param rowid
+	 * @param maxVersion
+	 * @return
+	 */
+	Map<Long/*modifytime*/, Map<String, String>> getMultiVersionRow(String tablename, byte[] rowid, int maxVersion);
+	List<Map<Long/*modifytime*/, Map<String, String>>> getMultiRowListByIdRange(String tableName, int maxVersions, FilterBuilder fb, byte[] startRowId, byte[] endRowId, int maxnum);
 
-	Row getRowByStrId(String arg0, String arg1);
-
-	Row getRowById(String arg0, byte[] arg1);
-
-	Map<Long, Map<String, String>> getMultiVersionRow(String arg0, byte[] arg1, int arg2);
-
-	List<Map<Long, Map<String, String>>> getMultiRowListByIdRange(String arg0, int arg1, FilterBuilder arg2,
-			byte[] arg3, byte[] arg4, int arg5);
-
-	List<Row> getRowList(String arg0, FilterBuilder arg1, int arg2);
-
-	List<Row> getRowListByHexids(String arg0, List<String> arg1);
-
-	List<Row> getRowListByIdList(String arg0, List<byte[]> arg1);
-
-	List<Row> getRowListByRange(String arg0, FilterBuilder arg1, Long arg2, Long arg3, RowFilter arg4, int arg5);
-
-	List<Row> getRowListByIdRange(String arg0, FilterBuilder arg1, byte[] arg2, byte[] arg3, RowFilter arg4, int arg5);
-
-	AggregateData getGroupData(String arg0, GroupFields arg1, FilterBuilder arg2, Long arg3, Long arg4, int arg5,
-			RowFilter arg6);
-
-	List<byte[]> getRowidListByRange(String arg0, FilterBuilder arg1, Long arg2, Long arg3, int arg4);
-
-	List<byte[]> getRowidListByRange(String arg0, FilterBuilder arg1, Long arg2, Long arg3, int arg4, String arg5);
-
-	void processRowListByRange(String arg0, FilterBuilder arg1, Long arg2, Long arg3, RowDataCallback arg4,
-			RowFilter arg5);
-
-	void processRowListByRowIdRange(String arg0, FilterBuilder arg1, byte[] arg2, byte[] arg3, RowDataCallback arg4,
-			RowFilter arg5);
-
-	long getRowCountByRange(String arg0, FilterBuilder arg1, Long arg2, Long arg3);
-
-	boolean createTable(String arg0, int arg1);
+	List<Row> getRowList(String tablename, FilterBuilder fb, int maxnum);
+	List<Row> getRowListByHexids(String tablename, List<String> hexidList);
+	List<Row> getRowListByIdList(String tablename, List<byte[]> rowidList);
+	
+	List<Row> getRowListByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime, RowFilter filter, int maxnum);
+	List<Row> getRowListByIdRange(String tableName, FilterBuilder fb, byte[] startRowId, byte[] endRowId, RowFilter filter, int maxnum);
+	AggregateData getGroupData(String tableName, GroupFields gf, FilterBuilder fb, Long starttime, Long endtime, int maxRowScan, RowFilter filter);
+	
+	/**
+	 * @param tableName
+	 * @param fb
+	 * @param starttime
+	 * @param endtime
+	 * @param maxnum
+	 * @return
+	 */
+	List<byte[]> getRowidListByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime, int maxnum);
+	/**
+	 * @param tableName
+	 * @param query
+	 * @param likeQuery
+	 * @param starttime
+	 * @param endtime
+	 * @param maxnum
+	 * @param column 只返回指定列值，以减少数据传输
+	 * @return
+	 */
+	List<byte[]> getRowidListByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime, int maxnum, String column);
+	
+	/////////////////////范围处理 API/////////////////////
+	/**
+	 * 按时间段范围处理
+	 * @param tableName
+	 * @param query
+	 * @param likeQuery
+	 * @param starttime
+	 * @param endtime
+	 * @param callback
+	 */
+	void processRowListByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime, RowDataCallback callback, RowFilter filter);
+	/**
+	 * 按rowid范围处理
+	 * @param tableName
+	 * @param query
+	 * @param likeQuery
+	 * @param startRowId
+	 * @param endRowId
+	 * @param callback
+	 */
+	void processRowListByRowIdRange(String tableName, FilterBuilder fb, byte[] startRowId, byte[] endRowId, RowDataCallback callback, RowFilter filter);
+	
+	/////////////////////聚集查询 API/////////////////////
+	/**
+	 * @param tableName
+	 * @param fb
+	 * @param starttime
+	 * @param endtime
+	 * @return
+	 */
+	long getRowCountByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime);
+	
+	/**
+	 * 新建一张表（如果已经存在就不建），columnFamily是默认的DF，默认压缩
+	 * create 'table',{NAME => 'DF', VERSIONS => 1, COMPRESSION => 'SNAPPY'}
+	 * @param tableName
+	 * @param maxVersions  > 0 时设置
+	 * @return
+	 */
+	boolean createTable(String tableName, int maxVersions);
 }

@@ -1,8 +1,6 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.word;
 
 import java.util.Random;
-import org.patchca.word.RandomWordFactory;
 
 public class AdaptiveRandomWordFactory extends RandomWordFactory {
 	protected String wideCharacters;
@@ -20,8 +18,7 @@ public class AdaptiveRandomWordFactory extends RandomWordFactory {
 		Random rnd = new Random();
 		StringBuffer sb = new StringBuffer();
 		StringBuffer chars = new StringBuffer(this.characters);
-		int l = this.minLength + (this.maxLength > this.minLength ? rnd.nextInt(this.maxLength - this.minLength) : 0);
-
+		int l = this.minLength + ((this.maxLength > this.minLength) ? rnd.nextInt(this.maxLength - this.minLength) : 0);
 		for (int i = 0; i < l; ++i) {
 			int j = rnd.nextInt(chars.length());
 			char c = chars.charAt(j);
@@ -33,10 +30,8 @@ public class AdaptiveRandomWordFactory extends RandomWordFactory {
 					}
 				}
 			}
-
 			sb.append(c);
 		}
-
 		return sb.toString();
 	}
 }

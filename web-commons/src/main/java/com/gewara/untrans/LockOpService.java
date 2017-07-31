@@ -1,12 +1,29 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans;
 
 public interface LockOpService {
-	Long updateOperation(String arg0, int arg1);
-
-	void resetOperation(String arg0, Long arg1);
-
-	Long updateFlagOperation(String arg0, int arg1, String arg2);
-
-	void resetFlagOperation(String arg0, String arg1);
+	/**
+	 * 同OperationService，使用Memcache实现
+	 * @param opkey
+	 * @param allowIntervalSecond
+	 * @return lockvalue
+	 */
+	Long updateOperation(String opkey, int allowIntervalSecond);
+	/**
+	 * 同OperationService，使用Memcache实现
+	 * @param opkey
+	 */
+	void resetOperation(String opkey, Long lockvalue);
+	/**
+	 * flag表示身份，同一身份
+	 * @param opkey
+	 * @param allowIntervalSecond
+	 * @param flag
+	 * @return
+	 */
+	Long updateFlagOperation(String opkey, int allowIntervalSecond, String flag);
+	/**
+	 * 同OperationService，使用Memcache实现
+	 * @param opkey
+	 */
+	void resetFlagOperation(String opkey, String flag);
 }

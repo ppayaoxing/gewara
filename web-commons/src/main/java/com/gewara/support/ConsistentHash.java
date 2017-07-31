@@ -1,84 +1,81 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support;
 
-import com.google.common.hash.HashFunction;
-import com.google.common.hash.Hashing;
 import java.nio.charset.Charset;
-import java.util.Iterator;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import com.google.common.hash.HashFunction;
+import com.google.common.hash.Hashing;
+
 public class ConsistentHash<T> {
-	private SortedMap<Long, T> ketamaNodes = new TreeMap();
-	private int numberOfReplicas = 1024;
-	private HashFunction hashFunction = Hashing.md5();
-	private List<T> nodes;
-	private volatile boolean init = false;
+	private SortedMap<Long,T> ketamaNodes=new TreeMap<Long,T>();
+    private int numberOfReplicas=1024;
+    private HashFunction hashFunction= Hashing.md5(); //guava
+    private List<T> nodes;
+    private volatile boolean init=false; //标志是否初始化完成
 
-	public ConsistentHash(int numberOfReplicas, List<T> nodes) {
-		this.numberOfReplicas = numberOfReplicas;
-		this.nodes = nodes;
-		this.init();
-	}
+    public ConsistentHash(int numberOfReplicas,List<T> nodes){
+        this.numberOfReplicas=numberOfReplicas;
+        this.nodes=nodes;
 
-	public T getNodeByKey(String key) {
-		if (!this.init) {
-			throw new RuntimeException("init uncomplete...");
-		} else {
-			byte[] digest = this.hashFunction.hashString(key, Charset.forName("UTF-8")).asBytes();
-			long hash = hash(digest, 0);
-			if (!this.ketamaNodes.containsKey(Long.valueOf(hash))) {
-				SortedMap tailMap = this.ketamaNodes.tailMap(Long.valueOf(hash));
-				if (tailMap.isEmpty()) {
-					hash = ((Long) this.ketamaNodes.firstKey()).longValue();
-				} else {
-					hash = ((Long) tailMap.firstKey()).longValue();
-				}
-			}
+        init();
+    }
 
-			return this.ketamaNodes.get(Long.valueOf(hash));
-		}
-	}
+    public T getNodeByKey(String key){
+        if(!init)throw new RuntimeException("init uncomplete...");
 
-	public synchronized void addNode(T node) {
-		this.init = false;
-		this.nodes.add(node);
-		this.init();
-	}
+        byte[] digest=hashFunction.hashString(key, Charset.forName("UTF-8")).asBytes();
+        long hash=hash(digest,0);
+        //如果找到这个节点，直接取节点，返回
+        if(!ketamaNodes.containsKey(hash)){
+            //得到大于当前key的那个子Map，然后从中取出第一个key，就是大于且离它最近的那个key
+            SortedMap<Long,T> tailMap=ketamaNodes.tailMap(hash);
+            if(tailMap.isEmpty()){
+                hash=ketamaNodes.firstKey();
+            }else{
+                hash=tailMap.firstKey();
+            }
 
-	private void init() {
-		Iterator arg0 = this.nodes.iterator();
+        }
+        return ketamaNodes.get(hash);
+    }
 
-		while (arg0.hasNext()) {
-			Object node = arg0.next();
+    public synchronized void addNode(T node){
+        init=false;
+        nodes.add(node);
+        init();
+    }
 
-			for (int i = 0; i < this.numberOfReplicas / 4; ++i) {
-				byte[] digest = this.hashFunction.hashString(node.toString() + i, Charset.forName("UTF-8")).asBytes();
+    private void init(){
+        //对所有节点，生成numberOfReplicas个虚拟节点
+        for(T node:nodes){
+            //每四个虚拟节点为1组
+            for(int i=0;i<numberOfReplicas/4;i++){
+                //为这组虚拟结点得到惟一名称
+                byte[] digest=hashFunction.hashString(node.toString() +i, Charset.forName("UTF-8")).asBytes();
+                //Md5是一个16字节长度的数组，将16字节的数组每四个字节一组，分别对应一个虚拟结点，这就是为什么上面把虚拟结点四个划分一组的原因
+                for(int h=0;h<4;h++){
+                    Long k = hash(digest,h);
+                    ketamaNodes.put(k,node);
+                }
+            }
+        }
+        init=true;
+    }
 
-				for (int h = 0; h < 4; ++h) {
-					Long k = Long.valueOf(hash(digest, h));
-					this.ketamaNodes.put(k, node);
-				}
-			}
-		}
+    public void printNodes(){
+        for(Long key:ketamaNodes.keySet()){
+            System.out.println(ketamaNodes.get(key));
+        }
+    }
 
-		this.init = true;
-	}
-
-	public void printNodes() {
-		Iterator arg0 = this.ketamaNodes.keySet().iterator();
-
-		while (arg0.hasNext()) {
-			Long key = (Long) arg0.next();
-			System.out.println(this.ketamaNodes.get(key));
-		}
-
-	}
-
-	public static long hash(byte[] digest, int nTime) {
-		long rv = (long) (digest[3 + nTime * 4] & 255) << 24 | (long) (digest[2 + nTime * 4] & 255) << 16
-				| (long) (digest[1 + nTime * 4] & 255) << 8 | (long) digest[0 + nTime * 4] & 255L;
-		return rv;
-	}
+    public static long hash(byte[] digest, int nTime)
+    {
+        long rv = ((long)(digest[3 + nTime * 4] & 0xFF) << 24)
+                | ((long)(digest[2 + nTime * 4] & 0xFF) << 16)
+                | ((long)(digest[1 + nTime * 4] & 0xFF) << 8)
+                | ((long)digest[0 + nTime * 4] & 0xFF);
+        return rv;
+    }
 }

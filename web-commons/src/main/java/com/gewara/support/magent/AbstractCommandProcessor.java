@@ -1,33 +1,36 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support.magent;
 
-import com.gewara.support.magent.CommandProcessor;
 
-public abstract class AbstractCommandProcessor implements CommandProcessor {
-	protected String group;
+public abstract class AbstractCommandProcessor implements CommandProcessor{
+	protected String group;//分类
 	protected String name;
 	protected String help;
-
-	public String getName() {
-		return this.name;
+	/**
+	 * 命令名称
+	 * @return
+	 */
+	@Override
+	public String getName(){
+		return name;
 	}
-
-	public String getHelp() {
-		return this.help;
+	/**
+	 * 帮助信息
+	 * @return
+	 */
+	@Override
+	public String getHelp(){
+		return help;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public void setHelp(String help) {
 		this.help = help;
 	}
-
+	@Override
 	public String getGroup() {
-		return this.group;
+		return group;
 	}
-
 	public void setGroup(String group) {
 		this.group = group;
 	}

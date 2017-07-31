@@ -1,19 +1,10 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.job;
 
-import com.gewara.Config;
-import com.gewara.job.JobLockService;
-import com.gewara.job.JobService;
-import com.gewara.support.TraceErrorException;
-import com.gewara.untrans.GewaLeaderLatchListener;
-import com.gewara.untrans.LeaderElectionService;
-import com.gewara.util.Assert;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.WebLogger;
-import com.gewara.web.support.ResourceStatsUtil;
 import java.util.Date;
 import java.util.TimeZone;
+
 import org.quartz.JobDetail;
+import org.quartz.Scheduler;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.InitializingBean;
@@ -21,22 +12,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.util.ReflectionUtils;
 
-public class GewaJobTrigger extends CronTriggerImpl implements BeanNameAware, InitializingBean {
+import com.gewara.Config;
+import com.gewara.support.TraceErrorException;
+import com.gewara.untrans.GewaLeaderLatchListener;
+import com.gewara.untrans.LeaderElectionService;
+import com.gewara.util.Assert;
+import com.gewara.util.GewaLogger;
+import com.gewara.util.WebLogger;
+import com.gewara.web.support.ResourceStatsUtil;
+
+public class GewaJobTrigger extends CronTriggerImpl implements BeanNameAware, InitializingBean{
 	private static final long serialVersionUID = 170131506307364822L;
-	private final transient GewaLogger dbLogger = WebLogger.getLogger(this.getClass());
-	@Autowired(required = false)
-	@Qualifier("leaderElectionService")
+
+	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
+	
+	@Autowired(required=false)@Qualifier("leaderElectionService")
 	private LeaderElectionService leaderElectionService;
+	
 	private String beanName;
 	private JobService jobService;
 	private String targetMethod;
 	private String uniqueName;
-	private String hostname;
-	private boolean uniqueByHost;
+	private String hostname;			//只在某台机器上执行
+	private boolean uniqueByHost;		//计算uniqueName加上host
 	private long startDelay;
 	private JobDetail jobDetail;
-	private boolean electionEnabled = false;
-
+	
+	private boolean electionEnabled = false; //是否可以通过使用选举来决定哪台机器执行, 默认不允许
+	
 	public void setJobDetail(JobDetail jobDetail) {
 		this.getJobDataMap().put("jobDetail", jobDetail);
 		this.jobDetail = jobDetail;
@@ -45,92 +48,79 @@ public class GewaJobTrigger extends CronTriggerImpl implements BeanNameAware, In
 	public JobDetail getJobDetail() {
 		return this.jobDetail;
 	}
-
+	
+	@Override
 	public final void afterPropertiesSet() throws Exception {
-		if (this.getName() == null) {
-			this.setName(this.beanName);
+		if (getName() == null) {
+			setName(this.beanName);
 		}
-
-		if (this.getGroup() == null) {
-			this.setGroup("DEFAULT");
+		if (getGroup() == null) {
+			setGroup(Scheduler.DEFAULT_GROUP);
 		}
-
-		if (this.getStartTime() == null) {
-			this.setStartTime(new Date());
+		if (getStartTime() == null) {
+			setStartTime(new Date());
 		}
-
-		if (this.getTimeZone() == null) {
-			this.setTimeZone(TimeZone.getDefault());
+		if (getTimeZone() == null) {
+			setTimeZone(TimeZone.getDefault());
 		}
-
-		if (this.startDelay > 0L) {
-			this.setStartTime(new Date(System.currentTimeMillis() + this.startDelay));
+		if (this.startDelay > 0) {
+			setStartTime(new Date(System.currentTimeMillis() + this.startDelay));
 		}
-
-		if (this.jobDetail != null) {
-			this.setJobKey(this.jobDetail.getKey());
+		if (this.jobDetail!=null){
+			setJobKey(jobDetail.getKey());
 		}
-
-		this.uniqueName = this.jobService.getServiceName() + "." + this.targetMethod;
-		String electionKey;
-		if (this.uniqueByHost) {
-			electionKey = Config.getHostname();
-			int idx = electionKey.indexOf(46);
-			if (idx > 0) {
-				electionKey = electionKey.substring(0, idx);
+		uniqueName = jobService.getServiceName() + "." + targetMethod;
+		if(uniqueByHost){
+			String host = Config.getHostname();
+			int idx = host.indexOf('.');
+			if(idx>0){
+				host=host.substring(0, idx);
 			}
-
-			this.uniqueName = this.uniqueName + "@" + electionKey;
+			uniqueName += "@"+host;
 		}
+		JobLockService.registerConfig(uniqueName, this.getCronExpression());
+		if(ReflectionUtils.findMethod(jobService.getClass(), targetMethod)==null){
+			throw new TraceErrorException("job targetMethod not exists:" + uniqueName);
+		}
+		ResourceStatsUtil.registerCall(uniqueName);
+		
 
-		JobLockService.registerConfig(this.uniqueName, this.getCronExpression());
-		if (ReflectionUtils.findMethod(this.jobService.getClass(), this.targetMethod) == null) {
-			throw new TraceErrorException("job targetMethod not exists:" + this.uniqueName);
-		} else {
-			ResourceStatsUtil.registerCall(this.uniqueName);
-			this.dbLogger
-					.warn(Config.getHostname() + ":" + this.getKey() + " electionEnabled = " + this.electionEnabled);
-			if (this.electionEnabled) {
-				Assert.notNull(this.leaderElectionService, "leaderElectionService required while electionEnabled! ");
-				electionKey = this.getKey().toString();
-				this.leaderElectionService.createElection(electionKey, new GewaLeaderLatchListener() {
-					public void isLeader() {
-						GewaJobTrigger.this.dbLogger
-								.error(Config.getHostname() + ":" + GewaJobTrigger.this.getKey() + " isLeader");
-					}
-
-					public void notLeader() {
-						GewaJobTrigger.this.dbLogger
-								.error(Config.getHostname() + ":" + GewaJobTrigger.this.getKey() + ": notLeader");
-					}
-				});
-			}
-
+		dbLogger.warn(Config.getHostname() + ":" + getKey() + " electionEnabled = " + electionEnabled);
+		if(electionEnabled){
+			Assert.notNull(leaderElectionService, "leaderElectionService required while electionEnabled! ");
+			String electionKey = getKey().toString();
+			leaderElectionService.createElection(electionKey, new GewaLeaderLatchListener(){
+				@Override
+				public void isLeader() {
+					dbLogger.error(Config.getHostname() + ":" + getKey() + " isLeader");
+				}
+				
+				@Override
+				public void notLeader() {
+					dbLogger.error(Config.getHostname() + ":" + getKey() + ": notLeader");
+				}
+			});
 		}
 	}
-
 	public String getTargetMethod() {
-		return this.targetMethod;
+		return targetMethod;
 	}
-
 	public void setTargetMethod(String targetMethod) {
 		this.targetMethod = targetMethod;
 	}
-
 	public JobService getJobService() {
-		return this.jobService;
+		return jobService;
 	}
-
 	public void setJobService(JobService jobService) {
 		this.jobService = jobService;
 	}
-
 	public String getUniqueName() {
-		return this.uniqueName;
+		return uniqueName;
 	}
 
+	@Override
 	public void setBeanName(String name) {
-		this.beanName = name;
+		this.beanName = name;		
 	}
 
 	public void setHostname(String hostname) {
@@ -138,7 +128,7 @@ public class GewaJobTrigger extends CronTriggerImpl implements BeanNameAware, In
 	}
 
 	public String getHostname() {
-		return this.hostname;
+		return hostname;
 	}
 
 	public void setUniqueByHost(boolean uniqueByHost) {
@@ -146,7 +136,7 @@ public class GewaJobTrigger extends CronTriggerImpl implements BeanNameAware, In
 	}
 
 	public boolean isElectionEnabled() {
-		return this.electionEnabled;
+		return electionEnabled;
 	}
 
 	public void setElectionEnabled(boolean electionEnabled) {

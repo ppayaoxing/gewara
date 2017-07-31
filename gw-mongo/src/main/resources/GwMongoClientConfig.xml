@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+	
+	<!-- 具体可配参数请参考GwMongoClientOptions。
+	<bean id="mongoClientOptions" class="com.gewara.mdb.config.GwMongoClientOptions">
+		<property name="maxConnectionsPerHost" value="100"/>
+		
+		<property name="maxWaitTime" value="" />
+		<property name="maxConnectionIdleTime"  value=""/>
+		<property name="maxConnectionLifeTime"  value=""/>
+		<property name="connectTimeout"  value=""/>
+	</bean>
+   -->
+	
+	<bean id="mongoClient" class="com.gewara.mdb.GWMongoClient">
+		<!-- mongo的集群地址 -->
+		<constructor-arg name="hosts">
+			<list>
+				<value>192.168.8.108:40001</value>
+				<value>192.168.8.109:40001</value>
+			</list>
+		</constructor-arg>
+		<!-- 账号列表， 库名:用户名:密码 ，支持多个数据库,第一个默认为当前库。 -->
+		<constructor-arg name="accounts">
+				<list>
+					<value>mongewa:gewaradb:gewara2008</value><!-- db:user:pwd -->
+				</list>
+		</constructor-arg>
+		
+		<!-- mongo参数配置，如无特殊需求，可以不指定
+		 <constructor-arg name="options" ref="mongoClientOptions" />
+		 -->
+	</bean>
+</beans>

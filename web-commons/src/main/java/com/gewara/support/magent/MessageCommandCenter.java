@@ -1,65 +1,57 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support.magent;
 
-import com.gewara.support.magent.CmdMessage;
-import com.gewara.support.magent.CommandProcessor;
-import com.gewara.support.magent.CommandProcessorGroup;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
 import org.apache.commons.lang.StringUtils;
 
 public class MessageCommandCenter {
-	private Map<String, CommandProcessor> commandMap = new TreeMap();
-	private String helper = null;
-
-	public List<CommandProcessor> getCommandList() {
-		return new ArrayList(this.commandMap.values());
+	public MessageCommandCenter(){
 	}
-
-	public void registerGroup(CommandProcessorGroup group) {
-		List cmdList = group.getCommandList();
-		Iterator arg2 = cmdList.iterator();
-
-		while (arg2.hasNext()) {
-			CommandProcessor command = (CommandProcessor) arg2.next();
+	private Map<String, CommandProcessor> commandMap = new TreeMap<String, CommandProcessor>();
+	public List<CommandProcessor> getCommandList(){
+		return new ArrayList<CommandProcessor>(commandMap.values());
+	}
+	private String helper = null;
+	public void registerGroup(CommandProcessorGroup group){
+		List<CommandProcessor> cmdList = group.getCommandList();
+		for(CommandProcessor command: cmdList){
 			String name = command.getName().toLowerCase();
-			if (this.commandMap.containsKey(name)) {
-				CommandProcessor first = (CommandProcessor) this.commandMap.remove(name);
-				this.commandMap.put(first.getGroup() + name, first);
-				this.commandMap.put(command.getGroup() + name, command);
-			} else {
-				this.commandMap.put(name, command);
+			if(commandMap.containsKey(name)) {
+				CommandProcessor first = commandMap.remove(name);
+				commandMap.put(first.getGroup() + name, first);
+				commandMap.put(command.getGroup() + name, command);
+			}else{
+				commandMap.put(name, command);
 			}
 		}
-
-		this.buildHelp();
+		buildHelp();
 	}
-
-	private void buildHelp() {
-		StringBuilder sb = new StringBuilder("\nplease type ‚Äúhelp‚Äù or ? for help!\n");
-		int i = 1;
-
-		for (Iterator arg2 = this.commandMap.keySet().iterator(); arg2.hasNext(); ++i) {
-			String key = (String) arg2.next();
-			CommandProcessor cmd = (CommandProcessor) this.commandMap.get(key);
-			sb.append(i + "„ÄÅ").append(key).append(": ").append(cmd.getHelp()).append("\n");
+	private void buildHelp(){
+		StringBuilder sb = new StringBuilder("\nplease type °∞help°± or ? for help!\n");
+		int i=1;
+		for(String key: commandMap.keySet()){
+			CommandProcessor cmd = commandMap.get(key);
+			sb.append(i + "°¢").append(key).append(": ").append(cmd.getHelp()).append("\n");
+			i++;
 		}
-
-		this.helper = sb.toString();
+		helper = sb.toString();
 	}
-
-	public String execCommand(String cmdMsg, String userFrom) {
-		if (StringUtils.isBlank(cmdMsg)) {
-			return "unknown command, please type ‚Äúhelp‚Äù for help!";
-		} else if (!StringUtils.equals(cmdMsg, "help") && !StringUtils.equals(cmdMsg, "?")) {
-			CmdMessage cmd = new CmdMessage(cmdMsg, userFrom);
-			CommandProcessor command = (CommandProcessor) this.commandMap.get(StringUtils.lowerCase(cmd.getCmd()));
-			return command == null ? "unknown command, please type ‚Äúhelp‚Äù for help!" : command.getReply(cmd);
-		} else {
-			return this.helper;
+	public String execCommand(String cmdMsg, String userFrom){
+		if(StringUtils.isBlank(cmdMsg)){
+			return CommandProcessor.UNKNOWN;
 		}
+		if(StringUtils.equals(cmdMsg, "help") || StringUtils.equals(cmdMsg, "?")){
+			return helper;
+		}
+		CmdMessage cmd = new CmdMessage(cmdMsg, userFrom);
+		
+		CommandProcessor command = commandMap.get(StringUtils.lowerCase(cmd.getCmd()));
+		if(command == null){
+			return CommandProcessor.UNKNOWN;
+		}
+		return command.getReply(cmd);
 	}
 }

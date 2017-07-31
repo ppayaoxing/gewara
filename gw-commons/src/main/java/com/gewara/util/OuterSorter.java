@@ -1,75 +1,61 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * 用来定义外部字段的排序
+ * @author gebiao(ge.biao@gewara.com)
+ * @since Dec 6, 2012 2:24:51 PM
+ * @param <T>
+ */
 public class OuterSorter<T> {
-	private Map<Comparable, List<T>> beanMap = new TreeMap();
-	private List<T> nullList = new LinkedList();
+	private Map<Comparable, List<T>> beanMap = new TreeMap<Comparable, List<T>>();
+	private List<T> nullList = new LinkedList<T>();
 	private int count;
 	private boolean nullAsc;
-
-	public OuterSorter(boolean nullAsc) {
+	public OuterSorter(boolean nullAsc){
 		this.nullAsc = nullAsc;
 	}
-
-	public void addBean(Comparable sortValue, T bean) {
-		if (sortValue == null) {
-			this.nullList.add(bean);
-		} else {
-			Object tmp = (List) this.beanMap.get(sortValue);
-			if (tmp == null) {
-				tmp = new ArrayList(2);
-				this.beanMap.put(sortValue, tmp);
+	public void addBean(Comparable sortValue, T bean){
+		if(sortValue==null) {
+			nullList.add(bean);
+		}else{
+			List<T> tmp = beanMap.get(sortValue);
+			if(tmp==null){
+				tmp = new ArrayList<T>(2);
+				beanMap.put(sortValue, tmp);
 			}
-
-			((List) tmp).add(bean);
+			tmp.add(bean);
 		}
-
-		++this.count;
+		count ++;
 	}
-
-	public List<T> getAscResult() {
-		ArrayList result = new ArrayList(this.count);
-		if (this.nullAsc) {
-			result.addAll(this.nullList);
+	public List<T> getAscResult(){
+		List<T> result = new ArrayList<T>(count);
+		if(nullAsc){
+			result.addAll(nullList);
 		}
-
-		Iterator arg1 = this.beanMap.keySet().iterator();
-
-		while (arg1.hasNext()) {
-			Comparable key = (Comparable) arg1.next();
-			result.addAll((Collection) this.beanMap.get(key));
+		for(Comparable key: beanMap.keySet()){
+			result.addAll(beanMap.get(key));
 		}
-
-		if (!this.nullAsc) {
-			result.addAll(this.nullList);
+		if(!nullAsc){
+			result.addAll(nullList);
 		}
-
 		return result;
 	}
-
-	public List<T> getDescResult() {
-		LinkedList result = new LinkedList();
-		Iterator arg1 = this.beanMap.keySet().iterator();
-
-		while (arg1.hasNext()) {
-			Comparable key = (Comparable) arg1.next();
-			result.addAll(0, (Collection) this.beanMap.get(key));
+	public List<T> getDescResult(){
+		List<T> result = new LinkedList<T>();
+		for(Comparable key: beanMap.keySet()){
+			result.addAll(0, beanMap.get(key));
 		}
-
-		if (this.nullAsc) {
-			result.addAll(this.nullList);
-		} else {
-			result.addAll(0, this.nullList);
+		if(nullAsc){
+			result.addAll(nullList);
+		}else{
+			result.addAll(0, nullList);
 		}
-
 		return result;
 	}
 }

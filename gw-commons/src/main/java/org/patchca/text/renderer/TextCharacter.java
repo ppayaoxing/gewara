@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.text.renderer;
 
 import java.awt.Color;
@@ -92,6 +91,7 @@ public class TextCharacter {
 
 	public AttributedCharacterIterator iterator() {
 		AttributedString aString = new AttributedString(String.valueOf(this.character));
+
 		aString.addAttribute(TextAttribute.FONT, this.font, 0, 1);
 		return aString.getIterator();
 	}

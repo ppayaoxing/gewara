@@ -1,146 +1,128 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
-import com.gewara.support.ErrorCode;
-import com.gewara.util.StringUtil;
-import com.gewara.util.Util4Script;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 
-public class ValidateUtil implements Util4Script {
-	private static Set<String> simplePass = new TreeSet();
-	public static final List<String> ydMobile;
-	public static final List<String> ltMobile;
-	public static final List<String> dxMobile;
-	private static char[] cncharRange;
-	private static String spcharList;
+import com.gewara.support.ErrorCode;
 
-	public static boolean isYdMobile(String mobile) {
+public class ValidateUtil implements Util4Script {
+	private static Set<String> simplePass = new TreeSet<>();
+	static{
+		try(InputStream is = ValidateUtil.class.getClassLoader().getResourceAsStream("simplepass.txt")){
+			List<String> lines = IOUtils.readLines(is);
+			simplePass.addAll(lines);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public static final List<String> ydMobile = Arrays.asList(new String[]{"139","138","137","136","135","134",
+			"147", "150", "151", "152","157","158","159", "182", "183", "187", "188", "184", "178"});
+	
+	public static final List<String> ltMobile = Arrays.asList(new String[]{"130","131","132","155","156","185","186","176", "145"});
+	
+	public static final List<String> dxMobile = Arrays.asList(new String[]{"133","153","177","180","181","189"});
+	
+	public static boolean isYdMobile(String mobile){
 		return ydMobile.contains(mobile.substring(0, 3));
 	}
-
-	public static boolean isEmail(String email) {
-		return StringUtils.isBlank(email) ? false
-				: StringUtil.regMatch(email, "^[A-Z0-9._-]+@[A-Z0-9_-]+(\\.[A-Z0-9_-]+)*(\\.[A-Z]{2,4})+$", true);
+	public static boolean isEmail(String email){
+		if(StringUtils.isBlank(email)) return false;
+		//return StringUtil.regMatch3(email, "^[^\\s@]*[a-z0-9]+[a-z0-9._-]+@(?:[a-z0-9_-]+\\.)+[a-z0-9_-]+[^\\s]*$", true);
+		//return StringUtil.regMatch3(email, "^([\\w]+([-\\.]*[\\w]+)*)+@[\\w-]+(\\.[\\w-]+)+$", true);
+		return StringUtil.regMatch(email, "^[A-Z0-9._-]+@[A-Z0-9_-]+(\\.[A-Z0-9_-]+)*(\\.[A-Z]{2,4})+$", true);
 	}
-
 	public static boolean isMobile(String mobile) {
-		return StringUtils.isBlank(mobile) ? false : StringUtil.regMatch(mobile, "^1[34578]{1}\\d{9}$", true);
+		if(StringUtils.isBlank(mobile)) return false;
+		return StringUtil.regMatch(mobile, "^1[34578]{1}\\d{9}$", true);
 	}
-
 	public static boolean isNumber(String number) {
 		return StringUtils.isNotBlank(number) && StringUtils.isNumeric(number);
 	}
-
 	public static boolean isNumber(String number, int minLength, int maxLength) {
-		return isNumber(number) && number.length() >= minLength && number.length() <= maxLength;
+		return isNumber(number) && number.length() >= minLength && number.length()<= maxLength;
 	}
-
-	public static boolean isIDCard(String number) {
+	public static boolean isIDCard(String number){
 		return StringUtil.regMatch(number, "^(\\d{15}|\\d{17}[0-9xX]{1})$", false);
 	}
-
-	public static ErrorCode validatePassword(String pass1, String pass2) {
-		return !StringUtils.isBlank(pass1) && !StringUtils.isBlank(pass2)
-				? (!StringUtils.equals(pass1, pass2) ? ErrorCode.getFailure("ä¸¤æ¬¡è¾“å…¥çš„å¯†ç ä¸ä¸€è‡´!")
-						: (!isPassword(pass1) ? ErrorCode.getFailure("å¯†ç æ ¼å¼ä¸æ­£ç¡®,åªèƒ½æ˜¯å­—æ¯ï¼Œæ•°å­—ï¼Œè‹±æ–‡æ ‡ç‚¹ï¼Œé•¿åº¦6â€”14ä½ï¼")
-								: (isSimplePass(pass1) ? ErrorCode.getFailure("å¯†ç è¿‡äºŽç®€å•ï¼Œè¯·é‡æ–°è¾“å…¥ï¼") : ErrorCode.SUCCESS)))
-				: ErrorCode.getFailure("å¯†ç å¿…é¡»!");
-	}
-
-	private static boolean isSimplePass(String plainPass) {
-		if (StringUtils.isNumeric(plainPass)) {
-			return true;
-		} else {
-			String md5 = StringUtil.md5(plainPass);
-			return simplePass.contains(md5);
+	public static ErrorCode validatePassword(String pass1, String pass2){
+		if(StringUtils.isBlank(pass1) || StringUtils.isBlank(pass2)){
+			return  ErrorCode.getFailure("ÃÜÂë±ØÐë!");
 		}
-	}
+		if(!StringUtils.equals(pass1, pass2)){
+			return  ErrorCode.getFailure("Á½´ÎÊäÈëµÄÃÜÂë²»Ò»ÖÂ!");
+		}
+		if(!ValidateUtil.isPassword(pass1)){
+			return  ErrorCode.getFailure("ÃÜÂë¸ñÊ½²»ÕýÈ·,Ö»ÄÜÊÇ×ÖÄ¸£¬Êý×Ö£¬Ó¢ÎÄ±êµã£¬³¤¶È6¡ª14Î»£¡");
+		}
+		if(ValidateUtil.isSimplePass(pass1)){
+			return ErrorCode.getFailure("ÃÜÂë¹ýÓÚ¼òµ¥£¬ÇëÖØÐÂÊäÈë£¡");
+		}
+		return ErrorCode.SUCCESS;
 
+	}
+	private static boolean isSimplePass(String plainPass){
+		if(StringUtils.isNumeric(plainPass)) {
+			return true;
+		}
+		String md5 = StringUtil.md5(plainPass);
+		return simplePass.contains(md5);
+	}
+	/**
+	 * Êý×Ö¡¢ÏÂ»®Ïß¡¢×ÖÄ¸µÄ±êÊ¶·û
+	 * @param variable
+	 * @param length1
+	 * @param length2
+	 * @return
+	 */
 	public static boolean isVariable(String variable, int length1, int length2) {
-		return StringUtils.isBlank(variable) ? false
-				: StringUtil.regMatch(variable, "^\\w{" + length1 + "," + length2 + "}$", true);
+		if(StringUtils.isBlank(variable)) return false;
+		return StringUtil.regMatch(variable, "^\\w{" + length1 + "," + length2 + "}$", true);
 	}
-
+	/**
+	 * Êý×Ö¡¢ÏÂ»®Ïß¡¢×ÖÄ¸¡¢ÖÐÎÄµÄ±êÊ¶·û
+	 * @param variable
+	 * @param length1
+	 * @param length2
+	 * @return
+	 */
 	public static boolean isCNVariable(String variable, int length1, int length2) {
-      return StringUtils.isBlank(variable)?false:StringUtil.regMatch(variable, "^[\\w+$\ä¸€-\é¾¥]{" + length1 + "," + length2 + "}$", true);
-   }
-
-	public static boolean isPhone(String phone) {
-		return StringUtils.isBlank(phone) ? false : StringUtil.regMatch(phone, "^[0-9,-]{6,24}$", true);
+		if(StringUtils.isBlank(variable)) return false;
+		return StringUtil.regMatch(variable, "^[\\w+$\\u4e00-\\u9fa5]{" + length1 + "," + length2 +"}$", true);
 	}
-
+	public static boolean isPhone(String phone){
+		if(StringUtils.isBlank(phone)) return false;
+		return StringUtil.regMatch(phone, "^[0-9,-]{6,24}$", true);
+	}
 	public static boolean isPostCode(String postcode) {
 		return StringUtil.regMatch(postcode, "^[0-9]{6}$", true);
 	}
-
-	public static String validateNewsContent(String spchar, String content) {
-		if (StringUtils.isBlank(spchar)) {
-			spchar = spcharList;
-		}
-
+	private static char[] cncharRange = new char[]{'\u4e00','\u9fa5'};
+	private static String spcharList = "¡«£¡£¤¡­£¨£©¡ª¡ª£º¡°¡¶¡·£¿/£¬¡¢£»¡®¡¯¡°¡±¡¾¡¿¡¤¡£¡ï¡î¡ð¡ñ¡ò¡ó¡ô¡õ¡ö¡÷¡ø¡ù¡ú¡û¡ü¡ý";
+	/**
+	 * ÑéÖ¤ÐÂÎÅÄÚÈÝÊÇ·ñÓÐ·Ç·¨×Ö·û
+	 * @param content
+	 * @return
+	 */
+	public static String validateNewsContent(String spchar, String content){
+		if(StringUtils.isBlank(spchar)) spchar = spcharList;
 		String result = "";
-		if (StringUtils.isBlank(content)) {
-			return result;
-		} else {
-			boolean c = true;
-			int i = 0;
-
-			for (int length = content.length(); i < length; ++i) {
-				char arg5 = content.charAt(i);
-				if (arg5 >= 128 && (arg5 < cncharRange[0] || arg5 > cncharRange[1]) && spchar.indexOf(arg5) < 0) {
-					result = result + "[" + i + "=" + arg5 + "]";
-				}
-			}
-
-			return result;
+		if(StringUtils.isBlank(content)) return result;
+		char c = 'a';
+		for(int i=0, length=content.length();i<length; i++){
+			c = content.charAt(i);
+			if(c < 128 || c>=cncharRange[0] && c<=cncharRange[1] || spchar.indexOf(c)>=0) continue;
+			result += "[" + i + "=" + c + "]";
 		}
+		return result;
 	}
-
 	public static boolean isPassword(String password) {
 		int len = StringUtils.length(password);
-		return StringUtils.isAsciiPrintable(password) && len >= 6 && len <= 14;
-	}
-
-	static {
-		try {
-			InputStream e = ValidateUtil.class.getClassLoader().getResourceAsStream("simplepass.txt");
-			Throwable arg0 = null;
-
-			try {
-				List lines = IOUtils.readLines(e);
-				simplePass.addAll(lines);
-			} catch (Throwable arg10) {
-				arg0 = arg10;
-				throw arg10;
-			} finally {
-				if (e != null) {
-					if (arg0 != null) {
-						try {
-							e.close();
-						} catch (Throwable arg9) {
-							arg0.addSuppressed(arg9);
-						}
-					} else {
-						e.close();
-					}
-				}
-
-			}
-		} catch (Exception arg12) {
-			arg12.printStackTrace();
-		}
-
-		ydMobile = Arrays.asList(new String[] { "139", "138", "137", "136", "135", "134", "147", "150", "151", "152",
-				"157", "158", "159", "182", "183", "187", "188", "184", "178" });
-		ltMobile = Arrays.asList(new String[] { "130", "131", "132", "155", "156", "185", "186", "176", "145" });
-		dxMobile = Arrays.asList(new String[] { "133", "153", "177", "180", "181", "189" });
-		cncharRange = new char[] { 'ä¸€', 'é¾¥' };
-		spcharList = "ï½žï¼ï¿¥â€¦ï¼ˆï¼‰â€”â€”ï¼šâ€œã€Šã€‹ï¼Ÿ/ï¼Œã€ï¼›â€˜â€™â€œâ€ã€ã€‘Â·ã€‚â˜…â˜†â—‹â—â—Žâ—‡â—†â–¡â– â–³â–²â€»â†’â†â†‘â†“";
+		return StringUtils.isAsciiPrintable(password) && len >=6 && len <=14;
 	}
 }

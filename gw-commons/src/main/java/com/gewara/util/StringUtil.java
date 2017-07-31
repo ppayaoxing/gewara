@@ -1,10 +1,5 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
-import com.gewara.support.TraceErrorException;
-import com.gewara.util.HtmlParser;
-import com.gewara.util.HtmlUtils;
-import com.gewara.util.Util4Script;
 import java.io.UnsupportedEncodingException;
 import java.rmi.server.UID;
 import java.security.MessageDigest;
@@ -15,18 +10,22 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 
-public class StringUtil implements Util4Script {
-	public static final String upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";
-	public static final String lower = "abcdefghijkmnpqrstuvwxyz";
-	public static final String digital = "23456789";
+import com.gewara.support.TraceErrorException;
 
+/**
+ * String Utility Class This is used to encode passwords programmatically
+ * 
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28œ¬ŒÁ02:05:17
+ */
+public class StringUtil implements Util4Script {
 	public static String md5(byte[] input) {
 		return encryptPassword(input, "md5");
 	}
-
 	public static String md5(String text) {
 		return md5(text, "utf-8");
 	}
@@ -37,10 +36,8 @@ public class StringUtil implements Util4Script {
 
 	public static String md5(String text, int length) {
 		String result = md5(text);
-		if (result.length() > length) {
+		if (result.length() > length)
 			result = result.substring(0, length);
-		}
-
 		return result;
 	}
 
@@ -50,102 +47,86 @@ public class StringUtil implements Util4Script {
 
 	private static String encryptPassword(String password, String encoding, String algorithm) {
 		try {
-			byte[] e = password.getBytes(encoding);
-			return encryptPassword(e, algorithm);
-		} catch (UnsupportedEncodingException arg3) {
+			byte[] unencodedPassword = password.getBytes(encoding);
+			return encryptPassword(unencodedPassword, algorithm);
+		} catch (UnsupportedEncodingException e) {
 			return null;
 		}
 	}
-
 	private static String encryptPassword(byte[] unencodedPassword, String algorithm) {
 		MessageDigest md = null;
-
 		try {
 			md = MessageDigest.getInstance(algorithm);
-		} catch (Exception arg5) {
+		} catch (Exception e) {
 			return null;
 		}
-
 		md.reset();
 		md.update(unencodedPassword);
 		byte[] encodedPassword = md.digest();
 		StringBuilder buf = new StringBuilder();
-
-		for (int i = 0; i < encodedPassword.length; ++i) {
-			if ((encodedPassword[i] & 255) < 16) {
+		for (int i = 0; i < encodedPassword.length; i++) {
+			if ((encodedPassword[i] & 0xff) < 0x10) {
 				buf.append("0");
 			}
-
-			buf.append(Long.toString((long) (encodedPassword[i] & 255), 16));
+			buf.append(Long.toString(encodedPassword[i] & 0xff, 16));
 		}
-
 		return buf.toString();
 	}
 
 	public static String getUID() {
-		String UID = (new UID()).toString().replace(':', '_').replace('-', '_');
+		String UID = new UID().toString().replace(':', '_').replace('-', '_');
 		return "s" + UID;
 	}
 
+	/**
+	 * Ωÿ»°size∏ˆ◊÷Ω⁄
+	 * 
+	 * @param input
+	 * @param size
+	 * @return
+	 */
 	public static String enabbr(String input, int size) {
-		if (StringUtils.isBlank(input)) {
+		if (StringUtils.isBlank(input))
 			return null;
-		} else {
-			int bytelength = getByteLength(input);
-			if (bytelength < size) {
-				return input;
-			} else {
-				StringBuilder sb = new StringBuilder(size);
-				int count = 0;
-
-				for (int i = 0; i < input.length(); ++i) {
-					char c = input.charAt(i);
-					sb.append(c);
-					if (c > 128) {
-						count += 2;
-					} else {
-						++count;
-					}
-
-					if (count >= size) {
-						break;
-					}
-				}
-
-				return sb.toString();
-			}
+		int bytelength = getByteLength(input);
+		if (bytelength < size) return input;
+		StringBuilder sb = new StringBuilder(size);
+		int count = 0;
+		for(int i=0;i<input.length();i++){
+			char c = input.charAt(i);
+			sb.append(c);
+			if(c > 128) count += 2;
+			else count ++;
+			if(count >= size) break;
 		}
+		return sb.toString();
 	}
 
+	/**
+	 * Ωÿ»°size∏ˆ◊÷Ω⁄ ∆¥¥Æ
+	 * 
+	 * @param input
+	 * @param size
+	 * @return
+	 */
 	public static String enabbrstr(String input, int size, String addStr) {
-		if (StringUtils.isBlank(input)) {
+		if (StringUtils.isBlank(input))
 			return null;
-		} else {
-			int bytelength = getByteLength(input);
-			if (bytelength < size) {
-				return input;
-			} else {
-				String ss = enabbr(input, size);
-				return ss + addStr;
-			}
-		}
+		int bytelength = getByteLength(input);
+		if (bytelength < size) return input;
+		String ss = enabbr(input, size);
+		return ss + addStr;
 	}
 
 	public static int getByteLength(String input) {
-		if (input == null) {
+		if (input == null)
 			return 0;
-		} else {
-			int length = input.length();
-			int byteLength = length;
-
-			for (int i = 0; i < length; ++i) {
-				if (input.charAt(i) > 128) {
-					++byteLength;
-				}
-			}
-
-			return byteLength;
-		}
+		int length = input.length();
+		int byteLength = length;
+		for (int i = 0; i < length; i++)
+			if (input.charAt(i) > 128)
+				byteLength++;
+		return byteLength;
 	}
 
 	public static String getHtmlText(String html) {
@@ -169,24 +150,27 @@ public class StringUtil implements Util4Script {
 	}
 
 	public static String toUnicode(String original) {
-		if (original == null) {
+		if (original == null)
 			return null;
-		} else {
-			String result = "";
-			int i = 0;
-
-			for (int length = original.length(); i < length; ++i) {
-				if (original.charAt(i) > 0 && original.charAt(i) < 256) {
-					result = result + original.charAt(i);
-				} else {
-					result = result + "\\u" + Integer.toHexString(original.charAt(i)).toUpperCase();
-				}
-			}
-
-			return result;
+		String result = "";
+		for (int i = 0, length = original.length(); i < length; i++) {
+			if (original.charAt(i) > 0 && original.charAt(i) < 256)
+				result += original.charAt(i);
+			else
+				result += "\\u" + Integer.toHexString(original.charAt(i)).toUpperCase();
 		}
+		return result;
 	}
 
+	public static final String upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";// O,I»•µÙ
+	public static final String lower = "abcdefghijkmnpqrstuvwxyz";// o,l»•µÙ
+	public static final String digital = "23456789"; // 0,1
+
+	/**
+	 * @param length
+	 *            …˙≥…µƒ◊÷∑˚¥Æ≥§∂»£¨<100
+	 * @return
+	 */
 	public static String getRandomString(int length) {
 		return getRandomString(length, true, true, true);
 	}
@@ -203,51 +187,42 @@ public class StringUtil implements Util4Script {
 		return getRandomString(length, false, false, true);
 	}
 
-	public static String getRandomString(int length, boolean includeUpper, boolean includeLower,
-			boolean includeDigital) {
-		if (length > 100) {
+	public static String getRandomString(int length, boolean includeUpper, boolean includeLower, boolean includeDigital) {
+		if (length > 100)
 			length = 100;
-		}
-
 		String s = "";
-		if (includeUpper) {
-			s = s + "ABCDEFGHJKLMNPQRSTUVWXYZ";
+		if (includeUpper)
+			s += upper;
+		if (includeLower)
+			s += lower;
+		if (includeDigital)
+			s += digital;
+		if (length > 100){
+			throw new TraceErrorException("…˙≥…µƒ◊÷∑˚¥Æ≥§∂»±ÿ–Î<100£°");
 		}
-
-		if (includeLower) {
-			s = s + "abcdefghijkmnpqrstuvwxyz";
-		}
-
-		if (includeDigital) {
-			s = s + "23456789";
-		}
-
-		if (length > 100) {
-			throw new TraceErrorException("ÁîüÊàêÁöÑÂ≠óÁ¨¶‰∏≤ÈïøÂ∫¶ÂøÖÈ°ª<100ÔºÅ");
-		} else {
-			return getRandomString(s, length);
-		}
+		return getRandomString(s, length);
+		
 	}
-
+	/**
+	 * @param length
+	 *            …˙≥…µƒ◊÷∑˚¥Æ≥§∂»£¨<100
+	 * @return
+	 */
 	public static String getRandomString(String charArray, int length) {
 		StringBuilder sb = new StringBuilder();
-
-		for (int i = 0; i < length; ++i) {
+		for (int i = 0; i < length; i++) {
 			sb.append(charArray.charAt(RandomUtils.nextInt(charArray.length())));
 		}
-
 		return sb.toString();
 	}
 
 	public static String getSearchKey(String qryStr) {
-      if(StringUtils.isBlank(qryStr)) {
-         return "";
-      } else {
-         String result = substitute(qryStr, "[^ \\w$\\n]+", "", true); //TODO Ê≠£ÂàôÊúâÈóÆÈ¢ò,ÂæÖ‰øÆÂ§ç
-         result = result.replaceAll("AND", "and").replaceAll("OR", "or").replaceAll("NOT", "not");
-         return result.trim();
-      }
-   }
+		if (StringUtils.isBlank(qryStr))
+			return "";
+		String result = substitute(qryStr, "[^ \\w$\\u4e00-\\u9fa5]+", "", true);
+		result = result.replaceAll("AND", "and").replaceAll("OR", "or").replaceAll("NOT", "not");
+		return result.trim();
+	}
 
 	public static String md5WithKey(String str) {
 		return md5(str + "7fuTP5", "utf-8");
@@ -255,134 +230,153 @@ public class StringUtil implements Util4Script {
 
 	public static String md5WithKey(String str, int length) {
 		String result = md5WithKey(str);
-		return result.length() > length ? result.substring(0, length) : result;
+		if (result.length() > length)
+			return result.substring(0, length);
+		return result;
 	}
 
+	/**
+	 * 
+	 * @param str
+	 * @param minstr
+	 * @param maxstr
+	 * @return
+	 */
 	public static boolean between(String str, String minstr, String maxstr) {
 		return str.compareTo(minstr) >= 0 && str.compareTo(maxstr) <= 0;
 	}
 
+	/**
+	 * author: bob date: 20100729
+	 */
 	public static String parse2HTML(String txt) {
 		String reg = "(http://(([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?))";
-		return StringUtils.isBlank(txt) ? ""
-				: txt.replaceAll(" ", "&nbsp;").replaceAll("\n", "<br />").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
-						.replaceAll(reg, "<a href=\'$1\' target=\'_blank\'>$2</a>");
+		if (StringUtils.isBlank(txt))
+			return "";
+		return txt.replaceAll(" ", "&nbsp;").replaceAll("\n", "<br />").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
+				.replaceAll(reg, "<a href='$1' target='_blank'>$2</a>");
 	}
 
+	/**
+	 * Extract the filename from the given path, e.g. "mypath/myfile.txt" ->
+	 * "myfile.txt".
+	 * 
+	 * @param path
+	 *            the file path (may be <code>null</code>)
+	 * @return the extracted filename, or <code>null</code> if none
+	 */
 	public static String getFilename(String path) {
 		if (path == null) {
 			return null;
-		} else {
-			int separatorIndex = path.lastIndexOf(47);
-			if (separatorIndex == -1) {
-				separatorIndex = path.lastIndexOf(92);
-			}
-
-			return separatorIndex != -1 ? path.substring(separatorIndex + 1) : path;
 		}
+		int separatorIndex = path.lastIndexOf('/');
+		if (separatorIndex == -1)
+			separatorIndex = path.lastIndexOf('\\');
+		return (separatorIndex != -1 ? path.substring(separatorIndex + 1) : path);
 	}
 
+	/**
+	 * Extract the filename from the given path, e.g. "mypath/myfile.txt" ->
+	 * "mypath".
+	 * 
+	 * @param path
+	 *            the file path (may be <code>null</code>)
+	 * @return the extracted filename, or <code>null</code> if none
+	 */
 	public static String getFilepath(String path) {
 		if (path == null) {
 			return null;
-		} else {
-			int separatorIndex = path.lastIndexOf(47);
-			if (separatorIndex == -1) {
-				separatorIndex = path.lastIndexOf(92);
-			}
-
-			return separatorIndex != -1 ? path.substring(0, separatorIndex) : "";
 		}
+		int separatorIndex = path.lastIndexOf('/');
+		if (separatorIndex == -1)
+			separatorIndex = path.lastIndexOf('\\');
+		return (separatorIndex != -1 ? path.substring(0, separatorIndex) : "");
 	}
 
+	/**
+	 * Extract the filename extension from the given path, e.g.
+	 * "mypath/myfile.txt" -> "txt".
+	 * 
+	 * @param path
+	 *            the file path (may be <code>null</code>)
+	 * @return the extracted filename extension, or <code>null</code> if none
+	 */
 	public static String getFilenameExtension(String path) {
 		if (path == null) {
 			return null;
-		} else {
-			int sepIndex = path.lastIndexOf(46);
-			return sepIndex != -1 ? path.substring(sepIndex + 1) : null;
 		}
+		int sepIndex = path.lastIndexOf('.');
+		return (sepIndex != -1 ? path.substring(sepIndex + 1) : null);
 	}
 
 	public static String getSplitString(String str, String split, int length) {
 		int splen = split.length();
 		StringBuilder sb = new StringBuilder(str);
-
-		for (int start = length; start < sb.length() - 1; start += length + splen) {
+		int start = length;
+		while (start < sb.length() - 1) {
 			sb.insert(start, split);
+			start += length + splen;
 		}
-
 		return sb.toString();
 	}
 
 	public static String insertStr(String src, String insert) {
-		if (StringUtils.isBlank(src)) {
+		if (StringUtils.isBlank(src))
 			return "";
-		} else if (StringUtils.isBlank(insert)) {
+		if (StringUtils.isBlank(insert))
 			return src;
-		} else {
-			String result = "";
-			char[] arg2 = src.toCharArray();
-			int arg3 = arg2.length;
-
-			for (int arg4 = 0; arg4 < arg3; ++arg4) {
-				char c = arg2[arg4];
-				result = result + c + insert;
-			}
-
-			result = result.substring(0, result.length() - insert.length());
-			return result;
+		String result = "";
+		for (char c : src.toCharArray()) {
+			result += c + insert;
 		}
+		result = result.substring(0, result.length() - insert.length());
+		return result;
 	}
 
+	/**
+	 * …˙≥…max“‘ƒ⁄, count∏ˆ≤ª÷ÿ∏¥ÀÊª˙ ˝ eg. getRandomNumber(20, 6) …˙≥…20“‘ƒ⁄6∏ˆ≤ª÷ÿ∏¥ÀÊª˙ ˝
+	 * 2011-02-23 bobo
+	 */
 	public static Set getRandomNumber(int max, int count) {
-		TreeSet v = new TreeSet();
+		Set v = new TreeSet();
 		Random r = new Random();
 		boolean b = true;
-
 		while (b) {
-			v.add(Integer.valueOf(r.nextInt(max)));
+			v.add(r.nextInt(max));
 			if (v.size() == count) {
 				b = false;
 			}
 		}
-
 		return v;
 	}
 
 	public static List<String> findByRegex(String src, String reg, boolean unique) {
-		ArrayList result = new ArrayList();
+		List<String> result = new ArrayList<String>();
 		Pattern pattern = Pattern.compile(reg);
 		Matcher matcher = pattern.matcher(src);
-
-		while (true) {
-			String s;
-			do {
-				if (!matcher.find()) {
-					return result;
-				}
-
-				s = matcher.group();
-			} while (unique && result.contains(s));
-
-			result.add(s);
+		while (matcher.find()) {
+			String s = matcher.group();
+			if (!unique || !result.contains(s))
+				result.add(s);
 		}
+		return result;
 	}
 
 	public static String findFirstByRegex(String src, String reg) {
-		Pattern pattern = Pattern.compile(reg, 2);
+		Pattern pattern = Pattern.compile(reg, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(src);
-		return matcher.find() ? matcher.group() : "";
+		if (matcher.find())
+			return matcher.group();
+		return "";
 	}
 
 	public static String substitute(String src, String reg, String replacement, boolean ignoreCase) {
 		Pattern pattern = null;
 		if (ignoreCase) {
-			pattern = Pattern.compile(reg, 2);
+			pattern = Pattern.compile(reg, Pattern.CASE_INSENSITIVE);
 		} else {
 			pattern = Pattern.compile(reg);
 		}
-
 		Matcher matcher = pattern.matcher(src);
 		String result = matcher.replaceAll(replacement);
 		return result;
@@ -391,49 +385,49 @@ public class StringUtil implements Util4Script {
 	public static boolean regMatch(String src, String reg, boolean ignoreCase) {
 		Pattern pattern = null;
 		if (ignoreCase) {
-			pattern = Pattern.compile(reg, 2);
+			pattern = Pattern.compile(reg, Pattern.CASE_INSENSITIVE);
 		} else {
 			pattern = Pattern.compile(reg);
 		}
-
 		Matcher matcher = pattern.matcher(src);
 		return matcher.find();
 	}
 
+	//  ˝◊÷»´Ω«◊™∞ÎΩ«
 	public static String ToDBC(String input) {
 		char[] c = input.toCharArray();
-
-		for (int i = 0; i < c.length; ++i) {
+		for (int i = 0; i < c.length; i++) {
 			if (c[i] == 12288) {
-				c[i] = 32;
-			} else if (c[i] > 'ÔºÄ' && c[i] < 'ÔΩü') {
-				c[i] -= 'Ôª†';
+				c[i] = (char) 32;
+				continue;
 			}
+			if (c[i] > 65280 && c[i] < 65375)
+				c[i] = (char) (c[i] - 65248);
 		}
-
 		return new String(c);
 	}
 
 	public static String getString(byte[] bytes, String charset) {
 		try {
 			return new String(bytes, charset);
-		} catch (UnsupportedEncodingException arg2) {
+		} catch (UnsupportedEncodingException e) {
 			return null;
 		}
 	}
-
-	public static boolean isHexDataStr(String str) {
-		if (!StringUtils.isBlank(str) && StringUtils.length(str) % 2 != 1) {
-			for (int i = 0; i < str.length(); ++i) {
-				char c = str.charAt(i);
-				if ((c < 48 || c > 57) && (c < 97 || c > 102) && (c < 65 || c > 70)) {
-					return false;
-				}
-			}
-
-			return true;
-		} else {
+	/**
+	 * 1)≥§∂» «2µƒ±∂ ˝  2£© « Æ¡˘Ω¯÷∆◊÷∑˚ 3£©ø’°¢null ∑µªÿfalse
+	 * @return
+	 */
+	public static boolean isHexDataStr(String str){
+		if(StringUtils.isBlank(str) || StringUtils.length(str) % 2 == 1){
 			return false;
 		}
+		for(int i=0;i<str.length();i++){
+			char c = str.charAt(i);
+			if(!(c >= '0' && c<='9' || c>='a' && c<='f' || c>='A' && c<='F')){
+				return false;
+			}
+		}
+		return true;
 	}
 }

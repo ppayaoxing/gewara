@@ -1,9 +1,9 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,52 +12,49 @@ import org.jsoup.select.Elements;
 
 public class HtmlParser {
 	public static List<String> getNodeAttrList(String html, String nodename, String attrName) {
-		ArrayList result = new ArrayList();
-
+		List<String> result = new ArrayList<String>();
 		try {
 			Document doc = Jsoup.parse(html);
 			Elements els = doc.select(nodename);
-			Iterator it = els.iterator();
-
-			while (it.hasNext()) {
-				Element el = (Element) it.next();
+			Iterator<Element> it = els.iterator();
+			while(it.hasNext()){
+				Element el = it.next();
 				String s = el.attr(attrName);
 				result.add(s);
 			}
-		} catch (Exception arg8) {
-			;
+		} catch (Exception e) {//ignore
 		}
-
 		return result;
 	}
-
-	public static String getHtmlText(String html) {
-		if (StringUtils.isBlank(html)) {
-			return html;
-		} else {
-			String html2 = html.replaceAll("&nbsp;", " ");
-			html2 = html2.replaceAll("<br/>", "\n");
-			html2 = html2.replaceAll("<br />", "\n");
-			if (html2.indexOf(62) >= 0 && html2.indexOf(60) >= 0) {
-				String result = parseHtmlInternal(html2);
-				return result;
-			} else {
-				return html2;
-			}
+	/**
+	 * 获取Html中的text
+	 * @param html
+	 * @return
+	 */
+	public static String getHtmlText(String html){
+		if(StringUtils.isBlank(html)) return html;
+		String html2 = html.replaceAll("&nbsp;", " ");
+		html2 = html2.replaceAll("<br/>", "\n");
+		html2 = html2.replaceAll("<br />", "\n");
+		if(html2.indexOf('>')<0 || html2.indexOf('<')<0) {
+			return html2;//统计比：1:30
 		}
+		String result = parseHtmlInternal(html2);
+		return result;
 	}
-
+	
 	private static String parseHtmlInternal(String html) {
-		String html2 = html.replaceAll("\n", "@nn@");
-
-		try {
+		String html2 = html.replaceAll("\n", "@nn@");//为了保留换行
+		try{
 			Document doc = Jsoup.parse(html2);
 			doc.select("head").remove();
 			doc.select("script").remove();
 			doc.select("style").remove();
-			return StringUtils.replace(doc.text(), "@nn@", "\n");
-		} catch (Exception arg2) {
-			return html;
+			return StringUtils.replace(doc.text(), "@nn@","\n");
+		}catch(Exception e){
 		}
+		
+		return html;
 	}
+
 }

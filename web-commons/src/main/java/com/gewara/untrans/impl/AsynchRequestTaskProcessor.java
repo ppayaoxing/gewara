@@ -1,5 +1,9 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.impl;
+
+import javax.servlet.AsyncContext;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.gewara.support.ErrorCode;
 import com.gewara.untrans.AsynchTask;
@@ -8,66 +12,59 @@ import com.gewara.untrans.RequestAsynchTask;
 import com.gewara.util.BaseWebUtils;
 import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
-import javax.servlet.AsyncContext;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.lang.StringUtils;
 
-public abstract class AsynchRequestTaskProcessor implements AsynchTaskProcessor<RequestAsynchTask> {
-	private GewaLogger dbLogger = WebLogger.getLogger(this.getClass());
-
+/**
+ * “Ï≤ΩServlet«Î«Û¥¶¿Ì
+ * @author gebiao(ge.biao@gewara.com)
+ * @since Apr 9, 2013 2:34:31 PM
+ */
+public abstract class AsynchRequestTaskProcessor implements AsynchTaskProcessor<RequestAsynchTask>{
+	private GewaLogger dbLogger = WebLogger.getLogger(getClass());
+	@Override
 	public void processTask(RequestAsynchTask task) {
 		AsyncContext actx = task.getCtx();
 		HttpServletResponse res = (HttpServletResponse) actx.getResponse();
-		boolean dispatch = false;
-
+		boolean dispatch = false;		
 		try {
-			if (task.isTimeout()) {
-				this.processTimeout(task);
-			} else {
-				ErrorCode e = this.processRequest(task);
-				if (e.isSuccess()) {
-					if (StringUtils.isNotBlank(task.getSuccessForward())) {
+			if(task.isTimeout()){//≥¨ ±
+				processTimeout(task);
+			}else{
+				ErrorCode code = processRequest(task);
+				if(code.isSuccess()){
+					if(StringUtils.isNotBlank(task.getSuccessForward())){
 						actx.dispatch(task.getSuccessForward());
 						dispatch = true;
-					} else {
+					}else{
 						BaseWebUtils.writeJsonResponse(res, true, "success");
 					}
-				} else if (StringUtils.isNotBlank(task.getFailureForward())) {
-					actx.dispatch(task.getSuccessForward());
-					dispatch = true;
-				} else {
-					BaseWebUtils.writeJsonResponse(res, false, e.getMsg());
+				}else{
+					if(StringUtils.isNotBlank(task.getFailureForward())){
+						actx.dispatch(task.getSuccessForward());
+						dispatch = true;
+					}else{
+						BaseWebUtils.writeJsonResponse(res, false, code.getMsg());
+					}
 				}
 			}
-		} catch (Exception arg8) {
-			this.dbLogger.warn("", arg8);
-			BaseWebUtils.writeJsonResponse(res, false, "ËØ∑Ê±ÇÊï∞ÊçÆÂºÇÂ∏∏ÔºÅ");
-		} finally {
-			if (!dispatch) {
-				actx.complete();
-			}
-
+		} catch (Exception e) {
+			dbLogger.warn("", e);
+			BaseWebUtils.writeJsonResponse(res, false, "«Î«Û ˝æ›“Ï≥££°");
+		} finally{
+			if(!dispatch) actx.complete();
 		}
-
 	}
 
-	public abstract ErrorCode processRequest(RequestAsynchTask arg0);
+	public abstract ErrorCode processRequest(RequestAsynchTask task);
 
 	private void processTimeout(AsynchTask task) {
-		AsyncContext actx = ((RequestAsynchTask) task).getCtx();
-
-		try {
-			BaseWebUtils.writeJsonResponse((HttpServletResponse) actx.getResponse(), false, "ËØ∑Ê±ÇË∂ÖÊó∂ÔºÅ");
-		} catch (Exception arg11) {
-			;
-		} finally {
-			try {
-				actx.complete();
-			} catch (Exception arg10) {
-				this.dbLogger.warn("", arg10);
+		AsyncContext actx = ((RequestAsynchTask)task).getCtx();
+		try{
+			BaseWebUtils.writeJsonResponse((HttpServletResponse) actx.getResponse(), false, "«Î«Û≥¨ ±£°");
+		}catch (Exception e) {
+		}finally{
+			try{actx.complete();}catch(Exception e){
+				dbLogger.warn("", e);
 			}
-
 		}
-
 	}
 }

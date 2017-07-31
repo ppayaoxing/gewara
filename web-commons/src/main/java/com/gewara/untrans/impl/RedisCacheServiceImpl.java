@@ -1,226 +1,219 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.impl;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import com.gewara.support.CachePair;
 import com.gewara.support.TraceErrorException;
 import com.gewara.support.serializer.HessianRedisSerializer;
-import com.gewara.untrans.impl.AbstractCacheService;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
+
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
+/**
+ * 基于sharded jedis实现的cache<br>
+ * Object类型的value使用HessianSerializer,其对应的key使用string serializer
+ * @author quzhuping
+ */
 public class RedisCacheServiceImpl extends AbstractCacheService {
+
 	@Autowired
 	private ShardedJedisPool pool;
+	
 	private StringRedisSerializer stringSerializer = new StringRedisSerializer();
-	private HessianRedisSerializer hessianSerializer = new HessianRedisSerializer();
-
+	private HessianRedisSerializer hessianSerializer = new HessianRedisSerializer<>();
+	
+	@Override
 	public Map<String, Object> getBulk(String regionName, Collection<String> keys) {
-		this.getRegionTime(regionName);
-		if (keys != null && !keys.isEmpty()) {
-			HashMap keyMap = new HashMap();
-			Iterator jedis = keys.iterator();
-
-			while (jedis.hasNext()) {
-				String e = (String) jedis.next();
-				String newkey = this.getRealKey(regionName, e);
-				keyMap.put(newkey, e);
-			}
-
-			ShardedJedis jedis1 = null;
-
-			try {
-				HashMap e1 = new HashMap();
-				jedis1 = this.pool.getResource();
-				Iterator newkey1 = keyMap.keySet().iterator();
-
-				while (newkey1.hasNext()) {
-					String realKey = (String) newkey1.next();
-					Object value = this.hessianSerializer
-							.deserialize(jedis1.get(this.stringSerializer.serialize(realKey)));
-					e1.put(keyMap.get(realKey), value);
-				}
-
-				HashMap newkey2 = e1;
-				return newkey2;
-			} catch (Exception arg11) {
-				this.dbLogger.warn(regionName + ":" + keys, arg11);
-			} finally {
-				if (jedis1 != null) {
-					jedis1.close();
-				}
-
-			}
-
-			return null;
-		} else {
-			return null;
+		getRegionTime(regionName);
+		if(keys==null || keys.isEmpty()) return null;
+		Map<String, String> keyMap = new HashMap<String, String>();
+		for(String key : keys){
+			String newkey = getRealKey(regionName, key);
+			keyMap.put(newkey, key);
 		}
+		ShardedJedis jedis = null;
+		try{
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			jedis = pool.getResource();
+			for(String realKey : keyMap.keySet()){
+				Object value = hessianSerializer.deserialize(jedis.get(stringSerializer.serialize(realKey)));
+				returnMap.put(keyMap.get(realKey), value);
+			}
+			return returnMap;
+		}catch (Exception e) {
+			dbLogger.warn(regionName+ ":" +keys, e);
+		}finally{
+			if(jedis != null){
+				jedis.close();
+			}
+		}
+		return null;
 	}
 
+	@Override
 	public void set(String regionName, String key, Object value, int timeoutSecond) {
-		if (!StringUtils.isBlank(key) && value != null) {
-			key = this.getRealKey(regionName, key);
-			ShardedJedis jedis = null;
-
-			try {
-				jedis = this.pool.getResource();
-				jedis.setex(this.stringSerializer.serialize(key), timeoutSecond,
-						this.hessianSerializer.serialize(value));
-			} catch (Exception arg9) {
-				this.dbLogger.warn(regionName + ":" + key, arg9);
-			} finally {
-				if (jedis != null) {
-					jedis.close();
-				}
-
+		if(StringUtils.isBlank(key) || value==null) return;
+		key = getRealKey(regionName, key);
+		
+		ShardedJedis jedis = null;
+		try{
+			jedis = pool.getResource();
+			jedis.setex(stringSerializer.serialize(key), timeoutSecond, hessianSerializer.serialize(value));
+		}catch(Exception e){
+			dbLogger.warn(regionName+ ":" +key, e);
+		}finally{
+			if(jedis != null){
+				jedis.close();
 			}
-
 		}
+
 	}
 
+	/**
+	 * 原子加操作<br>
+	 * 由于redis的特殊性，def入参在该方法中无效，def值为0
+	 * <br>如果使用非零默认值，参考使用{@link AtomicCounter4RedisSharded}
+	 */
+	@Override
 	public int incrementAndGet(String regionName, String key, int by, int def) {
-		int expSeconds = this.getRegionTime(regionName).intValue();
-		return this.incrementAndGet(regionName, key, by, def, expSeconds);
+		int expSeconds = getRegionTime(regionName);
+		return incrementAndGet(regionName, key, by, def, expSeconds);
 	}
 
+	@Override
 	public CachePair getCachePair(String regionName, String key) {
 		throw new TraceErrorException("redis cache not support!!!");
 	}
 
+	@Override
 	public boolean setCachePair(String regionName, String key, long version, Object value, int expSeconds) {
 		throw new TraceErrorException("redis cache not support!!!");
 	}
 
+	@Override
 	public void add(String regionName, String key, Object value, int expSeconds) {
-		if (!StringUtils.isBlank(key) && value != null) {
-			key = this.getRealKey(regionName, key);
-			ShardedJedis jedis = null;
-
-			try {
-				jedis = this.pool.getResource();
-				jedis.setex(this.stringSerializer.serialize(key), expSeconds, this.hessianSerializer.serialize(value));
-			} catch (Exception arg9) {
-				this.dbLogger.warn(regionName + ":" + key, arg9);
-			} finally {
-				if (jedis != null) {
-					jedis.close();
-				}
-
+		if(StringUtils.isBlank(key) || value==null) return;
+		key = getRealKey(regionName, key);
+		
+		ShardedJedis jedis = null;
+		try{
+			jedis = pool.getResource();
+			jedis.setex(stringSerializer.serialize(key), expSeconds, hessianSerializer.serialize(value));
+		}catch(Exception e){
+			dbLogger.warn(regionName+ ":" +key, e);
+		}finally{
+			if(jedis != null){
+				jedis.close();
 			}
-
 		}
+
 	}
 
+	/**
+	 * 原子减操作<br>
+	 * 由于redis的特殊性，def入参在该方法中无效，def值为0
+	 * <br>如果使用非零默认值，参考使用{@link AtomicCounter4RedisSharded}
+	 */
+	@Override
 	public int decrAndGet(String regionName, String key, int by, int def) {
-		if (StringUtils.isNotBlank(key)) {
-			key = this.getRealKey(regionName, key);
+		if(StringUtils.isNotBlank(key)){
+			key = getRealKey(regionName, key);
 			ShardedJedis jedis = null;
-
-			int e;
-			try {
-				jedis = this.pool.getResource();
-				e = jedis.decrBy(key, (long) by).intValue();
-			} catch (Exception arg9) {
-				this.dbLogger.warn(regionName + ":" + key, arg9);
-				return -1;
-			} finally {
-				if (jedis != null) {
+			try{
+				jedis = pool.getResource();
+				return jedis.decrBy(key, by).intValue();
+			}catch(Exception e){
+				dbLogger.warn(regionName+ ":" +key, e);
+			}finally{
+				if(jedis != null){
 					jedis.close();
 				}
-
 			}
-
-			return e;
-		} else {
-			return -1;
 		}
+		return -1;
 	}
 
+	/**
+	 * 原子加操作<br>
+	 * 由于redis的特殊性，def参数在该方法中无效，def值为0
+	 * <br>如果使用非零默认值，参考使用{@link AtomicCounter4RedisSharded}
+	 */
+	@Override
 	public int incrementAndGet(String regionName, String key, int by, int def, int exp) {
-		if (StringUtils.isNotBlank(key)) {
+		if(StringUtils.isNotBlank(key)){
 			ShardedJedis jedis = null;
-
-			int arg7;
-			try {
-				key = this.getRealKey(regionName, key);
-				jedis = this.pool.getResource();
-				int e = jedis.incrBy(key, (long) by).intValue();
+			try{
+				key = getRealKey(regionName, key);
+				jedis = pool.getResource();
+				int rv = jedis.incrBy(key, by).intValue();
 				jedis.expire(key, exp);
-				arg7 = e;
-			} catch (Exception arg11) {
-				this.dbLogger.warn(regionName + ":" + key, arg11);
-				return -1;
-			} finally {
-				if (jedis != null) {
+				return rv;
+			}catch(Exception e){
+				dbLogger.warn(regionName+ ":" +key, e);
+			}finally{
+				if(jedis != null){
 					jedis.close();
 				}
-
 			}
-
-			return arg7;
-		} else {
-			return -1;
 		}
+		return -1;
 	}
 
+	@Override
 	public Object get(String regionName, String key) {
-		this.getRegionTime(regionName);
-		if (StringUtils.isBlank(key)) {
-			return null;
-		} else {
-			key = this.getRealKey(regionName, key);
-			ShardedJedis jedis = null;
-
-			try {
-				jedis = this.pool.getResource();
-				Object e = this.hessianSerializer.deserialize(jedis.get(this.stringSerializer.serialize(key)));
-				return e;
-			} catch (Exception arg7) {
-				this.dbLogger.warn(regionName + ":" + key, arg7);
-			} finally {
-				if (jedis != null) {
-					jedis.close();
-				}
-
-			}
-
+		getRegionTime(regionName);
+		if(StringUtils.isBlank(key)){
 			return null;
 		}
+		key = getRealKey(regionName, key);
+		
+		ShardedJedis jedis = null;
+		try{
+			jedis = pool.getResource();
+			return hessianSerializer.deserialize(jedis.get(stringSerializer.serialize(key)));
+		}catch(Exception e){
+			dbLogger.warn(regionName+ ":" +key, e);
+		}finally{
+			if(jedis != null){
+				jedis.close();
+			}
+		}
+		return null;
 	}
 
+	@Override
 	public void set(String regionName, String key, Object value) {
-		Integer expSeconds = this.getRegionTime(regionName);
-		this.set(regionName, key, value, expSeconds.intValue());
+		Integer expSeconds = getRegionTime(regionName);
+		set(regionName, key, value, expSeconds);
 	}
 
+	@Override
 	public void remove(String regionName, String key) {
-		if (StringUtils.isNotBlank(key)) {
-			key = this.getRealKey(regionName, key);
+		if(StringUtils.isNotBlank(key)){
+			key = getRealKey(regionName, key);
 			ShardedJedis jedis = null;
-
-			try {
-				jedis = this.pool.getResource();
-				jedis.del(this.stringSerializer.serialize(key));
-			} catch (Exception arg7) {
-				this.dbLogger.warn(regionName + ":" + key, arg7);
-			} finally {
-				if (jedis != null) {
+			try{
+				jedis = pool.getResource();
+				jedis.del(stringSerializer.serialize(key));
+			}catch(Exception e){
+				dbLogger.warn(regionName+ ":" +key, e);
+			}finally{
+				if(jedis != null){
 					jedis.close();
 				}
-
 			}
 		}
-
 	}
 
+	@Override
 	public boolean isLocal() {
 		return false;
 	}
+
 }

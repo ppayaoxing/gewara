@@ -1,19 +1,18 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support.magent;
 
-import com.gewara.support.magent.JVMCommandProcessorGroup;
-import com.gewara.support.magent.MessageCommandCenter;
-import com.gewara.support.magent.MethodCommandProcessorGroup;
-
+/**
+ * √¸¡Ó÷––ƒ∞Ô÷˙¿‡
+ * @author gebiao(ge.biao@gewara.com)
+ * @since Feb 27, 2014 8:34:53 PM
+ */
 public class MCCHelper {
-	private static MessageCommandCenter mcc = new MessageCommandCenter();
-
-	public static MessageCommandCenter getDefaultInstance() {
-		return mcc;
-	}
-
-	static {
+	private static MessageCommandCenter mcc;
+	static{
+		mcc = new MessageCommandCenter();
 		mcc.registerGroup(new JVMCommandProcessorGroup());
 		mcc.registerGroup(new MethodCommandProcessorGroup());
+	}
+	public static MessageCommandCenter getDefaultInstance(){
+		return mcc;
 	}
 }

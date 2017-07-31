@@ -1,44 +1,42 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.monitor.job;
 
-import com.gewara.untrans.monitor.AbstractSysSelfCheckingJob;
 import java.lang.reflect.Field;
-import java.util.Iterator;
 import java.util.List;
+
 import org.quartz.Trigger;
 import org.springframework.scheduling.quartz.SchedulerAccessor;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
+import com.gewara.untrans.monitor.AbstractSysSelfCheckingJob;
+
 public class SchedulerCheckingJob extends AbstractSysSelfCheckingJob {
+
+	@Override
 	public String getCheckName() {
 		return "TASK";
 	}
 
+	@Override
 	public String getCheckStatus() {
 		String existsTask = "";
-
 		try {
-			SchedulerFactoryBean scheduler = (SchedulerFactoryBean) this.applicationContext
-					.getBean(SchedulerFactoryBean.class);
+			SchedulerFactoryBean scheduler = applicationContext.getBean(SchedulerFactoryBean.class);
 			Field field = SchedulerAccessor.class.getDeclaredField("triggers");
 			field.setAccessible(true);
-			Object obj = field.get(scheduler);
-			if (obj != null) {
-				List tgs = (List) obj;
-
-				Trigger trigger;
-				for (Iterator arg5 = tgs.iterator(); arg5.hasNext(); existsTask = existsTask + trigger.getKey() + ";") {
-					trigger = (Trigger) arg5.next();
+			Object obj=field.get(scheduler);
+			if(obj!=null){
+				 List<Trigger> tgs=(List<Trigger>)obj;
+				for (Trigger trigger:tgs) {
+					existsTask=existsTask + trigger.getKey()+";";
 				}
 			}
-		} catch (Exception arg7) {
-			;
+		} catch (Exception e) {
 		}
-
-		if ("".equals(existsTask)) {
-			existsTask = "false";
+		if("".equals(existsTask)){
+			existsTask="false";
 		}
-
 		return existsTask;
 	}
+	
+
 }

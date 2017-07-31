@@ -1,43 +1,65 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mdb.builder;
 
-import com.gewara.mdb.operation.Expression;
 import org.bson.BsonDocument;
 import org.bson.conversions.Bson;
 
+import com.gewara.mdb.operation.Expression;
+
+/**
+ * 删除
+ * @author 董明
+ * @createDate 2015年8月25日
+ */
 public class DeleteBuilder {
-	private Bson condition = null;
-	private boolean deleteOne = false;
-	private Bson ids = null;
-	private String collectionName = null;
-
-	public DeleteBuilder(String collectionName) {
-		this.collectionName = collectionName;
+	
+	private Bson condition=null;
+	private boolean deleteOne=false;
+	private Bson ids=null;
+	private String collectionName=null;
+	
+	
+	
+	public DeleteBuilder(String collectionName){
+		this.collectionName=collectionName;
 	}
-
-	public DeleteBuilder setCondition(Expression queryExpre) {
-		this.condition = queryExpre.toBson();
+	
+	/**
+	 * 设置条件，这个方法会覆盖这之前所设置的条件。
+	 * @param condition
+	 * @return
+	 */
+	public DeleteBuilder setCondition(Expression queryExpre){
+		this.condition=queryExpre.toBson();
+		return this;
+	}
+	
+	/**
+	 * 是否只删除一条。 
+	 * 默认是删除所有符合条件的记录。
+	 * @param removeFirst
+	 * @return
+	 */
+	public DeleteBuilder setDeleteOne(boolean removeFirst){
+		this.deleteOne=removeFirst;
 		return this;
 	}
 
-	public DeleteBuilder setDeleteOne(boolean removeFirst) {
-		this.deleteOne = removeFirst;
-		return this;
+	public Bson getQueryCondition(){
+		if(ids!=null) return ids;
+		if(condition!=null) return condition;
+		return new BsonDocument();
 	}
-
-	public Bson getQueryCondition() {
-		return (Bson) (this.ids != null ? this.ids : (this.condition != null ? this.condition : new BsonDocument()));
-	}
-
+	
 	public boolean isDeleteOne() {
-		return this.deleteOne;
+		return deleteOne;
 	}
 
 	public Bson getIds() {
-		return this.ids;
+		return ids;
 	}
 
 	public String getCollectionName() {
-		return this.collectionName;
+		return collectionName;
 	}
+	
 }

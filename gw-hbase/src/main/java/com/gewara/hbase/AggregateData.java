@@ -1,77 +1,73 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.hbase;
 
-import com.gewara.hbase.util.GroupFields;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.hbase.util.GroupFields;
+
+/**
+ * example select ip,apiname,count(1),sum(totalcount) from apilog group by ip,apiname
+ */
 public class AggregateData {
-	private List<String> groupByColumns;
-	private List<String> sumColumns;
-	private List<String> groupColumnValues;
-	private Map<String, Map<String, Long>> rowDataMap = new HashMap();
-
-	public AggregateData(GroupFields gf) {
+	private List<String> groupByColumns;	//分组字段：ip,apiname
+	private List<String> sumColumns;			//求和字段：totalcount
+	private List<String> groupColumnValues;	//rowValues, 123.12.34.56@@com.gewara.service.getUser
+	private Map<String/*groupColumnValue*/, Map<String, Long>/*{rowcount:10,totalcount:500}*/> rowDataMap;
+	
+	public AggregateData(GroupFields gf){
+		this.rowDataMap = new HashMap<String, Map<String, Long>>();
 		this.groupByColumns = gf.getGroupByColumns();
-		this.groupColumnValues = new ArrayList();
-		if (gf.getSumColumns() != null) {
+		this.groupColumnValues = new ArrayList<String>();
+		if(gf.getSumColumns()!=null){
 			this.sumColumns = gf.getSumColumns();
-		} else {
-			this.sumColumns = new ArrayList(0);
+		}else{
+			this.sumColumns = new ArrayList<String>(0);
 		}
-
 	}
 
 	public Map<String, Long> getCountValue(String groupColumnValue) {
-		return (Map) this.rowDataMap.get(groupColumnValue);
+		return rowDataMap.get(groupColumnValue);
 	}
-
-	public void processRow(Map<String, String> rowData) {
+	public void processRow(Map<String, String> rowData){
 		String key = "";
-
-		int i;
-		for (i = 0; i < this.groupByColumns.size() - 1; ++i) {
-			key = key + (String) rowData.get(this.groupByColumns.get(i)) + "@@";
+		int i = 0;
+		for (; i < groupByColumns.size() - 1; i++) {
+			key += rowData.get(groupByColumns.get(i)) + "@@";
 		}
-
-		key = key + (String) rowData.get(this.groupByColumns.get(i));
-		Object groupData = (Map) this.rowDataMap.get(key);
-		if (groupData == null) {
-			groupData = new LinkedHashMap();
-			((Map) groupData).put("rowcount", Long.valueOf(1L));
-			this.rowDataMap.put(key, groupData);
-			this.groupColumnValues.add(key);
-		} else {
-			((Map) groupData).put("rowcount",
-					Long.valueOf(((Long) ((Map) groupData).get("rowcount")).longValue() + 1L));
+		key += rowData.get(groupByColumns.get(i));
+		Map<String, Long> groupData = rowDataMap.get(key);
+		if(groupData==null){
+			groupData = new LinkedHashMap<String, Long>();
+			groupData.put("rowcount", 1L);
+			rowDataMap.put(key, groupData);
+			groupColumnValues.add(key);
+		}else{
+			groupData.put("rowcount", groupData.get("rowcount").longValue() + 1);
 		}
-
-		if (!this.sumColumns.isEmpty()) {
-			Iterator arg4 = this.sumColumns.iterator();
-
-			while (arg4.hasNext()) {
-				String column = (String) arg4.next();
-				String v = (String) rowData.get(column);
-				if (StringUtils.isNotBlank(v) && StringUtils.isNumeric(v)) {
-					Long old = (Long) ((Map) groupData).get(column);
-					if (old == null) {
-						((Map) groupData).put(column, Long.valueOf(Double.valueOf(v).longValue()));
-					} else {
-						((Map) groupData).put(column, Long.valueOf(old.longValue() + Double.valueOf(v).longValue()));
+		
+		if(!sumColumns.isEmpty()){
+			for(String column: sumColumns){
+				String v = rowData.get(column);
+				if(StringUtils.isNotBlank(v) && StringUtils.isNumeric(v)){
+					Long old = groupData.get(column);
+					if(old==null){
+						groupData.put(column, Double.valueOf(v).longValue());
+					}else{
+						groupData.put(column, old + Double.valueOf(v).longValue());
 					}
 				}
 			}
 		}
-
 	}
 
 	public List<String> getSumColumns() {
-		return this.sumColumns;
+		return sumColumns;
 	}
 
 	public List<String> getGroupByColumns() {
@@ -79,58 +75,53 @@ public class AggregateData {
 	}
 
 	public List<String> getGroupColumnValues() {
-		return this.groupColumnValues;
+		return groupColumnValues;
 	}
-
-	public List<String> getHeaderColumns() {
-		ArrayList result = new ArrayList(this.groupByColumns);
-		result.addAll(this.sumColumns);
+	public List<String> getHeaderColumns(){
+		List<String> result = new ArrayList<String>(groupByColumns);
+		result.addAll(sumColumns);
 		result.add("rowcount");
 		return result;
 	}
-
-	public Iterator<List<Object>> dataIterator() {
-		return new AggregateData.DataIterator();
+	/**
+	 * 平铺的数据：groupColumsValue,sumCount,rowcount
+	 * @return
+	 */
+	public Iterator<List<Object>> dataIterator(){
+		return new DataIterator();
 	}
-
-	public Map<String, Map<String, Long>> getRowDataMap() {
-		return this.rowDataMap;
-	}
-
-	private class DataIterator implements Iterator<List<Object>> {
-		Iterator<String> rows;
-
-		private DataIterator() {
-			this.rows = AggregateData.this.groupColumnValues.iterator();
-		}
-
+	private class DataIterator implements Iterator<List<Object>>{
+		Iterator<String> rows = groupColumnValues.iterator();
+		@Override
 		public boolean hasNext() {
-			return this.rows.hasNext();
+			return rows.hasNext();
 		}
 
+		@Override
 		public List<Object> next() {
-			ArrayList result = new ArrayList();
-			String groupStr = (String) this.rows.next();
+			List<Object> result = new ArrayList<Object>();
+			String groupStr = rows.next();
 			String[] groupV = groupStr.split("@@");
-
-			int i;
-			for (i = 0; i < AggregateData.this.groupByColumns.size(); ++i) {
+			int i=0;
+			for(;i<groupByColumns.size();i++){
 				result.add(groupV[i]);
 			}
-
-			Map rowData = (Map) AggregateData.this.rowDataMap.get(groupStr);
-
-			for (Iterator arg5 = AggregateData.this.sumColumns.iterator(); arg5.hasNext(); ++i) {
-				String sum = (String) arg5.next();
+			Map<String, Long> rowData = rowDataMap.get(groupStr);
+			for(String sum: sumColumns){
 				result.add(rowData.get(sum));
+				i++;
 			}
-
 			result.add(rowData.get("rowcount"));
 			return result;
 		}
 
+		@Override
 		public void remove() {
 			throw new IllegalArgumentException("notSupport!");
 		}
+		
+	}
+	public Map<String, Map<String, Long>> getRowDataMap() {
+		return this.rowDataMap;
 	}
 }

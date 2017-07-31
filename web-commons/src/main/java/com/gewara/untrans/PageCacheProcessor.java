@@ -1,13 +1,24 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans;
 
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 public interface PageCacheProcessor {
-	void sendMsgToDst(Map<String, String> arg0);
-
+	/**
+	 * 缓存发送队列
+	 * @param params
+	 */
+	void sendMsgToDst(Map<String, String> params);
+	/**
+	 * 缓存的页面前缀
+	 * @return
+	 */
 	String getKeyPre();
-
-	boolean canClear(HttpServletRequest arg0);
+	/**
+	 * 是否有清除缓存的权限
+	 * @param request
+	 * @return
+	 */
+	boolean canClear(HttpServletRequest request);
 }

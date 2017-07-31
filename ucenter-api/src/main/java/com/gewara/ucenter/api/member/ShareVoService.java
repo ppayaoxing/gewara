@@ -1,20 +1,61 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.api.member;
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.ucenter.vo.member.ShareMemberVo;
-import java.util.List;
+
+
 
 public interface ShareVoService {
-	ResultCode sendShareInfo(String arg0, Long arg1, Long arg2, String arg3);
-
-	ResultCode sendShareInfo(String arg0, Long arg1, Long arg2, String arg3, String arg4);
-
-	ResultCode<List<ShareMemberVo>> getShareMemberByMemberid(List<String> arg0, Long arg1);
-
-	ResultCode createShareMember(Long arg0, String arg1, String arg2, String arg3, String arg4, String arg5);
-
-	ResultCode updateShareMemberRights(Long arg0, String arg1, String arg2);
-
-	ResultCode removeShareMember(Long arg0);
+	/**
+	 * 添加要分享的信息
+	 * @param tag
+	 * @param tagid
+	 * @param memberid
+	 * @param category
+	 * @return
+	 */
+	ResultCode sendShareInfo(String tag, Long tagid, Long memberid, String category);
+	/**自定义分享内容
+	 * @param tag
+	 * @param tagid
+	 * @param memberid
+	 * @param content
+	 * @param picUrl
+	 * @return
+	 */
+	ResultCode sendShareInfo(String tag, Long tagid, Long memberid, String content, String picUrl);
+	/**
+	 * 根据来源获取关联同步用户
+	 * @param source
+	 * @param memberid
+	 * @return
+	 */
+	ResultCode<List<ShareMemberVo>> getShareMemberByMemberid(List<String> source, Long memberid);
+	/**
+	 * 创建sharemember
+	 * @param memberid
+	 * @param source
+	 * @param loginname
+	 * @param token
+	 * @param tokensecret
+	 * @param expires
+	 * @return
+	 */
+	ResultCode createShareMember(Long memberid, String source, String loginname, String token, String tokensecret, String expires);
+	/**
+	 * 修改otherinfo相关操作
+	 * @param shareMemberid
+	 * @param otherinfoKey
+	 * @param otherinfoValue
+	 * @return
+	 */
+	ResultCode updateShareMemberRights(Long shareMemberid, String otherinfoKey, String otherinfoValue);
+	/**
+	 * 移除
+	 * @param shareMemberid
+	 * @return
+	 */
+	ResultCode removeShareMember(Long shareMemberid);
 }

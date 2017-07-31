@@ -1,98 +1,143 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mdb.operation;
 
-import com.gewara.mdb.operation.Expression;
-import com.mongodb.client.model.Projections;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+
 import org.bson.conversions.Bson;
 
+import com.mongodb.client.model.Projections;
+
 public class Projection {
-	protected final List<Bson> returnResult = new ArrayList();
+	protected final List<Bson> returnResult=new ArrayList<Bson>();
+	
+    public  Projection addIncludeField(final String... fieldNames) {
+    	returnResult.add(Projections.include(fieldNames));
+        return this;
+    }
+   
+    public  Projection addIncludeField(final List<String> fieldNames) {
+    	returnResult.add(Projections.include(fieldNames));
+        return this;
+    }
 
-	public Projection addIncludeField(String... fieldNames) {
-		this.returnResult.add(Projections.include(fieldNames));
-		return this;
-	}
+    public  Projection addExcludeField(final String... fieldNames) {
+    	returnResult.add(Projections.exclude(fieldNames));
+        return this;
+    }
 
-	public Projection addIncludeField(List<String> fieldNames) {
-		this.returnResult.add(Projections.include(fieldNames));
-		return this;
-	}
+    
+    public  Projection addExcludeField(final List<String> fieldNames) {
+    	returnResult.add(Projections.exclude(fieldNames));
+        return this;
+    }
+    
+    public Projection addFields(Map<String,Integer> fields){
+    	if(fields==null||fields.isEmpty()) return this;
+    	List<String> exclude=new ArrayList<>();
+    	List<String> include=new ArrayList<>();
+    	for(Map.Entry<String, Integer> entry:fields.entrySet()){
+    		if(entry.getValue()<0) 
+    			exclude.add(entry.getKey());
+    		else{
+    			if(entry.getValue()>0)
+    				include.add(entry.getKey());
+    		}
+    	}
+    	if(!exclude.isEmpty()) addExcludeField(exclude);
+    	if(!include.isEmpty()) addIncludeField(include);
+    	return this;
+    }
+   
+    public  Projection addExcludeId() {
+    	returnResult.add(Projections.excludeId());
+        return this;
+    }
 
-	public Projection addExcludeField(String... fieldNames) {
-		this.returnResult.add(Projections.exclude(fieldNames));
-		return this;
-	}
+   
+    public  Projection addPosition4Array(final String fieldName) {
+    	returnResult.add(Projections.elemMatch(fieldName));
+        return this;
+    }
 
-	public Projection addExcludeField(List<String> fieldNames) {
-		this.returnResult.add(Projections.exclude(fieldNames));
-		return this;
-	}
+   
+    /**
+     * 指定array中哪些元素被返回。
+     * @param fieldName
+     * @param condition
+     * @return
+     */
+    public  Projection addElemMatch4Array(final String fieldName, final Expression condition) {
+        returnResult.add(Projections.elemMatch(fieldName, condition.toBson()));
+        return this;
+    }
 
-	public Projection addFields(Map<String, Integer> fields) {
-		if (fields != null && !fields.isEmpty()) {
-			ArrayList exclude = new ArrayList();
-			ArrayList include = new ArrayList();
-			Iterator arg3 = fields.entrySet().iterator();
+   
+    /**
+     * 返回文本评分
+     * @param fieldName
+     * @return
+     */
+    public  Projection addMetaTextScore(final String fieldName) {
+    	returnResult.add(Projections.metaTextScore(fieldName));
+        return this;
+    }
 
-			while (arg3.hasNext()) {
-				Entry entry = (Entry) arg3.next();
-				if (((Integer) entry.getValue()).intValue() < 0) {
-					exclude.add(entry.getKey());
-				} else if (((Integer) entry.getValue()).intValue() > 0) {
-					include.add(entry.getKey());
-				}
-			}
+   
+    /**
+     * 
+     * @param fieldName
+     * @param limit
+     * @return
+     */
+    public  Projection addSlice4Array(final String fieldName, final int limit) {
+    	returnResult.add(Projections.slice(fieldName, limit));
+        return this;
+    }
 
-			if (!exclude.isEmpty()) {
-				this.addExcludeField((List) exclude);
-			}
+    
+    public  Projection addSlice4Array(final String fieldName, final int from, final int limit) {
+    	returnResult.add(Projections.slice(fieldName,from,limit));
+        return this;
+    }
+    
+    
+    public Bson toBson(){
+    	return Projections.fields(returnResult);
+    }
+    
+//    public  Projection fields(final Bson... projections) {
+//        return fields(asList(projections));
+//    }
 
-			if (!include.isEmpty()) {
-				this.addIncludeField((List) include);
-			}
+    
+//    public static Bson fields(final List<Bson> projections) {
+//        notNull("sorts", projections);
+//        return new Bson() {
+//            @Override
+//            public <TDocument> BsonDocument toBsonDocument(final Class<TDocument> documentClass, final CodecRegistry codecRegistry) {
+//                BsonDocument combinedDocument = new BsonDocument();
+//                for (Bson sort : projections) {
+//                    BsonDocument sortDocument = sort.toBsonDocument(documentClass, codecRegistry);
+//                    for (String key : sortDocument.keySet()) {
+//                        combinedDocument.remove(key);
+//                        combinedDocument.append(key, sortDocument.get(key));
+//                    }
+//                }
+//                return combinedDocument;
+//            }
+//        };
+//    }
 
-			return this;
-		} else {
-			return this;
-		}
-	}
-
-	public Projection addExcludeId() {
-		this.returnResult.add(Projections.excludeId());
-		return this;
-	}
-
-	public Projection addPosition4Array(String fieldName) {
-		this.returnResult.add(Projections.elemMatch(fieldName));
-		return this;
-	}
-
-	public Projection addElemMatch4Array(String fieldName, Expression condition) {
-		this.returnResult.add(Projections.elemMatch(fieldName, condition.toBson()));
-		return this;
-	}
-
-	public Projection addMetaTextScore(String fieldName) {
-		this.returnResult.add(Projections.metaTextScore(fieldName));
-		return this;
-	}
-
-	public Projection addSlice4Array(String fieldName, int limit) {
-		this.returnResult.add(Projections.slice(fieldName, limit));
-		return this;
-	}
-
-	public Projection addSlice4Array(String fieldName, int from, int limit) {
-		this.returnResult.add(Projections.slice(fieldName, from, limit));
-		return this;
-	}
-
-	public Bson toBson() {
-		return Projections.fields(this.returnResult);
-	}
+//    private static Bson combine(final List<String> fieldNames, final BsonValue value) {
+//        BsonDocument document = new BsonDocument();
+//        for (String fieldName : fieldNames) {
+//            document.remove(fieldName);
+//            document.append(fieldName, value);
+//        }
+//        return document;
+//    }
+//	
+	
 }

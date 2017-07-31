@@ -1,101 +1,85 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.impl;
 
-import com.gewara.untrans.CacheObjectService;
-import com.gewara.untrans.impl.AbstractGcacheUpdater;
-import com.gewara.util.BeanUtil;
-import com.gewara.util.CacheMeta;
-import com.gewara.util.GcacheManager;
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-public class GcacheUpdater extends AbstractGcacheUpdater {
-	@Autowired
-	@Qualifier("cacheObjectService")
-	protected CacheObjectService cacheObjectService;
+import com.gewara.untrans.CacheObjectService;
+import com.gewara.util.BeanUtil;
+import com.gewara.util.CacheMeta;
+import com.gewara.util.GcacheManager;
 
+public class GcacheUpdater extends AbstractGcacheUpdater  {
+	@Autowired@Qualifier("cacheObjectService")
+	protected CacheObjectService cacheObjectService;
 	public void setCacheObjectService(CacheObjectService cacheObjectService) {
 		this.cacheObjectService = cacheObjectService;
 	}
 
-	private void cleanDataByIds(CacheMeta meta, String ids) {
-		Class type = this.cacheObjectService.getEntityIdType(meta.gclass);
-		if (type != null) {
-			if (type == String.class) {
+	private void cleanDataByIds(CacheMeta meta, String ids){
+		Class type = cacheObjectService.getEntityIdType(meta.gclass);
+		if(type!=null){
+			//只支持String和Long
+			if(type==String.class){
 				String[] idList = StringUtils.split(ids, ",");
-				String[] arg4 = idList;
-				int id = idList.length;
-
-				for (int e = 0; e < id; ++e) {
-					String id1 = arg4[e];
-
-					try {
-						meta.gcache.invalidate(id1);
-						if (meta.eager) {
-							this.cacheObjectService.getObject(meta.gclass, id1);
+				for (final String id : idList) {
+					try{
+						meta.gcache.invalidate(id);
+						if(meta.eager){
+							cacheObjectService.getObject(meta.gclass, id);
 						}
-
-						this.refreshOther(meta.gclass, id1);
-					} catch (Exception arg10) {
-						this.dbLogger.warn(arg10, 20);
+						refreshOther(meta.gclass, id);
+					}catch(Exception e){
+						dbLogger.warn(e, 20);
 					}
 				}
-			} else {
-				List arg11 = BeanUtil.getIdList(ids, ",");
-				Iterator arg12 = arg11.iterator();
-
-				while (arg12.hasNext()) {
-					Long arg13 = (Long) arg12.next();
-
-					try {
-						meta.gcache.invalidate(arg13);
-						if (meta.eager) {
-							this.cacheObjectService.getObject(meta.gclass, arg13);
+				
+			}else{//
+				List<Long> idList = BeanUtil.getIdList(ids, ",");
+				for (final Long id : idList) {
+					try{
+						meta.gcache.invalidate(id);
+						if(meta.eager){
+							cacheObjectService.getObject(meta.gclass, id);
 						}
-
-						this.refreshOther(meta.gclass, arg13);
-					} catch (Exception arg9) {
-						this.dbLogger.warn(arg9, 20);
+						refreshOther(meta.gclass, id);
+					}catch(Exception e){
+						dbLogger.warn(e, 20);
 					}
 				}
 			}
 		}
-
 	}
-
-	protected void refreshOther(Class clazz, Serializable id) {
+	protected void refreshOther(Class clazz, Serializable id){
+		//其他业务逻辑
 	}
-
+	@Override
 	public final List<String> getListenerTags() {
-		List channelList = GcacheManager.getAllTags();
-		if (channelList.isEmpty()) {
+		List<String> channelList = GcacheManager.getAllTags();
+		if(channelList.isEmpty()){
 			throw new IllegalArgumentException("GcacheManger.getAllTags() is Empty!");
-		} else {
-			return channelList;
 		}
+		return channelList;
 	}
-
+	@Override
 	protected final void refreshCache(CacheMeta meta, String ids, String op) {
-		if (StringUtils.equals(op, "C")) {
-			if (StringUtils.isNotBlank(ids)) {
-				this.cleanDataByIds(meta, ids);
-				this.dbLogger.warn("CacheObjectService,CleanByID:" + meta.gclass + ",IDs:" + ids);
-			} else {
+		if(StringUtils.equals(op, "C")){//
+			if(StringUtils.isNotBlank(ids)){
+				cleanDataByIds(meta, ids);
+				dbLogger.warn("CacheObjectService,CleanByID:" + meta.gclass + ",IDs:" + ids);
+			}else{
 				meta.gcache.invalidateAll();
-				this.dbLogger.warn("CacheObjectService,CleanAll:" + meta.gclass);
+				dbLogger.warn("CacheObjectService,CleanAll:" + meta.gclass);
 			}
-		} else {
-			if (StringUtils.isBlank(ids)) {
-				this.dbLogger.warn("CacheObjectService:NoIDs");
+		}else{
+			if(StringUtils.isBlank(ids)){
+				dbLogger.warn("CacheObjectService:NoIDs");
 				return;
 			}
-
-			this.cleanDataByIds(meta, ids);
+			cleanDataByIds(meta, ids);
 		}
-
 	}
 }

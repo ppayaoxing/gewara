@@ -1,11 +1,10 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.cmd;
 
 import java.io.Serializable;
 
-public class UsefulAddressVo implements Serializable {
+public class UsefulAddressVo implements Serializable{
 	private static final long serialVersionUID = -8208050132548716011L;
-	private String tag;
+	private String tag;            //标识类别
 	private Long dpid;
 	private Long memberid;
 	private Long addressid;
@@ -18,108 +17,85 @@ public class UsefulAddressVo implements Serializable {
 	private String mobile;
 	private String IDcard;
 	private String defaultAddress;
-
+	
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
-
 	public void setDpid(Long dpid) {
 		this.dpid = dpid;
 	}
-
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
 	public Long getAddressid() {
-		return this.addressid;
+		return addressid;
 	}
-
 	public void setAddressid(Long addressid) {
 		this.addressid = addressid;
 	}
-
 	public String getProvincecode() {
-		return this.provincecode;
+		return provincecode;
 	}
-
 	public void setProvincecode(String provincecode) {
 		this.provincecode = provincecode;
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
 	public String getCountycode() {
-		return this.countycode;
+		return countycode;
 	}
-
 	public void setCountycode(String countycode) {
 		this.countycode = countycode;
 	}
-
 	public String getPostalcode() {
-		return this.postalcode;
+		return postalcode;
 	}
-
 	public void setPostalcode(String postalcode) {
 		this.postalcode = postalcode;
 	}
-
 	public String getAddress() {
-		return this.address;
+		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 	public String getRealname() {
-		return this.realname;
+		return realname;
 	}
-
 	public void setRealname(String realname) {
 		this.realname = realname;
 	}
-
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
-
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
 	public String getIDcard() {
-		return this.IDcard;
+		return IDcard;
 	}
-
 	public void setIDcard(String iDcard) {
-		this.IDcard = iDcard;
+		IDcard = iDcard;
 	}
-
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
-
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
 	public String getDefaultAddress() {
-		return this.defaultAddress;
+		return defaultAddress;
 	}
-
 	public void setDefaultAddress(String defaultAddress) {
 		this.defaultAddress = defaultAddress;
 	}
+	
+	
 }

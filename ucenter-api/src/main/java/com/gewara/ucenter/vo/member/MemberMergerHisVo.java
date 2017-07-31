@@ -1,122 +1,99 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.vo.member;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class MemberMergerHisVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class MemberMergerHisVo extends BaseVo{
 	private static final long serialVersionUID = 8946272152683008335L;
 	private Long id;
-	private Long memberId;
-	private String memberPhone;
-	private Long mergerMemberId;
-	private String mergerMemberNickName;
-	private Long operationUserId;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private String otherInfo;
-	private String status;
-	private String remark;
-	private Long bindStep;
-
+	private Long memberId;//合并账户ID
+	private String memberPhone;//合并账户手机
+	private Long mergerMemberId;//被合并账户ID
+	private String mergerMemberNickName;//被合并账户的昵称
+	private Long operationUserId;//操作人ID
+	private Timestamp addtime;//插入时间
+	private Timestamp updatetime;//更新时间
+	private String otherInfo;//其他信息
+	private String status;//状态：Y:绑定N：未绑定成功A：待审核
+	private String remark;//备注
+	private Long bindStep;//1：同步用户哇啦成功2：同步用户的优惠活动成功3：同步用户的优惠券成功4：同步曾经喜欢成功5：同步去过成功
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public Long getMemberId() {
-		return this.memberId;
+		return memberId;
 	}
-
 	public void setMemberId(Long memberId) {
 		this.memberId = memberId;
 	}
-
 	public String getMemberPhone() {
-		return this.memberPhone;
+		return memberPhone;
 	}
-
 	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
-
 	public Long getMergerMemberId() {
-		return this.mergerMemberId;
+		return mergerMemberId;
 	}
-
 	public void setMergerMemberId(Long mergerMemberId) {
 		this.mergerMemberId = mergerMemberId;
 	}
-
 	public String getMergerMemberNickName() {
-		return this.mergerMemberNickName;
+		return mergerMemberNickName;
 	}
-
 	public void setMergerMemberNickName(String mergerMemberNickName) {
 		this.mergerMemberNickName = mergerMemberNickName;
 	}
-
 	public Long getOperationUserId() {
-		return this.operationUserId;
+		return operationUserId;
 	}
-
 	public void setOperationUserId(Long operationUserId) {
 		this.operationUserId = operationUserId;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
 	public String getOtherInfo() {
-		return this.otherInfo;
+		return otherInfo;
 	}
-
 	public void setOtherInfo(String otherInfo) {
 		this.otherInfo = otherInfo;
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
-
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
 	public Long getBindStep() {
-		return this.bindStep;
+		return bindStep;
 	}
-
 	public void setBindStep(Long bindStep) {
 		this.bindStep = bindStep;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
+	
 }

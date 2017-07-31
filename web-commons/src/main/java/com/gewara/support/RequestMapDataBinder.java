@@ -1,37 +1,37 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support;
-
-import com.gewara.support.RequestMapPropertyValues;
-import com.gewara.web.support.TimestampEditor;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+
+import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.validation.DataBinder;
 
+import com.gewara.web.support.TimestampEditor;
 public class RequestMapDataBinder extends DataBinder {
 	public RequestMapDataBinder(Object target) {
 		super(target);
-		this.regEditor();
+		regEditor();
 	}
 
 	public RequestMapDataBinder(Object target, String objectName) {
 		super(target, objectName);
-		this.regEditor();
+		regEditor();
 	}
-
-	private void regEditor() {
+	private void regEditor(){
+		//线程不安全，必须重新生成
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		CustomDateEditor dateEditor = new CustomDateEditor(dateFormat, true);
 		TimestampEditor timestampEditor = new TimestampEditor();
 		dateFormat.setLenient(false);
-		this.registerCustomEditor(Date.class, (String) null, dateEditor);
-		this.registerCustomEditor(Timestamp.class, (String) null, timestampEditor);
+		//TODO:timestampFormat.setLenient(false);
+		this.registerCustomEditor(Date.class, null, dateEditor);
+		this.registerCustomEditor(Timestamp.class, null, timestampEditor);
 	}
 
 	public void bind(Map dwrRequestMap) {
-		RequestMapPropertyValues mpvs = new RequestMapPropertyValues(dwrRequestMap);
-		this.doBind(mpvs);
+		MutablePropertyValues mpvs = new RequestMapPropertyValues(dwrRequestMap);
+		doBind(mpvs);
 	}
 }

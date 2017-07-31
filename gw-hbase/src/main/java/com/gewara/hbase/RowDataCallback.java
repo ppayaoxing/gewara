@@ -1,8 +1,9 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.hbase;
 
-import com.gewara.hbase.Row;
-
+/**
+ * @author gebiao(ge.biao@gewara.com)
+ * @since Sep 14, 2012 8:35:58 PM
+ */
 public interface RowDataCallback {
-	void processRow(Row arg0) throws Exception;
+    void processRow(Row row) throws Exception;
 }

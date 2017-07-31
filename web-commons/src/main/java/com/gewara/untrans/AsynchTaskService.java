@@ -1,22 +1,29 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans;
 
-import com.gewara.untrans.AsynchTask;
-import com.gewara.untrans.AsynchTaskProcessor;
 import java.util.Map;
 
+/**
+ * 异步执行请求
+ * 
+ * @author gebiao(ge.biao@gewara.com)
+ * @since Jul 4, 2012 11:00:25 AM
+ */
 public interface AsynchTaskService {
-	void addTask(AsynchTask arg0);
+	void addTask(AsynchTask task);
+	/**
+	 * 等待waitTimeSecond秒或凑齐minCount才一起执行
+	 * @param task
+	 * @param waitTimeSecond
+	 * @param minCount
+	 */
+	void addTask(AsynchTask task, int waitTimeSecond, int minCount);
 
-	void addTask(AsynchTask arg0, int arg1, int arg2);
+	void cancleTask(String taskUkey);
 
-	void cancleTask(String arg0);
-
-	void registerTaskProcessor(String arg0, AsynchTaskProcessor arg1);
+	void registerTaskProcessor(String tasktype, AsynchTaskProcessor processor);
 
 	int getExecutorActiveCount();
 
 	Map<String, Integer> getTaskQueueMap();
-
 	int getQueueSize();
 }

@@ -1,11 +1,9 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.service;
 
 import org.patchca.background.SingleColorBackgroundFactory;
 import org.patchca.color.SingleColorFactory;
 import org.patchca.filter.predefined.CurvesRippleFilterFactory;
 import org.patchca.font.RandomFontFactory;
-import org.patchca.service.AbstractCaptchaService;
 import org.patchca.text.renderer.BestFitTextRenderer;
 import org.patchca.word.AdaptiveRandomWordFactory;
 

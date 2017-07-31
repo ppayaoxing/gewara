@@ -1,24 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.msearch.external.entity.index;
 
-import com.gewara.msearch.external.entity.index.IndexData;
-
-public class MemberIndexInfo extends IndexData {
+/**
+ * 会员索引信息
+ * @author 董明
+ * @createDate 2015年6月3日
+ */
+public class MemberIndexInfo extends IndexData{
+	
 	private static final long serialVersionUID = -3071643178306274317L;
-	private String nick = null;
-	private String field1 = "";
-	private String field2 = "";
-
+	private String nick=null;
+	private String field1 = "";//预留扩展字段
+	private String field2 = "";//预留扩展字段
+	
+	/**
+	 * 会员昵称
+	 * @return
+	 */
 	public String getNick() {
-		return this.nick;
+		return nick;
 	}
-
+	
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
 
 	public String getField1() {
-		return this.field1;
+		return field1;
 	}
 
 	public void setField1(String field1) {
@@ -26,10 +33,11 @@ public class MemberIndexInfo extends IndexData {
 	}
 
 	public String getField2() {
-		return this.field2;
+		return field2;
 	}
 
 	public void setField2(String field2) {
 		this.field2 = field2;
 	}
+	
 }

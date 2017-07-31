@@ -1,430 +1,449 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.web.support;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.support.PropertyComparator;
 
+import com.gewara.util.DateUtil;
+
 public class DynamicStats {
-	private Map<String, DynamicStats.LogCounter> counterMap = new ConcurrentHashMap();
-	private Map<String, String> specialTypes = new HashMap();
+	private Map<String, LogCounter> counterMap = new ConcurrentHashMap<String, LogCounter>();
+	private Map<String, String> specialTypes = new HashMap<>();
 	private AtomicInteger totalProcessing = new AtomicInteger(0);
-	private long lastRemoveTime = 0L;
-	private long lastCleanTime = 0L;
+	private long lastRemoveTime = 0;	//上次删除时间
+	private long lastCleanTime = 0;		//上次清理时间
 	private boolean init = false;
 	private String type;
-
 	public long getLastRemoveTime() {
-		return this.lastRemoveTime;
+		return lastRemoveTime;
 	}
 
 	public long getLastCleanTime() {
-		return this.lastCleanTime;
+		return lastCleanTime;
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
-	public DynamicStats(String type) {
+	public DynamicStats(String type){
 		this.type = type;
 	}
-
+	
 	public void setInit(boolean init) {
 		this.init = init;
 	}
 
 	public boolean isInit() {
-		return this.init;
+		return init;
 	}
 
-	public int getCounterSize() {
-		return this.counterMap.size();
+	/**
+	 * 计数器数量
+	 * @return
+	 */
+	public int getCounterSize(){
+		return counterMap.size();
 	}
-
+	/**
+	 * 当前总共处理次数
+	 * @return
+	 */
 	public int getTotalProcessing() {
-		return this.totalProcessing.get();
+		return totalProcessing.get();
 	}
-
-	public List<Map> getProcessingList(int waitmill) {
-		ArrayList result = new ArrayList();
-		long totalprocessing = 0L;
-		long maxnum = 0L;
-		long totalprocessed = 0L;
-		long totaltime = 0L;
-		Iterator row = this.counterMap.values().iterator();
-
-		while (row.hasNext()) {
-			DynamicStats.LogCounter counter = (DynamicStats.LogCounter) row.next();
+	/**
+	 * 获取正在处理的请求列表
+	 * @param waitmill
+	 * @return Map(url,avgwait,processing,processed)
+	 */
+	public List<Map> getProcessingList(int waitmill){
+		List<Map> result = new ArrayList<Map>();
+		long totalprocessing = 0, maxnum = 0, totalprocessed = 0, totaltime = 0;
+		for(LogCounter counter: counterMap.values()){
 			int p = counter.processing.get();
-			if (p > 0) {
-				LinkedHashMap row1 = new LinkedHashMap();
-				long total = System.currentTimeMillis() * (long) p - counter.processTime.get();
+			if(p>0){
+				Map row = new LinkedHashMap();
+				long total = System.currentTimeMillis() * p - counter.processTime.get();
 				totaltime += total;
-				totalprocessing += (long) p;
-				if (total > maxnum) {
+				totalprocessing += p;
+				if(total > maxnum){
 					maxnum = total;
 				}
-
-				long avgwait = total / (long) p;
-				if (avgwait > (long) waitmill) {
+				long avgwait = total/p;
+				if(avgwait > waitmill){
 					int processed = counter.processed.get();
-					totalprocessed += (long) processed;
-					row1.put("processed", Integer.valueOf(processed));
-					row1.put("processing", Integer.valueOf(p));
-					row1.put("avgwait", Long.valueOf(avgwait));
-					row1.put("type", StringUtils.defaultString((String) this.specialTypes.get(counter.url), "normal"));
-					row1.put("url", counter.url);
-					result.add(row1);
+					totalprocessed += processed;
+					row.put("processed", processed);
+					row.put("processing", p);
+					row.put("avgwait", avgwait);
+					row.put("type", StringUtils.defaultString(specialTypes.get(counter.url), "normal"));
+					row.put("url", counter.url);
+					result.add(row);
 				}
 			}
 		}
-
-		if (result.size() > 0) {
-			LinkedHashMap row2 = new LinkedHashMap();
-			row2.put("processed", Long.valueOf(totalprocessed));
-			row2.put("processing", Long.valueOf(totalprocessing));
-			row2.put("avgwait", Long.valueOf(totaltime / totalprocessing));
-			row2.put("url", "total");
-			result.add(row2);
+		if(result.size()>0){
+			Map row = new LinkedHashMap();
+			row.put("processed", totalprocessed);
+			row.put("processing", totalprocessing);
+			row.put("avgwait", totaltime/totalprocessing);
+			row.put("url", "total");
+			result.add(row);
 		}
-
 		return result;
 	}
-
-	public DynamicStats.LogCounter register(String sourceName, long regtime) {
-		DynamicStats.LogCounter lc = new DynamicStats.LogCounter(sourceName, Long.valueOf(regtime));
-		lc.type = this.type;
-		this.counterMap.put(sourceName, lc);
+	/**
+	 * 注册请求
+	 * @param sourceName
+	 * @param type
+	 * @param regtime
+	 */
+	public LogCounter register(String sourceName, long regtime){
+		LogCounter lc = new LogCounter(sourceName, regtime);
+		lc.type = type;
+		counterMap.put(sourceName, lc);
 		return lc;
 	}
-
-	public void addSpecialType(String uri, String rtype) {
-		this.specialTypes.put(uri, rtype);
+	public void addSpecialType(String uri, String rtype){
+		specialTypes.put(uri, rtype);
+	}
+	
+	public String getSpecialType(String uri){
+		return specialTypes.get(uri);
 	}
 
-	public String getSpecialType(String uri) {
-		return (String) this.specialTypes.get(uri);
-	}
-
-	public DynamicStats.LogCounter beforeProcess(String resourceName, long curtime) {
-		DynamicStats.LogCounter counter = (DynamicStats.LogCounter) this.counterMap.get(resourceName);
-		if (counter != null) {
-			this.totalProcessing.incrementAndGet();
+	/**
+	 * 加入处理队列，完成后afterProcess退出处理队列
+	 * @param resourceName
+	 * @param curtime
+	 * @return
+	 */
+	public LogCounter beforeProcess(String resourceName, long curtime){
+		LogCounter counter = counterMap.get(resourceName);
+		if(counter!=null){
+			totalProcessing.incrementAndGet();
 			counter.processing.incrementAndGet();
 			counter.processTime.addAndGet(curtime);
 		}
-
 		return counter;
 	}
-
-	public int getResourceProcessingCount(String resourceName) {
-		DynamicStats.LogCounter counter = (DynamicStats.LogCounter) this.counterMap.get(resourceName);
-		return counter != null ? counter.getProcessing().intValue() : 0;
-	}
-
-	public DynamicStats.LogCounter beforeProcessAndReg(String resourceName, long curtime) {
-		DynamicStats.LogCounter counter = (DynamicStats.LogCounter) this.counterMap.get(resourceName);
-		if (counter == null) {
-			counter = this.register(resourceName, curtime);
+	
+	/**
+	 * 获取资源正在处理的数量
+	 * @param resourceName
+	 * @return
+	 */
+	public int getResourceProcessingCount(String resourceName){
+		LogCounter counter = counterMap.get(resourceName);
+		if(counter != null){
+			return counter.getProcessing().intValue();
 		}
-
-		if (counter != null) {
-			this.totalProcessing.incrementAndGet();
+		return 0;
+	}
+	
+	public LogCounter beforeProcessAndReg(String resourceName, long curtime){
+		LogCounter counter = counterMap.get(resourceName);
+		if(counter == null){
+			counter = register(resourceName, curtime);
+		}
+		if(counter!=null){
+			totalProcessing.incrementAndGet();
 			counter.processing.incrementAndGet();
 			counter.processTime.addAndGet(curtime);
 		}
-
 		return counter;
 	}
-
-	public void afterProcess(DynamicStats.LogCounter counter, long lasttime, boolean updateTotaltime) {
-		if (counter != null) {
-			this.totalProcessing.decrementAndGet();
+	/**
+	 * 退出处理队列
+	 * @param counter
+	 * @param curtime
+	 */
+	public void afterProcess(LogCounter counter, long lasttime, boolean updateTotaltime){
+		if(counter!=null){
+			totalProcessing.decrementAndGet();
 			counter.processing.decrementAndGet();
 			counter.processTime.addAndGet(-lasttime);
 			counter.processed.incrementAndGet();
-			if (updateTotaltime) {
+			if(updateTotaltime){
 				counter.totaltime.addAndGet(System.currentTimeMillis() - lasttime);
 			}
 		}
-
 	}
-
-	public DynamicStats.LogCounter incrementCount(String uri) {
-		DynamicStats.LogCounter counter = (DynamicStats.LogCounter) this.counterMap.get(uri);
+	
+	/**
+	 * 更新计数
+	 * @param uri
+	 * @param count
+	 * @return
+	 */
+	public LogCounter incrementCount(String uri){
+		LogCounter counter = counterMap.get(uri);
 		long cur = System.currentTimeMillis();
-		if (counter == null) {
-			counter = new DynamicStats.LogCounter(uri, Long.valueOf(cur));
-			this.counterMap.put(uri, counter);
+		if(counter==null) {
+			counter = new LogCounter(uri, cur);
+			counterMap.put(uri, counter);
 		}
-
-		this.totalProcessing.incrementAndGet();
+		totalProcessing.incrementAndGet();
 		counter.count.incrementAndGet();
-		counter.endtime = Long.valueOf(cur);
+		counter.endtime = cur;
 		return counter;
 	}
-
+	/**
+	 * 更新请求处理时间
+	 * @param uri
+	 * @param time
+	 * @param clearmax
+	 * @return
+	 */
 	public Map<String, String> updateProcessTime(String uri, long time, int clearmax) {
-		DynamicStats.LogCounter counter = (DynamicStats.LogCounter) this.counterMap.get(uri);
-		if (counter == null) {
-			return null;
-		} else {
-			counter.count.incrementAndGet();
-			counter.totaltime.addAndGet(time);
-			if (time > 1000L) {
-				counter.count2.incrementAndGet();
-				counter.count2Time.addAndGet(time);
-			}
-
-			Long cur = Long.valueOf(System.currentTimeMillis());
-			if (counter.count.get() < clearmax && counter.starttime.longValue() + 3600000L >= cur.longValue()) {
-				return null;
-			} else {
-				Map result = getLogMap(counter, cur.longValue());
-				resetCounter(counter, cur.longValue());
-				return result;
-			}
+		LogCounter counter = counterMap.get(uri);
+		if(counter==null) return null;
+		counter.count.incrementAndGet();
+		counter.totaltime.addAndGet(time);
+		if(time > 1000L){
+			counter.count2.incrementAndGet();
+			counter.count2Time.addAndGet(time);
 		}
-	}
-
-	public Map<String, Integer> getStatsAndClear(int maxnum) {
-		if (this.getTotalProcessing() >= maxnum) {
-			HashMap result = new HashMap();
-			ArrayList counterList = new ArrayList(this.counterMap.values());
-			Iterator arg3 = counterList.iterator();
-
-			while (arg3.hasNext()) {
-				DynamicStats.LogCounter counter = (DynamicStats.LogCounter) arg3.next();
-				int value = counter.count.getAndSet(0);
-				if (value > 0) {
-					result.put(counter.getUrl(), Integer.valueOf(value));
-				}
-			}
-
-			this.totalProcessing.getAndSet(0);
-			this.lastCleanTime = System.currentTimeMillis();
+		Long cur = System.currentTimeMillis();
+		if(counter.count.get() >= clearmax || counter.starttime + DateUtil.m_hour < cur){
+			Map<String, String> result = getLogMap(counter, cur);
+			
+			resetCounter(counter, cur);
 			return result;
-		} else {
-			return null;
 		}
+		return null;
 	}
-
-	public List<Map<String, String>> getAllStatsAndClear(int maxnum) {
-		Long cur = Long.valueOf(System.currentTimeMillis());
-		ArrayList result = new ArrayList();
-		ArrayList counterList = new ArrayList(this.counterMap.values());
-		Iterator arg4 = counterList.iterator();
-
-		while (true) {
-			DynamicStats.LogCounter counter;
-			int ct;
-			do {
-				if (!arg4.hasNext()) {
-					this.lastCleanTime = cur.longValue();
-					return result;
-				}
-
-				counter = (DynamicStats.LogCounter) arg4.next();
-				ct = counter.processed.get();
-			} while (ct <= maxnum && (ct <= 0 || cur.longValue() - counter.getStarttime().longValue() <= 1800000L));
-
-			Map row = getLogMap(counter, cur.longValue());
-			if (cur.longValue() - counter.getStarttime().longValue() > 660000L) {
-				row.put("flag", "long");
-			} else {
-				row.put("flag", "normal");
+	/**
+	 * 如果计数达到maxnum，则清除
+	 * @param maxnum
+	 * @return
+	 */
+	public Map<String, Integer> getStatsAndClear(int maxnum){
+		if(getTotalProcessing() >=maxnum){
+			HashMap<String, Integer> result = new HashMap<String, Integer>();
+			List<LogCounter> counterList = new ArrayList<LogCounter>(counterMap.values());
+			for(LogCounter counter: counterList){
+				int value = counter.count.getAndSet(0);
+				if(value>0) result.put(counter.getUrl(), value);
 			}
-
-			resetCounter(counter, cur.longValue());
-			result.add(row);
+			totalProcessing.getAndSet(0);
+			lastCleanTime = System.currentTimeMillis();
+			return result;
 		}
+		return null;
 	}
-
-	public List<Map> removeCountBefore(long timeBefore) {
-		ArrayList result = new ArrayList();
-		ArrayList counterList = new ArrayList(this.counterMap.values());
-		Iterator arg4 = counterList.iterator();
-
-		while (arg4.hasNext()) {
-			DynamicStats.LogCounter counter = (DynamicStats.LogCounter) arg4.next();
-			if (counter.getStarttime().longValue() < timeBefore) {
-				this.counterMap.remove(counter.getUrl());
-				LinkedHashMap row = new LinkedHashMap();
-				row.put("count", Integer.valueOf(counter.getCount()));
+	/**
+	 * 如果计数达到maxnum，则清除
+	 * @param maxnum
+	 * @return
+	 */
+	public List<Map<String, String>> getAllStatsAndClear(int maxnum){
+		Long cur = System.currentTimeMillis();
+		List<Map<String, String>> result = new ArrayList<Map<String, String>>();
+		List<LogCounter> counterList = new ArrayList<LogCounter>(counterMap.values());
+		for(LogCounter counter: counterList){
+			int ct = counter.processed.get();
+			if(ct > maxnum || ct > 0 && (cur - counter.getStarttime() > DateUtil.m_minute *30)){
+				Map<String, String> row = getLogMap(counter, cur);
+				if(cur - counter.getStarttime() > DateUtil.m_minute *11){
+					row.put("flag", "long");
+				}else{
+					row.put("flag", "normal");
+				}
+				resetCounter(counter, cur);
+				result.add(row);
+			}
+		}
+		lastCleanTime = cur;
+		return result;
+	}
+	/**
+	 * starttime在timeBefore之前建立的
+	 * @param timeBefore
+	 * @return List<Map(count,url,starttime,endtime)>
+	 */
+	public List<Map> removeCountBefore(long timeBefore){
+		List<Map> result = new ArrayList<Map>();
+		List<LogCounter> counterList = new ArrayList<LogCounter>(counterMap.values());
+		for(LogCounter counter: counterList){
+			if(counter.getStarttime()<timeBefore){
+				counterMap.remove(counter.getUrl());
+				Map row = new LinkedHashMap();
+				row.put("count", counter.getCount());
 				row.put("url", counter.getUrl());
 				row.put("starttime", counter.starttime);
 				row.put("endtime", counter.endtime);
 			}
 		}
-
-		this.lastRemoveTime = System.currentTimeMillis();
+		lastRemoveTime = System.currentTimeMillis();
 		return result;
+
 	}
 
-	public Map<String, Integer> getStatsMap() {
-		HashMap result = new HashMap();
-		Iterator arg1 = this.counterMap.entrySet().iterator();
-
-		while (arg1.hasNext()) {
-			Entry entry = (Entry) arg1.next();
-			int value = ((DynamicStats.LogCounter) entry.getValue()).count.get();
-			if (value > 0) {
-				result.put(entry.getKey(), Integer.valueOf(value));
-			}
+	/**
+	 * 获取计数统计
+	 * @return
+	 */
+	public Map<String, Integer> getStatsMap(){
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		for(Entry<String, LogCounter> entry: counterMap.entrySet()){
+			int value = entry.getValue().count.get();
+			if(value>0) result.put(entry.getKey(), value);
 		}
-
 		return result;
 	}
-
-	public List<Map> getCountList(int mincount, boolean reqFields) {
-		LinkedList result = new LinkedList();
-		Iterator arg3 = this.counterMap.values().iterator();
-
-		while (arg3.hasNext()) {
-			DynamicStats.LogCounter counter = (DynamicStats.LogCounter) arg3.next();
-			if (counter.count.get() >= mincount) {
-				result.add(this.getCounterCopy(counter, reqFields));
+	
+	
+	/**
+	 * 根据处理次数获取url统计
+	 * @param mincount
+	 * @param reqFields
+	 * @return
+	 */
+	public List<Map> getCountList(int mincount, boolean reqFields){
+		List<Map> result = new LinkedList<Map>();
+		for(LogCounter counter: counterMap.values()){
+			if(counter.count.get()>=mincount){
+				result.add(getCounterCopy(counter, reqFields));
 			}
 		}
-
 		Collections.sort(result, new PropertyComparator("count", false, false));
 		return result;
 	}
-
+	/**
+	 * 获取从未使用过的url
+	 * @return
+	 */
 	public Set<String> getUnusedList() {
-		TreeSet result = new TreeSet();
-		Iterator arg1 = this.counterMap.values().iterator();
-
-		while (arg1.hasNext()) {
-			DynamicStats.LogCounter counter = (DynamicStats.LogCounter) arg1.next();
-			if (counter.count.get() == 0) {
+		Set<String> result = new TreeSet<String>();
+		for(LogCounter counter: counterMap.values()){
+			if(counter.count.get()==0){
 				result.add(counter.url);
 			}
 		}
-
 		return result;
 	}
-
-	public Set<String> getAllResources() {
-		TreeSet result = new TreeSet(this.counterMap.keySet());
+	/**
+	 * 获取所有注册的资源
+	 * @return
+	 */
+	public Set<String> getAllResources(){
+		Set<String> result = new TreeSet<String>(counterMap.keySet());
 		return result;
 	}
-
-	private Map getCounterCopy(DynamicStats.LogCounter counter, boolean reqFields) {
-		LinkedHashMap map = new LinkedHashMap();
-		map.put("starttime", new Timestamp(counter.starttime.longValue()));
-		map.put("count", Integer.valueOf(counter.count.get()));
-		if (reqFields) {
-			map.put("totaltime", Long.valueOf(counter.totaltime.get()));
-			map.put("count2", Integer.valueOf(counter.count2.get()));
-			map.put("count2Time", Long.valueOf(counter.count2Time.get()));
+	/**
+	 * 获取当前计数的统计信息
+	 * @param counter
+	 * @return
+	 */
+	private Map getCounterCopy(LogCounter counter, boolean reqFields){
+		Map map = new LinkedHashMap();
+		map.put("starttime", new Timestamp(counter.starttime));
+		map.put("count", counter.count.get());
+		if(reqFields){
+			map.put("totaltime", counter.totaltime.get());
+			map.put("count2", counter.count2.get());
+			map.put("count2Time", counter.count2Time.get());
 			int curcount = counter.processing.get();
-			map.put("processing", Integer.valueOf(curcount));
-			map.put("processed", Integer.valueOf(counter.processed.get()));
-			if (curcount > 0) {
-				long total = System.currentTimeMillis() * (long) curcount - counter.processTime.get();
-				long avgwait = total / (long) curcount;
-				map.put("avgwait", Long.valueOf(avgwait));
+			map.put("processing", curcount);
+			map.put("processed", counter.processed.get());
+			if(curcount>0){
+				long total = System.currentTimeMillis() * curcount - counter.processTime.get();
+				long avgwait = total/curcount;
+				map.put("avgwait", avgwait);
 			}
 		}
-
 		map.put("url", counter.url);
 		return map;
 	}
-
-	private static Map<String, String> getLogMap(DynamicStats.LogCounter counter, long cur) {
-		LinkedHashMap map = new LinkedHashMap();
+	/**
+	 * 请求统计，不清理正在处理
+	 * @param counter
+	 * @param cur
+	 * @return
+	 */
+	private static Map<String, String> getLogMap(LogCounter counter, long cur){
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		map.put("url", counter.url);
 		map.put("starttime", counter.starttime.toString());
 		map.put("count", counter.count.toString());
 		map.put("totaltime", counter.totaltime.toString());
 		map.put("count2", counter.count2.toString());
 		map.put("count2Time", counter.count2Time.toString());
-		map.put("endtime", "" + cur);
+		map.put("endtime", ""+cur);
 		map.put("processed", counter.processed.toString());
 		map.put("processing", counter.processing.toString());
 		return map;
 	}
-
-	private static void resetCounter(DynamicStats.LogCounter counter, long cur) {
-		counter.starttime = Long.valueOf(cur);
+	private static void resetCounter(LogCounter counter, long cur){
+		counter.starttime = cur;
 		counter.count.set(0);
-		counter.totaltime.set(0L);
+		counter.totaltime.set(0);
 		counter.count2.set(0);
-		counter.count2Time.set(0L);
+		counter.count2Time.set(0);
 		counter.processed.set(0);
 	}
 
-	public static class LogCounter {
-		private String type;
+	
+	public static class LogCounter{
+		private String type;		//类型：req or job
 		private String url;
 		private Long starttime;
 		private Long endtime;
-		private AtomicLong totaltime;
-		private AtomicInteger count;
-		private AtomicInteger count2;
-		private AtomicLong count2Time;
-		private AtomicInteger processed;
-		private AtomicLong processTime;
-		private AtomicInteger processing;
-
+		private AtomicLong totaltime;		//成功请求时间
+		private AtomicInteger count;		//成功次数
+		private AtomicInteger count2;		//大于1秒数量
+		private AtomicLong count2Time;		//大于1秒时间
+		private AtomicInteger processed;	//总共处理过的数量
+		private AtomicLong processTime;		//每次请求，processTime += System.currentTimeMillis();
+		private AtomicInteger processing;	//当前正在处理数量，请求来时增加，完成后减少
 		public String getType() {
-			return this.type;
+			return type;
 		}
-
 		public String getUrl() {
-			return this.url;
+			return url;
 		}
-
 		public Long getStarttime() {
-			return this.starttime;
+			return starttime;
 		}
-
 		public Long getEndtime() {
-			return this.endtime;
+			return endtime;
 		}
-
 		public Long getTotaltime() {
-			return Long.valueOf(this.totaltime.get());
+			return totaltime.get();
 		}
-
 		public int getCount() {
-			return this.count.get();
+			return count.get();
 		}
-
 		public int getCount2() {
-			return this.count2.get();
+			return count2.get();
 		}
-
-		public int increamentCount2() {
-			return this.count2.incrementAndGet();
+		public int increamentCount2(){
+			return count2.incrementAndGet();
 		}
-
 		public Long getCount2Time() {
-			return Long.valueOf(this.count2Time.get());
+			return count2Time.get();
 		}
-
 		public Integer getProcessing() {
-			return Integer.valueOf(this.processing.get());
+			return processing.get();
 		}
-
-		private LogCounter(String url, Long starttime) {
-			this.type = "req";
+		private LogCounter(String url, Long starttime){
+			this.type= "req";
 			this.url = url;
 			this.starttime = starttime;
 			this.endtime = starttime;
@@ -436,5 +455,6 @@ public class DynamicStats {
 			this.processed = new AtomicInteger(0);
 			this.processTime = new AtomicLong(0L);
 		}
+		
 	}
 }

@@ -1,25 +1,41 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.vo.member;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
+import com.gewara.api.vo.BaseVo;
+
+
+/**
+ * 红包方式
+ * 
+ * @author xinqi.gu@gewara.com
+ */
 public class MemberPointTypeVo extends BaseVo {
+	
+
+
 	private static final long serialVersionUID = 3311013375042000823L;
+
 	private Long id;
-	private String name;
-	private String value;
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/**
+	 * 红包方式名称
+	 */
+	private String name;
+	
+	/**
+	 * 红包方式值
+	 */
+	private String value;
+
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -27,14 +43,17 @@ public class MemberPointTypeVo extends BaseVo {
 	}
 
 	public String getValue() {
-		return this.value;
+		return value;
 	}
 
 	public void setValue(String value) {
 		this.value = value;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		// TODO Auto-generated method stub
+		return id;
 	}
+	
 }

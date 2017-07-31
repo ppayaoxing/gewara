@@ -1,10 +1,7 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.monitor.impl;
 
-import com.gewara.untrans.monitor.CuratorConnectionFactroy;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.WebLogger;
 import java.io.IOException;
+
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.CuratorFrameworkFactory.Builder;
@@ -14,77 +11,82 @@ import org.apache.curator.retry.RetryNTimes;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class CuratorConnectionFactroyImpl implements CuratorConnectionFactroy, InitializingBean, DisposableBean {
-	private final transient GewaLogger dbLogger = WebLogger.getLogger(this.getClass());
-	private int sessionTimeout = 30000;
-	private String zookeeperQuorum;
-	private ConnectionState state;
-	private CuratorFramework client;
+import com.gewara.untrans.monitor.CuratorConnectionFactroy;
+import com.gewara.util.GewaLogger;
+import com.gewara.util.WebLogger;
 
+public class CuratorConnectionFactroyImpl implements CuratorConnectionFactroy, InitializingBean, DisposableBean {
+	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
+	
+	private int sessionTimeout =30000;//30 seconds
+
+	private String zookeeperQuorum;
 	public void setZookeeperQuorum(String zookeeperQuorum) {
 		this.zookeeperQuorum = zookeeperQuorum;
 	}
-
-	public void setSessionTimeout(int sessionTimeout) {
+	public void setSessionTimeout(int sessionTimeout){
 		this.sessionTimeout = sessionTimeout;
 	}
-
-	private void setState(ConnectionState state) {
+	private ConnectionState state;
+	private void setState(ConnectionState state){
 		this.state = state;
 	}
-
-	public CuratorConnectionFactroyImpl() {
+	
+	public CuratorConnectionFactroyImpl(){
+		
 	}
-
-	public CuratorConnectionFactroyImpl(String zookeeperQuorum) {
+	public CuratorConnectionFactroyImpl(String zookeeperQuorum){
 		this.zookeeperQuorum = zookeeperQuorum;
 	}
+	
+	private CuratorFramework client;
 
+	@Override
 	public void init() throws IOException {
-		Builder builder = CuratorFrameworkFactory.builder().connectString(this.zookeeperQuorum)
-				.retryPolicy(new RetryNTimes(Integer.MAX_VALUE, 1000)).connectionTimeoutMs(this.sessionTimeout);
-		this.client = builder.build();
-		this.client.getConnectionStateListenable().addListener(new ConnectionStateListener() {
+		Builder builder = CuratorFrameworkFactory.builder()
+				.connectString(zookeeperQuorum)
+				.retryPolicy(new RetryNTimes(Integer.MAX_VALUE, 1000))  
+				.connectionTimeoutMs(sessionTimeout);
+		client = builder.build();
+		client.getConnectionStateListenable().addListener(new ConnectionStateListener() {
 			public void stateChanged(CuratorFramework c, ConnectionState s) {
-				CuratorConnectionFactroyImpl.this.setState(s);
-				CuratorConnectionFactroyImpl.this.dbLogger.warn("zookeeper connection " + s);
+				setState(s);
+				dbLogger.warn("zookeeper connection " + s);
 			}
 		});
-		this.client.start();
-		int i = 1;
-		byte max = 50;
-
-		while (this.state != ConnectionState.CONNECTED) {
-			this.dbLogger.warn("zookeeper try connecting...," + i++ + " times!");
-			if (i > max) {
-				throw new IOException("connect to zookeeper failure:" + this.zookeeperQuorum);
+		client.start();
+		int i=1, max=50;
+		while(state!=ConnectionState.CONNECTED){
+			dbLogger.warn("zookeeper try connecting...,"  +  i++ + " times!");
+			if(i>max) {
+				throw new IOException("connect to zookeeper failure:" + zookeeperQuorum);
 			}
-
-			try {
-				Thread.sleep(1000L);
-			} catch (Exception arg4) {
-				;
+			try{
+				Thread.sleep(1000);
+			}catch(Exception e){
 			}
 		}
-
 	}
-
+	
+	@Override
 	public CuratorFramework getCuratorFramework() throws IOException {
-		if (this.state != ConnectionState.CONNECTED) {
-			throw new IOException("connect to zookeeper failure:" + this.zookeeperQuorum);
-		} else {
-			return this.client;
+		if(state!=ConnectionState.CONNECTED){
+			throw new IOException("connect to zookeeper failure:" + zookeeperQuorum);
 		}
+		return client;
 	}
-
+	
+	@Override
 	public void afterPropertiesSet() throws Exception {
-		this.init();
+		init();
 	}
 
+	@Override
 	public void destroy() throws InterruptedException {
-		if (this.client != null) {
-			this.client.close();
+		if (client != null) {
+			client.close();
 		}
-
 	}
+
+
 }

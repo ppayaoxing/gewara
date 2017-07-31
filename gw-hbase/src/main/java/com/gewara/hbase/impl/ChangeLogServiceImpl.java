@@ -1,45 +1,44 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.hbase.impl;
 
-import com.gewara.hbase.ChangeLogService;
-import com.gewara.hbase.HBaseService;
-import com.gewara.hbase.Row;
-import com.gewara.hbase.RowFilter;
-import com.gewara.hbase.util.FilterBuilder;
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Map;
 
-public class ChangeLogServiceImpl implements ChangeLogService {
-	private HBaseService hbaseService;
+import com.gewara.hbase.ChangeLogService;
+import com.gewara.hbase.HBaseService;
+import com.gewara.hbase.HbaseData;
+import com.gewara.hbase.Row;
+import com.gewara.hbase.util.FilterBuilder;
 
+public class ChangeLogServiceImpl implements ChangeLogService{
+	private HBaseService hbaseService;
 	public void setHbaseService(HBaseService hbaseService) {
 		this.hbaseService = hbaseService;
 	}
 
+	@Override
 	public void addChangeLog(String systemId, String tag, Serializable relatedid, Map<String, String> changeMap) {
-		byte[] rowid = this.getRowId(systemId, tag, relatedid);
-		this.hbaseService.saveRow("changehis", rowid, changeMap);
+		byte[] rowid = getRowId(systemId, tag, relatedid);
+		hbaseService.saveRow(HbaseData.TABLE_CHANGEHIS, rowid, changeMap);
 	}
 
-	public Map<Long, Map<String, String>> getChangeLogList(String systemId, String tag, Serializable relatedid) {
-		byte[] rowid = this.getRowId(systemId, tag, relatedid);
-		Map result = this.hbaseService.getMultiVersionRow("changehis", rowid, 500);
+	@Override
+	public Map</*modifytime*/Long, Map<String, String>> getChangeLogList(String systemId, String tag, Serializable relatedid) {
+		byte[] rowid = getRowId(systemId, tag, relatedid);
+		Map<Long, Map<String, String>> result = hbaseService.getMultiVersionRow(HbaseData.TABLE_CHANGEHIS, rowid, 500);
 		return result;
 	}
-
-	public List<Row> getDelLogList(String systemId, String tag, String adddate, int maxnum) {
-		byte[] startRowId = this.getDelRowId(systemId, tag, 0);
-		byte[] endRowId = this.getDelRowId(systemId, tag, Integer.MAX_VALUE);
+	@Override
+	public List<Row> getDelLogList(String systemId, String tag, String adddate, int maxnum){
+		byte[] startRowId = getDelRowId(systemId, tag, 0);
+		byte[] endRowId = getDelRowId(systemId, tag, Integer.MAX_VALUE);
 		FilterBuilder fb = new FilterBuilder();
 		fb.eq("adddate", adddate).eq("action", "del");
-		List rowList = this.hbaseService.getRowListByIdRange("changehis", fb, startRowId, endRowId, (RowFilter) null,
-				maxnum);
+		List<Row> rowList = hbaseService.getRowListByIdRange(HbaseData.TABLE_CHANGEHIS, fb, startRowId, endRowId, null, maxnum);
 		return rowList;
 	}
-
-	private byte[] getRowId(String systemId, String tag, Serializable relatedid) {
+	private byte[] getRowId(String systemId, String tag, Serializable relatedid){
 		byte[] b = new byte[12];
 		ByteBuffer bb = ByteBuffer.wrap(b);
 		bb.putInt(systemId.hashCode());
@@ -47,8 +46,7 @@ public class ChangeLogServiceImpl implements ChangeLogService {
 		bb.putInt(relatedid.toString().hashCode());
 		return b;
 	}
-
-	private byte[] getDelRowId(String systemId, String tag, int i) {
+	private byte[] getDelRowId(String systemId, String tag, int i){
 		byte[] b = new byte[12];
 		ByteBuffer bb = ByteBuffer.wrap(b);
 		bb.putInt(systemId.hashCode());

@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mdb.result;
 
 import com.mongodb.client.result.DeleteResult;
@@ -6,18 +5,25 @@ import com.mongodb.client.result.DeleteResult;
 public class DeleteRes {
 	private DeleteResult result;
 	private boolean d1;
-
-	public DeleteRes(DeleteResult result, boolean done) {
-		this.result = result;
-		this.d1 = done;
+	public DeleteRes(DeleteResult result,boolean done){
+		this.result=result;
+		this.d1=done;
 	}
-
-	public boolean success() {
-		return this.d1 ? this.result.getDeletedCount() == 1L
-				: this.result.getDeletedCount() > 0L && this.result.wasAcknowledged();
+	
+	/**
+	 * 是否成功
+	 * @return
+	 */
+	public boolean success(){
+		if(d1) return this.result.getDeletedCount()==1;
+		return this.result.getDeletedCount()>0&&this.result.wasAcknowledged();
 	}
-
-	public int deleteCount() {
+	
+	/**
+	 * 删除的数量
+	 * @return
+	 */
+	public int deleteCount(){
 		return (int) this.result.getDeletedCount();
 	}
 }

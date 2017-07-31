@@ -1,4 +1,3 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.job;
 
 import java.sql.Timestamp;
@@ -6,7 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 public interface JobStatsService {
-	List<Map<String, Object>> getJobStatsList(Timestamp arg0, Timestamp arg1);
-
+	/**
+	 * 获取定时任务统计信息
+	 * @param from
+	 * @param to
+	 * @return List<Map(jobname,status,execCount)>
+	 */
+	List<Map<String, Object>> getJobStatsList(Timestamp from, Timestamp to);
 	Map<String, String> getJobConfig();
 }

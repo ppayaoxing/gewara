@@ -1,19 +1,43 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.monitor;
 
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.context.support.ServletRequestHandledEvent;
 
 public interface RequestLogService {
-	void logRequest(String arg0, String arg1, Map<String, String> arg2, HttpServletRequest arg3,
-			ServletRequestHandledEvent arg4);
 
-	void logRequest(String arg0, String arg1, String arg2, String arg3, String arg4, Map<String, String> arg5,
-			String arg6, String arg7, String arg8);
+	/**
+	 * 记录日志信息
+	 * @param uri
+	 * @param params
+	 * @param ip
+	 */
+	void logRequest(String ip, String uri, Map<String, String> params, HttpServletRequest req, ServletRequestHandledEvent event);
+	/**
+	 * @param uri
+	 * @param referer
+	 * @param xForwardedHost
+	 * @param params
+	 * @param isAjaxReq
+	 * @param uvKey
+	 * @param memberKey
+	 */
+	void logRequest(String ip, String uri, String referer, String userAgent, String xForwardedHost, Map<String, String> params, String isAjaxReq, String uvKey, String memberKey);
+	
+	/**
+	 * 忽略的敏感关键参数
+	 * @return
+	 */
+	void addSensitiveWords(String sensitive);
+	
+	/**
+	 * 忽略的uri，如果uri后面带“*”号，则表示匹配前缀
+	 * @return
+	 */
+	void addIgnoreUriList(List<String> ignoreUriList);
 
-	void addSensitiveWords(String arg0);
 
-	void addIgnoreUriList(List<String> arg0);
 }

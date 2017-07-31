@@ -1,8 +1,7 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.color;
 
 import java.awt.Color;
 
-public interface ColorFactory {
-	Color getColor(int arg0);
+public abstract interface ColorFactory {
+	public abstract Color getColor(int paramInt);
 }

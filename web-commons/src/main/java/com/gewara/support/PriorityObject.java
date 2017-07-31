@@ -1,8 +1,11 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support;
 
 import java.io.Serializable;
 
-public interface PriorityObject extends Serializable {
-	int getPriority();
+public interface PriorityObject extends Serializable{
+	/**
+	 * 获取对象的优先权重值( 0 <= priority <= 99)
+	 * @return
+	 */
+	public int getPriority();
 }

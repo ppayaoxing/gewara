@@ -1,16 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.model.acl;
 
-import com.gewara.model.BaseObject;
 import java.io.Serializable;
 
+import com.gewara.model.BaseObject;
+
+/**
+ * This class is used to represent available roles in the database.
+ * </p>
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28œ¬ŒÁ02:05:17
+ */
 public class Role extends BaseObject {
 	private static final long serialVersionUID = 3690197650654049848L;
 	protected Long id;
 	protected String name;
 	protected String description;
-	protected String tag;
-
+	protected String tag;				//∑÷¿‡£∫gewa£¨partner
 	public Role() {
 	}
 
@@ -19,11 +24,11 @@ public class Role extends BaseObject {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public String getAuthority() {
-		return this.getName();
+		return getName();
 	}
 
 	public String getName() {
@@ -46,12 +51,13 @@ public class Role extends BaseObject {
 		this.description = description;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {

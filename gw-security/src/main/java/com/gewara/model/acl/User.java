@@ -1,78 +1,86 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.model.acl;
 
-import com.gewara.model.acl.GewaraUser;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28下午02:05:17
+ */
 public class User extends GewaraUser {
 	private static final long serialVersionUID = 3832626162173359411L;
 	private Long id;
-	private String username;
-	private String password;
+	private String username; // required
+	private String password; // required
 	private String nickname;
-	private String accountEnabled;
+	private String accountEnabled; // Y or N
 	private String citycode;
 	private String mobile;
 	private String rolenames;
-	private String usertype;
+	private String usertype; // 用户类型：inner:内部用户，其他：外部用户
 	private String email;
-	private List<GrantedAuthority> tmpAuth;
 
 	public User() {
 	}
 
+	private List<GrantedAuthority> tmpAuth;
+
+	@Override
 	public final List<GrantedAuthority> getAuthorities() {
-		if (this.tmpAuth != null) {
-			return this.tmpAuth;
-		} else {
-			this.tmpAuth = new ArrayList();
-			if (StringUtils.isBlank(this.rolenames)) {
-				return this.tmpAuth;
-			} else {
-				this.tmpAuth.addAll(AuthorityUtils.createAuthorityList(StringUtils.split(this.rolenames, ",")));
-				return this.tmpAuth;
-			}
-		}
+		if (tmpAuth != null)
+			return tmpAuth;
+		tmpAuth = new ArrayList<GrantedAuthority>();
+		if (StringUtils.isBlank(rolenames))
+			return tmpAuth;
+		tmpAuth.addAll(AuthorityUtils.createAuthorityList(StringUtils.split(rolenames, ",")));
+		return tmpAuth;
 	}
 
+	@Override
 	public final String getRolesString() {
-		return this.rolenames;
+		return rolenames;
 	}
 
+	@Override
 	public final boolean isRole(String rolename) {
-		String[] roles = StringUtils.split(this.rolenames, ",");
+		String[] roles = StringUtils.split(rolenames, ",");
 		return ArrayUtils.contains(roles, rolename);
 	}
 
+	@Override
 	public String getRealname() {
-		if (StringUtils.isBlank(this.username)) {
+		if (StringUtils.isBlank(username)) {
 			return null;
-		} else {
-			int index = this.username.indexOf(64);
-			return index > 0 ? "m-" + this.username.substring(0, index) : "m-" + this.username;
 		}
+		int index = username.indexOf('@');
+		if (index > 0)
+			return "m-" + username.substring(0, index);
+		return "m-" + username;
 	}
 
 	public User(String username) {
 		this.username = StringUtils.lowerCase(username);
 	}
 
+	@Override
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
+	@Override
 	public String getUsername() {
-		return this.username;
+		return username;
 	}
 
+	@Override
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
 
 	public void setId(Long id) {
@@ -87,16 +95,18 @@ public class User extends GewaraUser {
 		this.password = password;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
+	@Override
 	public boolean isEnabled() {
-		return "Y".equals(this.accountEnabled);
+		return "Y".equals(accountEnabled);
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -104,7 +114,7 @@ public class User extends GewaraUser {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -112,7 +122,7 @@ public class User extends GewaraUser {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -120,15 +130,16 @@ public class User extends GewaraUser {
 	}
 
 	public String getRolenames() {
-		return this.rolenames;
+		return rolenames;
 	}
 
 	public void setRolenames(String rolenames) {
 		this.rolenames = rolenames;
 	}
 
+	@Override
 	public String getUsertype() {
-		return this.usertype;
+		return usertype;
 	}
 
 	public void setUsertype(String usertype) {
@@ -136,7 +147,7 @@ public class User extends GewaraUser {
 	}
 
 	public String getAccountEnabled() {
-		return this.accountEnabled;
+		return accountEnabled;
 	}
 
 	public void setAccountEnabled(String accountEnabled) {
@@ -145,13 +156,16 @@ public class User extends GewaraUser {
 
 	public void setAuthorities(List<GrantedAuthority> tmpAuth) {
 		this.tmpAuth = tmpAuth;
+
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
 }

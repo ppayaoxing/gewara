@@ -1,83 +1,60 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
-import com.gewara.util.BeanUtil;
-import com.gewara.util.ClassUtils;
-import com.gewara.util.DateUtil;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 
 public class ChangeEntry {
-	private Map<String, ?> oldMap;
-
-	public ChangeEntry() {
+	public ChangeEntry(){
 	}
-
-	public ChangeEntry(Map<String, ?> oldMap) {
+	public ChangeEntry(Map<String, ?> oldMap){
 		this.oldMap = oldMap;
 	}
-
-	public ChangeEntry(Object oldObj) {
-		this.setOld(oldObj);
+	public ChangeEntry(Object oldObj){
+		setOld(oldObj);
 	}
-
-	public void setOld(Object oldObj) {
-		if (oldObj != null) {
-			this.oldMap = BeanUtil.getBeanMap(oldObj);
+	private Map<String, ?> oldMap;
+	public void setOld(Object oldObj){
+		if(oldObj!=null) {
+			oldMap = BeanUtil.getBeanMap(oldObj);
 		}
-
-		if (this.oldMap == null) {
-			this.oldMap = new HashMap();
-		}
-
+		if(oldMap==null) oldMap = new HashMap<String, Object>();
 	}
-
-	public Map<String, String> getChangeMap(Object newObj) {
-		HashMap tmpMap = new HashMap(this.oldMap);
-		Object newMap = BeanUtil.getBeanMap(newObj);
-		if (newMap == null) {
-			newMap = new HashMap();
-		}
-
-		HashMap changeMap = new HashMap();
-		ArrayList keySet = new ArrayList();
+	public Map<String, String> getChangeMap(Object newObj){
+		Map<String, ?> tmpMap = new HashMap<String, Object>(oldMap);
+		Map<String, ?> newMap = BeanUtil.getBeanMap(newObj);
+		if(newMap ==null) newMap = new HashMap<String, Object>();
+		Map<String, String> changeMap = new HashMap<String, String>();
+		List<String> keySet = new ArrayList<String>();
 		keySet.addAll(tmpMap.keySet());
-		keySet.addAll(((Map) newMap).keySet());
-		Iterator arg5 = keySet.iterator();
-
-		while (arg5.hasNext()) {
-			String key = (String) arg5.next();
+		keySet.addAll(newMap.keySet());
+		for(String key: keySet){
 			Object oldvalue = tmpMap.remove(key);
-			Object newvalue = ((Map) newMap).remove(key);
-			String ov = this.getStringValue(oldvalue);
-			String nv = this.getStringValue(newvalue);
-			if (!StringUtils.equals(ov, nv)) {
+			Object newvalue = newMap.remove(key);
+			String ov = getStringValue(oldvalue);
+			String nv = getStringValue(newvalue);
+			if(!StringUtils.equals(ov, nv)){
 				changeMap.put(key, ov + "==>" + nv);
 			}
 		}
-
 		return changeMap;
 	}
-
-	public String getChangeMap(Map<String, String> changeMap) {
-		if (changeMap.isEmpty()) {
-			return "";
-		} else {
-			String change = changeMap.toString();
-			return change;
-		}
+	public String getChangeMap(Map<String, String> changeMap){
+		if(changeMap.isEmpty()) return "";
+		String change = changeMap.toString();
+		return change;
 	}
-
-	public String getStringValue(Object value) {
-		return value == null ? ""
-				: (value instanceof String ? (String) value
-						: (ClassUtils.isPrimitiveOrWrapper(value.getClass()) ? "" + value
-								: (value instanceof Timestamp ? DateUtil.formatTimestamp((Timestamp) value)
-										: (value instanceof Date ? DateUtil.formatDate((Date) value) : "" + value))));
+	public String getStringValue(Object value){
+		if(value==null) return "";
+		if(value instanceof String) return (String) value;
+		if(ClassUtils.isPrimitiveOrWrapper(value.getClass())) return ""+value;
+		if(value instanceof Timestamp) return DateUtil.formatTimestamp((Timestamp) value);
+		if(value instanceof Date) return DateUtil.formatDate((Date)value);
+		return ""+value;
 	}
 }

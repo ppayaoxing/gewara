@@ -1,88 +1,126 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.bean;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.constant.AttackConstant;
+
+/**
+ * 
+ * @author leo
+ *
+ */
 public class BlackMatcher {
-	private Map<String, Long> matcherMap = new HashMap();
+	private Map<String/*uri or ip*/, Long/*time*/> matcherMap = new HashMap<String, Long>();
 	private String ip;
-
-	public BlackMatcher() {
-	}
-
-	public BlackMatcher(String ip) {
+	
+	public BlackMatcher(){}
+	
+	public BlackMatcher(String ip){
 		this.ip = ip;
 	}
-
-	public Long get(String uri) {
-		return (Long) this.matcherMap.get(uri);
+	
+	/**
+	 * 获取指定uri对应的释放时间
+	 * @param uri
+	 * @return
+	 * @author leo
+	 * @addTime 2014年5月20日下午5:37:45
+	 */
+	public Long get(String uri){
+		return matcherMap.get(uri);
+	}
+	
+	/**
+	 * 获取默认uri ip对应的释放时间
+	 * @return
+	 * @author leo
+	 * @addTime 2014年5月20日下午5:38:28
+	 */
+	public Long get(){
+		return matcherMap.get(AttackConstant.ACCESS_URL_ALL);
 	}
 
-	public Long get() {
-		return (Long) this.matcherMap.get("ALL");
-	}
-
-	public void put(String uri, Long releaseTime) {
-		if (StringUtils.isBlank(uri)) {
-			this.matcherMap.put("ALL", releaseTime);
-		} else {
-			this.matcherMap.put(uri, releaseTime);
+	/**
+	 * 给指定uri设定释放时间
+	 * @param uri
+	 * @param releaseTime
+	 * @author leo
+	 * @addTime 2014年5月20日下午5:37:21
+	 */
+	public void put(String uri, Long releaseTime){
+		if(StringUtils.isBlank(uri)){
+			matcherMap.put(AttackConstant.ACCESS_URL_ALL, releaseTime);
+		}else{
+			matcherMap.put(uri, releaseTime);
 		}
-
 	}
-
-	public void put(Long releaseTime) {
-		this.matcherMap.put("ALL", releaseTime);
+	
+	/**
+	 * 默认给uri ip设置释放时间
+	 * @param releaseTime
+	 * @author leo
+	 * @addTime 2014年5月20日下午5:36:45
+	 */
+	public void put(Long releaseTime){
+		matcherMap.put(AttackConstant.ACCESS_URL_ALL, releaseTime);
 	}
-
-	public void remove(String uri) {
-		this.matcherMap.remove(uri);
+	
+	/**
+	 * 删除uri
+	 * @param uri
+	 * @return
+	 * @author leo
+	 * @addTime 2014年5月20日下午5:37:45
+	 */
+	public void remove(String uri){
+		matcherMap.remove(uri);
 	}
-
-	public void remove() {
-		this.matcherMap.remove("ALL");
+	
+	/**
+	 * 删除默认uri ip
+	 * @return
+	 * @author leo
+	 * @addTime 2014年5月20日下午5:38:28
+	 */
+	public void remove(){
+		matcherMap.remove(AttackConstant.ACCESS_URL_ALL);
 	}
-
-	public boolean isEmpty() {
-		return this.matcherMap.isEmpty();
+	
+	public boolean isEmpty(){
+		return matcherMap.isEmpty();
 	}
-
-	public void delOverdue() {
+	
+	public void delOverdue(){
 		long currentTime = System.currentTimeMillis();
-		HashMap tmp = new HashMap(this.matcherMap);
-		Iterator it = tmp.entrySet().iterator();
+		Map<String, Long> tmp = new HashMap<String, Long>(matcherMap);
+		Iterator<Map.Entry<String, Long>> it = tmp.entrySet().iterator();
 		boolean flag = false;
-
 		while (it.hasNext()) {
-			Entry entry = (Entry) it.next();
-			if (((Long) entry.getValue()).longValue() < currentTime) {
+			Map.Entry<String, Long> entry = it.next();
+			if(entry.getValue() < currentTime){
 				it.remove();
 				flag = true;
 			}
 		}
-
-		if (flag) {
-			this.matcherMap = tmp;
-		}
-
+		if(flag) matcherMap = tmp;
 	}
-
-	public Long gainReleaseTime(String uri) {
-		Long uriReleaseTime = (Long) this.matcherMap.get(uri);
-		if (uriReleaseTime != null) {
+	
+	public Long gainReleaseTime(String uri){
+		Long uriReleaseTime = matcherMap.get(uri);
+		if(uriReleaseTime!=null){
 			return uriReleaseTime;
-		} else {
-			Long ipReleaseTime = (Long) this.matcherMap.get("ALL");
-			return ipReleaseTime;
 		}
+		//全局
+		Long ipReleaseTime = matcherMap.get(AttackConstant.ACCESS_URL_ALL);
+		return ipReleaseTime;
 	}
-
+	
 	public String getIp() {
-		return this.ip;
+		return ip;
 	}
 
 	public void setIp(String ip) {
@@ -90,6 +128,6 @@ public class BlackMatcher {
 	}
 
 	public Map<String, Long> getMatcherMap() {
-		return this.matcherMap;
+		return matcherMap;
 	}
 }

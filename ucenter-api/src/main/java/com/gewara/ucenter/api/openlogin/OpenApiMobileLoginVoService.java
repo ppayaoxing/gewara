@@ -1,23 +1,35 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.api.openlogin;
+
+import java.util.Map;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.ucenter.vo.member.MemberVo;
 import com.gewara.ucenter.vo.member.OpenResultVo;
-import java.util.Map;
 
+/**
+ * APP µÇÂ½Ïà¹ØAPI
+ * 
+ */
 public interface OpenApiMobileLoginVoService {
-	ResultCode<String> mobileRegister(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5,
-			String arg6, String arg7, String arg8, String arg9, String arg10, String arg11, String arg12, String arg13,
-			String arg14, Map<String, String> arg15, boolean arg16);
+	ResultCode<String> mobileRegister(String nickname, String password,
+			String dynamicNumber, String mobile, String appSource,
+			String apptype, String osType, String appVersion, String idfa,
+			String deviceid, String deviceId, String imei, String citycode,
+			String invfrom, String remoteIp,
+			Map<String, String> requestParamMap, boolean hasM66V);
 
-	ResultCode sendMobileCheck(MemberVo arg0, String arg1, String arg2, String arg3);
+	ResultCode sendMobileCheck(MemberVo currentMember, String mobile,
+			String memberEncode, String remoteIp);
 
-	ResultCode<OpenResultVo> openMemberLogin(String arg0, String arg1, String arg2, String arg3, String arg4);
+	ResultCode<OpenResultVo> openMemberLogin(String userid, String source,
+			String nickname, String token, String remoteIp);
 
-	ResultCode<OpenResultVo> openMemberLoginByApp(String arg0, String arg1, String arg2, Long arg3, String arg4,
-			String arg5);
+	ResultCode<OpenResultVo> openMemberLoginByApp(String accessToken,
+			String userid, String source, Long partnerid, String otherinfo,
+			String remoteIp);
 
-	ResultCode<OpenResultVo> bindAuth(MemberVo arg0, Boolean arg1, Boolean arg2, String arg3, String arg4, Long arg5,
-			String arg6, String arg7, String arg8, String arg9);
+	ResultCode<OpenResultVo> bindAuth(MemberVo masterMember, Boolean bindFlag,
+			Boolean bindGewaraFlag, String openid, String source,
+			Long partnerid, String accessToken, String username,
+			String password, String remoteIp);
 }

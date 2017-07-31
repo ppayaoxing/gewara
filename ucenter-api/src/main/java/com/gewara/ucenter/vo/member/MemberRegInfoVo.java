@@ -1,29 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.vo.member;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.ucenter.vo.member.MemberInfoVo;
-import com.gewara.ucenter.vo.member.MemberVo;
 import java.io.Serializable;
 
+import com.gewara.api.vo.BaseVo;
+
+
 public class MemberRegInfoVo extends BaseVo {
+
 	private static final long serialVersionUID = 8494912966229787884L;
+	
 	private MemberVo member;
 	private MemberInfoVo memberInfo;
 	private String memberEncode;
-	private boolean onlyBind = false;
+	private boolean onlyBind = false; // 账户之前可能存在,只是重新动态码登录
 
 	public MemberRegInfoVo() {
+		super();
 	}
-
-	public MemberRegInfoVo(MemberVo member, MemberInfoVo memberInfo, String memberEncode) {
+	
+	public MemberRegInfoVo(MemberVo member, MemberInfoVo memberInfo, String memberEncode){
 		this.member = member;
 		this.memberInfo = memberInfo;
 		this.memberEncode = memberEncode;
 	}
-
+	
 	public MemberVo getMember() {
-		return this.member;
+		return member;
 	}
 
 	public void setMember(MemberVo member) {
@@ -31,7 +33,7 @@ public class MemberRegInfoVo extends BaseVo {
 	}
 
 	public MemberInfoVo getMemberInfo() {
-		return this.memberInfo;
+		return memberInfo;
 	}
 
 	public void setMemberInfo(MemberInfoVo memberInfo) {
@@ -39,7 +41,7 @@ public class MemberRegInfoVo extends BaseVo {
 	}
 
 	public String getMemberEncode() {
-		return this.memberEncode;
+		return memberEncode;
 	}
 
 	public void setMemberEncode(String memberEncode) {
@@ -47,14 +49,16 @@ public class MemberRegInfoVo extends BaseVo {
 	}
 
 	public boolean isOnlyBind() {
-		return this.onlyBind;
+		return onlyBind;
 	}
 
 	public void setOnlyBind(boolean onlyBind) {
 		this.onlyBind = onlyBind;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.memberEncode;
+		return memberEncode;
 	}
+
 }

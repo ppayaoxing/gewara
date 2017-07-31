@@ -1,16 +1,14 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.api.filter;
 
 public class DubboApiAuth {
-	private String reqUri;
-	private String systemid;
-	private Long userid;
-	private String username;
-	private String sessionid;
+	private String reqUri;		//请求URI
+	private String systemid;	//系统ID
+	private Long userid;	//登录用户ID
+	private String username;		//登录用户名称
+	private String sessionid;	//登录用户sessionid
 	private String remoteIp;
-
-	public DubboApiAuth(String reqUri, String systemid, Long userid, String username, String sessionid,
-			String remoteIp) {
+	
+	public DubboApiAuth(String reqUri, String systemid, Long userid, String username, String sessionid, String remoteIp){
 		this.reqUri = reqUri;
 		this.systemid = systemid;
 		this.userid = userid;
@@ -18,28 +16,32 @@ public class DubboApiAuth {
 		this.sessionid = sessionid;
 		this.remoteIp = remoteIp;
 	}
-
+	
+	
 	public String getReqUri() {
-		return this.reqUri;
+		return reqUri;
 	}
-
+	
 	public String getSystemid() {
-		return this.systemid;
+		return systemid;
+	}
+	
+	public Long getUserid() {
+		return userid;
 	}
 
-	public Long getUserid() {
-		return this.userid;
-	}
 
 	public String getUsername() {
-		return this.username;
+		return username;
 	}
 
 	public String getSessionid() {
-		return this.sessionid;
+		return sessionid;
 	}
-
+	
 	public String getRemoteIp() {
-		return this.remoteIp;
+		return remoteIp;
 	}
+	
+	
 }

@@ -1,44 +1,45 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.impl;
 
-import com.gewara.untrans.JmsService;
-import com.gewara.untrans.impl.GewaJmsTemplate;
-import com.gewara.util.Assert;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.WebLogger;
-import com.gewara.web.support.ResourceStatsUtil;
-import com.gewara.web.support.DynamicStats.LogCounter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+
 import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.MapMessage;
 import javax.jms.Message;
 import javax.jms.Session;
-import javax.jms.TextMessage;
+
+import org.apache.activemq.ScheduledMessage;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.jms.support.converter.MessageConversionException;
 import org.springframework.util.ObjectUtils;
 
-public class RandomJmsServiceImpl implements JmsService, InitializingBean {
-	private final transient GewaLogger dbLogger = WebLogger.getLogger(this.getClass());
-	private Map<String, String> queueMap = new HashMap();
-	private List<GewaJmsTemplate> jmsTemplateList = new ArrayList();
-	private String jmsServers;
-	private long receiveTimeout = 20000L;
+import com.gewara.untrans.JmsService;
+import com.gewara.util.Assert;
+import com.gewara.util.GewaLogger;
+import com.gewara.util.WebLogger;
+import com.gewara.web.support.DynamicStats.LogCounter;
+import com.gewara.web.support.ResourceStatsUtil;
+
+/**
+ * @author ge.biao
+ * 多台jms服务器循环发送
+ */
+public class RandomJmsServiceImpl implements JmsService, InitializingBean{
+	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
+	private Map<String, String> queueMap = new HashMap<String, String>();
+	private List<GewaJmsTemplate> jmsTemplateList = new ArrayList<GewaJmsTemplate>();
+	private String jmsServers;//tcp://192.168.8.109:9521,tcp://192.168.8.108:9521
+	private long receiveTimeout = 20000;
 	private int count = 0;
 	private int templateSize;
-
-	public RandomJmsServiceImpl() {
+	public RandomJmsServiceImpl(){
 	}
-
-	public RandomJmsServiceImpl(Map<String, String> queueMap) {
+	public RandomJmsServiceImpl(Map<String, String> queueMap){
 		this.queueMap = queueMap;
 	}
 
@@ -46,269 +47,222 @@ public class RandomJmsServiceImpl implements JmsService, InitializingBean {
 		this.jmsServers = jmsServers;
 	}
 
+	@Override
 	public void afterPropertiesSet() {
-		Assert.isTrue(StringUtils.isNotBlank(this.jmsServers), "jmsServers can\'t be null!!");
-		int idx = this.jmsServers.indexOf(40);
-		if (idx > 0) {
-			int servers = this.jmsServers.indexOf(41);
-			this.jmsServers = this.jmsServers.substring(idx + 1, servers);
+		Assert.isTrue(StringUtils.isNotBlank(jmsServers), "jmsServers can't be null!!");
+		//failover:(tcp://192.168.8.109:9521,tcp://192.168.8.108:9521)?randomize=false
+		//0,去除failover
+		int idx = jmsServers.indexOf('(');
+		if(idx>0){
+			int idx2 = jmsServers.indexOf(')');
+			jmsServers = jmsServers.substring(idx + 1, idx2);
 		}
-
-		ArrayList arg7 = new ArrayList();
-		String[] arg2 = StringUtils.split(this.jmsServers, ",");
-		int queue = arg2.length;
-
-		String brokerURL;
-		for (int list = 0; list < queue; ++list) {
-			brokerURL = arg2[list];
-			if (StringUtils.isNotBlank(brokerURL)) {
-				arg7.add(brokerURL.trim());
+		//1,整理
+		List<String> servers = new ArrayList<String>();
+		for(String server: StringUtils.split(jmsServers, ",")){
+			if(StringUtils.isNotBlank(server)){
+				servers.add(server.trim());
 			}
 		}
-
-		Iterator arg8 = arg7.iterator();
-
-		String arg9;
-		while (arg8.hasNext()) {
-			arg9 = (String) arg8.next();
-			ArrayList arg10 = new ArrayList(arg7);
-			arg10.remove(arg9);
-			arg10.add(arg9);
-			brokerURL = "failover:(" + StringUtils.join(arg10, ",") + ")?randomize=false";
-			GewaJmsTemplate template = new GewaJmsTemplate(brokerURL, this.receiveTimeout);
+		//2,逐个
+		for(String server: servers){
+			List<String> list = new ArrayList<String>(servers);
+			list.remove(server);
+			list.add(server);
+			//failover:(tcp://192.168.8.109:9521,tcp://192.168.8.108:9521)?randomize=false
+			String brokerURL = "failover:(" + StringUtils.join(list, ",") + ")?randomize=false";
+			GewaJmsTemplate template = new GewaJmsTemplate(brokerURL, receiveTimeout);
 			template.setMessageIdEnabled(false);
 			template.setMessageTimestampEnabled(false);
-			this.jmsTemplateList.add(template);
+			jmsTemplateList.add(template);
 		}
-
-		arg8 = this.queueMap.keySet().iterator();
-
-		while (arg8.hasNext()) {
-			arg9 = (String) arg8.next();
-			this.addQueue(arg9, StringUtils.equals((String) this.queueMap.get(arg9), "persist"), true);
+		//3,add queue
+		for(String queue: queueMap.keySet()){
+			addQueue(queue, StringUtils.equals(queueMap.get(queue), "persist"), true);
 		}
-
-		this.addQueue("defaultMsgQueue", true, true);
-		this.templateSize = this.jmsTemplateList.size();
+		//4,default
+		addQueue(GewaJmsTemplate.DEFALUT_DST, true, true);
+		this.templateSize = jmsTemplateList.size();
+		
 	}
-
-	public void stopAll() {
-		Iterator arg0 = this.jmsTemplateList.iterator();
-
-		while (arg0.hasNext()) {
-			GewaJmsTemplate template = (GewaJmsTemplate) arg0.next();
+	public void stopAll(){
+		for(GewaJmsTemplate template: jmsTemplateList){
 			template.stop();
 		}
-
 	}
-
-	private GewaJmsTemplate getTemplate() {
-		++this.count;
-		return (GewaJmsTemplate) this.jmsTemplateList.get(this.count % this.templateSize);
+	
+	private GewaJmsTemplate getTemplate(){
+		count ++;
+		return jmsTemplateList.get(count % templateSize);
 	}
-
+	
+	@Override
 	public void sendMsgToDst(String dst, String msgtag, String msg) {
-		this.sendStringMsg(dst, msgtag, msg, (Long) null);
+		sendStringMsg(dst, msgtag, msg, null);
 	}
-
+	@Override
 	public void sendMsgToDst(String dst, String msgtag, Map msgMap) {
-		this.sendMapMsg(dst, msgtag, msgMap, (Long) null);
+		sendMapMsg(dst, msgtag, msgMap, null);
 	}
-
-	public void sendMsgToDst(String dst, String msgtag, String keyList, Object... params) {
-		this.sendMsg(dst, msgtag, keyList, params);
+	@Override
+	public void sendMsgToDst(String dst, String msgtag, String keyList, Object...params) {
+		sendMsg(dst, msgtag, keyList, params);
 	}
-
-	public void sendMsgToDstWithMultiHead(String queueName, final String msgtag, final Map msgMap,
-			final Map<String, String> headMap) {
+	@Override
+	public void sendMsgToDstWithMultiHead(String queueName, final String msgtag, final Map msgMap, final Map<String, String> headMap){
 		long cur = System.currentTimeMillis();
 		LogCounter counter = ResourceStatsUtil.getJmsStats().beforeProcess(queueName, cur);
-
-		try {
-			GewaJmsTemplate e = this.getTemplate();
-			Destination dest = e.getDestination(queueName);
-			e.send(dest, new MessageCreator() {
+		try{
+			GewaJmsTemplate template = getTemplate();
+			Destination dest = template.getDestination(queueName);
+			template.send(dest, new MessageCreator(){
+				@Override
 				public Message createMessage(Session session) throws JMSException {
 					MapMessage message = session.createMapMessage();
 					message.setStringProperty("msgtag", msgtag);
-					Iterator arg2;
-					if (headMap != null) {
-						arg2 = headMap.entrySet().iterator();
-
-						while (arg2.hasNext()) {
-							Entry key = (Entry) arg2.next();
-							if (StringUtils.isNotBlank((String) key.getKey())
-									&& StringUtils.isNotBlank((String) key.getValue())) {
-								message.setStringProperty((String) key.getKey(), (String) key.getValue());
+					if(headMap!=null){
+						for(Map.Entry<String, String> entry: headMap.entrySet()){
+							if(StringUtils.isNotBlank(entry.getKey()) && StringUtils.isNotBlank(entry.getValue())){
+								message.setStringProperty(entry.getKey(), entry.getValue());
 							}
 						}
 					}
-
-					arg2 = msgMap.keySet().iterator();
-
-					while (arg2.hasNext()) {
-						Object key1 = arg2.next();
-						if (!(key1 instanceof String)) {
-							throw new MessageConversionException("Cannot convert non-String key of type ["
-									+ ObjectUtils.nullSafeClassName(key1) + "] to JMS MapMessage entry");
+					for (Object key : msgMap.keySet()) {
+						if (!(key instanceof String)) {
+							throw new MessageConversionException("Cannot convert non-String key of type [" +
+									ObjectUtils.nullSafeClassName(key) + "] to JMS MapMessage entry");
 						}
-
-						message.setObject((String) key1, msgMap.get(key1));
+						message.setObject((String) key, msgMap.get(key));
 					}
-
 					return message;
 				}
 			});
-		} catch (Exception arg12) {
-			this.dbLogger.warn(arg12, 20);
-		} finally {
+		}catch (Exception e){
+			dbLogger.warn(e, 20);
+		}finally{
 			ResourceStatsUtil.getJmsStats().afterProcess(counter, System.currentTimeMillis(), false);
 		}
 
 	}
-
-	private void sendMsg(String dst, String msgtag, String keyList, Object... params) {
-		if (!StringUtils.isBlank(keyList) && params != null) {
-			HashMap msgMap = new HashMap();
-			String[] keys = keyList.split("[, ]+");
-			int i = 0;
-
-			for (int size = Math.min(keys.length, params.length); i < size; ++i) {
-				msgMap.put(keys[i], params[i]);
-			}
-
-			this.sendMapMsg(dst, msgtag, msgMap, (Long) null);
+	private void sendMsg(String dst, String msgtag, String keyList, Object...params) {
+		if(StringUtils.isBlank(keyList) || params==null) return;
+		Map msgMap = new HashMap();
+		String[] keys = keyList.split("[, ]+");
+		for(int i=0, size=Math.min(keys.length, params.length);i<size;i++){
+			msgMap.put(keys[i], params[i]);
 		}
+		sendMapMsg(dst, msgtag, msgMap, null);
 	}
-
+	
 	private void sendStringMsg(String dst, final String msgtag, final String msg, final Long delay) {
 		long cur = System.currentTimeMillis();
 		LogCounter counter = ResourceStatsUtil.getJmsStats().beforeProcess(dst, cur);
-
-		try {
-			GewaJmsTemplate e = this.getTemplate();
-			Destination dest = e.getDestination(dst);
-			e.send(dest, new MessageCreator() {
+		try{
+			GewaJmsTemplate template = getTemplate();
+			Destination dest = template.getDestination(dst);
+			template.send(dest, new MessageCreator(){
+				@Override
 				public Message createMessage(Session session) throws JMSException {
-					TextMessage message = session.createTextMessage(msg);
-					if (delay != null) {
-						message.setLongProperty("AMQ_SCHEDULED_DELAY", delay.longValue());
+					Message message = session.createTextMessage(msg);
+					if(delay!=null){//延迟发送
+						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
 					}
-
 					message.setStringProperty("msgtag", msgtag);
 					return message;
 				}
 			});
-		} catch (Exception arg12) {
-			this.dbLogger.warn(arg12, 20);
-		} finally {
+		}catch (Exception e){
+			dbLogger.warn(e, 20);
+		}finally{
 			ResourceStatsUtil.getJmsStats().afterProcess(counter, System.currentTimeMillis(), false);
 		}
-
 	}
 
 	private void sendMapMsg(String dst, final String msgtag, final Map msgMap, final Long delay) {
 		long cur = System.currentTimeMillis();
 		LogCounter counter = ResourceStatsUtil.getJmsStats().beforeProcess(dst, cur);
+		try{
+			GewaJmsTemplate template = getTemplate();
+			Destination dest = template.getDestination(dst);
 
-		try {
-			GewaJmsTemplate e = this.getTemplate();
-			Destination dest = e.getDestination(dst);
-			e.send(dest, new MessageCreator() {
+			template.send(dest, new MessageCreator(){
+				@Override
 				public Message createMessage(Session session) throws JMSException {
 					MapMessage message = session.createMapMessage();
-					if (delay != null) {
-						message.setLongProperty("AMQ_SCHEDULED_DELAY", delay.longValue());
+					if(delay!=null){//延迟发送
+						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
 					}
-
 					message.setStringProperty("msgtag", msgtag);
-					Iterator arg2 = msgMap.keySet().iterator();
-
-					while (arg2.hasNext()) {
-						Object key = arg2.next();
+					for (Object key : msgMap.keySet()) {
 						if (!(key instanceof String)) {
-							throw new MessageConversionException("Cannot convert non-String key of type ["
-									+ ObjectUtils.nullSafeClassName(key) + "] to JMS MapMessage entry");
+							throw new MessageConversionException("Cannot convert non-String key of type [" +
+									ObjectUtils.nullSafeClassName(key) + "] to JMS MapMessage entry");
 						}
-
 						message.setObject((String) key, msgMap.get(key));
 					}
-
 					return message;
 				}
 			});
-		} catch (Exception arg12) {
-			this.dbLogger.warn(arg12, 20);
-		} finally {
+		}catch (Exception e){
+			dbLogger.warn(e, 20);
+		}finally{
 			ResourceStatsUtil.getJmsStats().afterProcess(counter, System.currentTimeMillis(), false);
 		}
-
 	}
-
 	public void setQueueMap(Map<String, String> queueMap) {
 		this.queueMap = queueMap;
 	}
-
+	
+	@Override
 	public void addQueue(String queue, boolean persist, boolean override) {
-		Iterator arg3 = this.jmsTemplateList.iterator();
-
-		while (arg3.hasNext()) {
-			GewaJmsTemplate template = (GewaJmsTemplate) arg3.next();
+		for(GewaJmsTemplate template: jmsTemplateList){
 			template.addToQueue(queue, persist, override);
 		}
-
 	}
-
+	@Override
 	public void delaySendMsgToDst(String dst, String tag, Map msgMap, long delay) {
-		this.sendMapMsg(dst, tag, msgMap, Long.valueOf(delay));
+		sendMapMsg(dst, tag, msgMap, delay);
 	}
-
-	public void periodSendMsgToDst(String dst, final String tag, final Map msgMap, final long delay, final long period,
-			final int repeatNum) {
+	@Override
+	public void periodSendMsgToDst(String dst, final String tag, final Map msgMap, final long delay, final long period, final int repeatNum){
 		long cur = System.currentTimeMillis();
 		LogCounter counter = ResourceStatsUtil.getJmsStats().beforeProcess(dst, cur);
-
-		try {
-			GewaJmsTemplate e = this.getTemplate();
-			Destination dest = e.getDestination(dst);
-			e.send(dest, new MessageCreator() {
+		try{
+			GewaJmsTemplate template = getTemplate();
+			Destination dest = template.getDestination(dst);
+			template.send(dest, new MessageCreator(){
+				@Override
 				public Message createMessage(Session session) throws JMSException {
 					MapMessage message = session.createMapMessage();
-					message.setLongProperty("AMQ_SCHEDULED_DELAY", delay);
-					if (repeatNum > 0) {
-						message.setLongProperty("AMQ_SCHEDULED_PERIOD", period);
-						message.setIntProperty("AMQ_SCHEDULED_REPEAT", repeatNum);
+					//String scheduleId, 
+					message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
+					if(repeatNum>0){
+						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_PERIOD, period);
+						message.setIntProperty(ScheduledMessage.AMQ_SCHEDULED_REPEAT, repeatNum);
 					}
-
 					message.setStringProperty("msgtag", tag);
-					Iterator arg2 = msgMap.keySet().iterator();
-
-					while (arg2.hasNext()) {
-						Object key = arg2.next();
+					for (Object key : msgMap.keySet()) {
 						if (!(key instanceof String)) {
-							throw new MessageConversionException("Cannot convert non-String key of type ["
-									+ ObjectUtils.nullSafeClassName(key) + "] to JMS MapMessage entry");
+							throw new MessageConversionException("Cannot convert non-String key of type [" +
+									ObjectUtils.nullSafeClassName(key) + "] to JMS MapMessage entry");
 						}
-
 						message.setObject((String) key, msgMap.get(key));
 					}
-
 					return message;
 				}
 			});
-		} catch (Exception arg16) {
-			this.dbLogger.warn(arg16, 20);
-		} finally {
+		}catch (Exception e){
+			dbLogger.warn(e, 20);
+		}finally{
 			ResourceStatsUtil.getJmsStats().afterProcess(counter, System.currentTimeMillis(), false);
 		}
-
 	}
 
+	@Override
 	public void delaySendMsgToDst(String dst, String tag, String msg, long delay) {
-		this.sendStringMsg(dst, tag, msg, Long.valueOf(delay));
+		sendStringMsg(dst, tag, msg, delay);
 	}
-
 	public void setReceiveTimeout(int receiveTimeout) {
-		this.receiveTimeout = (long) receiveTimeout;
+		this.receiveTimeout = receiveTimeout;
 	}
 }

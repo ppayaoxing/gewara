@@ -1,5 +1,24 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.impl;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.http.impl.cookie.BasicClientCookie;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.gewara.Config;
 import com.gewara.json.PageView;
@@ -21,414 +40,365 @@ import com.gewara.util.HttpUtils;
 import com.gewara.util.JsonUtils;
 import com.gewara.util.WebLogger;
 import com.gewara.web.support.ResourceStatsUtil;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import net.spy.memcached.MemcachedClient;
-import org.apache.commons.lang.StringUtils;
-import org.apache.http.impl.cookie.BasicClientCookie;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
-public class PageCacheServiceImpl implements PageCacheService, InitializingBean {
-	private final transient GewaLogger dbLogger = WebLogger.getLogger(this.getClass());
+import net.spy.memcached.MemcachedClient;
+public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
+	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
 	private String KEY_HIT = "hitCount";
 	private String KEY_MIS = "misCount";
 	private String KEY_PUT = "putCount";
 	private String KEY_ERR = "errCount";
 	private String KEY_REPEAT = "repeatCount";
 	private String KEY_IGNORE = "ignoreCount";
+	
+	
+	
 	private int threadPoolSize = 10;
 	private boolean enableCache = true;
-	private ThreadPoolExecutor executor;
-	private Map<String, Long> successMap = new ConcurrentHashMap(2000, 24.0F);
-	@Autowired
-	@Qualifier("lockService")
-	private LockService lockService;
-	@Autowired
-	@Qualifier("config")
-	protected Config config;
-	@Autowired
-	private PageCacheProcessor processor;
-	private MemcachedClient memcachedClient;
-	private Map<String, Long> recentPageUrl = new ConcurrentHashMap(20000, 0.75F, 200);
-	private String keyPre;
-	private Map<String, Integer> cacheMinMap = new ConcurrentHashMap();
-	private Integer defaultMin = Integer.valueOf(10);
-	private MonitorService monitorService;
-
+	
+	@Override
 	public void setEnableCache(boolean enableCache) {
 		this.enableCache = enableCache;
 	}
 
 	public int getThreadPoolSize() {
-		return this.threadPoolSize;
+		return threadPoolSize;
 	}
+
 
 	public void setThreadPoolSize(int threadPoolSize) {
 		this.threadPoolSize = threadPoolSize;
 	}
+	private ThreadPoolExecutor executor;
+	private Map<String, Long> successMap = new ConcurrentHashMap<String, Long>(2000, 24);
+	@Autowired@Qualifier("lockService")
+	private LockService lockService;
 
+	@Autowired@Qualifier("config")
+	protected Config config;
 	public void setConfig(Config config) {
 		this.config = config;
 	}
-
+	
+	@Autowired
+	private PageCacheProcessor processor;
+	
+	private MemcachedClient memcachedClient;
 	public void setMemcachedClient(MemcachedClient memcachedClient) {
 		this.memcachedClient = memcachedClient;
 	}
-
+	private Map<String, Long> recentPageUrl = new ConcurrentHashMap<String, Long>(20000, 0.75f, 200);
+	private String keyPre;
+	private Map<String, Integer> cacheMinMap = new ConcurrentHashMap<String, Integer>();
+	private Integer defaultMin = 10;
+	
+	private MonitorService monitorService;
 	public void setMonitorService(MonitorService monitorService) {
 		this.monitorService = monitorService;
 	}
 
-	public Integer getCacheMin(String pageUrl) {
-		Integer min = (Integer) this.cacheMinMap.get(pageUrl);
-		if (min == null) {
-			min = this.defaultMin;
-			this.cacheMinMap.put(pageUrl, this.defaultMin);
-		}
 
+	@Override
+	public Integer getCacheMin(String pageUrl){
+		Integer min = cacheMinMap.get(pageUrl);
+		if(min==null) {
+			min = defaultMin;
+			cacheMinMap.put(pageUrl, defaultMin);
+		}
 		return min;
 	}
-
+	
+	
+	@Override
 	public Map<String, Integer> getCacheMinMap() {
-		return this.cacheMinMap;
+		return cacheMinMap;
 	}
-
-	public void refreashCacheMin(String pageUrl, Integer minute) {
-		Integer min = (Integer) this.cacheMinMap.get(pageUrl);
-		if (min != null) {
-			this.cacheMinMap.put(pageUrl, minute);
-		}
-
+	@Override
+	public void refreashCacheMin(String pageUrl, Integer minute){
+		Integer min = cacheMinMap.get(pageUrl);
+		if(min != null) cacheMinMap.put(pageUrl, minute);
 	}
-
+	@Override
 	public PageView getPageView(HttpServletRequest request, String pageUrl, PageParams pageParams, String citycode) {
-		Integer cacheMin = this.getCacheMin(pageUrl);
-		if (cacheMin.intValue() <= 0) {
-			return null;
-		} else if (request != null && StringUtils.isNotBlank(request.getParameter("CLEARPAGE"))
-				&& this.processor.canClear(request)) {
-			this.clearPageView(pageUrl, pageParams, citycode);
-			return null;
-		} else {
-			Long cached = (Long) this.memcachedClient.get(this.getExistsKey(pageUrl, pageParams, citycode));
-			Long cur = Long.valueOf(System.currentTimeMillis());
-			boolean update = false;
-			PageView pv = null;
-			String userAgent;
-			if (cached != null) {
-				if (cached.longValue() < cur.longValue() - 60000L) {
-					update = true;
-				}
-
-				userAgent = (String) this.memcachedClient.get(this.getContentKey(pageUrl, pageParams, citycode));
-				if (userAgent != null) {
-					pv = new PageView(cached, userAgent);
-				}
-			} else {
-				update = true;
+		Integer cacheMin = getCacheMin(pageUrl);
+		if(cacheMin <= 0) return null;
+		
+		if(request!=null && StringUtils.isNotBlank(request.getParameter("CLEARPAGE"))){
+			if(processor.canClear(request)){
+				clearPageView(pageUrl, pageParams, citycode);
+				return null;
 			}
-
-			if (update && request != null) {
-				userAgent = request.getHeader("User-Agent");
-				if (!StringUtils.containsIgnoreCase(userAgent, "bot")
-						&& !StringUtils.containsIgnoreCase(userAgent, "spid")) {
-					String ip = BaseWebUtils.getRemoteIp(request);
-					this.sendMsg(pageUrl, pageParams, citycode, cur, cacheMin.intValue(), ip);
-				}
-			}
-
-			if (pv != null) {
-				this.updateCount(this.KEY_HIT);
-			} else {
-				this.updateCount(this.KEY_MIS);
-			}
-
-			return pv;
 		}
-	}
-
-	private void sendMsg(String pageUrl, PageParams pageParams, String citycode, Long cur, int cacheMin, String ip) {
-		String key = this.getExistsKey(pageUrl, pageParams, citycode);
-		Map tmpMap = this.recentPageUrl;
-		Long last = (Long) tmpMap.get(key);
-		if (last == null || last.longValue() + 30000L <= cur.longValue()) {
-			if (tmpMap.size() > 20000) {
-				this.recentPageUrl = new ConcurrentHashMap(20000, 0.75F, 200);
-				this.dbLogger.warn("clearRecentPageUrl:" + this.recentPageUrl.size());
-			}
-
-			tmpMap.put(key, cur);
-			HashMap params = new HashMap();
-			params.put("pageUrl", pageUrl);
-			params.put("citycode", citycode);
-			params.put("cacheMin", "" + cacheMin);
-			params.put("ip", ip);
-			params.put("reqParams", JsonUtils.writeMapToJson(pageParams.getParams()));
-			if (!pageParams.getReqCookies().isEmpty()) {
-				params.put("reqCookie", JsonUtils.writeObjectToJson(pageParams.getReqCookies()));
-			}
-
-			this.processor.sendMsgToDst(params);
-		}
-	}
-
-	public PageView getPageView(String pageUrl, PageParams pageParams, String citycode, String ip) {
+		Long cached = (Long) memcachedClient.get(getExistsKey(pageUrl, pageParams, citycode));
+		Long cur = System.currentTimeMillis();
 		boolean update = false;
-		Long cached = (Long) this.memcachedClient.get(this.getExistsKey(pageUrl, pageParams, citycode));
-		Long cur = Long.valueOf(System.currentTimeMillis());
 		PageView pv = null;
-		if (cached != null) {
-			if (cached.longValue() < cur.longValue() - 60000L) {
-				update = true;
+		if(cached!=null){
+			if(cached < cur - DateUtil.m_minute) update = true; //1∑÷÷”º¥Ω´π˝∆⁄£¨–Ë“™∏¸–¬
+			String content = (String)memcachedClient.get(getContentKey(pageUrl, pageParams, citycode));
+			if(content!=null){
+				pv = new PageView(cached, content);
 			}
-
-			String cacheMin = (String) this.memcachedClient.get(this.getContentKey(pageUrl, pageParams, citycode));
-			if (cacheMin != null) {
-				pv = new PageView(cached, cacheMin);
-			}
-		} else {
+		}else{
 			update = true;
 		}
-
-		if (update) {
-			Integer cacheMin1 = this.getCacheMin(pageUrl);
-			this.sendMsg(pageUrl, pageParams, citycode, cur, cacheMin1.intValue(), ip);
+		if(update && request!=null){
+			String userAgent = request.getHeader("User-Agent");
+			if(!StringUtils.containsIgnoreCase(userAgent, "bot")&& 
+					!StringUtils.containsIgnoreCase(userAgent, "spid")){//ª˙∆˜»À£¨≤ª◊ˆª∫¥Ê
+				String ip = BaseWebUtils.getRemoteIp(request);
+				sendMsg(pageUrl, pageParams, citycode, cur, cacheMin, ip);
+			}
 		}
-
-		if (pv != null) {
-			this.updateCount(this.KEY_HIT);
-		} else {
-			this.updateCount(this.KEY_MIS);
+		if(pv!=null){
+			updateCount(KEY_HIT);
+		}else{
+			updateCount(KEY_MIS);
 		}
+		return pv;
+	}
+	private void sendMsg(String pageUrl, PageParams pageParams, String citycode, Long cur, int cacheMin, String ip){
+		String key = getExistsKey(pageUrl, pageParams, citycode);
+		Map<String, Long> tmpMap = recentPageUrl;
+		Long last = tmpMap.get(key);
+		if(last != null && last + DateUtil.m_minute/2 > cur) return;//30√Îƒ⁄£¨≤ª÷ÿ∏¥∑¢ÀÕ
+		if(tmpMap.size() > 20000) {
+			recentPageUrl = new ConcurrentHashMap<String, Long>(20000, 0.75f, 200);
+			dbLogger.warn("clearRecentPageUrl:" + recentPageUrl.size());
+		}
+		tmpMap.put(key, cur);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("pageUrl", pageUrl);
+		params.put("citycode", citycode);
+		params.put("cacheMin", ""+cacheMin);
+		params.put("ip", ip);
+		params.put("reqParams", JsonUtils.writeMapToJson(pageParams.getParams()));
+		if(!pageParams.getReqCookies().isEmpty()){
+			params.put("reqCookie", JsonUtils.writeObjectToJson(pageParams.getReqCookies()));
+		}
+		processor.sendMsgToDst(params);
 
+	}
+	@Override
+	public PageView getPageView(String pageUrl, PageParams pageParams, String citycode, String ip) {
+		boolean update = false;
+		Long cached = (Long) memcachedClient.get(getExistsKey(pageUrl, pageParams, citycode));
+		Long cur = System.currentTimeMillis();
+		PageView pv = null;
+		if(cached!=null){
+			if(cached < cur - DateUtil.m_minute) update = true; //1∑÷÷”º¥Ω´π˝∆⁄£¨–Ë“™∏¸–¬
+			String content = (String)memcachedClient.get(getContentKey(pageUrl, pageParams, citycode));
+			if(content!=null){
+				pv = new PageView(cached, content);
+			}
+		}else{
+			update = true;
+		}
+		if(update){
+			Integer cacheMin = getCacheMin(pageUrl);
+			sendMsg(pageUrl, pageParams, citycode, cur, cacheMin, ip);
+		}
+		if(pv!=null){
+			updateCount(KEY_HIT);
+		}else{
+			updateCount(KEY_MIS);
+		}
 		return pv;
 	}
 
-	public boolean refreshPageView(String pageUrl, PageParams pageParams, String citycode) {
-		Integer cacheMin = this.getCacheMin(pageUrl);
-		HashMap params = new HashMap();
+	@Override
+	public boolean refreshPageView(String pageUrl, PageParams pageParams, String citycode){
+		Integer cacheMin = getCacheMin(pageUrl);
+		Map<String, String> params = new HashMap<String, String>();
 		params.putAll(pageParams.getParams());
-		params.put("notUseCache", "true");
-		ArrayList coolieList = new ArrayList();
-		if (StringUtils.isNotBlank(citycode) || !pageParams.getReqCookies().isEmpty()) {
-			BasicClientCookie path = null;
-			if (StringUtils.isNotBlank(citycode)) {
-				path = new BasicClientCookie("citycode", citycode);
-				path.setVersion(0);
-				path.setDomain(this.getDomain(pageUrl));
-				path.setPath("/");
-				path.setExpiryDate(DateUtil.addDay(new Date(), 1));
-				coolieList.add(path);
+		params.put(NOT_USE_CACHE_KEY, "true");
+		List<BasicClientCookie> coolieList = new ArrayList<BasicClientCookie>();
+		if(StringUtils.isNotBlank(citycode) || !pageParams.getReqCookies().isEmpty()){
+			BasicClientCookie cookie = null;
+			if(StringUtils.isNotBlank(citycode)){
+				cookie = new BasicClientCookie("citycode", citycode);
+				cookie.setVersion(0);
+				cookie.setDomain(getDomain(pageUrl));
+				cookie.setPath("/");
+				cookie.setExpiryDate(DateUtil.addDay(new Date(), 1));
+				coolieList.add(cookie);
 			}
-
-			if (!pageParams.getReqCookies().isEmpty()) {
-				Map result = pageParams.getReqCookies();
-				Iterator msg = result.keySet().iterator();
-
-				while (msg.hasNext()) {
-					String name = (String) msg.next();
-					String[] pair = (String[]) result.get(name);
-					path = new BasicClientCookie(name, pair[1]);
-					path.setVersion(0);
-					path.setDomain(this.getDomain(pageUrl));
-					path.setPath(pair[0]);
-					path.setExpiryDate(DateUtil.addDay(new Date(), 1));
-					coolieList.add(path);
+			if(!pageParams.getReqCookies().isEmpty()){
+				Map<String, String[]> cookies = pageParams.getReqCookies();
+				for(String name: cookies.keySet()){
+					String[] pair = cookies.get(name);
+					cookie = new BasicClientCookie(name, pair[1]);
+					cookie.setVersion(0);
+					cookie.setDomain(getDomain(pageUrl));
+					cookie.setPath(pair[0]);
+					cookie.setExpiryDate(DateUtil.addDay(new Date(), 1));
+					coolieList.add(cookie);
 				}
 			}
 		}
-
-		String path1 = this.getFullPath(pageUrl);
-		HttpResult result1 = HttpUtils.getUrlAsString(path1, params, coolieList);
-		if (result1.isSuccess()) {
-			this.memcachedClient.set(this.getExistsKey(pageUrl, pageParams, citycode), 7200,
-					Long.valueOf(System.currentTimeMillis() + 60000L * (long) cacheMin.intValue()));
-			this.memcachedClient.set(this.getContentKey(pageUrl, pageParams, citycode), 7200, result1.getResponse());
-			this.updateCount(this.KEY_PUT);
+		String path = getFullPath(pageUrl);
+		HttpResult result = HttpUtils.getUrlAsString(path, params, coolieList);
+		if(result.isSuccess()){//”––ßƒ⁄»›
+			memcachedClient.set(getExistsKey(pageUrl, pageParams, citycode), 60 * 120, System.currentTimeMillis() + DateUtil.m_minute*cacheMin);
+			memcachedClient.set(getContentKey(pageUrl, pageParams, citycode), 60 * 120, result.getResponse());
+			updateCount(KEY_PUT);
 			return true;
-		} else {
-			this.updateCount(this.KEY_ERR);
-			if (this.monitorService != null) {
-				String msg1 = ", HttpResult:" + result1.getStatus();
-				if (Debugger.isDebugEnabled("pageCache")) {
-					this.dbLogger.warn(result1.getResponse());
+		}else{
+			updateCount(KEY_ERR);
+			if(monitorService!=null){
+				String msg = ", HttpResult:" + result.getStatus();
+				if(Debugger.isDebugEnabled("pageCache")){
+					dbLogger.warn(result.getResponse());
 				}
-
-				this.monitorService.logException(EXCEPTION_TAG.SERVICE, "pageCacheService.refreshPageView",
-						"Ëé∑ÂèñÈ°µÈù¢ÁºìÂ≠òÈîôËØØ:" + path1 + msg1, (Throwable) null, params);
-			} else {
-				this.dbLogger.warn("Ëé∑ÂèñÈ°µÈù¢ÁºìÂ≠òÈîôËØØ, urlÔºö[" + path1 + "],params:" + params.toString() + ",returnResult:"
-						+ result1.getStatus() + ",response:" + result1.getResponse());
+				monitorService.logException(EXCEPTION_TAG.SERVICE, "pageCacheService.refreshPageView", "ªÒ»°“≥√Êª∫¥Ê¥ÌŒÛ:" + path + msg, null, params);
+			}else{
+				dbLogger.warn("ªÒ»°“≥√Êª∫¥Ê¥ÌŒÛ, url£∫[" + path + "],params:" + params.toString() + ",returnResult:" + result.getStatus() + ",response:" + result.getResponse());
 			}
-
-			return false;
 		}
+		return false;
+	}
+	protected String getDomain(String pageUrl){
+		return config.getString("domain");
+	}
+	protected String getFullPath(String pageUrl){
+		return config.getAbsPath() + config.getBasePath() + pageUrl;
+	}
+	@Override
+	public void updatePageView(String pageUrl, PageParams pageParams, String citycode, String content){
+		Integer cacheMin = getCacheMin(pageUrl);
+		updateCount(KEY_PUT);
+		memcachedClient.set(getExistsKey(pageUrl, pageParams, citycode), 60*120, System.currentTimeMillis()+DateUtil.m_minute*cacheMin);
+		memcachedClient.set(getContentKey(pageUrl, pageParams, citycode), 60*120, content);
 	}
 
-	protected String getDomain(String pageUrl) {
-		return this.config.getString("domain");
-	}
-
-	protected String getFullPath(String pageUrl) {
-		return this.config.getAbsPath() + this.config.getBasePath() + pageUrl;
-	}
-
-	public void updatePageView(String pageUrl, PageParams pageParams, String citycode, String content) {
-		Integer cacheMin = this.getCacheMin(pageUrl);
-		this.updateCount(this.KEY_PUT);
-		this.memcachedClient.set(this.getExistsKey(pageUrl, pageParams, citycode), 7200,
-				Long.valueOf(System.currentTimeMillis() + 60000L * (long) cacheMin.intValue()));
-		this.memcachedClient.set(this.getContentKey(pageUrl, pageParams, citycode), 7200, content);
-	}
-
+	@Override
 	public void clearPageView(String pageUrl, PageParams pageParams, String citycode) {
-		String key = this.getExistsKey(pageUrl, pageParams, citycode);
-		this.successMap.remove(key);
-		this.memcachedClient.delete(key);
-		this.memcachedClient.delete(this.getContentKey(pageUrl, pageParams, citycode));
+		String key = getExistsKey(pageUrl, pageParams, citycode);
+		successMap.remove(key);
+		memcachedClient.delete(key);
+		memcachedClient.delete(getContentKey(pageUrl, pageParams, citycode));
 	}
-
-	private String getExistsKey(String pageUrl, PageParams pageParams, String citycode) {
+	
+	private String getExistsKey(String pageUrl, PageParams pageParams, String citycode){
 		int paramHash = pageParams.gainParamsHash();
 		String key = pageUrl + paramHash;
-		String result = this.keyPre + "K" + key + "CITYCODE" + citycode;
+		String result = keyPre + "K" + key + "CITYCODE" + citycode;
 		result = StringUtils.deleteWhitespace(result);
 		return result;
 	}
-
-	private String getContentKey(String pageUrl, PageParams pageParams, String citycode) {
+	private String getContentKey(String pageUrl, PageParams pageParams, String citycode){
 		int paramHash = pageParams.gainParamsHash();
 		String key = pageUrl + paramHash;
-		String result = this.keyPre + "P" + key + "CITYCODE" + citycode;
+		String result = keyPre + "P" + key + "CITYCODE" + citycode;
 		result = StringUtils.deleteWhitespace(result);
 		return result;
 	}
-
+	
+	@Override
 	public void afterPropertiesSet() throws Exception {
-		ArrayBlockingQueue taskQueue = new ArrayBlockingQueue(30);
-		this.executor = new ThreadPoolExecutor(this.threadPoolSize, this.threadPoolSize, 0L, TimeUnit.SECONDS,
-				taskQueue);
-		this.executor.allowCoreThreadTimeOut(false);
-		this.executor.setRejectedExecutionHandler(new CallerRunsPolicy());
-		Long cur = Long.valueOf(System.currentTimeMillis());
-		ResourceStatsUtil.getPageCacheStats().register(this.KEY_HIT, cur.longValue());
-		ResourceStatsUtil.getPageCacheStats().register(this.KEY_MIS, cur.longValue());
-		ResourceStatsUtil.getPageCacheStats().register(this.KEY_ERR, cur.longValue());
-		ResourceStatsUtil.getPageCacheStats().register(this.KEY_PUT, cur.longValue());
-		ResourceStatsUtil.getPageCacheStats().register(this.KEY_REPEAT, cur.longValue());
-		ResourceStatsUtil.getPageCacheStats().register(this.KEY_IGNORE, cur.longValue());
-		this.refreshKeyVersion();
-		if (StringUtils.equals("true", this.config.getString("disablePageCache"))) {
-			this.enableCache = false;
+		BlockingQueue<Runnable> taskQueue = new ArrayBlockingQueue<Runnable>(30);
+		executor = new ThreadPoolExecutor(threadPoolSize, threadPoolSize, 0L, TimeUnit.SECONDS, taskQueue);
+		executor.allowCoreThreadTimeOut(false);
+		//µ±≤¢∑¢¥ÔµΩ30£¨◊‘…Ì◊Ë»˚£¨≤ªª·œ˚∫ƒJMSœ˚œ¢
+		executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+		Long cur = System.currentTimeMillis();
+		ResourceStatsUtil.getPageCacheStats().register(KEY_HIT, cur);
+		ResourceStatsUtil.getPageCacheStats().register(KEY_MIS, cur);
+		ResourceStatsUtil.getPageCacheStats().register(KEY_ERR, cur);
+		ResourceStatsUtil.getPageCacheStats().register(KEY_PUT, cur);
+		ResourceStatsUtil.getPageCacheStats().register(KEY_REPEAT, cur);
+		ResourceStatsUtil.getPageCacheStats().register(KEY_IGNORE, cur);
+		refreshKeyVersion();
+		if(StringUtils.equals("true", config.getString("disablePageCache"))){
+			//πÿ±’“≥√Êª∫¥Ê
+			enableCache = false;
 		}
-
 	}
-
-	private void updateCount(String key) {
+	private void updateCount(String key){
 		ResourceStatsUtil.getPageCacheStats().incrementCount(key);
 	}
-
+	@Override
 	public String refreshKeyVersion() {
-		this.keyPre = this.processor.getKeyPre();
-		return this.keyPre;
+		keyPre = processor.getKeyPre();
+		return keyPre;
 	}
 
+	@Override
 	public boolean isUseCache(HttpServletRequest request) {
-		if (!this.enableCache) {
-			return false;
-		} else if (StringUtils.isBlank(request.getParameter("notUseCache"))) {
-			return true;
-		} else {
-			String ip = BaseWebUtils.getRemoteIp(request);
-			return !GewaIpConfig.isGewaInnerIp(ip) && !GewaIpConfig.isOfficeIp(ip);
+		if(!enableCache) return false;
+		//ø…‘ˆº”∆‰À˚¬ﬂº≠
+		if(StringUtils.isBlank(request.getParameter(NOT_USE_CACHE_KEY))) {
+			return true ;
 		}
+		String ip = BaseWebUtils.getRemoteIp(request);
+		//NOT_USE_CACHE_KEY÷ª’Î∂‘ƒ⁄≤øIP”––ß
+		return !(GewaIpConfig.isGewaInnerIp(ip) || GewaIpConfig.isOfficeIp(ip));
 	}
 
+	@Override
 	public boolean isUpdated(String pageUrl, String citycode, Long cur, PageParams pageParams) {
-		Long cached = (Long) this.memcachedClient.get(this.getExistsKey(pageUrl, pageParams, citycode));
-		return cached != null && cached.longValue() > cur.longValue() + 60000L;
+		Long cached = (Long) memcachedClient.get(getExistsKey(pageUrl, pageParams, citycode));
+		return cached!=null && cached > cur + DateUtil.m_minute;
 	}
 
-	public void processPageView(final String pageUrl, final Map<String, String> params,
-			final Map<String, String[]> cookieMap, final String citycode) {
-		this.executor.execute(new Runnable() {
+	@Override
+	public void processPageView(final String pageUrl, final Map<String, String> params, final Map<String, String[]> cookieMap, final String citycode){
+		executor.execute(new Runnable(){
+			@Override
 			public void run() {
 				final PageParams pparam = new PageParams();
-				Iterator key = params.keySet().iterator();
-
-				final String city;
-				while (key.hasNext()) {
-					city = (String) key.next();
-					pparam.addSingleString(city, (String) params.get(city));
+				for(String pkey:params.keySet()){
+					pparam.addSingleString(pkey, params.get(pkey));
 				}
-
-				if (cookieMap != null) {
-					key = cookieMap.keySet().iterator();
-
-					while (key.hasNext()) {
-						city = (String) key.next();
-						pparam.addCookie(city, ((String[]) cookieMap.get(city))[0],
-								((String[]) cookieMap.get(city))[1]);
+				if(cookieMap!=null){
+					for(String cookieName: cookieMap.keySet()){
+						pparam.addCookie(cookieName, cookieMap.get(cookieName)[0], cookieMap.get(cookieName)[1]);	
 					}
+					
 				}
-
-				final String key1 = PageCacheServiceImpl.this.getExistsKey(pageUrl, pparam, citycode);
-				city = citycode;
+				final String key = getExistsKey(pageUrl, pparam, citycode);
+				final String city = citycode;
 				final String page = pageUrl;
-				Long last = (Long) PageCacheServiceImpl.this.successMap.get(key1);
-				if (last != null && last.longValue() + 300000L > System.currentTimeMillis()) {
-					PageCacheServiceImpl.this.updateCount(PageCacheServiceImpl.this.KEY_REPEAT);
-				} else {
-					String lockKey = "ppv" + Math.abs(key1.hashCode() % 1000);
-					ErrorCode result = PageCacheServiceImpl.this.lockService.tryDoWithWriteLock(lockKey,
-							new LockCallback() {
-								public Boolean processWithInLock() {
-									boolean refreshed = PageCacheServiceImpl.this.refreshPageView(page, pparam, city);
-									if (!refreshed) {
-										PageCacheServiceImpl.this.dbLogger.error("Ëé∑ÂèñÁºìÂ≠òÂ§±Ë¥•ÔºÅ");
-										return Boolean.valueOf(false);
-									} else {
-										if (PageCacheServiceImpl.this.successMap.size() > 'Ïçê') {
-											PageCacheServiceImpl.this.successMap = new ConcurrentHashMap();
-										}
-
-										PageCacheServiceImpl.this.successMap.put(key1,
-												Long.valueOf(System.currentTimeMillis()));
-										return Boolean.valueOf(true);
-									}
+				Long last = successMap.get(key);
+				if(last!=null && last+DateUtil.m_minute*5 > System.currentTimeMillis()){//5∑÷÷”ƒ⁄≥…π¶¥¶¿Ìπ˝£¨∫ˆ¬‘
+					updateCount(KEY_REPEAT);
+				}else{
+					String lockKey = "ppv" + Math.abs(key.hashCode()%1000);
+					ErrorCode<Boolean> result = lockService.tryDoWithWriteLock(lockKey, new LockCallback<Boolean>(){
+						@Override
+						public Boolean processWithInLock() {
+							
+							boolean refreshed = refreshPageView(page, pparam, city);
+							if(!refreshed) {
+								dbLogger.error("ªÒ»°ª∫¥Ê ß∞‹£°");
+								return false;
+							}else{
+								if(successMap.size()>50000){
+									successMap = new ConcurrentHashMap<String, Long>();
 								}
-							});
-					if (!result.isSuccess()) {
-						PageCacheServiceImpl.this.updateCount(PageCacheServiceImpl.this.KEY_IGNORE);
+								successMap.put(key, System.currentTimeMillis());
+								return true;
+							}
+						}
+					});
+					if(!result.isSuccess()){
+						updateCount(KEY_IGNORE);
 					}
 				}
-
 			}
 		});
 	}
 
+	@Override
 	public void setPageCacheHeader(boolean outerAllow, HttpServletRequest request, HttpServletResponse response) {
-		if (outerAllow && this.isUseCache(request)) {
-			Integer cacheMin = this.getCacheMin(request.getRequestURI());
-			Integer maxage = Integer.valueOf(60 * cacheMin.intValue());
-			Long lastModifyTime = Long.valueOf(System.currentTimeMillis());
-			Long expireTime = Long.valueOf(System.currentTimeMillis() + (long) (maxage.intValue() * 1000));
+		if(outerAllow && isUseCache(request)){
+			Integer cacheMin = getCacheMin(request.getRequestURI());
+			Integer maxage = 60 * cacheMin;
+			Long lastModifyTime = System.currentTimeMillis();
+			Long expireTime = System.currentTimeMillis() + maxage * 1000;
 			response.addHeader("Cache-Control", "max-age=" + maxage);
-			response.setDateHeader("Last-Modified", lastModifyTime.longValue());
-			response.setDateHeader("Expires", expireTime.longValue());
+			response.setDateHeader("Last-Modified", lastModifyTime);
+			response.setDateHeader("Expires", expireTime);
 		}
-
 	}
 }

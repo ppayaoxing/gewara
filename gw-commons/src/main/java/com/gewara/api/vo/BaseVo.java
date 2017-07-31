@@ -1,77 +1,50 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public abstract class BaseVo implements Serializable {
 	private static final long serialVersionUID = -1291080555056535690L;
 	private Map<String, String> attach;
-
 	public abstract Serializable realId();
 
+	@Override
 	public final int hashCode() {
-		return this.realId() == null ? 0 : this.realId().hashCode();
+		return (realId() == null) ? 0 : realId().hashCode();
 	}
 
+	@Override
 	public final boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		} else if (this.getClass() != obj.getClass()) {
+		if (getClass() != obj.getClass())
 			return false;
-		} else {
-			boolean arg9999;
-			label34: {
-				BaseVo other = (BaseVo) obj;
-				if (this.realId() != null) {
-					if (this.realId().equals(other.realId())) {
-						break label34;
-					}
-				} else if (other.realId() == null) {
-					break label34;
-				}
-
-				arg9999 = false;
-				return arg9999;
-			}
-
-			arg9999 = true;
-			return arg9999;
-		}
+		BaseVo other = (BaseVo) obj;
+		return !(this.realId() != null ? !(this.realId().equals(other.realId())) : (other.realId() != null));
 	}
 
-	public void addAttach(String key, String value) {
-		if (this.attach == null) {
-			this.attach = new LinkedHashMap();
+	public void addAttach(String key, String value){
+		if(attach==null){
+			attach = new LinkedHashMap<String, String>();
 		}
-
-		this.attach.put(key, value);
+		attach.put(key, value);
 	}
-
-	public void addAttach(Map<String, String> attachMap) {
-		if (this.attach == null) {
-			this.attach = new LinkedHashMap();
+	public void addAttach(Map<String, String> attachMap){
+		if(attach==null){
+			attach = new LinkedHashMap<String, String>();
 		}
-
-		Iterator arg1 = attachMap.entrySet().iterator();
-
-		while (arg1.hasNext()) {
-			Entry entry = (Entry) arg1.next();
-			String key = (String) entry.getKey();
-			String value = (String) entry.getValue();
-			this.attach.put(key, value);
+		for(Map.Entry<String, String> entry: attachMap.entrySet()){
+			String key = entry.getKey();
+			String value = entry.getValue();
+			attach.put(key, value);
 		}
-
 	}
-
-	public String getAttachByKey(String key) {
-		return this.attach != null ? (String) this.attach.get(key) : null;
+	public String getAttachByKey(String key){
+		if(attach!=null) return attach.get(key);
+		return null;
 	}
-
 	public Map<String, String> getAttach() {
-		return this.attach;
+		return attach;
 	}
 }

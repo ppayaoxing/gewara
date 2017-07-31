@@ -1,15 +1,9 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support;
 
-import com.gewara.support.ErrorCode;
-import com.gewara.untrans.CacheService;
-import com.gewara.untrans.monitor.MonitorService;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.StringUtil;
-import com.gewara.util.WebLogger;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.patchca.CaptchaUtil;
@@ -18,102 +12,101 @@ import org.patchca.service.Captcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.gewara.untrans.CacheService;
+import com.gewara.untrans.monitor.MonitorService;
+import com.gewara.util.GewaLogger;
+import com.gewara.util.StringUtil;
+import com.gewara.util.WebLogger;
+
 public class GewaCaptchaService {
-	protected final transient GewaLogger dbLogger = WebLogger.getLogger(this.getClass());
+	protected final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
 	private static final String KEY_CAPTCHA = "CAP_";
 	private static final String KEY_CAPTCHA_COUNT = "CAPCOUNT_";
 	private static final String LOGON_CAPTCHAPRE = "zt2reXy";
 	private int checkCount = 0;
 	private CaptchaUtil captchaUtil;
-	@Autowired
-	@Qualifier("monitorService")
+	@Autowired@Qualifier("monitorService")
 	private MonitorService monitorService;
-	protected CacheService cacheService;
-	public static final String upper = "ABCDEFGHJKLMNPRSTUVWXYZabcdefghkmnrstuvwxz2345678";
-
-	public GewaCaptchaService() {
-		this.captchaUtil = new PatchcaUtils(80, 40, 4, 4);
+	public GewaCaptchaService(){
+		captchaUtil = new PatchcaUtils(80, 40, 4, 4);
 	}
-
-	public GewaCaptchaService(String capstr) {
-		this.captchaUtil = new PatchcaUtils(80, 40, 4, 4, capstr);
+	public GewaCaptchaService(String capstr){
+		captchaUtil = new PatchcaUtils(80, 40, 4, 4, capstr);
 	}
-
 	public void setCaptchaUtil(CaptchaUtil captchaUtil) {
 		this.captchaUtil = captchaUtil;
 	}
 
+	protected CacheService cacheService;
 	public void setCacheService(CacheService cacheService) {
 		this.cacheService = cacheService;
 	}
-
+	/**
+	 * –Ë“™µ«¬ºµƒ—È÷§¬Î
+	 * @param captchaId
+	 * @param ip
+	 * @param memberid
+	 * @return
+	 */
 	public BufferedImage getLogonCaptchaImage(String captchaId, String ip, Long memberid) {
-		captchaId = StringUtil.md5("zt2reXy" + memberid, 16) + captchaId;
-		return this.getCaptchaImage(captchaId);
+		captchaId = StringUtil.md5(LOGON_CAPTCHAPRE + memberid, 16) + captchaId;
+		return getCaptchaImage(captchaId);
 	}
-
 	public BufferedImage getCaptchaImage(String captchaId) {
-		Captcha captcha = this.captchaUtil.createCaptcha();
+		Captcha captcha = captchaUtil.createCaptcha();
 		BufferedImage challenge = captcha.getImage();
-		this.cacheService.set("tenMin", "CAP_" + captchaId, captcha.getChallenge());
+		cacheService.set(CacheService.REGION_TENMIN, KEY_CAPTCHA + captchaId, captcha.getChallenge());
 		return challenge;
 	}
-
-	public ErrorCode<Map<String, String>> validateLogonResponse(String captchaId, String response, String ip,
-			Long memberid) {
-		captchaId = StringUtil.md5("zt2reXy" + memberid, 16) + captchaId;
-		return this.validateResponseForID(captchaId, response, ip);
+	
+	public ErrorCode<Map<String, String>> validateLogonResponse(String captchaId, String response, String ip, Long memberid) {
+		captchaId = StringUtil.md5(LOGON_CAPTCHAPRE + memberid, 16) + captchaId;
+		return validateResponseForID(captchaId, response, ip);
 	}
-
-	public String getCaptchaValue(String captchaId) {
-		return (String) this.cacheService.get("tenMin", "CAP_" + captchaId);
+	public String getCaptchaValue(String captchaId){
+		return (String) cacheService.get(CacheService.REGION_TENMIN, KEY_CAPTCHA + captchaId);
 	}
-
 	public ErrorCode<Map<String, String>> validateResponseForID(String captchaId, String response, String ip) {
-		++this.checkCount;
-		if (this.checkCount % 1000 == 0) {
-			this.checkCount = 0;
-			this.dbLogger.warn("È™åËØÅÁ†Å1000Ê¨°ËÆ°Êï∞Ôºö" + this.checkCount);
+		checkCount ++;
+		if(checkCount % 1000==0){
+			checkCount = 0;
+			dbLogger.warn("—È÷§¬Î1000¥Œº∆ ˝£∫" + checkCount);
 		}
-
-		if (response == null) {
-			HashMap arg6 = new HashMap();
-			arg6.put("errtype", "captcha");
-			arg6.put("captchaId", captchaId);
-			arg6.put("response", response);
-			arg6.put("msg", "Êú™ËæìÂÖ•È™åËØÅÁ†Å");
-			return ErrorCode.getFailureReturn(arg6);
-		} else {
-			response = StringUtils.replace(response, " ", "");
-			String captchaText = (String) this.cacheService.get("tenMin", "CAP_" + captchaId);
-			if (captchaText != null) {
-				int arg7 = this.cacheService.incr("oneHour", "CAPCOUNT_" + captchaId, 1, 1);
-				if (arg7 > 20) {
-					this.dbLogger.warn("È™åËØÅÁ†ÅÈîôËØØ,Ê¨°Êï∞Ë∂ÖÂá∫Ôºö" + captchaId + "Ôºö" + captchaText + "--->" + response + ", " + ip);
-					return ErrorCode.getFailureReturn(this.getLogEntry(captchaId, captchaText, response, "È™åËØÅÁ†ÅÊ¨°Êï∞Ë∂ÖÂá∫"));
-				} else {
-					this.cacheService.remove("tenMin", "CAP_" + captchaId);
-					boolean result = captchaText.equalsIgnoreCase(response);
-					if (!result) {
-						this.dbLogger.warn("È™åËØÅÁ†ÅÈîôËØØÔºö" + captchaId + "Ôºö" + captchaText + "--->" + response + ", " + ip);
-						return ErrorCode.getFailureReturn(this.getLogEntry(captchaId, captchaText, response, "È™åËØÅÁ†ÅÈîôËØØ"));
-					} else {
-						return ErrorCode.SUCCESS;
-					}
-				}
-			} else {
-				HashMap entry = new HashMap();
-				entry.put("errtype", "captcha");
-				entry.put("captchaId", captchaId);
-				entry.put("response", response);
-				entry.put("msg", "È™åËØÅÁ†Å‰∏çÂ≠òÂú®ÔºÅ");
-				return ErrorCode.getFailureReturn(entry);
+		if(response==null) {
+			Map<String, String> entry = new HashMap<>();
+			entry.put("errtype", "captcha");
+			entry.put("captchaId", captchaId);
+			entry.put("response", response);
+			entry.put("msg", "Œ¥ ‰»Î—È÷§¬Î");
+			return ErrorCode.getFailureReturn(entry);
+		}
+		response = StringUtils.replace(response, " ", "");
+		String captchaText = (String) cacheService.get(CacheService.REGION_TENMIN, KEY_CAPTCHA + captchaId);
+		if(captchaText != null){
+			int count = cacheService.incr(CacheService.REGION_ONEHOUR, KEY_CAPTCHA_COUNT + captchaId, 1, 1);
+			if(count > 20){//Õ¨“ª—È÷§¬Î—È÷§≤ªƒ‹≥¨π˝20¥Œ
+				dbLogger.warn("—È÷§¬Î¥ÌŒÛ,¥Œ ˝≥¨≥ˆ£∫" + captchaId  + "£∫" + captchaText + "--->" + response + ", " + ip);
+				return ErrorCode.getFailureReturn(getLogEntry(captchaId, captchaText, response, "—È÷§¬Î¥Œ ˝≥¨≥ˆ"));
 			}
+			cacheService.remove(CacheService.REGION_TENMIN, KEY_CAPTCHA + captchaId);
+			boolean result = captchaText.equalsIgnoreCase(response);
+			if(!result) {
+				dbLogger.warn("—È÷§¬Î¥ÌŒÛ£∫" + captchaId  + "£∫" + captchaText + "--->" + response + ", " + ip);
+				return ErrorCode.getFailureReturn(getLogEntry(captchaId, captchaText, response, "—È÷§¬Î¥ÌŒÛ"));
+			}
+			return ErrorCode.SUCCESS;
+		}else{
+			Map<String, String> entry = new HashMap<>();
+			entry.put("errtype", "captcha");
+			entry.put("captchaId", captchaId);
+			entry.put("response", response);
+			entry.put("msg", "—È÷§¬Î≤ª¥Ê‘⁄£°");
+			return ErrorCode.getFailureReturn(entry);
 		}
+		
 	}
-
-	private Map<String, String> getLogEntry(String captchaId, String captchaText, String response, String msg) {
-		HashMap entry = new HashMap();
+	private Map<String, String> getLogEntry(String captchaId, String captchaText, String response, String msg){
+		Map<String, String> entry = new HashMap<>();
 		entry.put("errtype", "captcha");
 		entry.put("captchaId", captchaId);
 		entry.put("captchaText", captchaText);
@@ -121,15 +114,20 @@ public class GewaCaptchaService {
 		entry.put("msg", msg);
 		return entry;
 	}
+	
+	public static final String upper = "ABCDEFGHJKLMNPRSTUVWXYZabcdefghkmnrstuvwxz2345678";// I,O,Q,i,j,l,o,p,q,y,1,9,0»•µÙ
 
+	/**
+	 * @param length
+	 *            …˙≥…µƒ◊÷∑˚¥Æ≥§∂»£¨<100
+	 * @return
+	 */
 	public static String getRandomString(int length) {
 		StringBuilder sb = new StringBuilder();
-
-		for (int i = 0; i < length; ++i) {
-			sb.append("ABCDEFGHJKLMNPRSTUVWXYZabcdefghkmnrstuvwxz2345678"
-					.charAt(RandomUtils.nextInt("ABCDEFGHJKLMNPRSTUVWXYZabcdefghkmnrstuvwxz2345678".length())));
+		for (int i = 0; i < length; i++) {
+			sb.append(upper.charAt(RandomUtils.nextInt(upper.length())));
 		}
-
 		return sb.toString();
 	}
+	
 }

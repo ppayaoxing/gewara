@@ -1,92 +1,82 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo;
+
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.commons.lang.StringUtils;
 
-public class ResultCode<T> implements Serializable {
+import org.apache.commons.lang.StringUtils;
+public class ResultCode<T> implements Serializable{
 	public static final String CODE_SUCCESS = "0000";
 	public static final String CODE_UNKNOWN_ERROR = "9999";
 	public static final String CODE_DATA_ERROR = "4005";
+
 	private static final long serialVersionUID = 4418416282894231647L;
 	private String errcode;
 	private String msg;
 	private T retval;
 	private boolean success = false;
 	private Throwable exception;
-	public static ResultCode SUCCESS = new ResultCode("0000", "操作成功！", (Object) null);
-
-	protected ResultCode(String code, String msg, T retval) {
+	protected ResultCode(String code, String msg, T retval){
 		this.errcode = code;
 		this.msg = msg;
 		this.retval = retval;
-		this.success = StringUtils.equals(code, "0000");
+		this.success = StringUtils.equals(code, CODE_SUCCESS);
 	}
-
-	public boolean equals(Object another) {
-		return another != null && another instanceof ResultCode ? this.errcode == ((ResultCode) another).errcode
-				: false;
+	public static ResultCode SUCCESS = new ResultCode(CODE_SUCCESS, "操作成功！", null);
+	@Override
+	public boolean equals(Object another){
+		if(another == null || !(another instanceof ResultCode)) return false;
+		return this.errcode== ((ResultCode)another).errcode;
 	}
-
-	public boolean isSuccess() {
-		return this.success;
+	public boolean isSuccess(){
+		return success;
 	}
-
-	public static ResultCode getFailure(String msg) {
-		return new ResultCode("9999", msg, (Object) null);
+	public static ResultCode getFailure(String msg){
+		return new ResultCode(CODE_UNKNOWN_ERROR, msg, null);
 	}
-
-	public static ResultCode getFailure(String code, String msg) {
-		return new ResultCode(code, msg, (Object) null);
+	public static ResultCode getFailure(String code, String msg){
+		return new ResultCode(code, msg, null);
 	}
-
-	public static ResultCode getSuccess(String msg) {
-		return new ResultCode("0000", msg, (Object) null);
+	public static ResultCode getSuccess(String msg){
+		return new ResultCode(CODE_SUCCESS, msg, null);
 	}
-
-	public static <T> ResultCode<T> getSuccessReturn(T retval) {
-		return new ResultCode("0000", (String) null, retval);
+	public static <T> ResultCode<T> getSuccessReturn(T retval){
+		return new ResultCode(CODE_SUCCESS, null, retval);
 	}
-
-	public static ResultCode getSuccessMap() {
-		return new ResultCode("0000", (String) null, new HashMap());
+	public static ResultCode getSuccessMap(){
+		return new ResultCode(CODE_SUCCESS, null, new HashMap());
 	}
-
-	public static <T> ResultCode getFailureReturn(T retval) {
-		return new ResultCode("9999", (String) null, retval);
+	public static <T> ResultCode getFailureReturn(T retval){
+		return new ResultCode(CODE_UNKNOWN_ERROR, null, retval);
 	}
-
-	public static <T> ResultCode getFailureReturn(T retval, String msg) {
-		return new ResultCode("9999", msg, retval);
+	public static <T> ResultCode getFailureReturn(T retval, String msg){
+		return new ResultCode(CODE_UNKNOWN_ERROR, msg, retval);
 	}
-
-	public static ResultCode getFullErrorCode(String code, String msg, Object retval) {
+	public static ResultCode getFullErrorCode(String code, String msg, Object retval){
 		return new ResultCode(code, msg, retval);
 	}
-
 	public T getRetval() {
-		return this.retval;
+		return retval;
 	}
-
 	public String getMsg() {
-		return this.msg;
+		return msg;
 	}
-
-	public void put(Object key, Object value) {
-		((Map) this.retval).put(key, value);
+	public void put(Object key, Object value){
+		((Map)retval).put(key, value);
 	}
-
 	public String getErrcode() {
-		return this.errcode;
+		return errcode;
 	}
-
 	public Throwable getException() {
-		return this.exception;
+		return exception;
 	}
-
+	/**
+	 * dubbo接口服务端请不要设置此异常！只作为客户端封装使用
+	 * @param exception
+	 */
 	public void setException(Throwable exception) {
 		this.exception = exception;
 	}
+
 }

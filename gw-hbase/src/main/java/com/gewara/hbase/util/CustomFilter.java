@@ -1,9 +1,7 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.hbase.util;
 
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.filter.FilterBase;
-import org.apache.hadoop.hbase.filter.Filter.ReturnCode;
 import org.apache.hadoop.hbase.util.Bytes;
 
 public class CustomFilter extends FilterBase {
@@ -11,25 +9,29 @@ public class CustomFilter extends FilterBase {
 	private boolean filterRow = true;
 
 	public CustomFilter() {
+		super();
 	}
 
 	public CustomFilter(byte[] value) {
 		this.value = value;
 	}
 
+	@Override
 	public void reset() {
 		this.filterRow = true;
 	}
 
+	@Override
 	public ReturnCode filterKeyValue(Cell kv) {
-		if (Bytes.compareTo(this.value, kv.getQualifierArray()) == 0) {
-			this.filterRow = false;
+		if (Bytes.compareTo(value, kv.getQualifierArray()) == 0) {
+			filterRow = false;
 		}
-
 		return ReturnCode.INCLUDE;
 	}
 
+	@Override
 	public boolean filterRow() {
-		return this.filterRow;
+		return filterRow;
 	}
+
 }

@@ -1,49 +1,60 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.impl;
 
-import com.gewara.support.concurrent.AtomicCounter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.support.atomic.RedisAtomicLong;
+
+import com.gewara.support.concurrent.AtomicCounter;
 
 public class RedisAtomicCounter implements AtomicCounter {
 	public static boolean useMaster = true;
 	private RedisAtomicLong atomic1;
 	private RedisAtomicLong atomic2;
-
-	public RedisAtomicCounter(String key, RedisConnectionFactory masterFactory, RedisConnectionFactory backFactory) {
-		this.atomic1 = new RedisAtomicLong(key, masterFactory);
-		this.atomic2 = new RedisAtomicLong(key, backFactory);
+	
+	public RedisAtomicCounter(String key, RedisConnectionFactory masterFactory, RedisConnectionFactory backFactory){
+		atomic1 = new RedisAtomicLong(key, masterFactory);
+		atomic2 = new RedisAtomicLong(key, backFactory);
 	}
-
-	private RedisAtomicLong getRedisAtomicLong() {
-		return useMaster ? this.atomic1 : this.atomic2;
+	
+	private RedisAtomicLong getRedisAtomicLong(){
+		if(useMaster){
+			return atomic1;
+		}
+		return atomic2;
 	}
-
+	
+	@Override
 	public long get() {
-		return this.getRedisAtomicLong().get();
+		return getRedisAtomicLong().get();
 	}
 
+	@Override
 	public void set(long newValue) {
-		this.getRedisAtomicLong().set(newValue);
+		getRedisAtomicLong().set(newValue);
 	}
 
+	@Override
 	public long getAndAdd(long delta) {
-		return this.getRedisAtomicLong().getAndAdd(delta);
+		return getRedisAtomicLong().getAndAdd(delta);
 	}
 
+	@Override
 	public long getAndDecrement() {
-		return this.getRedisAtomicLong().getAndDecrement();
+		return getRedisAtomicLong().getAndDecrement();
 	}
 
+	@Override
 	public long getAndIncrement() {
-		return this.getRedisAtomicLong().getAndIncrement();
+		return getRedisAtomicLong().getAndIncrement();
 	}
 
+	@Override
 	public long getAndSet(long newValue) {
-		return this.getRedisAtomicLong().getAndSet(newValue);
+		return getRedisAtomicLong().getAndSet(newValue);
 	}
 
+	@Override
 	public long incrementAndGet() {
-		return this.getRedisAtomicLong().incrementAndGet();
+		return getRedisAtomicLong().incrementAndGet();
 	}
+
 }

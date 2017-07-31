@@ -1,308 +1,200 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.util;
 
-import com.gewara.util.GewaLogger;
-import com.gewara.util.LoggerUtils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.apache.commons.collections.map.UnmodifiableMap;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 
 public class IPUtil {
-	public static final IPUtil.IpData ipData = new IPUtil.IpData();
-	private static Map<String, String> provinceMap;
-	private static Map<String, Map<String, String>> proCityMap;
-	private static Map<String, String> cityMap = new HashMap();
-	private static Map<String, String> city2Pro = new HashMap();
-	private static final transient GewaLogger dbLogger = LoggerUtils.getLogger(IPUtil.class);
+	public final static IpData ipData = new IpData();
+	private static Map<String/*code*/, String/*name*/> provinceMap;
+	private static Map<String/*provinceCode*/, Map<String/*citycode*/, String/*cityname*/>> proCityMap;
+	private static Map<String/*citycode*/, String/*cityname*/> cityMap = new HashMap<>();
+	private static Map<String/*citycode*/, String/*provincecode*/> city2Pro = new HashMap<>();
+	private final static transient GewaLogger dbLogger = LoggerUtils.getLogger(IPUtil.class);
 	private static AtomicBoolean init = new AtomicBoolean(false);
-
-	public static String[] findProAndCityByIp(String ip) {
-		if (StringUtils.equals("::1", ip)) {
+	static{
+		init();
+	}
+	public static class IpData implements Serializable {
+		private static final long serialVersionUID = 1L;
+		private long[] ipList = new long[]{};
+		private Map<Long, Long> pairMap = new HashMap<Long, Long>();
+		private Map<Long, String> addressMap = new HashMap<Long, String>();
+	}
+	/**
+	 * @param ip
+	 * @return procode,citycode,cityname
+	 */
+	public static String[] findProAndCityByIp(String ip){
+		if(StringUtils.equals("::1", ip)){
 			ip = "127.0.0.1";
 		}
-
 		try {
-			String e = getAddress(ip);
-			if (StringUtils.isNotBlank(e)) {
-				Iterator arg1 = provinceMap.entrySet().iterator();
-
-				while (arg1.hasNext()) {
-					Entry pro = (Entry) arg1.next();
-					if (StringUtils.contains(e, (String) pro.getValue())) {
-						Map city = (Map) proCityMap.get(pro.getKey());
-						Iterator arg4 = city.entrySet().iterator();
-
-						Entry gewaCity;
-						do {
-							if (!arg4.hasNext()) {
-								return new String[] { (String) pro.getKey(), "", "" };
+			String address = getAddress(ip);
+			if (StringUtils.isNotBlank(address)) {
+				for (Map.Entry<String, String> pro : provinceMap.entrySet()) {
+					if (StringUtils.contains(address, pro.getValue())){
+						Map<String, String> city = proCityMap.get(pro.getKey());
+						for (Map.Entry<String, String> gewaCity: city.entrySet()) {
+							if(StringUtils.contains(address, gewaCity.getValue())){
+								return new String[]{pro.getKey(), gewaCity.getKey(), gewaCity.getValue()};
 							}
-
-							gewaCity = (Entry) arg4.next();
-						} while (!StringUtils.contains(e, (String) gewaCity.getValue()));
-
-						return new String[] { (String) pro.getKey(), (String) gewaCity.getKey(),
-								(String) gewaCity.getValue() };
+						}
+						return new String[]{pro.getKey(), "", ""};
 					}
 				}
 			}
-		} catch (Exception arg6) {
-			dbLogger.error("获取城市代码错误", arg6);
+		} catch (Exception e) {
+			dbLogger.error("获取城市代码错误", e);
 		}
-
-		return new String[] { "", "", "" };
+		return new String[]{"","",""};
 	}
-
-	public static String getCitynameByCode(String citycode) {
-		return (String) cityMap.get(citycode);
+	
+	public static String getCitynameByCode(String citycode){
+		return cityMap.get(citycode);
 	}
-
+	
 	private static void init() {
-		if (!init.get()) {
-			boolean first = init.compareAndSet(false, true);
-			if (first) {
-				BufferedReader e;
-				Throwable arg1;
-				List cityList;
-				try {
-					e = new BufferedReader(new InputStreamReader(
-							IPUtil.class.getClassLoader().getResourceAsStream("ipdata.txt"), "utf-8"));
-					arg1 = null;
-
-					try {
-						cityList = IOUtils.readLines(e);
-						init(cityList);
-					} catch (Throwable arg56) {
-						arg1 = arg56;
-						throw arg56;
-					} finally {
-						if (e != null) {
-							if (arg1 != null) {
-								try {
-									e.close();
-								} catch (Throwable arg54) {
-									arg1.addSuppressed(arg54);
-								}
-							} else {
-								e.close();
-							}
-						}
-
-					}
-				} catch (Exception arg58) {
-					throw new IllegalArgumentException("IPData ERROR!!!", arg58);
-				}
-
-				HashMap cmap;
-				Iterator arg4;
-				String city;
-				String[] pair;
-				try {
-					e = new BufferedReader(new InputStreamReader(
-							IPUtil.class.getClassLoader().getResourceAsStream("province.txt"), "utf-8"));
-					arg1 = null;
-
-					try {
-						cityList = IOUtils.readLines(e);
-						cmap = new HashMap();
-						arg4 = cityList.iterator();
-
-						while (true) {
-							if (!arg4.hasNext()) {
-								provinceMap = UnmodifiableMap.decorate(cmap);
-								break;
-							}
-
-							city = (String) arg4.next();
-							pair = StringUtils.split(city, "\t");
-							if (pair.length == 2) {
-								cmap.put(StringUtils.trim(pair[0]), StringUtils.trim(pair[1]));
-							}
-						}
-					} catch (Throwable arg62) {
-						arg1 = arg62;
-						throw arg62;
-					} finally {
-						if (e != null) {
-							if (arg1 != null) {
-								try {
-									e.close();
-								} catch (Throwable arg53) {
-									arg1.addSuppressed(arg53);
-								}
-							} else {
-								e.close();
-							}
-						}
-
-					}
-				} catch (Exception arg64) {
-					throw new IllegalArgumentException("Province data ERROR!!!", arg64);
-				}
-
-				try {
-					e = new BufferedReader(new InputStreamReader(
-							IPUtil.class.getClassLoader().getResourceAsStream("city.txt"), "utf-8"));
-					arg1 = null;
-
-					try {
-						cityList = IOUtils.readLines(e);
-						cmap = new HashMap();
-						arg4 = cityList.iterator();
-
-						while (arg4.hasNext()) {
-							city = (String) arg4.next();
-							pair = StringUtils.split(city, "\t");
-							if (pair.length == 3) {
-								Object row = (Map) cmap.get(pair[0]);
-								if (row == null) {
-									row = new HashMap();
-									cmap.put(pair[0], row);
-								}
-
-								((Map) row).put(pair[1], pair[2]);
-								cityMap.put(pair[1], pair[2]);
-								city2Pro.put(pair[1], pair[0]);
-							}
-						}
-
-						proCityMap = UnmodifiableMap.decorate(cmap);
-					} catch (Throwable arg59) {
-						arg1 = arg59;
-						throw arg59;
-					} finally {
-						if (e != null) {
-							if (arg1 != null) {
-								try {
-									e.close();
-								} catch (Throwable arg55) {
-									arg1.addSuppressed(arg55);
-								}
-							} else {
-								e.close();
-							}
-						}
-
-					}
-
-				} catch (Exception arg61) {
-					throw new IllegalArgumentException("Province data ERROR!!!", arg61);
+		if(init.get()) return;
+		boolean first = init.compareAndSet(false, true);
+		if(!first) {
+			return;
+		}
+		//1)ip
+		try(
+				Reader	reader = new BufferedReader(new InputStreamReader(IPUtil.class.getClassLoader().getResourceAsStream("ipdata.txt"), "utf-8"));
+		) {
+			List<String> lines = IOUtils.readLines(reader);
+			init(lines);
+		}catch(Exception e){
+			throw new IllegalArgumentException("IPData ERROR!!!", e);
+		}
+		//2)province
+		try(
+				Reader	reader = new BufferedReader(new InputStreamReader(IPUtil.class.getClassLoader().getResourceAsStream("province.txt"), "utf-8"));
+		) {
+			List<String> provinceList = IOUtils.readLines(reader);
+			Map<String, String> map = new HashMap<String, String>();
+			for(String province: provinceList){
+				String[] pair = StringUtils.split(province, "\t");
+				if(pair.length==2){
+					map.put(StringUtils.trim(pair[0]), StringUtils.trim(pair[1]));
 				}
 			}
+			provinceMap = UnmodifiableMap.decorate(map);
+		}catch(Exception e){
+			throw new IllegalArgumentException("Province data ERROR!!!", e);
 		}
+		//3)city
+		try(
+				Reader	reader = new BufferedReader(new InputStreamReader(IPUtil.class.getClassLoader().getResourceAsStream("city.txt"), "utf-8"));
+		) {
+			List<String> cityList = IOUtils.readLines(reader);
+			Map<String/*provinceCode*/, Map<String/*citycode*/, String/*cityname*/>> cmap = new HashMap<>();
+			
+			for(String city: cityList){
+				String[] pair/*pcode,ccode,cname*/ = StringUtils.split(city, "\t");
+				if(pair.length==3){
+					Map<String, String> row = cmap.get(pair[0]);
+					if(row==null){
+						row = new HashMap<String, String>();
+						cmap.put(pair[0], row);
+					}
+					row.put(pair[1], pair[2]);
+					cityMap.put(pair[1], pair[2]);
+					city2Pro.put(pair[1], pair[0]);
+				}
+			}
+			proCityMap = UnmodifiableMap.decorate(cmap);
+		}catch(Exception e){
+			throw new IllegalArgumentException("Province data ERROR!!!", e);
+		}
+
 	}
 
 	private static void init(List<String> lines) {
 		ipData.ipList = new long[lines.size() + 4];
 		int i = 2;
-		int success = 0;
-		int error = 0;
-		Iterator arg5 = lines.iterator();
-
-		while (arg5.hasNext()) {
-			String line = (String) arg5.next();
-
+		int success = 0, error = 0;
+		Long ipn1,ipn2;
+		for (String line : lines) {
 			try {
-				String[] e = StringUtils.trim(line).split("[ ]+");
-				Long ipn1 = getIpNum(e[0]);
-				Long ipn2 = getIpNum(e[1]);
-				ipData.ipList[i] = ipn1.longValue();
-				++i;
+				String[] ipdata = StringUtils.trim(line).split("[ ]+");
+				ipn1 = getIpNum(ipdata[0]);
+				ipn2 = getIpNum(ipdata[1]);
+				ipData.ipList[i] = ipn1;
+				i++;
 				ipData.pairMap.put(ipn1, ipn2);
-				ipData.addressMap.put(ipn1, e[2] + (e.length > 3 ? "  " + e[3] : ""));
-				++success;
-			} catch (Exception arg8) {
-				++error;
+				// 哨兵
+				ipData.addressMap.put(ipn1, ipdata[2] + (ipdata.length>3?"  " + ipdata[3]:""));
+				success++;
+			} catch (Exception e) {
+				error++;
 				dbLogger.warn("RowError:" + line + ", LineNo:" + (success + error));
 			}
 		}
-
 		ipData.ipList[0] = Long.MIN_VALUE;
-		ipData.ipList[1] = -9223372036854775807L;
-		ipData.ipList[i] = 9223372036854775806L;
+		ipData.ipList[1] = Long.MIN_VALUE + 1;
+		ipData.ipList[i] = Long.MAX_VALUE - 1;
 		ipData.ipList[i + 1] = Long.MAX_VALUE;
 		Arrays.sort(ipData.ipList);
-		ipData.ipList[1] = ipData.ipList[2] - 1L;
-		ipData.ipList[i] = ((Long) ipData.pairMap.get(Long.valueOf(ipData.ipList[i - 1]))).longValue() + 1L;
+		ipData.ipList[1] = ipData.ipList[2] - 1;
+		ipData.ipList[i] = ipData.pairMap.get(ipData.ipList[i - 1]) + 1;
 		dbLogger.warn("Init IP Data, total count:" + lines.size() + ",success:" + success + ",error:" + error);
 	}
 
 	public static String getAddress(String ip) {
-		long ipNum = getIpNum(ip).longValue();
+		long ipNum = getIpNum(ip);
 		int idx = findNear(ipNum);
-		Long ip1 = Long.valueOf(ipData.ipList[idx]);
-		Long ip2 = (Long) ipData.pairMap.get(ip1);
+		Long ip1 = ipData.ipList[idx];
+		Long ip2 = ipData.pairMap.get(ip1);
 		String find = null;
-		if (ip1 != null && ip2 != null) {
-			if (ipNum >= ip1.longValue() && ipNum <= ip2.longValue()) {
-				find = (String) ipData.addressMap.get(ip1);
-			}
-
-			return find;
-		} else {
+		if(ip1==null || ip2==null){
 			dbLogger.warn("INVALIDIP:" + ip);
 			return find;
 		}
+		if (ipNum >= ip1 && ipNum <= ip2){
+			find = ipData.addressMap.get(ip1);
+		}
+		return find;
 	}
 
 	private static Long getIpNum(String ip) {
 		String[] ip1 = StringUtils.split(StringUtils.trim(ip), ".");
-		if (ip1 != null && ip1.length > 3) {
-			return Long.valueOf(Long.parseLong(ip1[0]) * 256L * 256L * 256L + Long.parseLong(ip1[1]) * 256L * 256L
-					+ Long.parseLong(ip1[2]) * 256L + Long.parseLong(ip1[3]));
-		} else {
+		if (ip1!=null && ip1.length > 3) {
+			return Long.parseLong(ip1[0]) * 256 * 256 * 256 + Long.parseLong(ip1[1]) * 256 * 256 + Long.parseLong(ip1[2]) * 256 + Long.parseLong(ip1[3]);
+		}else{
 			dbLogger.warn("INVALIDIP:" + ip);
-			return Long.valueOf(0L);
 		}
+		return 0L;
 	}
 
 	private static int findNear(long ipNum) {
-		int start = 0;
-		int end = ipData.ipList.length;
-		boolean mid = true;
-
+		int start = 0, end = ipData.ipList.length, mid = -1;
 		while (start != end && start + 1 != end) {
-			int mid1 = (start + end) / 2;
-			if (ipData.ipList[mid1] == ipNum) {
-				return mid1;
-			}
-
-			if (ipData.ipList[mid1 + 1] == ipNum) {
-				return mid1 + 1;
-			}
-
-			if (ipNum > ipData.ipList[mid1] && ipNum < ipData.ipList[mid1 + 1]) {
-				return mid1;
-			}
-
-			if (ipNum > ipData.ipList[mid1]) {
-				start = mid1;
+			mid = (start + end) / 2;
+			if (ipData.ipList[mid] == ipNum)
+				return mid;
+			if (ipData.ipList[mid + 1] == ipNum)
+				return mid + 1;
+			if (ipNum > ipData.ipList[mid] && ipNum < ipData.ipList[mid + 1])
+				return mid;
+			if (ipNum > ipData.ipList[mid]) {
+				start = mid;
 			} else {
-				end = mid1;
+				end = mid;
 			}
 		}
-
 		return start;
-	}
-
-	static {
-		init();
-	}
-
-	public static class IpData implements Serializable {
-		private static final long serialVersionUID = 1L;
-		private long[] ipList = new long[0];
-		private Map<Long, Long> pairMap = new HashMap();
-		private Map<Long, String> addressMap = new HashMap();
 	}
 }

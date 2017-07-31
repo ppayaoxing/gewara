@@ -1,6 +1,8 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.support.lifecycle;
 
 public interface BeforeUpdateService {
+	/**
+	 * 在执行更新之前，会调用此方法
+	 */
 	void beforeUpdate();
 }

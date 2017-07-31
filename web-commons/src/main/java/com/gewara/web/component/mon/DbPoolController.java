@@ -1,5 +1,17 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.web.component.mon;
+
+import java.sql.Timestamp;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gewara.Config;
 import com.gewara.ext.jdbc.validation.GWMysqlConnValidation;
@@ -12,146 +24,131 @@ import com.gewara.util.BaseWebUtils;
 import com.gewara.util.DateUtil;
 import com.gewara.util.GewaIpConfig;
 import com.gewara.util.JsonUtils;
-import java.sql.Timestamp;
-import java.util.LinkedHashMap;
-import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller("_dbpool")
-public class DbPoolController implements InitializingBean {
+public class DbPoolController implements InitializingBean{
 	private static final String TAG_POOL_CHECK = "poolCheck";
 	private static final String TAG_READONLY_SWITCH = "readOnlyDaoSwitch";
-	@Autowired(required = false)
+	@Autowired(required=false)
 	private ConfigCenter configCenter;
-	@Autowired(required = false)
+	@Autowired(required=false)
 	private ReadOnlyDaoService readOnlyDaoService;
-
-	@RequestMapping({"/sysmgr/dbpool/enableCheck.xhtml"})
+	
+	/**
+	 * @param seconds（时长）
+	 * @return
+	 */
+	@RequestMapping("/sysmgr/dbpool/enableCheck.xhtml")
 	@ResponseBody
-	public String enableConnectionCheck(HttpServletRequest request, Integer seconds) {
+	public String enableConnectionCheck(HttpServletRequest request, Integer seconds){
 		String ip = BaseWebUtils.getRemoteIp(request);
 		GewaIpConfig.filterOfficeIp(ip);
-		if (seconds == null) {
-			seconds = Integer.valueOf(1200);
+		if(seconds==null){
+			seconds = 1200;
 		}
-
-		long endtime = System.currentTimeMillis() + (long) (seconds.intValue() * 1000);
+		long endtime = System.currentTimeMillis() + seconds * 1000;
 		GWOracleConnValidation.enableValidate(endtime);
 		GWPostgresConnValidation.enableValidate(endtime);
-
-		try {
+		try{
 			GWMysqlConnValidation.enableValidate(endtime);
-		} catch (Throwable arg6) {
-			;
+		}catch(Throwable e){//程序未升级
 		}
-
 		return "ok";
 	}
-
-	@RequestMapping({"/sysmgr/dbpool/disableCheck.xhtml"})
+	@RequestMapping("/sysmgr/dbpool/disableCheck.xhtml")
 	@ResponseBody
-	public String disableConnectionCheck(HttpServletRequest request) {
+	public String disableConnectionCheck(HttpServletRequest request){
 		String ip = BaseWebUtils.getRemoteIp(request);
 		GewaIpConfig.filterOfficeIp(ip);
 		GWOracleConnValidation.disableValidate();
 		GWPostgresConnValidation.disableValidate();
 		return "ok";
 	}
-
-	@RequestMapping({"/sysmgr/dbpool/enableAllCheck.xhtml"})
+	@RequestMapping("/sysmgr/dbpool/enableAllCheck.xhtml")
 	@ResponseBody
-	public String enableAllCheck(HttpServletRequest request, Integer seconds) {
+	public String enableAllCheck(HttpServletRequest request, Integer seconds){
 		String ip = BaseWebUtils.getRemoteIp(request);
 		GewaIpConfig.filterOfficeIp(ip);
-		if (seconds == null) {
-			seconds = Integer.valueOf(1200);
+		if(seconds==null){
+			seconds = 1200;
 		}
-
-		long endtime = System.currentTimeMillis() + (long) (seconds.intValue() * 1000);
-		this.configCenter.refresh(Config.SYSTEMID, "poolCheck", "" + endtime);
+		long endtime = System.currentTimeMillis() + seconds * 1000;
+		configCenter.refresh(Config.SYSTEMID, TAG_POOL_CHECK, ""+endtime);
 		return "ok:" + new Timestamp(endtime);
 	}
-
-	@RequestMapping({"/sysmgr/dbpool/getStats.xhtml"})
+	@RequestMapping("/sysmgr/dbpool/getStats.xhtml")
 	@ResponseBody
-	public String getStats(HttpServletRequest request, String dbtype) {
+	public String getStats(HttpServletRequest request, String dbtype){
 		String ip = BaseWebUtils.getRemoteIp(request);
 		GewaIpConfig.filterOfficeIp(ip);
-		LinkedHashMap stats = new LinkedHashMap();
+		Map<String, String> stats = new LinkedHashMap<String, String>();
 		stats.put("host", Config.getHostname());
-		stats.put("dbtype", "" + dbtype);
-		if (StringUtils.equals("oracle", dbtype)) {
-			stats.put("endtime", "" + new Timestamp(GWOracleConnValidation.getEndtime()));
-			stats.put("invalidTimes", "" + GWOracleConnValidation.getInvalidTimes());
-			stats.put("validateTimes", "" + GWOracleConnValidation.getValidateTimes());
-		} else if (StringUtils.equals("postgres", dbtype)) {
+		stats.put("dbtype", ""+dbtype);
+		if(StringUtils.equals("oracle", dbtype)){
+			stats.put("endtime", ""+new Timestamp(GWOracleConnValidation.getEndtime()));
+			stats.put("invalidTimes", ""+GWOracleConnValidation.getInvalidTimes());
+			stats.put("validateTimes", ""+GWOracleConnValidation.getValidateTimes());
+		}else if(StringUtils.equals("postgres", dbtype)){
 			stats.put("endtime", "" + new Timestamp(GWPostgresConnValidation.getEndtime()));
 			stats.put("invalidTimes", "" + GWPostgresConnValidation.getInvalidTimes());
 			stats.put("validateTimes", "" + GWPostgresConnValidation.getValidateTimes());
-		} else if (StringUtils.equals("mysql", dbtype)) {
+		}else if(StringUtils.equals("mysql", dbtype)){
 			stats.put("endtime", "" + new Timestamp(GWPostgresConnValidation.getEndtime()));
 			stats.put("invalidTimes", "" + GWMysqlConnValidation.getInvalidTimes());
 			stats.put("validateTimes", "" + GWMysqlConnValidation.getValidateTimes());
 		}
-
 		return JsonUtils.writeMapToJson(stats);
 	}
-
+	@Override
 	public void afterPropertiesSet() throws Exception {
-		if (this.configCenter != null) {
-			this.configCenter.register(Config.SYSTEMID, "poolCheck", new ConfigTrigger() {
+		if(configCenter!=null){
+			configCenter.register(Config.SYSTEMID, TAG_POOL_CHECK, new ConfigTrigger(){
+				@Override
 				public void refreshCurrent(String newConfig) {
-					if (StringUtils.isNotBlank(newConfig)) {
-						Long time = Long.valueOf(Long.parseLong(newConfig));
-						if (time.longValue() > System.currentTimeMillis()) {
-							GWOracleConnValidation.enableValidate(time.longValue());
-							GWPostgresConnValidation.enableValidate(time.longValue());
+					if(StringUtils.isNotBlank(newConfig)){
+						Long time = Long.parseLong(newConfig);
+						if(time>System.currentTimeMillis()){
+							GWOracleConnValidation.enableValidate(time);
+							GWPostgresConnValidation.enableValidate(time);
 						}
 					}
-
 				}
 			});
-			this.configCenter.register(Config.SYSTEMID, "readOnlyDaoSwitch", new ConfigTrigger() {
+			configCenter.register(Config.SYSTEMID, TAG_READONLY_SWITCH, new ConfigTrigger(){
+				@Override
 				public void refreshCurrent(String newConfig) {
-					if (DbPoolController.this.readOnlyDaoService != null && StringUtils.isNotBlank(newConfig)) {
-						boolean disable = StringUtils.startsWith(newConfig, "disable");
-						if (disable) {
-							DbPoolController.this.readOnlyDaoService.setReadonly(false);
-						} else {
-							DbPoolController.this.readOnlyDaoService.setReadonly(true);
+					if(readOnlyDaoService!=null){
+						if(StringUtils.isNotBlank(newConfig)){
+							boolean disable = StringUtils.startsWith(newConfig, "disable");
+							if(disable){
+								readOnlyDaoService.setReadonly(false);
+							}else{
+								readOnlyDaoService.setReadonly(true);
+							}
 						}
 					}
-
 				}
 			});
 		}
-
 	}
-
-	@RequestMapping({"/sysmgr/dbpool/switchAllReadonly.xhtml"})
+	@RequestMapping("/sysmgr/dbpool/switchAllReadonly.xhtml")
 	@ResponseBody
-	public String switchAllReadonly(HttpServletRequest request, String readonly) {
-		this.configCenter.refresh(Config.SYSTEMID, "readOnlyDaoSwitch",
-				readonly + ":" + DateUtil.getCurFullTimestampStr());
+	public String switchAllReadonly(HttpServletRequest request, String readonly){
+		configCenter.refresh(Config.SYSTEMID, TAG_READONLY_SWITCH, readonly + ":" + DateUtil.getCurFullTimestampStr());
 		return "all:" + readonly;
 	}
-
-	@RequestMapping({"/sysmgr/dbpool/switchReadonly.xhtml"})
+	@RequestMapping("/sysmgr/dbpool/switchReadonly.xhtml")
 	@ResponseBody
-	public String switchReadonly(HttpServletRequest request, String readonly) {
+	public String switchReadonly(HttpServletRequest request, String readonly){
 		String ip = BaseWebUtils.getRemoteIp(request);
 		GewaIpConfig.filterOfficeIp(ip);
-		if (this.readOnlyDaoService == null) {
-			return "no readonly!:" + Config.getHostname();
-		} else {
+		if(readOnlyDaoService!=null){
 			boolean ro = StringUtils.isBlank(readonly) || StringUtils.equals("Y", readonly);
-			this.readOnlyDaoService.setReadonly(ro);
+			readOnlyDaoService.setReadonly(ro);
 			return "readonly:" + ro + ":" + Config.getHostname();
+		}else{
+			return "no readonly!" + ":" + Config.getHostname();
 		}
 	}
+
 }

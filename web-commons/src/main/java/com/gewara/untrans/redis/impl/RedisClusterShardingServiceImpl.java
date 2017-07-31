@@ -1,5 +1,14 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.redis.impl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.data.redis.connection.RedisClusterConnection;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import com.gewara.dubbo.bytecode.NoSuchPropertyException;
 import com.gewara.dubbo.bytecode.Wrapper;
@@ -7,194 +16,173 @@ import com.gewara.support.serializer.HessianRedisSerializer;
 import com.gewara.untrans.redis.RedisShardingService;
 import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.data.redis.connection.RedisClusterConnection;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-public class RedisClusterShardingServiceImpl implements RedisShardingService {
-	private final transient GewaLogger dbLogger = WebLogger.getLogger(this.getClass());
+public class RedisClusterShardingServiceImpl implements RedisShardingService{
+	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
+	
 	private RedisConnectionFactory redisConnectionFactory;
-	private StringRedisSerializer stringSerializer = new StringRedisSerializer();
-	private HessianRedisSerializer hessianSerializer = new HessianRedisSerializer();
-
-	public void setRedisConnectionFactory(RedisConnectionFactory redisConnectionFactory) {
+	public void setRedisConnectionFactory(RedisConnectionFactory redisConnectionFactory){
 		this.redisConnectionFactory = redisConnectionFactory;
 	}
-
-	public <T> T getHashMapCache(String key, Class<T> clazz) {
-		if (!StringUtils.isBlank(key) && !clazz.isPrimitive()) {
-			Object rv = null;
-
-			try {
-				rv = clazz.newInstance();
-				Wrapper e = Wrapper.getWrapper(clazz);
-				RedisClusterConnection clusterConn = this.redisConnectionFactory.getClusterConnection();
-				Map objMap = clusterConn.hGetAll(this.stringSerializer.serialize(key));
-				Iterator arg6 = objMap.entrySet().iterator();
-
-				while (arg6.hasNext()) {
-					Entry entry = (Entry) arg6.next();
-					String pk = this.stringSerializer.deserialize((byte[]) entry.getKey());
-
-					try {
-						e.setPropertyValue(rv, pk, this.hessianSerializer.deserialize((byte[]) entry.getValue()));
-					} catch (NoSuchPropertyException arg10) {
-						this.dbLogger.error(arg10, 5);
-					}
-				}
-			} catch (Exception arg11) {
-				this.dbLogger.error(arg11, 10);
-			}
-
-			return rv;
-		} else {
+	
+	private StringRedisSerializer stringSerializer = new StringRedisSerializer();
+	private HessianRedisSerializer hessianSerializer = new HessianRedisSerializer<>();
+	
+	@Override
+	public <T> T getHashMapCache(String key, Class<T> clazz){
+		if(StringUtils.isBlank(key) || clazz.isPrimitive()){
 			return null;
 		}
+		T rv = null;
+		try{
+			rv = clazz.newInstance();
+			Wrapper srcWrapper = Wrapper.getWrapper(clazz);
+			RedisClusterConnection clusterConn = redisConnectionFactory.getClusterConnection();
+			Map<byte[], byte[]> objMap = clusterConn.hGetAll(stringSerializer.serialize(key));		
+			for(Entry<byte[], byte[]> entry : objMap.entrySet()){
+				String pk = stringSerializer.deserialize(entry.getKey());
+				try{
+					srcWrapper.setPropertyValue(rv, pk, hessianSerializer.deserialize(entry.getValue()));
+				}catch(NoSuchPropertyException nspe){
+					dbLogger.error(nspe, 5);
+				}
+			}
+		} catch (Exception e) {
+			dbLogger.error(e, 10);
+		}
+		return rv;
 	}
-
-	public <T> void putHashMapCache4All(String key, T obj) {
-		if (StringUtils.isNotBlank(key) && obj != null) {
-			try {
-				RedisClusterConnection e = this.redisConnectionFactory.getClusterConnection();
-				e.hMSet(this.stringSerializer.serialize(key), this.getObjMap(obj));
-			} catch (Exception arg3) {
-				this.dbLogger.error(arg3, 10);
+	
+	@Override
+	public <T> void putHashMapCache4All(String key, T obj){
+		if(StringUtils.isNotBlank(key) && obj != null){
+			try{
+				RedisClusterConnection clusterConn = redisConnectionFactory.getClusterConnection();
+				clusterConn.hMSet(stringSerializer.serialize(key), getObjMap(obj));
+			}catch (Exception e) {
+				dbLogger.error(e, 10);
 			}
 		}
-
 	}
-
-	public void putHashMapCache(String key, String fieldName, Object fieldValue) {
-		if (StringUtils.isNotBlank(key) && StringUtils.isNotBlank(fieldName)) {
-			try {
-				RedisClusterConnection e = this.redisConnectionFactory.getClusterConnection();
-				e.hSet(this.stringSerializer.serialize(key), this.stringSerializer.serialize(fieldName),
-						this.hessianSerializer.serialize(fieldValue));
-			} catch (Exception arg4) {
-				this.dbLogger.error(arg4, 10);
+	
+	@Override
+	public void putHashMapCache(String key, String fieldName, Object fieldValue){
+		if(StringUtils.isNotBlank(key) && StringUtils.isNotBlank(fieldName)){
+			try{
+				RedisClusterConnection clusterConn = redisConnectionFactory.getClusterConnection();
+				clusterConn.hSet(stringSerializer.serialize(key), stringSerializer.serialize(fieldName), hessianSerializer.serialize(fieldValue));
+			}catch (Exception e) {
+				dbLogger.error(e, 10);
 			}
 		}
-
 	}
-
-	private <T> Map<byte[], byte[]> getObjMap(T obj) {
-		HashMap map = new HashMap();
+	
+	private <T> Map<byte[], byte[]> getObjMap(T obj){
+		Map<byte[], byte[]> map = new HashMap<byte[], byte[]>();
 		Wrapper srcWrapper = Wrapper.getWrapper(obj.getClass());
 		String[] propStrArr = srcWrapper.getWritePropertyNames();
-		String[] arg4 = propStrArr;
-		int arg5 = propStrArr.length;
-
-		for (int arg6 = 0; arg6 < arg5; ++arg6) {
-			String propStr = arg4[arg6];
-			map.put(this.stringSerializer.serialize(propStr),
-					this.hessianSerializer.serialize(srcWrapper.getPropertyValue(obj, propStr)));
+		for(String propStr : propStrArr){
+			map.put(stringSerializer.serialize(propStr), hessianSerializer.serialize(srcWrapper.getPropertyValue(obj, propStr)));
 		}
-
 		return map;
 	}
-
-	public <T> void putQueueCache4All(String key, List<T> objs) {
-		if (StringUtils.isNotBlank(key) && objs != null && !objs.isEmpty()) {
-			try {
-				byte[] e = this.stringSerializer.serialize(key);
+	
+	@Override
+	public <T> void putQueueCache4All(String key , List<T> objs){
+		if(StringUtils.isNotBlank(key) && objs != null && !objs.isEmpty()){
+			try{
+				byte[] kb = stringSerializer.serialize(key);
 				byte[][] objarr = new byte[objs.size()][];
-
-				for (int clusterConn = 0; clusterConn < objarr.length; ++clusterConn) {
-					objarr[clusterConn] = this.hessianSerializer.serialize(objs.get(clusterConn));
+				for(int i=0; i<objarr.length; i++){
+					objarr[i] = hessianSerializer.serialize(objs.get(i));
 				}
-
-				RedisClusterConnection arg6 = this.redisConnectionFactory.getClusterConnection();
-				arg6.lPush(e, objarr);
-			} catch (Exception arg5) {
-				this.dbLogger.error(arg5, 10);
+				RedisClusterConnection clusterConn = redisConnectionFactory.getClusterConnection();
+				clusterConn.lPush(kb, objarr);
+			}catch (Exception e) {
+				dbLogger.error(e, 10);
 			}
 		}
-
 	}
-
-	public <T> T pollQueueData(String key) {
-		if (StringUtils.isNotBlank(key)) {
-			try {
-				RedisClusterConnection e = this.redisConnectionFactory.getClusterConnection();
-				byte[] kb = this.stringSerializer.serialize(key);
-				return this.hessianSerializer.deserialize(e.rPop(kb));
-			} catch (Exception arg3) {
-				this.dbLogger.error(arg3, 10);
+	
+	@Override
+	public <T> T pollQueueData(String key){
+		if(StringUtils.isNotBlank(key)){
+			try{
+				RedisClusterConnection clusterConn = redisConnectionFactory.getClusterConnection();
+				byte[] kb = stringSerializer.serialize(key);
+				return (T) hessianSerializer.deserialize(clusterConn.rPop(kb));
+			}catch (Exception e) {
+				dbLogger.error(e, 10);
 			}
 		}
-
+		return null;
+	}
+	
+	@Override
+	public void putCache(String key, String value){
+		if(StringUtils.isNotBlank(key) && StringUtils.isNotBlank(value)){
+			try{
+				RedisClusterConnection clusterConn = redisConnectionFactory.getClusterConnection();
+				clusterConn.set(stringSerializer.serialize(key), stringSerializer.serialize(value));
+			}catch (Exception e) {
+				dbLogger.error(e, 10);
+			}
+		}
+	}
+	
+	@Override
+	public String getCache(String key){
+		if(StringUtils.isNotBlank(key)){
+			try{
+				RedisClusterConnection clusterConn = redisConnectionFactory.getClusterConnection();
+				return stringSerializer.deserialize(clusterConn.get(stringSerializer.serialize(key)));
+			}catch (Exception e) {
+				dbLogger.error(e, 10);
+			}
+		}
 		return null;
 	}
 
-	public void putCache(String key, String value) {
-		if (StringUtils.isNotBlank(key) && StringUtils.isNotBlank(value)) {
-			try {
-				RedisClusterConnection e = this.redisConnectionFactory.getClusterConnection();
-				e.set(this.stringSerializer.serialize(key), this.stringSerializer.serialize(value));
-			} catch (Exception arg3) {
-				this.dbLogger.error(arg3, 10);
-			}
-		}
-
-	}
-
-	public String getCache(String key) {
-		if (StringUtils.isNotBlank(key)) {
-			try {
-				RedisClusterConnection e = this.redisConnectionFactory.getClusterConnection();
-				return this.stringSerializer.deserialize(e.get(this.stringSerializer.serialize(key)));
-			} catch (Exception arg2) {
-				this.dbLogger.error(arg2, 10);
-			}
-		}
-
-		return null;
-	}
-
+	
+	@Override
 	public <T> Boolean putHashMapCache4AllNotExist(String key, T obj) {
-		if (StringUtils.isNotBlank(key) && obj != null) {
-			try {
-				byte[] e = this.stringSerializer.serialize(key);
-				RedisClusterConnection clusterConn = this.redisConnectionFactory.getClusterConnection();
-				if (!clusterConn.exists(e).booleanValue()) {
-					clusterConn.hMSet(this.stringSerializer.serialize(key), this.getObjMap(obj));
-					return Boolean.valueOf(true);
+		if(StringUtils.isNotBlank(key) && obj != null){
+			try{
+				byte[] keybytes = stringSerializer.serialize(key);
+				RedisClusterConnection clusterConn = redisConnectionFactory.getClusterConnection();
+				if(!clusterConn.exists(keybytes)){
+					clusterConn.hMSet(stringSerializer.serialize(key), getObjMap(obj));
+					return true;
 				}
-			} catch (Exception arg4) {
-				this.dbLogger.error(arg4, 10);
+			}catch (Exception e) {
+				dbLogger.error(e, 10);
 			}
 		}
-
-		return Boolean.valueOf(false);
+		return false;
 	}
 
+	@Override
 	public void delCache(String key) {
-		if (StringUtils.isNotBlank(key)) {
-			try {
-				RedisClusterConnection e = this.redisConnectionFactory.getClusterConnection();
-				e.del(new byte[][]{this.stringSerializer.serialize(key)});
-			} catch (Exception arg2) {
-				this.dbLogger.error(arg2, 10);
+		if(StringUtils.isNotBlank(key)){
+			try{
+				RedisClusterConnection clusterConn = redisConnectionFactory.getClusterConnection();
+				clusterConn.del(stringSerializer.serialize(key));
+			}catch (Exception e) {
+				dbLogger.error(e, 10);
 			}
 		}
-
 	}
 
+	@Override
 	public void expireCache(String key, int seconds) {
-		if (StringUtils.isNotBlank(key) && seconds > 0) {
-			try {
-				RedisClusterConnection e = this.redisConnectionFactory.getClusterConnection();
-				e.expire(this.stringSerializer.serialize(key), (long) seconds);
-			} catch (Exception arg3) {
-				this.dbLogger.error(arg3, 10);
+		if(StringUtils.isNotBlank(key) && seconds>0){
+			try{
+				RedisClusterConnection clusterConn = redisConnectionFactory.getClusterConnection();
+				clusterConn.expire(stringSerializer.serialize(key), seconds);
+			}catch (Exception e) {
+				dbLogger.error(e, 10);
 			}
 		}
-
 	}
+	
 }

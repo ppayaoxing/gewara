@@ -1,15 +1,38 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.msearch.external;
+
+import java.util.Collection;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.msearch.external.entity.GwSearchResult;
 import com.gewara.msearch.external.entity.QueryCondition;
 import com.gewara.msearch.external.entity.QueryResult;
-import java.util.Collection;
 
 public interface QueryService {
-	<T> ResultCode<Collection<QueryResult<T>>> query(QueryCondition arg0);
-
-	ResultCode<QueryResult<GwSearchResult>> queryGwSearch(String arg0, String arg1, String arg2, String arg3,
-			String arg4, int arg5, int arg6);
+	/**
+	 * 查询指定的数据类型
+	 * @param <T>
+	 * @param condition
+	 * @return
+	 */
+	public <T> ResultCode<Collection<QueryResult<T>>> query(QueryCondition condition);
+	
+	/**
+	 * 原主站查询
+	 * @param citycode
+	 * @param skey
+	 * @param channel
+	 * @param tag
+	 * @param category
+	 * @param from
+	 * @param limit
+	 * @return
+	 */
+	public ResultCode<QueryResult<GwSearchResult>> queryGwSearch(String citycode, String skey, String channel, String tag, String category, int from, int limit);
+	/**
+	 * 全文检索，忽略数据类型。
+	 * 
+	 * @param condition
+	 * @return
+	 */
+	//public Collection<PageQueryResult<DataType,String>> fullQuery(String queryStr,Integer from,Integer pageSize);
 }

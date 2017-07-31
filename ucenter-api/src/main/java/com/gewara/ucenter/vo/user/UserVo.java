@@ -1,27 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.ucenter.vo.user;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * FIXME:remove from  ucenter
+ */
 public class UserVo extends BaseVo {
 	private static final long serialVersionUID = 4667924164196642997L;
 	private Long id;
-	private String username;
+	private String username; // required
 	private String nickname;
-	private String accountEnabled;
+	private String accountEnabled; // Y or N
 	private String citycode;
 	private String mobile;
 	private String rolenames;
-	private String usertype;
+	private String usertype; // 用户类型：inner:内部用户，其他：外部用户
 	private String email;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -29,7 +33,7 @@ public class UserVo extends BaseVo {
 	}
 
 	public String getUsername() {
-		return this.username;
+		return username;
 	}
 
 	public void setUsername(String username) {
@@ -37,7 +41,7 @@ public class UserVo extends BaseVo {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -45,7 +49,7 @@ public class UserVo extends BaseVo {
 	}
 
 	public String getAccountEnabled() {
-		return this.accountEnabled;
+		return accountEnabled;
 	}
 
 	public void setAccountEnabled(String accountEnabled) {
@@ -53,7 +57,7 @@ public class UserVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -61,7 +65,7 @@ public class UserVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -69,7 +73,7 @@ public class UserVo extends BaseVo {
 	}
 
 	public String getRolenames() {
-		return this.rolenames;
+		return rolenames;
 	}
 
 	public void setRolenames(String rolenames) {
@@ -77,7 +81,7 @@ public class UserVo extends BaseVo {
 	}
 
 	public String getUsertype() {
-		return this.usertype;
+		return usertype;
 	}
 
 	public void setUsertype(String usertype) {
@@ -85,10 +89,11 @@ public class UserVo extends BaseVo {
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 }

@@ -1,14 +1,5 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package de.idyl.winzipaes;
 
-import com.gewara.util.TmpFileUtil;
-import de.idyl.winzipaes.impl.AESDecrypter;
-import de.idyl.winzipaes.impl.ByteArrayHelper;
-import de.idyl.winzipaes.impl.CentralDirectoryEntry;
-import de.idyl.winzipaes.impl.ExtRandomAccessFile;
-import de.idyl.winzipaes.impl.ExtZipEntry;
-import de.idyl.winzipaes.impl.ExtZipOutputStream;
-import de.idyl.winzipaes.impl.ZipConstants;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -18,7 +9,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,260 +18,303 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
-public class AesZipFileDecrypter implements ZipConstants {
-	private static final Logger LOG = Logger.getLogger(AesZipFileDecrypter.class.getName());
-	public static String charset = "iso-8859-1";
-	protected static int bufferSize = 10240;
-	protected AESDecrypter decrypter;
-	protected ExtRandomAccessFile raFile;
-	protected long dirOffsetPos;
-	protected File zipFile;
-	protected String comment;
+import com.gewara.util.TmpFileUtil;
 
-	public AesZipFileDecrypter(File zipFile, AESDecrypter decrypter) throws IOException {
+import de.idyl.winzipaes.impl.AESDecrypter;
+import de.idyl.winzipaes.impl.ByteArrayHelper;
+import de.idyl.winzipaes.impl.CentralDirectoryEntry;
+import de.idyl.winzipaes.impl.ExtRandomAccessFile;
+import de.idyl.winzipaes.impl.ExtZipEntry;
+import de.idyl.winzipaes.impl.ExtZipOutputStream;
+import de.idyl.winzipaes.impl.ZipConstants;
+
+/**
+ * List/Extract data from AES encrypted WinZip file (readOnly).
+ *
+ * TODO - support 128 + 192 keys
+ * TODO - refactor this class to use an ExtZipInputStream and put all "offset handling" there
+ *
+ * @see http://www.winzip.com/aes_info.htm
+ *
+ * @author olaf@merkert.de
+ * @author jos.v.roosmalen@gmail.com
+ */
+public class AesZipFileDecrypter implements ZipConstants {
+
+	private static final Logger LOG = Logger.getLogger( AesZipFileDecrypter.class.getName() );
+
+	// --------------------------------------------------------------------------
+
+	/** charset to use for filename(s) - defaults to iso-8859-1 */
+	public static String charset = "iso-8859-1";
+
+	/** size of buffer to use for byte[] operations - defaults to 1024 */
+	protected static int bufferSize = 1024 * 10;
+
+	// --------------------------------------------------------------------------
+
+	protected AESDecrypter decrypter;
+	
+	// --------------------------------------------------------------------------
+
+	/** random access file to access the archive data */
+	protected ExtRandomAccessFile raFile;
+
+	/** where does the directory (after file data) start? */
+	protected long dirOffsetPos;
+
+	protected File zipFile;
+	
+	protected String comment;
+	
+	public AesZipFileDecrypter( File zipFile, AESDecrypter decrypter ) throws IOException {
 		this.zipFile = zipFile;
 		this.decrypter = decrypter;
-		this.raFile = new ExtRandomAccessFile(zipFile);
-		this.initDirOffsetPosAndComment();
+		this.raFile = new ExtRandomAccessFile( zipFile );
+		initDirOffsetPosAndComment();
 	}
 
 	protected void initDirOffsetPosAndComment() throws IOException {
-		this.dirOffsetPos = this.zipFile.length() - 6L;
-		int dirOffset = this.raFile.readInt(this.dirOffsetPos - 16L);
-		if ((long) dirOffset != 101010256L) {
-			byte[] endsig = ByteArrayHelper.toByteArray(101010256);
-			long endsigPos = this.raFile.lastPosOf(endsig);
-			if (endsigPos == -1L) {
-				throw new ZipException(
-						"expected ENDSIC not found (marks the beginning of the central directory at end of the zip file)");
+		// zip files without a comment contain the offset/position of the central directory at this fixed position
+		this.dirOffsetPos = zipFile.length() - 6;
+		final int dirOffset = raFile.readInt( this.dirOffsetPos - 16 );
+		if( dirOffset!=ENDSIG ) {
+			// if a comment is present, search the ENDSIG constant, starting at the end of the zip file
+			byte[] endsig = ByteArrayHelper.toByteArray((int)ZipConstants.ENDSIG);
+			long endsigPos = raFile.lastPosOf(endsig);
+			if( endsigPos==-1 ) {
+				throw new ZipException("expected ENDSIC not found (marks the beginning of the central directory at end of the zip file)");
+			} else {
+				this.dirOffsetPos = endsigPos+16;
+				short commentLength = raFile.readShort( this.dirOffsetPos + 4 );
+				this.comment = new String( raFile.readByteArray( this.dirOffsetPos+6, commentLength ) );
 			}
-
-			this.dirOffsetPos = endsigPos + 16L;
-			short commentLength = this.raFile.readShort(this.dirOffsetPos + 4L);
-			this.comment = new String(this.raFile.readByteArray(this.dirOffsetPos + 6L, commentLength));
-		}
-
+		}		
 	}
 
 	public void close() throws IOException {
-		this.raFile.close();
+		raFile.close();
 	}
+	
+	// --------------------------------------------------------------------------
 
+	/**
+	 * return list of entries from zip file - the list contains files as well as non-decryptable (!)
+	 * directories, that can be determined by using the isDirectory() method
+	 */
 	public List<ExtZipEntry> getEntryList() throws IOException, ZipException {
-		ArrayList out = new ArrayList();
+		List<ExtZipEntry> out = new ArrayList<ExtZipEntry>();
+
 		short totalNumberOfEntries = this.getNumberOfEntries();
-		int dirOffset = this.raFile.readInt(this.dirOffsetPos);
-		long fileOffset = (long) dirOffset;
+		final int dirOffset = raFile.readInt( this.dirOffsetPos );
 
-		for (int i = 0; i < totalNumberOfEntries; ++i) {
-			int censig = this.raFile.readInt(fileOffset);
-			if ((long) censig != 33639248L) {
-				throw new ZipException("expected CENSIC not found at entry no " + (i + 1)
-						+ " in central directory at end of zip file at " + fileOffset);
+		long fileOffset = dirOffset;
+		for( int i=0; i<totalNumberOfEntries; i++ ) {
+			int censig = raFile.readInt( fileOffset );
+			if( censig!=CENSIG ) {
+				throw new ZipException("expected CENSIC not found at entry no " + (i+1) + " in central directory at end of zip file at " + fileOffset);
+			}
+			
+			short fileNameLength = raFile.readShort( fileOffset + 28 );
+			short extraFieldLength = raFile.readShort( fileOffset + 30 );
+			long fileOffsetPos = fileOffset + 28 + 14;
+			long fileDataOffset = raFile.readInt( fileOffsetPos );
+			int locsig = raFile.readInt( fileDataOffset );
+			if( locsig!=LOCSIG ) {
+				throw new ZipException("expected LOCSIC not found at alleged position of data for file no " + (i+1));
 			}
 
-			short fileNameLength = this.raFile.readShort(fileOffset + 28L);
-			short extraFieldLength = this.raFile.readShort(fileOffset + 30L);
-			long fileOffsetPos = fileOffset + 28L + 14L;
-			long fileDataOffset = (long) this.raFile.readInt(fileOffsetPos);
-			int locsig = this.raFile.readInt(fileDataOffset);
-			if ((long) locsig != 67324752L) {
-				throw new ZipException("expected LOCSIC not found at alleged position of data for file no " + (i + 1));
-			}
+			byte[] fileNameBytes = raFile.readByteArray( fileOffsetPos+4, fileNameLength );
+			long nextFileOffset = raFile.getFilePointer();
+			String fileName = new String( fileNameBytes, charset );
+			
+			CentralDirectoryEntry cde = new CentralDirectoryEntry( raFile, fileOffset );
+			ExtZipEntry zipEntry = new ExtZipEntry( fileName, cde );
 
-			byte[] fileNameBytes = this.raFile.readByteArray(fileOffsetPos + 4L, fileNameLength);
-			long nextFileOffset = this.raFile.getFilePointer();
-			String fileName = new String(fileNameBytes, charset);
-			CentralDirectoryEntry cde = new CentralDirectoryEntry(this.raFile, fileOffset);
-			ExtZipEntry zipEntry = new ExtZipEntry(fileName, cde);
-			zipEntry.setCompressedSize((long) cde.getCompressedSize());
-			zipEntry.setSize((long) cde.getUncompressedSize());
-			long dosTime = (long) this.raFile.readInt(fileOffset + 12L);
-			zipEntry.setTime(ExtZipEntry.dosToJavaTime(dosTime));
-			if (cde.isEncrypted()) {
-				zipEntry.setMethod(cde.getActualCompressionMethod());
-				zipEntry.setOffset((int) (cde.getLocalHeaderOffset() + (long) cde.getLocalHeaderSize())
-						+ cde.getCryptoHeaderLength());
+			zipEntry.setCompressedSize( cde.getCompressedSize() );
+			zipEntry.setSize( cde.getUncompressedSize() );
+
+			long dosTime = raFile.readInt( fileOffset + 12 );
+			zipEntry.setTime( ExtZipEntry.dosToJavaTime(dosTime) );
+			
+			if( cde.isEncrypted() ) {
+				zipEntry.setMethod( cde.getActualCompressionMethod() );
+				zipEntry.setOffset( (int)(cde.getLocalHeaderOffset() + cde.getLocalHeaderSize()) + cde.getCryptoHeaderLength() );
 				zipEntry.initEncryptedEntry();
 			} else {
-				zipEntry.setMethod(8);
-				zipEntry.setPrimaryCompressionMethod(8);
+				zipEntry.setMethod( ZipEntry.DEFLATED );
+				zipEntry.setPrimaryCompressionMethod( ZipEntry.DEFLATED );
 			}
 
-			nextFileOffset += (long) extraFieldLength;
+			nextFileOffset += extraFieldLength;
+
 			out.add(zipEntry);
+
 			fileOffset = nextFileOffset;
 		}
 
 		return out;
 	}
 
-	public ExtZipEntry getEntry(String name) throws IOException, ZipException {
-		Iterator arg1 = this.getEntryList().iterator();
-
-		ExtZipEntry zipEntry;
-		do {
-			if (!arg1.hasNext()) {
-				return null;
+	public ExtZipEntry getEntry( String name ) throws IOException, ZipException {
+		for( ExtZipEntry zipEntry : getEntryList() ) {
+			if( name.equals(zipEntry.getName()) ) {
+				return zipEntry;
 			}
-
-			zipEntry = (ExtZipEntry) arg1.next();
-		} while (!name.equals(zipEntry.getName()));
-
-		return zipEntry;
+		}
+		return null;
 	}
 
 	protected void checkZipEntry(ExtZipEntry zipEntry) throws ZipException {
-		if (zipEntry == null) {
+		if( zipEntry==null ) {
 			throw new ZipException("zipEntry must NOT be NULL");
-		} else if (zipEntry.isDirectory()) {
+		}
+		if( zipEntry.isDirectory() ) {
 			throw new ZipException("directory entries cannot be decrypted");
-		} else if (!zipEntry.isEncrypted()) {
-			throw new ZipException("currently only extracts encrypted files - use java.util.zip to unzip");
+		}
+		if( !zipEntry.isEncrypted() ) {
+			throw new ZipException( "currently only extracts encrypted files - use java.util.zip to unzip" );
 		}
 	}
+	
+	public void extractEntryWithTmpFile( ExtZipEntry zipEntry, File outFile, String password ) throws IOException, ZipException {
+		checkZipEntry(zipEntry);
 
-	public void extractEntryWithTmpFile(ExtZipEntry zipEntry, File outFile, String password)
-			throws IOException, ZipException {
-		this.checkZipEntry(zipEntry);
 		CentralDirectoryEntry cde = zipEntry.getCentralDirectoryEntry();
-		if (!cde.isAesEncrypted()) {
+		if( !cde.isAesEncrypted() ) {
 			throw new ZipException("only AES encrypted files are supported");
-		} else {
-			int cryptoHeaderOffset = zipEntry.getOffset() - cde.getCryptoHeaderLength();
-			byte[] salt = this.raFile.readByteArray((long) cryptoHeaderOffset, 16);
-			byte[] pwVerification = this.raFile.readByteArray((long) (cryptoHeaderOffset + 16), 2);
-			if (LOG.isLoggable(Level.FINEST)) {
-				LOG.finest("\n" + cde.toString());
-				LOG.finest("offset    = " + zipEntry.getOffset());
-				LOG.finest("cryptoOff = " + cryptoHeaderOffset);
-				LOG.finest("password  = " + password + " - " + password.length());
-				LOG.finest("salt      = " + ByteArrayHelper.toString(salt) + " - " + salt.length);
-				LOG.finest("pwVerif   = " + ByteArrayHelper.toString(pwVerification) + " - " + pwVerification.length);
-			}
-
-			this.decrypter.init(password, 256, salt, pwVerification);
-			File tmpFile = new File(outFile.getPath() + "_TMP.zip");
-			makeDir(tmpFile.getParent());
-			ExtZipOutputStream zos = null;
-			ZipFile zf = null;
-			FileOutputStream fos = null;
-			InputStream is = null;
-
-			try {
-				zos = new ExtZipOutputStream(tmpFile);
-				ExtZipEntry tmpEntry = new ExtZipEntry(zipEntry);
-				tmpEntry.setPrimaryCompressionMethod(zipEntry.getMethod());
-				zos.putNextEntry(tmpEntry);
-				this.raFile.seek((long) cde.getOffset());
-				byte[] buffer = new byte[bufferSize];
-				int remaining = (int) zipEntry.getEncryptedDataSize();
-
-				label145 : while (true) {
-					if (remaining <= 0) {
-						zos.finish();
-						zos = null;
-						byte[] storedMac1 = new byte[10];
-						this.raFile.readByteArray(storedMac1, 10);
-						byte[] calcMac1 = this.decrypter.getFinalAuthentication();
-						if (LOG.isLoggable(Level.FINE)) {
-							LOG.fine("storedMac=" + Arrays.toString(storedMac1));
-							LOG.fine("calcMac=" + Arrays.toString(calcMac1));
-						}
-
-						if (!Arrays.equals(storedMac1, calcMac1)) {
-							throw new ZipException("stored authentication (mac) value does not match calculated one");
-						}
-
-						zf = new ZipFile(tmpFile);
-						ZipEntry ze = (ZipEntry) zf.entries().nextElement();
-						is = zf.getInputStream(ze);
-						fos = new FileOutputStream(outFile.getPath());
-						int read = is.read(buffer);
-
-						while (true) {
-							if (read <= 0) {
-								break label145;
-							}
-
-							fos.write(buffer, 0, read);
-							read = is.read(buffer);
-						}
-					}
-
-					int storedMac = remaining > buffer.length ? buffer.length : remaining;
-					int calcMac = this.raFile.readByteArray(buffer, storedMac);
-					this.decrypter.decrypt(buffer, calcMac);
-					zos.writeBytes(buffer, 0, calcMac);
-					remaining -= storedMac;
-				}
-			} finally {
-				if (zos != null) {
-					zos.close();
-				}
-
-				if (zf != null) {
-					zf.close();
-				}
-
-				if (fos != null) {
-					fos.close();
-				}
-
-				if (is != null) {
-					is.close();
-				}
-
-			}
-
-			TmpFileUtil.deleteFile(tmpFile);
 		}
+		
+		int cryptoHeaderOffset = zipEntry.getOffset() - cde.getCryptoHeaderLength();
+		
+		byte[] salt = raFile.readByteArray( cryptoHeaderOffset, 16 );
+		byte[] pwVerification = raFile.readByteArray( cryptoHeaderOffset+16, 2 );
+
+		if( LOG.isLoggable(Level.FINEST) ) {
+			LOG.finest( "\n" + cde.toString() );
+			LOG.finest( "offset    = " + zipEntry.getOffset() );
+			LOG.finest( "cryptoOff = " + cryptoHeaderOffset );
+			LOG.finest( "password  = " + password + " - " + password.length() );
+			LOG.finest( "salt      = " + ByteArrayHelper.toString(salt) + " - " + salt.length );
+			LOG.finest( "pwVerif   = " + ByteArrayHelper.toString(pwVerification) + " - " + pwVerification.length );
+		}
+		
+		// encrypter throws ZipException for wrong password
+		decrypter.init( password, 256, salt, pwVerification );
+
+		// create tmp file that contains the decrypted, but still compressed data
+		File tmpFile = new File( outFile.getPath() + "_TMP.zip" );
+		makeDir( tmpFile.getParent() );
+		
+		ExtZipOutputStream zos = null;
+		ZipFile zf = null;
+		FileOutputStream fos = null;
+		InputStream is = null;		
+		try {
+			zos = new ExtZipOutputStream( tmpFile );
+			ExtZipEntry tmpEntry = new ExtZipEntry( zipEntry );
+			tmpEntry.setPrimaryCompressionMethod( zipEntry.getMethod() );
+			zos.putNextEntry( tmpEntry );
+	
+			raFile.seek( cde.getOffset() );
+			byte[] buffer = new byte[bufferSize];
+			int remaining = (int)zipEntry.getEncryptedDataSize();
+			while( remaining>0 ) {
+				int len = (remaining>buffer.length) ? buffer.length : remaining;
+				int read = raFile.readByteArray(buffer,len);
+				decrypter.decrypt( buffer, read );
+				zos.writeBytes( buffer, 0, read );
+				remaining -= len;
+			}
+			zos.finish();
+			zos = null;
+	
+			byte[] storedMac = new byte[10];
+			raFile.readByteArray(storedMac,10);
+			byte[] calcMac = decrypter.getFinalAuthentication();
+			if( LOG.isLoggable(Level.FINE) ) {
+				LOG.fine(	"storedMac=" + Arrays.toString(storedMac) );
+				LOG.fine(	"calcMac=" + Arrays.toString(calcMac) );
+			}
+			if( !Arrays.equals(storedMac, calcMac ) ) {
+				throw new ZipException("stored authentication (mac) value does not match calculated one");
+			}
+	
+			zf = new ZipFile( tmpFile );
+			ZipEntry ze = zf.entries().nextElement();
+			is = zf.getInputStream( ze );
+			fos = new FileOutputStream ( outFile.getPath() );
+			int read = is.read( buffer );
+			while( read>0 ) {
+				fos.write( buffer, 0, read );
+				read = is.read( buffer );
+			}
+		} finally {
+			if (zos != null) {
+				zos.close();
+			}
+			if (zf != null) {
+				zf.close();
+			}
+			if (fos != null) {
+				fos.close();
+			}
+			if (is != null) {
+				is.close();
+			}
+		}
+		TmpFileUtil.deleteFile(tmpFile);
 	}
 
+	/** number of entries in file (files AND directories) */
 	public short getNumberOfEntries() throws IOException {
-		return this.raFile.readShort(this.dirOffsetPos - 6L);
+		return raFile.readShort( this.dirOffsetPos-6 );
 	}
 
 	protected static void makeDir(String dirStr) {
-		if (dirStr != null) {
+		if(dirStr!=null) {
 			makeDir(new File(dirStr));
 		}
-
 	}
 
 	protected static void makeDir(File dir) {
-		if (dir != null && !dir.exists()) {
-			if (dir.getParent() != null) {
-				File parentDir = new File(dir.getParent());
-				if (!parentDir.exists()) {
-					makeDir(parentDir);
-				}
-			}
-
-			dir.mkdir();
-		}
-
+	  if( dir!=null ) { 
+	    if( !dir.exists() ) {
+	    	if( dir.getParent()!=null ) {
+		      File parentDir = new File(dir.getParent());
+		      if( !parentDir.exists() ) {
+		      	makeDir(parentDir);
+		      }
+	    	}
+	      dir.mkdir();
+	    }
+	  }
 	}
 
+	/** return the zip file's comment (if defined) */
 	public String getComment() {
-		return this.comment;
+		return comment;
 	}
+	
+	// --------------------------------------------------------------------------
 
+	/**
+	 * extract zipEntry - uses in-memory, so your file (stream contents) should not be too big 
+	 */
 	public void extractEntry(ExtZipEntry zipEntry, OutputStream outStream, String password)
 			throws IOException, ZipException {
-		this.checkZipEntry(zipEntry);
+		checkZipEntry(zipEntry);
+
 		ZipInputStream zipInputStream = null;
 		ByteArrayOutputStream bos = null;
-
 		try {
 			CentralDirectoryEntry cde = zipEntry.getCentralDirectoryEntry();
 			if (!cde.isAesEncrypted()) {
 				throw new ZipException("only AES encrypted files are supported");
 			}
-
 			int cryptoHeaderOffset = zipEntry.getOffset() - cde.getCryptoHeaderLength();
-			byte[] salt = this.raFile.readByteArray((long) cryptoHeaderOffset, 16);
-			byte[] pwVerification = this.raFile.readByteArray((long) (cryptoHeaderOffset + 16), 2);
+			byte[] salt = raFile.readByteArray(cryptoHeaderOffset, 16);
+			byte[] pwVerification = raFile.readByteArray(cryptoHeaderOffset + 16, 2);			
 			if (LOG.isLoggable(Level.FINEST)) {
 				LOG.finest("\n" + cde.toString());
 				LOG.finest("offset    = " + zipEntry.getOffset());
@@ -290,87 +323,92 @@ public class AesZipFileDecrypter implements ZipConstants {
 				LOG.finest("salt      = " + ByteArrayHelper.toString(salt) + " - " + salt.length);
 				LOG.finest("pwVerif   = " + ByteArrayHelper.toString(pwVerification) + " - " + pwVerification.length);
 			}
+			// encrypter throws ZipException for wrong password
+			decrypter.init(password, 256, salt, pwVerification);
 
-			this.decrypter.init(password, 256, salt, pwVerification);
 			bos = new ByteArrayOutputStream(bufferSize);
 			ExtZipOutputStream zos = new ExtZipOutputStream(bos);
 			ExtZipEntry tmpEntry = new ExtZipEntry(zipEntry);
 			tmpEntry.setPrimaryCompressionMethod(zipEntry.getMethod());
 			tmpEntry.setCompressedSize(zipEntry.getEncryptedDataSize());
 			zos.putNextEntry(tmpEntry);
-			this.raFile.seek((long) cde.getOffset());
+			raFile.seek(cde.getOffset());
 			byte[] buffer = new byte[bufferSize];
 			CRC32 crc32 = new CRC32();
 			int remaining = (int) zipEntry.getEncryptedDataSize();
-
 			while (remaining > 0) {
-				int storedMac = remaining > buffer.length ? buffer.length : remaining;
-				int calcMac = this.raFile.readByteArray(buffer, storedMac);
-				this.decrypter.decrypt(buffer, calcMac);
-				zos.writeBytes(buffer, 0, calcMac);
-				remaining -= storedMac;
-				crc32.update(buffer, 0, calcMac);
+				int len = (remaining > buffer.length) ? buffer.length : remaining;
+				int read = raFile.readByteArray(buffer, len);
+				decrypter.decrypt(buffer, read);
+				zos.writeBytes(buffer, 0, read);
+				remaining -= len;
+				crc32.update(buffer, 0, read);
 			}
-
 			tmpEntry.setCrc(crc32.getValue());
 			zos.finish();
-			byte[] storedMac1 = new byte[10];
-			this.raFile.readByteArray(storedMac1, 10);
-			byte[] calcMac1 = this.decrypter.getFinalAuthentication();
+			byte[] storedMac = new byte[10];
+			raFile.readByteArray(storedMac, 10);
+			byte[] calcMac = decrypter.getFinalAuthentication();
 			if (LOG.isLoggable(Level.FINE)) {
-				LOG.fine("storedMac=" + Arrays.toString(storedMac1));
-				LOG.fine("calcMac=" + Arrays.toString(calcMac1));
+				LOG.fine("storedMac=" + Arrays.toString(storedMac));
+				LOG.fine("calcMac=" + Arrays.toString(calcMac));
 			}
-
-			if (!Arrays.equals(storedMac1, calcMac1)) {
+			if (!Arrays.equals(storedMac, calcMac)) {
 				throw new ZipException("stored authentication (mac) value does not match calculated one");
 			}
 
 			zipInputStream = new ZipInputStream(new ByteArrayInputStream(bos.toByteArray()));
 			ZipEntry entry = zipInputStream.getNextEntry();
-			entry.setCrc(crc32.getValue());
-			if (entry.getSize() != 0L) {
+			// At the end of the entry read-cycle a CRC check is performed.
+			// Because our entry doesn't have a CRC this will result in an Exception
+			// we solve this by updating a CRC and pass this to the entry.
+			entry.setCrc( crc32.getValue() );
+			if( entry.getSize()!=0 ) {
 				crc32 = new CRC32();
-
-				for (int read = zipInputStream.read(buffer); read > 0; read = zipInputStream.read(buffer)) {
+				int read = zipInputStream.read(buffer);
+				while (read > 0) {
 					outStream.write(buffer, 0, read);
 					crc32.update(buffer, 0, read);
 					entry.setCrc(crc32.getValue());
+					read = zipInputStream.read(buffer);
 				}
 			}
+
 		} finally {
 			if (bos != null) {
 				bos.close();
 			}
-
 			if (zipInputStream != null) {
 				zipInputStream.close();
 			}
-
+// not opened here, so we don't close it here
+//			if (outStream != null) {
+//				outStream.close();
+//			}
 		}
-
 	}
 
-	public void extractEntry(ExtZipEntry zipEntry, File outFile, String password) throws IOException, ZipException {
+	/**
+	 * extract zipEntry - uses in-memory, so your file should not be too big 
+	 */
+	public void extractEntry(ExtZipEntry zipEntry, File outFile, String password) throws IOException,
+			ZipException {
 		ByteArrayOutputStream bos = null;
 		FileOutputStream fos = null;
-
 		try {
 			bos = new ByteArrayOutputStream(bufferSize);
 			fos = new FileOutputStream(outFile);
-			this.extractEntry(zipEntry, (OutputStream) bos, password);
+			extractEntry(zipEntry, bos, password);
 			byte[] buffer = bos.toByteArray();
 			fos.write(buffer);
 		} finally {
 			if (bos != null) {
 				bos.close();
 			}
-
 			if (fos != null) {
 				fos.close();
 			}
-
 		}
-
 	}
+
 }

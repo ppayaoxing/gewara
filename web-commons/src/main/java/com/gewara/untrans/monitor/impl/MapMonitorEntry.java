@@ -1,47 +1,43 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.monitor.impl;
 
-import com.gewara.Config;
-import com.gewara.untrans.monitor.MonitorEntry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class MapMonitorEntry implements MonitorEntry {
+import com.gewara.Config;
+import com.gewara.untrans.monitor.MonitorEntry;
+
+public class MapMonitorEntry implements MonitorEntry{
 	public static final String HEADER_KEY = "__header__";
 	private Map<String, String> rowdata;
 	private Map<String, String> headMap;
 	private String datatype;
 	private byte[] rowid;
-
+	@Override
 	public byte[] getRowid() {
-		return this.rowid;
+		return rowid;
 	}
-
-	public MapMonitorEntry(String datatype, Map<String, String> rowdata) {
+	public MapMonitorEntry(String datatype, Map<String, String> rowdata){
 		this.datatype = datatype;
-		this.rowdata = new LinkedHashMap(rowdata);
-		this.rowdata.put("datatype", datatype);
+		this.rowdata = new LinkedHashMap<String, String>(rowdata);
+		this.rowdata.put(KEY_COLUMN_DATATYPE, datatype);
 		this.rowdata.put("systemid", Config.SYSTEMID);
 		this.rowdata.put("fromhost", Config.getHostname());
 	}
-
-	public MapMonitorEntry(String datatype, byte[] rowid, Map<String, String> rowdata) {
+	public MapMonitorEntry(String datatype, byte[] rowid, Map<String, String> rowdata){
 		this(datatype, rowdata);
 		this.rowid = rowid;
 	}
-
+	@Override
 	public String getDatatype() {
-		return this.datatype;
+		return datatype;
 	}
-
+	@Override
 	public Map<String, String> getDataMap() {
-		return this.rowdata;
+		return rowdata;
 	}
-
 	public Map<String, String> getHeadMap() {
-		return this.headMap;
+		return headMap;
 	}
-
 	public void setHeadMap(Map<String, String> headMap) {
 		this.headMap = headMap;
 	}

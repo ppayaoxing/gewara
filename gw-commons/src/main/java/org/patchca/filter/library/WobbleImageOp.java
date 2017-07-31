@@ -1,17 +1,25 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.filter.library;
 
-import org.patchca.filter.library.AbstractTransformImageOp;
-
 public class WobbleImageOp extends AbstractTransformImageOp {
-	private double xWavelength = 15.0D;
-	private double yWavelength = 15.0D;
-	private double xAmplitude = 4.0D;
-	private double yAmplitude = 3.0D;
-	private double xRandom = 3.0D * Math.random();
-	private double yRandom = 10.0D * Math.random();
-	private double xScale = 1.0D;
-	private double yScale = 1.0D;
+	private double xWavelength;
+	private double yWavelength;
+	private double xAmplitude;
+	private double yAmplitude;
+	private double xRandom;
+	private double yRandom;
+	private double xScale;
+	private double yScale;
+
+	public WobbleImageOp() {
+		this.xWavelength = 15.0D;
+		this.yWavelength = 15.0D;
+		this.xAmplitude = 4.0D;
+		this.yAmplitude = 3.0D;
+		this.xScale = 1.0D;
+		this.yScale = 1.0D;
+		this.xRandom = (3.0D * Math.random());
+		this.yRandom = (10.0D * Math.random());
+	}
 
 	public double getxWavelength() {
 		return this.xWavelength;
@@ -62,9 +70,9 @@ public class WobbleImageOp extends AbstractTransformImageOp {
 	}
 
 	protected void transform(int x, int y, double[] t) {
-		double tx = Math.cos((this.xScale * (double) x + (double) y) / this.xWavelength + this.xRandom);
-		double ty = Math.sin((this.yScale * (double) y + (double) x) / this.yWavelength + this.yRandom);
-		t[0] = (double) x + this.xAmplitude * tx;
-		t[1] = (double) y + this.yAmplitude * ty;
+		double tx = Math.cos((this.xScale * x + y) / this.xWavelength + this.xRandom);
+		double ty = Math.sin((this.yScale * y + x) / this.yWavelength + this.yRandom);
+		t[0] = (x + this.xAmplitude * tx);
+		t[1] = (y + this.yAmplitude * ty);
 	}
 }

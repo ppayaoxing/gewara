@@ -1,10 +1,20 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans;
 
-import com.gewara.untrans.ServiceDetails;
-
 public interface ServiceRegister {
-	void registerService(ServiceDetails arg0) throws Exception;
 
-	void updateService(ServiceDetails arg0) throws Exception;
+	/**
+	 * 向zk注册服务接口数据
+	 * 用于服务发现的serviceName使用{@link ServiceDetails#buildServiceName(String, String)}创建
+	 * @param details
+	 * @throws Exception
+	 */
+	void registerService(ServiceDetails details) throws Exception;
+
+	/**
+	 * 修改zk已经注册的服务接口数据
+	 * @param details
+	 * @throws Exception
+	 */
+	void updateService(ServiceDetails details) throws Exception;
+
 }

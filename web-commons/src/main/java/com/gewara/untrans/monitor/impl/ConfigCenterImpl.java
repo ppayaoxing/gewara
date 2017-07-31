@@ -1,11 +1,5 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.monitor.impl;
 
-import com.gewara.untrans.monitor.ConfigCenter;
-import com.gewara.untrans.monitor.ConfigData;
-import com.gewara.untrans.monitor.ConfigTrigger;
-import com.gewara.untrans.monitor.ConfigWatcher;
-import com.gewara.untrans.monitor.ZookeeperService;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,170 +8,166 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.gewara.untrans.monitor.ConfigCenter;
+import com.gewara.untrans.monitor.ConfigData;
+import com.gewara.untrans.monitor.ConfigTrigger;
+import com.gewara.untrans.monitor.ConfigWatcher;
+import com.gewara.untrans.monitor.ZookeeperService;
+
 public class ConfigCenterImpl implements ConfigCenter {
 	private static final String GLOBAL = "global";
-	private Map<String, ConfigTrigger> triggerMap = new ConcurrentHashMap();
-	private Map<String, Integer> partitionMap = new ConcurrentHashMap();
-	private Set<String> delayList = new HashSet();
+	private Map<String, ConfigTrigger> triggerMap = new ConcurrentHashMap<String, ConfigTrigger>();
+	
+	private Map<String, Integer> partitionMap = new ConcurrentHashMap<String, Integer>();
+	//记录当前写的是哪个partition
+	//private Map<String, AtomicInteger> curPartMap = new ConcurrentHashMap<String, AtomicInteger>();
+	private Set<String/*systemid,tag*/> delayList = new HashSet<String>();
 	@Autowired
 	private ZookeeperService keeperService;
-
-	public void register(String systemid, String tag, ConfigTrigger trigger) {
-		String path = this.createPath(systemid, tag);
-		this.triggerMap.put(systemid + "," + tag, trigger);
-		this.keeperService.addMonitor(new ConfigWatcher(path, trigger));
-		this.processDelay();
+	@Override
+	public void register(String systemid, String tag, ConfigTrigger trigger){
+		String path = createPath(systemid, tag);
+		triggerMap.put(systemid + "," + tag, trigger);
+		keeperService.addMonitor(new ConfigWatcher(path, trigger));
+		
+		//有新注册，扫描之前未处理掉的delay项
+		processDelay();
 	}
-
+	@Override
 	public void registerGlobal(String tag, ConfigTrigger trigger) {
-		this.register("global", tag, trigger);
+		register(GLOBAL, tag, trigger);
 	}
 
+	@Override
 	public void register(String systemid, String tag, ConfigTrigger trigger, int partition) {
-		this.register(systemid, tag, trigger);
+		//1)注册默认项
+		register(systemid, tag, trigger);
+		
 		partition = Math.min(128, partition);
-		if (partition > 0) {
-			List partList = this.createPartitionPath(systemid, tag, partition);
+		if(partition>0){
+			List<String> partList = createPartitionPath(systemid, tag, partition);
 			String key = systemid + "," + tag;
-			this.partitionMap.put(key, Integer.valueOf(partition));
-			Iterator arg6 = partList.iterator();
-
-			while (arg6.hasNext()) {
-				String part = (String) arg6.next();
-				this.keeperService.addMonitor(new ConfigWatcher(part, trigger));
+			partitionMap.put(key, partition);
+			for(String part: partList){
+				keeperService.addMonitor(new ConfigWatcher(part, trigger));
 			}
+			//curPartMap.put(key, new AtomicInteger(0));
 		}
-
 	}
-
+	@Override
 	public void registerGlobal(String tag, ConfigTrigger trigger, int partition) {
-		this.register("global", tag, trigger, partition);
+		register(GLOBAL, tag, trigger, partition);
 	}
-
-	public void refresh(String systemid, String tag) {
-		this.refresh(systemid, tag, "" + new Timestamp(System.currentTimeMillis()));
+	@Override
+	public void refresh(String systemid, String tag){
+		refresh(systemid, tag, "" + new Timestamp(System.currentTimeMillis()));
 	}
-
+	@Override
 	public void refresh(String systemid, String tag, String data) {
 		String path = "/config/" + systemid + "/" + tag;
 		String key = systemid + "," + tag;
-		Integer partcount = (Integer) this.partitionMap.get(key);
-		if (partcount != null) {
-			int curpart = RandomUtils.nextInt(partcount.intValue());
-			path = path + "/part" + curpart;
+		Integer partcount = partitionMap.get(key);
+		if(partcount != null){
+			//int curpart = curPartMap.get(key).getAndIncrement() % partcount;
+			int curpart = RandomUtils.nextInt(partcount);
+			path = path + "/part" + curpart; 
 		}
-
-		if (!this.keeperService.exist(path)) {
-			this.keeperService.addPresistentNode(path, data);
-		} else {
-			this.keeperService.updateNode(path, data);
+		
+		if(!keeperService.exist(path)){
+			keeperService.addPresistentNode(path, data);
+		}else{
+			keeperService.updateNode(path, data);
 		}
 
 	}
-
-	private void processDelay() {
-		if (!this.delayList.isEmpty()) {
-			Iterator it = this.delayList.iterator();
-
-			while (it.hasNext()) {
-				String s = (String) it.next();
-				if (this.triggerMap.containsKey(s)) {
+	private void processDelay(){
+		if(!delayList.isEmpty()){
+			Iterator<String> it = delayList.iterator();
+			while(it.hasNext()){
+				String s = it.next();
+				if(triggerMap.containsKey(s)){
 					it.remove();
-					int idx = s.indexOf(44);
+					int idx = s.indexOf(',');
 					String systemid = s.substring(0, idx);
-					String tag = s.substring(idx + 1);
-					this.reloadCurrent(systemid, tag);
+					String tag = s.substring(idx +1);
+					reloadCurrent(systemid, tag);
 				}
 			}
 		}
-
 	}
-
-	private String createPath(String systemid, String tag) {
+	private String createPath(String systemid, String tag){
 		String path = "/config/" + systemid;
-		if (!this.keeperService.exist(path)) {
-			this.keeperService.addPresistentNode(path, "config trigger for " + systemid);
+		if(!keeperService.exist(path)){
+			keeperService.addPresistentNode(path, "config trigger for " + systemid);
 		}
-
 		String[] dirs = StringUtils.split(tag, "/");
-		String[] arg4 = dirs;
-		int arg5 = dirs.length;
-
-		for (int arg6 = 0; arg6 < arg5; ++arg6) {
-			String dir = arg4[arg6];
-			path = path + "/" + dir;
-			if (!this.keeperService.exist(path)) {
-				this.keeperService.addPresistentNode(path, "" + new Timestamp(System.currentTimeMillis()));
+		for(String dir : dirs){
+			path += "/" + dir;
+			if(!keeperService.exist(path)){
+				keeperService.addPresistentNode(path, "" + new Timestamp(System.currentTimeMillis()));
 			}
-		}
-
+		}		
 		return path;
 	}
-
-	private List<String> createPartitionPath(String systemid, String tag, int partition) {
-		ArrayList result = new ArrayList();
+	private List<String> createPartitionPath(String systemid, String tag, int partition){
+		List<String> result = new ArrayList<String>();
 		String path = "/config/" + systemid;
-		if (!this.keeperService.exist(path)) {
-			this.keeperService.addPresistentNode(path, "config trigger for " + systemid);
+		if(!keeperService.exist(path)){
+			keeperService.addPresistentNode(path, "config trigger for " + systemid);
 		}
-
 		String[] dirs = StringUtils.split(tag, "/");
-		String[] i = dirs;
-		int part = dirs.length;
-
-		for (int arg8 = 0; arg8 < part; ++arg8) {
-			String dir = i[arg8];
-			path = path + "/" + dir;
-			if (!this.keeperService.exist(path)) {
-				this.keeperService.addPresistentNode(path, "" + new Timestamp(System.currentTimeMillis()));
+		for(String dir : dirs){
+			path += "/" + dir;
+			if(!keeperService.exist(path)){
+				keeperService.addPresistentNode(path, "" + new Timestamp(System.currentTimeMillis()));
 			}
 		}
-
-		for (int arg10 = 0; arg10 < partition; ++arg10) {
-			String arg11 = path + "/part" + arg10;
-			if (!this.keeperService.exist(arg11)) {
-				this.keeperService.addPresistentNode(arg11, "");
+		
+		for(int i=0; i< partition; i++){
+			String part = path + "/part" + i;
+			if(!keeperService.exist(part)){
+				keeperService.addPresistentNode(part, "");
 			}
-
-			result.add(arg11);
+			result.add(part);
 		}
-
 		return result;
 	}
-
+	@Override
 	public void reloadCurrent(String systemid, String tag) {
 		String key = systemid + "," + tag;
-		if (!this.triggerMap.containsKey(key)) {
-			this.delayList.add(systemid + "," + tag);
-		} else {
-			String path = this.createPath(systemid, tag);
-			String data = this.keeperService.getNodeData(path);
-			((ConfigTrigger) this.triggerMap.get(systemid + "," + tag)).refreshCurrent(data);
+		if(!triggerMap.containsKey(key)){
+			delayList.add(systemid + "," + tag);
+		}else{
+			String path = createPath(systemid, tag);
+			String data = keeperService.getNodeData(path);
+			triggerMap.get(systemid + "," + tag).refreshCurrent(data);
 		}
-
 	}
-
+	@Override
 	public void refreshGlobal(String tag) {
-		this.refresh("global", tag);
+		refresh(GLOBAL, tag);
 	}
-
+	@Override
 	public void refreshGlobal(String tag, String data) {
-		this.refresh("global", tag, data);
+		refresh(GLOBAL, tag, data);
 	}
-
+	@Override
 	public void reloadGlobal(String tag) {
-		this.reloadCurrent("global", tag);
+		reloadCurrent(GLOBAL, tag);
 	}
-
+	@Override
 	public ConfigData getConfigData(String systemid, String tag) {
-		ConfigTrigger cfg = (ConfigTrigger) this.triggerMap.get(systemid + "," + tag);
-		return cfg instanceof ConfigData ? (ConfigData) cfg : null;
+		ConfigTrigger cfg = triggerMap.get(systemid + "," + tag);
+		if(cfg instanceof ConfigData){
+			return (ConfigData) cfg;
+		}
+		return null;
 	}
-
 	public void setKeeperService(ZookeeperService keeperService) {
 		this.keeperService = keeperService;
 	}

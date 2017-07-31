@@ -1,8 +1,7 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.filter;
 
 import java.awt.image.BufferedImage;
 
-public interface FilterFactory {
-	BufferedImage applyFilters(BufferedImage arg0);
+public abstract interface FilterFactory {
+	public abstract BufferedImage applyFilters(BufferedImage paramBufferedImage);
 }

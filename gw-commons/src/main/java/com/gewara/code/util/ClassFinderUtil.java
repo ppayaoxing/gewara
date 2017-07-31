@@ -1,13 +1,5 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.code.util;
 
-import com.fasterxml.jackson.databind.util.ClassUtil;
-import com.gewara.code.util.ClassFilter;
-import com.gewara.code.util.FileSearch;
-import com.gewara.code.util.LineFilter;
-import com.gewara.code.util.MethodLine;
-import com.gewara.code.util.LineFilter.RegFilter;
-import com.gewara.dubbo.bytecode.Wrapper;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,537 +12,457 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.fasterxml.jackson.databind.util.ClassUtil;
+import com.gewara.dubbo.bytecode.Wrapper;
+
 public class ClassFinderUtil {
+
 	private static final char DOT = '.';
+
 	private static final char SLASH = '/';
+
 	private static final String CLASS_SUFFIX = ".class";
+	/** URL protocol for a file in the file system: "file" */
 	public static final String URL_PROTOCOL_FILE = "file";
+
+	/** URL protocol for an entry from a jar file: "jar" */
 	public static final String URL_PROTOCOL_JAR = "jar";
+
+	/** URL protocol for an entry from a zip file: "zip" */
 	public static final String URL_PROTOCOL_ZIP = "zip";
+
+	/** URL protocol for an entry from a WebSphere jar file: "wsjar" */
 	public static final String URL_PROTOCOL_WSJAR = "wsjar";
+
+	/** URL protocol for an entry from a JBoss jar file: "vfszip" */
 	public static final String URL_PROTOCOL_VFSZIP = "vfszip";
 
+	/**
+	 * 查找包下所有类.(only classes, exclude jar file)
+	 * @param scannedPackage 如：com.gewara.model
+	 * @return
+	 */
 	public static List<Class<?>> find(String scannedPackage) {
-		String scannedPath = scannedPackage.replace('.', '/');
-		Enumeration resources = null;
-		ArrayList result = new ArrayList();
-
+		String scannedPath = scannedPackage.replace(DOT, SLASH);
+		Enumeration<URL> resources = null;
+		List<Class<?>> result = new ArrayList<Class<?>>();
 		try {
 			resources = Thread.currentThread().getContextClassLoader().getResources(scannedPath);
-		} catch (IOException arg4) {
-			;
+		} catch (IOException e) {
 		}
-
-		if (resources == null) {
+		if(resources==null){
 			return result;
-		} else {
-			while (resources.hasMoreElements()) {
-				URL resource = (URL) resources.nextElement();
-				if (isFileURL(resource)) {
-					result.addAll(findFileClass(resource.getFile(), scannedPackage));
-				} else if (isJarURL(resource)) {
-					;
-				}
+		}
+		while(resources.hasMoreElements()){
+			URL resource = resources.nextElement();
+			if(isFileURL(resource)){
+				result.addAll(findFileClass(resource.getFile(), scannedPackage));
+			}else if(isJarURL(resource)){
+				//ignore
 			}
-
-			return result;
+			
 		}
+		return result;
 	}
-
-	public static List<Class<?>> findFileClass(String scanDir, String scannedPackage) {
-		ArrayList classes = new ArrayList();
+	public static List<Class<?>> findFileClass(String scanDir, String scannedPackage){
+		List<Class<?>> classes = new ArrayList<Class<?>>();
 		File rootFile = new File(scanDir);
-		File[] arg3 = rootFile.listFiles();
-		int arg4 = arg3.length;
-
-		for (int arg5 = 0; arg5 < arg4; ++arg5) {
-			File file = arg3[arg5];
+		for (File file : rootFile.listFiles()) {
 			classes.addAll(find(file, scannedPackage));
 		}
-
 		return classes;
 	}
-
 	public static boolean isJarURL(URL url) {
 		String protocol = url.getProtocol();
-		return "jar".equals(protocol) || "zip".equals(protocol) || "vfszip".equals(protocol)
-				|| "wsjar".equals(protocol);
+		return (URL_PROTOCOL_JAR.equals(protocol) || URL_PROTOCOL_ZIP.equals(protocol) ||
+				URL_PROTOCOL_VFSZIP.equals(protocol) || URL_PROTOCOL_WSJAR.equals(protocol));
 	}
-
 	public static boolean isFileURL(URL url) {
 		String protocol = url.getProtocol();
-		return "file".equals(protocol);
+		return URL_PROTOCOL_FILE.equals(protocol);
 	}
 
+	/**
+	 * original from spring context component scan
+	 * @param rootDir
+	 * @param subPattern
+	 * @return
+	 * @throws IOException
+	 */
 	protected Set<URL> findJarClass(URL rootDir, String subPattern) throws IOException {
 		URLConnection con = rootDir.openConnection();
 		JarFile jarFile = null;
+		//String jarFileUrl = null;
 		String rootEntryPath = null;
 		boolean newJarFile = false;
-		if (con instanceof JarURLConnection) {
-			JarURLConnection result = (JarURLConnection) con;
-			jarFile = result.getJarFile();
-			JarEntry entries = result.getJarEntry();
-			rootEntryPath = entries != null ? entries.getName() : "";
-		}
 
+		if (con instanceof JarURLConnection) {
+			// Should usually be the case for traditional JAR files.
+			JarURLConnection jarCon = (JarURLConnection) con;
+			//ResourceUtils.useCachesIfNecessary(jarCon);
+			jarFile = jarCon.getJarFile();
+			//jarFileUrl = jarCon.getJarFileURL().toExternalForm();
+			JarEntry jarEntry = jarCon.getJarEntry();
+			rootEntryPath = (jarEntry != null ? jarEntry.getName() : "");
+		}
 		try {
 			if (!"".equals(rootEntryPath) && !rootEntryPath.endsWith("/")) {
+				// Root entry path must end with slash to allow for proper matching.
+				// The Sun JRE does not return a slash here, but BEA JRockit does.
 				rootEntryPath = rootEntryPath + "/";
 			}
-
-			LinkedHashSet result1 = new LinkedHashSet(8);
-			Enumeration entries1 = jarFile.entries();
-
-			while (entries1.hasMoreElements()) {
-				JarEntry entry = (JarEntry) entries1.nextElement();
+			Set<URL> result = new LinkedHashSet<URL>(8);
+			for (Enumeration<JarEntry> entries = jarFile.entries(); entries.hasMoreElements();) {
+				JarEntry entry = entries.nextElement();
 				String entryPath = entry.getName();
 				if (entryPath.startsWith(rootEntryPath)) {
 					String relativePath = entryPath.substring(rootEntryPath.length());
-					result1.add(this.createRelative(rootDir, relativePath));
+					result.add(createRelative(rootDir, relativePath));
 				}
 			}
-
-			LinkedHashSet entries2 = result1;
-			return entries2;
+			return result;
 		} finally {
+			// Close jar file, but only if freshly obtained -
+			// not from JarURLConnection, which might cache the file reference.
 			if (newJarFile) {
 				jarFile.close();
 			}
-
 		}
 	}
-
 	private URL createRelative(URL rootDir, String relativePath) throws MalformedURLException {
 		if (relativePath.startsWith("/")) {
 			relativePath = relativePath.substring(1);
 		}
-
 		return new URL(rootDir, relativePath);
 	}
-
-	public static List<String> findNoDefaultConstructClass(String scannedPackage) {
-		ArrayList result = new ArrayList();
-		List classList = find(scannedPackage);
-		Iterator arg2 = classList.iterator();
-
-		while (arg2.hasNext()) {
-			Class clazz = (Class) arg2.next();
-			if (ClassUtil.isConcrete(clazz)) {
+	public static List<String> findNoDefaultConstructClass(String scannedPackage){
+		List<String> result = new ArrayList<String>();
+		List<Class<?>> classList = find(scannedPackage);
+		for (Class clazz : classList) {
+			if(ClassUtil.isConcrete(clazz)){
 				try {
 					clazz.newInstance();
-				} catch (Throwable arg5) {
+				} catch (Throwable e) {
 					result.add(clazz.getCanonicalName());
 				}
 			}
 		}
-
 		return result;
 	}
-
 	private static List<Class<?>> find(File file, String scannedPackage) {
-		ArrayList classes = new ArrayList();
-		String resource = scannedPackage + '.' + file.getName();
+		List<Class<?>> classes = new ArrayList<Class<?>>();
+		String resource = scannedPackage + DOT + file.getName();
 		if (file.isDirectory()) {
-			File[] endIndex = file.listFiles();
-			int className = endIndex.length;
-
-			for (int arg5 = 0; arg5 < className; ++arg5) {
-				File child = endIndex[arg5];
+			for (File child : file.listFiles()) {
 				classes.addAll(find(child, resource));
 			}
-		} else if (resource.endsWith(".class")) {
-			int arg8 = resource.length() - ".class".length();
-			String arg9 = resource.substring(0, arg8);
-
+		} else if (resource.endsWith(CLASS_SUFFIX)) {
+			int endIndex = resource.length() - CLASS_SUFFIX.length();
+			String className = resource.substring(0, endIndex);
 			try {
-				classes.add(Class.forName(arg9));
-			} catch (ClassNotFoundException arg7) {
-				;
+				classes.add(Class.forName(className));
+			} catch (ClassNotFoundException ignore) {
 			}
 		}
-
 		return classes;
 	}
-
+	/**
+	 * 
+	 * @param sources
+	 * @param clazz
+	 * @return
+	 * @throws Exception
+	 */
 	public static List<MethodLine> findInterfaceMethods(String javaSrc, String clazz) throws Exception {
 		String javaFile = StringUtils.replace(clazz, ".", "/") + ".java";
 		File file = new File(javaSrc, javaFile);
-		ArrayList methods = new ArrayList();
-		List lines = IOUtils.readLines(new FileReader(file));
-		int i = 1;
-
-		for (Iterator arg6 = lines.iterator(); arg6.hasNext(); ++i) {
-			String line = (String) arg6.next();
+		List<MethodLine> methods = new ArrayList<>();
+		// System.out.println(file.exists() + ":" + file.getCanonicalPath());
+		List<String> lines = IOUtils.readLines(new FileReader(file));
+		int i=1;
+		for (String line : lines) {
 			line = StringUtils.trim(line);
-			if (!line.startsWith("import") && !line.contains("interface") && !line.startsWith("package")
-					&& line.matches("^\\w+.*")) {
+			if (line.startsWith("import") || line.contains("interface") || line.startsWith("package")) {
+				// System.out.println("ignore:" + line);
+			} else if (line.matches("^\\w+.*")) {
 				if (line.startsWith("public")) {
 					line = line.substring(7).trim();
 				}
-
-				line = line.replaceAll("<[^>]*>", "");
-				methods.add(new MethodLine(clazz, line, Integer.valueOf(i)));
+				line = line.replaceAll("<[^>]*>", "");// generation
+				//System.out.println(clazz + ":" + line);
+				methods.add(new MethodLine(clazz, line, i));
+			} else {
+				// System.out.println("unknown:" + line);
 			}
+			i ++;
 		}
-
 		return methods;
 	}
-
-	public static List<String> findStaticFields(Class clazz, boolean addClassPre) {
-		ArrayList result = new ArrayList();
+	public static List<String> findStaticFields(Class clazz, boolean addClassPre){
+		List<String> result = new ArrayList<>();
 		String className = clazz.getSimpleName();
-		Field[] arg3 = clazz.getFields();
-		int arg4 = arg3.length;
-
-		for (int arg5 = 0; arg5 < arg4; ++arg5) {
-			Field f = arg3[arg5];
-			if (Modifier.isStatic(f.getModifiers())) {
-				if (addClassPre) {
+		for( Field f : clazz.getFields()){ 
+			if(Modifier.isStatic(f.getModifiers())){
+				if(addClassPre){
 					result.add(className + "." + f.getName());
-				} else {
+				}else{
 					result.add(f.getName());
 				}
 			}
 		}
-
 		return result;
 	}
-
-	public static void findAllUnusedStaticFields(String pkg, String javaSrc) {
-		List clazzList = findAllClass(pkg, ClassFilter.ACCEPT_ALL);
+	/**
+	 * @param staticFieldList : List<ClassName.FieldName>
+	 * @param pkg
+	 */
+	public static void findAllUnusedStaticFields(String pkg/* package */, String javaSrc){
+		List<Class> clazzList = ClassFinderUtil.findAllClass(pkg, ClassFilter.ACCEPT_ALL);
 		System.err.println("---start loadsource-------------------------------------------");
-		List javaSourceLines = loadAllJava(javaSrc, LineFilter.ACCEPT_ALL_FILTER);
+		List<String> javaSourceLines = loadAllJava(javaSrc, LineFilter.ACCEPT_ALL_FILTER);
 		System.err.println("---end loadsource-------------------------------------------");
-		ArrayList regList = new ArrayList();
-		Iterator arg4 = clazzList.iterator();
-
-		while (arg4.hasNext()) {
-			Class reg = (Class) arg4.next();
-			List notUsed = findUnusedStaticFieldsInternal(reg, javaSourceLines);
-			if (notUsed.size() > 0) {
-				regList.add(reg.getCanonicalName() + " search reg: .*(" + StringUtils.join(notUsed, "|") + ").*\\R");
+		List<String> regList = new ArrayList<>();
+		for(Class clazz: clazzList){
+			List<String> notUsed = ClassFinderUtil.findUnusedStaticFieldsInternal(clazz, javaSourceLines);
+			if(notUsed.size() > 0){
+				regList.add(clazz.getCanonicalName() + " search reg: .*(" + StringUtils.join(notUsed, "|") + ").*\\R");
 			}
 		}
-
 		System.err.println("----------------------- eclipse search regex ----------------------------");
-		arg4 = regList.iterator();
-
-		while (arg4.hasNext()) {
-			String reg1 = (String) arg4.next();
-			System.out.println(reg1);
+		for(String reg: regList){
+			System.out.println(reg);
 		}
-
 	}
-
-	public static List<String> findUnusedStaticFields(Class clazz, String javaSrc) {
+	
+	/**
+	 * @param staticFieldList : List<ClassName.FieldName>
+	 * @param pkg
+	 */
+	public static List<String> findUnusedStaticFields(Class clazz/**/, String javaSrc){
+		//Set<String> impClassList = new TreeSet<String>();
 		System.err.println("---start loadsource-------------------------------------------");
-		List javaSourceLines = loadAllJava(javaSrc, LineFilter.ACCEPT_ALL_FILTER);
+		List<String> javaSourceLines = loadAllJava(javaSrc, LineFilter.ACCEPT_ALL_FILTER);
 		System.err.println("---end loadsource-------------------------------------------");
-		List result = findUnusedStaticFieldsInternal(clazz, javaSourceLines);
+		List<String> result = findUnusedStaticFieldsInternal(clazz, javaSourceLines);
 		return result;
 	}
-
-	private static List<String> findUnusedStaticFieldsInternal(Class clazz, List<String> sourceLines) {
-		ArrayList notUsed = new ArrayList();
+	private static List<String> findUnusedStaticFieldsInternal(Class clazz, List<String> sourceLines){
+		List<String> notUsed = new ArrayList<>();
 		boolean find = false;
-		List staticFieldList = findStaticFields(clazz, false);
+		List<String> staticFieldList =  findStaticFields(clazz, false);
 		String className = clazz.getSimpleName();
-		Iterator arg5 = staticFieldList.iterator();
-
-		String method;
-		while (arg5.hasNext()) {
-			method = (String) arg5.next();
-			String search = className + "." + method;
+		for(String field: staticFieldList){
+			String search = className + "." + field;
 			find = false;
-			Iterator arg8 = sourceLines.iterator();
-
-			while (arg8.hasNext()) {
-				String line = (String) arg8.next();
+			for (String line : sourceLines) {
 				if (StringUtils.containsIgnoreCase(line, search)) {
 					find = true;
 					break;
 				}
 			}
-
 			if (!find) {
-				notUsed.add(method);
-				System.out.println("not found:" + method);
+				notUsed.add(field);
+				System.out.println("not found:" + field);
 			}
 		}
-
-		System.err
-				.println("-----------------------" + clazz.getCanonicalName() + "------------------------------------");
-		arg5 = notUsed.iterator();
-
-		while (arg5.hasNext()) {
-			method = (String) arg5.next();
+		System.err.println("-----------------------" + clazz.getCanonicalName() + "------------------------------------");
+		for (String method : notUsed) {
 			System.out.println(method);
 		}
-
+		
 		return notUsed;
 	}
-
+	
 	public static void findNoDefault(String pkg) {
-		List classList = findNoDefaultConstructClass(pkg);
-		Iterator arg1 = classList.iterator();
-
-		while (arg1.hasNext()) {
-			String clazz = (String) arg1.next();
+		List<String> classList = ClassFinderUtil.findNoDefaultConstructClass(pkg);
+		for (String clazz : classList) {
 			System.out.println(clazz);
 		}
-
 	}
-
+	
 	public static List<String> findInterfaces(String pkg) {
-		List list = find(pkg);
-		ArrayList result = new ArrayList();
-		Iterator arg2 = list.iterator();
-
-		while (arg2.hasNext()) {
-			Class clazz = (Class) arg2.next();
+		List<Class<?>> list = ClassFinderUtil.find(pkg);
+		List<String> result = new ArrayList<String>();
+		for (Class clazz : list) {
 			if (isInterface(clazz)) {
 				result.add(clazz.getCanonicalName());
 			}
 		}
-
 		return result;
 	}
-
 	public static List<String> findConcreteClass(String pkg) {
-		List list = find(pkg);
-		ArrayList result = new ArrayList();
-		Iterator arg2 = list.iterator();
-
-		while (arg2.hasNext()) {
-			Class clazz = (Class) arg2.next();
+		List<Class<?>> list = ClassFinderUtil.find(pkg);
+		List<String> result = new ArrayList<String>();
+		for (Class clazz : list) {
 			if (ClassUtil.isConcrete(clazz)) {
 				result.add(clazz.getCanonicalName());
 			}
 		}
-
 		return result;
 	}
-
 	public static List<Class> findAllClass(String pkg, ClassFilter filter) {
-		List list = find(pkg);
-		ArrayList result = new ArrayList();
+		List<Class<?>> list = ClassFinderUtil.find(pkg);
+		List<Class> result = new ArrayList<Class>();
 		String cn = null;
-		Iterator arg4 = list.iterator();
-
-		while (arg4.hasNext()) {
-			Class clazz = (Class) arg4.next();
-			if (filter.accept(clazz)) {
+		for (Class clazz : list) {
+			if(filter.accept(clazz)){
 				cn = clazz.getCanonicalName();
-				if (cn == null) {
+				if(cn==null){//inner class
 					System.err.println("NoName:" + clazz);
-				} else {
+				}else{
 					result.add(clazz);
 				}
 			}
 		}
-
 		return result;
 	}
-
-	public static List<String> toStringNames(List<Class> clazzList) {
-		ArrayList result = new ArrayList();
-		Iterator arg1 = clazzList.iterator();
-
-		while (arg1.hasNext()) {
-			Class clazz = (Class) arg1.next();
+	public static List<String> toStringNames(List<Class> clazzList){
+		List<String> result = new ArrayList<String>();
+		for (Class clazz : clazzList) {
 			String cn = clazz.getCanonicalName();
-			if (cn == null) {
+			if(cn==null){//inner class
 				System.err.println("NoName:" + clazz);
-			} else {
+			}else{
 				result.add(cn);
 			}
 		}
-
 		return result;
 	}
 
+	
 	public static boolean isInterface(Class<?> type) {
 		int mod = type.getModifiers();
-		return (mod & 512) > 0;
+		return (mod & Modifier.INTERFACE) > 0;
 	}
-
+	
 	public static void findNotMatchGetSet(String modelPackage) {
-		List list = find(modelPackage);
-		Iterator arg1 = list.iterator();
-
-		while (arg1.hasNext()) {
-			Class clazz = (Class) arg1.next();
-
+		List<Class<?>> list = ClassFinderUtil.find(modelPackage);
+		for (Class clazz : list) {
 			try {
-				if (ClassUtil.isConcrete(clazz) && clazz.getCanonicalName().indexOf(36) < 0) {
-					Wrapper e = Wrapper.getWrapper(clazz);
-					ArrayList read = new ArrayList(Arrays.asList(e.getReadPropertyNames()));
-					ArrayList write = new ArrayList(Arrays.asList(e.getWritePropertyNames()));
-					ArrayList read2 = new ArrayList(read);
+				if (ClassUtil.isConcrete(clazz) && clazz.getCanonicalName().indexOf('$') < 0/* 非内部类 */) {
+					Wrapper wraper = Wrapper.getWrapper(clazz);
+					List<String> read = new ArrayList<>(Arrays.asList(wraper.getReadPropertyNames()));
+					List<String> write = new ArrayList<>(Arrays.asList(wraper.getWritePropertyNames()));
+					List<String> read2 = new ArrayList<>(read);
 					read2.removeAll(write);
 					write.removeAll(read);
 					String msg = "";
 					if (!read2.isEmpty()) {
 						msg = "get: " + StringUtils.join(read2, ",");
 					}
-
 					if (!write.isEmpty()) {
 						msg = "  set: " + StringUtils.join(write, ",");
 					}
-
 					if (StringUtils.isNotBlank(msg)) {
 						System.out.println(clazz.getCanonicalName() + ":" + msg);
 					}
 				}
-			} catch (Exception arg8) {
-				System.out.println(clazz.getCanonicalName() + ":" + arg8);
+			} catch (Exception e) {
+				System.out.println(clazz.getCanonicalName() + ":" + e);
 			}
 		}
-
 	}
-
 	public static void findUnusedClasses(String javaSrc, String... searchPkg) {
-		List importList = loadAllJava(javaSrc, new RegFilter("^import"));
-		String[] arg2 = searchPkg;
-		int arg3 = searchPkg.length;
-
-		for (int arg4 = 0; arg4 < arg3; ++arg4) {
-			String pkg = arg2[arg4];
+		List<String> importList = loadAllJava(javaSrc, new LineFilter.RegFilter("^import"));
+		for(String pkg: searchPkg){
 			findUnusedClass(importList, pkg);
 		}
-
 	}
-
 	public static void findUnusedInterfaceMethod(String interfaceSrc, String javaSource) throws Exception {
-		List interfaces = findInterfaces(interfaceSrc);
-		ArrayList searchCall = new ArrayList();
-		Iterator javaSourceLines = interfaces.iterator();
-
-		while (javaSourceLines.hasNext()) {
-			String notUsed = (String) javaSourceLines.next();
-			List find = findInterfaceMethods(javaSource, notUsed);
-			toSimpleCallName(notUsed, find);
-			searchCall.addAll(find);
+		List<String> interfaces = findInterfaces(interfaceSrc);
+		List<MethodLine> searchCall = new ArrayList<>();
+		for (String clazz : interfaces) {
+			List<MethodLine> methods = findInterfaceMethods(javaSource, clazz);
+			toSimpleCallName(clazz, methods);
+			searchCall.addAll(methods);
 		}
-
 		System.err.println("---start loadsource-------------------------------------------");
-		List javaSourceLines1 = loadAllJava(javaSource, LineFilter.ACCEPT_ALL_FILTER);
+		List<String> javaSourceLines = loadAllJava(javaSource, LineFilter.ACCEPT_ALL_FILTER);
 		System.err.println("---end loadsource-------------------------------------------");
-		ArrayList notUsed1 = new ArrayList();
-		boolean find1 = false;
-		Iterator arg6 = searchCall.iterator();
-
-		while (true) {
-			MethodLine method;
-			do {
-				if (!arg6.hasNext()) {
-					System.err.println("-----------------------------------------------------------");
-					arg6 = notUsed1.iterator();
-
-					while (arg6.hasNext()) {
-						method = (MethodLine) arg6.next();
-						System.out.println(method);
-					}
-
-					return;
-				}
-
-				method = (MethodLine) arg6.next();
-			} while (method.callname == null);
-
-			find1 = false;
-			Iterator arg8 = javaSourceLines1.iterator();
-
-			while (arg8.hasNext()) {
-				String line = (String) arg8.next();
-				if (StringUtils.containsIgnoreCase(line, method.callname)) {
-					find1 = true;
+		List<MethodLine> notUsed = new ArrayList<>();
+		boolean find = false;
+		for (MethodLine call : searchCall) {
+			if(call.callname==null){
+				continue;
+			}
+			find = false;
+			for (String line : javaSourceLines) {
+				if (StringUtils.containsIgnoreCase(line, call.callname)) {
+					find = true;
 					break;
 				}
 			}
-
-			if (!find1) {
-				notUsed1.add(method);
-				System.out.println("not found:" + method);
+			if (!find) {
+				notUsed.add(call);
+				System.out.println("not found:" + call);
 			}
 		}
-	}
+		System.err.println("-----------------------------------------------------------");
+		for (MethodLine method : notUsed) {
+			System.out.println(method);
+		}
 
+	}
 	public static void toSimpleCallName(String clazz, List<MethodLine> methods) {
 		String serviceName = StringUtils.substringAfterLast(clazz, ".");
-		Iterator arg2 = methods.iterator();
-
-		while (arg2.hasNext()) {
-			MethodLine method = (MethodLine) arg2.next();
-
+		for (MethodLine method : methods) {
 			try {
-				int e = method.method.indexOf("(");
-				String[] methodPair = method.method.substring(0, e).split("\\s+");
+				// List<SellSeat> checkAndCreateSeat(MovieItemVo opi, String
+				// seatLabel)
+				int idx1 = method.method.indexOf("(");
+				String[] methodPair = method.method.substring(0, idx1).split("\\s+");
 				String methodName = methodPair[methodPair.length - 1];
 				method.callname = serviceName + "." + methodName;
-			} catch (Exception arg7) {
+			} catch (Exception e) {
 				System.err.print("ERROR:" + method);
 			}
 		}
-
 	}
-
-	public static List<String> loadAllJava(String javaSrc, LineFilter lineFilter) {
-		ArrayList result = new ArrayList();
-
-		try {
-			ArrayList e = new ArrayList();
-			FileSearch.searchFile(e, javaSrc, "java");
-			Iterator arg3 = e.iterator();
-
-			while (arg3.hasNext()) {
-				String file = (String) arg3.next();
-				List lines = IOUtils.readLines(new FileReader(file));
-				Iterator arg6 = lines.iterator();
-
-				while (arg6.hasNext()) {
-					String line = (String) arg6.next();
-					if (lineFilter.accept(line)) {
+	public static List<String> loadAllJava(String javaSrc, LineFilter lineFilter)  {
+		List<String> result = new ArrayList<String>();
+		try{
+			List<String> fileList = new ArrayList<String>();
+			FileSearch.searchFile(fileList, javaSrc, "java");
+			for (String file : fileList) {
+				List<String> lines = IOUtils.readLines(new FileReader(file));
+				for(String line: lines){
+					if(lineFilter.accept(line)){
 						result.add(line);
 					}
 				}
 			}
-		} catch (Exception arg8) {
-			arg8.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-
 		return result;
 	}
 
-	public static void findUnusedClass(List<String> importList, String pkg) {
-		List modelList = findAllClass(pkg, ClassFilter.ACCEPT_ALL);
-		TreeSet modelSet = new TreeSet(toStringNames(modelList));
+	public static void findUnusedClass(List<String> importList, String pkg){
+		List<Class> modelList = findAllClass(pkg, ClassFilter.ACCEPT_ALL);
+		Set<String> modelSet = new TreeSet<String>(toStringNames(modelList));
 		System.out.println("------------------------import: " + modelSet.size() + "------------------------------");
-		Iterator arg3 = importList.iterator();
-
-		while (arg3.hasNext()) {
-			String imp = (String) arg3.next();
+		
+		//Set<String> impClassList = new TreeSet<String>();
+		for(String imp: importList){
 			int index = imp.indexOf(pkg);
-			if (index > 0) {
-				int index2 = imp.indexOf(59);
+			if(index>0){
+				int index2 = imp.indexOf(';');
 				String clazz = StringUtils.substring(imp, index, index2);
 				modelSet.remove(StringUtils.trim(clazz));
+				//System.out.println(clazz);
 			}
 		}
-
-		System.out.println(
-				"------------------------unused: " + pkg + ":" + modelSet.size() + "------------------------------");
+		System.out.println("------------------------unused: " + pkg + ":" + modelSet.size() + "------------------------------");
 		System.out.println(StringUtils.join(modelSet, "\n"));
 	}
 }

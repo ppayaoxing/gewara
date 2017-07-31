@@ -1,5 +1,13 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.trace.aspect;
+
+import org.apache.commons.lang.StringUtils;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import com.gewara.Config;
 import com.gewara.trace.Sampler;
@@ -11,70 +19,61 @@ import com.gewara.trace.annotation.GwTrace;
 import com.gewara.util.GewaLogger;
 import com.gewara.util.ObjectId;
 import com.gewara.util.WebLogger;
-import org.apache.commons.lang.StringUtils;
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 
+/**
+ * DT系统AOP,结合<{@link GwTrace}>使用
+ * <br>参详：<hr>http://wk.gewara.com/pages/viewpage.action?pageId=19147575</hr>
+ * @author quzhuping
+ */
 @Component
 @Aspect
 public class TraceAspect {
-	protected final transient GewaLogger dbLogger = WebLogger.getLogger(this.getClass());
-	@Autowired
-	@Qualifier("dtAgent")
-	DtAgent dtAgent;
-	Sampler sampler = new Sampler();
+	protected final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
 
-	@Around("@annotation(trace)")
-	public Object around(JoinPoint joinPoint, GwTrace trace) throws Throwable {
+	@Autowired@Qualifier("dtAgent")
+	DtAgent dtAgent;
+	
+	Sampler sampler = new Sampler();
+	
+	@Around(value = "@annotation(trace)")
+	public Object around(JoinPoint joinPoint, GwTrace trace) throws Throwable{
 		Span span = null;
 		boolean begin = false;
 		int parentId = 0;
-		byte curSpanId = 1;
+		int curSpanId = 1;
 		String traceId = null;
+		
 		TraceContext context = TraceContextHolder.getContext();
-		if (StringUtils.equals(trace.status(), "begin") && this.sampler.isSample()) {
+		if(StringUtils.equals(trace.status(), "begin") && sampler.isSample()){
 			begin = true;
 			traceId = ObjectId.uuid();
 			context = new TraceContext(traceId, parentId, curSpanId);
 			TraceContextHolder.setContext(context);
 		}
-
-		if (context != null) {
+		if(context != null){
 			parentId = context.getParentId();
-			int curSpanId1 = context.getSpanSeq() + 1;
-			span = new Span(Config.SYSTEMID, Config.getServerIp(), joinPoint.getSignature().toString(),
-					context.getTraceId(), Integer.valueOf(parentId), Integer.valueOf(curSpanId1),
-					Long.valueOf(System.currentTimeMillis()));
-			context.setParentId(curSpanId1);
-			context.setSpanSeq(curSpanId1);
+			curSpanId = context.getSpanSeq() + 1;
+			
+			span = new Span(Config.SYSTEMID, Config.getServerIp(), joinPoint.getSignature().toString(), context.getTraceId(), parentId, curSpanId, System.currentTimeMillis());
+			context.setParentId(curSpanId);
+			context.setSpanSeq(curSpanId);
 		}
-
-		Object arg9;
 		try {
 			Object rv = ((ProceedingJoinPoint) joinPoint).proceed();
-			arg9 = rv;
-		} finally {
-			if (span != null) {
-				span.setRvTime(Long.valueOf(System.currentTimeMillis()));
-				TraceContextHolder.addSpan(span);
+			return rv;
+		}finally{
+			if(span != null){
+				span.setRvTime(System.currentTimeMillis());
+			    TraceContextHolder.addSpan(span);
 			}
-
-			if (context != null) {
+			if(context != null){
 				context.setParentId(parentId);
 			}
-
-			if (begin) {
+			if(begin){
 				TraceContextHolder.clearContext();
-				this.dtAgent.sendTraceInfo(TraceContextHolder.getTraceInfo(traceId));
+				dtAgent.sendTraceInfo(TraceContextHolder.getTraceInfo(traceId));
 			}
-
+					
 		}
-
-		return arg9;
-	}
+	}	 
 }

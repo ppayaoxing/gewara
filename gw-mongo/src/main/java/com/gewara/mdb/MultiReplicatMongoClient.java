@@ -1,29 +1,38 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mdb;
 
-import com.gewara.mdb.NameGWMongoClient;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author 董明
+ * @createDate 2015年9月14日
+ */
 public class MultiReplicatMongoClient {
-	private final List<NameGWMongoClient> replicates = new ArrayList();
-
-	public MultiReplicatMongoClient(List<NameGWMongoClient> multiMongo) {
-		this.replicates.addAll(multiMongo);
+	private final List<NameGWMongoClient> replicates=new ArrayList<NameGWMongoClient>();
+	
+	/**
+	 * @param replicatName  mongo集群的名称
+	 * @param mongoClient   mongo集群的连接池
+	 */
+	public MultiReplicatMongoClient(List<NameGWMongoClient> multiMongo){
+		replicates.addAll(multiMongo);
 	}
-
-	public NameGWMongoClient useReplicat(String replicatName) {
-		for (int i = 0; i < this.replicates.size(); ++i) {
-			if (((NameGWMongoClient) this.replicates.get(i)).replicateName().equals(replicatName)) {
-				return (NameGWMongoClient) this.replicates.get(i);
+	
+	/**
+	 * @param replicatName
+	 * @return
+	 */
+	public NameGWMongoClient useReplicat(String replicatName){
+		for(int i=0;i<replicates.size();i++){
+			if(replicates.get(i).replicateName().equals(replicatName)){
+				return replicates.get(i);
 			}
 		}
-
 		return null;
 	}
-
-	public List<NameGWMongoClient> listReplicate() {
-		return Collections.unmodifiableList(this.replicates);
+	
+	public List<NameGWMongoClient> listReplicate(){
+		return Collections.unmodifiableList(replicates);
 	}
 }

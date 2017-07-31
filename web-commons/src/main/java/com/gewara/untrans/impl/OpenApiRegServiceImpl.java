@@ -1,5 +1,12 @@
-/** <a href="http://www.cpupk.com/decompiler">Eclipse Class Decompiler</a> plugin, Copyright (c) 2017 Chen Chao. **/
 package com.gewara.untrans.impl;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.gewara.Config;
 import com.gewara.support.lifecycle.BeforeUpdateService;
@@ -10,96 +17,87 @@ import com.gewara.util.HttpResult;
 import com.gewara.util.HttpUtils;
 import com.gewara.util.TimerHelper;
 import com.gewara.util.WebLogger;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
+/**
+ * @author ge.biao
+ * TODO:¼ì²âÏµÍ³²»½¡¿µ£¬×Ô¶¯ÏÂÏß
+ */
 public class OpenApiRegServiceImpl implements OpenApiRegService, BeforeUpdateService {
-	private GewaLogger logger = WebLogger.getLogger(this.getClass());
-	@Autowired
-	@Qualifier("keeperService")
+	private GewaLogger logger = WebLogger.getLogger(getClass());
+	@Autowired@Qualifier("keeperService")
 	private ZookeeperService keeperService;
-	private Map<String, Set<String>> regData = new HashMap();
-	private String checkUri;
+	
+	private Map<String, Set<String>> regData = new HashMap<String, Set<String>>();
 
+	private String checkUri;
 	public void setCheckUri(String checkUri) {
 		this.checkUri = checkUri;
 	}
-
-	public void registerOpenApi(final String path, final String data) {
+	
+	/**
+	 * OPENAPI·þÎñ×¢²á´¦Àí
+	 */
+	@Override
+	public void registerOpenApi(final String path, final String data){
 		TimerHelper.TIMER.schedule(new Runnable() {
+			@Override
 			public void run() {
-				OpenApiRegServiceImpl.this.registerOpenApiInternal(path, data);
+				registerOpenApiInternal(path, data);
 			}
-		}, 5000L);
+		}, 5000);
+				
 	}
-
-	private void registerOpenApiInternal(String path, String data) {
-		try {
-			boolean ex = this.checkUrl();
-			if (ex) {
-				if (!this.keeperService.exist(path)) {
-					this.keeperService.addPresistentNode(path, System.currentTimeMillis() + "");
+	private void registerOpenApiInternal(String path, String data){
+		try{
+			boolean openapiOk = checkUrl();
+			if(openapiOk){
+				if(!keeperService.exist(path)){
+					keeperService.addPresistentNode(path, System.currentTimeMillis()+"");
 				}
-
-				this.logger.warn("zookeeperæ·»åŠ ä¸´æ—¶èŠ‚ç‚¹ ï¼š " + path + " èŠ‚ç‚¹å†…å®¹ä¸ºï¼š" + data);
-				this.keeperService.registerNode(path + "/s", data);
-				Object dataList = (Set) this.regData.get(path);
-				if (dataList == null) {
-					dataList = new HashSet();
-					this.regData.put(path, dataList);
+				logger.warn("zookeeperÌí¼ÓÁÙÊ±½Úµã £º " + path + " ½ÚµãÄÚÈÝÎª£º" + data);
+				keeperService.registerNode(path + "/s", data);
+				Set<String> dataList = regData.get(path);
+				if(dataList==null){
+					dataList = new HashSet<>();
+					regData.put(path, dataList);
 				}
-
-				((Set) dataList).add(data);
+				dataList.add(data);
 			}
-		} catch (Exception arg4) {
-			this.logger.error("", arg4);
+		}catch(Exception ex){
+			logger.error("", ex);
 		}
-
 	}
-
-	public void unregisterOpenApi() {
-		this.logger.warn("unregister to openapi~~");
-		Iterator arg0 = this.regData.entrySet().iterator();
-
-		while (arg0.hasNext()) {
-			Entry reg = (Entry) arg0.next();
-			Iterator arg2 = ((Set) reg.getValue()).iterator();
-
-			while (arg2.hasNext()) {
-				String data = (String) arg2.next();
-				this.keeperService.unRegisterEphemeralNode((String) reg.getKey(), data);
+	@Override
+	public void unregisterOpenApi(){
+		//×¢ÏúOPENAPI
+		logger.warn("unregister to openapi~~");
+		for(Map.Entry<String, Set<String>> reg: regData.entrySet()){
+			for(String data: reg.getValue()){
+				keeperService.unRegisterEphemeralNode(reg.getKey(), data);
 			}
 		}
-
 	}
-
+	
+	@Override
 	public void beforeUpdate() {
-		this.unregisterOpenApi();
+		unregisterOpenApi();
 	}
+	private boolean checkUrl(){
+		String checkUrl = "http://" + Config.getServerIp() + ":2000" + checkUri;
 
-	private boolean checkUrl() {
-		String checkUrl = "http://" + Config.getServerIp() + ":2000" + this.checkUri;
-
-		for (int i = 0; i < 10; ++i) {
+		for(int i=0;i<10;i++){
 			HttpResult result = HttpUtils.getUrlAsString(checkUrl);
-			if (result.isSuccess()) {
+			if(result.isSuccess()){
 				return true;
-			}
-
-			try {
-				this.logger.warn("testOpenapi2000 failure!!");
-				Thread.sleep(3000L);
-			} catch (InterruptedException arg4) {
-				;
+			}else{
+				try {
+					logger.warn("testOpenapi2000 failure!!");
+					Thread.sleep(3000l);
+				} catch (InterruptedException e) {
+				}
 			}
 		}
-
 		return false;
 	}
+	
 }

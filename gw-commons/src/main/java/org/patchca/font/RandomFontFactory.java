@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package org.patchca.font;
 
 import java.awt.Font;
@@ -6,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import org.patchca.font.FontFactory;
 
 public class RandomFontFactory implements FontFactory {
 	protected List<String> families;
@@ -15,7 +13,7 @@ public class RandomFontFactory implements FontFactory {
 	protected boolean randomStyle;
 
 	public RandomFontFactory() {
-		this.families = new ArrayList();
+		this.families = new ArrayList<>();
 		this.families.add("Verdana");
 		this.families.add("Tahoma");
 		this.minSize = 45;
@@ -32,12 +30,12 @@ public class RandomFontFactory implements FontFactory {
 
 	public RandomFontFactory(int size, List<String> families) {
 		this(families);
-		this.minSize = this.maxSize = size;
+		this.minSize = (this.maxSize = size);
 	}
 
 	public RandomFontFactory(int size, String[] families) {
 		this(families);
-		this.minSize = this.maxSize = size;
+		this.minSize = (this.maxSize = size);
 	}
 
 	public void setFamilies(List<String> families) {
@@ -58,13 +56,12 @@ public class RandomFontFactory implements FontFactory {
 
 	public Font getFont(int index) {
 		Random r = new Random();
-		String family = (String) this.families.get(r.nextInt(this.families.size()));
-		boolean bold = r.nextBoolean() && this.randomStyle;
+		String family = this.families.get(r.nextInt(this.families.size()));
+		boolean bold = (r.nextBoolean()) && (this.randomStyle);
 		int size = this.minSize;
 		if (this.maxSize - this.minSize > 0) {
 			size += r.nextInt(this.maxSize - this.minSize);
 		}
-
-		return new Font(family, bold ? 1 : 0, size);
+		return new Font(family, (bold) ? 1 : 0, size);
 	}
 }
