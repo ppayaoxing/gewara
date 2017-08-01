@@ -101,7 +101,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 		query.add(Restrictions.ge("playtime", playtime));
 		query.add(Restrictions.ge("addtime", addtime));
 		query.addOrder(Order.desc("createtime"));
-		List<TicketOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		ResultCode<List<TicketOrderVo>> code = VoCopyUtil.copyListProperties(TicketOrderVo.class, orderList);
 		for(TicketOrderVo vo : code.getRetval()){
 			TicketOrder order = baseDao.getObjectByUkey(TicketOrder.class, "tradeNo", vo.getTradeNo());
@@ -138,7 +138,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 		query.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
 		query.add(Restrictions.ge("addtime", addtime));
 		query.addOrder(Order.desc("createtime"));
-		List<GoodsOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<GoodsOrder> orderList = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
 		
 		ResultCode<List<GoodsOrderVo>> code = VoCopyUtil.copyListProperties(GoodsOrderVo.class, orderList);
 		for(GoodsOrderVo vo : code.getRetval()){
@@ -166,7 +166,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 		Timestamp curtime = DateUtil.getMillTimestamp();
 		Timestamp addtime = DateUtil.addDay(curtime, -30);
 		String hql = "select tradeno from OrderRefund where tradeno is not null and addtime>? and refundtime>?";
-		List<String> refundList = hibernateTemplate.find(hql, addtime, refundtime);
+		List<String> refundList = (List<String>) hibernateTemplate.find(hql, addtime, refundtime);
 		return ResultCode.getSuccessReturn(refundList);
 	}
 	@Override
@@ -192,7 +192,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(Synch.class);
 		query.add(Restrictions.in("cinemaid", placeidList));
-		List<Synch> list = hibernateTemplate.findByCriteria(query);
+		List<Synch> list = (List<Synch>) hibernateTemplate.findByCriteria(query);
 		ResultCode<List<SynchVo>> code = VoCopyUtil.copyListProperties(SynchVo.class, list);
 		return code;
 	}
@@ -234,7 +234,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 		query.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
 		query.add(Restrictions.ge("addtime", addtime));
 		query.addOrder(Order.desc("addtime"));
-		List<SportOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<SportOrder> orderList = (List<SportOrder>) hibernateTemplate.findByCriteria(query);
 		ResultCode<List<SportOrderVo>> code = VoCopyUtil.copyListProperties(SportOrderVo.class, orderList);
 		for(SportOrderVo vo : code.getRetval()){
 			SportOrder order = baseDao.getObjectByUkey(SportOrder.class, "tradeNo", vo.getTradeNo());
@@ -373,7 +373,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 			query.add(Restrictions.ge("addtime", addtime));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<DramaOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<DramaOrder> orderList = (List<DramaOrder>) hibernateTemplate.findByCriteria(query);
 		List<DramaOrderVo> result = new ArrayList<DramaOrderVo>();
 		for(DramaOrder order : orderList){
 			ResultCode<DramaOrderVo> vocode = VoCopyUtil.copyProperties(DramaOrderVo.class, order);
@@ -397,7 +397,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 		query.add(Restrictions.ge("playtime", startPlaytime));
 		query.add(Restrictions.lt("playtime", endPlaytime));
 		query.setProjection(Projections.property("tradeNo"));
-		List<String> tradeNoList = hibernateTemplate.findByCriteria(query);
+		List<String> tradeNoList = (List<String>) hibernateTemplate.findByCriteria(query);
 		return ResultCode.getSuccessReturn(tradeNoList);
 	}
 	@Override
@@ -416,7 +416,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 		query.add(Restrictions.ge("addtime", starttime));
 		query.add(Restrictions.le("addtime", endtime));
 		query.addOrder(Order.desc("addtime"));
-		List<GoodsOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<GoodsOrder> orderList = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
 		
 		ResultCode<List<GoodsOrderVo>> code = VoCopyUtil.copyListProperties(GoodsOrderVo.class, orderList);
 		for(GoodsOrderVo vo : code.getRetval()){
@@ -424,5 +424,25 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 			initGoodsOrder(vo, order);
 		}
 		return code;
+	}
+	@Override
+	public ResultCode<List<CustomPaperVo>> customPaperVoList(String tag, Date startdate, Date enddate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ResultCode<List<String>> getSuccessTradenoList(Timestamp addtime) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ResultCode<CustomPaperVo> getCustomPaperVoByTradeNo(String tradeno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ResultCode<List<String>> getSuccessTradenoList(Timestamp addtimeFrom, Timestamp addtimeTo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

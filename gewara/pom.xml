@@ -25,6 +25,7 @@
 		<dependency>
 			<groupId>com.gewara</groupId>
 			<artifactId>pushcs-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
@@ -55,6 +56,7 @@
 			<groupId>com.gewara</groupId>
 			<artifactId>eleccard</artifactId>
 
+			<version>3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.zxing</groupId>
@@ -258,6 +260,7 @@
 		<dependency>
 			<groupId>com.gewara</groupId>
 			<artifactId>pay-api</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -337,6 +340,79 @@
 			<groupId>com.gewara</groupId>
 			<artifactId>gw-security</artifactId>
 		</dependency>
-		<!-- ========== gewara end========== -->
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gworder-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>content-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>movie-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gewara-sso-client</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>estemplate</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>wp-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>ucenter-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gmessage-external</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gwsns-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>glassmock</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gewampi-api</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>mall-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>weixin-util</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gw-resources</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>push-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

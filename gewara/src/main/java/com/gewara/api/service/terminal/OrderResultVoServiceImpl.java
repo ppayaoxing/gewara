@@ -24,14 +24,14 @@ public class OrderResultVoServiceImpl extends BaseServiceImpl implements OrderRe
 	@Override
 	public ResultCode<List<OrderResultVo>> getOrderResultListByTaketime(Long placeid, Timestamp taketime) {
 		String hql = "from OrderResult o where o.placeid=? and o.taketime is not null and o.taketime>=?";
-		List<OrderResult> resultList = hibernateTemplate.find(hql, placeid, taketime);
+		List<OrderResult> resultList = (List<OrderResult>) hibernateTemplate.find(hql, placeid, taketime);
 		return VoCopyUtil.copyListProperties(OrderResultVo.class, resultList);
 	}
 
 	@Override
 	public ResultCode<List<OrderResultVo>> getOrderResultListByUpdatetime(Long placeid, Timestamp updatetime) {
 		String hql = "from OrderResult o where o.placeid=? and o.updatetime is not null and o.updatetime>=?";
-		List<OrderResult> resultList = hibernateTemplate.find(hql, placeid, updatetime);
+		List<OrderResult> resultList = (List<OrderResult>) hibernateTemplate.find(hql, placeid, updatetime);
 		return VoCopyUtil.copyListProperties(OrderResultVo.class, resultList);
 	}
 
@@ -43,7 +43,7 @@ public class OrderResultVoServiceImpl extends BaseServiceImpl implements OrderRe
 		DetachedCriteria query = DetachedCriteria.forClass(OrderResult.class);
 		query.add(Restrictions.in("placeid", placeidList));
 		query.add(Restrictions.ge("updatetime", updatetime));
-		List<OrderResult> resultList = hibernateTemplate.findByCriteria(query);
+		List<OrderResult> resultList = (List<OrderResult>) hibernateTemplate.findByCriteria(query);
 		return VoCopyUtil.copyListProperties(OrderResultVo.class, resultList);
 	}
 
@@ -59,7 +59,7 @@ public class OrderResultVoServiceImpl extends BaseServiceImpl implements OrderRe
 		query.add(Restrictions.in("placeid", placeidList));
 		query.add(Restrictions.ge("updatetime", starttime));
 		query.add(Restrictions.le("updatetime", endtime));
-		List<OrderResult> resultList = hibernateTemplate.findByCriteria(query);
+		List<OrderResult> resultList = (List<OrderResult>) hibernateTemplate.findByCriteria(query);
 		return VoCopyUtil.copyListProperties(OrderResultVo.class, resultList);
 	}
 
@@ -77,7 +77,7 @@ public class OrderResultVoServiceImpl extends BaseServiceImpl implements OrderRe
 		query.add(Restrictions.eq("ordertype", ordertype));
 		query.add(Restrictions.ge("updatetime", starttime));
 		query.add(Restrictions.le("updatetime", endtime));
-		List<OrderResult> resultList = hibernateTemplate.findByCriteria(query);
+		List<OrderResult> resultList = (List<OrderResult>) hibernateTemplate.findByCriteria(query);
 		return VoCopyUtil.copyListProperties(OrderResultVo.class, resultList);
 	}
 }

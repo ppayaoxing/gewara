@@ -332,7 +332,7 @@ public class EveryDayJobImpl extends JobService implements EveryDayJob{
 	public void updateBoughtcount() {
 		String hql2 = "select new map(o.movieid as omovieid, avg(o.gewaprice) as avgprice, min(o.gewaprice) as minprice, max(o.gewaprice) as maxprice) from OpenPlayItem o " + " where o.playtime>=? " + " group by o.movieid ";
 		Timestamp curtime = DateUtil.getCurTruncTimestamp();
-		List<Map> result2 = hibernateTemplate.find(hql2, curtime);
+		List<Map> result2 = (List<Map>) hibernateTemplate.find(hql2, curtime);
 		// 更新剩余的平均价，最低价，最高价
 		for (Map map : result2) {
 			Long movieid = Long.valueOf("" + map.get("omovieid"));
@@ -367,7 +367,7 @@ public class EveryDayJobImpl extends JobService implements EveryDayJob{
 	public void updateCityprice(){
 		String hql = "select new map(o.citycode as ocitycode,o.movieid as omovieid, avg(o.gewaprice) as avgprice, min(o.gewaprice) as minprice, max(o.gewaprice) as maxprice, count(distinct o.cinemaid) as cquantity, count(*) as quantity) from OpenPlayItem o " + " where o.playtime>=? " + " group by o.movieid, o.citycode ";
 		Timestamp curtime = DateUtil.getCurTruncTimestamp();
-		List<Map> result = hibernateTemplate.find(hql, curtime);
+		List<Map> result = (List<Map>) hibernateTemplate.find(hql, curtime);
 		String sql = "from CityPrice c where c.tag=? and c.citycode=? and c.relatedid=?" ;
 		for(Map map : result){
 			String citycode = ""+map.get("ocitycode");
@@ -570,7 +570,7 @@ public class EveryDayJobImpl extends JobService implements EveryDayJob{
 		dbLogger.warn("更新影院的某一电影最高价格，最小价格，平均价格开始");
 		String hql = "select new map(o.cinemaid as ocinemaid, o.movieid as omovieid, avg(o.gewaprice) as avgprice, min(o.gewaprice) as minprice, max(o.gewaprice) as maxprice) from OpenPlayItem o " + " where o.playtime>=? " + " group by o.cinemaid,o.movieid";
 		Timestamp curtime = DateUtil.getCurTruncTimestamp();
-		List<Map> result = hibernateTemplate.find(hql, curtime);
+		List<Map> result = (List<Map>) hibernateTemplate.find(hql, curtime);
 		int count = 0;
 		for (Map map : result) {
 			Long cinemaid = Long.valueOf("" + map.get("ocinemaid"));
@@ -595,7 +595,7 @@ public class EveryDayJobImpl extends JobService implements EveryDayJob{
 	public void updateSportOpenTimeItem(){
 		dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_JOB, "定时同步运动商家场次数据star...");
 		String sql = "from SportProfile s where s.booking=? order by s.id";
-		List<SportProfile> spList = hibernateTemplate.find(sql, SportProfile.STATUS_OPEN);
+		List<SportProfile> spList = (List<SportProfile>) hibernateTemplate.find(sql, SportProfile.STATUS_OPEN);
 		for(SportProfile sp : spList){
 			//同步项目
 			ErrorCode<String> code = remoteSportService.getGstItemIdList(sp.getId());

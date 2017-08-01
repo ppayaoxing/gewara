@@ -280,7 +280,7 @@ public class MerchantReportServiceImpl  extends BaseServiceImpl  implements Merc
 		List<OrderRefund> refundList = null;
 		if(StringUtils.equals("addtime", timeType)){
 			String query = "from OrderRefund where addtime>=? and addtime<=? and ordertype=? and placeid=? and (status=? or status=?) and orderstatus = ? ";
-			refundList = hibernateTemplate.find(query, startTime, endTime, "ticket", cinemaId, RefundConstant.STATUS_SUCCESS, RefundConstant.STATUS_FINISHED, OrderConstant.STATUS_PAID_SUCCESS);
+			refundList = (List<OrderRefund>) hibernateTemplate.find(query, startTime, endTime, "ticket", cinemaId, RefundConstant.STATUS_SUCCESS, RefundConstant.STATUS_FINISHED, OrderConstant.STATUS_PAID_SUCCESS);
 		}else{
 			refundList = refundService.getSettleRefundList("ticket", startTime, endTime, cinemaId);
 		}
@@ -445,11 +445,11 @@ public class MerchantReportServiceImpl  extends BaseServiceImpl  implements Merc
 		if(week == 6 || week == 7){
 			startHour = "13:00";
 		}
-		List<Map<String,Long>> movieMpiCount = hibernateTemplate.find(movieQry,playDate);
+		List<Map<String,Long>> movieMpiCount = (List<Map<String, Long>>) hibernateTemplate.find(movieQry,playDate);
 		EverydayMpiReportVo vo = new EverydayMpiReportVo(playDate,Integer.parseInt(hibernateTemplate.find(cSql).get(0).toString()),
 				Integer.parseInt(hibernateTemplate.find(qry,playDate).get(0).toString()),
 				(Integer)(ReportUtil.getIntSum(movieMpiCount,"mpiCount","0")),
-				movieMpiCount,hibernateTemplate.find(goleMovieQry,playDate,startHour,endHour));
+				movieMpiCount,(List<Map<String,Long>>)hibernateTemplate.find(goleMovieQry,playDate,startHour,endHour));
 		return ResultCode.getSuccessReturn(vo);
 	}
 	
@@ -547,5 +547,14 @@ public class MerchantReportServiceImpl  extends BaseServiceImpl  implements Merc
 		mailService.sendEmail(EmailRecord.SENDER_GEWARA, "商家系统公告需处理",mailContent, "operation021@gewara.com");
 		return ResultCode.getSuccess("添加成功");
 	}
+
+	@Override
+	public ResultCode<MovieSellerTotalVo> movieSellStatistics(long cinemaId, Long movieId, String timeType,
+			String opentype, Timestamp startTime, Timestamp endTime, String edition, int from, int maxnum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

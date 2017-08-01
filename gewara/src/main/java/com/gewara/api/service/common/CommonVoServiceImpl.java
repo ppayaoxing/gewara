@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.gewara.api.vo.ResultCode;
+import com.gewara.api.vo.common.CountyVo;
 import com.gewara.api.vo.common.GewaCityVo;
 import com.gewara.model.common.GewaCity;
 import com.gewara.service.GewaCityService;
@@ -26,5 +27,35 @@ public class CommonVoServiceImpl extends BaseServiceImpl implements CommonVoServ
 			cityList.addAll(proMap.get(pro));
 		}
 		return VoCopyUtil.copyListProperties(GewaCityVo.class, cityList);
+	}
+
+	@Override
+	public ResultCode<List<GewaCityVo>> getAllGewaCityList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultCode<List<CountyVo>> getCountyListByCitycode(String citycode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultCode<String> filterContentKey(String content) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultCode<Map> getDataById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultCode<Map> getFanPingDataById(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
