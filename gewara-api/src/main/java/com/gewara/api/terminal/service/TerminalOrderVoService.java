@@ -7,8 +7,14 @@ import java.util.Map;
 
 import com.gewara.api.terminal.vo.CustomPaperVo;
 import com.gewara.api.terminal.vo.DpiLayoutVo;
+import com.gewara.api.terminal.vo.SynchVo;
 import com.gewara.api.vo.ResultCode;
+import com.gewara.api.vo.movie.OpenPlayItemVo;
+import com.gewara.api.vo.order.DramaOrderVo;
 import com.gewara.api.vo.order.GewaOrderVo;
+import com.gewara.api.vo.order.GoodsOrderVo;
+import com.gewara.api.vo.order.SportOrderVo;
+import com.gewara.api.vo.order.TicketOrderVo;
 
 public interface TerminalOrderVoService {
 	/**
@@ -16,19 +22,20 @@ public interface TerminalOrderVoService {
 	 * @param tradeno
 	 * @return
 	 */
-	ResultCode<GewaOrderVo> getTicketOrderByTradeno(String tradeno);
+	ResultCode<? extends GewaOrderVo> getTicketOrderByTradeno(String tradeno);
 	/**
 	 * 查询电影物品订单
 	 * @param tradeno
 	 * @return
 	 */
-	ResultCode<GewaOrderVo> getGoodsOrderByTradeno(String tradeno);
+	ResultCode<? extends GewaOrderVo> getGoodsOrderByTradeno(String tradeno);
 	/**
 	 * 查询演出订单,由于可以选择多个场次，所以返回一个对象集合
 	 * @param tradeno
 	 * @return
 	 */
-	ResultCode<List<GewaOrderVo>> getDramaOrderByTradeno(String tradeno);
+//	ResultCode<List<? extends GewaOrderVo>> getDramaOrderByTradeno(String tradeno);
+	ResultCode<List<DramaOrderVo>> getDramaOrderByTradeno(String tradeno);
 	/**
 	 * 获取已退款的订单号
 	 * @param goodsid
@@ -79,4 +86,16 @@ public interface TerminalOrderVoService {
 	 * @return
 	 */
 	ResultCode<List<String>> getSuccessTradenoList(Timestamp addtimeFrom, Timestamp addtimeTo);
+	ResultCode<List<TicketOrderVo>> getSuccessTicketOrderList(Long cinemaid, Timestamp playtime, Timestamp addtime);
+	ResultCode<List<GoodsOrderVo>> getSuccessGoodsOrderList(Long goodsid, Long relatedid, Timestamp addtime);
+	ResultCode<List<OpenPlayItemVo>> getPeakOpenPlayItemList(Long cinemaid, Timestamp starttime, Timestamp endtime);
+	ResultCode<List<SynchVo>> getSynchByPlaceids(List<Long> placeidList);
+	ResultCode<SportOrderVo> getSportOrderByTradeno(String tradeno);
+	ResultCode<List<SportOrderVo>> getSuccessTicketOrderList(Long sportid, Long itemid, Timestamp addtime);
+	List<CustomPaperVo> getCustomPaperVoList(String tag, Date startdate, Date enddate);
+	ResultCode<List<DramaOrderVo>> getSuccessDramaOrderList(Long dramaid, Timestamp addtime);
+	ResultCode<List<String>> getSuccessTicketOrderListByPlaytime(List<Long> cinemaidList, Timestamp startPlaytime,
+			Timestamp endPlaytime);
+	ResultCode<List<GoodsOrderVo>> getMealSuccessGoodsOrderList(List<Long> placeidList, Timestamp starttime,
+			Timestamp endtime);
 }

@@ -430,4 +430,8 @@ public class StringUtil implements Util4Script {
 		}
 		return true;
 	}
+	public static String getExceptionTrace(Exception e, int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

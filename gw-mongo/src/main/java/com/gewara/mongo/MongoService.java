@@ -2,10 +2,12 @@ package com.gewara.mongo;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.gewara.json.CustomPaper;
 import com.gewara.mdb.builder.AggregationBuilder;
 import com.gewara.mdb.builder.DeleteBuilder;
 import com.gewara.mdb.builder.DistinctBuilder;
@@ -19,6 +21,7 @@ import com.gewara.mdb.result.UpdateRes;
 import com.gewara.mongo.support.MGObject;
 import com.gewara.mongo.support.MongoRowCallback;
 import com.gewara.support.ErrorCode;
+import com.mongodb.DBObject;
 
 public interface MongoService {
 	<T extends MGObject> T getObjectById(Class<T> clazz, String idName, Serializable id);
@@ -153,4 +156,11 @@ public interface MongoService {
 	<T> ErrorCode<Integer> process(FindBuilder<T> fb, MongoRowCallback callback, boolean exitOnError);
 	<T> List<T> execDistinct(DistinctBuilder dis, Class<T> fieldType);
 	FindRes<Object> group(AggregationBuilder ab);
+	
+	// =========================新加方法===================================	
+	DBObject queryBasicDBObject(String string, String string2, String tagCinema);
+	DBObject queryAdvancedDBObject(String string, String[] strings, Date[] dates);
+	List<? extends MGObject> getObjectList(Class<?> class1, DBObject queryCondition, String orderField, boolean asc,
+			int from, int maxnum);
+
 }

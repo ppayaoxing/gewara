@@ -35,4 +35,6 @@ public interface CommonVoService {
 	 * @return
 	 */
 	ResultCode<Map> getFanPingDataById(String id);
+
+	ResultCode<List<GewaCityVo>> getAllGewaCity();
 }
