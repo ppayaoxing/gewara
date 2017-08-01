@@ -181,5 +181,16 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
         </dependency>
+        <dependency>
+				<groupId>commons-betwixt</groupId>
+				<artifactId>commons-betwixt</artifactId>
+				<scope>${dependency.common}</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-beanutils</groupId>
+						<artifactId>commons-beanutils-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
     </dependencies>
 </project>

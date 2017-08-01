@@ -3,7 +3,8 @@ package com.gewara.helper.sys;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.gewara.untrans.hbase.HbaseData;
+import com.gewara.hbase.HbaseData;
+//import com.gewara.untrans.hbase.HbaseData;
 import com.gewara.untrans.monitor.MonitorData;
 
 public class MonitorHelper {

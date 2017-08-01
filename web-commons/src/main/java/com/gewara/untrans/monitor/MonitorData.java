@@ -28,6 +28,7 @@ public class MonitorData {
 	public static final String DATATYPE_APPSOURCE = "APPSOURCE";			//APPSOURCE
 	public static final String DATATYPE_HISDATA = "HISDATA";
 	public static final String DATATYPE_TERMINALTAKE = "TERMINALTICKET";
+	public static final String DATATYPE_APICALL = "DATATYPEAPICALL";   //apiµ÷ÓÃ
 	
 	
 	public static final Map<String, String> queueMap = new HashMap<String, String>();
