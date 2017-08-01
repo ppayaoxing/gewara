@@ -11,52 +11,24 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>gw-commons</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>gw-const</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>gewara-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>pushcs-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
-
 		</dependency>
 		<dependency>
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
-
 		</dependency>
 		<dependency>
 			<groupId>ojdbc</groupId>
 			<artifactId>ojdbc</artifactId>
-
 		</dependency>
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-
 		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-
-		</dependency>
-		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>eleccard</artifactId>
-
-			<version>3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.zxing</groupId>
@@ -258,10 +230,10 @@
 			<artifactId>font4pd</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.gewara</groupId>
-			<artifactId>pay-api</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
@@ -307,9 +279,9 @@
 			<artifactId>bcpkix-jdk15on</artifactId>
 		</dependency>
 		<dependency>
-			    <groupId>org.projectlombok</groupId>
-			    <artifactId>lombok</artifactId>
-			</dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 		<!-- ========= gewara start ====== -->
 		<dependency>
 			<groupId>com.gewara</groupId>
@@ -318,6 +290,10 @@
 		<dependency>
 			<groupId>com.gewara</groupId>
 			<artifactId>gw-mongo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>pay-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.gewara</groupId>
@@ -412,6 +388,27 @@
 		<dependency>
 			<groupId>com.gewara</groupId>
 			<artifactId>push-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>eleccard</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gw-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gw-const</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gewara-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>pushcs-api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
