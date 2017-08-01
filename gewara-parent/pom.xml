@@ -1412,16 +1412,17 @@
 				<scope>${dependency.common}</scope>
 			</dependency>
 			<dependency>
+			    <groupId>org.projectlombok</groupId>
+			    <artifactId>lombok</artifactId>
+			    <version>1.16.6</version>
+			    <scope>provided</scope>
+			</dependency>
+			
+			<dependency>
 				<groupId>commons-betwixt</groupId>
 				<artifactId>commons-betwixt</artifactId>
 				<version>${commons-betwixt.version}</version>
 				<scope>${dependency.common}</scope>
-				<exclusions>
-					<exclusion>
-						<groupId>commons-beanutils</groupId>
-						<artifactId>commons-beanutils-core</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>commons-collections</groupId>
