@@ -2,7 +2,9 @@ package com.gewara.json;
 
 import java.io.Serializable;
 
-public class MovieTrendsCount implements Serializable {
+import com.gewara.mongo.support.MGObject;
+
+public class MovieTrendsCount extends MGObject implements Serializable {
 	/**
 	 * 
 	 */

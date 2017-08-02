@@ -77,7 +77,9 @@ public interface HBaseService {
 	List<Row> getRowListByIdList(String tablename, List<byte[]> rowidList);
 	
 	List<Row> getRowListByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime, RowFilter filter, int maxnum);
+	List<Row> getRowListByRange(String tableName, Map fb, Long starttime, Long endtime, RowFilter filter, int maxnum);
 	List<Row> getRowListByIdRange(String tableName, FilterBuilder fb, byte[] startRowId, byte[] endRowId, RowFilter filter, int maxnum);
+	List<Row> getRowListByIdRange(String tableName, Map fb, byte[] startRowId, byte[] endRowId, RowFilter filter, int maxnum);
 	AggregateData getGroupData(String tableName, GroupFields gf, FilterBuilder fb, Long starttime, Long endtime, int maxRowScan, RowFilter filter);
 	
 	/**

@@ -147,7 +147,7 @@ public class MovieTrendsServiceImpl implements MovieTrendsService {
 		if (queryDate != null)
 			query.add(Restrictions.lt("addtime", DateUtil.addDay(queryDate, 1)));
 		query.setProjection(Projections.rowCount());
-		List<Long> result = readOnlyTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		return CollectionUtils.isEmpty(result) ? 0L : result.get(0);
 	}
 
@@ -176,7 +176,7 @@ public class MovieTrendsServiceImpl implements MovieTrendsService {
 		if (queryDate != null)
 			query.add(Restrictions.lt("addtime", DateUtil.addDay(queryDate, 1)));
 		query.addOrder(Order.desc("addtime"));
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<MemberMark>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 
 	/**
@@ -233,7 +233,7 @@ public class MovieTrendsServiceImpl implements MovieTrendsService {
 		if (MapUtils.isNotEmpty(alreadyCountMovieMap)) {
 			Set<Long> alreadyCountMovieIdSet = alreadyCountMovieMap.keySet();
 			DetachedCriteria query = getMemberMarkCountDetachedCriteria(alreadyCountMovieIdSet, "one", currentDate);
-			List<Map<String, Object>> diaryOneDayCountMapList = readOnlyTemplate.findByCriteria(query);
+			List<Map<String, Object>> diaryOneDayCountMapList = (List<Map<String, Object>>) readOnlyTemplate.findByCriteria(query);
 			Map<String, Long> alreadyCountMovieResultMap = listToMap(diaryOneDayCountMapList);
 			for (Map.Entry<Long, MovieTrendsCount> entry : alreadyCountMovieMap.entrySet()) {
 				String movieIdStr = String.valueOf(entry.getKey());
@@ -254,7 +254,7 @@ public class MovieTrendsServiceImpl implements MovieTrendsService {
 		Map<String, Long> notAlreadyCountMovieResult = new HashMap<String, Long>();
 		if (CollectionUtils.isNotEmpty(notAlreadyMovieIdSet)) {
 			DetachedCriteria query = getMemberMarkCountDetachedCriteria(notAlreadyMovieIdSet, "all", currentDate);
-			List<Map<String, Object>> diaryAllCountMapList = readOnlyTemplate.findByCriteria(query);
+			List<Map<String, Object>> diaryAllCountMapList = (List<Map<String, Object>>) readOnlyTemplate.findByCriteria(query);
 			notAlreadyCountMovieResult = listToMap(diaryAllCountMapList);
 		}
 		Map<String, Long> resultmemberMarkCountCountMap = new HashMap<String, Long>();
@@ -279,7 +279,7 @@ public class MovieTrendsServiceImpl implements MovieTrendsService {
 		if (MapUtils.isNotEmpty(alreadyCountMovieMap)) {
 			Set<Long> alreadyCountMovieIdSet = alreadyCountMovieMap.keySet();
 			DetachedCriteria query = getDiaryCountDetachedCriteria(alreadyCountMovieIdSet, "one", currentDate);
-			List<Map<String, Object>> diaryOneDayCountMapList = readOnlyTemplate.findByCriteria(query);
+			List<Map<String, Object>> diaryOneDayCountMapList = (List<Map<String, Object>>) readOnlyTemplate.findByCriteria(query);
 			Map<String, Long> alreadyCountMovieResultMap = listToMap(diaryOneDayCountMapList);
 			for (Map.Entry<Long, MovieTrendsCount> entry : alreadyCountMovieMap.entrySet()) {
 				String movieIdStr = String.valueOf(entry.getKey());
@@ -291,7 +291,7 @@ public class MovieTrendsServiceImpl implements MovieTrendsService {
 		Map<String, Long> notAlreadyCountMovieResult = new HashMap<String, Long>();
 		if (CollectionUtils.isNotEmpty(notAlreadyMovieIdSet)) {
 			DetachedCriteria query = getDiaryCountDetachedCriteria(notAlreadyMovieIdSet, "all", currentDate);
-			List<Map<String, Object>> diaryAllCountMapList = readOnlyTemplate.findByCriteria(query);
+			List<Map<String, Object>> diaryAllCountMapList = (List<Map<String, Object>>) readOnlyTemplate.findByCriteria(query);
 			notAlreadyCountMovieResult = listToMap(diaryAllCountMapList);
 		}
 		Map<String, Long> resultDiaryCountMap = new HashMap<String, Long>();

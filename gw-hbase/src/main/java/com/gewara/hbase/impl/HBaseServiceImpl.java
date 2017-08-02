@@ -350,6 +350,19 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		}, maxnum);
 		return result;
 	}
+	@Override
+	public List<Row> getRowListByRange(String tableName, Map fb, Long starttime, Long endtime, RowFilter filter,
+			int maxnum) {
+		// TODO ´ý¶¨
+		return null;
+	}
+
+	@Override
+	public List<Row> getRowListByIdRange(String tableName, Map fb, byte[] startRowId, byte[] endRowId, RowFilter filter,
+			int maxnum) {
+		// TODO ´ý¶¨
+		return null;
+	}
 
 	@Override
 	public List<byte[]> getRowidListByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime, int maxnum) {
@@ -877,6 +890,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		}
 		return true;
 	}
+
 
 
 }

@@ -200,7 +200,7 @@ public abstract class AbstractSynchBaseService {
 				return ErrorCode.getFailure(code.getErrcode(), code.getMsg());
 			}
 			return ErrorCode.getSuccessReturn(code.getRetval().getResult());
-		}catch (Exception e) {
+		} catch (Exception e) {
 			dbLogger.error("xml数据格式错误：", e);
 			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "数据错误！");
 		}

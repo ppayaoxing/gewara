@@ -3,7 +3,9 @@ package com.gewara.json.cooperate;
 import java.io.Serializable;
 import java.util.List;
 
-public class UnionPayFastCardbin implements Serializable {
+import com.gewara.mongo.support.MGObject;
+
+public class UnionPayFastCardbin extends MGObject implements Serializable {
 	/**
 	 * 
 	 */

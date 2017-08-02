@@ -7,10 +7,11 @@ import org.apache.commons.lang.StringUtils;
 
 import com.gewara.constant.Status;
 import com.gewara.model.pay.GewaOrder;
+import com.gewara.mongo.support.MGObject;
 import com.gewara.util.DateUtil;
 import com.gewara.util.StringUtil;
 
-public class OrderWarn implements Serializable{
+public class OrderWarn extends MGObject implements Serializable{
 	private static final long serialVersionUID = -7456534355848744653L;
 	public static final String TYPE_REPEAT = "repeat";
 	private String id;

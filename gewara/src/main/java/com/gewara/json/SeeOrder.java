@@ -3,7 +3,9 @@ package com.gewara.json;
 import java.io.Serializable;
 import java.util.Date;
 
-public abstract class SeeOrder implements Serializable{
+import com.gewara.mongo.support.MGObject;
+
+public abstract class SeeOrder extends MGObject implements Serializable{
     private static final long serialVersionUID = 5774773240715376538L;
     protected String id;
     protected Long relatedid;

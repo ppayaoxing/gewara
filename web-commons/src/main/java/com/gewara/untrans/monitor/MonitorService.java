@@ -6,6 +6,7 @@ import java.util.Map;
 public interface MonitorService {
 	String KEY_TABLENAME = "TABLE_NAME";
 	String KEY_HEXID = "HEXID";
+	String PRE_WEBSERVICE = "PRE_WEBSERVICE";
 
 	enum EXCEPTION_TAG{
 		PAGE,		//“≥√Ê“Ï≥£
@@ -127,4 +128,5 @@ public interface MonitorService {
 	void addBeanData(Class clazz, Map<String, String> bean);
 	void addMonitorEvent(String eventType, Map<String, String> eventEntry);
 	void addAccessLog(Map<String, String> logEntry);
+	void addApiCall(Map<String, String> paramsLog, long cur, boolean success);
 }

@@ -34,7 +34,7 @@ public interface MongoService {
 	 * @param rows
 	 * @return
 	 */
-	<T extends MGObject> List<T> getObjectList(Class<T> clazz, Expression params, String orderField, boolean asc, int from, int maxnum);
+	<T extends MGObject> List<T> getObjectList(Class<T> clazz1, Expression params, String orderField, boolean asc, int from, int maxnum);
 
 	<T extends MGObject> List<T> getObjectList(Class<T> clazz, String orderField, boolean asc);
 	/**
@@ -60,6 +60,7 @@ public interface MongoService {
 	List<Map> find(String namespace, Expression params, int from, int maxnum);
 
 	List<Map> find(String namespace, Expression params, String orderField, boolean asc, int from, int maxnum);
+	List<Map> find(String namespace, Map params, String orderField, boolean asc, int from, int maxnum);
 	
 	/**
 	 * @param namespace
@@ -80,8 +81,11 @@ public interface MongoService {
 
 	<T extends MGObject> int getObjectCount(Class<T> clazz);
 	<T extends MGObject> int getObjectCount(Class<T> clazz, Expression params);
+	<T extends MGObject> int getObjectCount(Class<T> clazz, Map params);
+	<T extends MGObject> int getObjectCount(Class<T> clazz, DBObject params);
 	int getCount(String namespace);
 	int getCount(String namespace, Expression params);
+	int getCount(String namespace, Map params);
 
 	<T> List<T> getDistinctPropertyList(String namespace, Expression params, String propertyname, Class<T> clazz);
 
@@ -158,9 +162,23 @@ public interface MongoService {
 	
 	// =========================新加方法===================================	
 	DBObject queryBasicDBObject(String string, String string2, String tagCinema);
+	DBObject queryBasicDBObject(String string, String string2, Long id);
 	DBObject queryAdvancedDBObject(String string, String[] strings, Date[] dates);
-	List<? extends MGObject> getObjectList(Class<?> class1, DBObject queryCondition, String orderField, boolean asc,
+	DBObject queryAdvancedDBObject(String string, String[] strings, String[] dates);
+	<T extends MGObject>List<T> getObjectList(Class<T> class1, DBObject queryCondition, String orderField, boolean asc,
 			int from, int maxnum);
 	Map getMap(String defaultIdName, String nsIndexDatasheet, String indexKey);
 	Map getMap(String defaultIdName, String nsIndexDatasheet, Long indexKey);
+	<T extends MGObject>List<T> getObjectList(Class<T> class1, DBObject queryCondition);
+	<T extends MGObject>List<T> getObjectList(Class<T> class1, Map map, String orderField,
+			boolean asc, int from, int maxnum);
+	List<Map> find(String canonicalName, Map  paramsMap, String[] orderField, boolean[] asc, int from,
+			int maxnum);
+	Map findOne(String nsFirstorder, String systemId, Long memberid);
+	Map findOne(String nsLastorder, String defaultIdName, String encryptMobile);
+	Map findOne(String nsIntegral, Map param);
+	List<Map> find(String namespace, Map hashMap);
+	<T extends MGObject> T getObject(Class<T> class1, String string, String cardbinUkey);
+	<T extends MGObject> T getObject(Class<T> class1, String string, Long cardbinUkey);
+	List<Map> find(String nsRecommendMember, Map params, String orderField, boolean asc);
 }

@@ -46,7 +46,11 @@ public abstract class AbstractMonitorService implements MonitorService {
 	protected ThreadPoolExecutor executor;
 	@Autowired@Qualifier("velocityTemplate")
 	private VelocityTemplate velocityTemplate;
-
+	@Override
+	public void addApiCall(Map<String, String> paramsLog, long cur, boolean success) {
+		//TODO ´ý¶¨
+		
+	}
 	@Override
 	public Map<String, String> getMonitorStatus() {
 		Map<String, String> result = new LinkedHashMap<String, String>();

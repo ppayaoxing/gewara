@@ -2,7 +2,9 @@ package com.gewara.json;
 
 import java.io.Serializable;
 
-public class MemberSign implements Serializable{
+import com.gewara.mongo.support.MGObject;
+
+public class MemberSign extends MGObject implements Serializable{
 	private static final long serialVersionUID = -8263369965712270305L;
 	private Long memberid;
 	private double pointx;

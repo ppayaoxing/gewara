@@ -33,6 +33,7 @@ import com.gewara.mdb.operation.Projection;
 import com.gewara.mdb.result.DeleteRes;
 import com.gewara.mdb.result.FindRes;
 import com.gewara.mdb.result.UpdateRes;
+import com.gewara.model.BaseObject;
 import com.gewara.mongo.MongoDataException;
 import com.gewara.mongo.MongoService;
 import com.gewara.mongo.support.MGObject;
@@ -594,7 +595,7 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 	}
 
 	@Override
-	public List<? extends MGObject> getObjectList(Class<?> class1, DBObject queryCondition, String orderField,
+	public <T extends MGObject> List<T> getObjectList(Class<T> class1, DBObject queryCondition, String orderField,
 			boolean asc, int from, int maxnum) {
 		// TODO Auto-generated method stub
 		return null;
@@ -607,6 +608,104 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 	}
 	@Override
 	public Map getMap(String defaultIdName, String nsIndexDatasheet, Long indexKey) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Map> find(String namespace, Map params, String orderField, boolean asc, int from, int maxnum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T extends MGObject> int getObjectCount(Class<T> clazz, Map params) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public <T extends MGObject> int getObjectCount(Class<T> clazz, DBObject params) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getCount(String namespace, Map params) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public DBObject queryBasicDBObject(String string, String string2, Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DBObject queryAdvancedDBObject(String string, String[] strings, String[] dates) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T extends MGObject> List<T> getObjectList(Class<T> class1, DBObject queryCondition) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T extends MGObject> List<T> getObjectList(Class<T> class1, Map map, String orderField, boolean asc,
+			int from, int maxnum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Map> find(String canonicalName, Map paramsMap, String[] orderField, boolean[] asc, int from,
+			int maxnum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map findOne(String nsFirstorder, String systemId, Long memberid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map findOne(String nsLastorder, String defaultIdName, String encryptMobile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map findOne(String nsIntegral, Map param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Map> find(String namespace, Map hashMap) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T extends MGObject> T getObject(Class<T> class1, String string, String cardbinUkey) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T extends MGObject> T getObject(Class<T> class1, String string, Long cardbinUkey) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Map> find(String nsRecommendMember, Map params, String orderField, boolean asc) {
 		// TODO Auto-generated method stub
 		return null;
 	}

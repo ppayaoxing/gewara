@@ -1,10 +1,12 @@
 package com.gewara.json.order;
 
+import com.gewara.mongo.support.MGObject;
+
 /**
  * 360CPS过来的订单，详情参考 http://union.360.cn/help/apidocnew#cxjk
  * 
  */
-public class OutOriginOrder {
+public class OutOriginOrder extends MGObject{
 	private String outOrigin;
 	// 订单主键
 	private Long id;

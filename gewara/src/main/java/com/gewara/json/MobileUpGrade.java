@@ -3,6 +3,7 @@ package com.gewara.json;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.gewara.mongo.support.MGObject;
 import com.gewara.util.DateUtil;
 /**
  * 手机客户端升级
@@ -10,7 +11,7 @@ import com.gewara.util.DateUtil;
  *
  */
 
-public class MobileUpGrade implements Serializable{
+public class MobileUpGrade extends MGObject implements Serializable{
 	private static final long serialVersionUID = 5334779739394551134L;
 	public static final int UPGRADE_STATUA_Y = 1;
 	public static final int UPGRADE_STATUA_N = 0;

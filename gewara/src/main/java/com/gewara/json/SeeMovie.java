@@ -11,10 +11,13 @@ import com.gewara.util.DateUtil;
  * @author Administrator
  *
  */
-public class SeeMovie extends SeeOrder{
+public class SeeMovie extends SeeOrder {
 	private static final long serialVersionUID = -9066897432158801162L;
-	public SeeMovie(){}
-	public SeeMovie(Long relatedid, String tag, Long memberid, String tradeNo, Date paidtime, Date playDate){
+
+	public SeeMovie() {
+	}
+
+	public SeeMovie(Long relatedid, String tag, Long memberid, String tradeNo, Date paidtime, Date playDate) {
 		this.relatedid = relatedid;
 		this.tag = tag;
 		this.memberid = memberid;
