@@ -25,7 +25,7 @@ public class AuthServiceImpl extends BaseServiceImpl implements AuthService{
 	@Override
 	public List<Role> getRoleListByTag(String tag) {
 		String query = "from Role where tag =?";
-		List<Role> result = hibernateTemplate.find(query, tag);
+		List<Role> result = (List<Role>) hibernateTemplate.find(query, tag);
 		return result;
 	}
 }

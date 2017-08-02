@@ -518,7 +518,7 @@ public class TicketDiscountServiceImpl extends BaseServiceImpl implements Ticket
 			query.add(Restrictions.isNull("memberid"));
 			query.add(Restrictions.eq("usedcount", 0));
 		}
-		List<SpCode> result = hibernateTemplate.findByCriteria(query, 0, 50);
+		List<SpCode> result = (List<SpCode>) hibernateTemplate.findByCriteria(query, 0, 50);
 		if(result.isEmpty()){
 			result = genSpCode(sd, 100);
 			//FIXME:warn("电子码数量不足，请重试！");
@@ -549,7 +549,7 @@ public class TicketDiscountServiceImpl extends BaseServiceImpl implements Ticket
 			query.add(Restrictions.isNull("memberid"));
 			query.add(Restrictions.eq("usedcount", 0));
 		}
-		List<SpCode> result = hibernateTemplate.findByCriteria(query, 0, 50);
+		List<SpCode> result = (List<SpCode>) hibernateTemplate.findByCriteria(query, 0, 50);
 		if(result.isEmpty()){
 			result = genSpCode(sd, 100);
 			//FIXME:warn("电子码数量不足，请重试！");
@@ -593,7 +593,7 @@ public class TicketDiscountServiceImpl extends BaseServiceImpl implements Ticket
 			query.add(Restrictions.eq("sdid", spid));
 		}
 		query.addOrder(Order.asc("usedcount"));
-		List<SpCode> result = hibernateTemplate.findByCriteria(query, fromnum, maxnum);
+		List<SpCode> result = (List<SpCode>) hibernateTemplate.findByCriteria(query, fromnum, maxnum);
 		for (SpCode spCode : result) {
 			spCode.setTemppass(PKCoderUtil.decryptString(spCode.getCodepass(), spcodeKey));
 		}

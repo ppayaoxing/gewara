@@ -40,13 +40,13 @@ public class AlbumServiceImpl extends BaseServiceImpl implements AlbumService {
 		query.add(Restrictions.eq("memberid", id));
 		query.add(Restrictions.eq("commuid",0l));
 		query.addOrder(Order.desc("addtime"));
-		List<Album> albumList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Album> albumList = (List<Album>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return albumList;
 	}
 	@Override
 	public List<Map> getAlbumListByMemberId(Long memberid) {
 		String hql = "select new map(a.id as id, a.subject as subject) from Album a where a.memberid=? and a.commuid=0";
-		List<Map> albumList = readOnlyTemplate.find(hql, memberid);
+		List<Map> albumList = (List<Map>) readOnlyTemplate.find(hql, memberid);
 		return albumList;
 	}
 	
@@ -66,7 +66,7 @@ public class AlbumServiceImpl extends BaseServiceImpl implements AlbumService {
 		query.add(Restrictions.eq("relatedid", albumid));
 		query.add(Restrictions.eq("tag", "album"));
 		query.addOrder(Order.desc("posttime"));
-		List<Picture> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Picture> result = (List<Picture>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -75,7 +75,7 @@ public class AlbumServiceImpl extends BaseServiceImpl implements AlbumService {
 		query.add(Restrictions.eq("relatedid", albumid));
 		query.add(Restrictions.eq("tag", "album"));
 		query.setProjection(Projections.rowCount());
-		List<Picture> pictureList = readOnlyTemplate.findByCriteria(query);
+		List<Picture> pictureList = (List<Picture>) readOnlyTemplate.findByCriteria(query);
 		if(pictureList.size()>0) return new Integer(pictureList.get(0)+"");
 		return 0;
 	}
@@ -84,7 +84,7 @@ public class AlbumServiceImpl extends BaseServiceImpl implements AlbumService {
 		DetachedCriteria query = DetachedCriteria.forClass(AlbumComment.class);
 		query.add(Restrictions.eq("imageid", imageid));
 		query.addOrder(Order.desc("addtime"));
-		List<AlbumComment> albumCommentList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<AlbumComment> albumCommentList = (List<AlbumComment>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return albumCommentList;
 	}
 	@Override
@@ -92,7 +92,7 @@ public class AlbumServiceImpl extends BaseServiceImpl implements AlbumService {
 		DetachedCriteria query = DetachedCriteria.forClass(AlbumComment.class);
 		query.add(Restrictions.eq("imageid", imageid));
 		query.setProjection(Projections.distinct(Projections.property("memberid")));
-		List<Long> memberidList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Long> memberidList = (List<Long>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return memberidList;
 	}
 	@Override
@@ -105,7 +105,7 @@ public class AlbumServiceImpl extends BaseServiceImpl implements AlbumService {
 		subQuery.setProjection(Projections.property("a.id"));
 		query.add(Subqueries.exists(subQuery));
 		query.addOrder(Order.desc("ai.posttime"));
-		List<Picture> albumImageList = readOnlyTemplate.findByCriteria(query,from, maxnum);
+		List<Picture> albumImageList = (List<Picture>) readOnlyTemplate.findByCriteria(query,from, maxnum);
 		return albumImageList;
 	}
 	@Override
@@ -129,7 +129,7 @@ public class AlbumServiceImpl extends BaseServiceImpl implements AlbumService {
 	public List<Album> getAlbumListByMemberIdOrCommuId(Long memberid, Long commuid, String searchKey, int from, int maxnum) {
 		DetachedCriteria query = getAlbumQuery(memberid, commuid, searchKey);
 		query.addOrder(Order.desc("addtime"));
-		List<Album> albumList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Album> albumList = (List<Album>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return albumList;
 	}
 	@Override

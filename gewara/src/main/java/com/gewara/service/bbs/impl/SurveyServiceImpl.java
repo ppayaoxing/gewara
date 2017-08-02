@@ -36,7 +36,7 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 		DetachedCriteria query = DetachedCriteria.forClass(SurveyResult.class);
 		query.add(Restrictions.eq("surveyid", surveyid));
 		query.addOrder(Order.desc("addtime"));
-		List<SurveyResult> surveyResultList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<SurveyResult> surveyResultList = (List<SurveyResult>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return surveyResultList;
 	}
 
@@ -46,7 +46,7 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 		query.add(Restrictions.eq("surveyid", surveyid));
 		if(optionid != null)query.add(Restrictions.eq("optionid", optionid));
 		query.setProjection(Projections.count("id"));
-		List<Long> surveyResultList = readOnlyTemplate.findByCriteria(query);
+		List<Long> surveyResultList = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		return surveyResultList.get(0);
 	}
 	
@@ -56,7 +56,7 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 		query.add(Restrictions.eq("surveyid", surveyid));
 		query.add(Restrictions.eq("itemid", itemid));
 		query.add(Restrictions.eq("optionid", optionid));
-		List<SurveyOption> surveyOptionList = readOnlyTemplate.findByCriteria(query);
+		List<SurveyOption> surveyOptionList = (List<SurveyOption>) readOnlyTemplate.findByCriteria(query);
 		return surveyOptionList;
 	}
 	@Override
@@ -82,7 +82,7 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 		query.add(Restrictions.eq("surveyid", surveyid));
 		query.add(Restrictions.eq("itemid", itemid));
 		query.add(Restrictions.eq("optiontype", optionType));
-		List<SurveyOption> surveyOptionList = readOnlyTemplate.findByCriteria(query);
+		List<SurveyOption> surveyOptionList = (List<SurveyOption>) readOnlyTemplate.findByCriteria(query);
 		if(surveyOptionList.isEmpty()) return null;
 		return surveyOptionList.get(0);
 	}
@@ -90,7 +90,7 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 	public SurveyItem getSurveyItemByBody(String surveyBody) {
 		DetachedCriteria query = DetachedCriteria.forClass(SurveyItem.class);
 		query.add(Restrictions.eq("body", surveyBody));
-		List<SurveyItem> surveyItemList = readOnlyTemplate.findByCriteria(query);
+		List<SurveyItem> surveyItemList = (List<SurveyItem>) readOnlyTemplate.findByCriteria(query);
 		if(surveyItemList.isEmpty()) return null;
 		return surveyItemList.get(0);
 	}
@@ -102,7 +102,7 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.gt("addtime", time));
 		query.setProjection(Projections.count("id"));
-		List<Long> resultList = readOnlyTemplate.findByCriteria(query);
+		List<Long> resultList = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		return resultList.get(0);
 	}
 	@Override

@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,13 @@ import com.gewara.model.user.MemberInfo;
 import com.gewara.service.DaoService;
 import com.gewara.service.bbs.BlogService;
 import com.gewara.service.member.MemberService;
+import com.gewara.support.ErrorCode;
 import com.gewara.support.GewaCaptchaService;
 import com.gewara.untrans.RelateService;
 import com.gewara.util.BeanUtil;
 import com.gewara.util.JsonUtils;
 import com.gewara.util.RelatedHelper;
+import com.gewara.util.StringUtil;
 
 /**
  * 为了写一些Controller中出现的一些共用方法
@@ -69,7 +72,8 @@ public class ControllerService {
 		boolean validCaptcha = false;
 		if(StringUtils.isNotBlank(captcha)){
 			captcha = StringUtils.lowerCase(captcha);
-			validCaptcha = captchaService.validateResponseForID(captchaId, captcha, ip);
+			ErrorCode<Map<String,String>> responseForID = captchaService.validateResponseForID(captchaId, captcha, ip);
+			validCaptcha = StringUtils.equalsIgnoreCase(ErrorCode.SUCCESS.getErrcode(), responseForID.getErrcode());
 		}
 		return validCaptcha;
 	}

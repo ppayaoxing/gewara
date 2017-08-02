@@ -260,7 +260,7 @@ public class TicketOrderJobImpl extends JobService implements TicketOrderJob {
 		query.add(Restrictions.le("createtime", validtime2));
 		query.add(Restrictions.lt("validtime", curtime));
 		query.add(Restrictions.in("paymethod", paymethodList));
-		List<GewaOrder> orderList = hibernateTemplate.findByCriteria(query, 0, 100);
+		List<GewaOrder> orderList = (List<GewaOrder>) hibernateTemplate.findByCriteria(query, 0, 100);
 		dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_JOB, "未通知订单任务执行，共" + orderList.size() + "个");
 		String title = "订单支付成功但未收到通知！";
 		for (GewaOrder order : orderList) {

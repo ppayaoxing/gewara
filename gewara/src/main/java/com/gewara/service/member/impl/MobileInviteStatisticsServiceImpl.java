@@ -35,7 +35,7 @@ public class MobileInviteStatisticsServiceImpl implements MobileInviteStatistics
 		dbLogger.warn("开始执行手机邀请好友短信统计查询...");
 		//查询短信发送通道
 		String channelSql = "select distinct(s.channel) from SMSRecord s where s.tag='mobile_sms_invite'";
-		List<String> channelList = hibernateTemplate.find(channelSql);
+		List<String> channelList = (List<String>) hibernateTemplate.find(channelSql);
 		List<InviteReport> inviteList = new ArrayList<InviteReport>();
 		if(!channelList.isEmpty()){
 			Timestamp startTime = DateUtil.getBeginningTimeOfDay(time);

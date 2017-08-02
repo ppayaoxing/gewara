@@ -34,7 +34,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 		DetachedCriteria query = DetachedCriteria.forClass(AdPosition.class);
 		if (StringUtils.isNotBlank(tag))
 			query.add(Restrictions.like("tag", tag, MatchMode.ANYWHERE));
-		List<AdPosition> list = readOnlyTemplate.findByCriteria(query);
+		List<AdPosition> list = (List<AdPosition>) readOnlyTemplate.findByCriteria(query);
 		return list;
 	}
 	@Override
@@ -42,7 +42,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 		DetachedCriteria query = DetachedCriteria.forClass(AdPosition.class);
 		query.add(Restrictions.like("tag", tag, MatchMode.ANYWHERE));
 		query.setProjection(Projections.rowCount());
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -53,7 +53,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 		query.add(Restrictions.eq("adpositionid", adpositionid));
 		query.add(Restrictions.eq("citycode", citycode));
 		query.addOrder(Order.asc(order));
-		List<Advertising> list = readOnlyTemplate.findByCriteria(query);
+		List<Advertising> list = (List<Advertising>) readOnlyTemplate.findByCriteria(query);
 		return list;
 	}
 	@Override
@@ -69,7 +69,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 		subQuery.add(Restrictions.like("tag", pTag, MatchMode.ANYWHERE))
 			.setProjection(Projections.property("id"));
 		query.add(Subqueries.propertyIn("adpositionid",subQuery));
-		List<Advertising> list = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<Advertising> list = (List<Advertising>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if(list.size()>0) return list.get(0);
 		return null;
 	}
@@ -78,7 +78,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		String qry = "select count(*) from Advertising a where a.starttime<=? and a.endtime>=? and a.citycode=? " +
 				"and exists(select p.id from AdPosition p where p.id=a.adpositionid and p.pid=?)";
-		List<Long> list = readOnlyTemplate.find(qry, now, now, citycode, pid);
+		List<Long> list = (List<Long>) readOnlyTemplate.find(qry, now, now, citycode, pid);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -93,7 +93,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 		query.add(Restrictions.le("starttime", now));
 		query.add(Restrictions.eq("citycode", citycode));
 		query.setProjection(Projections.sum("remaintimes"));
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if (list.get(0) == null) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -108,7 +108,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 		query.add(Restrictions.le("starttime", now));
 		query.add(Restrictions.gt("remaintimes", 0));
 		query.addOrder(Order.asc("remaintimes"));
-		List<Advertising> list = readOnlyTemplate.findByCriteria(query);
+		List<Advertising> list = (List<Advertising>) readOnlyTemplate.findByCriteria(query);
 		return list;
 	}
 	@Override
@@ -118,7 +118,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 			Timestamp now = new Timestamp(System.currentTimeMillis());
 			String qry = "from Advertising a where a.starttime<=? and a.endtime>=? and a.citycode=? " +
 					"and exists(select p.id from AdPosition p where p.id=a.adpositionid and p.pid=?)";
-			List<Advertising> list = readOnlyTemplate.find(qry, now, now, citycode, pid);
+			List<Advertising> list = (List<Advertising>) readOnlyTemplate.find(qry, now, now, citycode, pid);
 			return list.get(new Random().nextInt(count));
 		}
 		return null;
@@ -129,7 +129,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		String qry = "from Advertising a where a.starttime<=? and a.endtime>=? and a.citycode=? " +
 		"and exists(select p.id from AdPosition p where p.id=a.adpositionid and p.pid=?) order by ordernum asc";
-		List<Advertising> list = readOnlyTemplate.find(qry, now, now, citycode, pid);
+		List<Advertising> list = (List<Advertising>) readOnlyTemplate.find(qry, now, now, citycode, pid);
 		return list;
 	}
 	
@@ -138,7 +138,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		String qry = "from Advertising a where a.starttime<=? and a.endtime>=? and a.citycode=? and a.tag=? and a.relatedid=? " +
 		"and exists(select p.id from AdPosition p where p.id=a.adpositionid and p.pid=?)";
-		List<Advertising> list = readOnlyTemplate.find(qry, now, now, citycode, tag, relatedid, pid);
+		List<Advertising> list = (List<Advertising>) readOnlyTemplate.find(qry, now, now, citycode, tag, relatedid, pid);
 		return list;
 	}
 		
@@ -184,7 +184,7 @@ public class AdServiceImpl extends BaseServiceImpl implements AdService {
 		subQuery.add(Restrictions.like("tag", tag, MatchMode.ANYWHERE))
 			.setProjection(Projections.property("id"));
 		query.add(Subqueries.propertyIn("adpositionid",subQuery));
-		List<Advertising> list = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<Advertising> list = (List<Advertising>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		
 		return CollectionUtils.isNotEmpty(list) ? list.get(0) : null;
 		

@@ -42,7 +42,7 @@ public class BarcodeServiceImpl  extends BaseServiceImpl implements BarcodeServi
 			query.add(Restrictions.eq("barcode", barcode));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<Barcode> barcodeList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Barcode> barcodeList = (List<Barcode>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return barcodeList;
 	}
 	@Override
@@ -81,7 +81,7 @@ public class BarcodeServiceImpl  extends BaseServiceImpl implements BarcodeServi
 		}
 		query.add(Restrictions.isNull("tradeno"));
 		query.addOrder(Order.desc("addtime"));
-		List<Barcode> barcodeList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Barcode> barcodeList = (List<Barcode>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return barcodeList;
 	}
 	@Override
@@ -91,7 +91,7 @@ public class BarcodeServiceImpl  extends BaseServiceImpl implements BarcodeServi
 		query.add(Restrictions.isNull("taketime"));
 		query.add(Restrictions.ge("validtime", DateUtil.getMillTimestamp()));
 		query.addOrder(Order.desc("addtime"));
-		List<Barcode> barcodeList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Barcode> barcodeList = (List<Barcode>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return barcodeList;
 	}
 	@Override
@@ -115,7 +115,7 @@ public class BarcodeServiceImpl  extends BaseServiceImpl implements BarcodeServi
 	public List<Barcode> getBarcodeListByTradeno(String tradeno) {
 		DetachedCriteria query = DetachedCriteria.forClass(Barcode.class);
 		query.add(Restrictions.eq("tradeno", tradeno));
-		List<Barcode> barcodeList = hibernateTemplate.findByCriteria(query);
+		List<Barcode> barcodeList = (List<Barcode>) hibernateTemplate.findByCriteria(query);
 		return barcodeList;
 	}
 	@Override

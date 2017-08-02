@@ -27,7 +27,7 @@ public class CommonPartServiceImpl extends BaseServiceImpl implements CommonPart
 	public Festival getCurFestival(Date date) {
 		DetachedCriteria query = DetachedCriteria.forClass(Festival.class);
 		query.add(Restrictions.eq("festdate", date));
-		List<Festival> list = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<Festival> list = (List<Festival>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		return list.isEmpty() ? null : list.get(0);
 	}
 	
@@ -36,7 +36,7 @@ public class CommonPartServiceImpl extends BaseServiceImpl implements CommonPart
 		DetachedCriteria query = DetachedCriteria.forClass(Festival.class);
 		query.add(Restrictions.gt("festdate", date));
 		query.addOrder(Order.asc("festdate"));
-		List<Festival> list = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<Festival> list = (List<Festival>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		return list.isEmpty() ? null : list.get(0);
 	}
 

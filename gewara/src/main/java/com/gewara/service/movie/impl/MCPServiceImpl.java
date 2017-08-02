@@ -78,7 +78,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	public List<MoviePlayItem> getCinemaCurMpiList(Long cinemaId) {
 		String queryString = "from MoviePlayItem mpi where mpi.playdate >= ? and mpi.cinemaid = ? order by mpi.movieid, mpi.playdate, mpi.playtime";
 		Date current = DateUtil.getBeginningTimeOfDay(new Date());
-		List<MoviePlayItem> result = hibernateTemplate.find(queryString, current, cinemaId);
+		List<MoviePlayItem> result = (List<MoviePlayItem>) hibernateTemplate.find(queryString, current, cinemaId);
 		return result;
 	}
 	
@@ -106,7 +106,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			}
 			query.addOrder(Order.asc("playtime"));
 			query.setProjection(Projections.id());
-			idList = hibernateTemplate.findByCriteria(query);
+			idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, idList);
 		}
 		List<MoviePlayItem> playItemList = baseDao.getObjectList(MoviePlayItem.class, idList);
@@ -212,7 +212,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	}
 	@Override
 	public Movie getMovieByName(String movieName){
-		List<Long> movieidList = hibernateTemplate.find("select id from Movie m where m.moviename = ?",movieName);
+		List<Long> movieidList = (List<Long>) hibernateTemplate.find("select id from Movie m where m.moviename = ?",movieName);
 		if(movieidList.size()>0) return baseDao.getObject(Movie.class, movieidList.get(0));
 		return null;
 	}
@@ -250,7 +250,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		if(movieidList==null){
 			String query = "select distinct mpi.movieid from MoviePlayItem mpi where mpi.playdate >= ?"
 					+ " and  mpi.citycode = ? ";
-			movieidList = hibernateTemplate.find(query, DateUtil.getCurDate(), citycode);
+			movieidList = (List<Long>) hibernateTemplate.find(query, DateUtil.getCurDate(), citycode);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, movieidList);
 		}
 		List<Movie> movieList = baseDao.getObjectList(Movie.class, movieidList);
@@ -260,7 +260,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	@Override
 	public List<Movie> getCurMovieList() {
 		String query = "select distinct mpi.movieid from MoviePlayItem mpi where mpi.playdate >= ?";
-		List<Long> movieidList = hibernateTemplate.find(query, DateUtil.getCurDate());
+		List<Long> movieidList = (List<Long>) hibernateTemplate.find(query, DateUtil.getCurDate());
 		List<Movie> movieList = baseDao.getObjectList(Movie.class, movieidList);
 		Collections.sort(movieList, new PropertyComparator("moviename", false, true));
 		return movieList;
@@ -296,7 +296,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			query.add(Restrictions.gt("releasedate", DateUtil.getCurDate()));
 			query.setProjection(Projections.property("id"));
 			query.addOrder(Order.asc("releasedate"));
-			idList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+			idList = (List<Long>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, idList);
 		}
 		List<Movie> result = baseDao.getObjectList(Movie.class, idList);
@@ -319,7 +319,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			query.addOrder(Order.asc("releasedate"));
 			query.addOrder(Order.asc("playdate"));
 		}
-		List<Long> idList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Long> idList = (List<Long>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		result = baseDao.getObjectList(Movie.class, idList);
 		if(!result.isEmpty()){
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, result);
@@ -341,7 +341,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 				query.add(Restrictions.eq("m.playdate", playdate));
 				query.setProjection(Projections.property("id"));
 				query.addOrder(Order.asc("m.playtime"));
-				List<Long> result = hibernateTemplate.findByCriteria(query);
+				List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 				return result;
 			}
 		});
@@ -365,7 +365,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 					query.add(Restrictions.eq("movieid", movieId));
 				}
 				query.setProjection(Projections.distinct(Projections.property("cinemaid")));
-				List<Long> ret = hibernateTemplate.findByCriteria(query);
+				List<Long> ret = (List<Long>) hibernateTemplate.findByCriteria(query);
 				return ret;
 			}
 		});
@@ -403,7 +403,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 				query.addOrder(Order.desc("c.hotvalue"));
 				query.addOrder(Order.desc("c.clickedtimes"));
 				query.setProjection(Projections.property("id"));
-				List<Long> ret = hibernateTemplate.findByCriteria(query);
+				List<Long> ret = (List<Long>) hibernateTemplate.findByCriteria(query);
 				return ret;
 			}
 		});
@@ -430,7 +430,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			query.add(Restrictions.ge("m.playtime", playtime));
 		}
 		query.setProjection(Projections.distinct(Projections.property("m.cinemaid")));
-		List<Long> idList = hibernateTemplate.findByCriteria(query);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return idList;
 	}
 	@Override
@@ -450,7 +450,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		subquery.setProjection(Projections.property("m.roomid"));
 		query.add(Subqueries.exists(subquery));
 		query.add(Restrictions.isNotNull("c.characteristic"));
-		return hibernateTemplate.findByCriteria(query);
+		return (List<CinemaRoom>) hibernateTemplate.findByCriteria(query);
 	}
 	
 	private final String getPlayCinemaCount = "select count(distinct mpi.cinemaid) from MoviePlayItem mpi where mpi.movieid = ?"
@@ -482,7 +482,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		List<Date> result = (List<Date>) cacheService.get(CacheConstant.REGION_TENMIN, key);
 		if(result==null || result.isEmpty()){
 			String psql1 = "select distinct playdate from MoviePlayItem mpi where mpi.movieid=? and mpi.playdate >= ? and mpi.citycode=?";
-			result = hibernateTemplate.find(psql1, movieId, cur, citycode);
+			result = (List<Date>) hibernateTemplate.find(psql1, movieId, cur, citycode);
 			Collections.sort(result);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, result);
 		}
@@ -497,7 +497,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			Date curDate = new Date();
 			Date cur = DateUtil.getBeginningTimeOfDay(curDate);
 			String psql1 = "select distinct playdate from MoviePlayItem mpi where mpi.movieid=? and ((mpi.playdate = ? and mpi.playtime > ?) or mpi.playdate > ?) and mpi.citycode=?";
-			result = hibernateTemplate.find(psql1, movieId, cur, DateUtil.format(curDate, "HH:mm"), cur,citycode);
+			result = (List<Date>) hibernateTemplate.find(psql1, movieId, cur, DateUtil.format(curDate, "HH:mm"), cur,citycode);
 			Collections.sort(result);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, result);
 		}
@@ -507,7 +507,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	@Override
 	public List<Date> getCurCinemaPlayDate(Long cinemaId) {
 		String psql2 = "select distinct playdate from MoviePlayItem mpi where mpi.cinemaid=? and mpi.playdate >= ?";
-		List<Date> result = hibernateTemplate.find(psql2, cinemaId, DateUtil.getBeginningTimeOfDay(new Date()));
+		List<Date> result = (List<Date>) hibernateTemplate.find(psql2, cinemaId, DateUtil.getBeginningTimeOfDay(new Date()));
 		Collections.sort(result);
 		return result;
 	}
@@ -517,7 +517,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		List<Long> idList = (List<Long>) cacheService.get(CacheConstant.REGION_HALFHOUR, key);
 		if(idList == null){
 			String qcurMovie = "select m.id from Movie m where m.id in (select distinct mpi.movieid from MoviePlayItem mpi where mpi.cinemaid = ? and mpi.playdate >=?) order by m.hotvalue desc, m.clickedtimes desc";
-			idList = hibernateTemplate.find(qcurMovie, cinemaId,DateUtil.getBeginningTimeOfDay(new Date()));
+			idList = (List<Long>) hibernateTemplate.find(qcurMovie, cinemaId,DateUtil.getBeginningTimeOfDay(new Date()));
 			cacheService.set(CacheConstant.REGION_HALFHOUR, key, idList);
 		}
 		return this.baseDao.getObjectList(Movie.class, idList);
@@ -570,21 +570,21 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	@Override
 	public List<MoviePlayItem> getCinemaCurMpiListByDate(Long cinemaId, Date date) {
 		String query = "select id from MoviePlayItem mpi where mpi.cinemaid = ? and mpi.playdate = ? order by mpi.playtime, mpi.id";
-		List<Long> idList = hibernateTemplate.find(query, cinemaId, date);
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query, cinemaId, date);
 		List<MoviePlayItem> result = baseDao.getObjectList(MoviePlayItem.class, idList);
 		return result;
 	}
 	@Override
 	public List<MoviePlayItem> getCinemaCurMpiListByRoomIdAndDate(Long roomId, Date playdate) {
 		String query = "select id from MoviePlayItem mpi where mpi.roomid = ? and mpi.playdate = ? order by playtime";
-		List<Long> idList = hibernateTemplate.find(query, roomId, playdate);
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query, roomId, playdate);
 		List<MoviePlayItem> result = baseDao.getObjectList(MoviePlayItem.class, idList);
 		return result;
 	}
 	@Override
 	public List<Movie> getCurMovieListByCinemaIdAndDate(Long cinemaId, Date date) {
 		String query = "select movieid from MoviePlayItem mpi where mpi.cinemaid = ? and mpi.playdate = ? group by mpi.movieid order by count(mpi.movieid) desc";
-		List<Long> idList = hibernateTemplate.find(query, cinemaId, date);
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query, cinemaId, date);
 		List<Movie> movieList = baseDao.getObjectList(Movie.class, idList);
 		return movieList;
 	}
@@ -647,7 +647,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 					.add(Projections.alias(Projections.rowCount(),"count")));
 			query.addOrder(Order.desc("count"));
 			query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-			result = hibernateTemplate.findByCriteria(query);
+			result = (List<Map>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, result);
 		}
 		return new ArrayList<Map>(result);
@@ -657,7 +657,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		DetachedCriteria query = DetachedCriteria.forClass(Movie.class);
 		query.add(Restrictions.like("moviename", keyname, MatchMode.ANYWHERE));
 		query.setProjection(Projections.property("id"));
-		List<Long> list = hibernateTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return list;
 	}
 
@@ -665,7 +665,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	public CinemaRoom getRoomByRoomname(Long cinemaId, String roomname) {
 		if(StringUtils.isBlank(roomname)) return null;
 		String query = "from CinemaRoom r where r.cinemaid = ? and r.roomname = ?";
-		List<CinemaRoom> result = hibernateTemplate.find(query, cinemaId, roomname);
+		List<CinemaRoom> result = (List<CinemaRoom>) hibernateTemplate.find(query, cinemaId, roomname);
 		if(result.size() >0 ) return result.get(0);
 		return null;
 	}
@@ -673,14 +673,14 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	public CinemaRoom getRoomByRoomnum(Long cinemaId, String roomname) {
 		if(StringUtils.isBlank(roomname)) return null;
 		String query = "from CinemaRoom r where r.cinemaid = ? and r.num = ?";
-		List<CinemaRoom> result = hibernateTemplate.find(query, cinemaId, roomname);
+		List<CinemaRoom> result = (List<CinemaRoom>) hibernateTemplate.find(query, cinemaId, roomname);
 		if(result.size() >0 ) return result.get(0);
 		return null;
 	}
 	@Override
 	public List<Map> getGroupMoviePlayItemByCinema_Time(String citycode,Long mid,Date d,String playtime,String time1,String time2){
 		String hql = "select new map(c.countycode as code, count(c.id) as cinemacount) from Cinema c where c.countycode is not null and c.citycode=? and c.id in (select distinct m.cinemaid from MoviePlayItem m where m.movieid=? and m.playdate = ? and m.playtime>=? and m.playtime>=? and m.playtime<?) group by c.countycode having count(*) > 0";
-		List<Map> list = hibernateTemplate.find(hql,citycode, mid , d , playtime,time1,time2);
+		List<Map> list = (List<Map>) hibernateTemplate.find(hql,citycode, mid , d , playtime,time1,time2);
 		for(Map entry:list){
 			entry.put("county", baseDao.getObject(County.class, (String)entry.get("code")));
 		}
@@ -710,7 +710,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		if(roomid!=null) query.add(Restrictions.eq("roomid", roomid));
 		else query.add(Restrictions.isNull("roomid"));
 		query.addOrder(Order.asc("id"));
-		List<MoviePlayItem> mpiList = hibernateTemplate.findByCriteria(query);
+		List<MoviePlayItem> mpiList = (List<MoviePlayItem>) hibernateTemplate.findByCriteria(query);
 		if(mpiList.size() > 0) return mpiList.get(0);
 		return null;
 	}
@@ -723,7 +723,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		query.add(Restrictions.eq("movieid", movieid));
 		query.add(Restrictions.isNull("roomid"));
 		query.addOrder(Order.asc("id"));
-		List<MoviePlayItem> mpiList = hibernateTemplate.findByCriteria(query);
+		List<MoviePlayItem> mpiList = (List<MoviePlayItem>) hibernateTemplate.findByCriteria(query);
 		if(mpiList.size() > 0) return mpiList.get(0);
 		return null;
 	}
@@ -731,7 +731,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	public GrabTicketMpi getGrabTicketMpiListByMpid(Long mpid) {
 		DetachedCriteria query = DetachedCriteria.forClass(GrabTicketMpi.class);
 		query.add(Restrictions.eq("mpid", mpid));
-		List<GrabTicketMpi> list = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<GrabTicketMpi> list = (List<GrabTicketMpi>) hibernateTemplate.findByCriteria(query, 0, 1);
 		return list.isEmpty() ? null : list.get(0);
 	}
 	@Override
@@ -802,7 +802,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			query.add(Subqueries.exists(subQuery));
 		}
 		
-		List<Cinema> cinemaList = hibernateTemplate.findByCriteria(query);
+		List<Cinema> cinemaList = (List<Cinema>) hibernateTemplate.findByCriteria(query);
 		return cinemaList;
 	}
 	@Override
@@ -824,7 +824,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		}
 		query.setProjection(Projections.id());
 		query.addOrder(Order.desc("avggeneral"));
-		List<Long> idList = hibernateTemplate.findByCriteria(query);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		cacheService.set(CacheConstant.REGION_HALFHOUR, key, idList);
 		return idList;
 	}
@@ -845,7 +845,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			query.add(Restrictions.eq("citycode", citycode));
 			query.addOrder(Order.desc("booking"));
 			query.addOrder(Order.desc("clickedtimes"));
-			cinemaidList = hibernateTemplate.findByCriteria(query);
+			cinemaidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_ONEHOUR, key, cinemaidList);
 		}
 		List<Long> idList = BeanUtil.getSubList(cinemaidList, from, maxnum);
@@ -871,7 +871,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			@Override
 			public List<Long> call() {
 				Timestamp cur = new Timestamp(System.currentTimeMillis());
-				List<Long> ret = hibernateTemplate.find(getOpenMovieListQuery, OpiConstant.STATUS_BOOK, cur, cur, cur, citycode);
+				List<Long> ret = (List<Long>) hibernateTemplate.find(getOpenMovieListQuery, OpiConstant.STATUS_BOOK, cur, cur, cur, citycode);
 				return ret;
 			}
 		});
@@ -895,7 +895,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			String hql = "select distinct opi.movieid from OpenPlayItem opi where status = ? and opentime<=? and closetime > ? " +
 					"and gsellnum < asellnum and opi.playtime >= ? and opi.playtime <= ? and opi.citycode = ? and " +
 					"opi.mpid in (select mpi.id from MoviePlayItem mpi where opi.mpid=mpi.id and mpi.batch = ?)";
-			rowList = hibernateTemplate.find(hql, OpiConstant.STATUS_BOOK, cur, cur, timeFrom, timeTo, citycode, aid);
+			rowList = (List<Long>) hibernateTemplate.find(hql, OpiConstant.STATUS_BOOK, cur, cur, timeFrom, timeTo, citycode, aid);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, rowList);
 		}
 		return rowList;
@@ -905,7 +905,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	public List<MultiPlay> getCurMultyPlayList(Long cinemaid) {
 		Date cur = DateUtil.getCurDate();
 		String query = "from MultiPlay where cinemaid=? and playdate>=? ";
-		List<MultiPlay> multiList = hibernateTemplate.find(query, cinemaid, cur);
+		List<MultiPlay> multiList = (List<MultiPlay>) hibernateTemplate.find(query, cinemaid, cur);
 		return multiList;
 	}
 
@@ -915,7 +915,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		query.add(Restrictions.eq("citycode", citycode));
 		query.addOrder(Order.desc("booking"));
 		query.addOrder(Order.desc("clickedtimes"));
-		List<Cinema> cinemaList = hibernateTemplate.findByCriteria(query,from,maxnum);
+		List<Cinema> cinemaList = (List<Cinema>) hibernateTemplate.findByCriteria(query,from,maxnum);
 		return cinemaList;
 	}
 	@Override
@@ -974,7 +974,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			}
 			query.addOrder(Order.desc("generalmark"));
 			query.setProjection(Projections.id());
-			idList = readOnlyTemplate.findByCriteria(query);
+			idList = (List<Long>) readOnlyTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, idList);
 		}
 		List<Long> tmpList = BeanUtil.getSubList(idList, from, maxnum);
@@ -1029,7 +1029,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 				.add(Projections.count("characteristic"),"roomFeturesCount"));
 		query.add(Restrictions.isNotNull("characteristic"));
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		List<Map> mapList = readOnlyTemplate.findByCriteria(query);
+		List<Map> mapList = (List<Map>) readOnlyTemplate.findByCriteria(query);
 		f = new HashMap<String,Integer>();
 		for(String c : CharacteristicType.cTypeList){
 			f.put(c, 0);
@@ -1071,7 +1071,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		//TODO:»º´æ
 		DetachedCriteria query = getCinemaQuery(cmd, citycode);
 		query.setProjection(Projections.id());
-		List<Long> idList = readOnlyTemplate.findByCriteria(query);
+		List<Long> idList = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		return idList;
 	}
 	private DetachedCriteria getCinemaQuery(SearchCinemaCommand cmd, String citycode){
@@ -1191,7 +1191,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		DetachedCriteria query = DetachedCriteria.forClass(Movie.class);
 		query.add(Restrictions.gt("releasedate", date));
 		query.add(Restrictions.le("releasedate", DateUtil.addDay(date,7)));
-		List<Movie> movieList = readOnlyTemplate.findByCriteria(query);
+		List<Movie> movieList = (List<Movie>) readOnlyTemplate.findByCriteria(query);
 		return movieList;
 	}
 	@Override
@@ -1200,13 +1200,13 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		query.add(Restrictions.le("releasedate", date));
 		query.add(Restrictions.ge("releasedate", DateUtil.addDay(date, -19)));
 		query.setProjection(Projections.property("id"));
-		List<Long> movieidlist = readOnlyTemplate.findByCriteria(query);
+		List<Long> movieidlist = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if(movieidlist.isEmpty()){
 			return new ArrayList<Map<String,Object>>();
 		}
 		String movieid = StringUtils.join(movieidlist, ",");
 		String hql = "select new map(movieid as movieid, count(id) as count) from MoviePlayItem where movieid in ("+movieid+") and openStatus=? group by movieid" ;
-		List<Map<String, Object>> list = readOnlyTemplate.find(hql, status);
+		List<Map<String, Object>> list = (List<Map<String, Object>>) readOnlyTemplate.find(hql, status);
 		return list;
 	}
 	
@@ -1217,7 +1217,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 		if(movieCountList == null || movieCountList.isEmpty()){
 			String hql = "select new map(to_char(m.releasedate,'yyyy-mm') as releasedate, count(id) as count) " +
 					"from Movie m where m.releasedate>? group by to_char(m.releasedate,'yyyy-mm')";
-			movieCountList = hibernateTemplate.find(hql, DateUtil.getCurDate());
+			movieCountList = (List<Map<String, Object>>) hibernateTemplate.find(hql, DateUtil.getCurDate());
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, movieCountList);
 		}
 		Collections.sort(movieCountList, new MultiPropertyComparator(new String[]{"releasedate"}, new boolean[]{true}));
@@ -1226,7 +1226,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	@Override
 	public MoviePlayItem getMpiBySeqNo(String seqNo){
 		String query = "from MoviePlayItem where seqNo=? ";
-		List<MoviePlayItem> mpiList = hibernateTemplate.find(query, seqNo);
+		List<MoviePlayItem> mpiList = (List<MoviePlayItem>) hibernateTemplate.find(query, seqNo);
 		if(mpiList.isEmpty()) return null;
 		return mpiList.get(0);
 	}
@@ -1234,7 +1234,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 	@Override
 	public Date getMinPlaydateByMovieid(Long movieid){
 		String query = "select min(playdate) from MoviePlayItem where movieid=? ";
-		List<Date> playdateList = hibernateTemplate.find(query, movieid);
+		List<Date> playdateList = (List<Date>) hibernateTemplate.find(query, movieid);
 		return playdateList.get(0);
 	}
 
@@ -1251,7 +1251,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			DetachedCriteria query = DetachedCriteria.forClass(CinemaRoom.class, "r");
 			query.add(Restrictions.eq("r.cinemaid", cinemaId));
 			query.setProjection(Projections.groupProperty("characteristic").as("ctype"));
-			cTypeList = hibernateTemplate.findByCriteria(query);
+			cTypeList = (List<String>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TWOHOUR, key, cTypeList);
 		}
 		return cTypeList;
@@ -1269,7 +1269,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			query.add(Subqueries.propertyIn("r.cinemaid", subQuery));
 			query.add(Restrictions.eq("r.characteristic", cType));
 			query.setProjection(Projections.groupProperty("r.cinemaid").as("cinemaid"));
-			cIdList = hibernateTemplate.findByCriteria(query);
+			cIdList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TWOHOUR, key, cIdList);
 		}
 		return cIdList;
@@ -1284,7 +1284,7 @@ public class MCPServiceImpl extends BaseServiceImpl implements MCPService, Initi
 			query.add(Restrictions.eq("r.characteristic", ctype));
 			query.add(Restrictions.eq("r.cinemaid", cinemaId));
 			query.setProjection(Projections.property("id"));
-			roomList = hibernateTemplate.findByCriteria(query);
+			roomList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TWOHOUR, key, roomList);
 		}
 		return roomList;

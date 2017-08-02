@@ -31,7 +31,7 @@ public class GoodsPriceJobImpl extends JobService{
 		Timestamp cur = DateUtil.getCurFullTimestamp();
 		try{
 			dbLogger.warn("update TrainingGoods goodsPrice allownum start....");
-			List<GoodsPrice> priceList = hibernateTemplate.find(hql, Status.DEL, Status.Y, cur, cur);
+			List<GoodsPrice> priceList = (List<GoodsPrice>) hibernateTemplate.find(hql, Status.DEL, Status.Y, cur, cur);
 			int count = 0;
 			for (GoodsPrice price : priceList) {
 				int allownum = price.getQuantity() - price.getSellquantity();
@@ -50,7 +50,7 @@ public class GoodsPriceJobImpl extends JobService{
 		hql = "from TrainingGoods t where t.quantity>t.sales and t.status = ? and t.fromtime<? and t.totime>?";
 		try{
 			dbLogger.warn("update TrainingGoods allownum start....");
-			List<TrainingGoods> trainingGoodsList = hibernateTemplate.find(hql, Status.Y, cur, cur);
+			List<TrainingGoods> trainingGoodsList = (List<TrainingGoods>) hibernateTemplate.find(hql, Status.Y, cur, cur);
 			int count = 0;
 			for (TrainingGoods trainingGoods : trainingGoodsList) {
 				int allownum = trainingGoods.getQuantity() - trainingGoods.getSales();

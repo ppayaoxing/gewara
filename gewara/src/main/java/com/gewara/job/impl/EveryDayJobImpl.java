@@ -833,7 +833,7 @@ public class EveryDayJobImpl extends JobService implements EveryDayJob{
 		dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_JOB, "上次预热时间:" + DateUtil.mill2Timestamp(lastLoadTime) + " 该次检查时间:" + DateUtil.formatTimestamp(curTime));
 		try{
 			Timestamp cur = DateUtil.mill2Timestamp(curTime);
-			List<SpecialDiscount> spdiscountList = hibernateTemplate.find("from SpecialDiscount where timeto >= ? order by sortnum desc", cur);
+			List<SpecialDiscount> spdiscountList = (List<SpecialDiscount>) hibernateTemplate.find("from SpecialDiscount where timeto >= ? order by sortnum desc", cur);
 			if(spdiscountList != null && !spdiscountList.isEmpty()){
 				String curDateStr = DateUtil.getCurDateStr();
 				Timestamp cur_15 = DateUtil.addMinute(cur, 15);
@@ -892,7 +892,7 @@ public class EveryDayJobImpl extends JobService implements EveryDayJob{
 			Timestamp startTime = DateUtil.getBeginTimestamp(DateUtil.addDay(DateUtil.currentTime(), -1));
 			Timestamp endTime = DateUtil.getBeginTimestamp(DateUtil.currentTime());
 			String hql = "select distinct mobile from GewaOrder where addtime >= ? and addtime < ? and status like ?";
-			List<String> moblieList = hibernateTemplate.find(hql, startTime, endTime, OrderConstant.STATUS_PAID + "%");
+			List<String> moblieList = (List<String>) hibernateTemplate.find(hql, startTime, endTime, OrderConstant.STATUS_PAID + "%");
 			if(!moblieList.isEmpty()){
 				mobileService.saveMobiles(moblieList);
 				dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_JOB, "共推送手机数：" + moblieList.size());
@@ -926,7 +926,7 @@ public class EveryDayJobImpl extends JobService implements EveryDayJob{
 				DetachedCriteria query=DetachedCriteria.forClass(Cinema.class);
 				query.setProjection(Projections.property("id"));
 				query.add(Restrictions.eq("citycode", city.getCitycode()));
-				List<Long> cinemaidList = hibernateTemplate.findByCriteria(query);
+				List<Long> cinemaidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 				for(Long id : cinemaidList){
 					Cinema cinema = this.daoService.getObject(Cinema.class, id);
 					CinemaIncrementalReport report = new CinemaIncrementalReport(DateUtil.format(yesterday,"yyyy年MM月dd日"),
@@ -975,7 +975,7 @@ public class EveryDayJobImpl extends JobService implements EveryDayJob{
 				.add(Projections.count("movieid"), "buyCount"));
 		query.addOrder(Order.desc("buyCount"));
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
- 		List<Map> maps = hibernateTemplate.findByCriteria(query, 0, 10);
+ 		List<Map> maps = (List<Map>) hibernateTemplate.findByCriteria(query, 0, 10);
  		int order = 1;
  		for(Map map : maps){
  			Map ticketCount = null;

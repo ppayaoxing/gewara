@@ -66,7 +66,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 		DetachedCriteria query = DetachedCriteria.forClass(Subwaystation.class);
 		if(StringUtils.isNotBlank(stationname))query.add(Restrictions.like("stationname", stationname, MatchMode.ANYWHERE));
 		query.addOrder(Order.asc("id"));
-		List<Subwaystation> result = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Subwaystation> result = (List<Subwaystation>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -81,7 +81,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	@Override
 	public Subwaystation getSubwaystation(String stationname){
 		String hql= "from Subwaystation s where s.stationname=?";
-		List<Subwaystation> subwaystationList = hibernateTemplate.find(hql, stationname);
+		List<Subwaystation> subwaystationList = (List<Subwaystation>) hibernateTemplate.find(hql, stationname);
 		return subwaystationList.isEmpty()? null: subwaystationList.get(0);
 	}
 	@Override
@@ -97,7 +97,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	public List<Subwayline> getSubwaylinesByCityCode(String citycode) {
 		List<Subwayline> lineList = subwaylineMap.get(citycode);
 		if(lineList==null){
-			lineList = hibernateTemplate.find(querySubwaylineList, citycode);
+			lineList = (List<Subwayline>) hibernateTemplate.find(querySubwaylineList, citycode);
 			if(!lineList.isEmpty())subwaylineMap.put(citycode, lineList);
 		}
 		return lineList;
@@ -106,7 +106,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	public List<Subwaystation> getSubwaystationsByCityCode(String citycode){
 		List<Subwaystation> subwaystationList = subwaystationMap.get(citycode);
 		if(subwaystationList==null){
-			subwaystationList = hibernateTemplate.find("from Subwaystation s where s.citycode = ? order by s.stationname", citycode);
+			subwaystationList = (List<Subwaystation>) hibernateTemplate.find("from Subwaystation s where s.citycode = ? order by s.stationname", citycode);
 			if(!subwaystationList.isEmpty())subwaystationMap.put(citycode, subwaystationList);
 		}
 		return subwaystationList;
@@ -116,7 +116,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	public List<Subwaystation> getSubwaystationsByLineId(Long lineId) {
 		List<Subwaystation> stationList = stationMap.get(lineId);
 		if(stationList==null){
-			stationList = hibernateTemplate.find(queryStationList, lineId);
+			stationList = (List<Subwaystation>) hibernateTemplate.find(queryStationList, lineId);
 			if(!stationList.isEmpty())stationMap.put(lineId, stationList);
 		}
 		return stationList;
@@ -130,7 +130,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	}
 	@Override
 	public List<Province> getAllProvinces() {
-		return hibernateTemplate.find("from Province p order by p.provincecode");
+		return (List<Province>) hibernateTemplate.find("from Province p order by p.provincecode");
 	}
 	
 	@Override
@@ -148,7 +148,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	public List<City> getCityByProvinceCode(String provinceCode) {
 		List<City> cityList = cityMap.get(provinceCode);
 		if(cityList ==null){
-			cityList = hibernateTemplate.find(queryCity, provinceCode);
+			cityList = (List<City>) hibernateTemplate.find(queryCity, provinceCode);
 			if(!cityList.isEmpty()) cityMap.put(provinceCode, cityList);
 		}
 		return cityList;
@@ -158,7 +158,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	public List<County> getCountyByCityCode(String citycode) {
 		List<County> countyList = countyMap.get(citycode);
 		if(countyList ==null){
-			countyList = hibernateTemplate.find(queryCountyList, citycode);
+			countyList = (List<County>) hibernateTemplate.find(queryCountyList, citycode);
 			if(!countyList.isEmpty()) countyMap.put(citycode, countyList);
 		}
 		return countyList;
@@ -168,7 +168,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	public List<Indexarea> getIndexareaByCountyCode(String countyCode) {
 		List<Indexarea> indexareaList = indexareaMap.get(countyCode);
 		if(indexareaList==null){
-			indexareaList = hibernateTemplate.find(queryIndexareaList, countyCode);
+			indexareaList = (List<Indexarea>) hibernateTemplate.find(queryIndexareaList, countyCode);
 			if(!indexareaList.isEmpty()) indexareaMap.put(countyCode, indexareaList);
 		}
 		return indexareaList;
@@ -182,7 +182,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 		if(StringUtils.isBlank(orderField)) orderField = "clickedtimes";
 		if(asc) query.addOrder(Order.asc(orderField));
 		else query.addOrder(Order.desc(orderField));
-		List<Serializable> idList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Serializable> idList = (List<Serializable>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		List<S> placeList = baseDao.getObjectList(clazz, idList);
 		return placeList;
 	}
@@ -195,7 +195,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 		if(asc) query.addOrder(Order.asc(orderField));
 		else query.addOrder(Order.desc(orderField));
 		query.setProjection(Projections.id());
-		List<Serializable> idList = hibernateTemplate.findByCriteria(query);
+		List<Serializable> idList = (List<Serializable>) hibernateTemplate.findByCriteria(query);
 		List<S> placeList = baseDao.getObjectList(clazz, idList);
 		return placeList;
 	}
@@ -207,7 +207,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 		if(asc) query.addOrder(Order.asc(orderField));
 		else query.addOrder(Order.desc(orderField));
 		query.setProjection(Projections.id());
-		List<Serializable> idList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Serializable> idList = (List<Serializable>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		List<S> placeList = baseDao.getObjectList(clazz, idList);
 		return placeList;
 	}
@@ -219,7 +219,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 		if(asc) query.addOrder(Order.asc(orderField));
 		else query.addOrder(Order.desc(orderField));
 		query.setProjection(Projections.id());
-		List<Serializable> idList = hibernateTemplate.findByCriteria(query);
+		List<Serializable> idList = (List<Serializable>) hibernateTemplate.findByCriteria(query);
 		List<S> placeList = baseDao.getObjectList(clazz, idList);
 		return placeList;
 	}
@@ -231,7 +231,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 		if(asc) query.addOrder(Order.asc(orderField));
 		else query.addOrder(Order.desc(orderField));
 		query.setProjection(Projections.id());
-		List<Serializable> idList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Serializable> idList = (List<Serializable>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		List<S> placeList = baseDao.getObjectList(clazz, idList);
 		return placeList;
 	}
@@ -290,7 +290,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 		query.add(Restrictions.eq("hotvalue", hotvalue));
 		query.addOrder(Order.desc("clickedtimes"));
 		query.setProjection(Projections.id());
-		List<Serializable> idList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Serializable> idList = (List<Serializable>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		List<T> placeList = baseDao.getObjectList(clazz, idList);
 		return placeList;
 	}
@@ -301,7 +301,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 		query.addOrder(Order.desc("hotvalue"));
 		query.addOrder(Order.desc("clickedtimes"));
 		query.setProjection(Projections.id());
-		List<Serializable> idList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Serializable> idList = (List<Serializable>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		List<T> placeList = baseDao.getObjectList(clazz, idList);
 		return placeList;
 	}
@@ -321,7 +321,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);
 		query.add(Restrictions.eq("citycode", citycode));
 		query.add(Restrictions.eq("name", name));
-		List<T> placeList = hibernateTemplate.findByCriteria(query);
+		List<T> placeList = (List<T>) hibernateTemplate.findByCriteria(query);
 		if(placeList.isEmpty()) return null;
 		return placeList.get(0);
 	}
@@ -382,7 +382,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	public <T extends BaseInfo> List<Map> getPlaceCountyCountMap(Class<T> clazz, String citycode){
 		String sql = "select new map(countycode as countycode, count(id) as placecount) from " + clazz.getSimpleName() +
 				" where citycode=? and countycode is not null group by countycode having count(id) > 0 order by count(id) desc";
-		List<Map> list = hibernateTemplate.find(sql, citycode);
+		List<Map> list = (List<Map>) hibernateTemplate.find(sql, citycode);
 		for(Map entry:list){
 			County county = baseDao.getObject(County.class, (String)entry.get("countycode"));
 			entry.put("county", county);
@@ -393,7 +393,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	public <T extends BaseInfo> List<Map> getPlaceIndexareaCountMap(Class<T> clazz, String countycode){
 		String query = "select new map(indexareacode as indexareacode, count(id) as placecount) from " + clazz.getSimpleName() +
 						" where countycode=? and indexareacode is not null group by indexareacode having count(id) >0 order by count(id) desc";
-		List<Map> indexareMap = hibernateTemplate.find(query, countycode);
+		List<Map> indexareMap = (List<Map>) hibernateTemplate.find(query, countycode);
 		for(Map entry: indexareMap){
 			Indexarea indexarea = baseDao.getObject(Indexarea.class, (String)entry.get("indexareacode"));
 			entry.put("indexarea", indexarea);
@@ -411,7 +411,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	@Override
 	public List<Indexarea> getUsefulIndexareaList(String countycode, String tag){
 		String query = "select distinct t.indexareacode from " + RelateClassHelper.getRelateClazz(tag).getSimpleName()+" t where t.countycode = ?";
-		List<String> result = hibernateTemplate.find(query, countycode);
+		List<String> result = (List<String>) hibernateTemplate.find(query, countycode);
 		return baseDao.getObjectList(Indexarea.class, result);
 	}
 	@Override
@@ -485,7 +485,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	public List<Map> getSubwaystationList(String citycode, String tag, Long lineId) {
 		String hql = "select new map(stationid as stationid, count(*) as count) from " 
 			+ RelateClassHelper.getRelateClazz(tag).getSimpleName() + " where citycode=? and lineidlist like ? and stationid is not null group by stationid having count(*)>=0";
-		List<Map> subwaystationList = readOnlyTemplate.find(hql, citycode, "%" + lineId + "%");
+		List<Map> subwaystationList = (List<Map>) readOnlyTemplate.find(hql, citycode, "%" + lineId + "%");
 		for(Map m : subwaystationList){
 			Subwaystation station = baseDao.getObject(Subwaystation.class, Long.valueOf(m.get("stationid")+""));
 			m.put("subwaystation", station);
@@ -530,7 +530,7 @@ public class PlaceServiceImpl extends BaseServiceImpl implements PlaceService, I
 	@Override
 	public Line2Station getLine2StationListByLineIdAndStationId(Long lineId, Long stationId){
 		String sql = "from Line2Station s where s.line.id=? and s.station.id = ?";
-		List<Line2Station> list = hibernateTemplate.find(sql, lineId,stationId);
+		List<Line2Station> list = (List<Line2Station>) hibernateTemplate.find(sql, lineId,stationId);
 		return list.isEmpty() ? null : list.get(0);
 	}
 	@Override

@@ -49,7 +49,7 @@ public class SettleServiceImpl extends BaseServiceImpl implements SettleService 
 		query.add(Restrictions.eq("s.discount", discount));
 		query.add(Restrictions.eq("s.distype", distype));
 		query.addOrder(Order.asc("s.addtime"));
-		List<SettleConfig> settleConfigList = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<SettleConfig> settleConfigList = (List<SettleConfig>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(settleConfigList.isEmpty()) return null;
 		return settleConfigList.get(0);
 	}

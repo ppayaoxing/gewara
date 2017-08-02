@@ -21,7 +21,7 @@ public class ExpressConfigServiceImpl extends BaseServiceImpl implements Express
 	public List<ExpressConfig> getExpressConfigList(int from, int maxnum){
 		DetachedCriteria query = DetachedCriteria.forClass(ExpressConfig.class);
 		query.addOrder(Order.desc("addtime"));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<ExpressConfig>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class ExpressConfigServiceImpl extends BaseServiceImpl implements Express
 		DetachedCriteria query = DetachedCriteria.forClass(ExpressProvince.class);
 		query.add(Restrictions.eq("expressid", expressid));
 		query.add(Restrictions.eq("provicecode", provincecode));
-		List<ExpressProvince> expressFeeList = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<ExpressProvince> expressFeeList = (List<ExpressProvince>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(expressFeeList.isEmpty()) return null;
 		return expressFeeList.get(0);
 	}
@@ -41,7 +41,7 @@ public class ExpressConfigServiceImpl extends BaseServiceImpl implements Express
 		if(!ArrayUtils.isEmpty(provincecode)){
 			query.add(Restrictions.in("provincecode", provincecode));
 		}
-		List<ExpressProvince> expressFeeList = hibernateTemplate.findByCriteria(query);
+		List<ExpressProvince> expressFeeList = (List<ExpressProvince>) hibernateTemplate.findByCriteria(query);
 		return expressFeeList;
 	}
 

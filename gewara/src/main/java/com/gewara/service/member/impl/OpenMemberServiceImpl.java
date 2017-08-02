@@ -27,14 +27,14 @@ public class OpenMemberServiceImpl extends BaseServiceImpl implements OpenMember
 		DetachedCriteria query=DetachedCriteria.forClass(OpenMember.class);
 		query.add(Restrictions.eq("source", source));
 		query.setProjection(Projections.rowCount());
-		List<OpenMember> result=hibernateTemplate.findByCriteria(query);
+		List<OpenMember> result=(List<OpenMember>) hibernateTemplate.findByCriteria(query);
 		if(result.size()>0) return new Integer(result.get(0)+"");
 		return 0;
 	}
 	@Override
 	public List<String> getOpenMemberSourceList(){
 		String hql="select o.source as source from OpenMember o group by o.source";
-		List<String> result=hibernateTemplate.find(hql);
+		List<String> result=(List<String>) hibernateTemplate.find(hql);
 		return result;
 	}
 	@Override
@@ -76,7 +76,7 @@ public class OpenMemberServiceImpl extends BaseServiceImpl implements OpenMember
 		query.add(Subqueries.exists(subquery2));
 		
 		query.setProjection(Projections.rowCount());
-		List<MemberInfo> list=hibernateTemplate.findByCriteria(query);
+		List<MemberInfo> list=(List<MemberInfo>) hibernateTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}

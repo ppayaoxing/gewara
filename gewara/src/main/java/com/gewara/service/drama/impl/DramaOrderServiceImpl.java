@@ -483,7 +483,7 @@ public class DramaOrderServiceImpl  extends GewaOrderServiceImpl implements Dram
 		query.add(Restrictions.like("status", OrderConstant.STATUS_NEW, MatchMode.START));
 		query.add(Restrictions.gt("validtime", new Timestamp(System.currentTimeMillis())));
 		query.addOrder(Order.desc("addtime"));
-		List<DramaOrder> result = hibernateTemplate.findByCriteria(query);
+		List<DramaOrder> result = (List<DramaOrder>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -572,7 +572,7 @@ public class DramaOrderServiceImpl  extends GewaOrderServiceImpl implements Dram
 			query.add(Subqueries.exists(sub));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<DramaOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<DramaOrder> orderList = (List<DramaOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	@Override
@@ -835,13 +835,13 @@ public class DramaOrderServiceImpl  extends GewaOrderServiceImpl implements Dram
 	@Override
 	public List<SellDramaSeat> getDramaOrderSeatList(Long orderId){
 		String query = "from SellDramaSeat where id in (select t.seatid from DramaOrder2Seat t where t.orderid = ?) ";
-		List<SellDramaSeat> seatList = hibernateTemplate.find(query, orderId);
+		List<SellDramaSeat> seatList = (List<SellDramaSeat>) hibernateTemplate.find(query, orderId);
 		return seatList;
 	}
 	@Override
 	public List<SellDramaSeat> getSellDramaSeatList(Long dpid, Long areaid) {
 		String query = "from SellDramaSeat s where s.dpid = ? and s.areaid=? ";
-		List<SellDramaSeat> result = hibernateTemplate.find(query, dpid, areaid);
+		List<SellDramaSeat> result = (List<SellDramaSeat>) hibernateTemplate.find(query, dpid, areaid);
 		return result;
 	}
 	@Override
@@ -1107,7 +1107,7 @@ public class DramaOrderServiceImpl  extends GewaOrderServiceImpl implements Dram
 	public List<DramaOrder> getDramaOrderByTheatreid(Long theatreid, int from, int maxnum){
 		DetachedCriteria query=DetachedCriteria.forClass(DramaOrder.class);
 		query.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
-		List<DramaOrder> dramaOrderList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<DramaOrder> dramaOrderList = (List<DramaOrder>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return dramaOrderList;
 	}
 	
@@ -1319,7 +1319,7 @@ public class DramaOrderServiceImpl  extends GewaOrderServiceImpl implements Dram
 	
 	private final List<OpenTheatreSeat> getLineSeatListByAreaid(Long areaid, int lineno) {
 		String hql = "from OpenTheatreSeat s where s.areaid=? and s.lineno=?";
-		List<OpenTheatreSeat> result = hibernateTemplate.find(hql, areaid, lineno);
+		List<OpenTheatreSeat> result = (List<OpenTheatreSeat>) hibernateTemplate.find(hql, areaid, lineno);
 		return result;
 	}
 	private final int getMaxRank(List<OpenTheatreSeat> oseatList){
@@ -1486,7 +1486,7 @@ public class DramaOrderServiceImpl  extends GewaOrderServiceImpl implements Dram
 	}
 	protected final OpenTheatreSeat getOpenSeatByLoc(Long dpid, Long areaid, String seatline, String seatrank){
 		String query = "from OpenTheatreSeat where dpid= ? and areaid=? and seatline = ? and seatrank = ? ";
-		List<OpenTheatreSeat> result = hibernateTemplate.find(query, dpid, areaid, seatline, seatrank);
+		List<OpenTheatreSeat> result = (List<OpenTheatreSeat>) hibernateTemplate.find(query, dpid, areaid, seatline, seatrank);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -1578,7 +1578,7 @@ public class DramaOrderServiceImpl  extends GewaOrderServiceImpl implements Dram
 	@Override
 	public ErrorCode<List<GewaOrder>> checkAndUpdateExpress(String expressNo, User user, String dealType) {
 		String query = "from OrderExtra where expressnote= ? and ordertype=?";
-		List<OrderExtra> oeList = hibernateTemplate.find(query, expressNo, TagConstant.TAG_DRAMA);
+		List<OrderExtra> oeList = (List<OrderExtra>) hibernateTemplate.find(query, expressNo, TagConstant.TAG_DRAMA);
 		if (oeList.size() == 0) {
 			return ErrorCode.getFailure("快递单:" + expressNo + "不存在,请校验!");
 		}

@@ -50,15 +50,15 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 		List<Map> dataMap = new ArrayList<Map>();
 		if (StringUtils.isNotBlank(opentype)){
 			if(movieId != null){
-				dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto, opentype,movieId);
+				dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto, opentype,movieId);
 			}else{
-				dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto, opentype);
+				dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto, opentype);
 			}
 		}else{
 			if(movieId != null){
-				dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto,movieId);
+				dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto,movieId);
 			}else{
-				dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto);
+				dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto);
 			}
 		}
 		return dataMap;
@@ -78,15 +78,15 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 		List<Map> dataMap = new ArrayList<Map>();
 		if (StringUtils.isNotBlank(opentype)){
 			if(movieId != null){
-				dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto, opentype,movieId);
+				dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto, opentype,movieId);
 			}else{
-				dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto, opentype);
+				dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto, opentype);
 			}
 		}else{
 			if(movieId != null){
-				dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto,movieId);
+				dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto,movieId);
 			}else{
-				dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto);
+				dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaId, timefrom, timeto);
 			}
 		}
 		return dataMap;
@@ -95,7 +95,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 	@Override
 	public List<CinemaSettle> getLastSettleList() {
 		String query = "select max(id) from CinemaSettle group by cinemaid ";
-		List<Long> idList = hibernateTemplate.find(query);
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query);
 		List<CinemaSettle> settleList = baseDao.getObjectList(CinemaSettle.class, idList);
 		return settleList;
 	}
@@ -105,7 +105,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 		query.add(Restrictions.eq("booking", Cinema.BOOKING_OPEN));
 		query.setProjection(Projections.id());
 		query.addOrder(Order.desc("avggeneral"));
-		List<Long> idList = hibernateTemplate.findByCriteria(query);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		List<Cinema> result = baseDao.getObjectList(Cinema.class, idList);
 		return result;
 	}
@@ -113,7 +113,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 	@Override
 	public CinemaSettle getLastSettle(Long cinemaid) {
 		String query = "select max(id) from CinemaSettle where cinemaid=? ";
-		List<Long> idList = hibernateTemplate.find(query, cinemaid);
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query, cinemaid);
 		if(idList.isEmpty()) return null;
 		return baseDao.getObject(CinemaSettle.class, idList.get(0));
 	}
@@ -184,7 +184,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 			params.add(movieid);
 		}
 		hql +="group by cinemaid";
-		List<Map> dataMap = hibernateTemplate.find(hql, params.toArray());
+		List<Map> dataMap = (List<Map>) hibernateTemplate.find(hql, params.toArray());
 		if(dataMap.isEmpty()) return null;
 		return dataMap.get(0);
 	}
@@ -207,7 +207,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 			params.add(movieid);
 		}
 		hql +="group by cinemaid";
-		List<Map> dataMap = hibernateTemplate.find(hql, params.toArray());
+		List<Map> dataMap = (List<Map>) hibernateTemplate.find(hql, params.toArray());
 		if(dataMap.isEmpty()) return null;
 		return dataMap.get(0);
 	}
@@ -232,7 +232,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 			params.add(movieid);
 		}
 		hql +="group by cinemaid";
-		List<Map> dataMap = hibernateTemplate.find(hql, params.toArray());
+		List<Map> dataMap = (List<Map>) hibernateTemplate.find(hql, params.toArray());
 		return dataMap;
 	}
 	@Override
@@ -256,7 +256,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 			params.add(movieid);
 		}
 		hql +="group by cinemaid";
-		List<Map> dataMap = hibernateTemplate.find(hql, params.toArray());
+		List<Map> dataMap = (List<Map>) hibernateTemplate.find(hql, params.toArray());
 		return dataMap;
 	}
 
@@ -268,7 +268,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 				"and exists(select g.id from Goods g where g.relatedid=? and g.tag=? and g.id=o.goodsid) " +
 				"and exists(select r.tradeno from OrderResult r where r.istake=? and r.taketime>= ? and taketime< ? and r.tradeno=o.tradeNo) " +
 				"order by o.addtime desc";
-		List<GoodsOrder> orderList = hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, minaddtime, timeto, cinemaId, GoodsConstant.GOODS_TAG_BMH, "Y", timefrom, timeto);
+		List<GoodsOrder> orderList = (List<GoodsOrder>) hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, minaddtime, timeto, cinemaId, GoodsConstant.GOODS_TAG_BMH, "Y", timefrom, timeto);
 		return orderList;
 	}
 	@Override
@@ -279,7 +279,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 			qry += "and exists(select r.tradeno from OrderResult r where r.taketime is not null and r.istake='Y' and r.tradeno=o.tradeNo) ";
 		}
 		qry += "order by o.addtime desc";
-		List<GoodsOrder> orderList = hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, timefrom, timeto, cinemaId, cinemaId, GoodsConstant.GOODS_TAG_BMH);
+		List<GoodsOrder> orderList = (List<GoodsOrder>) hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, timefrom, timeto, cinemaId, cinemaId, GoodsConstant.GOODS_TAG_BMH);
 		return orderList;
 	}
 
@@ -292,7 +292,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 			qry += "and exists(select r.tradeno from OrderResult r where r.taketime is not null and r.istake='Y' and r.tradeno=o.tradeNo) ";
 		}
 		qry += "group by o.placeid";
-		List<Map> result = hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, timefrom, timeto, cinemaId, cinemaId, GoodsConstant.GOODS_TAG_BMH);
+		List<Map> result = (List<Map>) hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, timefrom, timeto, cinemaId, cinemaId, GoodsConstant.GOODS_TAG_BMH);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -306,7 +306,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 				"and exists(select g.id from Goods g where g.relatedid=? and g.tag=? and g.id=o.goodsid) " +
 				"and exists(select r.tradeno from OrderResult r where r.taketime is not null and r.taketime>= ? and taketime<? and r.istake=? and r.tradeno=o.tradeNo) " +
 				"group by o.placeid";
-		List<Map> result = hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, minaddtime, timeto, cinemaId, GoodsConstant.GOODS_TAG_BMH, timefrom, timeto, "Y");
+		List<Map> result = (List<Map>) hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, minaddtime, timeto, cinemaId, GoodsConstant.GOODS_TAG_BMH, timefrom, timeto, "Y");
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -335,7 +335,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 				.add(Projections.sum("quantity").as("quantity"))
 				.add(Projections.sqlProjection("sum(costprice*quantity) as totalcost", new String[]{"totalcost"}, new Type[]{ StringType.INSTANCE})));
 		reFund.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		List<Map> result = hibernateTemplate.findByCriteria(reFund);
+		List<Map> result = (List<Map>) hibernateTemplate.findByCriteria(reFund);
 		Map resultMap = new HashMap();
 		if(result.isEmpty() || (Long)result.get(0).get("orderCount") == 0){
 			return null;
@@ -362,7 +362,7 @@ public class ReportServiceImpl extends BaseServiceImpl implements ReportService 
 				.add(Projections.groupProperty("mpid").as("mpid"))
 				.add(Projections.count("id").as("orderCount")));
 		allQuery.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		result = hibernateTemplate.findByCriteria(allQuery);
+		result = (List<Map>) hibernateTemplate.findByCriteria(allQuery);
 		resultMap.put("totalCount", 0);
 		resultMap.put("mpidCount", BeanUtil.getBeanPropertyList(result, "mpid", true).size());
 		resultMap.put("movieIds", BeanUtil.getBeanPropertyList(result, "movieid", true));

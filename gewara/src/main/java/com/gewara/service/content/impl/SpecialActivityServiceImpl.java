@@ -39,7 +39,7 @@ public class SpecialActivityServiceImpl extends BaseServiceImpl implements Speci
 		}
 		query.add(Restrictions.isNotNull("addtime"));
 		query.addOrder(Order.desc("addtime"));
-		List<SpecialActivity> activityList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<SpecialActivity> activityList = (List<SpecialActivity>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return activityList;
 	}
 	
@@ -93,7 +93,7 @@ public class SpecialActivityServiceImpl extends BaseServiceImpl implements Speci
 		}
 		query.add(Restrictions.isNotNull("addtime"));
 		query.addOrder(Order.desc("addtime"));
-		List<SpecialActivity> activityList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<SpecialActivity> activityList = (List<SpecialActivity>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return activityList;
 	}
 	

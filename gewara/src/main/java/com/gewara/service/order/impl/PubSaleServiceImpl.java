@@ -172,7 +172,7 @@ public class PubSaleServiceImpl extends GewaOrderServiceImpl implements PubSaleS
 			else query.add(Restrictions.ne("status", Status.N_DELETE));
 		}else query.add(Restrictions.eq("status", Status.N_DELETE));
 		query.addOrder(Order.desc("id"));
-		List<Long> result= readOnlyTemplate.findByCriteria(query);
+		List<Long> result= (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if(!result.isEmpty()) return Integer.valueOf(result.get(0)+"");
 		return 0;
 	}
@@ -186,7 +186,7 @@ public class PubSaleServiceImpl extends GewaOrderServiceImpl implements PubSaleS
 			else query.add(Restrictions.ne("status", Status.N_DELETE));
 		}else query.add(Restrictions.eq("status", Status.N_DELETE));
 		query.addOrder(Order.desc("id"));
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<PubSale>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	@Override
@@ -206,9 +206,9 @@ public class PubSaleServiceImpl extends GewaOrderServiceImpl implements PubSaleS
 		List<PubMember> pubMemberList = new ArrayList<PubMember>();
 		query.addOrder(Order.desc("addtime"));
 		if(isPage){
-			pubMemberList = hibernateTemplate.findByCriteria(query, from, maxnum);
+			pubMemberList = (List<PubMember>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		}else{
-			pubMemberList = hibernateTemplate.findByCriteria(query);
+			pubMemberList = (List<PubMember>) hibernateTemplate.findByCriteria(query);
 		}
 		return pubMemberList;
 	}
@@ -230,7 +230,7 @@ public class PubSaleServiceImpl extends GewaOrderServiceImpl implements PubSaleS
 		query.add(Restrictions.ge("addtime", fromtime));
 		query.add(Restrictions.le("addtime", totime));
 		query.setProjection(Projections.rowCount());
-		List<GewaOrder> list = hibernateTemplate.findByCriteria(query);
+		List<GewaOrder> list = (List<GewaOrder>) hibernateTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}

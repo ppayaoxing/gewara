@@ -38,6 +38,7 @@ public interface DaoService {
 	 * TODO:cache
 	 */
 	<T extends BaseObject> T getObjectByUkey(Class<T> clazz, String ukeyName, Serializable ukeyValue);
+	<T extends BaseObject> T getObjectByUkey(Class<T> clazz, String ukeyName, Serializable ukeyValue,boolean b);
 	
 	List queryByRowsRange(final String hql, final int from, final int maxnum, final Object... params);
 	
@@ -82,4 +83,5 @@ public interface DaoService {
 	<T extends BaseObject> void refreshUpdateProperty(T entity, String property, Object value);
 	
 	Map<Class/*entityclass*/, String/*idName*/> getEntityIdNameMap();
+	<T extends BaseObject> List<T> getObjectIDList(Class<T> clazz);
 }

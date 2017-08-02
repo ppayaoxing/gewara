@@ -64,7 +64,7 @@ public class DpiManageServiceImpl extends BaseServiceImpl implements DpiManageSe
 		if(!odi.isOpenseat()) return seatArea;
 		if(DateUtil.addHour(odi.getPlaytime(), 48).before(cur)) return seatArea;//过期48小时的不更新
 		final String query1 = "select seatline||':'||seatrank from OpenTheatreSeat o where o.dpid = ? and o.areaid=? and o.status in ('" + StringUtils.join(TheatreSeatConstant.STATUS_LOCK_LIST, "','") + "') ";
-		List<String> gewalockList = hibernateTemplate.find(query1, seatArea.getDpid(), seatArea.getId());
+		List<String> gewalockList = (List<String>) hibernateTemplate.find(query1, seatArea.getDpid(), seatArea.getId());
 		String sqlqry = "SELECT sum(o.quantity) from WEBDATA.ticket_order o where o.status='paid_success' and o.order_type='drama' and o.relatedid=? and o.areaid=? ";
 		Integer gsellnum = 0;
 		try{
@@ -192,7 +192,7 @@ public class DpiManageServiceImpl extends BaseServiceImpl implements DpiManageSe
 		projectionList.add(Projections.property("o.elecard"), "elecard");
 		query.setProjection(projectionList);
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		List<Map> mapList = hibernateTemplate.findByCriteria(query);
+		List<Map> mapList = (List<Map>) hibernateTemplate.findByCriteria(query);
 		boolean lineSeat = false, express = false, eticket = false, pointpay = false, cardpay = false;
 		Map<String, String> otherInfoMap = JsonUtils.readJsonToMap(drama.getOtherinfo());
 		for (Map map : mapList) {
@@ -264,7 +264,7 @@ public class DpiManageServiceImpl extends BaseServiceImpl implements DpiManageSe
 		String query1 = "from OpenTheatreSeat o where o.areaid = ? and o.status in ('" + 
 				StringUtils.join(TheatreSeatConstant.STATUS_LOCK_LIST, "','") + 
 				"') and exists (select id from SellDramaSeat s where s.status= ? and s.id = o.id) ";
-		List<OpenTheatreSeat> oseatList = hibernateTemplate.find(query1, areaid, TheatreSeatConstant.STATUS_SOLD);
+		List<OpenTheatreSeat> oseatList = (List<OpenTheatreSeat>) hibernateTemplate.find(query1, areaid, TheatreSeatConstant.STATUS_SOLD);
 		if(oseatList.size() > 0){
 			TheatreSeatArea seatArea = baseDao.getObject(TheatreSeatArea.class, areaid);
 			seatArea.setLocknum(seatArea.getLocknum() - oseatList.size());

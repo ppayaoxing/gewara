@@ -104,7 +104,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 	@Override
 	public List<User> getAddBatchUserList() {
 		String hql = "select distinct adduserid from ElecCardExtra";
-		List<Long> useridList = hibernateTemplate.find(hql);
+		List<Long> useridList = (List<Long>) hibernateTemplate.find(hql);
 		return baseDao.getObjectList(User.class, useridList);
 	}
 	@Override
@@ -115,7 +115,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		if(StringUtils.isNotBlank(applydept)) query.add(Restrictions.eq("applydept", applydept));
 		if(StringUtils.isNotBlank(applytype)) query.add(Restrictions.eq("applytype", applytype));
 		query.addOrder(Order.desc("addtime"));
-		List<ElecCardExtra> batchList = hibernateTemplate.findByCriteria(query);
+		List<ElecCardExtra> batchList = (List<ElecCardExtra>) hibernateTemplate.findByCriteria(query);
 		return batchList;
 	}
 	private List<ElecCardExtra> getSubCardExtraList(Long pid, Long issuerid, String status, String applydept, String applytype, 
@@ -132,7 +132,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		if(addto!=null) query.add(Restrictions.le("addtime", addto));
 		query.addOrder(Order.desc("pid"));
 		query.addOrder(Order.desc("addtime"));
-		List<ElecCardExtra> batchList = hibernateTemplate.findByCriteria(query);
+		List<ElecCardExtra> batchList = (List<ElecCardExtra>) hibernateTemplate.findByCriteria(query);
 		return batchList;
 	}
 	@Override
@@ -233,7 +233,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		cardFrom = StringUtils.trim(cardFrom);
 		cardTo = StringUtils.trim(cardTo);
 		String qry = "from ElecCard where ebatch.id = ? and cardno >= ? and cardno <= ? and status = ? ";
-		List<ElecCard> cardList = hibernateTemplate.find(qry, bid, cardFrom, cardTo, ElecCardConstant.STATUS_SOLD);
+		List<ElecCard> cardList = (List<ElecCard>) hibernateTemplate.find(qry, bid, cardFrom, cardTo, ElecCardConstant.STATUS_SOLD);
 		return cardList;
 	}
 	
@@ -263,7 +263,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 	}
 	private int getMaxCardno(Long bid){
 		String query = "select max(cardno) from ElecCard where ebatch.id = ? or ebatch.pid = ? ";
-		List<String> result = hibernateTemplate.find(query,  bid, bid );
+		List<String> result = (List<String>) hibernateTemplate.find(query,  bid, bid );
 		if(result.isEmpty() || result.get(0)==null) return 0;
 		return Integer.parseInt(result.get(0).substring(11));
 	}
@@ -275,7 +275,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		if(mobile)query.addOrder(Order.desc("mobile"));
 		query.addOrder(Order.asc("status"));
 		query.addOrder(Order.asc("cardno"));
-		List<ElecCard> cardList = hibernateTemplate.findByCriteria(query, from, maxrows);
+		List<ElecCard> cardList = (List<ElecCard>) hibernateTemplate.findByCriteria(query, from, maxrows);
 		return cardList;
 	}
 	@Override
@@ -462,7 +462,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 	public ElecCard getElecCardByPass(String cardPass){
 		String query = "from ElecCard where cardpass = ?";
 		String encodePass = ElecCardCoder.encode(StringUtil.md5(cardPass + cardPass));
-		List<ElecCard> cardList = hibernateTemplate.find(query, encodePass);
+		List<ElecCard> cardList = (List<ElecCard>) hibernateTemplate.find(query, encodePass);
 		if(cardList.size()>0) return cardList.get(0);
 		return null;
 	}
@@ -474,7 +474,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 	}
 	private ElecCard getElecCardByNo(String cardno){
 		String query = "from ElecCard where cardno = ?";
-		List<ElecCard> cardList = hibernateTemplate.find(query, cardno);
+		List<ElecCard> cardList = (List<ElecCard>) hibernateTemplate.find(query, cardno);
 		if(cardList.size()>0) return cardList.get(0);
 		return null;
 	}
@@ -581,7 +581,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		cardFrom = StringUtils.trim(cardFrom);
 		cardTo = StringUtils.trim(cardTo);
 		String qry = "from ElecCard where ebatch.id = ? and cardno >= ? and cardno <= ? and mobile is null and status = ? ";
-		List<ElecCard> cardList = hibernateTemplate.find(qry, batchid, cardFrom, cardTo, ElecCardConstant.STATUS_SOLD);
+		List<ElecCard> cardList = (List<ElecCard>) hibernateTemplate.find(qry, batchid, cardFrom, cardTo, ElecCardConstant.STATUS_SOLD);
 
 		if(mobileList.size()*num>cardList.size()) return ErrorCode.getFailure("卡号不够分配！");
 		
@@ -608,7 +608,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		ElecCardBatch batch = baseDao.getObject(ElecCardBatch.class, batchid);
 		if(batch==null) return ErrorCode.getFailure("该批次不存在");
 		String query = "from SMSRecord t where t.tradeNo >= ? and t.tradeNo <= ? and t.relatedid =? and t.smstype=? and (t.status='N' or t.status='Y')";
-		List<SMSRecord> smsList = hibernateTemplate.find(query, cardFrom, cardTo, batchid, SmsConstant.SMSTYPE_ECARD);
+		List<SMSRecord> smsList = (List<SMSRecord>) hibernateTemplate.find(query, cardFrom, cardTo, batchid, SmsConstant.SMSTYPE_ECARD);
 		List<ElecCard> cardList = getCardList(batchid, cardFrom, cardTo, ElecCardConstant.STATUS_SOLD);
 		Map<String, SMSRecord> smsMap = BeanUtil.beanListToMap(smsList, "tradeNo");
 		List<ElecCard> changeList = new ArrayList<ElecCard>();
@@ -643,7 +643,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		cardFrom = StringUtils.trim(cardFrom);
 		cardTo = StringUtils.trim(cardTo);
 		String qry = "from ElecCard where ebatch.id = ? and cardno >= ? and cardno <= ? and mobile is null and gainer is null and status = ? ";
-		List<ElecCard> cardList = hibernateTemplate.find(qry, batchid, cardFrom, cardTo, ElecCardConstant.STATUS_SOLD);
+		List<ElecCard> cardList = (List<ElecCard>) hibernateTemplate.find(qry, batchid, cardFrom, cardTo, ElecCardConstant.STATUS_SOLD);
 
 		if(memberidList.size() * num > cardList.size()) return ErrorCode.getFailure("卡号不够分配！");
 		
@@ -759,7 +759,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 	private List<ElecCard> getValidCardListByMemberId(Long memberId, String tag){
 		String query = "from ElecCard e where e.possessor = ? and e.ebatch.tag=?";
 		List<ElecCard> result2 = new ArrayList<ElecCard>();
-		List<ElecCard> result = hibernateTemplate.find(query, memberId, tag);
+		List<ElecCard> result = (List<ElecCard>) hibernateTemplate.find(query, memberId, tag);
 		for(ElecCard card : result){
 			if(card.available()) result2.add(card);
 		}
@@ -782,7 +782,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		query.addOrder(Order.desc("status"));
 		query.addOrder(Order.desc("e.timeto"));
 		query.addOrder(Order.desc("id"));
-		List<ElecCard> cardList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<ElecCard> cardList = (List<ElecCard>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return cardList;
 	}
 	@Override
@@ -792,7 +792,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		query.createAlias("ebatch", "e").add(Restrictions.ne("e.cardtype", PayConstant.CARDTYPE_E));
 		if(StringUtils.isNotBlank(tag)) query.add(Restrictions.eq("e.tag", tag));
 		query.add(Restrictions.eq("possessor", memberid));
-		List<ElecCard> cardList = hibernateTemplate.findByCriteria(query);
+		List<ElecCard> cardList = (List<ElecCard>) hibernateTemplate.findByCriteria(query);
 		if(cardList.isEmpty()) return 0;
 		return Integer.parseInt("" + cardList.get(0));
 	}
@@ -903,7 +903,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 	@Override
 	public List<ElecCardBatch> getSubBatchListByMerchantid(Long merchantid) {
 		String query = "from ElecCardBatch where merchantid=? order by pid, id";
-		List<ElecCardBatch> batchList = hibernateTemplate.find(query, merchantid);
+		List<ElecCardBatch> batchList = (List<ElecCardBatch>) hibernateTemplate.find(query, merchantid);
 		return batchList;
 	}
 	@Override
@@ -944,7 +944,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 	public Map<String,Object> getTopCardExtraListByValidcinema(Long cinemaId) {
 		DetachedCriteria query = DetachedCriteria.forClass(ElecCardBatch.class);
 		query.add(Restrictions.eq("validcinema", cinemaId + ""));
-		List<ElecCardBatch> eCardBatchs = hibernateTemplate.findByCriteria(query);
+		List<ElecCardBatch> eCardBatchs = (List<ElecCardBatch>) hibernateTemplate.findByCriteria(query);
 		List<Long> batchIds = new ArrayList<Long>();
 		Map<Long,ElecCardBatch> eCardBatchMap = new HashMap<Long,ElecCardBatch>();
 		if(eCardBatchs != null){
@@ -960,8 +960,8 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		criteria.add(Restrictions.isNull("pid"))
 			.add(Restrictions.eq("status", ElecCardConstant.DATA_NOW))
 			.add(Restrictions.in("batchid", batchIds));
-		List<ElecCardExtra> batchList = hibernateTemplate.findByCriteria(criteria);
-		List<ElecCardExtra> subBatchList = hibernateTemplate.findByCriteria(
+		List<ElecCardExtra> batchList = (List<ElecCardExtra>) hibernateTemplate.findByCriteria(criteria);
+		List<ElecCardExtra> subBatchList = (List<ElecCardExtra>) hibernateTemplate.findByCriteria(
 		DetachedCriteria.forClass(ElecCardExtra.class)
 			.add(Restrictions.isNotNull("pid"))
 			.add(Restrictions.like("status", ElecCardConstant.DATA_NOW, MatchMode.START))
@@ -1005,7 +1005,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		query.add(Restrictions.eq("possessor", memberId));
 		query.createAlias("ebatch", "e").add(Restrictions.eq("e.id", batchid));
 		query.setProjection(Projections.rowCount());
-		List<Long> cardList = hibernateTemplate.findByCriteria(query);
+		List<Long> cardList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		if(cardList.isEmpty()) return 0;
 		return Integer.parseInt("" + cardList.get(0));
 	}
@@ -1014,7 +1014,7 @@ public class ElecCardServiceImpl extends BaseServiceImpl implements ElecCardServ
 		query.add(Restrictions.eq("mobile", mobile));
 		query.createAlias("ebatch", "e").add(Restrictions.eq("e.id", batchid));
 		query.setProjection(Projections.rowCount());
-		List<Long> cardList = hibernateTemplate.findByCriteria(query);
+		List<Long> cardList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		if(cardList.isEmpty()) return 0;
 		return Integer.parseInt("" + cardList.get(0));
 	}

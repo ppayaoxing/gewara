@@ -12,7 +12,7 @@ import com.gewara.service.DaoService;
 import com.gewara.untrans.CacheConfigure;
 import com.gewara.util.JsonUtils;
 @Service("gewaConfigService")
-public class GewaConfigServiceImpl extends CacheConfigure{
+public class GewaConfigServiceImpl implements CacheConfigure{
 	@Autowired@Qualifier("daoService")
 	private DaoService daoService;
 	@Autowired@Qualifier("config")
@@ -21,5 +21,10 @@ public class GewaConfigServiceImpl extends CacheConfigure{
 	public Map<String, String> getRegionVersion() {
 		GewaConfig gewaConfig = daoService.getObject(GewaConfig.class, config.getLong("memcacheVersion"));
 		return JsonUtils.readJsonToMap(gewaConfig.getContent());
+	}
+	@Override
+	public Map<String, String> getServiceCachePre() {
+		// TODO ´ý¶¨
+		return null;
 	}
 }

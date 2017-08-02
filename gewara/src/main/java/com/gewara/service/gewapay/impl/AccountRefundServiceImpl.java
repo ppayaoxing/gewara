@@ -33,7 +33,7 @@ public class AccountRefundServiceImpl extends BaseServiceImpl implements Account
 		if(memberid != null) qry.add(Restrictions.eq("memberid", memberid));
 		if(StringUtils.isNotBlank(mobile)) qry.add(Restrictions.eq("mobile", mobile));
 		qry.addOrder(Order.desc("addtime"));
-		List<AccountRefund> refundList = hibernateTemplate.findByCriteria(qry, from, maxnum);
+		List<AccountRefund> refundList = (List<AccountRefund>) hibernateTemplate.findByCriteria(qry, from, maxnum);
 		return refundList;
 	}
 	

@@ -53,7 +53,7 @@ public class RefundServiceImpl extends BaseServiceImpl implements RefundService{
 		DetachedCriteria qry = query(command);
 		if(StringUtils.isNotBlank(order)) qry.addOrder(Order.desc(order));
 		qry.addOrder(Order.desc("addtime"));
-		List<OrderRefund> refundList = hibernateTemplate.findByCriteria(qry, from, maxnum);
+		List<OrderRefund> refundList = (List<OrderRefund>) hibernateTemplate.findByCriteria(qry, from, maxnum);
 		return refundList;
 	}
 	
@@ -63,7 +63,7 @@ public class RefundServiceImpl extends BaseServiceImpl implements RefundService{
 		qry.add(Restrictions.neProperty("oldSettle", "newSettle"));
 		if(StringUtils.isNotBlank(order)) qry.addOrder(Order.desc(order));
 		qry.addOrder(Order.desc("addtime"));
-		List<OrderRefund> refundList = hibernateTemplate.findByCriteria(qry, from, maxnum);
+		List<OrderRefund> refundList = (List<OrderRefund>) hibernateTemplate.findByCriteria(qry, from, maxnum);
 		return refundList;
 	}
 	
@@ -410,7 +410,7 @@ public class RefundServiceImpl extends BaseServiceImpl implements RefundService{
 	@Override
 	public List<OrderRefund> getSettleRefundList(String ordertype, Timestamp timefrom, Timestamp timeto, Long placeid) {
 		String query = "from OrderRefund where refundtime>=? and refundtime<=? and ordertype=? and placeid=? and (status=? or status=?) and orderstatus = ? ";
-		List<OrderRefund> refundList = hibernateTemplate.find(query, timefrom, timeto, ordertype, placeid, RefundConstant.STATUS_SUCCESS, RefundConstant.STATUS_FINISHED, OrderConstant.STATUS_PAID_SUCCESS);
+		List<OrderRefund> refundList = (List<OrderRefund>) hibernateTemplate.find(query, timefrom, timeto, ordertype, placeid, RefundConstant.STATUS_SUCCESS, RefundConstant.STATUS_FINISHED, OrderConstant.STATUS_PAID_SUCCESS);
 		return refundList;
 	}
 

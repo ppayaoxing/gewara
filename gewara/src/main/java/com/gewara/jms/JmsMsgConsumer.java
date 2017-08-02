@@ -8,12 +8,12 @@ import java.util.Map;
 import org.apache.camel.Header;
 import org.apache.camel.language.Simple;
 import org.apache.commons.lang.StringUtils;
-import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate3.HibernateOptimisticLockingFailureException;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gewara.Config;
 import com.gewara.constant.PayConstant;
 import com.gewara.constant.TagConstant;
@@ -392,7 +392,7 @@ public class JmsMsgConsumer implements InitializingBean{
 			@Simple("${body[reqParams]}") String reqParams,
 			@Simple("${body[reqCookie]}") String reqCookie,
 			@Simple("${body[citycode]}") String citycode){
-		Map<String, String> params = VmUtils.readJsonToMap(reqParams);
+ 		Map<String, String> params = VmUtils.readJsonToMap(reqParams);
 		Map<String, String[]> cookieMap = null;
 		if(StringUtils.isNotBlank(reqCookie)){
 			cookieMap = JsonUtils.readJsonToObject(new TypeReference<Map<String, String[]>>(){}, reqCookie);

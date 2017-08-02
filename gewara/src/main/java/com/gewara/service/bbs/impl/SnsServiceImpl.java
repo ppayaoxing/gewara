@@ -46,7 +46,7 @@ public class SnsServiceImpl extends BaseServiceImpl implements SnsService {
 		query.add(Restrictions.or(Restrictions.isNotNull("headpic"), Restrictions.or(Restrictions.isNotNull("introduce"),Restrictions.isNotNull("sign"))));
 		query.addOrder(Order.asc("updatetime"));
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		List<Map> result = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Map> result = (List<Map>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	
@@ -69,7 +69,7 @@ public class SnsServiceImpl extends BaseServiceImpl implements SnsService {
 		if(StringUtils.isNotBlank(mobile)) query.add(Restrictions.eq("mobile", mobile));
 		if(StringUtils.isNotBlank(email)) query.add(Restrictions.eq("email", email));
 		query.addOrder(Order.desc("id"));
-		List<Member> listMember=readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Member> listMember=(List<Member>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return listMember;
 	}
 
@@ -82,7 +82,7 @@ public class SnsServiceImpl extends BaseServiceImpl implements SnsService {
 	public BlackMember isJoinBlackMember(Long memberid) {
 		DetachedCriteria query=DetachedCriteria.forClass(BlackMember.class);
 		query.add(Restrictions.eq("memberId", memberid));
-		List<BlackMember> list = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<BlackMember> list = (List<BlackMember>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		return list.isEmpty() ? null : list.get(0);
 	}
 
@@ -94,7 +94,7 @@ public class SnsServiceImpl extends BaseServiceImpl implements SnsService {
 		if(StringUtils.isNotBlank(mobile)) query.add(Restrictions.eq("mobile", mobile));
 		if(StringUtils.isNotBlank(email)) query.add(Restrictions.eq("email", email));
 		query.setProjection(Projections.rowCount());
-		List<Member> listMember=readOnlyTemplate.findByCriteria(query);
+		List<Member> listMember=(List<Member>) readOnlyTemplate.findByCriteria(query);
 		if(listMember.get(0)==null) return 0;
 		return new Integer(listMember.get(0)+"");
 	}
@@ -125,7 +125,7 @@ public class SnsServiceImpl extends BaseServiceImpl implements SnsService {
 		DetachedCriteria query = getMemberExpQuery(startExp, endExp);
 		query.addOrder(Order.desc("mi.expvalue"));
 		query.addOrder(Order.desc("mi.id"));
-		List<MemberInfo> memberInfoList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<MemberInfo> memberInfoList = (List<MemberInfo>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return memberInfoList;
 	}
 

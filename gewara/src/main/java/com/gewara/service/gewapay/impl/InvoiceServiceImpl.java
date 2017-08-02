@@ -102,7 +102,7 @@ public class InvoiceServiceImpl extends BaseServiceImpl implements InvoiceServic
 		if(StringUtils.isNotBlank(order)){
 			query.addOrder(isasc == true ? Order.asc(order) : Order.desc(order));
 		}else query.addOrder(Order.desc("addtime"));
-		List<Invoice> invoiceList=readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Invoice> invoiceList=(List<Invoice>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return invoiceList;
 	}
 	private Integer getInvoiceCount(List<Long> invoiceIdList, Long memberid, Integer startAmount, Integer endAmount, 
@@ -142,7 +142,7 @@ public class InvoiceServiceImpl extends BaseServiceImpl implements InvoiceServic
 			query.add(Restrictions.eq("pretype", pretype));
 		}
 		query.setProjection(Projections.rowCount());
-		List<Invoice> invoiceList=readOnlyTemplate.findByCriteria(query);
+		List<Invoice> invoiceList=(List<Invoice>) readOnlyTemplate.findByCriteria(query);
 		if(invoiceList.isEmpty()) return 0;
 		return new Integer(invoiceList.get(0)+"");
 	}
@@ -239,7 +239,7 @@ public class InvoiceServiceImpl extends BaseServiceImpl implements InvoiceServic
 	@Override
 	public List<String> getOpenedRelatedidList(Long memberid){
 		String hql = "select tradeNo from InvoiceRelate r where r.memberid= ? ";
-		List<String> idList = hibernateTemplate.find(hql, memberid);
+		List<String> idList = (List<String>) hibernateTemplate.find(hql, memberid);
 		return idList;
 	}
 	@Override

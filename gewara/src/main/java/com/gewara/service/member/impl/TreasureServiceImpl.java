@@ -30,13 +30,13 @@ public class TreasureServiceImpl extends BaseServiceImpl implements TreasureServ
 			query.add(Restrictions.eq("tag", treasure.getTag()));
 			query.add(Restrictions.eq("relatedid", treasure.getRelatedid()));
 			query.add(Restrictions.eq("action", treasure.getAction()));
-		List<Treasure> maList = readOnlyTemplate.findByCriteria(query);
+		List<Treasure> maList = (List<Treasure>) readOnlyTemplate.findByCriteria(query);
 		if(maList.isEmpty()) return false;
 		return true;
 	}
 	@Override
 	public List<Long> getTreasureIdList(Long memberId, String tag, String action) {
-		List<Long> relatedids = readOnlyTemplate.find("select t.relatedid from Treasure t where t.memberid=? and t.tag=? and t.action=? order by t.addtime desc",memberId,tag,action);
+		List<Long> relatedids = (List<Long>) readOnlyTemplate.find("select t.relatedid from Treasure t where t.memberid=? and t.tag=? and t.action=? order by t.addtime desc",memberId,tag,action);
 		return relatedids;
 	}
 	@Override
@@ -57,7 +57,7 @@ public class TreasureServiceImpl extends BaseServiceImpl implements TreasureServ
 		if(relatedid!=null)
 			query.add(Restrictions.eq("relatedid", relatedid));
 		query.addOrder(Order.desc("addtime"));
-		List<Treasure> tList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Treasure> tList = (List<Treasure>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return tList;
 	}
 	@Override
@@ -76,7 +76,7 @@ public class TreasureServiceImpl extends BaseServiceImpl implements TreasureServ
 			else query.addOrder(Order.desc(order));
 		}else query.addOrder(Order.desc("addtime"));
 		query.setProjection(Projections.property("memberid"));
-		List<Long> idList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Long> idList = (List<Long>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return idList;
 	}
 	@Override
@@ -86,7 +86,7 @@ public class TreasureServiceImpl extends BaseServiceImpl implements TreasureServ
 		query.add(Restrictions.eq("tag", tag));
 		query.add(Restrictions.eq("relatedid", relatedid));
 		query.add(Restrictions.eq("memberid", memberid));
-		List<Treasure> treasureList = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<Treasure> treasureList = (List<Treasure>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if(treasureList.isEmpty())
 		return null;
 		return treasureList.get(0);

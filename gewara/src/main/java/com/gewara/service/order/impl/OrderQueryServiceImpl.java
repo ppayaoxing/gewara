@@ -33,6 +33,7 @@ import com.gewara.constant.TagConstant;
 import com.gewara.constant.app.AppConstant;
 import com.gewara.constant.sys.CacheConstant;
 import com.gewara.constant.ticket.OrderConstant;
+import com.gewara.hbase.HBaseService;
 import com.gewara.json.AppSourceCount;
 import com.gewara.json.MemberStats;
 import com.gewara.model.api.CooperUser;
@@ -54,7 +55,7 @@ import com.gewara.service.order.OrderQueryService;
 import com.gewara.support.ReadOnlyTemplate;
 import com.gewara.untrans.CacheService;
 import com.gewara.untrans.MemberCountService;
-import com.gewara.untrans.hbase.HBaseService;
+//import com.gewara.untrans.hbase.HBaseService;
 import com.gewara.util.BeanUtil;
 import com.gewara.util.DateUtil;
 
@@ -95,7 +96,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		}
 		query.add(Restrictions.eq("status", status));
 		query.setProjection(Projections.property("tradeNo"));
-		List<String> orderList = readOnlyTemplate.findByCriteria(query);
+		List<String> orderList = (List<String>) readOnlyTemplate.findByCriteria(query);
 		return orderList;
 	}
 	@Override
@@ -144,7 +145,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		}
 		query.add(Restrictions.or(Restrictions.ne("restatus", GewaOrder.RESTATUS_DELETE), Restrictions.isNull("restatus")));
 		query.addOrder(Order.desc("addtime"));
-		List<GewaOrder> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<GewaOrder> result = (List<GewaOrder>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -163,7 +164,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 			query.add(Restrictions.ge("addtime", qtime));
 		}
 		query.add(Restrictions.or(Restrictions.ne("restatus", GewaOrder.RESTATUS_DELETE), Restrictions.isNull("restatus")));
-		List<GewaOrder> result = readOnlyTemplate.findByCriteria(query);
+		List<GewaOrder> result = (List<GewaOrder>) readOnlyTemplate.findByCriteria(query);
 		if(!result.isEmpty()) return Integer.parseInt("" + result.get(0));
 		return 0;
 	}
@@ -187,7 +188,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		
 		query.add(Restrictions.ge("addtime", qtime));
 		query.addOrder(Order.desc("addtime"));
-		List<T> result = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<T> result = (List<T>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 
@@ -199,7 +200,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		query.add(Restrictions.like("status", OrderConstant.STATUS_NEW, MatchMode.START));
 		query.add(Restrictions.gt("validtime", new Timestamp(System.currentTimeMillis())));
 		query.addOrder(Order.desc("addtime"));
-		List<T> result = hibernateTemplate.findByCriteria(query);
+		List<T> result = (List<T>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -230,7 +231,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		if(soc.getOrderid()!=null) query.add(Restrictions.eq("id", soc.getOrderid()));
 		if(soc.getMpid()!=null) query.add(Restrictions.eq("mpid", soc.getMpid()));
 		query.addOrder(Order.desc("addtime"));
-		List<TicketOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	@Override
@@ -238,7 +239,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		DetachedCriteria query = DetachedCriteria.forClass(TicketOrder.class);
 		query.add(Restrictions.eq("mpid", mpid));
 		if(StringUtils.isNotBlank(status)) query.add(Restrictions.like("status", status, MatchMode.START));
-		List<TicketOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	@Override
@@ -294,7 +295,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		query.add(Restrictions.eq("movieid", relatedid));
 		query.add(Restrictions.like("status", OrderConstant.STATUS_PAID,MatchMode.START));
 		query.setProjection(Projections.rowCount());
-		List<GewaOrder> list = hibernateTemplate.findByCriteria(query);
+		List<GewaOrder> list = (List<GewaOrder>) hibernateTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -310,7 +311,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		query.add(Restrictions.ge("addtime", fromtime));
 		query.add(Restrictions.le("addtime", totime));
 		query.setProjection(Projections.rowCount());
-		List<GewaOrder> list = hibernateTemplate.findByCriteria(query);
+		List<GewaOrder> list = (List<GewaOrder>) hibernateTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -324,7 +325,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		query.add(Subqueries.propertyIn("id",subQuery));
 		query.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
 		query.add(Restrictions.eq("memberid", memberid));
-		return hibernateTemplate.findByCriteria(query);
+		return (List<GewaOrder>) hibernateTemplate.findByCriteria(query);
 	}
 	@Override
 	public List<TicketOrder> getTicketOrderList(CooperUser partner, SearchOrderCommand soc) {
@@ -340,7 +341,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		List<Long> partnerids = BeanUtil.getIdList(partner.getPartnerids(), ",");
 		query.add(Restrictions.in("partnerid", partnerids));
 		query.addOrder(Order.desc("addtime"));
-		List<TicketOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	@Override
@@ -434,7 +435,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		query.add(Restrictions.ge("addtime", fromtime));
 		query.add(Restrictions.le("addtime", totime));
 		query.setProjection(Projections.rowCount());
-		List<GewaOrder> list = hibernateTemplate.findByCriteria(query);
+		List<GewaOrder> list = (List<GewaOrder>) hibernateTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -465,7 +466,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		}
 		query.add(Restrictions.eq("paymethod", paymethod));
 		query.addOrder(Order.desc("addtime"));
-		List<GewaOrder> orderList=hibernateTemplate.findByCriteria(query);
+		List<GewaOrder> orderList=(List<GewaOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	
@@ -549,14 +550,14 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		}else{
 			query.addOrder(Order.desc("addtime"));
 		}
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<T>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	@Override
 	public <T extends GewaOrder> Integer getOrderCount(Class<T> clazz, OrderParamsCommand command){
 		DetachedCriteria query = getQueryOrderCriteria(clazz, command);
 		query.setProjection(Projections.rowCount());
-		List<Long> result = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<Long> result = (List<Long>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if(result.isEmpty()) return 0;
 		return result.get(0).intValue();
 	}
@@ -682,7 +683,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		}else{
 			query.addOrder(Order.desc("addtime"));
 		}
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<GoodsOrder>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	@Override
@@ -707,7 +708,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		}else{
 			query.addOrder(Order.desc("addtime"));
 		}
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<TicketOrder>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	@Override
@@ -716,7 +717,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		query.add(Restrictions.like("status", OrderConstant.STATUS_PAID, MatchMode.START));
 		query.add(Restrictions.eq("memberid", memberid));
 		query.addOrder(Order.asc("addtime"));
-		List<GewaOrder> result = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<GewaOrder> result = (List<GewaOrder>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if(!result.isEmpty()) return (TicketOrder) result.get(0);
 		return null;
 	}

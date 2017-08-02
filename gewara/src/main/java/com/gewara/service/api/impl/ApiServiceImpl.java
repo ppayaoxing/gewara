@@ -17,7 +17,7 @@ public class ApiServiceImpl extends BaseServiceImpl implements ApiService{
 	@Override
 	public List<ApiUser> getApiUserList(String status) {
 		String query ="from ApiUser where status=? order by id";
-		List<ApiUser> result = hibernateTemplate.find(query, status);
+		List<ApiUser> result = (List<ApiUser>) hibernateTemplate.find(query, status);
 		return result;
 	}
 	@Override

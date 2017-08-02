@@ -106,7 +106,7 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 	
 	@Override
 	public SpecialDiscount getSpdiscountBySpflag(String spflag){
-		List<SpecialDiscount> result = hibernateTemplate.find("from SpecialDiscount where flag = ?", spflag);
+		List<SpecialDiscount> result = (List<SpecialDiscount>) hibernateTemplate.find("from SpecialDiscount where flag = ?", spflag);
 		if(result.size()>0) return result.get(0);
 		return null;
 	}

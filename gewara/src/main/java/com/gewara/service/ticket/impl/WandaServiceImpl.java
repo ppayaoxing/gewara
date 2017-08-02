@@ -193,7 +193,7 @@ public class WandaServiceImpl extends BaseServiceImpl implements WandaService{
 	}
 	private SellSeat getSellSeatByLoc(Long mpid, String seatline, String seatrank){
 		String query = "from SellSeat where mpid= ? and seatline = ? and seatrank = ? ";
-		List<SellSeat> result = hibernateTemplate.find(query, mpid, seatline, seatrank);
+		List<SellSeat> result = (List<SellSeat>) hibernateTemplate.find(query, mpid, seatline, seatrank);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}

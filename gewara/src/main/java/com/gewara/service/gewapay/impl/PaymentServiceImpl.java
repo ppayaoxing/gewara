@@ -496,7 +496,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		if(memberid != null) query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.ge("updatetime", from));
 		query.add(Restrictions.lt("updatetime", to));
-		List<Charge> result = hibernateTemplate.findByCriteria(query);
+		List<Charge> result = (List<Charge>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 
@@ -505,7 +505,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		DetachedCriteria query = DetachedCriteria.forClass(GewaOrder.class);
 		query.add(Restrictions.eq("memberid", memberid));
 		query.addOrder(Order.desc("addtime"));
-		List<GewaOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<GewaOrder> orderList = (List<GewaOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 
@@ -529,7 +529,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 			query.add(Restrictions.eq("chargetype", ChargeConstant.TYPE_CHARGE));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<Charge> result = hibernateTemplate.findByCriteria(query,from,maxnum);
+		List<Charge> result = (List<Charge>) hibernateTemplate.findByCriteria(query,from,maxnum);
 		return result;
 	}
 	@Override
@@ -712,7 +712,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 	public List<CheckRecord> getCheckRecordList(int from, int maxnum) {
 		DetachedCriteria query = DetachedCriteria.forClass(CheckRecord.class);
 		query.addOrder(Order.desc("checktime"));
-		List<CheckRecord> result = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<CheckRecord> result = (List<CheckRecord>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	/**
@@ -781,7 +781,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		query.add(Restrictions.ge("updatetime", from));
 		query.add(Restrictions.lt("updatetime", to));
 		query.setProjection(Projections.property("memberid"));
-		List<Long> result = hibernateTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 	private List<Long> getGewaPaidMemberidList(Timestamp from, Timestamp to){
@@ -792,7 +792,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		query.add(Restrictions.ge("paidtime", from));
 		query.add(Restrictions.lt("paidtime", to));
 		query.setProjection(Projections.property("memberid"));
-		List<Long> result = hibernateTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 	private List<Long> getAdjustmentMemberidList(Timestamp timefrom, Timestamp timeto) {
@@ -801,7 +801,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		query.add(Restrictions.ge("updatetime", timefrom));
 		query.add(Restrictions.lt("updatetime", timeto));
 		query.setProjection(Projections.property("memberid"));
-		List<Long> result = hibernateTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 	/**
@@ -821,7 +821,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 			cur.addCharge(charge.getTotalfee());
 		}
 		String query = "from GewaOrder where status like ? and paidtime>=? and paidtime<? and gewapaid>0 ";
-		List<GewaOrder> orderList = hibernateTemplate.find(query, OrderConstant.STATUS_PAID + "%", checkRecord.getFromtime(), checkRecord.getChecktime());
+		List<GewaOrder> orderList = (List<GewaOrder>) hibernateTemplate.find(query, OrderConstant.STATUS_PAID + "%", checkRecord.getFromtime(), checkRecord.getChecktime());
 		dbLogger.warn("更新本期订单...");
 		//1、订单插入BillRecord中，顺便计算本次账户
 		for(GewaOrder order: orderList){
@@ -880,7 +880,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		if(StringUtils.isNotBlank(status)) query.add(Restrictions.eq("status", status));
 		query.addOrder(Order.desc("updatetime"));
 		query.addOrder(Order.asc("addtime"));
-		List<Adjustment> result = hibernateTemplate.findByCriteria(query);
+		List<Adjustment> result = (List<Adjustment>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 
@@ -891,7 +891,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		query.add(Restrictions.like("status", OrderConstant.STATUS_PAID, MatchMode.START));
 		query.add(Restrictions.ge("paidtime", from));
 		query.add(Restrictions.lt("paidtime", to));
-		List<GewaOrder> result = hibernateTemplate.findByCriteria(query);
+		List<GewaOrder> result = (List<GewaOrder>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 	@Override
@@ -901,7 +901,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		query.add(Restrictions.ge("paidtime", timefrom));
 		query.add(Restrictions.lt("paidtime", timeto));
 		query.addOrder(Order.asc("paidtime"));
-		List<GewaOrder> result = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<GewaOrder> result = (List<GewaOrder>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -919,7 +919,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		DetachedCriteria query = DetachedCriteria.forClass(AccountRecord.class);
 		query.add(Restrictions.eq("checkid", checkid));
 		query.addOrder(Order.asc("accountid"));
-		List<AccountRecord> result = hibernateTemplate.findByCriteria(query);
+		List<AccountRecord> result = (List<AccountRecord>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 
@@ -932,12 +932,12 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		}
 		query.add(Restrictions.like("status", OrderConstant.STATUS_NEW, MatchMode.START));
 		query.add(Restrictions.gt("validtime", new Timestamp(System.currentTimeMillis())));
-		List<T> orderList = hibernateTemplate.findByCriteria(query);
+		List<T> orderList = (List<T>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	private Integer[] getMemberAccountTotal(){
 		String query = "select new map(sum(banlance) as total,sum(othercharge) as wabi) from MemberAccount";
-		List<Map> result = hibernateTemplate.find(query);
+		List<Map> result = (List<Map>) hibernateTemplate.find(query);
 		return new Integer[]{Integer.parseInt("" + result.get(0).get("total")), Integer.parseInt("" + result.get(0).get("wabi"))};
 	}
 
@@ -947,7 +947,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		if(StringUtils.isNotBlank(status)) query.add(Restrictions.eq("status", status));
 		query.addOrder(Order.desc("updatetime"));
 		query.addOrder(Order.asc("addtime"));
-		List<Adjustment> result = hibernateTemplate.findByCriteria(query, from, maxrows);
+		List<Adjustment> result = (List<Adjustment>) hibernateTemplate.findByCriteria(query, from, maxrows);
 		return result;
 	}
 	@Override
@@ -999,7 +999,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		if(StringUtils.isNotBlank(status)) query.add(Restrictions.eq("status", status));
 		query.addOrder(Order.desc("updatetime"));
 		query.addOrder(Order.asc("addtime"));
-		List<Adjustment> result = hibernateTemplate.findByCriteria(query);
+		List<Adjustment> result = (List<Adjustment>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 	@Override
@@ -1010,14 +1010,14 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		query.add(Restrictions.le("releasetime", nowTime));
 		query.add(Restrictions.ge("totime", nowTime));
 		query.setProjection(Projections.rowCount());
-		List<Goods> goodsList = hibernateTemplate.findByCriteria(query);
+		List<Goods> goodsList = (List<Goods>) hibernateTemplate.findByCriteria(query);
 		if(goodsList.get(0) == null) return 0;
 		return new Integer (goodsList.get(0)+"");
 	}
 	@Override
 	public Member getMemberByMobile(String mobile) {
 		String query = "from Member where mobile=?";
-		List<Member> memberList = hibernateTemplate.find(query, mobile);
+		List<Member> memberList = (List<Member>) hibernateTemplate.find(query, mobile);
 		if(memberList.isEmpty()) return null;
 		return memberList.get(0);
 	}
@@ -1108,7 +1108,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 	@Override
 	public AccountRecord getAccountRecord(Long checkid, Long memberid) {
 		String query = "from AccountRecord t where t.checkid=? and t.memberid=?";
-		List<AccountRecord> result = hibernateTemplate.find(query, checkid, memberid);
+		List<AccountRecord> result = (List<AccountRecord>) hibernateTemplate.find(query, checkid, memberid);
 		if(result.size()>0) return result.get(0);
 		return null;
 	}
@@ -1116,7 +1116,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 	public List<SpecialDiscount> getSpecialDiscountList(String tag, String opentype) {
 		Timestamp cur = DateUtil.getCurTruncTimestamp();
 		String query = "select id from SpecialDiscount where tag=? and timeto >= ? and opentype=? order by sortnum";
-		List<Long> idList = hibernateTemplate.find(query, tag, cur, opentype);
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query, tag, cur, opentype);
 		List<SpecialDiscount> result = baseDao.getObjectList(SpecialDiscount.class, idList);
 		return result;
 	}
@@ -1124,7 +1124,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 	public List<SpecialDiscount> getPartnerSpecialDiscountList(String tag, Long partnerid) {
 		Timestamp cur = DateUtil.getCurTruncTimestamp();
 		String query = "select id from SpecialDiscount where tag=? and timeto >= ? and opentype= ? and ptnids = ? order by sortnum";
-		List<Long> idList = hibernateTemplate.find(query, tag, cur, SpecialDiscount.OPENTYPE_PARTNER, partnerid+"");
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query, tag, cur, SpecialDiscount.OPENTYPE_PARTNER, partnerid+"");
 		List<SpecialDiscount> result = baseDao.getObjectList(SpecialDiscount.class, idList);
 		return result;
 	}
@@ -1133,7 +1133,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		Timestamp cur = DateUtil.getCurTruncTimestamp();
 		String query = "select id from SpecialDiscount where tag=? and timeto >= ? and opentype= ? order by sortnum";
 		List<SpecialDiscount> result = new ArrayList<SpecialDiscount>();
-		List<Long> spidList = hibernateTemplate.find(query, tag, cur, SpecialDiscount.OPENTYPE_WAP);
+		List<Long> spidList = (List<Long>) hibernateTemplate.find(query, tag, cur, SpecialDiscount.OPENTYPE_WAP);
 		List<SpecialDiscount> sdList = baseDao.getObjectList(SpecialDiscount.class, spidList);
 		for(SpecialDiscount sd : sdList){
 			List<Long> idList = BeanUtil.getIdList(sd.getPtnids(), ",");
@@ -1430,7 +1430,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 	public ErrorCode restoreSdCounterBySpcounter(Long spcounterid){
 		//未支付的订单
 		String query = "from SdRecord t where validtime < ? and spcounterid = ? ";
-		List<SdRecord> recordList = hibernateTemplate.find(query, new Timestamp(System.currentTimeMillis()), spcounterid);
+		List<SdRecord> recordList = (List<SdRecord>) hibernateTemplate.find(query, new Timestamp(System.currentTimeMillis()), spcounterid);
 		Spcounter spcounter = baseDao.getObject(Spcounter.class, spcounterid);
 		List<Cpcounter> cpcounterList = baseDao.getObjectListByField(Cpcounter.class, "spcounterid", spcounterid);
 		Map<Long, Cpcounter> cpcounterMap = BeanUtil.beanListToMap(cpcounterList, "id");
@@ -1713,7 +1713,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 	@Override
 	public List<PayBank> getPayBankList(String type) {
 		String hql = "from PayBank where banktype=? order by sortnum";
-		List<PayBank> bankList = hibernateTemplate.find(hql, type);
+		List<PayBank> bankList = (List<PayBank>) hibernateTemplate.find(hql, type);
 		return bankList;
 	}
 	@Override
@@ -1765,14 +1765,14 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 	public List<Charge> getChargeList(Long memberid, String status, String chargeto) {
 		//TODO:最多返回1000
 		String hql = "from Charge where memberid=? and status=? and chargeto = ? order by addtime desc";
-		return hibernateTemplate.find(hql, memberid, status, chargeto);
+		return (List<Charge>) hibernateTemplate.find(hql, memberid, status, chargeto);
 	}
 	@Override
 	public List<MemberAccount> encryAccounts() {
 		DetachedCriteria query = DetachedCriteria.forClass(MemberAccount.class);
 		query.add(Restrictions.isNotNull("idcard"));
 		query.add(Restrictions.isNotNull("encryidcard"));
-		List<MemberAccount> accountList =  hibernateTemplate.findByCriteria(query,0,1000);
+		List<MemberAccount> accountList =  (List<MemberAccount>) hibernateTemplate.findByCriteria(query,0,1000);
 		return accountList;
 	}
 	@Override
@@ -1782,7 +1782,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		query.add(Restrictions.gt("memberid", maxid));
 		query.addOrder(Order.asc("memberid"));
 		
-		List<MemberAccount> accountList =  hibernateTemplate.findByCriteria(query, 0, 5000);
+		List<MemberAccount> accountList =  (List<MemberAccount>) hibernateTemplate.findByCriteria(query, 0, 5000);
 		if(accountList.isEmpty()) return null;
 		dbLogger.warn(accountList.size()+"");
 		int success = 0;
@@ -1827,7 +1827,7 @@ public class PaymentServiceImpl extends BaseServiceImpl implements PaymentServic
 		subquery.add(Restrictions.eqProperty("sc.id", "sd.spcounterid"));
 		subquery.add(Restrictions.in("sd.id", spids));
 		query.add(Subqueries.exists(subquery));
-		return hibernateTemplate.findByCriteria(query);
+		return (List<Spcounter>) hibernateTemplate.findByCriteria(query);
 	}
 	
 	@Override

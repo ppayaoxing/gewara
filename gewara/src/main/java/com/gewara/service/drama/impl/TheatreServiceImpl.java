@@ -31,7 +31,7 @@ public class TheatreServiceImpl extends BaseServiceImpl implements TheatreServic
 		query.add(Restrictions.eq("citycode", citycode));
 		if(hotvalue != null) query.add(Restrictions.eq("hotvalue", hotvalue));
 		query.addOrder(Order.desc("clickedtimes"));
-		List<Theatre> theatreList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Theatre> theatreList = (List<Theatre>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return theatreList;
 	}
 
@@ -73,7 +73,7 @@ public class TheatreServiceImpl extends BaseServiceImpl implements TheatreServic
 			query.addOrder(Order.desc("hotvalue"));
 			query.addOrder(Order.desc("clickedtimes"));
 		}
-		List<Theatre> theatreList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Theatre> theatreList = (List<Theatre>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return theatreList;
 	}
 	
@@ -82,7 +82,7 @@ public class TheatreServiceImpl extends BaseServiceImpl implements TheatreServic
 		DetachedCriteria query = DetachedCriteria.forClass(Theatre.class);
 		if(StringUtils.isNotBlank(citycode)) query.add(Restrictions.eq("citycode", citycode));
 		query.add(Restrictions.ge("updatetime", updatetime));
-		List<Theatre> theatreList = hibernateTemplate.findByCriteria(query);
+		List<Theatre> theatreList = (List<Theatre>) hibernateTemplate.findByCriteria(query);
 		return theatreList;
 	}
 	
@@ -90,7 +90,7 @@ public class TheatreServiceImpl extends BaseServiceImpl implements TheatreServic
 	public List<TheatreRoom> getTheatreRoomList(Timestamp updatetime, String timefield){
 		DetachedCriteria query = DetachedCriteria.forClass(TheatreRoom.class);
 		if(updatetime != null) query.add(Restrictions.ge(timefield, updatetime));
-		List<TheatreRoom>  roomList = hibernateTemplate.findByCriteria(query);
+		List<TheatreRoom>  roomList = (List<TheatreRoom>) hibernateTemplate.findByCriteria(query);
 		return roomList;
 	}
 	
@@ -100,7 +100,7 @@ public class TheatreServiceImpl extends BaseServiceImpl implements TheatreServic
 		DetachedCriteria query = DetachedCriteria.forClass(TheatreRoomSeat.class);
 		query.add(Restrictions.in("roomid", roomList));
 		query.addOrder(Order.asc("id"));
-		List<TheatreRoomSeat> seatList = hibernateTemplate.findByCriteria(query);
+		List<TheatreRoomSeat> seatList = (List<TheatreRoomSeat>) hibernateTemplate.findByCriteria(query);
 		return seatList;
 	}
 	
@@ -109,7 +109,7 @@ public class TheatreServiceImpl extends BaseServiceImpl implements TheatreServic
 		DetachedCriteria query = DetachedCriteria.forClass(OpenDramaItem.class);
 		if(updatetime != null) query.add(Restrictions.ge("updatetime", updatetime));
 		if(didList != null && didList.size()>0) query.add(Restrictions.in("dramaid", didList));
-		List<OpenDramaItem> odiList = hibernateTemplate.findByCriteria(query);
+		List<OpenDramaItem> odiList = (List<OpenDramaItem>) hibernateTemplate.findByCriteria(query);
 		return odiList;
 	}
 	@Override
@@ -119,7 +119,7 @@ public class TheatreServiceImpl extends BaseServiceImpl implements TheatreServic
 		query.add(Restrictions.in("dpid", dpidList));
 		query.add(Restrictions.ne("status", Status.DEL));
 		query.add(Restrictions.gt("updatetime", updatetime));
-		List<TheatreSeatPrice> tspList = hibernateTemplate.findByCriteria(query);
+		List<TheatreSeatPrice> tspList = (List<TheatreSeatPrice>) hibernateTemplate.findByCriteria(query);
 		return tspList;
 	}
 	
@@ -128,7 +128,7 @@ public class TheatreServiceImpl extends BaseServiceImpl implements TheatreServic
 		if(odiidList.isEmpty()) return new ArrayList<OpenTheatreSeat>();
 		DetachedCriteria query = DetachedCriteria.forClass(OpenTheatreSeat.class);
 		query.add(Restrictions.in("odiid", odiidList));
-		List<OpenTheatreSeat> otsList = hibernateTemplate.findByCriteria(query);
+		List<OpenTheatreSeat> otsList = (List<OpenTheatreSeat>) hibernateTemplate.findByCriteria(query);
 		return otsList;
 	}
 }

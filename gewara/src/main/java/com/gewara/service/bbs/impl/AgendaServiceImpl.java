@@ -53,7 +53,7 @@ public class AgendaServiceImpl extends BaseServiceImpl implements AgendaService 
 		DetachedCriteria query = DetachedCriteria.forClass(Agenda.class);
 		query.add(Restrictions.eq("actionid", activityid));
 		if(member!=null)query.add(Restrictions.eq("memberid", member.getId())); //管理员在后台删除活动
-		List<Agenda> agendaList = readOnlyTemplate.findByCriteria(query);
+		List<Agenda> agendaList = (List<Agenda>) readOnlyTemplate.findByCriteria(query);
 		baseDao.removeObjectList(agendaList);
 	}
 	
@@ -62,7 +62,7 @@ public class AgendaServiceImpl extends BaseServiceImpl implements AgendaService 
 		DetachedCriteria query = DetachedCriteria.forClass(Agenda.class);
 		query.add(Restrictions.eq("actionid", actionid));
 		query.addOrder(Order.desc("addtime"));
-		List<Agenda> agendaList = readOnlyTemplate.findByCriteria(query);
+		List<Agenda> agendaList = (List<Agenda>) readOnlyTemplate.findByCriteria(query);
 		return agendaList;
 	}
 	@Override
@@ -83,7 +83,7 @@ public class AgendaServiceImpl extends BaseServiceImpl implements AgendaService 
 			query.addOrder(Order.asc("startdate"));
 			query.addOrder(Order.asc("starttime"));
 		}
-		List<Agenda> agendaList = readOnlyTemplate.findByCriteria(query, from ,maxnum);
+		List<Agenda> agendaList = (List<Agenda>) readOnlyTemplate.findByCriteria(query, from ,maxnum);
 		return agendaList;
 	}
 	@Override
@@ -118,7 +118,7 @@ public class AgendaServiceImpl extends BaseServiceImpl implements AgendaService 
 			subquery.setProjection(Projections.property("sms.relatedid"));
 			query.add(Subqueries.exists(subquery));
 		}
-		List<Agenda> agendaList = readOnlyTemplate.findByCriteria(query,from,maxnum);
+		List<Agenda> agendaList = (List<Agenda>) readOnlyTemplate.findByCriteria(query,from,maxnum);
 		return agendaList;
 	}
 	@Override
@@ -142,7 +142,7 @@ public class AgendaServiceImpl extends BaseServiceImpl implements AgendaService 
 			subquery.setProjection(Projections.property("sms.relatedid"));
 			query.add(Subqueries.exists(subquery));
 		}
-		List<Agenda> agendaList = readOnlyTemplate.findByCriteria(query);
+		List<Agenda> agendaList = (List<Agenda>) readOnlyTemplate.findByCriteria(query);
 		return new Integer(agendaList.get(0)+"");
 	}
 	@Override
@@ -150,7 +150,7 @@ public class AgendaServiceImpl extends BaseServiceImpl implements AgendaService 
 		DetachedCriteria query = DetachedCriteria.forClass(SMSRecord.class);
 		query.add(Restrictions.eq("tradeNo", "ag"+recordid));
 		query.add(Restrictions.like("content", "%邀请你%"));
-		List<SMSRecord> agendaList = readOnlyTemplate.findByCriteria(query);
+		List<SMSRecord> agendaList = (List<SMSRecord>) readOnlyTemplate.findByCriteria(query);
 		return agendaList;
 	}
 
@@ -241,7 +241,7 @@ public class AgendaServiceImpl extends BaseServiceImpl implements AgendaService 
 		query.add(Restrictions.eq("actionid", actionid));
 		query.add(Restrictions.eq("action", action));
 		query.add(Restrictions.eq("memberid", memberid));
-		List<Agenda> agendaList = readOnlyTemplate.findByCriteria(query);
+		List<Agenda> agendaList = (List<Agenda>) readOnlyTemplate.findByCriteria(query);
 		if(agendaList.size()>0) return agendaList.get(0);
 		return null;
 	}
@@ -254,7 +254,7 @@ public class AgendaServiceImpl extends BaseServiceImpl implements AgendaService 
 		query.add(Restrictions.lt("startdate", endDate));
 		query.addOrder(Order.desc("startdate"));
 		query.addOrder(Order.desc("starttime"));
-		List<Agenda> agendaList = readOnlyTemplate.findByCriteria(query);
+		List<Agenda> agendaList = (List<Agenda>) readOnlyTemplate.findByCriteria(query);
 		return agendaList;
 	}
 	

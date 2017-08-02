@@ -143,7 +143,7 @@ public class ShareServiceImpl implements ShareService {
 			final ByteArrayOutputStream os = new ByteArrayOutputStream();
 			HttpUtils.getUrlAsInputStream(picPath, null, new RequestCallback(){
 				@Override
-				public boolean processResult(InputStream stream) {
+				public boolean processResult(InputStream stream, Map<String, String> resHeader) {
 					try {
 						IOUtils.copy(stream, os);
 					} catch (IOException e) {
@@ -372,7 +372,7 @@ public class ShareServiceImpl implements ShareService {
 		DetachedCriteria query = DetachedCriteria.forClass(ShareMember.class);
 		query.add(Restrictions.eq("source",source));
 		query.add(Restrictions.eq("loginname", loginname));
-		List<ShareMember> result = hibernateTemplate.findByCriteria(query);
+		List<ShareMember> result = (List<ShareMember>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -382,7 +382,7 @@ public class ShareServiceImpl implements ShareService {
 		DetachedCriteria query = DetachedCriteria.forClass(ShareMember.class);
 		if(!source.isEmpty()) query.add(Restrictions.in("source", source));
 		if(memberid != null) query.add(Restrictions.eq("memberid", memberid));
-		List<ShareMember> list = hibernateTemplate.findByCriteria(query);
+		List<ShareMember> list = (List<ShareMember>) hibernateTemplate.findByCriteria(query);
 		return list;
 	}
 	
@@ -590,7 +590,7 @@ public class ShareServiceImpl implements ShareService {
 		if(starttime != null) query.add(Restrictions.ge("addtime", starttime));
 		if(endtime != null) query.add(Restrictions.le("addtime", endtime));
 		query.addOrder(Order.asc("addtime"));
-		List<LinkShare> shareList = hibernateTemplate.findByCriteria(query, from, maxNum);
+		List<LinkShare> shareList = (List<LinkShare>) hibernateTemplate.findByCriteria(query, from, maxNum);
 		return shareList;
 	}
 	@Override
@@ -605,7 +605,7 @@ public class ShareServiceImpl implements ShareService {
 		if(starttime != null) query.add(Restrictions.ge("addtime", starttime));
 		if(endtime != null) query.add(Restrictions.le("addtime", endtime));
 		query.setProjection(Projections.rowCount());
-		List<LinkShare> shareList = hibernateTemplate.findByCriteria(query, 0, 0);
+		List<LinkShare> shareList = (List<LinkShare>) hibernateTemplate.findByCriteria(query, 0, 0);
 		if(shareList.isEmpty()) return 0;
 		return new Integer("" + shareList.get(0));
 	}

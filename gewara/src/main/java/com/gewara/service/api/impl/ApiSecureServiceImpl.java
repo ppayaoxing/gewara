@@ -12,7 +12,7 @@ public class ApiSecureServiceImpl extends BaseServiceImpl implements ApiSecureSe
 	@Override
 	public List<WebModule> getApiModuleList(){
 		String query = "from WebModule where moduleurl is not null and tag = ? order by matchorder";
-		List<WebModule> result = hibernateTemplate.find(query, WebModule.TAG_API);
+		List<WebModule> result = (List<WebModule>) hibernateTemplate.find(query, WebModule.TAG_API);
 		return result;
 	}
 

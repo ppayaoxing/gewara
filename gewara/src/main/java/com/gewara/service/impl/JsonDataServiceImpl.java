@@ -61,7 +61,7 @@ public class JsonDataServiceImpl extends BaseServiceImpl implements JsonDataServ
 		}else{
 			query.addOrder(Order.asc(orderProperty));
 		}
-		List<JsonData> result = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<JsonData> result = (List<JsonData>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -70,7 +70,7 @@ public class JsonDataServiceImpl extends BaseServiceImpl implements JsonDataServ
 		query.setProjection(Projections.rowCount());
 		query.add(Restrictions.like("tag", tag, MatchMode.START));
 		if(validtime != null) query.add(Restrictions.gt("validtime", validtime));
-		List<JsonData> result = hibernateTemplate.findByCriteria(query);
+		List<JsonData> result = (List<JsonData>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return 0;
 		return Integer.parseInt("" + result.get(0));
 	}
@@ -79,7 +79,7 @@ public class JsonDataServiceImpl extends BaseServiceImpl implements JsonDataServ
 		DetachedCriteria query = DetachedCriteria.forClass(JsonData.class);
 		query.add(Restrictions.like("dkey", pre_dKey, MatchMode.START));
 		if(StringUtils.isNotBlank(tag)) query.add(Restrictions.eq("tag", tag));
-		List<JsonData> dataList=hibernateTemplate.findByCriteria(query);
+		List<JsonData> dataList=(List<JsonData>) hibernateTemplate.findByCriteria(query);
 		return dataList;
 	}
 	@Override

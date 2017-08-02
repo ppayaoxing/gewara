@@ -70,7 +70,7 @@ public class GoodsOtherServiceImpl extends GoodsServiceImpl implements GoodsOthe
 			}
 			if(isGtZero) query.add(Restrictions.gt("goodssort", 0));
 			query.setProjection(Projections.distinct(Projections.property("relatedid")));
-			idList = hibernateTemplate.findByCriteria(query);
+			idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			if(cache) cacheService.set(CacheConstant.REGION_TWENTYMIN, key, idList);
 		}
 		return idList;
@@ -113,7 +113,7 @@ public class GoodsOtherServiceImpl extends GoodsServiceImpl implements GoodsOthe
 			}
 			if(isGtZero) query.add(Restrictions.gt("goodssort", 0));
 			query.setProjection(Projections.distinct(Projections.property("itemid")));
-			idList = hibernateTemplate.findByCriteria(query);
+			idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			if(cache) cacheService.set(CacheConstant.REGION_TWENTYMIN, key, idList);
 		}
 		return idList;
@@ -173,7 +173,7 @@ public class GoodsOtherServiceImpl extends GoodsServiceImpl implements GoodsOthe
 			}
 			if(isGtZero) query.add(Restrictions.gt("i.goodssort", 0));
 			query.setProjection(Projections.distinct(Projections.property("i.relatedid")));
-			idList = hibernateTemplate.findByCriteria(query);
+			idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			if(cache) cacheService.set(CacheConstant.REGION_HALFHOUR, key, idList);
 		}
 		return idList;
@@ -233,7 +233,7 @@ public class GoodsOtherServiceImpl extends GoodsServiceImpl implements GoodsOthe
 			}
 			if(isGtZero) query.add(Restrictions.gt("goodssort", 0));
 			query.setProjection(Projections.distinct(Projections.property("i.itemid")));
-			idList = hibernateTemplate.findByCriteria(query);
+			idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			if(cache) cacheService.set(CacheConstant.REGION_HALFHOUR, key, idList);
 		}
 		return idList;
@@ -282,7 +282,7 @@ public class GoodsOtherServiceImpl extends GoodsServiceImpl implements GoodsOthe
 			query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
 			query.addOrder(Order.desc("num"));
 			rowMap = new Hashtable<Long, Integer>();
-			List<Map> mapList = hibernateTemplate.findByCriteria(query);
+			List<Map> mapList = (List<Map>) hibernateTemplate.findByCriteria(query);
 			for (Map tmpMap : mapList) {
 				rowMap.put((Long)tmpMap.get("relatedid"), Integer.parseInt(tmpMap.get("num")+ ""));
 			}
@@ -335,7 +335,7 @@ public class GoodsOtherServiceImpl extends GoodsServiceImpl implements GoodsOthe
 			}
 			if(isGtZero) query.add(Restrictions.gt("goodssort", 0));
 			query.setProjection(Projections.rowCount());
-			List<Long> resultList = hibernateTemplate.findByCriteria(query);
+			List<Long> resultList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			if(resultList.isEmpty()) result = 0;
 			else result = Integer.valueOf(resultList.get(0) + "");
 			if(cache) cacheService.set(CacheConstant.REGION_TWENTYMIN, key, result);

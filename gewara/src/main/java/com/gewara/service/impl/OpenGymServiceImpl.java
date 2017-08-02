@@ -145,7 +145,7 @@ public class OpenGymServiceImpl extends GewaOrderServiceImpl implements OpenGymS
 		query.add(Restrictions.like("status", OrderConstant.STATUS_PAID_FAILURE, MatchMode.START));
 		query.add(Restrictions.gt("addtime", DateUtil.addHour(new Timestamp(System.currentTimeMillis()), -12)));
 		query.addOrder(Order.desc("addtime"));
-		List<GymOrder> result = hibernateTemplate.findByCriteria(query);
+		List<GymOrder> result = (List<GymOrder>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -159,7 +159,7 @@ public class OpenGymServiceImpl extends GewaOrderServiceImpl implements OpenGymS
 		query.add(Restrictions.like("status", OrderConstant.STATUS_NEW, MatchMode.START));
 		query.add(Restrictions.gt("validtime", new Timestamp(System.currentTimeMillis())));
 		query.addOrder(Order.desc("addtime"));
-		List<GymOrder> result = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<GymOrder> result = (List<GymOrder>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -460,7 +460,7 @@ public class OpenGymServiceImpl extends GewaOrderServiceImpl implements OpenGymS
 		if(soc.getGymid() != null) query.add(Restrictions.eq("gymid", soc.getGymid()));
 		if(soc.getOrderid()!=null) query.add(Restrictions.eq("id", soc.getOrderid()));
 		query.addOrder(Order.desc("addtime"));
-		List<GymOrder> orderList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<GymOrder> orderList = (List<GymOrder>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return orderList;
 	}
 }

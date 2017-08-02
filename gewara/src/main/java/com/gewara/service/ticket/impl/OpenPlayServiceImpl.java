@@ -82,7 +82,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 	@Override
 	public List<RoomSeat> getSeatListByRoomId(Long roomId) {
 		String hql = "from RoomSeat s where s.roomid = ?";
-		List<RoomSeat> seatList = hibernateTemplate.find(hql, roomId);
+		List<RoomSeat> seatList = (List<RoomSeat>) hibernateTemplate.find(hql, roomId);
 		return seatList;
 	}
 	@Override
@@ -118,7 +118,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 	@Override
 	public RoomSeat getRoomSeatByLocation(Long roomid, int line, int rank){
 		String query = "from RoomSeat where roomid = ? and lineno = ? and rankno = ?";
-		List<RoomSeat> result = hibernateTemplate.find(query, roomid, line, rank);
+		List<RoomSeat> result = (List<RoomSeat>) hibernateTemplate.find(query, roomid, line, rank);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -185,7 +185,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 		}
 		query.setProjection(Projections.property("m.id"));
 		query.addOrder(Order.asc("m.playtime"));
-		List<Long> idList = hibernateTemplate.findByCriteria(query, 0, maxnum);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query, 0, maxnum);
 		List<OpenPlayItem> result = baseDao.getObjectList(OpenPlayItem.class, idList);
 		return result;
 	}
@@ -232,7 +232,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 		query.add(Restrictions.ge("m.closetime", cur));
 		query.setProjection(Projections.property("m.id"));
 		query.addOrder(Order.asc("m.playtime"));
-		List<Long> idList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		List<OpenPlayItem> opiList = baseDao.getObjectList(OpenPlayItem.class, idList);
 		return opiList;
 	}
@@ -257,7 +257,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 		Timestamp cur = DateUtil.getCurFullTimestamp();
 		query.add(Restrictions.ge("m.closetime", cur));
 		query.setProjection(Projections.distinct(Projections.property("m.cinemaid")));
-		List<Long> idList = hibernateTemplate.findByCriteria(query);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return idList;
 	}
 	
@@ -268,7 +268,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 			@Override
 			public List<OpenSeat> call() {
 				String query = "from OpenSeat s where s.mpid = ?";
-				List<OpenSeat> seatList = hibernateTemplate.find(query, mpid);
+				List<OpenSeat> seatList = (List<OpenSeat>) hibernateTemplate.find(query, mpid);
 				return seatList;
 			}
 		});
@@ -288,14 +288,14 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 	@Override
 	public List<SellSeat> getSellSeatListByMpid(Long mpid) {
 		String query = "from SellSeat s where s.mpid = ? ";
-		List<SellSeat> result = hibernateTemplate.find(query, mpid);
+		List<SellSeat> result = (List<SellSeat>) hibernateTemplate.find(query, mpid);
 		return result;
 	}
 	
 	@Override
 	public MoviePrice getMoviePrice(Long movieid, String citycode){
 		String hql = "from MoviePrice p where p.movieid=? and p.citycode=?";
-		List<MoviePrice> mpList = hibernateTemplate.find(hql, movieid, citycode);
+		List<MoviePrice> mpList = (List<MoviePrice>) hibernateTemplate.find(hql, movieid, citycode);
 		if(mpList.size()==0) return null;
 		return mpList.get(0);
 	}
@@ -330,11 +330,11 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 		List<Long> idList = null;
 		List<Long> idList2 = null;
 		if(cinemaid!=null){
-			idList = hibernateTemplate.find(query, cur, OpiConstant.STATUS_DISCARD, OpiConstant.OPEN_GEWARA, OpiConstant.MPI_OPENSTATUS_DISABLED, OpiConstant.MPI_OPENSTATUS_PAST, cinemaid);
-			idList2 = hibernateTemplate.find(query2, cur, OpiConstant.STATUS_DISCARD, cinemaid);
+			idList = (List<Long>) hibernateTemplate.find(query, cur, OpiConstant.STATUS_DISCARD, OpiConstant.OPEN_GEWARA, OpiConstant.MPI_OPENSTATUS_DISABLED, OpiConstant.MPI_OPENSTATUS_PAST, cinemaid);
+			idList2 = (List<Long>) hibernateTemplate.find(query2, cur, OpiConstant.STATUS_DISCARD, cinemaid);
 		}else{
-			idList = hibernateTemplate.find(query, cur, OpiConstant.STATUS_DISCARD, OpiConstant.OPEN_GEWARA, OpiConstant.MPI_OPENSTATUS_DISABLED, OpiConstant.MPI_OPENSTATUS_PAST);
-			idList2 = hibernateTemplate.find(query2, cur, OpiConstant.STATUS_DISCARD);
+			idList = (List<Long>) hibernateTemplate.find(query, cur, OpiConstant.STATUS_DISCARD, OpiConstant.OPEN_GEWARA, OpiConstant.MPI_OPENSTATUS_DISABLED, OpiConstant.MPI_OPENSTATUS_PAST);
+			idList2 = (List<Long>) hibernateTemplate.find(query2, cur, OpiConstant.STATUS_DISCARD);
 		}
 		
 		idList.addAll(idList2);
@@ -357,7 +357,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 				query.add(Restrictions.gt("m.playtime", curtime));
 				query.add(Restrictions.ltProperty("m.gsellnum", "m.asellnum"));
 				query.setProjection(Projections.distinct(Projections.property("m.cinemaid")));
-				List<Long> result = hibernateTemplate.findByCriteria(query);
+				List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 				return result;
 			}
 		});
@@ -377,7 +377,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 			query.add(Restrictions.ltProperty("o.gsellnum", "o.asellnum"));
 			query.add(Restrictions.eq("o.citycode", citycode));
 			query.setProjection(Projections.distinct(Projections.property("movieid")));
-			idList = hibernateTemplate.findByCriteria(query);
+			idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, idList);
 		}
 		return idList;
@@ -405,7 +405,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 					"where o.movieid=? and o.status = ? and o.closetime > ? " +
 					"and o.playtime> ? and o.gsellnum < o.asellnum and o.citycode=? ";
 			Timestamp cur = new Timestamp(System.currentTimeMillis());
-			playdateList = hibernateTemplate.find(query, movieid, OpiConstant.STATUS_BOOK, cur, cur, citycode);
+			playdateList = (List<String>) hibernateTemplate.find(query, movieid, OpiConstant.STATUS_BOOK, cur, cur, citycode);
 			Collections.sort(playdateList);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, playdateList);
 		}
@@ -423,7 +423,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 					"where o.movieid=? and o.status = ? and o.closetime > ? " +
 					"and o.playtime> ? and o.gsellnum < o.asellnum and exists(select c.id from Cinema c where c.id=o.cinemaid and c.countycode=?)";
 			Timestamp cur = new Timestamp(System.currentTimeMillis());
-			playdateList = hibernateTemplate.find(query, movieid, OpiConstant.STATUS_BOOK, cur, cur, counycode);
+			playdateList = (List<String>) hibernateTemplate.find(query, movieid, OpiConstant.STATUS_BOOK, cur, cur, counycode);
 			Collections.sort(playdateList);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, playdateList);
 		}
@@ -441,7 +441,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 					"where opi.status = ? and opi.closetime > ? and opi.playtime> ? " +
 					"and opi.cinemaid = ? and opi.movieid = ? and opi.gsellnum < opi.asellnum "; 
 			Timestamp cur = new Timestamp(System.currentTimeMillis());
-			playdateList = hibernateTemplate.find(query, OpiConstant.STATUS_BOOK, cur, cur, cinemaid, movieid);
+			playdateList = (List<String>) hibernateTemplate.find(query, OpiConstant.STATUS_BOOK, cur, cur, cinemaid, movieid);
 			Collections.sort(playdateList);
 			cacheService.set(CacheConstant.REGION_ONEHOUR, key, playdateList);
 		}
@@ -457,7 +457,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 		query.add(Restrictions.ge("playdate", DateUtil.getCurDate()));
 		query.setProjection(Projections.distinct(Projections.property("playdate")));
 		query.addOrder(Order.asc("playdate"));
-		List<Date> dateList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Date> dateList = (List<Date>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return dateList;
 	}
 	
@@ -496,7 +496,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 		if(playdateList == null){
 			String query = "select distinct m.playdate from MoviePlayItem m where m.movieid = ? and m.cinemaid = ? and ((m.playdate = ? and m.playtime > ?) or m.playdate > ?) order by m.playdate";
 			Date now = new Date();
-			playdateList = hibernateTemplate.find(query, movieid,cinemaid, DateUtil.getBeginningTimeOfDay(now), DateUtil.format(now, "HH:mm"),now);
+			playdateList = (List<Date>) hibernateTemplate.find(query, movieid,cinemaid, DateUtil.getBeginningTimeOfDay(now), DateUtil.format(now, "HH:mm"),now);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, playdateList);
 		}
 		return playdateList;
@@ -514,7 +514,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 		queryHotMovie.add(Restrictions.eqProperty("m.id", "opi.movieid"));
 		query.add(Subqueries.exists(queryHotMovie));
 		query.addOrder(Order.desc(order));
-		return hibernateTemplate.findByCriteria(query);
+		return (List<Long>) hibernateTemplate.findByCriteria(query);
 	}
 	@Override
 	public String[] getOpiSeatMap(Long mpid){
@@ -540,7 +540,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 		query.add(Restrictions.eq("cinemaid", cinemaid));
 		query.add(Restrictions.gt("playtime2", new Timestamp(System.currentTimeMillis())));
 		query.setProjection(Projections.property("id"));
-		List<Long> idList = hibernateTemplate.findByCriteria(query);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		List<AutoSetter> setterList = baseDao.getObjectList(AutoSetter.class, idList);
 		Collections.sort(setterList, new MultiPropertyComparator<AutoSetter>(new String[]{"movies","id"}, new boolean[]{false,true}));
 		return setterList;
@@ -549,7 +549,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 	@Override
 	public List<AutoSetter> getCheckSetterList(){
 		String query = "select id from AutoSetter where checkStatus=? and playtime2 > ? order by cinemaid asc,ordernum desc";
-		List<Long> idList = hibernateTemplate.find(query,AutoSetter.CHECK_F, new Timestamp(System.currentTimeMillis()));
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query,AutoSetter.CHECK_F, new Timestamp(System.currentTimeMillis()));
 		List<AutoSetter> setterList = baseDao.getObjectList(AutoSetter.class, idList);
 		return setterList;
 	}
@@ -557,7 +557,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 	@Override
 	public List<OpenPlayItem> getIntensiveOpiList(int seatnum) {
 		String query = "select id from OpenPlayItem where playtime>? and seatnum-gsellnum-csellnum-locknum < ?";
-		List<Long> opidList = hibernateTemplate.find(query, DateUtil.addHour(new Timestamp(System.currentTimeMillis()), 1), seatnum);
+		List<Long> opidList = (List<Long>) hibernateTemplate.find(query, DateUtil.addHour(new Timestamp(System.currentTimeMillis()), 1), seatnum);
 		return baseDao.getObjectList(OpenPlayItem.class, opidList);
 	}
 	@Override
@@ -637,7 +637,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 	public Map<String, Integer> getOpiCountMap(Long cinemaid) {
 		String query = "select new map(to_char(playtime,'yyyy-mm-dd') as playdate, count(*) as count) from OpenPlayItem " +
 				"where playtime>? and cinemaid=? group by to_char(playtime,'yyyy-mm-dd')";
-		List<Map> rowList = hibernateTemplate.find(query, DateUtil.getBeginningTimeOfDay(new Timestamp(System.currentTimeMillis())), cinemaid);
+		List<Map> rowList = (List<Map>) hibernateTemplate.find(query, DateUtil.getBeginningTimeOfDay(new Timestamp(System.currentTimeMillis())), cinemaid);
 		Map result = new HashMap();
 		for(Map row: rowList){
 			result.put(row.get("playdate"), row.get("count"));
@@ -657,7 +657,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 				query.add(Restrictions.gt("playtime", DateUtil.getCurFullTimestamp()));
 				query.setProjection(Projections.id());
 				query.addOrder(Order.asc("playtime"));
-				List<Long> rt = hibernateTemplate.findByCriteria(query);
+				List<Long> rt = (List<Long>) hibernateTemplate.findByCriteria(query);
 				return rt;
 			}
 		});
@@ -669,7 +669,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 	@Override
 	public List<MoviePlayItem> synchUnOpenMpi() {
 		String query = "select id from MoviePlayItem t where openStatus= ? and exists (select id from OpenPlayItem o where o.mpid=t.id)";
-		List<Long> mpidList = hibernateTemplate.find(query, OpiConstant.MPI_OPENSTATUS_INIT);
+		List<Long> mpidList = (List<Long>) hibernateTemplate.find(query, OpiConstant.MPI_OPENSTATUS_INIT);
 		List<MoviePlayItem> mpiList = new ArrayList<MoviePlayItem>(mpidList.size());
 		for(Long mpid: mpidList){
 			MoviePlayItem mpi = baseDao.getObject(MoviePlayItem.class, mpid);
@@ -715,9 +715,9 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 			query.addOrder(Order.asc("m.playtime"));
 			query.setProjection(Projections.property("m.mpid"));
 			if (maxnum != 0) {
-				mpidList = hibernateTemplate.findByCriteria(query, from, maxnum);
+				mpidList = (List<Long>) hibernateTemplate.findByCriteria(query, from, maxnum);
 			} else {
-				mpidList = hibernateTemplate.findByCriteria(query);
+				mpidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			}
 			cacheService.set(CacheConstant.REGION_ONEHOUR, key, mpidList);
 		}
@@ -786,7 +786,7 @@ public class OpenPlayServiceImpl extends BaseServiceImpl implements OpenPlayServ
 			subquery.add(Restrictions.in("p.citycode", citycodeList));
 		}
 		query.add(Subqueries.exists(subquery));
-		roomList = hibernateTemplate.findByCriteria(query);
+		roomList = (List<CinemaRoom>) hibernateTemplate.findByCriteria(query);
 		return roomList;
 	}
 	@Override

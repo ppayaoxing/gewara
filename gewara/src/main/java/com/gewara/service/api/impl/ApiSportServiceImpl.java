@@ -46,26 +46,26 @@ public class ApiSportServiceImpl extends BaseServiceImpl implements ApiSportServ
 	
 	private SportField getSportField(Long sportid, Long itemid, Long remoteid){
 		String qry = "from SportField f where f.sportid=? and f.itemid=? and f.remoteid=?";
-		List<SportField> sfList = hibernateTemplate.find(qry, sportid, itemid, remoteid);
+		List<SportField> sfList = (List<SportField>) hibernateTemplate.find(qry, sportid, itemid, remoteid);
 		if(sfList.isEmpty()) return null;
 		return sfList.get(0);
 	}
 	@Override
 	public SportField getSportField(Long sportid, Long itemid, String fieldname){
 		String qry = "from SportField f where f.sportid=? and f.itemid=? and f.name=?";
-		List<SportField> sfList = hibernateTemplate.find(qry, sportid, itemid, fieldname);
+		List<SportField> sfList = (List<SportField>) hibernateTemplate.find(qry, sportid, itemid, fieldname);
 		if(sfList.isEmpty()) return null;
 		return sfList.get(0);
 	}
 	
 	private OpenTimeTable getOpenTimeTable(Long sportid,Long remoteid){
 		String hql = "from OpenTimeTable ott where ott.sportid =? and ott.remoteid = ?";
-		List<OpenTimeTable> openList = hibernateTemplate.find(hql,sportid,remoteid);
+		List<OpenTimeTable> openList = (List<OpenTimeTable>) hibernateTemplate.find(hql,sportid,remoteid);
 		return openList.isEmpty()?null:openList.get(0);
 	}
 	private List<OpenTimeTable> getOpenTimeTable2(Long sportid,Long remoteid){
 		String hql = "from OpenTimeTable ott where ott.sportid =? and ott.remoteid = ?";
-		List<OpenTimeTable> openList = hibernateTemplate.find(hql,sportid,remoteid);
+		List<OpenTimeTable> openList = (List<OpenTimeTable>) hibernateTemplate.find(hql,sportid,remoteid);
 		return openList;
 	}
 	//-------------------------------------------------
@@ -215,10 +215,10 @@ public class ApiSportServiceImpl extends BaseServiceImpl implements ApiSportServ
 	
 	private List<OpenTimeTable> getOttList(Long sportid, Long itemid, Date playdate, String openType){
 		String qry = "from OpenTimeTable t where t.sportid=? and t.itemid=? and t.playdate=? and t.openType=? order by t.id desc";
-		return hibernateTemplate.find(qry, sportid, itemid, playdate, openType);
+		return (List<OpenTimeTable>) hibernateTemplate.find(qry, sportid, itemid, playdate, openType);
 	}
 	private List<OpenTimeItem> getOtiList(Long ottid, Long fieldid, String hour){
 		String qry = "from OpenTimeItem o where o.ottid=? and o.fieldid=? and o.hour=?";
-		return hibernateTemplate.find(qry, ottid, fieldid, hour);
+		return (List<OpenTimeItem>) hibernateTemplate.find(qry, ottid, fieldid, hour);
 	}
 }

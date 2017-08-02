@@ -23,7 +23,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public List<OrderNote> getOrderNoteBySmallitemid(String smallitemtype, Long smallitemid, Timestamp fromtime, Timestamp totime, int from, int maxnum){
 		DetachedCriteria query = getOrderNoteQry(null, null, null, null, null, smallitemtype, smallitemid, fromtime, totime);
 		query.addOrder(Order.desc("addtime"));
-		List<OrderNote> noteList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<OrderNote> noteList = (List<OrderNote>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return noteList;
 	}
 	
@@ -31,7 +31,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public List<OrderNote> getOrderNoteBySmallitemid(String smallitemtype, Long smallitemid, Timestamp fromtime, Timestamp totime){
 		DetachedCriteria query = getOrderNoteQry(null, null, null, null, null, smallitemtype, smallitemid, fromtime, totime);
 		query.addOrder(Order.desc("addtime"));
-		List<OrderNote> noteList = hibernateTemplate.findByCriteria(query);
+		List<OrderNote> noteList = (List<OrderNote>) hibernateTemplate.findByCriteria(query);
 		return noteList;
 	}
 	
@@ -39,7 +39,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public Integer getOrderNoteCountBySmallitemid(String smallitemtype, Long smallitemid, Timestamp fromtime, Timestamp totime){
 		DetachedCriteria query = getOrderNoteQry(null, null, null, null, null, smallitemtype, smallitemid, fromtime, totime);
 		query.setProjection(Projections.rowCount());
-		List<Long> result = hibernateTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return 0;
 		return Integer.parseInt(result.get(0)+"");
 	}
@@ -48,7 +48,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public List<OrderNote> getOrderNoteByItemid(String itemtype, Long itemid, Timestamp fromtime, Timestamp totime, int from, int maxnum){
 		DetachedCriteria query = getOrderNoteQry(null, null, null, itemtype, itemid, null, null, fromtime, totime);
 		query.addOrder(Order.desc("addtime"));
-		List<OrderNote> noteList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<OrderNote> noteList = (List<OrderNote>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return noteList;
 	}
 	
@@ -56,7 +56,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public List<OrderNote> getOrderNoteByItemid(String itemtype, Long itemid, Timestamp fromtime, Timestamp totime){
 		DetachedCriteria query = getOrderNoteQry(null, null, null, itemtype, itemid, null, null, fromtime, totime);
 		query.addOrder(Order.desc("addtime"));
-		List<OrderNote> noteList = hibernateTemplate.findByCriteria(query);
+		List<OrderNote> noteList = (List<OrderNote>) hibernateTemplate.findByCriteria(query);
 		return noteList;
 	}
 	
@@ -64,7 +64,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public Integer getOrderNoteCountByItemid(String itemtype, Long itemid, Timestamp fromtime, Timestamp totime){
 		DetachedCriteria query = getOrderNoteQry(null, null, null, itemtype, itemid, null, null, fromtime, totime);
 		query.setProjection(Projections.rowCount());
-		List<Long> result = hibernateTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return 0;
 		return Integer.parseInt(result.get(0)+"");
 	}
@@ -73,7 +73,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public List<OrderNote> getOrderNoteByPlaceid(String placetype, Long placeid, Timestamp fromtime, Timestamp totime, int from, int maxnum){
 		DetachedCriteria query = getOrderNoteQry(null, placetype, placeid, null, null, null, null, fromtime, totime);
 		query.addOrder(Order.desc("addtime"));
-		List<OrderNote> noteList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<OrderNote> noteList = (List<OrderNote>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return noteList;
 	}
 	
@@ -81,7 +81,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public List<OrderNote> getOrderNoteByPlaceid(String placetype, Long placeid, Timestamp fromtime, Timestamp totime){
 		DetachedCriteria query = getOrderNoteQry(null, placetype, placeid, null, null, null, null, fromtime, totime);
 		query.addOrder(Order.desc("addtime"));
-		List<OrderNote> noteList = hibernateTemplate.findByCriteria(query);
+		List<OrderNote> noteList = (List<OrderNote>) hibernateTemplate.findByCriteria(query);
 		return noteList;
 	}
 	
@@ -89,7 +89,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public Integer getOrderNoteCountByPlaceid(String placetype, Long placeid, Timestamp fromtime, Timestamp totime){
 		DetachedCriteria query = getOrderNoteQry(null, placetype, placeid, null, null, null, null, fromtime, totime);
 		query.setProjection(Projections.rowCount());
-		List<Long> result = hibernateTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return 0;
 		return Integer.parseInt(result.get(0)+"");
 	}
@@ -98,7 +98,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public List<OrderNote> getOrderNoteByOrdertype(String ordertype, Timestamp fromtime, Timestamp totime, int from, int maxnum){
 		DetachedCriteria query = getOrderNoteQry(ordertype, null, null, null, null, null, null, fromtime, totime);
 		query.addOrder(Order.desc("addtime"));
-		List<OrderNote> noteList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<OrderNote> noteList = (List<OrderNote>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return noteList;
 	}
 	
@@ -106,7 +106,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public List<OrderNote> getOrderNoteByOrdertype(String ordertype, Timestamp fromtime, Timestamp totime){
 		DetachedCriteria query = getOrderNoteQry(ordertype, null, null, null, null, null, null, fromtime, totime);
 		query.addOrder(Order.desc("addtime"));
-		List<OrderNote> noteList = hibernateTemplate.findByCriteria(query);
+		List<OrderNote> noteList = (List<OrderNote>) hibernateTemplate.findByCriteria(query);
 		return noteList;
 	}
 	@Override
@@ -127,7 +127,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 			query.add(Restrictions.in("itemid", itemidList));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<OrderNote> noteList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<OrderNote> noteList = (List<OrderNote>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return noteList;
 	}
 	@Override
@@ -147,7 +147,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 			query.add(Restrictions.in("itemid", itemidList));
 		}
 		query.setProjection(Projections.rowCount());
-		List<Long> result = hibernateTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return 0;
 		return Integer.parseInt(result.get(0)+"");
 	}
@@ -155,7 +155,7 @@ public class OrderNoteServiceImpl extends BaseServiceImpl implements OrderNoteSe
 	public Integer getOrderNoteCountByOrdertype(String ordertype, Timestamp fromtime, Timestamp totime){
 		DetachedCriteria query = getOrderNoteQry(ordertype, null, null, null, null, null, null, fromtime, totime);
 		query.setProjection(Projections.rowCount());
-		List<Long> result = hibernateTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return 0;
 		return Integer.parseInt(result.get(0)+"");
 	}

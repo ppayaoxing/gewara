@@ -70,7 +70,7 @@ public class ModeratorServiceImpl extends BaseServiceImpl implements ModeratorSe
 		if(StringUtils.equals(type, Moderator.TYPE_HOT)){
 			query.addOrder(Order.desc("commentcount"));
 		}
-		List<Moderator> moderatorList = hibernateTemplate.findByCriteria(query,from,maxnum);
+		List<Moderator> moderatorList = (List<Moderator>) hibernateTemplate.findByCriteria(query,from,maxnum);
 		return moderatorList;
 	}
 
@@ -92,7 +92,7 @@ public class ModeratorServiceImpl extends BaseServiceImpl implements ModeratorSe
 		query.add(Restrictions.eq("mstatus", Status.Y));
 		query.addOrder(Order.desc("commentcount"));
 		query.addOrder(Order.asc("ordernum"));
-		List<Moderator> moderatorList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Moderator> moderatorList = (List<Moderator>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return moderatorList;
 	}
 	
@@ -103,7 +103,7 @@ public class ModeratorServiceImpl extends BaseServiceImpl implements ModeratorSe
 		if(memberid != null) query.add(Restrictions.eq("memberid",String.valueOf(memberid)));
 		query.add(Restrictions.eq("mstatus", Status.Y));
 		query.addOrder(Order.desc("addtime"));
-		List<Moderator> moderatorList = hibernateTemplate.findByCriteria(query,from,maxnum);
+		List<Moderator> moderatorList = (List<Moderator>) hibernateTemplate.findByCriteria(query,from,maxnum);
 		return moderatorList;
 	}
 

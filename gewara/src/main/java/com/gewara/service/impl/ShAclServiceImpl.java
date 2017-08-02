@@ -46,9 +46,9 @@ public class ShAclServiceImpl extends AclServiceImpl {
 		String query2 = "from Member m where m.mobile = ? ";
 		List<Member> members = null;
 		if(ValidateUtil.isMobile(emailOrMobile)){
-			members = hibernateTemplate.find(query2, emailOrMobile);
+			members = (List<Member>) hibernateTemplate.find(query2, emailOrMobile);
 		}else{
-			members = hibernateTemplate.find(query1, emailOrMobile.toLowerCase());
+			members = (List<Member>) hibernateTemplate.find(query1, emailOrMobile.toLowerCase());
 		}
 		if(members.size()> 0) {
 			return members.get(0);

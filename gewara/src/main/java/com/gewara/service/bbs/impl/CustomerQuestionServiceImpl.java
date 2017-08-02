@@ -44,7 +44,7 @@ public class CustomerQuestionServiceImpl extends BaseServiceImpl implements Cust
 			query.add(Restrictions.ilike("body", searchkey, MatchMode.ANYWHERE)); // 只匹配帖子标题
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<CustomerQuestion> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<CustomerQuestion> result = (List<CustomerQuestion>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 
@@ -61,7 +61,7 @@ public class CustomerQuestionServiceImpl extends BaseServiceImpl implements Cust
 		if (StringUtils.isNotBlank(searchkey)) {
 			query.add(Restrictions.ilike("body", searchkey, MatchMode.ANYWHERE));
 		}
-		List<CustomerQuestion> result = readOnlyTemplate.findByCriteria(query);
+		List<CustomerQuestion> result = (List<CustomerQuestion>) readOnlyTemplate.findByCriteria(query);
 		if (result.isEmpty())
 			return 0;
 		return Integer.parseInt("" + result.get(0));
@@ -72,7 +72,7 @@ public class CustomerQuestionServiceImpl extends BaseServiceImpl implements Cust
 		DetachedCriteria query = DetachedCriteria.forClass(CustomerAnswer.class);
 		query.add(Restrictions.eq("questionid", qid));
 		query.addOrder(Order.asc("addtime"));
-		List<CustomerAnswer> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<CustomerAnswer> result = (List<CustomerAnswer>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 
@@ -97,7 +97,7 @@ public class CustomerQuestionServiceImpl extends BaseServiceImpl implements Cust
 			query.add(Restrictions.eq("tag", tag));
 		query.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		query.addOrder(Order.desc("addtime"));
-		List<CustomerQuestion> cqList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<CustomerQuestion> cqList = (List<CustomerQuestion>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return cqList;
 	}
 

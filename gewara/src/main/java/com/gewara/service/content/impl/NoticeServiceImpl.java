@@ -45,7 +45,7 @@ public class NoticeServiceImpl extends BaseServiceImpl implements NoticeService{
 		if(StringUtils.isNotBlank(tag))query.add(Restrictions.eq("n.tag", tag));
 		query.add(Restrictions.like("n.status",Status.Y,MatchMode.START));
 		query.addOrder(Order.desc("n.addtime"));
-		List<Notice> noticeList = readOnlyTemplate.findByCriteria(query,from,maxnum);
+		List<Notice> noticeList = (List<Notice>) readOnlyTemplate.findByCriteria(query,from,maxnum);
 		return noticeList;
 	}
 

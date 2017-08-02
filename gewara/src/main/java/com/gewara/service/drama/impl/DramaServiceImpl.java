@@ -18,6 +18,7 @@ import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Subqueries;
+import org.hibernate.type.StandardBasicTypes;
 import org.hibernate.type.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -65,7 +66,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		}else{
 			query.addOrder(Order.desc("id"));
 		}
-		List<Drama> dramaList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return dramaList;
 	}
 	@Override
@@ -83,7 +84,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		subquery.add(Restrictions.eqProperty("odi.dramaid", "dr.id"));
 		subquery.setProjection(Projections.property("dr.id"));
 		query.add(Subqueries.exists(subquery));
-		List<Long> dramaIdList=hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Long> dramaIdList=(List<Long>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return dramaIdList;
 	}
 	@Override
@@ -100,7 +101,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		subquery.add(Restrictions.eqProperty("odi.dramaid", "dr.id"));
 		subquery.setProjection(Projections.property("dr.id"));
 		query.add(Subqueries.exists(subquery));
-		List<Long> dramaIdList=hibernateTemplate.findByCriteria(query);
+		List<Long> dramaIdList=(List<Long>) hibernateTemplate.findByCriteria(query);
 		if(dramaIdList.isEmpty()) return 0;
 		return new Integer(dramaIdList.get(0)+"");
 	}
@@ -137,7 +138,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 			query.add(Restrictions.eq("status", DramaPlayItem.STATUS_Y));
 		}
 		query.addOrder(Order.asc("playtime"));
-		List<OpenDramaItem> openDramItemList=hibernateTemplate.findByCriteria(query);
+		List<OpenDramaItem> openDramItemList=(List<OpenDramaItem>) hibernateTemplate.findByCriteria(query);
 		return openDramItemList;
 	}
 	@Override
@@ -156,7 +157,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		query.add(Restrictions.eq("citycode", citycode));
 		if(StringUtils.isNotBlank(order)) query.addOrder(Order.desc(order));
 		query.addOrder(Order.desc("releasedate"));
-		List<Drama> dramaList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return dramaList;
 	}
 	@Override
@@ -179,7 +180,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		sub.setProjection(Projections.property("item.id"));
 		query.add(Subqueries.exists(sub));
 		if(StringUtils.isNotBlank(order)) query.addOrder(Order.asc(order));
-		List<Drama> dramaList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return dramaList;
 	}
 
@@ -205,7 +206,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		query.add(Restrictions.eq("theatreid", theatreid));
 		query.add(Restrictions.gt("playtime", new Timestamp(System.currentTimeMillis())));
 		query.setProjection(Projections.countDistinct("dramaid"));
-		List<Long> idList = hibernateTemplate.findByCriteria(query);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		if(idList.size()>0) return new Integer(idList.get(0)+"");
 		return 0;
 	}
@@ -214,14 +215,14 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		DetachedCriteria query = DetachedCriteria.forClass(Drama.class);
 		if(StringUtils.isNotBlank(citycode))query.add(Restrictions.eq("citycode", citycode));
 		query.add(Restrictions.gt("releasedate", fromDate));
-		List<Drama> dramaList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return dramaList;
 	}
 	@Override
 	public List<Drama> getCurDramaList(String citycode, String orderField){
 		Timestamp curtime = DateUtil.getCurFullTimestamp();
 		String query = "select distinct dpi.dramaid from DramaPlayItem dpi where (dpi.playtime >= ? and dpi.period=? or dpi.endtime>=? and dpi.period=?) and dpi.citycode = ? ";
-		List<Long> dramaidList = hibernateTemplate.find(query, curtime, Status.Y, curtime, Status.N, citycode);
+		List<Long> dramaidList = (List<Long>) hibernateTemplate.find(query, curtime, Status.Y, curtime, Status.N, citycode);
 		List<Drama> dramaList = baseDao.getObjectList(Drama.class, dramaidList);
 		Collections.sort(dramaList, new PropertyComparator((orderField), false, false));
 		return dramaList;
@@ -251,11 +252,11 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 			con2.add(Restrictions.eq("odi.period", Status.N));
 			query.add(Restrictions.or(con1, con2));
 			ProjectionList projectionList = Projections.projectionList();
-			projectionList.add(Projections.sqlGroupProjection("to_char({alias}.playtime,'yyyy-MM-dd') as x","to_char({alias}.playtime,'yyyy-MM-dd')",new String[] { "x" },new Type[]{Hibernate.STRING}),"playdate");
+			projectionList.add(Projections.sqlGroupProjection("to_char({alias}.playtime,'yyyy-MM-dd') as x","to_char({alias}.playtime,'yyyy-MM-dd')",new String[] { "x" },new Type[]{StandardBasicTypes.STRING}),"playdate");
 			projectionList.add(Projections.rowCount(),"sumnum");
 			query.setProjection(projectionList);
 			query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-			List<Map> dramaCountList = hibernateTemplate.findByCriteria(query);
+			List<Map> dramaCountList = (List<Map>) hibernateTemplate.findByCriteria(query);
 			result = new HashMap<String, Integer>();
 			for (Map dataMap : dramaCountList) {
 				result.put(String.valueOf(dataMap.get("playdate")+""), Integer.valueOf(dataMap.get("sumnum")+""));
@@ -283,7 +284,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		query.add(Restrictions.or(con1, con2));
 		query.add(Restrictions.eq("dpi.status", OdiConstant.STATUS_BOOK));
 		query.setProjection(Projections.distinct(Projections.property("dpi.dramaid")));
-		List<Long> idList = hibernateTemplate.findByCriteria(query);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		List<Drama> dramaList = baseDao.getObjectList(Drama.class, idList);
 		Collections.sort(dramaList, new PropertyComparator(order, false, true));
 		return BeanUtil.getSubList(dramaList, from, maxnum);
@@ -291,7 +292,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 	@Override
 	public List<Drama> getDramaList(String citycode, String fyrq, String type, String order, String dramatype, String searchkey,int from,int maxnum){
 		DetachedCriteria query = getQuery(citycode,fyrq,type,order,dramatype,searchkey);
-		List<Drama> dramaList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return dramaList;
 	}
 	
@@ -399,7 +400,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		query.add(Restrictions.eq("citycode", citycode));
 		query.add(Restrictions.gt("updatetime", lasttime));
 		query.add(Restrictions.like("troupecompany", troupecompany, MatchMode.ANYWHERE));
-		List<Drama> dramaList = hibernateTemplate.findByCriteria(query);
+		List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query);
 		return dramaList;
 	}
 	
@@ -409,7 +410,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		List<String> dramaTypeList = (List<String>) cacheService.get(CacheConstant.REGION_TWOHOUR, key);
 		if(dramaTypeList == null){
 			String qry = "select distinct dramatype from Drama where citycode = ?";
-			dramaTypeList = hibernateTemplate.find(qry, citycode);
+			dramaTypeList = (List<String>) hibernateTemplate.find(qry, citycode);
 			cacheService.set(CacheConstant.REGION_TWOHOUR, key, dramaTypeList);
 		}
 		return dramaTypeList;
@@ -432,7 +433,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		sub.setProjection(Projections.property("odi.id"));
 		query.add(Subqueries.exists(sub));
 		query.addOrder(Order.desc("clickedtimes"));
-		List<Drama> idList = hibernateTemplate.findByCriteria(query, 0, maxnum);
+		List<Drama> idList = (List<Drama>) hibernateTemplate.findByCriteria(query, 0, maxnum);
 		return idList;
 	}
 	
@@ -456,7 +457,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 			query.setProjection(Projections.projectionList().add(Projections.groupProperty("odi.dramaid"), "dramaid").add(Projections.alias(Projections.min("odi.opentime"), "opentime_ali" )));
 			query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
 			query.addOrder(Order.desc("opentime_ali"));
-			List<Map> mapList = hibernateTemplate.findByCriteria(query);
+			List<Map> mapList = (List<Map>) hibernateTemplate.findByCriteria(query);
 			idList = new ArrayList<Long>();
 			for(Map dataMap :mapList){
 				idList.add(Long.parseLong(dataMap.get("dramaid")+""));
@@ -478,7 +479,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 			query.add(Restrictions.eq("d.citycode", citycode));
 			query.add(Restrictions.ge("d.enddate", curDate));
 			query.setProjection(Projections.min("d.releasedate"));
-			List<Date> dateList = hibernateTemplate.findByCriteria(query, 0, 1);
+			List<Date> dateList = (List<Date>) hibernateTemplate.findByCriteria(query, 0, 1);
 			if(dateList.isEmpty()) minMonthDate = DateUtil.getMonthFirstDay(curDate);
 			else minMonthDate = DateUtil.getMonthFirstDay(dateList.get(0));
 			cacheService.set(CacheConstant.REGION_HALFHOUR, key, minMonthDate);
@@ -499,7 +500,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 			DetachedCriteria query = DetachedCriteria.forClass(Drama.class, "d");
 			query.add(Restrictions.eq("d.citycode", citycode));
 			query.add(Restrictions.ge("d.enddate", curDate));
-			List<Drama> dramaList = hibernateTemplate.findByCriteria(query);
+			List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query);
 			result = new HashMap<String, Integer>();
 			while (startdate.before(enddate)) {
 				String date = DateUtil.formatDate(startdate);
@@ -524,7 +525,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 		query.add(Restrictions.eq("citycode", citycode));
 		query.add(Restrictions.le("d.releasedate", playdate));
 		query.add(Restrictions.ge("d.enddate", playdate));
-		List<Drama> dramaList = hibernateTemplate.findByCriteria(query);
+		List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query);
 		Collections.sort(dramaList, new PropertyComparator(order, false, true));
 		return BeanUtil.getSubList(dramaList, from, maxnum);
 	}
@@ -546,7 +547,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 			}
 		}
 		query.addOrder(Order.desc("d.id"));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<Drama>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 
 	@Override
@@ -582,7 +583,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 			query.add(Restrictions.le("odi.opentime", curtime));
 			query.add(Restrictions.gt("odi.closetime", curtime));
 			if(playdate!=null) {
-				query.add(Restrictions.sqlRestriction("to_char(playtime,'yyyy-MM-dd')=?", new Object[]{DateUtil.formatDate(playdate)}, new Type[]{Hibernate.STRING}));
+				query.add(Restrictions.sqlRestriction("to_char(playtime,'yyyy-MM-dd')=?", new Object[]{DateUtil.formatDate(playdate)}, new Type[]{StandardBasicTypes.STRING}));
 			}
 			
 			Conjunction con1 = Restrictions.conjunction();
@@ -594,7 +595,7 @@ public class DramaServiceImpl extends BaseServiceImpl implements DramaService {
 			
 			query.add(Restrictions.or(con1, con2));
 			query.addOrder(Order.asc("playtime"));
-			odiList = hibernateTemplate.findByCriteria(query);
+			odiList = (List<OpenDramaItem>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, odiList);
 		}
 		return odiList;

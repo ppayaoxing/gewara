@@ -78,7 +78,7 @@ public class MarkServiceImpl extends BaseServiceImpl implements MarkService {
 		// String query = "from MemberMark m where m.id = (select max(t.id) from
 		// MemberMark t where t.tag = ? and t.relatedid = ? and t.markname = ? and
 		// t.memberid = ?)";
-		List<MemberMark> result = hibernateTemplate.find(query, tag, relatedid, markname, memberId);
+		List<MemberMark> result = (List<MemberMark>) hibernateTemplate.find(query, tag, relatedid, markname, memberId);
 		if (result.isEmpty())
 			return null;
 		return result.get(0);
@@ -87,7 +87,7 @@ public class MarkServiceImpl extends BaseServiceImpl implements MarkService {
 	@Override
 	public MemberMark getCurMemberMark(String tag, Long relatedid, String markname, Long memberId) {
 		String query = "from MemberMark t where t.tag = ? and t.relatedid = ? and t.markname = ? and t.memberid = ? and t.addtime>=?";
-		List<MemberMark> result = readOnlyTemplate.find(query, tag, relatedid, markname, memberId, DateUtil.addHour(new Timestamp(System.currentTimeMillis()), -12));
+		List<MemberMark> result = (List<MemberMark>) readOnlyTemplate.find(query, tag, relatedid, markname, memberId, DateUtil.addHour(new Timestamp(System.currentTimeMillis()), -12));
 		if (result.isEmpty())
 			return null;
 		return result.get(0);
@@ -101,7 +101,7 @@ public class MarkServiceImpl extends BaseServiceImpl implements MarkService {
 		query.add(Restrictions.eq("markname", markname));
 		query.add(Restrictions.ge("markvalue", 7)); // 20110630统一加入评分>=7条件
 		query.addOrder(Order.desc("addtime"));
-		List<MemberMark> mmList = readOnlyTemplate.findByCriteria(query, 0, maxnum);
+		List<MemberMark> mmList = (List<MemberMark>) readOnlyTemplate.findByCriteria(query, 0, maxnum);
 		return mmList;
 	}
 	
@@ -114,7 +114,7 @@ public class MarkServiceImpl extends BaseServiceImpl implements MarkService {
 			query.add(Restrictions.eq("flag", flag));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<MemberMark> mmList = readOnlyTemplate.findByCriteria(query);
+		List<MemberMark> mmList = (List<MemberMark>) readOnlyTemplate.findByCriteria(query);
 		return mmList;
 	}
 
@@ -153,7 +153,7 @@ public class MarkServiceImpl extends BaseServiceImpl implements MarkService {
 				.add(Projections.property("flag"),"flag").add(Projections.groupProperty("relatedid"))
 				.add(Projections.groupProperty("flag")));
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		List<Map> relatedList = readOnlyTemplate.findByCriteria(query);
+		List<Map> relatedList = (List<Map>) readOnlyTemplate.findByCriteria(query);
 		return relatedList;
 	}
 	@Override
@@ -242,27 +242,27 @@ public class MarkServiceImpl extends BaseServiceImpl implements MarkService {
 		query.add(Restrictions.lt("addtime", endtime));
 		query.setProjection(Projections.projectionList().add(Projections.count("id"), "allMarktimes").add(Projections.countDistinct("relatedid"), "allCount"));
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		List<Map> relatedList = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<Map> relatedList = (List<Map>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		return relatedList.get(0);
 	}
 	@Override
 	public Integer getMaxMarktimes(String tag, Timestamp starttime) {
 		String query = "select new map(to_char(max(count(relatedid))) as maxmarktimes) from MemberMark where tag = ? and addtime >= ? group by relatedid";
-		List<Map<String, String>> relatedList = readOnlyTemplate.find(query, tag, starttime);
+		List<Map<String, String>> relatedList = (List<Map<String, String>>) readOnlyTemplate.find(query, tag, starttime);
 		return Integer.valueOf(relatedList.get(0).get("maxmarktimes"));
 	}
 
 	@Override
 	public List<Map> getMarkDetail(String tag, Long relatedid, String markname) {
 		String query = "select new map(m.markvalue as markvalue, count(*) as markcount) from MemberMark m where m.tag = ? and m.relatedid = ? and m.markname = ? group by m.markvalue order by m.markvalue";
-		List<Map> result = readOnlyTemplate.find(query, tag, relatedid, markname);
+		List<Map> result = (List<Map>) readOnlyTemplate.find(query, tag, relatedid, markname);
 		return result;
 	}
 
 	@Override
 	public Integer getMarkValueCount(String tag, Long relatedid, String markname, int fromValue, int maxValue) {
 		String query = "select new map(to_char(count(*)) as markcount) from MemberMark m where m.tag = ? and m.relatedid = ? and m.markname = ? and m.markvalue>=? and m.markvalue<=?";
-		List<Map<String, String>> result = readOnlyTemplate.find(query, tag, relatedid, markname, fromValue, maxValue);
+		List<Map<String, String>> result = (List<Map<String, String>>) readOnlyTemplate.find(query, tag, relatedid, markname, fromValue, maxValue);
 		return Integer.valueOf(result.get(0).get("markcount"));
 	}	
 	
@@ -362,7 +362,7 @@ public class MarkServiceImpl extends BaseServiceImpl implements MarkService {
 	
 	private Integer getMarkValueCount(String tag, Long relatedid, String markname,String flag, int fromValue, int maxValue) {
 		String query = "select new map(to_char(count(*)) as markcount) from MemberMark m where m.tag = ? and m.relatedid = ? and m.markname = ? and m.markvalue>=? and m.markvalue<? and flag = ?";
-		List<Map<String, String>> result = readOnlyTemplate.find(query, tag, relatedid, markname, fromValue, maxValue,flag);
+		List<Map<String, String>> result = (List<Map<String, String>>) readOnlyTemplate.find(query, tag, relatedid, markname, fromValue, maxValue,flag);
 		return Integer.valueOf(result.get(0).get("markcount"));
 	}
 
@@ -508,7 +508,7 @@ public class MarkServiceImpl extends BaseServiceImpl implements MarkService {
 	public List<MarkCount> getMarkCountListByTag(String tag) {
 		DetachedCriteria query = DetachedCriteria.forClass(MarkCount.class);
 		query.add(Restrictions.eq("tag", TagConstant.TAG_MOVIE));
-		List<MarkCount> result = hibernateTemplate.findByCriteria(query);
+		List<MarkCount> result = (List<MarkCount>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 }

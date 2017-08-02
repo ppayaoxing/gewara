@@ -62,38 +62,50 @@ import com.gewara.util.XSSFilter;
 
 @Service("blogService")
 public class BlogServiceImpl extends BaseServiceImpl implements BlogService, InitializingBean {
-	private int night_begin = 23;	//晚上23点
-	private int night_end = 9;		//早上9点
-	private int frequency = 1800;	//默认30分钟
-	private int times = 30;			//默认30次
-	
+	private int night_begin = 23; // 晚上23点
+	private int night_end = 9; // 早上9点
+	private int frequency = 1800; // 默认30分钟
+	private int times = 30; // 默认30次
+
 	private Integer unbindUsrLimitEgg = 1;
 	private Integer bindUsrLimitEgg = 50;
-	@Autowired@Qualifier("cacheService")
+	@Autowired
+	@Qualifier("cacheService")
 	public CacheService cacheService;
-	@Autowired@Qualifier("operationService")
+	@Autowired
+	@Qualifier("operationService")
 	private OperationService operationService;
+
 	public void setOperationService(OperationService operationService) {
 		this.operationService = operationService;
 	}
-	@Autowired@Qualifier("mongoService")
+
+	@Autowired
+	@Qualifier("mongoService")
 	private MongoService mongoService;
+
 	public void setMongoService(MongoService mongoService) {
 		this.mongoService = mongoService;
 	}
-	@Autowired@Qualifier("readOnlyTemplate")
+
+	@Autowired
+	@Qualifier("readOnlyTemplate")
 	private ReadOnlyTemplate readOnlyTemplate;
+
 	public void setReadOnlyHibernateTemplate(ReadOnlyTemplate readOnlyTemplate) {
 		this.readOnlyTemplate = readOnlyTemplate;
-	}	
-	@Autowired@Qualifier("monitorService")
+	}
+
+	@Autowired
+	@Qualifier("monitorService")
 	private MonitorService monitorService;
-	
+
 	/****************************************************************************
 	 * 版主、成员
 	 ***************************************************************************/
 	@Override
-	public List<Bkmember> getBkmemberList(String tag, Long relatedid, int role, boolean includeSub, int from, int maxnum) {
+	public List<Bkmember> getBkmemberList(String tag, Long relatedid, int role, boolean includeSub, int from,
+			int maxnum) {
 		DetachedCriteria query = DetachedCriteria.forClass(Bkmember.class);
 		if (StringUtils.isBlank(tag)) {
 			query.add(Restrictions.isNull("tag"));
@@ -107,14 +119,14 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		}
 		query.add(Restrictions.ge("role", role));
 		query.addOrder(Order.desc("addtime"));
-		List<Bkmember> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Bkmember> result = (List<Bkmember>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 
 	@Override
 	public List<Bkmember> getBkmemberListByMemberId(Long memberId) {
 		final String qstr = "from Bkmember b where b.memberid = ? ";
-		List<Bkmember> result = readOnlyTemplate.find(qstr, memberId);
+		List<Bkmember> result = (List<Bkmember>) readOnlyTemplate.find(qstr, memberId);
 		return result;
 	}
 
@@ -132,7 +144,7 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 				query.add(Restrictions.isNull("relatedid"));
 		}
 		query.add(Restrictions.ge("role", Bkmember.ROLE_BANZHU));
-		List<Bkmember> result = readOnlyTemplate.findByCriteria(query);
+		List<Bkmember> result = (List<Bkmember>) readOnlyTemplate.findByCriteria(query);
 		return result;
 	}
 
@@ -159,10 +171,10 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		List<Bkmember> result = null;
 		if (relatedid == null) {
 			String query = "from Bkmember b where b.memberid = ? and b.tag = ? and b.relatedid is null";
-			result = readOnlyTemplate.find(query, member.getId(), tag);
+			result = (List<Bkmember>) readOnlyTemplate.find(query, member.getId(), tag);
 		} else {
 			String query = "from Bkmember b where b.memberid = ? and b.tag = ? and b.relatedid = ? ";
-			result = readOnlyTemplate.find(query, member.getId(), tag, relatedid);
+			result = (List<Bkmember>) readOnlyTemplate.find(query, member.getId(), tag, relatedid);
 		}
 		if (result == null || result.isEmpty())
 			return null;
@@ -176,7 +188,7 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 			query.add(Restrictions.eq("memberId", memberId));
 		else
 			query.addOrder(Order.desc("addtime"));
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<BlackMember>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 
 	@Override
@@ -193,7 +205,7 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		query.add(Subqueries.exists(subquery));
 		query.addOrder(Order.desc("bl.addtime"));
 
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<BlackMember>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 
 	@Override
@@ -207,7 +219,7 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 	@Override
 	public Integer getBlackMembertCount(String nickname) {
 		DetachedCriteria query = DetachedCriteria.forClass(BlackMember.class, "bl");
-		if(StringUtils.isNotBlank(nickname)){
+		if (StringUtils.isNotBlank(nickname)) {
 			DetachedCriteria subquery = DetachedCriteria.forClass(Member.class, "m");
 			subquery.add(Restrictions.like("m.nickname", nickname, MatchMode.ANYWHERE));
 			subquery.setProjection(Projections.property("m.id"));
@@ -215,7 +227,7 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 			query.add(Subqueries.exists(subquery));
 		}
 		query.setProjection(Projections.rowCount());
-		List<Integer> count = readOnlyTemplate.findByCriteria(query);
+		List<Integer> count = (List<Integer>) readOnlyTemplate.findByCriteria(query);
 		return count.size() == 1 ? new Integer(count.get(0) + "") : 0;
 	}
 
@@ -224,7 +236,7 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		DetachedCriteria query = DetachedCriteria.forClass(Commu.class);
 		query.addOrder(Order.desc(order));
 		query.addOrder(Order.desc("updatetime"));
-		List<Commu> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Commu> list = (List<Commu>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 
@@ -247,17 +259,19 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 	public List<Accusation> getAccusationList(int from, int maxnum) {
 		DetachedCriteria query = DetachedCriteria.forClass(Accusation.class);
 		query.addOrder(Order.desc("addtime"));
-		List<Accusation> accList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Accusation> accList = (List<Accusation>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return accList;
 	}
+
 	private List<String> filterList;
 	private List<String> manualFilterList;
 	private List<String> memberRegisterFilterList;
 
 	@Override
 	public boolean rebuildFilterKey() {
-		String keywords = (String)mongoService.getPrimitiveObject(ConfigConstant.KEY_FIXEDKEYWORDS);
-		if(StringUtils.length(keywords) < 2000) throw new IllegalArgumentException("rebuildFilterKey Error!!");
+		String keywords = (String) mongoService.getPrimitiveObject(ConfigConstant.KEY_FIXEDKEYWORDS);
+		if (StringUtils.length(keywords) < 2000)
+			throw new IllegalArgumentException("rebuildFilterKey Error!!");
 		String[] tmps = keywords.split(",");
 		List<String> tmpFilters = new ArrayList<String>();
 		for (int i = 0; i < tmps.length; i++) {
@@ -270,8 +284,9 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 	@Override
 	public boolean rebuildManualFilterKey() {
 		List<String> filters = new ArrayList<String>();
-		String keywords = (String)mongoService.getPrimitiveObject(ConfigConstant.KEY_MANUKEYWORDS);
-		if(StringUtils.isBlank(keywords))  throw new IllegalArgumentException("rebuildManualFilterKey Error!!");
+		String keywords = (String) mongoService.getPrimitiveObject(ConfigConstant.KEY_MANUKEYWORDS);
+		if (StringUtils.isBlank(keywords))
+			throw new IllegalArgumentException("rebuildManualFilterKey Error!!");
 		String[] filterarrs = keywords.split(",");
 		for (int i = 0; i < filterarrs.length; i++) {
 			filters.add("(" + filterarrs[i].trim() + ")");
@@ -279,12 +294,13 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		manualFilterList = UnmodifiableList.decorate(filters);
 		return true;
 	}
-	
+
 	@Override
-	public boolean rebuildMemberRegisterFilterKey(){
+	public boolean rebuildMemberRegisterFilterKey() {
 		List<String> filters = new ArrayList<String>();
-		String keywords = (String)mongoService.getPrimitiveObject(ConfigConstant.KEY_MEMBERKEYWORDS);
-		if(StringUtils.isBlank(keywords))  throw new IllegalArgumentException("rebuildMemberRegisterFilterKey Error!!");
+		String keywords = (String) mongoService.getPrimitiveObject(ConfigConstant.KEY_MEMBERKEYWORDS);
+		if (StringUtils.isBlank(keywords))
+			throw new IllegalArgumentException("rebuildMemberRegisterFilterKey Error!!");
 		String[] filterarrs2 = keywords.split(",");
 		for (int i = 0; i < filterarrs2.length; i++) {
 			filters.add("(" + filterarrs2[i].trim() + ")");
@@ -292,23 +308,26 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		memberRegisterFilterList = UnmodifiableList.decorate(filters);
 		return true;
 	}
-	private String filterJsKey(String html){
+
+	private String filterJsKey(String html) {
 		String key = "";
-		if (StringUtils.containsIgnoreCase(html, "<script")){
+		if (StringUtils.containsIgnoreCase(html, "<script")) {
 			key = "<script";// 过滤Js
 		}
-		if (StringUtils.containsIgnoreCase(html,"<iframe")){
+		if (StringUtils.containsIgnoreCase(html, "<iframe")) {
 			key = key + ", <iframe";// 过滤iframe
 		}
 		return key;
 	}
+
 	@Override
 	public String filterAllKey(String html) {
 		String filterJsKey = filterJsKey(html);
-		if(StringUtils.isNotBlank(filterJsKey)) return filterJsKey;
-		
+		if (StringUtils.isNotBlank(filterJsKey))
+			return filterJsKey;
+
 		String text = getTextContent(html);
-		StringBuilder sbkey =  new StringBuilder();
+		StringBuilder sbkey = new StringBuilder();
 		filterContentKey(text, sbkey, memberRegisterFilterList);
 		filterContentKey(text, sbkey, filterList);
 		filterContentKey(text, sbkey, manualFilterList);
@@ -318,15 +337,17 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 	@Override
 	public String filterContentKey(String html) {
 		String filterJsKey = filterJsKey(html);
-		if(StringUtils.isNotBlank(filterJsKey)) return filterJsKey;
+		if (StringUtils.isNotBlank(filterJsKey))
+			return filterJsKey;
 		html = XSSFilter.filterSpecStr(html);
 		String text = getTextContent(html);
-		StringBuilder sbkey =  new StringBuilder();
+		StringBuilder sbkey = new StringBuilder();
 		filterContentKey(text, sbkey, filterList);
 		filterContentKey(text, sbkey, manualFilterList);
 		return sbkey.toString();
 	}
-	private String getTextContent(String html){
+
+	private String getTextContent(String html) {
 		String text = StringUtil.getHtmlText(html);
 		StringBuilder sb = new StringBuilder();
 		if (StringUtils.isNotBlank(text)) {
@@ -338,7 +359,8 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		text = sb.toString();
 		return text;
 	}
-	private void filterContentKey(String text, StringBuilder result, List<String> keys){
+
+	private void filterContentKey(String text, StringBuilder result, List<String> keys) {
 		for (String fkey : keys) {
 			String k = StringUtil.findFirstByRegex(text, fkey);
 			if (StringUtils.isNotBlank(k)) {
@@ -346,18 +368,21 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 			}
 		}
 	}
+
 	@Override
 	public List<Long> getTreasureRelatedidList(String citycode, Long memberid, String tag, String action) {
 		String hql = "select distinct t.relatedid from Treasure t where t.memberid=? and t.tag=? and t.action = ? and exists( select c.id from Cinema c where t.relatedid=c.id and c.citycode=? and c.booking=? )";
-		List<Long> list = readOnlyTemplate.find(hql, memberid, tag, action, citycode, Cinema.BOOKING_OPEN);
+		List<Long> list = (List<Long>) readOnlyTemplate.find(hql, memberid, tag, action, citycode, Cinema.BOOKING_OPEN);
 		return list;
 	}
+
 	@Override
 	public List<Long> getTreasureCinemaidList(String citycode, Long memberid, String action) {
 		String hql = "select distinct t.relatedid from Treasure t where t.memberid=? and t.tag=? and t.action = ? and exists( select c.id from Cinema c where t.relatedid=c.id and c.citycode=?)";
-		List<Long> list = readOnlyTemplate.find(hql, memberid, TagConstant.TAG_CINEMA, action, citycode);
+		List<Long> list = (List<Long>) readOnlyTemplate.find(hql, memberid, TagConstant.TAG_CINEMA, action, citycode);
 		return list;
 	}
+
 	private final static String treasure_tag = "member";
 
 	@Override
@@ -393,14 +418,17 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 			return false;
 		}
 	}
+
 	@Override
-	public List<Treasure> getTreasureListByMemberId(Long memberId, String[] tag, String[] removieTag, Long relatedid, int from, int maxnum, String... action) {
+	public List<Treasure> getTreasureListByMemberId(Long memberId, String[] tag, String[] removieTag, Long relatedid,
+			int from, int maxnum, String... action) {
 		DetachedCriteria query = this.getTreasureList(memberId, tag, removieTag, relatedid, action);
-		List<Treasure> treasureList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Treasure> treasureList = (List<Treasure>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return treasureList;
 	}
+
 	@Override
-	public List<Long> getTreasureListByMemberIdList(Long relatedid, String tag, int from, int maxnum, String action){
+	public List<Long> getTreasureListByMemberIdList(Long relatedid, String tag, int from, int maxnum, String action) {
 		DetachedCriteria query = DetachedCriteria.forClass(Treasure.class, "t");
 		DetachedCriteria subquery = DetachedCriteria.forClass(Treasure.class, "tt");
 		subquery.add(Restrictions.eq("tt.relatedid", relatedid));
@@ -411,12 +439,14 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		query.add(Restrictions.eq("t.tag", tag));
 		query.add(Subqueries.exists(subquery));
 		query.setProjection(Projections.distinct(Projections.property("t.relatedid")));
-		List<Long> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
-	private DetachedCriteria getTreasureList(Long memberId, String[] tag, String[] removieTag, Long relatedid, String... action) {
+
+	private DetachedCriteria getTreasureList(Long memberId, String[] tag, String[] removieTag, Long relatedid,
+			String... action) {
 		DetachedCriteria query = DetachedCriteria.forClass(Treasure.class, "t");
-		if (memberId!=null)
+		if (memberId != null)
 			query.add(Restrictions.eq("t.memberid", memberId));
 		if (!ArrayUtils.isEmpty(tag)) {
 			if (ArrayUtils.getLength(tag) == 1)
@@ -472,7 +502,6 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		return new Integer(treasureList.get(0) + "");
 	}
 
-
 	@Override
 	public List<Long> getFanidListByMemberId(Long memberid, int from, int maxnum) {
 		DetachedCriteria query = DetachedCriteria.forClass(Treasure.class, "t");
@@ -492,7 +521,7 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		query.add(Restrictions.eq("relatedid", relatedid));
 		query.add(Restrictions.eq("tag", tag));
 		query.add(Restrictions.eq("action", action));
-		List<Treasure> treasureList = readOnlyTemplate.findByCriteria(query);
+		List<Treasure> treasureList = (List<Treasure>) readOnlyTemplate.findByCriteria(query);
 		if (treasureList.isEmpty())
 			return null;
 		return treasureList.get(0);
@@ -504,9 +533,10 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.isNotNull("actionlabel"));
 		query.addOrder(Order.desc("addtime"));
-		List<Treasure> treasureList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Treasure> treasureList = (List<Treasure>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return treasureList;
 	}
+
 	@Override
 	public String getDiaryBody(long diaryid) {
 		Map map = new HashMap();
@@ -533,68 +563,75 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		Integer curHour = DateUtil.getCurrentHour(DateUtil.currentTime());
 		int before = Math.min(night_end, night_begin);
 		int after = Math.max(night_end, night_begin);
-		return curHour>=after || curHour<=before;
+		return curHour >= after || curHour <= before;
 	}
+
 	@Override
 	public boolean allowAddContent(String flag, Long memberid) {
-		return operationService.updateOperation(flag+memberid, frequency, times);
+		return operationService.updateOperation(flag + memberid, frequency, times);
 	}
-	
-	public void addBlogData(Long userid, String tag, Long relatedid){
+
+	public void addBlogData(Long userid, String tag, Long relatedid) {
 		String ukey = relatedid + tag;
 		BlogData blogData = baseDao.getObject(BlogData.class, ukey);
-		if(blogData != null) return ;
+		if (blogData != null)
+			return;
 		blogData = new BlogData(tag, relatedid);
 		baseDao.saveObject(blogData);
 		monitorService.saveAddLog(userid, BlogData.class, blogData.getUkey(), blogData);
 	}
-	
+
 	@Override
-	public void saveOrUpdateBlogData(Long userid, String tag, Long relatedid, Map<String/*propertyname*/,Integer> keyValueMap) {
+	public void saveOrUpdateBlogData(Long userid, String tag, Long relatedid,
+			Map<String/* propertyname */, Integer> keyValueMap) {
 		String ukey = relatedid + tag;
 		BlogData blogData = baseDao.getObject(BlogData.class, ukey);
-		if(blogData == null){
+		if (blogData == null) {
 			blogData = new BlogData(tag, relatedid);
 		}
 		ChangeEntry changeEntry = new ChangeEntry(blogData);
 		BindUtils.bind(blogData, keyValueMap, false, BlogData.disallowBindField);
-		if(!changeEntry.getChangeMap(blogData).isEmpty()){
+		if (!changeEntry.getChangeMap(blogData).isEmpty()) {
 			blogData.setUpdatetime(DateUtil.getCurFullTimestamp());
 		}
 		baseDao.saveObject(blogData);
 		monitorService.saveChangeLog(userid, BlogData.class, blogData.getUkey(), changeEntry.getChangeMap(blogData));
 	}
-	
-	
+
 	@Override
-	public void saveOrUpdateBlogDateEveryDay(Long userid, String tag, Long relatedid, String blogtype, Date blogdate, int blogcount) {
+	public void saveOrUpdateBlogDateEveryDay(Long userid, String tag, Long relatedid, String blogtype, Date blogdate,
+			int blogcount) {
 		BlogDataEveryDay blogDataEveryDay = getBlogDataEveryDay(tag, relatedid, blogtype, blogdate);
-		if(blogDataEveryDay == null){
+		if (blogDataEveryDay == null) {
 			blogDataEveryDay = new BlogDataEveryDay(tag, relatedid, blogtype, blogdate);
 		}
 		ChangeEntry changeEntry = new ChangeEntry(blogDataEveryDay);
 		blogDataEveryDay.setBlogcount(blogcount);
-		if(!changeEntry.getChangeMap(blogDataEveryDay).isEmpty()){
+		if (!changeEntry.getChangeMap(blogDataEveryDay).isEmpty()) {
 			blogDataEveryDay.setUpdatetime(DateUtil.getCurFullTimestamp());
 		}
 		baseDao.saveObject(blogDataEveryDay);
-		monitorService.saveChangeLog(userid, BlogData.class, blogDataEveryDay.getId(), changeEntry.getChangeMap(blogDataEveryDay));
+		monitorService.saveChangeLog(userid, BlogData.class, blogDataEveryDay.getId(),
+				changeEntry.getChangeMap(blogDataEveryDay));
 	}
-	
+
 	@Override
-	public BlogDataEveryDay getBlogDataEveryDay(String tag, Long relatedid, String blogtype, Date blogdate){
+	public BlogDataEveryDay getBlogDataEveryDay(String tag, Long relatedid, String blogtype, Date blogdate) {
 		DetachedCriteria query = DetachedCriteria.forClass(BlogDataEveryDay.class, "d");
 		query.add(Restrictions.eq("d.tag", tag));
 		query.add(Restrictions.eq("d.relatedid", relatedid));
 		query.add(Restrictions.eq("d.blogtype", blogtype));
 		query.add(Restrictions.eq("d.blogdate", blogdate));
 		query.addOrder(Order.asc("d.addtime"));
-		List<BlogDataEveryDay> blogDataEveryDayList = hibernateTemplate.findByCriteria(query, 0, 1);
-		if(blogDataEveryDayList.isEmpty()) return null;
+		List<BlogDataEveryDay> blogDataEveryDayList = (List<BlogDataEveryDay>) hibernateTemplate.findByCriteria(query,
+				0, 1);
+		if (blogDataEveryDayList.isEmpty())
+			return null;
 		return blogDataEveryDayList.get(0);
 	}
+
 	@Override
-	public List<Map> getDiaryMapList(Timestamp starttime, Timestamp endtime){
+	public List<Map> getDiaryMapList(Timestamp starttime, Timestamp endtime) {
 		DetachedCriteria query = DetachedCriteria.forClass(Diary.class, "d");
 		query.add(Restrictions.isNotNull("d.category"));
 		query.add(Restrictions.isNotNull("d.categoryid"));
@@ -606,30 +643,32 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		ProjectionList projectionList = Projections.projectionList();
 		projectionList.add(Projections.count("categoryid"), "rowcount");
 		Projection pro = Projections.sqlGroupProjection(
-				"to_char({alias}.addtime,'yyyy-mm-dd') as adddate, category, categoryid", 
-				"to_char({alias}.addtime,'yyyy-mm-dd'), category, categoryid", new String[]{"adddate", "category", "categoryid"}, 
-				new Type[]{new StringType(), new StringType(), new StringType()});
+				"to_char({alias}.addtime,'yyyy-mm-dd') as adddate, category, categoryid",
+				"to_char({alias}.addtime,'yyyy-mm-dd'), category, categoryid",
+				new String[] { "adddate", "category", "categoryid" },
+				new Type[] { new StringType(), new StringType(), new StringType() });
 		projectionList.add(pro);
 		query.setProjection(projectionList);
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		return 	hibernateTemplate.findByCriteria(query);
+		return (List<Map>) hibernateTemplate.findByCriteria(query);
 	}
-	
-	
-	private DetachedCriteria queryBlogData(String citycode, String tag, String searchName, String searchKey){
+
+	private DetachedCriteria queryBlogData(String citycode, String tag, String searchName, String searchKey) {
 		DetachedCriteria query = DetachedCriteria.forClass(BlogData.class, "b");
 		query.add(Restrictions.eq("b.tag", tag));
 		Class clazz = RelateClassHelper.getRelateClazz(tag);
-		if(clazz != null){
-			boolean isSearch = StringUtils.isNotBlank(searchName) && StringUtils.isNotBlank(searchKey) && ClassUtils.hasMethod(clazz, "get" + StringUtils.capitalize(searchName));
-			boolean isCitycode = StringUtils.isNotBlank(citycode) && ClassUtils.hasMethod(clazz, "get" + StringUtils.capitalize("citycode"));
-			if(isSearch || isCitycode){
+		if (clazz != null) {
+			boolean isSearch = StringUtils.isNotBlank(searchName) && StringUtils.isNotBlank(searchKey)
+					&& ClassUtils.hasMethod(clazz, "get" + StringUtils.capitalize(searchName));
+			boolean isCitycode = StringUtils.isNotBlank(citycode)
+					&& ClassUtils.hasMethod(clazz, "get" + StringUtils.capitalize("citycode"));
+			if (isSearch || isCitycode) {
 				DetachedCriteria subQuery = DetachedCriteria.forClass(clazz, "c");
-				if(isCitycode){
+				if (isCitycode) {
 					subQuery.add(Restrictions.eq("c.citycode", citycode));
 				}
-				if(isSearch){
-					subQuery.add(Restrictions.like("c."+searchName, searchKey, MatchMode.ANYWHERE));
+				if (isSearch) {
+					subQuery.add(Restrictions.like("c." + searchName, searchKey, MatchMode.ANYWHERE));
 				}
 				subQuery.add(Restrictions.eqProperty("c.id", "b.relatedid"));
 				subQuery.setProjection(Projections.property("c.id"));
@@ -638,49 +677,59 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		}
 		return query;
 	}
-	
+
 	@Override
-	public List<Long> getIdListBlogDataByTag(String citycode, String tag, String searchName, String searchKey, boolean asc, String order, int from, int maxnum){
+	public List<Long> getIdListBlogDataByTag(String citycode, String tag, String searchName, String searchKey,
+			boolean asc, String order, int from, int maxnum) {
 		DetachedCriteria query = queryBlogData(citycode, tag, searchName, searchKey);
 		query.setProjection(Projections.property("b.relatedid"));
-		if(StringUtils.isNotBlank(order) && ClassUtils.hasMethod(BlogData.class, "get" + StringUtils.capitalize(order))){
-			if(asc) query.addOrder(Order.asc(order));
-			else query.addOrder(Order.desc(order));
-		}else{
-			if(asc) query.addOrder(Order.asc("diarycount"));
-			else query.addOrder(Order.desc("diarycount"));
+		if (StringUtils.isNotBlank(order)
+				&& ClassUtils.hasMethod(BlogData.class, "get" + StringUtils.capitalize(order))) {
+			if (asc)
+				query.addOrder(Order.asc(order));
+			else
+				query.addOrder(Order.desc(order));
+		} else {
+			if (asc)
+				query.addOrder(Order.asc("diarycount"));
+			else
+				query.addOrder(Order.desc("diarycount"));
 		}
 		query.addOrder(Order.desc("b.ukey"));
-		List<Long> idList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return idList;
 	}
-	
+
 	@Override
-	public Integer getIdCountBlogDataByTag(String citycode, String tag, String searchName, String searchKey){
+	public Integer getIdCountBlogDataByTag(String citycode, String tag, String searchName, String searchKey) {
 		DetachedCriteria query = queryBlogData(citycode, tag, searchName, searchKey);
 		query.setProjection(Projections.rowCount());
-		List<Long> idList = hibernateTemplate.findByCriteria(query, 0, 1);
-		if(idList.isEmpty()) return 0;
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query, 0, 1);
+		if (idList.isEmpty())
+			return 0;
 		return idList.get(0).intValue();
 	}
-	
-	private DetachedCriteria queryBlogDataEveryDay(String citycode, String tag, String searchName, String searchKey, String blogtype, Date startdate, Date enddate){
+
+	private DetachedCriteria queryBlogDataEveryDay(String citycode, String tag, String searchName, String searchKey,
+			String blogtype, Date startdate, Date enddate) {
 		DetachedCriteria query = DetachedCriteria.forClass(BlogDataEveryDay.class, "b");
 		query.add(Restrictions.eq("b.tag", tag));
 		query.add(Restrictions.eq("b.blogtype", blogtype));
 		query.add(Restrictions.ge("b.blogdate", startdate));
 		query.add(Restrictions.le("b.blogdate", enddate));
 		Class clazz = RelateClassHelper.getRelateClazz(tag);
-		if(clazz != null){
-			boolean isSearch = StringUtils.isNotBlank(searchName) && StringUtils.isNotBlank(searchKey) && ClassUtils.hasMethod(clazz, "get" + StringUtils.capitalize(searchName));
-			boolean isCitycode = StringUtils.isNotBlank(citycode) && ClassUtils.hasMethod(clazz, "get" + StringUtils.capitalize("citycode"));
-			if(isSearch || isCitycode){
+		if (clazz != null) {
+			boolean isSearch = StringUtils.isNotBlank(searchName) && StringUtils.isNotBlank(searchKey)
+					&& ClassUtils.hasMethod(clazz, "get" + StringUtils.capitalize(searchName));
+			boolean isCitycode = StringUtils.isNotBlank(citycode)
+					&& ClassUtils.hasMethod(clazz, "get" + StringUtils.capitalize("citycode"));
+			if (isSearch || isCitycode) {
 				DetachedCriteria subQuery = DetachedCriteria.forClass(clazz, "c");
-				if(isCitycode){
+				if (isCitycode) {
 					subQuery.add(Restrictions.eq("c.citycode", citycode));
 				}
-				if(isSearch){
-					subQuery.add(Restrictions.like("c."+searchName, searchKey, MatchMode.ANYWHERE));
+				if (isSearch) {
+					subQuery.add(Restrictions.like("c." + searchName, searchKey, MatchMode.ANYWHERE));
 				}
 				subQuery.add(Restrictions.eqProperty("c.id", "b.relatedid"));
 				subQuery.setProjection(Projections.property("c.id"));
@@ -689,10 +738,12 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		}
 		return query;
 	}
-	
+
 	@Override
-	public List<Long> getIdListEveryDayByTag(String citycode, String tag, String searchName, String searchKey, String blogtype, Date startdate, Date enddate, int from, int maxnum){
-		DetachedCriteria query = queryBlogDataEveryDay(citycode, tag, searchName, searchKey, blogtype, startdate, enddate);
+	public List<Long> getIdListEveryDayByTag(String citycode, String tag, String searchName, String searchKey,
+			String blogtype, Date startdate, Date enddate, int from, int maxnum) {
+		DetachedCriteria query = queryBlogDataEveryDay(citycode, tag, searchName, searchKey, blogtype, startdate,
+				enddate);
 		ProjectionList projectionList = Projections.projectionList();
 		projectionList.add(Projections.rowCount(), "rowcount");
 		projectionList.add(Projections.groupProperty("relatedid"), "relatedid");
@@ -700,20 +751,23 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
 		query.addOrder(Order.desc("rowcount"));
 		query.addOrder(Order.desc("relatedid"));
-		List<Map> mapList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Map> mapList = (List<Map>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		List<Long> idList = new ArrayList<Long>();
 		for (Map map : mapList) {
-			idList.add(Long.parseLong(map.get("relatedid")+""));
+			idList.add(Long.parseLong(map.get("relatedid") + ""));
 		}
 		return idList;
 	}
-	
+
 	@Override
-	public Integer getIdCountEveryDayByTag(String citycode, String tag, String searchName, String searchKey, String blogtype, Date startdate, Date enddate){
-		DetachedCriteria query = queryBlogDataEveryDay(citycode, tag, searchName, searchKey, blogtype, startdate, enddate);
+	public Integer getIdCountEveryDayByTag(String citycode, String tag, String searchName, String searchKey,
+			String blogtype, Date startdate, Date enddate) {
+		DetachedCriteria query = queryBlogDataEveryDay(citycode, tag, searchName, searchKey, blogtype, startdate,
+				enddate);
 		query.setProjection(Projections.countDistinct("relatedid"));
-		List<Long> idList = hibernateTemplate.findByCriteria(query, 0, 1);
-		if(idList.isEmpty()) return 0;
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query, 0, 1);
+		if (idList.isEmpty())
+			return 0;
 		return idList.get(0).intValue();
 	}
 
@@ -722,31 +776,33 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		String key = CacheConstant.buildKey("badUsrCheckInterface", member.getId());
 		Object obj = cacheService.get(CacheConstant.REGION_ONEDAY, key);
 		if (obj != null) {
-			int totalEggs = (Integer)obj;
+			int totalEggs = (Integer) obj;
 			MemberInfo memberInfo = baseDao.getObject(MemberInfo.class, member.getId());
-			if (memberInfo!=null && !memberInfo.isBindSuccess()) {
-				if ( totalEggs >= unbindUsrLimitEgg ) {
-					return 1;//otherparty usr or dny usr,unbind account 
+			if (memberInfo != null && !memberInfo.isBindSuccess()) {
+				if (totalEggs >= unbindUsrLimitEgg) {
+					return 1;// otherparty usr or dny usr,unbind account
 				}
-			}else if(memberInfo!=null && StringUtils.isNotBlank(memberInfo.getNewtask())){
-				if(!StringUtils.contains(memberInfo.getNewtask(), "confirmreg") && !StringUtils.contains(memberInfo.getNewtask(), "bindmobile")){
+			} else if (memberInfo != null && StringUtils.isNotBlank(memberInfo.getNewtask())) {
+				if (!StringUtils.contains(memberInfo.getNewtask(), "confirmreg")
+						&& !StringUtils.contains(memberInfo.getNewtask(), "bindmobile")) {
 					if (totalEggs >= unbindUsrLimitEgg) {
-						return 7;//unbind mobile,bindeml,uncheck eml
+						return 7;// unbind mobile,bindeml,uncheck eml
 					}
 				}
-			}else if(memberInfo == null ){
-				return 0;//xxx usr
+			} else if (memberInfo == null) {
+				return 0;// xxx usr
 			}
 			if (totalEggs >= bindUsrLimitEgg) {
-				return 51;//limit eggs
+				return 51;// limit eggs
 			}
 			totalEggs++;
-			cacheService.set(CacheConstant.REGION_ONEDAY, key,totalEggs);
-		}else {			
-			cacheService.set(CacheConstant.REGION_ONEDAY, key,1);
+			cacheService.set(CacheConstant.REGION_ONEDAY, key, totalEggs);
+		} else {
+			cacheService.set(CacheConstant.REGION_ONEDAY, key, 1);
 		}
 		return 777;
 	}
+
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		rebuildFilterKey();
@@ -755,12 +811,13 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		initEgg();
 		initRegEx();
 	}
-	public void initEgg(){
+
+	public void initEgg() {
 		Map map1 = mongoService.findOne(MongoData.NS_BADEGG, MongoData.DEFAULT_ID_NAME, "BIND_USR_LIMIT_EGG");
 		Map map2 = mongoService.findOne(MongoData.NS_BADEGG, MongoData.DEFAULT_ID_NAME, "UNBIND_USR_LIMIT_EGG");
 		if (map1 != null) {
 			bindUsrLimitEgg = (Integer) map1.get("val");
-		}else if (map1 == null) {
+		} else if (map1 == null) {
 			map1 = new HashMap();
 			map1.put(MongoData.DEFAULT_ID_NAME, "BIND_USR_LIMIT_EGG");
 			map1.put("val", bindUsrLimitEgg);
@@ -768,44 +825,47 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService, Ini
 		}
 		if (map2 != null) {
 			unbindUsrLimitEgg = (Integer) map2.get("val");
-		}else if (map2 == null) {
+		} else if (map2 == null) {
 			map2 = new HashMap();
 			map2.put(MongoData.DEFAULT_ID_NAME, "UNBIND_USR_LIMIT_EGG");
 			map2.put("val", unbindUsrLimitEgg);
 			mongoService.saveOrUpdateMap(map2, MongoData.DEFAULT_ID_NAME, MongoData.NS_BADEGG);
 		}
 	}
-	public void initRegEx(){
+
+	public void initRegEx() {
 		Map map1 = mongoService.findOne(MongoData.NS_REGEXP, MongoData.DEFAULT_ID_NAME, "RexEx");
 		if (map1 != null) {
 			XSSFilter.regExp = (String) map1.get("val");
 		}
 	}
+
 	@Override
-	public void rebuildAllFilterKeys(){
+	public void rebuildAllFilterKeys() {
 		rebuildFilterKey();
 		rebuildManualFilterKey();
 		rebuildMemberRegisterFilterKey();
 	}
+
 	@Override
 	public void refreshCurrent(String newConfig) {
 		rebuildAllFilterKeys();
 		GewaConfig cfg = baseDao.getObject(GewaConfig.class, ConfigConstant.CFG_BBS_TIME);
-		//夜间贴
-		if(cfg!=null){
-			Map<String, Integer> gewaConMap =	JsonUtils.readJsonToMap(cfg.getContent());
-			if(gewaConMap!=null){
-				if(gewaConMap.get("nightStart")!=null){
+		// 夜间贴
+		if (cfg != null) {
+			Map<String, Integer> gewaConMap = JsonUtils.readJsonToMap(cfg.getContent());
+			if (gewaConMap != null) {
+				if (gewaConMap.get("nightStart") != null) {
 					night_begin = gewaConMap.get("nightStart");
 				}
-				if(gewaConMap.get("nightEnd")!=null){
+				if (gewaConMap.get("nightEnd") != null) {
 					night_end = gewaConMap.get("nightEnd");
 				}
-				if(gewaConMap.get("frequency")!=null){
+				if (gewaConMap.get("frequency") != null) {
 					frequency = gewaConMap.get("frequency");
-					frequency = frequency*OperationService.HALF_HOUR;
+					frequency = frequency * OperationService.HALF_HOUR;
 				}
-				if(gewaConMap.get("times")!=null){
+				if (gewaConMap.get("times") != null) {
 					times = gewaConMap.get("times");
 				}
 			}

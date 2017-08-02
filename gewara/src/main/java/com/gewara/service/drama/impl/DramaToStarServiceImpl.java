@@ -47,7 +47,7 @@ public class DramaToStarServiceImpl extends BaseServiceImpl implements DramaToSt
 			query.add(Restrictions.gt("numsort", 0));
 		}
 		query.addOrder(Order.asc("numsort"));
-		return hibernateTemplate.findByCriteria(query);
+		return (List<DramaToStar>) hibernateTemplate.findByCriteria(query);
 	}
 	@Override
 	public Integer getStarCount(Long relatedid, Long starid){
@@ -76,7 +76,7 @@ public class DramaToStarServiceImpl extends BaseServiceImpl implements DramaToSt
 		if(isCurrent){
 			query.add(Restrictions.and(Restrictions.le("d.releasedate", current), Restrictions.ge("d.enddate", current)));
 		}
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<Drama>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public Integer getDramaCountByStarid(Long starid) {
@@ -115,6 +115,6 @@ public class DramaToStarServiceImpl extends BaseServiceImpl implements DramaToSt
 		subquery.setProjection(Projections.property("dts.id"));
 		if(StringUtils.isNotBlank(starType))query.add(Restrictions.like("startype", starType, MatchMode.ANYWHERE));
 		query.add(Subqueries.exists(subquery));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<DramaStar>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 }

@@ -65,7 +65,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		query.add(Restrictions.eq("tomemberid", memberid));
 		query.add(Restrictions.ne("status", "tdel"));
 		query.addOrder(Order.desc("addtime"));
-		List<UserMessageAction> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<UserMessageAction> list = (List<UserMessageAction>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	@Override
@@ -73,7 +73,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		DetachedCriteria query = DetachedCriteria.forClass(UserMessageAction.class);
 		query.add(Restrictions.eq("groupid", groupid));
 		query.addOrder(Order.asc("addtime"));
-		List<UserMessageAction> list = readOnlyTemplate.findByCriteria(query);
+		List<UserMessageAction> list = (List<UserMessageAction>) readOnlyTemplate.findByCriteria(query);
 		return list;
 	}
 	@Override
@@ -93,7 +93,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		query.add(Restrictions.ne("status", TagConstant.STATUS_FDEL));
 		query.add(Restrictions.eq("frommemberid", memberid));
 		query.addOrder(Order.desc("addtime"));
-		List<UserMessageAction> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<UserMessageAction> list = (List<UserMessageAction>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	
@@ -114,14 +114,14 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		query.add(Restrictions.eq("tomemberid", memberid));
 		if(StringUtils.isNotBlank(status)) query.add(Restrictions.eq("status", status));
 		query.addOrder(Order.desc("addtime"));
-		List<SysMessageAction> list = readOnlyTemplate.findByCriteria(query, from ,maxnum);
+		List<SysMessageAction> list = (List<SysMessageAction>) readOnlyTemplate.findByCriteria(query, from ,maxnum);
 		return list;
 	}
 	@Override
 	public UserMessageAction getUserMessageActionByUserMessageid(Long mid) {
 		DetachedCriteria query = DetachedCriteria.forClass(UserMessageAction.class);
 		query.add(Restrictions.eq("usermessageid", mid));
-		List<UserMessageAction> umaList = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<UserMessageAction> umaList = (List<UserMessageAction>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if(umaList.isEmpty())return null;
 		return umaList.get(0);
 	}
@@ -157,7 +157,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		 subquery.setProjection(Projections.alias(Projections.max("u2.id"), "u2id"));
 		 query.add(Subqueries.propertyEq("u1.id", subquery));
 		 query.addOrder(Order.desc("addtime"));
-		 List<UserMessageAction> result = readOnlyTemplate.findByCriteria(query, first, maxnum);
+		 List<UserMessageAction> result = (List<UserMessageAction>) readOnlyTemplate.findByCriteria(query, first, maxnum);
 		 return result;
 	}
 	
@@ -177,7 +177,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		}
 		query.addOrder(Order.desc("addtime"));
 		
-		List<UserMessageAction> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<UserMessageAction> result = (List<UserMessageAction>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -205,7 +205,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 	@Override
 	public boolean isSendMsg(Long memberid){
 		String hql = "select max(m.addtime) from UserMessageAction m where m.frommemberid=?";
-		List<Timestamp> list = readOnlyTemplate.find(hql, memberid);
+		List<Timestamp> list = (List<Timestamp>) readOnlyTemplate.find(hql, memberid);
 		Timestamp t = list.get(0);
 		if(t==null) return true;
 		if(t.getTime()+TagConstant.MAX_SECOND*1000>System.currentTimeMillis()) {
@@ -228,7 +228,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		query.add(Restrictions.or(Restrictions.eq("frommemberid", memberid), Restrictions.eq("tomemberid", memberid)));
 		query.add(Restrictions.ne("status", SysAction.STATUS_APPLY));
 		query.addOrder(Order.desc("addtime"));
-		List<UserMessageAction> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<UserMessageAction> list = (List<UserMessageAction>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	@Override
@@ -243,7 +243,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		if(addtime!=null) query.add(Restrictions.gt("addtime", addtime));
 		query.add(Restrictions.ne("status", "tdel"));
 		query.addOrder(Order.desc("addtime"));
-		List<UserMessageAction> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<UserMessageAction> list = (List<UserMessageAction>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	@Override
@@ -257,7 +257,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		if(actionid!=null)query.add(Restrictions.eq("actionid", actionid));
 		query.add(Restrictions.eq("action", action));
 		query.add(Restrictions.eq("status", SysAction.STATUS_APPLY));
-		List<SysMessageAction> sysList = readOnlyTemplate.findByCriteria(query);
+		List<SysMessageAction> sysList = (List<SysMessageAction>) readOnlyTemplate.findByCriteria(query);
 		if(sysList.size()>0) return true;
 		return false;
 	}
@@ -272,7 +272,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		query.add(Restrictions.eq("actionid", commuid));
 		query.add(Restrictions.eq("action", action));
 		query.add(Restrictions.eq("status", SysAction.STATUS_APPLY));
-		List<SysMessageAction> sysList = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<SysMessageAction> sysList = (List<SysMessageAction>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if(sysList.isEmpty())return null;
 		return sysList.get(0);
 	}
@@ -315,7 +315,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		DetachedCriteria query = DetachedCriteria.forClass(SysMessageAction.class,"s");
 		query.add(Restrictions.eq("s.tomemberid",memberid));
 		query.add(Restrictions.eq("s.isread",isRead));
-		List<SysMessageAction> list = readOnlyTemplate.findByCriteria(query);
+		List<SysMessageAction> list = (List<SysMessageAction>) readOnlyTemplate.findByCriteria(query);
 		return list;
 	}
 	@Override
@@ -324,7 +324,7 @@ public class UserMessageServiceImpl extends BaseServiceImpl implements UserMessa
 		query.add(Restrictions.eq("s.actionid", actionid));
 		query.add(Restrictions.eq("s.action", action));
 		query.add(Restrictions.eq("s.status", status));
-		List<SysMessageAction> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<SysMessageAction> result = (List<SysMessageAction>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 

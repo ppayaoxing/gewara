@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +81,7 @@ public class PartnerServiceImpl extends BaseServiceImpl implements PartnerServic
 			}
 			
 			query.setProjection(Projections.property("id"));
-			idList = hibernateTemplate.findByCriteria(query);
+			idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, idList);
 		}
 		List<OpenPlayItem> opiList = baseDao.getObjectList(OpenPlayItem.class, idList);
@@ -99,9 +100,9 @@ public class PartnerServiceImpl extends BaseServiceImpl implements PartnerServic
 					"and gsellnum < asellnum and opi.citycode = ? ";
 			if(movieid != null) {
 				query += "and movieid = ?";
-				playdateList = hibernateTemplate.find(query, OpiConstant.PARTNER_OPEN, OpiConstant.STATUS_BOOK, curtime, curtime, citycode, movieid);
+				playdateList = (List<String>) hibernateTemplate.find(query, OpiConstant.PARTNER_OPEN, OpiConstant.STATUS_BOOK, curtime, curtime, citycode, movieid);
 			}else{
-				playdateList = hibernateTemplate.find(query, OpiConstant.PARTNER_OPEN, OpiConstant.STATUS_BOOK, curtime, curtime, citycode);
+				playdateList = (List<String>) hibernateTemplate.find(query, OpiConstant.PARTNER_OPEN, OpiConstant.STATUS_BOOK, curtime, curtime, citycode);
 			}
 			
 			Collections.sort(playdateList);
@@ -147,7 +148,7 @@ public class PartnerServiceImpl extends BaseServiceImpl implements PartnerServic
 			query.add(Restrictions.gt("op.closetime", cur));
 			query.add(Restrictions.ltProperty("op.gsellnum", "op.asellnum"));
 			query.setProjection(Projections.distinct(Projections.property("op.movieid")));
-			movieidList = hibernateTemplate.findByCriteria(query);
+			movieidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, movieidList);
 		}
 		List<Movie> movieList = baseDao.getObjectList(Movie.class, movieidList);
@@ -161,7 +162,7 @@ public class PartnerServiceImpl extends BaseServiceImpl implements PartnerServic
 		query.add(Restrictions.lt("paidtime", paidtimeTo));
 		query.add(Restrictions.eq("t.partnerid", apiUser.getId()));
 		query.addOrder(Order.desc("addtime"));
-		List<TicketOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	@Override
@@ -172,7 +173,7 @@ public class PartnerServiceImpl extends BaseServiceImpl implements PartnerServic
 		query.add(Restrictions.lt("updatetime", refundtimeTo));
 		query.add(Restrictions.eq("t.partnerid", apiUser.getId()));
 		query.addOrder(Order.desc("addtime"));
-		List<TicketOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 
@@ -203,8 +204,9 @@ public class PartnerServiceImpl extends BaseServiceImpl implements PartnerServic
 				query.add(Restrictions.in("op.citycode", citycodeList));
 			}
 			if(movieid!=null) query.add(Restrictions.eq("op.movieid", movieid));
-			query.setProjection(Projections.distinct(Projections.property("op.cinemaid")));
-			cinemaidList = hibernateTemplate.findByCriteria(query);
+			Projection distinct = Projections.distinct(Projections.property("op.cinemaid"));
+			query.setProjection(distinct);
+			cinemaidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, cinemaidList);
 		}
 		return baseDao.getObjectList(Cinema.class, cinemaidList);
@@ -228,7 +230,7 @@ public class PartnerServiceImpl extends BaseServiceImpl implements PartnerServic
 	public void refreshCurrent(String newConfig) {
 		Timestamp cur = DateUtil.getCurTruncTimestamp();
 		String query = "select id from PartnerCloseRule where opentime2 > ?";
-		List<Long> idList = hibernateTemplate.find(query, cur);
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query, cur);
 		pcrList = baseDao.getObjectList(PartnerCloseRule.class, idList);
 	}
 }

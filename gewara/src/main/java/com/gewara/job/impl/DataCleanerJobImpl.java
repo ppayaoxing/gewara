@@ -123,13 +123,13 @@ public class DataCleanerJobImpl extends JobService implements DataCleanerJob{
 	public void cleanCoupon(){
 		//cinema
 		String query = "select c.id from Cinema c where c.coupon != 'N'";
-		List<Long> idList = hibernateTemplate.find(query);
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query);
 		for(Long relatedid:idList){
 			commonService.updateCoupon(null, "cinema", relatedid);
 		}
 		//sport
 		query = "select c.id from Sport c where c.coupon != 'N'";
-		idList = hibernateTemplate.find(query);
+		idList = (List<Long>) hibernateTemplate.find(query);
 		for(Long relatedid:idList){
 			commonService.updateCoupon(null, "sport", relatedid);
 		}

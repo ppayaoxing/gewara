@@ -2,6 +2,7 @@ package com.gewara.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -17,6 +18,8 @@ import com.gewara.model.acl.User;
 public abstract class AbstractAclService implements UserDetailsService {
 	@Autowired@Qualifier("baseDao")
 	protected Dao baseDao;
+	@Autowired
+	protected HibernateTemplate hibernateTemplate;
 	public void setBaseDao(Dao baseDao) {
 		this.baseDao = baseDao;
 	}

@@ -98,7 +98,7 @@ public class VideoServiceImpl extends BaseServiceImpl implements VideoService {
 		if(order != null && order != ""){
 			qry.addOrder(Order.desc(order));
 		}
-		List<Video> videoList = readOnlyTemplate.findByCriteria(qry, from, maxnum);
+		List<Video> videoList = (List<Video>) readOnlyTemplate.findByCriteria(qry, from, maxnum);
 		return videoList;
 	}
 }

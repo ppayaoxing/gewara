@@ -246,7 +246,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		DetachedCriteria query = DetachedCriteria.forClass(OpenMember.class);
 		query.add(Restrictions.eq("source",source));
 		query.add(Restrictions.eq("loginname", loginname));
-		List<OpenMember> result = hibernateTemplate.findByCriteria(query);
+		List<OpenMember> result = (List<OpenMember>) hibernateTemplate.findByCriteria(query);
 		if(!result.isEmpty()) return result.get(0);
 		return null;
 	}
@@ -255,7 +255,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		DetachedCriteria query = DetachedCriteria.forClass(OpenMember.class);
 		query.add(Restrictions.eq("source",source));
 		query.add(Restrictions.eq("memberid", memberid));
-		List<OpenMember> result = hibernateTemplate.findByCriteria(query);
+		List<OpenMember> result = (List<OpenMember>) hibernateTemplate.findByCriteria(query);
 		if(result.size() > 0) return result.get(0);
 		return null;
 	}
@@ -265,7 +265,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		DetachedCriteria query = DetachedCriteria.forClass(MemberInfoMore.class);
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.eq("tag", tag));
-		return readOnlyTemplate.findByCriteria(query);
+		return (List<MemberInfoMore>) readOnlyTemplate.findByCriteria(query);
 	}
 	@Override
 	public OpenMember createOpenMember(String citycode, String source, String shortSource, String loginname, String ip) {
@@ -517,7 +517,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		if(StringUtils.isNotBlank(dkey)){
 			query.add(Restrictions.like("otherinfo", dkey));
 		}
-		return hibernateTemplate.findByCriteria(query);
+		return (List<MemberInfo>) hibernateTemplate.findByCriteria(query);
 	}
 	@Override
 	public MemberInfo saveNewTask(Long memberid, String newtask){
@@ -663,7 +663,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		DetachedCriteria query = DetachedCriteria.forClass(Jobs.class);
 		query.add(Restrictions.le("expvalue", exp));
 		query.addOrder(Order.desc("id"));
-		List<Jobs> jobsList = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<Jobs> jobsList = (List<Jobs>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if (jobsList.size() > 0)
 			return jobsList.get(0);
 		return null;
@@ -675,7 +675,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		DetachedCriteria query = DetachedCriteria.forClass(Jobs.class);
 		query.add(Restrictions.gt("expvalue", exp));
 		query.addOrder(Order.asc("id"));
-		List<Jobs> jobsList = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<Jobs> jobsList = (List<Jobs>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if (jobsList.size() > 0)
 			return jobsList.get(0);
 		return null;
@@ -712,7 +712,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		DetachedCriteria query = DetachedCriteria.forClass(JobsUp.class);
 		query.add(Restrictions.eq("memberid", memberId));
 		query.addOrder(Order.desc("addtime"));
-		List<JobsUp> jobsUpList = hibernateTemplate.findByCriteria(query);
+		List<JobsUp> jobsUpList = (List<JobsUp>) hibernateTemplate.findByCriteria(query);
 		if(jobsUpList.size()>0){
 			return jobsUpList;
 		}
@@ -748,9 +748,9 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		String query2 = "from Member m where m.mobile = ? and m.password=? ";
 		List<Member> members = null;
 		if(ValidateUtil.isMobile(loginName)){
-			members = hibernateTemplate.find(query2, loginName, encodePass);
+			members = (List<Member>) hibernateTemplate.find(query2, loginName, encodePass);
 		}else{
-			members = hibernateTemplate.find(query1, loginName.toLowerCase(), encodePass);
+			members = (List<Member>) hibernateTemplate.find(query1, loginName.toLowerCase(), encodePass);
 		}
 		if(members.size()> 0) {
 			Member member = members.get(0);
@@ -767,7 +767,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		DetachedCriteria query = DetachedCriteria.forClass(MemberUsefulAddress.class);
 		if(memberid != null)query.add(Restrictions.eq("memberid", memberid));
 		query.addOrder(Order.desc("addtime"));
-		List<MemberUsefulAddress> addressList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<MemberUsefulAddress> addressList = (List<MemberUsefulAddress>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return addressList;
 	}
 	@Override
@@ -1062,9 +1062,9 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		String query2 = "from Member m where m.mobile = ?";
 		List<Member> members = null;
 		if(ValidateUtil.isMobile(loginName)){
-			members = hibernateTemplate.find(query2, loginName);
+			members = (List<Member>) hibernateTemplate.find(query2, loginName);
 		}else{
-			members = hibernateTemplate.find(query1, loginName.toLowerCase());
+			members = (List<Member>) hibernateTemplate.find(query1, loginName.toLowerCase());
 		}
 		if(members.size()> 0) {
 			return members.get(0);

@@ -121,7 +121,7 @@ public class MessageServiceImpl extends BaseServiceImpl implements MessageServic
 		if (order instanceof TicketOrder) {
 			OpenPlayItem opi = baseDao.getObjectByUkey(OpenPlayItem.class, "mpid", ((TicketOrder) order).getMpid(), true);
 			String query = "from SellSeat where id in (select t.seatid from Order2SellSeat t where t.orderid = ?) ";
-			List<SellSeat> seatList = hibernateTemplate.find(query, order.getId());
+			List<SellSeat> seatList = (List<SellSeat>) hibernateTemplate.find(query, order.getId());
 			try{
 				return addTicketOrderMessage((TicketOrder) order, seatList, opi);
 			}catch(Exception e){
@@ -540,7 +540,7 @@ public class MessageServiceImpl extends BaseServiceImpl implements MessageServic
 		DetachedCriteria query = DetachedCriteria.forClass(SMSRecord.class);
 		query.add(Restrictions.eq("relatedid",ottid));
 		query.add(Restrictions.eq("contact",mobile));
-		List<SMSRecord> result= hibernateTemplate.findByCriteria(query);
+		List<SMSRecord> result= (List<SMSRecord>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -573,7 +573,7 @@ public class MessageServiceImpl extends BaseServiceImpl implements MessageServic
 	@Override
 	public SMSRecord getSMSRecordByUkey(String tradeNo, String contact, String smstype){
 		String query = "from SMSRecord where tradeNo=? and contact=? and smstype=?";
-		List<SMSRecord> result = hibernateTemplate.find(query, tradeNo, contact, smstype);
+		List<SMSRecord> result = (List<SMSRecord>) hibernateTemplate.find(query, tradeNo, contact, smstype);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -908,7 +908,7 @@ public class MessageServiceImpl extends BaseServiceImpl implements MessageServic
 		query.addOrder(Order.desc("smstype"));
 		query.addOrder(Order.asc("sendnum"));
 		query.addOrder(Order.asc("sendtime"));
-		List<SMSRecord> result = hibernateTemplate.findByCriteria(query, 0, maxnum);
+		List<SMSRecord> result = (List<SMSRecord>) hibernateTemplate.findByCriteria(query, 0, maxnum);
 		return result;
 	}
 	@Override
@@ -919,7 +919,7 @@ public class MessageServiceImpl extends BaseServiceImpl implements MessageServic
 		query.add(Restrictions.ge("sendnum", 2));
 		query.add(Restrictions.ge("validtime", nowTime));
 		query.add(Restrictions.isNotNull("tradeNo"));
-		List<SMSRecord> smsList = hibernateTemplate.findByCriteria(query);
+		List<SMSRecord> smsList = (List<SMSRecord>) hibernateTemplate.findByCriteria(query);
 		return smsList;
 	}
 	@Override
@@ -939,7 +939,7 @@ public class MessageServiceImpl extends BaseServiceImpl implements MessageServic
 		subQuery.setProjection(Projections.property("o.orderid"));
 		subQuery.add(Restrictions.isNull("o.message"));
 		
-		List<DramaOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<DramaOrder> orderList = (List<DramaOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	
@@ -972,7 +972,7 @@ public class MessageServiceImpl extends BaseServiceImpl implements MessageServic
 		query.addOrder(Order.asc("mobile"));
 		List<String> mobiles = null;
 		for(int i=0, page=(count+1)/1000; i<=page; i++){
-			mobiles = hibernateTemplate.findByCriteria(query, i*1000, 1000);
+			mobiles = (List<String>) hibernateTemplate.findByCriteria(query, i*1000, 1000);
 			mobileList += StringUtils.join(mobiles, ",") + ",";
 		}
 		return mobileList;
@@ -993,7 +993,7 @@ public class MessageServiceImpl extends BaseServiceImpl implements MessageServic
 			DetachedCriteria subquery = DetachedCriteria.forClass(Goods.class, "g");
 			if(relatedid!=null) subquery.add(Restrictions.eq("g.relatedid", relatedid));
 			subquery.setProjection(Projections.property("g.id"));
-			List<Long> list = hibernateTemplate.findByCriteria(subquery);
+			List<Long> list = (List<Long>) hibernateTemplate.findByCriteria(subquery);
 			if(list.isEmpty()) return null;
 			else {
 				query.add(Restrictions.in("o.goodsid", list));
@@ -1050,7 +1050,7 @@ public class MessageServiceImpl extends BaseServiceImpl implements MessageServic
 		if(relatedid != null)query.add(Restrictions.eq("relatedid", relatedid));
 		if(memberid != null) query.add(Restrictions.eq("memberid", memberid));
 		query.setProjection(Projections.sum("sendnum"));
-		List<Long> result = hibernateTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 		if(result.get(0)==null) return 0;
 		return Integer.parseInt(result.get(0)+"");
 		

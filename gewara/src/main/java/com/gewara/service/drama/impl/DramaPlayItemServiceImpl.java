@@ -72,14 +72,14 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 	
 	@Override
 	public Drama getDramaByName(String dramaName){
-		List<Long> movieidList = hibernateTemplate.find("select id from Drama m where m.dramaname = ?",dramaName);
+		List<Long> movieidList = (List<Long>) hibernateTemplate.find("select id from Drama m where m.dramaname = ?",dramaName);
 		if(movieidList.size()>0) return baseDao.getObject(Drama.class, movieidList.get(0));
 		return null;
 	}
 	
 	@Override
 	public List<Drama> getDramaListByName(String dramaName) {
-		List<Long> dramaidList = hibernateTemplate.find("select id from Drama m where m.dramaname like ?", "%" + dramaName + "%");
+		List<Long> dramaidList = (List<Long>) hibernateTemplate.find("select id from Drama m where m.dramaname like ?", "%" + dramaName + "%");
 		return baseDao.getObjectList(Drama.class, dramaidList);
 	}
 	
@@ -147,7 +147,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 	@Override
 	public List<DisQuantity> getDisQuantityListByDpid(Long dpid){
 		String qry = "from DisQuantity d where exists(select t.id from TheatreSeatPrice t where t.id=d.tspid and t.status <> 'D' and t.dpid=?)";
-		List<DisQuantity> disList = hibernateTemplate.find(qry, dpid);
+		List<DisQuantity> disList = (List<DisQuantity>) hibernateTemplate.find(qry, dpid);
 		return disList;
 	}
 	@Override
@@ -207,7 +207,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 				qry = qry + "from DramaPlayItem o where o.theatreid=? and o.playtime>=? and o.status like ? ";
 				qry = qry + "group by to_char(o.playtime,'yyyy-MM') ";
 				qry = qry + "order by to_char(o.playtime,'yyyy-MM')";
-		List<Map> dateMapList = hibernateTemplate.find(qry, theatreid, starttime, DramaPlayItem.STATUS_Y+"%");
+		List<Map> dateMapList = (List<Map>) hibernateTemplate.find(qry, theatreid, starttime, DramaPlayItem.STATUS_Y+"%");
 		return dateMapList;
 	}
 	@Override
@@ -277,7 +277,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 		qry.addOrder(Order.asc("sortnum"));
 		qry.addOrder(Order.asc("playtime"));
 		qry.addOrder(Order.asc("id"));
-		List<DramaPlayItem> playList = hibernateTemplate.findByCriteria(qry);
+		List<DramaPlayItem> playList = (List<DramaPlayItem>) hibernateTemplate.findByCriteria(qry);
 		return playList;
 	}
 	@Override
@@ -328,7 +328,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 		qry.add(Subqueries.notExists(sub));
 		qry.addOrder(Order.asc("d.sortnum"));
 		qry.addOrder(Order.asc("d.playtime"));
-		List<DramaPlayItem> playList = hibernateTemplate.findByCriteria(qry, 0, maxnum);
+		List<DramaPlayItem> playList = (List<DramaPlayItem>) hibernateTemplate.findByCriteria(qry, 0, maxnum);
 		return playList;
 	}
 	@Override
@@ -349,7 +349,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 	@Override
 	public List<TheatreRoom> getRoomList(Long theatreid){
 		String qry = "from TheatreRoom r where r.theatreid=? order by r.num";
-		List<TheatreRoom> roomList = hibernateTemplate.find(qry, theatreid);
+		List<TheatreRoom> roomList = (List<TheatreRoom>) hibernateTemplate.find(qry, theatreid);
 		return roomList;
 	}
 	
@@ -372,7 +372,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 	@Override
 	public TheatreSeatPrice getTsp(Long dpid, Long areaid, Integer price, String seattype) {
 		String qry = "from TheatreSeatPrice t where t.dpid=? and t.areaid=? and t.price=? and (t.status <> 'D' or t.status is null) and t.seattype=?";
-		List<TheatreSeatPrice> tspList = hibernateTemplate.find(qry, dpid, areaid, price, seattype);
+		List<TheatreSeatPrice> tspList = (List<TheatreSeatPrice>) hibernateTemplate.find(qry, dpid, areaid, price, seattype);
 		if(tspList.size()==0) return null;
 		return tspList.get(0);
 	}
@@ -394,7 +394,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 			qry += " and exists(select a.id from TheatreSeatArea a where a.id=t.areaid and a.status='Y' )";
 		}
 		 qry += " and (t.status <> 'D' or t.status is null) order by t.seattype ";
-		List<TheatreSeatPrice> tspList = hibernateTemplate.find(qry, params.toArray());
+		List<TheatreSeatPrice> tspList = (List<TheatreSeatPrice>) hibernateTemplate.find(qry, params.toArray());
 		return tspList;
 	}
 	@Override
@@ -439,7 +439,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 				query.setProjection(Projections.distinct(Projections.property("t.theatreprice")));
 			}
 			query.add(Subqueries.exists(sub));
-			priceList = hibernateTemplate.findByCriteria(query);
+			priceList = (List<Integer>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_ONEMIN, key, priceList);
 		}
 		Collections.sort(priceList);
@@ -482,7 +482,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 			query.add(Restrictions.eq("i.citycode", citycode));
 			query.add(Restrictions.or(con1, con2));
 			query.setProjection(Projections.distinct(Projections.property("i.theatreid")));
-			idList = hibernateTemplate.findByCriteria(query);
+			idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, idList);
 		}
 		return idList;
@@ -515,7 +515,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 			list.add(Projections.max("i.sortnum"),"sortnum");
 			query.setProjection(list);
 			query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-			List<Map> resultMap = hibernateTemplate.findByCriteria(query);
+			List<Map> resultMap = (List<Map>) hibernateTemplate.findByCriteria(query);
 			Collections.sort(resultMap, new MultiPropertyComparator(new String[]{"sortnum"}, new boolean[]{true}));
 			idList = new ArrayList<Long>();
 			for (Map result : resultMap) {
@@ -548,7 +548,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 			query.add(Restrictions.eq("i.citycode", citycode));
 			query.add(Restrictions.or(con1, con2));
 			query.setProjection(Projections.distinct(Projections.property("i.dramaid")));
-			idList = hibernateTemplate.findByCriteria(query);
+			idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, idList);
 		}
 		return idList;
@@ -597,7 +597,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 			con2.add(Restrictions.eq("i.period",Status.N));
 			query.add(Restrictions.or(con1, con2));
 			query.setProjection(Projections.distinct(Projections.property("i.theatreid")));
-			idList = hibernateTemplate.findByCriteria(query);
+			idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_HALFHOUR, key, idList);
 		}
 		return idList;
@@ -645,7 +645,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 			query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
 			query.addOrder(Order.desc("num"));
 			rowList = new Hashtable<Long,Integer>();
-			List<Map> tmpMapList = readOnlyTemplate.findByCriteria(query);
+			List<Map> tmpMapList = (List<Map>) readOnlyTemplate.findByCriteria(query);
 			for (Map tmpMap : tmpMapList) {
 				rowList.put((Long)tmpMap.get("theatreid"), Integer.parseInt(tmpMap.get("num")+""));
 			}
@@ -710,7 +710,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 				query += " and o.status != ? ";
 				params.add(DramaPlayItem.STATUS_N);
 			}
-			playdateList = hibernateTemplate.find(query, params.toArray());
+			playdateList = (List<String>) hibernateTemplate.find(query, params.toArray());
 			Collections.sort(playdateList);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, playdateList);
 		}
@@ -745,7 +745,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 				query += " and o.status != ? ";
 				params.add(DramaPlayItem.STATUS_N);
 			}
-			playdateList = hibernateTemplate.find(query, params.toArray());
+			playdateList = (List<String>) hibernateTemplate.find(query, params.toArray());
 			Collections.sort(playdateList);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, playdateList);
 		}
@@ -794,7 +794,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 		subquery.setProjection(Projections.property("odi.id"));
 		query.add(Subqueries.exists(subquery));
 		query.setProjection(Projections.property("dpi.id"));
-		List<Long> dpidList = hibernateTemplate.findByCriteria(query);
+		List<Long> dpidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return dpidList;
 	}
 	@Override
@@ -805,7 +805,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 		query.add(Restrictions.eq("roomid", roomid));
 		query.add(Restrictions.eq("playtime", playtime));
 		query.addOrder(Order.asc("id"));
-		List<DramaPlayItem> itemList = hibernateTemplate.findByCriteria(query);
+		List<DramaPlayItem> itemList = (List<DramaPlayItem>) hibernateTemplate.findByCriteria(query);
 		if(itemList.size() > 0) return itemList.get(0);
 		return null;
 	}
@@ -840,7 +840,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 			subQry.setProjection(Projections.property("o.id"));
 			qry.add(Subqueries.exists(subQry));
 			qry.setProjection(Projections.distinct(Projections.property("d.dramaid")));
-			idList = hibernateTemplate.findByCriteria(qry); 
+			idList = (List<Long>) hibernateTemplate.findByCriteria(qry); 
 			cacheService.set(CacheConstant.REGION_ONEHOUR, key, idList);
 		}
 		return idList;
@@ -849,7 +849,7 @@ public class DramaPlayItemServiceImpl extends BaseServiceImpl implements DramaPl
 	@Override
 	public DramaPlayItem getDpiBySeqno(String seller, String sellerseq) {
 		String query = "from DramaPlayItem where seller=? and sellerseq=? ";
-		List<DramaPlayItem> dpiList = hibernateTemplate.find(query, seller, sellerseq);
+		List<DramaPlayItem> dpiList = (List<DramaPlayItem>) hibernateTemplate.find(query, seller, sellerseq);
 		if(dpiList.isEmpty()) return null;
 		return dpiList.get(0);
 	}

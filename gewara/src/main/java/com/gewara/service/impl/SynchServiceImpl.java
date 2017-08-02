@@ -66,7 +66,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		String sql = "from OrderResult r where r.result=? and exists" +
 				"(select g.id from GewaOrder g where g.tradeNo=r.tradeno and g.status=? and g.citycode=? and g.addtime>? and (g.tradeNo like ? or g.tradeNo like ?) )";
 		//µ•∂¿π∫¬Ú∏Ω Ù∆∑
-		List<OrderResult> orderResultList = hibernateTemplate.find(sql, "N", OrderConstant.STATUS_PAID_SUCCESS, citycode, time, PayUtil.FLAG_TICKET + "%", PayUtil.FLAG_GOODS + "%");
+		List<OrderResult> orderResultList = (List<OrderResult>) hibernateTemplate.find(sql, "N", OrderConstant.STATUS_PAID_SUCCESS, citycode, time, PayUtil.FLAG_TICKET + "%", PayUtil.FLAG_GOODS + "%");
 		return orderResultList;
 	}
 	@Override
@@ -75,7 +75,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		result.put("count", 0L);
 		result.put("quantity", 0L);
 		final String hql = "select new map(count(*) as count, sum(t.quantity) as quantity) from TicketOrder t where t.status =? and t.cinemaid =? and t.playtime>=? and t.playtime<=?";
-		List<Map> list = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, statrtime, endtime );
+		List<Map> list = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, statrtime, endtime );
 		if(list.isEmpty()) return result;
 		return list.get(0);
 	}
@@ -102,7 +102,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		query.add(Restrictions.le("playtime", endtime));
 		query.add(Restrictions.ge("gsellnum", 300));
 		query.addOrder(Order.desc("playtime"));
-		return this.hibernateTemplate.findByCriteria(query);
+		return (List<OpenPlayItem>) this.hibernateTemplate.findByCriteria(query);
 	}
 	
 	@Override
@@ -113,7 +113,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		query.add(Restrictions.le("playtime", endtime));
 		query.add(Restrictions.ge("gsellnum", 300));
 		query.addOrder(Order.desc("playtime"));
-		return this.hibernateTemplate.findByCriteria(query);
+		return (List<OpenPlayItem>) this.hibernateTemplate.findByCriteria(query);
 	}
 	
 	public List<Map> getSynchPeakPeriod(Long id,Timestamp starttime, Timestamp endtime,String tag){
@@ -196,7 +196,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		
 		query.add(Subqueries.exists(subquery));
 		query.add(Restrictions.ge("s.successtime",DateUtil.addDay(DateUtil.getMillTimestamp(), -1)));
-		List<Synch> synchList = hibernateTemplate.findByCriteria(query);
+		List<Synch> synchList = (List<Synch>) hibernateTemplate.findByCriteria(query);
 		return synchList;
 	}
 	
@@ -213,7 +213,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		
 		query.add(Subqueries.exists(subquery));
 		query.add(Restrictions.lt("s.successtime", DateUtil.addMinute(DateUtil.getMillTimestamp(), -10)));
-		List<Synch> synchList = hibernateTemplate.findByCriteria(query);
+		List<Synch> synchList = (List<Synch>) hibernateTemplate.findByCriteria(query);
 		return synchList;
 	}
 	@Override
@@ -233,7 +233,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		subquery.add(Restrictions.eqProperty("g.id", "o.goodsid"));
 		subquery.setProjection(Projections.property("g.id"));
 		query.add(Subqueries.exists(subquery));
-		List<GoodsOrder> orderlist = hibernateTemplate.findByCriteria(query);
+		List<GoodsOrder> orderlist = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
 		return orderlist;
 	}
 	
@@ -244,7 +244,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		query.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
 		query.add(Restrictions.ge("modifytime", lasttime));
 		query.add(Restrictions.eq("category", category));
-		List<GoodsOrder> orderlist = hibernateTemplate.findByCriteria(query);
+		List<GoodsOrder> orderlist = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
 		return orderlist;
 	}
 	
@@ -259,7 +259,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		subquery.setProjection(Projections.property("g.id"));
 		query.add(Subqueries.exists(subquery));
 		query.setProjection(Projections.property("o.goodsid"));
-		List<Long> goodsidList = hibernateTemplate.findByCriteria(query);
+		List<Long> goodsidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return goodsidList;
 	}
 
@@ -274,7 +274,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		query.add(Restrictions.eq("express", Status.N));
 		query.add(Restrictions.ge("modifytime", lasttime));
 		query.addOrder(Order.desc("addtime"));
-		List<OrderNote> orderlist = hibernateTemplate.findByCriteria(query, 0, pageSize);
+		List<OrderNote> orderlist = (List<OrderNote>) hibernateTemplate.findByCriteria(query, 0, pageSize);
 		return orderlist;
 	}
 	@Override
@@ -285,7 +285,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		query.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
 		if (lasttime==null) lasttime = DateUtil.addDay(new Timestamp(System.currentTimeMillis()), -7);
 		query.add(Restrictions.ge("modifytime", lasttime));
-		List<SportOrder> orderlist = hibernateTemplate.findByCriteria(query);
+		List<SportOrder> orderlist = (List<SportOrder>) hibernateTemplate.findByCriteria(query);
 		return orderlist;
 	}
 
@@ -300,7 +300,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		}
 		query.add(Restrictions.ge("modifytime", lasttime));
 		query.add(Restrictions.gt("playtime", DateUtil.addDay(curtime, -1)));
-		List<TicketOrder> orderlist = hibernateTemplate.findByCriteria(query);
+		List<TicketOrder> orderlist = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		return orderlist;
 	}
 	@Override
@@ -313,7 +313,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		query.add(Restrictions.ge("modifytime", lasttime));
 		query.add(Restrictions.gt("playtime", DateUtil.addDay(curtime, -1)));
 		query.addOrder(Order.asc("modifytime"));
-		List<TicketOrder> orderlist = hibernateTemplate.findByCriteria(query,0,pageSize);
+		List<TicketOrder> orderlist = (List<TicketOrder>) hibernateTemplate.findByCriteria(query,0,pageSize);
 		return orderlist;
 	}
 
@@ -448,7 +448,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 	@Override
 	public Map<String, Long> getOrderNoteCountByPlaceid(Long placeid, Timestamp starttime, Timestamp endtime) {
 		String hql = "select new map(count(*) as count, sum(s.ticketnum) as quantity) from OrderNote s where s.status =? and s.placeid=? and s.playtime>=? and s.playtime<=?";
-		List<Map> list = hibernateTemplate.find(hql, OrderNoteConstant.STATUS_P, placeid, starttime, endtime );
+		List<Map> list = (List<Map>) hibernateTemplate.find(hql, OrderNoteConstant.STATUS_P, placeid, starttime, endtime );
 		return list.get(0);
 	}
 	
@@ -456,7 +456,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 	public Map<String, Long> getOrderNoteSynchNumByPlaceid(Long placeid, Timestamp starttime, Timestamp endtime) {
 		String hql = "select new map(count(*) as count, sum(s.ticketnum) as ticketnum) " +
 				"from OrderNote s where s.taketime is not null and s.status=? and s.placeid=? and s.playtime>=? and s.playtime<=?";
-		List<Map> list = hibernateTemplate.find(hql, OrderNoteConstant.STATUS_P, placeid, starttime, endtime );
+		List<Map> list = (List<Map>) hibernateTemplate.find(hql, OrderNoteConstant.STATUS_P, placeid, starttime, endtime );
 		return list.get(0);
 	}
 	
@@ -471,27 +471,27 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 	@Override
 	public Map<String, Long> getOrderNoteNumByPlaceid(Long placeid, Timestamp starttime, Timestamp endtime) {
 		final String hql = "select new map(count(*) as count, sum(s.ticketnum) as quantity) from OrderNote s where s.status=? and s.placeid =? and s.playtime>=? and s.playtime<=?";
-		List<Map> list = hibernateTemplate.find(hql, OrderNoteConstant.STATUS_P, placeid, starttime, endtime );
+		List<Map> list = (List<Map>) hibernateTemplate.find(hql, OrderNoteConstant.STATUS_P, placeid, starttime, endtime );
 		return list.get(0);
 	}
 	
 	@Override
 	public Map<String,Long> getOrderNoteSynchTotalNumByPlaceid(Long placeid, Timestamp starttime, Timestamp endtime) {
 		final String hql = "select new map(count(*) as count, sum(s.ticketnum) as ticketnum) from OrderNote s where s.status =? and (result=? or result=?) and s.placeid =? and s.playtime>=? and s.playtime<=?";
-		List<Map> list = hibernateTemplate.find(hql, OrderNoteConstant.STATUS_P, "S","Y", placeid, starttime, endtime );
+		List<Map> list = (List<Map>) hibernateTemplate.find(hql, OrderNoteConstant.STATUS_P, "S","Y", placeid, starttime, endtime );
 		return list.get(0);
 	}
 	
 	@Override
 	public List<OrderNote> getOrderNoteNotGetOrderByPlaceid(Timestamp starttime, Timestamp endtime, Long placeid) {
 			String hql = "from OrderNote s where s.status=? and s.placeid=? and s.taketime is null and s.addtime>? order by addtime desc";
-			List<OrderNote> list = hibernateTemplate.find(hql, OrderNoteConstant.STATUS_P, placeid, DateUtil.addDay(DateUtil.getMillTimestamp(), -60));
+			List<OrderNote> list = (List<OrderNote>) hibernateTemplate.find(hql, OrderNoteConstant.STATUS_P, placeid, DateUtil.addDay(DateUtil.getMillTimestamp(), -60));
 			return list;
 	}
 	@Override
 	public List<OrderNote> getOrderNoteNoSynchOrderByPlaceid(Long placeid) {
 		String hql = "from OrderNote s where (s.result is null or s.result=?) and s.status=? and s.placeid=? and s.taketime is null and s.addtime>? order by addtime desc";
-		List<OrderNote> list = hibernateTemplate.find(hql, Status.N, OrderNoteConstant.STATUS_P, placeid, DateUtil.addDay(DateUtil.getMillTimestamp(), -60));
+		List<OrderNote> list = (List<OrderNote>) hibernateTemplate.find(hql, Status.N, OrderNoteConstant.STATUS_P, placeid, DateUtil.addDay(DateUtil.getMillTimestamp(), -60));
 		return list;
 	}
 	@Override

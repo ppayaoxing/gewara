@@ -52,7 +52,7 @@ public class PictureServiceImpl extends BaseServiceImpl implements PictureServic
 		query.add(Restrictions.eq("tag", tag));
 		query.add(Restrictions.eq("relatedid", relatedid));
 		query.addOrder(Order.desc("id"));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<Picture>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public List<Picture> getPictueList(String tag, Long relatedid, String orderField, boolean asc, int from, int maxnum){
@@ -68,7 +68,7 @@ public class PictureServiceImpl extends BaseServiceImpl implements PictureServic
 		}else{
 			query.addOrder(Order.desc("posttime"));
 		}
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<Picture>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public List<String> getSinglePictureListByRelatedid(String tag, Long relatedid, int from, int maxnum) {
@@ -90,7 +90,7 @@ public class PictureServiceImpl extends BaseServiceImpl implements PictureServic
 		if(starttime !=null) query.add(Restrictions.ge("posttime", starttime));
 		if(endtime != null) query.add(Restrictions.le("posttime", endtime));
 		query.addOrder(Order.desc("posttime"));
-		List<Picture> listPicture = hibernateTemplate.findByCriteria(query,from,maxnum);
+		List<Picture> listPicture = (List<Picture>) hibernateTemplate.findByCriteria(query,from,maxnum);
 		return listPicture;
 	}
 	
@@ -132,7 +132,7 @@ public class PictureServiceImpl extends BaseServiceImpl implements PictureServic
 		query.add(Restrictions.ne("status", Status.N_DELETE));
 		query.add(Restrictions.eq("flag", flag));
 		query.addOrder(Order.desc("addtime"));
-		List<MemberPicture> memberPictureList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<MemberPicture> memberPictureList = (List<MemberPicture>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return memberPictureList;
 	}
 	@Override
@@ -159,7 +159,7 @@ public class PictureServiceImpl extends BaseServiceImpl implements PictureServic
 			}
 		}
 		query.addOrder(Order.asc("posttime"));
-		List<Picture> listPicture = hibernateTemplate.findByCriteria(query,from,maxnum);
+		List<Picture> listPicture = (List<Picture>) hibernateTemplate.findByCriteria(query,from,maxnum);
 		return listPicture;
 	}
 	

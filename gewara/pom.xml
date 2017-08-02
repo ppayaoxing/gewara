@@ -60,16 +60,9 @@
 			<groupId>gdata</groupId>
 			<artifactId>core</artifactId>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.google.gdata</groupId>
-			<artifactId>gdata-client</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.gdata</groupId>
-			<artifactId>gdata-core</artifactId>
-			<version>1.0</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.google.gdata</groupId> <artifactId>gdata-client</artifactId> 
+			<version>1.0</version> </dependency> <dependency> <groupId>com.google.gdata</groupId> 
+			<artifactId>gdata-core</artifactId> <version>1.0</version> </dependency> -->
 		<dependency>
 			<groupId>jdt</groupId>
 			<artifactId>jdt-compiler</artifactId>
@@ -286,8 +279,28 @@
 			<artifactId>bcpkix-jdk15on</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>pinyin4j</groupId>
+			<artifactId>pinyin4j</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom</artifactId>
 		</dependency>
 		<!-- ========= gewara start ====== -->
 		<dependency>
@@ -417,5 +430,7 @@
 			<artifactId>mail-api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
+
+
 	</dependencies>
 </project>

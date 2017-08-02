@@ -19,6 +19,7 @@ import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Subqueries;
+import org.hibernate.type.StandardBasicTypes;
 import org.hibernate.type.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -73,7 +74,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		query.add(Restrictions.le("releasetime", cur));
 		query.add(Restrictions.gt("goodssort", 0));
 		query.addOrder(Order.asc("goodssort"));
-		List<T> goodsList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<T> goodsList = (List<T>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return goodsList;
 	}
 
@@ -102,7 +103,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		if(isGtZero) query.add(Restrictions.gt("goodssort", 0));
 		if(asc) query.addOrder(Order.asc(order));
 		else query.addOrder(Order.desc(order));
-		List<T> goodsList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<T> goodsList = (List<T>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return goodsList;
 	}
 	@Override
@@ -128,7 +129,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		
 		if(asc) query.addOrder(Order.asc(order));
 		else query.addOrder(Order.desc(order));
-		List<T> goodsList = hibernateTemplate.findByCriteria(query);
+		List<T> goodsList = (List<T>) hibernateTemplate.findByCriteria(query);
 		return goodsList;
 	}
 	
@@ -143,7 +144,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		if(limitRelease) query.add(Restrictions.le("g.releasetime", curtime));
 		if(isGtZero) query.add(Restrictions.gt("g.goodssort", 0));
 		query.add(Restrictions.sqlRestriction(" 1=1 order by abs(unitprice - costprice) desc"));
-		List<T> goodsList = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<T> goodsList = (List<T>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(goodsList.isEmpty()) return null;
 		return goodsList.get(0);
 	}
@@ -158,7 +159,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		if(limitRelease) query.add(Restrictions.le("releasetime", new Timestamp(System.currentTimeMillis())));
 		if(isGtZero) query.add(Restrictions.gt("goodssort", 0));
 		query.setProjection(Projections.rowCount());
-		List<Long> list = hibernateTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) hibernateTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -181,7 +182,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		query.add(Restrictions.eq("status", status));
 		query.add(Restrictions.eq("tag", tag));
 		query.addOrder(Order.desc("addtime"));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<T>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public <T extends BaseGoods> Integer countByGoodsListByStatusAndTag(Class<T> clazz, String status, String tag){
@@ -189,7 +190,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		query.add(Restrictions.eq("status", status));
 		query.add(Restrictions.eq("tag", tag));
 		query.setProjection(Projections.rowCount());
-		List<CommuManage> list = hibernateTemplate.findByCriteria(query);
+		List<CommuManage> list = (List<CommuManage>) hibernateTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -231,7 +232,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		if(isGtZero) query.add(Restrictions.gt("goodssort", 0));
 		if(asc) query.addOrder(Order.asc(order));
 		else query.addOrder(Order.desc(order));
-		List<SportGoods> goodsList = hibernateTemplate.findByCriteria(query);
+		List<SportGoods> goodsList = (List<SportGoods>) hibernateTemplate.findByCriteria(query);
 		return goodsList;
 	}
 
@@ -248,7 +249,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		query.add(Restrictions.le("fromtime", DateUtil.getCurFullTimestamp()));
 		query.add(Restrictions.ge("totime", DateUtil.getCurFullTimestamp()));
 		query.addOrder(Order.asc("addtime"));
-		List<SportGoods> list = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<SportGoods> list = (List<SportGoods>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 
@@ -261,7 +262,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		query.add(Restrictions.ge("releasetime", DateUtil.getCurTruncTimestamp()));
 		query.setProjection(Projections.groupProperty("releasetime"));
 		query.addOrder(Order.asc("releasetime"));
-		List<Timestamp> list = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Timestamp> list = (List<Timestamp>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 
@@ -441,7 +442,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		}
 		query.addOrder(Order.desc("goodssort"));
 		query.addOrder(Order.asc("fromvalidtime"));
-		return hibernateTemplate.findByCriteria(query);
+		return (List<TicketGoods>) hibernateTemplate.findByCriteria(query);
 	}
 	
 	@Override
@@ -466,12 +467,12 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		Projection pro = Projections.sqlGroupProjection(
 				"to_char({alias}.fromvalidtime, 'yyyy-MM') as playdate", 
 				"to_char({alias}.fromvalidtime, 'yyyy-MM')", new String[]{"playdate"}, 
-				new Type[]{Hibernate.STRING});
+				new Type[]{StandardBasicTypes.STRING});
 		
 		Projection pro2 = Projections.sqlGroupProjection(
 				"to_char({alias}.tovalidtime, 'yyyy-MM') as playdate", 
 				"to_char({alias}.tovalidtime, 'yyyy-MM')", new String[]{"playdate"}, 
-				new Type[]{Hibernate.STRING});
+				new Type[]{StandardBasicTypes.STRING});
 		ProjectionList projectList = Projections.projectionList().add(Projections.rowCount(), "count");
 		if(StringUtils.equals(period, Status.Y)){
 			projectList.add(Projections.alias(pro, "playdate"));
@@ -480,7 +481,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		}
 		query.setProjection(projectList);
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		List<Map<String, String>> playdateList = hibernateTemplate.findByCriteria(query);
+		List<Map<String, String>> playdateList = (List<Map<String, String>>) hibernateTemplate.findByCriteria(query);
 		return playdateList;
 	}
 	@Override
@@ -488,7 +489,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		DetachedCriteria query = queryCommonTicketGoods(citycode, tag, relatedid, itemtype, itemid, isTovaltime, isGtZero);
 		query.addOrder(Order.desc("goodssort"));
 		query.addOrder(Order.asc("fromvalidtime"));
-		List<TicketGoods> ticketGoodsList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<TicketGoods> ticketGoodsList = (List<TicketGoods>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return ticketGoodsList;
 	}
 	
@@ -549,7 +550,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 	@Override
 	public List<GoodsPrice> getGoodsPriceList(Long goodsid){
 		String qry = "from GoodsPrice where goodsid= ? and status <> 'D'";
-		List<GoodsPrice> priceList = hibernateTemplate.find(qry, goodsid);
+		List<GoodsPrice> priceList = (List<GoodsPrice>) hibernateTemplate.find(qry, goodsid);
 		return priceList;
 	}
 	
@@ -562,7 +563,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 	@Override
 	public List<GoodsDisQuantity> getGoodsDisListByGoodsid(Long goodsid){
 		String qry = "from GoodsDisQuantity d where exists(select t.id from GoodsPrice t where t.id=d.gspid and (t.status <> 'D' or t.status is null) and t.goodsid=?)";
-		List<GoodsDisQuantity> disList = hibernateTemplate.find(qry, goodsid);
+		List<GoodsDisQuantity> disList = (List<GoodsDisQuantity>) hibernateTemplate.find(qry, goodsid);
 		return disList;
 	}
 	
@@ -655,7 +656,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		sub.add(Restrictions.eqProperty("i.id", "t.goodsid"));
 		sub.setProjection(Projections.property("i.id"));
 		query.add(Subqueries.exists(sub));
-		List<Integer> priceList = hibernateTemplate.findByCriteria(query);
+		List<Integer> priceList = (List<Integer>) hibernateTemplate.findByCriteria(query);
 		Collections.sort(priceList);
 		return priceList;
 	}

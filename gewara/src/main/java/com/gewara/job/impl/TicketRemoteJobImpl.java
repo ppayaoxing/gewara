@@ -40,7 +40,7 @@ public class TicketRemoteJobImpl extends JobService{
 	
 	public void updateMoviePlayItem(){
 		String hql = "select id from CinemaProfile where opentype is not null";
-		List<Long> cinemaidList = hibernateTemplate.find(hql);
+		List<Long> cinemaidList = (List<Long>) hibernateTemplate.find(hql);
 		List<String> msgList = new ArrayList<String>();
 		int insert = 0, update = 0, del = 0;
 		for(Long cinemaid: cinemaidList){

@@ -592,7 +592,7 @@ public class OpiManageServiceImpl extends BaseServiceImpl implements OpiManageSe
 		String query = "from OpenSeat where mpid = ? and seattype=? ";
 		if(StringUtils.isNotBlank(rows)) query += "and lineno in (" + rows + ") ";
 		if(StringUtils.isNotBlank(ranks)) query +=  "and rankno in (" + ranks + ") ";
-		List<OpenSeat> oseatList = hibernateTemplate.find(query, mpid, SeatConstant.SEAT_TYPE_A);
+		List<OpenSeat> oseatList = (List<OpenSeat>) hibernateTemplate.find(query, mpid, SeatConstant.SEAT_TYPE_A);
 		int num = 0;
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
 		for(OpenSeat oseat: oseatList){
@@ -645,7 +645,7 @@ public class OpiManageServiceImpl extends BaseServiceImpl implements OpiManageSe
 		String query1 = "from OpenSeat o where o.mpid = ? and o.status in ('" + 
 				StringUtils.join(SeatConstant.STATUS_LOCK_LIST, "','") + 
 				"') and exists (select id from SellSeat s where s.status= ? and s.id = o.id) ";
-		List<OpenSeat> oseatList = hibernateTemplate.find(query1, mpid, SeatConstant.STATUS_SOLD);
+		List<OpenSeat> oseatList = (List<OpenSeat>) hibernateTemplate.find(query1, mpid, SeatConstant.STATUS_SOLD);
 		if(oseatList.size() > 0){
 			OpenPlayItem opi = baseDao.getObjectByUkey(OpenPlayItem.class, "mpid", mpid, true);
 			opi.setLocknum(opi.getLocknum() - oseatList.size());
@@ -666,7 +666,7 @@ public class OpiManageServiceImpl extends BaseServiceImpl implements OpiManageSe
 			return;//过期48小时的不更新
 		}
 		final String query1 = "select seatline||':'||seatrank from OpenSeat o where o.mpid = ? and o.status in ('" + StringUtils.join(SeatConstant.STATUS_LOCK_LIST, "','") + "') ";
-		List<String> gewalockList = hibernateTemplate.find(query1, opi.getMpid());
+		List<String> gewalockList = (List<String>) hibernateTemplate.find(query1, opi.getMpid());
 		String sqlqry = "SELECT sum(o.quantity) from WEBDATA.ticket_order o where o.status='paid_success' and o.order_type='ticket' and o.relatedid=?";
 		Integer gsellnum = 0;
 		try{
@@ -723,7 +723,7 @@ public class OpiManageServiceImpl extends BaseServiceImpl implements OpiManageSe
 	}
 	private RoomSeat getAnotherLoveSeat(RoomSeat seat, Integer add/*-1: left, +1:right*/){
 		String query = "from RoomSeat t where t.roomid=? and t.lineno=? and t.rankno=? ";
-		List<RoomSeat> seatList = hibernateTemplate.find(query, seat.getRoomid(), seat.getLineno(), seat.getRankno()+add);
+		List<RoomSeat> seatList = (List<RoomSeat>) hibernateTemplate.find(query, seat.getRoomid(), seat.getLineno(), seat.getRankno()+add);
 		if(seatList.size() > 0) return seatList.get(0);
 		return null;
 	}
@@ -738,7 +738,7 @@ public class OpiManageServiceImpl extends BaseServiceImpl implements OpiManageSe
 		String query = "from OpenSeat where mpid = ? and seattype = ? ";
 		if(StringUtils.isNotBlank(rows)) query += "and lineno in (" + rows + ") ";
 		if(StringUtils.isNotBlank(ranks)) query +=  "and rankno in (" + ranks + ") ";
-		List<OpenSeat> oseatList = hibernateTemplate.find(query, mpid, seattype);
+		List<OpenSeat> oseatList = (List<OpenSeat>) hibernateTemplate.find(query, mpid, seattype);
 		int num = 0;
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
 		for(OpenSeat oseat: oseatList){

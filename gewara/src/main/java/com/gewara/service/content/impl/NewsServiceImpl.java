@@ -96,7 +96,7 @@ public class NewsServiceImpl extends BaseServiceImpl implements NewsService {
 			query.addOrder(Order.desc(order));
 			query.addOrder(Order.asc("id"));
 		}else query.addOrder(Order.desc("addtime"));
-		List<News> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<News> result = (List<News>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 
@@ -138,13 +138,13 @@ public class NewsServiceImpl extends BaseServiceImpl implements NewsService {
 		DetachedCriteria query = DetachedCriteria.forClass(NewsPage.class);
 		query.add(Restrictions.eq("newsid", nid));
 		query.add(Restrictions.eq("pageno", pageno));
-		List<NewsPage> list = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<NewsPage> list = (List<NewsPage>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		return list.isEmpty() ? null : list.get(0);
 	}
 	@Override
 	public List<NewsPage> getNewsPageListByNewsid(Long newsid) {
 		String hql = "from NewsPage n where n.newsid=? order by pageno asc";
-		List<NewsPage> list = readOnlyTemplate.find(hql,newsid);
+		List<NewsPage> list = (List<NewsPage>) readOnlyTemplate.find(hql,newsid);
 		return list;
 	}
 	@Override
@@ -162,7 +162,7 @@ public class NewsServiceImpl extends BaseServiceImpl implements NewsService {
 				query.add(Restrictions.in("newstype", type));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<News> newsList = readOnlyTemplate.findByCriteria(query, 0, 5);
+		List<News> newsList = (List<News>) readOnlyTemplate.findByCriteria(query, 0, 5);
 		return newsList;
 	}
 	@Override
@@ -199,7 +199,7 @@ public class NewsServiceImpl extends BaseServiceImpl implements NewsService {
 			}
 			query.addOrder(Order.desc("id"));
 		}else query.addOrder(Order.desc("updatetime"));
-		List<News> newsList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<News> newsList = (List<News>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return newsList;
 	}
 
@@ -209,7 +209,7 @@ public class NewsServiceImpl extends BaseServiceImpl implements NewsService {
 		query.add(Restrictions.eq("tag", tag));
 		query.add(Restrictions.gt("id", nid));
 		query.addOrder(Order.asc("id"));
-		List<News> newsList = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<News> newsList = (List<News>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if(newsList.isEmpty()) return null;
 		return newsList.get(0);
 	}
@@ -270,7 +270,7 @@ public class NewsServiceImpl extends BaseServiceImpl implements NewsService {
 			query.add(Restrictions.eq("category", tag));
 			if(relatedid!=null) query.add(Restrictions.eq("categoryid", relatedid));
 		}
-		List<News> newsList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<News> newsList = (List<News>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return newsList;
 	}
 	@Override
@@ -291,7 +291,7 @@ public class NewsServiceImpl extends BaseServiceImpl implements NewsService {
 			if(relatedid != null) query.add(Restrictions.eq("categoryid", relatedid));
 		}
 		query.setProjection(Projections.rowCount());
-		List<News> newsList=readOnlyTemplate.findByCriteria(query);
+		List<News> newsList=(List<News>) readOnlyTemplate.findByCriteria(query);
 		if(newsList.isEmpty()) return 0;
 		return Integer.valueOf(newsList.get(0)+"");
 	}
@@ -307,7 +307,7 @@ public class NewsServiceImpl extends BaseServiceImpl implements NewsService {
 			query.add(Restrictions.eq("newstype", newstype));
 		query.add(Restrictions.le("releasetime", new Timestamp(System.currentTimeMillis())));
 		query.addOrder(Order.desc("releasetime"));
-		List<News> newsList = readOnlyTemplate.findByCriteria(query, from, num);
+		List<News> newsList = (List<News>) readOnlyTemplate.findByCriteria(query, from, num);
 		return newsList;
 	}
 	@Override

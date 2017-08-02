@@ -35,7 +35,7 @@ public class MoviePriceServiceImpl extends BaseServiceImpl implements MoviePrice
 	public List<MovieTierPrice> getMovieTierPriceList(Long movieid){
 		DetachedCriteria qry = DetachedCriteria.forClass(MovieTierPrice.class);
 		qry.add(Restrictions.eq("movieid", movieid));
-		List<MovieTierPrice> movieTierPriceList = hibernateTemplate.findByCriteria(qry);
+		List<MovieTierPrice> movieTierPriceList = (List<MovieTierPrice>) hibernateTemplate.findByCriteria(qry);
 		return movieTierPriceList;
 	}
 	
@@ -45,7 +45,7 @@ public class MoviePriceServiceImpl extends BaseServiceImpl implements MoviePrice
 		if(!ArrayUtils.isEmpty(movieid)){
 			qry.add(Restrictions.in("movieid", movieid));
 		}
-		List<MovieTierPrice> movieTierPriceList = hibernateTemplate.findByCriteria(qry);
+		List<MovieTierPrice> movieTierPriceList = (List<MovieTierPrice>) hibernateTemplate.findByCriteria(qry);
 		return movieTierPriceList;
 	}
 	
@@ -54,7 +54,7 @@ public class MoviePriceServiceImpl extends BaseServiceImpl implements MoviePrice
 		DetachedCriteria qry = DetachedCriteria.forClass(MovieTierPrice.class);
 		qry.add(Restrictions.eq("movieid", movieid));
 		qry.add(Restrictions.eq("type", type));
-		List<MovieTierPrice> movieTierPriceList = hibernateTemplate.findByCriteria(qry, 0, 1);
+		List<MovieTierPrice> movieTierPriceList = (List<MovieTierPrice>) hibernateTemplate.findByCriteria(qry, 0, 1);
 		if(movieTierPriceList.isEmpty()) return null;
 		return movieTierPriceList.get(0);
 	}
@@ -95,7 +95,7 @@ public class MoviePriceServiceImpl extends BaseServiceImpl implements MoviePrice
 		subQuery.add(Restrictions.neProperty("mp.price", "mtp.price"));
 		subQuery.setProjection(Projections.property("mtp.id"));
 		query.add(Subqueries.exists(subQuery));
-		List<MoviePrice> movieidList = hibernateTemplate.findByCriteria(query);
+		List<MoviePrice> movieidList = (List<MoviePrice>) hibernateTemplate.findByCriteria(query);
 		return movieidList;
 	}
 	@Override
@@ -107,7 +107,7 @@ public class MoviePriceServiceImpl extends BaseServiceImpl implements MoviePrice
 		query.add(Restrictions.eq("tag", tag));
 		query.add(Restrictions.eq("citycode", citycode));
 		query.add(Restrictions.eq("relatedid", relatedid));
-		List<CityPrice> priceList = hibernateTemplate.findByCriteria(query);
+		List<CityPrice> priceList = (List<CityPrice>) hibernateTemplate.findByCriteria(query);
 		if(priceList.isEmpty()) return null;
 		cityPrice = priceList.get(0);
 		cacheService.set(CacheConstant.REGION_TWENTYMIN, key, cityPrice);
@@ -132,7 +132,7 @@ public class MoviePriceServiceImpl extends BaseServiceImpl implements MoviePrice
 		Map result = (Map) cacheService.get(CacheConstant.REGION_TWOHOUR, key);
 		if(result==null){
 			String hql = "select new map(min(minprice) as minprice, max(maxprice) as maxprice) from PlacePrice where tag=? and relatedid=?";
-			List<Map<String, Long>> priceMapList = hibernateTemplate.find(hql, tag, relatedid);
+			List<Map<String, Long>> priceMapList = (List<Map<String, Long>>) hibernateTemplate.find(hql, tag, relatedid);
 			for(Map<String,Long> priceMap : priceMapList){
 				if(priceMap.get("minprice")!=null){
 					result = new HashMap<String, Integer>();
@@ -167,7 +167,7 @@ public class MoviePriceServiceImpl extends BaseServiceImpl implements MoviePrice
 		query.add(Restrictions.eq("relatedid", relatedid));
 		query.add(Restrictions.eq("category", category));
 		query.add(Restrictions.eq("categoryid", categoryid));
-		List<PlacePrice> placePriceList = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<PlacePrice> placePriceList = (List<PlacePrice>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(placePriceList.isEmpty()) return null;
 		return placePriceList.get(0);
 	}

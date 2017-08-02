@@ -82,7 +82,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 			query.addOrder(Order.asc("flag"));
 			query.addOrder(Order.asc("id"));
 			query.setProjection(Projections.property("id"));
-			movieIdList = hibernateTemplate.findByCriteria(query, 0, 1000);
+			movieIdList = (List<Long>) hibernateTemplate.findByCriteria(query, 0, 1000);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, movieIdList);
 		}
 		return BeanUtil.getSubList(movieIdList, from, maxnum);
@@ -120,7 +120,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 			query.setProjection(Projections.id());
 			query.addOrder(Order.desc( "boughtcount"));
 			query.addOrder(Order.asc("id"));
-			movieidList = hibernateTemplate.findByCriteria(query);
+			movieidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			if(!movieidList.isEmpty()){
 				cacheService.set(CacheConstant.REGION_TENMIN, key, movieidList);
 			}
@@ -141,10 +141,11 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 		query.addOrder(Order.asc("id"));
 		if(to > size && from < size){
 			hotMovie = BeanUtil.getSubList(hotMovie, from, maxnum);
-			hotMovie.addAll(hibernateTemplate.findByCriteria(query, 0, maxnum - hotMovie.size()));
+			List<Movie> list = (List<Movie>) hibernateTemplate.findByCriteria(query, 0, maxnum - hotMovie.size());
+			hotMovie.addAll(list);
 			return hotMovie;
 		}
-		return hibernateTemplate.findByCriteria(query, from - size, maxnum);
+		return (List<Movie>) hibernateTemplate.findByCriteria(query, from - size, maxnum);
 	}
 	
 	@Override
@@ -155,7 +156,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 			DetachedCriteria query = DetachedCriteria.forClass(Movie.class);
 			query.add(Restrictions.like("flag", flag, MatchMode.ANYWHERE));
 			query.setProjection(Projections.property("id"));
-			movieIds = hibernateTemplate.findByCriteria(query);
+			movieIds = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_TWOHOUR, key, movieIds);
 		}
 		return movieIds;
@@ -164,7 +165,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 	@Override
 	public List<County> getCinemaCountyList(String flag) {
 		String hql = "select distinct countycode from Cinema c where c.flag like ? order by countycode";
-		List<Long> countyIdList = hibernateTemplate.find(hql,"%"+flag+"%");
+		List<Long> countyIdList = (List<Long>) hibernateTemplate.find(hql,"%"+flag+"%");
 		List<County> countyList = baseDao.getObjectList(County.class, countyIdList);
 		return countyList;
 	}
@@ -196,7 +197,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 			if(StringUtils.isBlank(order))query.addOrder(Order.asc("m.moviename"));
 			else query.addOrder(Order.asc(order));
 			query.addOrder(Order.asc("m.id"));
-			movieidList = hibernateTemplate.findByCriteria(query, from, maxnum);
+			movieidList = (List<Long>) hibernateTemplate.findByCriteria(query, from, maxnum);
 			if(StringUtils.isBlank(moviename)) cacheService.set(CacheConstant.REGION_TENMIN, key, movieidList);
 		}
 		return movieidList;
@@ -238,7 +239,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 		Timestamp timestamp = DateUtil.getCurFullTimestamp();
 		String hql = "select sum(o.seatnum) - sum(o.gsellnum) - sum(o.csellnum) - sum(o.locknum) from OpenPlayItem o where o.movieid = ? and o.opentime < ? and o.closetime > ? and o.status = ? and o.citycode = ? " +
 				" and exists( select m.id from MoviePlayItem m where m.id=o.mpid and m.batch=? )";
-		List<Long> seatList = hibernateTemplate.find(hql, movieid, timestamp, timestamp, Status.Y, AdminCityContant.CITYCODE_SH, batch);
+		List<Long> seatList = (List<Long>) hibernateTemplate.find(hql, movieid, timestamp, timestamp, Status.Y, AdminCityContant.CITYCODE_SH, batch);
 		if(seatList.isEmpty() || seatList.get(0) == null) return -1;
 		return Integer.parseInt(seatList.get(0)+"");
 	} 
@@ -275,7 +276,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 			query.addOrder(Order.asc("playdate"));
 			query.addOrder(Order.asc("playtime"));
 			query.setProjection(Projections.id());
-			mpidList = hibernateTemplate.findByCriteria(query, from, maxnum);
+			mpidList = (List<Long>) hibernateTemplate.findByCriteria(query, from, maxnum);
 			cacheService.set(CacheConstant.REGION_ONEMIN, key, mpidList);
 		}
 		return mpidList;
@@ -309,7 +310,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 		query.addOrder(Order.asc("playdate"));
 		query.addOrder(Order.asc("playtime"));
 		query.setProjection(Projections.id());
-		List<Long> mpidList = hibernateTemplate.findByCriteria(query);
+		List<Long> mpidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return baseDao.getObjectList(MoviePlayItem.class, mpidList);
 	}
 	
@@ -324,7 +325,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 			if(StringUtils.isNotBlank(countycode)) query.add(Restrictions.eq("countycode", countycode));
 			query.addOrder(Order.asc("flag"));
 			query.setProjection(Projections.id());
-			result = hibernateTemplate.findByCriteria(query);
+			result = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_ONEHOUR, key, result);
 		}
 		return result;
@@ -333,7 +334,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 	@Override
 	public List<Movie> getCurMovieListByCinemaIdAndDate(Long cinemaId, Date date, Long batch) {
 		String query = "select movieid from MoviePlayItem mpi where mpi.cinemaid = ? and mpi.playdate = ? and batch=? group by mpi.movieid order by count(mpi.movieid) desc";
-		List<Long> idList = hibernateTemplate.find(query, cinemaId, date, batch);
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query, cinemaId, date, batch);
 		List<Movie> movieList = baseDao.getObjectList(Movie.class, idList);
 		return movieList;
 	}
@@ -341,7 +342,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 	@Override
 	public List<MoviePlayItem> getCinemaCurMpiListByRoomIdAndDate(Long roomId, Date playdate, Long batch) {
 		String query = "select id from MoviePlayItem mpi where mpi.roomid = ? and mpi.playdate = ? and batch=? order by playtime";
-		List<Long> idList = hibernateTemplate.find(query, roomId, playdate, batch);
+		List<Long> idList = (List<Long>) hibernateTemplate.find(query, roomId, playdate, batch);
 		List<MoviePlayItem> result = baseDao.getObjectList(MoviePlayItem.class, idList);
 		return result;
 	}
@@ -362,7 +363,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 			if(StringUtils.isNotBlank(flag)) query.add(Restrictions.eq("flag",flag));
 			query.addOrder(Order.desc("releasetime"));
 			query.setProjection(Projections.property("id"));
-			newsIdList = hibernateTemplate.findByCriteria(query, from, maxnum);
+			newsIdList = (List<Long>) hibernateTemplate.findByCriteria(query, from, maxnum);
 			cacheService.set(CacheConstant.REGION_TENMIN, key, newsIdList);
 		}
 		List<News> result = baseDao.getObjectList(News.class, newsIdList);
@@ -520,7 +521,7 @@ public class FilmFestServiceImpl extends BaseServiceImpl implements FilmFestServ
 				Restrictions.and(Restrictions.eq("playdate", curDate), Restrictions.ge("playtime", hour))
 		));
 		query.setProjection(Projections.groupProperty("movieid"));
-		List<Long> movieIdList = hibernateTemplate.findByCriteria(query);
+		List<Long> movieIdList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return movieIdList;
 	}
 	@Override

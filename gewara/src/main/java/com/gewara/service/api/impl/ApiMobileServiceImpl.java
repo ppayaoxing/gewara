@@ -35,7 +35,7 @@ public class ApiMobileServiceImpl extends BaseServiceImpl implements ApiMobileSe
 		query.add(Restrictions.or(Restrictions.eq("tag", AddressConstant.ADDRESS_ALL), Restrictions.eq("tag", tag)));
 		query.add(Restrictions.gt("ordernum", 0));
 		query.add(Restrictions.or(Restrictions.eq("citycode", AdminCityContant.CITYCODE_ALL), Restrictions.like("citycode", citycode, MatchMode.ANYWHERE)));
-		List<GewaCommend> list = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<GewaCommend> list = (List<GewaCommend>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if (list.isEmpty())
 			return null;
 		return list.get(0);
@@ -59,7 +59,7 @@ public class ApiMobileServiceImpl extends BaseServiceImpl implements ApiMobileSe
 		query.add(Restrictions.eq("isshow", PhoneAdvertisement.IS_SHOW_Y));
 		query.add(Restrictions.ne("status", PhoneAdvertisement.STATUS_DELETE));
 		query.addOrder(Order.asc("rank"));
-		List<PhoneAdvertisement> list = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<PhoneAdvertisement> list = (List<PhoneAdvertisement>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	

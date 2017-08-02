@@ -51,7 +51,7 @@ public class FriendServiceImpl extends BaseServiceImpl implements FriendService 
 		subquery.setProjection(Projections.property("bm.id"));
 		subquery.add(Restrictions.eqProperty("f.memberto", "bm.memberId"));
 		query.add(Subqueries.notExists(subquery));
-		List<Friend> result = readOnlyTemplate.findByCriteria(query, from ,maxnum);
+		List<Friend> result = (List<Friend>) readOnlyTemplate.findByCriteria(query, from ,maxnum);
 		return result;
 	}
 	
@@ -60,7 +60,7 @@ public class FriendServiceImpl extends BaseServiceImpl implements FriendService 
 		DetachedCriteria query = DetachedCriteria.forClass(Friend.class);
 		query.add(Restrictions.eq("memberfrom", memberid));
 		query.setProjection(Projections.property("memberto"));
-		List<Long> list  = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Long> list  = (List<Long>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	@Override
@@ -70,7 +70,7 @@ public class FriendServiceImpl extends BaseServiceImpl implements FriendService 
 		query.add(Restrictions.eq("tomemberid", tomemberid));
 		query.add(Restrictions.eq("status", SysAction.STATUS_APPLY));
 		query.add(Restrictions.eq("action", SysAction.ACTION_APPLY_FRIEND_ADD));
-		List<SysMessageAction> list = readOnlyTemplate.findByCriteria(query);
+		List<SysMessageAction> list = (List<SysMessageAction>) readOnlyTemplate.findByCriteria(query);
 		return list.size()>0;
 	}
 	
@@ -79,7 +79,7 @@ public class FriendServiceImpl extends BaseServiceImpl implements FriendService 
 		DetachedCriteria query = DetachedCriteria.forClass(Friend.class);
 		query.add(Restrictions.eq("memberfrom", memberidfrom));
 		query.add(Restrictions.eq("memberto", memberidto));
-		List<Friend> list = readOnlyTemplate.findByCriteria(query);
+		List<Friend> list = (List<Friend>) readOnlyTemplate.findByCriteria(query);
 		return list.size()>0;
 	}
 	
@@ -115,7 +115,7 @@ public class FriendServiceImpl extends BaseServiceImpl implements FriendService 
 
 		query.add(Subqueries.notExists(subQuery));
 		query.setProjection(Projections.property("memberto"));
-		List<Long> list  = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Long> list  = (List<Long>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	@Override 
@@ -152,7 +152,7 @@ public class FriendServiceImpl extends BaseServiceImpl implements FriendService 
 	public List<HiddenMember> getHiddenMemberListByMemberid(Long memberid){
 		DetachedCriteria query = DetachedCriteria.forClass(HiddenMember.class);
 		query.add(Restrictions.eq("inviteid", memberid));
-		List<HiddenMember> hiddenMemberList = readOnlyTemplate.findByCriteria(query);
+		List<HiddenMember> hiddenMemberList = (List<HiddenMember>) readOnlyTemplate.findByCriteria(query);
 		return hiddenMemberList;
 	}
 	
@@ -161,7 +161,7 @@ public class FriendServiceImpl extends BaseServiceImpl implements FriendService 
 		DetachedCriteria query = DetachedCriteria.forClass(FriendInfo.class);
 		if(addmemberid!=null)query.add(Restrictions.eq("addmemberid", addmemberid));
 		if(memberid!=null)query.add(Restrictions.eq("memberid", memberid));
-		List<FriendInfo> friendInfoList = readOnlyTemplate.findByCriteria(query);
+		List<FriendInfo> friendInfoList = (List<FriendInfo>) readOnlyTemplate.findByCriteria(query);
 		return friendInfoList;
 	}
 	@Override

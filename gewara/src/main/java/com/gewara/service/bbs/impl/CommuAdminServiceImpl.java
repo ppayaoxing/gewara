@@ -60,7 +60,7 @@ public class CommuAdminServiceImpl extends BaseServiceImpl implements CommuAdmin
 		if(StringUtils.isNotBlank(status))
 			queryCommu.add(Restrictions.eq("c.status", status));
 		queryCommu.addOrder(Order.desc("c.addtime"));
-		List<Commu> listCommu=readOnlyTemplate.findByCriteria(queryCommu,from, maxnum);
+		List<Commu> listCommu=(List<Commu>) readOnlyTemplate.findByCriteria(queryCommu,from, maxnum);
 		for (Commu commu : listCommu) {
 			mapMember.put(commu.getAdminid(), readOnlyTemplate.get(Member.class,commu.getAdminid()));
 		}
@@ -86,7 +86,7 @@ public class CommuAdminServiceImpl extends BaseServiceImpl implements CommuAdmin
 		if(StringUtils.isNotBlank(status))
 			queryCommu.add(Restrictions.eq("c.status", status));
 		queryCommu.setProjection(Projections.rowCount());
-		List<Commu> listCommu=readOnlyTemplate.findByCriteria(queryCommu);
+		List<Commu> listCommu=(List<Commu>) readOnlyTemplate.findByCriteria(queryCommu);
 		if(listCommu.get(0)==null) return 0;
 		return new Integer(listCommu.get(0)+"");
 	}
@@ -99,14 +99,14 @@ public class CommuAdminServiceImpl extends BaseServiceImpl implements CommuAdmin
 		DetachedCriteria query = DetachedCriteria.forClass(CommuManage.class);
 		query.add(Restrictions.eq("checkstatus", status));
 		query.addOrder(Order.desc("addtime"));
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<CommuManage>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public Integer getCommuManageCount(String status){
 		DetachedCriteria query = DetachedCriteria.forClass(CommuManage.class);
 		query.add(Restrictions.eq("checkstatus", status));
 		query.setProjection(Projections.rowCount());
-		List<CommuManage> list = readOnlyTemplate.findByCriteria(query);
+		List<CommuManage> list = (List<CommuManage>) readOnlyTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}

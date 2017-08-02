@@ -38,14 +38,14 @@ public class UserQuestionServiceImpl extends BaseServiceImpl implements UserQues
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		query.addOrder(Order.desc("addtime"));
-		List<GewaQuestion> listquestion=readOnlyTemplate.findByCriteria(query,from,maxnum);
+		List<GewaQuestion> listquestion=(List<GewaQuestion>) readOnlyTemplate.findByCriteria(query,from,maxnum);
 		return listquestion;
 	}
 
 	@Override
 	public Integer getAnswerCountByMemberid(Long memberid) {
 		String hql="select count(*) from GewaQuestion where id in(select questionid from GewaAnswer where memberid=?) and status=?";
-		List<GewaQuestion> listanswer = readOnlyTemplate.find(hql, memberid,Status.Y_NEW);
+		List<GewaQuestion> listanswer = (List<GewaQuestion>) readOnlyTemplate.find(hql, memberid,Status.Y_NEW);
 		if(listanswer.isEmpty()) return 0;
 		return new Integer(listanswer.get(0)+"");
 	}
@@ -57,7 +57,7 @@ public class UserQuestionServiceImpl extends BaseServiceImpl implements UserQues
 		query.add(Restrictions.eq("status", Status.Y_NEW));
 		query.setProjection(Projections.rowCount());
 		query.addOrder(Order.desc("addtime"));
-		List<GewaQuestion> listquestion=readOnlyTemplate.findByCriteria(query);
+		List<GewaQuestion> listquestion=(List<GewaQuestion>) readOnlyTemplate.findByCriteria(query);
 		if(listquestion.isEmpty()) return 0;
 		return new Integer(listquestion.get(0)+"");
 	}
@@ -67,7 +67,7 @@ public class UserQuestionServiceImpl extends BaseServiceImpl implements UserQues
 		DetachedCriteria query=DetachedCriteria.forClass(GewaAnswer.class);
 		query.add(Restrictions.eq("questionid", questionid));
 		query.add(Restrictions.eq("memberid", memberid));
-		List<GewaAnswer> answerList = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<GewaAnswer> answerList = (List<GewaAnswer>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if(answerList.isEmpty())return null;
 		return answerList.get(0);
 	}

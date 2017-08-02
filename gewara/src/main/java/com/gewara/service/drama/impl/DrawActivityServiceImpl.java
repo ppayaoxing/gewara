@@ -96,7 +96,7 @@ public class DrawActivityServiceImpl extends BaseServiceImpl implements DrawActi
 			query.addOrder(Order.desc(order));
 			query.addOrder(Order.asc("id"));
 		} else query.addOrder(Order.desc("addtime"));
-		List<DrawActivity> drawActivityList = hibernateTemplate.findByCriteria(query,from,maxnum);
+		List<DrawActivity> drawActivityList = (List<DrawActivity>) hibernateTemplate.findByCriteria(query,from,maxnum);
 		return drawActivityList;
 	}
 
@@ -106,13 +106,13 @@ public class DrawActivityServiceImpl extends BaseServiceImpl implements DrawActi
 		if(ptype!=null && ptype.length>0) query.add(Restrictions.in("ptype",ptype));
 		query.add(Restrictions.eq("activityid", did));
 		query.addOrder(Order.desc("addtime"));
-		List<Prize> prizeList = hibernateTemplate.findByCriteria(query);
+		List<Prize> prizeList = (List<Prize>) hibernateTemplate.findByCriteria(query);
 		return prizeList;
 	}
 	@Override
 	public List<Prize> getAvailablePrizeList(Long did, int minleft) {
 		String query = "from Prize where activityid = ? and pnumber - psendout >? order by addtime";
-		List<Prize> prizeList = hibernateTemplate.find(query, did, minleft);
+		List<Prize> prizeList = (List<Prize>) hibernateTemplate.find(query, did, minleft);
 		return prizeList;
 	}
 
@@ -168,7 +168,7 @@ public class DrawActivityServiceImpl extends BaseServiceImpl implements DrawActi
 		if(StringUtils.isNotBlank(nickname)) query.add(Restrictions.like("nickname", nickname,MatchMode.ANYWHERE));
 		if(StringUtils.isNotBlank(tag)) query.add(Restrictions.eq("w.tag", tag));
 		query.addOrder(Order.desc("w.addtime"));
-		List<WinnerInfo> winnerList = hibernateTemplate.findByCriteria(query,from,maxnum);
+		List<WinnerInfo> winnerList = (List<WinnerInfo>) hibernateTemplate.findByCriteria(query,from,maxnum);
 		return winnerList;
 	}
 
@@ -180,21 +180,21 @@ public class DrawActivityServiceImpl extends BaseServiceImpl implements DrawActi
 		if(startTime !=null && endTime !=null){
 			hql += " and w.addtime >= ? and w.addtime <= ?";
 			hql += group;
-			list = hibernateTemplate.find(hql,WinnerInfo.TAG_SYSTEM,activityid,startTime,endTime);
+			list = (List<Map>) hibernateTemplate.find(hql,WinnerInfo.TAG_SYSTEM,activityid,startTime,endTime);
 			return list;
 		}else if(startTime !=null){
 			hql += " and w.addtime >= ?";
 			hql += group;
-			list = hibernateTemplate.find(hql,WinnerInfo.TAG_SYSTEM,activityid,startTime);
+			list = (List<Map>) hibernateTemplate.find(hql,WinnerInfo.TAG_SYSTEM,activityid,startTime);
 			return list;
 		}else if(endTime !=null){
 			hql += " and w.addtime <= ?";
 			hql += group;
-			list = hibernateTemplate.find(hql,WinnerInfo.TAG_SYSTEM,activityid,endTime);
+			list = (List<Map>) hibernateTemplate.find(hql,WinnerInfo.TAG_SYSTEM,activityid,endTime);
 			return list;
 		}
 		hql += group;
-		list = hibernateTemplate.find(hql,WinnerInfo.TAG_SYSTEM,activityid);
+		list = (List<Map>) hibernateTemplate.find(hql,WinnerInfo.TAG_SYSTEM,activityid);
 		return list;
 	}
 
@@ -238,7 +238,7 @@ public class DrawActivityServiceImpl extends BaseServiceImpl implements DrawActi
 		opiQuery.setProjection(Projections.property("mi.id"));
 		toQuery.add(Subqueries.propertyIn("m.id", opiQuery));
 		toQuery.setProjection(Projections.rowCount());
-		List<Long> list = hibernateTemplate.findByCriteria(toQuery);
+		List<Long> list = (List<Long>) hibernateTemplate.findByCriteria(toQuery);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -424,7 +424,7 @@ public class DrawActivityServiceImpl extends BaseServiceImpl implements DrawActi
 		DetachedCriteria query = DetachedCriteria.forClass(WinnerInfo.class);
 		query.add(Restrictions.eq("activityid",activityid));
 		query.add(Restrictions.eq("memberid",memberid));
-		List<WinnerInfo> list = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<WinnerInfo> list = (List<WinnerInfo>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	
@@ -493,7 +493,7 @@ public class DrawActivityServiceImpl extends BaseServiceImpl implements DrawActi
 		if(validMobile){
 			hql += " and mi.id=m.id ) and m.mobile is not null ";	
 		}
-		List<Long> idList = hibernateTemplate.find(hql, params.toArray());
+		List<Long> idList = (List<Long>) hibernateTemplate.find(hql, params.toArray());
 		return idList;
 	}
 
@@ -501,7 +501,7 @@ public class DrawActivityServiceImpl extends BaseServiceImpl implements DrawActi
 	public Integer getInviteOrderNum(DrawActivity da, Long memberid) {
 		String hql = "select mi.id from MemberInfo mi where exists (select m.id from Member m " +
 				"where m.id = mi.id and mi.inviteid = ? and mi.addtime between ? and ?) and mi.invitetype = ?";
-		List<Long> memberIdList = hibernateTemplate.find(hql,memberid,da.getStarttime(),da.getEndtime(),da.getTag());
+		List<Long> memberIdList = (List<Long>) hibernateTemplate.find(hql,memberid,da.getStarttime(),da.getEndtime(),da.getTag());
 		DetachedCriteria query = DetachedCriteria.forClass(GewaOrder.class);
 		if(memberIdList.isEmpty()) query.add(Restrictions.eq("memberid", memberid));
 		else query.add(Restrictions.or(Restrictions.in("memberid",memberIdList), Restrictions.eq("memberid",memberid)));

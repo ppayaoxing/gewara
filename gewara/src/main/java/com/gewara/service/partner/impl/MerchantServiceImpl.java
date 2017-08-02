@@ -28,7 +28,7 @@ public class MerchantServiceImpl extends BaseServiceImpl implements MerchantServ
 		if(StringUtils.isNotBlank(company)){
 			query.add(Restrictions.eq("company", company));
 		}
-		List<Merchant> result = hibernateTemplate.findByCriteria(query);
+		List<Merchant> result = (List<Merchant>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 

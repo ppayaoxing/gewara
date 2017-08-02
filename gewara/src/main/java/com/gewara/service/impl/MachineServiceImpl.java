@@ -30,7 +30,7 @@ public class MachineServiceImpl extends BaseServiceImpl implements MachineServic
 		if(StringUtils.isNotBlank(machinetype)) query.add(Restrictions.eq("machinetype", machinetype));
 		if(StringUtils.isNotBlank(machinestatus)) query.add(Restrictions.eq("machinestatus", machinestatus));
 		query.addOrder(Order.desc("addtime"));
-		List<Machine> gewaMaList=hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Machine> gewaMaList=(List<Machine>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return gewaMaList;
 	}
 	@Override
@@ -47,7 +47,7 @@ public class MachineServiceImpl extends BaseServiceImpl implements MachineServic
 		if(StringUtils.isNotBlank(machinetype)) query.add(Restrictions.eq("machinetype", machinetype));
 		if(StringUtils.isNotBlank(machinestatus)) query.add(Restrictions.eq("machinestatus", machinestatus));
 		query.setProjection(Projections.rowCount());
-		List<Machine> gewaMaList=hibernateTemplate.findByCriteria(query);
+		List<Machine> gewaMaList=(List<Machine>) hibernateTemplate.findByCriteria(query);
 		if(gewaMaList.isEmpty()) return 0;
 		return new Integer (gewaMaList.get(0)+"");
 	}

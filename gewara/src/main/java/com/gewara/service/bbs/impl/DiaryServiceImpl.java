@@ -105,13 +105,13 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 			query.add(Restrictions.like("d.flag", flag, MatchMode.ANYWHERE));
 			query.addOrder(Order.desc("d.utime"));
 			query.setProjection(Projections.id());
-			idList = readOnlyTemplate.findByCriteria(query, 0, 20);
+			idList = (List<Long>) readOnlyTemplate.findByCriteria(query, 0, 20);
 			if(isCache) cacheService.set(CacheConstant.REGION_ONEHOUR, key, idList);
 		}
 		if(idList.isEmpty()) return new ArrayList<Diary>();
 		DetachedCriteria q =  DetachedCriteria.forClass(Diary.class);
 		q.add(Restrictions.in("id", idList));
-		List<Diary> result = readOnlyTemplate.findByCriteria(q);
+		List<Diary> result = (List<Diary>) readOnlyTemplate.findByCriteria(q);
 		return result;
 	}
 	@Override
@@ -153,7 +153,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		}else if("sumnumed".equals(order)){
 			query.addOrder(Order.desc("d.sumnumed"));
 		}else query.addOrder(Order.desc("d.utime"));
-		List<T> result = readOnlyTemplate.findByCriteria(query, start, maxnum);
+		List<T> result = (List<T>) readOnlyTemplate.findByCriteria(query, start, maxnum);
 		return result;
 	}
 
@@ -221,7 +221,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 					.add(Projections.groupProperty("c.diaryid"))
 					.add(Projections.count("id"), "commentcount"));
 			query.addOrder(Order.desc("commentcount"));
-			List<Object[]> rowList = readOnlyTemplate.findByCriteria(query, 0, 10);
+			List<Object[]> rowList = (List<Object[]>) readOnlyTemplate.findByCriteria(query, 0, 10);
 			List<Long> idList = new ArrayList<Long>();
 			for(Object[] row:rowList){
 				idList.add((Long) row[0]);
@@ -245,7 +245,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 			else if(ServiceHelper.isCategory(tag)) query.add(Restrictions.eq("category", tag));
 		}
 		query.addOrder(Order.desc("utime"));
-		List<T> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<T> result = (List<T>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -269,7 +269,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		DetachedCriteria query = DetachedCriteria.forClass(DiaryComment.class);
 		query.add(Restrictions.eq("diaryid", diaryId));
 		query.addOrder(Order.asc("addtime"));
-		List<DiaryComment> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<DiaryComment> result = (List<DiaryComment>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -277,7 +277,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		DetachedCriteria query = DetachedCriteria.forClass(DiaryComment.class);
 		query.add(Restrictions.eq("diaryid", diaryId));
 		query.addOrder(Order.desc("addtime"));
-		List<DiaryComment> result = readOnlyTemplate.findByCriteria(query);
+		List<DiaryComment> result = (List<DiaryComment>) readOnlyTemplate.findByCriteria(query);
 		return result;
 	}
 	@Override
@@ -294,12 +294,12 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		subqry.setProjection(Projections.property("f.id"));
 		query.add(Subqueries.exists(subqry));
 		query.addOrder(Order.asc("d.id"));
-		List<Diary> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Diary> result = (List<Diary>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
 	public List<VoteOption> getVoteOptionByVoteid(Long vid) {
-		List<VoteOption> list = readOnlyTemplate.find("from VoteOption v where v.diaryid=? order by v.id asc",vid);
+		List<VoteOption> list = (List<VoteOption>) readOnlyTemplate.find("from VoteOption v where v.diaryid=? order by v.id asc",vid);
 		return list;
 	}
 	@Override
@@ -339,7 +339,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		DetachedCriteria query = DetachedCriteria.forClass(VoteChoose.class);
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.eq("diaryid", diaryid));
-		List<VoteChoose> list = readOnlyTemplate.findByCriteria(query);
+		List<VoteChoose> list = (List<VoteChoose>) readOnlyTemplate.findByCriteria(query);
 		if(list.isEmpty()) return true;
 		return false;
 	}
@@ -359,7 +359,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		query.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		query.add(Restrictions.between("addtime",obj1,obj));
 		query.addOrder(Order.desc("replycount"));
-		List<Diary> listdiary=readOnlyTemplate.findByCriteria(query,from,maxnum);
+		List<Diary> listdiary=(List<Diary>) readOnlyTemplate.findByCriteria(query,from,maxnum);
 		return listdiary;
 	}
 	@Override
@@ -371,7 +371,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		query.add(Restrictions.gt("communityid",0l));
 		query.add(Restrictions.like("status",Status.Y,MatchMode.START));
 		query.addOrder(Order.desc("addtime"));
-		List<T> diaryList = readOnlyTemplate.findByCriteria(query,from,maxnum);
+		List<T> diaryList = (List<T>) readOnlyTemplate.findByCriteria(query,from,maxnum);
 		return diaryList;
 	}
 	@Override
@@ -382,7 +382,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		if(endDate!=null) query.add(Restrictions.le("addtime", endDate));
 		if(StringUtils.isNotBlank(keyname)) query.add(Restrictions.like("subject", keyname, MatchMode.ANYWHERE));
 		query.addOrder(Order.desc("addtime"));
-		List<T> diaryList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<T> diaryList = (List<T>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return diaryList;
 	}
 	@Override
@@ -393,7 +393,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		if(endDate!=null) query.add(Restrictions.le("addtime", endDate));
 		if(StringUtils.isNotBlank(keyname)) query.add(Restrictions.like("subject", keyname, MatchMode.ANYWHERE));
 		query.setProjection(Projections.rowCount());
-		List<T> diaryList = readOnlyTemplate.findByCriteria(query);
+		List<T> diaryList = (List<T>) readOnlyTemplate.findByCriteria(query);
 		if(diaryList.isEmpty()) return 0;
 		return new Integer(diaryList.get(0)+"");
 	}
@@ -405,7 +405,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		if(endDate!=null) query.add(Restrictions.le("addtime", endDate));
 		if(StringUtils.isNotBlank(keyname)) query.add(Restrictions.like("body", keyname, MatchMode.ANYWHERE));
 		query.addOrder(Order.desc("addtime"));
-		List<DiaryComment> diaryList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<DiaryComment> diaryList = (List<DiaryComment>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return diaryList;
 	}
 	@Override
@@ -416,7 +416,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 		if(endDate!=null) query.add(Restrictions.le("addtime", endDate));
 		if(StringUtils.isNotBlank(keyname)) query.add(Restrictions.like("body", keyname, MatchMode.ANYWHERE));
 		query.setProjection(Projections.rowCount());
-		List<DiaryComment> diaryList = readOnlyTemplate.findByCriteria(query);
+		List<DiaryComment> diaryList = (List<DiaryComment>) readOnlyTemplate.findByCriteria(query);
 		if(diaryList.isEmpty()) return 0;
 		return new Integer(diaryList.get(0)+"");
 	}
@@ -460,7 +460,7 @@ public class DiaryServiceImpl extends BaseServiceImpl implements DiaryService{
 	public Integer getMDSDiaryCountByKeyname(String citycode, String keyname, String tag, String name){
 		String hql=" select count(d.id) from Diary d where d.type=?  and d.citycode=? and exists (select m.id from "+ tag +" m "+
 		" where m."+name+ " like ? and d.categoryid=m.id)";
-		List<Diary> diaryList=hibernateTemplate.find(hql, DiaryConstant.DIARY_TYPE_COMMENT, citycode, keyname);
+		List<Diary> diaryList=(List<Diary>) hibernateTemplate.find(hql, DiaryConstant.DIARY_TYPE_COMMENT, citycode, keyname);
 		if(diaryList.size()>0) return new Integer(diaryList.get(0)+"");
 		return 0;
 	}

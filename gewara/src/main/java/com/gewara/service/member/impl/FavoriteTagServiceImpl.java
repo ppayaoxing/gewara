@@ -35,7 +35,7 @@ public class FavoriteTagServiceImpl extends BaseServiceImpl implements FavoriteT
 	public List<FavoriteTag> getRandomFavorList(int count) {
 		DetachedCriteria query = DetachedCriteria.forClass(FavoriteTag.class);
 		query.addOrder(Order.desc("clickcount"));
-		List<FavoriteTag> list = readOnlyTemplate.findByCriteria(query, 0, 100);
+		List<FavoriteTag> list = (List<FavoriteTag>) readOnlyTemplate.findByCriteria(query, 0, 100);
 		Set randoms = null;
 		if(list != null && list.size() > 0){
 			if(list.size() <= count){

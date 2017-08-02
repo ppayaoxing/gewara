@@ -293,7 +293,7 @@ public class SearchServiceImpl implements SearchService {
 			hql.append(" where g.TIMENUM>? ");
 			args.add(timenum);
 		}
-		List<Long> counts = hibernateTemplate.find("select count(*) " + hql.toString(), args.toArray());
+		List<Long> counts = (List<Long>) hibernateTemplate.find("select count(*) " + hql.toString(), args.toArray());
 		long rowsCount = (counts != null && !counts.isEmpty() ? counts.get(0).longValue() : 0);
 		long pageCount = (rowsCount - 1) / rowsPerPage + 1;
 		for (int pageNo = 0; pageNo < pageCount; pageNo++) {

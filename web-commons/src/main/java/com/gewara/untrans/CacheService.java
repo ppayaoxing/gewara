@@ -12,6 +12,7 @@ public interface CacheService extends CacheTools {
 	String REGION_LOGINAUTH = "loginAuth";	//2hour
 	String REGION_SERVICE = "service";		//12 hour
 	String REGION_FIVEDAY = "fiveDay";			//5day
+	String REGION_LOGINKEY = "loginKey" ;
 	/**
 	 * @function ¶à¸ökey
 	 */

@@ -110,7 +110,7 @@ public class PointServiceImpl extends BaseServiceImpl implements PointService {
 			query.addOrder(Order.desc(order));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<Point> pointList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Point> pointList = (List<Point>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return pointList;
 	}
 	
@@ -126,7 +126,7 @@ public class PointServiceImpl extends BaseServiceImpl implements PointService {
 			query.addOrder(Order.desc(order));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<PointHist> pointList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<PointHist> pointList = (List<PointHist>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return pointList;
 	}
 	
@@ -241,9 +241,9 @@ public class PointServiceImpl extends BaseServiceImpl implements PointService {
 				"exists (select id from MemberInfo s where s.id=p.memberid and s.pointvalue >=? and s.pointvalue<=?) ";
 		if(StringUtils.isNotBlank(tag)){
 			hql += "and p.tag= ?";
-			result = hibernateTemplate.find(hql, startTime, endTime, valueStart, valueEnd, tag);
+			result = (List<Map>) hibernateTemplate.find(hql, startTime, endTime, valueStart, valueEnd, tag);
 		}else{
-			result = hibernateTemplate.find(hql, startTime, endTime, valueStart, valueEnd);
+			result = (List<Map>) hibernateTemplate.find(hql, startTime, endTime, valueStart, valueEnd);
 		}
 		return result.get(0);
 	}
@@ -310,7 +310,7 @@ public class PointServiceImpl extends BaseServiceImpl implements PointService {
 			query.add(Restrictions.lt("point",0));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<Point> listPoint=hibernateTemplate.findByCriteria(query, from, maxNum);
+		List<Point> listPoint=(List<Point>) hibernateTemplate.findByCriteria(query, from, maxNum);
 		return listPoint;
 	}
 
@@ -334,7 +334,7 @@ public class PointServiceImpl extends BaseServiceImpl implements PointService {
 	@Override
 	public boolean isGetLoginPoint(Long memberId, String date) {
 		String query = "from Point where memberid = ? and tag = ? and to_char(addtime,'yyyy-mm-dd')=?";
-		List<Point> pointList = hibernateTemplate.find(query, memberId, PointConstant.TAG_LOGIN_ACTIVIRY, date);
+		List<Point> pointList = (List<Point>) hibernateTemplate.find(query, memberId, PointConstant.TAG_LOGIN_ACTIVIRY, date);
 		if(pointList.isEmpty()) return false;
 		return true;
 	}
@@ -446,7 +446,7 @@ public class PointServiceImpl extends BaseServiceImpl implements PointService {
 		Timestamp curtime = DateUtil.getBeginningTimeOfDay(DateUtil.addDay(cur, -PointConstant.LOGIN_REWARDS_DAYNUM));
 		query.add(Restrictions.ge("addtime", curtime));
 		query.addOrder(Order.desc("addtime"));
-		List<Point> list = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<Point> list = (List<Point>) hibernateTemplate.findByCriteria(query, 0, 1);
 		Timestamp curDate = DateUtil.getCurTruncTimestamp();
 		if(!list.isEmpty()){
 			Point point = list.get(0);
@@ -461,7 +461,7 @@ public class PointServiceImpl extends BaseServiceImpl implements PointService {
 		query2.add(Restrictions.eq("tag", PointConstant.TAG_LOGIN_ACTIVIRY));
 		query2.add(Restrictions.ge("addtime", curtime));
 		query2.setProjection(Projections.property("addtime"));
-		List<Timestamp> list2 = hibernateTemplate.findByCriteria(query2);
+		List<Timestamp> list2 = (List<Timestamp>) hibernateTemplate.findByCriteria(query2);
 		int count = 0;
 		if(list2.isEmpty()){
 			return count;
@@ -526,7 +526,7 @@ public class PointServiceImpl extends BaseServiceImpl implements PointService {
 			query.add(Restrictions.eq("tagid", tagid));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<Point> pointList=hibernateTemplate.findByCriteria(query, 0, 1);
+		List<Point> pointList=(List<Point>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(pointList.isEmpty()) return null;
 		return pointList.get(0);
 	}
@@ -658,7 +658,7 @@ public class PointServiceImpl extends BaseServiceImpl implements PointService {
 	@Override
 	public List<Point> getPointListByTradeNo(String tradeNo){
 		String qry = "from Point where tag = ? and reason = ?";
-		List<Point> result = hibernateTemplate.find(qry, PointConstant.TAG_TRADE, tradeNo);
+		List<Point> result = (List<Point>) hibernateTemplate.find(qry, PointConstant.TAG_TRADE, tradeNo);
 		return result;
 	}
 	@Override

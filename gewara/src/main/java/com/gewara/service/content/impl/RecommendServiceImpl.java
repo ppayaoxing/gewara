@@ -33,7 +33,7 @@ public class RecommendServiceImpl  extends BaseServiceImpl implements RecommendS
 	@Override
 	public List<Map> getCommuMyTreasureMember(Long commuid, Long memberid, String tag, String action) {
 		String hql = "select new map(c.memberid as memberid) from CommuMember c, Treasure tr where c.commuid=? and c.memberid=tr.relatedid and tr.memberid=? and tag=? and action=?";
-		List<Map> list = readOnlyTemplate.find(hql, commuid, memberid, tag , action);
+		List<Map> list = (List<Map>) readOnlyTemplate.find(hql, commuid, memberid, tag , action);
 		return list;
 	}
 	
@@ -62,7 +62,7 @@ public class RecommendServiceImpl  extends BaseServiceImpl implements RecommendS
 	@Override
 	public Map<Long, String> getCommuListByToSameMember(Long memberid, String tag, String action) {
 		String hql = "from CommuMember where memberid in (select t.relatedid from Treasure t where t.memberid=? and t.tag=? and t.action=?)";
-		List<CommuMember> commuMemberList = readOnlyTemplate.find(hql, memberid, tag, action);
+		List<CommuMember> commuMemberList = (List<CommuMember>) readOnlyTemplate.find(hql, memberid, tag, action);
 		Map<Long, String> commuMap = new HashMap<Long, String>();
 		for(CommuMember commuMember : commuMemberList){
 			Long commuid = commuMember.getCommuid();

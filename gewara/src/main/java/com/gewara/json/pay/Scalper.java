@@ -1,5 +1,6 @@
 package com.gewara.json.pay;
 
+import com.gewara.mongo.support.MGObject;
 
 /**
  * 黄牛实体类
@@ -7,7 +8,11 @@ package com.gewara.json.pay;
  * @author user
  *
  */
-public class Scalper {
+public class Scalper extends MGObject {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7251470817607576306L;
 	private Long id;
 	private String name;				//黄牛名称
 	private String description;	//描述

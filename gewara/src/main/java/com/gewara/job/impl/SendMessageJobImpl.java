@@ -275,7 +275,7 @@ public class SendMessageJobImpl extends JobService implements SendMessageJob {
 		Date curDate = DateUtil.getCurDate();
 		Map<String, Integer> itemCountMap = new HashMap<String, Integer>();
 		String mhql = "select new map(movieid as mid,citycode as citycode,playdate as playdate,count(distinct cinemaid) as rowcount) from MoviePlayItem where playdate>=? group by movieid,citycode,playdate";
-		List<Map> itemMapList = hibernateTemplate.find(mhql, curDate);
+		List<Map> itemMapList = (List<Map>) hibernateTemplate.find(mhql, curDate);
 		for (Map map : itemMapList) {
 			String key = String.valueOf(map.get("mid")) + (String)map.get("citycode") + DateUtil.format((Date)map.get("playdate"), "yyyy-MM-dd");
 			itemCountMap.put(key, Integer.valueOf(String.valueOf(map.get("rowcount"))));
@@ -296,7 +296,7 @@ public class SendMessageJobImpl extends JobService implements SendMessageJob {
 		
 		
 		String nhql = "select new map(categoryid as mid, category as category, count(categoryid) as rowcount) from News where category is not null and categoryid is not null group by category,categoryid";
-		List<Map> newsCountMapList = hibernateTemplate.find(nhql);
+		List<Map> newsCountMapList = (List<Map>) hibernateTemplate.find(nhql);
 		Map<String, Integer> newsCountMap = new HashMap<String, Integer>();
 		for (Map map : newsCountMapList) {
 			String mid = String.valueOf(map.get("mid"));
@@ -317,7 +317,7 @@ public class SendMessageJobImpl extends JobService implements SendMessageJob {
 		
 		log.warn("查询关联新闻数量：" + newsCountMap.size());
 		String phql = "select new map(relatedid as mid, tag as tag, count(relatedid) as rowcount) from Picture where tag is not null and relatedid is not null group by tag,relatedid";
-		List<Map> pictrueCountMapList = hibernateTemplate.find(phql);
+		List<Map> pictrueCountMapList = (List<Map>) hibernateTemplate.find(phql);
 		Map<String, Integer> pictrueCountMap = new HashMap<String, Integer>();
 		for (Map map : pictrueCountMapList) {
 			String mid = String.valueOf(map.get("mid"));
@@ -338,7 +338,7 @@ public class SendMessageJobImpl extends JobService implements SendMessageJob {
 		log.warn("查询关联照片数量：" + pictrueCountMap.size());
 		
 		String vhql = "select new map(relatedid as mid, tag as tag, count(relatedid) as rowcount) from Video where tag is not null and relatedid is not null group by tag,relatedid";
-		List<Map> videoCountMapList = hibernateTemplate.find(vhql);
+		List<Map> videoCountMapList = (List<Map>) hibernateTemplate.find(vhql);
 		Map<String, Integer> videoCountMap = new HashMap<String, Integer>();
 		for (Map map : videoCountMapList) {
 			String mid = String.valueOf(map.get("mid"));
@@ -359,7 +359,7 @@ public class SendMessageJobImpl extends JobService implements SendMessageJob {
 		log.warn("查询关联预告片数量：" + videoCountMap.size());
 		
 		String dhql = "select new map(categoryid as mid, category as category, count(categoryid) as rowcount) from Diary where category is not null and categoryid is not null and type=? and status like ? and status<>? group by category,categoryid";
-		List<Map> diaryCountMapList = hibernateTemplate.find(dhql, DiaryConstant.DIARY_TYPE_COMMENT, Status.Y + "%", Status.Y_TREAT);
+		List<Map> diaryCountMapList = (List<Map>) hibernateTemplate.find(dhql, DiaryConstant.DIARY_TYPE_COMMENT, Status.Y + "%", Status.Y_TREAT);
 		Map<String, Integer> diaryCountMap = new HashMap<String, Integer>();
 		for (Map map : diaryCountMapList) {
 			String mid = String.valueOf(map.get("mid"));
@@ -407,7 +407,7 @@ public class SendMessageJobImpl extends JobService implements SendMessageJob {
 		}
 		
 		String shql = "select new map(itemid as mid, playdate as playdate, count(distinct sportid) as rowcount) from OpenTimeTable where status =? and rstatus = ? and playdate>=? group by itemid,playdate";
-		List<Map> sportItemMapList = hibernateTemplate.find(shql, Status.Y, Status.Y, curDate);
+		List<Map> sportItemMapList = (List<Map>) hibernateTemplate.find(shql, Status.Y, Status.Y, curDate);
 		Map<String, Integer> sportItemCountMap = new HashMap<String, Integer>();
 		for (Map map : sportItemMapList) {
 			String key = String.valueOf(map.get("mid")) + DateUtil.format((Date)map.get("playdate"), "yyyy-MM-dd");
@@ -417,7 +417,7 @@ public class SendMessageJobImpl extends JobService implements SendMessageJob {
 		log.warn("查询运动项目开放场馆数量：" + sportItemCountMap.size());
 		
 		String sporthql = "select new map(itemid as mid, count(distinct sportid) as rowcount) from Sport2Item group by itemid";
-		List<Map> sportItemList = hibernateTemplate.find(sporthql);
+		List<Map> sportItemList = (List<Map>) hibernateTemplate.find(sporthql);
 		Map<String, Integer> sportCountMap = new HashMap<String, Integer>();
 		for (Map map : sportItemList) {
 			String key = String.valueOf(map.get("mid"));
@@ -427,7 +427,7 @@ public class SendMessageJobImpl extends JobService implements SendMessageJob {
 		log.warn("查询运动项目场馆数量：" + sportCountMap.size());
 		
 		String commuhql = "select new map(smallcategoryid as mid, smallcategory as category, count(smallcategoryid) as rowcount) from Commu where smallcategoryid is not null and smallcategory is not null and status like ? and status<>? group by smallcategory,smallcategoryid";
-		List<Map> commuMapList = hibernateTemplate.find(commuhql, Status.Y + "%", Status.Y_TREAT);
+		List<Map> commuMapList = (List<Map>) hibernateTemplate.find(commuhql, Status.Y + "%", Status.Y_TREAT);
 		Map<String, Integer> commuCountMap = new HashMap<String, Integer>();
 		for (Map map : commuMapList) {
 			String key = String.valueOf(map.get("mid")) + String.valueOf(map.get("category"));
@@ -553,7 +553,7 @@ public class SendMessageJobImpl extends JobService implements SendMessageJob {
 			sub.add(Restrictions.eqProperty("item.dramaid", "d.id"));
 			sub.setProjection(Projections.property("item.id"));
 			query.add(Subqueries.exists(sub));
-			List<Drama> dramaList = hibernateTemplate.findByCriteria(query);
+			List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query);
 			for(Drama drama:dramaList){
 				//TODO 发送短信
 			}

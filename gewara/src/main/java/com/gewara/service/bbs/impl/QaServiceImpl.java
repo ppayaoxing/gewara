@@ -54,7 +54,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		query.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		query.add(Restrictions.eq("hotvalue", hotvalue));
 		query.addOrder(Order.desc("recommendtime"));
-		List<GewaQuestion> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<GewaQuestion> list = (List<GewaQuestion>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 
@@ -72,7 +72,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 			query.add(Restrictions.eq("questionstatus", questionstatus));
 		if (StringUtils.isNotBlank(order))
 			query.addOrder(Order.desc(order));
-		List<GewaQuestion> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<GewaQuestion> list = (List<GewaQuestion>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 
@@ -83,7 +83,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		if(fromDate!=null) query.add(Restrictions.ge("addtime", fromDate));
 		if(endDate!=null) query.add(Restrictions.le("addtime", endDate));
 		query.addOrder(Order.desc("addtime"));
-		List<GewaQuestion> questionList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<GewaQuestion> questionList = (List<GewaQuestion>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return questionList;
 	}
 	
@@ -105,7 +105,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		query.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		query.add(Restrictions.eq("questionid", questionid));
 		query.addOrder(Order.asc("addtime"));
-		List<GewaAnswer> list = readOnlyTemplate.findByCriteria(query);
+		List<GewaAnswer> list = (List<GewaAnswer>) readOnlyTemplate.findByCriteria(query);
 		return list;
 	}
 
@@ -116,7 +116,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		if(questionid!=null)
 			criteria.add(Restrictions.eq("questionid", questionid));
 		criteria.setProjection(Projections.rowCount());
-		List<Long> list = readOnlyTemplate.findByCriteria(criteria);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(criteria);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -128,7 +128,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		if(questionid!=null)
 			criteria.add(Restrictions.eq("questionid", questionid));
 		criteria.addOrder(Order.desc("addtime"));
-		List<GewaAnswer> answerList = readOnlyTemplate.findByCriteria(criteria, start, maxnum);
+		List<GewaAnswer> answerList = (List<GewaAnswer>) readOnlyTemplate.findByCriteria(criteria, start, maxnum);
 		return answerList;
 	}
 	
@@ -141,7 +141,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		if(memberId!=null)
 			criteria.add(Restrictions.eq("memberid", memberId));
 		criteria.addOrder(Order.desc("addtime"));
-		List<GewaAnswer> answerList = readOnlyTemplate.findByCriteria(criteria, start, maxnum);
+		List<GewaAnswer> answerList = (List<GewaAnswer>) readOnlyTemplate.findByCriteria(criteria, start, maxnum);
 		return answerList;
 	}
 
@@ -156,7 +156,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		else
 			query.add(Restrictions.eq("questionstatus", questionstatus));
 		query.setProjection(Projections.rowCount());
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -168,7 +168,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		query.add(Restrictions.eq("questionid", qid));
 		query.add(Restrictions.eq("memberid", mid));
 		query.setProjection(Projections.rowCount());
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if (list.isEmpty()) return false;
 		return Integer.parseInt(""+list.get(0)) > 0;
 	}
@@ -179,7 +179,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		query.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		query.add(Restrictions.eq("questionid", qid));
 		query.add(Restrictions.eq("answerstatus", GewaAnswer.AS_STATUS_Y));
-		List<GewaAnswer> list = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<GewaAnswer> list = (List<GewaAnswer>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		return list.isEmpty() ? null : list.get(0);
 	}
 
@@ -189,7 +189,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		// query.add(Restrictions.eq("status", GewaQaExpert.STATUS_Y));
 		query.add(Restrictions.eq("memberid", mid));
 		// query.setProjection(Projections.rowCount());
-		List<GewaQaExpert> list = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<GewaQaExpert> list = (List<GewaQaExpert>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		return list.isEmpty() ? null : list.get(0);
 	}
 
@@ -221,7 +221,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 	public Integer getQAExpertCount() {
 		DetachedCriteria criteria = DetachedCriteria.forClass(GewaQaExpert.class);
 		criteria.setProjection(Projections.rowCount());
-		List<Long> list = readOnlyTemplate.findByCriteria(criteria);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(criteria);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -230,7 +230,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 	public List<GewaQaExpert> getQaExpertList() {
 		DetachedCriteria criteria = DetachedCriteria.forClass(GewaQaExpert.class);
 		criteria.addOrder(Order.desc("updatetime"));
-		List<GewaQaExpert> QaExpertlist = readOnlyTemplate.findByCriteria(criteria);
+		List<GewaQaExpert> QaExpertlist = (List<GewaQaExpert>) readOnlyTemplate.findByCriteria(criteria);
 		return QaExpertlist;
 	}
 
@@ -244,7 +244,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 			query.add(Restrictions.eq("relatedid", relatedid));
 		}
 		query.addOrder(Order.desc("updatetime"));
-		List<GewaQuestion> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<GewaQuestion> list = (List<GewaQuestion>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 
@@ -268,7 +268,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 			query.add(Restrictions.ne("questionstatus", GewaQuestion.QS_STATUS_Z));
 		}
 		query.addOrder(Order.desc("updatetime"));
-		List<GewaQuestion> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<GewaQuestion> list = (List<GewaQuestion>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	
@@ -280,7 +280,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		if(StringUtils.isNotBlank(category)) query.add(Restrictions.eq("category", category));
 		if(categoryid != null) query.add(Restrictions.eq("categoryid", categoryid));
 		query.setProjection(Projections.rowCount());
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if(list.isEmpty()) return 0;
 		return Integer.parseInt(list.get(0)+"");
 	}
@@ -293,7 +293,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 				Projections.alias(Projections.groupProperty("memberid"), "memberid")));
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
 		query.addOrder(Order.desc("count"));
-		List<Map> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Map> list = (List<Map>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		Map<Member, Integer> miMap = new LinkedHashMap<Member, Integer>();
 		for (Map m : list) {
 			Member member = baseDao.getObject(Member.class, new Long(m.get("memberid") + ""));
@@ -307,7 +307,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 	public GewaQaExpert getQaExpertStatusById(Long id) {
 		DetachedCriteria criteria = DetachedCriteria.forClass(GewaQaExpert.class);
 		criteria.add(Restrictions.eq("id", id));
-		List<GewaQaExpert> list = readOnlyTemplate.findByCriteria(criteria);
+		List<GewaQaExpert> list = (List<GewaQaExpert>) readOnlyTemplate.findByCriteria(criteria);
 		if (list.size() > 0)
 			return list.get(0);
 		return null;
@@ -318,7 +318,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		DetachedCriteria criteria = DetachedCriteria.forClass(GewaAnswer.class);
 		criteria.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		criteria.add(Restrictions.eq("memberid", Memberid));
-		List<GewaAnswer> list = readOnlyTemplate.findByCriteria(criteria);
+		List<GewaAnswer> list = (List<GewaAnswer>) readOnlyTemplate.findByCriteria(criteria);
 		return list;
 	}
 
@@ -329,7 +329,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 				Projections.alias(Projections.groupProperty("memberid"), "memberid")));
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
 		query.addOrder(Order.desc("count"));
-		List<Map> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Map> list = (List<Map>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		Map<Member, Integer> miMap = new LinkedHashMap<Member, Integer>();
 		for (Map m : list) {
 			Member member = baseDao.getObject(Member.class, new Long(m.get("memberid") + ""));
@@ -370,7 +370,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		answer.setProjection(Projections.property("a.questionid"));
 		query.add(Subqueries.exists(answer));
 		query.addOrder(Order.desc("q.replycount"));
-		List<GewaQuestion> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<GewaQuestion> list = (List<GewaQuestion>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 
@@ -412,7 +412,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		query.add(Restrictions.eq("status", GewaQaExpert.STATUS_Y));
 		query.add(Restrictions.isNotNull("updatetime"));
 		query.addOrder(Order.desc("updatetime"));
-		List<GewaQaExpert> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<GewaQaExpert> list = (List<GewaQaExpert>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 
@@ -423,7 +423,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 				Projections.alias(Projections.groupProperty("memberid"), "memberid")));
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
 		query.addOrder(Order.desc("point"));
-		List<Map> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Map> list = (List<Map>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		List<Map> miMap = new LinkedList<Map>();
 		for (Map m : list) {
 			Long memberid = (Long) m.get("memberid");
@@ -464,7 +464,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		DetachedCriteria query = DetachedCriteria.forClass(GewaQaPoint.class);
 		query.add(Restrictions.eq("questionid", qid));
 		query.add(Restrictions.eq("tag", tag));
-		List<GewaQaPoint> list = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<GewaQaPoint> list = (List<GewaQaPoint>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		return list.isEmpty() ? null : list.get(0);
 	}
 
@@ -473,7 +473,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		DetachedCriteria query = DetachedCriteria.forClass(GewaQaPoint.class);
 		query.add(Restrictions.eq("memberid", mid));
 		query.setProjection(Projections.sum("point"));
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if (list.get(0)==null) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -484,7 +484,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		query.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		query.add(Restrictions.eq("memberid", mid));
 		query.setProjection(Projections.rowCount());
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		return new Integer(list.get(0)+"");
 	}
 
@@ -495,7 +495,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		query.add(Restrictions.eq("memberid", mid));
 		query.add(Restrictions.eq("answerstatus", GewaAnswer.AS_STATUS_Y));
 		query.setProjection(Projections.rowCount());
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}
@@ -525,7 +525,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 			query.add(Restrictions.ne("questionstatus", GewaQuestion.QS_STATUS_Z));
 		}
 		query.addOrder(Order.desc(order));
-		List<GewaQuestion> list = readOnlyTemplate.findByCriteria(query, 0, maxnum);
+		List<GewaQuestion> list = (List<GewaQuestion>) readOnlyTemplate.findByCriteria(query, 0, maxnum);
 		return list;
 	}
 	
@@ -581,7 +581,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 	@Override
 	public List<GewaQuestion> getQuestionList(String citycode,String tag, Long relatedid, String status,  String order,int from,int maxnum){
 		DetachedCriteria query =getQuestionQuery(citycode,tag,order, relatedid, status);
-		List<GewaQuestion> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<GewaQuestion> list = (List<GewaQuestion>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	
@@ -591,7 +591,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		if(StringUtils.isNotBlank(citycode)) query.add(Restrictions.eq("citycode", citycode));
 		query.add(Restrictions.eq("hotvalue", hotvalue));
 		query.setProjection(Projections.rowCount());
-		List<GewaQuestion> qaList=readOnlyTemplate.findByCriteria(query);
+		List<GewaQuestion> qaList=(List<GewaQuestion>) readOnlyTemplate.findByCriteria(query);
 		if(qaList.isEmpty()) return 0;
 		return new Integer(qaList.get(0)+"");
 	}
@@ -601,7 +601,7 @@ public class QaServiceImpl extends BaseServiceImpl implements QaService {
 		query.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		query.add(Restrictions.eq("questionid", questionid));
 		query.setProjection(Projections.rowCount());
-		List<GewaAnswer> qaList = readOnlyTemplate.findByCriteria(query);
+		List<GewaAnswer> qaList = (List<GewaAnswer>) readOnlyTemplate.findByCriteria(query);
 		if(qaList.isEmpty()) return 0;
 		return new Integer(qaList.get(0)+"");
 	}

@@ -87,11 +87,11 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public List<DiscountInfo> getCurrentDiscountInfoByRelatedid(String tag, Long relatedid) {
 		String query = "from DiscountInfo d where d.relatedid=? and d.tag=? and (d.validtime>=? or d.validtime=null)";
-		return readOnlyTemplate.find(query, relatedid, tag, new Date());
+		return (List<DiscountInfo>) readOnlyTemplate.find(query, relatedid, tag, new Date());
 	}
 
 	public List<DiscountInfo> getDiscountInfoByRelatedidAndTag(Long relatedid, String tag) {
-		return readOnlyTemplate.find("from DiscountInfo d where d.relatedid=? and d.tag=?", relatedid, tag);
+		return (List<DiscountInfo>) readOnlyTemplate.find("from DiscountInfo d where d.relatedid=? and d.tag=?", relatedid, tag);
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public List<Bulletin> getCurrentBulletinsByRelatedidAndHotvalue(String citycode, Long relatedid, Integer hotvalue) {
 		String query = "from Bulletin n where n.citycode=? and n.relatedid=? and n.hotvalue=? and (n.validtime>=? or n.validtime=null)";
-		return readOnlyTemplate.find(query, citycode, relatedid, hotvalue, DateUtil.getCurDate());
+		return (List<Bulletin>) readOnlyTemplate.find(query, citycode, relatedid, hotvalue, DateUtil.getCurDate());
 	}
 
 	@Override
@@ -140,7 +140,7 @@ public class CommonServiceImpl implements CommonService {
 		dc.add(Restrictions.eq("relatedid", relatedid));
 		dc.add(Restrictions.or(Restrictions.ge("validtime", DateUtil.getCurDate()), Restrictions.isNull("validtime")));
 		dc.addOrder(Order.desc("posttime"));
-		List<Bulletin> list = readOnlyTemplate.findByCriteria(dc, 0, 1);
+		List<Bulletin> list = (List<Bulletin>) readOnlyTemplate.findByCriteria(dc, 0, 1);
 		return list.isEmpty() ? null : list.get(0);
 	}
 
@@ -160,7 +160,7 @@ public class CommonServiceImpl implements CommonService {
 			dc.add(Restrictions.eq("relatedid", relatedid));
 		dc.add(Restrictions.or(Restrictions.ge("validtime", DateUtil.getCurDate()), Restrictions.isNull("validtime")));
 		dc.addOrder(Order.desc("posttime"));
-		List<Bulletin> list = readOnlyTemplate.findByCriteria(dc);
+		List<Bulletin> list = (List<Bulletin>) readOnlyTemplate.findByCriteria(dc);
 		return list;
 	}
 
@@ -176,7 +176,7 @@ public class CommonServiceImpl implements CommonService {
 		    query.add(Restrictions.between("addtime", starttime, endtime));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<Correction> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Correction> list = (List<Correction>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 
@@ -192,7 +192,7 @@ public class CommonServiceImpl implements CommonService {
 		    query.add(Restrictions.between("addtime", starttime, endtime));
 		}
 		query.setProjection(Projections.rowCount());
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if (list.isEmpty())
 			return 0;
 		return Integer.parseInt("" + list.get(0));
@@ -216,7 +216,7 @@ public class CommonServiceImpl implements CommonService {
 			query.add(Restrictions.eq("point", point));
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<TempMovie> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<TempMovie> list = (List<TempMovie>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	@Override
@@ -267,7 +267,7 @@ public class CommonServiceImpl implements CommonService {
 		}
 		query.add(Restrictions.eq("isdel", "0"));
 		query.addOrder(Order.desc("addtime"));
-		List<Place> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Place> list = (List<Place>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 
@@ -292,7 +292,7 @@ public class CommonServiceImpl implements CommonService {
 		DetachedCriteria query = DetachedCriteria.forClass(Link.class);
 		query.add(Restrictions.eq("type", type));
 		query.addOrder(Order.desc("updatetime"));
-		return readOnlyTemplate.findByCriteria(query);
+		return (List<Link>) readOnlyTemplate.findByCriteria(query);
 	}
 	@Override
 	public List<GewaCommend> getGewaCommendList(String citycode, String signname, Long parentid, boolean isGtZero, boolean isdesc, int from, int maxnum) {
@@ -317,7 +317,7 @@ public class CommonServiceImpl implements CommonService {
 			query.addOrder(Order.asc("ordernum"));
 		}
 
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<GewaCommend>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public List<GewaCommend> getGewaCommendList(String citycode, List<String> signNameList, Long parentid, boolean isGtZero, boolean isdesc, boolean isActivity,
@@ -342,7 +342,7 @@ public class CommonServiceImpl implements CommonService {
 			query.addOrder(Order.asc("addtime"));
 		}
 
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<GewaCommend>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	@Override
@@ -429,7 +429,7 @@ public class CommonServiceImpl implements CommonService {
 			}
 		}
 		query.addOrder(Order.asc("id"));
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<GewaCommend>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	@Override
@@ -463,7 +463,7 @@ public class CommonServiceImpl implements CommonService {
 		if (isActivity)
 			query.add(Restrictions.or(Restrictions.isNull("stoptime"), Restrictions.ge("stoptime", DateUtil.getMillTimestamp())));
 		query.addOrder(Order.asc("id"));
-		return readOnlyTemplate.findByCriteria(query, first, maxnum);
+		return (List<GewaCommend>) readOnlyTemplate.findByCriteria(query, first, maxnum);
 	}
 	
 
@@ -482,7 +482,7 @@ public class CommonServiceImpl implements CommonService {
 		if (isGtZero)
 			query.add(Restrictions.gt("ordernum", 0));
 		query.addOrder(Order.asc("ordernum"));
-		return readOnlyTemplate.findByCriteria(query, first, maxnum);
+		return (List<GewaCommend>) readOnlyTemplate.findByCriteria(query, first, maxnum);
 	}
 	@Override
 	public GewaCommend getGewaCommendByRelatedid(String signname, Long relatedid) {
@@ -491,7 +491,7 @@ public class CommonServiceImpl implements CommonService {
 		query.add(Restrictions.eq("relatedid", relatedid));
 		query.add(Restrictions.gt("ordernum", 0));
 		query.addOrder(Order.asc("ordernum"));
-		List<GewaCommend> gcList = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<GewaCommend> gcList = (List<GewaCommend>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if (gcList.isEmpty())
 			return null;
 		return gcList.get(0);
@@ -505,7 +505,7 @@ public class CommonServiceImpl implements CommonService {
 		if (!isAll)
 			query.add(Restrictions.gt("ordernum", 0));
 		query.addOrder(Order.asc("ordernum"));
-		List<GewaCommend> gcList = readOnlyTemplate.findByCriteria(query);
+		List<GewaCommend> gcList = (List<GewaCommend>) readOnlyTemplate.findByCriteria(query);
 		return gcList;
 	}
 
@@ -592,7 +592,7 @@ public class CommonServiceImpl implements CommonService {
 		query.add(Restrictions.eq("hi.board", board));
 		query.add(Restrictions.eq("hi.citycode", citycode));
 		query.add(Restrictions.and(Restrictions.ne("hi.id", 1l), Restrictions.ne("hi.id", 2l)));
-		List<HeadInfo> headInfoList = readOnlyTemplate.findByCriteria(query, from, maxNum);
+		List<HeadInfo> headInfoList = (List<HeadInfo>) readOnlyTemplate.findByCriteria(query, from, maxNum);
 		return headInfoList;
 	}
 
@@ -619,7 +619,7 @@ public class CommonServiceImpl implements CommonService {
 		if (isGtZero)
 			query.add(Restrictions.gt("ordernum", 0));
 		query.addOrder(Order.asc("ordernum"));
-		return readOnlyTemplate.findByCriteria(query, first, maxnum);
+		return (List<GewaCommend>) readOnlyTemplate.findByCriteria(query, first, maxnum);
 	}
 	@Override
 	public Integer getCommuTopicCount(Long commuid) {
@@ -638,7 +638,7 @@ public class CommonServiceImpl implements CommonService {
 		query.add(Restrictions.eq("commuid", commuid));
 		query.addOrder(Order.asc("ordernum"));
 		query.addOrder(Order.asc("id"));
-		List<CommuTopic> commuTopicList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<CommuTopic> commuTopicList = (List<CommuTopic>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return commuTopicList;
 	}
 	@Override
@@ -652,7 +652,7 @@ public class CommonServiceImpl implements CommonService {
 		if (isGtZero)
 			query.add(Restrictions.gt("ordernum", 0));
 		query.addOrder(Order.asc("ordernum"));
-		List<GewaCommend> gewaCommondList = readOnlyTemplate.findByCriteria(query);
+		List<GewaCommend> gewaCommondList = (List<GewaCommend>) readOnlyTemplate.findByCriteria(query);
 		return gewaCommondList;
 	}
 
@@ -726,7 +726,7 @@ public class CommonServiceImpl implements CommonService {
 		if(relatedid != null)query.add(Restrictions.eq("relatedid", relatedid));
 		query.add(Restrictions.eq("signname", signname));
 		if(StringUtils.isNotBlank(tag))query.add(Restrictions.eq("tag", tag));
-		return readOnlyTemplate.findByCriteria(query);
+		return (List<GewaCommend>) readOnlyTemplate.findByCriteria(query);
 	}
 	@Override
 	public Relationship getRelationship(String category, String tag, Long relatedid2, Timestamp validtime) {
@@ -736,7 +736,7 @@ public class CommonServiceImpl implements CommonService {
 		query.add(Restrictions.eq("relatedid2", relatedid2));
 		if (validtime != null)
 			query.add(Restrictions.ge("validtime", validtime));
-		List<Relationship> reList = readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<Relationship> reList = (List<Relationship>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if (!reList.isEmpty())
 			return reList.get(0);
 		return null;
@@ -756,7 +756,7 @@ public class CommonServiceImpl implements CommonService {
 			query.add(Restrictions.eq("relatedid2", relatedid2));
 		if (validtime != null)
 			query.add(Restrictions.le("validtime", validtime));
-		List<Long> reList = readOnlyTemplate.findByCriteria(query);
+		List<Long> reList = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if (!reList.isEmpty())
 			return Integer.valueOf(reList.get(0) + "");
 		return 0;
@@ -777,7 +777,7 @@ public class CommonServiceImpl implements CommonService {
 		if (validtime != null)
 			query.add(Restrictions.le("validtime", validtime));
 		query.addOrder(Order.desc("addtime"));
-		List<Relationship> reList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Relationship> reList = (List<Relationship>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return reList;
 	}
 
@@ -789,7 +789,7 @@ public class CommonServiceImpl implements CommonService {
 		if (StringUtils.isNotBlank(tag))
 			query.add(Restrictions.eq("tag", tag));
 		query.addOrder(Order.desc("addtime"));
-		List<GrabTicketSubject> subjectList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<GrabTicketSubject> subjectList = (List<GrabTicketSubject>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return subjectList;
 	}
 
@@ -803,7 +803,7 @@ public class CommonServiceImpl implements CommonService {
 		if (StringUtils.isNotBlank(flag))
 			query.add(Restrictions.like("flag", flag, MatchMode.ANYWHERE));
 		query.addOrder(Order.desc("addtime"));
-		List<RelateToCity> reList = readOnlyTemplate.findByCriteria(query);
+		List<RelateToCity> reList = (List<RelateToCity>) readOnlyTemplate.findByCriteria(query);
 		return reList;
 	}
 
@@ -887,7 +887,7 @@ public class CommonServiceImpl implements CommonService {
 		DetachedCriteria query = DetachedCriteria.forClass(PhoneAdvertisement.class);
 		query.add(Restrictions.eq("status", status));
 		query.addOrder(Order.desc("addtime"));
-		List<PhoneAdvertisement> phoneadvertisementList = readOnlyTemplate.findByCriteria(query);
+		List<PhoneAdvertisement> phoneadvertisementList = (List<PhoneAdvertisement>) readOnlyTemplate.findByCriteria(query);
 		return phoneadvertisementList;
 	}
 
@@ -919,7 +919,7 @@ public class CommonServiceImpl implements CommonService {
 			query.add(Restrictions.eq("objectName", objectName));
 		}
 		query.addOrder(Order.asc("id"));
-		List<DataDictionary> dataList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<DataDictionary> dataList = (List<DataDictionary>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return dataList;
 	}
 
@@ -949,7 +949,7 @@ public class CommonServiceImpl implements CommonService {
 		query.add(Restrictions.le("bpointx", ""+maxLd));
 		query.add(Restrictions.ge("bpointy", ""+minLa));
 		query.add(Restrictions.le("bpointy", ""+maxLa));
-		List<T> resultList = readOnlyTemplate.findByCriteria(query);
+		List<T> resultList = (List<T>) readOnlyTemplate.findByCriteria(query);
 		OuterSorter sorter = new OuterSorter<T>(false);
 		for(T baseInfo : resultList){
 			String xpoint = (String) BeanUtil.get(baseInfo, "bpointx");

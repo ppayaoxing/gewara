@@ -161,5 +161,6 @@ public interface MongoService {
 	DBObject queryAdvancedDBObject(String string, String[] strings, Date[] dates);
 	List<? extends MGObject> getObjectList(Class<?> class1, DBObject queryCondition, String orderField, boolean asc,
 			int from, int maxnum);
-
+	Map getMap(String defaultIdName, String nsIndexDatasheet, String indexKey);
+	Map getMap(String defaultIdName, String nsIndexDatasheet, Long indexKey);
 }

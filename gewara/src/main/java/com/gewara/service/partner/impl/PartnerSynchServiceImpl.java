@@ -167,7 +167,7 @@ public class PartnerSynchServiceImpl extends BaseServiceImpl implements PartnerS
 	@Override
 	public List<CallbackOrder> getCallbackOrderList(int maxtimes) {
 		String sql = "from CallbackOrder where status like ? and calltimes < ? and updatetime < addtime + 1 order by orderid, addtime";
-		List<CallbackOrder> callList = hibernateTemplate.find(sql, CallbackOrder.STATUS_N + "%", maxtimes);
+		List<CallbackOrder> callList = (List<CallbackOrder>) hibernateTemplate.find(sql, CallbackOrder.STATUS_N + "%", maxtimes);
 		return callList;
 	}
 }

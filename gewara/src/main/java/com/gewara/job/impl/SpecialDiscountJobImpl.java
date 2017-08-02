@@ -42,7 +42,7 @@ public class SpecialDiscountJobImpl extends JobService {
 	
 	public void restoreSpcounter() {
 		Timestamp cur = DateUtil.getCurFullTimestamp();
-		List<Long> spcounterIdList = hibernateTemplate.find("select distinct spcounterid from SdRecord where validtime < ?", cur);
+		List<Long> spcounterIdList = (List<Long>) hibernateTemplate.find("select distinct spcounterid from SdRecord where validtime < ?", cur);
 		for(Long spcounterId: spcounterIdList){
 			try{
 				ErrorCode result = paymentService.restoreSdCounterBySpcounter(spcounterId);
@@ -57,7 +57,7 @@ public class SpecialDiscountJobImpl extends JobService {
 		dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_JOB, "更新SpecialDiscount的spcouter开始start...");
 		try{
 			Timestamp cur = DateUtil.getCurFullTimestamp();
-			List<Long> spcounterIdList = hibernateTemplate.find("select distinct spcounterid from SpecialDiscount where timeto >= ? and spcounterid is not null", cur);
+			List<Long> spcounterIdList = (List<Long>) hibernateTemplate.find("select distinct spcounterid from SpecialDiscount where timeto >= ? and spcounterid is not null", cur);
 			List<Spcounter> spcounterList = daoService.getObjectList(Spcounter.class, spcounterIdList);
 			for (Spcounter spcounter : spcounterList) {
 				paymentService.resetSpcounter(spcounter, 1L);

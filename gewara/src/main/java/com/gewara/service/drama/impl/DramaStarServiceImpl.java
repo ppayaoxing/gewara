@@ -80,7 +80,7 @@ public class DramaStarServiceImpl extends BaseServiceImpl implements DramaStarSe
 		if(StringUtils.isNotBlank(startype)){
 			query.add(Restrictions.like("startype", startype, MatchMode.ANYWHERE));
 		}
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<DramaStar>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	/**
@@ -114,7 +114,7 @@ public class DramaStarServiceImpl extends BaseServiceImpl implements DramaStarSe
 		}else{
 			query.add(Restrictions.sqlRestriction(" startype not like ?",new Object[]{"%" + DramaStar.TYPE_TROUPE + "%"},new Type[]{new StringType()}));
 		}
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<DramaStar>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	@Override
@@ -127,7 +127,7 @@ public class DramaStarServiceImpl extends BaseServiceImpl implements DramaStarSe
 			query.setProjection(Projections.projectionList().add(Projections.groupProperty("troupe"),"troupeid")
 					.add(Projections.count("troupe"), "starCount"));
 			query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-	 		List<Map> result = hibernateTemplate.findByCriteria(query);
+	 		List<Map> result = (List<Map>) hibernateTemplate.findByCriteria(query);
 	 		Collections.sort(result, new MultiPropertyComparator(new String[]{"starCount"}, new boolean[]{false}));
 	 		idList = BeanUtil.getBeanPropertyList(result, Long.class, "troupeid", true);
 	 		cacheService.set(CacheConstant.REGION_HALFDAY, key, idList);
@@ -186,7 +186,7 @@ public class DramaStarServiceImpl extends BaseServiceImpl implements DramaStarSe
 			}
 		}
 		query.addOrder(Order.desc("clickedtimes"));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<DramaStar>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public Integer getStarCountByTroupid(Long starid){
@@ -276,7 +276,7 @@ public class DramaStarServiceImpl extends BaseServiceImpl implements DramaStarSe
 			query.add(Restrictions.like("startype", startype, MatchMode.ANYWHERE));
 		query.add(Restrictions.eq("tag", type));
 		query.addOrder(Order.desc("addtime"));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<DramaStar>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public DramaStar getDramaStarByName(String name, String startype){
@@ -310,13 +310,13 @@ public class DramaStarServiceImpl extends BaseServiceImpl implements DramaStarSe
 		query.add(Restrictions.eq("tag", type));
 		query.add(Restrictions.eq("st.troupe", troupe));
 		if(StringUtils.isNotBlank(starType))query.add(Restrictions.like("st.startype", starType,MatchMode.ANYWHERE));
-		return hibernateTemplate.findByCriteria(query,from, maxnum);
+		return (List<DramaStar>) hibernateTemplate.findByCriteria(query,from, maxnum);
 	}
 	@Override
 	public List<DramaStar> getSynchStarList(Timestamp lasttime) {
 		DetachedCriteria query = DetachedCriteria.forClass(DramaStar.class);
 		query.add(Restrictions.eq("tag", TagConstant.TAG_DRAMA));
 		query.add(Restrictions.ge("updatetime", lasttime));
-		return hibernateTemplate.findByCriteria(query);
+		return (List<DramaStar>) hibernateTemplate.findByCriteria(query);
 	}
 }

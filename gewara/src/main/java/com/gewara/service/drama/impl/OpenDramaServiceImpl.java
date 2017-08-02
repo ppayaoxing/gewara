@@ -67,7 +67,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 	@Override
 	public List<TheatreRoomSeat> getSeatList(Long roomid) {
 		String hql = "from TheatreRoomSeat s where s.roomid = ?";
-		List<TheatreRoomSeat> seatList = hibernateTemplate.find(hql, roomid);
+		List<TheatreRoomSeat> seatList = (List<TheatreRoomSeat>) hibernateTemplate.find(hql, roomid);
 		return seatList;
 	}
 	@Override
@@ -142,7 +142,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 	@Override
 	public TheatreRoomSeat getRoomSeatByLocation(Long roomid, int line, int rank){
 		String query = "from TheatreRoomSeat where roomid = ? and lineno = ? and rankno = ?";
-		List<TheatreRoomSeat> result = hibernateTemplate.find(query, roomid, line, rank);
+		List<TheatreRoomSeat> result = (List<TheatreRoomSeat>) hibernateTemplate.find(query, roomid, line, rank);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -186,7 +186,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 	}
 	private OpenTheatreSeat getOpenTheatreSeat(Long areaid, String seatline, String seatrank){
 		String query = "from OpenTheatreSeat where areaid = ? and seatline = ? and seatrank = ? ";
-		List<OpenTheatreSeat> seatList = hibernateTemplate.find(query, areaid, seatline, seatrank);
+		List<OpenTheatreSeat> seatList = (List<OpenTheatreSeat>) hibernateTemplate.find(query, areaid, seatline, seatrank);
 		if(seatList.size()>0) return seatList.get(0);
 		return null;
 	}
@@ -248,13 +248,13 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 			query += " and areaid=? ";
 		}
 		query += " order by s.lineno, s.rankno";
-		List<OpenTheatreSeat> result = hibernateTemplate.find(query, params.toArray());
+		List<OpenTheatreSeat> result = (List<OpenTheatreSeat>) hibernateTemplate.find(query, params.toArray());
 		return result;
 	}
 	@Override
 	public TheatreSeatPrice getTheatreSeatPriceBySeatType(Long itemid, Long areaid, String seattype){
 		String query = "from TheatreSeatPrice s where s.dpid = ? and s.areaid=? and s.seattype = ? and (s.status <> 'D' or s.status is null) ";
-		List<TheatreSeatPrice> result = hibernateTemplate.find(query, itemid, areaid, seattype);
+		List<TheatreSeatPrice> result = (List<TheatreSeatPrice>) hibernateTemplate.find(query, itemid, areaid, seattype);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -539,7 +539,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 	}
 	private TheatreRoomSeat getAnotherLoveSeat(TheatreRoomSeat seat, Integer add){
 		String query = "from TheatreRoomSeat t where t.roomid=? and t.lineno=? and t.rankno=? ";
-		List<TheatreRoomSeat> seatList = hibernateTemplate.find(query, seat.getRoomid(), seat.getLineno(), seat.getRankno()+add);
+		List<TheatreRoomSeat> seatList = (List<TheatreRoomSeat>) hibernateTemplate.find(query, seat.getRoomid(), seat.getLineno(), seat.getRankno()+add);
 		if(seatList.size() > 0) return seatList.get(0);
 		return null;
 	}
@@ -560,7 +560,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 		}
 		query.addOrder(Order.asc("sortnum"));
 		query.addOrder(Order.asc("playtime"));
-		List<OpenDramaItem> result = hibernateTemplate.findByCriteria(query);
+		List<OpenDramaItem> result = (List<OpenDramaItem>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 	
@@ -585,7 +585,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 		query.setProjection(Projections.distinct(Projections.property("dramaid")));
 		query.add(Restrictions.ge("playtime",playtime));
 		query.add(Restrictions.ne("status",OdiConstant.STATUS_DISCARD));
-		List<Long> dramaIdList = hibernateTemplate.findByCriteria(query);
+		List<Long> dramaIdList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return dramaIdList;
 	}
 	
@@ -629,7 +629,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 			qry.setProjection(Projections.projectionList().add(Projections.groupProperty("citycode"),"citycode")
 					.add(Projections.count("citycode"), "citycodenum"));
 			qry.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-	 		List<Map> result = hibernateTemplate.findByCriteria(qry);
+	 		List<Map> result = (List<Map>) hibernateTemplate.findByCriteria(qry);
 	 		Collections.sort(result, new MultiPropertyComparator(new String[]{"citycodenum"}, new boolean[]{false}));
 			citycodeList = BeanUtil.getBeanPropertyList(result, String.class, "citycode", true);
 			cacheService.set(CacheConstant.REGION_ONEMIN, key, citycodeList);
@@ -658,7 +658,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 			qry.add(Restrictions.ge("d.closetime", curtime));
 			qry.add(Restrictions.eq("d.citycode", citycode));
 			qry.setProjection(Projections.distinct(Projections.property("d.dramaid")));
-			idList = hibernateTemplate.findByCriteria(qry); 
+			idList = (List<Long>) hibernateTemplate.findByCriteria(qry); 
 			cacheService.set(CacheConstant.REGION_ONEMIN, key, idList);
 		}
 		return idList;
@@ -673,7 +673,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 		subquery.setProjection(Projections.property("dts.starid"));
 		query.add(Subqueries.exists(subquery));
 		query.addOrder(Order.desc("releasedate"));
-		List<Drama> dramaList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return dramaList;
 	}
 	
@@ -699,7 +699,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 			query.add(Restrictions.le("op.playtime", current));
 		}
 		query.setProjection(Projections.groupProperty("op.dramaid"));
-		List<Long> idlist = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Long> idlist = (List<Long>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		List<Drama> dramalist = baseDao.getObjectList(Drama.class, idlist);
 		return dramalist;
 	}
@@ -769,10 +769,10 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 					"and o.opentime< ? and o.closetime >? ";
 			if(isPartner) { 
 				query = query + " and o.status like ? and o.partner=? ";
-				playdateList = hibernateTemplate.find(query, dramaid, playtime, endtime, cur, cur, Status.Y+"%", OpiConstant.STATUS_BOOK);
+				playdateList = (List<String>) hibernateTemplate.find(query, dramaid, playtime, endtime, cur, cur, Status.Y+"%", OpiConstant.STATUS_BOOK);
 			}else {
 				query = query + " and o.status=? ";
-				playdateList = hibernateTemplate.find(query, dramaid,  playtime, endtime, cur, cur, OpiConstant.STATUS_BOOK);
+				playdateList = (List<String>) hibernateTemplate.find(query, dramaid,  playtime, endtime, cur, cur, OpiConstant.STATUS_BOOK);
 			}
 			Collections.sort(playdateList);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, playdateList);
@@ -798,7 +798,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 		query.add(Restrictions.eq("areaid", areaid));
 		if(lines != null) query.add(Restrictions.in("lineno", lines));
 		if(ranks != null) query.add(Restrictions.in("rankno", ranks));
-		List<OpenTheatreSeat> seatList = hibernateTemplate.findByCriteria(query);
+		List<OpenTheatreSeat> seatList = (List<OpenTheatreSeat>) hibernateTemplate.findByCriteria(query);
 		if(seatList.size() == 0) return ErrorCode.getFailure("没有可更改价格的座位！");
 		List<OpenTheatreSeat> newseatList = new ArrayList<OpenTheatreSeat>();
 //		Set<Long> idSet = new HashSet<Long>();
@@ -919,7 +919,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 			}
 		}
 		qry.add(Restrictions.eq("d.citycode", citycode));
-		List<Drama> dramaList = hibernateTemplate.findByCriteria(qry, from, maxnum);
+		List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(qry, from, maxnum);
 		return dramaList;
 	}
 	
@@ -930,7 +930,7 @@ public class OpenDramaServiceImpl extends BaseServiceImpl implements OpenDramaSe
 		query.add(Restrictions.in("dramaid", dramaid));
 		query.add(Restrictions.gt("synchots", lasttime));
 		query.setProjection(Projections.property("id"));
-		List<Long> odiidList = hibernateTemplate.findByCriteria(query);
+		List<Long> odiidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return odiidList;
 	}
 	@Override

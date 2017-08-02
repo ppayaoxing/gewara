@@ -63,7 +63,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		query.add(Restrictions.ne("type","commu_topic"));
 		query.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		query.addOrder(Order.desc("replytime"));
-		List<T> listCommuDiary=readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<T> listCommuDiary=(List<T>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return listCommuDiary;
 	}
 	
@@ -85,7 +85,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		}
 		query.add(Restrictions.like("status", "Y", MatchMode.START));
 		query.addOrder(Order.desc("replytime"));
-		List<T> listCommuDiary=readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<T> listCommuDiary=(List<T>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return listCommuDiary;
 	}
 	
@@ -192,7 +192,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		String hql="select new map(smallcategoryid as smallid,count(smallcategoryid) as countSmaill," +
 				"smallcategory as smalltag) from Commu  where tag=? " +
 				"and smallcategoryid is not null and status=?  group by smallcategory,smallcategoryid";
-		List<Map> listCommuSmall = readOnlyTemplate.find(hql, tag,Status.Y);
+		List<Map> listCommuSmall = (List<Map>) readOnlyTemplate.find(hql, tag,Status.Y);
 		return listCommuSmall;
 	}
 
@@ -200,7 +200,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 	public List<Map> getCommuType() {
 		String hql="select new map(nvl(tag,'qita') as tag,count(*) as tagcount) from Commu where status=? group by tag " +
 				 "order by decode(tag, 'cinema', '1 ', 'ktv', '2', 'bar', '3', 'gym', '4', 'sport','5','qita','6')";
-		List<Map> listCommuType = readOnlyTemplate.find(hql,Status.Y);
+		List<Map> listCommuType = (List<Map>) readOnlyTemplate.find(hql,Status.Y);
 		return listCommuType;
 	}
 	
@@ -209,7 +209,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		DetachedCriteria query = DetachedCriteria.forClass(CommuMember.class);
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.eq("commuid", commuid));
-		List<CommuMember> commuMemberList = readOnlyTemplate.findByCriteria(query);
+		List<CommuMember> commuMemberList = (List<CommuMember>) readOnlyTemplate.findByCriteria(query);
 		if(commuMemberList.size()>0){
 			return true;
 		}
@@ -232,7 +232,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		query.add(Restrictions.eq("status", Status.Y));
 		if(commuNum)query.addOrder(Order.desc("commumembercount"));
 		query.addOrder(Order.desc("updatetime"));
-		List<Commu> list = readOnlyTemplate.findByCriteria(query,from,maxnum);
+		List<Commu> list = (List<Commu>) readOnlyTemplate.findByCriteria(query,from,maxnum);
 		return list;
 	}
 	@Override
@@ -241,7 +241,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		query.add(Restrictions.eq("hotvalue", hotvalue));
 		query.add(Restrictions.eq("status", Status.Y));
 		query.addOrder(Order.desc("updatetime"));
-		List<Commu> list = readOnlyTemplate.findByCriteria(query,from,maxnum);
+		List<Commu> list = (List<Commu>) readOnlyTemplate.findByCriteria(query,from,maxnum);
 		return list;
 	}
 	@Override
@@ -250,7 +250,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		query.add(Restrictions.eq("hotvalue", hotvalue));
 		query.add(Restrictions.eq("status", Status.Y));
 		query.setProjection(Projections.rowCount());
-		List<Commu> list = readOnlyTemplate.findByCriteria(query);
+		List<Commu> list = (List<Commu>) readOnlyTemplate.findByCriteria(query);
 		if(list.isEmpty()) return 0;
 		return new Integer (list.get(0)+"");
 	}
@@ -262,7 +262,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		if(subadminid!=null) query.add(Restrictions.ne("memberid", subadminid)); 
 		query.add(Restrictions.eq("commuid", id));
 		query.addOrder(Order.desc("addtime"));
-		List<CommuMember>  result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<CommuMember>  result = (List<CommuMember>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -279,7 +279,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		if(relatedid != null) subQuery.add(Restrictions.eq("c.relatedid", relatedid));
 		query.add(Subqueries.exists(subQuery));
 		query.addOrder(Order.desc("cm.addtime"));
-		List<CommuMember>  result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<CommuMember>  result = (List<CommuMember>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -287,7 +287,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		DetachedCriteria query=DetachedCriteria.forClass(CommuMember.class);
 		query.add(Restrictions.eq("commuid", commuid));
 		query.setProjection(Projections.property("memberid"));
-		List<Long> memberList = readOnlyTemplate.findByCriteria(query);
+		List<Long> memberList = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		return memberList;
 	}
 		@Override
@@ -295,7 +295,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		DetachedCriteria query=DetachedCriteria.forClass(Commu.class);
 		query.add(Restrictions.eq("status", Status.Y));
 		query.addOrder(Order.desc("hotvalue"));
-		List<Commu> listHotCommu=readOnlyTemplate.findByCriteria(query,from,maxnum);
+		List<Commu> listHotCommu=(List<Commu>) readOnlyTemplate.findByCriteria(query,from,maxnum);
 		return listHotCommu;
 	}
 
@@ -331,7 +331,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 	public List<Album> getCommuAlbumById(final Long id, int from, int maxnum) {
 		DetachedCriteria query = DetachedCriteria.forClass(Album.class);
 		query.add(Restrictions.eq("commuid", id));
-		List<Album> result = readOnlyTemplate.findByCriteria(query,from,maxnum);
+		List<Album> result = (List<Album>) readOnlyTemplate.findByCriteria(query,from,maxnum);
 		return result;
 	}
 	@Override
@@ -406,7 +406,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		if(StringUtils.isNotBlank(sort)) query.addOrder(Order.desc(sort));
 		else query.addOrder(Order.desc("commumembercount"));
 		query.addOrder(Order.asc("id"));
-		listCommu=readOnlyTemplate.findByCriteria(query, from, maxnum);
+		listCommu=(List<Commu>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return listCommu;
 	}
 
@@ -448,7 +448,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		DetachedCriteria query = DetachedCriteria.forClass(Commu.class);
 		query.add(Restrictions.eq("status",Status.Y));
 		query.addOrder(Order.desc("addtime"));
-		List<Commu> commuList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Commu> commuList = (List<Commu>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return commuList;
 	}
 	@Override
@@ -456,7 +456,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		DetachedCriteria query=DetachedCriteria.forClass(CommuCard.class);
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.eq("commuid", commuid));
-		List<CommuCard> commuCardList=readOnlyTemplate.findByCriteria(query);
+		List<CommuCard> commuCardList=(List<CommuCard>) readOnlyTemplate.findByCriteria(query);
 		if(commuCardList.size()>0) return commuCardList.get(0);
 		return  null;
 	}
@@ -465,7 +465,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		DetachedCriteria query=DetachedCriteria.forClass(VisitCommuRecord.class);
 		query.add(Restrictions.eq("commuid", commuid));
 		query.add(Restrictions.eq("memberid", memberid));
-		List<VisitCommuRecord> commuCardList=readOnlyTemplate.findByCriteria(query);
+		List<VisitCommuRecord> commuCardList=(List<VisitCommuRecord>) readOnlyTemplate.findByCriteria(query);
 		if(commuCardList.size()>0) return commuCardList.get(0);
 		return  null;
 	}
@@ -474,7 +474,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		DetachedCriteria query=DetachedCriteria.forClass(CommuMember.class);
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.eq("commuid", commuid));
-		List<CommuMember> commuMemberList = readOnlyTemplate.findByCriteria(query);
+		List<CommuMember> commuMemberList = (List<CommuMember>) readOnlyTemplate.findByCriteria(query);
 		if(commuMemberList.size()>0) return commuMemberList.get(0);
 		return  null;
 	}
@@ -492,7 +492,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 	@Override
 	public boolean isHadVisitCommuByMemberidAndDate(Long memberid, String date){
 		String query = "from VisitCommuRecord where memberid = ?  and to_char(addtime,'yyyy-mm-dd')=?";
-		List<VisitCommuRecord> vcrList = readOnlyTemplate.find(query, memberid, date);
+		List<VisitCommuRecord> vcrList = (List<VisitCommuRecord>) readOnlyTemplate.find(query, memberid, date);
 		if(vcrList.isEmpty()) return false;
 		return true;
 	}
@@ -508,7 +508,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 			if(relatedid!=null) query.add(Restrictions.eq("smallcategoryid", relatedid));
 		}
 		query.addOrder(Order.desc("commumembercount"));
-		List<Commu> commuList=readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Commu> commuList=(List<Commu>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return commuList;
 	}
 	
@@ -519,7 +519,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 	public String getCheckStatusByIDAndMemID(Long commuid){
 		DetachedCriteria query = DetachedCriteria.forClass(CommuManage.class);
 		query.add(Restrictions.eq("commuid", commuid));
-		List<CommuManage> commuManageList = readOnlyTemplate.findByCriteria(query);
+		List<CommuManage> commuManageList = (List<CommuManage>) readOnlyTemplate.findByCriteria(query);
 		if(commuManageList.size() > 0){
 			return commuManageList.get(0).getCheckstatus();
 		}
@@ -546,7 +546,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		DetachedCriteria query = DetachedCriteria.forClass(Commu.class);
 		query.add(Restrictions.or(Restrictions.eq("adminid", memberid), Restrictions.eq("subadminid", memberid)));
 		query.add(Restrictions.eq("id", commuid));
-		List<Commu> commuList = readOnlyTemplate.findByCriteria(query);
+		List<Commu> commuList = (List<Commu>) readOnlyTemplate.findByCriteria(query);
 		if(commuList.size()>0){
 			return true;
 		}
@@ -558,7 +558,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		query.add(Restrictions.eq("countycode", countycode));
 		query.add(Restrictions.like("status", Status.Y, MatchMode.START));
 		query.setProjection(Projections.rowCount());
-		List<Commu> commuList=readOnlyTemplate.findByCriteria(query);
+		List<Commu> commuList=(List<Commu>) readOnlyTemplate.findByCriteria(query);
 		if(commuList.isEmpty()) return 0;
 		return new Integer(commuList.get(0)+"");
 	}
@@ -580,7 +580,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 	public CommuManage getCommuManageByCommuid(Long commuid){
 		DetachedCriteria query = DetachedCriteria.forClass(CommuManage.class);
 		query.add(Restrictions.eq("commuid", commuid));
-		List<CommuManage> commuManageList = readOnlyTemplate.findByCriteria(query);
+		List<CommuManage> commuManageList = (List<CommuManage>) readOnlyTemplate.findByCriteria(query);
 		if(commuManageList != null && commuManageList.size() > 0){
 			return commuManageList.get(0);
 		}
@@ -619,14 +619,14 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 	public List<CommuMember> getCommuMemberListByMemberid(Long memberid, int from, int maxnum){
 		DetachedCriteria query=DetachedCriteria.forClass(CommuMember.class);
 		query.add(Restrictions.eq("memberid", memberid));
-		List<CommuMember> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<CommuMember> result = (List<CommuMember>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
 	public List<CommuCard> getCommuCardListByMemberid(Long memberid, int from, int maxnum){
 		DetachedCriteria query=DetachedCriteria.forClass(CommuCard.class);
 		query.add(Restrictions.eq("memberid", memberid));
-		List<CommuCard> result = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<CommuCard> result = (List<CommuCard>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	@Override
@@ -634,7 +634,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		DetachedCriteria query=DetachedCriteria.forClass(Commu.class);
 		query.add(Restrictions.eq("adminid", memberid));
 		query.add(Restrictions.eq("status", Status.Y));
-		List<Commu> commuList=readOnlyTemplate.findByCriteria(query);
+		List<Commu> commuList=(List<Commu>) readOnlyTemplate.findByCriteria(query);
 		return commuList;
 	}
 	@Override
@@ -649,7 +649,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 		DetachedCriteria query=DetachedCriteria.forClass(Commu.class);
 		query.add(Restrictions.or(Restrictions.eq("adminid", memberid), 
 				Restrictions.eq("subadminid", memberid)));
-		List<Commu> commuList=readOnlyTemplate.findByCriteria(query);
+		List<Commu> commuList=(List<Commu>) readOnlyTemplate.findByCriteria(query);
 		return commuList;
 	}
 	
@@ -689,7 +689,7 @@ public class CommuServiceImpl extends BaseServiceImpl implements CommuService {
 
 	@Override
 	public List<Long> getCommuIdByTag(String tag) {
-		List<Long> list = readOnlyTemplate.find("select c.id from Commu c where c.tag=?", tag);
+		List<Long> list = (List<Long>) readOnlyTemplate.find("select c.id from Commu c where c.tag=?", tag);
 		return list;
 	}
 	@Override

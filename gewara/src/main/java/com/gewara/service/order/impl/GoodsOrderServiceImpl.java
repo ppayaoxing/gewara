@@ -628,9 +628,9 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 		}
 		List<GoodsOrder> result = new ArrayList<GoodsOrder>();
 		if(maxnum > 0){
-			result = hibernateTemplate.findByCriteria(query, 0 , maxnum);
+			result = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query, 0 , maxnum);
 		}else{
-			result = hibernateTemplate.findByCriteria(query);
+			result = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
 		}
 		return result;
 	}
@@ -677,7 +677,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 		query.add(Restrictions.like("status", OrderConstant.STATUS_PAID_FAILURE, MatchMode.START));
 		query.add(Restrictions.gt("validtime", DateUtil.getCurFullTimestamp()));
 		query.addOrder(Order.desc("addtime"));
-		List<GoodsOrder> result = hibernateTemplate.findByCriteria(query);
+		List<GoodsOrder> result = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -939,7 +939,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 		if(starttime != null) query.add(Restrictions.ge("addtime", starttime));
 		if(endtime != null) query.add(Restrictions.le("addtime", endtime));
 		query.addOrder(Order.desc("addtime"));
-		List<GoodsOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<GoodsOrder> orderList = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	
@@ -1019,7 +1019,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 	public List<GoodsGift> getBindGoodsGift(Long cinemaid, Long partnerid){
 		Timestamp curtime = new Timestamp(System.currentTimeMillis());
 		String qry = "from GoodsGift g where g.cinemaid=? and g.fromtime<=? and g.totime>? order by g.id desc";
-		List<GoodsGift> goodsGiftList = hibernateTemplate.find(qry, cinemaid, curtime, curtime);
+		List<GoodsGift> goodsGiftList = (List<GoodsGift>) hibernateTemplate.find(qry, cinemaid, curtime, curtime);
 		return goodsGiftList;
 	}
 	@Override
@@ -1483,7 +1483,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 		sub.setProjection(Projections.property("b.id"));
 		query.add(Subqueries.exists(sub));
 		query.addOrder(Order.desc("addtime"));
-		List<GoodsOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<GoodsOrder> orderList = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 

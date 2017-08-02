@@ -21,7 +21,7 @@ public class DynReportServiceImpl extends BaseServiceImpl implements DynReportSe
 	@Override
 	public List<Map<String, Object>> queryMapBySQL(final String sql, final int from,
 			final int maxnum,final  Object... params) {
-		return hibernateTemplate.executeFind(new HibernateCallback(){
+		return (List<Map<String, Object>>) hibernateTemplate.executeFind(new HibernateCallback(){
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {

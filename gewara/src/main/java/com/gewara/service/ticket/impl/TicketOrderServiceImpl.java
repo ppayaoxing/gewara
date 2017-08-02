@@ -56,7 +56,8 @@ import com.gewara.service.order.impl.GewaOrderServiceImpl;
 import com.gewara.service.ticket.TicketOrderService;
 import com.gewara.support.ErrorCode;
 import com.gewara.untrans.LockService;
-import com.gewara.untrans.impl.LockServiceImpl.AtomicCounter;
+//import com.gewara.untrans.impl.LockServiceImpl.AtomicCounter;
+import com.gewara.support.concurrent.AtomicCounter;
 import com.gewara.untrans.monitor.OrderMonitorService;
 import com.gewara.untrans.ticket.TicketOperationService;
 import com.gewara.util.BeanUtil;
@@ -229,7 +230,7 @@ public class TicketOrderServiceImpl extends GewaOrderServiceImpl implements Tick
 	}
 	private final List<OpenSeat> getLineSeatListByMpid(Long mpid, int lineno) {
 		String hql = "from OpenSeat s where s.mpid=? and s.lineno=?";
-		List<OpenSeat> result = hibernateTemplate.find(hql, mpid, lineno);
+		List<OpenSeat> result = (List<OpenSeat>) hibernateTemplate.find(hql, mpid, lineno);
 		return result;
 	}
 	private final int getMaxRank(List<OpenSeat> oseatList){
@@ -273,7 +274,7 @@ public class TicketOrderServiceImpl extends GewaOrderServiceImpl implements Tick
 	@Override
 	public OpenSeat getOpenSeatByLoc(Long mpid, String seatline, String seatrank){
 		String query = "from OpenSeat where mpid= ? and seatline = ? and seatrank = ? ";
-		List<OpenSeat> result = hibernateTemplate.find(query, mpid, seatline, seatrank);
+		List<OpenSeat> result = (List<OpenSeat>) hibernateTemplate.find(query, mpid, seatline, seatrank);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -377,7 +378,7 @@ public class TicketOrderServiceImpl extends GewaOrderServiceImpl implements Tick
 	@Override
 	public List<SellSeat> getOrderSeatList(Long orderId){
 		String query = "from SellSeat where id in (select t.seatid from Order2SellSeat t where t.orderid = ?) ";
-		List<SellSeat> seatList = hibernateTemplate.find(query, orderId);
+		List<SellSeat> seatList = (List<SellSeat>) hibernateTemplate.find(query, orderId);
 		return seatList;
 	}
 	private void bindOrderGoodsGift(TicketOrderContainer tc, OpenPlayItem opi) {
@@ -714,7 +715,7 @@ public class TicketOrderServiceImpl extends GewaOrderServiceImpl implements Tick
 		query.add(Restrictions.eq("partnerid", parentid));
 		query.add(Restrictions.eq("ukey", ukey));
 		query.addOrder(Order.desc("addtime"));
-		List<TicketOrder> orderList=hibernateTemplate.findByCriteria(query);
+		List<TicketOrder> orderList=(List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	
@@ -815,7 +816,7 @@ public class TicketOrderServiceImpl extends GewaOrderServiceImpl implements Tick
 		query.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
 		query.add(Restrictions.ge("addtime", date));
 		query.add(Restrictions.le("addtime", DateUtil.getLastTimeOfDay(date)));
-		List<TicketOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		List<TicketOrder> tmpList = new ArrayList<TicketOrder>();
 		for(TicketOrder order : orderList){
 			String snsId = JsonUtils.getJsonValueByKey(order.getOtherinfo(), "hfhId");
