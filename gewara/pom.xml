@@ -60,9 +60,16 @@
 			<groupId>gdata</groupId>
 			<artifactId>core</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>com.google.gdata</groupId> <artifactId>gdata-client</artifactId> 
-			<version>1.0</version> </dependency> <dependency> <groupId>com.google.gdata</groupId> 
-			<artifactId>gdata-core</artifactId> <version>1.0</version> </dependency> -->
+		<!-- <dependency>
+			<groupId>com.google.gdata</groupId>
+			<artifactId>gdata-client</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gdata</groupId>
+			<artifactId>gdata-core</artifactId>
+			<version>1.0</version>
+		</dependency> -->
 		<dependency>
 			<groupId>jdt</groupId>
 			<artifactId>jdt-compiler</artifactId>
@@ -372,11 +379,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.gewara</groupId>
-			<artifactId>mall-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.gewara</groupId>
 			<artifactId>weixin-util</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
@@ -409,6 +411,10 @@
 		<dependency>
 			<groupId>com.gewara</groupId>
 			<artifactId>pushcs-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>mail-api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
