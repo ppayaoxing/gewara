@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.gewara.json.CustomPaper;
 import com.gewara.mdb.builder.AggregationBuilder;
 import com.gewara.mdb.builder.DeleteBuilder;
 import com.gewara.mdb.builder.DistinctBuilder;

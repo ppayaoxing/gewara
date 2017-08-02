@@ -8,7 +8,7 @@ import java.util.Map;
 import org.hibernate.criterion.DetachedCriteria;
 
 import com.gewara.model.BaseObject;
-import com.gewara.model.drama.OpenDramaItem;
+//import com.gewara.model.drama.OpenDramaItem;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>

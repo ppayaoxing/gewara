@@ -398,4 +398,11 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	public Map<Class, String> getIdNameMap(){
 		return new HashMap<>(idNameMap);
 	}
+
+	@Override
+	public <T extends BaseObject> T getObjectByUkey(Class<T> clazz, String ukeyName, Serializable ukeyValue,
+			boolean b) {
+		if(b)this.getObjectByUkey(clazz, ukeyName, ukeyValue); //TODO 根据b标记,判断是否需要缓存
+		return this.getObjectByUkey(clazz, ukeyName, ukeyValue);
+	}
 }
