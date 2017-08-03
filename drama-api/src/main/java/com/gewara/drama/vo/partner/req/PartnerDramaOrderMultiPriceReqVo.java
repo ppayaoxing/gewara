@@ -1,27 +1,28 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo.partner.req;
 
-import com.gewara.drama.vo.partner.req.PartnerBaseReqVo;
 
 public class PartnerDramaOrderMultiPriceReqVo extends PartnerBaseReqVo {
+
 	private static final long serialVersionUID = -7626218681370487250L;
 	private String mobile;
 	private String pricelist;
 	private Long addressid;
 	private String takemethod;
 	private String origin;
+	// 用户ID
 	private String memberEncode;
+	// 合作商用户标识
 	private String ukey;
 
-	public PartnerDramaOrderMultiPriceReqVo(String appkey, String pricelist, String mobile, String memberEncode) {
+	public PartnerDramaOrderMultiPriceReqVo(String appkey, String pricelist, String mobile, String memberEncode){
 		this.appkey = appkey;
 		this.pricelist = pricelist;
 		this.mobile = mobile;
 		this.memberEncode = memberEncode;
 	}
-
+	
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -29,7 +30,7 @@ public class PartnerDramaOrderMultiPriceReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getPricelist() {
-		return this.pricelist;
+		return pricelist;
 	}
 
 	public void setPricelist(String pricelist) {
@@ -37,7 +38,7 @@ public class PartnerDramaOrderMultiPriceReqVo extends PartnerBaseReqVo {
 	}
 
 	public Long getAddressid() {
-		return this.addressid;
+		return addressid;
 	}
 
 	public void setAddressid(Long addressid) {
@@ -45,7 +46,7 @@ public class PartnerDramaOrderMultiPriceReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getTakemethod() {
-		return this.takemethod;
+		return takemethod;
 	}
 
 	public void setTakemethod(String takemethod) {
@@ -53,7 +54,7 @@ public class PartnerDramaOrderMultiPriceReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -61,7 +62,7 @@ public class PartnerDramaOrderMultiPriceReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getMemberEncode() {
-		return this.memberEncode;
+		return memberEncode;
 	}
 
 	public void setMemberEncode(String memberEncode) {
@@ -69,10 +70,11 @@ public class PartnerDramaOrderMultiPriceReqVo extends PartnerBaseReqVo {
 	}
 
 	public String getUkey() {
-		return this.ukey;
+		return ukey;
 	}
 
 	public void setUkey(String ukey) {
 		this.ukey = ukey;
 	}
+
 }

@@ -1,12 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.dubbo;
 
 import com.gewara.api.vo.ResultCode;
 
 public interface DramaMarkVoService {
-	ResultCode saveOrUpdateMark(String arg0, Long arg1, String arg2, Integer arg3, boolean arg4);
+	
+	/**
+	 * 根据tag更新演出相关对象评分
+	 * @param tag
+	 * @param relatedid
+	 * @return
+	 */
+	ResultCode saveOrUpdateMark(String tag, Long relatedid, String markname, Integer diffmark, boolean update);
+	
+	/**
+	 * 根据tag更新演出相关对象地图坐标
+	 * @param tag
+	 * @param relatedid
+	 * @return
+	 */
+	ResultCode saveOrUpdatePoint(String tag, Long relatedid, String pointx, String pointy, String pointType);
+	
+	/**
+	 * 根据tag更新演出相关对象地图坐标
+	 * @param tag
+	 * @param relatedid
+	 * @return
+	 */
+	ResultCode updateFirstPicture(String tag, Long relatedid, String picPath);
 
-	ResultCode saveOrUpdatePoint(String arg0, Long arg1, String arg2, String arg3, String arg4);
-
-	ResultCode updateFirstPicture(String arg0, Long arg1, String arg2);
 }

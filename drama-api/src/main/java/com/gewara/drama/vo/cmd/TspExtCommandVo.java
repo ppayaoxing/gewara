@@ -1,10 +1,11 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo.cmd;
 
 import java.io.Serializable;
 
-public class TspExtCommandVo implements Serializable {
+public class TspExtCommandVo implements Serializable{
+
 	private static final long serialVersionUID = -5500557062361798872L;
+
 	private Long tspid;
 	private String correcttype;
 	private Integer quantity;
@@ -13,21 +14,20 @@ public class TspExtCommandVo implements Serializable {
 	private String opertype;
 	private String opername;
 	private Long disid;
-	private Integer disquantity = Integer.valueOf(0);
+	private Integer disquantity = 0;
 	private String tradeno;
 	private Long buyitemid;
 	private Long settleid;
-
-	public TspExtCommandVo() {
-	}
-
-	public TspExtCommandVo(Long tspid, String correcttype) {
+	
+	public TspExtCommandVo(){}
+	
+	public TspExtCommandVo(Long tspid, String correcttype){
 		this.tspid = tspid;
 		this.correcttype = correcttype;
 	}
-
+	
 	public Long getTspid() {
-		return this.tspid;
+		return tspid;
 	}
 
 	public void setTspid(Long tspid) {
@@ -35,31 +35,31 @@ public class TspExtCommandVo implements Serializable {
 	}
 
 	public String getCorrecttype() {
-		return this.correcttype;
+		return correcttype;
 	}
-
+	
 	public void setCorrecttype(String correcttype) {
 		this.correcttype = correcttype;
 	}
-
+	
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
-
+	
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-
+	
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
-
+	
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
 
 	public Long getOperuser() {
-		return this.operuser;
+		return operuser;
 	}
 
 	public void setOperuser(Long operuser) {
@@ -67,7 +67,7 @@ public class TspExtCommandVo implements Serializable {
 	}
 
 	public String getOpertype() {
-		return this.opertype;
+		return opertype;
 	}
 
 	public void setOpertype(String opertype) {
@@ -75,7 +75,7 @@ public class TspExtCommandVo implements Serializable {
 	}
 
 	public String getOpername() {
-		return this.opername;
+		return opername;
 	}
 
 	public void setOpername(String opername) {
@@ -83,7 +83,7 @@ public class TspExtCommandVo implements Serializable {
 	}
 
 	public Long getDisid() {
-		return this.disid;
+		return disid;
 	}
 
 	public void setDisid(Long disid) {
@@ -91,7 +91,7 @@ public class TspExtCommandVo implements Serializable {
 	}
 
 	public Integer getDisquantity() {
-		return this.disquantity;
+		return disquantity;
 	}
 
 	public void setDisquantity(Integer disquantity) {
@@ -99,7 +99,7 @@ public class TspExtCommandVo implements Serializable {
 	}
 
 	public String getTradeno() {
-		return this.tradeno;
+		return tradeno;
 	}
 
 	public void setTradeno(String tradeno) {
@@ -107,7 +107,7 @@ public class TspExtCommandVo implements Serializable {
 	}
 
 	public Long getBuyitemid() {
-		return this.buyitemid;
+		return buyitemid;
 	}
 
 	public void setBuyitemid(Long buyitemid) {
@@ -115,10 +115,11 @@ public class TspExtCommandVo implements Serializable {
 	}
 
 	public Long getSettleid() {
-		return this.settleid;
+		return settleid;
 	}
 
 	public void setSettleid(Long settleid) {
 		this.settleid = settleid;
 	}
+	
 }

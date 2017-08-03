@@ -1,35 +1,73 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.admin.dubbo.schedule;
+
+import java.util.List;
+import java.util.Map;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.drama.vo.OpenDramaItemVo;
 import com.gewara.drama.vo.OpenTheatreSeatVo;
 import com.gewara.drama.vo.TheatreSeatPriceVo;
-import java.util.List;
-import java.util.Map;
 
 public interface OpenTheatreSeatAdminVoService {
-	ResultCode<List<OpenTheatreSeatVo>> copyTheatreRoomSeat(Long arg0, Long arg1, Long arg2);
+	/**
+	 * 开放场次复制基础数据座位图
+	 * @param userid
+	 * @param odi
+	 * @param seatArea
+	 * @param room
+	 * @return
+	 */
+	ResultCode<List<OpenTheatreSeatVo>> copyTheatreRoomSeat(Long odid, Long areaid, Long roomid);
 
-	ResultCode<TheatreSeatPriceVo> updateOpenTheatreSeatByPriceid(Long arg0, Long arg1);
 
-	ResultCode<TheatreSeatPriceVo> batchUpdateOpenTheatreSeatByPriceid(Long arg0, String arg1, String arg2);
+	/**
+	 * 更新座位价格
+	 * @param priceid
+	 * @param seatid
+	 * @param userid
+	 * @return
+	 */
+	ResultCode<TheatreSeatPriceVo> updateOpenTheatreSeatByPriceid(Long priceid, Long seatid);
 
-	ResultCode<OpenTheatreSeatVo> lockSeat(Long arg0, String arg1, String arg2);
+	/**
+	 * 批量更新座位价格
+	 * @param priceid
+	 * @param rankno
+	 * @param lineno
+	 * @param userid
+	 * @return
+	 */
+	ResultCode<TheatreSeatPriceVo> batchUpdateOpenTheatreSeatByPriceid(Long priceid, String rankno, String lineno);
 
-	ResultCode<OpenTheatreSeatVo> unLockSeat(Long arg0);
+	ResultCode<OpenTheatreSeatVo> lockSeat(Long seatId, String locktype, String lockreason);
+	ResultCode<OpenTheatreSeatVo> unLockSeat(Long seatId);
+	ResultCode<OpenDramaItemVo> batchUnLockSeat(Long areaid, String lockline, String lockrank);
+	ResultCode<OpenDramaItemVo> batchLockSeat(Long areaid, String locktype, String lockreason, String lockline, String lockrank);
 
-	ResultCode<OpenDramaItemVo> batchUnLockSeat(Long arg0, String arg1, String arg2);
+	/**
+	 * 通过区域编号查询座位信息
+	 * @param areaid
+	 * @return
+	 */
+	ResultCode<List<OpenTheatreSeatVo>> getOpenTheatreSeatByAreaid(Long areaid);
 
-	ResultCode<OpenDramaItemVo> batchLockSeat(Long arg0, String arg1, String arg2, String arg3, String arg4);
+	/**
+	 * 查询后台锁定座位信息
+	 * @param areaid
+	 * @param forceRefresh
+	 * @return
+	 */
+	ResultCode<Map<String /*seatLine:seatRank*/, Long/*tspid*/>> getLockSeatMapByAreaid(final Long areaid);
 
-	ResultCode<List<OpenTheatreSeatVo>> getOpenTheatreSeatByAreaid(Long arg0);
+	/**
+	 * 查询座位数据
+	 * @param areaid
+	 * @param forceRefresh
+	 * @return
+	 */
+	ResultCode<Map<String/*seatLine:seatRank*/, Long/*tspid*/>> getSeatMapByAreaid(final Long areaid);
 
-	ResultCode<Map<String, Long>> getLockSeatMapByAreaid(Long arg0);
-
-	ResultCode<Map<String, Long>> getSeatMapByAreaid(Long arg0);
-
-	ResultCode clearSeatMapByAreaid(Long arg0);
-
-	ResultCode reAreaSeat(Long arg0);
+	ResultCode clearSeatMapByAreaid(Long areaid);
+	
+	ResultCode reAreaSeat(Long itemid);
 }

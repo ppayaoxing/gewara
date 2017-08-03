@@ -1,17 +1,19 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.admin.dubbo.reserve;
+
+import java.util.List;
 
 import com.gewara.api.vo.RequestParamVo;
 import com.gewara.api.vo.ResultCode;
 import com.gewara.drama.vo.ReserveMemberVo;
-import java.util.List;
 
 public interface ReserveMemberAdminVoService {
-	ResultCode<ReserveMemberVo> getReserveMember(Long arg0);
+	
+	ResultCode<ReserveMemberVo> getReserveMember(Long id);
+	
+	ResultCode<List<ReserveMemberVo>> getReserveMemberList(RequestParamVo paramVo);
+	
+	ResultCode<ReserveMemberVo> saveOrUpdateReserveMember(RequestParamVo paramVo);
+	
+	ResultCode<List<ReserveMemberVo>> getReserveMemberList(Long dramaid, Long memberid);
 
-	ResultCode<List<ReserveMemberVo>> getReserveMemberList(RequestParamVo arg0);
-
-	ResultCode<ReserveMemberVo> saveOrUpdateReserveMember(RequestParamVo arg0);
-
-	ResultCode<List<ReserveMemberVo>> getReserveMemberList(Long arg0, Long arg1);
 }

@@ -1,9 +1,9 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.content.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class HeadInfoVo extends BaseVo {
 	private static final long serialVersionUID = 3715253179654623826L;
@@ -17,28 +17,27 @@ public class HeadInfoVo extends BaseVo {
 	private Long ordernum;
 	private String isslide;
 	private Timestamp addtime;
-	private String board;
+	private String board;	// 版块 eg. movie/suject...etc.
 	private String citycode;
-	private String track;
-	private Timestamp starttime;
-	private Timestamp stoptime;
-
-	public HeadInfoVo() {
-	}
+	private String track;		//跟踪图片
+	private Timestamp starttime;	// 分享开始时间
+	private Timestamp stoptime;		// 分享结束时间
+	
+	public HeadInfoVo(){}
 
 	public HeadInfoVo(String title) {
-		this.ordernum = Long.valueOf(0L);
-		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.isslide = "Y";
+		this.ordernum=0l;
+		this.addtime=new Timestamp(System.currentTimeMillis());
+		this.isslide="Y";
 		this.title = title;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -46,7 +45,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public String getLogobig() {
-		return this.logobig;
+		return logobig;
 	}
 
 	public void setLogobig(String logobig) {
@@ -54,7 +53,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public String getLogosmall() {
-		return this.logosmall;
+		return logosmall;
 	}
 
 	public void setLogosmall(String logosmall) {
@@ -62,7 +61,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -70,7 +69,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public String getCss() {
-		return this.css;
+		return css;
 	}
 
 	public void setCss(String css) {
@@ -78,7 +77,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public String getLink() {
-		return this.link;
+		return link;
 	}
 
 	public void setLink(String link) {
@@ -86,7 +85,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public Long getOrdernum() {
-		return this.ordernum;
+		return ordernum;
 	}
 
 	public void setOrdernum(Long ordernum) {
@@ -94,7 +93,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public String getIsslide() {
-		return this.isslide;
+		return isslide;
 	}
 
 	public void setIsslide(String isslide) {
@@ -102,7 +101,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -110,7 +109,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public String getBoard() {
-		return this.board;
+		return board;
 	}
 
 	public void setBoard(String board) {
@@ -118,7 +117,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -126,7 +125,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public String getTrack() {
-		return this.track;
+		return track;
 	}
 
 	public void setTrack(String track) {
@@ -134,7 +133,7 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Timestamp starttime) {
@@ -142,10 +141,11 @@ public class HeadInfoVo extends BaseVo {
 	}
 
 	public Timestamp getStoptime() {
-		return this.stoptime;
+		return stoptime;
 	}
 
 	public void setStoptime(Timestamp stoptime) {
 		this.stoptime = stoptime;
 	}
+
 }

@@ -1,17 +1,18 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.drama.vo.common.BaseEntityVo;
 import java.util.Date;
+
 import org.apache.commons.lang.StringUtils;
+
+import com.gewara.drama.vo.common.BaseEntityVo;
 
 public class DramaStarVo extends BaseEntityVo {
 	private static final long serialVersionUID = -505984720950483214L;
-	public static final String TYPE_STAR = "star";
-	public static final String TYPE_TROUPE = "troupe";
-	public static final String TYPE_DIRECTOR = "director";
-	public static final String TYPE_COMMENTATOR = "commentator";
-	public static final String TAG_DRAMASTAR = "dramastar";
+	public static final String TYPE_STAR = "star";//演员
+	public static final String TYPE_TROUPE = "troupe";//剧团
+	public static final String TYPE_DIRECTOR="director";//导演
+	public static final String TYPE_COMMENTATOR = "commentator";// 剧评人
+	public static final String TAG_DRAMASTAR = "dramastar";	// 页面tag使用
 	private Date birthday;
 	private String tag;
 	private String state;
@@ -22,113 +23,92 @@ public class DramaStarVo extends BaseEntityVo {
 	private String graduated;
 	private String job;
 	private String website;
-	private Long troupe;
-	private Date establishtime;
-	private String startype;
-	private String representative;
-	private String representativeRelate;
-	private Integer starnum;
-	private Integer worknum;
-	private String describe;
-
+	private Long troupe;	// 所属剧团
+	private Date establishtime;	// 剧团属性(成立时间)
+	private String startype;		// 类型(成员/团体)
+	private String representative;			// <!-- 代表作无连接 -->
+	private String representativeRelate;	//<!-- 代表作关联连接 json格式 -->
+	private Integer starnum;		//成员数量
+	private Integer worknum;		//作品数量
+	private String describe;// 一句话描述
+	
+	public DramaStarVo(){}
+	
 	public String getState() {
-		return this.state;
+		return state;
 	}
-
 	public void setState(String state) {
 		this.state = state;
 	}
-
 	public String getBloodtype() {
-		return this.bloodtype;
+		return bloodtype;
 	}
-
 	public void setBloodtype(String bloodtype) {
 		this.bloodtype = bloodtype;
 	}
-
 	public String getConstellation() {
-		return this.constellation;
+		return constellation;
 	}
-
 	public void setConstellation(String constellation) {
 		this.constellation = constellation;
 	}
-
 	public String getHeight() {
-		return this.height;
+		return height;
 	}
-
 	public void setHeight(String height) {
 		this.height = height;
 	}
-
 	public String getGraduated() {
-		return this.graduated;
+		return graduated;
 	}
-
 	public void setGraduated(String graduated) {
 		this.graduated = graduated;
 	}
-
 	public String getJob() {
-		return this.job;
+		return job;
 	}
-
 	public void setJob(String job) {
 		this.job = job;
 	}
-
 	public Long getTroupe() {
-		return this.troupe;
+		return troupe;
 	}
-
 	public void setTroupe(Long troupe) {
 		this.troupe = troupe;
 	}
-
 	public String getHometown() {
-		return this.hometown;
+		return hometown;
 	}
-
 	public void setHometown(String hometown) {
 		this.hometown = hometown;
 	}
-
 	public Date getBirthday() {
-		return this.birthday;
+		return birthday;
 	}
-
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-
 	public Date getEstablishtime() {
-		return this.establishtime;
+		return establishtime;
 	}
-
 	public void setEstablishtime(Date establishtime) {
 		this.establishtime = establishtime;
 	}
-
 	public String getStartype() {
-		return this.startype;
+		return startype;
 	}
-
 	public void setStartype(String startype) {
 		this.startype = startype;
 	}
-
 	public String getWebsite() {
-		return this.website;
+		return website;
 	}
-
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-
+	
 	public Integer getStarnum() {
-		return this.starnum;
+		return starnum;
 	}
 
 	public void setStarnum(Integer starnum) {
@@ -136,19 +116,20 @@ public class DramaStarVo extends BaseEntityVo {
 	}
 
 	public Integer getWorknum() {
-		return this.worknum;
+		return worknum;
 	}
 
 	public void setWorknum(Integer worknum) {
 		this.worknum = worknum;
 	}
 
-	public String getLimg() {
-		return StringUtils.isBlank(this.logo) ? "img/default_pic.png" : this.logo;
+	public String getLimg(){
+		if(StringUtils.isBlank(logo)) return "img/default_pic.png";
+		return logo;
 	}
 
 	public String getRepresentative() {
-		return this.representative;
+		return representative;
 	}
 
 	public void setRepresentative(String representative) {
@@ -156,7 +137,7 @@ public class DramaStarVo extends BaseEntityVo {
 	}
 
 	public String getRepresentativeRelate() {
-		return this.representativeRelate;
+		return representativeRelate;
 	}
 
 	public void setRepresentativeRelate(String representativeRelate) {
@@ -164,7 +145,7 @@ public class DramaStarVo extends BaseEntityVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -172,10 +153,11 @@ public class DramaStarVo extends BaseEntityVo {
 	}
 
 	public String getDescribe() {
-		return this.describe;
+		return describe;
 	}
 
 	public void setDescribe(String describe) {
 		this.describe = describe;
 	}
+
 }

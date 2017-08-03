@@ -1,26 +1,34 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.dubbo;
 
-import com.gewara.api.vo.ResultCode;
-import com.gewara.drama.vo.TheatreItemPriceVo;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
+import com.gewara.api.vo.ResultCode;
+import com.gewara.drama.vo.TheatreItemPriceVo;
+
 public interface TheatreItemPriceVoService {
-	ResultCode<TheatreItemPriceVo> getTheatreItemPriceById(Long arg0);
+	
+	ResultCode<TheatreItemPriceVo> getTheatreItemPriceById(Long id);
+	
+	ResultCode<List<TheatreItemPriceVo>> geTheatreItemPriceListByDramaid(Long dramaid);
+	
+	ResultCode<List<Long>> geTheatreItemPricesByDramaid(Long dramaid);
+	
+	ResultCode<Map<Long,List<TheatreItemPriceVo>>> getTheatreItemPriceListMap(List<Long> dpidList);
+	
+	ResultCode<List<Long>> getTheatreItemPriceIdList(List<Long> dpidList);
+	
+	ResultCode<List<TheatreItemPriceVo>> getTheatreItemPriceList(Long dpid);
+	
+	ResultCode<List<TheatreItemPriceVo>> getTheatreItemPriceList(List<Long> idList);
+	
+	/**
+	 * 根据开始、结束时间获取项目价格
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
+	ResultCode<List<TheatreItemPriceVo>> getTheatreItemPriceListByUpdateTime(Timestamp startTime, Timestamp endTime);
 
-	ResultCode<List<TheatreItemPriceVo>> geTheatreItemPriceListByDramaid(Long arg0);
-
-	ResultCode<List<Long>> geTheatreItemPricesByDramaid(Long arg0);
-
-	ResultCode<Map<Long, List<TheatreItemPriceVo>>> getTheatreItemPriceListMap(List<Long> arg0);
-
-	ResultCode<List<Long>> getTheatreItemPriceIdList(List<Long> arg0);
-
-	ResultCode<List<TheatreItemPriceVo>> getTheatreItemPriceList(Long arg0);
-
-	ResultCode<List<TheatreItemPriceVo>> getTheatreItemPriceList(List<Long> arg0);
-
-	ResultCode<List<TheatreItemPriceVo>> getTheatreItemPriceListByUpdateTime(Timestamp arg0, Timestamp arg1);
 }

@@ -1,12 +1,17 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class SupplierInfoVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * @author zhouxiang
+ */
+public class SupplierInfoVo extends BaseVo{
+	
 	private static final long serialVersionUID = -2521758051783096020L;
+	
 	private String supplierCode;
 	private String suppliername;
 	private String shortname;
@@ -19,9 +24,9 @@ public class SupplierInfoVo extends BaseVo {
 	private Timestamp updateTime;
 	private String status;
 	private Long optUserId;
-
+	
 	public String getSupplierCode() {
-		return this.supplierCode;
+		return supplierCode;
 	}
 
 	public void setSupplierCode(String supplierCode) {
@@ -29,7 +34,7 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public String getSuppliername() {
-		return this.suppliername;
+		return suppliername;
 	}
 
 	public void setSuppliername(String suppliername) {
@@ -37,7 +42,7 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public String getShortname() {
-		return this.shortname;
+		return shortname;
 	}
 
 	public void setShortname(String shortname) {
@@ -45,7 +50,7 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public String getBankName() {
-		return this.bankName;
+		return bankName;
 	}
 
 	public void setBankName(String bankName) {
@@ -53,7 +58,7 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public String getBankAccount() {
-		return this.bankAccount;
+		return bankAccount;
 	}
 
 	public void setBankAccount(String bankAccount) {
@@ -61,7 +66,7 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public String getContactName() {
-		return this.contactName;
+		return contactName;
 	}
 
 	public void setContactName(String contactName) {
@@ -69,7 +74,7 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public String getContactTel() {
-		return this.contactTel;
+		return contactTel;
 	}
 
 	public void setContactTel(String contactTel) {
@@ -77,7 +82,7 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public String getContactEmail() {
-		return this.contactEmail;
+		return contactEmail;
 	}
 
 	public void setContactEmail(String contactEmail) {
@@ -85,7 +90,7 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public Timestamp getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
 
 	public void setAddTime(Timestamp addTime) {
@@ -93,7 +98,7 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public Timestamp getUpdateTime() {
-		return this.updateTime;
+		return updateTime;
 	}
 
 	public void setUpdateTime(Timestamp updateTime) {
@@ -101,7 +106,7 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -109,14 +114,16 @@ public class SupplierInfoVo extends BaseVo {
 	}
 
 	public Long getOptUserId() {
-		return this.optUserId;
+		return optUserId;
 	}
 
 	public void setOptUserId(Long optUserId) {
 		this.optUserId = optUserId;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.supplierCode;
+		return supplierCode;
 	}
+	
 }

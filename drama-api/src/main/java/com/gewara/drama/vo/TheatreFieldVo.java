@@ -1,32 +1,36 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+
 public class TheatreFieldVo extends BaseVo {
+	
 	private static final long serialVersionUID = -2692977270173145089L;
+
 	private Long id;
 	private Long theatreid;
-	private String name;
-	private String fieldnum;
-	private String fieldtype;
-	private String logo;
-	private String mobilelogo;
-	private String description;
-	private String status;
-	private String sortarea;
+	private String name;				//场地名称
+	private String fieldnum;			//场地编号
+	private String fieldtype;			//场地类型: GEWA、GPTBS
+	private String logo;				//图片
+	private String mobilelogo;			//图片
+	private String description;			//描述
+	private String status;				//
+	private String sortarea;			//自动选座优先区域顺序
 	private Timestamp addtime;
 	private Timestamp updatetime;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -34,7 +38,7 @@ public class TheatreFieldVo extends BaseVo {
 	}
 
 	public Long getTheatreid() {
-		return this.theatreid;
+		return theatreid;
 	}
 
 	public void setTheatreid(Long theatreid) {
@@ -42,7 +46,7 @@ public class TheatreFieldVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -50,7 +54,7 @@ public class TheatreFieldVo extends BaseVo {
 	}
 
 	public String getFieldnum() {
-		return this.fieldnum;
+		return fieldnum;
 	}
 
 	public void setFieldnum(String fieldnum) {
@@ -58,7 +62,7 @@ public class TheatreFieldVo extends BaseVo {
 	}
 
 	public String getFieldtype() {
-		return this.fieldtype;
+		return fieldtype;
 	}
 
 	public void setFieldtype(String fieldtype) {
@@ -66,7 +70,7 @@ public class TheatreFieldVo extends BaseVo {
 	}
 
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
 
 	public void setLogo(String logo) {
@@ -74,7 +78,7 @@ public class TheatreFieldVo extends BaseVo {
 	}
 
 	public String getMobilelogo() {
-		return this.mobilelogo;
+		return mobilelogo;
 	}
 
 	public void setMobilelogo(String mobilelogo) {
@@ -82,7 +86,7 @@ public class TheatreFieldVo extends BaseVo {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -90,7 +94,7 @@ public class TheatreFieldVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -98,7 +102,7 @@ public class TheatreFieldVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -106,19 +110,20 @@ public class TheatreFieldVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
-	public boolean hasFieldtype(String type) {
-		return StringUtils.isBlank(type) ? false : StringUtils.equals(this.fieldtype, type);
+	
+	public boolean hasFieldtype(String type){
+		if(StringUtils.isBlank(type)) return false;
+		return StringUtils.equals(this.fieldtype, type);
 	}
-
+	
 	public String getSortarea() {
-		return this.sortarea;
+		return sortarea;
 	}
 
 	public void setSortarea(String sortarea) {

@@ -1,13 +1,16 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo.schedule;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.DateUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+import com.gewara.drama.constant.OdiConstant;
+import com.gewara.util.DateUtil;
+
 public class TheatreSeatPriceExtVo extends BaseVo {
+	
 	private static final long serialVersionUID = -8669655167327194190L;
+
 	private Long id;
 	private Long dramaid;
 	private Long theatreid;
@@ -24,32 +27,32 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	private Integer disquantity;
 	private Integer price;
 	private Integer costprice;
-	private Long settleid;
-	private String opertype;
-	private Long operuser;
-	private String opername;
-	private String tradeno;
-	private Long buyitemid;
-	private String remark;
-	private String otherinfo;
-	private Timestamp addtime;
-
-	public TheatreSeatPriceExtVo() {
-	}
-
-	public TheatreSeatPriceExtVo(String correcttype, Integer quantity) {
+	private Long settleid;			
+	private String opertype;		//操作类型
+	private Long operuser;			//操作ID
+	private String opername;		//操作人
+	private String tradeno;			//订单号
+	private Long buyitemid;			//buyitem ID
+	private String remark;			//说明
+	private String otherinfo;		
+	private Timestamp addtime;		//增加时间
+	
+	public TheatreSeatPriceExtVo(){}
+	
+	public TheatreSeatPriceExtVo(String correcttype, Integer quantity){
 		this.correcttype = correcttype;
 		this.quantity = quantity;
-		this.disquantity = Integer.valueOf(1);
+		this.disquantity = 1;
 		this.addtime = DateUtil.getCurFullTimestamp();
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -57,7 +60,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -65,7 +68,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Long getTheatreid() {
-		return this.theatreid;
+		return theatreid;
 	}
 
 	public void setTheatreid(Long theatreid) {
@@ -73,7 +76,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public String getDramaname() {
-		return this.dramaname;
+		return dramaname;
 	}
 
 	public void setDramaname(String dramaname) {
@@ -81,7 +84,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public String getTheatrename() {
-		return this.theatrename;
+		return theatrename;
 	}
 
 	public void setTheatrename(String theatrename) {
@@ -89,7 +92,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -97,7 +100,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Long getAreaid() {
-		return this.areaid;
+		return areaid;
 	}
 
 	public void setAreaid(Long areaid) {
@@ -105,7 +108,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Timestamp getPlaytime() {
-		return this.playtime;
+		return playtime;
 	}
 
 	public void setPlaytime(Timestamp playtime) {
@@ -113,7 +116,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public String getAreaname() {
-		return this.areaname;
+		return areaname;
 	}
 
 	public void setAreaname(String areaname) {
@@ -121,7 +124,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Long getTspid() {
-		return this.tspid;
+		return tspid;
 	}
 
 	public void setTspid(Long tspid) {
@@ -129,7 +132,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Long getDisid() {
-		return this.disid;
+		return disid;
 	}
 
 	public void setDisid(Long disid) {
@@ -137,7 +140,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public String getCorrecttype() {
-		return this.correcttype;
+		return correcttype;
 	}
 
 	public void setCorrecttype(String correcttype) {
@@ -145,7 +148,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -153,7 +156,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Integer getDisquantity() {
-		return this.disquantity;
+		return disquantity;
 	}
 
 	public void setDisquantity(Integer disquantity) {
@@ -161,7 +164,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Integer price) {
@@ -169,7 +172,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Integer getCostprice() {
-		return this.costprice;
+		return costprice;
 	}
 
 	public void setCostprice(Integer costprice) {
@@ -177,7 +180,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Long getSettleid() {
-		return this.settleid;
+		return settleid;
 	}
 
 	public void setSettleid(Long settleid) {
@@ -185,7 +188,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public String getOpertype() {
-		return this.opertype;
+		return opertype;
 	}
 
 	public void setOpertype(String opertype) {
@@ -193,7 +196,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Long getOperuser() {
-		return this.operuser;
+		return operuser;
 	}
 
 	public void setOperuser(Long operuser) {
@@ -201,7 +204,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public String getOpername() {
-		return this.opername;
+		return opername;
 	}
 
 	public void setOpername(String opername) {
@@ -209,7 +212,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -217,7 +220,7 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -225,11 +228,11 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public String getTradeno() {
-		return this.tradeno;
+		return tradeno;
 	}
 
 	public void setTradeno(String tradeno) {
@@ -241,18 +244,23 @@ public class TheatreSeatPriceExtVo extends BaseVo {
 	}
 
 	public Long getBuyitemid() {
-		return this.buyitemid;
+		return buyitemid;
 	}
 
 	public void setBuyitemid(Long buyitemid) {
 		this.buyitemid = buyitemid;
 	}
 
-	public Integer getSubQuantity() {
-		return this.getCorrecttype().startsWith("sub") ? this.quantity : Integer.valueOf(-this.quantity.intValue());
+	public Integer getSubQuantity(){
+		if(this.getCorrecttype().startsWith(OdiConstant.CORRECT_SUB)){
+			return this.quantity;
+		}
+		return -quantity;
 	}
-
-	public Integer getAddQuantity() {
-		return this.getCorrecttype().startsWith("add") ? this.quantity : Integer.valueOf(-this.quantity.intValue());
+	public Integer getAddQuantity(){
+		if(this.getCorrecttype().startsWith(OdiConstant.CORRECT_ADD)){
+			return this.quantity;
+		}
+		return -quantity;
 	}
 }

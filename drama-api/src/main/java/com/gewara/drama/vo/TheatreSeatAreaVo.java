@@ -1,50 +1,56 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+
 public class TheatreSeatAreaVo extends BaseVo {
+
 	private static final long serialVersionUID = -7924268455854109433L;
-	private Long id;
-	private Long dpid;
-	private Long theatreid;
+	private Long id;					//
+	private Long dpid;					//场次ID
+	private Long theatreid;			
 	private Long dramaid;
-	private String areaname;
-	private String enname;
-	private String seller;
-	private String sellerseq;
-	private String fieldnum;
-	private String roomnum;
-	private String description;
-	private String standing;
-	private Integer total;
-	private Integer limitnum;
-	private Integer firstline;
-	private Integer firstrank;
-	private Integer linenum;
-	private Integer ranknum;
-	private String hotzone;
-	private String mobilehotzone;
-	private String status;
-	private String seatmap;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private Integer gsellnum;
-	private Integer csellnum;
-	private Integer locknum;
+	private String areaname;			//区域名称
+	private String enname;				//
+	private String seller;				//类型:对应DramaPlayItem seller
+	private String sellerseq;			//区域编号（ShowArea-->saseqNo）
+	
+	private String fieldnum;			//场地序号
+	private String roomnum;				//区域序号
+	
+	private String description;			//区域描述
+	private String standing;			//是否站票
+	private Integer total;				//站票/座位总量
+	private Integer limitnum;			//限制数
+	private Integer firstline;			//起始行
+	private Integer firstrank;			//起始列
+	private Integer linenum;			//表格宽度
+	private Integer ranknum;			//表格高度
+	private String hotzone;				//座标值
+	private String mobilehotzone;			//坐标值
+	private String status;				//状态：可用、删除
+	private String seatmap;				//座位图
+	private Timestamp addtime;			
+	private Timestamp updatetime;		
+	
+	private Integer gsellnum;			//Gewa卖出数
+	private Integer csellnum;			//场馆卖出数
+	private Integer locknum;			//Gewa锁定数
 	private Integer remainnum;
 	private String svgpath;
 	private String otherinfo;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -52,7 +58,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -60,7 +66,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Long getTheatreid() {
-		return this.theatreid;
+		return theatreid;
 	}
 
 	public void setTheatreid(Long theatreid) {
@@ -68,7 +74,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -76,7 +82,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getAreaname() {
-		return this.areaname;
+		return areaname;
 	}
 
 	public void setAreaname(String areaname) {
@@ -84,7 +90,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getEnname() {
-		return this.enname;
+		return enname;
 	}
 
 	public void setEnname(String enname) {
@@ -92,7 +98,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getSeller() {
-		return this.seller;
+		return seller;
 	}
 
 	public void setSeller(String seller) {
@@ -100,7 +106,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getSellerseq() {
-		return this.sellerseq;
+		return sellerseq;
 	}
 
 	public void setSellerseq(String sellerseq) {
@@ -108,7 +114,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getFieldnum() {
-		return this.fieldnum;
+		return fieldnum;
 	}
 
 	public void setFieldnum(String fieldnum) {
@@ -116,7 +122,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getRoomnum() {
-		return this.roomnum;
+		return roomnum;
 	}
 
 	public void setRoomnum(String roomnum) {
@@ -124,7 +130,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -132,7 +138,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getStanding() {
-		return this.standing;
+		return standing;
 	}
 
 	public void setStanding(String standing) {
@@ -140,7 +146,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Integer getTotal() {
-		return this.total;
+		return total;
 	}
 
 	public void setTotal(Integer total) {
@@ -148,7 +154,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Integer getLimitnum() {
-		return this.limitnum;
+		return limitnum;
 	}
 
 	public void setLimitnum(Integer limitnum) {
@@ -156,7 +162,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Integer getFirstline() {
-		return this.firstline;
+		return firstline;
 	}
 
 	public void setFirstline(Integer firstline) {
@@ -164,7 +170,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Integer getFirstrank() {
-		return this.firstrank;
+		return firstrank;
 	}
 
 	public void setFirstrank(Integer firstrank) {
@@ -172,7 +178,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Integer getLinenum() {
-		return this.linenum;
+		return linenum;
 	}
 
 	public void setLinenum(Integer linenum) {
@@ -180,7 +186,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Integer getRanknum() {
-		return this.ranknum;
+		return ranknum;
 	}
 
 	public void setRanknum(Integer ranknum) {
@@ -188,7 +194,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getHotzone() {
-		return this.hotzone;
+		return hotzone;
 	}
 
 	public void setHotzone(String hotzone) {
@@ -196,7 +202,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getMobilehotzone() {
-		return this.mobilehotzone;
+		return mobilehotzone;
 	}
 
 	public void setMobilehotzone(String mobilehotzone) {
@@ -204,7 +210,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -212,7 +218,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getSeatmap() {
-		return this.seatmap;
+		return seatmap;
 	}
 
 	public void setSeatmap(String seatmap) {
@@ -220,7 +226,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -228,7 +234,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -236,7 +242,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Integer getGsellnum() {
-		return this.gsellnum;
+		return gsellnum;
 	}
 
 	public void setGsellnum(Integer gsellnum) {
@@ -244,7 +250,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Integer getCsellnum() {
-		return this.csellnum;
+		return csellnum;
 	}
 
 	public void setCsellnum(Integer csellnum) {
@@ -252,7 +258,7 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public Integer getLocknum() {
-		return this.locknum;
+		return locknum;
 	}
 
 	public void setLocknum(Integer locknum) {
@@ -260,38 +266,40 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
 
-	public boolean hasStatus(String stats) {
-		return StringUtils.isBlank(stats) ? false : StringUtils.equals(this.status, stats);
+	public boolean hasStatus(String stats){
+		if(StringUtils.isBlank(stats)) return false;
+		return StringUtils.equals(this.status, stats);
 	}
-
-	public boolean hasSeller(String sell) {
-		return StringUtils.isBlank(sell) ? false : StringUtils.equals(this.seller, sell);
+	public boolean hasSeller(String sell){
+		if(StringUtils.isBlank(sell)) return false;
+		return StringUtils.equals(this.seller, sell);
 	}
-
-	public Integer getRemainnum() {
+	
+	public Integer getRemainnum(){
 		return this.remainnum;
 	}
 
 	public void setRemainnum(Integer remainnum) {
 		this.remainnum = remainnum;
 	}
-
-	public String getName() {
+	
+	public String getName(){
 		return this.areaname;
 	}
 
 	public String getSvgpath() {
-		return this.svgpath;
+		return svgpath;
 	}
 
 	public void setSvgpath(String svgpath) {
 		this.svgpath = svgpath;
 	}
+	
 }

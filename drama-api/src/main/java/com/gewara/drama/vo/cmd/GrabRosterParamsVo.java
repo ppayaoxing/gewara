@@ -1,7 +1,7 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo.cmd;
 
 import com.gewara.drama.vo.partner.req.PartnerBaseReqVo;
+
 
 public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	private static final long serialVersionUID = -1665911655807876167L;
@@ -20,24 +20,56 @@ public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	public GrabRosterParamsVo() {
 	}
 
-	public GrabRosterParamsVo(Long memberid, String mobile, Integer quantity, Long priceid, String origin,
-			String remoteIp) {
+	/**
+	 * 抢票生成订单，出票（web端）
+	 * 
+	 * @param memberid
+	 * @param mobile
+	 * @param quantity
+	 * @param priceid
+	 * @param origin
+	 * @param remoteIp
+	 * @param email
+	 *           邮箱地址 可选字段
+	 * @param realName
+	 *           真实姓名 可选字段
+	 * @param IDCard
+	 *           身份证号码 可选字段
+	 */
+	public GrabRosterParamsVo(Long memberid, String mobile, Integer quantity, Long priceid, String origin, String remoteIp) {
 		this.memberid = memberid;
 		this.mobile = mobile;
 		this.quantity = quantity;
 		this.priceid = priceid;
 		this.origin = origin;
 		this.remoteIp = remoteIp;
+
 	}
 
-	public GrabRosterParamsVo(String appkey, Long memberid, String mobile, Integer quantity, Long priceid,
-			String origin, String remoteIp) {
+	/**
+	 * 
+	 * 抢票生成订单，出票（wap端）
+	 * @param appkey
+	 * @param memberid
+	 * @param mobile
+	 * @param quantity
+	 * @param priceid
+	 * @param origin
+	 * @param remoteIp
+	 * @param email
+	 *           邮箱地址 可选字段
+	 * @param realName
+	 *           真实姓名 可选字段
+	 * @param IDCard
+	 *           身份证号码 可选字段
+	 */
+	public GrabRosterParamsVo(String appkey, Long memberid, String mobile, Integer quantity, Long priceid, String origin, String remoteIp) {
 		this(memberid, mobile, quantity, priceid, origin, remoteIp);
 		this.appkey = appkey;
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -45,7 +77,7 @@ public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -53,7 +85,7 @@ public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -61,7 +93,7 @@ public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	}
 
 	public Long getPriceid() {
-		return this.priceid;
+		return priceid;
 	}
 
 	public void setPriceid(Long priceid) {
@@ -69,7 +101,7 @@ public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	}
 
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -77,7 +109,7 @@ public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -85,7 +117,7 @@ public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	}
 
 	public String getRealName() {
-		return this.realName;
+		return realName;
 	}
 
 	public void setRealName(String realName) {
@@ -93,15 +125,15 @@ public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	}
 
 	public String getIDCard() {
-		return this.IDCard;
+		return IDCard;
 	}
 
 	public void setIDCard(String iDCard) {
-		this.IDCard = iDCard;
+		IDCard = iDCard;
 	}
 
 	public String getMembermobile() {
-		return this.membermobile;
+		return membermobile;
 	}
 
 	public void setMembermobile(String membermobile) {
@@ -109,7 +141,7 @@ public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	}
 
 	public String getMembername() {
-		return this.membername;
+		return membername;
 	}
 
 	public void setMembername(String membername) {
@@ -117,10 +149,11 @@ public class GrabRosterParamsVo extends PartnerBaseReqVo {
 	}
 
 	public String getMemberencode() {
-		return this.memberencode;
+		return memberencode;
 	}
 
 	public void setMemberencode(String memberencode) {
 		this.memberencode = memberencode;
 	}
+
 }

@@ -1,39 +1,41 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ReserveOrderVo extends BaseVo {
+
 	private static final long serialVersionUID = 7702516966463933142L;
 	private Long id;
-	private Long dramaid;
-	private Long matcherid;
-	private String mobile;
-	private Long memberid;
-	private Long partnerid;
+	private Long dramaid;					//演出ID
+	private Long matcherid;					//关联ID
+	private String mobile;					//手机号
+	private Long memberid;					//关联用户
+	private Long partnerid;					//合作商ID
 	private Date reservedate;
 	private Integer version;
 	private String starttime;
 	private String endtime;
-	private Integer quantity;
-	private String citycode;
-	private String barcode;
+	private Integer quantity;				//数量
+	private String citycode;				//城市编码
+	private String barcode;					//二维码值
 	private String remark;
-	private String ip;
+	private String ip;						//
 	private Long reserveMemberid;
-	private Timestamp validtime;
+	private Timestamp validtime;			//
 	private Timestamp createtime;
 	private Timestamp updatetime;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -41,7 +43,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -49,7 +51,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Long getMatcherid() {
-		return this.matcherid;
+		return matcherid;
 	}
 
 	public void setMatcherid(Long matcherid) {
@@ -57,7 +59,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -65,7 +67,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -73,7 +75,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Long getPartnerid() {
-		return this.partnerid;
+		return partnerid;
 	}
 
 	public void setPartnerid(Long partnerid) {
@@ -81,7 +83,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Date getReservedate() {
-		return this.reservedate;
+		return reservedate;
 	}
 
 	public void setReservedate(Date reservedate) {
@@ -89,7 +91,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -97,7 +99,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public String getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(String starttime) {
@@ -105,7 +107,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public String getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(String endtime) {
@@ -113,7 +115,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -121,7 +123,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public String getBarcode() {
-		return this.barcode;
+		return barcode;
 	}
 
 	public void setBarcode(String barcode) {
@@ -129,7 +131,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -137,7 +139,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public String getIp() {
-		return this.ip;
+		return ip;
 	}
 
 	public void setIp(String ip) {
@@ -145,7 +147,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Timestamp getCreatetime() {
-		return this.createtime;
+		return createtime;
 	}
 
 	public void setCreatetime(Timestamp createtime) {
@@ -153,7 +155,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -161,7 +163,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -169,7 +171,7 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Long getReserveMemberid() {
-		return this.reserveMemberid;
+		return reserveMemberid;
 	}
 
 	public void setReserveMemberid(Long reserveMemberid) {
@@ -177,10 +179,11 @@ public class ReserveOrderVo extends BaseVo {
 	}
 
 	public Timestamp getValidtime() {
-		return this.validtime;
+		return validtime;
 	}
 
 	public void setValidtime(Timestamp validtime) {
 		this.validtime = validtime;
 	}
+
 }

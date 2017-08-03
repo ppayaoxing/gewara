@@ -1,36 +1,44 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
+
 import org.apache.commons.lang.StringUtils;
 
-public class OpenTheatreSeatVo extends BaseVo {
-	private static final long serialVersionUID = 7302103820051859243L;
-	private Long id;
-	private Long odiid;
-	private Long dpid;
-	private Long areaid;
-	private Integer price;
-	private Integer theatreprice;
-	private Integer costprice;
-	private String status;
-	private String remark;
-	private Integer lineno;
-	private Integer rankno;
-	private String seatline;
-	private String seatrank;
-	private String seattype;
-	private String loveInd;
-	private Long tipid;
-	private Long tspid;
+import com.gewara.api.vo.BaseVo;
+import com.gewara.drama.constant.TheatreSeatConstant;
 
+public class OpenTheatreSeatVo extends BaseVo {
+
+	private static final long serialVersionUID = 7302103820051859243L;
+	private Long id;				
+	private Long odiid;				//关联场次
+	private Long dpid;				//
+	private Long areaid;			//场次区域地址
+	private Integer price;			//价格
+	private Integer theatreprice;	//剧院价
+	private Integer costprice;		//成本价
+	private String status;			//状态
+	private String remark;			//备注
+	//座位信息
+	private Integer lineno;			//前起第几排,系统生成
+	private Integer rankno;			//左起第几列,系统生产
+	private String seatline;		//座位行号
+	private String seatrank;		//座位列号
+	private String seattype;		//价格类型
+	private String loveInd;			//情侣座
+	
+	private Long tipid;				//场次价格ID
+	private Long tspid;				//区域价格ID
+
+	
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -38,7 +46,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public Long getOdiid() {
-		return this.odiid;
+		return odiid;
 	}
 
 	public void setOdiid(Long odiid) {
@@ -46,7 +54,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -54,7 +62,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public Long getAreaid() {
-		return this.areaid;
+		return areaid;
 	}
 
 	public void setAreaid(Long areaid) {
@@ -62,7 +70,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Integer price) {
@@ -70,7 +78,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public Integer getTheatreprice() {
-		return this.theatreprice;
+		return theatreprice;
 	}
 
 	public void setTheatreprice(Integer theatreprice) {
@@ -78,7 +86,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public Integer getCostprice() {
-		return this.costprice;
+		return costprice;
 	}
 
 	public void setCostprice(Integer costprice) {
@@ -86,7 +94,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -94,7 +102,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -102,7 +110,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public Integer getLineno() {
-		return this.lineno;
+		return lineno;
 	}
 
 	public void setLineno(Integer lineno) {
@@ -110,7 +118,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public Integer getRankno() {
-		return this.rankno;
+		return rankno;
 	}
 
 	public void setRankno(Integer rankno) {
@@ -118,7 +126,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public String getSeatline() {
-		return this.seatline;
+		return seatline;
 	}
 
 	public void setSeatline(String seatline) {
@@ -126,7 +134,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public String getSeatrank() {
-		return this.seatrank;
+		return seatrank;
 	}
 
 	public void setSeatrank(String seatrank) {
@@ -134,7 +142,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public String getSeattype() {
-		return this.seattype;
+		return seattype;
 	}
 
 	public void setSeattype(String seattype) {
@@ -142,27 +150,27 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public String getLoveInd() {
-		return this.loveInd;
+		return loveInd;
 	}
 
 	public void setLoveInd(String loveInd) {
 		this.loveInd = loveInd;
 	}
 
-	public String getPosition() {
-		return this.lineno + ":" + this.rankno;
+	public String getPosition(){
+		return this.lineno+":" + this.rankno; 
 	}
-
-	public String getSeatLabel() {
-		return this.seatline + "排" + this.seatrank + "座";
+	
+	public String getSeatLabel(){
+		return seatline+"排"+seatrank+"座";
 	}
-
-	public String getKey() {
-		return this.seatline + ":" + this.seatrank;
+	
+	public String getKey(){
+		return this.seatline+":"+this.seatrank;
 	}
-
+	
 	public Long getTipid() {
-		return this.tipid;
+		return tipid;
 	}
 
 	public void setTipid(Long tipid) {
@@ -170,7 +178,7 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public Long getTspid() {
-		return this.tspid;
+		return tspid;
 	}
 
 	public void setTspid(Long tspid) {
@@ -178,6 +186,6 @@ public class OpenTheatreSeatVo extends BaseVo {
 	}
 
 	public boolean isAvailable() {
-		return StringUtils.equals(this.status, "A");
+		return StringUtils.equals(this.status, TheatreSeatConstant.STATUS_NEW);
 	}
 }

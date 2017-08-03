@@ -1,36 +1,38 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ZeroGrabRosterVo extends BaseVo {
+
 	private static final long serialVersionUID = 7936714131545652514L;
 	private Long id;
 	private Integer version;
-	private Long dramaid;
-	private Long dpid;
-	private Long priceid;
-	private Long memberid;
-	private String mobile;
-	private Long partnerid;
-	private String membername;
-	private Integer quantity;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private String processLevel;
-	private String rosterinfo;
-	private String origin;
-	private String ip;
-	private String tradeno;
-
+	private Long dramaid;						//项目编号
+	private Long dpid;							//场次ID
+	private Long priceid;						//价格ID
+	private Long memberid;						//用户Id
+	private String mobile;						//手机号
+	private Long partnerid;						//合作商ID
+	private String membername;					//用户昵称
+	private Integer quantity;					//数量
+	private Timestamp addtime;					//抢票时间
+	private Timestamp updatetime;				//更新时间
+	private String processLevel;				//后期处理进程
+	private String rosterinfo;					//其它信息｛"":""｝
+	private String origin;						//来源
+	private String ip;							//抢票Ip
+	private String tradeno;						//订单号
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -38,7 +40,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -46,7 +48,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -54,7 +56,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -62,7 +64,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public Long getPriceid() {
-		return this.priceid;
+		return priceid;
 	}
 
 	public void setPriceid(Long priceid) {
@@ -70,7 +72,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -78,7 +80,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -86,7 +88,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public Long getPartnerid() {
-		return this.partnerid;
+		return partnerid;
 	}
 
 	public void setPartnerid(Long partnerid) {
@@ -94,7 +96,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public String getMembername() {
-		return this.membername;
+		return membername;
 	}
 
 	public void setMembername(String membername) {
@@ -102,7 +104,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -110,7 +112,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -118,7 +120,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -126,7 +128,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public String getProcessLevel() {
-		return this.processLevel;
+		return processLevel;
 	}
 
 	public void setProcessLevel(String processLevel) {
@@ -134,7 +136,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public String getRosterinfo() {
-		return this.rosterinfo;
+		return rosterinfo;
 	}
 
 	public void setRosterinfo(String rosterinfo) {
@@ -142,7 +144,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -150,7 +152,7 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public String getIp() {
-		return this.ip;
+		return ip;
 	}
 
 	public void setIp(String ip) {
@@ -158,10 +160,11 @@ public class ZeroGrabRosterVo extends BaseVo {
 	}
 
 	public String getTradeno() {
-		return this.tradeno;
+		return tradeno;
 	}
 
 	public void setTradeno(String tradeno) {
 		this.tradeno = tradeno;
 	}
+
 }

@@ -1,15 +1,15 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.content.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class AdvertisingVo extends BaseVo {
 	private static final long serialVersionUID = -4548062751031282415L;
-	public static final String STATUS_UP = "up";
-	public static final String STATUS_DOWN = "down";
-	public static final String STATUS_DELETED = "deleted";
+	public static final String STATUS_UP = "up"; // 投放
+	public static final String STATUS_DOWN = "down"; // 下线
+	public static final String STATUS_DELETED = "deleted"; // 删除
 	private Long id;
 	private Long adpositionid;
 	private String link;
@@ -28,14 +28,14 @@ public class AdvertisingVo extends BaseVo {
 	private String logicaldir;
 	private boolean reassign;
 	private String citycode;
-	private String relateCity;
+	private String relateCity; //关联其它城市
 	private String tag;
 	private Long relatedid;
 	private String track;
 	private Integer ordernum;
-
+	
 	public Integer getOrdernum() {
-		return this.ordernum;
+		return ordernum;
 	}
 
 	public void setOrdernum(Integer ordernum) {
@@ -43,7 +43,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -51,7 +51,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -59,7 +59,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -67,24 +67,23 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public boolean isReassign() {
-		return this.reassign;
+		return reassign;
 	}
 
 	public void setReassign(boolean reassign) {
 		this.reassign = reassign;
 	}
 
-	public AdvertisingVo() {
-	}
-
+	public AdvertisingVo(){}
+	
 	public AdvertisingVo(String title) {
 		this.title = title;
 		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.status = "down";
+		this.status = STATUS_DOWN;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -92,7 +91,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public String getLink() {
-		return this.link;
+		return link;
 	}
 
 	public void setLink(String link) {
@@ -100,7 +99,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -108,7 +107,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -116,19 +115,19 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public String getAd() {
-		return this.ad;
+		return ad;
 	}
 
 	public void setAd(String ad) {
@@ -136,7 +135,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public String getAdtype() {
-		return this.adtype;
+		return adtype;
 	}
 
 	public void setAdtype(String adtype) {
@@ -144,11 +143,11 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public String getRelateCity() {
-		return this.relateCity;
+		return relateCity;
 	}
 
 	public void setRelateCity(String relateCity) {
@@ -160,7 +159,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public Integer getViewtimes() {
-		return this.viewtimes;
+		return viewtimes;
 	}
 
 	public void setViewtimes(Integer viewtimes) {
@@ -168,7 +167,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public Integer getRemaintimes() {
-		return this.remaintimes;
+		return remaintimes;
 	}
 
 	public void setRemaintimes(Integer remaintimes) {
@@ -176,7 +175,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public Integer getRang2() {
-		return this.rang2;
+		return rang2;
 	}
 
 	public void setRang2(Integer rang2) {
@@ -184,7 +183,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public Integer getRang1() {
-		return this.rang1;
+		return rang1;
 	}
 
 	public void setRang1(Integer rang1) {
@@ -192,7 +191,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Timestamp starttime) {
@@ -200,7 +199,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -208,7 +207,7 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public String getLogicaldir() {
-		return this.logicaldir;
+		return logicaldir;
 	}
 
 	public void setLogicaldir(String logicaldir) {
@@ -216,26 +215,26 @@ public class AdvertisingVo extends BaseVo {
 	}
 
 	public Long getAdpositionid() {
-		return this.adpositionid;
+		return adpositionid;
 	}
 
 	public void setAdpositionid(Long adpositionid) {
 		this.adpositionid = adpositionid;
 	}
-
-	public boolean getBooking() {
-		if ((this.starttime == null) || (this.endtime == null))
-			return false;
-		if (this.starttime.after(new Timestamp(System.currentTimeMillis())))
-			return false;
-		return (!(this.endtime.before(new Timestamp(System.currentTimeMillis()))));
+	
+	public boolean getBooking(){
+		if(starttime == null || endtime== null) return false;
+		if(this.starttime.after(new Timestamp(System.currentTimeMillis())))return false;
+		if(this.endtime.before(new Timestamp(System.currentTimeMillis())))return false;
+		return true;
 	}
 
 	public String getTrack() {
-		return this.track;
+		return track;
 	}
 
 	public void setTrack(String track) {
 		this.track = track;
 	}
+
 }

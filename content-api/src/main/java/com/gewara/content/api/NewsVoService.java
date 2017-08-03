@@ -1,26 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.content.api;
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.content.vo.NewsVo;
-import java.util.List;
 
-public abstract interface NewsVoService {
-	public abstract ResultCode<List<NewsVo>> getNewsListByCitycode(String paramString1, String paramString2,
-			Long paramLong, int paramInt1, int paramInt2);
+public interface NewsVoService {
 
-	public abstract ResultCode<NewsVo> getNewsById(Long paramLong);
+	ResultCode<List<NewsVo>> getNewsListByCitycode(String citycode, String tag, Long relatedid, int from, int maxnum);
 
-	public abstract ResultCode<List<NewsVo>> getNewsListByIds(Long[] paramArrayOfLong);
-
-	public abstract ResultCode<List<NewsVo>> getNewsListByIdList(List<Long> paramList);
-
-	public abstract ResultCode<Integer> getNewsCount(String paramString1, String paramString2, String paramString3,
-			Long paramLong, String paramString4);
-
-	public abstract ResultCode<List<NewsVo>> getCurrentNewsByTag(String paramString1, String paramString2,
-			String paramString3, int paramInt1, int paramInt2);
-
-	public abstract ResultCode<List<NewsVo>> getNewsListByCitycodeNewstype(String paramString1, String paramString2,
-			Long paramLong, String paramString3, int paramInt1, int paramInt2);
+	ResultCode<NewsVo> getNewsById(Long id);
+	
+	ResultCode<List<NewsVo>> getNewsListByIds(Long ... ids);
+	
+	ResultCode<List<NewsVo>> getNewsListByIdList(List<Long> idList);
+	
+	ResultCode<Integer> getNewsCount(String citycode, String tag, String newstype, Long relatedid, String title);
+	ResultCode<List<NewsVo>> getCurrentNewsByTag(String citycode, String tag, String newstype, final int from, final int num);
+	ResultCode<List<NewsVo>> getNewsListByCitycodeNewstype(String citycode, String tag, Long relatedid, String newstype, int from, int maxnum);
 }

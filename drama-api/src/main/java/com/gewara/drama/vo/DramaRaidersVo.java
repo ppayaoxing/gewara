@@ -1,28 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class DramaRaidersVo extends BaseVo {
+
 	private static final long serialVersionUID = -1158306639477608205L;
+
 	private Long id;
 	private Long dramaid;
-	private String title;
-	private String description;
-	private Integer sortnum;
+	private String title;		//¹¥ÂÔ±êÌâ
+	private String description;	//ÄÚÈÝ
+	private Integer sortnum;		//ÅÅÐò×Ö¶Î
 	private String raidersType;
 	private String platform;
 	private Timestamp addtime;
 	private Timestamp updatetime;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -30,7 +33,7 @@ public class DramaRaidersVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -38,7 +41,7 @@ public class DramaRaidersVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -46,7 +49,7 @@ public class DramaRaidersVo extends BaseVo {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -54,7 +57,7 @@ public class DramaRaidersVo extends BaseVo {
 	}
 
 	public Integer getSortnum() {
-		return this.sortnum;
+		return sortnum;
 	}
 
 	public void setSortnum(Integer sortnum) {
@@ -62,7 +65,7 @@ public class DramaRaidersVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -70,7 +73,7 @@ public class DramaRaidersVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -78,7 +81,7 @@ public class DramaRaidersVo extends BaseVo {
 	}
 
 	public String getRaidersType() {
-		return this.raidersType;
+		return raidersType;
 	}
 
 	public void setRaidersType(String raidersType) {
@@ -86,10 +89,11 @@ public class DramaRaidersVo extends BaseVo {
 	}
 
 	public String getPlatform() {
-		return this.platform;
+		return platform;
 	}
 
 	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
+
 }

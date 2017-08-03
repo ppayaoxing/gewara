@@ -1,24 +1,26 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ZgCounterVo extends BaseVo {
+
 	private static final long serialVersionUID = 357537779534232402L;
-	private Long priceid;
+	private Long priceid;					//价格ID
 	private Integer version;
 	private Integer quantity;
 	private Integer maxnum;
 	private Integer grabnum;
-	private String zgcukey;
-
+	private String zgcukey;					//限制用户只能参加一个活动
+	
+	@Override
 	public Serializable realId() {
-		return this.priceid;
+		return priceid;
 	}
 
 	public Long getPriceid() {
-		return this.priceid;
+		return priceid;
 	}
 
 	public void setPriceid(Long priceid) {
@@ -26,7 +28,7 @@ public class ZgCounterVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -34,7 +36,7 @@ public class ZgCounterVo extends BaseVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -42,7 +44,7 @@ public class ZgCounterVo extends BaseVo {
 	}
 
 	public Integer getMaxnum() {
-		return this.maxnum;
+		return maxnum;
 	}
 
 	public void setMaxnum(Integer maxnum) {
@@ -50,7 +52,7 @@ public class ZgCounterVo extends BaseVo {
 	}
 
 	public Integer getGrabnum() {
-		return this.grabnum;
+		return grabnum;
 	}
 
 	public void setGrabnum(Integer grabnum) {
@@ -58,10 +60,11 @@ public class ZgCounterVo extends BaseVo {
 	}
 
 	public String getZgcukey() {
-		return this.zgcukey;
+		return zgcukey;
 	}
 
 	public void setZgcukey(String zgcukey) {
 		this.zgcukey = zgcukey;
 	}
+
 }

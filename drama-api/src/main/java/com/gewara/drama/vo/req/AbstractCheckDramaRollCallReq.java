@@ -1,19 +1,20 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo.req;
 
 import java.io.Serializable;
 
 public abstract class AbstractCheckDramaRollCallReq implements Serializable {
+
 	private static final long serialVersionUID = 4069305758115359219L;
+
 	protected String siteSource;
 	protected Long dramaid;
 	protected Long theatreid;
 	protected Long memberid;
 	protected String mobile;
 	protected String idcard;
-
+	
 	public String getSiteSource() {
-		return this.siteSource;
+		return siteSource;
 	}
 
 	public void setSiteSource(String siteSource) {
@@ -21,7 +22,7 @@ public abstract class AbstractCheckDramaRollCallReq implements Serializable {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -29,7 +30,7 @@ public abstract class AbstractCheckDramaRollCallReq implements Serializable {
 	}
 
 	public Long getTheatreid() {
-		return this.theatreid;
+		return theatreid;
 	}
 
 	public void setTheatreid(Long theatreid) {
@@ -37,7 +38,7 @@ public abstract class AbstractCheckDramaRollCallReq implements Serializable {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -45,7 +46,7 @@ public abstract class AbstractCheckDramaRollCallReq implements Serializable {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -53,10 +54,11 @@ public abstract class AbstractCheckDramaRollCallReq implements Serializable {
 	}
 
 	public String getIdcard() {
-		return this.idcard;
+		return idcard;
 	}
 
 	public void setIdcard(String idcard) {
 		this.idcard = idcard;
 	}
+
 }

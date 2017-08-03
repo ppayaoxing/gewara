@@ -1,28 +1,33 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class OpenDramaItemExtVo extends BaseVo {
+
 	private static final long serialVersionUID = 7283568142530575779L;
 	private Long dpid;
-	private String reserve;
-	private Timestamp rstarttime;
-	private Timestamp rendtime;
-	private Timestamp createtime;
-	private Timestamp updatetime;
-	private String pushText;
-	private String pushType;
-	private String pushLink;
+	private String reserve;				//是否能预约
+	private Timestamp rstarttime;		//预约开始时间
+	private Timestamp rendtime;		//预约结束时间
+	private Timestamp createtime;		//添加时间
+	private Timestamp updatetime;		//更新时间
 
+	private String pushText;				//成功后push内容
+	private String pushType;				//成功后push类型
+	private String pushLink;				//成功后push的链接
+	
+	public OpenDramaItemExtVo(){}
+	
+	@Override
 	public Serializable realId() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -30,7 +35,7 @@ public class OpenDramaItemExtVo extends BaseVo {
 	}
 
 	public String getReserve() {
-		return this.reserve;
+		return reserve;
 	}
 
 	public void setReserve(String reserve) {
@@ -38,7 +43,7 @@ public class OpenDramaItemExtVo extends BaseVo {
 	}
 
 	public Timestamp getRstarttime() {
-		return this.rstarttime;
+		return rstarttime;
 	}
 
 	public void setRstarttime(Timestamp rstarttime) {
@@ -46,15 +51,16 @@ public class OpenDramaItemExtVo extends BaseVo {
 	}
 
 	public Timestamp getRendtime() {
-		return this.rendtime;
+		return rendtime;
 	}
 
 	public void setRendtime(Timestamp rendtime) {
 		this.rendtime = rendtime;
 	}
 
+
 	public Timestamp getCreatetime() {
-		return this.createtime;
+		return createtime;
 	}
 
 	public void setCreatetime(Timestamp createtime) {
@@ -62,7 +68,7 @@ public class OpenDramaItemExtVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -70,7 +76,7 @@ public class OpenDramaItemExtVo extends BaseVo {
 	}
 
 	public String getPushText() {
-		return this.pushText;
+		return pushText;
 	}
 
 	public void setPushText(String pushText) {
@@ -78,7 +84,7 @@ public class OpenDramaItemExtVo extends BaseVo {
 	}
 
 	public String getPushType() {
-		return this.pushType;
+		return pushType;
 	}
 
 	public void setPushType(String pushType) {
@@ -86,10 +92,11 @@ public class OpenDramaItemExtVo extends BaseVo {
 	}
 
 	public String getPushLink() {
-		return this.pushLink;
+		return pushLink;
 	}
 
 	public void setPushLink(String pushLink) {
 		this.pushLink = pushLink;
 	}
+
 }

@@ -1,26 +1,28 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.admin.dubbo.schedule;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 import com.gewara.api.vo.RequestParamVo;
 import com.gewara.api.vo.ResultCode;
 import com.gewara.drama.vo.DramaSettleVo;
 import com.gewara.drama.vo.SettleConfigVo;
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
 
 public interface DramaSettleAdminVoService {
-	ResultCode<DramaSettleVo> getDramaSettle(Long arg0);
+	
+	ResultCode<DramaSettleVo> getDramaSettle(Long id);
+	
+	ResultCode<SettleConfigVo> getSettleConfig(Long id);
+	
+	ResultCode<List<DramaSettleVo>> getDramaSettleListByField(String fieldname, Serializable fieldvalue);
+	
+	ResultCode<SettleConfigVo> addSettleConfig(Double discount, String distype);
 
-	ResultCode<SettleConfigVo> getSettleConfig(Long arg0);
+	ResultCode<DramaSettleVo> addDramaSettle(Long dramaid, Double discount, String distype);
 
-	ResultCode<List<DramaSettleVo>> getDramaSettleListByField(String arg0, Serializable arg1);
+	ResultCode<List<SettleConfigVo>> getSettleConfigList(Collection<Long> idList);
+	
+	ResultCode<DramaSettleVo> saveDramaSettle(RequestParamVo paramVo);
 
-	ResultCode<SettleConfigVo> addSettleConfig(Double arg0, String arg1);
-
-	ResultCode<DramaSettleVo> addDramaSettle(Long arg0, Double arg1, String arg2);
-
-	ResultCode<List<SettleConfigVo>> getSettleConfigList(Collection<Long> arg0);
-
-	ResultCode<DramaSettleVo> saveDramaSettle(RequestParamVo arg0);
 }

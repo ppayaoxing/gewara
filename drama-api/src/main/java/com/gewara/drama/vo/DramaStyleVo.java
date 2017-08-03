@@ -1,17 +1,22 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.drama.vo.common.BaseEntityVo;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.drama.vo.common.BaseEntityVo;
+
 public class DramaStyleVo extends BaseEntityVo {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 997773190722906162L;
 	private Long recordid;
 	private Long commentid;
 	private Long dramaid;
-	private Long starid;
-	private Long memberid;
+	private Long starid;// æÁ∆¿»Àid
+	private Long memberid;// ”√ªßid
 	private String type;
 	private String state;
 	private Integer sortnum;
@@ -27,7 +32,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	private String introduce;
 
 	public Long getRecordid() {
-		return this.recordid;
+		return recordid;
 	}
 
 	public void setRecordid(Long recordid) {
@@ -35,7 +40,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public Long getCommentid() {
-		return this.commentid;
+		return commentid;
 	}
 
 	public void setCommentid(Long commentid) {
@@ -43,7 +48,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -51,7 +56,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public Long getStarid() {
-		return this.starid;
+		return starid;
 	}
 
 	public void setStarid(Long starid) {
@@ -59,7 +64,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -67,7 +72,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public String getState() {
-		return this.state;
+		return state;
 	}
 
 	public void setState(String state) {
@@ -75,7 +80,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public Integer getSortnum() {
-		return this.sortnum;
+		return sortnum;
 	}
 
 	public void setSortnum(Integer sortnum) {
@@ -83,7 +88,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public String getIsrecommend() {
-		return this.isrecommend;
+		return isrecommend;
 	}
 
 	public void setIsrecommend(String isrecommend) {
@@ -91,7 +96,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -99,7 +104,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public String getBody() {
-		return this.body;
+		return body;
 	}
 
 	public void setBody(String body) {
@@ -107,7 +112,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public Timestamp getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
 
 	public void setAddTime(Timestamp addTime) {
@@ -115,7 +120,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -123,7 +128,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -131,7 +136,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -139,7 +144,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public Timestamp getRecommendTime() {
-		return this.recommendTime;
+		return recommendTime;
 	}
 
 	public void setRecommendTime(Timestamp recommendTime) {
@@ -147,7 +152,7 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public String getIsfind() {
-		return this.isfind;
+		return isfind;
 	}
 
 	public void setIsfind(String isfind) {
@@ -155,7 +160,9 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public String getLogo() {
-		return StringUtils.isBlank(this.logo) ? "img/default_head.png" : this.logo;
+		if (StringUtils.isBlank(logo))
+			return "img/default_head.png";
+		return logo;
 	}
 
 	public void setLogo(String logo) {
@@ -163,10 +170,11 @@ public class DramaStyleVo extends BaseEntityVo {
 	}
 
 	public String getIntroduce() {
-		return this.introduce;
+		return introduce;
 	}
 
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
+
 }

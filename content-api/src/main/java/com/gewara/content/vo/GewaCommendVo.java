@@ -1,11 +1,12 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.content.vo;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.gewara.api.vo.BaseVo;
 import com.gewara.model.BaseObject;
-import java.io.Serializable;
-import java.sql.Timestamp;
-import org.apache.commons.lang.StringUtils;
 
 public class GewaCommendVo extends BaseVo {
 	private static final long serialVersionUID = -1637550881723667131L;
@@ -15,7 +16,7 @@ public class GewaCommendVo extends BaseVo {
 	private String link;
 	private String tag;
 	private String logo;
-	private String smalllogo;
+	private String smalllogo;			//mnews,dnews
 	private String summary;
 	private Long relatedid;
 	private Long parentid;
@@ -24,54 +25,51 @@ public class GewaCommendVo extends BaseVo {
 	private Timestamp starttime;
 	private Timestamp stoptime;
 	private String citycode;
+	
 	private BaseObject relate;
 	private BaseObject relate2;
-	private String otherinfo;
-
+	
+	private String otherinfo ; //项目的相关属性
+	
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
-
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
-
+	
 	public String getSimpleLink() {
-		String simpleLink = StringUtils.trim(this.link);
-		if (StringUtils.startsWith(simpleLink, "http://www.gewara.com")) {
+		String simpleLink = StringUtils.trim(link);
+		if(StringUtils.startsWith(simpleLink, "http://www.gewara.com")){
 			return StringUtils.replace(simpleLink, "http://www.gewara.com", "");
 		}
 		return simpleLink;
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
-	public GewaCommendVo() {
-	}
-
-	public GewaCommendVo(String signname) {
+	
+	public GewaCommendVo(){}
+	
+	public GewaCommendVo(String signname){
 		this.signname = signname;
 		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.ordernum = Integer.valueOf(0);
+		this.ordernum = 0;
 		this.starttime = new Timestamp(System.currentTimeMillis());
 		this.stoptime = new Timestamp(System.currentTimeMillis());
 	}
-
-	public GewaCommendVo(String signname, String title, Long relatedid, Integer ordernum) {
+	// 为电影首页弹出框推荐 做区排序.
+	public GewaCommendVo(String signname, String title, Long relatedid, Integer ordernum){
 		this(signname);
 		this.title = title;
 		this.relatedid = relatedid;
 		this.ordernum = ordernum;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -79,15 +77,13 @@ public class GewaCommendVo extends BaseVo {
 	}
 
 	public String getSignname() {
-		return this.signname;
+		return signname;
 	}
-
 	public void setSignname(String signname) {
 		this.signname = signname;
 	}
-
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -95,7 +91,7 @@ public class GewaCommendVo extends BaseVo {
 	}
 
 	public String getLink() {
-		return this.link;
+		return link;
 	}
 
 	public void setLink(String link) {
@@ -103,7 +99,7 @@ public class GewaCommendVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -111,27 +107,22 @@ public class GewaCommendVo extends BaseVo {
 	}
 
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
-
 	public String getLimg() {
-		if (StringUtils.isBlank(this.logo))
-			return "img/default_head.png";
-		return this.logo;
+		if(StringUtils.isBlank(logo)) return "img/default_head.png";
+		return logo;
 	}
-
 	public String getLsmallimg() {
-		if (StringUtils.isBlank(this.smalllogo))
-			return "img/default_head.png";
-		return this.smalllogo;
+		if(StringUtils.isBlank(smalllogo)) return "img/default_head.png";
+		return smalllogo;
 	}
-
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
 
 	public String getSummary() {
-		return this.summary;
+		return summary;
 	}
 
 	public void setSummary(String summary) {
@@ -139,7 +130,7 @@ public class GewaCommendVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -147,7 +138,7 @@ public class GewaCommendVo extends BaseVo {
 	}
 
 	public Long getParentid() {
-		return this.parentid;
+		return parentid;
 	}
 
 	public void setParentid(Long parentid) {
@@ -155,67 +146,54 @@ public class GewaCommendVo extends BaseVo {
 	}
 
 	public Integer getOrdernum() {
-		return this.ordernum;
+		return ordernum;
 	}
 
 	public void setOrdernum(Integer ordernum) {
 		this.ordernum = ordernum;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
-	public String getReallogo() {
-		if (StringUtils.isBlank(this.logo))
-			return "img/default_pic.png";
-		return this.logo;
+	public String getReallogo(){
+		if(StringUtils.isBlank(logo)) return "img/default_pic.png";
+		return logo;
 	}
-
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
-
 	public void setStarttime(Timestamp starttime) {
 		this.starttime = starttime;
 	}
-
 	public Timestamp getStoptime() {
-		return this.stoptime;
+		return stoptime;
 	}
-
 	public void setStoptime(Timestamp stoptime) {
 		this.stoptime = stoptime;
 	}
-
+	
 	public String getSmalllogo() {
-		return this.smalllogo;
+		return smalllogo;
 	}
-
 	public void setSmalllogo(String smalllogo) {
 		this.smalllogo = smalllogo;
 	}
-
 	public BaseObject getRelate() {
-		return this.relate;
+		return relate;
 	}
-
 	public void setRelate(BaseObject relate) {
 		this.relate = relate;
 	}
-
 	public BaseObject getRelate2() {
-		return this.relate2;
+		return relate2;
 	}
-
 	public void setRelate2(BaseObject relate2) {
 		this.relate2 = relate2;
 	}

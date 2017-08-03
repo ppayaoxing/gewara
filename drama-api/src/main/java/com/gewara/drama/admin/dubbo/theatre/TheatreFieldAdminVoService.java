@@ -1,26 +1,28 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.admin.dubbo.theatre;
+
+import java.util.List;
 
 import com.gewara.api.vo.RequestParamVo;
 import com.gewara.api.vo.ResultCode;
 import com.gewara.drama.vo.TheatreFieldVo;
-import java.util.List;
 
 public interface TheatreFieldAdminVoService {
-	ResultCode<TheatreFieldVo> saveOrUpdateTheatreField(RequestParamVo arg0);
-
-	ResultCode<TheatreFieldVo> getTheatreFieldById(Long arg0);
-
-	ResultCode<List<TheatreFieldVo>> getTheatreFieldList(List<Long> arg0);
-
-	ResultCode<List<TheatreFieldVo>> getTheatreFieldListById(Long arg0);
-
+	
+	ResultCode<TheatreFieldVo> saveOrUpdateTheatreField(RequestParamVo params);
+	
+	ResultCode<TheatreFieldVo> getTheatreFieldById(Long id);
+	
+	ResultCode<List<TheatreFieldVo>> getTheatreFieldList(List<Long> idlist);
+	
+	ResultCode<List<TheatreFieldVo>> getTheatreFieldListById(Long theatreid);
+	
 	@Deprecated
-	ResultCode<List<Long>> getTheatreFieldIdList(String arg0, Long arg1, boolean arg2);
-
-	ResultCode<List<Long>> getTheatreIdList(String arg0, Long arg1, boolean arg2);
-
-	ResultCode delTheatreField(Long arg0);
-
-	ResultCode<TheatreFieldVo> getTheatreFieldByRoomnum(Long arg0, String arg1);
+	ResultCode<List<Long>> getTheatreFieldIdList(String citycode, Long dramaid, boolean isBooking);
+	
+	ResultCode<List<Long>> getTheatreIdList(String citycode, Long dramaid, boolean isBooking);
+	
+	ResultCode delTheatreField(Long id);
+	
+	ResultCode<TheatreFieldVo> getTheatreFieldByRoomnum(Long theatreid, String roomnum);
+	
 }

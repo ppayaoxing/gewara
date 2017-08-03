@@ -1,23 +1,22 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.content.api;
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.content.vo.VideoVo;
-import java.util.List;
 
-public abstract interface VideoVoService {
-	public abstract ResultCode<List<VideoVo>> getVideoList(String paramString, Long paramLong, int paramInt1,
-			int paramInt2);
+public interface VideoVoService {
 
-	public abstract ResultCode<VideoVo> getVideoById(Long paramLong);
+	ResultCode<List<VideoVo>> getVideoList(String tag, Long relatedid, int from, int maxnum);
+	
+	ResultCode<VideoVo> getVideoById(Long id);
+	
+	ResultCode<List<VideoVo>> getVideoListByIds(Long ... ids);
+	
+	ResultCode<List<VideoVo>> getVideoListByIdList(List<Long> idList);
+	
+	ResultCode<Integer> getVideoCountByTag(String tag, Long relatedid, Integer hotvalue);
 
-	public abstract ResultCode<List<VideoVo>> getVideoListByIds(Long[] paramArrayOfLong);
+	ResultCode<List<VideoVo>> getVideoListByTag(String tag, Long relatedid, Integer hotvalue, String orderField, String origin, boolean asc, int from,	int maxnum);
 
-	public abstract ResultCode<List<VideoVo>> getVideoListByIdList(List<Long> paramList);
-
-	public abstract ResultCode<Integer> getVideoCountByTag(String paramString, Long paramLong, Integer paramInteger);
-
-	public abstract ResultCode<List<VideoVo>> getVideoListByTag(String paramString1, Long paramLong,
-			Integer paramInteger, String paramString2, String paramString3, boolean paramBoolean, int paramInt1,
-			int paramInt2);
 }

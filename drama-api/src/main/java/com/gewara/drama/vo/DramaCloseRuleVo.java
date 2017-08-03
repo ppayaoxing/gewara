@@ -1,270 +1,206 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.BeanUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 
-public class DramaCloseRuleVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+import com.gewara.util.BeanUtil;
+
+public class DramaCloseRuleVo  extends BaseVo{
 	private static final long serialVersionUID = -1337926425282216885L;
-	public static final String RULETYPE_DPI = "dpi";
-	public static final String RULETYPE_DRAMA = "drama";
-	public static final String RULETYPE_CITY = "city";
-	public static final String RULETYPE_SEATTYPE = "seattype";
-	public static final String RULETYPE_ROOMNUM = "roomnum";
-	public static final String MATCH_INCLUDE = "include";
-	public static final String MATCH_EXCLUDE = "exclude";
+	public static final String RULETYPE_DPI = "dpi";			//场次
+	public static final String RULETYPE_DRAMA = "drama";		//演出项目
+	public static final String RULETYPE_CITY = "city";			//城市
+	public static final String RULETYPE_SEATTYPE = "seattype";	//价格类型
+	public static final String RULETYPE_ROOMNUM = "roomnum";	//区域
+	public static final String MATCH_INCLUDE = "include";		//包含
+	public static final String MATCH_EXCLUDE = "exclude";		//排除
 	private Long id;
-	private String ruletype;
-	private String partnerids;
-	private String dramaids;
-	private String seattypes;
-	private String roomnums;
-	private String dpids;
-	private String citys;
-	private String pmatch;
-	private String dmatch;
-	private String imatch;
-	private String smatch;
-	private String rmatch;
-	private String cmatch;
-	private Timestamp opentime;
-	private Timestamp closetime;
-	private String description;
-	private Timestamp updatetime;
-
+	private String ruletype;			//规则类型：只限项目、场次、价格、区域
+	private String partnerids;			//商家ID
+	private String dramaids;			//演出ID：不开放项目
+	private String seattypes;			//价格类型：不开放价格
+	private String roomnums;			//区域序号：不开放区域
+	private String dpids;				//场次ID：不开放场次
+	private String citys;				//城市代码：不开放场次
+	private String pmatch;				//partner match model 包含还是排除商家 
+	private String dmatch;				//drama match model 包含还是排除项目
+	private String imatch;				//dpi match model 包含还是排除场次
+	private String smatch;				//seattype match model 包含还是排除价格
+	private String rmatch;				//roomnum match model 包含还是排除区域
+	private String cmatch;				//city match model 包含还是排除城市
+	private Timestamp opentime;			//开始时间
+	private Timestamp closetime;		//结束时间
+	private String description;			//屏蔽描述
+	private Timestamp updatetime;		//更新时间
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public String getPartnerids() {
-		return this.partnerids;
+		return partnerids;
 	}
-
 	public void setPartnerids(String partnerids) {
 		this.partnerids = partnerids;
 	}
-
 	public Timestamp getOpentime() {
-		return this.opentime;
+		return opentime;
 	}
-
 	public void setOpentime(Timestamp opentime) {
 		this.opentime = opentime;
 	}
-
 	public Timestamp getClosetime() {
-		return this.closetime;
+		return closetime;
 	}
-
 	public void setClosetime(Timestamp closetime) {
 		this.closetime = closetime;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public String getRuletype() {
-		return this.ruletype;
+		return ruletype;
 	}
-
 	public void setRuletype(String ruletype) {
 		this.ruletype = ruletype;
 	}
-
 	public String getPmatch() {
-		return this.pmatch;
+		return pmatch;
 	}
-
 	public void setPmatch(String pmatch) {
 		this.pmatch = pmatch;
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
 	public String getDramaids() {
-		return this.dramaids;
+		return dramaids;
 	}
-
 	public void setDramaids(String dramaids) {
 		this.dramaids = dramaids;
 	}
-
 	public String getSeattypes() {
-		return this.seattypes;
+		return seattypes;
 	}
-
 	public void setSeattypes(String seattypes) {
 		this.seattypes = seattypes;
 	}
-
 	public String getRoomnums() {
-		return this.roomnums;
+		return roomnums;
 	}
-
 	public void setRoomnums(String roomnums) {
 		this.roomnums = roomnums;
 	}
-
 	public String getDpids() {
-		return this.dpids;
+		return dpids;
 	}
-
 	public void setDpids(String dpids) {
 		this.dpids = dpids;
 	}
-
 	public String getDmatch() {
-		return this.dmatch;
+		return dmatch;
 	}
-
 	public void setDmatch(String dmatch) {
 		this.dmatch = dmatch;
 	}
-
 	public String getSmatch() {
-		return this.smatch;
+		return smatch;
 	}
-
 	public void setSmatch(String smatch) {
 		this.smatch = smatch;
 	}
-
 	public String getRmatch() {
-		return this.rmatch;
+		return rmatch;
 	}
-
 	public void setRmatch(String rmatch) {
 		this.rmatch = rmatch;
 	}
-
 	public String getImatch() {
-		return this.imatch;
+		return imatch;
 	}
-
 	public void setImatch(String imatch) {
 		this.imatch = imatch;
 	}
-
 	public String getCitys() {
-		return this.citys;
+		return citys;
 	}
-
 	public void setCitys(String citys) {
 		this.citys = citys;
 	}
-
 	public String getCmatch() {
-		return this.cmatch;
+		return cmatch;
 	}
-
 	public void setCmatch(String cmatch) {
 		this.cmatch = cmatch;
 	}
-
 	public boolean matchPartner(Long partnerid) {
-		boolean matchPartner = StringUtils.equals(this.partnerids, "000000");
-		if (!matchPartner) {
-			List pidList = BeanUtil.getIdList(this.partnerids, ",");
+		boolean matchPartner = StringUtils.equals(partnerids, "000000");
+		if(!matchPartner){
+			List<Long> pidList = BeanUtil.getIdList(partnerids, ",");
 			matchPartner = pidList.contains(partnerid);
 		}
-
-		return StringUtils.equals(this.pmatch, "exclude") ? !matchPartner : matchPartner;
+		return StringUtils.equals(pmatch, MATCH_EXCLUDE)?!matchPartner:matchPartner;
 	}
-
 	public boolean matchDrama(Long dramaid) {
-		if (StringUtils.isBlank(this.dramaids)) {
-			return false;
-		} else {
-			List dramaidList = BeanUtil.getIdList(this.dramaids, ",");
-			boolean match = dramaidList.contains(dramaid);
-			return StringUtils.equals(this.dmatch, "exclude") ? !match : match;
-		}
+		if(StringUtils.isBlank(dramaids)) return false;
+		List<Long> dramaidList = BeanUtil.getIdList(dramaids, ",");
+		boolean match = dramaidList.contains(dramaid);
+		return StringUtils.equals(dmatch, MATCH_EXCLUDE)?!match:match;
 	}
-
 	public boolean matchCity(String citycode) {
-		if (StringUtils.isBlank(this.citys)) {
-			return false;
-		} else {
-			String[] idList = this.citys.split(",");
-			List cityList = Arrays.asList(idList);
-			boolean match = cityList.contains(citycode);
-			return StringUtils.equals(this.cmatch, "exclude") ? !match : match;
-		}
+		if(StringUtils.isBlank(citys)) return false;
+		String[] idList = citys.split(",");
+		List<String> cityList = Arrays.asList(idList);
+		boolean match = cityList.contains(citycode);
+		return StringUtils.equals(cmatch, MATCH_EXCLUDE)?!match:match;
 	}
-
 	public boolean matchDpid(Long dpid) {
-		if (StringUtils.isBlank(this.dpids)) {
-			return false;
-		} else {
-			List dpidList = BeanUtil.getIdList(this.dpids, ",");
-			boolean match = dpidList.contains(dpid);
-			return StringUtils.equals(this.imatch, "exclude") ? !match : match;
-		}
+		if(StringUtils.isBlank(dpids)) return false;
+		List<Long> dpidList = BeanUtil.getIdList(dpids, ",");
+		boolean match = dpidList.contains(dpid);
+		return StringUtils.equals(imatch, MATCH_EXCLUDE)?!match:match;
 	}
-
 	public boolean matchRoomnum(Long dpid, String roomnum) {
-		if (StringUtils.isBlank(this.roomnums)) {
-			return false;
-		} else {
-			boolean match = this.matchArea(roomnum);
-			if (StringUtils.isBlank(this.dpids)) {
-				return match;
-			} else {
-				boolean match2 = this.matchDpid(dpid);
-				return match2 & match;
-			}
-		}
+		if(StringUtils.isBlank(roomnums)) return false;
+		boolean match = matchArea(roomnum);
+		if(StringUtils.isBlank(dpids)) return match;
+		boolean match2 = matchDpid(dpid);
+		return match2&match;
 	}
-
 	public boolean matchSeattype(Long dpid, String seattype) {
-		if (StringUtils.isBlank(this.seattypes)) {
-			return false;
-		} else {
-			boolean match = this.matchPrice(seattype);
-			if (StringUtils.isBlank(this.dpids)) {
-				return match;
-			} else {
-				boolean match2 = this.matchDpid(dpid);
-				return match2 & match;
-			}
-		}
+		if(StringUtils.isBlank(seattypes)) return false;
+		boolean match = matchPrice(seattype);
+		if(StringUtils.isBlank(dpids)) return match;
+		boolean match2 = matchDpid(dpid);
+		return match2&match;
 	}
-
 	public boolean matchArea(String roomnum) {
-		String[] rooms = StringUtils.split(this.roomnums, ",");
-		List roomnumList = Arrays.asList(rooms);
+		String[] rooms = StringUtils.split(roomnums, ",");
+		List<String> roomnumList = Arrays.asList(rooms);
 		boolean match = roomnumList.contains(roomnum);
-		return StringUtils.equals(this.rmatch, "exclude") ? !match : match;
+		return StringUtils.equals(rmatch, MATCH_EXCLUDE)?!match:match;
 	}
-
-	private boolean matchPrice(String seattype) {
-		String[] seats = StringUtils.split(this.seattypes, ",");
-		List seattypeList = Arrays.asList(seats);
+	private boolean matchPrice(String seattype){
+		String[] seats = StringUtils.split(seattypes, ",");
+		List<String> seattypeList = Arrays.asList(seats);
 		boolean match = seattypeList.contains(seattype);
-		return StringUtils.equals(this.smatch, "exclude") ? !match : match;
+		return StringUtils.equals(smatch, MATCH_EXCLUDE)?!match:match;
 	}
 }

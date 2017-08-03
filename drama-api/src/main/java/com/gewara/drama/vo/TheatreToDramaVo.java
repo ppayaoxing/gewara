@@ -1,25 +1,30 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class TheatreToDramaVo extends BaseVo {
+
 	private static final long serialVersionUID = 763926967794753721L;
+	
 	private Long id;
 	private Long theatreid;
 	private Long dramaid;
 	private Integer sortnum;
 	private Timestamp addtime;
 	private Timestamp updatetime;
-
+	
+	public TheatreToDramaVo(){}
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -27,7 +32,7 @@ public class TheatreToDramaVo extends BaseVo {
 	}
 
 	public Long getTheatreid() {
-		return this.theatreid;
+		return theatreid;
 	}
 
 	public void setTheatreid(Long theatreid) {
@@ -35,7 +40,7 @@ public class TheatreToDramaVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -43,7 +48,7 @@ public class TheatreToDramaVo extends BaseVo {
 	}
 
 	public Integer getSortnum() {
-		return this.sortnum;
+		return sortnum;
 	}
 
 	public void setSortnum(Integer sortnum) {
@@ -51,7 +56,7 @@ public class TheatreToDramaVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -59,10 +64,11 @@ public class TheatreToDramaVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
+
 }

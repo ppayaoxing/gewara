@@ -1,57 +1,95 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.admin.dubbo.schedule;
 
-import com.gewara.api.vo.RequestParamVo;
-import com.gewara.api.vo.ResultCode;
-import com.gewara.drama.vo.TheatreSeatPriceVo;
-import com.gewara.drama.vo.cmd.TspExtCommandVo;
-import com.gewara.drama.vo.schedule.TheatreSeatPriceExtVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.gewara.api.vo.RequestParamVo;
+import com.gewara.api.vo.ResultCode;
+import com.gewara.drama.vo.TheatreSeatPriceVo;
+import com.gewara.drama.vo.cmd.TspExtCommandVo;
+import com.gewara.drama.vo.schedule.TheatreSeatPriceExtVo;
+
 public interface TheatreSeatPriceAdminVoService {
-	ResultCode<TheatreSeatPriceVo> getTheatreSeatPriceById(Long arg0);
+	
+	ResultCode<TheatreSeatPriceVo> getTheatreSeatPriceById(Long id);
+	
+	ResultCode<List<TheatreSeatPriceVo>> getTheatreSeatPriceListByDpid(Long dpid);
+	
+	ResultCode<List<TheatreSeatPriceVo>> getTheatreSeatPriceListByAreaid(Long areaid);
+	
+	ResultCode<List<TheatreSeatPriceVo>> getTheatreSeatPriceByField(String fieldname, Serializable fieldvalue);
+	
+	ResultCode<List<TheatreSeatPriceVo>> getTheatreSeatPriceByIdList(List<Long> idList);
+	
+	/**
+	 * 后台管理人员调整数存
+	 * @param tsp
+	 * @param command
+	 * @param user
+	 * @return
+	 * @throws ServiceException
+	 */
+	ResultCode correctPrice(Long tspid, TspExtCommandVo command);
+	
+	/**
+	 * 保存或修改价格
+	 * @param id
+	 * @param dpid
+	 * @param areaid
+	 * @param price
+	 * @param request
+	 * @param user
+	 * @return
+	 * @throws ServiceException
+	 */
+	ResultCode<TheatreSeatPriceVo> updateTheatreSeatPrice(RequestParamVo paramVo);
 
-	ResultCode<List<TheatreSeatPriceVo>> getTheatreSeatPriceListByDpid(Long arg0);
-
-	ResultCode<List<TheatreSeatPriceVo>> getTheatreSeatPriceListByAreaid(Long arg0);
-
-	ResultCode<List<TheatreSeatPriceVo>> getTheatreSeatPriceByField(String arg0, Serializable arg1);
-
-	ResultCode<List<TheatreSeatPriceVo>> getTheatreSeatPriceByIdList(List<Long> arg0);
-
-	ResultCode correctPrice(Long arg0, TspExtCommandVo arg1);
-
-	ResultCode<TheatreSeatPriceVo> updateTheatreSeatPrice(RequestParamVo arg0);
-
-	ResultCode<TheatreSeatPriceVo> updateTheatreSeatPrice(Long arg0, String arg1, Timestamp arg2);
-
-	ResultCode updateTheatreSeatPriceList(Collection<Long> arg0, String arg1, Timestamp arg2);
-
-	ResultCode<Integer> getTheatreSeatPriceExtCountByDramaid(Long arg0, Long arg1, String arg2, Timestamp arg3,
-			Timestamp arg4);
-
-	ResultCode<List<TheatreSeatPriceExtVo>> getTheatreSeatPriceExtList(RequestParamVo arg0);
-
-	ResultCode<List<Long>> getOpenDramaidByPriceExt(Timestamp arg0);
-
-	ResultCode<List<TheatreSeatPriceExtVo>> getTheatreSeatPriceExtListByTspid(Long arg0, String arg1, int arg2,
-			int arg3);
-
-	ResultCode<Integer> getTheatreSeatPriceExtCount(Long arg0, String arg1);
-
-	ResultCode<List<TheatreSeatPriceVo>> getTheatreSeatPriceList(Long arg0, int arg1, int arg2);
-
-	ResultCode<TheatreSeatPriceVo> setShowPrice(Long arg0, String arg1);
-
-	ResultCode<TheatreSeatPriceVo> setShowRemark(Long arg0, String arg1);
-
-	ResultCode asynchCreatePriceExt(String arg0, String arg1);
-
-	ResultCode<Map<Long, List<TheatreSeatPriceVo>>> getTheatreSeatPriceMap(List<Long> arg0, String arg1);
-
-	ResultCode<Map<Long, List<TheatreSeatPriceVo>>> getTheatreSeatPriceMapByAreaid(List<Long> arg0, String arg1);
+	ResultCode<TheatreSeatPriceVo> updateTheatreSeatPrice(Long tspid, String status, Timestamp updatetime);
+	
+	ResultCode updateTheatreSeatPriceList(Collection<Long> tspidList, String status, Timestamp updatetime);
+	
+	ResultCode<Integer> getTheatreSeatPriceExtCountByDramaid(Long dramaid, Long theatreid, String correcttype, Timestamp starttime, Timestamp endtime);
+	
+	ResultCode<List<TheatreSeatPriceExtVo>> getTheatreSeatPriceExtList(RequestParamVo paramVo);
+	
+	/**
+	 * 查询包含实票在时间段内未结束的项目
+	 * @param starttime
+	 * @param endttime
+	 * @return
+	 */
+	ResultCode<List<Long>> getOpenDramaidByPriceExt(Timestamp endttime);
+	
+	/**
+	 * 根据价格ID查询库存数据
+	 * @param tspid
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<TheatreSeatPriceExtVo>> getTheatreSeatPriceExtListByTspid(Long tspid, String correcttype, int from, int maxnum);
+	
+	ResultCode<Integer> getTheatreSeatPriceExtCount(Long tspid, String correcttype);
+	
+	ResultCode<List<TheatreSeatPriceVo>> getTheatreSeatPriceList(Long dramaid, int from, int maxnum);
+	
+	ResultCode<TheatreSeatPriceVo> setShowPrice(Long id, String showprice);
+	
+	ResultCode<TheatreSeatPriceVo> setShowRemark(Long tspid, String showremark);
+	
+	/**
+	 * 订单出库或订单退票入库
+	 * @param tradeno
+	 * @param correcttype
+	 * FIXME:订单类型
+	 */
+	ResultCode asynchCreatePriceExt(String tradeno, String correcttype);
+	
+	ResultCode<Map<Long /*dpid*/, List<TheatreSeatPriceVo>>> getTheatreSeatPriceMap(List<Long> dpidList, String sortFieldname);
+	
+	ResultCode<Map<Long /*areaid*/, List<TheatreSeatPriceVo>>> getTheatreSeatPriceMapByAreaid(List<Long> areaidList, String sortFieldname);
+	
 }

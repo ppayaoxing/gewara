@@ -1,14 +1,18 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.DateUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+import com.gewara.drama.constant.OdiConstant;
+import com.gewara.util.DateUtil;
+
 public class DisQuantityVo extends BaseVo {
+
 	private static final long serialVersionUID = 4242392716444879503L;
+
 	private Long id;
 	private Long dpid;
 	private Long tspid;
@@ -18,31 +22,34 @@ public class DisQuantityVo extends BaseVo {
 	private Integer costprice;
 	private Integer theatreprice;
 	private Integer version;
-	private Integer maxbuy;
-	private Integer tickettotal;
-	private Integer allownum;
-	private Integer sellordernum;
+	private Integer maxbuy;				//单次购票数量
+	private Integer tickettotal;		//库存票数
+	private Integer allownum;			//剩余库存票数
+	private Integer sellordernum;		//已卖出的票数
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private String distype;
-	private Long settleid;
+	private String distype;				//优惠类型 G(格瓦拉的优惠) P(主办方优惠)
+	private Long settleid;				//结算比率
+	
 	private String name;
-	private Timestamp starttime;
-	private Timestamp endtime;
-	private String retail;
-	private String status;
-	private String seller;
-	private String sispseq;
+	private Timestamp starttime;		//套票开始时间
+	private Timestamp endtime;			//套票结束时间
+	private String retail;				//是否零售
+	private String status;				//是否可卖
+	private String seller;				//
+	private String sispseq;		
+
 	private String supplierCode;
 	private Long dramaSettleid;
 	private Long tipid;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -50,7 +57,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -58,7 +65,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Long getTspid() {
-		return this.tspid;
+		return tspid;
 	}
 
 	public void setTspid(Long tspid) {
@@ -66,7 +73,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Long getAreaid() {
-		return this.areaid;
+		return areaid;
 	}
 
 	public void setAreaid(Long areaid) {
@@ -74,7 +81,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -82,7 +89,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Integer price) {
@@ -90,7 +97,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Integer getCostprice() {
-		return this.costprice;
+		return costprice;
 	}
 
 	public void setCostprice(Integer costprice) {
@@ -98,7 +105,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Integer getTheatreprice() {
-		return this.theatreprice;
+		return theatreprice;
 	}
 
 	public void setTheatreprice(Integer theatreprice) {
@@ -106,7 +113,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -114,7 +121,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Integer getMaxbuy() {
-		return this.maxbuy;
+		return maxbuy;
 	}
 
 	public void setMaxbuy(Integer maxbuy) {
@@ -122,7 +129,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Integer getTickettotal() {
-		return this.tickettotal;
+		return tickettotal;
 	}
 
 	public void setTickettotal(Integer tickettotal) {
@@ -130,7 +137,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Integer getAllownum() {
-		return this.allownum;
+		return allownum;
 	}
 
 	public void setAllownum(Integer allownum) {
@@ -138,7 +145,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Integer getSellordernum() {
-		return this.sellordernum;
+		return sellordernum;
 	}
 
 	public void setSellordernum(Integer sellordernum) {
@@ -146,7 +153,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -154,7 +161,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -162,7 +169,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public String getDistype() {
-		return this.distype;
+		return distype;
 	}
 
 	public void setDistype(String distype) {
@@ -170,7 +177,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Long getSettleid() {
-		return this.settleid;
+		return settleid;
 	}
 
 	public void setSettleid(Long settleid) {
@@ -178,7 +185,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -186,7 +193,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Timestamp starttime) {
@@ -194,7 +201,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -202,7 +209,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public String getRetail() {
-		return this.retail;
+		return retail;
 	}
 
 	public void setRetail(String retail) {
@@ -210,7 +217,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -218,7 +225,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public String getSeller() {
-		return this.seller;
+		return seller;
 	}
 
 	public void setSeller(String seller) {
@@ -226,32 +233,35 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public String getSispseq() {
-		return this.sispseq;
+		return sispseq;
 	}
 
 	public void setSispseq(String sispseq) {
 		this.sispseq = sispseq;
 	}
 
-	public boolean hasBooking() {
+	public boolean hasBooking(){
 		Timestamp cur = DateUtil.getCurFullTimestamp();
-		return cur.after(this.starttime) && cur.before(this.endtime) && StringUtils.equals(this.status, "Y");
+		return cur.after(starttime) && cur.before(endtime)
+				&& StringUtils.equals(this.status, OdiConstant.STATUS_BOOK);
 	}
-
-	public boolean hasStatus(String stats) {
-		return StringUtils.isBlank(stats) ? false : StringUtils.equals(this.status, stats);
+	
+	public boolean hasStatus(String stats){
+		if(StringUtils.isBlank(stats)) return false;
+		return StringUtils.equals(this.status, stats);
 	}
-
-	public boolean hasRetail() {
-		return StringUtils.equals(this.getRetail(), "Y");
+	
+	public boolean hasRetail(){
+		return StringUtils.equals(this.getRetail(), OdiConstant.STATUS_BOOK);
 	}
-
-	public boolean hasSeller(String sell) {
-		return StringUtils.isBlank(sell) ? false : StringUtils.equals(this.seller, sell);
+	
+	public boolean hasSeller(String sell){
+		if(StringUtils.isBlank(sell)) return false;
+		return StringUtils.equals(this.seller, sell);
 	}
 
 	public Long getDramaSettleid() {
-		return this.dramaSettleid;
+		return dramaSettleid;
 	}
 
 	public void setDramaSettleid(Long dramaSettleid) {
@@ -259,7 +269,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public String getSupplierCode() {
-		return this.supplierCode;
+		return supplierCode;
 	}
 
 	public void setSupplierCode(String supplierCode) {
@@ -267,7 +277,7 @@ public class DisQuantityVo extends BaseVo {
 	}
 
 	public Long getTipid() {
-		return this.tipid;
+		return tipid;
 	}
 
 	public void setTipid(Long tipid) {

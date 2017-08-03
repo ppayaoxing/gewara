@@ -1,47 +1,51 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+import com.gewara.drama.constant.Status;
+
 public class DramaProfileVo extends BaseVo {
+
 	private static final long serialVersionUID = 2713318692410184246L;
 	private Long dramaid;
-	private String limittype;
-	private Integer limitnum;
-	private String limitsite;
-	private String uniqueby;
-	private String itemid;
-	private String opustype;
+	private String limittype;			//限制类型（每天，每个场次，项目周期）
+	private Integer limitnum;			//限制张数
+	private String limitsite;			//限制站点:Web, Wap
+	private String uniqueby;			//限制唯一标识
+	private String itemid;				//限制场次ID集合
+	private String opustype;			//作品类型(Y音频)
 	private String opuslink;
-	private String reserve;
-	private String validorder;
-	private Integer rmaxnum;
-	private Integer rlimitnum;
-	private Integer delayedday;
-	private Timestamp rstarttime;
-	private Timestamp rendtime;
-	private Date rstartdate;
+	private String reserve;				//是否可预约(Y,N)
+	private String validorder;			//预约验证订单(Y,N)
+	private Integer rmaxnum;			//单次可预约最大人数
+	private Integer rlimitnum;			//总预约次数
+	private Integer delayedday;			//延迟天数
+	private Timestamp rstarttime;		//预约开放开始时间
+	private Timestamp rendtime;			//预约开放结束时间
+	private Date rstartdate;			//预约开始日期
 	private String reserveexp;
-	private String businessname;
-	private String businessurl;
-	private String remind;
-	private String remindcontent;
-	private String remindtext;
-	private Timestamp remindtime;
+	private String businessname;		//预约合作商户名称
+	private String businessurl;			//预约合作商户网址
+	private String remind;				//开票提醒
+	private String remindcontent;		//提醒内容
+	private String remindtext;			//提醒内容2
+	private Timestamp remindtime;		//开票提醒时间
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private String unlimituser;
-	private String prioritize;
+
+	private String unlimituser; 		//不受限制用户
+	private String prioritize;			//优先购
 	private Timestamp pstarttime;
 	private Timestamp pendtime;
-	private String checkprice;
-	private String reserverlogo;
-	private String reservercolor;
-	private String sharepic;
+	private String checkprice;			//预约验证价格(Y,N)
+	private String reserverlogo;		//预约背景图
+	private String reservercolor;		//预约背景色
+	private String sharepic;  			//项目分享图片
 	private String appTopPic;
 	private String pcToText;
 	private String pcToLink;
@@ -50,25 +54,28 @@ public class DramaProfileVo extends BaseVo {
 	private String appToText;
 	private String appToLink;
 	private String sellOutMark;
-	private String wplogo;
+
+	private String wplogo;				//第三方海报logo
 	private String origin;
-	private String autoseat;
-	private String secondtype;
-	private String domain;
-	private String shortUrl;
-	private Integer remnantnum;
-	private String remnantnotice;
-
+	private String autoseat;			//Y/N
+	private String secondtype;			//第二类型
+	
+	private String domain;		//短链接域名
+	private String shortUrl;	//短链接访问地址
+	private Integer remnantnum;		//余票提醒限制数量
+	private String remnantnotice;	//余票提醒文案
+	
+	@Override
 	public Serializable realId() {
-		return this.dramaid;
+		return dramaid;
 	}
 
-	public String getWpLimg() {
-		return StringUtils.isBlank(this.wplogo) ? "img/default_logo.png" : this.wplogo;
+	public String getWpLimg(){
+		if(StringUtils.isBlank(wplogo)) return "img/default_logo.png";
+		return wplogo;
 	}
-
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -76,7 +83,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getLimittype() {
-		return this.limittype;
+		return limittype;
 	}
 
 	public void setLimittype(String limittype) {
@@ -84,7 +91,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Integer getLimitnum() {
-		return this.limitnum;
+		return limitnum;
 	}
 
 	public void setLimitnum(Integer limitnum) {
@@ -92,7 +99,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getLimitsite() {
-		return this.limitsite;
+		return limitsite;
 	}
 
 	public void setLimitsite(String limitsite) {
@@ -100,7 +107,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getUniqueby() {
-		return this.uniqueby;
+		return uniqueby;
 	}
 
 	public void setUniqueby(String uniqueby) {
@@ -108,7 +115,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getItemid() {
-		return this.itemid;
+		return itemid;
 	}
 
 	public void setItemid(String itemid) {
@@ -116,7 +123,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getOpustype() {
-		return this.opustype;
+		return opustype;
 	}
 
 	public void setOpustype(String opustype) {
@@ -124,7 +131,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getOpuslink() {
-		return this.opuslink;
+		return opuslink;
 	}
 
 	public void setOpuslink(String opuslink) {
@@ -132,7 +139,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getReserve() {
-		return this.reserve;
+		return reserve;
 	}
 
 	public void setReserve(String reserve) {
@@ -140,7 +147,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getValidorder() {
-		return this.validorder;
+		return validorder;
 	}
 
 	public void setValidorder(String validorder) {
@@ -148,7 +155,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Integer getRmaxnum() {
-		return this.rmaxnum;
+		return rmaxnum;
 	}
 
 	public void setRmaxnum(Integer rmaxnum) {
@@ -156,7 +163,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Integer getRlimitnum() {
-		return this.rlimitnum;
+		return rlimitnum;
 	}
 
 	public void setRlimitnum(Integer rlimitnum) {
@@ -164,7 +171,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Integer getDelayedday() {
-		return this.delayedday;
+		return delayedday;
 	}
 
 	public void setDelayedday(Integer delayedday) {
@@ -172,7 +179,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Timestamp getRstarttime() {
-		return this.rstarttime;
+		return rstarttime;
 	}
 
 	public void setRstarttime(Timestamp rstarttime) {
@@ -180,7 +187,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Timestamp getRendtime() {
-		return this.rendtime;
+		return rendtime;
 	}
 
 	public void setRendtime(Timestamp rendtime) {
@@ -188,7 +195,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Date getRstartdate() {
-		return this.rstartdate;
+		return rstartdate;
 	}
 
 	public void setRstartdate(Date rstartdate) {
@@ -196,7 +203,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getReserveexp() {
-		return this.reserveexp;
+		return reserveexp;
 	}
 
 	public void setReserveexp(String reserveexp) {
@@ -204,7 +211,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getBusinessname() {
-		return this.businessname;
+		return businessname;
 	}
 
 	public void setBusinessname(String businessname) {
@@ -212,7 +219,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getBusinessurl() {
-		return this.businessurl;
+		return businessurl;
 	}
 
 	public void setBusinessurl(String businessurl) {
@@ -220,7 +227,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -228,7 +235,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -236,7 +243,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getUnlimituser() {
-		return this.unlimituser;
+		return unlimituser;
 	}
 
 	public void setUnlimituser(String unlimituser) {
@@ -244,7 +251,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getPrioritize() {
-		return this.prioritize;
+		return prioritize;
 	}
 
 	public void setPrioritize(String prioritize) {
@@ -252,7 +259,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Timestamp getPstarttime() {
-		return this.pstarttime;
+		return pstarttime;
 	}
 
 	public void setPstarttime(Timestamp pstarttime) {
@@ -260,7 +267,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Timestamp getPendtime() {
-		return this.pendtime;
+		return pendtime;
 	}
 
 	public void setPendtime(Timestamp pendtime) {
@@ -268,7 +275,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getRemind() {
-		return this.remind;
+		return remind;
 	}
 
 	public void setRemind(String remind) {
@@ -276,7 +283,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getRemindcontent() {
-		return this.remindcontent;
+		return remindcontent;
 	}
 
 	public void setRemindcontent(String remindcontent) {
@@ -284,7 +291,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getRemindtext() {
-		return this.remindtext;
+		return remindtext;
 	}
 
 	public void setRemindtext(String remindtext) {
@@ -292,7 +299,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Timestamp getRemindtime() {
-		return this.remindtime;
+		return remindtime;
 	}
 
 	public void setRemindtime(Timestamp remindtime) {
@@ -300,15 +307,14 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getCheckprice() {
-		return this.checkprice;
+		return checkprice;
 	}
 
 	public void setCheckprice(String checkprice) {
 		this.checkprice = checkprice;
 	}
-
 	public String getReserverlogo() {
-		return this.reserverlogo;
+		return reserverlogo;
 	}
 
 	public void setReserverlogo(String reserverlogo) {
@@ -316,15 +322,14 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getReservercolor() {
-		return this.reservercolor;
+		return reservercolor;
 	}
 
 	public void setReservercolor(String reservercolor) {
 		this.reservercolor = reservercolor;
 	}
-
 	public String getSharepic() {
-		return this.sharepic;
+		return sharepic;
 	}
 
 	public void setSharepic(String sharepic) {
@@ -332,7 +337,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getAppTopPic() {
-		return this.appTopPic;
+		return appTopPic;
 	}
 
 	public void setAppTopPic(String appTopPic) {
@@ -340,7 +345,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getPcToText() {
-		return this.pcToText;
+		return pcToText;
 	}
 
 	public void setPcToText(String pcToText) {
@@ -348,7 +353,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getPcToLink() {
-		return this.pcToLink;
+		return pcToLink;
 	}
 
 	public void setPcToLink(String pcToLink) {
@@ -356,7 +361,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getWapToText() {
-		return this.wapToText;
+		return wapToText;
 	}
 
 	public void setWapToText(String wapToText) {
@@ -364,7 +369,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getWapToLink() {
-		return this.wapToLink;
+		return wapToLink;
 	}
 
 	public void setWapToLink(String wapToLink) {
@@ -372,7 +377,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getAppToText() {
-		return this.appToText;
+		return appToText;
 	}
 
 	public void setAppToText(String appToText) {
@@ -380,7 +385,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getAppToLink() {
-		return this.appToLink;
+		return appToLink;
 	}
 
 	public void setAppToLink(String appToLink) {
@@ -388,7 +393,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getSellOutMark() {
-		return this.sellOutMark;
+		return sellOutMark;
 	}
 
 	public void setSellOutMark(String sellOutMark) {
@@ -396,7 +401,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -404,7 +409,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getWplogo() {
-		return this.wplogo;
+		return wplogo;
 	}
 
 	public void setWplogo(String wplogo) {
@@ -412,19 +417,19 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getAutoseat() {
-		return this.autoseat;
+		return autoseat;
 	}
 
 	public void setAutoseat(String autoseat) {
 		this.autoseat = autoseat;
 	}
-
+	
 	public boolean isAuto() {
-		return StringUtils.equals(this.autoseat, "Y");
+		return StringUtils.equals(this.autoseat, Status.Y);
 	}
-
+	
 	public String getSecondtype() {
-		return this.secondtype;
+		return secondtype;
 	}
 
 	public void setSecondtype(String secondtype) {
@@ -432,7 +437,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getDomain() {
-		return this.domain;
+		return domain;
 	}
 
 	public void setDomain(String domain) {
@@ -440,7 +445,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getShortUrl() {
-		return this.shortUrl;
+		return shortUrl;
 	}
 
 	public void setShortUrl(String shortUrl) {
@@ -448,7 +453,7 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public Integer getRemnantnum() {
-		return this.remnantnum;
+		return remnantnum;
 	}
 
 	public void setRemnantnum(Integer remnantnum) {
@@ -456,10 +461,11 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getRemnantnotice() {
-		return this.remnantnotice;
+		return remnantnotice;
 	}
 
 	public void setRemnantnotice(String remnantnotice) {
 		this.remnantnotice = remnantnotice;
 	}
+	
 }

@@ -1,5 +1,7 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.admin.dubbo.order;
+
+import java.sql.Timestamp;
+import java.util.List;
 
 import com.gewara.api.vo.RequestParamVo;
 import com.gewara.api.vo.ResultCode;
@@ -7,28 +9,56 @@ import com.gewara.drama.vo.ZeroGrabRosterVo;
 import com.gewara.drama.vo.ZeroGrabTicketVo;
 import com.gewara.drama.vo.ZgCounterVo;
 import com.gewara.drama.vo.req.common.ZeroGrabReqVo;
-import java.sql.Timestamp;
-import java.util.List;
 
 public interface ZeroGrabTicketAdminVoService {
-	ResultCode<ZeroGrabTicketVo> getZeroGrabTicketById(Long arg0);
+	
+	ResultCode<ZeroGrabTicketVo> getZeroGrabTicketById(Long id);
+	
+	ResultCode<ZeroGrabTicketVo> saveZeroGrabTicket(RequestParamVo paramVo);
+	
+	ResultCode delZeroGrabTicket(Long id);
+	
+	/**
+	 * 查询零元抢票信息
+	 * @param title
+	 * @param starttime
+	 * @param endtime
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<ZeroGrabTicketVo>> getZeroGrabTicketList(String title, Timestamp starttime, Timestamp endtime, int from, int maxnum);
+	
+	/**
+	 * 通过抢票活动ID编号获取抢票人信息
+	 * @param priceid
+	 * @param mobile
+	 * @param tradeno
+	 * @return
+	 */
+	ResultCode<List<ZeroGrabRosterVo>> getZeroGrabRosterList(Long priceid, String mobile, String tradeno);
 
-	ResultCode<ZeroGrabTicketVo> saveZeroGrabTicket(RequestParamVo arg0);
+	ResultCode<List<ZeroGrabRosterVo>> getZeroGrabRosterPageList(ZeroGrabReqVo zeroGrabReqVo);
 
-	ResultCode delZeroGrabTicket(Long arg0);
+	/**
+	 * 通过ID编号获取抢票人信息
+	 * @param id
+	 * @return
+	 */
+	ResultCode<ZeroGrabRosterVo> getZeroGrabRoster(Long id);
+	
+	/**
+	 * 通过IDList获取ZgCounter列表
+	 * @param ids
+	 * @return
+	 */
+	ResultCode<List<ZgCounterVo>> getZgCounterList(Long ... ids);
+	
+	ResultCode<ZgCounterVo> getZgCounter(Long id);
+	
+	ResultCode<ZgCounterVo> saveZgCounter(RequestParamVo paramVo);
+	
+	
+	
 
-	ResultCode<List<ZeroGrabTicketVo>> getZeroGrabTicketList(String arg0, Timestamp arg1, Timestamp arg2, int arg3,
-			int arg4);
-
-	ResultCode<List<ZeroGrabRosterVo>> getZeroGrabRosterList(Long arg0, String arg1, String arg2);
-
-	ResultCode<List<ZeroGrabRosterVo>> getZeroGrabRosterPageList(ZeroGrabReqVo arg0);
-
-	ResultCode<ZeroGrabRosterVo> getZeroGrabRoster(Long arg0);
-
-	ResultCode<List<ZgCounterVo>> getZgCounterList(Long... arg0);
-
-	ResultCode<ZgCounterVo> getZgCounter(Long arg0);
-
-	ResultCode<ZgCounterVo> saveZgCounter(RequestParamVo arg0);
 }

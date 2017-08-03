@@ -1,23 +1,28 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class SettleConfigVo extends BaseVo {
+	
 	private static final long serialVersionUID = -6321561266158903620L;
+
 	private Long id;
 	private Double discount;
 	private String distype;
 	private Timestamp addtime;
-
+	
+	public SettleConfigVo(){}
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -25,7 +30,7 @@ public class SettleConfigVo extends BaseVo {
 	}
 
 	public Double getDiscount() {
-		return this.discount;
+		return discount;
 	}
 
 	public void setDiscount(Double discount) {
@@ -33,7 +38,7 @@ public class SettleConfigVo extends BaseVo {
 	}
 
 	public String getDistype() {
-		return this.distype;
+		return distype;
 	}
 
 	public void setDistype(String distype) {
@@ -41,10 +46,11 @@ public class SettleConfigVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
+
 }

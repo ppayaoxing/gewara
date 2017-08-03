@@ -1,29 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.admin.dubbo.star;
+
+import java.util.List;
 
 import com.gewara.api.vo.RequestParamVo;
 import com.gewara.api.vo.ResultCode;
 import com.gewara.drama.vo.DramaStarVo;
-import java.util.List;
 
 public interface DramaStarAdminVoService {
-	ResultCode<DramaStarVo> getDramaStarById(Long arg0);
+	
+	ResultCode<DramaStarVo> getDramaStarById(Long id);
+	
+	ResultCode<List<DramaStarVo>> getDramaStarList(Long ... ids);
+	
+	ResultCode<List<DramaStarVo>> getStarListByStateAndName(RequestParamVo paramVo);
 
-	ResultCode<List<DramaStarVo>> getDramaStarList(Long... arg0);
-
-	ResultCode<List<DramaStarVo>> getStarListByStateAndName(RequestParamVo arg0);
-
-	ResultCode<List<DramaStarVo>> getDramaStarListByDramaid(RequestParamVo arg0);
-
-	ResultCode setStarHotValue(RequestParamVo arg0);
-
-	ResultCode<Integer> getStarCountByName(RequestParamVo arg0);
-
-	ResultCode<List<DramaStarVo>> getStarListByName(RequestParamVo arg0);
-
-	ResultCode<DramaStarVo> saveStar(RequestParamVo arg0);
-
-	ResultCode<List<DramaStarVo>> saveAttachTroupe(RequestParamVo arg0);
-
+	ResultCode<List<DramaStarVo>> getDramaStarListByDramaid(RequestParamVo paramVo);
+	
+	ResultCode setStarHotValue(RequestParamVo paramVo);
+	
+	ResultCode<Integer> getStarCountByName(RequestParamVo paramVo);
+	
+	ResultCode<List<DramaStarVo>> getStarListByName(RequestParamVo paramVo);
+	
+	ResultCode<DramaStarVo> saveStar(RequestParamVo paramVo);
+	
+	ResultCode<List<DramaStarVo>> saveAttachTroupe(RequestParamVo paramVo);
+	
 	ResultCode<List<DramaStarVo>> getTroupeStarList();
+
 }

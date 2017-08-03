@@ -1,15 +1,17 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo.common;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
-public class BaseEntityVo extends BaseVo implements Serializable {
-	public static final int HOTVALUE_HOT = 30000;
-	public static final int HOTVALUE_RECOMMEND = 50000;
-	public static final int HOTVALUE_SEARCH = 70000;
+import com.gewara.api.vo.BaseVo;
+
+
+public class BaseEntityVo extends BaseVo implements Serializable{
+	public static final int HOTVALUE_HOT = 30000; //热门
+	public static final int HOTVALUE_RECOMMEND = 50000; //推荐
+	public static final int HOTVALUE_SEARCH = 70000;//搜索下面的推荐
 	private static final long serialVersionUID = 6326252378179481450L;
 	protected Long id;
 	protected String name;
@@ -19,196 +21,157 @@ public class BaseEntityVo extends BaseVo implements Serializable {
 	protected String logo;
 	protected String fullLogo;
 	protected String firstpic;
-	protected Integer generalmark;
+	protected Integer generalmark;//评分
 	protected Integer generalmarkedtimes;
 	protected Integer avggeneral;
-	protected Integer collectedtimes;
-	protected Integer clickedtimes;
-	protected String briefname;
+	protected Integer collectedtimes;// 收藏 感兴趣
+	protected Integer clickedtimes;//关注
+	protected String briefname;//名称简称
+	
 	protected Timestamp addtime;
-	protected Timestamp updatetime;
-	protected String seotitle;
-	protected String seodescription;
-	protected Integer hotvalue = Integer.valueOf(0);
+	protected Timestamp updatetime;	//修改时间
+	protected String seotitle; //SEO关键字
+	protected String seodescription; //SEO描述
+	protected Integer hotvalue=0; 
 	protected Integer quguo;
-	protected Integer xiangqu;
-
+	protected Integer xiangqu;	// 话剧明星版块: 想成为粉丝
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getName() {
-		return this.name;
+		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public Integer getClickedtimes() {
-		return this.clickedtimes;
+		return clickedtimes;
 	}
-
 	public void setClickedtimes(Integer clickedtimes) {
 		this.clickedtimes = clickedtimes;
 	}
-
 	public String getEnglishname() {
-		return this.englishname;
+		return englishname;
 	}
-
 	public void setEnglishname(String englishname) {
 		this.englishname = englishname;
 	}
-
 	public String getPinyin() {
-		return this.pinyin;
+		return pinyin;
 	}
-
 	public void setPinyin(String pinyin) {
 		this.pinyin = pinyin;
 	}
-
 	public String getContent() {
-		return this.content;
+		return content;
 	}
-
 	public void setContent(String content) {
 		this.content = content;
 	}
-
-	public String getLimg() {
-		return StringUtils.isBlank(this.logo) ? "img/default_logo.png" : this.logo;
+	
+	public String getLimg(){
+		if(StringUtils.isBlank(logo)) return "img/default_logo.png";
+		return logo;
 	}
-
+	
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
-
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-
 	public String getFirstpic() {
-		return this.firstpic;
+		return firstpic;
 	}
-
 	public void setFirstpic(String firstpic) {
 		this.firstpic = firstpic;
 	}
-
 	public Integer getGeneralmark() {
-		return this.generalmark;
+		return generalmark;
 	}
-
 	public void setGeneralmark(Integer generalmark) {
 		this.generalmark = generalmark;
 	}
-
 	public Integer getGeneralmarkedtimes() {
-		return this.generalmarkedtimes;
+		return generalmarkedtimes;
 	}
-
 	public void setGeneralmarkedtimes(Integer generalmarkedtimes) {
 		this.generalmarkedtimes = generalmarkedtimes;
 	}
-
 	public Integer getAvggeneral() {
-		return this.avggeneral;
+		return avggeneral;
 	}
-
 	public void setAvggeneral(Integer avggeneral) {
 		this.avggeneral = avggeneral;
 	}
-
 	public Integer getCollectedtimes() {
-		return this.collectedtimes;
+		return collectedtimes;
 	}
-
 	public void setCollectedtimes(Integer collectedtimes) {
 		this.collectedtimes = collectedtimes;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
-	public String getRealBriefname() {
-		return StringUtils.isNotBlank(this.briefname) ? this.briefname : this.getName();
+	public String getRealBriefname(){
+		return StringUtils.isNotBlank(this.briefname)? briefname: getName();
 	}
-
 	public String getBriefname() {
-		return this.briefname;
+		return briefname;
 	}
-
 	public void setBriefname(String briefname) {
 		this.briefname = briefname;
 	}
-
 	public String getFullLogo() {
-		return this.fullLogo;
+		return fullLogo;
 	}
-
 	public void setFullLogo(String fullLogo) {
 		this.fullLogo = fullLogo;
 	}
-
 	public String getSeotitle() {
-		return this.seotitle;
+		return seotitle;
 	}
-
 	public void setSeotitle(String seotitle) {
 		this.seotitle = seotitle;
 	}
-
 	public String getSeodescription() {
-		return this.seodescription;
+		return seodescription;
 	}
-
 	public void setSeodescription(String seodescription) {
 		this.seodescription = seodescription;
 	}
-
 	public Integer getHotvalue() {
-		return this.hotvalue;
+		return hotvalue;
 	}
-
 	public void setHotvalue(Integer hotvalue) {
 		this.hotvalue = hotvalue;
 	}
-
 	public Integer getQuguo() {
-		return this.quguo;
+		return quguo;
 	}
-
 	public void setQuguo(Integer quguo) {
 		this.quguo = quguo;
 	}
-
 	public Integer getXiangqu() {
-		return this.xiangqu;
+		return xiangqu;
 	}
-
 	public void setXiangqu(Integer xiangqu) {
 		this.xiangqu = xiangqu;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}

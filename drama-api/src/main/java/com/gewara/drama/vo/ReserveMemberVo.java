@@ -1,35 +1,37 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ReserveMemberVo extends BaseVo {
+
 	private static final long serialVersionUID = 2601574347248957051L;
 	private Long id;
 	private Integer version;
 	private Long dramaid;
-	private Long memberid;
+	private Long memberid;			
 	private String membername;
-	private Date reservedate;
-	private Integer ordernum;
-	private Integer ticketnum;
-	private Integer reservenum;
-	private String orderids;
+	private Date reservedate;		//可预约日期
+	private Integer ordernum;		//订单数
+	private Integer ticketnum;		//票数
+	private Integer reservenum;	//已预约数
+	private String orderids;		//订单ID
 	private String origin;
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private Long dpid;
-	private String period;
 
+	private Long dpid;    //场次ID
+	private String period;	 //场次类型 Y固定时间场次，N非固定时间场次
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -37,7 +39,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -45,7 +47,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -53,7 +55,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -61,7 +63,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public String getMembername() {
-		return this.membername;
+		return membername;
 	}
 
 	public void setMembername(String membername) {
@@ -69,7 +71,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public Date getReservedate() {
-		return this.reservedate;
+		return reservedate;
 	}
 
 	public void setReservedate(Date reservedate) {
@@ -77,7 +79,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public Integer getOrdernum() {
-		return this.ordernum;
+		return ordernum;
 	}
 
 	public void setOrdernum(Integer ordernum) {
@@ -85,7 +87,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public Integer getTicketnum() {
-		return this.ticketnum;
+		return ticketnum;
 	}
 
 	public void setTicketnum(Integer ticketnum) {
@@ -93,7 +95,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public Integer getReservenum() {
-		return this.reservenum;
+		return reservenum;
 	}
 
 	public void setReservenum(Integer reservenum) {
@@ -101,7 +103,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public String getOrderids() {
-		return this.orderids;
+		return orderids;
 	}
 
 	public void setOrderids(String orderids) {
@@ -109,7 +111,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -117,7 +119,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -125,7 +127,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -133,7 +135,7 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -141,10 +143,11 @@ public class ReserveMemberVo extends BaseVo {
 	}
 
 	public String getPeriod() {
-		return this.period;
+		return period;
 	}
 
 	public void setPeriod(String period) {
 		this.period = period;
 	}
+
 }

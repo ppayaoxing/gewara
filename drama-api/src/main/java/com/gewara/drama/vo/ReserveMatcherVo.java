@@ -1,41 +1,43 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ReserveMatcherVo extends BaseVo {
+
 	private static final long serialVersionUID = 2364212550624963422L;
 	private Long id;
 	private Long dramaid;
 	private Date reservedate;
 	private Integer version;
-	private String serialnum;
+	private String serialnum;					//编号
 	private String starttime;
 	private String endtime;
-	private Integer totalnum;
-	private Integer displaynum;
-	private Integer reservenum;
-	private Integer reserveofflinenum;
-	private Integer totalofflinenum;
-	private Integer handmadenum;
-	private String status;
+	private Integer totalnum;					//可预约总数
+	private Integer displaynum;				//显示数
+	private Integer reservenum;				//已预约数量
+	private Integer reserveofflinenum;				//线下已预约数量
+	private Integer totalofflinenum;					//线下可预约总数
+	private Integer handmadenum;					//线上手工预约
+	private String status;						//状态
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private String priceids;
+	private String priceids;				//区域价格ID
 	private String prices;
-	private String itempriceids;
-	private String dpids;
-	private String priceDpids;
-
+	private String itempriceids;			//场次价格ID
+	private String dpids;			//场次ID
+	private String priceDpids;     //场次价格ID 对应的场次ID
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -43,7 +45,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -51,7 +53,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Date getReservedate() {
-		return this.reservedate;
+		return reservedate;
 	}
 
 	public void setReservedate(Date reservedate) {
@@ -59,7 +61,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -67,7 +69,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public String getSerialnum() {
-		return this.serialnum;
+		return serialnum;
 	}
 
 	public void setSerialnum(String serialnum) {
@@ -75,7 +77,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public String getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(String starttime) {
@@ -83,7 +85,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public String getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(String endtime) {
@@ -91,7 +93,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Integer getTotalnum() {
-		return this.totalnum;
+		return totalnum;
 	}
 
 	public void setTotalnum(Integer totalnum) {
@@ -99,7 +101,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Integer getDisplaynum() {
-		return this.displaynum;
+		return displaynum;
 	}
 
 	public void setDisplaynum(Integer displaynum) {
@@ -107,7 +109,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Integer getReservenum() {
-		return this.reservenum;
+		return reservenum;
 	}
 
 	public void setReservenum(Integer reservenum) {
@@ -115,7 +117,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Integer getReserveofflinenum() {
-		return this.reserveofflinenum;
+		return reserveofflinenum;
 	}
 
 	public void setReserveofflinenum(Integer reserveofflinenum) {
@@ -123,7 +125,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Integer getTotalofflinenum() {
-		return this.totalofflinenum;
+		return totalofflinenum;
 	}
 
 	public void setTotalofflinenum(Integer totalofflinenum) {
@@ -131,7 +133,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Integer getHandmadenum() {
-		return this.handmadenum;
+		return handmadenum;
 	}
 
 	public void setHandmadenum(Integer handmadenum) {
@@ -139,7 +141,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -147,7 +149,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -155,7 +157,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -163,7 +165,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public String getPriceids() {
-		return this.priceids;
+		return priceids;
 	}
 
 	public void setPriceids(String priceids) {
@@ -171,7 +173,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public String getPrices() {
-		return this.prices;
+		return prices;
 	}
 
 	public void setPrices(String prices) {
@@ -179,7 +181,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public String getItempriceids() {
-		return this.itempriceids;
+		return itempriceids;
 	}
 
 	public void setItempriceids(String itempriceids) {
@@ -187,7 +189,7 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public String getDpids() {
-		return this.dpids;
+		return dpids;
 	}
 
 	public void setDpids(String dpids) {
@@ -195,10 +197,11 @@ public class ReserveMatcherVo extends BaseVo {
 	}
 
 	public String getPriceDpids() {
-		return this.priceDpids;
+		return priceDpids;
 	}
 
 	public void setPriceDpids(String priceDpids) {
 		this.priceDpids = priceDpids;
 	}
+
 }

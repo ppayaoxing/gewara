@@ -1,14 +1,32 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.dubbo;
+
+import java.util.Map;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.drama.vo.order.DramaOrderContainerVo;
-import java.util.Map;
 
 public interface DramaUpdateVoService {
-	ResultCode<DramaOrderContainerVo> updateStatistics(String arg0);
 
-	ResultCode updateDramaStatistics(String arg0);
-
-	ResultCode updateDramaData(String arg0, Long arg1, Map<String, Integer> arg2);
+	/**
+	 * 更新统计
+	 * @param orderid
+	 * @return
+	 */
+	ResultCode<DramaOrderContainerVo> updateStatistics(String tradeno);
+	
+	/**
+	 * 更新统计（新）
+	 * @param orderid
+	 * @return
+	 */
+	ResultCode updateDramaStatistics(String tradeno);
+	
+	/**
+	 * 更新统计（openapi）
+	 * @param tag
+	 * @param relatedid
+	 * @param data
+	 * @return
+	 */
+	ResultCode updateDramaData(String tag, Long relatedid, Map<String, Integer> data);
 }

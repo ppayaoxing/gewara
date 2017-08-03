@@ -1,24 +1,29 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.content.api;
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.content.vo.PictureVo;
-import java.util.List;
 
-public abstract interface GewaPicVoService {
-	public abstract ResultCode<String> saveToTempPic(String paramString1, String paramString2);
+public interface GewaPicVoService {
+	ResultCode<String> saveToTempPic(String pic, String filetype);
+	ResultCode<String> saveTempFileToRemote(String filename, boolean retPicSize);
+	ResultCode<String> moveRemoteTempTo(Long memberid, String tag, Long relatedid, String path, String filename);
+	ResultCode<String> uploadPic(String pic, String filetype, boolean retPicSize, Long memberid, String tag, Long relatedid, String path);
+	ResultCode<String> uploadPicture(String pic, String filetype, boolean retPicSize, Long memberid, String tag, Long relatedid, String path);
 
-	public abstract ResultCode<String> saveTempFileToRemote(String paramString, boolean paramBoolean);
-
-	public abstract ResultCode<String> moveRemoteTempTo(Long paramLong1, String paramString1, Long paramLong2,
-			String paramString2, String paramString3);
-
-	public abstract ResultCode<String> uploadPic(String paramString1, String paramString2, boolean paramBoolean,
-			Long paramLong1, String paramString3, Long paramLong2, String paramString4);
-
-	public abstract ResultCode<String> uploadPicture(String paramString1, String paramString2, boolean paramBoolean,
-			Long paramLong1, String paramString3, Long paramLong2, String paramString4);
-
-	public abstract ResultCode<List<PictureVo>> getPictureList(Long paramLong, String paramString,
-			Integer paramInteger1, Integer paramInteger2);
+	/**
+	 * 影院影片的剧照
+	 * 
+	 * @param appkey
+	 *            合作商appkey
+	 * @param relatedId
+	 *            影院ID、影片ID……
+	 * @param tag
+	 *            影院（cinema），影片（movie）
+	 * @param from
+	 * @param max
+	 * @return
+	 */
+	ResultCode<List<PictureVo>> getPictureList(Long relatedId, String tag, Integer from, Integer maxnum);
 }

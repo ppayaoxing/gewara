@@ -1,34 +1,39 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+import com.gewara.drama.constant.TheatreSeatConstant;
+
 public class SellDramaSeatVo extends BaseVo {
+
 	private static final long serialVersionUID = -7943952447862925974L;
+
 	private Long id;
-	private Integer version;
-	private Long odiid;
-	private Long dpid;
-	private Long areaid;
-	private Long orderid;
-	private String seatline;
-	private String seatrank;
+	private Integer version;		//版本
+	private Long odiid;				//关联场次
+	private Long dpid;				//
+	private Long areaid;			//关联场区
+	private Long orderid;			//订单号
+	private String seatline;		//座位行号
+	private String seatrank;		//座位列号
 	private Timestamp validtime;
 	private Integer price;
 	private Integer theatreprice;
 	private Integer costprice;
-	private String status;
+	private String status;			//状态
 	private String remark;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -36,7 +41,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -44,7 +49,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public Long getOdiid() {
-		return this.odiid;
+		return odiid;
 	}
 
 	public void setOdiid(Long odiid) {
@@ -52,7 +57,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -60,7 +65,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public Long getAreaid() {
-		return this.areaid;
+		return areaid;
 	}
 
 	public void setAreaid(Long areaid) {
@@ -68,7 +73,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public Long getOrderid() {
-		return this.orderid;
+		return orderid;
 	}
 
 	public void setOrderid(Long orderid) {
@@ -76,7 +81,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public String getSeatline() {
-		return this.seatline;
+		return seatline;
 	}
 
 	public void setSeatline(String seatline) {
@@ -84,7 +89,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public String getSeatrank() {
-		return this.seatrank;
+		return seatrank;
 	}
 
 	public void setSeatrank(String seatrank) {
@@ -92,7 +97,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public Timestamp getValidtime() {
-		return this.validtime;
+		return validtime;
 	}
 
 	public void setValidtime(Timestamp validtime) {
@@ -100,7 +105,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Integer price) {
@@ -108,7 +113,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public Integer getTheatreprice() {
-		return this.theatreprice;
+		return theatreprice;
 	}
 
 	public void setTheatreprice(Integer theatreprice) {
@@ -116,7 +121,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public Integer getCostprice() {
-		return this.costprice;
+		return costprice;
 	}
 
 	public void setCostprice(Integer costprice) {
@@ -124,7 +129,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -132,7 +137,7 @@ public class SellDramaSeatVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -141,23 +146,24 @@ public class SellDramaSeatVo extends BaseVo {
 
 	public boolean hasAvailable() {
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
-		return StringUtils.equals(this.status, "A") && this.validtime.before(cur);
+		return StringUtils.equals(status, TheatreSeatConstant.STATUS_NEW) && validtime.before(cur);
 	}
-
-	public boolean hasAvailableBy(Long sorderid) {
+	
+	public boolean hasAvailableBy(Long sorderid){
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
-		return StringUtils.equals(this.status, "A") && this.validtime.before(cur) || sorderid.equals(this.orderid);
+		return StringUtils.equals(status, TheatreSeatConstant.STATUS_NEW) && validtime.before(cur) || sorderid.equals(this.orderid);
+	}
+	
+	public boolean hasSold(){
+		return TheatreSeatConstant.STATUS_SOLD.equals(status);
+	}
+	
+	public String getSeatLabel(){
+		return seatline+"排"+seatrank+"座";
 	}
 
-	public boolean hasSold() {
-		return "S".equals(this.status);
-	}
-
-	public String getSeatLabel() {
-		return this.seatline + "排" + this.seatrank + "座";
-	}
-
-	public String getKey() {
+	
+	public String getKey(){
 		return this.seatline + ":" + this.seatrank;
 	}
 }

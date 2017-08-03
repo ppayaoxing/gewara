@@ -1,12 +1,14 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.DateUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+import com.gewara.drama.constant.Status;
+import com.gewara.util.DateUtil;
+
 public class ReserveMemberDetailVo extends BaseVo {
+
 	private static final long serialVersionUID = 1133189661599112415L;
 	private Long id;
 	private Long memberId;
@@ -19,30 +21,30 @@ public class ReserveMemberDetailVo extends BaseVo {
 	private Integer reserveNum;
 	private Timestamp addTime;
 	private String status;
-
+	
 	public ReserveMemberDetailVo() {
 	}
-
-	public ReserveMemberDetailVo(Long memberId, Long reserveMemberId, Long priceId, Double price, String origin,
-			Long relatedId) {
-		this.memberId = memberId;
-		this.reserveMemberId = reserveMemberId;
-		this.priceId = priceId;
-		this.price = price;
-		this.origin = origin;
-		this.reserveCount = Integer.valueOf(0);
-		this.reserveNum = Integer.valueOf(0);
-		this.status = "Y";
-		this.relatedId = relatedId;
+	
+	public ReserveMemberDetailVo(Long memberId, Long reserveMemberId, Long priceId,Double price,String origin,Long relatedId) {
+		this.memberId=memberId;
+		this.reserveMemberId=reserveMemberId;
+		this.priceId=priceId;
+		this.price=price;
+		this.origin=origin;
+		this.reserveCount=0;
+		this.reserveNum=0;
+		this.status=Status.Y;
+		this.relatedId=relatedId;
 		this.addTime = DateUtil.getCurFullTimestamp();
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -50,7 +52,7 @@ public class ReserveMemberDetailVo extends BaseVo {
 	}
 
 	public Long getMemberId() {
-		return this.memberId;
+		return memberId;
 	}
 
 	public void setMemberId(Long memberId) {
@@ -58,7 +60,7 @@ public class ReserveMemberDetailVo extends BaseVo {
 	}
 
 	public Long getReserveMemberId() {
-		return this.reserveMemberId;
+		return reserveMemberId;
 	}
 
 	public void setReserveMemberId(Long reserveMemberId) {
@@ -66,7 +68,7 @@ public class ReserveMemberDetailVo extends BaseVo {
 	}
 
 	public Long getPriceId() {
-		return this.priceId;
+		return priceId;
 	}
 
 	public void setPriceId(Long priceId) {
@@ -74,7 +76,7 @@ public class ReserveMemberDetailVo extends BaseVo {
 	}
 
 	public Double getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Double price) {
@@ -82,7 +84,7 @@ public class ReserveMemberDetailVo extends BaseVo {
 	}
 
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -90,7 +92,7 @@ public class ReserveMemberDetailVo extends BaseVo {
 	}
 
 	public Integer getReserveCount() {
-		return this.reserveCount;
+		return reserveCount;
 	}
 
 	public void setReserveCount(Integer reserveCount) {
@@ -98,7 +100,7 @@ public class ReserveMemberDetailVo extends BaseVo {
 	}
 
 	public Integer getReserveNum() {
-		return this.reserveNum;
+		return reserveNum;
 	}
 
 	public void setReserveNum(Integer reserveNum) {
@@ -106,7 +108,7 @@ public class ReserveMemberDetailVo extends BaseVo {
 	}
 
 	public Timestamp getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
 
 	public void setAddTime(Timestamp addTime) {
@@ -114,7 +116,7 @@ public class ReserveMemberDetailVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -122,10 +124,11 @@ public class ReserveMemberDetailVo extends BaseVo {
 	}
 
 	public Long getRelatedId() {
-		return this.relatedId;
+		return relatedId;
 	}
 
 	public void setRelatedId(Long relatedId) {
 		this.relatedId = relatedId;
 	}
+
 }

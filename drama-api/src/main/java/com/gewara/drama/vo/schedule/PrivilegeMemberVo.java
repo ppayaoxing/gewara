@@ -1,38 +1,41 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo.schedule;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class PrivilegeMemberVo extends BaseVo {
+
 	private static final long serialVersionUID = 7660140476295168432L;
-	private Long id;
-	private String mobile;
-	private String checkpass;
-	private Timestamp starttime;
-	private Timestamp endtime;
-	private String status;
-	private Double discount;
-	private String distype;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private Long memberid;
-	private Timestamp bindtime;
+
+	private Long id;// 主键
+	private String mobile;// 手机号（唯一）
+	private String checkpass;// 验证码
+	private Timestamp starttime;// 有效时间开始
+	private Timestamp endtime;// 有效时间结束
+	private String status;// 状态 [Y,N]
+	private Double discount;// 优惠数额
+	private String distype;// 优惠类型
+	private Timestamp addtime;// 新增时间
+	private Timestamp updatetime;// 更新时间
+	private Long memberid;// 用户ID
+	private Timestamp bindtime;// 绑定用户时间
 	private Integer version;
-	private Integer orderNum;
-	private Integer ticketNum;
+	private Integer orderNum;		//下单数量限制
+	private Integer ticketNum;		//买票数量限制
 	private String elecard;
 	private String greetings;
-	private Timestamp schedulestarttime;
-	private Timestamp scheduleendtime;
+	private Timestamp schedulestarttime;// 可购买场次时间开始
+	private Timestamp scheduleendtime;// 可购买场次时间结束
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -40,7 +43,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -48,7 +51,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public String getCheckpass() {
-		return this.checkpass;
+		return checkpass;
 	}
 
 	public void setCheckpass(String checkpass) {
@@ -56,7 +59,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Timestamp starttime) {
@@ -64,7 +67,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -72,7 +75,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -80,7 +83,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Double getDiscount() {
-		return this.discount;
+		return discount;
 	}
 
 	public void setDiscount(Double discount) {
@@ -88,7 +91,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public String getDistype() {
-		return this.distype;
+		return distype;
 	}
 
 	public void setDistype(String distype) {
@@ -96,7 +99,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -104,7 +107,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -112,7 +115,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -120,7 +123,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Timestamp getBindtime() {
-		return this.bindtime;
+		return bindtime;
 	}
 
 	public void setBindtime(Timestamp bindtime) {
@@ -128,7 +131,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Integer getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(Integer version) {
@@ -136,7 +139,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Integer getOrderNum() {
-		return this.orderNum;
+		return orderNum;
 	}
 
 	public void setOrderNum(Integer orderNum) {
@@ -144,7 +147,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Integer getTicketNum() {
-		return this.ticketNum;
+		return ticketNum;
 	}
 
 	public void setTicketNum(Integer ticketNum) {
@@ -152,7 +155,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public String getElecard() {
-		return this.elecard;
+		return elecard;
 	}
 
 	public void setElecard(String elecard) {
@@ -160,7 +163,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public String getGreetings() {
-		return this.greetings;
+		return greetings;
 	}
 
 	public void setGreetings(String greetings) {
@@ -168,7 +171,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Timestamp getSchedulestarttime() {
-		return this.schedulestarttime;
+		return schedulestarttime;
 	}
 
 	public void setSchedulestarttime(Timestamp schedulestarttime) {
@@ -176,7 +179,7 @@ public class PrivilegeMemberVo extends BaseVo {
 	}
 
 	public Timestamp getScheduleendtime() {
-		return this.scheduleendtime;
+		return scheduleendtime;
 	}
 
 	public void setScheduleendtime(Timestamp scheduleendtime) {

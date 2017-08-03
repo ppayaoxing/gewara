@@ -1,28 +1,32 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class TheatreRoomSeatVo extends BaseVo implements Comparable<TheatreRoomSeatVo> {
+import com.gewara.api.vo.BaseVo;
+
+public class TheatreRoomSeatVo  extends BaseVo implements Comparable<TheatreRoomSeatVo>{
 	private static final long serialVersionUID = 2610922805158148972L;
 	public static final String INITSTATUS_CLOSE = "C";
 	public static final String INITSTATUS_OPEN = "O";
 	private Long id;
-	private Long roomid;
-	private Integer lineno;
-	private Integer rankno;
-	private String seatline;
-	private String seatrank;
-	private String loveInd;
-	private String initstatus;
-
+	private Long roomid;			//影厅ID
+	private Integer lineno;		//前起第几排,系统生成
+	private Integer rankno;		//左起第几列,系统生产
+	private String seatline;	//座位行号
+	private String seatrank;	//座位列号
+	private String loveInd;		//情侣座 0：普通座位 1：情侣座首座位标记 2：情侣座第二座位标记
+	private String initstatus;	//每次开放初始状态
+	
+	public TheatreRoomSeatVo() {
+	}
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getRoomid() {
-		return this.roomid;
+		return roomid;
 	}
 
 	public void setRoomid(Long roomid) {
@@ -30,7 +34,7 @@ public class TheatreRoomSeatVo extends BaseVo implements Comparable<TheatreRoomS
 	}
 
 	public Integer getLineno() {
-		return this.lineno;
+		return lineno;
 	}
 
 	public void setLineno(Integer lineno) {
@@ -38,7 +42,7 @@ public class TheatreRoomSeatVo extends BaseVo implements Comparable<TheatreRoomS
 	}
 
 	public Integer getRankno() {
-		return this.rankno;
+		return rankno;
 	}
 
 	public void setRankno(Integer rankno) {
@@ -52,9 +56,8 @@ public class TheatreRoomSeatVo extends BaseVo implements Comparable<TheatreRoomS
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getSeatline() {
-		return this.seatline;
+		return seatline;
 	}
 
 	public void setSeatline(String seatline) {
@@ -62,41 +65,36 @@ public class TheatreRoomSeatVo extends BaseVo implements Comparable<TheatreRoomS
 	}
 
 	public String getSeatrank() {
-		return this.seatrank;
+		return seatrank;
 	}
 
 	public void setSeatrank(String seatrank) {
 		this.seatrank = seatrank;
 	}
-
-	public String getSeatLabel() {
-		return this.seatline + "排" + this.seatrank + "座";
+	public String getSeatLabel(){
+		return seatline+"排"+seatrank+"座";
 	}
-
+	@Override
 	public int compareTo(TheatreRoomSeatVo o) {
-		return this.equals(o) ? 0
-				: (!this.roomid.equals(o.roomid) ? this.roomid.compareTo(o.roomid)
-						: o.lineno.intValue() * 100 + o.rankno.intValue() - this.lineno.intValue() * 100
-								- this.rankno.intValue());
+		if(this.equals(o)) return 0;
+		if(!roomid.equals(o.roomid)) return roomid.compareTo(o.roomid);
+		return o.lineno*100 + o.rankno - lineno*100 - rankno;
 	}
-
 	public String getLoveInd() {
-		return this.loveInd;
+		return loveInd;
 	}
-
 	public void setLoveInd(String loveInd) {
 		this.loveInd = loveInd;
 	}
-
 	public String getInitstatus() {
-		return this.initstatus;
+		return initstatus;
 	}
-
 	public void setInitstatus(String initstatus) {
 		this.initstatus = initstatus;
 	}
-
-	public String getPosition() {
-		return this.lineno + ":" + this.rankno;
+	
+	public String getPosition(){
+		return this.lineno+":" + this.rankno; 
 	}
+	
 }

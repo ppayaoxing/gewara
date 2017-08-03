@@ -1,31 +1,33 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ZeroGrabTicketVo extends BaseVo {
-	private static final long serialVersionUID = -3298655438669790832L;
-	private Long priceid;
-	private String flag;
-	private String title;
-	private Timestamp starttime;
-	private Timestamp endtime;
-	private Long dpid;
-	private Long dramaid;
-	private String status;
-	private Integer sortnum;
-	private String uniqueby;
-	private Timestamp addtime;
-	private Timestamp updatetime;
+import com.gewara.api.vo.BaseVo;
 
+public class ZeroGrabTicketVo extends BaseVo {
+
+	private static final long serialVersionUID = -3298655438669790832L;
+	private Long priceid;					//价格ID
+	private String flag;					//特殊标识抢票
+	private String title;					//说明
+	private Timestamp starttime;			//开始时间
+	private Timestamp endtime;				//结束时间
+	private Long dpid;						//场次ID
+	private Long dramaid;					//项目ID
+	private String status;					//状态
+	private Integer sortnum;				//每组抢票排序
+	private String uniqueby;				//使用什么限制唯一性
+	private Timestamp addtime;				//添加时间
+	private Timestamp updatetime;			//更新时间
+	
+	@Override
 	public Serializable realId() {
-		return this.priceid;
+		return priceid;
 	}
 
 	public Long getPriceid() {
-		return this.priceid;
+		return priceid;
 	}
 
 	public void setPriceid(Long priceid) {
@@ -33,7 +35,7 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public String getFlag() {
-		return this.flag;
+		return flag;
 	}
 
 	public void setFlag(String flag) {
@@ -41,7 +43,7 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -49,7 +51,7 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Timestamp starttime) {
@@ -57,7 +59,7 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -65,7 +67,7 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -73,7 +75,7 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -81,7 +83,7 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -89,7 +91,7 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public Integer getSortnum() {
-		return this.sortnum;
+		return sortnum;
 	}
 
 	public void setSortnum(Integer sortnum) {
@@ -97,7 +99,7 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public String getUniqueby() {
-		return this.uniqueby;
+		return uniqueby;
 	}
 
 	public void setUniqueby(String uniqueby) {
@@ -105,7 +107,7 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -113,10 +115,11 @@ public class ZeroGrabTicketVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
+
 }

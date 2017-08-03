@@ -1,89 +1,99 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.DateUtil;
-import com.gewara.util.JsonUtils;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
+
+import com.gewara.api.vo.BaseVo;
+import com.gewara.drama.constant.OdiConstant;
+import com.gewara.drama.constant.Status;
+import com.gewara.util.DateUtil;
+import com.gewara.util.JsonUtils;
 
 public class OpenDramaItemVo extends BaseVo {
 	private static final long serialVersionUID = 7088106495818025707L;
+
 	private Long id;
 	private Long dpid;
 	private Long dramaid;
 	private String dramaname;
-	private String name;
+	private String name; // 场次名称
 	private Long theatreid;
 	private String theatrename;
 	private Long roomid;
 	private String roomname;
-	private Timestamp playtime;
-	private Timestamp endtime;
+	private Timestamp playtime; // 演出时间
+	private Timestamp endtime; // 演出结束时间
 	private String language;
 	private String status;
-	private String partner;
-	private String checkSeat;
+	private String partner; // 合作伙伴开放状态：Y对外开放,N不对外开放
+	private String checkSeat; // 是否检查座位
 	private Timestamp opentime;
 	private Timestamp closetime;
-	private Timestamp updatetime;
-	private String opentype;
+	private Timestamp updatetime; // 更新时间
+	private String opentype; // 开放类型：选座，价格，
 	private String elecard;
-	private Integer minpoint;
-	private Integer maxpoint;
-	private Integer maxbuy;
-	private Integer msgMinute;
-	private Long topicid;
-	private String takemethod;
-	private String takeAddress;
-	private Integer remnantnum;
-	private String remnantnotice;
-	private String takemsg;
-	private String buylimit;
-	private String notifymsg1;
-	private String notifymsg2;
-	private String notifymsg3;
-	private String notifyRemark;
-	private String qrcodeRemark;
-	private String remark;
-	private String seatlink;
+
+	private Integer minpoint; // 使用积分下限
+	private Integer maxpoint; // 使用积分上限
+	private Integer maxbuy; // 购票限制
+	private Integer msgMinute; // 短信提前发送时间(分钟)
+
+	private Long topicid; // 取票帖子
+	private String takemethod; // 取票方式
+	private String takeAddress;		//取票地址
+	private Integer remnantnum;		//余票提醒限制数量
+	private String remnantnotice;	//余票提醒文案
+	private String takemsg; // 取票描述
+	private String buylimit; // 购买张数限制，1,2,3,4,5
+	private String notifymsg1; // 取票短信
+	private String notifymsg2; // 提前3小时提醒短信
+	private String notifymsg3; // 提前一天提醒短信
+	private String notifyRemark; // 取票短信(快递)
+	private String qrcodeRemark; 	//取票短信(二维码电子票)
+	private String remark; // 描述
+	private String seatlink; // 座位图链接
 	private String otherinfo;
 	private String spflag;
 	private String citycode;
-	private String expressid;
-	private String ticketfaceid;
+	private String expressid; // 配送方式id
+	private String ticketfaceid; // 票面信息
 	private String barcode;
-	private String period;
-	private String seller;
-	private String sellerseq;
+	private String period; // 是否固定时间
+	private String seller; // 第三方类型：GEWA,GPTBS
+	private String sellerseq; // 第三方场次编号
 	private String print;
-	private Integer sortnum;
-	private String saleCycle;
-	private String showtype;
-	private Integer eticketHour;
-	private Integer eticketWeekHour;
-	private String prepay;
-	private String crmflag;
-	private String crmMsg;
-	private String gypMsg;
-	private Integer seatnum;
-	private Integer asellnum;
-	private Integer gsellnum;
-	private Integer csellnum;
-	private Integer locknum;
+	private Integer sortnum; // 排序字段
+	private String saleCycle; // 预售周期
+	private String showtype; // 场次类型（普通，特惠）
+
+	private Integer eticketHour; // （A,E 默认电子票时间(小时))
+	private Integer eticketWeekHour; // （A,E 默认电子票时间周末(小时))
+	private String prepay; // 是否预售
+	private String crmflag; // 商户标识
+	private String crmMsg; // crm提示文字
+	private String gypMsg; // 公益票提示文字
+
+	private Integer seatnum; // 座位数量
+	private Integer asellnum; // allow 允许卖出数
+	private Integer gsellnum; // Gewa卖出数
+	private Integer csellnum; // 影院卖出
+	private Integer locknum; // Gewa锁定数
 	private Integer remainnum;
-	private String greetings;
+
+	private String greetings; // 是否支持文字票面功能(Y,N)
 	private String roomnum;
 	private String fieldlogo;
 	private String idcard;
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -91,7 +101,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Long getDpid() {
-		return this.dpid;
+		return dpid;
 	}
 
 	public void setDpid(Long dpid) {
@@ -99,7 +109,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -107,7 +117,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getDramaname() {
-		return this.dramaname;
+		return dramaname;
 	}
 
 	public void setDramaname(String dramaname) {
@@ -115,7 +125,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -123,7 +133,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Long getTheatreid() {
-		return this.theatreid;
+		return theatreid;
 	}
 
 	public void setTheatreid(Long theatreid) {
@@ -131,7 +141,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getTheatrename() {
-		return this.theatrename;
+		return theatrename;
 	}
 
 	public void setTheatrename(String theatrename) {
@@ -140,7 +150,7 @@ public class OpenDramaItemVo extends BaseVo {
 
 	@Deprecated
 	public Long getRoomid() {
-		return this.roomid;
+		return roomid;
 	}
 
 	public void setRoomid(Long roomid) {
@@ -148,7 +158,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getRoomname() {
-		return this.roomname;
+		return roomname;
 	}
 
 	public void setRoomname(String roomname) {
@@ -156,7 +166,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Timestamp getPlaytime() {
-		return this.playtime;
+		return playtime;
 	}
 
 	public void setPlaytime(Timestamp playtime) {
@@ -164,7 +174,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -172,7 +182,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getLanguage() {
-		return this.language;
+		return language;
 	}
 
 	public void setLanguage(String language) {
@@ -180,7 +190,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -188,7 +198,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Timestamp getOpentime() {
-		return this.opentime;
+		return opentime;
 	}
 
 	public void setOpentime(Timestamp opentime) {
@@ -196,7 +206,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Timestamp getClosetime() {
-		return this.closetime;
+		return closetime;
 	}
 
 	public void setClosetime(Timestamp closetime) {
@@ -204,7 +214,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -212,7 +222,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getOpentype() {
-		return this.opentype;
+		return opentype;
 	}
 
 	public void setOpentype(String opentype) {
@@ -220,7 +230,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getMinpoint() {
-		return this.minpoint;
+		return minpoint;
 	}
 
 	public void setMinpoint(Integer minpoint) {
@@ -228,7 +238,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getMaxpoint() {
-		return this.maxpoint;
+		return maxpoint;
 	}
 
 	public void setMaxpoint(Integer maxpoint) {
@@ -236,7 +246,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getMaxbuy() {
-		return this.maxbuy;
+		return maxbuy;
 	}
 
 	public void setMaxbuy(Integer maxbuy) {
@@ -244,7 +254,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getMsgMinute() {
-		return this.msgMinute;
+		return msgMinute;
 	}
 
 	public void setMsgMinute(Integer msgMinute) {
@@ -252,7 +262,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -260,7 +270,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getExpressid() {
-		return this.expressid;
+		return expressid;
 	}
 
 	public void setExpressid(String expressid) {
@@ -268,7 +278,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getTicketfaceid() {
-		return this.ticketfaceid;
+		return ticketfaceid;
 	}
 
 	public void setTicketfaceid(String ticketfaceid) {
@@ -276,7 +286,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getBarcode() {
-		return this.barcode;
+		return barcode;
 	}
 
 	public void setBarcode(String barcode) {
@@ -284,7 +294,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getPeriod() {
-		return this.period;
+		return period;
 	}
 
 	public void setPeriod(String period) {
@@ -292,7 +302,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getSeller() {
-		return this.seller;
+		return seller;
 	}
 
 	public void setSeller(String seller) {
@@ -300,7 +310,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getSellerseq() {
-		return this.sellerseq;
+		return sellerseq;
 	}
 
 	public void setSellerseq(String sellerseq) {
@@ -308,7 +318,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getPrint() {
-		return this.print;
+		return print;
 	}
 
 	public void setPrint(String print) {
@@ -316,7 +326,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getPartner() {
-		return this.partner;
+		return partner;
 	}
 
 	public void setPartner(String partner) {
@@ -324,7 +334,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getElecard() {
-		return this.elecard;
+		return elecard;
 	}
 
 	public void setElecard(String elecard) {
@@ -332,7 +342,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Long getTopicid() {
-		return this.topicid;
+		return topicid;
 	}
 
 	public void setTopicid(Long topicid) {
@@ -340,7 +350,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getTakemethod() {
-		return this.takemethod;
+		return takemethod;
 	}
 
 	public void setTakemethod(String takemethod) {
@@ -348,7 +358,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getTakemsg() {
-		return this.takemsg;
+		return takemsg;
 	}
 
 	public void setTakemsg(String takemsg) {
@@ -356,7 +366,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getBuylimit() {
-		return this.buylimit;
+		return buylimit;
 	}
 
 	public void setBuylimit(String buylimit) {
@@ -364,7 +374,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getNotifymsg1() {
-		return this.notifymsg1;
+		return notifymsg1;
 	}
 
 	public void setNotifymsg1(String notifymsg1) {
@@ -372,7 +382,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getNotifymsg2() {
-		return this.notifymsg2;
+		return notifymsg2;
 	}
 
 	public void setNotifymsg2(String notifymsg2) {
@@ -380,7 +390,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getNotifymsg3() {
-		return this.notifymsg3;
+		return notifymsg3;
 	}
 
 	public void setNotifymsg3(String notifymsg3) {
@@ -388,15 +398,15 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getNotifyRemark() {
-		return this.notifyRemark;
+		return notifyRemark;
 	}
 
 	public void setNotifyRemark(String notifyRemark) {
 		this.notifyRemark = notifyRemark;
 	}
-
+	
 	public String getQrcodeRemark() {
-		return this.qrcodeRemark;
+		return qrcodeRemark;
 	}
 
 	public void setQrcodeRemark(String qrcodeRemark) {
@@ -404,7 +414,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -412,7 +422,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getSeatlink() {
-		return this.seatlink;
+		return seatlink;
 	}
 
 	public void setSeatlink(String seatlink) {
@@ -420,7 +430,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -428,7 +438,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getSpflag() {
-		return this.spflag;
+		return spflag;
 	}
 
 	public void setSpflag(String spflag) {
@@ -436,7 +446,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getSortnum() {
-		return this.sortnum;
+		return sortnum;
 	}
 
 	public void setSortnum(Integer sortnum) {
@@ -444,7 +454,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getSaleCycle() {
-		return this.saleCycle;
+		return saleCycle;
 	}
 
 	public void setSaleCycle(String saleCycle) {
@@ -452,7 +462,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getShowtype() {
-		return this.showtype;
+		return showtype;
 	}
 
 	public void setShowtype(String showtype) {
@@ -460,7 +470,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getSeatnum() {
-		return this.seatnum;
+		return seatnum;
 	}
 
 	public void setSeatnum(Integer seatnum) {
@@ -468,7 +478,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getAsellnum() {
-		return this.asellnum;
+		return asellnum;
 	}
 
 	public void setAsellnum(Integer asellnum) {
@@ -476,7 +486,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getGsellnum() {
-		return this.gsellnum;
+		return gsellnum;
 	}
 
 	public void setGsellnum(Integer gsellnum) {
@@ -484,7 +494,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getCsellnum() {
-		return this.csellnum;
+		return csellnum;
 	}
 
 	public void setCsellnum(Integer csellnum) {
@@ -492,7 +502,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getLocknum() {
-		return this.locknum;
+		return locknum;
 	}
 
 	public void setLocknum(Integer locknum) {
@@ -500,7 +510,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getEticketHour() {
-		return this.eticketHour;
+		return eticketHour;
 	}
 
 	public void setEticketHour(Integer eticketHour) {
@@ -508,7 +518,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getEticketWeekHour() {
-		return this.eticketWeekHour;
+		return eticketWeekHour;
 	}
 
 	public void setEticketWeekHour(Integer eticketWeekHour) {
@@ -516,7 +526,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getPrepay() {
-		return this.prepay;
+		return prepay;
 	}
 
 	public void setPrepay(String prepay) {
@@ -532,90 +542,96 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public boolean hasPeriod(String perod) {
-		return StringUtils.isBlank(perod) ? false : StringUtils.equals(this.period, perod);
+		if (StringUtils.isBlank(perod))
+			return false;
+		return StringUtils.equals(this.period, perod);
 	}
 
 	public boolean hasUnOpenToGewa() {
-		return StringUtils.contains(this.otherinfo, "unopengewa");
+		return StringUtils.contains(otherinfo, OdiConstant.UNOPENGEWA);
 	}
 
 	public boolean hasUnShowToGewa() {
-		return this.hasOnlyUnShowToGewa() || this.hasUnOpenToGewa();
+		return hasOnlyUnShowToGewa() || hasUnOpenToGewa();
 	}
 
 	public boolean hasUnOpenToSpecial() {
-		return StringUtils.equals(this.otherinfo, "unopenspecial");
+		return StringUtils.equals(otherinfo, OdiConstant.UNOPENSPECIAL);
 	}
 
 	public boolean hasOnlyUnShowToGewa() {
-		return StringUtils.contains(this.otherinfo, "unshowgewa");
+		return StringUtils.contains(otherinfo, OdiConstant.UNSHOWGEWA);
 	}
 
 	public boolean hasOpenToApp() {
-		return StringUtils.equals(JsonUtils.getJsonValueByKey(this.otherinfo, "odioption"), "app");
+		return StringUtils.equals(JsonUtils.getJsonValueByKey(otherinfo, OdiConstant.ODIOPTION), OdiConstant.OPENTOAPP);
 	}
 
 	public boolean hasOpenToWap() {
-		return StringUtils.equals(JsonUtils.getJsonValueByKey(this.otherinfo, "odioption"), "wap");
+		return StringUtils.equals(JsonUtils.getJsonValueByKey(otherinfo, OdiConstant.ODIOPTION), OdiConstant.OPENTOWAP);
 	}
 
 	public String gainItemName() {
-		return this.hasPeriod("Y") ? DateUtil.format(this.playtime, "M月d日 HH:mm") : this.name;
+		if (hasPeriod(OdiConstant.STATUS_BOOK)) {
+			return DateUtil.format(this.playtime, "M月d日 HH:mm");
+		}
+		return this.name;
 	}
 
 	public boolean hasBooking() {
-		return StringUtils.equals(this.status, "Y") && !this.hasClosed() && this.hasOpen() && !this.hasExpired();
+		return StringUtils.equals(status, OdiConstant.STATUS_BOOK) && !hasClosed() && hasOpen() && !hasExpired();
 	}
 
 	public boolean isPartnerBooking() {
-		return StringUtils.contains(this.status, "Y") && !this.hasClosed() && this.hasOpen() && !this.hasExpired()
-				&& this.hasOpenPartner();
+		return StringUtils.contains(status, OdiConstant.STATUS_BOOK) && !hasClosed() && hasOpen() && !hasExpired() && hasOpenPartner();
 	}
 
 	public boolean hasExpired() {
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
-		return this.playtime != null && this.endtime != null
-				? this.playtime.before(cur) && StringUtils.equals(this.period, "Y")
-						|| this.endtime.before(cur) && StringUtils.equals(this.period, "N")
-						|| StringUtils.equals(this.status, "D")
-				: true;
+		if (playtime == null || endtime == null) {
+			return true;
+		}
+		return playtime.before(cur) && StringUtils.equals(this.period, Status.Y) || endtime.before(cur) && StringUtils.equals(this.period, Status.N)
+						|| StringUtils.equals(this.status, Status.DEL);
 	}
 
 	public boolean hasSeller(String sell) {
-		return StringUtils.isBlank(sell) ? false : StringUtils.equals(this.seller, sell);
+		if (StringUtils.isBlank(sell))
+			return false;
+		return StringUtils.equals(this.seller, sell);
 	}
 
 	public boolean hasOpen() {
-		return this.opentime == null ? false : this.opentime.before(new Timestamp(System.currentTimeMillis()));
+		if (opentime == null)
+			return false;
+		return opentime.before(new Timestamp(System.currentTimeMillis()));
 	}
 
 	public boolean hasClosed() {
-		if (this.closetime == null) {
+		if (closetime == null)
 			return false;
-		} else {
-			Timestamp cur = new Timestamp(System.currentTimeMillis());
-			return cur.after(this.closetime);
-		}
+		Timestamp cur = new Timestamp(System.currentTimeMillis());
+		return cur.after(closetime);
 	}
 
 	public boolean hasOpenseat() {
-		return "seat".equals(this.opentype);
+		return OdiConstant.OPEN_TYPE_SEAT.equals(this.opentype);
 	}
 
 	public boolean hasOpenprice() {
-		return "price".equals(this.opentype);
+		return OdiConstant.OPEN_TYPE_PRICE.equals(this.opentype);
 	}
 
 	public boolean hasOpenPartner() {
-		return StringUtils.equals(this.partner, "Y");
+		return StringUtils.equals(partner, Status.Y);
 	}
 
 	public boolean hasGewa() {
-		return StringUtils.equals("GEWA", this.seller);
+		return StringUtils.equals(OdiConstant.PARTNER_GEWA, seller);
 	}
 
 	public boolean hasOpenPointPay() {
-		return this.maxpoint != null && this.maxpoint.intValue() > 0;
+		return maxpoint != null && maxpoint > 0;
 	}
 
 	public boolean hasOpenCardPay() {
@@ -627,11 +643,11 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public boolean hasDiscount() {
-		return this.hasOpenPointPay() || this.hasDisCountPay() || this.hasOpenCardPay();
+		return hasOpenPointPay() || hasDisCountPay() || hasOpenCardPay();
 	}
 
 	public String getGreetings() {
-		return this.greetings;
+		return greetings;
 	}
 
 	public void setGreetings(String greetings) {
@@ -639,7 +655,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getCheckSeat() {
-		return this.checkSeat;
+		return checkSeat;
 	}
 
 	public void setCheckSeat(String checkSeat) {
@@ -647,7 +663,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getCrmflag() {
-		return this.crmflag;
+		return crmflag;
 	}
 
 	public void setCrmflag(String crmflag) {
@@ -655,7 +671,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getCrmMsg() {
-		return this.crmMsg;
+		return crmMsg;
 	}
 
 	public void setCrmMsg(String crmMsg) {
@@ -663,7 +679,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getGypMsg() {
-		return this.gypMsg;
+		return gypMsg;
 	}
 
 	public void setGypMsg(String gypMsg) {
@@ -671,7 +687,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getRoomnum() {
-		return this.roomnum;
+		return roomnum;
 	}
 
 	public void setRoomnum(String roomnum) {
@@ -679,7 +695,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getFieldlogo() {
-		return this.fieldlogo;
+		return fieldlogo;
 	}
 
 	public void setFieldlogo(String fieldlogo) {
@@ -687,7 +703,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getIdcard() {
-		return this.idcard;
+		return idcard;
 	}
 
 	public void setIdcard(String idcard) {
@@ -695,7 +711,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getTakeAddress() {
-		return this.takeAddress;
+		return takeAddress;
 	}
 
 	public void setTakeAddress(String takeAddress) {
@@ -703,7 +719,7 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public Integer getRemnantnum() {
-		return this.remnantnum;
+		return remnantnum;
 	}
 
 	public void setRemnantnum(Integer remnantnum) {
@@ -711,10 +727,11 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public String getRemnantnotice() {
-		return this.remnantnotice;
+		return remnantnotice;
 	}
 
 	public void setRemnantnotice(String remnantnotice) {
 		this.remnantnotice = remnantnotice;
 	}
+
 }

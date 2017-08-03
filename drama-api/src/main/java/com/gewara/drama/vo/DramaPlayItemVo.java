@@ -1,12 +1,15 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+import com.gewara.drama.constant.OdiConstant;
+
 public class DramaPlayItemVo extends BaseVo {
+
 	private static final long serialVersionUID = -7865966237027417724L;
 	public static final String STATUS_Y = "Y";
 	public static final String STATUS_N = "N";
@@ -19,34 +22,35 @@ public class DramaPlayItemVo extends BaseVo {
 	private Long roomid;
 	private String roomname;
 	private Timestamp addtime;
-	private Timestamp playtime;
-	private Timestamp endtime;
-	private String language;
-	private String status;
-	private String partner;
-	private Long dramaStarId;
-	private String citycode;
-	private Long batch;
-	private String opentype;
-	private String period;
-	private String seller;
-	private String sellerseq;
-	private Integer sortnum;
-	private String openStatus;
-	private String showtype;
-	private String crmflag;
+	private Timestamp playtime; // 演出时间
+	private Timestamp endtime; // 演出结束时间
+	private String language; //
+	private String status; // 是否有效
+	private String partner; // 是否对外开放
+	private Long dramaStarId; //
+	private String citycode; // 城市编码
+	private Long batch; // 批次标识
+	private String opentype; // 开放类型：选座，价格
+	private String period; // 是否固定时间
+	private String seller; // 类型：GEWA,GPTBS
+	private String sellerseq; // 场次ID(showItem-->siseq)
+	private Integer sortnum; // 排序字段
+	private String openStatus; // 是否开放
+	private String showtype; // 场次类型（普通，特惠）
+	private String crmflag; // 商户标识
 	private String roomnum;
 	private String takemethod;
 	private Integer maxbuy;
 	private String fieldlogo;
 	private String idcard;
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -54,7 +58,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -62,7 +66,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -70,7 +74,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public Long getTheatreid() {
-		return this.theatreid;
+		return theatreid;
 	}
 
 	public void setTheatreid(Long theatreid) {
@@ -78,7 +82,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getDramaname() {
-		return this.dramaname;
+		return dramaname;
 	}
 
 	public void setDramaname(String dramaname) {
@@ -86,7 +90,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getTheatrename() {
-		return this.theatrename;
+		return theatrename;
 	}
 
 	public void setTheatrename(String theatrename) {
@@ -95,7 +99,7 @@ public class DramaPlayItemVo extends BaseVo {
 
 	@Deprecated
 	public Long getRoomid() {
-		return this.roomid;
+		return roomid;
 	}
 
 	public void setRoomid(Long roomid) {
@@ -103,7 +107,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getRoomname() {
-		return this.roomname;
+		return roomname;
 	}
 
 	public void setRoomname(String roomname) {
@@ -111,7 +115,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -119,7 +123,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public Timestamp getPlaytime() {
-		return this.playtime;
+		return playtime;
 	}
 
 	public void setPlaytime(Timestamp playtime) {
@@ -127,7 +131,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -135,7 +139,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getLanguage() {
-		return this.language;
+		return language;
 	}
 
 	public void setLanguage(String language) {
@@ -143,7 +147,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -151,7 +155,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getPartner() {
-		return this.partner;
+		return partner;
 	}
 
 	public void setPartner(String partner) {
@@ -159,7 +163,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public Long getDramaStarId() {
-		return this.dramaStarId;
+		return dramaStarId;
 	}
 
 	public void setDramaStarId(Long dramaStarId) {
@@ -167,7 +171,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -175,7 +179,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public Long getBatch() {
-		return this.batch;
+		return batch;
 	}
 
 	public void setBatch(Long batch) {
@@ -183,7 +187,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getOpentype() {
-		return this.opentype;
+		return opentype;
 	}
 
 	public void setOpentype(String opentype) {
@@ -191,7 +195,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getPeriod() {
-		return this.period;
+		return period;
 	}
 
 	public void setPeriod(String period) {
@@ -199,7 +203,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getSeller() {
-		return this.seller;
+		return seller;
 	}
 
 	public void setSeller(String seller) {
@@ -207,7 +211,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getSellerseq() {
-		return this.sellerseq;
+		return sellerseq;
 	}
 
 	public void setSellerseq(String sellerseq) {
@@ -215,7 +219,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public Integer getSortnum() {
-		return this.sortnum;
+		return sortnum;
 	}
 
 	public void setSortnum(Integer sortnum) {
@@ -223,7 +227,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getOpenStatus() {
-		return this.openStatus;
+		return openStatus;
 	}
 
 	public void setOpenStatus(String openStatus) {
@@ -231,7 +235,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getShowtype() {
-		return this.showtype;
+		return showtype;
 	}
 
 	public void setShowtype(String showtype) {
@@ -239,15 +243,19 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public boolean hasPeriod(String perid) {
-		return StringUtils.isBlank(perid) ? false : StringUtils.equals(this.period, perid);
+		if (StringUtils.isBlank(perid))
+			return false;
+		return StringUtils.equals(this.period, perid);
 	}
 
 	public boolean hasSeller(String sell) {
-		return StringUtils.isBlank(sell) ? false : StringUtils.equals(this.seller, sell);
+		if (StringUtils.isBlank(sell))
+			return false;
+		return StringUtils.equals(this.seller, sell);
 	}
 
 	public String getCrmflag() {
-		return this.crmflag;
+		return crmflag;
 	}
 
 	public void setCrmflag(String crmflag) {
@@ -255,7 +263,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getRoomnum() {
-		return this.roomnum;
+		return roomnum;
 	}
 
 	public void setRoomnum(String roomnum) {
@@ -263,7 +271,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getTakemethod() {
-		return this.takemethod;
+		return takemethod;
 	}
 
 	public void setTakemethod(String takemethod) {
@@ -271,7 +279,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public Integer getMaxbuy() {
-		return this.maxbuy;
+		return maxbuy;
 	}
 
 	public void setMaxbuy(Integer maxbuy) {
@@ -279,7 +287,7 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public String getFieldlogo() {
-		return this.fieldlogo;
+		return fieldlogo;
 	}
 
 	public void setFieldlogo(String fieldlogo) {
@@ -287,22 +295,23 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public boolean hasGewa() {
-		return StringUtils.equals(this.seller, "GEWA");
+		return StringUtils.equals(this.seller, OdiConstant.PARTNER_GEWA);
 	}
 
 	public boolean hasOpenseat() {
-		return "seat".equals(this.opentype);
+		return OdiConstant.OPEN_TYPE_SEAT.equals(this.opentype);
 	}
 
 	public boolean hasOpenprice() {
-		return "price".equals(this.opentype);
+		return OdiConstant.OPEN_TYPE_PRICE.equals(this.opentype);
 	}
 
 	public String getIdcard() {
-		return this.idcard;
+		return idcard;
 	}
 
 	public void setIdcard(String idcard) {
 		this.idcard = idcard;
 	}
+
 }

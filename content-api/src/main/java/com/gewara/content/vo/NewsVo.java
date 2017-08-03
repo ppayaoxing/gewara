@@ -1,18 +1,23 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.content.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
-public class NewsVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28下午02:05:17
+ */
+public class NewsVo extends BaseVo{
 	private static final long serialVersionUID = 4914995483381697551L;
 	private Long id;
-	private String tag;
+	private String tag;//类型标签
 	private String title;
 	private String secondtitle;
-	private String summary;
+	private String summary; //摘要
 	private String logo;
 	private String smallLogo;
 	private String tplLogo;
@@ -23,24 +28,23 @@ public class NewsVo extends BaseVo {
 	private Timestamp releasetime;
 	private Timestamp updatetime;
 	private Timestamp addtime;
-	private Long relatedid;
+	private Long relatedid;//关联对象
 	private String category;
-	private String linksource;
+	private String linksource; //来源地
 	private String countycode;
-	private String newslabel;
+	private String newslabel;	//手动设置标签
 	private String author;
 	private Long categoryid;
 	private String citycode;
-	private Integer pagesize;
-	private Integer clickedtimes = Integer.valueOf(0);
+	private Integer pagesize; 
+	private Integer clickedtimes = 0;
 	private String otherinfo;
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Long getCategoryid() {
-		return this.categoryid;
+		return categoryid;
 	}
 
 	public void setCategoryid(Long categoryid) {
@@ -48,7 +52,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getAuthor() {
-		return this.author;
+		return author;
 	}
 
 	public void setAuthor(String author) {
@@ -56,7 +60,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getNewslabel() {
-		return this.newslabel;
+		return newslabel;
 	}
 
 	public void setNewslabel(String newslabel) {
@@ -64,15 +68,17 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getCountycode() {
-		return this.countycode;
+		return countycode;
 	}
 
 	public void setCountycode(String countycode) {
 		this.countycode = countycode;
 	}
+	
+	public NewsVo() {}
 
 	public Integer getPagesize() {
-		return this.pagesize;
+		return pagesize;
 	}
 
 	public void setPagesize(Integer pagesize) {
@@ -80,9 +86,8 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
-
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
@@ -96,7 +101,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getRelatedlink() {
-		return this.relatedlink;
+		return relatedlink;
 	}
 
 	public void setRelatedlink(String relatedlink) {
@@ -104,15 +109,14 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
 		this.content = content;
 	}
-
 	public String getSecondtitle() {
-		return this.secondtitle;
+		return secondtitle;
 	}
 
 	public void setSecondtitle(String secondtitle) {
@@ -120,7 +124,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -128,7 +132,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -136,29 +140,24 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getLogo() {
-		if (StringUtils.isBlank(this.logo))
-			return "img/default_logo.png";
-		return this.logo;
+		if(StringUtils.isBlank(logo)) return "img/default_logo.png";
+		return logo;
 	}
-
 	public String getLimg() {
-		if (StringUtils.isBlank(this.logo))
-			return "img/default_head.png";
-		return this.logo;
+		if(StringUtils.isBlank(logo)) return "img/default_head.png";
+		return logo;
 	}
-
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
 
 	public String getSmallLogo() {
-		return this.smallLogo;
+		return smallLogo;
 	}
-
-	public String getSimg() {
-		if (StringUtils.isBlank(this.smallLogo))
-			return "img/default_logo.png";
-		return this.smallLogo;
+	
+	public String getSimg(){
+		if(StringUtils.isBlank(smallLogo)) return "img/default_logo.png";
+		return smallLogo;
 	}
 
 	public void setSmallLogo(String smallLogo) {
@@ -166,7 +165,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getNewstype() {
-		return this.newstype;
+		return newstype;
 	}
 
 	public void setNewstype(String newstype) {
@@ -174,21 +173,19 @@ public class NewsVo extends BaseVo {
 	}
 
 	public Timestamp getReleasetime() {
-		return this.releasetime;
+		return releasetime;
 	}
 
 	public void setReleasetime(Timestamp releasetime) {
 		this.releasetime = releasetime;
 	}
-
-	public String getLink(String basePath) {
-		if (StringUtils.isNotBlank(this.relatedlink))
-			return this.relatedlink;
-		return basePath + "news/" + this.id;
+	public String getLink(String basePath){
+		if(StringUtils.isNotBlank(this.relatedlink)) return this.relatedlink;
+		else return basePath + "news/" + this.id;
 	}
 
 	public String getSummary() {
-		return this.summary;
+		return summary;
 	}
 
 	public void setSummary(String summary) {
@@ -196,7 +193,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -204,7 +201,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getCategory() {
-		return this.category;
+		return category;
 	}
 
 	public void setCategory(String category) {
@@ -212,7 +209,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getFlag() {
-		return this.flag;
+		return flag;
 	}
 
 	public void setFlag(String flag) {
@@ -220,27 +217,25 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getLinksource() {
-		return this.linksource;
+		return linksource;
 	}
 
 	public void setLinksource(String linksource) {
 		this.linksource = linksource;
 	}
-
 	public String getCname() {
 		return this.title;
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public String getTplLogo() {
-		return this.tplLogo;
+		return tplLogo;
 	}
 
 	public void setTplLogo(String tplLogo) {
@@ -248,7 +243,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -256,7 +251,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public Integer getClickedtimes() {
-		return this.clickedtimes;
+		return clickedtimes;
 	}
 
 	public void setClickedtimes(Integer clickedtimes) {
@@ -264,7 +259,7 @@ public class NewsVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {

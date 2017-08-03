@@ -1,16 +1,36 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.drama.dubbo;
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.drama.vo.DramaVo;
-import java.util.List;
 
 public interface DramaOdiVoService {
-	ResultCode<Integer> getDramaCountByCitycode(String arg0);
 
-	ResultCode<List<DramaVo>> getDramaListByCitycode(String arg0, int arg1, int arg2);
-
-	ResultCode<List<Long>> getDramaIdListByCitycode(String arg0, String arg1);
-
-	ResultCode<List<DramaVo>> getDramaListByTheatreid(Long arg0, int arg1, int arg2);
+	/**
+	 * 城市可购票演出项目数
+	 * @param citycode
+	 * @return
+	 */
+	ResultCode<Integer> getDramaCountByCitycode(String citycode);
+	
+	/**
+	 * 
+	 * @param citycode
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<DramaVo>> getDramaListByCitycode(String citycode, int from, int maxnum);
+	
+	ResultCode<List<Long>> getDramaIdListByCitycode(String citycode, String opentype);
+	
+	/**
+	 * 场馆编号查询可购票项目
+	 * @param theatreid
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<DramaVo>> getDramaListByTheatreid(Long theatreid, int from, int maxnum);
 }
