@@ -71,7 +71,7 @@ public class LoginServiceImpl implements LoginService{
 		}else{
 			loginResult.put("msg", result.getMsg());
 		}
-		return ErrorCode.getFailureReturn(loginResult);     
+		return ErrorCode.getFailureReturn(loginResult);
 	}
 	protected ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, Authentication auth){
 		Map errorMap = Maps.newHashMap();

@@ -44,7 +44,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 	
 	@Autowired@Qualifier("authenticationManager")
 	protected ProviderManager authenticationManager;
-	@Autowired
+	@Autowired@Qualifier("config")
 	protected Config config;
 	protected int defaultDuration = 60 * 60 * 12;
 	protected boolean enableRememberMe = false;
