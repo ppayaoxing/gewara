@@ -30,7 +30,7 @@ public class ShLoginServiceImpl extends LoginServiceImpl implements ShLoginServi
 		if(StringUtils.isBlank(username) || StringUtils.isBlank(password)) return ErrorCode.getFailure("用户名密码必填！");
 		Authentication auth = new UsernamePasswordAuthenticationToken(username, password);
 		aclService.setLogonType("member");
-		return autoLogin(request, response, auth);
+		return super.autoLogin(request, response, auth);
 	}
 	@Override
 	public ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, OpenMember openMember){
@@ -68,8 +68,8 @@ public class ShLoginServiceImpl extends LoginServiceImpl implements ShLoginServi
 		}
 	}
 	
-	@Override
-	public boolean isGewaraUserLogon(String sessid) {
-		return cacheService.get(CacheService.REGION_LOGINKEY, LoginUtils.getTimeoutKey(sessid)) != null;
-	}
+//	@Override
+//	public boolean isGewaraUserLogon(String sessid) {
+//		return cacheService.get(CacheService.REGION_LOGINKEY, LoginUtils.getTimeoutKey(sessid)) != null;
+//	}
 }

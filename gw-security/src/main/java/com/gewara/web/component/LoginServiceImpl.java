@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -73,7 +74,7 @@ public class LoginServiceImpl implements LoginService{
 		return ErrorCode.getFailureReturn(loginResult);
 	}
 	protected ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, Authentication auth){
-		Map errorMap = new HashMap();
+		Map errorMap = Maps.newHashMap();
 		try{
 			auth = authenticationManager.authenticate(auth);
 			if(auth.isAuthenticated()){
@@ -118,7 +119,7 @@ public class LoginServiceImpl implements LoginService{
 		CachedAuthentication ca =  (CachedAuthentication) cacheService.get(CacheService.REGION_LOGINAUTH, ukey);
 		if(ca!=null) {
 			if(!StringUtils.contains(ca.getIp(), ip)) {//IP±ä¸ü
-				Map entry = new HashMap();
+				Map entry = Maps.newHashMap();
 				entry.put("oldip", ca.getIp());
 				entry.put("newip", ip);
 				entry.put("errortype", LoginUtils.ERROR_IPCHANGE);

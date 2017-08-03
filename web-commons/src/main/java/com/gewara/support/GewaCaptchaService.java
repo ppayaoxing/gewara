@@ -1,9 +1,10 @@
 package com.gewara.support;
 
-import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.gewara.untrans.CacheService;
+import com.gewara.untrans.monitor.MonitorService;
+import com.gewara.util.GewaLogger;
+import com.gewara.util.StringUtil;
+import com.gewara.util.WebLogger;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.RandomUtils;
@@ -13,11 +14,9 @@ import org.patchca.service.Captcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.gewara.untrans.CacheService;
-import com.gewara.untrans.monitor.MonitorService;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.StringUtil;
-import com.gewara.util.WebLogger;
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GewaCaptchaService {
 	protected final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
@@ -104,7 +103,7 @@ public class GewaCaptchaService {
 			}
 			return ErrorCode.SUCCESS;
 		}else{
-			Map<String, String> entry = new HashMap<>();
+			Map<String, String> entry = Maps.newHashMap();
 			entry.put("errtype", "captcha");
 			entry.put("captchaId", captchaId);
 			entry.put("response", captcha);
@@ -114,7 +113,7 @@ public class GewaCaptchaService {
 		
 	}
 	private Map<String, String> getLogEntry(String captchaId, String captchaText, String response, String msg){
-		Map<String, String> entry = new HashMap<>();
+		Map<String, String> entry = Maps.newHashMap();
 		entry.put("errtype", "captcha");
 		entry.put("captchaId", captchaId);
 		entry.put("captchaText", captchaText);
