@@ -124,9 +124,4 @@ public abstract class WebUtils extends BaseWebUtils{
 		String result = ip + ":" + port;
 		return result;
 	}
-
-	public static boolean isAjaxRequest(HttpServletRequest request) {
-		boolean result = StringUtils.isNotBlank(request.getHeader("X-Requested-With"));
-		return result;
-	}
 }
