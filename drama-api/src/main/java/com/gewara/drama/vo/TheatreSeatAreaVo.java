@@ -8,42 +8,38 @@ import org.apache.commons.lang.StringUtils;
 import com.gewara.api.vo.BaseVo;
 
 public class TheatreSeatAreaVo extends BaseVo {
-
 	private static final long serialVersionUID = -7924268455854109433L;
-	private Long id;					//
-	private Long dpid;					//场次ID
-	private Long theatreid;			
+	private Long id; //
+	private Long dpid; // 场次ID
+	private Long theatreid;
 	private Long dramaid;
-	private String areaname;			//区域名称
-	private String enname;				//
-	private String seller;				//类型:对应DramaPlayItem seller
-	private String sellerseq;			//区域编号（ShowArea-->saseqNo）
-	
-	private String fieldnum;			//场地序号
-	private String roomnum;				//区域序号
-	
-	private String description;			//区域描述
-	private String standing;			//是否站票
-	private Integer total;				//站票/座位总量
-	private Integer limitnum;			//限制数
-	private Integer firstline;			//起始行
-	private Integer firstrank;			//起始列
-	private Integer linenum;			//表格宽度
-	private Integer ranknum;			//表格高度
-	private String hotzone;				//座标值
-	private String mobilehotzone;			//坐标值
-	private String status;				//状态：可用、删除
-	private String seatmap;				//座位图
-	private Timestamp addtime;			
-	private Timestamp updatetime;		
-	
-	private Integer gsellnum;			//Gewa卖出数
-	private Integer csellnum;			//场馆卖出数
-	private Integer locknum;			//Gewa锁定数
+	private String areaname; // 区域名称
+	private String enname; //
+	private String seller; // 类型:对应DramaPlayItem seller
+	private String sellerseq; // 区域编号（ShowArea-->saseqNo）
+	private String fieldnum; // 场地序号
+	private String roomnum; // 区域序号
+	private String description; // 区域描述
+	private String standing; // 是否站票
+	private Integer total; // 站票/座位总量
+	private Integer limitnum; // 限制数
+	private Integer firstline; // 起始行
+	private Integer firstrank; // 起始列
+	private Integer linenum; // 表格宽度
+	private Integer ranknum; // 表格高度
+	private String hotzone; // 座标值
+	private String mobilehotzone; // 坐标值
+	private String status; // 状态：可用、删除
+	private String seatmap; // 座位图
+	private Timestamp addtime;
+	private Timestamp updatetime;
+	private Integer gsellnum; // Gewa卖出数
+	private Integer csellnum; // 场馆卖出数
+	private Integer locknum; // Gewa锁定数
 	private Integer remainnum;
 	private String svgpath;
 	private String otherinfo;
-	
+
 	@Override
 	public Serializable realId() {
 		return id;
@@ -273,24 +269,27 @@ public class TheatreSeatAreaVo extends BaseVo {
 		this.otherinfo = otherinfo;
 	}
 
-	public boolean hasStatus(String stats){
-		if(StringUtils.isBlank(stats)) return false;
+	public boolean hasStatus(String stats) {
+		if (StringUtils.isBlank(stats))
+			return false;
 		return StringUtils.equals(this.status, stats);
 	}
-	public boolean hasSeller(String sell){
-		if(StringUtils.isBlank(sell)) return false;
+
+	public boolean hasSeller(String sell) {
+		if (StringUtils.isBlank(sell))
+			return false;
 		return StringUtils.equals(this.seller, sell);
 	}
-	
-	public Integer getRemainnum(){
+
+	public Integer getRemainnum() {
 		return this.remainnum;
 	}
 
 	public void setRemainnum(Integer remainnum) {
 		this.remainnum = remainnum;
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return this.areaname;
 	}
 
@@ -301,5 +300,5 @@ public class TheatreSeatAreaVo extends BaseVo {
 	public void setSvgpath(String svgpath) {
 		this.svgpath = svgpath;
 	}
-	
+
 }
