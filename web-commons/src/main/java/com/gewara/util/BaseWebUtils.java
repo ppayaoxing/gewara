@@ -26,47 +26,55 @@ import org.apache.commons.lang.StringUtils;
 
 public abstract class BaseWebUtils {
 	protected final static transient GewaLogger dbLogger = WebLogger.getLogger(BaseWebUtils.class);
-	public String checkScript(HttpServletRequest request){
+
+	public String checkScript(HttpServletRequest request) {
 		String match = "onclick|onfocus|onblur|onload|onerror";
-		for(String[] v: request.getParameterMap().values()){
-			for(String value: v){
+		for (String[] v : request.getParameterMap().values()) {
+			for (String value : v) {
 				String script = StringUtil.findFirstByRegex(value, match);
-				if(StringUtils.isNotBlank(script)){
+				if (StringUtils.isNotBlank(script)) {
 					return script;
 				}
 			}
 		}
 		return "";
 	}
+
 	public static final String getRemoteIp(HttpServletRequest request) {
 		String xfwd = request.getHeader("X-Forwarded-For");
 		String result = getRemoteIpFromXfwd(xfwd);
-		if(StringUtils.isNotBlank(result)){
+		if (StringUtils.isNotBlank(result)) {
 			return result;
 		}
 		return request.getRemoteAddr();
 	}
-	public static final String getRemoteIpFromXfwd(String xfwd){
+
+	public static final boolean isLocalIp(String ip) {
+		return GewaIpConfig.isLocalIp(ip);
+	}
+
+	public static final String getRemoteIpFromXfwd(String xfwd) {
 		String gewaip = null;
 		if (StringUtils.isNotBlank(xfwd)) {
 			String[] ipList = xfwd.split(",");
-			for(int i=ipList.length -1; i>=0; i--){
+			for (int i = ipList.length - 1; i >= 0; i--) {
 				String ip = ipList[i];
 				ip = StringUtils.trim(ip);
-				if(GewaIpConfig.isGewaServerIp(ip)){
+				if (GewaIpConfig.isGewaServerIp(ip)) {
 					gewaip = ip;
-				}else if (!ip.equals("127.0.0.1") && !ip.equals("localhost")){
+				} else if (!ip.equals("127.0.0.1") && !ip.equals("localhost")) {
 					return ip;
 				}
 			}
 		}
-		return gewaip; 
+		return gewaip;
 	}
 
 	public static final boolean isLocalRequest(HttpServletRequest request) {
 		String ip = getRemoteIp(request);
 		return GewaIpConfig.isLocalIp(ip);
 	}
+
 	public static final void writeJsonResponse(HttpServletResponse res, boolean success, String retval) {
 		res.setContentType("application/json;charset=utf-8");
 		res.setCharacterEncoding("utf-8");
@@ -74,9 +82,9 @@ public abstract class BaseWebUtils {
 			PrintWriter writer = res.getWriter();
 			Map jsonMap = new HashMap();
 			jsonMap.put("success", success);
-			if(!success){
+			if (!success) {
 				jsonMap.put("msg", retval);
-			}else{
+			} else {
 				jsonMap.put("retval", retval);
 			}
 			writer.write("var data=" + JsonUtils.writeObjectToJson(jsonMap));
@@ -97,7 +105,7 @@ public abstract class BaseWebUtils {
 	}
 
 	public static final String getHeaderStr(HttpServletRequest request) {
-		return ""+getHeaderMap(request);
+		return "" + getHeaderMap(request);
 	}
 
 	public static final Map<String, String> getRequestMap(HttpServletRequest request) {
@@ -110,6 +118,7 @@ public abstract class BaseWebUtils {
 		}
 		return result;
 	}
+
 	public static final Map<String, String> getHeaderMap(HttpServletRequest request) {
 		Map<String, String> result = new HashMap<String, String>();
 		Enumeration<String> it = request.getHeaderNames();
@@ -117,35 +126,38 @@ public abstract class BaseWebUtils {
 		while (it.hasMoreElements()) {
 			key = it.nextElement();
 			String value = request.getHeader(key);
-			//禁止cookie日志打印
-			if(StringUtils.containsIgnoreCase(key, "cookie")){
+			// 禁止cookie日志打印
+			if (StringUtils.containsIgnoreCase(key, "cookie")) {
 				value = "*******";
 			}
 			result.put(key, value);
 		}
 		return result;
 	}
+
 	/**
 	 * 返回Map，但key=“head4”+originalKey
+	 * 
 	 * @param request
 	 * @return
 	 */
-	public static final Map<String, String> getHeaderMapWidthPreKey(HttpServletRequest request){
+	public static final Map<String, String> getHeaderMapWidthPreKey(HttpServletRequest request) {
 		Map<String, String> result = new HashMap<String, String>();
 		Enumeration<String> it = request.getHeaderNames();
 		String key = null;
 		while (it.hasMoreElements()) {
 			key = it.nextElement();
 			String value = request.getHeader(key);
-			//禁止cookie日志打印
-			if(StringUtils.containsIgnoreCase(key, "cookie")){
+			// 禁止cookie日志打印
+			if (StringUtils.containsIgnoreCase(key, "cookie")) {
 				value = "*******";
 			}
-			result.put("head4"+StringUtils.lowerCase(key), value);
+			result.put("head4" + StringUtils.lowerCase(key), value);
 		}
 		return result;
 
 	}
+
 	/**
 	 * 获取html中图片的url
 	 * 
@@ -155,10 +167,11 @@ public abstract class BaseWebUtils {
 	public static final List<String> getPictures(String html) {
 		return HtmlParser.getNodeAttrList(html, "img", "src");
 	}
-	
-	public static final List<String> getNodeAttrList(String html, String nodename, String attrName){
+
+	public static final List<String> getNodeAttrList(String html, String nodename, String attrName) {
 		return HtmlParser.getNodeAttrList(html, nodename, attrName);
 	}
+
 	/**
 	 * 获取html中视频的url
 	 * 
@@ -176,10 +189,10 @@ public abstract class BaseWebUtils {
 		response.addCookie(cookie);
 	}
 
-	public static final boolean isRobot(String userAgent){
-		return StringUtils.containsIgnoreCase(userAgent, "spider") || 
-				StringUtils.containsIgnoreCase(userAgent, "Googlebot") ||
-				StringUtils.containsIgnoreCase(userAgent, "robot");
+	public static final boolean isRobot(String userAgent) {
+		return StringUtils.containsIgnoreCase(userAgent, "spider")
+				|| StringUtils.containsIgnoreCase(userAgent, "Googlebot")
+				|| StringUtils.containsIgnoreCase(userAgent, "robot");
 	}
 
 	public static final boolean isAjaxRequest(HttpServletRequest request) {
@@ -187,13 +200,15 @@ public abstract class BaseWebUtils {
 		return result;
 	}
 
-	public static final void addCookie(HttpServletResponse response, String cookiename, String cookievalue, String path, int maxSecond){
+	public static final void addCookie(HttpServletResponse response, String cookiename, String cookievalue, String path,
+			int maxSecond) {
 		Cookie cookie = new Cookie(cookiename, cookievalue);
 		cookie.setPath(path);
 		cookie.setMaxAge(maxSecond);// 24 hour
 		cookie.setHttpOnly(true);
 		response.addCookie(cookie);
 	}
+
 	public static final Cookie getCookie(HttpServletRequest request, String cookiename) {
 		Cookie cookies[] = request.getCookies();
 		if (cookies == null)
@@ -253,18 +268,19 @@ public abstract class BaseWebUtils {
 
 	public static final Map<String, String> getRequestParams(HttpServletRequest request, String... pnames) {
 		Map<String, String> result = new TreeMap<String, String>();
-		if(pnames!=null){
-			for(String pn: pnames){
+		if (pnames != null) {
+			for (String pn : pnames) {
 				String pv = request.getParameter(pn);
-				if(StringUtils.isNotBlank(pv)) result.put(pn, pv);
+				if (StringUtils.isNotBlank(pv))
+					result.put(pn, pv);
 			}
 		}
 		return result;
 	}
-	
+
 	/**
-	 *  判断用户浏览器信息
-	 * */
+	 * 判断用户浏览器信息
+	 */
 	public static final String getBrowerInfo(String userAgent) {
 		String browserInfo = "UNKNOWN";
 		String info = StringUtils.lowerCase(userAgent);
@@ -290,6 +306,7 @@ public abstract class BaseWebUtils {
 		}
 		return browserInfo;
 	}
+
 	/**
 	 * 查询串提取
 	 * 
@@ -298,15 +315,18 @@ public abstract class BaseWebUtils {
 	 * @return
 	 */
 	private static Pattern QUERY_MAP_PATTERN = Pattern.compile("&?([^=&]+)=");
+
 	/**
-	 * @param queryString encoded queryString
-	 * queryString is already encoded (e.g %20 and & may be present)
+	 * @param queryString
+	 *            encoded queryString queryString is already encoded (e.g %20
+	 *            and & may be present)
 	 * @param encode
 	 * @return
 	 */
 	public static final Map<String, String> parseQueryStr(String queryString, String encode) {
 		Map<String, String> map = new LinkedHashMap<String, String>();
-		if(StringUtils.isBlank(queryString)) return map;
+		if (StringUtils.isBlank(queryString))
+			return map;
 		Matcher matcher = QUERY_MAP_PATTERN.matcher(queryString);
 		String key = null, value;
 		int end = 0;
@@ -314,8 +334,8 @@ public abstract class BaseWebUtils {
 			if (key != null) {
 				try {
 					value = queryString.substring(end, matcher.start());
-					if(StringUtils.isNotBlank(value)){
-						value=URLDecoder.decode(value, encode);
+					if (StringUtils.isNotBlank(value)) {
+						value = URLDecoder.decode(value, encode);
 						map.put(key, value);
 					}
 				} catch (UnsupportedEncodingException e) {
@@ -328,8 +348,8 @@ public abstract class BaseWebUtils {
 		if (key != null) {
 			try {
 				value = queryString.substring(end);
-				if(StringUtils.isNotBlank(value)){
-					value=URLDecoder.decode(value, encode);
+				if (StringUtils.isNotBlank(value)) {
+					value = URLDecoder.decode(value, encode);
 					map.put(key, value);
 				}
 			} catch (UnsupportedEncodingException e) {
@@ -338,88 +358,102 @@ public abstract class BaseWebUtils {
 		}
 		return map;
 	}
+
 	public static final String getQueryStr(HttpServletRequest request, String encode) {
 		return getQueryStr(flatRequestMap(request.getParameterMap(), ","), encode);
 	}
-	public static final Map<String, String> flatRequestMap(Map<String, String[]> reqMap, String joinChar){
+
+	public static final Map<String, String> flatRequestMap(Map<String, String[]> reqMap, String joinChar) {
 		Map<String, String> flatMap = new HashMap<String, String>();
-		for(String key: reqMap.keySet()){
+		for (String key : reqMap.keySet()) {
 			flatMap.put(key, StringUtils.join(reqMap.get(key), joinChar));
 		}
 		return flatMap;
 	}
+
 	/**
 	 * 多值用“,”号隔开
+	 * 
 	 * @param requestMap
 	 * @param encode
 	 * @return
 	 */
 	public static final String getQueryStr(Map<String, String> requestMap, String encode) {
-		if(requestMap==null || requestMap.isEmpty()) return "";
+		if (requestMap == null || requestMap.isEmpty())
+			return "";
 		String result = "";
-		for (String name:requestMap.keySet()) {
+		for (String name : requestMap.keySet()) {
 			try {
-				result +=name + "=" + URLEncoder.encode(requestMap.get(name), encode) + "&";
+				result += name + "=" + URLEncoder.encode(requestMap.get(name), encode) + "&";
 			} catch (UnsupportedEncodingException e) {
 			}
 		}
-		return result.substring(0, result.length()-1);
+		return result.substring(0, result.length() - 1);
 	}
+
 	public static final String encodeParam(String params, String encode) {
 		Map<String, String> paramMap = parseQueryStr(params, encode);
 		String result = "";
-		for(String key:paramMap.keySet()){
+		for (String key : paramMap.keySet()) {
 			try {
-				result += "&" + key+"=" + URLEncoder.encode(paramMap.get(key), encode);
+				result += "&" + key + "=" + URLEncoder.encode(paramMap.get(key), encode);
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
 		}
-		if(StringUtils.isNotBlank(result)) return result.substring(1);
+		if (StringUtils.isNotBlank(result))
+			return result.substring(1);
 		return "";
 	}
+
 	public static final String getContextPath(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
-		if(!StringUtils.endsWith(contextPath, "/")) contextPath += "/";
+		if (!StringUtils.endsWith(contextPath, "/"))
+			contextPath += "/";
 		return contextPath;
 	}
 
-	public static final String getParamStr(HttpServletRequest request, boolean removeSensitive, String... sensitiveKeys) {
+	public static final String getParamStr(HttpServletRequest request, boolean removeSensitive,
+			String... sensitiveKeys) {
 		Map<String, String> requestMap = getRequestMap(request);
-		if(removeSensitive){
+		if (removeSensitive) {
 			removeSensitiveInfo(requestMap, sensitiveKeys);
 		}
 		return "" + requestMap;
 	}
-	private static final List<String> DEFAULT_SENSITIVE = Arrays.asList("mobile", "pass", "sign", "encode", "token", "check", "card");
+
+	private static final List<String> DEFAULT_SENSITIVE = Arrays.asList("mobile", "pass", "sign", "encode", "token",
+			"check", "card");
 	private static final List<String> IGNORE_KEYS = Arrays.asList("mobileType");
+
 	public static final void removeSensitiveInfo(Map<String, String> params, String... keys) {
 		List<String> keyList = null;
-		if(keys!=null){
+		if (keys != null) {
 			keyList = new ArrayList<String>(DEFAULT_SENSITIVE);
 			keyList.addAll(Arrays.asList(keys));
-		}else{
+		} else {
 			keyList = DEFAULT_SENSITIVE;
 		}
 
-		for(String pname: new ArrayList<String>(params.keySet())){
+		for (String pname : new ArrayList<String>(params.keySet())) {
 			int valueLen = StringUtils.length(params.get(pname));
-			if(valueLen > 1000){
+			if (valueLen > 1000) {
 				params.put(pname, StringUtils.substring(params.get(pname), 1000) + "->LEN:" + valueLen);
 			}
-			if(!IGNORE_KEYS.contains(pname)){
-				for(String key: keyList){
-					if(StringUtils.containsIgnoreCase(pname, key) && StringUtils.isNotBlank(params.get(pname))){
+			if (!IGNORE_KEYS.contains(pname)) {
+				for (String key : keyList) {
+					if (StringUtils.containsIgnoreCase(pname, key) && StringUtils.isNotBlank(params.get(pname))) {
 						params.put(pname, "MG" + StringUtil.md5("kcj3STidSC" + params.get(pname)));
 					}
 				}
 			}
 		}
 	}
-	public static final String getRemotePort(HttpServletRequest request) {//获取请求端口号
+
+	public static final String getRemotePort(HttpServletRequest request) {// 获取请求端口号
 		String port = request.getHeader("x-client-port");
-		if(StringUtils.isBlank(port)){
-			return ""+request.getRemotePort();
+		if (StringUtils.isBlank(port)) {
+			return "" + request.getRemotePort();
 		}
 		return port;
 	}
