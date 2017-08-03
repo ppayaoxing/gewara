@@ -306,7 +306,10 @@
 			<groupId>org.apache.xmlbeans</groupId>
 			<artifactId>xmlbeans</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
 		<!-- ========= gewara start ====== -->
 		<dependency>
 			<groupId>com.gewara</groupId>

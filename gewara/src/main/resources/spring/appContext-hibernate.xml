@@ -66,7 +66,7 @@
 	<bean id="readOnlyTemplate" class="com.gewara.support.ReadOnlyHibernateTemplate">
 		<property name="sessionFactory" ref="readOnlySessionFactory"/>
 	</bean>
-	<bean id="baseDao" class="com.gewara.dao.impl.BaseDaoHiber nate" />
+	<bean id="baseDao" class="com.gewara.dao.impl.BaseDaoHibernate" />
 	<bean id="daoService" depends-on="baseDao" class="com.gewara.service.impl.DaoServiceImpl" />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
