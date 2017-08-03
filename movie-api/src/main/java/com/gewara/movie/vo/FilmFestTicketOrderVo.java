@@ -1,48 +1,49 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class FilmFestTicketOrderVo extends BaseVo {
-	private static final long serialVersionUID = -6809158194654658394L;
-	private Long id;
-	private String orderType;
-	private String ordertitle;
-	private String tradeNo;
-	private String mobile;
-	private Date createtime;
-	private Date addtime;
-	private Date updatetime;
-	private Date paidtime;
-	private Date playtime;
-	private Date taketime;
-	private Long memberid;
-	private String description2;
-	private Integer alipaid;
-	private Integer wabi;
-	private Integer totalcost;
-	private Integer totalfee;
-	private Integer discount;
-	private Integer costprice;
-	private Integer unitprice;
-	private Integer quantity;
-	private Integer itemfee;
-	private String otherinfo;
-	private String citycode;
-	private String category;
-	private Long placeid;
-	private Long relatedid;
-	private Long itemid;
-	private String filmTag;
+import com.gewara.api.vo.BaseVo;
 
+public class FilmFestTicketOrderVo extends BaseVo{
+	private static final long serialVersionUID = -6809158194654658394L;
+	private Long id;					//ID
+	private String orderType;
+	private String ordertitle;		//订单标题
+	private String tradeNo;			//订单号
+	private String mobile;			//联系手机
+	private Date createtime;		//用户下单时间
+	private Date addtime;		//增加时间：第一次创建时间、待处理创建时间、火凤凰锁定时间
+	private Date updatetime;		//用户修改时间
+	private Date paidtime;		//付款时间
+	private Date playtime;		//场次时间
+	private Date taketime;		//取票时间
+	private Long memberid;			//关联用户
+	private String description2;		//商品描述
+	private Integer alipaid;			//淘宝或汇付支付的金额
+	private Integer wabi;				//瓦币消费
+	private Integer totalcost;		//总成本价
+	private Integer totalfee;			//订单总金额
+	private Integer discount;			//订单优惠
+	private Integer costprice;		//成本价
+	private Integer unitprice;		//单价
+	private Integer quantity;			//数量
+	private Integer itemfee;			//订单附属品总价
+	private String otherinfo;			//其他信息
+	private String citycode;			//城市代码
+	private String category;			//订单类别
+	private Long placeid;			//关联场馆：Cinema、Theatre
+	private Long relatedid;			//mpid,goodsid,dpid(drama),pubid(pubsale)
+	private Long itemid;			//movieid,dramaid
+	private String filmTag;
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -50,7 +51,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public String getOrderType() {
-		return this.orderType;
+		return orderType;
 	}
 
 	public void setOrderType(String orderType) {
@@ -58,7 +59,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public String getOrdertitle() {
-		return this.ordertitle;
+		return ordertitle;
 	}
 
 	public void setOrdertitle(String ordertitle) {
@@ -66,7 +67,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -74,7 +75,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -82,7 +83,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Date getCreatetime() {
-		return this.createtime;
+		return createtime;
 	}
 
 	public void setCreatetime(Date createtime) {
@@ -90,7 +91,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Date getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Date addtime) {
@@ -98,7 +99,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Date getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Date updatetime) {
@@ -106,7 +107,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Date getPaidtime() {
-		return this.paidtime;
+		return paidtime;
 	}
 
 	public void setPaidtime(Date paidtime) {
@@ -114,7 +115,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Date getPlaytime() {
-		return this.playtime;
+		return playtime;
 	}
 
 	public void setPlaytime(Date playtime) {
@@ -122,7 +123,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Date getTaketime() {
-		return this.taketime;
+		return taketime;
 	}
 
 	public void setTaketime(Date taketime) {
@@ -130,7 +131,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -138,7 +139,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public String getDescription2() {
-		return this.description2;
+		return description2;
 	}
 
 	public void setDescription2(String description2) {
@@ -146,7 +147,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Integer getAlipaid() {
-		return this.alipaid;
+		return alipaid;
 	}
 
 	public void setAlipaid(Integer alipaid) {
@@ -154,7 +155,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Integer getWabi() {
-		return this.wabi;
+		return wabi;
 	}
 
 	public void setWabi(Integer wabi) {
@@ -162,7 +163,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Integer getTotalcost() {
-		return this.totalcost;
+		return totalcost;
 	}
 
 	public void setTotalcost(Integer totalcost) {
@@ -170,7 +171,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Integer getTotalfee() {
-		return this.totalfee;
+		return totalfee;
 	}
 
 	public void setTotalfee(Integer totalfee) {
@@ -178,7 +179,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Integer getDiscount() {
-		return this.discount;
+		return discount;
 	}
 
 	public void setDiscount(Integer discount) {
@@ -186,7 +187,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Integer getCostprice() {
-		return this.costprice;
+		return costprice;
 	}
 
 	public void setCostprice(Integer costprice) {
@@ -194,7 +195,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Integer getUnitprice() {
-		return this.unitprice;
+		return unitprice;
 	}
 
 	public void setUnitprice(Integer unitprice) {
@@ -202,7 +203,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -210,7 +211,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Integer getItemfee() {
-		return this.itemfee;
+		return itemfee;
 	}
 
 	public void setItemfee(Integer itemfee) {
@@ -218,7 +219,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -226,7 +227,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -234,7 +235,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public String getCategory() {
-		return this.category;
+		return category;
 	}
 
 	public void setCategory(String category) {
@@ -242,7 +243,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Long getPlaceid() {
-		return this.placeid;
+		return placeid;
 	}
 
 	public void setPlaceid(Long placeid) {
@@ -250,7 +251,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -258,7 +259,7 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public Long getItemid() {
-		return this.itemid;
+		return itemid;
 	}
 
 	public void setItemid(Long itemid) {
@@ -266,10 +267,13 @@ public class FilmFestTicketOrderVo extends BaseVo {
 	}
 
 	public String getFilmTag() {
-		return this.filmTag;
+		return filmTag;
 	}
 
 	public void setFilmTag(String filmTag) {
 		this.filmTag = filmTag;
 	}
+
+
+
 }

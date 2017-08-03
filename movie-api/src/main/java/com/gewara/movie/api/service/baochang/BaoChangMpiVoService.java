@@ -1,15 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.api.service.baochang;
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.movie.vo.baochang.BaoChangMpiSeatPicVo;
 import com.gewara.movie.vo.baochang.BaoChangOrderInfoVo;
-import java.util.List;
+
 
 public interface BaoChangMpiVoService {
-	ResultCode<List<BaoChangMpiSeatPicVo>> getBaoChangMpiSeatPicListByMpid(Long arg0);
+	/**
+	 * 根据场次id，查询场次座位的微信图片
+	 * @param mpid
+	 * @return
+	 */
+	ResultCode<List<BaoChangMpiSeatPicVo>> getBaoChangMpiSeatPicListByMpid(Long mpid);
+	
+	ResultCode<BaoChangOrderInfoVo> getBaoChangOrderByTradeNo(String tradeNo);
+	ResultCode<List<BaoChangOrderInfoVo>> getSuccessOrderByMemberid(Long memberid);
 
-	ResultCode<BaoChangOrderInfoVo> getBaoChangOrderByTradeNo(String arg0);
-
-	ResultCode<List<BaoChangOrderInfoVo>> getSuccessOrderByMemberid(Long arg0);
 }

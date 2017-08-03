@@ -1,33 +1,88 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gmail.service;
+
+import java.util.List;
+import java.util.Map;
 
 import com.gewara.api.Response;
 import com.gewara.api.gmail.request.SendMailByOutboxRequest;
 import com.gewara.api.gmail.response.SendMailByOutboxResponse;
 import com.gewara.api.gmail.service.vo.EmailRecordVO;
 import com.gewara.api.vo.ResultCode;
-import java.util.List;
-import java.util.Map;
 
+
+/**
+ * 邮件管理
+ * @author zhaorq
+ *
+ */
 public interface GmailService {
 
+	/**
+	 * 发送邮件
+     * @see #sendMail2
+	 */
 	@Deprecated
-	Response sendMail(EmailRecordVO arg0);
-
-	ResultCode sendMail2(EmailRecordVO arg0);
-
+	public Response sendMail(EmailRecordVO msg);
+	
+	//发送邮件
+	public ResultCode sendMail2(EmailRecordVO msg);
+	
+	//发送邮件
+	/**
+	 * 
+     * @see #sendMailWithAttachments2
+	 */
 	@Deprecated
-	Response sendMailWithAttachments(EmailRecordVO arg0, List<Map<String, Object>> arg1);
-
-	ResultCode sendMailWithAttachments2(EmailRecordVO arg0, List<Map<String, Object>> arg1);
-
+	public Response sendMailWithAttachments(EmailRecordVO msg, List<Map<String, Object>> attachments);
+	
+	//发送邮件
+	public ResultCode sendMailWithAttachments2(EmailRecordVO msg, List<Map<String, Object>> attachments);
+	
+	/**
+	 * 指定发件箱发送邮件
+	 * 
+	 * @param request
+	 * @return
+	 *
+	 * @author leo.li
+	 * Modify Time Nov 15, 2013 7:52:38 PM
+     * @see #sendMailByOutbox2
+	 */
 	@Deprecated
-	SendMailByOutboxResponse sendMailByOutbox(SendMailByOutboxRequest arg0);
-
-	ResultCode sendMailByOutbox2(SendMailByOutboxRequest arg0);
-
+	public SendMailByOutboxResponse sendMailByOutbox(SendMailByOutboxRequest request);
+	
+	/**
+	 * 指定发件箱发送邮件
+	 * 
+	 * @param request
+	 * @return
+	 *
+	 * @author leo.li
+	 * Modify Time Nov 15, 2013 7:52:38 PM
+	 */
+	public ResultCode sendMailByOutbox2(SendMailByOutboxRequest request);
+	
+	/**
+	 * 指定发件箱发送邮件，不是即时发送，按限制配额定时发送
+	 * 
+	 * @param request
+	 * @return
+	 *
+	 * @author leo.li
+	 * Modify Time 2014年2月27日 下午2:26:23
+     * @see #limitSendMailByOutbox2
+	 */
 	@Deprecated
-	SendMailByOutboxResponse limitSendMailByOutbox(SendMailByOutboxRequest arg0);
-
-	ResultCode limitSendMailByOutbox2(SendMailByOutboxRequest arg0);
+	public SendMailByOutboxResponse limitSendMailByOutbox(SendMailByOutboxRequest request);
+	
+	/**
+	 * 指定发件箱发送邮件，不是即时发送，按限制配额定时发送
+	 * 
+	 * @param request
+	 * @return
+	 *
+	 * @author leo.li
+	 * Modify Time 2014年2月27日 下午2:26:23
+	 */
+	public ResultCode limitSendMailByOutbox2(SendMailByOutboxRequest request);
 }

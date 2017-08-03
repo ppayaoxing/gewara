@@ -1,13 +1,24 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay;
 
 import java.io.Serializable;
 import java.util.Map;
 
-public abstract class ApiRequest implements Serializable {
+public abstract class ApiRequest implements Serializable{
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 549424954702608094L;
 
 	public abstract Map<String, String> getTextParams();
-
+	
+	/**
+	 * 检查参数
+	 * 
+	 * @return
+	 *
+	 * @author leo.li
+	 * Modify Time 2014年3月28日 下午3:12:12
+	 */
 	public abstract boolean checkParams();
 }

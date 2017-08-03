@@ -1,37 +1,54 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.request;
 
-import com.gewara.api.pay.ApiRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.gewara.api.pay.ApiRequest;
+
 public class ActivationQueryRequest extends ApiRequest {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 7146445047023973426L;
+	
+	/**商户标识*/
 	private String merchantCode;
+	
+	/**银行卡号*/
 	private String cardNumber;
-
-	public ActivationQueryRequest() {
+	
+	public ActivationQueryRequest(){
+		
 	}
-
-	public ActivationQueryRequest(String merchantCode, String cardNumber) {
+	
+	public ActivationQueryRequest(String merchantCode,String cardNumber){
 		this.merchantCode = merchantCode;
 		this.cardNumber = cardNumber;
 	}
-
+	
+	@Override
 	public Map<String, String> getTextParams() {
-		HashMap params = new HashMap();
-		params.put("merchantCode", this.merchantCode);
-		params.put("cardNumber", this.cardNumber);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("merchantCode", merchantCode);
+		params.put("cardNumber", cardNumber);
 		return params;
 	}
 
+	@Override
 	public boolean checkParams() {
-		return this.merchantCode != null && !"".equals(this.merchantCode.trim())
-				? this.cardNumber != null && !"".equals(this.cardNumber.trim()) : false;
+		if(merchantCode == null || "".equals(merchantCode.trim())){
+			return false;
+		}
+
+		if(cardNumber == null || "".equals(cardNumber.trim())){
+			return false;
+		}
+		return true;
 	}
 
 	public String getMerchantCode() {
-		return this.merchantCode;
+		return merchantCode;
 	}
 
 	public void setMerchantCode(String merchantCode) {
@@ -39,10 +56,11 @@ public class ActivationQueryRequest extends ApiRequest {
 	}
 
 	public String getCardNumber() {
-		return this.cardNumber;
+		return cardNumber;
 	}
 
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
+
 }

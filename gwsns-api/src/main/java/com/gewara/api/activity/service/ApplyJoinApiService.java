@@ -1,25 +1,65 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity.service;
+
+import java.util.List;
 
 import com.gewara.api.activity.domain.ActivityInfoVo;
 import com.gewara.api.activity.domain.ActivityJoinFormVo;
 import com.gewara.api.activity.domain.ApplyJoinVo;
 import com.gewara.api.vo.ResultCode;
-import java.util.List;
 
 public interface ApplyJoinApiService {
-	ResultCode<List<ApplyJoinVo>> getApplyJoinListByActivityid(Long arg0, int arg1, int arg2);
 
-	ResultCode<ApplyJoinVo> getApplyJoin(Long arg0, Long arg1);
 
-	ResultCode saveApplyJoin(Long arg0, Long arg1, String arg2, String arg3, String arg4, String arg5, String arg6,
-			Integer arg7, String arg8, String arg9);
+	/**
+	 * 获取活动的参与信息
+	@RequestMapping("/api/applyjoin/list/byActivityId.xhtml")
+	 * @param activityid
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	public ResultCode<List<ApplyJoinVo>> getApplyJoinListByActivityid(
+			Long activityid, int from, int maxnum);
 
-	void addActivityInfo(ActivityInfoVo arg0);
 
-	void updateActivityInfo(ActivityInfoVo arg0);
+	/**
+	 * 获取用户参加的活动信息
+	@RequestMapping("/api/applyjoin/getByMemberIdAndActivityId.xhtml")
+	 * @param memberid
+	 * @param activityid
+	 * @return
+	 */
+	public ResultCode<ApplyJoinVo> getApplyJoin(Long memberid, Long activityid);
 
-	ResultCode<ActivityInfoVo> getActivityInfoByMemberid(Long arg0);
-
-	ResultCode<ActivityJoinFormVo> getJoinFormByActivityId(Long arg0);
+	/**
+	 * 保存活动地址信息
+	 * @param applyJoinVo
+	 * @return
+	 */
+	public ResultCode saveApplyJoin(Long activityid,Long memberid, String mobile,String realName,String sex,String address,String birthData,Integer joinnum, String TradeNo,String jsonString);
+	
+	/**
+	 * 添加活动报名基础信息
+	 * @param activityInfo
+	 * @return
+	 */
+	public void addActivityInfo(ActivityInfoVo activityInfo);
+	/**
+	 * 修改活动报名基础信息
+	 * @param activityInfo
+	 * @return
+	 */
+	public void updateActivityInfo(ActivityInfoVo activityInfo);
+	/**
+	 * 根据用户编号获取用户活动基础信息
+	 * @param memberid
+	 * @return
+	 */
+	public ResultCode<ActivityInfoVo> getActivityInfoByMemberid(Long memberid);
+	/**
+	 * 获取活动报名信息选项
+	 * @param activityid
+	 * @return
+	 */
+	public ResultCode<ActivityJoinFormVo> getJoinFormByActivityId(Long activityid);
 }

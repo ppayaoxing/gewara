@@ -1,35 +1,38 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gpticket.vo.command;
 
 import java.io.Serializable;
+
 import org.apache.commons.lang.StringUtils;
 
 public class OrderCommandVo implements Serializable {
+
 	private static final long serialVersionUID = -3829651039853670498L;
-	private String takemethod;
+	private String takemethod; // 取票方式
 	private String citycode;
-	private String realname;
+	private String realname; // 用户真实姓名
 	private String telphone;
-	private String address;
-	private String seqno;
-	private String mobile;
-	private Long orderid;
-	private String areaseqno;
-	private String opentype;
-	private String greetings;
-	private String seatLabel;
+	private String address; // 快递地址
+	private String seqno; // 场次编号
+	private String mobile; // 手机号
+	private Long orderid; // 订单号
+	private String areaseqno; // 区域编号
+	private String opentype; // 订单类型：选座、价格
+	private String greetings; // 订单文字个性化
+	private String seatLabel; // old interface: 座位座标 areasq:1:2,areasq:1:3 价格数据: areasq:priceid:quantity areaseq:234:5,areaseq:235:2
+	// new interface: {"type":seat or price,"seatIds": "座位座标areasq:1:2,areasq:1:3价格数据areasq:priceid:quantity areaseq:234:5,areaseq:235:2",
+	// "packTicketId":"套票编号","discountInfo":"折扣信息","discountTotal":""}
 	private String usertype;
 	private String bindMobile;
-	private Integer ticketnum;
-	private Double totalfee;
-	private Double payfee;
+	
+	private Integer ticketnum;		//订单票数
+	private Double totalfee;		//订单总金额
+	private Double payfee;			//订单支付金额
 	private String checkpass;
-	private String idnumber;
-	private Long configid;
-	private String clientIp;
+	private String idnumber;		//身份证信息
+	private Long configid;			//二级渠道用
+	private String clientIp;		//客户端IP
 
-	public OrderCommandVo(String seqno, Long orderid, String mobile, String areaseqno, String opentype,
-			String seatLabel) {
+	public OrderCommandVo(String seqno, Long orderid, String mobile, String areaseqno, String opentype, String seatLabel) {
 		this.seqno = seqno;
 		this.orderid = orderid;
 		this.mobile = mobile;
@@ -38,42 +41,41 @@ public class OrderCommandVo implements Serializable {
 		this.seatLabel = seatLabel;
 	}
 
-	public OrderCommandVo(String seqno, Long orderid, String mobile, String areaseqno, String opentype,
-			String seatLabel, String usertype) {
+	public OrderCommandVo(String seqno, Long orderid, String mobile, String areaseqno, String opentype, String seatLabel, String usertype) {
 		this(seqno, orderid, mobile, areaseqno, opentype, seatLabel);
 		this.usertype = usertype;
 	}
 
 	public String getSeqno() {
-		return this.seqno;
+		return seqno;
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public Long getOrderid() {
-		return this.orderid;
+		return orderid;
 	}
 
 	public String getAreaseqno() {
-		return this.areaseqno;
+		return areaseqno;
 	}
 
 	public String getOpentype() {
-		return this.opentype;
+		return opentype;
 	}
 
 	public String getSeatLabel() {
-		return this.seatLabel;
+		return seatLabel;
 	}
 
 	public String getUsertype() {
-		return this.usertype;
+		return usertype;
 	}
 
 	public String getGreetings() {
-		return this.greetings;
+		return greetings;
 	}
 
 	public void setGreetings(String greetings) {
@@ -81,11 +83,13 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public boolean hasOpentype(String type) {
-		return StringUtils.isBlank(type) ? false : StringUtils.equals(this.opentype, type);
+		if (StringUtils.isBlank(type))
+			return false;
+		return StringUtils.equals(this.opentype, type);
 	}
 
 	public String getTakemethod() {
-		return this.takemethod;
+		return takemethod;
 	}
 
 	public void setTakemethod(String takemethod) {
@@ -93,7 +97,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -101,7 +105,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public String getRealname() {
-		return this.realname;
+		return realname;
 	}
 
 	public void setRealname(String realname) {
@@ -109,7 +113,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public String getAddress() {
-		return this.address;
+		return address;
 	}
 
 	public void setAddress(String address) {
@@ -117,7 +121,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public String getTelphone() {
-		return this.telphone;
+		return telphone;
 	}
 
 	public void setTelphone(String telphone) {
@@ -125,7 +129,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public String getBindMobile() {
-		return this.bindMobile;
+		return bindMobile;
 	}
 
 	public void setBindMobile(String bindMobile) {
@@ -133,7 +137,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public Integer getTicketnum() {
-		return this.ticketnum;
+		return ticketnum;
 	}
 
 	public void setTicketnum(Integer ticketnum) {
@@ -141,7 +145,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public Double getTotalfee() {
-		return this.totalfee;
+		return totalfee;
 	}
 
 	public void setTotalfee(Double totalfee) {
@@ -149,7 +153,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public Double getPayfee() {
-		return this.payfee;
+		return payfee;
 	}
 
 	public void setPayfee(Double payfee) {
@@ -157,7 +161,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public String getCheckpass() {
-		return this.checkpass;
+		return checkpass;
 	}
 
 	public void setCheckpass(String checkpass) {
@@ -165,7 +169,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public String getIdnumber() {
-		return this.idnumber;
+		return idnumber;
 	}
 
 	public void setIdnumber(String idnumber) {
@@ -173,7 +177,7 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public Long getConfigid() {
-		return this.configid;
+		return configid;
 	}
 
 	public void setConfigid(Long configid) {
@@ -181,10 +185,11 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public String getClientIp() {
-		return this.clientIp;
+		return clientIp;
 	}
 
 	public void setClientIp(String clientIp) {
 		this.clientIp = clientIp;
 	}
+	
 }

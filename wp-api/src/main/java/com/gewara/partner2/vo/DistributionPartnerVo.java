@@ -1,40 +1,47 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.partner2.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * 分销系统-合作商
+ * 
+ * @author chunhui.wang
+ *
+ */
 public class DistributionPartnerVo extends BaseVo {
 	private static final long serialVersionUID = -2992423661776140813L;
-	private long id;
-	private long sellerid;
-	private long partnerid;
-	private String partnername;
-	private String partnerkey;
-	private String partnertype;
-	private String groupid;
-	private Timestamp contractstarttime;
-	private Timestamp contractendtime;
-	private long annualquota;
-	private String businessmobile;
-	private String businessname;
-	private String sellermobile;
-	private String sellername;
-	private long technologyfee;
-	private long maintainfee;
-	private String runsub;
-	private String advanceCharge;
-	private String status;
-	private String accountid;
-	private String taxatfee;
-	private String cooperatstatus;
-	private String iscinemamanage;
-	private Timestamp addtime;
-	private Timestamp updatetime;
+
+	private long id; // 主键
+	private long sellerid; // 销售经理编号
+	private long partnerid; // 合作商ID
+	private String partnername; // 合作商名称
+	private String partnerkey; // 合作商key
+	private String partnertype;//合作商类型
+	private String groupid; // 分组
+	private Timestamp contractstarttime; // 合同开始时间
+	private Timestamp contractendtime; // 合同结束时间
+	private long annualquota; // 年保额度
+	private String businessmobile; // 商家对接人手机
+	private String businessname; // 商家对接人名
+	private String sellermobile; // 销售经理手机
+	private String sellername; // 销售经理
+	private long technologyfee; // 技术服务费
+	private long maintainfee; // 维护费
+	private String runsub; // 分润
+	private String advanceCharge;//预付款金额
+	private String status; // 状态 0 有效 1预警 2锁定 3删除
+	private String accountid;// 资金账户
+	private String taxatfee; //税费
+	private String cooperatstatus;//合作状态
+	private String iscinemamanage;//是否开启场次管理
+	private Timestamp addtime; // 添加时间
+	private Timestamp updatetime; // 更新时间
 
 	public long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(long id) {
@@ -42,7 +49,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public long getSellerid() {
-		return this.sellerid;
+		return sellerid;
 	}
 
 	public void setSellerid(long sellerid) {
@@ -50,7 +57,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public long getPartnerid() {
-		return this.partnerid;
+		return partnerid;
 	}
 
 	public void setPartnerid(long partnerid) {
@@ -58,7 +65,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getPartnername() {
-		return this.partnername;
+		return partnername;
 	}
 
 	public void setPartnername(String partnername) {
@@ -66,7 +73,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getPartnerkey() {
-		return this.partnerkey;
+		return partnerkey;
 	}
 
 	public void setPartnerkey(String partnerkey) {
@@ -74,7 +81,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getPartnertype() {
-		return this.partnertype;
+		return partnertype;
 	}
 
 	public void setPartnertype(String partnertype) {
@@ -82,7 +89,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getGroupid() {
-		return this.groupid;
+		return groupid;
 	}
 
 	public void setGroupid(String groupid) {
@@ -90,7 +97,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public Timestamp getContractstarttime() {
-		return this.contractstarttime;
+		return contractstarttime;
 	}
 
 	public void setContractstarttime(Timestamp contractstarttime) {
@@ -98,7 +105,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public Timestamp getContractendtime() {
-		return this.contractendtime;
+		return contractendtime;
 	}
 
 	public void setContractendtime(Timestamp contractendtime) {
@@ -106,7 +113,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public long getAnnualquota() {
-		return this.annualquota;
+		return annualquota;
 	}
 
 	public void setAnnualquota(long annualquota) {
@@ -114,7 +121,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getBusinessmobile() {
-		return this.businessmobile;
+		return businessmobile;
 	}
 
 	public void setBusinessmobile(String businessmobile) {
@@ -122,7 +129,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getBusinessname() {
-		return this.businessname;
+		return businessname;
 	}
 
 	public void setBusinessname(String businessname) {
@@ -130,7 +137,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getSellermobile() {
-		return this.sellermobile;
+		return sellermobile;
 	}
 
 	public void setSellermobile(String sellermobile) {
@@ -138,7 +145,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getSellername() {
-		return this.sellername;
+		return sellername;
 	}
 
 	public void setSellername(String sellername) {
@@ -146,7 +153,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public long getTechnologyfee() {
-		return this.technologyfee;
+		return technologyfee;
 	}
 
 	public void setTechnologyfee(long technologyfee) {
@@ -154,7 +161,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public long getMaintainfee() {
-		return this.maintainfee;
+		return maintainfee;
 	}
 
 	public void setMaintainfee(long maintainfee) {
@@ -162,7 +169,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getRunsub() {
-		return this.runsub;
+		return runsub;
 	}
 
 	public void setRunsub(String runsub) {
@@ -170,7 +177,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -178,7 +185,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public String getAccountid() {
-		return this.accountid;
+		return accountid;
 	}
 
 	public void setAccountid(String accountid) {
@@ -186,7 +193,7 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -194,46 +201,47 @@ public class DistributionPartnerVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
+	
 	public String getAdvanceCharge() {
-		return this.advanceCharge;
+		return advanceCharge;
 	}
 
 	public void setAdvanceCharge(String advanceCharge) {
 		this.advanceCharge = advanceCharge;
 	}
-
+	
 	public String getTaxatfee() {
-		return this.taxatfee;
+		return taxatfee;
 	}
 
 	public void setTaxatfee(String taxatfee) {
 		this.taxatfee = taxatfee;
 	}
-
+	
 	public String getCooperatstatus() {
-		return this.cooperatstatus;
+		return cooperatstatus;
 	}
 
 	public void setCooperatstatus(String cooperatstatus) {
 		this.cooperatstatus = cooperatstatus;
 	}
-
+	
 	public String getIscinemamanage() {
-		return this.iscinemamanage;
+		return iscinemamanage;
 	}
 
 	public void setIscinemamanage(String iscinemamanage) {
 		this.iscinemamanage = iscinemamanage;
 	}
 
+	@Override
 	public Serializable realId() {
-		return Long.valueOf(this.id);
+		return id;
 	}
 }

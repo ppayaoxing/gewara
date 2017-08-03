@@ -1,35 +1,37 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.label;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class BigLabelVo extends BaseVo {
 	private static final long serialVersionUID = -573268711254641818L;
-	private Long id;
-	private String name;
-	private String pinyin;
-	private String remark;
-	private String logo;
-	private String cover;
-	private Integer fanscount;
-	private Integer clickedtimes;
-	private Integer commentcount;
-	private Integer relatedcount;
-	private String status;
-	private Long memberid;
-	private Timestamp addTime;
-	private Timestamp updateTime;
-	private Integer attStatus = Integer.valueOf(0);
-	private String showRelated;
-
+	private Long id; // 主键
+	private String name; // 标签名称
+	private String pinyin; // 标签拼音
+	private String remark; // 简介
+	private String logo; // 小图标（路径）
+	private String cover; // 封面图片（路径）
+	private Integer fanscount; // 粉丝数量
+	private Integer clickedtimes; // 访问数量
+	private Integer commentcount; // 哇啦数量
+	private Integer relatedcount; // 关联的数量
+	private String status; // 有效状态 Y--有效，N---无效
+	private Long memberid; // 添加标签用户
+	private Timestamp addTime; // 创建标签时间
+	private Timestamp updateTime; // 最近更新标签时间
+	private Integer attStatus = 0;//关注状态   0-未关注(默认)；1已关注
+	
+	private String showRelated; // 显示关联 Y--显示，N---不显示
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -37,7 +39,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -45,7 +47,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public String getPinyin() {
-		return this.pinyin;
+		return pinyin;
 	}
 
 	public void setPinyin(String pinyin) {
@@ -53,7 +55,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -61,7 +63,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
 
 	public void setLogo(String logo) {
@@ -69,7 +71,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public String getCover() {
-		return this.cover;
+		return cover;
 	}
 
 	public void setCover(String cover) {
@@ -77,7 +79,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public Integer getFanscount() {
-		return this.fanscount;
+		return fanscount;
 	}
 
 	public void setFanscount(Integer fanscount) {
@@ -85,7 +87,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public Integer getClickedtimes() {
-		return this.clickedtimes;
+		return clickedtimes;
 	}
 
 	public void setClickedtimes(Integer clickedtimes) {
@@ -93,7 +95,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public Integer getCommentcount() {
-		return this.commentcount;
+		return commentcount;
 	}
 
 	public void setCommentcount(Integer commentcount) {
@@ -101,7 +103,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public Integer getRelatedcount() {
-		return this.relatedcount;
+		return relatedcount;
 	}
 
 	public void setRelatedcount(Integer relatedcount) {
@@ -109,7 +111,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public Timestamp getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
 
 	public void setAddTime(Timestamp addTime) {
@@ -117,7 +119,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public Timestamp getUpdateTime() {
-		return this.updateTime;
+		return updateTime;
 	}
 
 	public void setUpdateTime(Timestamp updateTime) {
@@ -125,7 +127,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -133,7 +135,7 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -141,18 +143,19 @@ public class BigLabelVo extends BaseVo {
 	}
 
 	public Integer getAttStatus() {
-		return this.attStatus;
+		return attStatus;
 	}
 
 	public void setAttStatus(Integer attStatus) {
 		this.attStatus = attStatus;
 	}
-
+	
 	public String getShowRelated() {
-		return this.showRelated;
+		return showRelated;
 	}
 
 	public void setShowRelated(String showRelated) {
 		this.showRelated = showRelated;
 	}
+
 }

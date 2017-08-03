@@ -1,122 +1,98 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.sso.model;
 
 public class UserSso {
-	private Long id;
-	private String username;
-	private String password;
-	private String nickname;
-	private String accountEnabled;
-	private String citycode = "";
-	private String mobile;
-	private String rolenames;
-	private String usertype;
-	private Long deptid;
-	private String mail;
-	private String district;
-	private String station;
-
-	public Long getId() {
-		return this.id;
+	private Long id;//用户ID
+	private String username;//登录名
+	private String password;//不会使用
+	private String nickname;//用户姓名
+	private String accountEnabled;//不会使用		
+	private String citycode="";//城市名称			
+	private String mobile;//手机号码				
+	private String rolenames;//不会使用	
+	private String usertype;//不会使用	
+	private Long deptid;//部门id
+	private String mail;//邮箱
+	private String district;//区域
+	private String station;//岗位
+	public UserSso() {
 	}
-
+	public Long getId() {
+		return id;
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getUsername() {
-		return this.username;
+		return username;
 	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-
 	public String getAccountEnabled() {
-		return this.accountEnabled;
+		return accountEnabled;
 	}
-
 	public void setAccountEnabled(String accountEnabled) {
 		this.accountEnabled = accountEnabled;
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
-
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
 	public String getRolenames() {
-		return this.rolenames;
+		return rolenames;
 	}
-
 	public void setRolenames(String rolenames) {
 		this.rolenames = rolenames;
 	}
-
 	public String getUsertype() {
-		return this.usertype;
+		return usertype;
 	}
-
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
 	}
-
 	public Long getDeptid() {
-		return this.deptid;
+		return deptid;
 	}
-
 	public void setDeptid(Long deptid) {
 		this.deptid = deptid;
 	}
-
 	public String getMail() {
-		return this.mail;
+		return mail;
 	}
-
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-
 	public String getDistrict() {
-		return this.district;
+		return district;
 	}
-
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-
 	public String getStation() {
-		return this.station;
+		return station;
 	}
-
 	public void setStation(String station) {
 		this.station = station;
 	}
+	
 }

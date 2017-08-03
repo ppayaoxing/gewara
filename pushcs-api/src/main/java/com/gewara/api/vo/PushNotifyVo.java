@@ -1,10 +1,10 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class PushNotifyVo implements Serializable {
+
 	private static final long serialVersionUID = -4913145637989111850L;
 	private String product;
 	private String title;
@@ -19,8 +19,22 @@ public class PushNotifyVo implements Serializable {
 	private String version;
 	private String appVersion;
 
-	public PushNotifyVo(Long userId, String msgType, String product, String title, String content, String links,
-			String relatedId, Timestamp sentTime, Integer validTime, String msgKey) {
+	/**
+	 * 消息版本默认为1.0
+	 * {@link #PushNotifyVo(Long, String, String, String, String, String, String, Timestamp, Integer, String, String)}
+	 * @param userId
+	 * @param msgType 消息类型T1,T2...
+	 * @param product cinema,sport
+	 * @param title	可以为空，目前不使用
+	 * @param content
+	 * @param links
+	 * @param relatedId
+	 * @param sentTime 待发送时间
+	 * @param validTime 有效时长，单位秒
+	 */
+	public PushNotifyVo(Long userId, String msgType, String product,
+			String title, String content, String links, String relatedId,
+			Timestamp sentTime, Integer validTime, String msgKey) {
 		this.userId = userId;
 		this.msgType = msgType;
 		this.product = product;
@@ -34,8 +48,22 @@ public class PushNotifyVo implements Serializable {
 		this.version = "1.0";
 	}
 
-	public PushNotifyVo(Long userId, String msgType, String product, String title, String content, String links,
-			String relatedId, Timestamp sentTime, Integer validTime, String msgKey, String version) {
+	/**
+	 * {@link #PushNotifyVo(Long, String, String, String, String, String, String, Timestamp, Integer, String)}
+	 * @param userId
+	 * @param msgType 消息类型T1,T2...
+	 * @param product cinema,sport
+	 * @param title	可以为空，目前不使用
+	 * @param content
+	 * @param links
+	 * @param relatedId
+	 * @param sentTime 待发送时间
+	 * @param validTime 有效时长，单位秒
+	 * @param version 版本
+	 */
+	public PushNotifyVo(Long userId, String msgType, String product,
+			String title, String content, String links, String relatedId,
+			Timestamp sentTime, Integer validTime, String msgKey, String version) {
 		this.userId = userId;
 		this.msgType = msgType;
 		this.product = product;
@@ -48,9 +76,9 @@ public class PushNotifyVo implements Serializable {
 		this.msgKey = msgKey;
 		this.version = version;
 	}
-
+	
 	public String getProduct() {
-		return this.product;
+		return product;
 	}
 
 	public void setProduct(String product) {
@@ -58,7 +86,7 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -66,7 +94,7 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public String getMsgType() {
-		return this.msgType;
+		return msgType;
 	}
 
 	public void setMsgType(String msgType) {
@@ -74,7 +102,7 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
@@ -82,7 +110,7 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public String getLinks() {
-		return this.links;
+		return links;
 	}
 
 	public void setLinks(String links) {
@@ -90,7 +118,7 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public String getRelatedId() {
-		return this.relatedId;
+		return relatedId;
 	}
 
 	public void setRelatedId(String relatedId) {
@@ -98,7 +126,7 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public Timestamp getSentTime() {
-		return this.sentTime;
+		return sentTime;
 	}
 
 	public void setSentTime(Timestamp sentTime) {
@@ -106,7 +134,7 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public Long getUserId() {
-		return this.userId;
+		return userId;
 	}
 
 	public void setUserId(Long userId) {
@@ -114,7 +142,7 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public Integer getValidTime() {
-		return this.validTime;
+		return validTime;
 	}
 
 	public void setValidTime(Integer validTime) {
@@ -122,7 +150,7 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public String getMsgKey() {
-		return this.msgKey;
+		return msgKey;
 	}
 
 	public void setMsgKey(String msgKey) {
@@ -130,7 +158,7 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public String getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(String version) {
@@ -138,10 +166,11 @@ public class PushNotifyVo implements Serializable {
 	}
 
 	public String getAppVersion() {
-		return this.appVersion;
+		return appVersion;
 	}
 
 	public void setAppVersion(String appVersion) {
 		this.appVersion = appVersion;
 	}
+
 }

@@ -1,14 +1,18 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.bbs;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * @author acerge(acerge@163.com)
+ * @since 11:38:26 AM Jan 19, 2010
+ */
 public class AccusationVo extends BaseVo {
 	private static final long serialVersionUID = 4476980910614491968L;
 	public static String STATUS_NEW = "new";
-	public static String STATUS_PROCESSED_Y = "processed_y";
+	public static String STATUS_PROCESSED_Y= "processed_y";
 	public static String STATUS_PROCESSED_N = "processed_n";
 	public static String TAG_DIARY = "diary";
 	public static String TAG_DIARYCOMMENT = "diarycomment";
@@ -17,37 +21,36 @@ public class AccusationVo extends BaseVo {
 	public static String TAG_ACTIVITY = "activity";
 	public static String TAG_ACTIVITYCOMMENT = "activitycomment";
 	public static String TAG_COMMENT = "comment";
-	public static String TAG_USERMESSAGE = "userMessage";
+	public static String TAG_USERMESSAGE="userMessage";
 	private Long id;
-	private Long memberid;
+	private Long memberid; // 举报人
 	private String email;
-	private String tag;
+	private String tag; // 类别：帖子、问答、活动、点评
 	private String tag2;
-	private Long relatedid;
-	private Long relatedid2;
-	private String referer;
-	private String body;
+	private Long relatedid; // 关联ID
+	private Long relatedid2; 
+	private String referer; // 链接地址
+	private String body; // 内容
 	private String message;
-	private Long clerk;
-	private String status;
+	private Long clerk; // 处理人
+	private String status; // 状态：new processed
 	private Timestamp addtime;
-	private Timestamp updatetime;
+	private Timestamp updatetime; // 处理时间
 
-	public AccusationVo() {
-	}
-
+	public AccusationVo(){}
+	
 	public AccusationVo(String tag) {
 		this.tag = tag;
 		this.status = STATUS_NEW;
 		this.addtime = new Timestamp(System.currentTimeMillis());
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -55,7 +58,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public String getBody() {
-		return this.body;
+		return body;
 	}
 
 	public void setBody(String body) {
@@ -63,7 +66,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -71,7 +74,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -79,7 +82,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -87,7 +90,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public Long getClerk() {
-		return this.clerk;
+		return clerk;
 	}
 
 	public void setClerk(Long clerk) {
@@ -95,7 +98,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -103,7 +106,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -111,7 +114,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -119,7 +122,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public String getReferer() {
-		return this.referer;
+		return referer;
 	}
 
 	public void setReferer(String referer) {
@@ -127,7 +130,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -135,7 +138,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public String getMessage() {
-		return this.message;
+		return message;
 	}
 
 	public void setMessage(String message) {
@@ -143,7 +146,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public String getTag2() {
-		return this.tag2;
+		return tag2;
 	}
 
 	public void setTag2(String tag2) {
@@ -151,7 +154,7 @@ public class AccusationVo extends BaseVo {
 	}
 
 	public Long getRelatedid2() {
-		return this.relatedid2;
+		return relatedid2;
 	}
 
 	public void setRelatedid2(Long relatedid2) {

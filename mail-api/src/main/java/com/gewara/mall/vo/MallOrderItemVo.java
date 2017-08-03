@@ -1,27 +1,33 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mall.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class MallOrderItemVo extends BaseVo {
-	private static final long serialVersionUID = -456661946584735116L;
-	private Long id;
-	private Long shipperOrderId;
-	private Long mallOrderId;
-	private Long productId;
-	private Integer qty;
-	private Integer unitPrice;
-	private Integer totalFee;
-	private Integer costPrice;
-	private Integer totalCost;
-	private Integer usedPoint;
-	private Long skuId;
-	private String attributeName1;
-	private String attributeName2;
+import com.gewara.api.vo.BaseVo;
 
+public class MallOrderItemVo extends BaseVo {
+	/**
+	 * 订单类目
+	 */
+	private static final long serialVersionUID = -456661946584735116L;
+
+	private Long id;								//id
+	private Long shipperOrderId;						//发货商订单ID
+	private Long mallOrderId;						//订单id
+	private Long productId;							//商品id
+	private Integer qty;							//购买数量
+	private Integer unitPrice;						//单价
+	private Integer totalFee;						//总价（unitPrice*qty）
+	private Integer costPrice;						//结算价
+	private Integer totalCost;						//订单成本总金额
+	private Integer usedPoint;						//使用的积分数量
+	private Long skuId;								//商品sku id
+	private String attributeName1;					
+	private String attributeName2;
+	public MallOrderItemVo() {
+	}
+	
 	public Integer getQty() {
-		return this.qty;
+		return qty;
 	}
 
 	public void setQty(Integer qty) {
@@ -29,7 +35,7 @@ public class MallOrderItemVo extends BaseVo {
 	}
 
 	public Long getMallOrderId() {
-		return this.mallOrderId;
+		return mallOrderId;
 	}
 
 	public void setMallOrderId(Long mallOrderId) {
@@ -37,7 +43,7 @@ public class MallOrderItemVo extends BaseVo {
 	}
 
 	public Long getSkuId() {
-		return this.skuId;
+		return skuId;
 	}
 
 	public void setSkuId(Long skuId) {
@@ -45,7 +51,7 @@ public class MallOrderItemVo extends BaseVo {
 	}
 
 	public Integer getUnitPrice() {
-		return this.unitPrice;
+		return unitPrice;
 	}
 
 	public void setUnitPrice(Integer unitPrice) {
@@ -53,7 +59,7 @@ public class MallOrderItemVo extends BaseVo {
 	}
 
 	public Long getProductId() {
-		return this.productId;
+		return productId;
 	}
 
 	public void setProductId(Long productId) {
@@ -61,19 +67,20 @@ public class MallOrderItemVo extends BaseVo {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Integer getCostPrice() {
-		return this.costPrice;
+		return costPrice;
 	}
 
 	public void setCostPrice(Integer costPrice) {
@@ -81,54 +88,44 @@ public class MallOrderItemVo extends BaseVo {
 	}
 
 	public Integer getTotalCost() {
-		return this.totalCost;
+		return totalCost;
 	}
-
 	public void setTotalCost(Integer totalCost) {
 		this.totalCost = totalCost;
 	}
-
 	public String getAttributeName1() {
-		return this.attributeName1;
+		return attributeName1;
 	}
-
 	public void setAttributeName1(String attributeName1) {
 		this.attributeName1 = attributeName1;
 	}
-
 	public String getAttributeName2() {
-		return this.attributeName2;
+		return attributeName2;
 	}
-
 	public void setAttributeName2(String attributeName2) {
 		this.attributeName2 = attributeName2;
 	}
-
 	public Integer getUsedPoint() {
-		return this.usedPoint;
+		return usedPoint;
 	}
-
 	public void setUsedPoint(Integer usedPoint) {
 		this.usedPoint = usedPoint;
 	}
-
-	public int getDue() {
-		return this.unitPrice.intValue() * this.qty.intValue();
+	public int getDue(){
+		return unitPrice*qty;
 	}
-
+	
 	public Integer getTotalFee() {
-		return this.totalFee;
+		return totalFee;
 	}
-
 	public void setTotalFee(Integer totalFee) {
 		this.totalFee = totalFee;
 	}
-
 	public Long getShipperOrderId() {
-		return this.shipperOrderId;
+		return shipperOrderId;
 	}
-
 	public void setShipperOrderId(Long shipperOrderId) {
 		this.shipperOrderId = shipperOrderId;
 	}
+	
 }

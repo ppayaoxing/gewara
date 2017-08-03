@@ -1,22 +1,38 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.request;
 
-import com.gewara.api.pay.ApiRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.gewara.api.pay.ApiRequest;
+
 public class SendSmsRequest extends ApiRequest {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 2976473597715150062L;
+
+	
+	/**商户标识*/
 	private String merchantCode;
+	
+	/**订单号*/
 	private String tradeNo;
+	
+	/**银行卡号*/
 	private String cardNumber;
-	private String phoneNumber;
+	
+	/**电话号码*/
+	private String phoneNumber;	
+	
+	/**应付款*/
 	private Integer fee;
-
-	public SendSmsRequest() {
+	
+	public SendSmsRequest(){
+		
 	}
-
-	public SendSmsRequest(String merchantCode, String tradeNo, String cardNumber, String phoneNumber, Integer fee) {
+	
+	public SendSmsRequest(String merchantCode,String tradeNo,String cardNumber,String phoneNumber,Integer fee){
 		this.merchantCode = merchantCode;
 		this.tradeNo = tradeNo;
 		this.cardNumber = cardNumber;
@@ -24,29 +40,39 @@ public class SendSmsRequest extends ApiRequest {
 		this.fee = fee;
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {
-		HashMap params = new HashMap();
-		params.put("merchantCode", this.merchantCode);
-		params.put("tradeNo", this.tradeNo);
-		params.put("cardNumber", this.cardNumber);
-		params.put("phoneNumber", this.phoneNumber);
-		params.put("fee", this.fee + "");
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("merchantCode", merchantCode);
+		params.put("tradeNo", tradeNo);
+		params.put("cardNumber", cardNumber);
+		params.put("phoneNumber", phoneNumber);
+		params.put("fee", fee + "");
 		return params;
 	}
 
+	@Override
 	public boolean checkParams() {
-		return this.merchantCode != null && !"".equals(this.merchantCode.trim()) ? (this.tradeNo != null
-				&& !"".equals(this.tradeNo.trim())
-						? (this.cardNumber != null && !"".equals(this.cardNumber.trim())
-								? (this.phoneNumber != null && !"".equals(this.phoneNumber.trim()) ? this.fee != null
-										: false)
-								: false)
-						: false)
-				: false;
+		if(merchantCode == null || "".equals(merchantCode.trim())){
+			return false;
+		}
+		if(tradeNo == null || "".equals(tradeNo.trim())){
+			return false;
+		}
+		if(cardNumber == null || "".equals(cardNumber.trim())){
+			return false;
+		}
+		if(phoneNumber == null || "".equals(phoneNumber.trim())){
+			return false;
+		}
+		if(fee == null){
+			return false;
+		}
+		return true;
 	}
 
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -54,7 +80,7 @@ public class SendSmsRequest extends ApiRequest {
 	}
 
 	public String getCardNumber() {
-		return this.cardNumber;
+		return cardNumber;
 	}
 
 	public void setCardNumber(String cardNumber) {
@@ -62,7 +88,7 @@ public class SendSmsRequest extends ApiRequest {
 	}
 
 	public String getPhoneNumber() {
-		return this.phoneNumber;
+		return phoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
@@ -70,7 +96,7 @@ public class SendSmsRequest extends ApiRequest {
 	}
 
 	public String getMerchantCode() {
-		return this.merchantCode;
+		return merchantCode;
 	}
 
 	public void setMerchantCode(String merchantCode) {
@@ -78,10 +104,11 @@ public class SendSmsRequest extends ApiRequest {
 	}
 
 	public Integer getFee() {
-		return this.fee;
+		return fee;
 	}
 
 	public void setFee(Integer fee) {
 		this.fee = fee;
 	}
+
 }

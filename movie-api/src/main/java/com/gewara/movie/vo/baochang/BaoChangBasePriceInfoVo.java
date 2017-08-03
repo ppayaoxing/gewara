@@ -1,28 +1,32 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.baochang;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class BaoChangBasePriceInfoVo extends BaseVo {
-	private static final long serialVersionUID = 2341673502898415531L;
-	protected Long id;
-	protected Long cinemaid;
-	protected String cinemaname;
-	protected Long roomid;
-	protected String roomname;
-	protected String settlementNo;
-	protected Integer price;
-	protected Integer gewaprice;
-	protected String citycode;
-	protected Integer validFlag;
+import com.gewara.api.vo.BaseVo;
 
+public class BaoChangBasePriceInfoVo extends BaseVo{
+	private static final long serialVersionUID = 2341673502898415531L;
+	
+	protected Long id;
+	protected Long cinemaid;//影院ID
+	protected String cinemaname;//影院名称
+	protected Long roomid;//影厅ID
+	protected String roomname;//影厅名称
+	protected String settlementNo; //结算编号
+	protected Integer price;		//成本价
+	protected Integer gewaprice;	//格瓦卖价
+	protected String citycode;//城市代码
+	protected Integer validFlag; //是否有效
+	
+	public BaoChangBasePriceInfoVo(){}
+
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -30,7 +34,7 @@ public class BaoChangBasePriceInfoVo extends BaseVo {
 	}
 
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
 
 	public void setCinemaid(Long cinemaid) {
@@ -38,7 +42,7 @@ public class BaoChangBasePriceInfoVo extends BaseVo {
 	}
 
 	public String getCinemaname() {
-		return this.cinemaname;
+		return cinemaname;
 	}
 
 	public void setCinemaname(String cinemaname) {
@@ -46,7 +50,7 @@ public class BaoChangBasePriceInfoVo extends BaseVo {
 	}
 
 	public Long getRoomid() {
-		return this.roomid;
+		return roomid;
 	}
 
 	public void setRoomid(Long roomid) {
@@ -54,7 +58,7 @@ public class BaoChangBasePriceInfoVo extends BaseVo {
 	}
 
 	public String getRoomname() {
-		return this.roomname;
+		return roomname;
 	}
 
 	public void setRoomname(String roomname) {
@@ -62,7 +66,7 @@ public class BaoChangBasePriceInfoVo extends BaseVo {
 	}
 
 	public String getSettlementNo() {
-		return this.settlementNo;
+		return settlementNo;
 	}
 
 	public void setSettlementNo(String settlementNo) {
@@ -70,7 +74,7 @@ public class BaoChangBasePriceInfoVo extends BaseVo {
 	}
 
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Integer price) {
@@ -78,7 +82,7 @@ public class BaoChangBasePriceInfoVo extends BaseVo {
 	}
 
 	public Integer getGewaprice() {
-		return this.gewaprice;
+		return gewaprice;
 	}
 
 	public void setGewaprice(Integer gewaprice) {
@@ -86,7 +90,7 @@ public class BaoChangBasePriceInfoVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -94,10 +98,11 @@ public class BaoChangBasePriceInfoVo extends BaseVo {
 	}
 
 	public Integer getValidFlag() {
-		return this.validFlag;
+		return validFlag;
 	}
 
 	public void setValidFlag(Integer validFlag) {
 		this.validFlag = validFlag;
 	}
+
 }

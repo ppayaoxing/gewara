@@ -1,25 +1,27 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.domain;
 
-import com.gewara.api.pay.ApiObject;
 import java.sql.Timestamp;
 
-public class PayRecord extends ApiObject {
+import com.gewara.api.pay.ApiObject;
+
+public class PayRecord extends ApiObject{
+
 	private static final long serialVersionUID = -4420072502903272043L;
-	private String id;
-	private String tradeNo;
-	private String merTradeNo;
-	private String payseqno;
-	private String gatewayCode;
-	private String merchantCode;
-	private Integer paidAmount;
-	private Timestamp notifyTime;
-	private Integer notifyCount;
-	private String status;
-	private String otherinfo;
+	//交易状态
+	private String id;				//ID
+	private String tradeNo;			//订单号
+	private String merTradeNo;		//订单号
+	private String payseqno;		//第三方支付序号
+	private String gatewayCode;		//支付网关代码	
+	private String merchantCode;	//商户号标识
+	private Integer paidAmount;		//支付金额，单位：分
+	private Timestamp notifyTime;		//支付时间
+	private Integer notifyCount;	//通知次数
+	private String status;			//支付状态
+	private String otherinfo;	    //其他信息
 
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -27,7 +29,7 @@ public class PayRecord extends ApiObject {
 	}
 
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -35,7 +37,7 @@ public class PayRecord extends ApiObject {
 	}
 
 	public String getMerTradeNo() {
-		return this.merTradeNo;
+		return merTradeNo;
 	}
 
 	public void setMerTradeNo(String merTradeNo) {
@@ -43,7 +45,7 @@ public class PayRecord extends ApiObject {
 	}
 
 	public String getPayseqno() {
-		return this.payseqno;
+		return payseqno;
 	}
 
 	public void setPayseqno(String payseqno) {
@@ -51,7 +53,7 @@ public class PayRecord extends ApiObject {
 	}
 
 	public String getGatewayCode() {
-		return this.gatewayCode;
+		return gatewayCode;
 	}
 
 	public void setGatewayCode(String gatewayCode) {
@@ -59,7 +61,7 @@ public class PayRecord extends ApiObject {
 	}
 
 	public String getMerchantCode() {
-		return this.merchantCode;
+		return merchantCode;
 	}
 
 	public void setMerchantCode(String merchantCode) {
@@ -67,7 +69,7 @@ public class PayRecord extends ApiObject {
 	}
 
 	public Integer getPaidAmount() {
-		return this.paidAmount;
+		return paidAmount;
 	}
 
 	public void setPaidAmount(Integer paidAmount) {
@@ -75,7 +77,7 @@ public class PayRecord extends ApiObject {
 	}
 
 	public Timestamp getNotifyTime() {
-		return this.notifyTime;
+		return notifyTime;
 	}
 
 	public void setNotifyTime(Timestamp notifyTime) {
@@ -83,7 +85,7 @@ public class PayRecord extends ApiObject {
 	}
 
 	public Integer getNotifyCount() {
-		return this.notifyCount;
+		return notifyCount;
 	}
 
 	public void setNotifyCount(Integer notifyCount) {
@@ -91,7 +93,7 @@ public class PayRecord extends ApiObject {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -99,10 +101,11 @@ public class PayRecord extends ApiObject {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
+
 }

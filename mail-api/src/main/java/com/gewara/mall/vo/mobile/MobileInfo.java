@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mall.vo.mobile;
 
 public class MobileInfo {
@@ -8,52 +7,43 @@ public class MobileInfo {
 	private String num;
 	private String provCode;
 	private String type;
-
 	public String getProv() {
-		return this.prov;
+		return prov;
 	}
-
 	public void setProv(String prov) {
 		this.prov = prov;
 	}
-
 	public String getCity() {
-		return this.city;
+		return city;
 	}
-
 	public void setCity(String city) {
 		this.city = city;
 	}
-
 	public String getName() {
-		return this.name;
+		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getNum() {
-		return this.num;
+		return num;
 	}
-
 	public void setNum(String num) {
 		this.num = num;
 	}
-
 	public String getProvCode() {
-		return this.provCode;
+		return provCode;
 	}
-
 	public void setProvCode(String provCode) {
 		this.provCode = provCode;
 	}
-
 	public String getType() {
-		return this.type;
+		return type;
 	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	
+	
 }

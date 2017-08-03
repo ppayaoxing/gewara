@@ -1,122 +1,104 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.star;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * 人物、角色关系
+ */
 public class WorksStaffVo extends BaseVo {
+
 	private static final long serialVersionUID = -1527845351959168455L;
 	private Long id;
-	private Long castid;
-	private Long worksid;
-	private String workstype;
-	private Long stafllrole;
-	private Integer sortby;
-	private String rolename;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private String chinesename;
-	private String engname;
-	private String headPicUrl;
-
+	private Long castid;				//人物ID
+	private Long worksid;				//项目ID
+	private String workstype;			//作品类型
+	private Long stafllrole;			//人物在作品中的角色
+	private Integer sortby;				//排序
+	private String rolename;			//所扮演角色
+	private Timestamp addtime;			//新增时间
+	private Timestamp updatetime;	    //更新时间
+	private String chinesename;			//中文名
+	private String engname;				//英文名	
+	private String headPicUrl;				//头像图片路径	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public Long getCastid() {
-		return this.castid;
+		return castid;
 	}
-
 	public void setCastid(Long castid) {
 		this.castid = castid;
 	}
-
 	public Long getWorksid() {
-		return this.worksid;
+		return worksid;
 	}
-
 	public void setWorksid(Long worksid) {
 		this.worksid = worksid;
 	}
-
 	public String getWorkstype() {
-		return this.workstype;
+		return workstype;
 	}
-
 	public void setWorkstype(String workstype) {
 		this.workstype = workstype;
 	}
-
+	
 	public Long getStafllrole() {
-		return this.stafllrole;
+		return stafllrole;
 	}
-
 	public void setStafllrole(Long stafllrole) {
 		this.stafllrole = stafllrole;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
 	public Integer getSortby() {
-		return this.sortby;
+		return sortby;
 	}
-
 	public void setSortby(Integer sortby) {
 		this.sortby = sortby;
 	}
-
 	public String getRolename() {
-		return this.rolename;
+		return rolename;
 	}
-
 	public void setRolename(String rolename) {
 		this.rolename = rolename;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public String getChinesename() {
-		return this.chinesename;
+		return chinesename;
 	}
-
 	public void setChinesename(String chinesename) {
 		this.chinesename = chinesename;
 	}
-
 	public String getEngname() {
-		return this.engname;
+		return engname;
 	}
-
 	public void setEngname(String engname) {
 		this.engname = engname;
 	}
-
 	public String getHeadPicUrl() {
-		return this.headPicUrl;
+		return headPicUrl;
 	}
-
 	public void setHeadPicUrl(String headPicUrl) {
 		this.headPicUrl = headPicUrl;
 	}
+
 }

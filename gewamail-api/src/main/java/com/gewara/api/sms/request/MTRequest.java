@@ -1,18 +1,35 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sms.request;
 
-import com.gewara.api.MsgRequest;
 import java.sql.Timestamp;
 
-public class MTRequest extends MsgRequest {
+import com.gewara.api.MsgRequest;
+
+/**
+ * 短信发送接口，请求信息
+ * 
+ * @author leo.li
+ * Modify Time Jan 15, 2013 11:22:08 AM
+ */
+public class MTRequest extends MsgRequest{
+	
 	private static final long serialVersionUID = -7958685800960343234L;
-	private String smsId;
+	
+	/**客户端短信ID，必须 */
+	private String smsId; 
+	/**国家编码，非必须*/
 	private String countryCode;
-	private String mobile;
-	private String content;
+	/**手机号，必须 */
+	private String mobile; 
+	/**短信内容，必须 */
+	private String content; 
+	/**业务类型，即在短信发送配置页配置的值，必须 */
 	private String busType;
+	/**短信唯一标识，若须避免短信重复发送，可提供这一参数，可选 */
 	private String smsUkey;
+	/**定时发送时间，若指定该值，系统将在该时间发送短信，可选 */
 	private Timestamp attime;
+	
+	/**可选，提供6个冗余字段，长度英文字符150，汉字50 */
 	private String field01;
 	private String field02;
 	private String field03;
@@ -23,75 +40,162 @@ public class MTRequest extends MsgRequest {
 	private String field08;
 	private String field09;
 	private String field10;
-
-	public MTRequest() {
-	}
-
-	public MTRequest(String smsId, String mobile, String content, String busType) {
+	
+	public MTRequest(){}
+	
+	/**
+	 * 构造MT请求
+	 * 
+	 * @param smsId   客户端短信ID，必须
+	 * @param mobile  手机号，必须
+	 * @param content 短信内容，必须 
+	 * @param busType 业务类型，即在短信发送配置页配置的值，必须
+	 *
+	 * @author leo.li
+	 * Modify Time Jan 15, 2013 11:25:52 AM
+	 */
+	public MTRequest(String smsId,String mobile,String content,String busType){
 		this.smsId = smsId;
 		this.mobile = mobile;
 		this.content = content;
 		this.busType = busType;
 	}
-
+	
+	/**
+	 * 获取客户端短信ID
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public String getSmsId() {
-		return this.smsId;
+		return smsId;
 	}
-
+	
+	/**
+	 * 设置客户端短信ID，该值必须
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public void setSmsId(String smsId) {
 		this.smsId = smsId;
 	}
-
+	
+	/**
+	 * 获取国家编码
+	 * 
+	 * @return String
+	 */
 	public String getCountryCode() {
-		return this.countryCode;
+		return countryCode;
 	}
 
 	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
 	}
 
+	/**
+	 * 获取手机号
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
-
+	
+	/**
+	 * 设置手机号，该值必须
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
+	
+	/**
+	 * 获取短信内容
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public String getContent() {
-		return this.content;
+		return content;
 	}
-
+	
+	/**
+	 * 设置短信内容，该值必须
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public void setContent(String content) {
 		this.content = content;
 	}
-
+	
+	/**
+	 * 获取业务类型，即在短信发送配置页配置的值
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public String getBusType() {
-		return this.busType;
+		return busType;
 	}
-
+	
+	/**
+	 * 设置业务类型，即在短信发送配置页配置的值，该值必须
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public void setBusType(String busType) {
 		this.busType = busType;
 	}
-
+	
+	/**
+	 * 获取短信唯一标识，若须避免短信重复发送，可提供这一参数
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public String getSmsUkey() {
-		return this.smsUkey;
+		return smsUkey;
 	}
-
+	
+	/**
+	 * 设置短信唯一标识，若须避免短信重复发送，可提供这一参数
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public void setSmsUkey(String smsUkey) {
 		this.smsUkey = smsUkey;
 	}
-
+	
+	/**
+	 * 获取定时发送时间，若指定该值，系统将在该时间发送短信
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public Timestamp getAttime() {
-		return this.attime;
+		return attime;
 	}
-
+	
+	/**
+	 * 设置定时发送时间，若指定该值，系统将在该时间发送短信，该值可选
+	 * 
+	 * @return String
+	 * Modify Time Jan 15, 2013 11:23:22 AM
+	 */
 	public void setAttime(Timestamp attime) {
 		this.attime = attime;
 	}
 
 	public String getField01() {
-		return this.field01;
+		return field01;
 	}
 
 	public void setField01(String field01) {
@@ -99,7 +203,7 @@ public class MTRequest extends MsgRequest {
 	}
 
 	public String getField02() {
-		return this.field02;
+		return field02;
 	}
 
 	public void setField02(String field02) {
@@ -107,7 +211,7 @@ public class MTRequest extends MsgRequest {
 	}
 
 	public String getField03() {
-		return this.field03;
+		return field03;
 	}
 
 	public void setField03(String field03) {
@@ -115,7 +219,7 @@ public class MTRequest extends MsgRequest {
 	}
 
 	public String getField04() {
-		return this.field04;
+		return field04;
 	}
 
 	public void setField04(String field04) {
@@ -123,7 +227,7 @@ public class MTRequest extends MsgRequest {
 	}
 
 	public String getField05() {
-		return this.field05;
+		return field05;
 	}
 
 	public void setField05(String field05) {
@@ -131,7 +235,7 @@ public class MTRequest extends MsgRequest {
 	}
 
 	public String getField06() {
-		return this.field06;
+		return field06;
 	}
 
 	public void setField06(String field06) {
@@ -139,7 +243,7 @@ public class MTRequest extends MsgRequest {
 	}
 
 	public String getField07() {
-		return this.field07;
+		return field07;
 	}
 
 	public void setField07(String field07) {
@@ -147,7 +251,7 @@ public class MTRequest extends MsgRequest {
 	}
 
 	public String getField08() {
-		return this.field08;
+		return field08;
 	}
 
 	public void setField08(String field08) {
@@ -155,7 +259,7 @@ public class MTRequest extends MsgRequest {
 	}
 
 	public String getField09() {
-		return this.field09;
+		return field09;
 	}
 
 	public void setField09(String field09) {
@@ -163,7 +267,7 @@ public class MTRequest extends MsgRequest {
 	}
 
 	public String getField10() {
-		return this.field10;
+		return field10;
 	}
 
 	public void setField10(String field10) {

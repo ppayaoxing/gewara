@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.service;
 
 import com.gewara.api.pay.request.GetPayOrderRequest;
@@ -11,13 +10,38 @@ import com.gewara.api.pay.response.GetPayRepeatTradeResponse;
 import com.gewara.api.vo.ResultCode;
 
 public interface PayOrderApiService {
-	ResultCode<GetPayOrderResponse> get(GetPayOrderRequest arg0);
 
-	ResultCode<GetPayRecordResponse> getPayRecordByTradeNo(GetPayRecordByTradeNoRequest arg0);
-
-	ResultCode<GetPayRecordResponse> getPayRecord(GetPayRecordRequest arg0);
-
-	ResultCode<GetPayRepeatTradeResponse> getPayRepeatTrade(GetPayRepeatTradeRequest arg0);
-
-	ResultCode<GetPayRecordResponse> queryPayRecord(GetPayRecordRequest arg0);
+	/**
+	 * 通过tradeNo获取支付订单信息
+	 * @param request
+	 * @return
+	 */
+	ResultCode<GetPayOrderResponse> get(GetPayOrderRequest request);
+	
+	/**
+	 * 通过tradeNo获取银行流水信息信息
+	 * @param request
+	 * @return
+	 */
+	ResultCode<GetPayRecordResponse> getPayRecordByTradeNo(GetPayRecordByTradeNoRequest request);
+	
+	/**
+	 * 获取一段时间内的，重复订单对应的PayRecord
+	 * @return
+	 */
+	ResultCode<GetPayRecordResponse> getPayRecord(GetPayRecordRequest request);
+	
+	/**
+	 * 获取一段时间内，重复支付银行流水信息
+	 * 注意：1、开始时间与结束区间最大不能超过10天； 2、list结果记录数最大为1000，总记录数记录在total中
+	 * @param request
+	 * @return
+	 */
+	ResultCode<GetPayRepeatTradeResponse> getPayRepeatTrade(GetPayRepeatTradeRequest request);
+	
+	/**
+	 * 获取一段时间内,指定gatewayCode和merchantCode对应的银行流水信息信息
+	 * @return
+	 */
+	ResultCode<GetPayRecordResponse> queryPayRecord(GetPayRecordRequest request);
 }

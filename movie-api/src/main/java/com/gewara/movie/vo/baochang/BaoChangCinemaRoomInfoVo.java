@@ -1,18 +1,18 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.baochang;
 
-import com.gewara.movie.vo.baochang.BaoChangBasePriceInfoVo;
-import com.gewara.movie.vo.baochang.BaoChangTimeInfoVo;
 import java.util.List;
 
 public class BaoChangCinemaRoomInfoVo extends BaoChangBasePriceInfoVo {
 	private static final long serialVersionUID = 6153941174564232485L;
-	private String roomName;
+	
+	private String roomName;//Ó°ÌüÃû³Æ
 	private String remark;
 	private List<BaoChangTimeInfoVo> timeInfoList;
+	
+	public BaoChangCinemaRoomInfoVo(){}
 
 	public String getRoomName() {
-		return this.roomName;
+		return roomName;
 	}
 
 	public void setRoomName(String roomName) {
@@ -20,7 +20,7 @@ public class BaoChangCinemaRoomInfoVo extends BaoChangBasePriceInfoVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -28,10 +28,11 @@ public class BaoChangCinemaRoomInfoVo extends BaoChangBasePriceInfoVo {
 	}
 
 	public List<BaoChangTimeInfoVo> getTimeInfoList() {
-		return this.timeInfoList;
+		return timeInfoList;
 	}
 
 	public void setTimeInfoList(List<BaoChangTimeInfoVo> timeInfoList) {
 		this.timeInfoList = timeInfoList;
 	}
+
 }

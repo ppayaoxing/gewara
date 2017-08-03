@@ -1,13 +1,27 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.api.service.admin;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.movie.vo.MovieVideoVo;
 
 public interface MovieVideoAdminVoService {
-	ResultCode<MovieVideoVo> saveOrUpdateMovieVideo(Long arg0, String arg1, String arg2);
-
-	ResultCode<MovieVideoVo> removeMovieVideoByVideoid(String arg0);
-
-	ResultCode<MovieVideoVo> getMovieVideoByVideoid(String arg0);
+	/**
+	 * 保存movievideo对象
+	 * @param movieid
+	 * @param videoid
+	 * @param imgUrl
+	 * @return
+	 */
+	ResultCode<MovieVideoVo> saveOrUpdateMovieVideo(Long movieid, String videoid, String imgUrl);
+	/**
+	 * 删除movievideo对象
+	 * @param videoid
+	 * @return
+	 */
+	ResultCode<MovieVideoVo> removeMovieVideoByVideoid(String videoid);
+	/**
+	 * 根据videoid查询MovieVideo
+	 * @param videoid
+	 * @return
+	 */
+	ResultCode<MovieVideoVo> getMovieVideoByVideoid(String videoid);
 }

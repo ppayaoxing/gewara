@@ -1,37 +1,42 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.taskreward;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class TaskRewardVo extends BaseVo {
+
 	public static final String TYPE_HEADPIC = "headpic";
 	public static final String TYPE_NICKNAME = "nickname";
 	public static final String TYPE_INTRO = "introduction";
 	public static final String TYPE_OTHER = "other";
+	
 	public static final String HAS_VOTE_NO = "0";
 	public static final String HAS_VOTE_YES = "1";
+	
 	public static final String ISUSED_NO = "0";
 	public static final String ISUSED_YES = "1";
-	private static final long serialVersionUID = -2462991574596383962L;
-	private Long id;
-	private String type;
-	private String name;
-	private String linkeUrl;
-	private Integer score;
-	private String status;
-	private Integer sortNum;
-	private Long memberid;
-	private String nickname;
-	private Timestamp addtime;
 
+	private static final long serialVersionUID = -2462991574596383962L;
+	private Long id; // 主键
+	private String type;// 类型 headpic,nickname,introduction,other
+	private String name;//
+	private String linkeUrl;// 链接
+	private Integer score; // 分数
+	private String status; // Y_NEW、N_DELETE
+	private Integer sortNum;// 排序
+	private Long memberid; // 添加用户
+	private String nickname;
+	private Timestamp addtime; // 创建时间
+
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -39,7 +44,7 @@ public class TaskRewardVo extends BaseVo {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -47,7 +52,7 @@ public class TaskRewardVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -55,7 +60,7 @@ public class TaskRewardVo extends BaseVo {
 	}
 
 	public String getLinkeUrl() {
-		return this.linkeUrl;
+		return linkeUrl;
 	}
 
 	public void setLinkeUrl(String linkeUrl) {
@@ -63,7 +68,7 @@ public class TaskRewardVo extends BaseVo {
 	}
 
 	public Integer getScore() {
-		return this.score;
+		return score;
 	}
 
 	public void setScore(Integer score) {
@@ -71,7 +76,7 @@ public class TaskRewardVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -79,7 +84,7 @@ public class TaskRewardVo extends BaseVo {
 	}
 
 	public Integer getSortNum() {
-		return this.sortNum;
+		return sortNum;
 	}
 
 	public void setSortNum(Integer sortNum) {
@@ -87,7 +92,7 @@ public class TaskRewardVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -95,7 +100,7 @@ public class TaskRewardVo extends BaseVo {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -103,10 +108,11 @@ public class TaskRewardVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
+
 }

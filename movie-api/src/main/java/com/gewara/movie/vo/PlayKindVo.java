@@ -1,33 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class PlayKindVo extends BaseVo {
 	private static final long serialVersionUID = -5154633937499593360L;
-	private Long id;
-	private String kindName;
-	private Integer orderNumber;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private Integer status;
-	private String isCur;
-	private String belongToKind;
-	private String belongToKindPattern;
-	private String isRecommend;
-
+	private Long id; //唯一标示
+	private String kindName; //放映类别名称
+	private Integer orderNumber; //排序序号
+	private Timestamp addtime; //添加时间
+	private Timestamp updatetime;	//修改时间 
+	private Integer status; //是否删除 1=删除 0=未删除
+	private String isCur; //是否是当期 y=是  n=否
+	private String belongToKind;//属于哪个类别 新商业or新经典 现在的值有 newBusiness newClassics;
+	private String belongToKindPattern;//属于新经典什么模式,例如 单片模式(singular)，展映模式()
+	private String isRecommend;//是否推荐y=是  n=否
 	public String getIsRecommend() {
-		return this.isRecommend;
+		return isRecommend;
 	}
-
 	public void setIsRecommend(String isRecommend) {
 		this.isRecommend = isRecommend;
 	}
-
+	public PlayKindVo(){}
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -35,7 +33,7 @@ public class PlayKindVo extends BaseVo {
 	}
 
 	public String getKindName() {
-		return this.kindName;
+		return kindName;
 	}
 
 	public void setKindName(String kindName) {
@@ -43,7 +41,7 @@ public class PlayKindVo extends BaseVo {
 	}
 
 	public Integer getOrderNumber() {
-		return this.orderNumber;
+		return orderNumber;
 	}
 
 	public void setOrderNumber(Integer orderNumber) {
@@ -51,7 +49,7 @@ public class PlayKindVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -59,7 +57,7 @@ public class PlayKindVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -67,7 +65,7 @@ public class PlayKindVo extends BaseVo {
 	}
 
 	public Integer getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(Integer status) {
@@ -75,30 +73,29 @@ public class PlayKindVo extends BaseVo {
 	}
 
 	public String getIsCur() {
-		return this.isCur;
+		return isCur;
 	}
 
 	public void setIsCur(String isCur) {
 		this.isCur = isCur;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public String getBelongToKind() {
-		return this.belongToKind;
+		return belongToKind;
 	}
-
 	public void setBelongToKind(String belongToKind) {
 		this.belongToKind = belongToKind;
 	}
-
 	public String getBelongToKindPattern() {
-		return this.belongToKindPattern;
+		return belongToKindPattern;
 	}
-
 	public void setBelongToKindPattern(String belongToKindPattern) {
 		this.belongToKindPattern = belongToKindPattern;
 	}
+	
+
 }

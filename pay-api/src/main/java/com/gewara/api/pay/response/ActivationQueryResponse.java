@@ -1,19 +1,41 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.response;
 
 import com.gewara.api.pay.ApiResponse;
 
 public class ActivationQueryResponse extends ApiResponse {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 6544109331366876341L;
+	
+	public ActivationQueryResponse(){
+		super();
+	}
+	
+	/**
+	 * 开通状态
+	 */
 	private String activateStatus;
+	
+	/**
+	 * 已开通时返回手机号，未开通时返回空
+	 */
 	private String phoneNumber;
+	
 	private Integer transLimit;
+	
 	private Integer sumLimit;
+	
 	private String expiry;
+	
+	/**
+	 * 银联系统保留域
+	 */
 	private String cupReserved;
 
 	public String getActivateStatus() {
-		return this.activateStatus;
+		return activateStatus;
 	}
 
 	public void setActivateStatus(String activateStatus) {
@@ -21,7 +43,7 @@ public class ActivationQueryResponse extends ApiResponse {
 	}
 
 	public String getPhoneNumber() {
-		return this.phoneNumber;
+		return phoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
@@ -29,7 +51,7 @@ public class ActivationQueryResponse extends ApiResponse {
 	}
 
 	public Integer getTransLimit() {
-		return this.transLimit;
+		return transLimit;
 	}
 
 	public void setTransLimit(Integer transLimit) {
@@ -37,7 +59,7 @@ public class ActivationQueryResponse extends ApiResponse {
 	}
 
 	public Integer getSumLimit() {
-		return this.sumLimit;
+		return sumLimit;
 	}
 
 	public void setSumLimit(Integer sumLimit) {
@@ -45,7 +67,7 @@ public class ActivationQueryResponse extends ApiResponse {
 	}
 
 	public String getCupReserved() {
-		return this.cupReserved;
+		return cupReserved;
 	}
 
 	public void setCupReserved(String cupReserved) {
@@ -53,10 +75,11 @@ public class ActivationQueryResponse extends ApiResponse {
 	}
 
 	public String getExpiry() {
-		return this.expiry;
+		return expiry;
 	}
 
 	public void setExpiry(String expiry) {
 		this.expiry = expiry;
 	}
+
 }

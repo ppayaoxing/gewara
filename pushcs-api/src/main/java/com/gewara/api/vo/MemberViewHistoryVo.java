@@ -1,17 +1,26 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo;
 
-import com.gewara.model.MemberViewInfo;
 import java.io.Serializable;
 import java.util.List;
 
-public class MemberViewHistoryVo implements Serializable {
+import com.gewara.model.MemberViewInfo;
+
+/**
+ * 用户观影记录
+ * 
+ * @author jeremylei
+ * @date 2016/04/15
+ */
+public class MemberViewHistoryVo  implements Serializable {
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 267793090821893655L;
-	private Long memberid;
-	private List<MemberViewInfo> viewHistory;
+	private Long memberid; // 用户id
+	private List<MemberViewInfo> viewHistory; // 观影历史
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -19,7 +28,7 @@ public class MemberViewHistoryVo implements Serializable {
 	}
 
 	public List<MemberViewInfo> getViewHistory() {
-		return this.viewHistory;
+		return viewHistory;
 	}
 
 	public void setViewHistory(List<MemberViewInfo> viewHistory) {

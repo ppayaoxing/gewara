@@ -1,55 +1,34 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.api.service.filmfest;
+
+import java.util.List;
+import java.util.Map;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.movie.vo.filmfest.FilmfestKindVo;
 import com.gewara.movie.vo.filmfest.FilmfestMovieVo;
 import com.gewara.movie.vo.filmfest.SetTicketVo;
 import com.gewara.movie.vo.filmfest.ViewFilmScheduleVo;
-import java.util.List;
-import java.util.Map;
-
 public interface FilmfestVoService {
-	ResultCode<FilmfestKindVo> getFilmfestKindVoById(Long arg0);
-
-	ResultCode<FilmfestKindVo> getFilmfestKindVoByKindCode(String arg0);
-
-	ResultCode<List<FilmfestMovieVo>> getFilmfestMovieVoListByKindId(Long arg0);
-
-	ResultCode<List<FilmfestMovieVo>> getFilmfestMovieVoListByBelongToId(Long arg0);
-
-	ResultCode<List<FilmfestKindVo>> getFirstLevelChildrenByParentId(Long arg0);
-
-	ResultCode<List<FilmfestKindVo>> getChildrenByParentId(Long arg0);
-
+	ResultCode<FilmfestKindVo> getFilmfestKindVoById(Long id);
+	ResultCode<FilmfestKindVo> getFilmfestKindVoByKindCode(String kindCode);
+	ResultCode<List<FilmfestMovieVo>> getFilmfestMovieVoListByKindId(Long kindId);
+	ResultCode<List<FilmfestMovieVo>> getFilmfestMovieVoListByBelongToId(Long belongToId);
+	ResultCode<List<FilmfestKindVo>> getFirstLevelChildrenByParentId(Long parentId);
+	ResultCode<List<FilmfestKindVo>> getChildrenByParentId(Long parentId);
 	ResultCode<String> getPreMobilePath();
-
 	ResultCode<List<Long>> getNewMovieids();
-
-	ResultCode<List<Long>> getCurOpenMovieids(String arg0);
-
-	ResultCode<List<Long>> getCurOpenMovieids2(String arg0);
-
-	ResultCode<List<Map<Object, Object>>> getCurCinemaVoList(String arg0);
-
-	ResultCode<List<Long>> getCurRoomidsList(String arg0);
-
-	ResultCode<Map<String, Map<Object, Object>>> getFilterCondition(String arg0);
-
-	ResultCode<List<Map>> getFilmfestDateList(String arg0);
-
-	ResultCode<ViewFilmScheduleVo> saveOrUpdateViewFilmSchedule(Long arg0, Long arg1, String arg2, String arg3,
-			Integer arg4, String arg5, String arg6);
-
-	ResultCode<List<ViewFilmScheduleVo>> getViewFilmScheduleList(Long arg0, String arg1, String arg2);
-
-	ResultCode<Boolean> delViewFilmSchedule(String arg0);
-
-	ResultCode<Boolean> copyViewFilmSchedule(Long arg0, Long arg1, String arg2, String arg3, String arg4);
-
-	ResultCode<List<Map>> getMyTicketList(Long arg0, String arg1);
-
-	ResultCode<List<SetTicketVo>> getSetTicketListByFilmTagUseCache(String arg0);
-
-	ResultCode<Map<Long, Integer>> getFilmScheduleCountMap(String arg0);
+	ResultCode<List<Long>> getCurOpenMovieids(String cityCode);
+	ResultCode<List<Long>> getCurOpenMovieids2(String cityCode);
+	ResultCode<List<Map<Object,Object>>> getCurCinemaVoList(String cityCode);
+	ResultCode<List<Long>> getCurRoomidsList(String cityCode);
+	ResultCode<Map<String,Map<Object, Object>>> getFilterCondition(String cityCode);
+	ResultCode<List<Map>> getFilmfestDateList(String filmfestCode);
+	ResultCode<ViewFilmScheduleVo> saveOrUpdateViewFilmSchedule(Long memberid, Long movieid, String source,String filmTag,Integer score, String like, String shareReason);
+	ResultCode<List<ViewFilmScheduleVo>> getViewFilmScheduleList(Long memberid,String type,String filmTag);
+	ResultCode<Boolean> delViewFilmSchedule(String id);
+	ResultCode<Boolean> copyViewFilmSchedule(Long fromMemberId,Long toMemberId,String type,String filmTag,String source);
+	ResultCode<List<Map>> getMyTicketList(Long memberid,String filmTag);
+	ResultCode<List<SetTicketVo>> getSetTicketListByFilmTagUseCache(String filmTag);
+	ResultCode<Map<Long, Integer>> getFilmScheduleCountMap(String filmTag);
+	
 }

@@ -1,44 +1,55 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.filmfest;
+
+import java.io.Serializable;
 
 import com.gewara.api.vo.BaseVo;
 import com.gewara.util.DateUtil;
-import java.io.Serializable;
 
-public class ViewFilmScheduleVo extends BaseVo {
+
+public class ViewFilmScheduleVo extends BaseVo{
+	
 	private static final long serialVersionUID = 6376895767049902327L;
 	public static final String TYPE_MOVIE_FILMFEST = "movie";
 	public static final String TYPE_SCHEDULE_FILMFEST = "schedule";
+	
 	private String _id;
+	
 	private Long mpid;
+	
 	private Long movieId;
+	
 	private Long memberId;
+	
 	private String addTime;
+	
 	private String playTime;
-	private String type;
+	
+	private String type;// movie 片单  schedule 日程 
+	
 	private String source;
+	
 	private Long batch;
+	
 	private String tradeNo;
+	
 	private Long cinemaId;
 	private String buy;
-	private String filmTag;
+	private String filmTag; //不同电影节的标示
 	private Integer score;
-	private String like;
-	private String shareReason;
-
-	public ViewFilmScheduleVo() {
-	}
-
-	public ViewFilmScheduleVo(String type, Long mpid, Long movieId, Long memberId) {
+	private String like;	// 赞
+	private String shareReason;	
+	public ViewFilmScheduleVo(){}
+	
+	public ViewFilmScheduleVo(String type,Long mpid,Long movieId,Long memberId){
 		this.type = type;
 		this.mpid = mpid;
 		this.movieId = movieId;
 		this.memberId = memberId;
 		this.addTime = DateUtil.getCurFullTimestampStr();
 	}
-
+	
 	public String get_id() {
-		return this._id;
+		return _id;
 	}
 
 	public void set_id(String _id) {
@@ -46,7 +57,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public Long getMpid() {
-		return this.mpid;
+		return mpid;
 	}
 
 	public void setMpid(Long mpid) {
@@ -54,7 +65,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public Long getMovieId() {
-		return this.movieId;
+		return movieId;
 	}
 
 	public void setMovieId(Long movieId) {
@@ -62,7 +73,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public Long getMemberId() {
-		return this.memberId;
+		return memberId;
 	}
 
 	public void setMemberId(Long memberId) {
@@ -70,7 +81,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public String getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
 
 	public void setAddTime(String addTime) {
@@ -78,7 +89,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public String getPlayTime() {
-		return this.playTime;
+		return playTime;
 	}
 
 	public void setPlayTime(String playTime) {
@@ -86,7 +97,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -94,7 +105,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public String getSource() {
-		return this.source;
+		return source;
 	}
 
 	public void setSource(String source) {
@@ -102,7 +113,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public Long getBatch() {
-		return this.batch;
+		return batch;
 	}
 
 	public void setBatch(Long batch) {
@@ -110,7 +121,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -118,7 +129,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public Long getCinemaId() {
-		return this.cinemaId;
+		return cinemaId;
 	}
 
 	public void setCinemaId(Long cinemaId) {
@@ -126,19 +137,20 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public String getBuy() {
-		return this.buy;
+		return buy;
 	}
 
 	public void setBuy(String buy) {
 		this.buy = buy;
 	}
 
+	@Override
 	public Serializable realId() {
 		return this._id;
 	}
 
 	public String getFilmTag() {
-		return this.filmTag;
+		return filmTag;
 	}
 
 	public void setFilmTag(String filmTag) {
@@ -146,7 +158,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public Integer getScore() {
-		return this.score;
+		return score;
 	}
 
 	public void setScore(Integer score) {
@@ -154,7 +166,7 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public String getShareReason() {
-		return this.shareReason;
+		return shareReason;
 	}
 
 	public void setShareReason(String shareReason) {
@@ -162,10 +174,11 @@ public class ViewFilmScheduleVo extends BaseVo {
 	}
 
 	public String getLike() {
-		return this.like;
+		return like;
 	}
 
 	public void setLike(String like) {
 		this.like = like;
 	}
+
 }

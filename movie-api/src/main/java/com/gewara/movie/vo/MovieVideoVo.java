@@ -1,9 +1,9 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class MovieVideoVo extends BaseVo {
 	private static final long serialVersionUID = -4368832012742703607L;
@@ -11,22 +11,22 @@ public class MovieVideoVo extends BaseVo {
 	private String videoid;
 	private String img;
 	private Timestamp addtime;
-
-	public MovieVideoVo() {
-	}
-
-	public MovieVideoVo(Long movieid, String videoid) {
+	
+	public MovieVideoVo() {}
+	
+	public MovieVideoVo(Long movieid, String videoid){
 		this.movieid = movieid;
 		this.videoid = videoid;
 		this.addtime = new Timestamp(System.currentTimeMillis());
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.movieid;
+		return movieid;
 	}
-
+	
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
 
 	public void setMovieid(Long movieid) {
@@ -34,7 +34,7 @@ public class MovieVideoVo extends BaseVo {
 	}
 
 	public String getVideoid() {
-		return this.videoid;
+		return videoid;
 	}
 
 	public void setVideoid(String videoid) {
@@ -42,7 +42,7 @@ public class MovieVideoVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -50,10 +50,11 @@ public class MovieVideoVo extends BaseVo {
 	}
 
 	public String getImg() {
-		return this.img;
+		return img;
 	}
 
 	public void setImg(String img) {
 		this.img = img;
 	}
+
 }

@@ -1,16 +1,26 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.response.spdccc;
 
 import com.gewara.api.pay.ApiResponse;
 
 public class SendSmsResponse extends ApiResponse {
-	private static final long serialVersionUID = -5616810065489456044L;
-	private String tradeNo;
-	private String verifyCode;
-	private String teleNo;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5616810065489456044L;
+	
+	private String tradeNo;
+	
+	private String verifyCode;//短信验证码
+	
+	private String teleNo;//手机号
+	
+	public SendSmsResponse(){
+		super();
+	}
+	
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -18,7 +28,7 @@ public class SendSmsResponse extends ApiResponse {
 	}
 
 	public String getVerifyCode() {
-		return this.verifyCode;
+		return verifyCode;
 	}
 
 	public void setVerifyCode(String verifyCode) {
@@ -26,10 +36,11 @@ public class SendSmsResponse extends ApiResponse {
 	}
 
 	public String getTeleNo() {
-		return this.teleNo;
+		return teleNo;
 	}
 
 	public void setTeleNo(String teleNo) {
 		this.teleNo = teleNo;
 	}
+	
 }

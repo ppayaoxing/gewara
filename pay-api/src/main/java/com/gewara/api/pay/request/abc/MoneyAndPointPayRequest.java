@@ -1,25 +1,25 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.request.abc;
 
-import com.gewara.api.pay.request.abc.AbcRequest;
 import java.util.Map;
 
 public class MoneyAndPointPayRequest extends AbcRequest {
+
 	private static final long serialVersionUID = 7814516839886229493L;
-	private String cardno;
-	private String cardexp;
-	private String adddata;
-	private Integer amount;
-	private Integer point;
-	private Integer totalAmount;
-	private String checkcode;
-	private String pointflag;
+
+	private String cardno;// 交易卡号
+	private String cardexp;// 卡有效期
+	private String adddata;// CVD2
+	private Integer amount;// 交易金额
+	private Integer point;// 积分
+	private Integer totalAmount;//订单总金额
+	private String checkcode;// 验证码
+	private String pointflag;// 积分标识  0: 不使用积分 1:使用积分
 
 	public MoneyAndPointPayRequest() {
 	}
 
-	public MoneyAndPointPayRequest(String orderid, String cardno, String cardexp, String adddata, Integer amount,
-			Integer point, Integer totalAmount, String checkcode, String pointflag) {
+	public MoneyAndPointPayRequest(String orderid, String cardno, String cardexp, String adddata, Integer amount, Integer point, Integer totalAmount, String checkcode,
+			String pointflag) {
 		super(orderid);
 		this.cardno = cardno;
 		this.cardexp = cardexp;
@@ -31,59 +31,53 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 		this.pointflag = pointflag;
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {
-		Map params = super.getTextParams();
-		params.put("cardno", this.cardno);
-		params.put("cardexp", this.cardexp);
-		params.put("adddata", this.adddata);
-		params.put("amount", String.valueOf(this.amount));
-		params.put("point", String.valueOf(this.point));
-		params.put("totalamount", String.valueOf(this.totalAmount));
-		params.put("checkcode", this.checkcode);
-		params.put("pointflag", this.pointflag);
+		Map<String, String> params = super.getTextParams();
+		params.put("cardno", cardno);
+		params.put("cardexp", cardexp);
+		params.put("adddata", adddata);
+		params.put("amount", String.valueOf(amount));
+		params.put("point", String.valueOf(point));
+		params.put("totalamount", String.valueOf(totalAmount));
+		params.put("checkcode", checkcode);
+		params.put("pointflag", pointflag);
 		return params;
 	}
 
+	@Override
 	public boolean checkParams() {
-		if (!super.checkParams()) {
+		if (!super.checkParams())
 			return false;
-		} else if (this.cardno != null && this.cardno.length() < 20) {
-			if (this.cardexp != null && this.cardno.length() != 4) {
-				if (this.adddata != null && this.adddata.length() == 3) {
-					if (this.checkcode != null && this.checkcode.length() == 6) {
-						if (this.totalAmount != null && this.totalAmount.intValue() > 0) {
-							if (this.pointflag == null) {
-								return false;
-							} else {
-								if ("1".equals(this.pointflag)) {
-									if (this.point == null || this.point.intValue() <= 0) {
-										return false;
-									}
-								} else if (this.amount == null || this.amount.intValue() <= 0) {
-									return false;
-								}
 
-								return true;
-							}
-						} else {
-							return false;
-						}
-					} else {
-						return false;
-					}
-				} else {
+		if (cardno == null || cardno.length() >= 20)
+			return false;
+		if (cardexp == null || cardno.length() == 4)
+			return false;
+		if (adddata == null || adddata.length() != 3)
+			return false;
+		if (checkcode == null || checkcode.length() != 6)
+			return false;
+		if (totalAmount == null || totalAmount <= 0)
+			return false;
+		if (pointflag == null) {
+			return false;
+		} else {// 0: 不使用积分 1:使用积分
+			if ("1".equals(pointflag)) {
+				if (point == null || point <= 0) {
 					return false;
 				}
 			} else {
-				return false;
+				if (amount == null || amount <= 0) {
+					return false;
+				}
 			}
-		} else {
-			return false;
 		}
+		return true;
 	}
 
 	public String getCardno() {
-		return this.cardno;
+		return cardno;
 	}
 
 	public void setCardno(String cardno) {
@@ -91,7 +85,7 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 	}
 
 	public String getCardexp() {
-		return this.cardexp;
+		return cardexp;
 	}
 
 	public void setCardexp(String cardexp) {
@@ -99,7 +93,7 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 	}
 
 	public String getAdddata() {
-		return this.adddata;
+		return adddata;
 	}
 
 	public void setAdddata(String adddata) {
@@ -107,7 +101,7 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 	}
 
 	public Integer getAmount() {
-		return this.amount;
+		return amount;
 	}
 
 	public void setAmount(Integer amount) {
@@ -115,7 +109,7 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 	}
 
 	public Integer getPoint() {
-		return this.point;
+		return point;
 	}
 
 	public void setPoint(Integer point) {
@@ -123,7 +117,7 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 	}
 
 	public String getCheckcode() {
-		return this.checkcode;
+		return checkcode;
 	}
 
 	public void setCheckcode(String checkcode) {
@@ -131,7 +125,7 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 	}
 
 	public String getPointflag() {
-		return this.pointflag;
+		return pointflag;
 	}
 
 	public void setPointflag(String pointflag) {
@@ -139,10 +133,11 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 	}
 
 	public Integer getTotalAmount() {
-		return this.totalAmount;
+		return totalAmount;
 	}
 
 	public void setTotalAmount(Integer totalAmount) {
 		this.totalAmount = totalAmount;
 	}
+
 }

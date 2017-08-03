@@ -1,18 +1,50 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.recommend;
+
+import java.util.List;
 
 import com.gewara.api.sns.vo.recommend.RecommendBatchDetailVo;
 import com.gewara.api.sns.vo.recommend.RecommendBatchVo;
 import com.gewara.api.vo.ResultCode;
-import java.util.List;
 
+/**
+ * 推荐api
+ * 
+ * @author zxl
+ * 
+ */
 public interface RecommendApiService {
-	ResultCode<RecommendBatchVo> getLatestRecommendBatch(String arg0);
 
-	ResultCode<Boolean> checkRecommendCondition(String arg0, Long arg1);
+	/**
+	 * 获取最新的推荐
+	 * @param type
+	 * @return
+	 */
+	ResultCode<RecommendBatchVo> getLatestRecommendBatch(String type);
 
-	ResultCode<List<RecommendBatchDetailVo>> getRecommendBatchDetails(Long arg0, String[] arg1);
+	/**
+	 * 判断是否推荐
+	 * @param condition
+	 * @param memberid
+	 * @return
+	 */
+	ResultCode<Boolean> checkRecommendCondition(String condition, Long memberid);
 
-	ResultCode<List<RecommendBatchDetailVo>> getRecommendBatchDetailsWithPage(Long arg0, String[] arg1, Integer arg2,
-			Integer arg3);
+	/**
+	 * 获取推荐的详细内容
+	 * @param batchId
+	 * @param tag
+	 * @return
+	 */
+	ResultCode<List<RecommendBatchDetailVo>> getRecommendBatchDetails(Long batchId,String[] tag);
+
+	/**
+	 * 分页获取
+	 * @param batchId
+	 * @param tag
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<RecommendBatchDetailVo>> getRecommendBatchDetailsWithPage(Long batchId, String[] tag, Integer from, Integer maxnum);
+
 }

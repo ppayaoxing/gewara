@@ -1,43 +1,68 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo;
 
 import java.io.Serializable;
 
-public class UserDevice implements Serializable {
+public class UserDevice implements Serializable{
 	private static final long serialVersionUID = -2486453578172419891L;
-	private Long userId;
-	private String deviceId;
-
+	
+	private Long userId;		//用户id
+	private String deviceId;	//推送标识
 	@Deprecated
-	private String appToken;
-	private String deviceTag;
-	private String appName;
-	private String appVersion;
-	private String acceptPush;
-	private String cityCode;
-	private String cityName;
+	private String appToken;	//应用token
+	private String deviceTag; 	//设备标记：android、ios
+	private String appName;		//应用名称
+	private String appVersion;	//应用版本
+	private String acceptPush;	//应用是否接受push消息
+	private String cityCode; //城市编码
+	private String cityName; //城市名称
 	private String pointx;
 	private String pointy;
-	private String uuid;
-
-	public UserDevice(String uuid, Long userId, String deviceId, String deviceTag, String appName, String appVersion,
-			String acceptPush, String cityCode, String cityName, String pointx, String pointy) {
-		this.uuid = uuid;
-		this.userId = userId;
-		this.deviceId = deviceId;
-		this.deviceTag = deviceTag;
-		this.appName = appName;
-		this.appVersion = appVersion;
-		this.acceptPush = acceptPush;
-		this.cityCode = cityCode;
-		this.cityName = cityName;
-		this.pointx = pointx;
-		this.pointy = pointy;
+	private String uuid; //设备唯一标识
+	/**
+	 * 
+	 * @param uuid设备唯一标识
+	 * @param userId 用户id
+	 * @param deviceId  推送标识
+	 * @param deviceTag 设备标记：android、ios
+	 * @param appName 应用名称
+	 * @param appVersion 应用版本
+	 * @param acceptPush 应用是否接受push消息
+	 * @param cityCode 城市编码
+	 * @param cityName 城市名称
+	 * @param pointx
+	 * @param pointy
+	 */
+	public UserDevice(String uuid,Long userId,String deviceId,String deviceTag,String appName,String appVersion,String acceptPush,String cityCode,String cityName,String pointx,String pointy) {
+		this.uuid=uuid;
+		this.userId=userId;
+		this.deviceId=deviceId;
+		this.deviceTag=deviceTag;
+		this.appName=appName;
+		this.appVersion=appVersion;
+		this.acceptPush=acceptPush;
+		this.cityCode=cityCode;
+		this.cityName=cityName;
+		this.pointx=pointx;
+		this.pointy=pointy;
 	}
-
+	
+	/**
+	 * 
+	 * @param userId 用户id
+	 * @param deviceId 设备id
+	 * @param appToken 应用token
+	 * @param deviceTag 设备标记：android、ios
+	 * @param appName 应用名称
+	 * @param appVersion 应用版本
+	 * @param acceptPush 应用是否接受push消息
+	 * @param cityCode 用户城市编码  用户使用设备所在的城市
+	 * @param cityName
+	 * @param pointx
+	 * @param pointy
+	 */
 	@Deprecated
-	public UserDevice(Long userId, String deviceId, String appToken, String deviceTag, String appName,
-			String appVersion, String acceptPush, String cityCode, String cityName, String pointx, String pointy) {
+	public UserDevice(Long userId, String deviceId, String appToken, String deviceTag, 
+			String appName, String appVersion, String acceptPush,String cityCode,String cityName,String pointx,String pointy){
 		this.userId = userId;
 		this.deviceId = deviceId;
 		this.appToken = appToken;
@@ -45,14 +70,14 @@ public class UserDevice implements Serializable {
 		this.appName = appName;
 		this.appVersion = appVersion;
 		this.acceptPush = acceptPush;
-		this.cityCode = cityCode;
-		this.cityName = cityName;
-		this.pointx = pointx;
-		this.pointy = pointy;
+		this.cityCode=cityCode;	
+		this.cityName=cityName;
+		this.pointx=pointx;
+		this.pointy=pointy;
 	}
 
 	public Long getUserId() {
-		return this.userId;
+		return userId;
 	}
 
 	public void setUserId(Long userId) {
@@ -60,25 +85,23 @@ public class UserDevice implements Serializable {
 	}
 
 	public String getDeviceId() {
-		return this.deviceId;
+		return deviceId;
 	}
 
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
 	}
-
 	@Deprecated
 	public String getAppToken() {
-		return this.appToken;
+		return appToken;
 	}
-
 	@Deprecated
 	public void setAppToken(String appToken) {
 		this.appToken = appToken;
 	}
 
 	public String getDeviceTag() {
-		return this.deviceTag;
+		return deviceTag;
 	}
 
 	public void setDeviceTag(String deviceTag) {
@@ -86,7 +109,7 @@ public class UserDevice implements Serializable {
 	}
 
 	public String getAppName() {
-		return this.appName;
+		return appName;
 	}
 
 	public void setAppName(String appName) {
@@ -94,7 +117,7 @@ public class UserDevice implements Serializable {
 	}
 
 	public String getAppVersion() {
-		return this.appVersion;
+		return appVersion;
 	}
 
 	public void setAppVersion(String appVersion) {
@@ -102,7 +125,7 @@ public class UserDevice implements Serializable {
 	}
 
 	public String getAcceptPush() {
-		return this.acceptPush;
+		return acceptPush;
 	}
 
 	public void setAcceptPush(String acceptPush) {
@@ -110,42 +133,37 @@ public class UserDevice implements Serializable {
 	}
 
 	public String getCityCode() {
-		return this.cityCode;
+		return cityCode;
 	}
 
 	public void setCityCode(String cityCode) {
 		this.cityCode = cityCode;
 	}
-
 	public String getCityName() {
-		return this.cityName;
+		return cityName;
 	}
-
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
 	}
-
 	public String getPointx() {
-		return this.pointx;
+		return pointx;
 	}
-
 	public void setPointx(String pointx) {
 		this.pointx = pointx;
 	}
-
 	public String getPointy() {
-		return this.pointy;
+		return pointy;
 	}
-
 	public void setPointy(String pointy) {
 		this.pointy = pointy;
 	}
 
 	public String getUuid() {
-		return this.uuid;
+		return uuid;
 	}
 
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
+	
 }

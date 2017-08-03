@@ -1,29 +1,33 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.vo;
 
 import java.io.Serializable;
 
 public class MerchantPushNotifyInfoVo implements Serializable {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -2030166662871082665L;
-	private String msgKey;
-	private String relatedId;
-	private String links;
-	private String linksRelatedId;
-	private String msgType;
-	private String title;
-	private String content;
-	private String sendTime;
-	private Integer validTime;
-	private String appName;
-	private String version;
+
+	private String msgKey; // 消息唯一标识
+	private String relatedId; // 关联id（场馆ID等）
+	private String links; // 链接地址
+	private String linksRelatedId; // 链接地址相关id
+	private String msgType; // 策略标记
+	private String title; // 标题
+	private String content; // 推送类容（Json标记）
+	private String sendTime;// 发送时间
+	private Integer validTime;// 有效期，单位时间秒
+	private String appName; // 应用名称(cinema，sports)
+	private String version; // 2.0
 	private String appVersion;
-	private String otherInfo;
+	private String otherInfo;	// (Json格式)
 
 	public MerchantPushNotifyInfoVo() {
 	}
 
-	public MerchantPushNotifyInfoVo(String relatedId, String msgType, String appName, String title, String content,
-			String links, String sendTime, Integer validTime, String msgKey) {
+	public MerchantPushNotifyInfoVo(String relatedId, String msgType, String appName, String title, String content, String links, String sendTime,
+			Integer validTime, String msgKey) {
 		this.relatedId = relatedId;
 		this.msgType = msgType;
 		this.appName = appName;
@@ -37,14 +41,14 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 		this.version = "2.0";
 	}
 
-	public MerchantPushNotifyInfoVo(String relatedId, String msgType, String appName, String title, String content,
-			String links, String sendTime, Integer validTime, String msgKey, String version) {
+	public MerchantPushNotifyInfoVo(String relatedId, String msgType, String appName, String title, String content, String links, String sendTime,
+			Integer validTime, String msgKey, String version) {
 		this(relatedId, msgType, appName, title, content, links, sendTime, validTime, msgKey);
 		this.version = version;
 	}
 
 	public String getRelatedId() {
-		return this.relatedId;
+		return relatedId;
 	}
 
 	public void setRelatedId(String relatedId) {
@@ -52,7 +56,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getLinks() {
-		return this.links;
+		return links;
 	}
 
 	public void setLinks(String links) {
@@ -60,7 +64,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getLinksRelatedId() {
-		return this.linksRelatedId;
+		return linksRelatedId;
 	}
 
 	public void setLinksRelatedId(String linksRelatedId) {
@@ -68,7 +72,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -76,7 +80,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getSendTime() {
-		return this.sendTime;
+		return sendTime;
 	}
 
 	public void setSendTime(String sendTime) {
@@ -84,7 +88,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public Integer getValidTime() {
-		return this.validTime;
+		return validTime;
 	}
 
 	public void setValidTime(Integer validTime) {
@@ -92,7 +96,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getAppName() {
-		return this.appName;
+		return appName;
 	}
 
 	public void setAppName(String appName) {
@@ -100,7 +104,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getVersion() {
-		return this.version;
+		return version;
 	}
 
 	public void setVersion(String version) {
@@ -108,7 +112,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getAppVersion() {
-		return this.appVersion;
+		return appVersion;
 	}
 
 	public void setAppVersion(String appVersion) {
@@ -116,7 +120,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getMsgKey() {
-		return this.msgKey;
+		return msgKey;
 	}
 
 	public void setMsgKey(String msgKey) {
@@ -124,7 +128,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getMsgType() {
-		return this.msgType;
+		return msgType;
 	}
 
 	public void setMsgType(String msgType) {
@@ -132,7 +136,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
@@ -140,7 +144,7 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	}
 
 	public String getOtherInfo() {
-		return this.otherInfo;
+		return otherInfo;
 	}
 
 	public void setOtherInfo(String otherInfo) {

@@ -1,38 +1,47 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.comment;
 
-import com.gewara.api.sns.vo.comment.CommentBaseVo;
 import java.sql.Timestamp;
 
-public class CommentHistVo extends CommentBaseVo {
+import com.gewara.api.sns.constant.AddressConstant;
+import com.gewara.api.sns.constant.Status;
+
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28ÏÂÎç02:05:17
+ */
+public class CommentHistVo extends CommentBaseVo{
+	
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
-	public CommentHistVo() {
+	public CommentHistVo() {}
+	
+	public CommentHistVo(Long memberid){
+		this.memberid =memberid;
+		this.transfercount = 0;
+		this.replycount = 0;
+		this.flowernum = 0;
+		this.status = Status.Y_NEW;
+		this.address=AddressConstant.ADDRESS_WEB;
+		//this.nickname = member.getNickname();
+		this.addtime=new Timestamp(System.currentTimeMillis());
 	}
-
-	public CommentHistVo(Long memberid) {
-		this.memberid = memberid;
-		this.transfercount = Integer.valueOf(0);
-		this.replycount = Integer.valueOf(0);
-		this.flowernum = Integer.valueOf(0);
-		this.status = "Y_NEW";
-		this.address = "web";
-		this.addtime = new Timestamp(System.currentTimeMillis());
-	}
-
-	public CommentHistVo(Long memberid, String tag, Long relatedId, String body) {
+	public CommentHistVo(Long memberid, String tag, Long relatedId, String body){
 		this(memberid);
 		this.tag = tag;
 		this.relatedid = relatedId;
 		this.body = body;
 	}
-
-	public CommentHistVo(Long memberid, String tag, Long relatedId, String body, String picturename, String link) {
+	
+	public CommentHistVo(Long memberid, String tag, Long relatedId, String body, String picturename, String link){
 		this(memberid);
 		this.tag = tag;
 		this.relatedid = relatedId;
 		this.body = body;
-		this.picturename = picturename;
+		this.picturename= picturename;
 		this.link = link;
 	}
 }

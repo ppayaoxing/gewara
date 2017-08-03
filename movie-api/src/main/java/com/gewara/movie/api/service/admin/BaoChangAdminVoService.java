@@ -1,30 +1,75 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.api.service.admin;
+
+import java.util.List;
+import java.util.Map;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.movie.vo.baochang.BaoChangMpiInfoVo;
 import com.gewara.movie.vo.baochang.BaoChangOrderInfoVo;
-import java.util.List;
-import java.util.Map;
 
 public interface BaoChangAdminVoService {
-	ResultCode saveOrUpdateBaoChangCinemaInfo(Long arg0, Long arg1, Map<String, String> arg2,
-			List<Map<String, String>> arg3);
+	/**
+	 * 保存包场信息
+	 * @param cinemaid
+	 * @param roomid
+	 * @param params
+	 * @return
+	 */
+	ResultCode saveOrUpdateBaoChangCinemaInfo(Long cinemaid, Long roomid, 
+			Map<String, String> cinemaRoomParams, List<Map<String, String>> baoChangTimeList);
+	/**
+	 * 删除包场影厅信息
+	 * @param cinemaid
+	 * @param roomid
+	 * @return
+	 */
+	ResultCode deleteBaoChangCinemaRoom(Long cinemaid, Long roomid);
+	/**
+	 * 删除包场影院信息
+	 * @param cinemaid
+	 * @return
+	 */
+	ResultCode<List<Long>> deleteBaoChangCinema(Long cinemaid);
+	/**
+	 * 保存包场场次ID和状态
+	 * @param id
+	 * @param mpid
+	 * @param status
+	 * @return
+	 */
+	ResultCode<BaoChangOrderInfoVo> saveMpidToBaoChangOrder(Long id, Long mpid, String status, String remark, Integer successPrice);
+	/**
+	 * 保存包场短信模版
+	 * @param tag
+	 * @param content
+	 * @return
+	 */
+	ResultCode saveBaoChangMsgContent(String mobileType, String tag, String content);
+	/**
+	 * 刷新包场信息缓存
+	 * @param cinemaid
+	 * @return
+	 */
+	ResultCode refreshBaoChangInfoCacheByCinemaid(Long cinemaid);
+	/**
+	 * 刷新包场信息缓存
+	 * @param cinemaid
+	 * @param roomid
+	 * @return
+	 */
+	ResultCode refreshBaoChangInfoCacheByCinemaidAndRoomid(Long cinemaid, Long roomid);
+	/**
+	 * 保存包场场次信息
+	 * @param mpid
+	 * @return
+	 */
+	ResultCode saveOrUpdateBaoChangMpiInfo(Long mpid);
+	/**
+	 * 删除包场场次信息
+	 * @param cinemaid
+	 * @param mpid
+	 * @return
+	 */
+	ResultCode<BaoChangMpiInfoVo> deleteBaoChangMpiInfo(Long cinemaid, Long mpid);
 
-	ResultCode deleteBaoChangCinemaRoom(Long arg0, Long arg1);
-
-	ResultCode<List<Long>> deleteBaoChangCinema(Long arg0);
-
-	ResultCode<BaoChangOrderInfoVo> saveMpidToBaoChangOrder(Long arg0, Long arg1, String arg2, String arg3,
-			Integer arg4);
-
-	ResultCode saveBaoChangMsgContent(String arg0, String arg1, String arg2);
-
-	ResultCode refreshBaoChangInfoCacheByCinemaid(Long arg0);
-
-	ResultCode refreshBaoChangInfoCacheByCinemaidAndRoomid(Long arg0, Long arg1);
-
-	ResultCode saveOrUpdateBaoChangMpiInfo(Long arg0);
-
-	ResultCode<BaoChangMpiInfoVo> deleteBaoChangMpiInfo(Long arg0, Long arg1);
 }

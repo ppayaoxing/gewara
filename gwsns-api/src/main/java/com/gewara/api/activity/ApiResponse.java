@@ -1,32 +1,60 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity;
 
 import java.io.Serializable;
 
-public abstract class ApiResponse implements Serializable {
-	public static final String CODE_SUCCESS = "0000";
-	public static final String CODE_FAIL = "9999";
+public abstract class ApiResponse implements Serializable{
+	
+	public final static String CODE_SUCCESS = "0000";
+	
+	public final static String CODE_FAIL = "9999";
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -5249491982205094684L;
-	private String code = "9999";
-	private String msg;
-
-	public boolean isSuccess() {
-		return this.code != null ? "0000".equals(this.code) : false;
+	
+	public ApiResponse(){
+		this.code = CODE_FAIL;
 	}
 
+	private String code;
+
+	private String msg;
+	
+	public boolean isSuccess() {
+		return code != null ? "0000".equals(code) : false;
+	}
+	
+	/**
+	 * “0000”：表示成功；“9999”：表示错误
+	 * 
+	 * @return
+	 *
+	 * @author leo.li
+	 * Modify Time Jan 15, 2013 11:19:31 AM
+	 */
 	public String getCode() {
-		return this.code;
+		return code;
 	}
 
 	public void setCode(String code) {
 		this.code = code;
 	}
-
+	
+	/**
+	 * 获取相关信息
+	 * 
+	 * @return
+	 *
+	 * @author leo.li
+	 * Modify Time Jan 15, 2013 11:20:54 AM
+	 */
 	public String getMsg() {
-		return this.msg;
+		return msg;
 	}
 
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
+		
 }

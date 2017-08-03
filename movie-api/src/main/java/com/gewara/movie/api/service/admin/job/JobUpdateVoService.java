@@ -1,10 +1,13 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.api.service.admin.job;
 
-import com.gewara.api.vo.ResultCode;
 import java.util.List;
 import java.util.Map;
 
+import com.gewara.api.vo.ResultCode;
+
+/**
+ * 用来接收来自定时任务的数据
+ */
 public interface JobUpdateVoService {
-	ResultCode<Integer> updateCityprice(List<Map> arg0, String arg1);
+	ResultCode<Integer> updateCityprice(List<Map> result, String tag);
 }

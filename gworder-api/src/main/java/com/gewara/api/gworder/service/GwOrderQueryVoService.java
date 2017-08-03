@@ -1,34 +1,105 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gworder.service;
 
-import com.gewara.api.vo.ResultCode;
-import com.gewara.api.vo.order.GewaOrderVo;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.gewara.api.vo.ResultCode;
+import com.gewara.api.vo.order.GewaOrderVo;
+
 public interface GwOrderQueryVoService {
-	ResultCode<List<GewaOrderVo>> getMallPostOrderListByMemberId(Long arg0, Timestamp arg1, Timestamp arg2, int arg3,
-			int arg4);
+	/**
+	 * 查询Postorder的商城订单
+	 * @param memberid
+	 * @param startTime
+	 * @param endTime
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<GewaOrderVo>> getMallPostOrderListByMemberId(Long memberid, Timestamp startTime, Timestamp endTime, int from, int maxnum);
+	/**
+	 * 查询GewaOrder中的商城订单
+	 * @param memberid
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
+	ResultCode<List<GewaOrderVo>> getMallOrderListByMemberId(Long memberid, Timestamp startTime, Timestamp endTime);
+	
+	/**
+	 * 查询用户订单，包括当前的
+	 * @param memberId
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 * @author leo
+	 * @addTime 2016年3月23日上午11:22:59
+	 */
+	ResultCode<List<GewaOrderVo>> getOrderScheduleList(Long memberId, int from, int maxnum);
+	
+	/**
+	 * 查询用户当天的订单
+	 * @param memberId
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 * @author leo
+	 * @addTime 2016年3月23日上午11:23:15
+	 */
+	ResultCode<List<GewaOrderVo>> getCurrentTicketOrderByMemberId(Long memberId, int from, int maxnum);
+	
+	/**
+	 * 根据用户ID，影院IDlist，查询用户的物品订单
+	 * @param memberId
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<GewaOrderVo>> getCurrentGoodsOrderList(Long memberId, List<Long> cinemaIdList, Timestamp addTime);
+	/**
+	 * 根据用户ID查询用户的物品订单
+	 * @param memberId
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<GewaOrderVo>> getCurrentGoodsOrderByMemberId(Long memberId, int from, int maxnum);
 
-	ResultCode<List<GewaOrderVo>> getMallOrderListByMemberId(Long arg0, Timestamp arg1, Timestamp arg2);
 
-	ResultCode<List<GewaOrderVo>> getOrderScheduleList(Long arg0, int arg1, int arg2);
+	ResultCode<List<GewaOrderVo>> getCurrentBaoChangOrderByMemberId(Long memberId, int from, int maxnum);
 
-	ResultCode<List<GewaOrderVo>> getCurrentTicketOrderByMemberId(Long arg0, int arg1, int arg2);
-
-	ResultCode<List<GewaOrderVo>> getCurrentGoodsOrderList(Long arg0, List<Long> arg1, Timestamp arg2);
-
-	ResultCode<List<GewaOrderVo>> getCurrentGoodsOrderByMemberId(Long arg0, int arg1, int arg2);
-
-	ResultCode<List<GewaOrderVo>> getCurrentBaoChangOrderByMemberId(Long arg0, int arg1, int arg2);
-
-	ResultCode<List<GewaOrderVo>> getOrderListByPartnerId(Long arg0, Long arg1, Timestamp arg2, Integer arg3,
-			Integer arg4);
-
-	ResultCode<List<GewaOrderVo>> getCurrentTicketOrderByMemberId(Long arg0, Timestamp arg1);
-
-	ResultCode<List<GewaOrderVo>> getNewGewaOrderListToMovieApp(Long arg0);
-
-	ResultCode<List<GewaOrderVo>> getOrderListByMemberId(Long arg0, boolean arg1, String arg2, int arg3, int arg4,
-			int arg5);
+	
+	/**
+	 * 根据合作商id查询订单，只查询一天之内的成功订单
+	 * @param memberid
+	 * @param partnerid
+	 * @param startTime
+	 * @return
+	 */
+	ResultCode<List<GewaOrderVo>> getOrderListByPartnerId(Long memberid, Long partnerid, Timestamp startTime, Integer from, Integer maxnum);
+	
+	/**
+	 * 
+	 * 查询用户当天，在放映时间playtime以后的订单，只在PostOrder中查询
+	 * @param memberId
+	 * @param playtime	放映时间
+	 * @return
+	 * @author leo
+	 * @addTime 2016年5月26日上午11:41:13
+	 */
+	ResultCode<List<GewaOrderVo>> getCurrentTicketOrderByMemberId(Long memberId, Timestamp playtime);
+	
+	ResultCode<List<GewaOrderVo>> getNewGewaOrderListToMovieApp(Long memberId);
+	
+	/**
+	 * 
+	 * @param memberId
+	 * @param isM5V
+	 * @param orderType, 多个请用","号隔开
+	 * @param days
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<GewaOrderVo>> getOrderListByMemberId(Long memberId, boolean isM5V, String orderType, int days, int from, int maxnum);
 }

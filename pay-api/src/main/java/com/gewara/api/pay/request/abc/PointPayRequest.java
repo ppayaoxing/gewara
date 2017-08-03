@@ -1,23 +1,44 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.request.abc;
 
-import com.gewara.api.pay.request.abc.AbcRequest;
 import java.util.Map;
 
-public class PointPayRequest extends AbcRequest {
+public class PointPayRequest extends AbcRequest{
+
 	private static final long serialVersionUID = -5760844299795175992L;
+
+	/**
+	 * 交易卡号
+	 */
 	private String cardno;
+	
+	/**
+	 * 卡有效期
+	 */
 	private String cardexp;
+	
+	/**
+	 * 积分
+	 */
 	private Integer point;
+	
+	/**
+	 * 订单总金额
+	 */
 	private Integer totalAmount;
+	
+	/**
+	 * CVD2
+	 */
 	private String adddata;
+	
+	/**
+	 * 
+	 */
 	private String acquirer;
-
-	public PointPayRequest() {
-	}
-
-	public PointPayRequest(String orderid, String cardno, String cardexp, Integer point, Integer totalAmount,
-			String adddata) {
+	
+	public PointPayRequest(){}
+	
+	public PointPayRequest(String orderid, String cardno, String cardexp, Integer point, Integer totalAmount, String adddata){
 		super(orderid);
 		this.cardno = cardno;
 		this.cardexp = cardexp;
@@ -26,31 +47,38 @@ public class PointPayRequest extends AbcRequest {
 		this.adddata = adddata;
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {
-		Map params = super.getTextParams();
-		params.put("cardno", this.cardno);
-		params.put("cardexp", this.cardexp);
-		params.put("point", String.valueOf(this.point));
-		params.put("totalamount", String.valueOf(this.totalAmount));
-		params.put("adddata", this.adddata);
-		params.put("acquirer", this.acquirer);
+		Map<String, String> params = super.getTextParams();
+		params.put("cardno", cardno);
+		params.put("cardexp", cardexp);
+		params.put("point", String.valueOf(point));
+		params.put("totalamount", String.valueOf(totalAmount));
+		params.put("adddata", adddata);
+		params.put("acquirer", acquirer);
 		return params;
 	}
 
+	@Override
 	public boolean checkParams() {
-		return !super.checkParams() ? false
-				: (this.cardno != null && this.cardno.length() < 20
-						? (this.cardexp != null && this.cardno.length() != 4
-								? (this.point != null && this.point.intValue() > 0
-										? (this.totalAmount != null && this.totalAmount.intValue() > 0
-												? this.adddata != null && this.adddata.length() == 3 : false)
-										: false)
-								: false)
-						: false);
+		if(!super.checkParams())
+			return false;
+		
+		if(cardno==null || cardno.length()>=20)
+			return false;
+		if(cardexp==null || cardno.length()==4)
+			return false;
+		if(point==null || point<=0)
+			return false;
+		if(totalAmount==null || totalAmount<=0)
+			return false;
+		if(adddata==null || adddata.length()!=3)
+			return false;
+		return true;
 	}
 
 	public String getCardno() {
-		return this.cardno;
+		return cardno;
 	}
 
 	public void setCardno(String cardno) {
@@ -58,7 +86,7 @@ public class PointPayRequest extends AbcRequest {
 	}
 
 	public String getCardexp() {
-		return this.cardexp;
+		return cardexp;
 	}
 
 	public void setCardexp(String cardexp) {
@@ -66,7 +94,7 @@ public class PointPayRequest extends AbcRequest {
 	}
 
 	public Integer getPoint() {
-		return this.point;
+		return point;
 	}
 
 	public void setPoint(Integer point) {
@@ -74,7 +102,7 @@ public class PointPayRequest extends AbcRequest {
 	}
 
 	public String getAdddata() {
-		return this.adddata;
+		return adddata;
 	}
 
 	public void setAdddata(String adddata) {
@@ -82,7 +110,7 @@ public class PointPayRequest extends AbcRequest {
 	}
 
 	public Integer getTotalAmount() {
-		return this.totalAmount;
+		return totalAmount;
 	}
 
 	public void setTotalAmount(Integer totalAmount) {
@@ -90,7 +118,7 @@ public class PointPayRequest extends AbcRequest {
 	}
 
 	public String getAcquirer() {
-		return this.acquirer;
+		return acquirer;
 	}
 
 	public void setAcquirer(String acquirer) {

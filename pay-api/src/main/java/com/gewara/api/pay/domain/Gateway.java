@@ -1,26 +1,29 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.domain;
 
-import com.gewara.api.pay.ApiObject;
-import com.gewara.api.pay.domain.Bank;
-import com.gewara.api.pay.domain.Merchant;
 import java.util.List;
 
-public class Gateway extends ApiObject {
-	private static final long serialVersionUID = -8456169610882556337L;
-	private Long id;
-	private String gatewayCode;
-	private String gatewayName;
-	private String supportBank;
-	private String gatewayType;
-	private String status;
-	private String bankTypeKey;
-	private boolean supportRefund;
-	private List<Merchant> merchantList;
-	private List<Bank> bankList;
+import com.gewara.api.pay.ApiObject;
 
+public class Gateway extends ApiObject{
+
+	private static final long serialVersionUID = -8456169610882556337L;
+	
+	private Long id ;
+	private String gatewayCode;	//支付网关
+	private String gatewayName;	//支付网关名称
+	private String supportBank;	//是否支持银行
+	private String gatewayType;	//类型：PLATFORM：支付平台；BANK：银行直连；CARD：卡支付
+	private String status;		//状态：NO_USE：未启用；IN_USE：使用中；DESUETUDE：废弃；
+	private String bankTypeKey;	//银行类型key，这里只放特殊的，形如{"C":"信用卡","KJ":"快捷信用卡支付"}
+	private boolean supportRefund;//是否支持退款
+	
+	private List<Merchant> merchantList;
+	
+	private List<Bank> bankList;
+	
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -28,7 +31,7 @@ public class Gateway extends ApiObject {
 	}
 
 	public String getGatewayCode() {
-		return this.gatewayCode;
+		return gatewayCode;
 	}
 
 	public void setGatewayCode(String gatewayCode) {
@@ -36,7 +39,7 @@ public class Gateway extends ApiObject {
 	}
 
 	public String getGatewayName() {
-		return this.gatewayName;
+		return gatewayName;
 	}
 
 	public void setGatewayName(String gatewayName) {
@@ -44,7 +47,7 @@ public class Gateway extends ApiObject {
 	}
 
 	public String getSupportBank() {
-		return this.supportBank;
+		return supportBank;
 	}
 
 	public void setSupportBank(String supportBank) {
@@ -52,7 +55,7 @@ public class Gateway extends ApiObject {
 	}
 
 	public String getGatewayType() {
-		return this.gatewayType;
+		return gatewayType;
 	}
 
 	public void setGatewayType(String gatewayType) {
@@ -60,7 +63,7 @@ public class Gateway extends ApiObject {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -68,7 +71,7 @@ public class Gateway extends ApiObject {
 	}
 
 	public String getBankTypeKey() {
-		return this.bankTypeKey;
+		return bankTypeKey;
 	}
 
 	public void setBankTypeKey(String bankTypeKey) {
@@ -76,7 +79,7 @@ public class Gateway extends ApiObject {
 	}
 
 	public List<Merchant> getMerchantList() {
-		return this.merchantList;
+		return merchantList;
 	}
 
 	public void setMerchantList(List<Merchant> merchantList) {
@@ -84,7 +87,7 @@ public class Gateway extends ApiObject {
 	}
 
 	public List<Bank> getBankList() {
-		return this.bankList;
+		return bankList;
 	}
 
 	public void setBankList(List<Bank> bankList) {
@@ -92,10 +95,11 @@ public class Gateway extends ApiObject {
 	}
 
 	public boolean isSupportRefund() {
-		return this.supportRefund;
+		return supportRefund;
 	}
 
 	public void setSupportRefund(boolean supportRefund) {
 		this.supportRefund = supportRefund;
 	}
+
 }

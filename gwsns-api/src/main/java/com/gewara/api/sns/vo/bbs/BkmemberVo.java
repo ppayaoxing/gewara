@@ -1,44 +1,45 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.bbs;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
-public class BkmemberVo extends BaseVo {
-	public static final int ROLE_USER = 1;
-	public static final int ROLE_BANZHU = 2;
-	public static final int ROLE_MANAGER = 4;
-	public static final int ROLE_OWNER = 8;
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28下午02:05:17
+ */
+public class BkmemberVo extends BaseVo{
+	public static final int ROLE_USER = 1; //普通用户
+	public static final int ROLE_BANZHU = 2; //版主
+	public static final int ROLE_MANAGER = 4; //管理员
+	public static final int ROLE_OWNER = 8; //拥有者
 	private static final long serialVersionUID = 4476980910614491968L;
 	private Long id;
 	private Long memberid;
 	private String tag;
-	private String remark;
+	private String remark; //比如，申请理由等
 	private Long relatedid;
 	private Timestamp addtime;
-	private Integer applyrole;
+	private Integer applyrole;//申请当版主
 	private Integer role;
-
-	public BkmemberVo() {
-	}
-
-	public BkmemberVo(String tag) {
+	public BkmemberVo(){}
+	
+	public BkmemberVo(String tag){
 		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.role = Integer.valueOf(1);
-		this.applyrole = Integer.valueOf(1);
+		this.role = 1;
+		this.applyrole = 1;
 		this.tag = tag;
 	}
-
-	public BkmemberVo(Long memberid, String tag, Long relatedId) {
+	public BkmemberVo(Long memberid, String tag, Long relatedId){
 		this(tag);
 		this.memberid = memberid;
 		this.relatedid = relatedId;
 	}
-
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -46,7 +47,7 @@ public class BkmemberVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -54,81 +55,82 @@ public class BkmemberVo extends BaseVo {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Integer getApplyrole() {
-		return this.applyrole;
+		return applyrole;
 	}
-
 	public void setApplyrole(Integer applyrole) {
 		this.applyrole = applyrole;
 	}
-
 	public Integer getRole() {
-		return this.role;
+		return role;
 	}
-
 	public void setRole(Integer role) {
 		this.role = role;
 	}
-
 	public boolean hasManagerRights(String stag, Long srelatedid) {
-		return this.role.intValue() < 4 ? false
-				: ((!StringUtils.isBlank(stag) || !StringUtils.isBlank(this.tag))
-						&& !StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))
-								? (StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))
-										? this.relatedid == null : false)
-								: (this.relatedid == null ? true : this.relatedid.equals(srelatedid)));
+		if(this.role < ROLE_MANAGER) return false;
+		if(StringUtils.isBlank(stag) && StringUtils.isBlank(this.tag) || 
+				StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))){//相等
+			if(this.relatedid == null) return true;
+			return this.relatedid.equals(srelatedid);
+		}
+		if(StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))){//相容
+			if(this.relatedid != null) return false;
+			return true; 
+		}
+		return false;
 	}
-
-	public boolean hasRights(String stag, Long srelatedid) {
-		return this.role.intValue() < 2 ? false
-				: ((!StringUtils.isBlank(stag) || !StringUtils.isBlank(this.tag))
-						&& !StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))
-								? (StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))
-										? this.relatedid == null : false)
-								: (this.relatedid == null ? true : this.relatedid.equals(srelatedid)));
+	public boolean hasRights(String stag, Long srelatedid){
+		if(this.role < ROLE_BANZHU) return false;//无权限
+		if(StringUtils.isBlank(stag) && StringUtils.isBlank(this.tag) || 
+				StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))){//相等
+			if(this.relatedid == null) return true;
+			return this.relatedid.equals(srelatedid);
+		}
+		if(StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))){//相容
+			if(this.relatedid != null) return false;
+			return true; 
+		}
+		return false;
 	}
-
 	public boolean isBkmember(String stag, Long srelatedid) {
-		return !StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag)) ? false
-				: (this.relatedid == null && srelatedid != null || this.relatedid != null && srelatedid == null ? false
-						: this.relatedid == null || srelatedid == null || this.relatedid.equals(srelatedid));
+		if(!StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))) return false;
+		if(this.relatedid == null && srelatedid !=null || this.relatedid != null && srelatedid == null) return false;
+		if(this.relatedid !=null && srelatedid !=null && !this.relatedid.equals(srelatedid)) return false;
+		return true;
 	}
-
-	public String getRolename() {
-		return this.role == null ? "未知"
-				: (this.role.intValue() == 1 ? "普通成员"
-						: (this.role.intValue() == 2 ? "版主" : (this.role.intValue() == 4 ? "管理员" : "未知")));
+	public String getRolename(){
+		if(this.role == null) return "未知";
+		if(this.role == 1) return "普通成员";
+		if(this.role == 2) return "版主";
+		if(this.role == 4) return "管理员";
+		return "未知";
 	}
-
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
-
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {

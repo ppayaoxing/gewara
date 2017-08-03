@@ -1,125 +1,100 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.response.abc;
 
-import com.gewara.api.pay.response.abc.AbcResponse;
 
 public class MoneyAndPointPayResponse extends AbcResponse {
+
 	private static final long serialVersionUID = -1978543463407522584L;
-	private String cardno;
-	private String trandate;
-	private String trantime;
-	private String sysdef;
-	private String settleno;
-	private String termserial;
-	private String vouserial;
-	private String ptrandate;
-	private String ptrantime;
-	private String psysdef;
-	private String psettleno;
-	private String ptermserial;
-	private String pvouserial;
-
+	
+	private String cardno			;//交易卡号
+	private String trandate			;//消费交易日期
+	private String trantime			;//消费交易时间
+	private String sysdef			;//消费系统参考号
+	private String settleno			;//消费农行批次号
+	private String termserial		;//消费终端流水号
+	private String vouserial		;//消费凭证号
+	private String ptrandate		;//积分交易日期
+	private String ptrantime		;//积分交易时间
+	private String psysdef			;//积分系统参考号
+	private String psettleno		;//积分农行批次号
+	private String ptermserial		;//积分终端流水号
+	private String pvouserial		;//积分凭证号
+	
 	public String getCardno() {
-		return this.cardno;
+		return cardno;
 	}
-
 	public void setCardno(String cardno) {
 		this.cardno = cardno;
 	}
-
 	public String getTrandate() {
-		return this.trandate;
+		return trandate;
 	}
-
 	public void setTrandate(String trandate) {
 		this.trandate = trandate;
 	}
-
 	public String getTrantime() {
-		return this.trantime;
+		return trantime;
 	}
-
 	public void setTrantime(String trantime) {
 		this.trantime = trantime;
 	}
-
 	public String getSysdef() {
-		return this.sysdef;
+		return sysdef;
 	}
-
 	public void setSysdef(String sysdef) {
 		this.sysdef = sysdef;
 	}
-
 	public String getSettleno() {
-		return this.settleno;
+		return settleno;
 	}
-
 	public void setSettleno(String settleno) {
 		this.settleno = settleno;
 	}
-
 	public String getTermserial() {
-		return this.termserial;
+		return termserial;
 	}
-
 	public void setTermserial(String termserial) {
 		this.termserial = termserial;
 	}
-
 	public String getVouserial() {
-		return this.vouserial;
+		return vouserial;
 	}
-
 	public void setVouserial(String vouserial) {
 		this.vouserial = vouserial;
 	}
-
 	public String getPtrandate() {
-		return this.ptrandate;
+		return ptrandate;
 	}
-
 	public void setPtrandate(String ptrandate) {
 		this.ptrandate = ptrandate;
 	}
-
 	public String getPtrantime() {
-		return this.ptrantime;
+		return ptrantime;
 	}
-
 	public void setPtrantime(String ptrantime) {
 		this.ptrantime = ptrantime;
 	}
-
 	public String getPsysdef() {
-		return this.psysdef;
+		return psysdef;
 	}
-
 	public void setPsysdef(String psysdef) {
 		this.psysdef = psysdef;
 	}
-
 	public String getPsettleno() {
-		return this.psettleno;
+		return psettleno;
 	}
-
 	public void setPsettleno(String psettleno) {
 		this.psettleno = psettleno;
 	}
-
 	public String getPtermserial() {
-		return this.ptermserial;
+		return ptermserial;
 	}
-
 	public void setPtermserial(String ptermserial) {
 		this.ptermserial = ptermserial;
 	}
-
 	public String getPvouserial() {
-		return this.pvouserial;
+		return pvouserial;
 	}
-
 	public void setPvouserial(String pvouserial) {
 		this.pvouserial = pvouserial;
-	}
+	}	
 }

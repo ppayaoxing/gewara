@@ -1,19 +1,24 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.json.ourplay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
+
 public class NiuRenRankingVo extends BaseVo {
+	
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 7497905842878021840L;
 	private Long memberid;
-	private Integer ranking;
+	private Integer ranking;//牛人总榜排名
 	private Timestamp addtime;
-	private Integer point;
-
+	private  Integer point;//牛人分数
 	public Integer getPoint() {
-		return this.point;
+		return point;
 	}
 
 	public void setPoint(Integer point) {
@@ -21,7 +26,7 @@ public class NiuRenRankingVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -29,7 +34,7 @@ public class NiuRenRankingVo extends BaseVo {
 	}
 
 	public Integer getRanking() {
-		return this.ranking;
+		return ranking;
 	}
 
 	public void setRanking(Integer ranking) {
@@ -37,14 +42,16 @@ public class NiuRenRankingVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.memberid;
+		// TODO Auto-generated method stub
+		return memberid;
 	}
 }

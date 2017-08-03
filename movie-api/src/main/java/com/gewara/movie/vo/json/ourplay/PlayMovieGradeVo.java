@@ -1,50 +1,45 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.json.ourplay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
+
 public class PlayMovieGradeVo extends BaseVo {
 	private static final long serialVersionUID = 4067709411833539664L;
-	private Long movieId;
-	private String gradeValue;
-	private String status;
-	private Timestamp addTime;
-
+	private Long movieId;	   //电影id 主键
+	private String gradeValue; //积分值
+	private String status;     //是否启用
+	private Timestamp addTime; //添加时间
 	public Long getMovieId() {
-		return this.movieId;
+		return movieId;
 	}
-
 	public void setMovieId(Long movieId) {
 		this.movieId = movieId;
 	}
-
 	public String getGradeValue() {
-		return this.gradeValue;
+		return gradeValue;
 	}
-
 	public void setGradeValue(String gradeValue) {
 		this.gradeValue = gradeValue;
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	@Override
 	public Serializable realId() {
 		return this.movieId;
 	}
-
 	public Timestamp getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
-
 	public void setAddTime(Timestamp addTime) {
 		this.addTime = addTime;
 	}
+	
+
 }

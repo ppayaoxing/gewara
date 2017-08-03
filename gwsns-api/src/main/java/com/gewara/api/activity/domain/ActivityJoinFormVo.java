@@ -1,84 +1,72 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity.domain;
 
-import com.gewara.api.activity.ApiObject;
 import java.io.Serializable;
 
-public class ActivityJoinFormVo extends ApiObject {
-	private int realname;
-	private int sex;
-	private int joinnum;
-	private int joindate;
-	private int contactway;
-	private int address;
-	private int desp;
-	private int birthday;
+import com.gewara.api.activity.ApiObject;
 
+public class ActivityJoinFormVo extends ApiObject{
+	private int realname;	//真实姓名 0,1
+	private int sex;		//性别0,1
+	private int joinnum;	//参加人数0,1
+	private int joindate;	//参加日期0,1
+	private int contactway;	//联系方式0,1
+	private int address;	//地址0,1
+	private int desp;		//备注0,1
+	private int birthday;	//生日0,1
+	
 	public int getRealname() {
-		return this.realname;
+		return realname;
 	}
-
 	public void setRealname(int realname) {
 		this.realname = realname;
 	}
-
 	public int getSex() {
-		return this.sex;
+		return sex;
 	}
-
 	public void setSex(int sex) {
 		this.sex = sex;
 	}
-
 	public int getJoinnum() {
-		return this.joinnum;
+		return joinnum;
 	}
-
 	public void setJoinnum(int joinnum) {
 		this.joinnum = joinnum;
 	}
-
 	public int getJoindate() {
-		return this.joindate;
+		return joindate;
 	}
-
 	public void setJoindate(int joindate) {
 		this.joindate = joindate;
 	}
-
 	public int getContactway() {
-		return this.contactway;
+		return contactway;
 	}
-
 	public void setContactway(int contactway) {
 		this.contactway = contactway;
 	}
-
 	public int getAddress() {
-		return this.address;
+		return address;
 	}
-
 	public void setAddress(int address) {
 		this.address = address;
 	}
-
 	public int getDesp() {
-		return this.desp;
+		return desp;
 	}
-
 	public void setDesp(int desp) {
 		this.desp = desp;
 	}
-
 	public int getBirthday() {
-		return this.birthday;
+		return birthday;
 	}
-
 	public void setBirthday(int birthday) {
 		this.birthday = birthday;
 	}
-
+	@Override
 	public Serializable realId() {
+		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
 }

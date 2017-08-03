@@ -1,71 +1,58 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.response.abc;
 
-import com.gewara.api.pay.response.abc.AbcResponse;
 
 public class MoneyPayResponse extends AbcResponse {
+
 	private static final long serialVersionUID = -1682608891737106050L;
-	private String cardno;
-	private String trandate;
-	private String trantime;
-	private String sysdef;
-	private String settleno;
-	private String termserial;
-	private String vouserial;
 
+	private String cardno		;//交易卡号
+	private String trandate		;//交易日期
+	private String trantime		;//交易时间
+	private String sysdef		;//系统参考号
+	private String settleno		;//农行批次号
+	private String termserial	;//终端流水号
+	private String vouserial	;//凭证号
+	
 	public String getCardno() {
-		return this.cardno;
+		return cardno;
 	}
-
 	public void setCardno(String cardno) {
 		this.cardno = cardno;
 	}
-
 	public String getTrandate() {
-		return this.trandate;
+		return trandate;
 	}
-
 	public void setTrandate(String trandate) {
 		this.trandate = trandate;
 	}
-
 	public String getTrantime() {
-		return this.trantime;
+		return trantime;
 	}
-
 	public void setTrantime(String trantime) {
 		this.trantime = trantime;
 	}
-
 	public String getSysdef() {
-		return this.sysdef;
+		return sysdef;
 	}
-
 	public void setSysdef(String sysdef) {
 		this.sysdef = sysdef;
 	}
-
 	public String getSettleno() {
-		return this.settleno;
+		return settleno;
 	}
-
 	public void setSettleno(String settleno) {
 		this.settleno = settleno;
 	}
-
 	public String getTermserial() {
-		return this.termserial;
+		return termserial;
 	}
-
 	public void setTermserial(String termserial) {
 		this.termserial = termserial;
 	}
-
 	public String getVouserial() {
-		return this.vouserial;
+		return vouserial;
 	}
-
 	public void setVouserial(String vouserial) {
 		this.vouserial = vouserial;
-	}
+	}	
 }

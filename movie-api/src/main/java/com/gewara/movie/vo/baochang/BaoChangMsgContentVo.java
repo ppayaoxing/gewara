@@ -1,29 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.baochang;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
+
+import com.gewara.api.vo.BaseVo;
 
 public class BaoChangMsgContentVo extends BaseVo {
 	private static final long serialVersionUID = -8708356666973143888L;
-	public static final String BAOCHANG_MSG_TAG_ORDER_PURCHASER = "order_purchaser";
-	public static final String BAOCHANG_MSG_TAG_ORDER_PUSH_PURCHASER = "order_push_purchaser";
-	public static final String BAOCHANG_MSG_TAG_PAID_PURCHASER = "paid_purchaser";
-	public static final String BAOCHANG_MSG_TAG_PAID_PUSH_PURCHASER = "paid_push_purchaser";
-	public static final String BAOCHANG_MSG_TAG_FAIL_PURCHASER = "fail_purchaser";
-	public static final String BAOCHANG_MSG_TAG_FAIL_PUSH_PURCHASER = "fail_push_purchaser";
-	public static final String BAOCHANG_MSG_TAG_RECEIPTOR = "receiptor";
+	
+	public static final String BAOCHANG_MSG_TAG_ORDER_PURCHASER = "order_purchaser";//购买人
+	public static final String BAOCHANG_MSG_TAG_ORDER_PUSH_PURCHASER = "order_push_purchaser";//购买人(push)
+	public static final String BAOCHANG_MSG_TAG_PAID_PURCHASER = "paid_purchaser";//购买人
+	public static final String BAOCHANG_MSG_TAG_PAID_PUSH_PURCHASER = "paid_push_purchaser";//购买人(push)
+	public static final String BAOCHANG_MSG_TAG_FAIL_PURCHASER = "fail_purchaser";//购买人
+	public static final String BAOCHANG_MSG_TAG_FAIL_PUSH_PURCHASER = "fail_push_purchaser";//购买人(push)
+	public static final String BAOCHANG_MSG_TAG_RECEIPTOR = "receiptor";//领取人
 	private String id;
 	private String tag;
 	private String mobileType;
 	private String content;
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -31,7 +33,7 @@ public class BaoChangMsgContentVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -39,7 +41,7 @@ public class BaoChangMsgContentVo extends BaseVo {
 	}
 
 	public String getMobileType() {
-		return this.mobileType;
+		return mobileType;
 	}
 
 	public void setMobileType(String mobileType) {
@@ -47,10 +49,11 @@ public class BaoChangMsgContentVo extends BaseVo {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 }

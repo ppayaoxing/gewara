@@ -1,31 +1,79 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.bbs;
+
+
+import java.util.List;
 
 import com.gewara.api.sns.vo.bbs.AccusationVo;
 import com.gewara.api.sns.vo.bbs.BlackMemberVo;
 import com.gewara.api.vo.ResultCode;
-import java.util.List;
 
-public interface BlogApiService {
-	ResultCode<List<BlackMemberVo>> getBlackMemberList(Long arg0, int arg1, int arg2);
-
-	ResultCode<Boolean> isBlackMember(Long arg0);
-
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28下午02:05:17
+ */
+public interface BlogApiService{
+	
+	/**
+	 * 获取黑名单列表
+	 * @param memberId 为空则返回所有黑名单
+	 * @return
+	 */
+	ResultCode<List<BlackMemberVo>> getBlackMemberList(Long memberId, int from, int maxnum);
+	/**
+	 * 用户是否在黑名单中
+	 * @param memberId
+	 * @return
+	 */
+	ResultCode<Boolean> isBlackMember(Long memberId);
+	/**
+	 * 黑名单中的人数
+	 */
 	ResultCode<Integer> getBlackMemberCount();
-
+	/**
+	 * 举报数量
+	 * @return
+	 */
 	ResultCode<Integer> getAccusationCount();
+	ResultCode<List<AccusationVo>> getAccusationList(int from, int maxnum);
+	
+	
 
-	ResultCode<List<AccusationVo>> getAccusationList(int arg0, int arg1);
-
-	ResultCode<Integer> getBlackMemberCount(Long arg0);
-
-	ResultCode<BlackMemberVo> saveBlackMember(BlackMemberVo arg0);
-
-	ResultCode removeBlackMember(Long arg0);
-
-	ResultCode<AccusationVo> saveAccusation(AccusationVo arg0);
-
-	ResultCode<AccusationVo> getAccusation(Long arg0);
-
-	ResultCode removeAccusation(Long arg0);
+	/**
+	 * 根据关联memberid，查询黑名单数量
+	 */
+	ResultCode<Integer> getBlackMemberCount(Long memberId);
+	
+	/**
+	 * 保存黑名单
+	 * @param bm
+	 * @return
+	 */
+	ResultCode<BlackMemberVo> saveBlackMember(BlackMemberVo bm);
+	
+	/**
+	 * 删除黑名单
+	 * @param blackMemberId
+	 */
+	ResultCode removeBlackMember(Long blackMemberId);
+	
+	/**
+	 * 保存投诉
+	 * @param acc
+	 * @return
+	 */
+	ResultCode<AccusationVo> saveAccusation(AccusationVo acc);
+	
+	/**
+	 * 查询投诉
+	 * @param accid
+	 * @return
+	 */
+	ResultCode<AccusationVo> getAccusation(Long accid);
+	
+	/**
+	 * 删除投诉
+	 * @param accid
+	 */
+	ResultCode removeAccusation(Long accid);	
+	
 }

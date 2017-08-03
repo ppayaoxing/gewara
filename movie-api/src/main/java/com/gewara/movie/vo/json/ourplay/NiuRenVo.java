@@ -1,13 +1,20 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.json.ourplay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
+
 public class NiuRenVo extends BaseVo {
+
+
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -9098534988895469460L;
-	private String id;
+	private String id;//Ö÷¼ü movieid+memberid
 	private Long movieid;
 	private Long memberid;
 	private String nickname;
@@ -20,94 +27,78 @@ public class NiuRenVo extends BaseVo {
 	private Integer ranking;
 
 	public Integer getRanking() {
-		return this.ranking;
+		return ranking;
 	}
-
 	public void setRanking(Integer ranking) {
 		this.ranking = ranking;
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
 	public Long getWalaid() {
-		return this.walaid;
+		return walaid;
 	}
-
 	public void setWalaid(Long walaid) {
 		this.walaid = walaid;
 	}
-
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-
 	public String getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
-
 	public void setMovieid(Long movieid) {
 		this.movieid = movieid;
 	}
-
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
 	public String getReason() {
-		return this.reason;
+		return reason;
 	}
-
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-
 	public String getReward() {
-		return this.reward;
+		return reward;
 	}
-
 	public void setReward(String reward) {
 		this.reward = reward;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		// TODO Auto-generated method stub
+		return id;
 	}
+
+	
+	
+	
 }

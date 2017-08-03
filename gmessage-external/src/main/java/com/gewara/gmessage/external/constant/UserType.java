@@ -1,12 +1,23 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.gmessage.external.constant;
 
 public enum UserType {
-	MEMBER, BUSINESS, MAINTAIN;
-
-	private String value = null;
-
-	public String value() {
+	
+	/**gewara 会员*/
+	MEMBER("M"),
+	
+	/**gewara 商户*/
+	BUSINESS("B"),
+	
+	/**gewara 后台运维人员*/
+	MAINTAIN("A");
+	
+	private String value=null;
+	private UserType(String value){
+		this.value=value;
+	}
+	
+	public String value(){
 		return this.value;
 	}
+	
 }

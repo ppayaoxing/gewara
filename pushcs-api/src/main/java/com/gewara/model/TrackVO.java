@@ -1,9 +1,11 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.model;
 
 import java.io.Serializable;
 
 public class TrackVO implements Serializable {
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -1521577020936521352L;
 	private String id;
 	private String flag;
@@ -12,7 +14,7 @@ public class TrackVO implements Serializable {
 	private String movieMark;
 	private String tag;
 
-	public TrackVO(String id, String flag, String addTime, String movieId, String movieMark, String tag) {
+	public TrackVO(String id, String flag, String addTime, String movieId, String movieMark,String tag) {
 		this.id = id;
 		this.flag = flag;
 		this.addTime = addTime;
@@ -25,7 +27,7 @@ public class TrackVO implements Serializable {
 	}
 
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -33,7 +35,7 @@ public class TrackVO implements Serializable {
 	}
 
 	public String getFlag() {
-		return this.flag;
+		return flag;
 	}
 
 	public void setFlag(String flag) {
@@ -41,7 +43,7 @@ public class TrackVO implements Serializable {
 	}
 
 	public String getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
 
 	public void setAddTime(String addTime) {
@@ -49,7 +51,7 @@ public class TrackVO implements Serializable {
 	}
 
 	public String getMovieId() {
-		return this.movieId;
+		return movieId;
 	}
 
 	public void setMovieId(String movieId) {
@@ -57,15 +59,15 @@ public class TrackVO implements Serializable {
 	}
 
 	public String getMovieMark() {
-		return this.movieMark;
+		return movieMark;
 	}
 
 	public void setMovieMark(String movieMark) {
 		this.movieMark = movieMark;
 	}
-
+	
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {

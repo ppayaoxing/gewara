@@ -1,41 +1,45 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.baochang;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class BaoChangCinemaInfoVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class BaoChangCinemaInfoVo extends BaseVo  {
 	private static final long serialVersionUID = 2668138927290077502L;
+	
 	private Long id;
-	private Long cinemaid;
-	private String cinemaName;
+	private Long cinemaid; //影院ID
+	private String cinemaName;//影院名称
 	private String citycode;
-	private List<Long> roomIdList;
-	private Map<Long, String> roomNameMap;
-	private Integer applyCount;
-	private Integer roomnum;
-	private Integer mpinum;
-
+	private List<Long> roomIdList;//影厅ID
+	private Map<Long, String> roomNameMap;//影厅信息
+	private Integer applyCount;//申请人数
+	private Integer roomnum;//影院个数
+	private Integer mpinum;//场次个数
+	
+	public BaoChangCinemaInfoVo(){}
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
-
+	
 	public String getCinemaName() {
-		return this.cinemaName;
+		return cinemaName;
 	}
 
 	public void setCinemaName(String cinemaName) {
@@ -47,7 +51,7 @@ public class BaoChangCinemaInfoVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -55,7 +59,7 @@ public class BaoChangCinemaInfoVo extends BaseVo {
 	}
 
 	public List<Long> getRoomIdList() {
-		return this.roomIdList;
+		return roomIdList;
 	}
 
 	public void setRoomIdList(List<Long> roomIdList) {
@@ -63,7 +67,7 @@ public class BaoChangCinemaInfoVo extends BaseVo {
 	}
 
 	public Map<Long, String> getRoomNameMap() {
-		return this.roomNameMap;
+		return roomNameMap;
 	}
 
 	public void setRoomNameMap(Map<Long, String> roomNameMap) {
@@ -71,7 +75,7 @@ public class BaoChangCinemaInfoVo extends BaseVo {
 	}
 
 	public Integer getApplyCount() {
-		return this.applyCount;
+		return applyCount;
 	}
 
 	public void setApplyCount(Integer applyCount) {
@@ -79,7 +83,7 @@ public class BaoChangCinemaInfoVo extends BaseVo {
 	}
 
 	public Integer getRoomnum() {
-		return this.roomnum;
+		return roomnum;
 	}
 
 	public void setRoomnum(Integer roomnum) {
@@ -87,10 +91,11 @@ public class BaoChangCinemaInfoVo extends BaseVo {
 	}
 
 	public Integer getMpinum() {
-		return this.mpinum;
+		return mpinum;
 	}
 
 	public void setMpinum(Integer mpinum) {
 		this.mpinum = mpinum;
 	}
+	
 }

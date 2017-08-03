@@ -1,81 +1,89 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gworder.vo;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.DateUtil;
-import com.gewara.util.JsonUtils;
-import com.gewara.util.StringUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
+
+import com.gewara.api.vo.BaseVo;
+import com.gewara.cons.OpiConstant;
+import com.gewara.util.DateUtil;
+import com.gewara.util.JsonUtils;
+import com.gewara.util.StringUtil;
 
 public class OrderMpiVo extends BaseVo {
 	private static final long serialVersionUID = 7825970506234199792L;
-	protected Long id;
-	protected Long mpid;
-	protected Long movieid;
-	protected Long cinemaid;
-	protected String language;
-	protected Date playdate;
-	protected String showtime;
-	protected Integer price;
-	protected Integer lowest;
-	protected Integer gewaprice;
-	protected String edition;
-	protected Long roomid;
+	
+	protected Long id;			//场次ID
+	protected Long mpid;			//
+	protected Long movieid;		//影片ID
+	protected Long cinemaid;		//影院ID
+	protected String language;	//语言
+	protected Date playdate;		//放映日期
+	protected String showtime;	//放映时间
+	protected Integer price;		//影院价
+	protected Integer lowest;		//最低票价
+	protected Integer gewaprice;	//格瓦卖价
+	protected String edition;		//版本
+	protected Long roomid;		//影厅
 	protected String roomnum;
-	protected String opentype;
-	protected String citycode;
-	protected String seqNo;
-	protected Long batch;
-	protected Timestamp createtime;
-	protected String openStatus;
-	protected String mpitype;
-	protected Long openid;
+	protected String opentype;	//开放类型
+	protected String citycode;	//城市
+	protected String seqNo;		//外部关联ID
+	protected Long batch;				//批次标识
+	protected Timestamp createtime;	//创建时间
+	protected String openStatus;		//开放状态：init：初始状态，open：已开放，close：以后也不开放
+	protected String mpitype;			//场次类型 filmfest 电影节场次
+	
+	//以下为opi属性
+	protected Long openid;			//					------>原opi里的id
 	protected String moviename;
 	protected String cinemaname;
 	protected String roomname;
-	protected Timestamp playtime;
-	protected Integer costprice;
-	protected Integer fee;
-	protected String status;
-	protected String partner;
-	protected Timestamp opentime;
-	protected Timestamp closetime;
-	protected String elecard;
-	protected String spflag;
-	protected String buylimit;
-	protected Long topicid;
-	protected String dayotime;
-	protected String dayctime;
-	protected Integer givepoint;
-	protected String expressid;
+	protected Timestamp playtime;   //				------>原opi里的playtime
+	protected Integer costprice; 		//成本价（票面价）
+	protected Integer fee;				//服务费
+	protected String status;			//状态：可预订，不可预定等 Y[可预订]N[不可预订]D[删除]
+	protected String partner;			//合作伙伴开放状态：Y对外开放,N不对外开放
+	protected Timestamp opentime;		//开放购票时间
+	protected Timestamp closetime;		//关闭购票时间
+	protected String elecard;			//1)可用的抵用券类型ABC，2) M表示参与商家特殊优惠活动
+
+	protected String spflag;			//特价活动标识
+	
+	protected String buylimit;			//购买张数限制，1,2,3,4,5
+	protected Long topicid;				//取票帖子
+	protected String dayotime;			//day open time 每日开放时间
+	protected String dayctime;			//day close time 每日关闭时间
+	protected Integer givepoint;		//给积分：正表示增加积分，负表示减积分
+	protected String expressid;			//快递方式
 	protected Integer lockminute;
 	protected Integer maxseat;
 	protected String roomtype;
 	protected String otherinfo;
-	protected String remark;
-	protected Timestamp updatetime;
-	protected Integer seatnum;
-	protected Integer asellnum;
-	protected Integer gsellnum;
-	protected Integer csellnum;
-	protected Integer locknum;
-
+	protected String remark;			//备注
+	protected Timestamp updatetime;	//更新时间
+	protected Integer seatnum;		//座位数量
+	protected Integer asellnum;		//allow 允许卖出数
+	protected Integer gsellnum;		//Gewa卖出数
+	protected Integer csellnum;		//影院卖出
+	protected Integer locknum;		//Gewa锁定数
+	
+	public OrderMpiVo(){}
+	@Override
 	public Serializable realId() {
-		return this.mpid;
+		return mpid;
 	}
-
+	
 	public boolean isHfh() {
-		return !this.hasGewara() && StringUtils.isNotBlank(this.seqNo);
+		return !hasGewara() && StringUtils.isNotBlank(seqNo);
 	}
-
-	public boolean isValid() {
-		return StringUtils.isNotBlank(this.roomname) && this.playdate != null && StringUtils.isNotBlank(this.showtime);
+	
+	public boolean isValid(){
+		return StringUtils.isNotBlank(roomname) && this.playdate != null && StringUtils.isNotBlank(this.showtime);
 	}
-
 	public Long getId() {
 		return this.id;
 	}
@@ -85,7 +93,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Date getPlaydate() {
-		return this.playdate;
+		return playdate;
 	}
 
 	public void setPlaydate(Date playdate) {
@@ -93,7 +101,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getShowtime() {
-		return this.showtime;
+		return showtime;
 	}
 
 	public void setShowtime(String showtime) {
@@ -115,25 +123,21 @@ public class OrderMpiVo extends BaseVo {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
 	public Long getBatch() {
-		return this.batch;
+		return batch;
 	}
-
 	public void setBatch(Long batch) {
 		this.batch = batch;
 	}
-
 	public String getEdition() {
-		return this.edition;
+		return edition;
 	}
-
 	public void setEdition(String edition) {
 		this.edition = edition;
 	}
 
 	public String getLanguage() {
-		return this.language;
+		return language;
 	}
 
 	public void setLanguage(String language) {
@@ -141,7 +145,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Long getRoomid() {
-		return this.roomid;
+		return roomid;
 	}
 
 	public void setRoomid(Long roomid) {
@@ -149,7 +153,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
 
 	public void setMovieid(Long movieid) {
@@ -157,7 +161,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
 
 	public void setCinemaid(Long cinemaid) {
@@ -165,91 +169,74 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Integer getGewaprice() {
-		return this.gewaprice;
+		return gewaprice;
 	}
-
 	public void setGewaprice(Integer gewaprice) {
 		this.gewaprice = gewaprice;
 	}
-
 	public String getSeqNo() {
-		return this.seqNo;
+		return seqNo;
 	}
-
 	public void setSeqNo(String seqNo) {
 		this.seqNo = seqNo;
 	}
-
 	public Integer getLowest() {
-		return this.lowest;
+		return lowest;
 	}
-
 	public void setLowest(Integer lowest) {
 		this.lowest = lowest;
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
 	public Timestamp getCreatetime() {
-		return this.createtime;
+		return createtime;
 	}
-
 	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
-
 	public String getOpenStatus() {
-		return this.openStatus;
+		return openStatus;
 	}
-
 	public void setOpenStatus(String openStatus) {
 		this.openStatus = openStatus;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
 	public String getOpentype() {
-		return this.opentype;
+		return opentype;
 	}
-
 	public void setOpentype(String opentype) {
 		this.opentype = opentype;
 	}
-
+	
 	public String getMpitype() {
-		return this.mpitype;
+		return mpitype;
 	}
-
 	public void setMpitype(String mpitype) {
 		this.mpitype = mpitype;
 	}
-
+	
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
-
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
-
-	public String getTimeStr() {
-		return DateUtil.format(this.getPlaytime(), "HH:mm");
+	
+	public String getTimeStr(){
+		return DateUtil.format(getPlaytime(),"HH:mm");
 	}
 
 	public Long getOpenid() {
-		return this.openid;
+		return openid;
 	}
 
 	public void setOpenid(Long openid) {
@@ -257,7 +244,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getMoviename() {
-		return this.moviename;
+		return moviename;
 	}
 
 	public void setMoviename(String moviename) {
@@ -265,7 +252,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getCinemaname() {
-		return this.cinemaname;
+		return cinemaname;
 	}
 
 	public void setCinemaname(String cinemaname) {
@@ -273,19 +260,17 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getRoomname() {
-		return this.roomname;
+		return roomname;
 	}
-
 	public String getPlayroom() {
-		return this.roomname;
+		return roomname;
 	}
-
 	public void setRoomname(String roomname) {
 		this.roomname = roomname;
 	}
 
 	public Integer getCostprice() {
-		return this.costprice;
+		return costprice;
 	}
 
 	public void setCostprice(Integer costprice) {
@@ -293,7 +278,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Integer getFee() {
-		return this.fee;
+		return fee;
 	}
 
 	public void setFee(Integer fee) {
@@ -301,7 +286,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -309,7 +294,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getPartner() {
-		return this.partner;
+		return partner;
 	}
 
 	public void setPartner(String partner) {
@@ -317,7 +302,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Timestamp getOpentime() {
-		return this.opentime;
+		return opentime;
 	}
 
 	public void setOpentime(Timestamp opentime) {
@@ -325,7 +310,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Timestamp getClosetime() {
-		return this.closetime;
+		return closetime;
 	}
 
 	public void setClosetime(Timestamp closetime) {
@@ -333,7 +318,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getElecard() {
-		return this.elecard;
+		return elecard;
 	}
 
 	public void setElecard(String elecard) {
@@ -341,7 +326,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getSpflag() {
-		return this.spflag;
+		return spflag;
 	}
 
 	public void setSpflag(String spflag) {
@@ -349,7 +334,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getBuylimit() {
-		return this.buylimit;
+		return buylimit;
 	}
 
 	public void setBuylimit(String buylimit) {
@@ -357,7 +342,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Long getTopicid() {
-		return this.topicid;
+		return topicid;
 	}
 
 	public void setTopicid(Long topicid) {
@@ -365,7 +350,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getDayotime() {
-		return this.dayotime;
+		return dayotime;
 	}
 
 	public void setDayotime(String dayotime) {
@@ -373,7 +358,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getDayctime() {
-		return this.dayctime;
+		return dayctime;
 	}
 
 	public void setDayctime(String dayctime) {
@@ -381,7 +366,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Integer getGivepoint() {
-		return this.givepoint;
+		return givepoint;
 	}
 
 	public void setGivepoint(Integer givepoint) {
@@ -389,7 +374,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getExpressid() {
-		return this.expressid;
+		return expressid;
 	}
 
 	public void setExpressid(String expressid) {
@@ -397,7 +382,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Integer getLockminute() {
-		return this.lockminute;
+		return lockminute;
 	}
 
 	public void setLockminute(Integer lockminute) {
@@ -405,7 +390,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Integer getMaxseat() {
-		return this.maxseat;
+		return maxseat;
 	}
 
 	public void setMaxseat(Integer maxseat) {
@@ -413,7 +398,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getRoomtype() {
-		return this.roomtype;
+		return roomtype;
 	}
 
 	public void setRoomtype(String roomtype) {
@@ -421,7 +406,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Integer getSeatnum() {
-		return this.seatnum;
+		return seatnum;
 	}
 
 	public void setSeatnum(Integer seatnum) {
@@ -429,7 +414,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Integer getAsellnum() {
-		return this.asellnum;
+		return asellnum;
 	}
 
 	public void setAsellnum(Integer asellnum) {
@@ -437,7 +422,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Integer getGsellnum() {
-		return this.gsellnum;
+		return gsellnum;
 	}
 
 	public void setGsellnum(Integer gsellnum) {
@@ -445,7 +430,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Integer getCsellnum() {
-		return this.csellnum;
+		return csellnum;
 	}
 
 	public void setCsellnum(Integer csellnum) {
@@ -453,7 +438,7 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public Integer getLocknum() {
-		return this.locknum;
+		return locknum;
 	}
 
 	public void setLocknum(Integer locknum) {
@@ -461,196 +446,203 @@ public class OrderMpiVo extends BaseVo {
 	}
 
 	public String getRoomnum() {
-		return this.roomnum;
+		return roomnum;
 	}
 
 	public void setRoomnum(String roomnum) {
 		this.roomnum = roomnum;
 	}
-
-	public Long getMpid() {
-		return this.mpid == null ? this.id : this.mpid;
+	public Long getMpid(){
+		if(this.mpid ==null){
+			return id;
+		}
+		return mpid;
 	}
-
 	public void setMpid(Long mpid) {
 		this.mpid = mpid;
 	}
-
+	
 	public Timestamp getPlaytime() {
-		return this.playtime == null
-				? DateUtil.parseTimestamp(DateUtil.formatDate(this.playdate) + " " + this.showtime + ":00")
-				: this.playtime;
+		if(playtime==null){
+			return DateUtil.parseTimestamp(DateUtil.formatDate(playdate) + " " + showtime + ":00");
+		}
+		return playtime;
 	}
-
 	public void setPlaytime(Timestamp playtime) {
 		this.playtime = playtime;
 	}
-
-	public boolean isOpenToPartner() {
-		return this.hasOpenid() && "Y".equals(this.partner);
+	public boolean isOpenToPartner(){
+		return hasOpenid() && "Y".equals(partner);
 	}
-
-	public boolean isOpenPointPay() {
-		return this.hasOpenid() && !StringUtils.contains(this.elecard, "N");
+	public boolean isOpenPointPay(){
+		return hasOpenid() && !StringUtils.contains(this.elecard, "N");
 	}
-
-	public boolean isOpenCardPay() {
-		return this.hasOpenid() && StringUtils.containsAny(this.elecard, "ABD");
+	public boolean isOpenCardPay(){
+		return hasOpenid() && StringUtils.containsAny(this.elecard, "ABD");
 	}
-
-	public boolean isDisCountPay() {
-		return this.hasOpenid() && StringUtils.contains(this.elecard, "M");
+	public boolean isDisCountPay(){
+		return hasOpenid() && StringUtils.contains(this.elecard, "M");
 	}
-
-	public String seatAmountStatus() {
-		if (this.seatnum != null && this.asellnum != null && this.gsellnum != null && this.csellnum != null
-				&& this.locknum != null) {
-			Integer remain = Integer.valueOf(this.seatnum.intValue() - this.gsellnum.intValue()
-					- this.csellnum.intValue() - this.locknum.intValue());
-			return remain.intValue() == 0 ? "0" : (0 < remain.intValue() && remain.intValue() < 10 ? "1" : "2");
-		} else {
+	public String seatAmountStatus(){
+		if(seatnum==null || asellnum==null || gsellnum==null || csellnum==null || locknum==null){
 			return "2";
 		}
+		Integer remain = this.seatnum - this.gsellnum - this.csellnum - this.locknum;
+		if(remain == 0) return "0";
+		if(0 < remain && remain < 10) {
+			return "1";
+		}
+		return "2";
 	}
-
-	public String getSeatStatus() {
-		if (!this.hasOpenid()) {
+	public String getSeatStatus(){
+		if(!hasOpenid()){
 			return "";
-		} else if (this.seatnum != null && this.asellnum != null && this.gsellnum != null && this.csellnum != null
-				&& this.locknum != null) {
-			Timestamp curtime = DateUtil.getCurFullTimestamp();
-			String resText = "选座购票";
-			if (this.opentime != null && this.opentime.after(curtime)
-					&& DateUtil.formatDate(curtime).equals(DateUtil.formatDate(this.opentime))) {
-				resText = DateUtil.format(this.opentime, "HH:mm") + "售票";
-			}
-
-			return resText;
-		} else {
+		}
+		if(seatnum==null || asellnum==null ||  gsellnum==null || csellnum==null || locknum==null){
 			return "选座购票";
 		}
-	}
-
-	public boolean hasGewara() {
-		return StringUtils.equals(this.opentype, "GEWA");
-	}
-
-	public boolean hasOpentype(String type) {
-		return StringUtils.isBlank(type) ? false : StringUtils.equals(this.opentype, type);
-	}
-
-	public boolean hasOpenStatus(String statuss) {
-		return StringUtils.equals(this.openStatus, statuss);
-	}
-
-	public boolean isUnOpenToGewa() {
-		return StringUtils.contains(this.otherinfo, "unopengewa");
-	}
-
-	public boolean isUnShowToGewa() {
-		return StringUtils.contains(this.otherinfo, "unshowgewa") || StringUtils.contains(this.otherinfo, "unopengewa")
-				|| StringUtils.contains(this.otherinfo, "baoChang");
-	}
-
-	public boolean hasOpenid() {
-		return this.openid != null;
-	}
-
-	public boolean isOrder() {
-		if (!this.hasOpenid()) {
-			return false;
-		} else {
-			Timestamp curtime = new Timestamp(System.currentTimeMillis());
-			String time = DateUtil.format(curtime, "HHmm");
-			boolean open = this.getPlaytime().after(curtime) && this.opentime.before(curtime)
-					&& this.closetime.after(curtime) && this.status.equals("Y")
-					&& StringUtil.between(time, this.dayotime, this.dayctime);
-			return open;
-		}
-	}
-
-	public boolean isShowOrder() {
-		if (!this.hasOpenid()) {
-			return false;
-		} else {
-			Timestamp curtime = new Timestamp(System.currentTimeMillis());
-			if (this.opentime.after(curtime)
-					&& !DateUtil.formatDate(curtime).equals(DateUtil.formatDate(this.opentime))) {
-				return false;
-			} else {
-				String time = DateUtil.format(curtime, "HHmm");
-				boolean open = this.getPlaytime().after(curtime) && this.closetime.after(curtime)
-						&& this.status.equals("Y") && StringUtil.between(time, this.dayotime, this.dayctime);
-				return open;
+		/*Integer remain = this.seatnum - this.gsellnum - this.csellnum - this.locknum;
+		if(remain <= 0) {
+			return "卖光了…";
+		}else if(remain < 10) {
+			return "座位紧张";
+		}*/
+		Timestamp curtime = DateUtil.getCurFullTimestamp();
+		String resText = "选座购票";
+		if(opentime!=null){
+			if(opentime.after(curtime) && DateUtil.formatDate(curtime).equals(DateUtil.formatDate(opentime))){
+				resText = DateUtil.format(opentime, "HH:mm")+"售票";
 			}
 		}
+		return resText;
 	}
-
-	public Timestamp getFullPlaytime() {
-		return this.openid == null
-				? DateUtil.parseTimestamp(DateUtil.formatDate(this.playdate) + " " + this.showtime + ":00")
-				: this.playtime;
+	public boolean hasGewara(){
+		return StringUtils.equals(opentype, OpiConstant.OPEN_GEWARA);
 	}
-
-	public boolean isOpen() {
-		return !this.hasOpenid() ? false
-				: this.opentime != null && this.opentime.before(new Timestamp(System.currentTimeMillis()));
+	
+	public boolean hasOpentype(String type){
+		if(StringUtils.isBlank(type)) return false;
+		return StringUtils.equals(this.opentype, type);
 	}
-
-	public boolean isBooking() {
-		return !this.hasOpenid() ? false : StringUtils.equals(this.status, "Y") && !this.isClosed();
+	
+	public boolean hasOpenStatus(String statuss){
+		return StringUtils.equals(this.openStatus, statuss);
 	}
-
-	public boolean isExpired() {
-		Timestamp cur = new Timestamp(System.currentTimeMillis());
-		return !this.hasOpenid() ? this.getPlaytime().before(cur)
-				: this.playtime != null && this.playtime.before(cur) || StringUtils.equals(this.status, "P");
+	public boolean isUnOpenToGewa(){
+		return StringUtils.contains(otherinfo, OpiConstant.UNOPENGEWA);
 	}
-
-	public boolean isClosed() {
-		Timestamp cur = new Timestamp(System.currentTimeMillis());
-		return !this.hasOpenid() ? cur.before(this.getPlaytime()) : this.closetime == null || cur.after(this.closetime);
+	public boolean isUnShowToGewa(){
+		return StringUtils.contains(otherinfo, OpiConstant.UNSHOWGEWA) || StringUtils.contains(otherinfo, OpiConstant.UNOPENGEWA) || StringUtils.contains(otherinfo, OpiConstant.MPITYPE_BAOCHANG);
 	}
-
-	public boolean hasOpi() {
-		Timestamp cur = new Timestamp(System.currentTimeMillis());
-		return !this.hasOpenid() ? false
-				: !this.closetime.before(cur)
-						&& (!this.opentime.after(cur)
-								|| DateUtil.formatDate(cur).equals(DateUtil.formatDate(this.opentime)))
-						&& StringUtils.equals(this.status, "Y") && (this.gsellnum == null || this.asellnum == null
-								|| this.gsellnum.intValue() < this.asellnum.intValue());
+	public boolean hasOpenid(){
+		return this.openid!=null;
 	}
-
-	public Integer gainServiceFee() {
-		if (this.gewaprice != null && this.costprice != null) {
-			int serviceFee = this.gewaprice.intValue() - this.costprice.intValue();
-			return Integer.valueOf(serviceFee < 0 ? 0 : serviceFee);
-		} else {
-			return Integer.valueOf(0);
+	public boolean isOrder(){
+		if(!hasOpenid()){
+			return false;
 		}
+		Timestamp curtime = new Timestamp(System.currentTimeMillis());
+		String time = DateUtil.format(curtime, "HHmm");
+		boolean open = getPlaytime().after(curtime) && opentime.before(curtime) 
+			&& closetime.after(curtime) && status.equals(OpiConstant.STATUS_BOOK) 
+			&& StringUtil.between(time, dayotime, dayctime);
+		
+		return open;
 	}
-
-	public Integer getServicefee() {
-		return this.gainServiceFee();
+	public boolean isShowOrder(){
+		if(!hasOpenid()){
+			return false;
+		}
+		Timestamp curtime = new Timestamp(System.currentTimeMillis());
+		if(opentime.after(curtime) && !DateUtil.formatDate(curtime).equals(DateUtil.formatDate(opentime))){
+			return false;
+		}
+		String time = DateUtil.format(curtime, "HHmm");
+		boolean open = getPlaytime().after(curtime) 
+			&& closetime.after(curtime) && status.equals(OpiConstant.STATUS_BOOK) 
+			&& StringUtil.between(time, dayotime, dayctime);
+		
+		return open;
 	}
-
-	public int gainLockSeat() {
-		return !this.hasOpentype("MTX") && !this.hasOpentype("JY") && !this.hasOpentype("NJY")
-				&& !this.hasOpentype("MJY") && !this.hasOpentype("WD") && !this.hasOpentype("WD2")
-				&& !this.hasOpentype("GPTBS") ? 5 : 4;
+	public Timestamp getFullPlaytime() {
+		if(openid==null){
+			return DateUtil.parseTimestamp(DateUtil.formatDate(playdate) + " " + showtime + ":00");
+		}
+		return playtime;
 	}
-
-	public int gainLockMinute() {
-		return 15;
+	//下面的方法只在后台用
+	public boolean isOpen(){
+		if(hasOpenid()){
+			return opentime!=null && opentime.before(new Timestamp(System.currentTimeMillis()));
+		}
+		return false;
 	}
-
-	public boolean hasRefund() {
-		Map map = JsonUtils.readJsonToMap(this.otherinfo);
-		return StringUtils.equals((String) map.get("isRefund"), "Y");
+	
+	public boolean isBooking(){
+		if(hasOpenid()){
+			return StringUtils.equals(status, OpiConstant.STATUS_BOOK) && !isClosed();
+		}
+		return false;
 	}
-
-	public boolean hasBaoChang() {
-		return StringUtils.contains(this.otherinfo, "baoChang");
+	
+	public boolean isExpired(){
+		Timestamp cur = new Timestamp(System.currentTimeMillis());
+		if(hasOpenid()){
+			return playtime!=null && playtime.before(cur) || StringUtils.equals(status, OpiConstant.STATUS_PAST);
+		}
+		return getPlaytime().before(cur);
+	}
+	public boolean isClosed(){
+		Timestamp cur = new Timestamp(System.currentTimeMillis());
+		if(hasOpenid()){
+			return closetime==null || cur.after(closetime);
+		}
+		return cur.before(getPlaytime());
+	}
+	public boolean hasOpi(){
+		Timestamp cur = new Timestamp(System.currentTimeMillis());
+		if(hasOpenid()){
+			if(closetime.before(cur) || (opentime.after(cur) && !DateUtil.formatDate(cur).equals(DateUtil.formatDate(opentime)))
+					|| !StringUtils.equals(status, OpiConstant.STATUS_BOOK) || (gsellnum != null && asellnum != null && gsellnum>=asellnum)){
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	public Integer gainServiceFee(){
+		if(gewaprice==null || costprice==null){
+			return 0;
+		}
+		int serviceFee=gewaprice-costprice;
+		return serviceFee<0?0:serviceFee;
+	}
+	public Integer getServicefee(){
+		return gainServiceFee();
+	}
+	
+	public int gainLockSeat(){
+		if(hasOpentype(OpiConstant.OPEN_MTX)
+			|| hasOpentype(OpiConstant.OPEN_JY)
+			|| hasOpentype(OpiConstant.OPEN_NJY)
+			|| hasOpentype(OpiConstant.OPEN_MJY)
+			|| hasOpentype(OpiConstant.OPEN_WD)
+			|| hasOpentype(OpiConstant.OPEN_WD2)
+			|| hasOpentype(OpiConstant.OPEN_GPTBS)){
+			return OpiConstant.MAXSEAT_PER_ORDER_PNX;
+		}
+		return OpiConstant.MAXSEAT_PER_ORDER;
+	}
+	
+	public int gainLockMinute(){
+		return OpiConstant.MAX_MINUTS_TICKETS;
+	}
+	
+	public boolean hasRefund(){
+		Map<String, String> map = JsonUtils.readJsonToMap(otherinfo);
+		return StringUtils.equals(map.get("isRefund"), "Y");
+	}
+	public boolean hasBaoChang(){
+		return StringUtils.contains(otherinfo, OpiConstant.MPITYPE_BAOCHANG);
 	}
 }

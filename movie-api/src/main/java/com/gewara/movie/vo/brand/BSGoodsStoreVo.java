@@ -1,19 +1,28 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.brand;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class BSGoodsStoreVo extends BaseVo {
-	private static final long serialVersionUID = 8688622692815979865L;
-	private Long id;
-	private Long goodsid;
-	private Long storeid;
-	private Timestamp addtime;
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * @author zhoufy
+ * @since 2015-9-15
+ */
+public class BSGoodsStoreVo  extends BaseVo{
+	
+private static final long serialVersionUID = 8688622692815979865L;
+	
+	private Long id;			//ID
+	private Long goodsid;		//活动名称
+	private Long storeid;		//活动名称
+	private Timestamp addtime;	//创建时间
+	
+	/**构造子函数**/
+	public BSGoodsStoreVo() {}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -21,7 +30,7 @@ public class BSGoodsStoreVo extends BaseVo {
 	}
 
 	public Long getGoodsid() {
-		return this.goodsid;
+		return goodsid;
 	}
 
 	public void setGoodsid(Long goodsid) {
@@ -29,7 +38,7 @@ public class BSGoodsStoreVo extends BaseVo {
 	}
 
 	public Long getStoreid() {
-		return this.storeid;
+		return storeid;
 	}
 
 	public void setStoreid(Long storeid) {
@@ -37,14 +46,16 @@ public class BSGoodsStoreVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 }
+

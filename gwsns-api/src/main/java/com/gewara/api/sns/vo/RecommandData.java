@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo;
 
 import java.io.Serializable;
@@ -11,52 +10,43 @@ public class RecommandData implements Serializable {
 	private String link;
 	private String width;
 	private String height;
-
+	
 	public String getSort() {
-		return this.sort;
+		return sort;
 	}
-
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
-
 	public String getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getUrl() {
-		return this.url;
+		return url;
 	}
-
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
 	public String getLink() {
-		return this.link;
+		return link;
 	}
-
 	public void setLink(String link) {
 		this.link = link;
 	}
-
 	public String getWidth() {
-		return this.width;
+		return width;
 	}
-
 	public void setWidth(String width) {
 		this.width = width;
 	}
-
 	public String getHeight() {
-		return this.height;
+		return height;
 	}
-
 	public void setHeight(String height) {
 		this.height = height;
 	}
+	
+	
 }

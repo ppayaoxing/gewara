@@ -1,20 +1,20 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.partner;
 
-import com.gewara.movie.vo.partner.PartnerPageReqVo;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class PartnerMovieReqVo extends PartnerPageReqVo {
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -3518296887659553743L;
 	private Long cinemaid;
 	private Date playdate;
-	private List<Long> movieIdList = null;
-	private List<Map> rowList = null;
-
-	public PartnerMovieReqVo() {
-	}
+	private List<Long> movieIdList=null;
+	private List<Map> rowList=null;
+	
+	public PartnerMovieReqVo(){}
 
 	public PartnerMovieReqVo(String appkey, String citycode) {
 		this.appkey = appkey;
@@ -29,7 +29,7 @@ public class PartnerMovieReqVo extends PartnerPageReqVo {
 	}
 
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
 
 	public void setCinemaid(Long cinemaid) {
@@ -37,7 +37,7 @@ public class PartnerMovieReqVo extends PartnerPageReqVo {
 	}
 
 	public Date getPlaydate() {
-		return this.playdate;
+		return playdate;
 	}
 
 	public void setPlaydate(Date playdate) {
@@ -45,7 +45,7 @@ public class PartnerMovieReqVo extends PartnerPageReqVo {
 	}
 
 	public List<Long> getMovieIdList() {
-		return this.movieIdList;
+		return movieIdList;
 	}
 
 	public void setMovieIdList(List<Long> movieIdList) {
@@ -53,10 +53,13 @@ public class PartnerMovieReqVo extends PartnerPageReqVo {
 	}
 
 	public List<Map> getRowList() {
-		return this.rowList;
+		return rowList;
 	}
 
 	public void setRowList(List<Map> rowList) {
 		this.rowList = rowList;
 	}
+	
+	
+
 }

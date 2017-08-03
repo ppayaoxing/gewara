@@ -1,11 +1,17 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.bbs;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class DiaryCommentVo extends BaseVo {
+import com.gewara.api.sns.constant.Status;
+import com.gewara.api.vo.BaseVo;
+
+
+/**
+ * @author acerge(acerge@163.com)
+ * @since May 24, 2009 3:51:16 PM
+ */
+public class DiaryCommentVo  extends BaseVo{
 	private static final long serialVersionUID = 4476980910614491968L;
 	private Long id;
 	private Long memberid;
@@ -15,97 +21,78 @@ public class DiaryCommentVo extends BaseVo {
 	private Timestamp updatetime;
 	private String status;
 	private String citycode;
-	private String ip;
-
-	public DiaryCommentVo() {
-	}
-
-	public DiaryCommentVo(Long memberid) {
+	private String ip;//ªÿ∏¥»ÀIP
+	public DiaryCommentVo(){}
+	public DiaryCommentVo(Long memberid){
 		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.updatetime = this.addtime;
-		this.status = "Y_NEW";
+		this.updatetime = addtime;
+		this.status = Status.Y_NEW;
 		this.memberid = memberid;
 	}
-
-	public DiaryCommentVo(Long diaryid, Long memberid, String body) {
+	public DiaryCommentVo(Long diaryid, Long memberid, String body){
 		this(memberid);
 		this.diaryid = diaryid;
 		this.body = body;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
 	public String getBody() {
-		return this.body;
+		return body;
 	}
-
 	public void setBody(String body) {
 		this.body = body;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
+	
 	public Long getDiaryid() {
-		return this.diaryid;
+		return diaryid;
 	}
-
 	public void setDiaryid(Long diaryid) {
 		this.diaryid = diaryid;
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
-	public String getIp() {
-		return this.ip;
+	public String getIp(){
+		return ip;
 	}
-
-	public void setIp(String ip) {
+	public void setIp(String ip){
 		this.ip = ip;
 	}
 }

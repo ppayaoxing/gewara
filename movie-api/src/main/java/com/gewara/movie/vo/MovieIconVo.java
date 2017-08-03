@@ -1,8 +1,8 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
+
+import com.gewara.api.vo.BaseVo;
 
 public class MovieIconVo extends BaseVo implements Serializable {
 	private static final long serialVersionUID = -8402288934867531257L;
@@ -10,7 +10,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	private Long relatedid;
 	private String titleIcon;
 	private String title;
-	private String extraType;
+	private String extraType; // txt:ÎÄ×Ö icon:Í¼±ê url:Á´½Ó
 	private String contentIcon;
 	private String content;
 	private String link;
@@ -19,10 +19,11 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	private Integer titleIconWidth;
 	private Integer contentIconHeight;
 	private Integer contentIconWidth;
+	// ÅÅÐò
 	private Integer orderSort;
 
 	public Integer getTitleIconHeight() {
-		return this.titleIconHeight;
+		return titleIconHeight;
 	}
 
 	public void setTitleIconHeight(Integer titleIconHeight) {
@@ -30,7 +31,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public Integer getTitleIconWidth() {
-		return this.titleIconWidth;
+		return titleIconWidth;
 	}
 
 	public void setTitleIconWidth(Integer titleIconWidth) {
@@ -38,7 +39,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public Integer getContentIconHeight() {
-		return this.contentIconHeight;
+		return contentIconHeight;
 	}
 
 	public void setContentIconHeight(Integer contentIconHeight) {
@@ -46,7 +47,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public Integer getContentIconWidth() {
-		return this.contentIconWidth;
+		return contentIconWidth;
 	}
 
 	public void setContentIconWidth(Integer contentIconWidth) {
@@ -54,7 +55,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -62,7 +63,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -70,7 +71,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public String getTitleIcon() {
-		return this.titleIcon;
+		return titleIcon;
 	}
 
 	public void setTitleIcon(String titleIcon) {
@@ -78,7 +79,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -86,7 +87,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public String getExtraType() {
-		return this.extraType;
+		return extraType;
 	}
 
 	public void setExtraType(String extraType) {
@@ -94,7 +95,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
@@ -102,7 +103,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public String getContentIcon() {
-		return this.contentIcon;
+		return contentIcon;
 	}
 
 	public void setContentIcon(String contentIcon) {
@@ -110,7 +111,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public String getLink() {
-		return this.link;
+		return link;
 	}
 
 	public void setLink(String link) {
@@ -118,22 +119,25 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	}
 
 	public String getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(String updatetime) {
 		this.updatetime = updatetime;
 	}
 
+	@Override
 	public Serializable realId() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public Integer getOrderSort() {
-		return this.orderSort;
+		return orderSort;
 	}
 
 	public void setOrderSort(Integer orderSort) {
 		this.orderSort = orderSort;
 	}
+
 }

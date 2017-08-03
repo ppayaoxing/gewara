@@ -1,41 +1,41 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.json.ourplay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class CompensateLogVo extends BaseVo {
-	private static final long serialVersionUID = 2195904002958496947L;
-	private String compensateLogId;
-	private Long memberid;
-	private String nickname;
-	private Long commentid;
-	private Long playMovieId;
-	private String kind;
-	private Integer generalmark;
-	private Integer isCompensated;
-	private Timestamp createtime;
-	private Timestamp updatetime;
+import com.gewara.api.vo.BaseVo;
 
+public class CompensateLogVo extends BaseVo{
+	private static final long serialVersionUID = 2195904002958496947L;
+	private String compensateLogId;//CompensateLog的主键 =memberid+"_"+playMovieId
+	private Long memberid;//用户ID
+	private String nickname;//用户别名
+	private Long commentid;//哇啦ID
+	private Long playMovieId;//PlayMovie的主键ID
+	private String kind;//打赏(reward)/补偿(compensate)
+	private Integer generalmark;//评分
+	private Integer isCompensated;//是否补偿过
+	private Timestamp createtime;//添加时间
+	private Timestamp updatetime;//修改时间
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
+	}
+	
+	public CompensateLogVo() {
+		super();
 	}
 
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
 	public Long getCommentid() {
-		return this.commentid;
+		return commentid;
 	}
-
 	public void setCommentid(Long commentid) {
 		this.commentid = commentid;
 	}
-
 	public Long getPlayMovieId() {
-		return this.playMovieId;
+		return playMovieId;
 	}
 
 	public void setPlayMovieId(Long playMovieId) {
@@ -43,51 +43,43 @@ public class CompensateLogVo extends BaseVo {
 	}
 
 	public String getKind() {
-		return this.kind;
+		return kind;
 	}
-
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-
 	public Integer getIsCompensated() {
-		return this.isCompensated;
+		return isCompensated;
 	}
-
 	public void setIsCompensated(Integer isCompensated) {
 		this.isCompensated = isCompensated;
 	}
-
 	public Integer getGeneralmark() {
-		return this.generalmark;
+		return generalmark;
 	}
-
 	public void setGeneralmark(Integer generalmark) {
 		this.generalmark = generalmark;
 	}
-
 	public Timestamp getCreatetime() {
-		return this.createtime;
+		return createtime;
 	}
-
 	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
+	
+	@Override
 	public Serializable realId() {
-		return this.commentid;
+		return commentid;
 	}
 
 	public String getCompensateLogId() {
-		return this.compensateLogId;
+		return compensateLogId;
 	}
 
 	public void setCompensateLogId(String compensateLogId) {
@@ -95,10 +87,13 @@ public class CompensateLogVo extends BaseVo {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+
+
+
 }

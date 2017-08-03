@@ -1,36 +1,47 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.request.wx;
 
-import com.gewara.api.pay.ApiRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.gewara.api.pay.ApiRequest;
+
 public class CheckfirstbindByPayseqnoRequest extends ApiRequest {
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -3650370086575450781L;
+	
+	/**支付交易流水*/
 	private String payseqno;
-
-	public CheckfirstbindByPayseqnoRequest() {
-	}
-
-	public CheckfirstbindByPayseqnoRequest(String payseqno) {
+	
+	public CheckfirstbindByPayseqnoRequest(){}
+	
+	public CheckfirstbindByPayseqnoRequest(String payseqno){
 		this.payseqno = payseqno;
 	}
 
+	@Override
 	public Map<String, String> getTextParams() {
-		HashMap params = new HashMap();
-		params.put("payseqno", this.payseqno);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("payseqno", payseqno);
 		return params;
 	}
 
+	@Override
 	public boolean checkParams() {
-		return this.payseqno != null && !"".equals(this.payseqno.trim());
+		if(payseqno == null || "".equals(payseqno.trim())){
+			return false;
+		}
+		return true;
 	}
 
 	public String getPayseqno() {
-		return this.payseqno;
+		return payseqno;
 	}
 
 	public void setPayseqno(String payseqno) {
 		this.payseqno = payseqno;
 	}
+
 }

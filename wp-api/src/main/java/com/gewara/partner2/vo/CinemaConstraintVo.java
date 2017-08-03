@@ -1,24 +1,26 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.partner2.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class CinemaConstraintVo extends BaseVo {
+
 	private static final long serialVersionUID = 1138307994529929676L;
-	private long id;
-	private String patnerkey;
-	private String provincename;
-	private String citycode;
-	private String hidetype;
-	private String cckey;
-	private String hideconstraint;
-	private Timestamp addtime;
-	private Timestamp updatetime;
+
+	private long id; // 主键
+	private String patnerkey; // 合作商key
+	private String provincename; // 省份
+	private String citycode; // 城市码
+	private String hidetype; // 隐藏类型 1影院2 价格区间3 时间区间
+	private String cckey; // 唯一约束
+	private String hideconstraint; // 隐藏内容
+	private Timestamp addtime; // 添加时间
+	private Timestamp updatetime; // 修改时间
 
 	public long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(long id) {
@@ -26,7 +28,7 @@ public class CinemaConstraintVo extends BaseVo {
 	}
 
 	public String getPatnerkey() {
-		return this.patnerkey;
+		return patnerkey;
 	}
 
 	public void setPatnerkey(String patnerkey) {
@@ -34,7 +36,7 @@ public class CinemaConstraintVo extends BaseVo {
 	}
 
 	public String getProvincename() {
-		return this.provincename;
+		return provincename;
 	}
 
 	public void setProvincename(String provincename) {
@@ -42,7 +44,7 @@ public class CinemaConstraintVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -50,7 +52,7 @@ public class CinemaConstraintVo extends BaseVo {
 	}
 
 	public String getHidetype() {
-		return this.hidetype;
+		return hidetype;
 	}
 
 	public void setHidetype(String hidetype) {
@@ -58,7 +60,7 @@ public class CinemaConstraintVo extends BaseVo {
 	}
 
 	public String getCckey() {
-		return this.cckey;
+		return cckey;
 	}
 
 	public void setCckey(String cckey) {
@@ -66,7 +68,7 @@ public class CinemaConstraintVo extends BaseVo {
 	}
 
 	public String getHideconstraint() {
-		return this.hideconstraint;
+		return hideconstraint;
 	}
 
 	public void setHideconstraint(String hideconstraint) {
@@ -74,7 +76,7 @@ public class CinemaConstraintVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -82,14 +84,16 @@ public class CinemaConstraintVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
 
+	@Override
 	public Serializable realId() {
-		return Long.valueOf(this.id);
+		return id;
 	}
+
 }

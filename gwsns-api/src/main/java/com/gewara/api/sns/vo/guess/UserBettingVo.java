@@ -1,23 +1,28 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.guess;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class UserBettingVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * 
+ * 猜票房用户投注(MongoDB)  
+ *
+ */
+public class UserBettingVo extends BaseVo{
 	private static final long serialVersionUID = 6888798581179944197L;
-	private Long memberid;
-	private Long stepid;
-	private Long optionid;
-	private Integer num;
-	private Integer point;
-	private Timestamp addtime;
-	private Timestamp rewardtime;
-	private Integer reward;
+	private Long memberid; //用户ID
+	private Long stepid; //设置ID
+	private Long optionid; //投注选项ID
+	private Integer num;//投注份数
+	private Integer point;//投注总积分
+	private Timestamp addtime;//投注时间
+	private Timestamp rewardtime;//发放奖励时间
+	private Integer reward; //总奖励积分
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -25,7 +30,7 @@ public class UserBettingVo extends BaseVo {
 	}
 
 	public Integer getNum() {
-		return this.num;
+		return num;
 	}
 
 	public void setNum(Integer num) {
@@ -33,7 +38,7 @@ public class UserBettingVo extends BaseVo {
 	}
 
 	public Integer getPoint() {
-		return this.point;
+		return point;
 	}
 
 	public void setPoint(Integer point) {
@@ -41,7 +46,7 @@ public class UserBettingVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -49,7 +54,7 @@ public class UserBettingVo extends BaseVo {
 	}
 
 	public Timestamp getRewardtime() {
-		return this.rewardtime;
+		return rewardtime;
 	}
 
 	public void setRewardtime(Timestamp rewardtime) {
@@ -57,7 +62,7 @@ public class UserBettingVo extends BaseVo {
 	}
 
 	public Integer getReward() {
-		return this.reward;
+		return reward;
 	}
 
 	public void setReward(Integer reward) {
@@ -65,7 +70,7 @@ public class UserBettingVo extends BaseVo {
 	}
 
 	public Long getStepid() {
-		return this.stepid;
+		return stepid;
 	}
 
 	public void setStepid(Long stepid) {
@@ -73,14 +78,15 @@ public class UserBettingVo extends BaseVo {
 	}
 
 	public Long getOptionid() {
-		return this.optionid;
+		return optionid;
 	}
 
 	public void setOptionid(Long optionid) {
 		this.optionid = optionid;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.memberid + "" + this.stepid + "" + this.optionid;
+		return memberid+""+stepid+""+optionid;
 	}
 }

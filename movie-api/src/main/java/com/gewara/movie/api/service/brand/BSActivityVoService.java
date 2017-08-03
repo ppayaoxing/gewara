@@ -1,22 +1,61 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.api.service.brand;
+
+
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.movie.vo.brand.BSActivityVo;
-import java.util.List;
 
 public interface BSActivityVoService {
-	ResultCode<BSActivityVo> getActivityDataById(Long arg0);
+	
+	/**
+	 * 获取活动数据
+	 * @param id	活动ID
+	 * @return
+	 */
+	ResultCode<BSActivityVo> getActivityDataById(Long id);
+	
 
-	ResultCode<BSActivityVo> save(BSActivityVo arg0);
-
-	ResultCode<List<BSActivityVo>> getActivityListByActType(String arg0, String arg1);
-
-	ResultCode<List<BSActivityVo>> getActivityList(String arg0);
-
+	/**
+	 * 保存活动数据
+	 * @return
+	 */
+	ResultCode<BSActivityVo> save(BSActivityVo activity);
+	
+	/**
+	 * 查询活动列表
+	 * @param citycode	城市code
+	 * @param actType 活动列表
+	 * @param
+	 * @param
+	 */
+	ResultCode<List<BSActivityVo>> getActivityListByActType(String citycode, String actType);
+	
+	/**
+	 * 查询活动列表
+	 * @param citycode	城市code
+	 * @param
+	 * @param
+	 * @param 
+	 */
+	ResultCode<List<BSActivityVo>> getActivityList(String citycode);
+	
+	/**
+	 * 查询活动数据量
+	 * @return
+	 */
 	ResultCode<Integer> getActivityCount();
-
-	ResultCode<List<BSActivityVo>> getActivityList(int arg0, int arg1, String arg2);
-
-	ResultCode deleteById(Long arg0);
+	
+	/**
+	 * 获取活动列表
+	 * @return
+	 */
+	ResultCode<List<BSActivityVo>> getActivityList(int from, int to, String time);
+	
+	/**
+	 * 删除活动
+	 * @param id
+	 * @return
+	 */
+	ResultCode deleteById(Long id);
 }

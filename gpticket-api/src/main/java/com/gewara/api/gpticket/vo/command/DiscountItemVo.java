@@ -1,12 +1,13 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gpticket.vo.command;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
+import com.gewara.api.vo.BaseVo;
+
 public class DiscountItemVo extends BaseVo {
+
 	private static final long serialVersionUID = -7701699951089429324L;
-	private String priceseqno;
+	private String priceseqno;		//¼Û¸ñ±àºÅ
 	private Double theatreprice;
 	private String distype;
 	private Double discount;
@@ -14,13 +15,14 @@ public class DiscountItemVo extends BaseVo {
 	private Integer quantity;
 	private String areaseqno;
 	private String siseqno;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.priceseqno;
+		return priceseqno;
 	}
 
 	public String getPriceseqno() {
-		return this.priceseqno;
+		return priceseqno;
 	}
 
 	public void setPriceseqno(String priceseqno) {
@@ -28,7 +30,7 @@ public class DiscountItemVo extends BaseVo {
 	}
 
 	public Double getTheatreprice() {
-		return this.theatreprice;
+		return theatreprice;
 	}
 
 	public void setTheatreprice(Double theatreprice) {
@@ -36,7 +38,7 @@ public class DiscountItemVo extends BaseVo {
 	}
 
 	public String getDistype() {
-		return this.distype;
+		return distype;
 	}
 
 	public void setDistype(String distype) {
@@ -44,7 +46,7 @@ public class DiscountItemVo extends BaseVo {
 	}
 
 	public Double getDiscount() {
-		return this.discount;
+		return discount;
 	}
 
 	public void setDiscount(Double discount) {
@@ -52,7 +54,7 @@ public class DiscountItemVo extends BaseVo {
 	}
 
 	public Double getDiscountAmout() {
-		return this.discountAmout;
+		return discountAmout;
 	}
 
 	public void setDiscountAmout(Double discountAmout) {
@@ -60,7 +62,7 @@ public class DiscountItemVo extends BaseVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -68,7 +70,7 @@ public class DiscountItemVo extends BaseVo {
 	}
 
 	public String getAreaseqno() {
-		return this.areaseqno;
+		return areaseqno;
 	}
 
 	public void setAreaseqno(String areaseqno) {
@@ -76,10 +78,11 @@ public class DiscountItemVo extends BaseVo {
 	}
 
 	public String getSiseqno() {
-		return this.siseqno;
+		return siseqno;
 	}
 
 	public void setSiseqno(String siseqno) {
 		this.siseqno = siseqno;
 	}
+
 }

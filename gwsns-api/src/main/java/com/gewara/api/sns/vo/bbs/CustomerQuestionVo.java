@@ -1,29 +1,49 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.bbs;
 
-import com.gewara.api.sns.constant.AddressConstant;
-import com.gewara.api.vo.BaseVo;
-import com.gewara.model.BaseObject;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.sns.constant.AddressConstant;
+import com.gewara.api.sns.constant.Status;
+import com.gewara.api.vo.BaseVo;
+import com.gewara.model.BaseObject;
+
+/**
+ *  @function 用户提问,建议,bug
+ * 	@author bob.hu
+ *	@date	2011-03-11 11:00:46
+ */
 public class CustomerQuestionVo extends BaseVo {
+	/***
+	 * 权限
+	 */
 	public static final String CustomerPermission = "customer";
-	public static final String TAG_EVALUATE = "evaluate";
-	public static final String TAG_ADVISE = "advise";
-	public static final String TAG_ADVISE_DRAMA = "adviseDrama";
-	public static final String TAG_MOBILE = "mobile";
-	public static final String TAG_OTHER = "other";
-	public static final List<String> TAG_LIST = Arrays
-			.asList(new String[] { "evaluate", "advise", "mobile", "other", "adviseDrama" });
+
+	/**
+	 *	用户提问的类型 服务评价/改进建议/其它
+	 * 
+	 */
+	public static final String TAG_EVALUATE = "evaluate"; //服务评价
+	public static final String TAG_ADVISE = "advise"; //改进建议
+	public static final String TAG_ADVISE_DRAMA = "adviseDrama"; //演出建议
+	public static final String TAG_MOBILE = "mobile";	//手机客户端
+	public static final String TAG_OTHER = "other"; //其它
+	public static final List<String> TAG_LIST = Arrays.asList(new String[]{ "evaluate", "advise", "mobile", "other","adviseDrama"});
+	
+	/**
+	 *  帖子状态 待解决/ 已回复/ 已关闭
+	 * */
 	public static final String Y_NEW = "Y_NEW";
-	public static final String Y_TREAT = "Y_TREAT";
+	public static final String Y_TREAT = "Y_TREAT";	
 	public static final String Y_STOP = "Y_STOP";
+	
 	public static final String N_DELETE = "N_DELETE";
 	public static final String N_FILTER = "N_FILTER";
+	
 	private Long id;
 	private Long memberid;
 	private String membername;
@@ -36,27 +56,26 @@ public class CustomerQuestionVo extends BaseVo {
 	private Timestamp updatetime;
 	private String citycode;
 	private BaseObject member;
-	private String feedbackType;
+	private String feedbackType;//反馈归属类型
+	
 	private static final long serialVersionUID = 1365933982357637583L;
 
-	public CustomerQuestionVo() {
-	}
-
+	public CustomerQuestionVo(){}
+	
 	public CustomerQuestionVo(String email) {
 		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.updatetime = this.addtime;
-		this.status = "Y_NEW";
+		this.updatetime = addtime;
+		this.status = Status.Y_NEW;
 		this.email = email;
-		this.type = "web";
-		this.feedbackType = "other";
+		this.type = AddressConstant.ADDRESS_WEB;
+		this.feedbackType="other";
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -64,7 +83,7 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -72,7 +91,7 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public String getMembername() {
-		return this.membername;
+		return membername;
 	}
 
 	public void setMembername(String membername) {
@@ -80,7 +99,7 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -88,7 +107,7 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public String getBody() {
-		return this.body;
+		return body;
 	}
 
 	public void setBody(String body) {
@@ -96,7 +115,7 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -104,7 +123,7 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -112,7 +131,7 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -120,7 +139,7 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -128,7 +147,7 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -136,7 +155,7 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -144,30 +163,30 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 
 	public BaseObject getMember() {
-		return this.member;
+		return member;
 	}
 
 	public void setMember(BaseObject member) {
 		this.member = member;
 	}
-
-	public String getStatusText() {
-		return StringUtils.equals(this.status, "Y_NEW") ? "待回复"
-				: (StringUtils.equals(this.status, "Y_TREAT") ? "已回复"
-						: (StringUtils.equals(this.status, "Y_STOP") ? "已关闭" : "待回复"));
+	
+	public String getStatusText(){
+		if(StringUtils.equals(status, Y_NEW))return "待回复";
+		if(StringUtils.equals(status, Y_TREAT))return "已回复";
+		if(StringUtils.equals(status, Y_STOP))return "已关闭";
+		return "待回复";
 	}
-
-	public String getFromFlag() {
+	
+	public String getFromFlag(){
 		String stype = StringUtils.lowerCase(this.type);
-		return (String) AddressConstant.addressMap.get(stype);
+		return AddressConstant.addressMap.get(stype);
 	}
-
-	public boolean getPic() {
+	
+	public boolean getPic() {// 有无图片
 		return StringUtils.contains(this.body, "<img");
 	}
-
 	public String getFeedbackType() {
-		return this.feedbackType;
+		return feedbackType;
 	}
 
 	public void setFeedbackType(String feedbackType) {

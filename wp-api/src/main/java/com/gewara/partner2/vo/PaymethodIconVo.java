@@ -1,20 +1,29 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.partner2.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class PaymethodIconVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+/**
+ * 
+ * @author user_2
+ *
+ */
+public class PaymethodIconVo extends BaseVo{
 	private static final long serialVersionUID = 2047438443244820893L;
 	private Long id;
+	/** 创建人 */
 	private String createstaff;
+	
+	/** 创建时间 */
 	private String createtime;
+	/** 备注 */
 	private String remark;
+	/** 支付方式 */
 	private String paymethod;
+	/** 图标 */
 	private String iconurl;
-
 	public String getCreatetime() {
-		return this.createtime;
+		return createtime;
 	}
 
 	public void setCreatetime(String createtime) {
@@ -22,7 +31,7 @@ public class PaymethodIconVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -30,15 +39,16 @@ public class PaymethodIconVo extends BaseVo {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	
 	public String getCreatestaff() {
-		return this.createstaff;
+		return createstaff;
 	}
 
 	public void setCreatestaff(String createstaff) {
@@ -46,22 +56,25 @@ public class PaymethodIconVo extends BaseVo {
 	}
 
 	public String getPaymethod() {
-		return this.paymethod;
+		return paymethod;
 	}
 
 	public void setPaymethod(String paymethod) {
 		this.paymethod = paymethod;
 	}
 
+	
+
 	public String getIconurl() {
-		return this.iconurl;
+		return iconurl;
 	}
 
 	public void setIconurl(String iconurl) {
 		this.iconurl = iconurl;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 }

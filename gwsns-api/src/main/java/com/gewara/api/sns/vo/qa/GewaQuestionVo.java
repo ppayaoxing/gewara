@@ -1,55 +1,56 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.qa;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.model.BaseObject;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.gewara.api.sns.constant.Status;
+import com.gewara.api.vo.BaseVo;
+import com.gewara.model.BaseObject;
+
 public class GewaQuestionVo extends BaseVo {
 	private static final long serialVersionUID = 5578727148166770087L;
-	public static Map<String, String> ssMap = new HashMap();
-	public static final int HOTVALUE_HOT = 30000;
-	public static final int HOTVALUE_RECOMMEND = 50000;
-	public static final String QS_STATUS_N = "N";
-	public static final String QS_STATUS_Y = "Y";
-	public static final String QS_STATUS_Z = "Z";
-	public static final String QS_STATUS_NOPROPER = "noproper";
-	public static final Integer MAXDAYS = Integer.valueOf(15);
+	public static Map<String,String> ssMap = new HashMap<String,String>();
+	public static final int HOTVALUE_HOT = 30000; // 热门
+	public static final int HOTVALUE_RECOMMEND = 50000; // 推荐
+	public static final String QS_STATUS_N = "N"; //待解决
+	public static final String QS_STATUS_Y = "Y"; //已解决
+	public static final String QS_STATUS_Z = "Z"; //零解决
+	public static final String QS_STATUS_NOPROPER = "noproper"; //无满意答案
+	public static final Integer MAXDAYS = 15; //最大过期时间
 	private Long id;
-	private String title;
-	private String content;
-	private String addinfo;
-	private Integer reward;
-	private String tag;
+	private String title; // 标题
+	private String content; // 内容
+	private String addinfo; //补充
+	private Integer reward; // 悬赏分
+	private String tag; // 版块：movie,....
 	private String category;
 	private Long categoryid;
 	private Long relatedid;
-	private Long memberid;
-	private Integer replycount;
-	private Long replymemberid;
+	private Long memberid; // 提问人
+	private Integer replycount; // 共回复次数
+	private Long replymemberid; // 最后回复人
 	private Integer clickedtimes;
 	private Integer hotvalue;
-	private String questionstatus;
-	private String status;
+	private String questionstatus; // 解决状态 待解决:N, 已解决：Y, 零解决：Z  无满意答案 noproper
+	private String status;// 删除状态 未删除：N 已删除：Y
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private Timestamp modtime;
+	private Timestamp modtime;	//最后修改时间
 	private Timestamp addinfotime;
 	private Timestamp recommendtime;
 	private Timestamp dealtime;
-	private Long tomemberid;
+	private Long tomemberid; // 向Ta提问
 	private String countycode;
 	private String membername;
 	private String citycode;
-	private String ip;
+	private String ip; //提问者IP
 	private BaseObject relate;
 	private BaseObject relate2;
-
+	
 	public String getMembername() {
-		return this.membername;
+		return membername;
 	}
 
 	public void setMembername(String membername) {
@@ -57,44 +58,43 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public String getCountycode() {
-		return this.countycode;
+		return countycode;
 	}
 
 	public void setCountycode(String countycode) {
 		this.countycode = countycode;
 	}
-
-	public GewaQuestionVo() {
-	}
-
+	public GewaQuestionVo(){}
+	
 	public GewaQuestionVo(Long memberid) {
 		this.memberid = memberid;
-		this.hotvalue = Integer.valueOf(0);
-		this.replycount = Integer.valueOf(0);
-		this.clickedtimes = Integer.valueOf(0);
-		this.questionstatus = "Z";
-		this.status = "Y_NEW";
+		this.hotvalue = 0;
+		this.replycount = 0;
+		this.clickedtimes = 0;
+		this.questionstatus = QS_STATUS_Z;
+		this.status = Status.Y_NEW;
 		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.updatetime = this.addtime;
-		this.recommendtime = this.addtime;
-		this.modtime = this.addtime;
-		this.reward = Integer.valueOf(0);
+		this.updatetime = addtime;
+		this.recommendtime = addtime;
+		this.modtime = addtime;
+		this.reward = 0;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -102,7 +102,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
@@ -110,7 +110,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -118,7 +118,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Integer getReplycount() {
-		return this.replycount;
+		return replycount;
 	}
 
 	public void setReplycount(Integer replycount) {
@@ -126,7 +126,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -134,7 +134,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Long getReplymemberid() {
-		return this.replymemberid;
+		return replymemberid;
 	}
 
 	public void setReplymemberid(Long replymemberid) {
@@ -142,7 +142,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Long getTomemberid() {
-		return this.tomemberid;
+		return tomemberid;
 	}
 
 	public void setTomemberid(Long tomemberid) {
@@ -150,7 +150,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Integer getClickedtimes() {
-		return this.clickedtimes;
+		return clickedtimes;
 	}
 
 	public void setClickedtimes(Integer clickedtimes) {
@@ -158,7 +158,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Integer getHotvalue() {
-		return this.hotvalue;
+		return hotvalue;
 	}
 
 	public void setHotvalue(Integer hotvalue) {
@@ -166,7 +166,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public String getQuestionstatus() {
-		return this.questionstatus;
+		return questionstatus;
 	}
 
 	public void setQuestionstatus(String questionstatus) {
@@ -174,7 +174,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -182,7 +182,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -190,7 +190,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -198,7 +198,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public String getCategory() {
-		return this.category;
+		return category;
 	}
 
 	public void setCategory(String category) {
@@ -206,7 +206,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Long getCategoryid() {
-		return this.categoryid;
+		return categoryid;
 	}
 
 	public void setCategoryid(Long categoryid) {
@@ -214,7 +214,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -222,7 +222,7 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Integer getReward() {
-		return this.reward;
+		return reward;
 	}
 
 	public void setReward(Integer reward) {
@@ -230,32 +230,35 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public void addReplycount() {
-		Integer arg1 = this.replycount;
-		Integer arg2 = this.replycount = Integer.valueOf(this.replycount.intValue() + 1);
+		this.replycount++;
 	}
 
 	public Timestamp getRecommendtime() {
-		return this.recommendtime;
+		return recommendtime;
 	}
 
 	public void setRecommendtime(Timestamp recommendtime) {
 		this.recommendtime = recommendtime;
 	}
-
-	public String getTagname() {
-		return (String) ssMap.get(this.tag);
+	public String getTagname(){
+		return ssMap.get(this.tag);
 	}
-
+	static{
+		ssMap.put("cinema", "看电影");
+		ssMap.put("theatre", "话剧");
+		ssMap.put("activity", "活动");
+		ssMap.put("", "其它");
+	}
 	public String getAddinfo() {
-		return this.addinfo;
+		return addinfo;
 	}
 
 	public void setAddinfo(String addinfo) {
 		this.addinfo = addinfo;
 	}
-
+	
 	public Timestamp getAddinfotime() {
-		return this.addinfotime;
+		return addinfotime;
 	}
 
 	public void setAddinfotime(Timestamp addinfotime) {
@@ -263,43 +266,39 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public Timestamp getDealtime() {
-		return this.dealtime;
+		return dealtime;
 	}
 
 	public void setDealtime(Timestamp dealtime) {
 		this.dealtime = dealtime;
 	}
-
 	public Timestamp getModtime() {
-		return this.modtime;
+		return modtime;
 	}
-
 	public void setModtime(Timestamp modtime) {
 		this.modtime = modtime;
 	}
-
 	public String getCname() {
 		return this.title;
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
 
-	public String getIp() {
-		return this.ip;
+	public String getIp(){
+		return ip;
 	}
-
-	public void setIp(String ip) {
+	public void setIp(String ip){
 		this.ip = ip;
 	}
-
+	
 	public BaseObject getRelate() {
-		return this.relate;
+		return relate;
 	}
 
 	public void setRelate(BaseObject relate) {
@@ -307,17 +306,10 @@ public class GewaQuestionVo extends BaseVo {
 	}
 
 	public BaseObject getRelate2() {
-		return this.relate2;
+		return relate2;
 	}
 
 	public void setRelate2(BaseObject relate2) {
 		this.relate2 = relate2;
-	}
-
-	static {
-		ssMap.put("cinema", "看电影");
-		ssMap.put("theatre", "话剧");
-		ssMap.put("activity", "活动");
-		ssMap.put("", "其它");
 	}
 }

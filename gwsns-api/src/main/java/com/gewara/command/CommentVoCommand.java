@@ -1,54 +1,56 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.command;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class CommentVoCommand extends BaseVo implements Serializable {
+import com.gewara.api.vo.BaseVo;
+
+public class CommentVoCommand extends BaseVo implements Serializable{
 	private static final long serialVersionUID = -4003691784832936833L;
-	private Integer pageNumber;
-	private Integer maxCount;
-	private Integer fromcount;
-	private String topic;
-	private String tag;
-	private Long relatedid;
-	private String status;
-	private Integer bodyLength;
-	private Timestamp startTime;
+	private Integer pageNumber;	//分页页码
+	private Integer maxCount;	//条数
+	private Integer fromcount; //开始条数
+	private String topic;		//话题
+	private String tag;					//对象类型
+	private Long relatedid;				//对象ID
+	private String status;				//wala状态
+	private Integer bodyLength;		//大于多少字数的
+	private Timestamp startTime;			//查询哇啦带时间
 	private Timestamp endTime;
-	private String flag;
-	private Long mincommentid;
-	private List<Long> memberidList;
-	private Long transferid;
-	private String micrbody;
-	private String queryType;
-	private String order;
-	private boolean asc;
-	private Long moderatorid;
-	private String mtids;
-	private Integer basicweight;
-	private boolean gt;
-	private String source;
-	private Integer marks;
-	private String pic;
-	private String video;
-	private String title;
-	private String qa;
-	private Long memberid;
-	private String nickname;
-	private String mtName;
+	private String flag;  				//值为ticket查询购票用户发表哇啦。
+	private Long mincommentid;			//查询commentid之后的哇啦
+	private List<Long> memberidList;	//查询的用户id 不可超过1000个
+	private Long transferid;			//转发的commentid
+	private String micrbody;			// 模糊查询内容
+	private String queryType;			//查询类型hot nothot					
+	private String order;   			// 哇啦排序flowernum 热门哇啦
+	private boolean asc;					//排序 (正倒序)
+	private Long moderatorid;			//话题id
+	private String mtids;					//标签id
+	private Integer basicweight;		//基础权重
+	private boolean gt;					//是否大于
+	private String source;				//发哇啦来源 wap,web等等
+	private Integer marks;				//是否有评分
+	private String pic;					//是否有图片
+	private String video;				//是否有视频
+	private String title;				//是否有标题
+	private String qa;					//是否为问答
+	private Long memberid;				//发送用户id
+	private String nickname;			//用户昵称
+	private String mtName;				//标签名字
 	private String pointx;
 	private String pointy;
 	private String ip;
 	private String otherinfo;
-	private String type;
-	private String citycode;
-	private List<Long> biglabelidList;
-
+	
+	private String type;					//哇啦类型
+	private String citycode;				//城市编码
+	
+	private List<Long> biglabelidList;	//大标签idList
+	
 	public List<Long> getBiglabelidList() {
-		return this.biglabelidList;
+		return biglabelidList;
 	}
 
 	public void setBiglabelidList(List<Long> biglabelidList) {
@@ -56,7 +58,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -64,7 +66,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -72,7 +74,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Integer getPageNumber() {
-		return this.pageNumber;
+		return pageNumber;
 	}
 
 	public void setPageNumber(Integer pageNumber) {
@@ -80,7 +82,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Integer getMaxCount() {
-		return this.maxCount;
+		return maxCount;
 	}
 
 	public void setMaxCount(Integer maxCount) {
@@ -88,7 +90,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getTopic() {
-		return this.topic;
+		return topic;
 	}
 
 	public void setTopic(String topic) {
@@ -96,7 +98,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -104,7 +106,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -112,7 +114,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -120,7 +122,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Integer getBodyLength() {
-		return this.bodyLength;
+		return bodyLength;
 	}
 
 	public void setBodyLength(Integer bodyLength) {
@@ -128,7 +130,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Timestamp getStartTime() {
-		return this.startTime;
+		return startTime;
 	}
 
 	public void setStartTime(Timestamp startTime) {
@@ -136,7 +138,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Timestamp getEndTime() {
-		return this.endTime;
+		return endTime;
 	}
 
 	public void setEndTime(Timestamp endTime) {
@@ -144,7 +146,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getFlag() {
-		return this.flag;
+		return flag;
 	}
 
 	public void setFlag(String flag) {
@@ -152,7 +154,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Long getMincommentid() {
-		return this.mincommentid;
+		return mincommentid;
 	}
 
 	public void setMincommentid(Long mincommentid) {
@@ -160,7 +162,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public List<Long> getMemberidList() {
-		return this.memberidList;
+		return memberidList;
 	}
 
 	public void setMemberidList(List<Long> memberidList) {
@@ -168,7 +170,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Long getTransferid() {
-		return this.transferid;
+		return transferid;
 	}
 
 	public void setTransferid(Long transferid) {
@@ -176,7 +178,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getMicrbody() {
-		return this.micrbody;
+		return micrbody;
 	}
 
 	public void setMicrbody(String micrbody) {
@@ -184,7 +186,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getQueryType() {
-		return this.queryType;
+		return queryType;
 	}
 
 	public void setQueryType(String queryType) {
@@ -192,7 +194,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getOrder() {
-		return this.order;
+		return order;
 	}
 
 	public void setOrder(String order) {
@@ -200,7 +202,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public boolean isAsc() {
-		return this.asc;
+		return asc;
 	}
 
 	public void setAsc(boolean asc) {
@@ -208,7 +210,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Long getModeratorid() {
-		return this.moderatorid;
+		return moderatorid;
 	}
 
 	public void setModeratorid(Long moderatorid) {
@@ -216,7 +218,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getMtids() {
-		return this.mtids;
+		return mtids;
 	}
 
 	public void setMtids(String mtids) {
@@ -224,7 +226,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Integer getBasicweight() {
-		return this.basicweight;
+		return basicweight;
 	}
 
 	public void setBasicweight(Integer basicweight) {
@@ -232,7 +234,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public boolean isGt() {
-		return this.gt;
+		return gt;
 	}
 
 	public void setGt(boolean gt) {
@@ -240,7 +242,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getSource() {
-		return this.source;
+		return source;
 	}
 
 	public void setSource(String source) {
@@ -248,7 +250,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Integer getMarks() {
-		return this.marks;
+		return marks;
 	}
 
 	public void setMarks(Integer marks) {
@@ -256,7 +258,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getPic() {
-		return this.pic;
+		return pic;
 	}
 
 	public void setPic(String pic) {
@@ -264,7 +266,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getVideo() {
-		return this.video;
+		return video;
 	}
 
 	public void setVideo(String video) {
@@ -272,7 +274,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -280,7 +282,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getQa() {
-		return this.qa;
+		return qa;
 	}
 
 	public void setQa(String qa) {
@@ -288,7 +290,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -296,7 +298,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -304,7 +306,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getMtName() {
-		return this.mtName;
+		return mtName;
 	}
 
 	public void setMtName(String mtName) {
@@ -312,7 +314,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getPointx() {
-		return this.pointx;
+		return pointx;
 	}
 
 	public void setPointx(String pointx) {
@@ -320,7 +322,7 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getPointy() {
-		return this.pointy;
+		return pointy;
 	}
 
 	public void setPointy(String pointy) {
@@ -328,19 +330,20 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public String getIp() {
-		return this.ip;
+		return ip;
 	}
 
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
 
-	public Serializable realId() {
-		return Integer.valueOf(0);
+	@Override
+	public Serializable realId() {//不能确定唯一性
+		return 0;
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -348,10 +351,11 @@ public class CommentVoCommand extends BaseVo implements Serializable {
 	}
 
 	public Integer getFromcount() {
-		return this.fromcount;
+		return fromcount;
 	}
 
 	public void setFromcount(Integer fromcount) {
 		this.fromcount = fromcount;
 	}
+	
 }

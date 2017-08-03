@@ -1,31 +1,33 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.gmessage.external.entity;
 
-import com.gewara.gmessage.external.constant.MCategory;
 import java.io.Serializable;
 
+import com.gewara.gmessage.external.constant.MCategory;
+
+/**
+ * 消息发送者的查询条件
+ *
+ */
 public class SenderQueryParam implements Serializable {
+	
 	private static final long serialVersionUID = -7149461923621738247L;
-	private MUser sender;
-	private int pageNo;
-	private int pageSize;
-	private MCategory messageCat;
-	private Long sendTimes;
 
-	public SenderQueryParam() {
-		this.sender = null;
-
-		this.pageNo = 1;
-
-		this.pageSize = 50;
-
-		this.messageCat = MCategory.INTERACT;
-
-		this.sendTimes = null;
-	}
-
+	/**发送用户信息*/
+	private MUser sender=null;
+	
+	/**页码，默认第一页*/
+	private int pageNo=1;//页码，默认第一页
+	
+	/**每页的记录数。默认50*/
+	private int pageSize=50;//每页的记录数。默认50；
+	
+	private MCategory messageCat=MCategory.INTERACT;
+	
+	/**发送日期，返回指定日期之后的消息。不指定，默认为半年内的消息*/
+	private Long sendTimes=null;//
+ 
 	public MUser getSender() {
-		return this.sender;
+		return sender;
 	}
 
 	public void setSender(MUser sender) {
@@ -33,7 +35,7 @@ public class SenderQueryParam implements Serializable {
 	}
 
 	public int getPageNo() {
-		return this.pageNo;
+		return pageNo;
 	}
 
 	public void setPageNo(int pageNo) {
@@ -41,7 +43,7 @@ public class SenderQueryParam implements Serializable {
 	}
 
 	public int getPageSize() {
-		return this.pageSize;
+		return pageSize;
 	}
 
 	public void setPageSize(int pageSize) {
@@ -49,7 +51,7 @@ public class SenderQueryParam implements Serializable {
 	}
 
 	public Long getSendTimes() {
-		return this.sendTimes;
+		return sendTimes;
 	}
 
 	public void setSendTimes(Long sendTimes) {
@@ -57,7 +59,7 @@ public class SenderQueryParam implements Serializable {
 	}
 
 	public MCategory getMessageCat() {
-		return this.messageCat;
+		return messageCat;
 	}
 
 	public void setMessageCat(MCategory messageCat) {

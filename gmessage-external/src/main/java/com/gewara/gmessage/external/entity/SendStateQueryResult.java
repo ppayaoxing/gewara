@@ -1,26 +1,25 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.gmessage.external.entity;
 
 import java.io.Serializable;
 
-public class SendStateQueryResult implements Serializable {
-	private static final long serialVersionUID = -8509780580348754248L;
-	private Long umid;
-	private MUser receiver;
-	private Long sendTime;
-	private Long readTime;
-	private Long delTimes;
 
-	public SendStateQueryResult() {
-		this.umid = null;
-		this.receiver = null;
-		this.sendTime = null;
-		this.readTime = null;
-		this.delTimes = null;
-	}
+/**
+ * 查询消息发送状态结果
+ * 
+ * @author 董明
+ * @createDate 2015年12月4日
+ */
+public class SendStateQueryResult implements Serializable{
+	private static final long serialVersionUID = -8509780580348754248L;
+	
+	private Long umid=null; //用户消息ID
+	private MUser receiver = null;//接收者消息
+	private Long sendTime = null;// 送达到接收者的时间
+	private Long readTime = null;// 接收者阅读时间
+	private Long delTimes = null;// 删除时间
 
 	public Long getUmid() {
-		return this.umid;
+		return umid;
 	}
 
 	public void setUmid(Long umid) {
@@ -28,7 +27,7 @@ public class SendStateQueryResult implements Serializable {
 	}
 
 	public MUser getReceiver() {
-		return this.receiver;
+		return receiver;
 	}
 
 	public void setReceiver(MUser receiver) {
@@ -36,11 +35,11 @@ public class SendStateQueryResult implements Serializable {
 	}
 
 	public Long getSendTime() {
-		return this.sendTime;
+		return sendTime;
 	}
 
 	public Long getReadTime() {
-		return this.readTime;
+		return readTime;
 	}
 
 	public void setSendTime(Long sendTime) {
@@ -52,7 +51,7 @@ public class SendStateQueryResult implements Serializable {
 	}
 
 	public Long getDelTimes() {
-		return this.delTimes;
+		return delTimes;
 	}
 
 	public void setDelTimes(Long delTimes) {

@@ -1,30 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.json.ourplay;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ApplyVo extends BaseVo {
-	private static final long serialVersionUID = -5401784424476256109L;
-	private String id;
-	private Long memberId;
-	private Long movieId;
-	private String activityId;
-	private String userName;
-	private Integer age;
-	private String constellation;
-	private String phone;
-	private String reason;
-	private String gender;
-	private String isOk;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private String friendname;
-	private String isReturnPoint;
+import com.gewara.api.vo.BaseVo;
 
+
+public class ApplyVo extends BaseVo{
+	private static final long serialVersionUID = -5401784424476256109L;
+	private String id; //主键 memberid+"_"+activityId
+	private Long memberId; //用户id
+	private Long movieId; //电影id
+	private String activityId; //活动id
+	private String userName; //姓名
+	private Integer age;	//年龄
+	private String constellation; //星座
+	private String phone; //手机号
+	private String reason; //理由
+	private String gender;//性别
+	private String isOk;//申请是否通过，
+	private Timestamp addtime; //添加时间
+	private Timestamp updatetime;//修改时间
+	private String friendname;//表示由哪位好友推荐进来的
+	private String isReturnPoint;//是否返回积分
+	
 	public String getIsReturnPoint() {
-		return this.isReturnPoint;
+		return isReturnPoint;
 	}
 
 	public void setIsReturnPoint(String isReturnPoint) {
@@ -32,118 +33,100 @@ public class ApplyVo extends BaseVo {
 	}
 
 	public String getFriendname() {
-		return this.friendname;
+		return friendname;
 	}
 
 	public void setFriendname(String friendname) {
 		this.friendname = friendname;
 	}
 
+	// 查询此人写过写个哇啦，memberid movieid starttime endtime 点映开始时间 结束时间，活动开始时间，结束时间，影院上映时间
+	public ApplyVo(){}
+	
 	public String getReason() {
-		return this.reason;
+		return reason;
 	}
-
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-
 	public Long getMemberId() {
-		return this.memberId;
+		return memberId;
 	}
-
 	public void setMemberId(Long memberId) {
 		this.memberId = memberId;
 	}
-
 	public String getUserName() {
-		return this.userName;
+		return userName;
 	}
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
 	public Integer getAge() {
-		return this.age;
+		return age;
 	}
-
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-
 	public String getConstellation() {
-		return this.constellation;
+		return constellation;
 	}
-
 	public void setConstellation(String constellation) {
 		this.constellation = constellation;
 	}
-
 	public String getPhone() {
-		return this.phone;
+		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 	public String getGender() {
-		return this.gender;
+		return gender;
 	}
-
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
+	@Override
 	public Serializable realId() {
 		return this.id;
 	}
-
 	public Long getMovieId() {
-		return this.movieId;
+		return movieId;
 	}
-
 	public void setMovieId(Long movieId) {
 		this.movieId = movieId;
 	}
-
 	public String getActivityId() {
-		return this.activityId;
+		return activityId;
 	}
-
 	public void setActivityId(String activityId) {
 		this.activityId = activityId;
 	}
-
 	public String getIsOk() {
-		return this.isOk;
+		return isOk;
 	}
-
 	public void setIsOk(String isOk) {
 		this.isOk = isOk;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
 	public String getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+
+
+
 }

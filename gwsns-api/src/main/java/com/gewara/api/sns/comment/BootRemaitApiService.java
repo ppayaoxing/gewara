@@ -1,44 +1,125 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.comment;
+
+import java.sql.Timestamp;
+import java.util.List;
 
 import com.gewara.api.sns.vo.comment.CommentVo;
 import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.VoMap;
-import java.sql.Timestamp;
-import java.util.List;
 
 public interface BootRemaitApiService {
-	ResultCode saveOrUpdate(Long arg0, Long arg1);
-
-	ResultCode sendMsgToUser(Long arg0, Long arg1, Timestamp arg2, String arg3);
-
-	ResultCode sendMsgToUser(Long arg0, Long arg1, Timestamp arg2, String arg3, String arg4);
-
-	ResultCode<Integer> getMovieScore(Long arg0, Long arg1, boolean arg2, boolean arg3);
-
+	/**
+	 * 保存
+	 * @param memberid
+	 * @param movieid
+	 * @param status
+	 * @return
+	 */
+	ResultCode saveOrUpdate(Long memberid, Long movieid);
+	/**
+	 * 观影后发领积分消息
+	 * @param memberid
+	 * @param relatedid
+	 * @param tag
+	 */
+	ResultCode sendMsgToUser(Long memberid, Long relatedid,Timestamp sendTime, String content);
+	ResultCode sendMsgToUser(Long memberid, Long relatedid,Timestamp sendTime, String content, String contentForWeibo);
+	/**
+	 * 获取电影赠送积分
+	 * @param memberid
+	 * @param movieid
+	 * @param addPointType  true：立即赠送;false：不赠送
+	 * @param afterSeen     true：观影后;false：不论是否观影
+	 * @return
+	 */
+	ResultCode<Integer> getMovieScore(Long memberid, Long movieid, boolean addPointType, boolean afterSeen); 
+	/**
+	 * 获取哇啦指定用户的回复的回复memberid
+	 * @return
+	 */
 	ResultCode<List<Long>> getRereMemberids();
-
-	ResultCode saveUserWalaPresent(Long arg0, Long arg1);
-
-	ResultCode<Boolean> checkMember(Long arg0, Long arg1, boolean arg2, boolean arg3);
-
-	ResultCode saveAppScoreRemain(Long arg0, Integer arg1);
-
-	ResultCode<Boolean> checkIsPresent(Long arg0, Long arg1);
-
-	ResultCode<VoMap<String, Long>> getBootRemaitVoMapById(Long arg0);
-
-	ResultCode<VoMap<String, Integer>> getAppScoreRemainVoMap(Long arg0);
-
-	ResultCode<String> getUserMsgContent(Long arg0, Long arg1);
-
-	ResultCode<List<Long>> getRecommendWalaForSquare(String arg0, String arg1, int arg2, int arg3);
-
-	ResultCode readyMemberSquareData(Long arg0);
-
-	ResultCode<List<CommentVo>> getMemberSquareCommentVoList(Long arg0, Integer arg1, Integer arg2);
-
-	ResultCode<VoMap<String, List<Long>>> getMalaCommentList(String arg0, String arg1);
-
+	/**
+	 * 保存用户写哇啦赠送电影积分
+	 * @param memberid
+	 * @param relatedid
+	 * @return
+	 */
+	ResultCode saveUserWalaPresent(Long memberid, Long relatedid);
+	/**
+	 * 判断该用户是否导入过通讯录
+	 * @param memberid
+	 * @param movieid
+	 * @param addPointType
+	 * @param afterSeen
+	 * @return
+	 */
+	ResultCode<Boolean> checkMember(Long memberid, Long movieid, boolean addPointType, boolean afterSeen);
+	/**
+	 * app哇啦奖励提醒
+	 * @param memberid
+	 * @param score
+	 */
+	ResultCode saveAppScoreRemain(Long memberid, Integer score);
+	/**
+	 * 判断写哇啦是否赠送过积分
+	 * @param memberid
+	 * @param movieid
+	 * @return
+	 */
+	ResultCode<Boolean> checkIsPresent(Long memberid,Long movieid);
+	
+	/**
+	 * 获取用户开机提醒电影
+	 * @param memberid
+	 * @return
+	 */
+	ResultCode<VoMap<String,Long>> getBootRemaitVoMapById(Long memberid);
+	/**
+	 * 获取app哇啦奖励提醒
+	 * @param memberid
+	 * @return
+	 */
+	ResultCode<VoMap<String,Integer>> getAppScoreRemainVoMap(Long memberid);
+	/**
+	 * 获取发送的消息内容
+	 * @param memberid
+	 * @param movieid
+	 * @return
+	 */
+	ResultCode<String> getUserMsgContent(Long memberid, Long movieid);
+	/**
+	 * 获取电影圈广场V说、麻辣哇啦、资讯哇啦
+	 * @param table
+	 * @param type
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<Long>> getRecommendWalaForSquare(String table,String type,int from, int maxnum);
+	/**
+	 * 初始化用户app7.1.0广场准备数据
+	 * @param memberid
+	 */
+	ResultCode readyMemberSquareData(Long memberid);
+	/**
+	 * 用户调取app7.1.0广场数据
+	 * @param memberid
+	 * @param pageNo
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<CommentVo>> getMemberSquareCommentVoList(Long memberid, Integer pageNo, Integer maxnum);
+	/**
+	 * 获取麻辣哇啦
+	 * @param startime
+	 * @param endtime
+	 * @return
+	 */
+	ResultCode<VoMap<String, List<Long>>> getMalaCommentList(String startime, String endtime);
+	/**
+	 * 获取麻辣哇啦起始推送时间
+	 * @return
+	 */
 	ResultCode<String> getMalaCommentFirstTime();
 }
+

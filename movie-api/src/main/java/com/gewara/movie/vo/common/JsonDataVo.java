@@ -1,23 +1,25 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.common;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class JsonDataVo extends BaseVo {
+	
 	private static final long serialVersionUID = 9059059794052637090L;
 	private String dkey;
 	private String data;
 	private String tag;
 	private Timestamp validtime;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.dkey;
+		return dkey;
 	}
 
 	public String getDkey() {
-		return this.dkey;
+		return dkey;
 	}
 
 	public void setDkey(String dkey) {
@@ -25,7 +27,7 @@ public class JsonDataVo extends BaseVo {
 	}
 
 	public String getData() {
-		return this.data;
+		return data;
 	}
 
 	public void setData(String data) {
@@ -33,7 +35,7 @@ public class JsonDataVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -41,10 +43,11 @@ public class JsonDataVo extends BaseVo {
 	}
 
 	public Timestamp getValidtime() {
-		return this.validtime;
+		return validtime;
 	}
 
 	public void setValidtime(Timestamp validtime) {
 		this.validtime = validtime;
 	}
+
 }

@@ -1,5 +1,8 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.qa;
+
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 
 import com.gewara.api.sns.vo.qa.GewaAnswerVo;
 import com.gewara.api.sns.vo.qa.GewaQaExpertVo;
@@ -8,163 +11,500 @@ import com.gewara.api.sns.vo.qa.GewaQuestionVo;
 import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.VoMap;
 import com.gewara.command.QuestionCommand;
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
 
 public interface QaApiService {
-	ResultCode<List<GewaQuestionVo>> getQuestionListByQuestionstatus(String arg0, String arg1, String arg2, int arg3,
-			int arg4);
 
-	ResultCode<Integer> getQuestionCountByQuestionstatus(String arg0, String arg1);
 
-	ResultCode<List<GewaQuestionVo>> getQuestionListByStatus(String arg0, Date arg1, Date arg2, int arg3, int arg4);
+	ResultCode<List<GewaQuestionVo>> getQuestionListByQuestionstatus(String citycode, String questionstatus, String order, int from,
+			int maxnum);
 
-	ResultCode<Integer> getQuestionCountByStatus(String arg0, Date arg1, Date arg2);
+	ResultCode<Integer> getQuestionCountByQuestionstatus(String citycode, String questionstatus);
 
-	ResultCode<List<GewaQuestionVo>> getQuestionListByHotvalue(String arg0, int arg1, int arg2, int arg3);
+	ResultCode<List<GewaQuestionVo>> getQuestionListByStatus(String status, Date fromDate, Date endDate, int from, int maxnum);
 
-	ResultCode<List<GewaAnswerVo>> getAnswerListByQuestionid(Long arg0);
+	ResultCode<Integer> getQuestionCountByStatus(String status, Date fromDate, Date endDate);
 
-	ResultCode<Integer> getAnswerCount(Long arg0);
+	ResultCode<List<GewaQuestionVo>> getQuestionListByHotvalue(String citycode, int hotvalue, int from, int maxnum);
 
-	ResultCode<List<GewaAnswerVo>> getAnswerListByQuestionId(int arg0, int arg1, Long arg2);
+	ResultCode<List<GewaAnswerVo>> getAnswerListByQuestionid(Long questionid);
 
-	ResultCode<List<GewaAnswerVo>> getAnswerListByQuestionAndMemId(int arg0, int arg1, Long arg2, Long arg3);
+	ResultCode<Integer> getAnswerCount(Long questionid);
 
-	ResultCode<Integer> getAnswerCountByQuestionId(Long arg0);
+	ResultCode<List<GewaAnswerVo>> getAnswerListByQuestionId(int start, int maxnum, Long questionid);
 
-	ResultCode<Integer> getAnswerCountByMemberidAndNStatus(Long arg0);
+	ResultCode<List<GewaAnswerVo>> getAnswerListByQuestionAndMemId(int start, int maxnum, Long questionid, Long memberId);
 
-	ResultCode<Integer> getBestAnswerCountByMemberid(Long arg0);
+	/**
+	 * 根据问题查询回复 status=Y_NEW
+	 */
+	ResultCode<Integer> getAnswerCountByQuestionId(Long questionid);
 
-	ResultCode<Boolean> isQuestion(Long arg0, Integer arg1);
+	/**
+	 * Ta回答的问题的数量
+	 * 
+	 * @param mid
+	 * @return
+	 */
+	ResultCode<Integer> getAnswerCountByMemberidAndNStatus(Long mid);
 
-	ResultCode<Boolean> isAnswerQuestion(Long arg0, Long arg1);
+	/**
+	 * Ta回答的问题被采纳的数量
+	 * 
+	 * @param mid
+	 * @return
+	 */
+	ResultCode<Integer> getBestAnswerCountByMemberid(Long mid);
 
-	ResultCode<GewaAnswerVo> getBestAnswerByQuestionid(Long arg0);
+	/**
+	 * 用户是否可以提出问题
+	 * 
+	 * @param memberid
+	 * @param maxdays
+	 * @return
+	 */
+	ResultCode<Boolean> isQuestion(Long memberid, Integer maxdays);
 
-	ResultCode<GewaQaExpertVo> getQaExpertByMemberid(Long arg0);
+	/**
+	 * 用户是否已经回答了这个问题
+	 * 
+	 * @param qid
+	 * @param mid
+	 * @return
+	 */
+	ResultCode<Boolean> isAnswerQuestion(Long qid, Long mid);
 
-	ResultCode<Boolean> updateQAHotValue(Long arg0, Integer arg1);
+	/**
+	 * 问题的最佳答案
+	 * 
+	 * @param qid
+	 * @return
+	 */
+	ResultCode<GewaAnswerVo> getBestAnswerByQuestionid(Long qid);
 
-	ResultCode<Boolean> updateQAExpertHotValue(Long arg0, Integer arg1);
+	/**
+	 * 用户是否是专家
+	 * 
+	 * @param mid
+	 * @return
+	 */
+	ResultCode<GewaQaExpertVo> getQaExpertByMemberid(Long mid);
+
+	/**
+	 * 更改问题的热度
+	 * 
+	 * @param id
+	 * @param hotvalue
+	 * @return 2009-10-29
+	 */
+	ResultCode<Boolean> updateQAHotValue(Long id, Integer hotvalue);
+
+	/**
+	 * 修改专家信息热度
+	 * 
+	 * @param id
+	 * @param hotvalue
+	 * @return 2009-10-30
+	 */
+	ResultCode<Boolean> updateQAExpertHotValue(Long id, Integer hotvalue);
+
+	/**
+	 * 查询专家信息数量
+	 * 
+	 * @return 2009-10-29
+	 */
 
 	ResultCode<Integer> getQAExpertCount();
 
+	/**
+	 * 查询专家信息
+	 * 
+	 * @return 2009-10-29
+	 */
 	ResultCode<List<GewaQaExpertVo>> getQaExpertList();
 
-	ResultCode<List<GewaQuestionVo>> getQuestionByTagAndRelatedid(String arg0, String arg1, Long arg2, int arg3,
-			int arg4);
+	/**
+	 * 查找问题
+	 * 
+	 * @param tag
+	 * @param relatedid
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<GewaQuestionVo>> getQuestionByTagAndRelatedid(String citycode, String tag, Long relatedid, int from, int maxnum);
 
-	ResultCode<List<GewaQuestionVo>> getQuestionByCategoryAndCategoryid(String arg0, String arg1, Long arg2, int arg3,
-			int arg4);
+	/**
+	 * 查找问题
+	 * 
+	 * @param category
+	 * @param categoryid
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<GewaQuestionVo>> getQuestionByCategoryAndCategoryid(String citycode, String category, Long categoryid, int from,
+			int maxnum);
 
-	ResultCode<List<GewaQuestionVo>> getQuestionByCategoryAndCategoryid(String arg0, String arg1, Long arg2,
-			boolean arg3, String arg4, int arg5, int arg6);
+	ResultCode<List<GewaQuestionVo>> getQuestionByCategoryAndCategoryid(String citycode, String category, Long categoryid,
+			boolean status, String questionstatus, int from, int maxnum);
 
-	ResultCode<Integer> getQuestionCountByCategoryAndCid(String arg0, String arg1, Long arg2);
+	ResultCode<Integer> getQuestionCountByCategoryAndCid(String citycode, String category, Long categoryid);
 
-	ResultCode<List<VoMap<String, Object>>> getTopMemberVoMapListByBestAnswer(int arg0, int arg1);
+	/**
+	 * 用户最佳答案多少排行
+	 * 
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<VoMap<String,Object>>> getTopMemberVoMapListByBestAnswer(int from, int maxnum);
 
 	ResultCode<Integer> getTopMemberCountByBestAnswer();
 
-	ResultCode<GewaQaExpertVo> getQaExpertStatusById(Long arg0);
+	/**
+	 * 查询专家信息表的状态
+	 * 
+	 * @return 2009-10-30
+	 */
+	ResultCode<GewaQaExpertVo> getQaExpertStatusById(Long id);
 
-	ResultCode<List<GewaAnswerVo>> getAnswerByMemberId(Long arg0);
+	ResultCode<List<GewaAnswerVo>> getAnswerByMemberId(Long id);
 
-	ResultCode<List<VoMap<String, Object>>> getTopMemberVoMapListByAnswer(int arg0, int arg1);
+	/**
+	 * 用户回答问题多少排行
+	 * 
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<VoMap<String,Object>>> getTopMemberVoMapListByAnswer(int from, int maxnum);
 
 	ResultCode<Integer> getTopMemberCountByAnswer();
 
-	ResultCode<List<VoMap<String, Object>>> getTopMemberVoMapListByPoint(int arg0, int arg1);
+	/**
+	 * 用户经验值多少排行
+	 */
+	ResultCode<List<VoMap<String,Object>>> getTopMemberVoMapListByPoint(int from, int maxnum);
 
 	ResultCode<Integer> getTopMemberCountByPoint();
 
-	ResultCode<List<GewaQuestionVo>> getQuestionListByMemberid(Long arg0, int arg1, int arg2);
 
-	ResultCode<List<VoMap<String, Object>>> getQuestionVoMapListByTagGroup(String arg0, int arg1, int arg2);
+	ResultCode<List<GewaQuestionVo>> getQuestionListByMemberid(Long memberid, int from, int maxnum);
 
-	ResultCode<List<VoMap<String, Object>>> getQuestionVoMapListByCategoryGroup(String arg0, int arg1, int arg2);
+	/**
+	 * @param tag
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<VoMap<String,Object>>> getQuestionVoMapListByTagGroup(String tag, int from, int maxnum);
 
-	ResultCode<List<GewaQaExpertVo>> getExpertList(Integer arg0, int arg1, int arg2);
+	/**
+	 * @param category
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<VoMap<String,Object>>> getQuestionVoMapListByCategoryGroup(String category, int from, int maxnum); 
 
-	ResultCode<GewaQaPointVo> getGewaQaPointByQuestionidAndTag(Long arg0, String arg1);
+	ResultCode<List<GewaQaExpertVo>> getExpertList(Integer hotvalue, int from, int maxnum);
 
-	ResultCode<Integer> getPointByMemberid(Long arg0);
+	ResultCode<GewaQaPointVo> getGewaQaPointByQuestionidAndTag(Long qid, String tag);
 
-	ResultCode<List<GewaQuestionVo>> getQuestionByQsAndTagList(String arg0, String arg1, String arg2, String arg3,
-			int arg4);
+	/**
+	 * 用户累计的问答经验值
+	 * 
+	 * @param mid
+	 * @return
+	 */
+	ResultCode<Integer> getPointByMemberid(Long mid);
 
-	ResultCode<List<GewaQuestionVo>> getQuestionListByQsAndTagAndRelatedid(String arg0, Long arg1, String arg2,
-			String arg3, int arg4);
+	ResultCode<List<GewaQuestionVo>> getQuestionByQsAndTagList(String citycode, String qs, String tag, String order, int maxnum);
 
-	ResultCode<Integer> getQuestionCount(String arg0, String arg1, Long arg2, String arg3);
+	ResultCode<List<GewaQuestionVo>> getQuestionListByQsAndTagAndRelatedid(String tag, Long relatedid, String qs, String order,
+			int maxnum);
 
-	ResultCode<List<GewaQuestionVo>> getQuestionList(String arg0, String arg1, Long arg2, String arg3, String arg4,
-			int arg5, int arg6);
+	/**
+	 * 查询问题总数量
+	 * 
+	 * @param citycode
+	 *            城市代码
+	 * @param tag
+	 *            关联类型
+	 * @param relatedid
+	 *            关联对象id
+	 * @param status
+	 *            问题状态,可选值:N(待解决),Y(已解决),Z(零解决),noproper(无满意答案)
+	 * @return
+	 */
+	ResultCode<Integer> getQuestionCount(String citycode, String tag, Long relatedid, String status);
 
-	ResultCode<Integer> getQuestionCountByHotvalue(String arg0, Integer arg1);
+	/**
+	 * 分页查询问题
+	 * 
+	 * @param citycode
+	 *            城市代码
+	 * @param tag
+	 *            关联类型
+	 * @param relatedid
+	 *            关联对象id
+	 * @param status
+	 *            问题状态,可选值:N(待解决),Y(已解决),Z(零解决),noproper(无满意答案)
+	 * @param order
+	 *            排序
+	 * @param from
+	 *            页码
+	 * @param maxnum
+	 *            结果条数
+	 * @return
+	 */
+	ResultCode<List<GewaQuestionVo>> getQuestionList(String citycode, String tag, Long relatedid, String status, String order,
+			int from, int maxnum);
 
+	/**
+	 * 根据hotvalue查询知道数量
+	 */
+	ResultCode<Integer> getQuestionCountByHotvalue(String citycode, Integer hotvalue);
+
+	/**
+	 * 获取演出管理人员回复的memberid;
+	 * 
+	 * @return
+	 */
 	ResultCode<Long> getGewaraAnswerByMemberid();
 
-	ResultCode<List<GewaAnswerVo>> queryAnswersByMemberIdAndAnswerstatus(Long arg0, String arg1);
+	/**
+	 * 查询数据
+	 * @param memberId
+	 * @param answerstatus
+	 * 
+	 * @return
+	 */
+	ResultCode<List<GewaAnswerVo>> queryAnswersByMemberIdAndAnswerstatus(Long memberId, String answerstatus);
 
-	ResultCode<VoMap<String, Integer>> getQaReportLstVoMap(Date arg0, Date arg1);
+	
 
-	ResultCode<List<GewaQuestionVo>> getQuestionByTitleAndStatus(String arg0, String arg1, int arg2, Integer arg3);
+	/**
+	 * 查询报表信息
+	 * @param datefrom
+	 *            开发日期
+	 * @param dateto
+	 *            结束日期
+	 * @return
+	 */
+	ResultCode<VoMap<String, Integer>> getQaReportLstVoMap(Date datefrom, Date dateto);
 
-	ResultCode<Integer> getQuestionCountByTitleAndStatus(String arg0, String arg1);
+	/**
+	 * 根据tilte 和  状态 查询GewaQuestion
+	 * @param keyname
+	 * @param status
+	 * @param i
+	 * @param rowsPerPage
+	 * @return
+	 */
+	ResultCode<List<GewaQuestionVo>> getQuestionByTitleAndStatus(String keyname, String status, int i, Integer rowsPerPage);
+	
+	/**
+	 * 根据tilte 和  状态 查询 GewaQuestion页数
+	 * @param keyname
+	 * @param status
+	 * @return
+	 */
+	ResultCode<Integer> getQuestionCountByTitleAndStatus(String keyname, String status);
 
-	ResultCode<Integer> getAnswerCount(Long arg0, Long arg1, Timestamp arg2, Timestamp arg3, String arg4, String arg5);
+	/**
+	 * 查询 Answer页数
+	 * @param qid
+	 * @param memberid
+	 * @param starttime
+	 * @param endtime
+	 * @param status
+	 * @param keyname
+	 * @return
+	 */
+	ResultCode<Integer> getAnswerCount(Long qid, Long memberid, Timestamp starttime, Timestamp endtime, String status,
+			String keyname);
 
-	ResultCode<List<GewaAnswerVo>> getAnswer(Long arg0, Long arg1, Timestamp arg2, Timestamp arg3, String arg4,
-			String arg5, int arg6, int arg7);
+	/**
+	 * 查询 Answer
+	 * @param qid
+	 * @param memberid
+	 * @param starttime
+	 * @param endtime
+	 * @param status
+	 * @param keyname
+	 * @param rowsPerPage 
+	 * @param firstRow 
+	 * @return
+	 */
+	ResultCode<List<GewaAnswerVo>> getAnswer(Long qid, Long memberid, Timestamp starttime, Timestamp endtime, String status,
+			String keyname, int firstRow, int rowsPerPage);
+	
+	/**
+	 * 查询 Question页数
+	 * @param memberid
+	 * @param starttime
+	 * @param endtime
+	 * @param status
+	 * @param keyname
+	 * @return
+	 */
+	ResultCode<Integer> getQuestionCount(Long memberid, Timestamp starttime, Timestamp endtime, String status, String keyname);
 
-	ResultCode<Integer> getQuestionCount(Long arg0, Timestamp arg1, Timestamp arg2, String arg3, String arg4);
+	/**
+	 * 查询 Question
+	 * @param memberid
+	 * @param starttime
+	 * @param endtime
+	 * @param status
+	 * @param keyname
+	 * @param i
+	 * @param rowsPerPage
+	 * @return
+	 */
+	ResultCode<List<GewaQuestionVo>> getQuestion(Long memberid, Timestamp starttime, Timestamp endtime, String status,
+			String keyname, int firstRow, Integer rowsPerPage);
 
-	ResultCode<List<GewaQuestionVo>> getQuestion(Long arg0, Timestamp arg1, Timestamp arg2, String arg3, String arg4,
-			int arg5, Integer arg6);
+	/**
+	 * 查询 Question数量
+	 * @param command 查询参数
+	 * @param order
+	 * @return
+	 */
+	ResultCode<Integer> getQuestionCount(QuestionCommand command, String order);
 
-	ResultCode<Integer> getQuestionCount(QuestionCommand arg0, String arg1);
+	/**
+	 * 查询Question
+	 * @param qc 查询参数
+	 * @param citycode
+	 * @return
+	 */
+	ResultCode<List<GewaQuestionVo>> getQuestion(QuestionCommand command, String citycode);
 
-	ResultCode<List<GewaQuestionVo>> getQuestion(QuestionCommand arg0, String arg1);
-
-	ResultCode<List<GewaQuestionVo>> getDeletedQuestionList(boolean arg0);
-
+	
+	/**
+	 * 查询已经删除索引的GewaQuestion
+	 * @param isDeleteDbRecord TODO
+	 * @return
+	 */
+	ResultCode<List<GewaQuestionVo>> getDeletedQuestionList(boolean isDeleteDbRecord);
+    
+    /**
+     * 查询Question id列表
+     * @return
+     */
 	ResultCode<List<Long>> getQuestionIds();
+    
+    
+    /**
+	 * 查询当前用户发表的知道
+	 */
+	ResultCode<List<GewaQuestionVo>> getQuestionByMemberid(Long memberid, int from, int maxnum);
+	
+	/**
+	 * 查询当前用户发表的知道信息数量
+	 */
+	ResultCode<Integer> getQuestionCountByMemberid(Long memberid);
+	
+	/**
+	 * 查询当前用户回复的知道
+	 * page 当前页码
+	 */
+	ResultCode<List<GewaQuestionVo>> getAnswerByMemberid(Long memberid, int from, int maxnum);
+	
+	/**
+	 * 查询当前用户回复的知道信息数量
+	 */
+	ResultCode<Integer> getAnswerCountByMemberid(Long memberid);
+	
+	/**
+	 * 根据questionid查询gewaAnswer
+	 * @return
+	 */
+	ResultCode<GewaAnswerVo> getGewaAnswerByAnswerid(Long questionid, Long memberid);
 
-	ResultCode<List<GewaQuestionVo>> getQuestionByMemberid(Long arg0, int arg1, int arg2);
+	/**
+	 * 通过Id查询GewaQuestion
+	 * @param id
+	 * @return
+	 */
+	ResultCode<GewaQuestionVo> getQuestion(Long id);
 
-	ResultCode<Integer> getQuestionCountByMemberid(Long arg0);
+	/**
+	 * 通过Id查询GewaAnswer
+	 * @param id
+	 * @return
+	 */
+	ResultCode<GewaAnswerVo> getAnswer(Long id);
 
-	ResultCode<List<GewaQuestionVo>> getAnswerByMemberid(Long arg0, int arg1, int arg2);
+	/**
+	 * 保存GewaQuestion
+	 * @param question
+	 * @return
+	 */
+	ResultCode<GewaQuestionVo> saveQuestion(GewaQuestionVo question);
 
-	ResultCode<Integer> getAnswerCountByMemberid(Long arg0);
+	/**
+	 * 保存GewaAnswer
+	 * @param question
+	 * @return
+	 */
+	ResultCode<GewaAnswerVo> saveAnswer(GewaAnswerVo answer);
 
-	ResultCode<GewaAnswerVo> getGewaAnswerByAnswerid(Long arg0, Long arg1);
+	/**
+	 * 通过Id查询GewaQaExpert
+	 * @param id
+	 * @return
+	 */
+	ResultCode<GewaQaExpertVo> getQaExpert(Long id);
+	
 
-	ResultCode<GewaQuestionVo> getQuestion(Long arg0);
+	/**
+	 * 保存GewaQaPoint
+	 * @param qaPoint
+	 * @return
+	 */
+	ResultCode<GewaQaPointVo> saveQaPoint(GewaQaPointVo qaPoint);
 
-	ResultCode<GewaAnswerVo> getAnswer(Long arg0);
+	/**
+	 * 通过Id查询GewaQaPoint
+	 * @param id
+	 * @return
+	 */
+	ResultCode<GewaQaPointVo> getQaPoint(Long id);
 
-	ResultCode<GewaQuestionVo> saveQuestion(GewaQuestionVo arg0);
+	/**
+	 * 保存GewaQaExpert
+	 * @param expert
+	 * @return
+	 */
+	ResultCode<GewaQaExpertVo> saveQaExpert(GewaQaExpertVo expert);
 
-	ResultCode<GewaAnswerVo> saveAnswer(GewaAnswerVo arg0);
+	/**
+	 * 删除GewaQaPoint
+	 * @param qaPoint
+	 */
+	ResultCode removeQAPoint(Long id);
 
-	ResultCode<GewaQaExpertVo> getQaExpert(Long arg0);
+	/**
+	 * 删除GewaQaPoint
+	 * @param qaPoint
+	 * @return
+	 */
+	ResultCode<GewaQaPointVo> removeQaPoint(GewaQaPointVo qaPoint);
 
-	ResultCode<GewaQaPointVo> saveQaPoint(GewaQaPointVo arg0);
+	/**
+	 * 保存GewaAnswer List
+	 * @param answerlist
+	 */
+	ResultCode saveAnswerList(List<GewaAnswerVo> answerlist);
 
-	ResultCode<GewaQaPointVo> getQaPoint(Long arg0);
-
-	ResultCode<GewaQaExpertVo> saveQaExpert(GewaQaExpertVo arg0);
-
-	ResultCode removeQAPoint(Long arg0);
-
-	ResultCode<GewaQaPointVo> removeQaPoint(GewaQaPointVo arg0);
-
-	ResultCode saveAnswerList(List<GewaAnswerVo> arg0);
-
-	ResultCode<GewaQuestionVo> getQuestionAndAddClickedtimes(Long arg0);
+	ResultCode<GewaQuestionVo> getQuestionAndAddClickedtimes(Long qid);
+	
+	  
+	  
+	  
+	
+	 
+	
 }

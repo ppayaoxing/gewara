@@ -1,22 +1,28 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.partner2.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * 分润
+ * @author user_2
+ */
 public class ShareBenefitVo extends BaseVo {
+
 	private static final long serialVersionUID = -4880540467784464050L;
-	private String accountid;
-	private long partnerid;
-	private long amount;
-	private long shareMonth;
-	private String refsn;
-	private String type;
-	private Timestamp transactionTime;
+
+	private String accountid; 		// 资金号
+	private long partnerid; 		// 合作商ID
+	private long amount; 			// 金额[单位：分]
+	private long shareMonth;		//分润月份[yyyymm]
+	private String refsn;			//交易流水
+	private String type;			//充值类型["CHARGE"预付款    "SHARE"分润   "SERVICE"技术服务费 "MAINTAIN" 维护费]
+	private Timestamp transactionTime; // 交易时间
 
 	public String getAccountid() {
-		return this.accountid;
+		return accountid;
 	}
 
 	public void setAccountid(String accountid) {
@@ -24,7 +30,7 @@ public class ShareBenefitVo extends BaseVo {
 	}
 
 	public long getPartnerid() {
-		return this.partnerid;
+		return partnerid;
 	}
 
 	public void setPartnerid(long partnerid) {
@@ -32,7 +38,7 @@ public class ShareBenefitVo extends BaseVo {
 	}
 
 	public long getAmount() {
-		return this.amount;
+		return amount;
 	}
 
 	public void setAmount(long amount) {
@@ -40,7 +46,7 @@ public class ShareBenefitVo extends BaseVo {
 	}
 
 	public String getRefsn() {
-		return this.refsn;
+		return refsn;
 	}
 
 	public void setRefsn(String refsn) {
@@ -48,29 +54,30 @@ public class ShareBenefitVo extends BaseVo {
 	}
 
 	public Timestamp getTransactionTime() {
-		return this.transactionTime;
+		return transactionTime;
 	}
 
 	public void setTransactionTime(Timestamp transactionTime) {
 		this.transactionTime = transactionTime;
 	}
-
+	
 	public long getShareMonth() {
-		return this.shareMonth;
+		return shareMonth;
 	}
 
 	public void setShareMonth(long shareMonth) {
 		this.shareMonth = shareMonth;
 	}
-
+	
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
 		this.type = type;
 	}
 
+	@Override
 	public Serializable realId() {
 		return null;
 	}

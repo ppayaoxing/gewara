@@ -1,24 +1,33 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.recommend;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * 推荐的详细内容
+ * @author zxl
+ *
+ */
 public class RecommendBatchDetailVo extends BaseVo {
+
 	private static final long serialVersionUID = -7002538981573566217L;
-	private Long id;
-	private Long batchId;
-	private String tag;
-	private Long relatedid;
-	private String status;
-	private Integer sortNum;
+	private Long id; // 主键
+	private Long batchId; // 批次id
+	private String tag;// TAG_STAR、TAG_MOVIE、TAG_BIGLABEL、TAG_COMMENT_TYPE
+	private Long relatedid;// 关联对象id
+	private String status;// Y_NEW、N_DELETE
+	private Integer sortNum;// 排序
 	private Timestamp addtime;
 	private Long memberid;
 	private String nickname;
 
+	public RecommendBatchDetailVo() {
+	}
+
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -26,7 +35,7 @@ public class RecommendBatchDetailVo extends BaseVo {
 	}
 
 	public Long getBatchId() {
-		return this.batchId;
+		return batchId;
 	}
 
 	public void setBatchId(Long batchId) {
@@ -34,7 +43,7 @@ public class RecommendBatchDetailVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -42,7 +51,7 @@ public class RecommendBatchDetailVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -50,7 +59,7 @@ public class RecommendBatchDetailVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -58,7 +67,7 @@ public class RecommendBatchDetailVo extends BaseVo {
 	}
 
 	public Integer getSortNum() {
-		return this.sortNum;
+		return sortNum;
 	}
 
 	public void setSortNum(Integer sortNum) {
@@ -66,7 +75,7 @@ public class RecommendBatchDetailVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -74,7 +83,7 @@ public class RecommendBatchDetailVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -82,14 +91,16 @@ public class RecommendBatchDetailVo extends BaseVo {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
+
 }

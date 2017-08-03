@@ -1,55 +1,60 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gpticket.vo.ticket;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ShowPriceVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class ShowPriceVo extends BaseVo{
 	private static final long serialVersionUID = -8924784923828458573L;
-	private String sispseq;
-	private String saseqNo;
-	private String siseq;
-	private String areaseq;
-	private String partner;
-	private String pseqno;
-	private String ticketid;
-	private Long dramaid;
-	private Integer price;
-	private Integer lowest;
-	private Integer ticketTotal;
-	private Integer ticketLimit;
-	private Long priceid;
+	
+	private String sispseq;			// areaseq + partner + priceseqno;
+	private String saseqNo;			//区域编号(ShowArea-->saseqNo)
+	private String siseq;			//场次ID
+	private String areaseq;			//第三方区域ID
+	private String partner;			//第三方标识
+	private String pseqno;			//第三方场次编号
+	private String ticketid;		//第三方场次价格编号
+	private Long dramaid;			//项目编号
+	private Integer price;			//卖价
+	private Integer lowest;			//最低卖价
+	private Integer ticketTotal;	//票数
+	private Integer ticketLimit;	//
+	private Long priceid;			
 	private String status;
-	private String flag;
+	private String flag;				//
 	private Long color;
 	private String retail;
 	private Integer maxBuy;
+	
 	private Timestamp createtime;
 	private Timestamp updatetime;
-
+	
+	public ShowPriceVo(){}
+	
+	@Override
 	public Serializable realId() {
-		return this.sispseq;
+		return sispseq;
 	}
-
+	
 	public String getSispseq() {
-		return this.sispseq;
+		return sispseq;
 	}
-
+	
 	public void setSispseq(String sispseq) {
 		this.sispseq = sispseq;
 	}
-
+	
 	public String getSiseq() {
-		return this.siseq;
+		return siseq;
 	}
-
+	
 	public void setSiseq(String siseq) {
 		this.siseq = siseq;
 	}
-
+	
 	public String getAreaseq() {
-		return this.areaseq;
+		return areaseq;
 	}
 
 	public void setAreaseq(String areaseq) {
@@ -57,55 +62,54 @@ public class ShowPriceVo extends BaseVo {
 	}
 
 	public String getPartner() {
-		return this.partner;
+		return partner;
 	}
-
+	
 	public void setPartner(String partner) {
 		this.partner = partner;
 	}
-
+	
 	public String getPseqno() {
-		return this.pseqno;
+		return pseqno;
 	}
-
+	
 	public void setPseqno(String pseqno) {
 		this.pseqno = pseqno;
 	}
-
+	
 	public String getTicketid() {
-		return this.ticketid;
+		return ticketid;
 	}
-
+	
 	public void setTicketid(String ticketid) {
 		this.ticketid = ticketid;
 	}
-
+	
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
-
+	
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-
+	
 	public Integer getLowest() {
-		return this.lowest;
+		return lowest;
 	}
-
+	
 	public void setLowest(Integer lowest) {
 		this.lowest = lowest;
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
+	
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	
 	public String getFlag() {
-		return this.flag;
+		return flag;
 	}
 
 	public void setFlag(String flag) {
@@ -113,7 +117,7 @@ public class ShowPriceVo extends BaseVo {
 	}
 
 	public Long getPriceid() {
-		return this.priceid;
+		return priceid;
 	}
 
 	public void setPriceid(Long priceid) {
@@ -121,23 +125,21 @@ public class ShowPriceVo extends BaseVo {
 	}
 
 	public Timestamp getCreatetime() {
-		return this.createtime;
+		return createtime;
 	}
-
+	
 	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -145,7 +147,7 @@ public class ShowPriceVo extends BaseVo {
 	}
 
 	public Integer getTicketTotal() {
-		return this.ticketTotal;
+		return ticketTotal;
 	}
 
 	public void setTicketTotal(Integer ticketTotal) {
@@ -153,7 +155,7 @@ public class ShowPriceVo extends BaseVo {
 	}
 
 	public Integer getTicketLimit() {
-		return this.ticketLimit;
+		return ticketLimit;
 	}
 
 	public void setTicketLimit(Integer ticketLimit) {
@@ -161,7 +163,7 @@ public class ShowPriceVo extends BaseVo {
 	}
 
 	public String getSaseqNo() {
-		return this.saseqNo;
+		return saseqNo;
 	}
 
 	public void setSaseqNo(String saseqNo) {
@@ -169,7 +171,7 @@ public class ShowPriceVo extends BaseVo {
 	}
 
 	public Long getColor() {
-		return this.color;
+		return color;
 	}
 
 	public void setColor(Long color) {
@@ -177,7 +179,7 @@ public class ShowPriceVo extends BaseVo {
 	}
 
 	public String getRetail() {
-		return this.retail;
+		return retail;
 	}
 
 	public void setRetail(String retail) {
@@ -185,10 +187,11 @@ public class ShowPriceVo extends BaseVo {
 	}
 
 	public Integer getMaxBuy() {
-		return this.maxBuy;
+		return maxBuy;
 	}
 
 	public void setMaxBuy(Integer maxBuy) {
 		this.maxBuy = maxBuy;
 	}
+
 }

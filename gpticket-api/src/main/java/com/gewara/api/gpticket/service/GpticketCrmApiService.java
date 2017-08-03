@@ -1,9 +1,17 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gpticket.service;
 
-import com.gewara.api.vo.ResultCode;
 import java.util.Map;
 
+import com.gewara.api.vo.ResultCode;
+
 public interface GpticketCrmApiService {
-	ResultCode<Map> getMemberDiscount(String arg0, String arg1);
+	/**
+	 * 获取用户优惠折扣
+	 * @param programid
+	 * @param scheduleid
+	 * @param mobile
+	 * @return
+	 */
+	ResultCode<Map> getMemberDiscount(String scheduleid, String mobile);
+
 }

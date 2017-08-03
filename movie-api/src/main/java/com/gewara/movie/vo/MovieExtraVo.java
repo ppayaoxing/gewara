@@ -1,95 +1,87 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo;
+
+import java.io.Serializable;
 
 import com.gewara.api.vo.BaseVo;
 import com.gewara.util.DateUtil;
-import java.io.Serializable;
+
+/**
+ * 电影英文字段            
+ * @author john
+ *
+ */
 
 public class MovieExtraVo extends BaseVo implements Serializable {
 	private static final long serialVersionUID = 4965993143973574947L;
+	
 	private Long id;
-	private String language;
-	private String state;
-	private String director;
-	private String actors;
-	private String content;
+	private String language;		//语言
+	private String state;			//地区
+	private String director;		//导演
+	private String actors;			//主演
+	private String content;			//剧情
 	private String addtime;
 	private String updatetime;
-
-	public MovieExtraVo() {
-	}
-
-	public MovieExtraVo(Long id) {
+	
+	public MovieExtraVo(){}
+	
+	public MovieExtraVo(Long id){
 		this.id = id;
 		this.addtime = DateUtil.getCurFullTimestampStr();
 		this.updatetime = this.addtime;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getLanguage() {
-		return this.language;
+		return language;
 	}
-
 	public void setLanguage(String language) {
 		this.language = language;
 	}
-
 	public String getState() {
-		return this.state;
+		return state;
 	}
-
 	public void setState(String state) {
 		this.state = state;
 	}
-
 	public String getDirector() {
-		return this.director;
+		return director;
 	}
-
 	public void setDirector(String director) {
 		this.director = director;
 	}
-
 	public String getActors() {
-		return this.actors;
+		return actors;
 	}
-
 	public void setActors(String actors) {
 		this.actors = actors;
 	}
-
 	public String getContent() {
-		return this.content;
+		return content;
 	}
-
 	public void setContent(String content) {
 		this.content = content;
 	}
-
 	public String getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(String addtime) {
 		this.addtime = addtime;
 	}
-
 	public String getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(String updatetime) {
 		this.updatetime = updatetime;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
+	
 }

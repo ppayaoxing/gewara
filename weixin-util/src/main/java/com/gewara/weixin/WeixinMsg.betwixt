@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<info primitiveTypes="element">
+	<element name="xml">
+		<element name="ToUserName" property="toUserName" />
+		<element name="FromUserName" property="fromUserName" />
+		<element name="CreateTime" property="createTime" />
+		<element name="MsgType" property="msgType" />
+		<element name="Content" property="content" />
+		<element name="Location_X" property="location_X" />
+		<element name="Location_Y" property="location_Y" />
+		<element name="Latitude" property="latitude" />
+		<element name="Longitude" property="longitude" />
+		<element name="Scale" property="scale" />
+		<element name="Label" property="label" />
+		<element name="PicUrl" property="picUrl" />
+		<element name="Event" property="event" />
+		<element name="EventKey" property="eventKey" />
+		<element name="CardId" property="cardId" />
+		<element name="CardID" property="cardID" />
+		<element name="FriendUserName" property="friendUserName" />
+		<element name="IsGiveByFriend" property="isGiveByFriend" />
+		<element name="UserCardCode" property="userCardCode" />
+		<element name="OuterId" property="outerId" />
+		<element name="MediaId" property="mediaId" />
+		<element name="MsgId" property="msgId" />
+	</element>
+</info>

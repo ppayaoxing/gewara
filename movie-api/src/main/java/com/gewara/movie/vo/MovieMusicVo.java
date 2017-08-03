@@ -1,43 +1,50 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class MovieMusicVo extends BaseVo {
-	public static final Integer IS_HOT = Integer.valueOf(0);
-	public static final Integer IS_NOT_HOT = Integer.valueOf(1);
-	public static final Integer IS_LIKE = Integer.valueOf(0);
-	public static final Integer IS_NOT_LIKE = Integer.valueOf(1);
+import com.gewara.api.vo.BaseVo;
+
+public class MovieMusicVo extends BaseVo{
+	public static final Integer IS_HOT = 0;
+	public static final Integer IS_NOT_HOT = 1;
+	public static final Integer IS_LIKE = 0;
+	public static final Integer IS_NOT_LIKE = 1;
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -4294404569766014178L;
-	private String song_id;
-	private String song_name;
-	private List<Long> movieid;
-	private String artist_id;
-	private String artist_name;
-	private String artist_logo;
-	private String singers;
-	private String album_id;
-	private String album_name;
-	private String album_logo;
-	private Integer length;
-	private Integer track;
-	private Integer cd_serial;
-	private Integer music_type;
-	private Integer likeNum;
-	private Integer talkNum;
-	private List<String> relateid;
-	private Timestamp createTime;
-	private Timestamp updateTime;
-	private String orderby;
-	private Integer hot = Integer.valueOf(0);
-	private Long starid;
-	private Integer liked = Integer.valueOf(0);
+	private String song_id;//虾米id
+	private String song_name;//歌曲
+	private List<Long> movieid;//电影ID
+	private String artist_id;//艺人ID
+	private String artist_name;//艺人名字
+	private String artist_logo;//艺人图片
+	private String singers;//演唱者
+	private String album_id;//专辑ID
+	private String album_name;//专辑名称 
+	private String album_logo;//专辑logo
+	private Integer length;//歌曲长度
+	private Integer track;//歌曲序号
+	private Integer cd_serial;//CD序号
+	private Integer music_type;//音乐类型
+	private Integer likeNum;//喜欢数
+	private Integer talkNum;//讨论数
+	private List<String> relateid;//关联的list_id
+	private Timestamp createTime;//创建时间
+	private Timestamp updateTime;//修改时间
+	private String orderby;//排序 
+	private Integer hot = 0;//是否热门音乐，0：不热门；1：热门
+	private Long starid;//影人ID
+	private Integer liked=0;
+	
+	public MovieMusicVo() {
+		super();
+	}
 
 	public String getSong_id() {
-		return this.song_id;
+		return song_id;
 	}
 
 	public void setSong_id(String song_id) {
@@ -45,7 +52,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public String getSong_name() {
-		return this.song_name;
+		return song_name;
 	}
 
 	public void setSong_name(String song_name) {
@@ -53,7 +60,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public List<Long> getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
 
 	public void setMovieid(List<Long> movieid) {
@@ -61,7 +68,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public String getArtist_id() {
-		return this.artist_id;
+		return artist_id;
 	}
 
 	public void setArtist_id(String artist_id) {
@@ -69,7 +76,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public String getArtist_name() {
-		return this.artist_name;
+		return artist_name;
 	}
 
 	public void setArtist_name(String artist_name) {
@@ -77,7 +84,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public String getArtist_logo() {
-		return this.artist_logo;
+		return artist_logo;
 	}
 
 	public void setArtist_logo(String artist_logo) {
@@ -85,7 +92,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public String getSingers() {
-		return this.singers;
+		return singers;
 	}
 
 	public void setSingers(String singers) {
@@ -93,7 +100,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public String getAlbum_id() {
-		return this.album_id;
+		return album_id;
 	}
 
 	public void setAlbum_id(String album_id) {
@@ -101,7 +108,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public String getAlbum_name() {
-		return this.album_name;
+		return album_name;
 	}
 
 	public void setAlbum_name(String album_name) {
@@ -109,7 +116,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public String getAlbum_logo() {
-		return this.album_logo;
+		return album_logo;
 	}
 
 	public void setAlbum_logo(String album_logo) {
@@ -117,7 +124,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public Integer getLength() {
-		return this.length;
+		return length;
 	}
 
 	public void setLength(Integer length) {
@@ -125,7 +132,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public Integer getTrack() {
-		return this.track;
+		return track;
 	}
 
 	public void setTrack(Integer track) {
@@ -133,7 +140,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public Integer getCd_serial() {
-		return this.cd_serial;
+		return cd_serial;
 	}
 
 	public void setCd_serial(Integer cd_serial) {
@@ -141,7 +148,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public Integer getMusic_type() {
-		return this.music_type;
+		return music_type;
 	}
 
 	public void setMusic_type(Integer music_type) {
@@ -149,7 +156,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public Integer getLikeNum() {
-		return this.likeNum;
+		return likeNum;
 	}
 
 	public void setLikeNum(Integer likeNum) {
@@ -157,15 +164,15 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public Integer getTalkNum() {
-		return this.talkNum;
+		return talkNum;
 	}
 
 	public void setTalkNum(Integer talkNum) {
 		this.talkNum = talkNum;
 	}
-
+	
 	public List<String> getRelateid() {
-		return this.relateid;
+		return relateid;
 	}
 
 	public void setRelateid(List<String> relateid) {
@@ -173,7 +180,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public Timestamp getCreateTime() {
-		return this.createTime;
+		return createTime;
 	}
 
 	public void setCreateTime(Timestamp createTime) {
@@ -181,7 +188,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public Timestamp getUpdateTime() {
-		return this.updateTime;
+		return updateTime;
 	}
 
 	public void setUpdateTime(Timestamp updateTime) {
@@ -189,19 +196,20 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public String getOrderby() {
-		return this.orderby;
+		return orderby;
 	}
 
 	public void setOrderby(String orderby) {
 		this.orderby = orderby;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.song_id;
+		return song_id;
 	}
 
 	public Integer getHot() {
-		return this.hot;
+		return hot;
 	}
 
 	public void setHot(Integer hot) {
@@ -209,7 +217,7 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public Long getStarid() {
-		return this.starid;
+		return starid;
 	}
 
 	public void setStarid(Long starid) {
@@ -217,10 +225,11 @@ public class MovieMusicVo extends BaseVo {
 	}
 
 	public Integer getLiked() {
-		return this.liked;
+		return liked;
 	}
 
 	public void setLiked(Integer liked) {
 		this.liked = liked;
 	}
+	
 }

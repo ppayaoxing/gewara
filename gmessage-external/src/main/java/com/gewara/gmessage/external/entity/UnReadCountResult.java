@@ -1,51 +1,49 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
+
 package com.gewara.gmessage.external.entity;
 
 import java.io.Serializable;
-
+/**
+ * 未读消息统计
+ *
+ */
 public class UnReadCountResult implements Serializable {
-	private static final long serialVersionUID = -1345047719020144850L;
-	private String userID = null;
 
-	private long system = 0L;
-	private long interaction = 0L;
-	private long instant = 0L;
-	private long recommend = 0L;
-	private long comment = 0L;
+	private static final long serialVersionUID = -1345047719020144850L;
+	private String userID=null; 
+	
+	private long system=0;
+	private long interaction=0;
+	private long instant=0;
+	private long recommend=0;
+	private long comment=0;
+	
 	private ReceiverMessage systemReceiverMessage;
 	private ReceiverMessage interactionReceiverMessage;
 	private ReceiverMessage instantReceiverMessage;
 	private ReceiverMessage recommendReceiverMessage;
 	private ReceiverMessage commentReceiverMessage;
-
-	public UnReadCountResult(String userID) {
-		this.userID = userID;
+	
+	public UnReadCountResult(String userID){
+		this.userID=userID;
 	}
-
-	public UnReadCountResult() {
+	
+	public UnReadCountResult(){}
+	
+	public UnReadCountResult(String userID,long system,long interaction,long instant){
+		this.userID=userID;
+		this.system=system;
+		this.interaction=interaction;
+		this.instant=instant;
+		
+		if(this.system<0) this.system=0;
+		if(this.interaction<0) this.interaction=0;
+		if(this.instant<0) this.instant=0;
+		if(this.recommend<0) this.recommend=0;
+		if(this.comment<0) this.comment=0;
 	}
-
-	public UnReadCountResult(String userID, long system, long interaction, long instant) {
-		this.userID = userID;
-		this.system = system;
-		this.interaction = interaction;
-		this.instant = instant;
-
-		if (this.system < 0L)
-			this.system = 0L;
-		if (this.interaction < 0L)
-			this.interaction = 0L;
-		if (this.instant < 0L)
-			this.instant = 0L;
-		if (this.recommend < 0L)
-			this.recommend = 0L;
-		if (this.comment >= 0L)
-			return;
-		this.comment = 0L;
-	}
-
+	
 	public long getComment() {
-		return this.comment;
+		return comment;
 	}
 
 	public void setComment(long comment) {
@@ -53,7 +51,7 @@ public class UnReadCountResult implements Serializable {
 	}
 
 	public ReceiverMessage getSystemReceiverMessage() {
-		return this.systemReceiverMessage;
+		return systemReceiverMessage;
 	}
 
 	public void setSystemReceiverMessage(ReceiverMessage systemReceiverMessage) {
@@ -61,7 +59,7 @@ public class UnReadCountResult implements Serializable {
 	}
 
 	public ReceiverMessage getCommentReceiverMessage() {
-		return this.commentReceiverMessage;
+		return commentReceiverMessage;
 	}
 
 	public void setCommentReceiverMessage(ReceiverMessage commentReceiverMessage) {
@@ -69,7 +67,7 @@ public class UnReadCountResult implements Serializable {
 	}
 
 	public ReceiverMessage getInteractionReceiverMessage() {
-		return this.interactionReceiverMessage;
+		return interactionReceiverMessage;
 	}
 
 	public void setInteractionReceiverMessage(ReceiverMessage interactionReceiverMessage) {
@@ -77,7 +75,7 @@ public class UnReadCountResult implements Serializable {
 	}
 
 	public ReceiverMessage getInstantReceiverMessage() {
-		return this.instantReceiverMessage;
+		return instantReceiverMessage;
 	}
 
 	public void setInstantReceiverMessage(ReceiverMessage instantReceiverMessage) {
@@ -85,7 +83,7 @@ public class UnReadCountResult implements Serializable {
 	}
 
 	public ReceiverMessage getRecommendReceiverMessage() {
-		return this.recommendReceiverMessage;
+		return recommendReceiverMessage;
 	}
 
 	public void setRecommendReceiverMessage(ReceiverMessage recommendReceiverMessage) {
@@ -93,39 +91,39 @@ public class UnReadCountResult implements Serializable {
 	}
 
 	public long getSystem() {
-		return this.system;
+		return system;
 	}
-
 	public void setSystem(long system) {
 		this.system = system;
 	}
-
+	
+	/**互动消息*/
 	public long getInteraction() {
-		return this.interaction;
+		return interaction;
 	}
-
+	
 	public void setInteraction(long interaction) {
 		this.interaction = interaction;
 	}
-
+	
+	/**即时消息*/
 	public long getInstant() {
-		return this.instant;
+		return instant;
 	}
-
 	public void setInstant(long instant) {
 		this.instant = instant;
 	}
-
+	
+	/**用户ID*/
 	public String getUserID() {
-		return this.userID;
+		return userID;
 	}
-
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
 
 	public long getRecommend() {
-		return this.recommend;
+		return recommend;
 	}
 
 	public void setRecommend(long recommend) {

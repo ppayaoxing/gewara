@@ -1,35 +1,62 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.bbs;
+
+import java.util.List;
 
 import com.gewara.api.sns.vo.bbs.CustomerAnswerVo;
 import com.gewara.api.sns.vo.bbs.CustomerQuestionVo;
 import com.gewara.api.vo.ResultCode;
-import java.util.List;
 
+/**
+ *    @function 用户建议收集Service
+ * 	@author bob.hu
+ *		@date	2011-03-11 14:32:11
+ */
 public interface CustomerQuestionApiService {
-	ResultCode<List<CustomerQuestionVo>> getQuestionsBykey(String arg0, String arg1, String arg2, String arg3, int arg4,
-			int arg5);
+	
+	ResultCode<List<CustomerQuestionVo>> getQuestionsBykey(String citycode, String tag, String searchkey, String status, int from, int maxnum);
+	ResultCode<Integer> getQuestionCountBykey(String citycode, String tag, String searchkey, String status);
+	
+	/**
+	 *  根据 qid, 查询某用户建议对应的回复
+	 * */
+	ResultCode<List<CustomerAnswerVo>> getAnswersByQid(Long qid, int from, int maxnum);
+	ResultCode<Integer> getAnswerCountByQid(Long qid);
+	ResultCode<List<CustomerQuestionVo>> getCustomerQList(Long memberid, String citycode, String tag, int from, int maxnum);
+	ResultCode<Integer> getCustometQCount(Long memberid, String citycode, String tag);
+	
+	ResultCode<CustomerQuestionVo> addCustomerQuestion(String citycode, Long memberid, String email, String tag, String body, String type);
+	
+	/**
+	 * 修改customerQuestion status
+	 * @param qid 
+	 * @param status
+	 */
+	ResultCode updateQuestionStatus(Long qid, String status);
+	
+	/**
+	 * 获取CustomerQuestion
+	 * @param qid
+	 * @return
+	 */
+	ResultCode<CustomerQuestionVo> getCustomerQuestion(Long qid);
+	
+	/**
+	 * 获取CustomerAnswer
+	 * @param aid
+	 * @return
+	 */
+	ResultCode<CustomerAnswerVo> getCustomerAnswer(Long aid);
+	/**
+	 * 保存CustomerAnswer
+	 * @param answer
+	 * @return
+	 */
+	ResultCode<CustomerAnswerVo> saveCustomerAnswer(CustomerAnswerVo answer);
+	/**
+	 * 修改CustomerQuestion
+	 * @param customerQuestion
+	 * @return
+	 */
+	ResultCode<CustomerQuestionVo> updateCustomerQuestion(CustomerQuestionVo customerQuestion);
 
-	ResultCode<Integer> getQuestionCountBykey(String arg0, String arg1, String arg2, String arg3);
-
-	ResultCode<List<CustomerAnswerVo>> getAnswersByQid(Long arg0, int arg1, int arg2);
-
-	ResultCode<Integer> getAnswerCountByQid(Long arg0);
-
-	ResultCode<List<CustomerQuestionVo>> getCustomerQList(Long arg0, String arg1, String arg2, int arg3, int arg4);
-
-	ResultCode<Integer> getCustometQCount(Long arg0, String arg1, String arg2);
-
-	ResultCode<CustomerQuestionVo> addCustomerQuestion(String arg0, Long arg1, String arg2, String arg3, String arg4,
-			String arg5);
-
-	ResultCode updateQuestionStatus(Long arg0, String arg1);
-
-	ResultCode<CustomerQuestionVo> getCustomerQuestion(Long arg0);
-
-	ResultCode<CustomerAnswerVo> getCustomerAnswer(Long arg0);
-
-	ResultCode<CustomerAnswerVo> saveCustomerAnswer(CustomerAnswerVo arg0);
-
-	ResultCode<CustomerQuestionVo> updateCustomerQuestion(CustomerQuestionVo arg0);
 }

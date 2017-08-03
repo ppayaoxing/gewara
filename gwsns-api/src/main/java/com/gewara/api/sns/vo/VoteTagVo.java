@@ -1,11 +1,11 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo;
 
 public class VoteTagVo {
-	private String voteTag;
+	
+	private String voteTag;//Í¶Æ±Ïî
 
 	public String getVoteTag() {
-		return this.voteTag;
+		return voteTag;
 	}
 
 	public void setVoteTag(String voteTag) {

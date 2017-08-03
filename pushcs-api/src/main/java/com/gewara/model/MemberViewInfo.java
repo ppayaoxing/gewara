@@ -1,19 +1,26 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.model;
 
 import java.io.Serializable;
 import java.util.List;
-
-public class MemberViewInfo implements Serializable {
+/**
+ * 用户观影信息
+ * 
+ * @author jeremylei
+ * @date 2016/04/15
+ */
+public class MemberViewInfo  implements Serializable {
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -3363180767294549933L;
-	private Long movieid;
-	private Long cinemaid;
-	private Long playtime;
-	private Integer viewcounts;
-	private List<Long> othermembers;
+	private Long movieid; // 电影id
+	private Long cinemaid; // 影院id
+	private Long playtime; // 放映时间
+	private Integer viewcounts; // 该电影观影次数
+	private List<Long> othermembers; // 同场次观影用户id列表
 
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
 
 	public void setMovieid(Long movieid) {
@@ -21,7 +28,7 @@ public class MemberViewInfo implements Serializable {
 	}
 
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
 
 	public void setCinemaid(Long cinemaid) {
@@ -29,7 +36,7 @@ public class MemberViewInfo implements Serializable {
 	}
 
 	public Long getPlaytime() {
-		return this.playtime;
+		return playtime;
 	}
 
 	public void setPlaytime(Long playtime) {
@@ -37,7 +44,7 @@ public class MemberViewInfo implements Serializable {
 	}
 
 	public Integer getViewcounts() {
-		return this.viewcounts;
+		return viewcounts;
 	}
 
 	public void setViewcounts(Integer viewcounts) {
@@ -45,7 +52,7 @@ public class MemberViewInfo implements Serializable {
 	}
 
 	public List<Long> getOthermembers() {
-		return this.othermembers;
+		return othermembers;
 	}
 
 	public void setOthermembers(List<Long> othermembers) {

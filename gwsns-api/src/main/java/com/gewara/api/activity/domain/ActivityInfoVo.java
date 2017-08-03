@@ -1,85 +1,72 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity.domain;
 
-import com.gewara.api.activity.ApiObject;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ActivityInfoVo extends ApiObject {
-	private Long memberid;
-	private String mobile;
-	private String realname;
-	private String sex;
-	private String address;
-	private Timestamp updatetime;
-	private String birthday;
-	private String otherinfo;
+import com.gewara.api.activity.ApiObject;
 
+public class ActivityInfoVo extends ApiObject{
+	private Long memberid; //用户id
+	private String mobile; //手机号
+	private String realname;//真实姓名
+	private String sex; //性别
+	private String address;//地址
+	private Timestamp updatetime;//更新时间 
+	private String birthday;//出生年月
+	private String otherinfo;//备用字段
+	
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
-
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
 	public String getRealname() {
-		return this.realname;
+		return realname;
 	}
-
 	public void setRealname(String realname) {
 		this.realname = realname;
 	}
-
 	public String getSex() {
-		return this.sex;
+		return sex;
 	}
-
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-
 	public String getAddress() {
-		return this.address;
+		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
 	public String getBirthday() {
-		return this.birthday;
+		return birthday;
 	}
-
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
-
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.memberid;
+		return memberid;
 	}
+	
+	
 }

@@ -1,46 +1,67 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity.domain;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class TreasureVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class TreasureVo extends BaseVo{
+	
 	private static final long serialVersionUID = -673268778354641818L;
+	//场所与人的收藏
 	public static final String ACTION_COLLECT = "collect";
+	//签到
 	public static final String ACTION_SIGN = "sign";
+	//场所的想去，电影的想看
 	public static final String ACTION_XIANGQU = "xiangqu";
+	//场所的去过，电影的看过
 	public static final String ACTION_QUGUO = "quguo";
-	public static final String ACTION_XIANGXUE = "xiangxue";
-	public static final String ACTION_PLAYING = "playing";
-	public static final String ACTION_PLAYED = "played";
-	public static final String ACTION_TOGETHER = "together";
+	//想跟某教练学
+	public static final String ACTION_XIANGXUE="xiangxue";
+	//正在练瑜伽
+	public static final String ACTION_PLAYING="playing";
+	//练过瑜伽
+	public static final String ACTION_PLAYED="played";
+	//想一起练瑜伽
+	public static final String ACTION_TOGETHER="together";
+	
+	//关注人
 	public static final String TAG_MEMBER = "member";
-	public static final String ACTION_FANS = "fans";
+	
+	// 话剧明星版块
+	public static final String ACTION_FANS = "fans";	// 成为粉丝
+	//收藏活动
 	public static final String ACTION_ACTIVITY = "activity";
+	
 	private Long id;
-	private Long memberid;
-	private String tag;
-	private String action;
-	private Long relatedid;
-	private Timestamp addtime;
-	private String actionlabel;
-	private Integer unreadnum;
-
+	private Long memberid; //动作发出者
+	//private Member member; //手工关联
+	private String tag; //模块
+	private String action;//动作：xiangqu、quguo、collect、xiangxue
+	private Long relatedid;//关联的对象
+	private Timestamp addtime; 
+	
+	//20110418
+	private String actionlabel; //标签
+	private Integer unreadnum; //未读标签数量
+	
 	public String getActionlabel() {
-		return this.actionlabel;
+		return actionlabel;
 	}
-
 	public void setActionlabel(String actionlabel) {
 		this.actionlabel = actionlabel;
 	}
-
+	
+	public TreasureVo() {}
+	
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -48,7 +69,7 @@ public class TreasureVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -56,7 +77,7 @@ public class TreasureVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -64,7 +85,7 @@ public class TreasureVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -72,25 +93,26 @@ public class TreasureVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
-	public String getAction() {
-		return this.action;
+	/*public void setMember(Member member) {
+		this.member = member;
 	}
-
+	public Member getMember() {
+		return member;
+	}*/
+	public String getAction() {
+		return action;
+	}
 	public void setAction(String action) {
 		this.action = action;
 	}
-
 	public Integer getUnreadnum() {
-		return this.unreadnum;
+		return unreadnum;
 	}
-
 	public void setUnreadnum(Integer unreadnum) {
 		this.unreadnum = unreadnum;
 	}

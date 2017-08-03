@@ -1,13 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.bbs;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.sns.constant.Status;
+import com.gewara.api.vo.BaseVo;
+
+/**
+ *  @function 针对用户提问,建议,bug, 进行回复
+ * 	@author bob.hu
+ *	@date	2011-03-11 12:02:52
+ */
 public class CustomerAnswerVo extends BaseVo {
-	public static final int IS_ADMIN = 1;
-	public static final int NO_ADMIN = 0;
+	
+	public static final int IS_ADMIN = 1; //是管理员
+	public static final int NO_ADMIN = 0; //注册用户
+	
 	private Long id;
 	private Long memberid;
 	private String nickname;
@@ -18,30 +26,29 @@ public class CustomerAnswerVo extends BaseVo {
 	private String citycode;
 	private String status;
 	private Integer isAdmin;
+	
 	private static final long serialVersionUID = 1862248185625951294L;
 
-	public CustomerAnswerVo() {
-	}
-
-	public CustomerAnswerVo(Long memberid) {
+	public CustomerAnswerVo(){}
+	
+	public CustomerAnswerVo(Long memberid){
 		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.updatetime = this.addtime;
-		this.status = "Y_NEW";
+		this.updatetime = addtime;
+		this.status = Status.Y_NEW;
 		this.memberid = memberid;
 	}
-
-	public CustomerAnswerVo(Long questionid, Long memberid, String body) {
+	public CustomerAnswerVo(Long questionid, Long memberid, String body){
 		this(memberid);
 		this.questionid = questionid;
 		this.body = body;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -49,7 +56,7 @@ public class CustomerAnswerVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -57,7 +64,7 @@ public class CustomerAnswerVo extends BaseVo {
 	}
 
 	public String getBody() {
-		return this.body;
+		return body;
 	}
 
 	public void setBody(String body) {
@@ -65,7 +72,7 @@ public class CustomerAnswerVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -73,7 +80,7 @@ public class CustomerAnswerVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -81,7 +88,7 @@ public class CustomerAnswerVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -89,7 +96,7 @@ public class CustomerAnswerVo extends BaseVo {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -97,7 +104,7 @@ public class CustomerAnswerVo extends BaseVo {
 	}
 
 	public Integer getIsAdmin() {
-		return this.isAdmin;
+		return isAdmin;
 	}
 
 	public void setIsAdmin(Integer isAdmin) {
@@ -105,7 +112,7 @@ public class CustomerAnswerVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -113,10 +120,11 @@ public class CustomerAnswerVo extends BaseVo {
 	}
 
 	public Long getQuestionid() {
-		return this.questionid;
+		return questionid;
 	}
 
 	public void setQuestionid(Long questionid) {
 		this.questionid = questionid;
 	}
+	
 }

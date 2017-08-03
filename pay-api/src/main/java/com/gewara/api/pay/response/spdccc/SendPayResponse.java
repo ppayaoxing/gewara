@@ -1,15 +1,29 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.response.spdccc;
 
 import com.gewara.api.pay.ApiResponse;
 
 public class SendPayResponse extends ApiResponse {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -4471112511786362286L;
+
+	public SendPayResponse(){
+		super();
+	}
+	
+	/**
+	 * 订单号，支付请求成功返回该号
+	 */
 	private String tradeNo;
+	/**
+	 * 订单请求流水
+	 */
 	private String bigOrderReqNo;
 
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
 
 	public void setTradeNo(String tradeNo) {
@@ -17,10 +31,12 @@ public class SendPayResponse extends ApiResponse {
 	}
 
 	public String getBigOrderReqNo() {
-		return this.bigOrderReqNo;
+		return bigOrderReqNo;
 	}
 
 	public void setBigOrderReqNo(String bigOrderReqNo) {
 		this.bigOrderReqNo = bigOrderReqNo;
 	}
+	
+	
 }

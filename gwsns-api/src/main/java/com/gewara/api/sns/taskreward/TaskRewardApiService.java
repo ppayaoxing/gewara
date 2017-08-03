@@ -1,24 +1,73 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.taskreward;
+
+import java.util.List;
 
 import com.gewara.api.sns.vo.taskreward.TaskRewardVo;
 import com.gewara.api.vo.ResultCode;
-import java.util.List;
 
 public interface TaskRewardApiService {
-	ResultCode<List<TaskRewardVo>> getTaskRewardList(String arg0, String arg1, Integer arg2, String arg3);
 
-	ResultCode<List<Long>> getUnFinishedTaskRewardList(Long arg0, List<Long> arg1);
+	/**
+	 * 获取任务列表
+	 * 
+	 * @param type
+	 * @param name
+	 * @param score
+	 * @param status
+	 * @return
+	 */
+	ResultCode<List<TaskRewardVo>> getTaskRewardList(String type, String name, Integer score, String status);
 
-	void saveFinishedTask(Long arg0, String arg1);
+	/**
+	 * 获取为完成的任务
+	 * 
+	 * @param memberid
+	 * @param taskid
+	 * @return
+	 */
+	ResultCode<List<Long>> getUnFinishedTaskRewardList(Long memberid, List<Long> taskid);
 
-	ResultCode<Boolean> checkHasFinishedTask(Long arg0, String arg1);
-
-	ResultCode<TaskRewardVo> getTaskRewardDetail(String arg0);
-
-	ResultCode<List> getTaskRewardBatch(String arg0, int arg1, int arg2);
-
-	ResultCode<List<TaskRewardVo>> getTaskRewardListByIds(List<Long> arg0);
-
+	/**
+	 * 完成任务
+	 * 
+	 * @param memberid
+	 * @param type
+	 */
+	void saveFinishedTask(Long memberid, String type);
+	
+	/**
+	 * 判断是否做过该任务
+	 * @param memberid
+	 * @param type
+	 * @return
+	 */
+	ResultCode<Boolean> checkHasFinishedTask(Long memberid, String type);
+	
+	/**
+	 * 获取详情
+	 * @param type
+	 * @return
+	 */
+	ResultCode<TaskRewardVo> getTaskRewardDetail(String type);
+	
+	/**
+	 * 获取任务批次信息
+	 * @param status
+	 * @return
+	 */
+	ResultCode<List> getTaskRewardBatch(String status, int from, int maxnum);
+	
+	/**
+	 * 根据id查找任务
+	 * @param taskids
+	 * @return
+	 */
+	ResultCode<List<TaskRewardVo>> getTaskRewardListByIds(List<Long> taskids);
+	
+	/**
+	 * 积分赠送提示语
+	 * @return
+	 */
 	ResultCode<String> getScoreDesc();
+
 }

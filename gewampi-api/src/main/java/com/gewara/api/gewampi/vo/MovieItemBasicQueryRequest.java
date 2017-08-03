@@ -1,57 +1,75 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gewampi.vo;
 
-import com.gewara.api.gewampi.util.RequestParamsMap;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Map;
 
-public class MovieItemBasicQueryRequest implements Serializable {
+import com.gewara.api.gewampi.util.RequestParamsMap;
+
+
+public class MovieItemBasicQueryRequest implements Serializable{
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -1363532714670489706L;
-	private String citycode;
-	private String countycode;
-	private Long cinemaid;
-	private Long movieid;
-	private Date playdate;
-	private String opentype;
-	private String seqNo;
-	private Long batch;
-	private String openStatus;
-	private String mpitype;
-	private Long openid;
-	private String status;
-	private String partner;
+	private String citycode;	//城市
+	private String countycode;  //区域
+	private Long cinemaid;		//影院ID
+	private Long movieid;		//影片ID
+	private Date playdate;		//放映日期	
+	private String opentype;	//开放类型
+	private String seqNo;		//外部关联ID
+	private Long batch;				//批次标识
+	private String openStatus;		//开放状态：init：初始状态，open：已开放，close：以后也不开放
+	private String mpitype;			//场次类型 filmfest 电影节场次
+	
+	//以下为opi属性
+	private Long openid;			//					------>原opi里的id
+	private String status;			//状态：可预订，不可预定等 Y[可预订]N[不可预订]D[删除]
+	private String partner;			//合作伙伴开放状态：Y对外开放,N不对外开放
 	private String characteristic;
-	private Timestamp playtimeGte;
-	private Timestamp playtimeLt;
-	private String showtimeGte;
-	private String showtimeLt;
+	
+	//不在Map中的查询条件
+	private Timestamp playtimeGte; //放映时间大于等于该时间
+	private Timestamp playtimeLt; //放映时间小于该时间	
+	private String showtimeGte; //大于等于该时间，该值只有在playdate不为空时，才有效
+	private String showtimeLt;  //小于该时间，该值只有在playdate不为空时，才有效
+	
+	//其它参数	
 	private Integer from;
 	private Integer maxnum;
-	private String propertyName;
-
-	public Map<String, Object> gainParamsMap() {
-		RequestParamsMap params = new RequestParamsMap();
-		params.put("citycode", this.citycode);
-		params.put("countycode", this.countycode);
-		params.put("cinemaid", this.cinemaid);
-		params.put("movieid", this.movieid);
-		params.put("playdate", this.playdate);
-		params.put("opentype", this.opentype);
-		params.put("seqNo", this.seqNo);
-		params.put("batch", this.batch);
-		params.put("openStatus", this.openStatus);
-		params.put("mpitype", this.mpitype);
-		params.put("openid", this.openid);
-		params.put("status", this.status);
-		params.put("partner", this.partner);
-		params.put("characteristic", this.characteristic);
+	
+	private String propertyName;	//DistinctProperty时需要
+	
+	/**
+	 * gteShowtime，不包括在内
+	 * 若查询方法使用缓存，请注意该值加入key中
+	 * @return
+	 * @author leo
+	 * @addTime 2015年6月30日下午2:20:18
+	 */
+	public Map<String, Object> gainParamsMap(){
+		Map<String, Object> params = new RequestParamsMap<String, Object>();
+		params.put("citycode", citycode);
+		params.put("countycode", countycode);
+		params.put("cinemaid", cinemaid);
+		params.put("movieid", movieid);
+		params.put("playdate", playdate);
+		params.put("opentype", opentype);
+		params.put("seqNo", seqNo);
+		params.put("batch", batch);
+		params.put("openStatus", openStatus);
+		params.put("mpitype", mpitype);
+		params.put("openid", openid);
+		params.put("status", status);
+		params.put("partner", partner);
+		params.put("characteristic", characteristic);
 		return params;
 	}
 
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
 
 	public void setMovieid(Long movieid) {
@@ -59,7 +77,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
 
 	public void setCinemaid(Long cinemaid) {
@@ -67,7 +85,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public Date getPlaydate() {
-		return this.playdate;
+		return playdate;
 	}
 
 	public void setPlaydate(Date playdate) {
@@ -75,7 +93,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getOpentype() {
-		return this.opentype;
+		return opentype;
 	}
 
 	public void setOpentype(String opentype) {
@@ -83,7 +101,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -91,7 +109,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getSeqNo() {
-		return this.seqNo;
+		return seqNo;
 	}
 
 	public void setSeqNo(String seqNo) {
@@ -99,7 +117,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public Long getBatch() {
-		return this.batch;
+		return batch;
 	}
 
 	public void setBatch(Long batch) {
@@ -107,7 +125,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getOpenStatus() {
-		return this.openStatus;
+		return openStatus;
 	}
 
 	public void setOpenStatus(String openStatus) {
@@ -115,7 +133,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getMpitype() {
-		return this.mpitype;
+		return mpitype;
 	}
 
 	public void setMpitype(String mpitype) {
@@ -123,7 +141,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public Long getOpenid() {
-		return this.openid;
+		return openid;
 	}
 
 	public void setOpenid(Long openid) {
@@ -131,7 +149,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -139,7 +157,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public Integer getFrom() {
-		return this.from;
+		return from;
 	}
 
 	public void setFrom(Integer from) {
@@ -147,7 +165,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public Integer getMaxnum() {
-		return this.maxnum;
+		return maxnum;
 	}
 
 	public void setMaxnum(Integer maxnum) {
@@ -155,7 +173,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getPropertyName() {
-		return this.propertyName;
+		return propertyName;
 	}
 
 	public void setPropertyName(String propertyName) {
@@ -163,7 +181,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getCountycode() {
-		return this.countycode;
+		return countycode;
 	}
 
 	public void setCountycode(String countycode) {
@@ -171,7 +189,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getPartner() {
-		return this.partner;
+		return partner;
 	}
 
 	public void setPartner(String partner) {
@@ -179,7 +197,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getCharacteristic() {
-		return this.characteristic;
+		return characteristic;
 	}
 
 	public void setCharacteristic(String characteristic) {
@@ -187,7 +205,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getShowtimeGte() {
-		return this.showtimeGte;
+		return showtimeGte;
 	}
 
 	public void setShowtimeGte(String showtimeGte) {
@@ -195,7 +213,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public String getShowtimeLt() {
-		return this.showtimeLt;
+		return showtimeLt;
 	}
 
 	public void setShowtimeLt(String showtimeLt) {
@@ -203,7 +221,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public Timestamp getPlaytimeGte() {
-		return this.playtimeGte;
+		return playtimeGte;
 	}
 
 	public void setPlaytimeGte(Timestamp playtimeGte) {
@@ -211,7 +229,7 @@ public class MovieItemBasicQueryRequest implements Serializable {
 	}
 
 	public Timestamp getPlaytimeLt() {
-		return this.playtimeLt;
+		return playtimeLt;
 	}
 
 	public void setPlaytimeLt(Timestamp playtimeLt) {

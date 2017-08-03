@@ -1,25 +1,53 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity.domain;
 
-import com.gewara.api.activity.ApiObject;
 import java.io.Serializable;
 
-public class MobileAdvertRecommendVo extends ApiObject {
-	private static final long serialVersionUID = 973080700919329467L;
-	private Long id;
-	private Long relatedid;
-	private String title;
-	private String link;
-	private String logo;
-	private Integer ordernum;
-	private String citycode;
+import com.gewara.api.activity.ApiObject;
 
+
+public class MobileAdvertRecommendVo extends ApiObject {
+
+	private static final long serialVersionUID = 973080700919329467L;
+
+	private Long id;
+	
+	/**
+	 * 活动id
+	 */
+	private Long relatedid;
+	
+	/**
+	 * 标题
+	 */
+	private String title;
+	
+	/**
+	 * 链接
+	 */
+	private String link;
+
+	/**
+	 * logo地址
+	 */
+	private String logo;
+	
+	/**
+	 * 排序值
+	 */
+	private Integer ordernum;
+	
+	/**
+	 * 地区代码(多个值以逗号隔开)
+	 */
+	private String citycode;
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -27,7 +55,7 @@ public class MobileAdvertRecommendVo extends ApiObject {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -35,7 +63,7 @@ public class MobileAdvertRecommendVo extends ApiObject {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -43,7 +71,7 @@ public class MobileAdvertRecommendVo extends ApiObject {
 	}
 
 	public String getLink() {
-		return this.link;
+		return link;
 	}
 
 	public void setLink(String link) {
@@ -51,7 +79,7 @@ public class MobileAdvertRecommendVo extends ApiObject {
 	}
 
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
 
 	public void setLogo(String logo) {
@@ -59,7 +87,7 @@ public class MobileAdvertRecommendVo extends ApiObject {
 	}
 
 	public Integer getOrdernum() {
-		return this.ordernum;
+		return ordernum;
 	}
 
 	public void setOrdernum(Integer ordernum) {
@@ -67,10 +95,11 @@ public class MobileAdvertRecommendVo extends ApiObject {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
+
 }

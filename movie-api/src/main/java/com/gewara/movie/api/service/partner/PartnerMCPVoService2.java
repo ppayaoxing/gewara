@@ -1,5 +1,8 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.api.service.partner;
+
+
+import java.util.Date;
+import java.util.List;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.movie.vo.CinemaVo;
@@ -7,38 +10,109 @@ import com.gewara.movie.vo.MovieVo;
 import com.gewara.movie.vo.partner.PartnerCinemaQueryReqVo;
 import com.gewara.movie.vo.partner.PartnerCommonReqVo;
 import com.gewara.movie.vo.partner.PartnerMovieReqVo;
-import java.util.Date;
-import java.util.List;
 
+/**
+ * 合作商电影，包括WAP
+ * 
+ */
 public interface PartnerMCPVoService2 {
-	ResultCode<List<MovieVo>> getHotMovies(PartnerMovieReqVo arg0);
+	
+	/**
+	 * 热映影片
+	 * 
+	 * @return
+	 */
+	ResultCode<List<MovieVo>> getHotMovies(PartnerMovieReqVo reqVo);
 
-	ResultCode<List<CinemaVo>> getCinemaList(PartnerCinemaQueryReqVo arg0);
+	/**
+	 * 获得影院列表
+	 * 
+	 * @return
+	 */	
+	ResultCode<List<CinemaVo>> getCinemaList(PartnerCinemaQueryReqVo reqVo);
 
-	ResultCode<List<MovieVo>> getFutureMovies(String arg0, String arg1, Integer arg2, Integer arg3);
+	/**
+	 * 待上映影片
+	 * 
+	 * @return
+	 */
+	ResultCode<List<MovieVo>> getFutureMovies(String appkey, String citycode, Integer from, Integer maxnum);
+	/**
+	 * 影片详情
+	 * 
+	 * @return
+	 */
+	ResultCode<MovieVo> getMovieDetail(String appkey, Long movieId);
 
-	ResultCode<MovieVo> getMovieDetail(String arg0, Long arg1);
+	/**
+	 * 特效厅
+	 * 
+	 * @param citycode
+	 * @param movieId
+	 * @return
+	 */
+	ResultCode<String> characteristicList(String appkey, String citycode, Long movieId);
 
-	ResultCode<String> characteristicList(String arg0, String arg1, Long arg2);
-
-	ResultCode<CinemaVo> getCinemaDetail(String arg0, Long arg1);
-
-	ResultCode<List<MovieVo>> getMovieVoList(String arg0, List<Long> arg1);
-
-	ResultCode<List<MovieVo>> getCurMovieByCinemaId(String arg0, String arg1, Long arg2, Long arg3, Integer arg4,
-			Integer arg5);
-
-	ResultCode<List<CinemaVo>> getCinemaListByCitycodeAndMovieid(PartnerCommonReqVo arg0);
-
-	ResultCode<String> getMovieCharacteristic(String arg0, Long arg1);
-
-	ResultCode<List<CinemaVo>> getSpecailRoomCinemaList(PartnerCommonReqVo arg0);
-
-	ResultCode<String> getMovieCharacteristic(PartnerCommonReqVo arg0);
-
-	ResultCode<String> getMovieCharacteristic2(PartnerCommonReqVo arg0, Date arg1);
-
-	ResultCode<List<CinemaVo>> getCinemaListByCountyAndMovieidAndPlaydate(PartnerCommonReqVo arg0);
-
-	ResultCode<List<CinemaVo>> getCinemaVoList4Advert(PartnerCinemaQueryReqVo arg0);
+	/**
+	 * 影院详情
+	 * 
+	 * @return
+	 */
+	ResultCode<CinemaVo> getCinemaDetail(String appkey, Long cinemaId);
+	/**
+	 * 获取影院列表，包含评分等
+	 * @param appkey
+	 * @param movieidList
+	 * @return
+	 */
+	ResultCode<List<MovieVo>> getMovieVoList(String appkey, List<Long> movieidList);
+	/**
+	 * 影院正在热映的电影
+	 * @param appkey
+	 * @param citycode
+	 * @param cinemaId
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<List<MovieVo>> getCurMovieByCinemaId(String appkey, String citycode, Long cinemaId, Long discountid, Integer from, Integer maxnum);
+	/**
+	 * 根据城市和影片获取购票影院列表
+	 * @param reqVo
+	 * @return
+	 */
+	ResultCode<List<CinemaVo>> getCinemaListByCitycodeAndMovieid(PartnerCommonReqVo reqVo);
+	/**
+	 * 获取电影特效厅
+	 * @param reqVo
+	 * @return
+	 */
+	ResultCode<String> getMovieCharacteristic(String citycode,Long movieId);
+	/**
+	 * 根据特效厅查找影院
+	 * @param reqVo
+	 * @return
+	 */
+	ResultCode<List<CinemaVo>> getSpecailRoomCinemaList(PartnerCommonReqVo reqVo);
+	/**
+	 * 电影特效厅
+	 * @param reqVo
+	 * @return
+	 */
+	ResultCode<String> getMovieCharacteristic(PartnerCommonReqVo reqVo);
+	
+	ResultCode<String> getMovieCharacteristic2(PartnerCommonReqVo reqVo,Date playdate);
+	
+	/**
+	 * 根据特效厅查找影院
+	 * @param reqVo
+	 * @return
+	 */
+	ResultCode<List<CinemaVo>> getCinemaListByCountyAndMovieidAndPlaydate(PartnerCommonReqVo reqVo);
+	/**
+	 * 特价模板影院列表查询方法
+	 * @param paramsVo
+	 * @return
+	 */
+	ResultCode<List<CinemaVo>> getCinemaVoList4Advert(PartnerCinemaQueryReqVo paramsVo);
 }

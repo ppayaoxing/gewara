@@ -1,15 +1,18 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.common;
-
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class CityVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
+ * @since 2007-9-28ÏÂÎç02:05:17
+ */
+public class CityVo  extends BaseVo{
 	private static final long serialVersionUID = -1449397931879372657L;
 	private String citycode;
 	private String cityname;
 	private String cityename;
-
+	
 	public CityVo() {
 	}
 
@@ -41,11 +44,16 @@ public class CityVo extends BaseVo {
 		this.cityename = cityename;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.citycode;
+		return citycode;
 	}
 
+	/**
+	 * for manage perpose
+	 * @return
+	 */
 	public String getId() {
-		return this.citycode;
+		return citycode;
 	}
 }

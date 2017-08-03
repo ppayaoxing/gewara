@@ -1,24 +1,24 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.star;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class CastPictureVo extends BaseVo {
 	private static final long serialVersionUID = -100677988174265653L;
 	private Long id;
-	private Long castid;
-	private String picname;
-	private String picurl;
-	private String piccategory;
-	private Timestamp addtime;
-	private Timestamp updatetime;
+	private Long castid; // 人物ID
+	private String picname; // 图片名
+	private String picurl; // 图片路径
+	private String piccategory; // 图片分类
+	private Timestamp addtime; // 新增时间
+	private Timestamp updatetime; // 更新时间
 	private Integer picwidth;
 	private Integer picheight;
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -26,7 +26,7 @@ public class CastPictureVo extends BaseVo {
 	}
 
 	public Long getCastid() {
-		return this.castid;
+		return castid;
 	}
 
 	public void setCastid(Long castid) {
@@ -34,7 +34,7 @@ public class CastPictureVo extends BaseVo {
 	}
 
 	public String getPicname() {
-		return this.picname;
+		return picname;
 	}
 
 	public void setPicname(String picname) {
@@ -42,7 +42,7 @@ public class CastPictureVo extends BaseVo {
 	}
 
 	public String getPicurl() {
-		return this.picurl;
+		return picurl;
 	}
 
 	public void setPicurl(String picurl) {
@@ -50,7 +50,7 @@ public class CastPictureVo extends BaseVo {
 	}
 
 	public String getPiccategory() {
-		return this.piccategory;
+		return piccategory;
 	}
 
 	public void setPiccategory(String piccategory) {
@@ -58,7 +58,7 @@ public class CastPictureVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -66,19 +66,20 @@ public class CastPictureVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Integer getPicwidth() {
-		return this.picwidth;
+		return picwidth;
 	}
 
 	public void setPicwidth(Integer picwidth) {
@@ -86,10 +87,12 @@ public class CastPictureVo extends BaseVo {
 	}
 
 	public Integer getPicheight() {
-		return this.picheight;
+		return picheight;
 	}
 
 	public void setPicheight(Integer picheight) {
 		this.picheight = picheight;
 	}
+
+
 }

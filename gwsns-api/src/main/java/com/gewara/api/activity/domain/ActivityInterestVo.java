@@ -1,11 +1,13 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity.domain;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class ActivityInterestVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class ActivityInterestVo extends BaseVo{
+
 	private static final long serialVersionUID = -4749128924546836166L;
+	
 	private Long id;
 	private String sign;
 	private String signname;
@@ -14,12 +16,13 @@ public class ActivityInterestVo extends BaseVo {
 	private String status;
 	private String otherinfo;
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -27,7 +30,7 @@ public class ActivityInterestVo extends BaseVo {
 	}
 
 	public String getSign() {
-		return this.sign;
+		return sign;
 	}
 
 	public void setSign(String sign) {
@@ -35,7 +38,7 @@ public class ActivityInterestVo extends BaseVo {
 	}
 
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
 
 	public void setLogo(String logo) {
@@ -43,7 +46,7 @@ public class ActivityInterestVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -51,7 +54,7 @@ public class ActivityInterestVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -59,7 +62,7 @@ public class ActivityInterestVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -67,10 +70,11 @@ public class ActivityInterestVo extends BaseVo {
 	}
 
 	public String getSignname() {
-		return this.signname;
+		return signname;
 	}
 
 	public void setSignname(String signname) {
 		this.signname = signname;
 	}
+
 }

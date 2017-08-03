@@ -1,24 +1,25 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gworder.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
+
+import com.gewara.api.vo.BaseVo;
 
 public class BaoChangData extends BaseVo {
 	private static final long serialVersionUID = -7264253187060423972L;
 	private Long id;
-	private Long cinemaid;
-	private Long roomid;
-	private Integer price;
-	private Integer gewaprice;
-	private String citycode;
+	private Long cinemaid;//影院ID
+	private Long roomid;//影厅ID
+	private Integer price;		//成本价
+	private Integer gewaprice;	//格瓦卖价
+	private String citycode;//城市代码
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -26,7 +27,7 @@ public class BaoChangData extends BaseVo {
 	}
 
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
 
 	public void setCinemaid(Long cinemaid) {
@@ -34,7 +35,7 @@ public class BaoChangData extends BaseVo {
 	}
 
 	public Long getRoomid() {
-		return this.roomid;
+		return roomid;
 	}
 
 	public void setRoomid(Long roomid) {
@@ -42,7 +43,7 @@ public class BaoChangData extends BaseVo {
 	}
 
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Integer price) {
@@ -50,7 +51,7 @@ public class BaoChangData extends BaseVo {
 	}
 
 	public Integer getGewaprice() {
-		return this.gewaprice;
+		return gewaprice;
 	}
 
 	public void setGewaprice(Integer gewaprice) {
@@ -58,10 +59,11 @@ public class BaoChangData extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
+
 }

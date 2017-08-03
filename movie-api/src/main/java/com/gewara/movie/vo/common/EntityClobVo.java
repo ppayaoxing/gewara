@@ -1,22 +1,23 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.common;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class EntityClobVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class EntityClobVo extends BaseVo{
 	private static final long serialVersionUID = 1927358057371862949L;
 	private String ekey;
 	private String tag;
 	private Long relatedid;
 	private String content;
 
+	@Override
 	public Serializable realId() {
-		return this.ekey;
+		return ekey;
 	}
 
 	public String getEkey() {
-		return this.ekey;
+		return ekey;
 	}
 
 	public void setEkey(String ekey) {
@@ -24,7 +25,7 @@ public class EntityClobVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -32,7 +33,7 @@ public class EntityClobVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -40,10 +41,11 @@ public class EntityClobVo extends BaseVo {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 }

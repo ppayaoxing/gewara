@@ -1,13 +1,16 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.common;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.vo.BaseVo;
+import com.gewara.movie.constant.Status;
+
 public class GewaCityVo extends BaseVo {
-	public static String SINGLE_SERVICE_TYPE = "single";
-	public static String MORE_SERVICE_TYPE = "more";
+	public static String SINGLE_SERVICE_TYPE = "single";//单业务模式
+	public static String MORE_SERVICE_TYPE = "more";//多业务模式
+	
 	private static final long serialVersionUID = 8710609514593838526L;
 	private String citycode;
 	private String cityname;
@@ -21,151 +24,119 @@ public class GewaCityVo extends BaseVo {
 	private Integer provinceSort;
 	private String pinyin;
 	private String py;
-	private String manmethod;
-	private String bpointx;
+	private String manmethod; //auto, manual
+	private String bpointx;		//百度坐标x.y轴
 	private String bpointy;
-	private String serviceType;
-
+	private String serviceType; //single 单业务模式  more 多业务模式
+	
+	@Override
 	public Serializable realId() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public String getFirstPy() {
-		return StringUtils.isNotBlank(this.pinyin) ? this.pinyin.substring(0, 1).toUpperCase() : "";
+		return StringUtils.isNotBlank(pinyin) ? pinyin.substring(0,1).toUpperCase() : "";
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
 	public String getCityname() {
-		return this.cityname;
+		return cityname;
 	}
-
 	public void setCityname(String cityname) {
 		this.cityname = cityname;
 	}
-
 	public String getProvincecode() {
-		return this.provincecode;
+		return provincecode;
 	}
-
 	public void setProvincecode(String provincecode) {
 		this.provincecode = provincecode;
 	}
-
 	public String getProvincename() {
-		return this.provincename;
+		return provincename;
 	}
-
 	public void setProvincename(String provincename) {
 		this.provincename = provincename;
 	}
-
 	public String getShowHot() {
-		return this.showHot;
+		return showHot;
 	}
-
 	public void setShowHot(String showHot) {
 		this.showHot = showHot;
 	}
-
 	public String getShowIdx() {
-		return this.showIdx;
+		return showIdx;
 	}
-
 	public void setShowIdx(String showIdx) {
 		this.showIdx = showIdx;
 	}
-
 	public String getShowAdm() {
-		return this.showAdm;
+		return showAdm;
 	}
-
 	public void setShowAdm(String showAdm) {
 		this.showAdm = showAdm;
 	}
-
 	public Integer getCitySort() {
-		return this.citySort;
+		return citySort;
 	}
-
 	public void setCitySort(Integer citySort) {
 		this.citySort = citySort;
 	}
-
 	public Integer getProvinceSort() {
-		return this.provinceSort;
+		return provinceSort;
 	}
-
 	public void setProvinceSort(Integer provinceSort) {
 		this.provinceSort = provinceSort;
 	}
-
 	public Integer getHotSort() {
-		return this.hotSort;
+		return hotSort;
 	}
-
 	public void setHotSort(Integer hotSort) {
 		this.hotSort = hotSort;
 	}
-
 	public String getPinyin() {
-		return this.pinyin;
+		return pinyin;
 	}
-
 	public void setPinyin(String pinyin) {
 		this.pinyin = pinyin;
 	}
-
 	public String getPy() {
-		return this.py;
+		return py;
 	}
-
 	public void setPy(String py) {
 		this.py = py;
 	}
-
 	public String getManmethod() {
-		return this.manmethod;
+		return manmethod;
 	}
-
 	public void setManmethod(String manmethod) {
 		this.manmethod = manmethod;
 	}
-
-	public boolean hasAuto() {
-		return StringUtils.equals(this.showIdx, "Y") && !StringUtils.equals(this.manmethod, "manual");
+	public boolean hasAuto(){
+		return StringUtils.equals(this.showIdx, Status.Y) && !StringUtils.equals(this.manmethod, "manual");
 	}
-
 	public String getBpointx() {
-		return this.bpointx;
+		return bpointx;
 	}
-
 	public void setBpointx(String bpointx) {
 		this.bpointx = bpointx;
 	}
-
 	public String getBpointy() {
-		return this.bpointy;
+		return bpointy;
 	}
-
 	public void setBpointy(String bpointy) {
 		this.bpointy = bpointy;
 	}
-
-	public String getFirstInitials() {
-		return StringUtils.substring(this.py, 0, 1);
+	public String getFirstInitials(){
+		return StringUtils.substring(py, 0, 1);
 	}
 
 	public String getServiceType() {
-		return this.serviceType;
+		return serviceType;
 	}
-
+	
 	public void setServiceType(String serviceType) {
 		this.serviceType = serviceType;
 	}

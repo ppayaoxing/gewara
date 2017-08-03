@@ -1,11 +1,13 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pushnf;
 
 import com.gewara.api.vo.PushNotifyVo;
 import com.gewara.api.vo.ResultCode;
 
 public interface PushNotifyServiceNew {
-	ResultCode<String> sendPushNotify(PushNotifyVo arg0);
-
-	ResultCode<String> cancelPushNotify(String arg0);
+	public ResultCode<String> sendPushNotify(PushNotifyVo pushNotify);
+	/**
+	 * 根据消息唯一标识取消发送
+	 * @param tradeNo
+	 */
+	public ResultCode<String> cancelPushNotify(String msgKey);
 }

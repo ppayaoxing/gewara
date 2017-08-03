@@ -1,28 +1,32 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.gmessage.external.entity;
-
 import java.io.Serializable;
 import java.util.Map;
 
-public class MessageSendState implements Serializable {
+
+/**
+ * 消息发送状态
+ * 本期不实现。占坑
+ * @author user
+ *
+ */
+public class MessageSendState implements Serializable{
+
 	private static final long serialVersionUID = -2838290126478956154L;
-	private Long messageID;
-	private Map<String, Boolean> sms;
-	private Map<String, Boolean> push;
-	private Map<String, Boolean> website;
 
-	public MessageSendState() {
-		this.messageID = null;
-
-		this.sms = null;
-
-		this.push = null;
-
-		this.website = null;
-	}
+	/**消息ID*/
+	private Long messageID=null;
+	
+	/**用来表示sms每个用户的发送状态*/
+	private Map<String,Boolean> sms=null;
+	
+	/**用来表示push每个用户的发送状态*/
+	private Map<String,Boolean> push=null;
+	
+	/**用来表示站内信的每个用户的发送状态*/
+	private Map<String,Boolean> website=null;
 
 	public Long getMessageID() {
-		return this.messageID;
+		return messageID;
 	}
 
 	public void setMessageID(Long messageID) {
@@ -30,7 +34,7 @@ public class MessageSendState implements Serializable {
 	}
 
 	public Map<String, Boolean> getSms() {
-		return this.sms;
+		return sms;
 	}
 
 	public void setSms(Map<String, Boolean> sms) {
@@ -38,7 +42,7 @@ public class MessageSendState implements Serializable {
 	}
 
 	public Map<String, Boolean> getPush() {
-		return this.push;
+		return push;
 	}
 
 	public void setPush(Map<String, Boolean> push) {
@@ -46,10 +50,11 @@ public class MessageSendState implements Serializable {
 	}
 
 	public Map<String, Boolean> getWebsite() {
-		return this.website;
+		return website;
 	}
 
 	public void setWebsite(Map<String, Boolean> website) {
 		this.website = website;
 	}
+	
 }

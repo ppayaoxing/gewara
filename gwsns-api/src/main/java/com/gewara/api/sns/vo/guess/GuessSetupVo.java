@@ -1,37 +1,43 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.guess;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class GuessSetupVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+/**
+ * 猜票房后台设置  
+ *
+ */
+public class GuessSetupVo extends BaseVo{
 	private static final long serialVersionUID = -6238251192248125698L;
-	private Long id;
-	private Integer consumepoint;
-	private Integer multiple;
-	private Timestamp starttime;
-	private Timestamp endtime;
-	private Timestamp addtime;
-	private String status;
-	private Long winid;
-	private String winPic;
+	private Long id; //哇啦id
+	private Integer consumepoint; //起步消耗积分
+	private Integer multiple; //倍数
+	private Timestamp starttime;//开始时间
+	private Timestamp endtime;//结束时间
+	private Timestamp addtime;//创建时间
+	private String status;//状态Y_NEW --新建  Y_END --结束   N_DELETE --删除 
+	private Long winid;//公布票房结果(选项ID)
+	private String winPic; //公布票房结果图片
 	private String bgPic;
-	private Long memberid;
-	private String title;
-	private String body;
-	private Long movieid;
-	private String cover;
+	
+	//@Transient
+	private Long memberid; //哇啦用户ID
+	private String title; //猜票房标题
+	private String body;//猜票房描述
+	private Long movieid;//关联电影ID
+	private String cover;//猜票房封面
 	private String process;
-	private String shareTitle;
-	private String shareBody;
-
+	private String shareTitle;//分享标题
+	private String shareBody;//分享内容
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -39,7 +45,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public Integer getConsumepoint() {
-		return this.consumepoint;
+		return consumepoint;
 	}
 
 	public void setConsumepoint(Integer consumepoint) {
@@ -47,7 +53,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public Integer getMultiple() {
-		return this.multiple;
+		return multiple;
 	}
 
 	public void setMultiple(Integer multiple) {
@@ -55,7 +61,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Timestamp starttime) {
@@ -63,7 +69,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -71,7 +77,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -79,7 +85,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -87,7 +93,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public Long getWinid() {
-		return this.winid;
+		return winid;
 	}
 
 	public void setWinid(Long winid) {
@@ -95,7 +101,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public String getWinPic() {
-		return this.winPic;
+		return winPic;
 	}
 
 	public void setWinPic(String winPic) {
@@ -103,7 +109,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -111,7 +117,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public String getBody() {
-		return this.body;
+		return body;
 	}
 
 	public void setBody(String body) {
@@ -119,15 +125,15 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public String getCover() {
-		return this.cover;
+		return cover;
 	}
 
 	public void setCover(String cover) {
 		this.cover = cover;
 	}
-
+	
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -135,7 +141,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public String getProcess() {
-		return this.process;
+		return process;
 	}
 
 	public void setProcess(String process) {
@@ -143,7 +149,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
 
 	public void setMovieid(Long movieid) {
@@ -151,7 +157,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public String getBgPic() {
-		return this.bgPic;
+		return bgPic;
 	}
 
 	public void setBgPic(String bgPic) {
@@ -159,7 +165,7 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public String getShareTitle() {
-		return this.shareTitle;
+		return shareTitle;
 	}
 
 	public void setShareTitle(String shareTitle) {
@@ -167,10 +173,11 @@ public class GuessSetupVo extends BaseVo {
 	}
 
 	public String getShareBody() {
-		return this.shareBody;
+		return shareBody;
 	}
 
 	public void setShareBody(String shareBody) {
 		this.shareBody = shareBody;
 	}
+
 }

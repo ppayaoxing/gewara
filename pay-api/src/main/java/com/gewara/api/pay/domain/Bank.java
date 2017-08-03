@@ -1,23 +1,29 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.domain;
 
 import com.gewara.api.pay.ApiObject;
 
-public class Bank extends ApiObject {
+public class Bank extends ApiObject{
+	
 	private static final long serialVersionUID = -1244879481213909584L;
-	private Long id;
-	private Long gatewayId;
-	private String gwraBankCode;
-	private String bankName;
-	private String bankType;
-
-	public String getPayBank() {
-		return this.bankType != null && !"".equals(this.bankType.trim()) && !"DEFAULT".equals(this.bankType)
-				? this.gwraBankCode + "_" + this.bankType : this.gwraBankCode;
+	
+	private Long id;	//主键
+	private Long gatewayId;	//支配配置ID
+	private String gwraBankCode;	//格瓦银行代码
+	private String bankName;	//银行名称
+	private String bankType;	//银行类型，少数支付平台银行代码不一样，如支付宝，默认值为：DEFAULT
+	
+	
+	public String getPayBank(){
+		//if(StringUtils.isBlank(bankType) || StringUtils.equals("DEFAULT", bankType)){
+		if(bankType == null || "".equals(bankType.trim()) || "DEFAULT".equals(bankType)){	
+			return gwraBankCode;
+		}
+		return gwraBankCode + "_" + bankType;
 	}
+	
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -25,7 +31,7 @@ public class Bank extends ApiObject {
 	}
 
 	public Long getGatewayId() {
-		return this.gatewayId;
+		return gatewayId;
 	}
 
 	public void setGatewayId(Long gatewayId) {
@@ -33,7 +39,7 @@ public class Bank extends ApiObject {
 	}
 
 	public String getGwraBankCode() {
-		return this.gwraBankCode;
+		return gwraBankCode;
 	}
 
 	public void setGwraBankCode(String gwraBankCode) {
@@ -41,7 +47,7 @@ public class Bank extends ApiObject {
 	}
 
 	public String getBankName() {
-		return this.bankName;
+		return bankName;
 	}
 
 	public void setBankName(String bankName) {
@@ -49,7 +55,7 @@ public class Bank extends ApiObject {
 	}
 
 	public String getBankType() {
-		return this.bankType;
+		return bankType;
 	}
 
 	public void setBankType(String bankType) {

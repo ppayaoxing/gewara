@@ -1,37 +1,43 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.bbs;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.api.sns.constant.DiaryConstant;
+import com.gewara.api.sns.constant.Flag;
+import com.gewara.api.sns.constant.Status;
+import com.gewara.api.vo.BaseVo;
+
 public class DiaryVo extends BaseVo implements Serializable {
+
 	private static final long serialVersionUID = 4909399739817173386L;
+
 	protected Long id;
-	protected Long memberid;
-	protected String subject;
-	protected Integer flowernum;
-	protected Integer poohnum;
-	protected Integer sumnum;
+	protected Long memberid;		//用户id
+	protected String subject;		//标题
+	protected Integer flowernum;	// 鲜花数
+	protected Integer poohnum;		// 差评数
+	protected Integer sumnum;		//总评
 	protected Integer sumnumed;
-	protected Timestamp addtime;
-	protected Integer clickedtimes;
-	protected String tag;
-	protected String category;
-	protected Long categoryid;
+	protected Timestamp addtime;	//添加时间
+	protected Integer clickedtimes;	//点击次数
+	protected String tag;			
+	protected String category;		
+	protected Long categoryid;		
 	protected Long relatedid;
-	protected String status;
-	protected String summary;
-	protected Timestamp replytime;
-	protected Integer replycount;
+	protected String status; 		// 状态，如：被删除
+	protected String summary; 		// 摘要，概要
+	protected Timestamp replytime;	//最后回复时间
+	protected Integer replycount;	//回复数量
 	protected Long replyid;
-	protected String type;
-	protected Boolean viewed;
+	protected String type; 			// 一般帖、投票帖子、影评？
+	protected Boolean viewed; 		// 查看过
 	protected Timestamp updatetime;
-	protected Date overdate;
-	protected Timestamp utime;
+	protected Date overdate; 		// 投票结束日期
+	protected Timestamp utime; 		// 排序字段concat(REPLYTIME, UPDATETIME)
 	protected Long communityid;
 	protected String flag;
 	protected String range;
@@ -43,10 +49,10 @@ public class DiaryVo extends BaseVo implements Serializable {
 	protected String division;
 	protected String otherinfo;
 	protected String diaryImage;
-	protected String ip;
-
+	protected String ip;			//发帖用户IP
+	
 	public String getDiaryImage() {
-		return this.diaryImage;
+		return diaryImage;
 	}
 
 	public void setDiaryImage(String diaryImage) {
@@ -54,7 +60,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getDivision() {
-		return this.division;
+		return division;
 	}
 
 	public void setDivision(String division) {
@@ -62,7 +68,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Long getModeratorid() {
-		return this.moderatorid;
+		return moderatorid;
 	}
 
 	public void setModeratorid(Long moderatorid) {
@@ -70,7 +76,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getCountycode() {
-		return this.countycode;
+		return countycode;
 	}
 
 	public void setCountycode(String countycode) {
@@ -78,7 +84,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getMembername() {
-		return this.membername;
+		return membername;
 	}
 
 	public void setMembername(String membername) {
@@ -86,7 +92,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getReplyname() {
-		return this.replyname;
+		return replyname;
 	}
 
 	public void setReplyname(String replyname) {
@@ -94,32 +100,37 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getRange() {
-		return this.range;
+		return range;
 	}
 
 	public void setRange(String range) {
 		this.range = range;
 	}
-
+	
+	
+	
+	
+	
 	public DiaryVo() {
 	}
 
 	public DiaryVo(String subject) {
 		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.updatetime = this.addtime;
-		this.replytime = this.addtime;
-		this.utime = this.addtime;
-		this.flowernum = Integer.valueOf(0);
-		this.poohnum = Integer.valueOf(0);
-		this.clickedtimes = Integer.valueOf(0);
-		this.replycount = Integer.valueOf(0);
-		this.viewed = Boolean.valueOf(true);
-		this.status = "Y_NEW";
-		this.communityid = Long.valueOf(0L);
-		this.division = "N";
+		this.updatetime = addtime;
+		this.replytime = addtime;
+		this.utime = addtime;
+		this.flowernum = 0;
+		this.poohnum = 0;
+		this.clickedtimes = 0;
+		this.replycount = 0;
+		this.viewed = true;
+		this.status = Status.Y_NEW;
+		this.communityid = 0L;// 默认值
+		this.division = DiaryConstant.DIVISION_N;
 		this.subject = subject;
 	}
 
+	
 	public void init(String stype, String stag, Long srelatedid, String scategory, Long scategoryid, String ssubject) {
 		this.addtime = new Timestamp(System.currentTimeMillis());
 		this.type = stype;
@@ -128,23 +139,23 @@ public class DiaryVo extends BaseVo implements Serializable {
 		this.category = scategory;
 		this.categoryid = scategoryid;
 		this.subject = ssubject;
-		this.status = "Y_NEW";
+		this.status = Status.Y_NEW;
 	}
 
 	public void addFlowernum() {
-		this.flowernum = Integer.valueOf(this.flowernum.intValue() + 1);
+		this.flowernum += 1;
+		
 	}
-
-	public void addPoohnum() {
-		this.poohnum = Integer.valueOf(this.poohnum.intValue() + 1);
+	public void addPoohnum(){
+		this.poohnum += 1;
 	}
 
 	public void addReplycount() {
-		this.replycount = Integer.valueOf(this.replycount.intValue() + 1);
+		this.replycount += 1;
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -152,7 +163,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Timestamp getReplytime() {
-		return this.replytime;
+		return replytime;
 	}
 
 	public void setReplytime(Timestamp replytime) {
@@ -160,7 +171,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Integer getReplycount() {
-		return this.replycount;
+		return replycount;
 	}
 
 	public void setReplycount(Integer replycount) {
@@ -168,7 +179,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -176,7 +187,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Timestamp getUtime() {
-		return this.utime;
+		return utime;
 	}
 
 	public void setUtime(Timestamp utime) {
@@ -184,7 +195,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Boolean getViewed() {
-		return this.viewed;
+		return viewed;
 	}
 
 	public void setViewed(Boolean viewed) {
@@ -192,7 +203,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -200,7 +211,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -208,7 +219,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -216,7 +227,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -224,7 +235,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Long getReplyid() {
-		return this.replyid;
+		return replyid;
 	}
 
 	public void setReplyid(Long replyid) {
@@ -232,23 +243,23 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getSubject() {
-		return this.subject;
+		return subject;
 	}
 
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
 
+
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public String getCategory() {
-		return this.category;
+		return category;
 	}
 
 	public void setCategory(String category) {
@@ -256,7 +267,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Long getCategoryid() {
-		return this.categoryid;
+		return categoryid;
 	}
 
 	public void setCategoryid(Long categoryid) {
@@ -264,7 +275,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Integer getClickedtimes() {
-		return this.clickedtimes;
+		return clickedtimes;
 	}
 
 	public void setClickedtimes(Integer clickedtimes) {
@@ -272,43 +283,35 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Integer getFlowernum() {
-		return this.flowernum;
+		return flowernum;
 	}
 
 	public void setFlowernum(Integer flowernum) {
 		this.flowernum = flowernum;
 	}
-
 	public Integer getPoohnum() {
-		return this.poohnum;
+		return poohnum;
 	}
 
 	public Integer getSumnum() {
-		return this.sumnum;
+		return sumnum;
 	}
-
 	public void setSumnum(Integer sumnum) {
 		this.sumnum = sumnum;
 	}
-
 	public Integer getSumnumed() {
-		return this.sumnumed;
+		return sumnumed;
 	}
-
 	public void setSumnumed(Integer sumnumed) {
 		this.sumnumed = sumnumed;
 	}
-
 	public void setPoohnum(Integer poohnum) {
-		if (poohnum == null) {
-			poohnum = Integer.valueOf(0);
-		}
-
+		if(poohnum == null)  poohnum = 0; 
 		this.poohnum = poohnum;
 	}
 
 	public String getSummary() {
-		return this.summary;
+		return summary;
 	}
 
 	public void setSummary(String summary) {
@@ -316,27 +319,31 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getDtag() {
-		return this.categoryid != null ? this.category : this.tag;
+		if (this.categoryid != null)
+			return category;
+		return tag;
 	}
 
 	public Long getDrelatedid() {
-		return this.categoryid != null ? this.categoryid : this.relatedid;
+		if (this.categoryid != null)
+			return categoryid;
+		return relatedid;
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	public boolean getPic() {
-		return StringUtils.contains(this.flag, "userfiles");
+	public boolean getPic() {// 有无图片
+		return StringUtils.contains(flag, Flag.FLAG_USERFILES);
 	}
 
 	public Date getOverdate() {
-		return this.overdate;
+		return overdate;
 	}
 
 	public void setOverdate(Date overdate) {
@@ -344,7 +351,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public Long getCommunityid() {
-		return this.communityid;
+		return communityid;
 	}
 
 	public void setCommunityid(Long communityid) {
@@ -352,61 +359,54 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getFlag() {
-		return this.flag;
+		return flag;
 	}
 
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
-
-	public void addFlag(String sflag) {
-		if (StringUtils.isBlank(this.flag)) {
-			this.flag = sflag;
-		}
-
-		if (!StringUtils.contains(this.flag, sflag)) {
-			this.flag = this.flag + "," + sflag;
-		}
-
+	public void addFlag(String sflag){
+		if(StringUtils.isBlank(this.flag)) this.flag = sflag;
+		if(!StringUtils.contains(this.flag, sflag))
+		this.flag += "," + sflag;
 	}
-
 	public String getCname() {
 		return this.subject;
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
+	
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
-
-	public String getIp() {
-		return this.ip;
+	
+	public String getIp(){
+		return ip;
 	}
-
-	public void setIp(String ip) {
+	
+	public void setIp(String ip){
 		this.ip = ip;
 	}
-
+	
 	public String getLimg() {
-		return this.diaryImage;
+		return diaryImage;
 	}
-
-	public boolean canModify() {
+	public boolean canModify(){
 		return true;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 }

@@ -1,25 +1,33 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.highlightentry;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class HighlightEntryVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * 亮点入口
+ * @author weihua.wang
+ *
+ */
+public class HighlightEntryVo extends BaseVo{
+	
 	private static final long serialVersionUID = -3249617513980619848L;
+	
 	private Long id;
-	private String tag;
-	private String title;
-	private String type;
-	private String url;
-	private String citycode;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private Timestamp starttime;
-	private Timestamp endtime;
+	private String tag;//标签
+	private String title;//标题
+	private String type;//亮点入口类型
+	private String url;//URL
+	private String citycode;//城市编码
+	private Timestamp addtime;//添加时间
+	private Timestamp updatetime;//更新时间
+	private Timestamp starttime;//开始时间
+	private Timestamp endtime;//结束时间
+	
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -27,7 +35,7 @@ public class HighlightEntryVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
@@ -35,7 +43,7 @@ public class HighlightEntryVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -43,7 +51,7 @@ public class HighlightEntryVo extends BaseVo {
 	}
 
 	public String getUrl() {
-		return this.url;
+		return url;
 	}
 
 	public void setUrl(String url) {
@@ -51,7 +59,7 @@ public class HighlightEntryVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -59,19 +67,20 @@ public class HighlightEntryVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -79,7 +88,7 @@ public class HighlightEntryVo extends BaseVo {
 	}
 
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
 
 	public void setCitycode(String citycode) {
@@ -87,7 +96,7 @@ public class HighlightEntryVo extends BaseVo {
 	}
 
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Timestamp starttime) {
@@ -95,7 +104,7 @@ public class HighlightEntryVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {

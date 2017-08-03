@@ -1,28 +1,29 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.gmessage.external.entity;
 
-public class ReceiverMessage extends MessageBaseInfo {
+/**
+ * 消息接收者所能查看的消息内容。
+ * @author 董明
+ * 
+ */
+public class ReceiverMessage extends MessageBaseInfo{
 	private static final long serialVersionUID = 6239060865973734192L;
-	private long messageID;
-	private MUser sender;
-	private long sendTimes;
-	private Long expiryTimes;
-	private boolean read;
 
-	public ReceiverMessage() {
-		this.messageID = -1L;
+	/**用户消息ID*/
+	private long messageID=-1;
+	
+	/**消息发送者*/
+	private MUser sender=null;
+	
+	/**发送时间*/
+	private long sendTimes=-1;
+	
+	private Long expiryTimes=null;
 
-		this.sender = null;
-
-		this.sendTimes = -1L;
-
-		this.expiryTimes = null;
-
-		this.read = false;
-	}
+	/** 消息的状态，已读或未读 */
+	private boolean read=false;
 
 	public long getMessageID() {
-		return this.messageID;
+		return messageID;
 	}
 
 	public void setMessageID(long messageID) {
@@ -30,7 +31,7 @@ public class ReceiverMessage extends MessageBaseInfo {
 	}
 
 	public MUser getSender() {
-		return this.sender;
+		return sender;
 	}
 
 	public void setSender(MUser sender) {
@@ -38,7 +39,7 @@ public class ReceiverMessage extends MessageBaseInfo {
 	}
 
 	public long getSendTimes() {
-		return this.sendTimes;
+		return sendTimes;
 	}
 
 	public void setSendTimes(long sendTimes) {
@@ -46,7 +47,7 @@ public class ReceiverMessage extends MessageBaseInfo {
 	}
 
 	public boolean isRead() {
-		return this.read;
+		return read;
 	}
 
 	public void setRead(boolean read) {
@@ -54,10 +55,11 @@ public class ReceiverMessage extends MessageBaseInfo {
 	}
 
 	public Long getExpiryTimes() {
-		return this.expiryTimes;
+		return expiryTimes;
 	}
 
 	public void setExpiryTimes(Long expiryTimes) {
 		this.expiryTimes = expiryTimes;
 	}
+	
 }

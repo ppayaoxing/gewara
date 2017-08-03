@@ -1,174 +1,154 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gpticket.vo.ticket;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ShowItemVo extends BaseVo {
 	private static final long serialVersionUID = 6391912619089689711L;
-	private String siseq;
-	private String showname;
-	private Long dramaid;
-	private Long theatreid;
-	private String fieldnum;
-	private String fieldname;
-	private Timestamp playtime;
-	private Timestamp endtime;
+	
+	private String siseq;		//排片序号：partner+pseqno(DramaPlayItem-->sellerseq)
+	private String showname;		//场次名称
+	private Long dramaid;			//项目ID
+	private Long theatreid;		//场馆ID
+	private String fieldnum;		//场地序号
+	private String fieldname;		//场地名称
+	private Timestamp playtime;	//放映时间
+	private Timestamp endtime;	//结束时间
 	private Timestamp opentime;
 	private Timestamp closetime;
+	
 	private String citycode;
-	private String partner;
-	private String pseqno;
-	private String itemtype;
-	private String period;
-	private String express;
-	private String showtype;
-	private String crmflag;
+	
+	private String partner;		//第三方
+	private String pseqno;		//第三方ID
+	private String itemtype;		//选座，选价格，
+	private String period;		//是否有时间
+	private String express;		//快递方式
+	private String showtype;		//场次类型
+	private String crmflag;		//商户标识
 	private String takemethod;
 	private String takeAddress;
 	private Integer maxbuy;
 	private Integer idMaxbuy;
 	private String fieldlogo;
 	private String idcard;
-	private String status;
-	private Timestamp createtime;
-	private Timestamp updatetime;
-
+	
+	private String status;		//状态：可用、删除
+	private Timestamp createtime;	//创建时间
+	private Timestamp updatetime;	//更新时间
+	
+	@Override
 	public Serializable realId() {
-		return this.siseq;
+		return siseq;
 	}
-
+	
 	public String getSiseq() {
-		return this.siseq;
+		return siseq;
 	}
-
 	public void setSiseq(String siseq) {
 		this.siseq = siseq;
 	}
-
+	
 	public String getShowname() {
-		return this.showname;
+		return showname;
 	}
-
+	
 	public void setShowname(String showname) {
 		this.showname = showname;
 	}
-
+	
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
-
+	
 	public void setDramaid(Long dramaid) {
 		this.dramaid = dramaid;
 	}
-
+	
 	public Long getTheatreid() {
-		return this.theatreid;
+		return theatreid;
 	}
-
+	
 	public void setTheatreid(Long theatreid) {
 		this.theatreid = theatreid;
 	}
-
 	public String getFieldnum() {
-		return this.fieldnum;
+		return fieldnum;
 	}
-
 	public void setFieldnum(String fieldnum) {
 		this.fieldnum = fieldnum;
 	}
-
 	public String getFieldname() {
-		return this.fieldname;
+		return fieldname;
 	}
-
 	public void setFieldname(String fieldname) {
 		this.fieldname = fieldname;
 	}
-
 	public Timestamp getPlaytime() {
-		return this.playtime;
+		return playtime;
 	}
-
 	public void setPlaytime(Timestamp playtime) {
 		this.playtime = playtime;
 	}
-
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
-
 	public void setEndtime(Timestamp endtime) {
 		this.endtime = endtime;
 	}
-
 	public Timestamp getOpentime() {
-		return this.opentime;
+		return opentime;
 	}
-
 	public void setOpentime(Timestamp opentime) {
 		this.opentime = opentime;
 	}
-
 	public Timestamp getClosetime() {
-		return this.closetime;
+		return closetime;
 	}
-
 	public void setClosetime(Timestamp closetime) {
 		this.closetime = closetime;
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
 	public String getPartner() {
-		return this.partner;
+		return partner;
 	}
-
 	public void setPartner(String partner) {
 		this.partner = partner;
 	}
-
 	public String getPseqno() {
-		return this.pseqno;
+		return pseqno;
 	}
-
 	public void setPseqno(String pseqno) {
 		this.pseqno = pseqno;
 	}
-
 	public String getItemtype() {
-		return this.itemtype;
+		return itemtype;
 	}
-
 	public void setItemtype(String itemtype) {
 		this.itemtype = itemtype;
 	}
-
 	public String getPeriod() {
-		return this.period;
+		return period;
 	}
-
 	public void setPeriod(String period) {
 		this.period = period;
 	}
-
 	public String getExpress() {
-		return this.express;
+		return express;
 	}
-
 	public void setExpress(String express) {
 		this.express = express;
 	}
-
+	
 	public String getShowtype() {
-		return this.showtype;
+		return showtype;
 	}
 
 	public void setShowtype(String showtype) {
@@ -176,31 +156,26 @@ public class ShowItemVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	public Timestamp getCreatetime() {
-		return this.createtime;
+		return createtime;
 	}
-
 	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
 
 	public String getCrmflag() {
-		return this.crmflag;
+		return crmflag;
 	}
 
 	public void setCrmflag(String crmflag) {
@@ -208,7 +183,7 @@ public class ShowItemVo extends BaseVo {
 	}
 
 	public String getTakemethod() {
-		return this.takemethod;
+		return takemethod;
 	}
 
 	public void setTakemethod(String takemethod) {
@@ -216,7 +191,7 @@ public class ShowItemVo extends BaseVo {
 	}
 
 	public Integer getMaxbuy() {
-		return this.maxbuy;
+		return maxbuy;
 	}
 
 	public void setMaxbuy(Integer maxbuy) {
@@ -224,7 +199,7 @@ public class ShowItemVo extends BaseVo {
 	}
 
 	public String getFieldlogo() {
-		return this.fieldlogo;
+		return fieldlogo;
 	}
 
 	public void setFieldlogo(String fieldlogo) {
@@ -232,7 +207,7 @@ public class ShowItemVo extends BaseVo {
 	}
 
 	public String getIdcard() {
-		return this.idcard;
+		return idcard;
 	}
 
 	public void setIdcard(String idcard) {
@@ -240,7 +215,7 @@ public class ShowItemVo extends BaseVo {
 	}
 
 	public String getTakeAddress() {
-		return this.takeAddress;
+		return takeAddress;
 	}
 
 	public void setTakeAddress(String takeAddress) {
@@ -248,10 +223,11 @@ public class ShowItemVo extends BaseVo {
 	}
 
 	public Integer getIdMaxbuy() {
-		return this.idMaxbuy;
+		return idMaxbuy;
 	}
 
 	public void setIdMaxbuy(Integer idMaxbuy) {
 		this.idMaxbuy = idMaxbuy;
 	}
+	
 }

@@ -1,21 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.star;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class CastBaseRelationVo extends BaseVo {
 	private static final long serialVersionUID = -3007170459229696038L;
 	private Long id;
-	private Long castid;
-	private Long baseinfoid;
-	private String infotype;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-
+	private Long castid;						//人物ID
+	private Long baseinfoid;				//基本信息ID
+	private String infotype;				//信息类型
+	private Timestamp addtime;			//新增时间
+	private Timestamp updatetime;	//更新时间
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -23,7 +23,7 @@ public class CastBaseRelationVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -31,7 +31,7 @@ public class CastBaseRelationVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -39,7 +39,7 @@ public class CastBaseRelationVo extends BaseVo {
 	}
 
 	public Long getCastid() {
-		return this.castid;
+		return castid;
 	}
 
 	public void setCastid(Long castid) {
@@ -47,7 +47,7 @@ public class CastBaseRelationVo extends BaseVo {
 	}
 
 	public Long getBaseinfoid() {
-		return this.baseinfoid;
+		return baseinfoid;
 	}
 
 	public void setBaseinfoid(Long baseinfoid) {
@@ -55,14 +55,16 @@ public class CastBaseRelationVo extends BaseVo {
 	}
 
 	public String getInfotype() {
-		return this.infotype;
+		return infotype;
 	}
 
 	public void setInfotype(String infotype) {
 		this.infotype = infotype;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
+
 }

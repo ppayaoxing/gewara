@@ -1,27 +1,29 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.comment;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class FlowerMemberVo extends BaseVo {
-	private static final long serialVersionUID = 1L;
-	private String ckey;
-	private Long memberid;
-	private String type;
-	private Long relatedid;
-	private Timestamp addtime;
-	private String source;
-	private Long parentid;
-	private String parenttype;
+import com.gewara.api.vo.BaseVo;
 
+public class FlowerMemberVo extends BaseVo {
+
+	private static final long serialVersionUID = 1L;
+	private String ckey;			//memberid+type+relatedid
+	private Long memberid;
+	private String type;			//类型  comment or moderatortag
+	private Long relatedid;			//关联id
+	private Timestamp addtime;		//添加时间
+	private String source;			//来源web,wap
+	private Long parentid;			//父标签id
+	private String parenttype;		//父标签类型
+
+	@Override
 	public Serializable realId() {
-		return this.ckey;
+		return ckey;
 	}
 
 	public String getCkey() {
-		return this.ckey;
+		return ckey;
 	}
 
 	public void setCkey(String ckey) {
@@ -29,7 +31,7 @@ public class FlowerMemberVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -37,7 +39,7 @@ public class FlowerMemberVo extends BaseVo {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -45,7 +47,7 @@ public class FlowerMemberVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -53,7 +55,7 @@ public class FlowerMemberVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -61,7 +63,7 @@ public class FlowerMemberVo extends BaseVo {
 	}
 
 	public String getSource() {
-		return this.source;
+		return source;
 	}
 
 	public void setSource(String source) {
@@ -69,7 +71,7 @@ public class FlowerMemberVo extends BaseVo {
 	}
 
 	public Long getParentid() {
-		return this.parentid;
+		return parentid;
 	}
 
 	public void setParentid(Long parentid) {
@@ -77,10 +79,12 @@ public class FlowerMemberVo extends BaseVo {
 	}
 
 	public String getParenttype() {
-		return this.parenttype;
+		return parenttype;
 	}
 
 	public void setParenttype(String parenttype) {
 		this.parenttype = parenttype;
 	}
+	
+
 }

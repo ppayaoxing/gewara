@@ -1,77 +1,65 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.star;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class CastWorksVo extends BaseVo {
+
 	private static final long serialVersionUID = -1527835351959168455L;
 	private Long id;
-	private Long castid;
-	private Long worksid;
-	private String workstype;
-	private String achievement;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-
+	private Long castid;					//人物ID
+	private Long worksid;					//项目ID
+	private String workstype;				//作品类型
+	private String achievement;			    //是否成就作品
+	private Timestamp addtime;			    //新增时间
+	private Timestamp updatetime;	        //更新时间
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public Long getCastid() {
-		return this.castid;
+		return castid;
 	}
-
 	public void setCastid(Long castid) {
 		this.castid = castid;
 	}
-
 	public Long getWorksid() {
-		return this.worksid;
+		return worksid;
 	}
-
 	public void setWorksid(Long worksid) {
 		this.worksid = worksid;
 	}
-
 	public String getWorkstype() {
-		return this.workstype;
+		return workstype;
 	}
-
 	public void setWorkstype(String workstype) {
 		this.workstype = workstype;
 	}
-
 	public String getAchievement() {
-		return this.achievement;
+		return achievement;
 	}
-
 	public void setAchievement(String achievement) {
 		this.achievement = achievement;
 	}
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
-
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
-
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
+
 }

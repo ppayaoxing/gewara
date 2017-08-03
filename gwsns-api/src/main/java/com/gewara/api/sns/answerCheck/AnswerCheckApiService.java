@@ -1,4 +1,3 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.answerCheck;
 
 import com.gewara.api.sns.vo.AnswerCheckVo;
@@ -7,16 +6,47 @@ import com.gewara.api.sns.vo.UserAnswerVo;
 import com.gewara.api.vo.ResultCode;
 
 public interface AnswerCheckApiService {
-	ResultCode<AnswerCheckVo> getAnswerCheckList(Long arg0);
-
-	ResultCode<Integer> getAnswerQuestionNum(Long arg0);
-
-	ResultCode<AnswerQuestionVo> getAnswerQuestionList(Long arg0, Integer arg1, Integer arg2);
-
-	ResultCode<UserAnswerVo> getUserAnswer(Long arg0, Long arg1);
-
-	ResultCode saveUserAnswer(Long arg0, Long arg1, Integer arg2, Integer arg3, String arg4, Integer arg5, boolean arg6,
-			Long arg7, Integer arg8);
-
-	ResultCode<AnswerQuestionVo> getAnswerQuestionById(Long arg0);
+	/**
+	 * 获取主题信息
+	 * @param id
+	 * @return
+	 */
+	ResultCode<AnswerCheckVo> getAnswerCheckList(Long id);
+	/**
+	 * 获取主题题库数
+	 * @param id
+	 * @return
+	 */
+	ResultCode<Integer> getAnswerQuestionNum(Long id);
+	/**
+	 * 获取题库
+	 * @param relatedid
+	 * @param from
+	 * @param maxnum
+	 * @return
+	 */
+	ResultCode<AnswerQuestionVo> getAnswerQuestionList(Long relatedid,Integer from, Integer maxnum);
+	/**
+	 * 获取用户答题数据
+	 * @param memberid
+	 * @param id
+	 * @return
+	 */
+	ResultCode<UserAnswerVo> getUserAnswer(Long memberid,Long id);
+	/**
+	 * 保存用户答题信息
+	 * @param memberid
+	 * @param id
+	 * @param Index
+	 * @param num
+	 * @param content
+	 * @param total
+	 */
+	ResultCode saveUserAnswer(Long memberid,Long relatedid,Integer index,Integer num,String content,Integer total, boolean flag, Long id,Integer answer);
+	/**
+	 * 根据id获取题库信息
+	 * @param id
+	 * @return
+	 */
+	ResultCode<AnswerQuestionVo> getAnswerQuestionById(Long id);
 }

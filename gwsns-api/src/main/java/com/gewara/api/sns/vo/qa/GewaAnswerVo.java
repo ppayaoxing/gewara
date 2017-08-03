@@ -1,42 +1,41 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.qa;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.sns.constant.Status;
+import com.gewara.api.vo.BaseVo;
+
 public class GewaAnswerVo extends BaseVo {
 	private static final long serialVersionUID = 5578727148166770087L;
-	public static final Integer SEND_QUESTION_POINT = Integer.valueOf(10);
+	public static final Integer SEND_QUESTION_POINT = 10; //发布问题增加经验值
 	public static final String AS_STATUS_N = "N";
 	public static final String AS_STATUS_Y = "Y";
 	private Long id;
-	private Long questionid;
+	private Long questionid; //对应的问题
 	private Long memberid;
-	private String content;
+	private String content; // 内容
 	private Integer hotvalue;
-	private String answerstatus;
-	private String status;
+	private String answerstatus; // 是否是问题的答案 不是:N 是：Y
+	private String status;// 状态
 	private Timestamp addtime;
-	private String ip;
-
-	public GewaAnswerVo() {
-	}
-
-	public GewaAnswerVo(String content) {
+	private String ip; //用户IP
+	
+	public GewaAnswerVo(){}
+	
+	public GewaAnswerVo(String content){
 		this.content = content;
-		this.hotvalue = Integer.valueOf(0);
-		this.answerstatus = "N";
-		this.status = "Y_NEW";
+		this.hotvalue = 0;
+		this.answerstatus = AS_STATUS_N;
+		this.status = Status.Y_NEW;
 		this.addtime = new Timestamp(System.currentTimeMillis());
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -44,7 +43,7 @@ public class GewaAnswerVo extends BaseVo {
 	}
 
 	public Long getQuestionid() {
-		return this.questionid;
+		return questionid;
 	}
 
 	public void setQuestionid(Long questionid) {
@@ -52,7 +51,7 @@ public class GewaAnswerVo extends BaseVo {
 	}
 
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 
 	public void setContent(String content) {
@@ -60,7 +59,7 @@ public class GewaAnswerVo extends BaseVo {
 	}
 
 	public Integer getHotvalue() {
-		return this.hotvalue;
+		return hotvalue;
 	}
 
 	public void setHotvalue(Integer hotvalue) {
@@ -68,7 +67,7 @@ public class GewaAnswerVo extends BaseVo {
 	}
 
 	public String getAnswerstatus() {
-		return this.answerstatus;
+		return answerstatus;
 	}
 
 	public void setAnswerstatus(String answerstatus) {
@@ -76,7 +75,7 @@ public class GewaAnswerVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -84,26 +83,22 @@ public class GewaAnswerVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
-	public String getIp() {
-		return this.ip;
+	public String getIp(){
+		return ip;
 	}
-
-	public void setIp(String ip) {
+	public void setIp(String ip){
 		this.ip = ip;
 	}
 }

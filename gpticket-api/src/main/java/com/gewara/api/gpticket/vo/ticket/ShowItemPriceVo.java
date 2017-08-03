@@ -1,30 +1,34 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gpticket.vo.ticket;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ShowItemPriceVo extends BaseVo {
+
 	private static final long serialVersionUID = 2070277567753457378L;
 	private Long id;
-	private String siseq;
-	private String partner;
-	private String pseqno;
-	private String ticketid;
-	private Long dramaid;
-	private Integer price;
-	private Integer lowest;
-	private String flag;
-	private Long color;
-	private String status;
-	private String remark;
-
+	private String siseq;			//场次ID
+	private String partner;			//第三方标识
+	private String pseqno;			//第三方场次编号
+	private String ticketid;		//第三方场次价格编号
+	private Long dramaid;			//项目编号
+	private Integer price;			//卖价
+	private Integer lowest;			//最低卖价
+	private String flag;				//
+	private Long color;				// 颜色
+	private String status;			
+	private String remark;			
+	
+	public ShowItemPriceVo(){}
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -32,7 +36,7 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public String getSiseq() {
-		return this.siseq;
+		return siseq;
 	}
 
 	public void setSiseq(String siseq) {
@@ -40,7 +44,7 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public String getPartner() {
-		return this.partner;
+		return partner;
 	}
 
 	public void setPartner(String partner) {
@@ -48,7 +52,7 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public String getPseqno() {
-		return this.pseqno;
+		return pseqno;
 	}
 
 	public void setPseqno(String pseqno) {
@@ -56,7 +60,7 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public String getTicketid() {
-		return this.ticketid;
+		return ticketid;
 	}
 
 	public void setTicketid(String ticketid) {
@@ -64,7 +68,7 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public Long getDramaid() {
-		return this.dramaid;
+		return dramaid;
 	}
 
 	public void setDramaid(Long dramaid) {
@@ -72,7 +76,7 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Integer price) {
@@ -80,7 +84,7 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public Integer getLowest() {
-		return this.lowest;
+		return lowest;
 	}
 
 	public void setLowest(Integer lowest) {
@@ -88,7 +92,7 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public String getFlag() {
-		return this.flag;
+		return flag;
 	}
 
 	public void setFlag(String flag) {
@@ -96,7 +100,7 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public Long getColor() {
-		return this.color;
+		return color;
 	}
 
 	public void setColor(Long color) {
@@ -104,7 +108,7 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -112,10 +116,11 @@ public class ShowItemPriceVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+
 }

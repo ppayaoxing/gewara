@@ -1,23 +1,51 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.api.service;
+
+import java.util.Map;
 
 import com.gewara.api.vo.ResultCode;
 import com.gewara.movie.vo.MovieMusicVo;
 import com.gewara.movie.vo.MusicAlbumVo;
-import java.util.Map;
 
 public interface MovieMusicService {
-	ResultCode<MusicAlbumVo> getMusicAlbumByMovieid(Long arg0);
-
-	ResultCode updateMusicAlbum(MusicAlbumVo arg0, Long arg1);
-
-	ResultCode delMusicAlbum(String arg0, Long arg1);
-
-	ResultCode<Integer> addMusicCollection(String arg0, Long arg1);
-
-	ResultCode<Integer> cancelMusicCollection(String arg0, Long arg1);
-
-	ResultCode<MovieMusicVo> updateMovieMusicProperties(String arg0, Map<String, String> arg1);
-
+	/**
+	 * 音乐后台查询电影相关的音乐专辑
+	 * @param movieid
+	 * @return
+	 */
+	ResultCode<MusicAlbumVo> getMusicAlbumByMovieid(Long movieid);
+	/**
+	 * 修改专辑ID
+	 * @param albumVo
+	 * @param movieid
+	 * @return
+	 */
+	ResultCode updateMusicAlbum(MusicAlbumVo albumVo,Long movieid);
+	/**
+	 * 删除专辑
+	 * @param list_id
+	 * @param movieid
+	 * @return
+	 */
+	ResultCode delMusicAlbum(String list_id,Long movieid);
+	/**
+	 * 添加喜欢
+	 * @param song_id
+	 * @return 返回喜欢后的总喜欢数
+	 */
+	ResultCode<Integer> addMusicCollection(String song_id, Long memberid);
+	/**
+	 * 取消喜欢
+	 * @param song_id
+	 * @return 返回取消喜欢后的总喜欢数
+	 */
+	ResultCode<Integer> cancelMusicCollection(String song_id, Long memberid);
+	/**
+	 * 修改moviemusic属性
+	 * @param songId
+	 * @param propertiesMap
+	 * @return
+	 */
+	ResultCode<MovieMusicVo> updateMovieMusicProperties(String songId, Map<String, String> propertiesMap);
+	
 	void removeAllMusicRelation();
 }

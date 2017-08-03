@@ -1,21 +1,22 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo;
 
-public class BaseLabled {
+
+public class BaseLabled{
+
 	private Long id;
-	private Integer sort;
-	private Long code;
+	private Integer sort;//ÅÅÐò
+	private Long code;//¹ØÁªcode
 	private String tag = "movie";
+	
 
-	public BaseLabled() {
-	}
-
-	public BaseLabled(Long id, Integer sort) {
+	public BaseLabled(){}
+	
+	public BaseLabled(Long id, Integer sort){
 		this.id = id;
 		this.sort = sort;
 	}
-
-	public BaseLabled(Long id, Integer sort, String tag, Long code) {
+	
+	public BaseLabled(Long id, Integer sort, String tag, Long code){
 		this.id = id;
 		this.sort = sort;
 		this.tag = tag;
@@ -23,7 +24,7 @@ public class BaseLabled {
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -31,7 +32,7 @@ public class BaseLabled {
 	}
 
 	public Integer getSort() {
-		return this.sort;
+		return sort;
 	}
 
 	public void setSort(Integer sort) {
@@ -39,18 +40,20 @@ public class BaseLabled {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
+	
 	public Long getCode() {
-		return this.code;
+		return code;
 	}
 
 	public void setCode(Long code) {
 		this.code = code;
 	}
+	
+	
 }

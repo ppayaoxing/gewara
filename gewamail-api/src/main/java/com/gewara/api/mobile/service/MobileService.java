@@ -1,19 +1,47 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.mobile.service;
+
+import java.util.List;
 
 import com.gewara.api.Response;
 import com.gewara.api.vo.ResultCode;
-import java.util.List;
 
+/**
+ * 手机号服务
+ * @author quzhuping
+ *
+ */
 public interface MobileService {
 
+	/**
+	 * 保存传递过来的手机号列表
+	 * @param mobileList
+	 * @return
+     * @see #saveMobiles2
+	 */
 	@Deprecated
-	Response saveMobiles(List<String> arg0);
+	public Response saveMobiles(List<String> mobileList);
 
-	ResultCode saveMobiles2(List<String> arg0);
-
+	/**
+	 * 保存传递过来的手机号列表
+	 * @param mobileList
+	 * @return
+	 */
+	public ResultCode saveMobiles2(List<String> mobileList);
+	
+	/**
+	 * 从mongo批量导入手机号
+	 * @param batchId mongo批次号
+	 * @return
+     * @see #batchImportMobiles2
+	 */
 	@Deprecated
-	Response batchImportMobiles(String arg0);
-
-	ResultCode batchImportMobiles2(String arg0);
+	public Response batchImportMobiles(String batchId);
+	
+	/**
+	 * 从mongo批量导入手机号
+	 * @param batchId mongo批次号
+	 * @return
+	 */
+	public ResultCode batchImportMobiles2(String batchId);
+	
 }

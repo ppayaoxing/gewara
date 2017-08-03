@@ -1,21 +1,32 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.api.service;
 
-import com.gewara.api.vo.ResultCode;
-import com.gewara.movie.vo.EffectInfoVo;
 import java.util.List;
 import java.util.Map;
 
+import com.gewara.api.vo.ResultCode;
+import com.gewara.movie.vo.EffectInfoVo;
+
 public interface MovieEffectVoService {
-	ResultCode<List<EffectInfoVo>> getEffectInfoListByMovieId(Long arg0);
-
-	ResultCode<Long> getWatchMovieCountByMidEffect(Long arg0, String arg1);
-
-	ResultCode<List<String>> getEffectsByMemberid(Long arg0);
-
-	ResultCode<List<String>> getCityEffectUnifysByCitycode(String arg0);
-
-	ResultCode<Map<String, Map<String, String>>> getMovieEffectMap();
-
-	ResultCode<Map<String, Object>> getMovieIcon(String arg0, String arg1, Long arg2, boolean arg3);
+	ResultCode<List<EffectInfoVo>> getEffectInfoListByMovieId(Long movieid);
+	ResultCode<Long> getWatchMovieCountByMidEffect(Long movieid,String effect);
+	/**
+	 * 查询用户观看过的特效的集合
+	 * 注意特效集合是每个特效的统一标示，例如IMAX2D,IMAX3D的统一标示都是IMAX
+	 * @param memberid
+	 * @return
+	 */
+	ResultCode<List<String>> getEffectsByMemberid(Long memberid);
+	ResultCode<List<String>> getCityEffectUnifysByCitycode(String citycode);
+	ResultCode<Map<String,Map<String,String>>> getMovieEffectMap();
+	
+	/**
+	 * 获取电影特效图片
+	 * @param mobilePath
+	 * @param citycode
+	 * @param movieid
+	 * @param isIphone
+	 * @return
+	 */
+	ResultCode<Map<String, Object>> getMovieIcon(String mobilePath, String citycode, Long movieid, boolean isIphone);
+	
 }

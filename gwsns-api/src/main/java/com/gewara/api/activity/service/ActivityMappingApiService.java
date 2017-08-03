@@ -1,9 +1,14 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity.service;
 
-import com.gewara.api.vo.ResultCode;
 import java.util.List;
 
+import com.gewara.api.vo.ResultCode;
+
 public interface ActivityMappingApiService {
-	ResultCode<List<Long>> getRelatedIds(Long arg0, String arg1);
+	/**
+	 * 获取活动关联的对象列表
+	 * @param activityid 活动ID
+	 * @param tag 活动关联类型
+	 */
+	public ResultCode<List<Long>> getRelatedIds(Long activityid, String tag);
 }

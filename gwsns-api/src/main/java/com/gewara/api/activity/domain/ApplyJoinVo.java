@@ -1,113 +1,98 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity.domain;
 
-import com.gewara.api.activity.ApiObject;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class ApplyJoinVo extends ApiObject {
-	public static final String O = "O";
-	public static final String MARK_WIN = "win";
-	public static final String MARK_LOSE = "lose";
-	public static final String MARK_TIE = "tie";
+import com.gewara.api.activity.ApiObject;
+
+public class ApplyJoinVo extends ApiObject{
+
+	public static final String O = "O";//未记录胜负关系的比分
+	public static final String MARK_WIN = "win";//约战胜
+	public static final String MARK_LOSE = "lose";//约战输
+	public static final String MARK_TIE = "tie";//约战平
 	private static final long serialVersionUID = -4502423276846683786L;
 	private Long id;
-	private Long relatedid;
-	private Timestamp addtime;
-	private Integer joinnum;
-	private String contactway;
-	private Integer admin;
-	private Long memberid;
-	private String realname;
-	private String sex;
-	private Integer needpay;
-	private Date joindate;
-	private Integer score;
-	private String mark;
-	private String status;
-	private String headpicUrl;
-	private String nickName;
-	private String address;
-	private String otherinfo;
-	private String birthday;
-
+	private Long relatedid;		//活动id
+	private Timestamp addtime;	//报名时间
+	private Integer joinnum;	//参加人数
+	private String contactway;	//联系方式
+	private Integer admin;		//1参与人是发起人，memberid和活动的memberid相同，0是普通参与者
+	private Long memberid;		//参加
+	private String realname;	//真实姓名
+	private String sex; 		//性别
+	private Integer needpay;	//需要支付费用
+	private Date joindate;		//参加活动日期
+	private Integer score;		//约战用
+	private String mark;		//约战用
+	private String status;		//只在约战中用到 N：未填写比分记录，O单方面填写比分记录，Y双方都填写了比分记录
+	private String headpicUrl;  //用户头像地址
+	private String nickName;	//用户昵称
+	private String address;		//地址
+	private String otherinfo;	
+	private String birthday;    //出生年月
+	
 	public String getNickName() {
-		return this.nickName;
+		return nickName;
 	}
-
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-
 	public String getHeadpicUrl() {
-		return this.headpicUrl;
+		return headpicUrl;
 	}
-
 	public void setHeadpicUrl(String headpicUrl) {
 		this.headpicUrl = headpicUrl;
 	}
-
 	public Integer getScore() {
-		return this.score;
+		return score;
 	}
-
 	public void setScore(Integer score) {
 		this.score = score;
 	}
-
 	public String getMark() {
-		return this.mark;
+		return mark;
 	}
-
 	public void setMark(String mark) {
 		this.mark = mark;
 	}
-
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	public Date getJoindate() {
-		return this.joindate;
+		return joindate;
 	}
-
 	public void setJoindate(Date joindate) {
 		this.joindate = joindate;
 	}
-
 	public String getRealname() {
-		return this.realname;
+		return realname;
 	}
-
 	public void setRealname(String realname) {
 		this.realname = realname;
 	}
-
 	public String getSex() {
-		return this.sex;
+		return sex;
 	}
-
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-
-	public ApplyJoinVo() {
-	}
-
-	public ApplyJoinVo(Long memberid) {
-		this.joinnum = Integer.valueOf(1);
-		this.admin = Integer.valueOf(0);
+	
+	
+	public ApplyJoinVo() {}
+	
+	public ApplyJoinVo(Long memberid){
+		this.joinnum = 1;
+		this.admin = 0;
 		this.addtime = new Timestamp(System.currentTimeMillis());
 		this.memberid = memberid;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -115,7 +100,7 @@ public class ApplyJoinVo extends ApiObject {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -123,7 +108,7 @@ public class ApplyJoinVo extends ApiObject {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -131,7 +116,7 @@ public class ApplyJoinVo extends ApiObject {
 	}
 
 	public Integer getJoinnum() {
-		return this.joinnum;
+		return joinnum;
 	}
 
 	public void setJoinnum(Integer joinnum) {
@@ -139,65 +124,50 @@ public class ApplyJoinVo extends ApiObject {
 	}
 
 	public String getContactway() {
-		return this.contactway;
+		return contactway;
 	}
 
 	public void setContactway(String contactway) {
 		this.contactway = contactway;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public Integer getAdmin() {
-		return this.admin;
+		return admin;
 	}
-
 	public void setAdmin(Integer admin) {
 		this.admin = admin;
 	}
-
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
 	public Integer getNeedpay() {
-		if (this.needpay == null) {
-			this.needpay = Integer.valueOf(0);
-		}
-
-		return this.needpay;
+		if(needpay == null) needpay = 0;
+		return needpay;
 	}
-
 	public void setNeedpay(Integer needpay) {
 		this.needpay = needpay;
 	}
-
 	public String getAddress() {
-		return this.address;
+		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
-
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}
-
 	public String getBirthday() {
-		return this.birthday;
+		return birthday;
 	}
-
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}

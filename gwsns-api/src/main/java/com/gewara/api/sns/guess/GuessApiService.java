@@ -1,5 +1,6 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.guess;
+
+import java.util.List;
 
 import com.gewara.api.sns.vo.guess.BettingOptionCountVo;
 import com.gewara.api.sns.vo.guess.BettingOptionVo;
@@ -7,26 +8,77 @@ import com.gewara.api.sns.vo.guess.GuessSetupVo;
 import com.gewara.api.sns.vo.guess.UserBettingVo;
 import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.VoMap;
-import java.util.List;
 
+/**
+ * 猜票房接口
+ *
+ */
 public interface GuessApiService {
-	ResultCode<GuessSetupVo> getGuessById(Long arg0);
-
-	ResultCode<List<BettingOptionVo>> getBettingOptionsByRelatedId(Long arg0);
-
-	ResultCode<BettingOptionVo> getBettingOptionById(Long arg0);
-
-	ResultCode<UserBettingVo> getUserBetting(Long arg0, Long arg1);
-
-	ResultCode<Integer> getBettingCount(Long arg0);
-
-	ResultCode<List<Long>> getUserIdBetting(Long arg0, int arg1, int arg2);
-
-	ResultCode<BettingOptionCountVo> getBettingOptionCount(Long arg0);
-
-	ResultCode<VoMap<Long, Integer>> getVoMapCount(Long arg0);
-
-	ResultCode saveUserBetting(Long arg0, Long arg1, Long arg2, Integer arg3, Integer arg4);
-
-	ResultCode rollBackUserBetting(Long arg0, Long arg1, Long arg2, Integer arg3, Integer arg4);
+	
+	/**
+	 * 获取猜票房
+	 * @param   id  票房设置ID
+	 */
+	ResultCode<GuessSetupVo> getGuessById(Long id);
+	 /**
+     * 根据票房设置ID获取投注选项
+     * @param   relatedid  票房设置ID
+     */
+	ResultCode<List<BettingOptionVo>> getBettingOptionsByRelatedId(Long relatedid);
+	/**
+	 * 投注选项ID获取数据
+	 * @param   id    主键ID
+	 */
+	ResultCode<BettingOptionVo> getBettingOptionById(Long id);
+	
+	/**
+     * 获取用户投注的猜票房信息
+     * @param   memberid  用户ID  
+     * @param   stepid 设置猜票房ID
+     */
+	ResultCode<UserBettingVo> getUserBetting(Long memberid,Long stepid);
+	
+	/**
+     * 获取猜票房投注总人数
+     * @param   stepid 设置猜票房ID
+     */
+	ResultCode<Integer> getBettingCount(Long stepid);
+	
+	/**
+     * 获取猜票房投注用户ID
+     * @param   stepid 设置猜票房ID
+     */
+	ResultCode<List<Long>> getUserIdBetting(Long stepid,int from, int maxnum);
+	/**
+	 * 获取投注选项信息
+	 * @param   optionid 投注选项ID
+	 */
+	ResultCode<BettingOptionCountVo> getBettingOptionCount(Long optionid);
+	/**
+	 * 获取各投注选项总人数 
+	 * key --选项ID value--总人数
+	 * @param   stepid 设置猜票房ID
+	 */
+	ResultCode<VoMap<Long,Integer>> getVoMapCount(Long stepid);
+	/**
+	 * 保存用户投注选项信息
+	 * @param   memberid 用户ID
+	 * @param   stepid 设置猜票房ID
+	 * @param   optionid 投注选项ID 
+	 * @param   num  投注倍数
+	 * @param   point 投注总积分
+	 */
+	ResultCode saveUserBetting(Long memberid,Long stepid,Long optionid,Integer num,Integer point);
+	
+	/**
+	 * 回滚用户投注选项信息
+	 * @param   memberid 用户ID
+	 * @param   stepid 设置猜票房ID
+	 * @param   optionid 投注选项ID 
+	 * @param   num  投注倍数
+	 * @param   point 投注总积分
+	 */
+	ResultCode rollBackUserBetting(Long memberid, Long stepid,Long optionid, Integer num, Integer point);
+	
+	
 }

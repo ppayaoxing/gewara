@@ -1,18 +1,19 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo;
 
 import java.io.Serializable;
 
+
 public class UserMessage implements Serializable {
+
 	private static final long serialVersionUID = -3322684887723628280L;
-	private String memberId;
-	private String mobileUserName;
-	private String sinaUserName;
-	private String mobile;
-	private String gewaraMemberId;
+	private String memberId;//当前用户id
+	private String mobileUserName;//手机用户名
+	private String sinaUserName;//手机用户名
+	private String mobile;//手机号
+	private String gewaraMemberId;//手机对应的格瓦拉用户id
 
 	public String getMemberId() {
-		return this.memberId;
+		return memberId;
 	}
 
 	public void setMemberId(String memberId) {
@@ -20,7 +21,7 @@ public class UserMessage implements Serializable {
 	}
 
 	public String getMobileUserName() {
-		return this.mobileUserName;
+		return mobileUserName;
 	}
 
 	public void setMobileUserName(String mobileUserName) {
@@ -28,7 +29,7 @@ public class UserMessage implements Serializable {
 	}
 
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -36,7 +37,7 @@ public class UserMessage implements Serializable {
 	}
 
 	public String getSinaUserName() {
-		return this.sinaUserName;
+		return sinaUserName;
 	}
 
 	public void setSinaUserName(String sinaUserName) {
@@ -44,15 +45,19 @@ public class UserMessage implements Serializable {
 	}
 
 	public String getGewaraMemberId() {
-		return this.gewaraMemberId;
+		return gewaraMemberId;
 	}
 
 	public void setGewaraMemberId(String gewaraMemberId) {
 		this.gewaraMemberId = gewaraMemberId;
 	}
 
+	@Override
 	public String toString() {
-		return "UserMessage [memberId=" + this.memberId + ", mobileUserName=" + this.mobileUserName + ", sinaUserName="
-				+ this.sinaUserName + ", mobile=" + this.mobile + ", gewaraMemberId=" + this.gewaraMemberId + "]";
+		return "UserMessage [memberId=" + memberId + ", mobileUserName="
+				+ mobileUserName + ", sinaUserName=" + sinaUserName
+				+ ", mobile=" + mobile + ", gewaraMemberId=" + gewaraMemberId
+				+ "]";
 	}
+
 }

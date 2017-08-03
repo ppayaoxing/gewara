@@ -1,21 +1,22 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.domain;
 
 import com.gewara.api.pay.ApiObject;
 
-public class Merchant extends ApiObject {
-	private static final long serialVersionUID = -7238549364422637305L;
-	private Long id;
-	private Long gatewayId;
-	private String merchantCode;
-	private String merchantNo;
-	private String cityCode;
-	private String acquiringBank;
-	private String description;
-	private String status;
+public class Merchant extends ApiObject{
 
+	private static final long serialVersionUID = -7238549364422637305L;
+	
+	private Long id;	//主键
+	private Long gatewayId;	//支配配置ID
+	private String merchantCode;	//商户号标识
+	private String merchantNo;	//商户号
+	private String cityCode;	//城市
+	private String acquiringBank;	//收单行
+	private String description;	//商户号说明
+	private String status;	//商户号状态：NO_USE：未启用；IN_USE：使用中；DESUETUDE：废弃；
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -23,7 +24,7 @@ public class Merchant extends ApiObject {
 	}
 
 	public Long getGatewayId() {
-		return this.gatewayId;
+		return gatewayId;
 	}
 
 	public void setGatewayId(Long gatewayId) {
@@ -31,7 +32,7 @@ public class Merchant extends ApiObject {
 	}
 
 	public String getMerchantCode() {
-		return this.merchantCode;
+		return merchantCode;
 	}
 
 	public void setMerchantCode(String merchantCode) {
@@ -39,7 +40,7 @@ public class Merchant extends ApiObject {
 	}
 
 	public String getCityCode() {
-		return this.cityCode;
+		return cityCode;
 	}
 
 	public void setCityCode(String cityCode) {
@@ -47,7 +48,7 @@ public class Merchant extends ApiObject {
 	}
 
 	public String getAcquiringBank() {
-		return this.acquiringBank;
+		return acquiringBank;
 	}
 
 	public void setAcquiringBank(String acquiringBank) {
@@ -55,7 +56,7 @@ public class Merchant extends ApiObject {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -63,7 +64,7 @@ public class Merchant extends ApiObject {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -71,7 +72,7 @@ public class Merchant extends ApiObject {
 	}
 
 	public String getMerchantNo() {
-		return this.merchantNo;
+		return merchantNo;
 	}
 
 	public void setMerchantNo(String merchantNo) {

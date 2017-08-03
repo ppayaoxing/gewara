@@ -1,5 +1,7 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.api.service;
+
+import java.util.List;
+import java.util.Map;
 
 import com.gewara.api.vo.RequestParamVo;
 import com.gewara.api.vo.ResultCode;
@@ -13,160 +15,117 @@ import com.gewara.movie.vo.json.ourplay.OurPlayConfigVo;
 import com.gewara.movie.vo.json.ourplay.OurPlayMovieVo;
 import com.gewara.movie.vo.json.ourplay.PlayActivityVo;
 import com.gewara.movie.vo.json.ourplay.PlayMovieGradeVo;
-import java.util.List;
-import java.util.Map;
 
 public interface OurPlayVoService {
+	/**
+	 * 为删除状态的PlayKind条数
+	 * @return
+	 */
 	ResultCode<Integer> getPlayKindVoCount();
-
-	ResultCode<Integer> getCompensateLogVoCount(Long arg0, String arg1);
-
-	ResultCode<Integer> getCompensateLogVoCountByMidKindIsCompensated(Long arg0, String arg1, Integer arg2);
-
-	ResultCode<Integer> getApplyVoCount(String arg0, String arg1);
-
-	ResultCode<Integer> getPlayKindVoCountByIsCur(String arg0, String arg1);
-
-	ResultCode<Integer> getPlayKindVoCountByIsRecommend(String arg0);
-
-	ResultCode<Integer> getPlayMovieVoCountByKindIdMovieId(Long arg0, Long arg1);
-
-	ResultCode<List<PlayKindVo>> getPlayKindVoList(Integer arg0, Integer arg1);
-
-	ResultCode<List<PlayMovieVo>> getPlayMovieVoList(Long arg0, Integer arg1, Integer arg2);
-
-	ResultCode<PlayKindVo> savePlayKindVo(RequestParamVo arg0);
-
-	ResultCode<PlayMovieVo> savePlayMovieVo(RequestParamVo arg0);
-
-	ResultCode<ApplyVo> updateIsOkOfApplyVo(RequestParamVo arg0);
-
-	ResultCode<CompensateLogVo> updateIsCompensatedOfCompensateLogVo(RequestParamVo arg0);
-
-	ResultCode<List<ApplyVo>> getApplyVoList(String arg0, String arg1, Integer arg2, Integer arg3);
-
-	ResultCode<List<ApplyVo>> getApplyVoListByAidIsOkType(String arg0, String arg1, String arg2, Integer arg3,
-			Integer arg4);
-
-	ResultCode<List<CompensateLogVo>> getCompensateLogVoList(Long arg0, String arg1, Integer arg2, Integer arg3);
-
-	ResultCode<List<CompensateLogVo>> getCompensateLogVoListByMidIsCompensatedKind(Long arg0, Integer arg1, String arg2,
-			Integer arg3, Integer arg4);
-
-	ResultCode<PlayKindVo> getPlayKindVo(Long arg0);
-
-	ResultCode<PlayMovieVo> getPlayMovieVo(Long arg0);
-
-	ResultCode<Map<Long, PlayMovieVo>> getPlayMovieVoList(List<Long> arg0);
-
-	ResultCode<PlayActivityVo> getPlayActivityVo(String arg0);
-
-	ResultCode<Boolean> delPlayKindVo(Long arg0);
-
-	ResultCode<Boolean> delPlayMovieVo(Long arg0);
-
-	ResultCode<List<MemberPraiseVo>> getMemberOrderMovieList(Long arg0, String arg1, Integer arg2, Integer arg3);
-
-	ResultCode<Boolean> saveMemberPraiseByMemberid(MemberPraiseVo arg0);
-
-	ResultCode<PlayActivityVo> getPlayActivityVoByPlayMovieId(Long arg0);
-
-	ResultCode<PlayActivityVo> savePlayActivityVo(RequestParamVo arg0);
-
-	ResultCode<List<PlayMovieVo>> getPlayMovieVoByMovieid(Long arg0, String arg1);
-
-	ResultCode<List<Map<String, Object>>> getMovieIdAndKindNameByCityCode(String arg0, String arg1, Integer arg2,
-			Integer arg3, String arg4);
-
-	ResultCode<Integer> getMemberPraiseCountByMemberId(Long arg0);
-
-	ResultCode<Integer> getCompensateLogCountVoById(Long arg0, Long arg1);
-
-	ResultCode<PlayKindVo> getPlayKindVoByIsCur(String arg0, String arg1);
-
-	ResultCode<Integer> getMemberPraiseCount(Long arg0, Boolean arg1, Integer arg2);
-
-	ResultCode<OurPlayMovieVo> addOurPlayMovieVo(OurPlayMovieVo arg0);
-
-	ResultCode<Boolean> delOurPlayMovieVo(Long arg0);
-
-	ResultCode<Boolean> isOurPlayMovieId(Long arg0);
-
+	ResultCode<Integer> getCompensateLogVoCount(Long playMovieId,String kind);
+	//ResultCode<Integer> getCompensateLogVoCount(Long playMovieId,String kind,Integer isCompensated);
+	ResultCode<Integer> getCompensateLogVoCountByMidKindIsCompensated(Long playMovieId,String kind,Integer isCompensated);
+	ResultCode<Integer> getApplyVoCount(String activityId,String isOk);
+	ResultCode<Integer> getPlayKindVoCountByIsCur(String isCur,String belongToKind);
+	ResultCode<Integer> getPlayKindVoCountByIsRecommend(String isRecommend);
+	ResultCode<Integer> getPlayMovieVoCountByKindIdMovieId(Long kindId,Long movieId);
+	/**
+	 * 返回未删除状态的PlayKindVo数据
+	 * @param fromIndex
+	 * @param toIndex
+	 * @return
+	 */
+	ResultCode<List<PlayKindVo>> getPlayKindVoList(Integer fromIndex,Integer maxnum);
+	
+	ResultCode<List<PlayMovieVo>> getPlayMovieVoList(Long kindId,Integer fromIndex,Integer maxnum);
+	
+	ResultCode<PlayKindVo> savePlayKindVo(RequestParamVo requestParamVo);
+	ResultCode<PlayMovieVo> savePlayMovieVo(RequestParamVo requestParamVo);
+	ResultCode<ApplyVo> updateIsOkOfApplyVo(RequestParamVo requestParamVo);
+	ResultCode<CompensateLogVo> updateIsCompensatedOfCompensateLogVo(RequestParamVo requestParamVo);
+	ResultCode<List<ApplyVo>> getApplyVoList(String activityId,String isOk,Integer fromIndex,Integer maxnum);
+	//ResultCode<List<ApplyVo>> getApplyVoList(String activityId,String isOk,String type,Integer fromIndex,Integer maxnum);
+	ResultCode<List<ApplyVo>> getApplyVoListByAidIsOkType(String activityId,String isOk,String type,Integer fromIndex,Integer maxnum);
+	ResultCode<List<CompensateLogVo>> getCompensateLogVoList(Long playMovieId,String kind,Integer fromIndex,Integer maxnum);
+	//ResultCode<List<CompensateLogVo>> getCompensateLogVoList(Long playMovieId,Integer isCompensated,String kind,Integer fromIndex,Integer maxnum);	
+	ResultCode<List<CompensateLogVo>> getCompensateLogVoListByMidIsCompensatedKind(Long playMovieId,Integer isCompensated,String kind,Integer fromIndex,Integer maxnum);
+	
+	ResultCode<PlayKindVo> getPlayKindVo(Long id);
+	ResultCode<PlayMovieVo> getPlayMovieVo(Long id);
+	ResultCode<Map<Long,PlayMovieVo>> getPlayMovieVoList(List<Long> idList);
+	ResultCode<PlayActivityVo> getPlayActivityVo(String activityId);
+	ResultCode<Boolean> delPlayKindVo(Long id);
+	ResultCode<Boolean> delPlayMovieVo(Long id);
+	ResultCode<List<MemberPraiseVo>> getMemberOrderMovieList(Long memberid,String citycode,Integer from ,Integer maxnum);
+	ResultCode<Boolean> saveMemberPraiseByMemberid(MemberPraiseVo vo);
+	ResultCode<PlayActivityVo> getPlayActivityVoByPlayMovieId(Long playMovieId);
+	ResultCode<PlayActivityVo> savePlayActivityVo(RequestParamVo requestParamVo);
+	ResultCode<List<PlayMovieVo>> getPlayMovieVoByMovieid(Long movieid,String citycode);
+	ResultCode<List<Map<String,Object>>> getMovieIdAndKindNameByCityCode(String citycode,String isCur,Integer from ,Integer maxnum,String direction);
+	ResultCode<Integer> getMemberPraiseCountByMemberId(Long memberid);
+	ResultCode<Integer> getCompensateLogCountVoById(Long memberid,Long playMovieId);
+	ResultCode<PlayKindVo> getPlayKindVoByIsCur(String isCur,String belongToKind);
+	ResultCode<Integer> getMemberPraiseCount(Long movieid,Boolean hasWala,Integer packetstatus);
+	ResultCode<OurPlayMovieVo> addOurPlayMovieVo(OurPlayMovieVo ourPlayMovieVo);
+	ResultCode<Boolean> delOurPlayMovieVo(Long movieId);
+	ResultCode<Boolean> isOurPlayMovieId(Long movieId);
 	ResultCode<Boolean> initOurPlayMovieVoData();
-
-	ResultCode<Integer> getPlayMovieGradeVoCount(String arg0);
-
-	ResultCode<List<PlayMovieGradeVo>> getPlayMovieGradeVoList(String arg0, Integer arg1, Integer arg2);
-
-	ResultCode<PlayMovieGradeVo> addPlayMovieGradeVo(PlayMovieGradeVo arg0);
-
+	ResultCode<Integer> getPlayMovieGradeVoCount(String status);
+	ResultCode<List<PlayMovieGradeVo>> getPlayMovieGradeVoList(String status,Integer from ,Integer maxnum);
+	ResultCode<PlayMovieGradeVo> addPlayMovieGradeVo(PlayMovieGradeVo playMovieGradeVo);
 	ResultCode<List<Long>> getActivitePlayMovieIdList();
+	ResultCode<Boolean> delMemberPraiseByMemberidAndMovieid(Long memberid,Long movieid);
+	ResultCode<PlayMovieGradeVo> getPlayMovieGradeVoByMovieid(Long movieid);
+	ResultCode<Boolean> isOurPlayApply(Long memberId,Long movieId);
+	ResultCode<Boolean> isOurPlayMovie(Long movieId);
+	ResultCode<Boolean> isOurPlayMovie2(Long movieId);//带影展的判断
+	/** 
+	 * 新放映中同步未绑定的账号和红包
+	 * @author 彭迪
+	 * @param activityId 试片活动的id
+	 * @param playMovieId 试片活动的电影
+	 * @return SUCCESS表示成功 
+	 */
+	ResultCode<String> setMemberidByPlayActivity(String activityId,Long playMovieId);
+	/**
+	 * 是否有红包
+	 */
+	ResultCode<String> hasRedEnvelope(String movieid,Long memberid);
+	ResultCode<ApplyVo> setIsReturnPoint(RequestParamVo createRequestParamVo);
+	
+	//新放映新增版本
+	ResultCode<List<PlayMovieVo>> getPlayMovieVoListByCityCode(String cityCode, Integer fromIndex, Integer maxnum);
+	ResultCode<List<PlayMovieVo>> getPlayMovieVoListForPage(String cityCode, Integer fromIndex, Integer maxnum);
+	ResultCode<Integer> getApplyCount(Long movieid,String tag);	
+	ResultCode<List<NiuRenVo>> getNiuRenVoList(Long movieid);//按照电影id查找牛人	
+	ResultCode<List<NiuRenVo>> getNiuRenVoList(String activityId);//按照活动查找牛人	
+	ResultCode<Map<Long,Integer>> getNiuRenVoCountMap(List<Long>memberids);//按照活动查找牛人	
+	ResultCode<Map<Long,Long>> getWalaIdMap(Long movieid,List<Long>memberids);//查找试片员写的哇啦
+	ResultCode<Boolean>saveNiuRen(NiuRenVo vo);	
+	ResultCode<Integer> getWalaByPlayMovie(Long movieid,Long	 playMovieId);
+	ResultCode<Map<String,Integer>>getNiuRenByCity(Long movieid);//按城市查询牛人分布	
+	ResultCode<Map<Long,Integer>> getNiuRenRanking(List<Long>memberids);//查找牛人排名
+	ResultCode<List<ApplyVo>> getApplyVoList(Long movieid);
+	ResultCode<Map<Long,String>>getJoinTime(List<Long>memberids);
+	ResultCode<Map<Long,Integer>>getWalaCountByMemberids(List<Long>memberids);
 
-	ResultCode<Boolean> delMemberPraiseByMemberidAndMovieid(Long arg0, Long arg1);
+	ResultCode<Boolean>updateNiuRenRanking(Long movieid,Long memberid,Integer ranking);	
 
-	ResultCode<PlayMovieGradeVo> getPlayMovieGradeVoByMovieid(Long arg0);
-
-	ResultCode<Boolean> isOurPlayApply(Long arg0, Long arg1);
-
-	ResultCode<Boolean> isOurPlayMovie(Long arg0);
-
-	ResultCode<Boolean> isOurPlayMovie2(Long arg0);
-
-	ResultCode<String> setMemberidByPlayActivity(String arg0, Long arg1);
-
-	ResultCode<String> hasRedEnvelope(String arg0, Long arg1);
-
-	ResultCode<ApplyVo> setIsReturnPoint(RequestParamVo arg0);
-
-	ResultCode<List<PlayMovieVo>> getPlayMovieVoListByCityCode(String arg0, Integer arg1, Integer arg2);
-
-	ResultCode<List<PlayMovieVo>> getPlayMovieVoListForPage(String arg0, Integer arg1, Integer arg2);
-
-	ResultCode<Integer> getApplyCount(Long arg0, String arg1);
-
-	ResultCode<List<NiuRenVo>> getNiuRenVoList(Long arg0);
-
-	ResultCode<List<NiuRenVo>> getNiuRenVoList(String arg0);
-
-	ResultCode<Map<Long, Integer>> getNiuRenVoCountMap(List<Long> arg0);
-
-	ResultCode<Map<Long, Long>> getWalaIdMap(Long arg0, List<Long> arg1);
-
-	ResultCode<Boolean> saveNiuRen(NiuRenVo arg0);
-
-	ResultCode<Integer> getWalaByPlayMovie(Long arg0, Long arg1);
-
-	ResultCode<Map<String, Integer>> getNiuRenByCity(Long arg0);
-
-	ResultCode<Map<Long, Integer>> getNiuRenRanking(List<Long> arg0);
-
-	ResultCode<List<ApplyVo>> getApplyVoList(Long arg0);
-
-	ResultCode<Map<Long, String>> getJoinTime(List<Long> arg0);
-
-	ResultCode<Map<Long, Integer>> getWalaCountByMemberids(List<Long> arg0);
-
-	ResultCode<Boolean> updateNiuRenRanking(Long arg0, Long arg1, Integer arg2);
-
+	
+	//牛人
 	ResultCode<List<NiuRenVo>> getAllNiuRenList();
-
-	ResultCode<List<NiuRenVo>> getNiuRenListByMovieId(Long arg0, Integer arg1, Integer arg2);
-
-	ResultCode<List<PlayMovieVo>> getCurPlayMovieList(String arg0, Integer arg1, Integer arg2);
-
-	ResultCode<List<PlayMovieVo>> getHisPlayMovieList(String arg0, Integer arg1, Integer arg2);
-
-	ResultCode<Integer> getPlayMovieVoCountByCityCode(String arg0);
-
-	ResultCode<OurPlayConfigVo> getOurPlayConfig(String arg0);
-
-	ResultCode<OurPlayConfigVo> saveOurPlayConfig(String arg0, String arg1);
-
-	ResultCode<Boolean> removeNiuRen(Long arg0, Long arg1);
-
+	ResultCode<List<NiuRenVo>> getNiuRenListByMovieId(Long movieId, Integer from, Integer maxNum);
+	
+	ResultCode<List<PlayMovieVo>> getCurPlayMovieList(String cityCode, Integer fromIndex, Integer maxnum);
+	ResultCode<List<PlayMovieVo>> getHisPlayMovieList(String cityCode, Integer fromIndex, Integer maxnum);
+	ResultCode<Integer> getPlayMovieVoCountByCityCode(String cityCode);
+	
+	ResultCode<OurPlayConfigVo> getOurPlayConfig(String tag);
+	ResultCode<OurPlayConfigVo> saveOurPlayConfig(String tag, String context);
+	ResultCode<Boolean> removeNiuRen(Long movieid, Long memberid);
+	
 	ResultCode freshNiuRenRanking();
+	ResultCode addNewPlayCollectedtimes(String tag, Long playMovieId, String citycode);
+	ResultCode<Integer> getNewPlayCollectedtimes(Long playMovieId, String citycode);
 
-	ResultCode addNewPlayCollectedtimes(String arg0, Long arg1, String arg2);
-
-	ResultCode<Integer> getNewPlayCollectedtimes(Long arg0, String arg1);
 }

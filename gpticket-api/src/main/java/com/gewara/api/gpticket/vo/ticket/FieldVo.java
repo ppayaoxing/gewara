@@ -1,29 +1,32 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gpticket.vo.ticket;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
+
+import com.gewara.api.vo.BaseVo;
 
 public class FieldVo extends BaseVo {
 	private static final long serialVersionUID = 4944099097409524223L;
-	private Long id;
-	private String name;
-	private Long theatreid;
-	private String fieldnum;
-	private String fieldserial;
+	
+	private Long id;					//场地ID
+	private String name;				//场地名称
+	private Long theatreid;				//场馆ID
+	private String fieldnum;			//场地编号(TheareField-->fieldnum)
+	private String fieldserial;			//场地序号
 	private String status;
-	private String fieldtype;
-	private String logo;
-	private Timestamp updatetime;
+	private String fieldtype;			//场地类型: gewara、gptbs
+	private String logo;				//
+	private Timestamp updatetime;		//更新时间
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -31,7 +34,7 @@ public class FieldVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -39,7 +42,7 @@ public class FieldVo extends BaseVo {
 	}
 
 	public Long getTheatreid() {
-		return this.theatreid;
+		return theatreid;
 	}
 
 	public void setTheatreid(Long theatreid) {
@@ -47,7 +50,7 @@ public class FieldVo extends BaseVo {
 	}
 
 	public String getFieldnum() {
-		return this.fieldnum;
+		return fieldnum;
 	}
 
 	public void setFieldnum(String fieldnum) {
@@ -55,7 +58,7 @@ public class FieldVo extends BaseVo {
 	}
 
 	public String getFieldserial() {
-		return this.fieldserial;
+		return fieldserial;
 	}
 
 	public void setFieldserial(String fieldserial) {
@@ -63,19 +66,20 @@ public class FieldVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	public boolean hasStatus(String stats) {
-		return StringUtils.isBlank(stats) ? false : StringUtils.equals(this.status, stats);
+	public boolean hasStatus(String stats){
+		if(StringUtils.isBlank(stats)) return false;
+		return StringUtils.equals(this.status, stats);
 	}
-
+	
 	public String getFieldtype() {
-		return this.fieldtype;
+		return fieldtype;
 	}
 
 	public void setFieldtype(String fieldtype) {
@@ -83,7 +87,7 @@ public class FieldVo extends BaseVo {
 	}
 
 	public String getLogo() {
-		return this.logo;
+		return logo;
 	}
 
 	public void setLogo(String logo) {
@@ -91,10 +95,11 @@ public class FieldVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
+
 }

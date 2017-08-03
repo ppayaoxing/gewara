@@ -1,45 +1,47 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.gmessage.external.entity;
 
-import com.gewara.gmessage.external.constant.MCategory;
 import java.io.Serializable;
 
-public class SendStateQueryParam implements Serializable {
+import com.gewara.gmessage.external.constant.MCategory;
+
+/**
+ * 消息发送状态查询参数
+ * 
+ * @author 董明
+ * @createDate 2015年12月3日
+ */
+public class SendStateQueryParam implements Serializable{
+
 	private static final long serialVersionUID = 2804118341623987745L;
-	private int pageNo;
-	private int pageSize;
-	private MCategory category;
-	private String relateIDType;
-	private String relateID;
 
-	public SendStateQueryParam() {
-		this.pageNo = 1;
+	/** 页码，默认第一页 */
+	private int pageNo = 1;// 页码，默认第一页
 
-		this.pageSize = 50;
+	/** 每页的记录数。默认50 */
+	private int pageSize = 50;// 每页的记录数。默认50；
 
-		this.category = null;
-		this.relateIDType = null;
-		this.relateID = null;
-	}
+	private MCategory category = null; // 消息种类
+	private String relateIDType = null;// 业务主键类型
+	private String relateID = null;// 业务主键ID
 
 	public int getPageNo() {
-		return this.pageNo;
+		return pageNo;
 	}
 
 	public int getPageSize() {
-		return this.pageSize;
+		return pageSize;
 	}
 
 	public MCategory getCategory() {
-		return this.category;
+		return category;
 	}
 
 	public String getRelateIDType() {
-		return this.relateIDType;
+		return relateIDType;
 	}
 
 	public String getRelateID() {
-		return this.relateID;
+		return relateID;
 	}
 
 	public void setPageNo(int pageNo) {
@@ -61,10 +63,10 @@ public class SendStateQueryParam implements Serializable {
 	public void setRelateID(String relateID) {
 		this.relateID = relateID;
 	}
-
-	public String getUreaid() {
-		if ((this.relateIDType == null) || (this.relateID == null))
-			return null;
-		return this.relateIDType + "-" + this.relateID;
+	
+	public String getUreaid(){
+		if(relateIDType==null||relateID==null) return null;
+		return relateIDType+"-"+relateID;
 	}
+
 }

@@ -1,8 +1,13 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gpticket.service;
 
 import com.gewara.api.vo.ResultCode;
 
 public interface ShoacApiService {
-	ResultCode<String> getPrintContent(String arg0);
+	/**
+	 * 获取东艺场次票面信息
+	 * @param sceneid
+	 * @return
+	 */
+	ResultCode<String> getPrintContent(String sceneid);
+
 }

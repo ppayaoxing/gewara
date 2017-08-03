@@ -1,36 +1,42 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.request.abc;
 
-import com.gewara.api.pay.ApiRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.gewara.api.pay.ApiRequest;
+
 public class AbcRequest extends ApiRequest {
+
 	private static final long serialVersionUID = -7261831153348805469L;
+
 	private String orderid;
+	
+	public AbcRequest(){}
 
-	public AbcRequest() {
-	}
-
-	public AbcRequest(String orderid) {
+	public AbcRequest(String orderid){
 		this.orderid = orderid;
 	}
-
+	
+	@Override
 	public Map<String, String> getTextParams() {
-		HashMap params = new HashMap();
-		params.put("orderid", this.orderid);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("orderid", orderid);
 		return params;
 	}
 
+	@Override
 	public boolean checkParams() {
-		return this.orderid != null;
+		if(orderid==null)
+			return false;
+		return true;
 	}
 
 	public String getOrderid() {
-		return this.orderid;
+		return orderid;
 	}
 
 	public void setOrderid(String orderid) {
 		this.orderid = orderid;
 	}
+
 }

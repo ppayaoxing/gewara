@@ -1,9 +1,9 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.common;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class ProgramInfoVo extends BaseVo {
 	private static final long serialVersionUID = 3219793338938201077L;
@@ -14,9 +14,8 @@ public class ProgramInfoVo extends BaseVo {
 	private Timestamp addtime;
 	private String pointx;
 	private String pointy;
-
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -24,7 +23,7 @@ public class ProgramInfoVo extends BaseVo {
 	}
 
 	public String getPointx() {
-		return this.pointx;
+		return pointx;
 	}
 
 	public void setPointx(String pointx) {
@@ -32,19 +31,20 @@ public class ProgramInfoVo extends BaseVo {
 	}
 
 	public String getPointy() {
-		return this.pointy;
+		return pointy;
 	}
 
 	public void setPointy(String pointy) {
 		this.pointy = pointy;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -52,7 +52,7 @@ public class ProgramInfoVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -60,7 +60,7 @@ public class ProgramInfoVo extends BaseVo {
 	}
 
 	public String getLimg() {
-		return this.limg;
+		return limg;
 	}
 
 	public void setLimg(String limg) {
@@ -68,10 +68,11 @@ public class ProgramInfoVo extends BaseVo {
 	}
 
 	public Integer getClickedtimes() {
-		return this.clickedtimes;
+		return clickedtimes;
 	}
 
 	public void setClickedtimes(Integer clickedtimes) {
 		this.clickedtimes = clickedtimes;
 	}
+
 }

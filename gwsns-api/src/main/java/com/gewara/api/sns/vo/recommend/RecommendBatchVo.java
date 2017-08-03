@@ -1,27 +1,38 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.recommend;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class RecommendBatchVo extends BaseVo {
-	private static final long serialVersionUID = 8336932693361209138L;
-	private Long id;
-	private String type;
-	private String status;
-	private String condition;
-	private String remark;
-	private Long memberid;
-	private String nickname;
-	private Timestamp addtime;
+import com.gewara.api.vo.BaseVo;
 
+/**
+ * 推荐的批次信息
+ * @author zxl
+ *
+ */
+public class RecommendBatchVo extends BaseVo {
+
+	private static final long serialVersionUID = 8336932693361209138L;
+
+	private Long id; // 主键
+	private String type;// 类型 square,friends
+	private String status; // Y_NEW、N_DELETE
+	private String condition;// 推送条件
+	private String remark;// 推送说明
+	private Long memberid; // 添加标签用户
+	private String nickname;
+	private Timestamp addtime; // 创建标签时间
+
+	public RecommendBatchVo() {
+	}
+
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -29,7 +40,7 @@ public class RecommendBatchVo extends BaseVo {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -37,7 +48,7 @@ public class RecommendBatchVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -45,11 +56,11 @@ public class RecommendBatchVo extends BaseVo {
 	}
 
 	public String getCondition() {
-		return this.condition;
+		return condition;
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -61,7 +72,7 @@ public class RecommendBatchVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -69,7 +80,7 @@ public class RecommendBatchVo extends BaseVo {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -77,10 +88,11 @@ public class RecommendBatchVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
+
 }

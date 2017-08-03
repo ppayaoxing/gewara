@@ -1,31 +1,36 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.brand;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class BrandVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * 品牌--商户
+ */
+public class BrandVo extends BaseVo{
+
 	private static final long serialVersionUID = 7873532222364050961L;
+	
 	private Long id;
-	private String brandname;
-	private String logourl;
-	private Byte status;
-	private Integer brandtype;
+	private String brandname;	//品牌名称
+	private String logourl;		//logo
+	private Byte status;		//状态
+	private Integer brandtype;	//品牌类型
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private String brandcolor;
-
+	private String brandcolor;	//色值
+	
 	public String getBrandcolor() {
-		return this.brandcolor;
+		return brandcolor;
 	}
 
 	public void setBrandcolor(String brandcolor) {
 		this.brandcolor = brandcolor;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -33,7 +38,7 @@ public class BrandVo extends BaseVo {
 	}
 
 	public String getBrandname() {
-		return this.brandname;
+		return brandname;
 	}
 
 	public void setBrandname(String brandname) {
@@ -41,7 +46,7 @@ public class BrandVo extends BaseVo {
 	}
 
 	public String getLogourl() {
-		return this.logourl;
+		return logourl;
 	}
 
 	public void setLogourl(String logourl) {
@@ -49,7 +54,7 @@ public class BrandVo extends BaseVo {
 	}
 
 	public Byte getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(Byte status) {
@@ -57,7 +62,7 @@ public class BrandVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -65,21 +70,19 @@ public class BrandVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
-
+	@Override
 	public Serializable realId() {
 		return this.id;
 	}
-
 	public Integer getBrandtype() {
-		return this.brandtype;
+		return brandtype;
 	}
-
 	public void setBrandtype(Integer brandtype) {
 		this.brandtype = brandtype;
 	}

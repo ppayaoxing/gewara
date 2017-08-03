@@ -1,11 +1,21 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.qq;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.util.Map;
 
+import com.gewara.api.vo.BaseVo;
+
+/**
+ * QQ公众号模板消息
+ * 
+ */
 public class TemplateMsgVo extends BaseVo {
+	/**    
+	 * serialVersionUID:TODO（用一句话描述这个变量表示什么）    
+	 *    
+	 * @since Ver 1.1    
+	 */    
+	
 	private static final long serialVersionUID = 6643303791137590738L;
 	private String tousermob;
 	private String templateid;
@@ -13,11 +23,11 @@ public class TemplateMsgVo extends BaseVo {
 	private String type;
 	private String key;
 	private String url;
-	private Map<String, TemplateMsgVo.DataValue> data;
-	private Map<String, TemplateMsgVo.Button> buttonMap;
-
+	private Map<String,DataValue> data;
+	private Map<String, Button> buttonMap;
+	
 	public String getTemplateid() {
-		return this.templateid;
+		return templateid;
 	}
 
 	public void setTemplateid(String templateid) {
@@ -25,7 +35,7 @@ public class TemplateMsgVo extends BaseVo {
 	}
 
 	public String getMsgtype() {
-		return this.msgtype;
+		return msgtype;
 	}
 
 	public void setMsgtype(String msgtype) {
@@ -33,7 +43,7 @@ public class TemplateMsgVo extends BaseVo {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
@@ -41,7 +51,7 @@ public class TemplateMsgVo extends BaseVo {
 	}
 
 	public String getKey() {
-		return this.key;
+		return key;
 	}
 
 	public void setKey(String key) {
@@ -49,87 +59,85 @@ public class TemplateMsgVo extends BaseVo {
 	}
 
 	public String getUrl() {
-		return this.url;
+		return url;
 	}
 
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
-	public Map<String, TemplateMsgVo.Button> getButtonMap() {
-		return this.buttonMap;
+	public Map<String, Button> getButtonMap() {
+		return buttonMap;
 	}
 
-	public void setButtonMap(Map<String, TemplateMsgVo.Button> buttonMap) {
+	public void setButtonMap(Map<String, Button> buttonMap) {
 		this.buttonMap = buttonMap;
 	}
+	
+	
+	public class DataValue {
+		private String value;
 
-	public Map<String, TemplateMsgVo.DataValue> getData() {
-		return this.data;
+		public String getValue() {
+			return value;
+		}
+
+		public void setValue(String value) {
+			this.value = value;
+		}
+		
+		public DataValue () {}
+		
+		
+		public DataValue (String value) {
+			this.value = value;
+		}
+
+	}
+	
+	public class Button {
+		private String type;
+		private String key;
+		private String url;
+		public String getType() {
+			return type;
+		}
+		public void setType(String type) {
+			this.type = type;
+		}
+		public String getKey() {
+			return key;
+		}
+		public void setKey(String key) {
+			this.key = key;
+		}
+		public String getUrl() {
+			return url;
+		}
+		public void setUrl(String url) {
+			this.url = url;
+		}
 	}
 
-	public void setData(Map<String, TemplateMsgVo.DataValue> data) {
+	public Map<String, DataValue> getData() {
+		return data;
+	}
+
+	public void setData(Map<String, DataValue> data) {
 		this.data = data;
 	}
 
 	public String getTousermob() {
-		return this.tousermob;
+		return tousermob;
 	}
 
 	public void setTousermob(String tousermob) {
 		this.tousermob = tousermob;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.tousermob + "" + this.templateid;
+		return tousermob+""+templateid;
 	}
 
-	public class Button {
-		private String type;
-		private String key;
-		private String url;
-
-		public String getType() {
-			return this.type;
-		}
-
-		public void setType(String type) {
-			this.type = type;
-		}
-
-		public String getKey() {
-			return this.key;
-		}
-
-		public void setKey(String key) {
-			this.key = key;
-		}
-
-		public String getUrl() {
-			return this.url;
-		}
-
-		public void setUrl(String url) {
-			this.url = url;
-		}
-	}
-
-	public class DataValue {
-		private String value;
-
-		public String getValue() {
-			return this.value;
-		}
-
-		public void setValue(String value) {
-			this.value = value;
-		}
-
-		public DataValue() {
-		}
-
-		public DataValue(String value) {
-			this.value = value;
-		}
-	}
 }

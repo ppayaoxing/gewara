@@ -1,33 +1,46 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.domain;
 
-import com.gewara.api.pay.ApiObject;
 import java.sql.Timestamp;
 
-public class MerchantSpec extends ApiObject {
-	private static final long serialVersionUID = 3131371299419499986L;
-	public static final String REFUNDDEPT_CW = "CW";
-	public static final String REFUNDDEPT_KF = "KF";
-	private String merchantCode;
-	private String gatewayCode;
-	private String cityCode;
-	private String acquiringBank;
-	private String refundDept;
-	private String refundHandling;
-	private String queryUrl;
-	private String partnerLinkman;
-	private String partnerRefundEmail;
-	private String partnerRefundPhoneCode;
-	private String description;
-	private Timestamp addTime;
-	private Timestamp modifyTime;
-	private String modifyUser;
-	private String shoukuanStatus;
-	private String shoukuanPayChannel;
-	private String reportType;
+import com.gewara.api.pay.ApiObject;
 
+/**
+ * 商户特别信息，由财务维护
+ * 
+ * @author leo.li
+ * Modify Time 2014年3月28日 下午3:01:49
+ */
+public class MerchantSpec extends ApiObject{
+		
+	private static final long serialVersionUID = 3131371299419499986L;
+	
+	/**退款负责部门：CW：财务*/
+	public static final String REFUNDDEPT_CW = "CW";
+	/**退款负责部门：KF：客服*/
+	public static final String REFUNDDEPT_KF = "KF";
+	
+	
+	private String merchantCode;//商户号标识
+	private String gatewayCode;//支付网关
+	private String cityCode;//城市
+	private String acquiringBank;//收单行
+	private String refundDept;//退款负责部门：CW：财务；KF：客服
+	private String refundHandling;//退款处理方式 :原路退回:ylth;通知合作方退款:tzhzftk;格瓦拉线下退款:gwxxtk;待确定中:dqdz
+	private String queryUrl;//商户查询链接
+	private String partnerLinkman;//合作方退款联系人
+	private String partnerRefundEmail;//合作方退款邮箱
+	private String partnerRefundPhoneCode;//合作方退款电话
+	private String description;//备注
+	private Timestamp addTime;	//新增时间
+	private Timestamp modifyTime;	//修改时间
+	private String modifyUser;//修改人
+
+	private String shoukuanStatus;//收款系统接入状态
+	private String shoukuanPayChannel;//收款系统支付渠道
+	private String reportType;//报表系统类型
+	
 	public String getMerchantCode() {
-		return this.merchantCode;
+		return merchantCode;
 	}
 
 	public void setMerchantCode(String merchantCode) {
@@ -35,7 +48,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getGatewayCode() {
-		return this.gatewayCode;
+		return gatewayCode;
 	}
 
 	public void setGatewayCode(String gatewayCode) {
@@ -43,7 +56,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getCityCode() {
-		return this.cityCode;
+		return cityCode;
 	}
 
 	public void setCityCode(String cityCode) {
@@ -51,7 +64,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getAcquiringBank() {
-		return this.acquiringBank;
+		return acquiringBank;
 	}
 
 	public void setAcquiringBank(String acquiringBank) {
@@ -59,7 +72,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getRefundDept() {
-		return this.refundDept;
+		return refundDept;
 	}
 
 	public void setRefundDept(String refundDept) {
@@ -67,7 +80,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getRefundHandling() {
-		return this.refundHandling;
+		return refundHandling;
 	}
 
 	public void setRefundHandling(String refundHandling) {
@@ -75,7 +88,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getQueryUrl() {
-		return this.queryUrl;
+		return queryUrl;
 	}
 
 	public void setQueryUrl(String queryUrl) {
@@ -83,7 +96,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getPartnerLinkman() {
-		return this.partnerLinkman;
+		return partnerLinkman;
 	}
 
 	public void setPartnerLinkman(String partnerLinkman) {
@@ -91,7 +104,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getPartnerRefundEmail() {
-		return this.partnerRefundEmail;
+		return partnerRefundEmail;
 	}
 
 	public void setPartnerRefundEmail(String partnerRefundEmail) {
@@ -99,7 +112,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getPartnerRefundPhoneCode() {
-		return this.partnerRefundPhoneCode;
+		return partnerRefundPhoneCode;
 	}
 
 	public void setPartnerRefundPhoneCode(String partnerRefundPhoneCode) {
@@ -107,7 +120,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -115,7 +128,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public Timestamp getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
 
 	public void setAddTime(Timestamp addTime) {
@@ -123,7 +136,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public Timestamp getModifyTime() {
-		return this.modifyTime;
+		return modifyTime;
 	}
 
 	public void setModifyTime(Timestamp modifyTime) {
@@ -131,7 +144,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getModifyUser() {
-		return this.modifyUser;
+		return modifyUser;
 	}
 
 	public void setModifyUser(String modifyUser) {
@@ -139,7 +152,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getShoukuanStatus() {
-		return this.shoukuanStatus;
+		return shoukuanStatus;
 	}
 
 	public void setShoukuanStatus(String shoukuanStatus) {
@@ -147,7 +160,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getShoukuanPayChannel() {
-		return this.shoukuanPayChannel;
+		return shoukuanPayChannel;
 	}
 
 	public void setShoukuanPayChannel(String shoukuanPayChannel) {
@@ -155,7 +168,7 @@ public class MerchantSpec extends ApiObject {
 	}
 
 	public String getReportType() {
-		return this.reportType;
+		return reportType;
 	}
 
 	public void setReportType(String reportType) {

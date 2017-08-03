@@ -1,36 +1,41 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gpticket.vo.ticket;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import org.apache.commons.lang.StringUtils;
 
-public class FieldAreaVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class FieldAreaVo extends BaseVo{
 	private static final long serialVersionUID = 1589781612588775506L;
-	private Long id;
-	private String name;
-	private Long theatreid;
-	private String fieldnum;
-	private String fieldserial;
-	private String areanum;
-	private String areaserial;
-	private Integer firstline;
-	private Integer firstrank;
-	private Integer linenum;
-	private Integer ranknum;
-	private Integer seatnum;
-	private String areatype;
-	private String status;
-	private String hotzone;
-	private Timestamp updatetime;
+	
+	private Long id;					// 
+	private String name;				//区域名称
+	private Long theatreid;				//场馆ID
+	private String fieldnum;			//场地序号(TheareField-->fieldnum)
+	private String fieldserial;			//第三方场地ID
+	private String areanum;				//区域编号(TheatreRoom-->num)
+	private String areaserial;			//区域序号
+	private Integer firstline;			//起始行座标
+	private Integer firstrank;			//起始列座标
+	private Integer linenum;			//座位行数
+	private Integer ranknum;			//座位列数
+	private Integer seatnum;			//座位数量
+	private String areatype;			//类型：gptbs
+	private String status;				//
+	private String hotzone;				//座标
+	private Timestamp updatetime;		//更新时间
+	
+	public FieldAreaVo(){}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -38,7 +43,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -46,7 +51,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public Long getTheatreid() {
-		return this.theatreid;
+		return theatreid;
 	}
 
 	public void setTheatreid(Long theatreid) {
@@ -54,7 +59,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public String getFieldserial() {
-		return this.fieldserial;
+		return fieldserial;
 	}
 
 	public void setFieldserial(String fieldserial) {
@@ -62,7 +67,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public String getAreanum() {
-		return this.areanum;
+		return areanum;
 	}
 
 	public void setAreanum(String areanum) {
@@ -70,7 +75,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public String getAreaserial() {
-		return this.areaserial;
+		return areaserial;
 	}
 
 	public void setAreaserial(String areaserial) {
@@ -78,7 +83,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public Integer getLinenum() {
-		return this.linenum;
+		return linenum;
 	}
 
 	public void setLinenum(Integer linenum) {
@@ -86,7 +91,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public Integer getRanknum() {
-		return this.ranknum;
+		return ranknum;
 	}
 
 	public void setRanknum(Integer ranknum) {
@@ -94,7 +99,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public Integer getSeatnum() {
-		return this.seatnum;
+		return seatnum;
 	}
 
 	public void setSeatnum(Integer seatnum) {
@@ -102,7 +107,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public String getAreatype() {
-		return this.areatype;
+		return areatype;
 	}
 
 	public void setAreatype(String areatype) {
@@ -110,7 +115,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -118,7 +123,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -126,7 +131,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public Integer getFirstline() {
-		return this.firstline;
+		return firstline;
 	}
 
 	public void setFirstline(Integer firstline) {
@@ -134,7 +139,7 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public Integer getFirstrank() {
-		return this.firstrank;
+		return firstrank;
 	}
 
 	public void setFirstrank(Integer firstrank) {
@@ -142,22 +147,24 @@ public class FieldAreaVo extends BaseVo {
 	}
 
 	public String getHotzone() {
-		return this.hotzone;
+		return hotzone;
 	}
 
 	public void setHotzone(String hotzone) {
 		this.hotzone = hotzone;
 	}
 
-	public boolean hasStatus(String stats) {
-		return StringUtils.isBlank(stats) ? false : StringUtils.equals(this.status, stats);
+	public boolean hasStatus(String stats){
+		if(StringUtils.isBlank(stats)) return false;
+		return StringUtils.equals(this.status, stats);
 	}
 
 	public String getFieldnum() {
-		return this.fieldnum;
+		return fieldnum;
 	}
 
 	public void setFieldnum(String fieldnum) {
 		this.fieldnum = fieldnum;
 	}
+	
 }

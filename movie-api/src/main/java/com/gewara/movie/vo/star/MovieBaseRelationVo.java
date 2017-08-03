@@ -1,22 +1,22 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.star;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class MovieBaseRelationVo extends BaseVo {
 	private static final long serialVersionUID = 843392976501206925L;
 	private Long id;
-	private Long movieid;
-	private Long baseinfoid;
-	private String infotype;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private Integer ordernum;
+	private Long movieid;				//电影ID
+	private Long baseinfoid;			//基本信息ID
+	private String infotype;			//信息类型
+	private Timestamp addtime;			//新增时间
+	private Timestamp updatetime;		//更新时间
+	private Integer ordernum;			//排序序号
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -24,7 +24,7 @@ public class MovieBaseRelationVo extends BaseVo {
 	}
 
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
 
 	public void setMovieid(Long movieid) {
@@ -32,7 +32,7 @@ public class MovieBaseRelationVo extends BaseVo {
 	}
 
 	public Long getBaseinfoid() {
-		return this.baseinfoid;
+		return baseinfoid;
 	}
 
 	public void setBaseinfoid(Long baseinfoid) {
@@ -40,7 +40,7 @@ public class MovieBaseRelationVo extends BaseVo {
 	}
 
 	public String getInfotype() {
-		return this.infotype;
+		return infotype;
 	}
 
 	public void setInfotype(String infotype) {
@@ -48,7 +48,7 @@ public class MovieBaseRelationVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -56,22 +56,24 @@ public class MovieBaseRelationVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Integer getOrdernum() {
-		return this.ordernum;
+		return ordernum;
 	}
 
 	public void setOrdernum(Integer ordernum) {
 		this.ordernum = ordernum;
 	}
+
 }

@@ -1,49 +1,55 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.star;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class CastProfileVo extends BaseVo {
-	private static final long serialVersionUID = -9102933891913403605L;
-	private Long id;
-	private String mtimeid;
-	private String chinesename;
-	private String engname;
-	private Long volk;
-	private String headPicUrl;
-	private String birthday;
-	private String birthplace;
-	private String dateOfDeath;
-	private Integer height;
-	private Integer weight;
-	private Long sign;
-	private Long hometown;
-	private String intro;
-	private String bloodtype;
-	private String education;
-	private String imdbid;
-	private String isshow;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private String familyMember;
-	private String weiboAccount;
-	private String weiboUrl;
-	private String hlogo;
-	private Long collectimes;
-	private String role;
+import com.gewara.api.vo.BaseVo;
 
-	public Long getCollectimes() {
-		return this.collectimes;
+/**
+ * 人物详细信息表
+ */
+public class CastProfileVo extends BaseVo {
+
+	private static final long serialVersionUID = -9102933891913403605L;
+	
+	private Long id;
+	private String mtimeid;				//时光网用户ID
+	private String chinesename;			//中文名
+	private String engname;				//英文名
+	private Long volk;					//民族
+	private String headPicUrl;			//头像图片路径
+	private String birthday;			//生日
+	private String birthplace;			//出生地
+	private String dateOfDeath;			//去世日期
+	private Integer height;				//身高
+	private Integer weight;				//体重
+	private Long sign;					//星座
+	private Long hometown;				//出生地
+	private String intro;				//个人简介
+	private String bloodtype;			//血型
+	private String education;			//教育背景
+	private String imdbid;				//第三方超链接
+	private String isshow;				//是否在前台显示详细资料
+	private Timestamp addtime;			//新增时间
+	private Timestamp updatetime;		//更新时间
+    private String familyMember;		//家庭成员
+    private String weiboAccount;		//微博账号
+    private String weiboUrl;			//微博地址
+    private String hlogo;				//横版海报
+    
+    private Long collectimes;//点赞数
+    public Long getCollectimes() {
+		return collectimes;
 	}
 
 	public void setCollectimes(Long collectimes) {
 		this.collectimes = collectimes;
 	}
 
-	public String getRole() {
-		return this.role;
+	private String role;	
+    
+    public String getRole() {
+		return role;
 	}
 
 	public void setRole(String role) {
@@ -51,7 +57,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getHlogo() {
-		return this.hlogo;
+		return hlogo;
 	}
 
 	public void setHlogo(String hlogo) {
@@ -59,7 +65,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getFamilyMember() {
-		return this.familyMember;
+		return familyMember;
 	}
 
 	public void setFamilyMember(String familyMember) {
@@ -67,7 +73,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getWeiboAccount() {
-		return this.weiboAccount;
+		return weiboAccount;
 	}
 
 	public void setWeiboAccount(String weiboAccount) {
@@ -75,15 +81,14 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getWeiboUrl() {
-		return this.weiboUrl;
+		return weiboUrl;
 	}
 
 	public void setWeiboUrl(String weiboUrl) {
 		this.weiboUrl = weiboUrl;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -91,7 +96,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getMtimeid() {
-		return this.mtimeid;
+		return mtimeid;
 	}
 
 	public void setMtimeid(String mtimeid) {
@@ -99,7 +104,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getChinesename() {
-		return this.chinesename;
+		return chinesename;
 	}
 
 	public void setChinesename(String chinesename) {
@@ -107,7 +112,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getEngname() {
-		return this.engname;
+		return engname;
 	}
 
 	public void setEngname(String engname) {
@@ -115,7 +120,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public Long getVolk() {
-		return this.volk;
+		return volk;
 	}
 
 	public void setVolk(Long volk) {
@@ -123,7 +128,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getHeadPicUrl() {
-		return this.headPicUrl;
+		return headPicUrl;
 	}
 
 	public void setHeadPicUrl(String headPicUrl) {
@@ -131,7 +136,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getBirthday() {
-		return this.birthday;
+		return birthday;
 	}
 
 	public void setBirthday(String birthday) {
@@ -139,7 +144,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public Integer getHeight() {
-		return this.height;
+		return height;
 	}
 
 	public void setHeight(Integer height) {
@@ -147,7 +152,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public Integer getWeight() {
-		return this.weight;
+		return weight;
 	}
 
 	public void setWeight(Integer weight) {
@@ -155,7 +160,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public Long getSign() {
-		return this.sign;
+		return sign;
 	}
 
 	public void setSign(Long sign) {
@@ -163,7 +168,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public Long getHometown() {
-		return this.hometown;
+		return hometown;
 	}
 
 	public void setHometown(Long hometown) {
@@ -171,7 +176,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getIntro() {
-		return this.intro;
+		return intro;
 	}
 
 	public void setIntro(String intro) {
@@ -179,7 +184,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getBloodtype() {
-		return this.bloodtype;
+		return bloodtype;
 	}
 
 	public void setBloodtype(String bloodtype) {
@@ -187,7 +192,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getEducation() {
-		return this.education;
+		return education;
 	}
 
 	public void setEducation(String education) {
@@ -195,7 +200,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -203,7 +208,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -211,7 +216,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getImdbid() {
-		return this.imdbid;
+		return imdbid;
 	}
 
 	public void setImdbid(String imdbid) {
@@ -219,7 +224,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getIsshow() {
-		return this.isshow;
+		return isshow;
 	}
 
 	public void setIsshow(String isshow) {
@@ -227,7 +232,7 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getBirthplace() {
-		return this.birthplace;
+		return birthplace;
 	}
 
 	public void setBirthplace(String birthplace) {
@@ -235,14 +240,16 @@ public class CastProfileVo extends BaseVo {
 	}
 
 	public String getDateOfDeath() {
-		return this.dateOfDeath;
+		return dateOfDeath;
 	}
 
 	public void setDateOfDeath(String dateOfDeath) {
 		this.dateOfDeath = dateOfDeath;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
+
 }

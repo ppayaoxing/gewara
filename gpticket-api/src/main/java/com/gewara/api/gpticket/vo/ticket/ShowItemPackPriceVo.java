@@ -1,36 +1,40 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gpticket.vo.ticket;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class ShowItemPackPriceVo extends BaseVo {
+
 	private static final long serialVersionUID = 6420436328856569550L;
+
 	private Long id;
-	private String name;
-	private String packpid;
-	private String siseq;
-	private String partner;
-	private String pseqno;
-	private String ticketid;
-	private Integer quantity;
-	private Integer price;
-	private Integer discount;
-	private Timestamp starttime;
-	private Timestamp endtime;
-	private String retail;
-	private Long priceid;
+	private String name;			//套票名称
+	private String packpid;			//第三方套票编号
+	private String siseq;			//场次ID(ShowItem-->siseq)
+	private String partner;			//第三方标识
+	private String pseqno;			//第三方场次编号
+	private String ticketid;		//第三方价格编号
+	private Integer quantity;		//套票绑定数
+	private Integer price;			//价格
+	private Integer discount;		//优惠折扣
+	private Timestamp starttime;	//开始时间
+	private Timestamp endtime;		//结束时间
+	private String retail;			//是否零售
+	private Long priceid;			//场次价格ID
 	private String status;
+	
 	private Timestamp addtime;
 	private Timestamp updatetime;
-
+	
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -38,7 +42,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -46,7 +50,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public String getPackpid() {
-		return this.packpid;
+		return packpid;
 	}
 
 	public void setPackpid(String packpid) {
@@ -54,7 +58,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public String getSiseq() {
-		return this.siseq;
+		return siseq;
 	}
 
 	public void setSiseq(String siseq) {
@@ -62,7 +66,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public String getPartner() {
-		return this.partner;
+		return partner;
 	}
 
 	public void setPartner(String partner) {
@@ -70,7 +74,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public String getPseqno() {
-		return this.pseqno;
+		return pseqno;
 	}
 
 	public void setPseqno(String pseqno) {
@@ -78,7 +82,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public String getTicketid() {
-		return this.ticketid;
+		return ticketid;
 	}
 
 	public void setTicketid(String ticketid) {
@@ -86,7 +90,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public Integer getQuantity() {
-		return this.quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
@@ -94,7 +98,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
 
 	public void setPrice(Integer price) {
@@ -102,7 +106,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public Integer getDiscount() {
-		return this.discount;
+		return discount;
 	}
 
 	public void setDiscount(Integer discount) {
@@ -110,7 +114,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public Timestamp getStarttime() {
-		return this.starttime;
+		return starttime;
 	}
 
 	public void setStarttime(Timestamp starttime) {
@@ -118,7 +122,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public Timestamp getEndtime() {
-		return this.endtime;
+		return endtime;
 	}
 
 	public void setEndtime(Timestamp endtime) {
@@ -126,7 +130,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public String getRetail() {
-		return this.retail;
+		return retail;
 	}
 
 	public void setRetail(String retail) {
@@ -134,7 +138,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public Long getPriceid() {
-		return this.priceid;
+		return priceid;
 	}
 
 	public void setPriceid(Long priceid) {
@@ -142,7 +146,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -150,7 +154,7 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -158,10 +162,12 @@ public class ShowItemPackPriceVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
 	}
+
+	
 }

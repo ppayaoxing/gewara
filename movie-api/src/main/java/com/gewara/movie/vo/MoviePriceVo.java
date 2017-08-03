@@ -1,93 +1,88 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class MoviePriceVo extends BaseVo {
 	private static final long serialVersionUID = -2432793126595408229L;
 	private Long id;
-	private Long movieid;
-	private Integer price;
-	private String citycode;
-	private String type;
-	private Integer edition3D;
+	private Long movieid;		
+	private Integer price;		//
+	private String citycode;	
+	private String type;		//
+	private Integer edition3D;	//
+	
 	private Integer editionJumu;
 	private Integer editionIMAX;
-	private Timestamp startTime;
-	private Timestamp endTime;
-	private Integer rangeEdition3D;
-	private Integer rangePrice;
-	private Integer rangeEditionJumu;
-	private Integer rangeEditionIMAX;
-	private Timestamp createTime;
-	private Timestamp updateTime;
-	private Long cinemaid;
+	
+	private Timestamp startTime; 	//开始时间
+	private Timestamp endTime; 		//结束时间
+	private Integer rangeEdition3D; //时间段内价格
+	private Integer rangePrice; 	//时间段内价格
+	private Integer rangeEditionJumu;//时间段内价格
+	private Integer rangeEditionIMAX;//时间段内价格
 
+	private Timestamp createTime; 	//创建时间
+	private Timestamp updateTime; 	//修改时间
+	private Long cinemaid;			//影院标识
+
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
-	public MoviePriceVo() {
+	
+	public MoviePriceVo(){
+		
 	}
-
-	public MoviePriceVo(Long movieid, Integer price, String citycode) {
+	public MoviePriceVo(Long movieid, Integer price, String citycode){
 		this.movieid = movieid;
 		this.price = price;
 		this.citycode = citycode;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
-
 	public void setMovieid(Long movieid) {
 		this.movieid = movieid;
 	}
-
 	public Integer getPrice() {
-		return this.price;
+		return price;
 	}
-
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
-	public String getType() {
+	
+	public String getType(){
 		return this.type;
 	}
-
-	public void setType(String type) {
+	
+	public void setType(String type){
 		this.type = type;
 	}
-
+	
 	public Integer getEdition3D() {
-		return this.edition3D;
+		return edition3D;
 	}
-
 	public void setEdition3D(Integer edition3d) {
-		this.edition3D = edition3d;
+		edition3D = edition3d;
 	}
 
 	public Integer getEditionJumu() {
-		return this.editionJumu;
+		return editionJumu;
 	}
 
 	public void setEditionJumu(Integer editionJumu) {
@@ -95,7 +90,7 @@ public class MoviePriceVo extends BaseVo {
 	}
 
 	public Integer getEditionIMAX() {
-		return this.editionIMAX;
+		return editionIMAX;
 	}
 
 	public void setEditionIMAX(Integer editionIMAX) {
@@ -103,7 +98,7 @@ public class MoviePriceVo extends BaseVo {
 	}
 
 	public Timestamp getStartTime() {
-		return this.startTime;
+		return startTime;
 	}
 
 	public void setStartTime(Timestamp startTime) {
@@ -111,7 +106,7 @@ public class MoviePriceVo extends BaseVo {
 	}
 
 	public Timestamp getEndTime() {
-		return this.endTime;
+		return endTime;
 	}
 
 	public void setEndTime(Timestamp endTime) {
@@ -119,7 +114,7 @@ public class MoviePriceVo extends BaseVo {
 	}
 
 	public Integer getRangeEdition3D() {
-		return this.rangeEdition3D;
+		return rangeEdition3D;
 	}
 
 	public void setRangeEdition3D(Integer rangeEdition3D) {
@@ -127,7 +122,7 @@ public class MoviePriceVo extends BaseVo {
 	}
 
 	public Integer getRangePrice() {
-		return this.rangePrice;
+		return rangePrice;
 	}
 
 	public void setRangePrice(Integer rangePrice) {
@@ -135,7 +130,7 @@ public class MoviePriceVo extends BaseVo {
 	}
 
 	public Integer getRangeEditionJumu() {
-		return this.rangeEditionJumu;
+		return rangeEditionJumu;
 	}
 
 	public void setRangeEditionJumu(Integer rangeEditionJumu) {
@@ -143,7 +138,7 @@ public class MoviePriceVo extends BaseVo {
 	}
 
 	public Integer getRangeEditionIMAX() {
-		return this.rangeEditionIMAX;
+		return rangeEditionIMAX;
 	}
 
 	public void setRangeEditionIMAX(Integer rangeEditionIMAX) {
@@ -151,7 +146,7 @@ public class MoviePriceVo extends BaseVo {
 	}
 
 	public Timestamp getCreateTime() {
-		return this.createTime;
+		return createTime;
 	}
 
 	public void setCreateTime(Timestamp createTime) {
@@ -159,15 +154,15 @@ public class MoviePriceVo extends BaseVo {
 	}
 
 	public Timestamp getUpdateTime() {
-		return this.updateTime;
+		return updateTime;
 	}
 
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
-
+	
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
 
 	public void setCinemaid(Long cinemaid) {

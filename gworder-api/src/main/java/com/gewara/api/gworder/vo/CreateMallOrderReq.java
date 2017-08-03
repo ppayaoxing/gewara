@@ -1,11 +1,9 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.gworder.vo;
 
-import com.gewara.api.gworder.vo.CreateOrderReq;
 import java.sql.Timestamp;
 import java.util.Map;
 
-public class CreateMallOrderReq extends CreateOrderReq {
+public class CreateMallOrderReq extends CreateOrderReq{
 	private static final long serialVersionUID = -8039360836554659139L;
 	private Long partnerid;
 	private String mobile;
@@ -13,9 +11,9 @@ public class CreateMallOrderReq extends CreateOrderReq {
 	private Integer totalfee;
 	private Integer otherfee;
 	private Integer usedPoint;
-	private Long sdid;
+	private Long sdid;			//特价活动id
 	private String category;
-	private String ukey;
+	private String ukey;		
 	private String citycode;
 	private String origin;
 	private Timestamp validtime;
@@ -25,13 +23,12 @@ public class CreateMallOrderReq extends CreateOrderReq {
 	private String paymethod;
 	private String remark;
 	private Map<String, String> descMap;
-
-	public CreateMallOrderReq() {
+	public CreateMallOrderReq(){
+		
 	}
-
-	public CreateMallOrderReq(String ordertitle, String citycode, Long memberId, Long parnterid, String mobile,
-			Integer totalfee, Integer totalcost, Integer otherfee, Integer usedPoint, String category,
-			Timestamp validtime) {
+	public CreateMallOrderReq(String ordertitle, String citycode,
+			Long memberId, Long parnterid, String mobile, 
+			Integer totalfee, Integer totalcost, Integer otherfee, Integer usedPoint, String category, Timestamp validtime){
 		this.ordertitle = ordertitle;
 		this.citycode = citycode;
 		this.memberId = memberId;
@@ -44,89 +41,69 @@ public class CreateMallOrderReq extends CreateOrderReq {
 		this.category = category;
 		this.validtime = validtime;
 	}
-
 	public Long getPartnerid() {
-		return this.partnerid;
+		return partnerid;
 	}
-
 	public void setPartnerid(Long partnerid) {
 		this.partnerid = partnerid;
 	}
-
 	public String getMobile() {
-		return this.mobile;
+		return mobile;
 	}
-
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
 	public Integer getTotalcost() {
-		return this.totalcost;
+		return totalcost;
 	}
-
 	public void setTotalcost(Integer totalcost) {
 		this.totalcost = totalcost;
 	}
-
 	public Integer getTotalfee() {
-		return this.totalfee;
+		return totalfee;
 	}
-
 	public void setTotalfee(Integer totalfee) {
 		this.totalfee = totalfee;
 	}
-
 	public Long getSdid() {
-		return this.sdid;
+		return sdid;
 	}
-
 	public void setSdid(Long sdid) {
 		this.sdid = sdid;
 	}
-
 	public String getCategory() {
-		return this.category;
+		return category;
 	}
-
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
 	public String getRemoteIp() {
-		return this.remoteIp;
+		return remoteIp;
 	}
-
 	public void setRemoteIp(String remoteIp) {
 		this.remoteIp = remoteIp;
 	}
-
 	public Map<String, String> getDescMap() {
-		return this.descMap;
+		return descMap;
 	}
-
 	public void setDescMap(Map<String, String> descMap) {
 		this.descMap = descMap;
 	}
-
 	public String getCitycode() {
-		return this.citycode;
+		return citycode;
 	}
-
 	public void setCitycode(String citycode) {
 		this.citycode = citycode;
 	}
-
 	public Integer getOtherfee() {
-		return this.otherfee;
+		return otherfee;
 	}
-
 	public void setOtherfee(Integer otherfee) {
 		this.otherfee = otherfee;
 	}
 
 	public String getUkey() {
-		return this.ukey;
+		return ukey;
 	}
 
 	public void setUkey(String ukey) {
@@ -134,7 +111,7 @@ public class CreateMallOrderReq extends CreateOrderReq {
 	}
 
 	public String getOrigin() {
-		return this.origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -142,7 +119,7 @@ public class CreateMallOrderReq extends CreateOrderReq {
 	}
 
 	public Timestamp getValidtime() {
-		return this.validtime;
+		return validtime;
 	}
 
 	public void setValidtime(Timestamp validtime) {
@@ -150,7 +127,7 @@ public class CreateMallOrderReq extends CreateOrderReq {
 	}
 
 	public String getMembername() {
-		return this.membername;
+		return membername;
 	}
 
 	public void setMembername(String membername) {
@@ -158,7 +135,7 @@ public class CreateMallOrderReq extends CreateOrderReq {
 	}
 
 	public String getOrdertitle() {
-		return this.ordertitle;
+		return ordertitle;
 	}
 
 	public void setOrdertitle(String ordertitle) {
@@ -166,7 +143,7 @@ public class CreateMallOrderReq extends CreateOrderReq {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -174,7 +151,7 @@ public class CreateMallOrderReq extends CreateOrderReq {
 	}
 
 	public String getPaymethod() {
-		return this.paymethod;
+		return paymethod;
 	}
 
 	public void setPaymethod(String paymethod) {
@@ -182,17 +159,15 @@ public class CreateMallOrderReq extends CreateOrderReq {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
 	public Integer getUsedPoint() {
-		return this.usedPoint;
+		return usedPoint;
 	}
-
 	public void setUsedPoint(Integer usedPoint) {
 		this.usedPoint = usedPoint;
 	}

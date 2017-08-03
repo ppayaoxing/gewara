@@ -1,59 +1,63 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.push.api.req.vo;
 
 import java.io.Serializable;
 import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
+/**
+ * (请求消息实体)
+ * @author chunhui.wang
+ */
 public class PushCommonReqVo implements Serializable {
 	private static final long serialVersionUID = 4572609223488668907L;
-	protected String remoteIp;
-	private Map<String, Object> commonMap;
-
-	public PushCommonReqVo() {
-	}
-
-	public PushCommonReqVo(String remoteIp, Map<String, Object> commonMap) {
+	
+	protected String remoteIp;//终端IP
+	private Map<String, Object> commonMap;//入参集
+	
+	public PushCommonReqVo(){}
+	
+	public PushCommonReqVo(String remoteIp,Map<String, Object> commonMap){
 		this.remoteIp = remoteIp;
 		this.commonMap = commonMap;
 	}
-
+	
 	public Map<String, Object> getCommonMap() {
-		return this.commonMap;
+		return commonMap;
 	}
-
 	public void setCommonMap(Map<String, Object> commonMap) {
 		this.commonMap = commonMap;
 	}
-
 	public String getRemoteIp() {
-		return this.remoteIp;
+		return remoteIp;
 	}
-
 	public void setRemoteIp(String remoteIp) {
 		this.remoteIp = remoteIp;
 	}
-
-	public void addValue(String key, String value) {
-		this.commonMap.put(key, value);
+	public void addValue(String key, String value){
+		commonMap.put(key, value);
 	}
-
-	public Object gainValue(String key) {
-		return this.commonMap.get(key);
+	public Object gainValue(String key){
+		return commonMap.get(key);
 	}
-
-	public String gainStringValue(String key) {
-		Object object = this.gainValue(key);
-		return object == null ? "" : String.valueOf(object);
+	public String gainStringValue(String key){
+		Object object = gainValue(key);
+		if(object==null){
+			return "";
+		}
+		return String.valueOf(object);
 	}
-
-	public Long gainLongValue(String key) {
-		String str = this.gainStringValue(key);
-		return StringUtils.isBlank(str) ? null : Long.valueOf(str);
+	public Long gainLongValue(String key){
+		String str = gainStringValue(key);
+		if(StringUtils.isBlank(str)){
+			return null;
+		}
+		return Long.valueOf(str);
 	}
-
-	public Integer gainIntegerValue(String key) {
-		String str = this.gainStringValue(key);
-		return StringUtils.isBlank(str) ? null : Integer.valueOf(str);
+	public Integer gainIntegerValue(String key){
+		String str = gainStringValue(key);
+		if(StringUtils.isBlank(str)){
+			return null;
+		}
+		return Integer.valueOf(str);
 	}
 }

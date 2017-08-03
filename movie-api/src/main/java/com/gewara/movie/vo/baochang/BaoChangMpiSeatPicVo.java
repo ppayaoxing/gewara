@@ -1,53 +1,60 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.baochang;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
-public class BaoChangMpiSeatPicVo extends BaseVo {
-	private static final long serialVersionUID = 470350044405929777L;
-	private String id;
-	private Long mpid;
-	private String seatline;
-	private String seatrank;
-	private String nickname;
-	private String picUrl;
-	private String showFlag;
+import com.gewara.api.vo.BaseVo;
+import com.gewara.movie.constant.Status;
 
+public class BaoChangMpiSeatPicVo extends BaseVo{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 470350044405929777L;
+
+	@Override
 	public Serializable realId() {
+		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public BaoChangMpiSeatPicVo() {
-	}
-
-	public BaoChangMpiSeatPicVo(Long mpid, String seatline, String seatrank, String nickname, String picUrl) {
+	
+	private String id;
+	private Long mpid;
+	private String seatline;//座位行号
+	private String seatrank;//座位列号
+	private String nickname;//别名
+	private String picUrl;//图片url
+	private String showFlag;//是否显示
+	
+	public BaoChangMpiSeatPicVo(){}
+	
+	public BaoChangMpiSeatPicVo(Long mpid, String seatline, String seatrank, String nickname, String picUrl){
 		this.mpid = mpid;
 		this.seatline = seatline;
 		this.seatrank = seatrank;
 		this.nickname = nickname;
 		this.picUrl = picUrl;
-		this.showFlag = "Y";
+		this.showFlag = Status.Y;
 	}
-
+	
 	public String getId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	
 	public Long getMpid() {
-		return this.mpid;
+		return mpid;
 	}
-
+	
 	public void setMpid(Long mpid) {
 		this.mpid = mpid;
 	}
-
+	
 	public String getSeatline() {
-		return this.seatline;
+		return seatline;
 	}
 
 	public void setSeatline(String seatline) {
@@ -55,7 +62,7 @@ public class BaoChangMpiSeatPicVo extends BaseVo {
 	}
 
 	public String getSeatrank() {
-		return this.seatrank;
+		return seatrank;
 	}
 
 	public void setSeatrank(String seatrank) {
@@ -63,7 +70,7 @@ public class BaoChangMpiSeatPicVo extends BaseVo {
 	}
 
 	public String getNickname() {
-		return this.nickname;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
@@ -71,18 +78,19 @@ public class BaoChangMpiSeatPicVo extends BaseVo {
 	}
 
 	public String getPicUrl() {
-		return this.picUrl;
+		return picUrl;
 	}
-
+	
 	public void setPicUrl(String picUrl) {
 		this.picUrl = picUrl;
 	}
 
 	public String getShowFlag() {
-		return this.showFlag;
+		return showFlag;
 	}
 
 	public void setShowFlag(String showFlag) {
 		this.showFlag = showFlag;
 	}
+	
 }

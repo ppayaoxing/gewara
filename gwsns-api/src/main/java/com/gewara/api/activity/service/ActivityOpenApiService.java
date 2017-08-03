@@ -1,17 +1,24 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity.service;
+
+import java.util.List;
 
 import com.gewara.api.activity.domain.ActivityFeeVo;
 import com.gewara.api.vo.ResultCode;
-import java.util.List;
 
 public interface ActivityOpenApiService {
-	ResultCode<String> updateOrder(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5,
-			String arg6);
 
-	ResultCode<List<ActivityFeeVo>> formula(Long arg0);
+	//@RequestMapping("/openapi/activity/updateOrder.xhtml")
+	public ResultCode<String> updateOrder(String memberEncode, String mobile,
+			String realname, String address, String jsonString, String tradeNo,
+			String sex);
 
-	ResultCode<ActivityFeeVo> getFee(Long arg0);
 
-	ResultCode<List<ActivityFeeVo>> getActivityFeesByActivityIDAllStatus(Long arg0);
+	//@RequestMapping("/openapi/activity/getFeeList.xhtml")
+	public ResultCode<List<ActivityFeeVo>> formula(Long activityId);
+
+	//@RequestMapping("/openapi/activity/getRecommendActivityList.xhtml")
+	public ResultCode<ActivityFeeVo> getFee(Long feeid);
+	
+	public ResultCode<List<ActivityFeeVo>> getActivityFeesByActivityIDAllStatus(Long activityid);
+
 }

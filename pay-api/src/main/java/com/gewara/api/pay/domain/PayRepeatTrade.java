@@ -1,90 +1,75 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.domain;
 
-import com.gewara.api.pay.ApiObject;
 import java.sql.Timestamp;
 
-public class PayRepeatTrade extends ApiObject {
+import com.gewara.api.pay.ApiObject;
+
+public class PayRepeatTrade extends ApiObject{
+	
 	private static final long serialVersionUID = 7652210940331647300L;
-	private String id;
-	private String tradeNo;
-	private String merTradeNo;
-	private String payseqno;
-	private String gatewayCode;
-	private String merchantCode;
-	private Integer paidAmount;
-	private Timestamp notifyTime;
-	private String abcOtherinfo;
-
+	
+	private String id;				//ID
+	private String tradeNo;			//订单号
+	private String merTradeNo;		//订单号
+	private String payseqno;		//第三方支付序号
+	private String gatewayCode;		//支付网关代码	
+	private String merchantCode;	//商户号标识
+	private Integer paidAmount;		//支付金额，单位：分
+	private Timestamp notifyTime;	//支付时间
+	private String abcOtherinfo;	//农行POS其他信息：积分、金额
+	
 	public String getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getTradeNo() {
-		return this.tradeNo;
+		return tradeNo;
 	}
-
 	public void setTradeNo(String tradeNo) {
 		this.tradeNo = tradeNo;
 	}
-
 	public String getMerTradeNo() {
-		return this.merTradeNo;
+		return merTradeNo;
 	}
-
 	public void setMerTradeNo(String merTradeNo) {
 		this.merTradeNo = merTradeNo;
 	}
-
 	public String getPayseqno() {
-		return this.payseqno;
+		return payseqno;
 	}
-
 	public void setPayseqno(String payseqno) {
 		this.payseqno = payseqno;
 	}
-
 	public String getGatewayCode() {
-		return this.gatewayCode;
+		return gatewayCode;
 	}
-
 	public void setGatewayCode(String gatewayCode) {
 		this.gatewayCode = gatewayCode;
 	}
-
 	public String getMerchantCode() {
-		return this.merchantCode;
+		return merchantCode;
 	}
-
 	public void setMerchantCode(String merchantCode) {
 		this.merchantCode = merchantCode;
 	}
-
 	public Integer getPaidAmount() {
-		return this.paidAmount;
+		return paidAmount;
 	}
-
 	public void setPaidAmount(Integer paidAmount) {
 		this.paidAmount = paidAmount;
 	}
-
 	public Timestamp getNotifyTime() {
-		return this.notifyTime;
+		return notifyTime;
 	}
-
 	public void setNotifyTime(Timestamp notifyTime) {
 		this.notifyTime = notifyTime;
 	}
-
 	public String getAbcOtherinfo() {
-		return this.abcOtherinfo;
+		return abcOtherinfo;
 	}
-
 	public void setAbcOtherinfo(String abcOtherinfo) {
 		this.abcOtherinfo = abcOtherinfo;
-	}
+	}	
 }

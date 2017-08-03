@@ -1,18 +1,19 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.comment;
 
-import com.gewara.api.vo.BaseVo;
-import com.gewara.util.JsonUtils;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Map;
 
+import com.gewara.api.sns.constant.Status;
+import com.gewara.api.vo.BaseVo;
+import com.gewara.util.JsonUtils;
+
 public class ReCommentVo extends BaseVo {
 	private static final long serialVersionUID = 6937601037315369836L;
-	public static final String ADDRESS_WEB = "web";
-	public static final String ADDRESS_WAP = "wap";
-	public static final String TAG_COMMENT = "comment";
-	public static final String TAG_RECOMMENT = "recomment";
+	public static final String ADDRESS_WEB="web";
+	public static final String ADDRESS_WAP="wap";
+	public static final String TAG_COMMENT = "comment"; //回复哇啦
+	public static final String TAG_RECOMMENT = "recomment"; //回复回复
 	private Long id;
 	private Long memberid;
 	private Long relatedid;
@@ -20,80 +21,67 @@ public class ReCommentVo extends BaseVo {
 	private Timestamp addtime;
 	private Long tomemberid;
 	private String status;
-	private String address;
+	private String address;//发表来源
 	private String tag;
 	private Long transferid;
-	private Integer isread;
-	private Integer toRead;
-	private Integer toTop;
-	private String imgPath;
-	private Integer flowernum;
-	private Long mtid;
-	private String atmemberjson;
-	private String replyids;
-
+	private Integer isread;//针对哇啦是否已看,0:未读、1：已读
+	private Integer toRead;//针对回复是否已看,0:未读、1：已读
+	private Integer toTop; // 回复置顶 1
+	
+	private String imgPath;//存放图片
+	private Integer flowernum; //鲜花数
+	private Long mtid;	//标签id
+	
+	private String atmemberjson;	//{'用户昵称':用户id}
+	private String replyids;		//回复回复的id  用","拼接
+	
 	public String getReplyids() {
-		return this.replyids;
+		return replyids;
 	}
-
 	public void setReplyids(String replyids) {
 		this.replyids = replyids;
 	}
-
 	public String getAtmemberjson() {
-		return this.atmemberjson;
+		return atmemberjson;
 	}
-
 	public void setAtmemberjson(String atmemberjson) {
 		this.atmemberjson = atmemberjson;
 	}
-
 	public String getImgPath() {
-		return this.imgPath;
+		return imgPath;
 	}
-
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
 	}
-
 	public Integer getFlowernum() {
-		return this.flowernum;
+		return flowernum;
 	}
-
 	public void setFlowernum(Integer flowernum) {
 		this.flowernum = flowernum;
 	}
-
 	public Integer getIsread() {
-		return this.isread;
+		return isread;
 	}
-
 	public void setIsread(Integer isread) {
 		this.isread = isread;
 	}
-
 	public String getAddress() {
-		return this.address;
+		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-	public ReCommentVo() {
-	}
-
+	public ReCommentVo(){}
 	public ReCommentVo(Long memberid) {
 		this.memberid = memberid;
 		this.addtime = new Timestamp(System.currentTimeMillis());
-		this.status = "Y_NEW";
-		this.address = "web";
-		this.isread = Integer.valueOf(0);
-		this.toRead = Integer.valueOf(0);
+		this.status = Status.Y_NEW;
+		this.address = ADDRESS_WEB;
+		this.isread = 0;
+		this.toRead = 0;
 	}
-
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -101,7 +89,7 @@ public class ReCommentVo extends BaseVo {
 	}
 
 	public Long getRelatedid() {
-		return this.relatedid;
+		return relatedid;
 	}
 
 	public void setRelatedid(Long relatedid) {
@@ -109,7 +97,7 @@ public class ReCommentVo extends BaseVo {
 	}
 
 	public String getBody() {
-		return this.body;
+		return body;
 	}
 
 	public void setBody(String body) {
@@ -117,7 +105,7 @@ public class ReCommentVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -125,74 +113,59 @@ public class ReCommentVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	public Long getTomemberid() {
-		return this.tomemberid;
+		return tomemberid;
 	}
-
 	public void setTomemberid(Long tomemberid) {
 		this.tomemberid = tomemberid;
 	}
-
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
-
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
 	public Long getTransferid() {
-		return this.transferid;
+		return transferid;
 	}
-
 	public void setTransferid(Long transferid) {
 		this.transferid = transferid;
 	}
-
 	public Integer getToRead() {
-		return this.toRead;
+		return toRead;
 	}
-
 	public void setToRead(Integer toRead) {
 		this.toRead = toRead;
 	}
-
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
-
 	public void setMemberid(Long memberid) {
 		this.memberid = memberid;
 	}
-
+	@Override
 	public Serializable realId() {
 		return this.id;
 	}
-
 	public Integer getToTop() {
-		return this.toTop;
+		return toTop;
 	}
-
 	public void setToTop(Integer toTop) {
 		this.toTop = toTop;
 	}
-
 	public Long getMtid() {
-		return this.mtid;
+		return mtid;
 	}
-
 	public void setMtid(Long mtid) {
 		this.mtid = mtid;
 	}
-
-	public Map<String, String> atMemberMap() {
+	public Map<String, String> atMemberMap(){
 		return JsonUtils.readJsonToMap(this.atmemberjson);
 	}
 }

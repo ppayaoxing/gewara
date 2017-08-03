@@ -1,16 +1,16 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.activity.domain;
 
-import com.gewara.api.activity.ApiObject;
 import java.io.Serializable;
 
-public class CategoryCountVo extends ApiObject {
+import com.gewara.api.activity.ApiObject;
+
+public class CategoryCountVo extends ApiObject{
 	private static final long serialVersionUID = -6786003194714145755L;
 	private String category;
 	private Integer count;
 
 	public Integer getCount() {
-		return this.count;
+		return count;
 	}
 
 	public void setCount(Integer count) {
@@ -18,14 +18,16 @@ public class CategoryCountVo extends ApiObject {
 	}
 
 	public String getCategory() {
-		return this.category;
+		return category;
 	}
 
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.category;
+		// TODO Auto-generated method stub
+		return category;
 	}
 }

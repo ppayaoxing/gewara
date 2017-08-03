@@ -1,94 +1,85 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 
+import com.gewara.api.vo.BaseVo;
+
 public class MovieDetailTabVo extends BaseVo {
+
 	private static final long serialVersionUID = -1118829041626421812L;
 	private String id;
+	// 影片ID
 	private Long movieId;
+	// 影片详情的标签
 	private String tag;
+	// 图片
 	private String pic;
+	// 标题
 	private String title;
+	// 点击之后的连接URL
 	private String link;
+
 	private String content;
 	private Integer picHeight;
 	private Integer picWight;
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
-
 	public String getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public Long getMovieId() {
-		return this.movieId;
+		return movieId;
 	}
-
 	public void setMovieId(Long movieId) {
 		this.movieId = movieId;
 	}
-
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
-
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
 	public String getPic() {
-		return this.pic;
+		return pic;
 	}
-
 	public void setPic(String pic) {
 		this.pic = pic;
 	}
-
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getLink() {
-		return this.link;
+		return link;
 	}
-
 	public void setLink(String link) {
 		this.link = link;
 	}
-
 	public String getContent() {
-		return this.content;
+		return content;
 	}
-
 	public void setContent(String content) {
 		this.content = content;
 	}
-
 	public Integer getPicHeight() {
-		return this.picHeight;
+		return picHeight;
 	}
-
 	public void setPicHeight(Integer picHeight) {
 		this.picHeight = picHeight;
 	}
-
 	public Integer getPicWight() {
-		return this.picWight;
+		return picWight;
 	}
-
 	public void setPicWight(Integer picWight) {
 		this.picWight = picWight;
 	}
+
+
 }

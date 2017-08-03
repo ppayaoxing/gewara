@@ -1,8 +1,6 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.mall.vo.express;
 
-import com.gewara.mall.vo.express.ExpressCompany;
-import com.gewara.mall.vo.express.ExpressData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +11,10 @@ public class ExpressInfo {
 	private String update;
 	private String tel;
 	private String status;
-	private List<ExpressData> data = new ArrayList();
-	private List<ExpressCompany> expressList = new ArrayList();
-
+	private List<ExpressData> data = new ArrayList<ExpressData>();
+	private List<ExpressCompany> expressList = new ArrayList<ExpressCompany>();
 	public String getExpTextName() {
-		return this.expTextName;
+		return expTextName;
 	}
 
 	public void setExpTextName(String expTextName) {
@@ -25,7 +22,7 @@ public class ExpressInfo {
 	}
 
 	public String getExpSpellName() {
-		return this.expSpellName;
+		return expSpellName;
 	}
 
 	public void setExpSpellName(String expSpellName) {
@@ -33,7 +30,7 @@ public class ExpressInfo {
 	}
 
 	public String getMailNo() {
-		return this.mailNo;
+		return mailNo;
 	}
 
 	public void setMailNo(String mailNo) {
@@ -41,7 +38,7 @@ public class ExpressInfo {
 	}
 
 	public String getUpdate() {
-		return this.update;
+		return update;
 	}
 
 	public void setUpdate(String update) {
@@ -49,7 +46,7 @@ public class ExpressInfo {
 	}
 
 	public String getTel() {
-		return this.tel;
+		return tel;
 	}
 
 	public void setTel(String tel) {
@@ -57,7 +54,7 @@ public class ExpressInfo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -65,7 +62,7 @@ public class ExpressInfo {
 	}
 
 	public List<ExpressData> getData() {
-		return this.data;
+		return data;
 	}
 
 	public void setData(List<ExpressData> data) {
@@ -73,10 +70,11 @@ public class ExpressInfo {
 	}
 
 	public List<ExpressCompany> getExpressList() {
-		return this.expressList;
+		return expressList;
 	}
 
 	public void setExpressList(List<ExpressCompany> expressList) {
 		this.expressList = expressList;
 	}
+
 }

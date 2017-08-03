@@ -1,46 +1,64 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.gmessage.external.entity;
 
 import com.gewara.gmessage.external.constant.NoticeType;
 
-public class SenderMessage extends MessageBaseInfo {
+public class SenderMessage extends MessageBaseInfo{
 	private static final long serialVersionUID = 5203539060269685510L;
-	private long messageID;
-	private MUser sender;
-	private long sendTimes;
-	private Long expiryTimes;
-	private NoticeType[] noticeType;
+	
 
-	public SenderMessage() {
-		this.messageID = -1L;
+	/**消息ID*/
+	private long messageID=-1;
+	
+	/**消息发送者*/
+	private MUser sender=null;
+	
+	/**发送时间*/
+	private long sendTimes=-1;
+	
+	/**失效时间,不包含这个点。*/
+	private Long expiryTimes=null;
+	
+	/**消息通知类型*/
+	private NoticeType[] noticeType =null;
 
-		this.sender = null;
-
-		this.sendTimes = -1L;
-
-		this.expiryTimes = null;
-
-		this.noticeType = null;
-	}
-
+	/**
+	 * 消息ID
+	 * @return
+	 */
 	public long getMessageID() {
-		return this.messageID;
+		return messageID;
 	}
 
+	/**
+	 * 消息发送者信息
+	 * @return
+	 */
 	public MUser getSender() {
-		return this.sender;
+		return sender;
 	}
 
+	/**
+	 * 消息发送时间，毫秒
+	 * @return
+	 */
 	public long getSendTimes() {
-		return this.sendTimes;
+		return sendTimes;
 	}
 
+	/**
+	 * 消息失效时间
+	 * @return
+	 */
 	public Long getExpiryTimes() {
-		return this.expiryTimes;
+		return expiryTimes;
 	}
 
+	/**
+	 * 消息提醒方式
+	 * @return
+	 */
 	public NoticeType[] getNoticeType() {
-		return this.noticeType;
+		return noticeType;
 	}
 
 	public void setMessageID(long messageID) {
@@ -62,4 +80,6 @@ public class SenderMessage extends MessageBaseInfo {
 	public void setNoticeType(NoticeType[] noticeType) {
 		this.noticeType = noticeType;
 	}
+
+	
 }

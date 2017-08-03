@@ -1,20 +1,51 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.response.abc;
 
-import com.gewara.api.pay.response.abc.AbcResponse;
 
-public class QueryPointResponse extends AbcResponse {
+
+public class QueryPointResponse extends AbcResponse{
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -1164293328300492123L;
+
+	/**
+	 * 交易卡号
+	 */
 	private String cardno;
+	
+	/**
+	 * 总积分
+	 */
 	private String totalpoint;
+	
+	/**
+	 * 本位币积分
+	 */
 	private String point;
+	
+	/**
+	 * 外币代码
+	 */
 	private String curr;
+	
+	/**
+	 * 外币积分
+	 */
 	private String currpoint;
+	
+	/**
+	 * 交易日期
+	 */
 	private String trandate;
+	
+	/**
+	 * 交易时间
+	 */
 	private String trantime;
 
 	public String getCardno() {
-		return this.cardno;
+		return cardno;
 	}
 
 	public void setCardno(String cardno) {
@@ -22,7 +53,7 @@ public class QueryPointResponse extends AbcResponse {
 	}
 
 	public String getTotalpoint() {
-		return this.totalpoint;
+		return totalpoint;
 	}
 
 	public void setTotalpoint(String totalpoint) {
@@ -30,7 +61,7 @@ public class QueryPointResponse extends AbcResponse {
 	}
 
 	public String getPoint() {
-		return this.point;
+		return point;
 	}
 
 	public void setPoint(String point) {
@@ -38,7 +69,7 @@ public class QueryPointResponse extends AbcResponse {
 	}
 
 	public String getCurr() {
-		return this.curr;
+		return curr;
 	}
 
 	public void setCurr(String curr) {
@@ -46,7 +77,7 @@ public class QueryPointResponse extends AbcResponse {
 	}
 
 	public String getCurrpoint() {
-		return this.currpoint;
+		return currpoint;
 	}
 
 	public void setCurrpoint(String currpoint) {
@@ -54,7 +85,7 @@ public class QueryPointResponse extends AbcResponse {
 	}
 
 	public String getTrandate() {
-		return this.trandate;
+		return trandate;
 	}
 
 	public void setTrandate(String trandate) {
@@ -62,10 +93,11 @@ public class QueryPointResponse extends AbcResponse {
 	}
 
 	public String getTrantime() {
-		return this.trantime;
+		return trantime;
 	}
 
 	public void setTrantime(String trantime) {
 		this.trantime = trantime;
 	}
+	
 }

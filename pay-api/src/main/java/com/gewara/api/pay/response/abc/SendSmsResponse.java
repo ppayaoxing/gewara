@@ -1,35 +1,31 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.response.abc;
 
-import com.gewara.api.pay.response.abc.AbcResponse;
+
 
 public class SendSmsResponse extends AbcResponse {
+
 	private static final long serialVersionUID = 320131114082724773L;
-	private String cardno;
-	private String trandate;
-	private String trantime;
 
+	private String	cardno;			//交易卡号
+	private String	trandate;		//交易日期
+	private String	trantime;		//交易时间
+	
 	public String getCardno() {
-		return this.cardno;
+		return cardno;
 	}
-
 	public void setCardno(String cardno) {
 		this.cardno = cardno;
 	}
-
 	public String getTrandate() {
-		return this.trandate;
+		return trandate;
 	}
-
 	public void setTrandate(String trandate) {
 		this.trandate = trandate;
 	}
-
 	public String getTrantime() {
-		return this.trantime;
+		return trantime;
 	}
-
 	public void setTrantime(String trantime) {
 		this.trantime = trantime;
-	}
+	}	
 }

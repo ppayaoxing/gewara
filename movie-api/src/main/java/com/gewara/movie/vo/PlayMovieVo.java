@@ -1,59 +1,60 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.gewara.api.vo.BaseVo;
+
 public class PlayMovieVo extends BaseVo {
-	private Long id;
-	private Long kindId;
-	private String kindName;
-	private String belongToKind;
-	private Long movieId;
-	private Timestamp playStartTime;
-	private Timestamp playEndTime;
-	private Timestamp cinemaPlayTime;
-	private Integer orderNumber;
-	private Integer status;
-	private Timestamp addtime;
-	private Timestamp updatetime;
-	private String activityId;
-	private Timestamp startTime;
-	private Timestamp endTime;
-	private String impression;
-	private String qualityReport;
-	private String videoLink;
-	private String playCityCode;
-	private String describe;
-	private String yingzhangurl;
-	private String yingzhanAddress;
-	private String relativeIds;
+
+	private Long id; //唯一标示
+	private Long kindId; //所在类别,属于哪一期
+	private String kindName; //放映类别名称
+	private String belongToKind;//属于哪个类别 新商业or新经典 现在的值有 newBusiness newClassics 影展模式(yingzhan)
+	private Long movieId; //影片ID
+	private Timestamp playStartTime; //影片点映开始时间
+	private Timestamp playEndTime;  //影片点映结束时间
+	private Timestamp cinemaPlayTime; //影院放映时间
+	private Integer orderNumber;	//排序序号
+	private Integer status;	//是否删除 1=删除 0=未删除
+	private Timestamp addtime; //添加时间
+	private Timestamp updatetime;//修改时间
+	private String activityId; //试片活动id
+	private Timestamp startTime; //活动有效时间 开始时间
+	private Timestamp endTime; //活动有效时间 结束时间
+	private String impression; //影片印象 多个印象用逗号分开
+	private String qualityReport; //质量报告
+	private String videoLink; //视频链接
+	private String playCityCode;//放映城市编码
+	private String describe;//描述
+	private String yingzhangurl;//影展的url，如果是影展模式的话
+	private String yingzhanAddress;//影展地址
+	private String relativeIds;//影展关联id
 	private String imgUrl;
-	private static final long serialVersionUID = 6672625770368452937L;
-
 	public String getRelativeIds() {
-		return this.relativeIds;
+		return relativeIds;
 	}
-
 	public void setRelativeIds(String relativeIds) {
 		this.relativeIds = relativeIds;
 	}
-
 	public String getYingzhangurl() {
-		return this.yingzhangurl;
+		return yingzhangurl;
 	}
 
 	public void setYingzhangurl(String yingzhangurl) {
 		this.yingzhangurl = yingzhangurl;
 	}
 
+	public PlayMovieVo(){}
+	private static final long serialVersionUID = 6672625770368452937L;
+
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -61,7 +62,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public Long getMovieId() {
-		return this.movieId;
+		return movieId;
 	}
 
 	public void setMovieId(Long movieId) {
@@ -69,7 +70,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public Timestamp getPlayStartTime() {
-		return this.playStartTime;
+		return playStartTime;
 	}
 
 	public void setPlayStartTime(Timestamp playStartTime) {
@@ -77,7 +78,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public Timestamp getPlayEndTime() {
-		return this.playEndTime;
+		return playEndTime;
 	}
 
 	public void setPlayEndTime(Timestamp playEndTime) {
@@ -85,7 +86,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public Timestamp getCinemaPlayTime() {
-		return this.cinemaPlayTime;
+		return cinemaPlayTime;
 	}
 
 	public void setCinemaPlayTime(Timestamp cinemaPlayTime) {
@@ -93,7 +94,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -101,7 +102,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public Timestamp getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(Timestamp updatetime) {
@@ -109,7 +110,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public Long getKindId() {
-		return this.kindId;
+		return kindId;
 	}
 
 	public void setKindId(Long kindId) {
@@ -117,7 +118,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public Integer getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(Integer status) {
@@ -125,7 +126,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public Integer getOrderNumber() {
-		return this.orderNumber;
+		return orderNumber;
 	}
 
 	public void setOrderNumber(Integer orderNumber) {
@@ -133,7 +134,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public String getImpression() {
-		return this.impression;
+		return impression;
 	}
 
 	public void setImpression(String impression) {
@@ -141,7 +142,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public String getVideoLink() {
-		return this.videoLink;
+		return videoLink;
 	}
 
 	public void setVideoLink(String videoLink) {
@@ -149,7 +150,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public String getQualityReport() {
-		return this.qualityReport;
+		return qualityReport;
 	}
 
 	public void setQualityReport(String qualityReport) {
@@ -157,7 +158,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public String getPlayCityCode() {
-		return this.playCityCode;
+		return playCityCode;
 	}
 
 	public void setPlayCityCode(String playCityCode) {
@@ -165,7 +166,7 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public String getActivityId() {
-		return this.activityId;
+		return activityId;
 	}
 
 	public void setActivityId(String activityId) {
@@ -173,58 +174,59 @@ public class PlayMovieVo extends BaseVo {
 	}
 
 	public String getDescribe() {
-		return this.describe;
+		return describe;
 	}
 
 	public void setDescribe(String describe) {
 		this.describe = describe;
 	}
-
+	
 	public String getKindName() {
-		return this.kindName;
+		return kindName;
 	}
-
+	
 	public void setKindName(String kindName) {
 		this.kindName = kindName;
 	}
-
+	
 	public String getBelongToKind() {
-		return this.belongToKind;
+		return belongToKind;
 	}
-
+	
 	public void setBelongToKind(String belongToKind) {
 		this.belongToKind = belongToKind;
 	}
-
+	
 	public String getImgUrl() {
-		return this.imgUrl;
+		return imgUrl;
 	}
-
+	
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
-
+	
 	public Timestamp getStartTime() {
-		return this.startTime;
+		return startTime;
 	}
-
+	
 	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
 	}
-
+	
 	public Timestamp getEndTime() {
-		return this.endTime;
+		return endTime;
 	}
-
+	
 	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
-
+	
 	public String getYingzhanAddress() {
-		return this.yingzhanAddress;
+		return yingzhanAddress;
 	}
-
+	
 	public void setYingzhanAddress(String yingzhanAddress) {
 		this.yingzhanAddress = yingzhanAddress;
 	}
+	
 }

@@ -1,11 +1,11 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.baochang;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class BaoChangRoomDescVo extends BaseVo {
+import com.gewara.api.vo.BaseVo;
+
+public class BaoChangRoomDescVo extends BaseVo{
 	private static final long serialVersionUID = 4236339229733739735L;
 	private String id;
 	private Long cinemaid;
@@ -19,15 +19,17 @@ public class BaoChangRoomDescVo extends BaseVo {
 	private String bigIconHeight;
 	private String remark;
 	private Integer rank;
-	private String descType;
-	private String top;
+	private String descType;	// big;small
+	private String top;		// Y:N default:N
 	private Timestamp startTime;
 	private Timestamp endTime;
 	private String otherinfo;
-	private String status;
+	private String status;		//Y
+	
+	public BaoChangRoomDescVo(){}
 
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -35,7 +37,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public Long getCinemaid() {
-		return this.cinemaid;
+		return cinemaid;
 	}
 
 	public void setCinemaid(Long cinemaid) {
@@ -43,7 +45,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public Long getRoomid() {
-		return this.roomid;
+		return roomid;
 	}
 
 	public void setRoomid(Long roomid) {
@@ -51,7 +53,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getIconUrl() {
-		return this.iconUrl;
+		return iconUrl;
 	}
 
 	public void setIconUrl(String iconUrl) {
@@ -59,7 +61,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getIconWidth() {
-		return this.iconWidth;
+		return iconWidth;
 	}
 
 	public void setIconWidth(String iconWidth) {
@@ -67,7 +69,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getIconHeight() {
-		return this.iconHeight;
+		return iconHeight;
 	}
 
 	public void setIconHeight(String iconHeight) {
@@ -75,7 +77,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(String title) {
@@ -83,7 +85,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getBigIconUrl() {
-		return this.bigIconUrl;
+		return bigIconUrl;
 	}
 
 	public void setBigIconUrl(String bigIconUrl) {
@@ -91,7 +93,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getBigIconWidth() {
-		return this.bigIconWidth;
+		return bigIconWidth;
 	}
 
 	public void setBigIconWidth(String bigIconWidth) {
@@ -99,7 +101,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getBigIconHeight() {
-		return this.bigIconHeight;
+		return bigIconHeight;
 	}
 
 	public void setBigIconHeight(String bigIconHeight) {
@@ -107,7 +109,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getRemark() {
-		return this.remark;
+		return remark;
 	}
 
 	public void setRemark(String remark) {
@@ -115,15 +117,17 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public Integer getRank() {
-		return this.rank;
+		return rank;
 	}
 
 	public void setRank(Integer rank) {
 		this.rank = rank;
 	}
 
+	
+
 	public String getDescType() {
-		return this.descType;
+		return descType;
 	}
 
 	public void setDescType(String descType) {
@@ -131,7 +135,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getTop() {
-		return this.top;
+		return top;
 	}
 
 	public void setTop(String top) {
@@ -139,7 +143,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public Timestamp getStartTime() {
-		return this.startTime;
+		return startTime;
 	}
 
 	public void setStartTime(Timestamp startTime) {
@@ -147,7 +151,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public Timestamp getEndTime() {
-		return this.endTime;
+		return endTime;
 	}
 
 	public void setEndTime(Timestamp endTime) {
@@ -155,7 +159,7 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getOtherinfo() {
-		return this.otherinfo;
+		return otherinfo;
 	}
 
 	public void setOtherinfo(String otherinfo) {
@@ -163,14 +167,16 @@ public class BaoChangRoomDescVo extends BaseVo {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
+	
 }

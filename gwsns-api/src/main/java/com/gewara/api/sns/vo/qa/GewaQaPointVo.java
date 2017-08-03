@@ -1,9 +1,9 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.sns.vo.qa;
 
-import com.gewara.api.vo.BaseVo;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+import com.gewara.api.vo.BaseVo;
 
 public class GewaQaPointVo extends BaseVo {
 	private static final long serialVersionUID = 8512385224617282034L;
@@ -16,12 +16,12 @@ public class GewaQaPointVo extends BaseVo {
 	private Long memberid;
 	private Integer point;
 	private Timestamp addtime;
-	private String tag;
-
-	public GewaQaPointVo() {
+	private String tag; 
+	
+	public GewaQaPointVo(){
+		
 	}
-
-	public GewaQaPointVo(Long questionid, Long answerid, Long memberid, Integer point, String tag) {
+	public GewaQaPointVo(Long questionid, Long answerid, Long memberid, Integer point,String tag) {
 		this.questionid = questionid;
 		this.answerid = answerid;
 		this.memberid = memberid;
@@ -29,21 +29,20 @@ public class GewaQaPointVo extends BaseVo {
 		this.addtime = new Timestamp(System.currentTimeMillis());
 		this.tag = tag;
 	}
-
-	public GewaQaPointVo(Long questionid, Long memberid, Integer point, String tag) {
+	public GewaQaPointVo(Long questionid, Long memberid, Integer point,String tag) {
 		this.questionid = questionid;
 		this.memberid = memberid;
 		this.point = point;
 		this.addtime = new Timestamp(System.currentTimeMillis());
 		this.tag = tag;
 	}
-
+	@Override
 	public Serializable realId() {
-		return this.id;
+		return id;
 	}
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -51,7 +50,7 @@ public class GewaQaPointVo extends BaseVo {
 	}
 
 	public Long getAnswerid() {
-		return this.answerid;
+		return answerid;
 	}
 
 	public void setAnswerid(Long answerid) {
@@ -59,7 +58,7 @@ public class GewaQaPointVo extends BaseVo {
 	}
 
 	public Long getMemberid() {
-		return this.memberid;
+		return memberid;
 	}
 
 	public void setMemberid(Long memberid) {
@@ -67,7 +66,7 @@ public class GewaQaPointVo extends BaseVo {
 	}
 
 	public Integer getPoint() {
-		return this.point;
+		return point;
 	}
 
 	public void setPoint(Integer point) {
@@ -75,7 +74,7 @@ public class GewaQaPointVo extends BaseVo {
 	}
 
 	public Timestamp getAddtime() {
-		return this.addtime;
+		return addtime;
 	}
 
 	public void setAddtime(Timestamp addtime) {
@@ -83,7 +82,7 @@ public class GewaQaPointVo extends BaseVo {
 	}
 
 	public Long getQuestionid() {
-		return this.questionid;
+		return questionid;
 	}
 
 	public void setQuestionid(Long questionid) {
@@ -91,10 +90,11 @@ public class GewaQaPointVo extends BaseVo {
 	}
 
 	public String getTag() {
-		return this.tag;
+		return tag;
 	}
 
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
+
 }

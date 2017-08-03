@@ -1,34 +1,36 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.movie.vo.baochang;
 
-import com.gewara.movie.vo.baochang.BaoChangBasePriceInfoVo;
-import com.gewara.util.DateUtil;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class BaoChangMpiInfoVo extends BaoChangBasePriceInfoVo {
+import com.gewara.util.DateUtil;
+
+public class BaoChangMpiInfoVo extends BaoChangBasePriceInfoVo{
 	private static final long serialVersionUID = -8070228638065466745L;
+	
 	private Long movieid;
 	private String moviename;
 	private Long mpid;
-	private Date playdate;
-	private String showtime;
-	private String status;
-	private Integer seatNum;
-	private Integer seatPrice;
-	private Integer seatGewaprice;
-	private Timestamp validtime;
-
+	private Date playdate;		//放映日期
+	private String showtime;	//放映时间
+	private String status;//状态
+	private Integer seatNum;//影厅座位数量
+	private Integer seatPrice;//影院单张票价
+	private Integer seatGewaprice;//格瓦单张卖价
+	private Timestamp validtime;		//有效时间
+	
+	public BaoChangMpiInfoVo(){}
+	
 	public Long getMovieid() {
-		return this.movieid;
+		return movieid;
 	}
-
+	
 	public void setMovieid(Long movieid) {
 		this.movieid = movieid;
 	}
-
+	
 	public String getMoviename() {
-		return this.moviename;
+		return moviename;
 	}
 
 	public void setMoviename(String moviename) {
@@ -36,31 +38,31 @@ public class BaoChangMpiInfoVo extends BaoChangBasePriceInfoVo {
 	}
 
 	public Long getMpid() {
-		return this.mpid;
+		return mpid;
 	}
-
+	
 	public void setMpid(Long mpid) {
 		this.mpid = mpid;
 	}
-
+	
 	public Date getPlaydate() {
-		return this.playdate;
+		return playdate;
 	}
-
+	
 	public void setPlaydate(Date playdate) {
 		this.playdate = playdate;
 	}
-
+	
 	public String getShowtime() {
-		return this.showtime;
+		return showtime;
 	}
-
+	
 	public void setShowtime(String showtime) {
 		this.showtime = showtime;
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -68,7 +70,7 @@ public class BaoChangMpiInfoVo extends BaoChangBasePriceInfoVo {
 	}
 
 	public Integer getSeatNum() {
-		return this.seatNum;
+		return seatNum;
 	}
 
 	public void setSeatNum(Integer seatNum) {
@@ -76,7 +78,7 @@ public class BaoChangMpiInfoVo extends BaoChangBasePriceInfoVo {
 	}
 
 	public Integer getSeatPrice() {
-		return this.seatPrice;
+		return seatPrice;
 	}
 
 	public void setSeatPrice(Integer seatPrice) {
@@ -84,7 +86,7 @@ public class BaoChangMpiInfoVo extends BaoChangBasePriceInfoVo {
 	}
 
 	public Integer getSeatGewaprice() {
-		return this.seatGewaprice;
+		return seatGewaprice;
 	}
 
 	public void setSeatGewaprice(Integer seatGewaprice) {
@@ -92,24 +94,23 @@ public class BaoChangMpiInfoVo extends BaoChangBasePriceInfoVo {
 	}
 
 	public Timestamp getValidtime() {
-		return this.validtime;
+		return validtime;
 	}
 
 	public void setValidtime(Timestamp validtime) {
 		this.validtime = validtime;
 	}
-
-	public boolean isLock() {
-		return this.validtime != null && (new Timestamp(System.currentTimeMillis())).before(this.validtime);
+	
+	public boolean isLock(){
+		return validtime!=null && new Timestamp(System.currentTimeMillis()).before(validtime);
 	}
 
-	public Timestamp getFullPlaytime() {
-		String timeStr = DateUtil.formatDate(this.playdate) + " " + this.showtime + ":00";
+	public Timestamp getFullPlaytime(){
+		String timeStr = DateUtil.formatDate(playdate) + " " + showtime + ":00";
 		return DateUtil.parseTimestamp(timeStr);
 	}
-
-	public boolean isTimeOut() {
-		return this.getFullPlaytime() != null
-				&& this.getFullPlaytime().before(new Timestamp(System.currentTimeMillis()));
+	
+	public boolean isTimeOut(){
+		return getFullPlaytime() != null && getFullPlaytime().before(new Timestamp(System.currentTimeMillis()));
 	}
 }

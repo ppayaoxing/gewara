@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+   <!-- 生成远程服务代理，可以和本地bean一样使用 -->
+   <dubbo:reference id="gpticketApiService" interface="com.gewara.api.gpticket.service.GpticketApiService" version="2.0.0"/>
+   <dubbo:reference id="gpticketOrderApiService" interface="com.gewara.api.gpticket.service.GpticketOrderApiService" version="2.0.0"/>
+   <dubbo:reference id="gptbsApiService" interface="com.gewara.api.gpticket.service.GptbsApiService"/>
+   <dubbo:reference id="gpticketExtraApiService" interface="com.gewara.api.gpticket.service.GpticketExtraApiService"/>
+   <dubbo:reference id="wpApiService" interface="com.gewara.api.gpticket.service.WpApiService"/>
+</beans>
+

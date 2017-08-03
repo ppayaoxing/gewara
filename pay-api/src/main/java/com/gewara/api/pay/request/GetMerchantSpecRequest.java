@@ -1,29 +1,41 @@
-/*** Eclipse Class Decompiler plugin, copyright (c) 2016 Chen Chao (cnfree2000@hotmail.com) ***/
 package com.gewara.api.pay.request;
 
-import com.gewara.api.pay.ApiRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GetMerchantSpecRequest extends ApiRequest {
-	private static final long serialVersionUID = -5045993031881937584L;
-	private String merchantCode;
+import com.gewara.api.pay.ApiRequest;
 
+public class GetMerchantSpecRequest extends ApiRequest {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5045993031881937584L;
+	
+
+	private String merchantCode;	//商户号标识
+
+	@Override
 	public Map<String, String> getTextParams() {
-		HashMap params = new HashMap();
-		params.put("merchantCode", this.merchantCode);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("merchantCode", merchantCode);
 		return params;
 	}
 
+	@Override
 	public boolean checkParams() {
-		return this.merchantCode != null && !"".equals(this.merchantCode.trim());
+		if(merchantCode == null || "".equals(merchantCode.trim())){
+			return false;
+		}
+		return true;
 	}
 
 	public String getMerchantCode() {
-		return this.merchantCode;
+		return merchantCode;
 	}
 
 	public void setMerchantCode(String merchantCode) {
 		this.merchantCode = merchantCode;
 	}
+
 }
