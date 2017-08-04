@@ -1,9 +1,11 @@
 package com.gewara.support;
 
-import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.gewara.untrans.CacheService;
+import com.gewara.untrans.monitor.MonitorService;
+import com.gewara.util.GewaLogger;
+import com.gewara.util.StringUtil;
+import com.gewara.util.WebLogger;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.patchca.CaptchaUtil;
@@ -12,11 +14,9 @@ import org.patchca.service.Captcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.gewara.untrans.CacheService;
-import com.gewara.untrans.monitor.MonitorService;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.StringUtil;
-import com.gewara.util.WebLogger;
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GewaCaptchaService {
 	protected final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
@@ -66,47 +66,54 @@ public class GewaCaptchaService {
 	public String getCaptchaValue(String captchaId){
 		return (String) cacheService.get(CacheService.REGION_TENMIN, KEY_CAPTCHA + captchaId);
 	}
-	public ErrorCode<Map<String, String>> validateResponseForID(String captchaId, String response, String ip) {
+
+	/** 根据 验证码id,ip和验证码验证.
+	 * @param captchaId
+	 * @param captcha
+	 * @param ip
+	 * @return
+	 */
+	public ErrorCode<Map<String, String>> validateResponseForID(String captchaId, String captcha, String ip) {
 		checkCount ++;
 		if(checkCount % 1000==0){
 			checkCount = 0;
 			dbLogger.warn("验证码1000次计数：" + checkCount);
 		}
-		if(response==null) {
-			Map<String, String> entry = new HashMap<>();
+		if(captcha==null) {
+			Map<String, String> entry = Maps.newHashMap();
 			entry.put("errtype", "captcha");
 			entry.put("captchaId", captchaId);
-			entry.put("response", response);
+			entry.put("response", captcha);
 			entry.put("msg", "未输入验证码");
 			return ErrorCode.getFailureReturn(entry);
 		}
-		response = StringUtils.replace(response, " ", "");
+		captcha = StringUtils.replace(captcha, " ", "");
 		String captchaText = (String) cacheService.get(CacheService.REGION_TENMIN, KEY_CAPTCHA + captchaId);
 		if(captchaText != null){
 			int count = cacheService.incr(CacheService.REGION_ONEHOUR, KEY_CAPTCHA_COUNT + captchaId, 1, 1);
 			if(count > 20){//同一验证码验证不能超过20次
-				dbLogger.warn("验证码错误,次数超出：" + captchaId  + "：" + captchaText + "--->" + response + ", " + ip);
-				return ErrorCode.getFailureReturn(getLogEntry(captchaId, captchaText, response, "验证码次数超出"));
+				dbLogger.warn("验证码错误,次数超出：" + captchaId  + "：" + captchaText + "--->" + captcha + ", " + ip);
+				return ErrorCode.getFailureReturn(getLogEntry(captchaId, captchaText, captcha, "验证码次数超出"));
 			}
 			cacheService.remove(CacheService.REGION_TENMIN, KEY_CAPTCHA + captchaId);
-			boolean result = captchaText.equalsIgnoreCase(response);
+			boolean result = captchaText.equalsIgnoreCase(captcha);
 			if(!result) {
-				dbLogger.warn("验证码错误：" + captchaId  + "：" + captchaText + "--->" + response + ", " + ip);
-				return ErrorCode.getFailureReturn(getLogEntry(captchaId, captchaText, response, "验证码错误"));
+				dbLogger.warn("验证码错误：" + captchaId  + "：" + captchaText + "--->" + captcha + ", " + ip);
+				return ErrorCode.getFailureReturn(getLogEntry(captchaId, captchaText, captcha, "验证码错误"));
 			}
 			return ErrorCode.SUCCESS;
 		}else{
-			Map<String, String> entry = new HashMap<>();
+			Map<String, String> entry = Maps.newHashMap();
 			entry.put("errtype", "captcha");
 			entry.put("captchaId", captchaId);
-			entry.put("response", response);
+			entry.put("response", captcha);
 			entry.put("msg", "验证码不存在！");
 			return ErrorCode.getFailureReturn(entry);
 		}
 		
 	}
 	private Map<String, String> getLogEntry(String captchaId, String captchaText, String response, String msg){
-		Map<String, String> entry = new HashMap<>();
+		Map<String, String> entry = Maps.newHashMap();
 		entry.put("errtype", "captcha");
 		entry.put("captchaId", captchaId);
 		entry.put("captchaText", captchaText);

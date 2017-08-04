@@ -6,40 +6,45 @@ import com.gewara.support.concurrent.AtomicCounter;
 import com.gewara.untrans.LockCallback;
 import com.gewara.untrans.LockService;
 
-/**
- * 暂定
- * 
- * @author sunder
- *
- */
+
 public class LockServiceImpl implements LockService {
+    /**
+     * @param lockKey
+     * @param lc
+     * @param <T>
+     * @return
+     */
+    @Override
+    public <T> ErrorCode<T> doWithWriteLock(String lockKey, LockCallback<T> lc) {
+        return null;
+    }
 
-	private AtomicCounter atomicCounter;
+    /**
+     * @param lockKey
+     * @param waitSeconds 等待时间，小于 0 表示一直等待
+     * @param lc
+     * @param <T>
+     * @return
+     */
+    @Override
+    public <T> ErrorCode<T> doWithWriteLock(String lockKey, int waitSeconds, LockCallback<T> lc) {
+        return null;
+    }
 
+    /**
+     * @param lockKey
+     * @param lc
+     * @param <T>
+     * @return
+     */
+    @Override
+    public <T> ErrorCode<T> tryDoWithWriteLock(String lockKey, LockCallback<T> lc) {
+        return null;
+    }
+
+	@Override
 	public AtomicCounter getAtomicCounter(String ticketTradeNO) {
-		return atomicCounter;
-	}
-
-	public void setAtomicCounter(AtomicCounter atomicCounter) {
-		this.atomicCounter = atomicCounter;
-	}
-
-	@Override
-	public <T> ErrorCode<T> doWithWriteLock(String lockKey, LockCallback<T> lc) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public <T> ErrorCode<T> doWithWriteLock(String lockKey, int waitSeconds, LockCallback<T> lc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <T> ErrorCode<T> tryDoWithWriteLock(String lockKey, LockCallback<T> lc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

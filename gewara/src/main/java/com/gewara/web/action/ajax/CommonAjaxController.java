@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -166,7 +167,7 @@ public class CommonAjaxController extends AnnotationController {
 	public String getRandomAd(String pid, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 		String citycode = WebUtils.getAndSetDefault(request, response);
 		Advertising ad = adService.getRandomAd(citycode, pid);
-		Map jsonMap = new HashMap();
+		Map jsonMap = Maps.newHashMap();
 		if (ad != null) {
 			jsonMap.putAll(BeanUtil.getBeanMapWithKey(ad, "title", "link", "logicaldir"));
 			jsonMap.put("adpath", config.getBasePath() + ad.getAd());
@@ -181,7 +182,7 @@ public class CommonAjaxController extends AnnotationController {
 			ptag = "ticketsuccess";
 		}
 		Advertising ad = adService.getAdvertising(tag, relatedid,ptag);
-		Map jsonMap = new HashMap();
+		Map jsonMap = Maps.newHashMap();
 		if (ad != null) {
 			jsonMap.putAll(BeanUtil.getBeanMapWithKey(ad, "title", "link", "logicaldir"));
 			jsonMap.put("adpath", config.getBasePath() + ad.getAd());
@@ -209,7 +210,7 @@ public class CommonAjaxController extends AnnotationController {
 		if (ads != null && ads.size() > 0) {
 			List<Map> jsonMapList = new ArrayList<Map>();
 			for (Advertising advertising : ads) {
-				Map jsonMap = new HashMap();
+				Map jsonMap = Maps.newHashMap();
 				jsonMap.putAll(BeanUtil.getBeanMapWithKey(advertising, "title", "link", "logicaldir", "adtype", "description", "track"));
 				jsonMap.put("adpath", config.getBasePath() + advertising.getAd());
 				jsonMap.put("pid", pid);
@@ -227,7 +228,7 @@ public class CommonAjaxController extends AnnotationController {
 	public String getIndexRandomAd(String pid, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 		String citycode = WebUtils.getAndSetDefault(request, response);
 		Advertising ad = adService.getRandomAd(citycode, pid);
-		Map jsonMap = new HashMap();
+		Map jsonMap = Maps.newHashMap();
 		if (ad != null) {
 			jsonMap.putAll(BeanUtil.getBeanMapWithKey(ad, "title", "link", "logicaldir"));
 			jsonMap.put("adpath", config.getBasePath() + ad.getAd());
@@ -312,8 +313,8 @@ public class CommonAjaxController extends AnnotationController {
 	public String asynchLogin(HttpServletRequest request, HttpServletResponse response, String username, String password, String captchaId, String captcha, ModelMap model) {
 		boolean isValid = controllerService.validateCaptcha(captchaId, captcha, WebUtils.getRemoteIp(request));
 		if(!isValid){
-			Map jsonMap = new HashMap();
-			Map errorMap = new HashMap();
+			Map jsonMap = Maps.newHashMap();
+			Map errorMap = Maps.newHashMap();
 			jsonMap.put("errorMap", errorMap);
 			errorMap.put("captcha", "验证码错误！");
 			return showJsonError(model, jsonMap);
@@ -322,7 +323,7 @@ public class CommonAjaxController extends AnnotationController {
 		if (code.isSuccess()) {
 			return showJsonSuccess(model, code.getRetval());
 		} else {
-			Map jsonMap = new HashMap();
+			Map jsonMap = Maps.newHashMap();
 			jsonMap.put("errorMap", code.getRetval());
 			return showJsonError(model, jsonMap);
 		}
@@ -335,7 +336,7 @@ public class CommonAjaxController extends AnnotationController {
 		String ip = WebUtils.getRemoteIp(request);
 		Member member = loginService.getLogonMemberBySessid(ip, sessid);
 		if (member != null) {
-			Map result = new HashMap();
+			Map result = Maps.newHashMap();
 			Map jsonMap = BeanUtil.getBeanMapWithKey(member, "id", "nickname");
 			if(member.isBindMobile()){
 				jsonMap.put("isMobile", true);
@@ -573,7 +574,7 @@ public class CommonAjaxController extends AnnotationController {
 			return showJsonError(model, "参数出错！");
 		String msg = "", label = "";
 		Long treasureid = 0L;
-		Map jsonMap = new HashMap();
+		Map jsonMap = Maps.newHashMap();
 		if (tag.equals("movie")) {
 			List<Cinema> cinemaList = orderQueryService.getMemberOrderCinemaList(member.getId(), 1);
 			if (!cinemaList.isEmpty()) {
@@ -760,7 +761,7 @@ public class CommonAjaxController extends AnnotationController {
 		}
 		String ip = WebUtils.getRemoteIp(request);
 		Member member = loginService.getLogonMemberBySessid(ip, sessid);
-		Map jsonMap = new HashMap();
+		Map jsonMap = Maps.newHashMap();
 		List<String> markList = MarkHelper.getMarkList();
 		if(member == null){
 			jsonMap.put("cTreasure", false);
