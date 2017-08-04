@@ -27,7 +27,7 @@ public class QaSitemapGenService extends AbstractSitemapGenService implements Si
 		loc = siteUrl + "qa";
 		this.writerUrl(writer, loc, lastmod, "always","1.0");
 		//1)QA
-		List<Long> qaIdList = hibernateTemplate.find("select c.id from GewaQuestion c");
+		List<Long> qaIdList = (List<Long>) hibernateTemplate.find("select c.id from GewaQuestion c");
 		for(Long qaId:qaIdList){
 			loc = siteUrl + "qa/q" + qaId;
 			this.writerUrl(writer, loc, lastmod, "hourly","0.8");

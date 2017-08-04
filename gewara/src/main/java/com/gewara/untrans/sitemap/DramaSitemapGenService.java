@@ -41,7 +41,7 @@ public class DramaSitemapGenService extends AbstractSitemapGenService implements
 		this.writerUrl(writer, loc, lastmod, "always","1.0");
 		
 		// 1) drama
-		List<Long> dramaList = hibernateTemplate.find("select id from Drama");
+		List<Long> dramaList = (List<Long>) hibernateTemplate.find("select id from Drama");
 		String[] moudels = new String[]{"/introduce", "/diarylist", "/picturelist", "/newslist"};
 		for(Long ptId : dramaList){
 			loc = siteUrl + "drama/" + ptId;
@@ -53,7 +53,7 @@ public class DramaSitemapGenService extends AbstractSitemapGenService implements
 			}
 		}
 		// 2) theatre 
-		List<Long> theatreList = hibernateTemplate.find("select id from Theatre");
+		List<Long> theatreList = (List<Long>) hibernateTemplate.find("select id from Theatre");
 		String[] moudels2 = new String[]{"/introduce", "/newslist", "/pricetable", "/picturelist", "/commentlist"};
 		for(Long ptId : theatreList){
 			loc = siteUrl + "theatre/" + ptId;
@@ -65,7 +65,7 @@ public class DramaSitemapGenService extends AbstractSitemapGenService implements
 			}
 		}
 		// 3) star 
-		List<Long> starList = hibernateTemplate.find("select id from DramaStar");
+		List<Long> starList = (List<Long>) hibernateTemplate.find("select id from DramaStar");
 		String[] moudels3 = new String[]{"/introduce", "/news", "/pricetable", "/picturelist", "/commentlist"};
 		for(Long ptId : starList){
 			loc = siteUrl + "drama/star/" + ptId;

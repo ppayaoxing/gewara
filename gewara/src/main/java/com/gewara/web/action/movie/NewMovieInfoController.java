@@ -352,7 +352,7 @@ public class NewMovieInfoController extends AnnotationController {
 		subQuery.add(Restrictions.eq("v.tag", Video.VIDEOTYPE_FILM));
 		subQuery.setProjection(Projections.property("v.relatedid"));
 		query.add(Subqueries.propertyIn("m.id",subQuery));
-		List<Movie> movies = hibernateTemplate.findByCriteria(query, 0, 4);
+		List<Movie> movies = (List<Movie>) hibernateTemplate.findByCriteria(query, 0, 4);
 		model.put("moreLikeMovies",movies);
 	}
 
@@ -696,7 +696,7 @@ public class NewMovieInfoController extends AnnotationController {
 		query.add(Restrictions.eq("countycode", countycode));
 		query.add(Restrictions.eq("booking", Cinema.BOOKING_OPEN));
 		query.addOrder(Order.desc("generalmark"));
-		List<Cinema> cinemaList = hibernateTemplate.findByCriteria(query);
+		List<Cinema> cinemaList = (List<Cinema>) hibernateTemplate.findByCriteria(query);
 		return cinemaList;
 	}
 
@@ -709,7 +709,7 @@ public class NewMovieInfoController extends AnnotationController {
 		subQuery.add(Restrictions.isNotNull("m.countycode"));
 		subQuery.setProjection(Projections.property("m.countycode"));
 		query.add(Subqueries.exists(subQuery));
-		List<County> countyList = hibernateTemplate.findByCriteria(query);
+		List<County> countyList = (List<County>) hibernateTemplate.findByCriteria(query);
 		return countyList;
 	}
 

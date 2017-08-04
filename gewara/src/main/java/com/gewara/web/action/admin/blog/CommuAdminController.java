@@ -176,7 +176,7 @@ public class CommuAdminController extends BaseAdminController {
 		if(commuid != null){
 			int firstPage = rowsPerPage* pageNo;
 			int count = Integer.valueOf(hibernateTemplate.findByCriteria(queryCommuPicture(commuid,check,null,null).setProjection(Projections.rowCount())).get(0)+"");
-			pictureList = hibernateTemplate.findByCriteria(queryCommuPicture(commuid,check,null,null), firstPage, rowsPerPage);
+			pictureList = (List<Picture>) hibernateTemplate.findByCriteria(queryCommuPicture(commuid,check,null,null), firstPage, rowsPerPage);
 			Map<Long, Object> pictureMap = new HashMap<Long, Object>();
 			for (Picture picture : pictureList) {
 				Album album = daoService.getObject(Album.class, picture.getRelatedid());
@@ -217,10 +217,10 @@ public class CommuAdminController extends BaseAdminController {
 				if(!manageCheckUsers.isEmpty()){
 					ManageCheck userCheck = manageCheckUsers.get(0);
 					model.put("userCheck", userCheck);
-					pictureList = hibernateTemplate.findByCriteria(queryCommuPicture(commuid,check,new Date(userCheck.getModifytime()),new Date(userCheck.getUnmodifytime().getTime())));
+					pictureList = (List<Picture>) hibernateTemplate.findByCriteria(queryCommuPicture(commuid,check,new Date(userCheck.getModifytime()),new Date(userCheck.getUnmodifytime().getTime())));
 				}
 			}else{
-				pictureList = hibernateTemplate.findByCriteria(queryCommuPicture(commuid,check,operationtime,null), 0, rowsPerPage);
+				pictureList = (List<Picture>) hibernateTemplate.findByCriteria(queryCommuPicture(commuid,check,operationtime,null), 0, rowsPerPage);
 			}
 			Map<Long, Object> pictureMap = new HashMap<Long, Object>();
 			Map<Long,Member> memberMap = new HashMap<Long, Member>();

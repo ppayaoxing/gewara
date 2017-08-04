@@ -17,10 +17,10 @@ import com.gewara.commons.sign.Sign;
 public class VmBaseUtil extends StringUtils implements Util4Script {
 	public static final VmBaseUtil instance = new VmBaseUtil();
 	private static String jsVersion = DateUtil.format(new Date(), "yyyyMMddHH");
-	public final static void setJsVersion(String jv) {
+	public static void setJsVersion(String jv) {
 		jsVersion = jv;
 	}
-	public final static String getJsVersion() {
+	public  static String getJsVersion() {
 		return jsVersion;
 	}
 

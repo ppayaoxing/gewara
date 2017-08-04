@@ -283,7 +283,7 @@ public class MessageAdminController extends BaseAdminController {
 		}
 		if(pageNo==null) pageNo = 0;
 		query.addOrder(Order.desc("sendtime"));
-		List<SMSRecord> smsList = hibernateTemplate.findByCriteria(query, pageNo * 500, 500);
+		List<SMSRecord> smsList = (List<SMSRecord>) hibernateTemplate.findByCriteria(query, pageNo * 500, 500);
 		model.put("SmsHelper", new SmsConstant());
 		model.put("smsList", smsList);
 		return "admin/message/smsList.vm";
@@ -309,7 +309,7 @@ public class MessageAdminController extends BaseAdminController {
 	@RequestMapping("/admin/message/qryMobile.xhtml")
 	public String qryMobile(ModelMap model) {
 		String hql = "from Cinema c where exists(select cp.id from CinemaProfile cp where cp.id=c.id and cp.status=?) order by c.avggeneral desc";
-		List<Cinema> cinemaList = hibernateTemplate.find(hql, CinemaProfile.STATUS_OPEN);
+		List<Cinema> cinemaList = (List<Cinema>) hibernateTemplate.find(hql, CinemaProfile.STATUS_OPEN);
 		model.put("cinemaList", cinemaList);
 		return "admin/message/qryMobile.vm";
 	}

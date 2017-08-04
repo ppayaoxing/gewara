@@ -2,7 +2,9 @@ package com.gewara.json;
 
 import java.io.Serializable;
 
-public class CinemaIncrementalReport implements Serializable{
+import com.gewara.mongo.support.MGObject;
+
+public class CinemaIncrementalReport  extends MGObject implements Serializable{
 	/**
 	 * 
 	 */

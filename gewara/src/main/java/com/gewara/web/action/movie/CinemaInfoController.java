@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.codehaus.jackson.type.TypeReference;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
@@ -27,6 +26,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gewara.constant.CharacteristicType;
 import com.gewara.constant.Flag;
 import com.gewara.constant.GoodsConstant;
@@ -544,7 +544,7 @@ public class CinemaInfoController extends AnnotationController {
 		query.setProjection(list);
 		query.addOrder(Order.desc("count"));
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		List<Map> resultMap = hibernateTemplate.findByCriteria(query, 0, 3);
+		List<Map> resultMap = (List<Map>) hibernateTemplate.findByCriteria(query, 0, 3);
 		for(Map map : resultMap){
 			resultList.add(new Long(map.get("movieid").toString()));
 		}

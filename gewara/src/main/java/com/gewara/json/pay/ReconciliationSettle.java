@@ -2,12 +2,14 @@ package com.gewara.json.pay;
 
 import java.io.Serializable;
 
+import com.gewara.mongo.support.MGObject;
+
 /**
  * 银行对账mogon存储对象
  * @author gang.liu
  * 当前只用于江苏银行
  */
-public class ReconciliationSettle implements Serializable{
+public class ReconciliationSettle extends MGObject implements Serializable{
 
 	private static final long serialVersionUID = -5976004654721880152L;
 	private String _id;

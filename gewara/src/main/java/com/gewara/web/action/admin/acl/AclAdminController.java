@@ -63,14 +63,14 @@ public class AclAdminController extends BaseAdminController {
 	@RequestMapping("/refreshAcl.xhtml")
 	@ResponseBody
 	public String refreshAcl(){
-		List<Long> useridList = hibernateTemplate.find("select id from User order by id");
+		List<Long> useridList = (List<Long>) hibernateTemplate.find("select id from User order by id");
 		for(Long id:useridList){
 			List<String> roles = authService.getUserRoles(id);
 			User user = daoService.getObject(User.class, id);
 			user.setRolenames(StringUtils.join(roles, ","));
 			daoService.saveObject(user);
 		}
-		List<Long> moduleidList = hibernateTemplate.find("select id from WebModule order by id");
+		List<Long> moduleidList = (List<Long>) hibernateTemplate.find("select id from WebModule order by id");
 		for(Long id: moduleidList){
 			List<String> roles = authService.getModuleRoles(id);
 			WebModule module = daoService.getObject(WebModule.class, id);
@@ -164,10 +164,10 @@ public class AclAdminController extends BaseAdminController {
 		if(StringUtils.equals(WebModule.TAG_GEWA, role.getTag())){
 			if(roleId!=null){
 				String query = "from User where id not in (select userid from User2Role where role.id = ?)";
-				List<User> unrelatedUsers = hibernateTemplate.find(query, roleId);
+				List<User> unrelatedUsers = (List<User>) hibernateTemplate.find(query, roleId);
 				model.put("unrelatedUsers", unrelatedUsers);
 				String query2 = "from User where id in (select userid from User2Role where role.id = ?)";
-				List<User> roleUsers = hibernateTemplate.find(query2, roleId);
+				List<User> roleUsers = (List<User>) hibernateTemplate.find(query2, roleId);
 				model.put("roleUsers", roleUsers);
 			}else{
 				model.put("unrelatedUsers", daoService.getAllObjects(User.class));
@@ -177,7 +177,7 @@ public class AclAdminController extends BaseAdminController {
 		}
 		if(roleId!=null){
 			String roleModuleQuery = "select module.id from Module2Role where role.id = ? ";
-			List<Long> roleModules = hibernateTemplate.find(roleModuleQuery, roleId);
+			List<Long> roleModules = (List<Long>) hibernateTemplate.find(roleModuleQuery, roleId);
 			model.put("roleModules", roleModules);
 		}else{
 			model.put("roleModules", new ArrayList<Long>());
@@ -186,7 +186,7 @@ public class AclAdminController extends BaseAdminController {
 		query.add(Restrictions.isNull("menucode"));
 		query.add(Restrictions.eq("tag", role.getTag()));
 		query.addOrder(Order.asc("matchorder"));
-		List<WebModule> moduleList = hibernateTemplate.findByCriteria(query);
+		List<WebModule> moduleList = (List<WebModule>) hibernateTemplate.findByCriteria(query);
 		List<WebModule> mainMenuList = aclManager.getMainMenuList(role.getTag(), true);
 		Map<String, List<WebModule>> subMenuMap = new HashMap<String, List<WebModule>>();
 		List<WebModule> subMenuList = null;
@@ -209,7 +209,7 @@ public class AclAdminController extends BaseAdminController {
 		if(webmodule==null) webmodule=new Long[0];
 		if (webmodule != null) {
 			String roleModuleQuery = "from Module2Role where role.id = ? and module.tag = ?";
-			List<Module2Role> m2rList = hibernateTemplate.find(roleModuleQuery, roleId, role.getTag());
+			List<Module2Role> m2rList = (List<Module2Role>) hibernateTemplate.find(roleModuleQuery, roleId, role.getTag());
 			List<Module2Role> removeList = new ArrayList<Module2Role>();
 			List<Long> newmoduleidList = new ArrayList<Long>(Arrays.asList(webmodule));
 			List<WebModule> refreshModuleList = new ArrayList<WebModule>();
@@ -256,7 +256,7 @@ public class AclAdminController extends BaseAdminController {
 		//角色
 		if(user==null) user = new Long[]{};
 		String roleModuleQuery = "from User2Role where role.id = ? ";
-		List<User2Role> u2rList = hibernateTemplate.find(roleModuleQuery, roleId);
+		List<User2Role> u2rList = (List<User2Role>) hibernateTemplate.find(roleModuleQuery, roleId);
 		List<User2Role> removeList = new ArrayList<User2Role>();
 		List<Long> newuseridList = new ArrayList<Long>(Arrays.asList(user));
 		List<User> refreshUserList = new ArrayList<User>();
@@ -329,7 +329,7 @@ public class AclAdminController extends BaseAdminController {
 		if(moduleId != null) {
 			module = daoService.getObject(WebModule.class, moduleId);
 			tag = module.getTag();
-			moduleRoles = hibernateTemplate.find("select role from Module2Role m where m.module.id=?", moduleId);
+			moduleRoles = (List<Role>) hibernateTemplate.find("select role from Module2Role m where m.module.id=?", moduleId);
 		}	
 		model.put("moduleRoles", moduleRoles);
 		List<Role> allRoles = aclManager.getRoleListByTag(tag);
@@ -362,7 +362,7 @@ public class AclAdminController extends BaseAdminController {
 					return forwardMessage(model, "主菜单的菜单编码必须是两位数字" );
 				DetachedCriteria query = DetachedCriteria.forClass(WebModule.class);
 				query.add(Restrictions.eq("menucode", menucode));
-				List<WebModule> wmList = hibernateTemplate.findByCriteria(query);
+				List<WebModule> wmList = (List<WebModule>) hibernateTemplate.findByCriteria(query);
 				if(!wmList.isEmpty()) {
 					return forwardMessage(model, "你输入的菜单编码：" + menucode + ", 已经被[" + wmList.get(0).getMenutitle() +"]占有" );
 				}
@@ -380,7 +380,7 @@ public class AclAdminController extends BaseAdminController {
 		Set<String> rolenames = new TreeSet<String>();
 		if (roleid != null) {
 			if(moduleId!=null){//修改
-				List<Module2Role> m2rList = hibernateTemplate.find("from Module2Role where module.id=? ", moduleId);
+				List<Module2Role> m2rList = (List<Module2Role>) hibernateTemplate.find("from Module2Role where module.id=? ", moduleId);
 				List<Module2Role> removeList = new ArrayList<Module2Role>();
 				List<Long> newRoleidList = new ArrayList<Long>(Arrays.asList(roleid));
 				for(Module2Role m2r: m2rList){
@@ -425,10 +425,10 @@ public class AclAdminController extends BaseAdminController {
 	}
 	@RequestMapping("/admin/acl/ajax/getUserWebModule.xhtml")
 	public String getUserWebModule(Long userid, ModelMap model){
-		List<Role> userRoles = hibernateTemplate.find("select m.role from User2Role m where m.userid=?", userid);
+		List<Role> userRoles = (List<Role>) hibernateTemplate.find("select m.role from User2Role m where m.userid=?", userid);
 		Set<Long> moduleidList = new HashSet<Long>();
 		for(Role role: userRoles){
-			List<Long> roleModules = hibernateTemplate.find("select module.id from Module2Role where role.id = ?", role.getId());
+			List<Long> roleModules = (List<Long>) hibernateTemplate.find("select module.id from Module2Role where role.id = ?", role.getId());
 			moduleidList.addAll(roleModules);
 		}
 		

@@ -3,7 +3,9 @@ package com.gewara.json;
 import java.io.Serializable;
 import java.util.Date;
 
-public class OnceSubjectGrabVotes  implements Serializable{
+import com.gewara.mongo.support.MGObject;
+
+public class OnceSubjectGrabVotes  extends MGObject implements Serializable{
 	private static final long serialVersionUID = 8473971649755928920L;
 	private String id;
 	private Date addtime;			//ÃÌº” ±º‰

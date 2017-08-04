@@ -680,7 +680,7 @@ public class SynchActivityServiceImpl extends AbstractSynchBaseService implement
 		if(StringUtils.isNotBlank(tag)) query.add(Restrictions.eq("gc.tag", tag));
 		query.add(Restrictions.gt("gc.ordernum", 0));
 		query.setProjection(Projections.property("gc.relatedid"));
-		List<Long> relatedidList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Long> relatedidList = (List<Long>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		if(relatedidList.size()==0) return activityList;
 		ErrorCode<List<RemoteActivity>> code = getRemoteActivityListByIds(relatedidList);
 		if(code.isSuccess()){

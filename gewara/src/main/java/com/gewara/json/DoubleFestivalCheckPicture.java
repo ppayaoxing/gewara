@@ -3,7 +3,9 @@ package com.gewara.json;
 import java.io.Serializable;
 import java.util.Date;
 
-public class DoubleFestivalCheckPicture  implements Serializable {
+import com.gewara.mongo.support.MGObject;
+
+public class DoubleFestivalCheckPicture  extends MGObject implements Serializable {
 	
 	private static final long serialVersionUID = 4114915197436865546L;
 	private String id;

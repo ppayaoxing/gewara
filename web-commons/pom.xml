@@ -250,5 +250,9 @@
 			<groupId>org.im4java</groupId>
 			<artifactId>im4java</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.gewara</groupId>
+			<artifactId>gw-hbase</artifactId>
+		</dependency>
 	</dependencies>
 </project>

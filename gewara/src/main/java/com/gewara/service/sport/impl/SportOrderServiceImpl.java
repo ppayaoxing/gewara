@@ -140,7 +140,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 	}
 	@Override
 	public Map<Integer, List<Sport>> getProfileSportList() {
-		List<SportProfile> spList = hibernateTemplate.find("from SportProfile p where p.booking='open' order by p.sortnum");
+		List<SportProfile> spList = (List<SportProfile>) hibernateTemplate.find("from SportProfile p where p.booking='open' order by p.sortnum");
 		Map<Integer, List<Sport>> spMap = new TreeMap<Integer, List<Sport>>();
 		for(SportProfile sp : spList){
 			Integer key = sp.getSortnum();
@@ -166,7 +166,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 		query.add(Restrictions.like("status", OrderConstant.STATUS_NEW, MatchMode.START));
 		query.add(Restrictions.gt("validtime", new Timestamp(System.currentTimeMillis())));
 		query.addOrder(Order.desc("addtime"));
-		List<SportOrder> result = hibernateTemplate.findByCriteria(query);
+		List<SportOrder> result = (List<SportOrder>) hibernateTemplate.findByCriteria(query);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -522,7 +522,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 	}
 	public Integer getSellTimeTableCount(Long otiid, String starttime){
 		String hql = "select count(*) from SellTimeTable stt where stt.otiid=? and stt.starttime=? and (stt.status=? or stt.status=? and stt.validtime>? )";
-		List<Long> countList = hibernateTemplate.find(hql, otiid, starttime, SellTimeTable.STATUS_SOLD, SellTimeTable.STATUS_NEW, DateUtil.getCurFullTimestamp());
+		List<Long> countList = (List<Long>) hibernateTemplate.find(hql, otiid, starttime, SellTimeTable.STATUS_SOLD, SellTimeTable.STATUS_NEW, DateUtil.getCurFullTimestamp());
 		if(countList.isEmpty()) return 0;
 		return Long.valueOf(countList.get(0)).intValue();
 	}
@@ -649,7 +649,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 		query.addOrder(Order.asc("itemid"));
 		query.addOrder(Order.asc("playdate"));
 		query.addOrder(Order.asc("id"));
-		List<OpenTimeTable> result = hibernateTemplate.findByCriteria(query);
+		List<OpenTimeTable> result = (List<OpenTimeTable>) hibernateTemplate.findByCriteria(query);
 		return result;
 	}
 	@Override
@@ -662,7 +662,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 		query.add(Restrictions.ne("status", OpenTimeTableConstant.STATUS_DISCARD));
 		if(open) query.add(Restrictions.eq("status", OpenTimeTableConstant.STATUS_BOOK));
 		query.setProjection(Projections.rowCount());
-		List<Long> result = hibernateTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return Integer.valueOf(result.get(0)+"");
 	}
 	@Override
@@ -674,7 +674,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 		query.add(Restrictions.ne("status", OpenTimeTableConstant.STATUS_DISCARD));
 		if(open) query.add(Restrictions.eq("status", OpenTimeTableConstant.STATUS_BOOK));
 		query.setProjection(Projections.distinct(Projections.property("itemid")));
-		List<Long> itemidList = hibernateTemplate.findByCriteria(query);
+		List<Long> itemidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		List<SportItem> itemList = baseDao.getObjectList(SportItem.class, itemidList);
 		return itemList;
 	}
@@ -685,7 +685,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 		query.add(Restrictions.eq("itemid", itemid));
 		query.add(Restrictions.eq("playdate", playdate));
 		query.add(Restrictions.ne("status", OpenTimeTableConstant.STATUS_DISCARD));
-		List<OpenTimeTable> ottList = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<OpenTimeTable> ottList = (List<OpenTimeTable>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(ottList.isEmpty()) return null;
 		return ottList.get(0);
 	}
@@ -720,7 +720,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 		if(soc.getOrderid()!=null) query.add(Restrictions.eq("id", soc.getOrderid()));
 		if(soc.getOttid()!=null) query.add(Restrictions.eq("ottid", soc.getOttid()));
 		query.addOrder(Order.desc("addtime"));
-		List<SportOrder> orderList = hibernateTemplate.findByCriteria(query,from,maxnum);
+		List<SportOrder> orderList = (List<SportOrder>) hibernateTemplate.findByCriteria(query,from,maxnum);
 		return orderList;
 	}
 	@Override
@@ -739,18 +739,18 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 		if(soc.getOrderid()!=null) query.add(Restrictions.eq("id", soc.getOrderid()));
 		if(soc.getOttid()!=null) query.add(Restrictions.eq("ottid", soc.getOttid()));
 		query.addOrder(Order.desc("addtime"));
-		List<SportOrder> orderList = hibernateTemplate.findByCriteria(query,from,maxnum);
+		List<SportOrder> orderList = (List<SportOrder>) hibernateTemplate.findByCriteria(query,from,maxnum);
 		return orderList;
 	}
 	@Override
 	public List<SportField> getSportFieldList(Long sportid, Long itemid){
 		String qry = "from SportField s where s.sportid=? and s.itemid=? order by s.ordernum asc";
-		return hibernateTemplate.find(qry, sportid, itemid);
+		return (List<SportField>) hibernateTemplate.find(qry, sportid, itemid);
 	}
 	@Override
 	public List<SportField> getSportFieldList(Long ottid){
 		String qry = "select distinct oti.fieldid from OpenTimeItem oti where oti.ottid=? and oti.status!=? and exists(select f.id from SportField f where f.id=oti.fieldid and f.status=?)";
-		List<Long> fieldidList = hibernateTemplate.find(qry, ottid, OpenTimeItemConstant.STATUS_DELETE, "Y");
+		List<Long> fieldidList = (List<Long>) hibernateTemplate.find(qry, ottid, OpenTimeItemConstant.STATUS_DELETE, "Y");
 		List<SportField> fieldList = baseDao.getObjectList(SportField.class, fieldidList);
 		Collections.sort(fieldList, new PropertyComparator("ordernum", false, true));
 		return fieldList;
@@ -758,7 +758,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 	@Override
 	public List<SportField> getAllSportFieldList(Long ottid){
 		String qry = "select distinct oti.fieldid from OpenTimeItem oti where oti.ottid=?";
-		List<Long> fieldidList = hibernateTemplate.find(qry, ottid);
+		List<Long> fieldidList = (List<Long>) hibernateTemplate.find(qry, ottid);
 		List<SportField> fieldList = baseDao.getObjectList(SportField.class, fieldidList);
 		Collections.sort(fieldList, new PropertyComparator("ordernum", false, true));
 		return fieldList;
@@ -767,11 +767,11 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 	public List<String> getPlayHourList(Long ottid, String status) {
 		if(StringUtils.isNotBlank(status)){
 			String qry = "select distinct oti.hour from OpenTimeItem oti where oti.ottid=? and oti.status<>? order by oti.hour";
-			List<String> list = hibernateTemplate.find(qry, ottid, status);
+			List<String> list = (List<String>) hibernateTemplate.find(qry, ottid, status);
 			return list;
 		}
 		String qry = "select distinct oti.hour from OpenTimeItem oti where oti.ottid=? order by oti.hour";
-		List<String> list = hibernateTemplate.find(qry, ottid);
+		List<String> list = (List<String>) hibernateTemplate.find(qry, ottid);
 		return list;
 	}
 	@Override
@@ -781,7 +781,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 		qry.add(Restrictions.ne("status", OrderConstant.STATUS_PAID_SUCCESS));
 		qry.add(Restrictions.gt("addtime", addtime));
 		qry.addOrder(Order.desc("addtime"));
-		List<SportOrder> orderList = hibernateTemplate.findByCriteria(qry, 0, maxnum);
+		List<SportOrder> orderList = (List<SportOrder>) hibernateTemplate.findByCriteria(qry, 0, maxnum);
 		List<Long> memberidList = BeanUtil.getBeanPropertyList(orderList, Long.class, "memberid", true);
 		return memberidList;
 	}
@@ -790,7 +790,7 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 		DetachedCriteria qry = DetachedCriteria.forClass(SportOrder.class);
 		qry.add(Restrictions.eq("memberid", memberid));
 		qry.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
-		List<SportOrder> orderList = hibernateTemplate.findByCriteria(qry);
+		List<SportOrder> orderList = (List<SportOrder>) hibernateTemplate.findByCriteria(qry);
 		return orderList;
 	}
 	private ErrorCode getDiscount(SportOrder order, OpenTimeTable table, ElecCard card, Long memberid){
@@ -967,13 +967,13 @@ public class SportOrderServiceImpl extends GewaOrderServiceImpl implements Sport
 	@Override
 	public List<OpenTimeItem> getMyOtiList(Long orderid) {
 		String qry = "from OpenTimeItem o where o.id in(select st.otiid from SportOrder2TimeItem st where st.orderid=?)";
-		List<OpenTimeItem> otiList = hibernateTemplate.find(qry, orderid);
+		List<OpenTimeItem> otiList = (List<OpenTimeItem>) hibernateTemplate.find(qry, orderid);
 		return otiList;
 	}
     @Override
 	public String getMyOtiHour(Long orderid) {
 		String qry = "select min(o.hour) from OpenTimeItem o where o.id in(select st.otiid from SportOrder2TimeItem st where st.orderid=?)";
-		List<String> otiList = hibernateTemplate.find(qry, orderid);
+		List<String> otiList = (List<String>) hibernateTemplate.find(qry, orderid);
 		return otiList.get(0);
 	}
 	

@@ -1,7 +1,8 @@
 package com.gewara.json.mobile;
 
+import com.gewara.mongo.support.MGObject;
 
-public class WeixinActivity {
+public class WeixinActivity extends MGObject{
 	public static String TEMPLATE_ID = "20130124000000";
 	private String id;
 	private String replynum;

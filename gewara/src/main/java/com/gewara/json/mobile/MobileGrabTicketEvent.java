@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.gewara.constant.AdminCityContant;
+import com.gewara.mongo.support.MGObject;
 import com.gewara.util.DateUtil;
 
 /**
@@ -17,7 +18,7 @@ import com.gewara.util.DateUtil;
  * @author taiqichao
  * 
  */
-public class MobileGrabTicketEvent implements Serializable {
+public class MobileGrabTicketEvent  extends MGObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

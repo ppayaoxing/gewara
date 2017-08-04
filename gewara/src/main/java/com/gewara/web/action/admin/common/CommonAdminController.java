@@ -33,6 +33,7 @@ import com.gewara.constant.content.SignName;
 import com.gewara.constant.sys.JsonDataKey;
 import com.gewara.constant.sys.MongoData;
 import com.gewara.constant.ticket.OrderConstant;
+import com.gewara.hbase.Row;
 import com.gewara.helper.sys.AdminCityHelper;
 import com.gewara.json.PageView;
 import com.gewara.model.BaseObject;
@@ -96,6 +97,9 @@ import com.gewara.xmlbind.bbs.Comment;
 import com.gewara.xmlbind.gym.RemoteGym;
 import com.gewara.xmlbind.partner.YoukuVideo;
 import com.gewara.xmlbind.terminal.TakeInfo;
+import com.google.common.collect.Maps;
+
+import oracle.net.aso.r;
 
 @Controller
 public class CommonAdminController extends BaseAdminController {
@@ -105,15 +109,21 @@ public class CommonAdminController extends BaseAdminController {
 	@Autowired
 	@Qualifier("hbaseService")
 	private HBaseService hbaseService;
-	@Autowired@Qualifier("terminalService")
+	@Autowired
+	@Qualifier("terminalService")
 	private TerminalService terminalService;
-	@Autowired@Qualifier("config")
+	@Autowired
+	@Qualifier("config")
 	private Config config;
+
 	public void setConfig(Config config) {
 		this.config = config;
 	}
-	@Autowired@Qualifier("readOnlyTemplate")
+
+	@Autowired
+	@Qualifier("readOnlyTemplate")
 	private ReadOnlyTemplate readOnlyTemplate;
+
 	public void setReadOnlyHibernateTemplate(ReadOnlyTemplate readOnlyTemplate) {
 		this.readOnlyTemplate = readOnlyTemplate;
 	}
@@ -162,6 +172,7 @@ public class CommonAdminController extends BaseAdminController {
 	public void setVideoService(VideoService videoService) {
 		this.videoService = videoService;
 	}
+
 	@RequestMapping("/common/contentEditor.xhtml")
 	public String contentEditor() {
 		return "common/contentEditor.vm";
@@ -182,16 +193,18 @@ public class CommonAdminController extends BaseAdminController {
 	@Autowired
 	@Qualifier("diaryService")
 	private DiaryService diaryService;
-	
-	@Autowired@Qualifier("gewaCityService")
+
+	@Autowired
+	@Qualifier("gewaCityService")
 	private GewaCityService gewaCityService;
-	
+
 	@RequestMapping("/admin/common/subwayList.xhtml")
-	public String bussbulletinList(ModelMap model,Boolean isSetTime, HttpServletRequest request) {
+	public String bussbulletinList(ModelMap model, Boolean isSetTime, HttpServletRequest request) {
 		String citycode = getAdminCitycode(request);
-		List<Subwayline> lineList = hibernateTemplate.find("from Subwayline s where s.citycode=? order by s.id", citycode);
-		if(isSetTime != null && isSetTime){//进入设置首末班车时间设置页面
-			if(!lineList.isEmpty()){
+		List<Subwayline> lineList = (List<Subwayline>) hibernateTemplate
+				.find("from Subwayline s where s.citycode=? order by s.id", citycode);
+		if (isSetTime != null && isSetTime) {// 进入设置首末班车时间设置页面
+			if (!lineList.isEmpty()) {
 				model.put("curLine", lineList.get(0));
 			}
 			model.put("lineList", lineList);
@@ -219,7 +232,7 @@ public class CommonAdminController extends BaseAdminController {
 
 	@RequestMapping("/admin/changeCity.xhtml")
 	public String changeCity(String citycode, String path, HttpServletResponse response, ModelMap model) {
-		if (StringUtils.isBlank(citycode)){
+		if (StringUtils.isBlank(citycode)) {
 			citycode = "310000";
 		}
 		User user = getLogonUser();
@@ -231,17 +244,19 @@ public class CommonAdminController extends BaseAdminController {
 			throw new IllegalArgumentException("切换城市不合法！");
 		}
 		setAdminCode(citycode, response);
-		if (StringUtils.isNotBlank(path)){
+		if (StringUtils.isNotBlank(path)) {
 			return showRedirect(path, model);
 		}
 		return "redirect:/admin/adminConsole.xhtml";
 	}
 
 	@RequestMapping("/admin/adminConsole.xhtml")
-	public String adminConsole(String reload, @CookieValue(required = false) String admin_citycode, HttpServletResponse response, ModelMap model) {
+	public String adminConsole(String reload, @CookieValue(required = false) String admin_citycode,
+			HttpServletResponse response, ModelMap model) {
 		User user = getLogonUser();
 		String[] roles = StringUtils.split(user.getRolenames(), ",");
-		MenuRepository repository = (MenuRepository) applicationContext.getServletContext().getAttribute(MenuRepository.GEWA_MENU_REPOSITORY_KEY);
+		MenuRepository repository = (MenuRepository) applicationContext.getServletContext()
+				.getAttribute(MenuRepository.GEWA_MENU_REPOSITORY_KEY);
 		if (repository == null || "true".equals(reload)) {
 			repository = new MenuRepository(aclService.getMenuList(WebModule.TAG_GEWA));
 			applicationContext.getServletContext().setAttribute(MenuRepository.GEWA_MENU_REPOSITORY_KEY, repository);
@@ -269,20 +284,22 @@ public class CommonAdminController extends BaseAdminController {
 		model.put("ssoUrl", config.getString("ssoValidateUrl"));
 		return "admin/adminConsole.vm";
 	}
-	
+
 	@RequestMapping("/admin/ajax/common/searchCity.xhtml")
-	public String searchCity(String cityKey, String targetUrl, ModelMap model){
+	public String searchCity(String cityKey, String targetUrl, ModelMap model) {
 		if (StringUtils.isNotBlank(targetUrl)) {
 			model.put("targetUrl", targetUrl);
 		}
-		if(StringUtils.isNotBlank(cityKey)){
+		if (StringUtils.isNotBlank(cityKey)) {
 			cityKey = cityKey.toLowerCase();
 			Map<GewaCity, List<GewaCity>> idxMap = gewaCityService.getAdmCityMap();
 			List<GewaCity> gewaCityList = new ArrayList<GewaCity>();
 			for (GewaCity gewaCity : idxMap.keySet()) {
 				List<GewaCity> gcList = idxMap.get(gewaCity);
 				for (GewaCity city : gcList) {
-					if(StringUtils.contains(city.getCityname(), cityKey) || StringUtils.contains(city.getPinyin(), cityKey) || StringUtils.contains(city.getPy(), cityKey)){
+					if (StringUtils.contains(city.getCityname(), cityKey)
+							|| StringUtils.contains(city.getPinyin(), cityKey)
+							|| StringUtils.contains(city.getPy(), cityKey)) {
 						gewaCityList.add(city);
 					}
 				}
@@ -291,7 +308,7 @@ public class CommonAdminController extends BaseAdminController {
 		}
 		return "admin/common/adminCitySearch.vm";
 	}
-	
+
 	@RequestMapping("/admin/ajax/common/adminCityList.xhtml")
 	public String adminCityList(String targetUrl, ModelMap model) {
 		if (StringUtils.isNotBlank(targetUrl)) {
@@ -305,17 +322,20 @@ public class CommonAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping("/admin/common/oldBulletinList.xhtml")
-	public String oldBulletinList(@RequestParam("tag") String tag, Long relatedid, ModelMap model, HttpServletRequest request) {
+	public String oldBulletinList(@RequestParam("tag") String tag, Long relatedid, ModelMap model,
+			HttpServletRequest request) {
 		List<Bulletin> bulletinList = null;
 		Map map = new HashMap();
 		if (relatedid != null) {
 			String query = "from Bulletin n where n.citycode=? and n.relatedid=? and n.validtime<? order by n.posttime desc";
-			bulletinList = hibernateTemplate.find(query, getAdminCitycode(request), relatedid, DateUtil.getCurDate());
+			bulletinList = (List<Bulletin>) hibernateTemplate.find(query, getAdminCitycode(request), relatedid,
+					DateUtil.getCurDate());
 			Object relate = relateService.getRelatedObject(tag, relatedid);
 			model.put("relate", relate);
 		} else {
 			String hql = "from Bulletin b where b.citycode=? and b.tag=? and b.validtime<? order by b.relatedid desc";
-			bulletinList = hibernateTemplate.find(hql, getAdminCitycode(request), tag, DateUtil.getCurDate());
+			bulletinList = (List<Bulletin>) hibernateTemplate.find(hql, getAdminCitycode(request), tag,
+					DateUtil.getCurDate());
 			for (Bulletin b : bulletinList) {
 				map.put(b, relateService.getRelatedObject(tag, b.getRelatedid()));
 			}
@@ -326,12 +346,13 @@ public class CommonAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping("/admin/common/bulletinListByHotvalue.xhtml")
-	public String bulletinListByHotvalue(@RequestParam("tag") String tag, HttpServletRequest request, @RequestParam("hotvalue") Integer hotvalue,
-			Long relatedid, ModelMap model) {
+	public String bulletinListByHotvalue(@RequestParam("tag") String tag, HttpServletRequest request,
+			@RequestParam("hotvalue") Integer hotvalue, Long relatedid, ModelMap model) {
 		List<Bulletin> bulletinList = null;
 		Map map = new HashMap();
 		if (relatedid != null) {
-			bulletinList = commonService.getCurrentBulletinsByRelatedidAndHotvalue(getAdminCitycode(request), relatedid, hotvalue);
+			bulletinList = commonService.getCurrentBulletinsByRelatedidAndHotvalue(getAdminCitycode(request), relatedid,
+					hotvalue);
 			for (Bulletin b : bulletinList) {
 				map.put(b, relateService.getRelatedObject(tag, relatedid));
 			}
@@ -347,8 +368,8 @@ public class CommonAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping("/admin/common/newsList.xhtml")
-	public String newsList(@RequestParam("tag") String tag, String newstype, Long relatedid, String title, Long nid, String citycode, Integer pageNo,
-			HttpServletRequest request, ModelMap model) {
+	public String newsList(@RequestParam("tag") String tag, String newstype, Long relatedid, String title, Long nid,
+			String citycode, Integer pageNo, HttpServletRequest request, ModelMap model) {
 		if (nid != null) {
 			News news = daoService.getObject(News.class, nid);
 			if (news != null)
@@ -410,7 +431,7 @@ public class CommonAdminController extends BaseAdminController {
 				if (code.isSuccess())
 					model.put("gym", code.getRetval());
 			}
-			videoList = videoService.getVideoListByTag(tag, relatedid,null,"orderNum",true, firstRow, rowsPerPage);
+			videoList = videoService.getVideoListByTag(tag, relatedid, null, "orderNum", true, firstRow, rowsPerPage);
 			count = videoService.getVideoCountByTag(tag, relatedid);
 			for (Video video : videoList) {
 				videoMap.put(video, relateService.getRelatedObject(tag, relatedid));
@@ -471,8 +492,8 @@ public class CommonAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping("/admin/common/videoListByHotvalue.xhtml")
-	public String videoListByHotvalue(@RequestParam("tag") String tag, @RequestParam("hotvalue") Integer hotvalue, Long relatedid, Integer pageNo,
-			ModelMap model) {
+	public String videoListByHotvalue(@RequestParam("tag") String tag, @RequestParam("hotvalue") Integer hotvalue,
+			Long relatedid, Integer pageNo, ModelMap model) {
 		int rowsPerPage = 50;
 		if (pageNo == null)
 			pageNo = 0;
@@ -509,7 +530,8 @@ public class CommonAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping("/admin/common/mappoint.xhtml")
-	public String mappoint(HttpServletRequest request, ModelMap model, @RequestParam("tag") String tag, @RequestParam("id") Long id) {
+	public String mappoint(HttpServletRequest request, ModelMap model, @RequestParam("tag") String tag,
+			@RequestParam("id") Long id) {
 		Object object = relateService.getRelatedObject(tag, id);
 		model.put("object", object);
 		model.put("cityData", new CityData());
@@ -527,7 +549,8 @@ public class CommonAdminController extends BaseAdminController {
 	 * @return
 	 */
 	@RequestMapping("/admin/common/mapbpoint.xhtml")
-	public String mapbpoint(HttpServletRequest request, ModelMap model, @RequestParam("tag") String tag, @RequestParam("id") Long id) {
+	public String mapbpoint(HttpServletRequest request, ModelMap model, @RequestParam("tag") String tag,
+			@RequestParam("id") Long id) {
 		Object object = relateService.getRelatedObject(tag, id);
 		model.put("object", object);
 		model.put("cityData", new CityData());
@@ -536,14 +559,16 @@ public class CommonAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping("/admin/common/bulletinList.xhtml")
-	public String bulletinList(@RequestParam("tag") String tag, Long relatedid, String all, HttpServletRequest request, ModelMap model) {
+	public String bulletinList(@RequestParam("tag") String tag, Long relatedid, String all, HttpServletRequest request,
+			ModelMap model) {
 		List<Bulletin> bulletinList = null;
 		Map map = new HashMap();
 		String citycode = getAdminCitycode(request);
 		if (StringUtils.isBlank(all)) {
 			if (relatedid != null) {
 				String query = "from Bulletin n where n.citycode=? and n.relatedid=? and (n.validtime>=? or n.validtime=null) order by n.posttime desc";
-				bulletinList = hibernateTemplate.find(query, citycode, relatedid, DateUtil.getCurDate());
+				bulletinList = (List<Bulletin>) hibernateTemplate.find(query, citycode, relatedid,
+						DateUtil.getCurDate());
 				Object relate = relateService.getRelatedObject(tag, relatedid);
 				model.put("relate", relate);
 			} else {
@@ -555,7 +580,7 @@ public class CommonAdminController extends BaseAdminController {
 			}
 		} else {
 			String query = "from Bulletin n where n.tag=? and n.relatedid=? order by n.posttime desc";
-			bulletinList = hibernateTemplate.find(query, tag, relatedid);
+			bulletinList = (List<Bulletin>) hibernateTemplate.find(query, tag, relatedid);
 			Object relate = relateService.getRelatedObject(tag, relatedid);
 			model.put("relate", relate);
 		}
@@ -565,7 +590,8 @@ public class CommonAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping("/admin/common/pictureList.xhtml")
-	public String pictureList(@RequestParam("tag") String tag, @RequestParam("relatedid") Long relatedid, ModelMap model) {
+	public String pictureList(@RequestParam("tag") String tag, @RequestParam("relatedid") Long relatedid,
+			ModelMap model) {
 		List<Picture> pictureList = pictureService.getPictureListByRelatedid(tag, relatedid, 0, 200);
 		Object object = relateService.getRelatedObject(tag, relatedid);
 		model.put("firstpic", BeanUtil.get(object, "firstpic"));
@@ -575,7 +601,8 @@ public class CommonAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping("/admin/common/discountInfoList.xhtml")
-	public String discountList(@RequestParam("tag") String tag, @RequestParam("relatedid") Long relatedid, ModelMap model) {
+	public String discountList(@RequestParam("tag") String tag, @RequestParam("relatedid") Long relatedid,
+			ModelMap model) {
 		List discountInfoList = commonService.getDiscountInfoByRelatedidAndTag(relatedid, tag);
 		model.put("discountInfoList", discountInfoList);
 		Object object = null;
@@ -593,10 +620,11 @@ public class CommonAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping("/admin/common/refreshPage.xhtml")
-	public String refreshPage(HttpServletRequest request, String pageUrl, String citycode, String jparam, ModelMap model) {
+	public String refreshPage(HttpServletRequest request, String pageUrl, String citycode, String jparam,
+			ModelMap model) {
 		Map<String, String> params = VmUtils.readJsonToMap(jparam);
 		PageParams pageParams = new PageParams();
-		for(String key:params.keySet()){
+		for (String key : params.keySet()) {
 			pageParams.addSingleString(key, params.get(key));
 		}
 		pageCacheService.refreshPageView(pageUrl, pageParams, citycode);
@@ -613,14 +641,15 @@ public class CommonAdminController extends BaseAdminController {
 	 */
 	@RequestMapping("/admin/common/loginedcontent.xhtml")
 	public String loginedContent(ModelMap model, HttpServletRequest request) {
-		List<GewaCommend> gewacommentList = commonService.getGewaCommendList(getAdminCitycode(request), SignName.INDEX_LOGINED, null, null, false, 0,
-				100);
+		List<GewaCommend> gewacommentList = commonService.getGewaCommendList(getAdminCitycode(request),
+				SignName.INDEX_LOGINED, null, null, false, 0, 100);
 		model.put("gewacommentList", gewacommentList);
 		return "admin/common/loginedContentList.vm";
 	}
+
 	/**
 	 * 有关新闻的关联城市
-	 * */
+	 */
 	@RequestMapping("/admin/common/commonRelateCitys.xhtml")
 	public String commonRelateCitys(String tag, Long relatedid, ModelMap model) {
 		Object Object = relateService.getRelatedObject(tag, relatedid);
@@ -685,7 +714,8 @@ public class CommonAdminController extends BaseAdminController {
 	 * 保存关联城市
 	 */
 	@RequestMapping("/admin/common/saveRelateToCity.xhtml")
-	public String saveRelateToCity(String tag, Long relatedid, String relatecityAll, String relatecity, String flag, ModelMap model) {
+	public String saveRelateToCity(String tag, Long relatedid, String relatecityAll, String relatecity, String flag,
+			ModelMap model) {
 		BaseObject Object = (BaseObject) relateService.getRelatedObject(tag, relatedid);
 		String citycode = (String) BeanUtil.get(Object, "citycode");
 		String oldflag = (String) BeanUtil.get(Object, "flag");
@@ -750,7 +780,8 @@ public class CommonAdminController extends BaseAdminController {
 	public String confHelpCenter(ModelMap model) {
 		Map<String, List<JsonData>> subdataMap = new HashMap<String, List<JsonData>>();
 		// 取出1级大类
-		List<JsonData> mainMenuList = jsonDataService.getListByTag(JsonDataKey.TAG_HELPCENTER, null, "tag", false, 0, 20);
+		List<JsonData> mainMenuList = jsonDataService.getListByTag(JsonDataKey.TAG_HELPCENTER, null, "tag", false, 0,
+				20);
 		// 取出1级对应的子级
 		for (JsonData jsonData : mainMenuList) {
 			List<JsonData> list = jsonDataService.getListByTag(jsonData.getDkey(), null, "tag", false, 0, 20);
@@ -830,7 +861,7 @@ public class CommonAdminController extends BaseAdminController {
 		sql = sql + "from MoviePlayItem m where m.citycode=? ";
 		sql = sql + "group by m.cinemaid, to_char(m.playdate, 'yyyy-MM-dd') ";
 		sql = sql + "order by m.cinemaid, to_char(m.playdate, 'yyyy-MM-dd')";
-		List<Map> result = hibernateTemplate.find(sql, citycode);
+		List<Map> result = (List<Map>) hibernateTemplate.find(sql, citycode);
 		Map<String, Integer> countMap = new HashMap<String, Integer>();
 		for (Map m : result) {
 			countMap.put(m.get("cinemaid").toString() + m.get("pdate") + "", Integer.valueOf(m.get("count") + ""));
@@ -843,7 +874,8 @@ public class CommonAdminController extends BaseAdminController {
 
 	// 统一弹出框(包含搜索, 单选+复选)
 	@RequestMapping("/admin/common/movieSelectBox.xhtml")
-	public String movieSelectBox(String citycode, String tag, String queryname, String flag, Integer pageNo, ModelMap model) {
+	public String movieSelectBox(String citycode, String tag, String queryname, String flag, Integer pageNo,
+			ModelMap model) {
 		// 1. 列出城市列表,
 		if (StringUtils.isBlank(citycode)) {
 			Map<String, String> cityMap = AdminCityContant.getCitycode2CitynameMap();
@@ -908,21 +940,24 @@ public class CommonAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping("/admin/common/showUntransOrders.xhtml")
-	public String showUntransOrders(Timestamp startTime, Timestamp endTime, Long count, String isXls, ModelMap model, HttpServletResponse response) {
+	public String showUntransOrders(Timestamp startTime, Timestamp endTime, Long count, String isXls, ModelMap model,
+			HttpServletResponse response) {
 		if (startTime == null || endTime == null || count == null)
 			return "admin/common/untransOrders.vm";
-		List<Map> memberCountList = getTicketOrderMemberIdAndCount(OrderConstant.STATUS_PAID_SUCCESS, startTime, endTime, count);
+		List<Map> memberCountList = getTicketOrderMemberIdAndCount(OrderConstant.STATUS_PAID_SUCCESS, startTime,
+				endTime, count);
 		model.put("memberCountList", memberCountList);
 		for (Map map : memberCountList) {
 			String memberid = (String) map.get("memberid");
-			List<String> tradeNoList = getTicketOrderTradeNoList(Long.valueOf(memberid), OrderConstant.STATUS_PAID_SUCCESS, startTime, endTime);
+			List<String> tradeNoList = getTicketOrderTradeNoList(Long.valueOf(memberid),
+					OrderConstant.STATUS_PAID_SUCCESS, startTime, endTime);
 			map.put("tradeNoList", tradeNoList);
 		}
 		if (StringUtils.equals(isXls, "email")) {
 			model.put("startTime", DateUtil.format(startTime, "yyyy-MM-dd HH:mm"));
 			model.put("endTime", DateUtil.format(endTime, "yyyy-MM-dd HH:mm"));
 			if (!memberCountList.isEmpty()) {
-				//TODO:与其他合并
+				// TODO:与其他合并
 				monitorService.saveSysTemplateWarn("异常购票用户提醒", "warn/unusualOrders.vm", model, RoleTag.unusualorder);
 				return showJsonSuccess(model, "Email发送成功");
 			}
@@ -936,16 +971,18 @@ public class CommonAdminController extends BaseAdminController {
 
 	/**
 	 * 查询在一段时间内订单数量大于count的用户
-	 * **/
-	private List<Map> getTicketOrderMemberIdAndCount(String status, Timestamp startTime, Timestamp endTime, Long count) {
+	 **/
+	private List<Map> getTicketOrderMemberIdAndCount(String status, Timestamp startTime, Timestamp endTime,
+			Long count) {
 		String hql = "select new map(to_char(t.memberid) as memberid, to_char(count(t.memberid)) as num ) from TicketOrder t where t.status=? and t.paidtime>=? and t.paidtime<=? group by t.memberid having count(t.memberid)>? order by count(t.memberid) desc";
-		List<Map> result = readOnlyTemplate.find(hql, status, startTime, endTime, count);
+		List<Map> result = (List<Map>) readOnlyTemplate.find(hql, status, startTime, endTime, count);
 		return result;
 	}
 
-	private List<String> getTicketOrderTradeNoList(Long memberid, String status, Timestamp startTime, Timestamp endTime) {
+	private List<String> getTicketOrderTradeNoList(Long memberid, String status, Timestamp startTime,
+			Timestamp endTime) {
 		String hql = "select tradeNo from TicketOrder t where t.memberid=? and t.status=? and t.paidtime>=? and t.paidtime<=?";
-		List<String> result = readOnlyTemplate.find(hql, memberid, status, startTime, endTime);
+		List<String> result = (List<String>) readOnlyTemplate.find(hql, memberid, status, startTime, endTime);
 		return result;
 	}
 
@@ -958,18 +995,46 @@ public class CommonAdminController extends BaseAdminController {
 		model.put("logList", result.values());
 		return "admin/common/changeHis.vm";
 	}
+
 	@RequestMapping("/admin/common/getBatchChangeHis")
-	public String getBatchChangeHis(ModelMap model){
-		String relatedidList[] = new String[]{"16182095","16182059","16035340","16182639","15736773","16151830","16140834","16037674","16037698","16182596","16037703","16182064","16182088","16182053","16151846","15736826","16182079","16037680","16151790","16032915","16182104","16037676","16182611","16182604","15736802","16038785","16182069","16038797","16182056","16037673","16182110","16182060","16182612","16182082","16037684","16182065","16566108","16035778","16182589","16035765","16182100","16182605","16035746","16037716","15892840","16035345","16182638","16151824","16035753","16037720","15736777","15892812","15736823","16037701","16038750","16182623","16035777","16037710","16151806","16037692","16038775","16182613","15736765","16037717","16035344","16035771","16035348","16976062","15892836","16038760","16037719","16037709","15736824","16035351","16182081","15736767","16032925","16038774","16182090","16151796","16182061","16038763","16035740","16038754","16151839","16038808","16035739","16151852","15892818","16151815","16182632","16182674","16035785","16032935","16037693","16151849","16037685","16035764","16037694","16182600","16182084","16182085","16035763","16035760","16038792","16182590","16182599","16151817","16182603","16182616","16182581","16182663","15892802","15892805","16037715","16151844","15736813","15892824","15892856","16038756","16035350","16032950","16182588","16182678","16182077","15736837","16037711","16032968","16182637","16151799","15736803","16151833","16182105","16182580","15892844","16037669","16032918","16038758","16151793","16032962","16035757","16182650","16037691","16182587","16182682","16035749","15892803","15892838","15892825","16032916","16182677","15736838","16037702","16037695","16035772","16037708","16182074","16151800","16320972","15892834","16038804","16182595","15736763","15892839","16037687","16038803","16035761","16151820","16182684","16032953","16182109","16151828","16037705","16032952","16151791","16182670","16182102","16182634","16182093","16038744","16037718","16182080","16182108","16182629","15736828","16038770","16182103","16037679","16182608","16037697","16032961","16070804","15659096","15808657","16235907","16059533","16223542","16059573","15808638","16111688","16235931","16223555"};
+	public String getBatchChangeHis(ModelMap model) {
+		String relatedidList[] = new String[] { "16182095", "16182059", "16035340", "16182639", "15736773", "16151830",
+				"16140834", "16037674", "16037698", "16182596", "16037703", "16182064", "16182088", "16182053",
+				"16151846", "15736826", "16182079", "16037680", "16151790", "16032915", "16182104", "16037676",
+				"16182611", "16182604", "15736802", "16038785", "16182069", "16038797", "16182056", "16037673",
+				"16182110", "16182060", "16182612", "16182082", "16037684", "16182065", "16566108", "16035778",
+				"16182589", "16035765", "16182100", "16182605", "16035746", "16037716", "15892840", "16035345",
+				"16182638", "16151824", "16035753", "16037720", "15736777", "15892812", "15736823", "16037701",
+				"16038750", "16182623", "16035777", "16037710", "16151806", "16037692", "16038775", "16182613",
+				"15736765", "16037717", "16035344", "16035771", "16035348", "16976062", "15892836", "16038760",
+				"16037719", "16037709", "15736824", "16035351", "16182081", "15736767", "16032925", "16038774",
+				"16182090", "16151796", "16182061", "16038763", "16035740", "16038754", "16151839", "16038808",
+				"16035739", "16151852", "15892818", "16151815", "16182632", "16182674", "16035785", "16032935",
+				"16037693", "16151849", "16037685", "16035764", "16037694", "16182600", "16182084", "16182085",
+				"16035763", "16035760", "16038792", "16182590", "16182599", "16151817", "16182603", "16182616",
+				"16182581", "16182663", "15892802", "15892805", "16037715", "16151844", "15736813", "15892824",
+				"15892856", "16038756", "16035350", "16032950", "16182588", "16182678", "16182077", "15736837",
+				"16037711", "16032968", "16182637", "16151799", "15736803", "16151833", "16182105", "16182580",
+				"15892844", "16037669", "16032918", "16038758", "16151793", "16032962", "16035757", "16182650",
+				"16037691", "16182587", "16182682", "16035749", "15892803", "15892838", "15892825", "16032916",
+				"16182677", "15736838", "16037702", "16037695", "16035772", "16037708", "16182074", "16151800",
+				"16320972", "15892834", "16038804", "16182595", "15736763", "15892839", "16037687", "16038803",
+				"16035761", "16151820", "16182684", "16032953", "16182109", "16151828", "16037705", "16032952",
+				"16151791", "16182670", "16182102", "16182634", "16182093", "16038744", "16037718", "16182080",
+				"16182108", "16182629", "15736828", "16038770", "16182103", "16037679", "16182608", "16037697",
+				"16032961", "16070804", "15659096", "15808657", "16235907", "16059533", "16223542", "16059573",
+				"15808638", "16111688", "16235931", "16223555" };
 		List<String> msgList = new ArrayList<String>();
-		for(String relatedid: relatedidList){
-			Map<Long, Map<String, String>> result = changeLogService.getChangeLogList(Config.SYSTEMID, "MoviePlayItem", relatedid);
-			if(result.size()==1){
+		for (String relatedid : relatedidList) {
+			Map<Long, Map<String, String>> result = changeLogService.getChangeLogList(Config.SYSTEMID, "MoviePlayItem",
+					relatedid);
+			if (result.size() == 1) {
 				msgList.add(result.values().iterator().next().toString());
 			}
 		}
 		return forwardMessage(model, msgList);
 	}
+
 	/**
 	 * 把comment中@用户名: 替换成@用户名+空格
 	 * 
@@ -981,7 +1046,7 @@ public class CommonAdminController extends BaseAdminController {
 		DetachedCriteria query = DetachedCriteria.forClass(Comment.class);
 		query.add(Restrictions.like("body", "%@%", MatchMode.ANYWHERE));
 		query.addOrder(Order.desc("addtime"));
-		List<Comment> commentList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Comment> commentList = (List<Comment>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		if (commentList.isEmpty())
 			return;
 		for (Comment comment : commentList) {
@@ -994,7 +1059,8 @@ public class CommonAdminController extends BaseAdminController {
 
 	// 需要处理的系统警告信息
 	@RequestMapping("/admin/common/warnList.xhtml")
-	public String sysWarnList(String role, String adddate, String searchkey, String status, String jsonParams, String searchField, ModelMap model) {
+	public String sysWarnList(String role, String adddate, String searchkey, String status, String jsonParams,
+			String searchField, ModelMap model) {
 		Map<String, String> query = new HashMap<String, String>();
 		query.put("role", role);
 		if (StringUtils.isNotBlank(status)) {
@@ -1011,22 +1077,25 @@ public class CommonAdminController extends BaseAdminController {
 			endtime = starttime + DateUtil.m_day;
 		}
 		Map<String, String> likeQuery = new HashMap<String, String>();
-		if (StringUtils.isNotBlank(searchkey)){
-			if(StringUtils.isBlank(searchField)){
+		if (StringUtils.isNotBlank(searchkey)) {
+			if (StringUtils.isBlank(searchField)) {
 				searchField = "content";
 			}
 			likeQuery.put(searchField, searchkey);
 			model.put("searchkey", searchkey);
 		}
-		List<Map<String, String>> warnList = hbaseService.getRowListByRange(HbaseData.TABLE_SYSWARN, query, likeQuery, starttime, endtime, 2000);
+		List<Map<String, String>> warnList = hbaseService.getRowListByRange(HbaseData.TABLE_SYSWARN, query, likeQuery,
+				starttime, endtime, 2000);
 		model.put("warnList", warnList);
-		
+
 		return "admin/common/sysWarnList.vm";
 	}
 
 	@RequestMapping("/admin/common/updateSysWarn.xhtml")
 	public String updateSysWarn(String id, ModelMap model) {
-		Map<String, String> warn = hbaseService.getRowByHex(HbaseData.TABLE_SYSWARN, id);
+		Map<String, String> warn = null;
+		Row row = hbaseService.getRowByHex(HbaseData.TABLE_SYSWARN, id);
+		warn = (null != row) ? warn = row.getData() : Maps.newHashMap();
 		User user = getLogonUser();
 		String userKey = "@" + user.getId() + "@";
 		warn.put("auser", warn.get("auser") + userKey);
@@ -1057,7 +1126,8 @@ public class CommonAdminController extends BaseAdminController {
 	 * Admin Ajax 加载省市县
 	 **/
 	@RequestMapping("/admin/common/ajaxLoadAddress.xhtml")
-	public String ajaxLoadAddress(String tag, String provincecode, String citycode, String countycode, String agtag, ModelMap model) {
+	public String ajaxLoadAddress(String tag, String provincecode, String citycode, String countycode, String agtag,
+			ModelMap model) {
 		if (StringUtils.isBlank(tag)) {
 			List<Province> list = placeService.getAllProvinces();
 			List<Map> provinceMap = BeanUtil.getBeanMapList(list, "provincecode", "provincename");
@@ -1104,7 +1174,7 @@ public class CommonAdminController extends BaseAdminController {
 			indexarea.setIndexareaname(indexareaname);
 		} else {
 			String hql = "select max(indexareacode) from Indexarea i where i.county.countycode=?";
-			List<String> maxcodeList = hibernateTemplate.find(hql, countycode);
+			List<String> maxcodeList = (List<String>) hibernateTemplate.find(hql, countycode);
 			int indexareaValue = 0;
 			if (!maxcodeList.isEmpty())
 				indexareaValue = Integer.valueOf(maxcodeList.get(0)) + 1;
@@ -1116,70 +1186,75 @@ public class CommonAdminController extends BaseAdminController {
 		return showJsonSuccess(model);
 	}
 
-	//粉丝数量不相等数据升级
+	// 粉丝数量不相等数据升级
 	@RequestMapping("/admin/common/updateFansCount.xhtml")
 	public String updateFansCount(Long memberid, ModelMap model) {
 		Map map = mongoService.findOne(MongoData.NS_MEMBERCOUNT, MongoData.DEFAULT_ID_NAME, memberid);
-		if(map!=null){
-			if(map.containsKey("fanscount")){
-				Integer fc1 = Integer.valueOf(map.get("fanscount")+"");
+		if (map != null) {
+			if (map.containsKey("fanscount")) {
+				Integer fc1 = Integer.valueOf(map.get("fanscount") + "");
 				Integer fc2 = getFanscount(memberid);
-				if(!fc1.equals(fc2)){
+				if (!fc1.equals(fc2)) {
 					map.put("fanscount", fc2);
 					mongoService.saveOrUpdateMap(map, MongoData.DEFAULT_ID_NAME, MongoData.NS_MEMBERCOUNT);
 					return forwardMessage(model, "memberid:" + memberid + "," + fc1 + " --->" + fc2);
-				}else {
+				} else {
 					return forwardMessage(model, "memberid:" + memberid + "数据相等没有更新！");
 				}
 			}
 		}
 		return forwardMessage(model, "数据不存在！");
 	}
+
 	@RequestMapping("/admin/common/updateInterestcount.xhtml")
 	public String updateInterestcount(Long memberid, ModelMap model) {
 		Map map = mongoService.findOne(MongoData.NS_MEMBERCOUNT, MongoData.DEFAULT_ID_NAME, memberid);
-		if(map!=null){
-			if(map.containsKey("interestcount")){
-				Integer fc1 = Integer.valueOf(map.get("interestcount")+"");
+		if (map != null) {
+			if (map.containsKey("interestcount")) {
+				Integer fc1 = Integer.valueOf(map.get("interestcount") + "");
 				Integer fc2 = getInterestcount(memberid);
-				if(!fc1.equals(fc2)){
+				if (!fc1.equals(fc2)) {
 					map.put("interestcount", fc2);
 					mongoService.saveOrUpdateMap(map, MongoData.DEFAULT_ID_NAME, MongoData.NS_MEMBERCOUNT);
 					return forwardMessage(model, "memberid:" + memberid + "," + fc1 + " --->" + fc2);
-				}else {
+				} else {
 					return forwardMessage(model, "memberid:" + memberid + "数据相等没有更新！");
 				}
 			}
 		}
 		return forwardMessage(model, "数据不存在！");
 	}
-	private Integer getFanscount(Long memberid){
+
+	private Integer getFanscount(Long memberid) {
 		String hql = "select count(*) from Treasure where relatedid=? and tag=? and action=?";
 		List list = hibernateTemplate.find(hql, memberid, Treasure.TAG_MEMBER, Treasure.ACTION_COLLECT);
-		return Integer.valueOf(list.get(0)+"");
+		return Integer.valueOf(list.get(0) + "");
 	}
-	
-	private Integer getInterestcount(Long memberid){
+
+	private Integer getInterestcount(Long memberid) {
 		String hql = "select count(*) from Treasure where memberid=? and tag=? and action=?";
 		List list = hibernateTemplate.find(hql, memberid, Treasure.TAG_MEMBER, Treasure.ACTION_COLLECT);
-		return Integer.valueOf(list.get(0)+"");
+		return Integer.valueOf(list.get(0) + "");
 	}
-	
+
 	@RequestMapping("/admin/common/qryOrderResult.xhtml")
 	public String qryOrderResult(String tradeno, ModelMap model) {
 		String vm = "admin/common/orderResult.vm";
-		if(StringUtils.isBlank(tradeno)) return vm;
+		if (StringUtils.isBlank(tradeno))
+			return vm;
 		ErrorCode<List<TakeInfo>> ticode = terminalService.getTakeInfoList(tradeno);
 		model.put("takeInfoList", ticode.getRetval());
 		return vm;
 	}
+
 	@RequestMapping("/admin/common/callbackOrder.xhtml")
 	public String pushOrder(String tradeno, ModelMap model) {
 		String vm = "admin/common/callbackOrder.vm";
-		if(StringUtils.isBlank(tradeno)) return vm;
+		if (StringUtils.isBlank(tradeno))
+			return vm;
 		GewaOrder order = daoService.getObjectByUkey(GewaOrder.class, "tradeNo", tradeno, false);
-		if(order==null){
-			model.put("msg","订单不存在，请确认输入的订单号!!");
+		if (order == null) {
+			model.put("msg", "订单不存在，请确认输入的订单号!!");
 			return vm;
 		}
 		CallbackOrder backOrder = daoService.getObject(CallbackOrder.class, order.getId());
@@ -1187,5 +1262,5 @@ public class CommonAdminController extends BaseAdminController {
 		model.put("order", order);
 		return vm;
 	}
-	
+
 }

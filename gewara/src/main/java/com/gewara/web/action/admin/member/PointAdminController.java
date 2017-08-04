@@ -306,7 +306,7 @@ public class PointAdminController extends BaseAdminController {
 		Timestamp t = new Timestamp(System.currentTimeMillis());
 		Timestamp dtime = DateUtil.addDay(t, -90);// 在3个月之内点评
 		String diaryHql = "from Diary c where c.category=? and c.categoryid>0 and c.addtime>=? and instr(c.flag,'point')<=0 order by c.addtime desc";
-		List<Diary> dList = hibernateTemplate.find(diaryHql, "movie", dtime);
+		List<Diary> dList = (List<Diary>) hibernateTemplate.find(diaryHql, "movie", dtime);
 		String orderHql = null;
 		List list = null;
 		Map<Long, Long> mpiMap = new HashMap<Long, Long>();
@@ -381,7 +381,7 @@ public class PointAdminController extends BaseAdminController {
 		if (endTime == null)
 			endTime = new Timestamp(System.currentTimeMillis());
 		String hql = "select new map(count(p) as count,sum(p.point) as sumpoint) from Point p where (p.tag = ? or p.tag = ?) and p.addtime between ? and ?";
-		List<Map> pointList = hibernateTemplate.find(hql, PointConstant.TAG_INVITED_FRIEND_TICKET, PointConstant.TAG_INVITED_FRIEND_GOODS, beginTime,
+		List<Map> pointList = (List<Map>) hibernateTemplate.find(hql, PointConstant.TAG_INVITED_FRIEND_TICKET, PointConstant.TAG_INVITED_FRIEND_GOODS, beginTime,
 				endTime);
 		model.put("count", pointList.get(0).get("count"));
 		model.put("sumpoint", pointList.get(0).get("sumpoint") == null ? 0 : pointList.get(0).get("sumpoint"));

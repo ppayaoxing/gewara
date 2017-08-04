@@ -1,13 +1,19 @@
 package com.gewara.json;
 
+import com.gewara.mongo.support.MGObject;
 
-public class RoomOuterRingSeat {
+public class RoomOuterRingSeat extends MGObject {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3306874986995671638L;
+
 	private String _id;
-	
+
 	private String addTime;
-	
+
 	private Long roomId;
-	
+
 	private String outerRingSeat;
 
 	public String get_id() {
@@ -41,5 +47,5 @@ public class RoomOuterRingSeat {
 	public void setOuterRingSeat(String outerRingSeat) {
 		this.outerRingSeat = outerRingSeat;
 	}
-	
+
 }

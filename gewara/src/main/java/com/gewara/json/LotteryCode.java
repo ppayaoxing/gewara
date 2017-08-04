@@ -2,7 +2,9 @@ package com.gewara.json;
 
 import java.io.Serializable;
 
-public class LotteryCode implements Serializable{
+import com.gewara.mongo.support.MGObject;
+
+public class LotteryCode  extends MGObject implements Serializable{
 	private static final long serialVersionUID = 8243025802888248477L;
 	private Long id;
 	private Long memberid;

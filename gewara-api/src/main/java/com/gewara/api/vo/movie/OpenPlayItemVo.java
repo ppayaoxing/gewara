@@ -6,9 +6,13 @@ import com.gewara.api.vo.BaseVo;
 
 public class OpenPlayItemVo extends BaseVo {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6274144587063378249L;
+
 	@Override
 	public Serializable realId() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

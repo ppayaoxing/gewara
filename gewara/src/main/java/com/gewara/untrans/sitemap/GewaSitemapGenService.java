@@ -37,18 +37,18 @@ public class GewaSitemapGenService extends AbstractSitemapGenService implements 
 		this.writerUrl(writer, loc, lastmod, "always","1.0");
 		
 		//1)影院
-		List<Long> idList = hibernateTemplate.find("select c.id from Cinema c");
+		List<Long> idList = (List<Long>) hibernateTemplate.find("select c.id from Cinema c");
 		for(Long id: idList){
 			loc = siteUrl + "cinema/" + id;
 			this.writerUrl(writer, loc, lastmod, "hourly","0.8");
 		}
-		List<Long> movieIdList = hibernateTemplate.find("select m.id from Movie m");
+		List<Long> movieIdList = (List<Long>) hibernateTemplate.find("select m.id from Movie m");
 		for(Long movieId:movieIdList){
 			loc = siteUrl + "movie/" + movieId;
 			this.writerUrl(writer, loc, lastmod, "hourly","1.0");
 		}
 		//2)运动场所
-		idList = hibernateTemplate.find("select c.id from Sport c");
+		idList = (List<Long>) hibernateTemplate.find("select c.id from Sport c");
 		for(Long id: idList){
 			loc = siteUrl + "sport/" + id;
 			this.writerUrl(writer, loc, lastmod, "hourly","0.8");

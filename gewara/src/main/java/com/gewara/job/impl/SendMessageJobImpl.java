@@ -530,6 +530,7 @@ public class SendMessageJobImpl extends JobService implements SendMessageJob {
 		DBObject queryCondition = new BasicDBObject();
 		DBObject relate1 = mongoService.queryBasicDBObject("tag", "=", "theatreDraCollect");
 		DBObject relate2 = mongoService.queryBasicDBObject("mpid", "=", null);
+//		DBObject relate2 = mongoService.queryBasicDBObject("mpid", "=", null);
 		DBObject relate3 = mongoService.queryBasicDBObject("status", "=", Status.N);
 		DBObject relate4 = mongoService.queryBasicDBObject("type", "=", AddressConstant.ADDRESS_WEB);
 		queryCondition.putAll(relate1);

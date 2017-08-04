@@ -233,7 +233,7 @@ public class RemoteTheatreServiceImpl implements RemoteTheatreService {
 		Timestamp starttime = DateUtil.getBeginTimestamp(playdate);
 		Timestamp endtime = DateUtil.getLastTimeOfDay(starttime);
 		String query = "from DramaPlayItem where theatreid = ? and playtime >= ? and playtime<? and sellerseq is not null";
-		List<DramaPlayItem> oldList = hibernateTemplate.find(query, theatreid, starttime, endtime);
+		List<DramaPlayItem> oldList = (List<DramaPlayItem>) hibernateTemplate.find(query, theatreid, starttime, endtime);
 		Map<String, DramaPlayItem> oldMap = BeanUtil.beanListToMap(oldList, "sellerseq");
 		List<TheatreField> fieldList = daoService.getObjectListByField(TheatreField.class, "theatreid", theatreid);
 		Map<String,TheatreField> fieldMap = BeanUtil.beanListToMap(fieldList, "fieldnum");

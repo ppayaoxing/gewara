@@ -179,7 +179,7 @@ public class OdiOpenServiceImpl implements OdiOpenService, InitializingBean {
 		}else{
 			query.add(Restrictions.le("d.enddate", curDate));
 		}
-		List<Drama> dramaList = hibernateTemplate.findByCriteria(query);
+		List<Drama> dramaList = (List<Drama>) hibernateTemplate.findByCriteria(query);
 		for (Drama drama : dramaList) {
 			dpiManageService.refreshDramaOtherinfo(userid, drama);
 		}

@@ -33,7 +33,6 @@ import com.gewara.mdb.operation.Projection;
 import com.gewara.mdb.result.DeleteRes;
 import com.gewara.mdb.result.FindRes;
 import com.gewara.mdb.result.UpdateRes;
-import com.gewara.model.BaseObject;
 import com.gewara.mongo.MongoDataException;
 import com.gewara.mongo.MongoService;
 import com.gewara.mongo.support.MGObject;
@@ -51,6 +50,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
+
 @Service("mongoService")
 public class MongoServiceImpl implements MongoService, InitializingBean {
 	private MongoDatabase currentDB = null;
@@ -136,8 +136,10 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 
 	public <T extends MGObject> boolean removeObject(T o, String idName) {
 		Object id = BeanUtil.get(o, idName);
-		return id != null ? this.execDelete(BuilderUtils.prepareDelete(o.getClass())
-				.setCondition((new Expression()).eq(idName, id)).setDeleteOne(true)).success() : false;
+		return id != null
+				? this.execDelete(BuilderUtils.prepareDelete(o.getClass())
+						.setCondition((new Expression()).eq(idName, id)).setDeleteOne(true)).success()
+				: false;
 	}
 
 	public <T extends MGObject> boolean removeObjectById(Class<T> clazz, String idName, Serializable id) {
@@ -581,9 +583,9 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return new FindRes(result);
 	}
 
-//	========================== TODO  新加的方法========================================
+	// ========================== TODO 新加的方法========================================
 	@Override
-	public DBObject queryBasicDBObject(String string, String string2, String tagCinema) {
+	public DBObject queryBasicDBObject(String string, String string2, Object o) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -606,6 +608,7 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	@Override
 	public Map getMap(String defaultIdName, String nsIndexDatasheet, Long indexKey) {
 		// TODO Auto-generated method stub
@@ -637,13 +640,7 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 	}
 
 	@Override
-	public DBObject queryBasicDBObject(String string, String string2, Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public DBObject queryAdvancedDBObject(String string, String[] strings, String[] dates) {
+	public DBObject queryAdvancedDBObject(String string, Object[] strings, Object[] dates) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -708,5 +705,83 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 	public List<Map> find(String nsRecommendMember, Map params, String orderField, boolean asc) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public <T extends MGObject> List<T> find(Class<T> clazz, Map hashMap) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Map> find(String namespace, DBObject params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int removeObjectList(String namespace, Map params) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int removeObjectList(String namespace, DBObject params) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void saveOrUpdateMapList(List<Map> mapList, String string, String string2, boolean b, boolean c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getPrimitiveObject(String keyFixedkeywords) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(String namespace, Map data, Map destMap) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Map> getMapList(String nsAutoSetterLimit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Map> find(String namespace, Map params, int from, int maxnum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Map> find(String namespace, DBObject params, String orderField, boolean asc, int from, int maxnum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getCount(String namespace, DBObject params) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void saveOrUpdateMap(Map map, String string, String string2, boolean b, boolean c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void savePrimitiveObject(String keytype, String... join) {
+		// TODO Auto-generated method stub
+		
 	}
 }

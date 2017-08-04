@@ -26,10 +26,10 @@ import com.gewara.model.user.Member;
 import com.gewara.model.user.TempMember;
 import com.gewara.service.ticket.TicketDiscountService;
 import com.gewara.support.ErrorCode;
+import com.gewara.support.concurrent.AtomicCounter;
 import com.gewara.untrans.LockService;
 import com.gewara.untrans.draw.DrawUntransService;
 import com.gewara.untrans.impl.AbstractUntrantsService;
-import com.gewara.untrans.impl.LockServiceImpl.AtomicCounter;
 import com.gewara.untrans.subject.BaiFuBaoService;
 import com.gewara.util.GewaIpConfig;
 import com.gewara.util.HttpResult;
@@ -116,6 +116,7 @@ public class BaiFuBaoServiceImpl extends AbstractUntrantsService implements BaiF
 		return true;
 	}
 	@Override
+	
 	public ErrorCode<String> getPayUrl(TempMember tm) {
 		String tradeNo = tm.getId().toString();
 		String deviceType = FLAG_PC.equals(tm.getFlag())?"0":"1";
@@ -224,12 +225,12 @@ public class BaiFuBaoServiceImpl extends AbstractUntrantsService implements BaiF
 		DetachedCriteria query = DetachedCriteria.forClass(TempMember.class);
 		query.add(Restrictions.eq("mobile", mobile));
 		query.add(Restrictions.eq("tmppwd", tmppwd));
-		List<TempMember> resultList = hibernateTemplate.findByCriteria(query);
+		List<TempMember> resultList = (List<TempMember>) hibernateTemplate.findByCriteria(query);
 		if(resultList.isEmpty()){
 			query = DetachedCriteria.forClass(Member.class);
 			query.add(Restrictions.eq("mobile", mobile));
 			query.add(Restrictions.eq("password", tmppwd));
-			List<Member> result = hibernateTemplate.findByCriteria(query);
+			List<Member> result = (List<Member>) hibernateTemplate.findByCriteria(query);
 			if(result.isEmpty()){
 				return ErrorCode.getFailure("Œ¥’“µΩ¥À’À∫≈£°");
 			}else{

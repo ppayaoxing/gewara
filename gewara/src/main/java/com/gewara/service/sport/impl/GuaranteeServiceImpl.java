@@ -34,7 +34,7 @@ public class GuaranteeServiceImpl extends BaseServiceImpl implements GuaranteeSe
 				query.addOrder(Order.desc("addtime"));
 			}
 		}
-		List<Guarantee> guaranteeList = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<Guarantee> guaranteeList = (List<Guarantee>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return guaranteeList;
 	}
 	
@@ -42,7 +42,7 @@ public class GuaranteeServiceImpl extends BaseServiceImpl implements GuaranteeSe
 	public Integer getGuaranteeCount(String citycode, Timestamp starttime, Timestamp endtime, String status){
 		DetachedCriteria query = queryCriteria(citycode, starttime, endtime, status);
 		query.setProjection(Projections.rowCount());
-		List<Long> result = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(result.isEmpty()) return 0;
 		return result.get(0).intValue();
 	}

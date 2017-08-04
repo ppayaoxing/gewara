@@ -264,7 +264,7 @@ public class AlbumAdminController extends BaseAdminController {
 			hql += " and t.status!= ?";
 			params.add(status);
 		}
-		result = hibernateTemplate.find(hql, params.toArray());
+		result = (List<Long>) hibernateTemplate.find(hql, params.toArray());
 		if (result.isEmpty())
 			return 0;
 		return result.get(0).intValue();

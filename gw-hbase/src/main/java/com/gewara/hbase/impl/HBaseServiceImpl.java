@@ -891,6 +891,26 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		return true;
 	}
 
+	@Override
+	public <K, V> List<Map<K, V>> getRowList(String tablename, List fb) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <K, V> List<Map<K, V>> getRowListByRange(String tableAppsource, Map<K, V> query, long time, long time2,
+			int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <K, V> List<Map<K, V>> getRowListByRange(String tableAppsource, Map<K, V> query, Map<K, V> map, long time,
+			long time2, int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

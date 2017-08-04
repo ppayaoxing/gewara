@@ -3,7 +3,9 @@ package com.gewara.json.mobile;
 import java.io.Serializable;
 import java.util.Date;
 
-public class MobileUpGradeCount implements Serializable {
+import com.gewara.mongo.support.MGObject;
+
+public class MobileUpGradeCount extends MGObject implements Serializable {
 	private static final long serialVersionUID = 5822227303557327450L;
 
 	private String id;

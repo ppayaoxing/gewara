@@ -449,7 +449,7 @@ public class TicketOperationServiceImpl implements TicketOperationService, Initi
 		}
 		List<SynchPlayItem> synchPlayItemList = code.getRetval();
 		String query = "from MoviePlayItem where cinemaid = ? and playdate = ? and seqNo is not null";
-		List<MoviePlayItem> oldList = hibernateTemplate.find(query, cinemaid, playdate);
+		List<MoviePlayItem> oldList = (List<MoviePlayItem>) hibernateTemplate.find(query, cinemaid, playdate);
 		Map<String, MoviePlayItem> oldMap = BeanUtil.beanListToMap(oldList, "seqNo");
 		UpdateMpiContainer container = new UpdateMpiContainer();
 		for (SynchPlayItem synchPlayItem : synchPlayItemList) {
@@ -517,7 +517,7 @@ public class TicketOperationServiceImpl implements TicketOperationService, Initi
 		query.add(Subqueries.propertyIn("o.cinemaid", sub));
 		//query.add(Restrictions.or(Restrictions.gt("o.playtime", cur), Subqueries.propertyIn("o.cinemaid", sub)));
 		
-		List<Long> allOPI = hibernateTemplate.findByCriteria(query);
+		List<Long> allOPI = (List<Long>) hibernateTemplate.findByCriteria(query);
 		hotopiList = new ArrayList<Long>(allOPI.size()/2);
 		for(Long opid : allOPI){
 			OpenPlayItem opi = daoService.getObject(OpenPlayItem.class, opid);

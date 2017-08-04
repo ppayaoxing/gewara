@@ -30,7 +30,7 @@ public class SportSitemapGenService extends AbstractSitemapGenService implements
 		this.writerUrl(writer, loc, lastmod, "always","1.0");
 		loc = siteUrl + "sport/itemDiaryList.xhtml";
 		this.writerUrl(writer, loc, lastmod, "always","1.0");
-		List<Long> ptList = hibernateTemplate.find("select id from Sport");
+		List<Long> ptList = (List<Long>) hibernateTemplate.find("select id from Sport");
 		String[] moudels = new String[]{"/picturelist"};
 		for(Long ptId:ptList){
 			for(String moudel: moudels){
@@ -38,7 +38,7 @@ public class SportSitemapGenService extends AbstractSitemapGenService implements
 				this.writerUrl(writer, loc, lastmod, "daily","0.8");
 			}
 		}
-		List<Long> itemList = hibernateTemplate.find("select t.id from SportItem t");
+		List<Long> itemList = (List<Long>) hibernateTemplate.find("select t.id from SportItem t");
 		moudels = new String[]{"/rookielist", "/masterlist", "/pricetable", "/diarylist", "/librarylist"};
 		for(Long itemId:itemList){
 			loc = siteUrl + "sport/item/" + itemId;

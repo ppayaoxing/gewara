@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.gewara.api.vo.ResultCode;
+import com.gewara.api.vo.movie.TakeInfoVo;
+import com.gewara.api.vo.order.GewaOrderVo;
 import com.gewara.api.vo.order.TicketOrderVo;
 import com.gewara.constant.ApiConstant;
 import com.gewara.constant.ticket.OrderConstant;
@@ -51,5 +53,15 @@ public class TicketOrderVoServiceImpl extends BaseServiceImpl implements TicketO
 			resultList = orderList;
 		}
 		return VoCopyUtil.copyListProperties(TicketOrderVo.class, resultList);
+	}
+	@Override
+	public ResultCode<GewaOrderVo> getTicketOrderByTradeno(String tradeno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ResultCode<List<TakeInfoVo>> getTakeInfoList(String tradeNo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

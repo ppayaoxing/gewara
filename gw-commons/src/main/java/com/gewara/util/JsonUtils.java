@@ -37,6 +37,7 @@ public class JsonUtils {
 		}
 		return null;
 	}
+
 	public static <T> T readJsonToObject(TypeReference<T> type, String json){
 		if (StringUtils.isBlank(json)){
 			return null;
@@ -234,5 +235,6 @@ public class JsonUtils {
 		Map<String, String> info = readJsonToMap(json);
 		return info.get(key);
 	}
+
 
 }

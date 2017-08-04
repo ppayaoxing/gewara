@@ -343,7 +343,7 @@ public class SnsAdminController extends BaseAdminController {
 	@RequestMapping("/admin/sns/ticketMemberList.xhtml")
 	public String searchMember2(ModelMap model, Long cinemaid, Integer pageNo, Date fromDate, Date toDate){
 		String cinemaHql = "select new map(c.id as id, c.name as name) from Cinema c, CinemaProfile cp where c.id=cp.id";
-		List<Map> cinemaList = hibernateTemplate.find(cinemaHql);
+		List<Map> cinemaList = (List<Map>) hibernateTemplate.find(cinemaHql);
 		model.put("cinemaList", cinemaList);
 		if(cinemaid==null && (fromDate==null || toDate==null)) return "admin/sns/ticketMemberList.vm";
 		if(pageNo==null) pageNo=0;
@@ -403,7 +403,7 @@ public class SnsAdminController extends BaseAdminController {
 		query.add(Restrictions.eq("cinemaid", cinemaid));
 		query.setProjection(Projections.countDistinct("mobile"));
 		query.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
-		List<TicketOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		if(orderList.get(0)==null) return 0;
 		return new Integer(orderList.get(0)+"");
 	}

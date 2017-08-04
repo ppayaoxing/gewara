@@ -1,10 +1,11 @@
 package com.gewara.json;
 
+import com.gewara.mongo.support.MGObject;
 
 /**
  * 影片特别说明
  */
-public class MovieMpiRemark {
+public class MovieMpiRemark extends MGObject{
 	private String _id;
 	private Long movieId;
 	private String validTime;

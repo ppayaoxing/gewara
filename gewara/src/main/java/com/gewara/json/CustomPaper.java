@@ -3,10 +3,11 @@ package com.gewara.json;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.gewara.mongo.support.MGObject;
 import com.gewara.util.DateUtil;
 import com.gewara.util.ObjectId;
 
-public class CustomPaper implements Serializable{
+public class CustomPaper  extends MGObject implements Serializable{
 	
 	//自定义票纸内容 后台需统计
 	

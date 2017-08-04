@@ -117,7 +117,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		DetachedCriteria query = DetachedCriteria.forClass(SportPriceTable.class);
 		query.add(Restrictions.eq("itemid", itemid));
 		query.addOrder(Order.desc("ordernum"));
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<SportPriceTable>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 
 	@Override
@@ -152,7 +152,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		DetachedCriteria query = DetachedCriteria.forClass(SportItem.class);
 		query.add(Restrictions.like("flag", SportItem.FLAG_RECOMMEND, MatchMode.ANYWHERE));
 		query.addOrder(Order.desc("updatetime"));
-		List<SportItem> list = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<SportItem> list = (List<SportItem>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return list;
 	}
 	@Override
@@ -160,7 +160,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		String hql = "select new map(sport.countycode as countycode,count(*) as num) " +
 				"from SportPriceTable st, Sport sport where st.itemid = ? and st.sportid=sport.id " +
 				"group by sport.countycode having count(*)>0";
-		List<Map> result = readOnlyTemplate.find(hql,id);
+		List<Map> result = (List<Map>) readOnlyTemplate.find(hql,id);
 		for (Map map : result) {
 			map.put("county",baseDao.getObject(County.class,map.get("countycode")+""));
 		}
@@ -170,7 +170,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 	public List<Map> getSportListByCountyCode(Long id, String countycode) {
 		String hql = "select new map(sport.name as sportname,st.sportid as id) " +
 				"from SportPriceTable st, Sport sport where st.itemid = ? and st.sportid=sport.id and sport.countycode = ? ";
-		List<Map> result = readOnlyTemplate.find(hql, id, countycode);
+		List<Map> result = (List<Map>) readOnlyTemplate.find(hql, id, countycode);
 		return result;
 	}
 	@Override
@@ -178,7 +178,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		DetachedCriteria query = DetachedCriteria.forClass(SportPriceTable.class);
 		query.add(Restrictions.eq("sportid", sportid));
 		query.addOrder(Order.asc("ordernum"));
-		List<SportPriceTable> list = readOnlyTemplate.findByCriteria(query);
+		List<SportPriceTable> list = (List<SportPriceTable>) readOnlyTemplate.findByCriteria(query);
 		return list;
 	}
 	@Override 
@@ -186,7 +186,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		DetachedCriteria query = DetachedCriteria.forClass(SportPriceTable.class);
 		if(null != itemid)query.add(Restrictions.eq("itemid", itemid));
 		if(null != sportid)query.add(Restrictions.eq("sportid", sportid));
-		List<SportPriceTable> priceTable = readOnlyTemplate.findByCriteria(query);
+		List<SportPriceTable> priceTable = (List<SportPriceTable>) readOnlyTemplate.findByCriteria(query);
 		if(priceTable.isEmpty()) return null;
 		return priceTable.get(0);
 	}
@@ -194,7 +194,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 	public List<SportPrice> getSportPriceList(Long priceTableid){
 		DetachedCriteria query = DetachedCriteria.forClass(SportPrice.class);
 		query.add(Restrictions.eq("pricetableid", priceTableid));
-		List<SportPrice> priceList = readOnlyTemplate.findByCriteria(query);
+		List<SportPrice> priceList = (List<SportPrice>) readOnlyTemplate.findByCriteria(query);
 		return priceList;
 	}
 	/**
@@ -204,13 +204,13 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		DetachedCriteria query=DetachedCriteria.forClass(SportItem.class);
 		query.add(Restrictions.like("itemname", key, MatchMode.ANYWHERE));
 		query.addOrder(Order.desc("clickedtimes"));
-		return readOnlyTemplate.findByCriteria(query);
+		return (List<SportItem>) readOnlyTemplate.findByCriteria(query);
 	}
 
 	@Override
 	public List<Sport2Item> getSport2ItemListBySportId(Long sportId) {
 		String query = "from Sport2Item where sportid=? order by sortnum";
-		List<Sport2Item> result = readOnlyTemplate.find(query, sportId);
+		List<Sport2Item> result = (List<Sport2Item>) readOnlyTemplate.find(query, sportId);
 		return result;
 	}
 
@@ -224,7 +224,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 			params.add(booking);
 		}
 		query += " order by sortnum ";
-		List<Long> idList = readOnlyTemplate.find(query, params.toArray());
+		List<Long> idList = (List<Long>) readOnlyTemplate.find(query, params.toArray());
 		List<SportItem> result = baseDao.getObjectList(SportItem.class, idList);
 		return result;
 	}
@@ -232,7 +232,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 	@Override
 	public Sport2Item getSport2Item(Long sportId, Long itemId) {
 		String query = "from Sport2Item where sportid=? and itemid=?";
-		List<Sport2Item> result = hibernateTemplate.find(query, sportId, itemId);
+		List<Sport2Item> result = (List<Sport2Item>) hibernateTemplate.find(query, sportId, itemId);
 		if(result.isEmpty()) return null;
 		return result.get(0);
 	}
@@ -247,7 +247,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 	public List<Long> getSportIdByCode(String citycode, String countycode, String indexareacode, int from, int maxnum){
 		DetachedCriteria query = getSportCriteria(citycode, countycode, indexareacode);
 		query.setProjection(Projections.property("id"));
-		return readOnlyTemplate.findByCriteria(query, from, maxnum);
+		return (List<Long>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	private DetachedCriteria getSportCriteria(String citycode, String countycode, String indexareacode){
@@ -264,7 +264,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 	@Override
 	public List<SportPrice> getPriceList(Long priceTableId) {
 		String query = "from SportPrice where pricetableid = ? order by ordernum asc";
-		List<SportPrice> result = readOnlyTemplate.find(query, priceTableId);
+		List<SportPrice> result = (List<SportPrice>) readOnlyTemplate.find(query, priceTableId);
 		return result;
 	}
 
@@ -272,7 +272,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 	public SportPrice getSportPriceByPriceTableId(Long priceTableId) {
 		DetachedCriteria query = DetachedCriteria.forClass(SportPrice.class);
 		query.add(Restrictions.eq("pricetableid", priceTableId));
-		List<SportPrice> sportpriceList=readOnlyTemplate.findByCriteria(query, 0, 1);
+		List<SportPrice> sportpriceList=(List<SportPrice>) readOnlyTemplate.findByCriteria(query, 0, 1);
 		if(sportpriceList.isEmpty()) return null;
 		return sportpriceList.get(0);
 	}
@@ -288,9 +288,9 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		query.add(Subqueries.exists(subquery));
 		List<Sport> sportList=null;
 		if(from==0&&max==0){
-			sportList = readOnlyTemplate.findByCriteria(query);
+			sportList = (List<Sport>) readOnlyTemplate.findByCriteria(query);
 		}else{
-			sportList = readOnlyTemplate.findByCriteria(query,from, max);
+			sportList = (List<Sport>) readOnlyTemplate.findByCriteria(query,from, max);
 		}
 		return sportList;
 	}
@@ -303,14 +303,14 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 			query.add(Restrictions.eq("citycode", citycode));
 		query.add(Restrictions.eq("booking", bookingstatus));
 		query.add(Restrictions.or(Restrictions.ne("flag", "H"),Restrictions.isNull("flag")));
-		List<Sport> sportlist = readOnlyTemplate.findByCriteria(query);
+		List<Sport> sportlist = (List<Sport>) readOnlyTemplate.findByCriteria(query);
 		return sportlist;
 	}
 
 	@Override
 	public List<Map> getMaxHourAndMinHour(Long sportid) {
 		String hql="select new map(min(oti.hour) as hourmin,max(oti.hour) as hourmax) from OpenTimeItem oti where oti.sportid="+sportid;
-		List<Map> hoursMap=readOnlyTemplate.find(hql);
+		List<Map> hoursMap=(List<Map>) readOnlyTemplate.find(hql);
 		return hoursMap;
 	}
 
@@ -319,7 +319,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		List<SportItem> sportitemList=new ArrayList<SportItem>();
 		if(sportid==null) {
 				DetachedCriteria query = DetachedCriteria.forClass(SportItem.class);
-				sportitemList=readOnlyTemplate.findByCriteria(query);
+				sportitemList=(List<SportItem>) readOnlyTemplate.findByCriteria(query);
 		}else{
 				sportitemList=getSportItemListBySportId(sportid, null);
 		}
@@ -350,7 +350,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 	public List<Sport> getCurSportList(String orderField) {
 		String query = "select distinct oti.sportid from OpenTimeItem oti where oti.status='A'" +
 				" and exists(select s.id from Sport s where s.id = oti.sportid)";
-		List<Long> sportidList = hibernateTemplate.find(query);
+		List<Long> sportidList = (List<Long>) hibernateTemplate.find(query);
 		List<Sport> sportList = baseDao.getObjectList(Sport.class, sportidList);
 		Collections.sort(sportList, new PropertyComparator((orderField), false, false));
 		return sportList;
@@ -377,7 +377,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 			}
 			qry.setProjection(Projections.property("o.itemid"));
 			qry.setProjection(Projections.distinct(Projections.property("o.itemid")));
-			idList=hibernateTemplate.findByCriteria(qry);
+			idList=(List<Long>) hibernateTemplate.findByCriteria(qry);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, idList);
 		}
 		
@@ -405,7 +405,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 			}
 			qry.setProjection(Projections.property("o.sportid"));
 			qry.setProjection(Projections.distinct(Projections.property("o.sportid")));
-			idList=hibernateTemplate.findByCriteria(qry);
+			idList=(List<Long>) hibernateTemplate.findByCriteria(qry);
 			cacheService.set(CacheConstant.REGION_TWENTYMIN, key, idList);
 		}
 		return idList;
@@ -421,7 +421,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		subquery.setProjection(Projections.property("t.sportid"));
 		query.add(Subqueries.exists(subquery));
 		query.setProjection(Projections.property("id"));
-		List<Long> sportList = hibernateTemplate.findByCriteria(query);
+		List<Long> sportList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return sportList;
 	}
 	
@@ -450,7 +450,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		subquery.setProjection(Projections.property("t.sportid"));
 		query.add(Subqueries.exists(subquery));
 		query.setProjection(Projections.property("id"));
-		List<Long> sportidList = hibernateTemplate.findByCriteria(query);
+		List<Long> sportidList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return sportidList;
 	}
 	@Override
@@ -468,7 +468,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		subitem.setProjection(Projections.property("t.sportid"));
 		query.add(Subqueries.exists(subitem));
 		query.setProjection(Projections.property("id"));
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		return list;
 	}
 	@Override
@@ -477,7 +477,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
 		query.addOrder(Order.desc("addtime"));
-		List<SportOrder> orderList = this.hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<SportOrder> orderList = (List<SportOrder>) this.hibernateTemplate.findByCriteria(query, from, maxnum);
 		List<Long> idList = BeanUtil.getBeanPropertyList(orderList, Long.class, "sportid", true);
 		return idList;
 	}
@@ -488,7 +488,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		query.add(Restrictions.eq("sportid", sportid));
 		query.add(Restrictions.eq("status", OrderConstant.STATUS_PAID_SUCCESS));
 		query.addOrder(Order.desc("addtime"));
-		List<SportOrder> orderList = this.hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<SportOrder> orderList = (List<SportOrder>) this.hibernateTemplate.findByCriteria(query, from, maxnum);
 		List<Long> idList = BeanUtil.getBeanPropertyList(orderList, Long.class, "memberid", true);
 		return idList;
 	}
@@ -499,11 +499,11 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		query.add(Restrictions.eq("sportid", sportid));
 		query.add(Restrictions.eq("itemid", itemid));
 		query.setProjection(Projections.property("id"));
-		List<Long> idList =  readOnlyTemplate.findByCriteria(query);
+		List<Long> idList =  (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if(idList.isEmpty())return null;
 		query = DetachedCriteria.forClass(SportPrice.class);
 		query.add(Restrictions.eq("pricetableid", idList.get(0)));
-		List<SportPrice> list = readOnlyTemplate.findByCriteria(query);
+		List<SportPrice> list = (List<SportPrice>) readOnlyTemplate.findByCriteria(query);
 		return list;
 	}
 	
@@ -513,7 +513,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		query.add(Restrictions.eq("sportid", sportid));
 		query.add(Restrictions.eq("itemid", itemid));
 		query.addOrder(Order.asc("week"));
-		List<ProgramItemTime> programItemList = hibernateTemplate.findByCriteria(query);
+		List<ProgramItemTime> programItemList = (List<ProgramItemTime>) hibernateTemplate.findByCriteria(query);
 		return programItemList;
 	}
 	
@@ -529,7 +529,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		query.add(Subqueries.exists(subquery));
 		query.add(Restrictions.eq("s.citycode", citycode));
 		query.setProjection(Projections.property("s.id"));
-		List<Long> result = readOnlyTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		return result;
 	}
 	
@@ -545,14 +545,14 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		query.add(Subqueries.exists(subquery));
 		query.add(Restrictions.eq("s.citycode", citycode));
 		query.setProjection(Projections.countDistinct("s.id"));
-		List<Long> result = readOnlyTemplate.findByCriteria(query);
+		List<Long> result = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if(result.isEmpty()) return 0;
 		return Integer.valueOf(String.valueOf(result.get(0)));
 	}
 
 	@Override
 	public List<Sport> getSportList(String flag, String key, String citycode,int from, int maxnum) {
-		return readOnlyTemplate.findByCriteria(getCriteria(flag, key,citycode, false),from,maxnum);
+		return (List<Sport>) readOnlyTemplate.findByCriteria(getCriteria(flag, key,citycode, false),from,maxnum);
 	}
 	@Override
 	public Integer getSportCount(String flag, String key,String citycode) {
@@ -586,7 +586,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 
 	@Override
 	public List<SportProfile> getSportProfileList(String key, String citycode,Long siId, String company, boolean isBooking, int from, int maxnum) {
-		 return readOnlyTemplate.findByCriteria(getSportProfile(key, citycode, siId, company, isBooking), from, maxnum);
+		 return (List<SportProfile>) readOnlyTemplate.findByCriteria(getSportProfile(key, citycode, siId, company, isBooking), from, maxnum);
 	}
 
 	@Override
@@ -636,7 +636,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		query.add(Restrictions.eq("sportid", sportid));
 		query.add(Restrictions.eq("itemid", itemid));
 		query.add(Restrictions.eq("week", week));
-		List<SportItemPrice> sportItemPriceList = hibernateTemplate.findByCriteria(query);
+		List<SportItemPrice> sportItemPriceList = (List<SportItemPrice>) hibernateTemplate.findByCriteria(query);
 		if(sportItemPriceList.isEmpty()) return null;
 		return sportItemPriceList.get(0);
 	}
@@ -646,7 +646,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		query.add(Restrictions.eq("sportid", sportid));
 		query.add(Restrictions.eq("itemid", itemid));
 		query.add(Restrictions.eq("status", Status.Y));
-		List<SportItemPrice> sportItemPriceList = hibernateTemplate.findByCriteria(query);
+		List<SportItemPrice> sportItemPriceList = (List<SportItemPrice>) hibernateTemplate.findByCriteria(query);
 		return sportItemPriceList;
 	}
 	
@@ -661,7 +661,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		subQuery.add(Restrictions.ge("o.closetime", cur));
 		subQuery.add(Restrictions.ge("o.playdate", startdate));
 		subQuery.setProjection(Projections.property("o.itemname"));
-		List<String> list = readOnlyTemplate.findByCriteria(subQuery);
+		List<String> list = (List<String>) readOnlyTemplate.findByCriteria(subQuery);
 		return list;
 	}
 	@Override
@@ -672,7 +672,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		}else{
 			query.addOrder(Order.asc("ordernum"));
 		}
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<SportItem>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public int getSportItemCount(String itemname, Long parentid, String type){
@@ -701,7 +701,7 @@ public class SportServiceImpl extends BaseServiceImpl implements SportService {
 		subquery.add(Restrictions.eqProperty("s.otiid", "o.id"));
 		subquery.setProjection(Projections.property("s.otiid"));
 		query.add(Subqueries.exists(subquery));
-		List<OpenTimeItem> itemIds = hibernateTemplate.findByCriteria(query);
+		List<OpenTimeItem> itemIds = (List<OpenTimeItem>) hibernateTemplate.findByCriteria(query);
 		return itemIds;
 	}
 

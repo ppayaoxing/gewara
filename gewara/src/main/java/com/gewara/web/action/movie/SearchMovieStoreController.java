@@ -113,7 +113,7 @@ public class SearchMovieStoreController extends AnnotationController {
 		}
 		
 		//根据条件查询影片
-		List<Movie> searchMovieList = hibernateTemplate.findByCriteria(newSearchStoreDetached(smsc, citycode,smsc.getSearchkey()),smsc.pageNo*smsc.maxNum,smsc.maxNum);
+		List<Movie> searchMovieList = (List<Movie>) hibernateTemplate.findByCriteria(newSearchStoreDetached(smsc, citycode,smsc.getSearchkey()),smsc.pageNo*smsc.maxNum,smsc.maxNum);
 		model.put("searchMovieList", searchMovieList);
 		model.put("movietime", smsc.movietime);
 		model.put("playtype", smsc.playtype);

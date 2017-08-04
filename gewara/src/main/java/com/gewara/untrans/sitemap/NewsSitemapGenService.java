@@ -38,7 +38,7 @@ public class NewsSitemapGenService extends AbstractSitemapGenService implements 
 			this.writerUrl(writer, loc, lastmod, "always", "1.0");
 		}
 		// 1) News
-		List<Long> newsList = hibernateTemplate.find("select c.id from News c order by c.addtime desc");
+		List<Long> newsList = (List<Long>) hibernateTemplate.find("select c.id from News c order by c.addtime desc");
 		for(Long newsid : newsList){
 			loc = siteUrl + "news/" + newsid;
 			this.writerUrl(writer, loc, lastmod, "daily", "0.8");

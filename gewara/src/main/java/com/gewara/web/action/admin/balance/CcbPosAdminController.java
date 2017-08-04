@@ -301,7 +301,7 @@ public class CcbPosAdminController extends BaseAdminController{
 	public String toSettle2(ModelMap model){
 		List<Map> mapList = new ArrayList<Map>();
 		String qry = "from CcbPosSettle where settle=? order by settledate";
-		List<CcbPosSettle> settleList = hibernateTemplate.find(qry, "N");
+		List<CcbPosSettle> settleList = (List<CcbPosSettle>) hibernateTemplate.find(qry, "N");
 		int i = 0;
 		for(CcbPosSettle settle : settleList){
 			Date settledate = settle.getSettledate();
@@ -337,7 +337,7 @@ public class CcbPosAdminController extends BaseAdminController{
 	public String toSettle3(ModelMap model){
 		List<Map> mapList = new ArrayList<Map>();
 		String qry = "from CcbPosSettle where settle=? order by settledate";
-		List<CcbPosSettle> settleList = hibernateTemplate.find(qry, "N");
+		List<CcbPosSettle> settleList = (List<CcbPosSettle>) hibernateTemplate.find(qry, "N");
 		int i = 0;
 		for(CcbPosSettle settle : settleList){
 			Date settledate = settle.getSettledate();
@@ -377,7 +377,7 @@ public class CcbPosAdminController extends BaseAdminController{
 		}
 		String sql = "from GewaOrder t where t.paymethod=? and status like ? and t.paidtime>=? order by paidtime";
 		List<Map> mapList = new ArrayList<Map>();
-		List<GewaOrder> orderList = hibernateTemplate.find(sql, PaymethodConstant.PAYMETHOD_CCBPOSPAY, "paid%", paidtime);
+		List<GewaOrder> orderList = (List<GewaOrder>) hibernateTemplate.find(sql, PaymethodConstant.PAYMETHOD_CCBPOSPAY, "paid%", paidtime);
 		for(GewaOrder order : orderList){
 			Map map = new HashMap();
 			map.put("tradeno", order.getTradeNo());
@@ -405,7 +405,7 @@ public class CcbPosAdminController extends BaseAdminController{
 			PageUtil pageUtil = new PageUtil(count, maxNum, pageNo, "admin/balance/ccbpos/settleOrderList.xhtml", true, true);
 			pageUtil.initPageInfo(params);
 			model.put("pageUtil", pageUtil);
-			List<CcbPosSettle> orderList = hibernateTemplate.findByCriteria(settleOrderQuery(startdate, enddate, settle, tradeno, cardpan, true), maxNum*pageNo, maxNum);
+			List<CcbPosSettle> orderList = (List<CcbPosSettle>) hibernateTemplate.findByCriteria(settleOrderQuery(startdate, enddate, settle, tradeno, cardpan, true), maxNum*pageNo, maxNum);
 			model.put("orderList", orderList);
 		}
 		return "admin/balance/ccbpos/orderList.vm";
@@ -453,7 +453,7 @@ public class CcbPosAdminController extends BaseAdminController{
 	public String delRepeatSettle(String settledate, ModelMap model){
 		if(StringUtils.isBlank(settledate)) return forwardMessage(model, "请输入日期");
 		String hql = "from CcbPosSettle where to_char(settledate,'yyyy-MM-dd')=?";
-		List<CcbPosSettle> settleList = hibernateTemplate.find(hql, settledate);
+		List<CcbPosSettle> settleList = (List<CcbPosSettle>) hibernateTemplate.find(hql, settledate);
 		daoService.removeObjectList(settleList);
 		return forwardMessage(model, "一共删除数据：" + settleList.size());
 	}

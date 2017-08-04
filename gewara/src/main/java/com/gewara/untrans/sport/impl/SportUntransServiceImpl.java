@@ -348,7 +348,7 @@ public class SportUntransServiceImpl extends AbstractUntrantsService implements 
 		DetachedCriteria query = DetachedCriteria.forClass(OpenTimeItem.class);
 		query.add(Restrictions.eq("ottid", ott.getId()));
 		query.add(Restrictions.eq("rotiid", rotiid));
-		List<OpenTimeItem> itemList = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<OpenTimeItem> itemList = (List<OpenTimeItem>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(itemList.isEmpty())return null;
 		return itemList.get(0);
 	}

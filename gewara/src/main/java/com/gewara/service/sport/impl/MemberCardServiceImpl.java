@@ -75,7 +75,7 @@ public class MemberCardServiceImpl extends GewaOrderServiceImpl implements Membe
 	public List<MemberCardType> getMemberCardTypeListBySportids(Long sportid, boolean overNum) {
 		DetachedCriteria query = queryMemberCardTypeList(sportid, overNum);
 		query.addOrder(Order.desc("t.addtime"));
-		List<MemberCardType> mctList = hibernateTemplate.findByCriteria(query);
+		List<MemberCardType> mctList = (List<MemberCardType>) hibernateTemplate.findByCriteria(query);
 		return mctList;
 	}
 	@Override
@@ -124,7 +124,7 @@ public class MemberCardServiceImpl extends GewaOrderServiceImpl implements Membe
 		query.add(Restrictions.le("t.opentime", curtime));
 		query.add(Restrictions.gt("t.closetime", curtime));
 		query.addOrder(Order.desc("t.addtime"));
-		return hibernateTemplate.findByCriteria(query);
+		return (List<MemberCardType>) hibernateTemplate.findByCriteria(query);
 	}
 	@Override
 	public int getBookingMemberCardTypeCountBySportids(Long sportid){
@@ -166,7 +166,7 @@ public class MemberCardServiceImpl extends GewaOrderServiceImpl implements Membe
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.eq("bindStatus", Status.Y));
 		query.addOrder(Order.desc("addtime"));
-		List<MemberCardInfo> mctList = hibernateTemplate.findByCriteria(query);
+		List<MemberCardInfo> mctList = (List<MemberCardInfo>) hibernateTemplate.findByCriteria(query);
 		return mctList;
 	}
 	@Override
@@ -183,7 +183,7 @@ public class MemberCardServiceImpl extends GewaOrderServiceImpl implements Membe
 		query.add(Restrictions.eq("cardStatus", MemberCardConstant.CARD_STATUS_Y));
 		query.add(Restrictions.or(Restrictions.gt("validtime", DateUtil.getMillTimestamp()), Restrictions.isNull("validtime")));
 		query.addOrder(Order.desc("addtime"));
-		List<MemberCardInfo> mciList = hibernateTemplate.findByCriteria(query);
+		List<MemberCardInfo> mciList = (List<MemberCardInfo>) hibernateTemplate.findByCriteria(query);
 		for(MemberCardInfo mci : mciList){
 			if(mci.hasAvailableByOtt(ott)){
 				result.add(mci);
@@ -261,7 +261,7 @@ public class MemberCardServiceImpl extends GewaOrderServiceImpl implements Membe
 		query.add(Restrictions.eq("mobile", mobile));
 		query.add(Restrictions.eq("bindStatus", Status.N));
 		query.addOrder(Order.desc("addtime"));
-		List<MemberCardInfo> mctList = hibernateTemplate.findByCriteria(query);
+		List<MemberCardInfo> mctList = (List<MemberCardInfo>) hibernateTemplate.findByCriteria(query);
 		return mctList;
 	}
 	@Override
@@ -426,7 +426,7 @@ public class MemberCardServiceImpl extends GewaOrderServiceImpl implements Membe
 			}
 		}
 		query.addOrder(Order.desc("addtime"));
-		List<MemberCardOrder> orderList = hibernateTemplate.findByCriteria(query);
+		List<MemberCardOrder> orderList = (List<MemberCardOrder>) hibernateTemplate.findByCriteria(query);
 		return orderList;
 	}
 	private List<MemberCardTypePlace> getMemberCardTypePlaceList(MemberCardType mct){

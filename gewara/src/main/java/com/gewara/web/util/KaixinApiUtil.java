@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-import org.codehaus.jackson.type.TypeReference;
+//import org.codehaus.jackson.type.TypeReference;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gewara.Config;
 import com.gewara.util.BeanUtil;
 import com.gewara.util.HttpResult;

@@ -243,7 +243,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 	@Override
 	public <T extends GewaOrder> List<T> getOrderListByDiscountIds(Class<T> clazz, List<Long> discountIdList, Date fromTime, Date endTime, int from, int maxnum) {
 		DetachedCriteria query = getOrderByDiscountIdsCriteria(clazz, discountIdList, fromTime, endTime);
-		List<T> ticketOrderList = readOnlyTemplate.findByCriteria(query, from, maxnum); 
+		List<T> ticketOrderList = (List<T>) readOnlyTemplate.findByCriteria(query, from, maxnum); 
 		return ticketOrderList;
 	}
 	
@@ -252,7 +252,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 		DetachedCriteria query = getOrderByDiscountIdsCriteria(clazz, discountIdList, fromTime, endTime);
 		query.setProjection(Projections.rowCount());
 		Integer resultCount = new Integer("0");
-		List<Long> list = readOnlyTemplate.findByCriteria(query);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(query);
 		if (CollectionUtils.isNotEmpty(list)) {
 			resultCount = Integer.valueOf(list.get(0).toString());
 		}
@@ -294,7 +294,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 			query.add(Restrictions.eq("t.status", OrderConstant.STATUS_PAID_SUCCESS));
 		}
 		query.addOrder(Order.asc("t.id"));
-		List<TicketOrder> ticketOrderList = readOnlyTemplate.findByCriteria(query);
+		List<TicketOrder> ticketOrderList = (List<TicketOrder>) readOnlyTemplate.findByCriteria(query);
 		return ticketOrderList;
 	}
 }

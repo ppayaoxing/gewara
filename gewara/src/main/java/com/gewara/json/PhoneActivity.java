@@ -3,7 +3,9 @@ package com.gewara.json;
 import java.io.Serializable;
 import java.util.Date;
 
-public class PhoneActivity implements Serializable{
+import com.gewara.mongo.support.MGObject;
+
+public class PhoneActivity extends MGObject implements Serializable{
 
 	private static final long serialVersionUID = 5746433266589043890L;
 	public static final String APP_TYPE_CINAME="cinema";

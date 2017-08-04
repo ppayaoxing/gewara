@@ -70,7 +70,7 @@ public class AgencyServiceImpl extends BaseServiceImpl implements AgencyService 
 			}
 		}
 		query.addOrder(Order.asc("id"));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<Agency>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public int getAgencyCount(String name, String citycode){
@@ -91,7 +91,7 @@ public class AgencyServiceImpl extends BaseServiceImpl implements AgencyService 
 			}
 		}
 		query.addOrder(Order.asc("id"));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<TrainingGoods>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public int getTrainingGoodsCount(String citycode, String tag, Long relatedid, String itemtype, Long itemid, Long placeid, boolean isTovaltime){
@@ -119,7 +119,7 @@ public class AgencyServiceImpl extends BaseServiceImpl implements AgencyService 
 			}
 		}
 		query.addOrder(Order.desc("addtime"));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<TrainingGoods>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	@Override
 	public  int getTrainingGoodsCount(String citycode, Long relatedid, Long itemid, String fitcrowd, String timetype, List<Long> sportIdList,
@@ -143,7 +143,7 @@ public class AgencyServiceImpl extends BaseServiceImpl implements AgencyService 
 		if(siIdList == null){
 			DetachedCriteria query = queryCommonTrainingGoods(citycode, TagConstant.TAG_AGENCY, agencyId, null, null, null, null, null, true);
 			query.setProjection(Projections.distinct(Projections.property("itemid")));
-			siIdList = hibernateTemplate.findByCriteria(query);
+			siIdList = (List<Long>) hibernateTemplate.findByCriteria(query);
 			cacheService.set(CacheConstant.REGION_ONEHOUR, key, siIdList);
 		}
 		return baseDao.getObjectList(SportItem.class, siIdList);
@@ -232,7 +232,7 @@ public class AgencyServiceImpl extends BaseServiceImpl implements AgencyService 
 		query.add(Restrictions.le("fromdate", DateUtil.getMonthLastDay(playDate)));
 		query.add(Restrictions.ge("todate", playDate));
 		query.addOrder(Order.asc("classtime"));
-		return hibernateTemplate.findByCriteria(query); 
+		return (List<Curriculum>) hibernateTemplate.findByCriteria(query); 
 	}
 	@Override
 	public List<AgencyToVenue> getATVList(Long agencyId, Long venueId){
@@ -241,7 +241,7 @@ public class AgencyServiceImpl extends BaseServiceImpl implements AgencyService 
 		if(venueId != null) query.add(Restrictions.eq("venueId", venueId));
 		query.add(Restrictions.gt("numsort", 0));
 		query.addOrder(Order.asc("numsort"));
-		return hibernateTemplate.findByCriteria(query);
+		return (List<AgencyToVenue>) hibernateTemplate.findByCriteria(query);
 	}
 	@Override
 	public void clearTrainingGoodsPreferential(TrainingGoods goods){

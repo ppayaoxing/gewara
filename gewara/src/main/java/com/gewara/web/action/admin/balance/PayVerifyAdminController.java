@@ -131,7 +131,7 @@ public class PayVerifyAdminController extends BaseAdminController{
 		String query = "select new map(sum(totalfee) as totalAmount, sum(gewapaid + alipaid) as totalpaid, sum(gewapaid) as gewapaid, " +
 				"sum(alipaid) as alipaid, sum(discount) as discount, count(id) as totalcount, sum(quantity) as quantity) " +
 				"from GewaOrder where status like ? and paidtime >= ? and paidtime < ? ";
-		List<Map> result = hibernateTemplate.find(query, OrderConstant.STATUS_PAID + "%", starttime, endtime);
+		List<Map> result = (List<Map>) hibernateTemplate.find(query, OrderConstant.STATUS_PAID + "%", starttime, endtime);
 		model.put("statMap", result.get(0));
 		List<GewaOrder> orderList = paymentService.getPaidOrderList(starttime, endtime, pageNo * rowsPerPage, rowsPerPage);
 		model.put("orderList", orderList);
@@ -151,7 +151,7 @@ public class PayVerifyAdminController extends BaseAdminController{
 				"group by to_char(paidtime,'yyyy-mm-dd'), paymethod";
 		Timestamp from = DateUtil.getBeginningTimeOfDay(new Timestamp(timeFrom.getTime()));
 		Timestamp to = DateUtil.getLastTimeOfDay(new Timestamp(timeTo.getTime()));
-		List<Map> orderGroupList = hibernateTemplate.find(orderQuery, from, to);
+		List<Map> orderGroupList = (List<Map>) hibernateTemplate.find(orderQuery, from, to);
 		Map<String/*day*/, Map<String/*paymethod*/, Map/*order,charge*/>> statsMap = new HashMap<String, Map<String, Map>>();
 		for(Map row: orderGroupList){
 			Map<String, Map> dayMap = statsMap.get(row.get("paydate"));
@@ -168,7 +168,7 @@ public class PayVerifyAdminController extends BaseAdminController{
 		String chargeQuery = "select new map(sum(totalfee) as amount, to_char(updatetime,'yyyy-mm-dd') as paydate, paymethod as paymethod) from Charge " +
 				"where updatetime > ? and updatetime < ? and status like 'paid%' " +
 				"group by to_char(updatetime,'yyyy-mm-dd'), paymethod";
-		List<Map> chargeGroupList = hibernateTemplate.find(chargeQuery, from, to);
+		List<Map> chargeGroupList = (List<Map>) hibernateTemplate.find(chargeQuery, from, to);
 		for(Map row: chargeGroupList){
 			Map<String, Map> dayMap = statsMap.get(row.get("paydate"));
 			if(dayMap==null){

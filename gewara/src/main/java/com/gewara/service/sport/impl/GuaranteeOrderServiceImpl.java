@@ -66,7 +66,7 @@ public class GuaranteeOrderServiceImpl extends BaseServiceImpl implements Guaran
 	private SellDeposit getSellDeposit(Long otsid, Long memberid, String status, Timestamp validtime){
 		DetachedCriteria query = queryCriteria(otsid, memberid, status, validtime);
 		query.addOrder(Order.desc("addtime"));
-		List<SellDeposit> sellList = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<SellDeposit> sellList = (List<SellDeposit>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(sellList.isEmpty()) return null;
 		return sellList.get(0);
 	}

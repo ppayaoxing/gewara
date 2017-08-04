@@ -492,7 +492,7 @@ public class UserMessageController extends BaseHomeController{
 	@RequestMapping("/home/message/sysmsgBulletin.xhtml")
 	public String sysmsgBulletin(ModelMap model){
 		String query = "from Bulletin n where n.bulletintype=? and n.relatedid=? and (n.validtime>=? or n.validtime=null) order by n.posttime desc";
-		List<Bulletin> bulletinList = readOnlyTemplate.find(query, Bulletin.BULLETION_SYSMSG, 0L, DateUtil.getCurDate());
+		List<Bulletin> bulletinList = (List<Bulletin>) readOnlyTemplate.find(query, Bulletin.BULLETION_SYSMSG, 0L, DateUtil.getCurDate());
 		model.put("bulletinList", bulletinList);
 		return "";
 	}

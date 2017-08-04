@@ -2,12 +2,14 @@ package com.gewara.json;
 
 import java.io.Serializable;
 
+import com.gewara.mongo.support.MGObject;
+
 /**
  * 商家系统公告
  * @author gang.liu
  *
  */
-public class CinemaProNotify implements Serializable{
+public class CinemaProNotify extends MGObject implements Serializable{
 	/**
 	 * 
 	 */

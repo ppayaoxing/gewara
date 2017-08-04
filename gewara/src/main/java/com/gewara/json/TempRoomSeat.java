@@ -2,9 +2,10 @@ package com.gewara.json;
 
 import java.io.Serializable;
 
+import com.gewara.mongo.support.MGObject;
 import com.gewara.util.DateUtil;
 
-public class TempRoomSeat implements Serializable {
+public class TempRoomSeat extends MGObject implements Serializable {
 	
 	private static final long serialVersionUID = 949504538567352910L;
 	private String id;

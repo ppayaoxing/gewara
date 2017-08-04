@@ -7,9 +7,10 @@ import java.util.List;
 
 import com.gewara.constant.Status;
 import com.gewara.constant.order.AddressConstant;
+import com.gewara.mongo.support.MGObject;
 import com.gewara.util.DateUtil;
 
-public class PlayItemMessage implements Serializable{
+public class PlayItemMessage extends MGObject implements Serializable{
 	private static final long serialVersionUID = -6910024422360011237L;
 	public static final List TAG_LIST =  Arrays.asList("cinema");
 	public static final String TYPE_WEB_FILMFEST = "webFilmFest";

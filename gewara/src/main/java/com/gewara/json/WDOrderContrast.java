@@ -2,7 +2,9 @@ package com.gewara.json;
 
 import java.io.Serializable;
 
-public class WDOrderContrast implements Serializable{
+import com.gewara.mongo.support.MGObject;
+
+public class WDOrderContrast extends MGObject implements Serializable{
 	/**
 	 * 
 	 */

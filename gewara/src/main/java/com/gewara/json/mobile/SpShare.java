@@ -2,7 +2,9 @@ package com.gewara.json.mobile;
 
 import java.io.Serializable;
 
-public class SpShare implements Serializable{
+import com.gewara.mongo.support.MGObject;
+
+public class SpShare extends MGObject implements Serializable{
 	private static final long serialVersionUID = 6928455050291123282L;
 	private String id;
 	private Long spid;

@@ -1,8 +1,13 @@
 package com.gewara.json;
 
+import com.gewara.mongo.support.MGObject;
 
-public class ViewFilmSchedule {
+public class ViewFilmSchedule extends MGObject {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 504440415474677033L;
 	public static final String TYPE_MOVIE_FILMFEST = "movie";
 	public static final String TYPE_SCHEDULE_FILMFEST = "schedule";
 	

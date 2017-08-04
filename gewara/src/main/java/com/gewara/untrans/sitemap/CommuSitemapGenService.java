@@ -36,7 +36,7 @@ public class CommuSitemapGenService extends AbstractSitemapGenService implements
 		DetachedCriteria query = DetachedCriteria.forClass(Commu.class);
 		query.setProjection(Projections.id());
 		query.addOrder(Order.desc("clickedtimes"));
-		List<Long> commuList = hibernateTemplate.findByCriteria(query, 0, 45000);
+		List<Long> commuList = (List<Long>) hibernateTemplate.findByCriteria(query, 0, 45000);
 		for(Long commuid : commuList){
 			loc = siteUrl + "quan/" + commuid;
 			this.writerUrl(writer, loc, lastmod, "daily", "0.8");

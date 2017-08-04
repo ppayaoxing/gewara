@@ -7,8 +7,10 @@ import java.util.List;
 import com.gewara.api.merchant.vo.EverydayMpiReportVo;
 import com.gewara.api.merchant.vo.GoodsSummaryReportTotalVo;
 import com.gewara.api.merchant.vo.MovieCityBoughtReportVo;
+import com.gewara.api.merchant.vo.MovieMpiSeatReportVo;
 import com.gewara.api.merchant.vo.MovieSellerTotalVo;
 import com.gewara.api.merchant.vo.RefundOrderTotalVo;
+import com.gewara.api.vo.BaseVo;
 import com.gewara.api.vo.ResultCode;
 
 public interface MerchantReportService {
@@ -158,5 +160,7 @@ public interface MerchantReportService {
 	 *            ∑¢≤º»ÀÍ«≥∆
 	 * @return
 	 */
-	ResultCode addCinemaNotify(String num, Long cinemaId, String title, String content, String publishUser);
+	<T>ResultCode<T> addCinemaNotify(String num, Long cinemaId, String title, String content, String publishUser);
+
+	<T extends BaseVo> ResultCode<List<T>> mpiRoomSeatReports(Date playDate, String startHour, String endHour);
 }

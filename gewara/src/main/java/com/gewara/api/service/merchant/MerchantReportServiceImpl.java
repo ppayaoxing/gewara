@@ -459,7 +459,7 @@ public class MerchantReportServiceImpl  extends BaseServiceImpl  implements Merc
 			return ResultCode.getFailure(ResultCode.CODE_DATA_ERROR, "参数不能为空！"); 
 		}
 		String movieQry = "select new map(m.id as mpid,m.movieid as movieId,m.roomid as roomId) from MoviePlayItem m where m.playdate=? and playtime >= ? and playtime < ?";
-		List<Map<String,Long>> tmpMapList = hibernateTemplate.find(movieQry,playDate,startHour,endHour);
+		List<Map<String,Long>> tmpMapList = (List<Map<String, Long>>) hibernateTemplate.find(movieQry,playDate,startHour,endHour);
 		Map<Long,MovieMpiSeatReportVo> movieSeatMap = new HashMap<Long,MovieMpiSeatReportVo>();
 		for(Map<String,Long> map : tmpMapList){
 			MovieMpiSeatReportVo vo = movieSeatMap.get(map.get("movieId"));
@@ -508,7 +508,7 @@ public class MerchantReportServiceImpl  extends BaseServiceImpl  implements Merc
 		}
 		String qry = "select new map(t.movieid as movieId,t.citycode as citycode,count(t.movieid) as boughtCount) from TicketOrder t where t.addtime >= ? and " +
 				"t.addtime < ? and t.status = ? group by t.movieid,t.citycode";
-		List<Map<String,Object>> tmpMapList = hibernateTemplate.find(qry,startTime,endTime,OrderConstant.STATUS_PAID_SUCCESS);
+		List<Map<String,Object>> tmpMapList = (List<Map<String, Object>>) hibernateTemplate.find(qry,startTime,endTime,OrderConstant.STATUS_PAID_SUCCESS);
 		List<MovieCityBoughtReportVo> list = new ArrayList<MovieCityBoughtReportVo>();
 		if(!VmUtils.isEmptyList(tmpMapList)){
 			for(Map<String,Object> map : tmpMapList){

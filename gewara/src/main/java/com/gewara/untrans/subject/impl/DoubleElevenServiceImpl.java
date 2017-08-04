@@ -85,6 +85,7 @@ public class DoubleElevenServiceImpl extends AbstractUntrantsService implements 
 		Map memberMap = getMemberMap(memberid, tag);
 		String clickTime = "";
 		if (memberMap != null) {
+//			String dateKey = DateUtil.currentTimeStr();
 			String dateKey = DateUtil.currentTimeStr();
 			Map otherMap = JsonUtils.readJsonToMap(memberMap.get(MongoData.ACTION_CONTENT) + "");
 			Map infoMap = JsonUtils.readJsonToMap(otherMap.get(dateKey) + "");

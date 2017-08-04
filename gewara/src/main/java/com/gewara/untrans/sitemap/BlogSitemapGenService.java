@@ -44,7 +44,7 @@ public class BlogSitemapGenService extends AbstractSitemapGenService implements 
 		Timestamp enddate = DateUtil.getCurFullTimestamp();
 		Timestamp begindate = DateUtil.addDay(enddate, -180);
 		//1)Diary
-		List<Long> topicList = hibernateTemplate.find("select id from Diary where addtime > ? and addtime <= ? order by addtime desc", begindate, enddate);
+		List<Long> topicList = (List<Long>) hibernateTemplate.find("select id from Diary where addtime > ? and addtime <= ? order by addtime desc", begindate, enddate);
 		for(Long did:topicList){
 			loc = siteUrl + "blog/t" + did;
 			this.writerUrl(writer, loc, lastmod, "hourly","0.8");

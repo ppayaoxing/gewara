@@ -48,7 +48,7 @@ public class CinemaSettleAdminController extends BaseAdminController{
 	@RequestMapping("/admin/balance/settle/cinemaSettleList.xhtml")
 	public String cinemaSettleList(Long cinemaid, ModelMap model){
 		String query = "from CinemaSettle where cinemaid=? order by timefrom desc";
-		List<CinemaSettle> settleList = hibernateTemplate.find(query, cinemaid);
+		List<CinemaSettle> settleList = (List<CinemaSettle>) hibernateTemplate.find(query, cinemaid);
 		Cinema cinema = daoService.getObject(Cinema.class, cinemaid);
 		model.put("settleList", settleList);
 		model.put("cinema", cinema);
@@ -193,7 +193,7 @@ public class CinemaSettleAdminController extends BaseAdminController{
 				params.add(opentype);
 			}
 			params.add(OrderConstant.STATUS_PAID + "%");
-			dataMap = hibernateTemplate.find(hql, params.toArray());
+			dataMap = (List<Map>) hibernateTemplate.find(hql, params.toArray());
 			if (dataMap.size() > 0) {
 				timeDataMap.put(ts, dataMap.get(0));
 			}
@@ -243,7 +243,7 @@ public class CinemaSettleAdminController extends BaseAdminController{
 		hql = hql + "group by t.mpid order by max(t.playtime)";
 		
 		List<Map> dataMap = new ArrayList<Map>();
-		dataMap = hibernateTemplate.find(hql, params.toArray());
+		dataMap = (List<Map>) hibernateTemplate.find(hql, params.toArray());
 		Map<String, Long> orderCountMap = new LinkedHashMap<String, Long>();// 每天的订单数量
 		Map<String, Long> orderQuantityMap = new LinkedHashMap<String, Long>();// 每天的订单数量
 		Map<String, Long> orderDueMap = new LinkedHashMap<String, Long>();// 每天的订单总额
@@ -297,7 +297,7 @@ public class CinemaSettleAdminController extends BaseAdminController{
 	private void getCityData(String citycode, ModelMap model) {
 		String cinemaHql = "select new map(c.id as cinemaid, c.name as cinemaname) from "
 				+ "Cinema c where c.citycode=? and c.id in (select p.id from CinemaProfile p)";
-		List<Map> cinemaList = hibernateTemplate.find(cinemaHql, citycode);
+		List<Map> cinemaList = (List<Map>) hibernateTemplate.find(cinemaHql, citycode);
 		model.put("cinemaList", cinemaList);
 	}
 }

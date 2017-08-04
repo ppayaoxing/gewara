@@ -3,7 +3,9 @@ package com.gewara.json;
 import java.io.Serializable;
 import java.util.Date;
 
-public class ManageCheck implements Serializable{
+import com.gewara.mongo.support.MGObject;
+
+public class ManageCheck extends MGObject implements Serializable {
 	private static final long serialVersionUID = 6364440528724660295L;
 	private String id;
 	private String tag;
@@ -12,8 +14,7 @@ public class ManageCheck implements Serializable{
 	private Date addtime;
 	private Date unmodifytime;
 	private String userName;
-	
-	
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -46,9 +47,10 @@ public class ManageCheck implements Serializable{
 		this.userName = userName;
 	}
 
-	public ManageCheck() {}
-	
-	public ManageCheck(String tag, Long modifytime,Long userId,String userName,Date addtime,Date unmodifytime){
+	public ManageCheck() {
+	}
+
+	public ManageCheck(String tag, Long modifytime, Long userId, String userName, Date addtime, Date unmodifytime) {
 		this.tag = tag;
 		this.modifytime = modifytime;
 		this.addtime = addtime;
@@ -56,7 +58,7 @@ public class ManageCheck implements Serializable{
 		this.unmodifytime = unmodifytime;
 		this.userName = userName;
 	}
-	
+
 	public String getId() {
 		return id;
 	}

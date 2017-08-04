@@ -132,7 +132,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 			}
 		}
 		qry.addOrder(Order.asc("o.playdate"));
-		List<OpenTimeTable> list = hibernateTemplate.findByCriteria(qry);
+		List<OpenTimeTable> list = (List<OpenTimeTable>) hibernateTemplate.findByCriteria(qry);
 		return list;
 	}
 	
@@ -148,7 +148,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 		qry.add(Restrictions.eq("o.citycode", citycode));
 		qry.addOrder(Order.asc("o.playdate"));
 		qry.setProjection(Projections.countDistinct("o.sportid"));
-		List<Long> list = hibernateTemplate.findByCriteria(qry);
+		List<Long> list = (List<Long>) hibernateTemplate.findByCriteria(qry);
 		return Integer.parseInt(""+list.get(0));
 	}
 	
@@ -180,7 +180,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 			}
 		}
 		qry.addOrder(Order.asc("o.playdate"));
-		List<OpenTimeTable> list = hibernateTemplate.findByCriteria(qry, from, maxnum);
+		List<OpenTimeTable> list = (List<OpenTimeTable>) hibernateTemplate.findByCriteria(qry, from, maxnum);
 		return list;
 	}
 	@Override
@@ -202,7 +202,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 		if(enddate!=null) 
 			qry.add(Restrictions.le("o.playdate", enddate));
 		qry.setProjection(Projections.distinct(Projections.property("o.openType")));
-		List<String> result = hibernateTemplate.findByCriteria(qry);
+		List<String> result = (List<String>) hibernateTemplate.findByCriteria(qry);
 		return result;
 	}
 	@Override
@@ -226,7 +226,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 			}
 		}
 		qry.addOrder(Order.asc("o.playdate"));
-		List<OpenTimeTable> list = hibernateTemplate.findByCriteria(qry);
+		List<OpenTimeTable> list = (List<OpenTimeTable>) hibernateTemplate.findByCriteria(qry);
 		return list;
 	}
 	
@@ -251,7 +251,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 			}
 		}
 		qry.addOrder(Order.asc("o.playdate"));
-		List<OpenTimeTable> list = hibernateTemplate.findByCriteria(qry, from, maxnum);
+		List<OpenTimeTable> list = (List<OpenTimeTable>) hibernateTemplate.findByCriteria(qry, from, maxnum);
 		return list;
 	}
 	@Override
@@ -274,14 +274,14 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 				.add(Projections.sum("quantity").as("sportCount")));
 		qry.addOrder(Order.asc("sportCount"));
 		qry.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-		list = hibernateTemplate.findByCriteria(qry);
+		list = (List<Map<Long, Long>>) hibernateTemplate.findByCriteria(qry);
 		cacheService.set(CacheConstant.REGION_TWENTYMIN, key, list);
 		return list;
 	}
 	
 	public List<Integer> getTimeItemPrice(Long ottid) {
 		String qry = "select distinct t.price from OpenTimeItem t where t.ottid=? order by t.price";
-		List<Integer> priceList = hibernateTemplate.find(qry, ottid);
+		List<Integer> priceList = (List<Integer>) hibernateTemplate.find(qry, ottid);
 		return priceList;
 	}
 	
@@ -305,7 +305,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 			params.addAll(Arrays.asList(sportIdArray));
 		}
 		query += " group by o.sportid";
-		List<Map> saleslist=hibernateTemplate.find(query,params.toArray());
+		List<Map> saleslist=(List<Map>) hibernateTemplate.find(query,params.toArray());
 		//Collections.sort(saleslist, new MultiPropertyComparator(new String[]{"playdate","sportid"}, new boolean[]{true,true}));
 		return saleslist;
 	}
@@ -327,7 +327,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 			params.addAll(Arrays.asList(sportIdArray));
 		}
 		query +=" group by o.sportid,o.playdate order by o.playdate"; 
-		List<Map> saleslist=hibernateTemplate.find(query,params.toArray());
+		List<Map> saleslist=(List<Map>) hibernateTemplate.find(query,params.toArray());
 		return saleslist;
 	}
 	
@@ -506,7 +506,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 	public ErrorCode<String> batchProgramItemTime(){
 		Date curDate = DateUtil.currentTime();
 		String hql = "from ProgramItemTime where week=? ";
-		List<ProgramItemTime> timeList = hibernateTemplate.find(hql, DateUtil.getWeek(curDate));
+		List<ProgramItemTime> timeList = (List<ProgramItemTime>) hibernateTemplate.find(hql, DateUtil.getWeek(curDate));
 		ErrorCode<String> code = null;
 		for (ProgramItemTime item : timeList) {
 			Sport2Item sport2Item = sportService.getSport2Item(item.getSportid(), item.getItemid());
@@ -527,7 +527,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 	public ErrorCode<String> batchProgramItemTime(Sport2Item sport2Item){
 		String hql = "from ProgramItemTime where week=? and sportid=? and itemid=? ";
 		Date curDate = DateUtil.currentTime();
-		List<ProgramItemTime> timeList = hibernateTemplate.find(hql, DateUtil.getWeek(curDate), sport2Item.getSportid(), sport2Item.getItemid());
+		List<ProgramItemTime> timeList = (List<ProgramItemTime>) hibernateTemplate.find(hql, DateUtil.getWeek(curDate), sport2Item.getSportid(), sport2Item.getItemid());
 		ErrorCode<String> code = null;
 		for (ProgramItemTime item : timeList) {
 			int week = 2;
@@ -610,7 +610,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 				baseDao.saveObject(sport2Item);
 			}
 			String hql = "select count(*) from OpenTimeItem i where i.ottid=? and i.hour=? and i.sportid=? and i.itemid=? and i.fieldid=? ";
-			List<Long> countList = hibernateTemplate.find(hql, ott.getId(), programItemTime.getStarttime(), programItemTime.getSportid(), programItemTime.getItemid(), programItemTime.getFieldid());
+			List<Long> countList = (List<Long>) hibernateTemplate.find(hql, ott.getId(), programItemTime.getStarttime(), programItemTime.getSportid(), programItemTime.getItemid(), programItemTime.getFieldid());
 			if(!countList.isEmpty() && countList.get(0)>0){
 				if(i == week) return ErrorCode.getFailure("已存在该场次信息！");
 				else continue;
@@ -673,7 +673,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 				query += " and o.itemid=? ";
 				params.add(itemid);
 			}
-			idList = hibernateTemplate.find(query, params.toArray());
+			idList = (List<Long>) hibernateTemplate.find(query, params.toArray());
 			cacheService.set(CacheConstant.REGION_TENMIN, key, idList);
 		}
 		return idList;
@@ -691,7 +691,7 @@ public class OpenTimeTableServiceImpl extends BaseServiceImpl implements OpenTim
 		if(itemid!=null) qry.add(Restrictions.eq("o.itemid", itemid));
 		qry.add(Restrictions.eq("o.playdate", DateUtil.parseDate(playdate)));
 		qry.addOrder(Order.asc("o.playdate"));
-		List<OpenTimeTable> list = hibernateTemplate.findByCriteria(qry);
+		List<OpenTimeTable> list = (List<OpenTimeTable>) hibernateTemplate.findByCriteria(qry);
 		return list;
 	}
 	

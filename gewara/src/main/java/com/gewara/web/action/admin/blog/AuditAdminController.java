@@ -125,7 +125,7 @@ public class AuditAdminController extends BaseAdminController {
 		int firstRow = pageNo * rowsPerpage;
 		DetachedCriteria query = queryCommu(starttime, endtime).setProjection(Projections.rowCount());
 		int count = Integer.valueOf(hibernateTemplate.findByCriteria(query).get(0)+"");
-		commuList = hibernateTemplate.findByCriteria(queryCommu(starttime, endtime),firstRow,rowsPerpage);
+		commuList = (List<Commu>) hibernateTemplate.findByCriteria(queryCommu(starttime, endtime),firstRow,rowsPerpage);
 		Map<Long,Member> memberMap=new HashMap<Long,Member>();
 		for (Commu commu : commuList) {
 			memberMap.put(commu.getAdminid(), daoService.getObject(Member.class,commu.getAdminid()));
@@ -152,7 +152,7 @@ public class AuditAdminController extends BaseAdminController {
 		if(StringUtils.isBlank(status)) status = Status.N_NIGHT;
 		DetachedCriteria query = queryDiary(memberid, starttime, endtime, tag, status, keyname).setProjection(Projections.rowCount());
 		int count = Integer.valueOf(hibernateTemplate.findByCriteria(query).get(0)+"");
-		diaryList = hibernateTemplate.findByCriteria(queryDiary(memberid, starttime, endtime, tag, status, keyname),firstRow,rowsPerpage);
+		diaryList = (List<Diary>) hibernateTemplate.findByCriteria(queryDiary(memberid, starttime, endtime, tag, status, keyname),firstRow,rowsPerpage);
 		Map<Long, Commu> commuMap = new HashMap<Long, Commu>();
 		for (Diary diary : diaryList) {
 			if(diary.getCommunityid()!=0)
@@ -227,7 +227,7 @@ public class AuditAdminController extends BaseAdminController {
 		int firstRow = pageNo * rowsPerpage;
 		DetachedCriteria query = queryDiary(memberid, starttime, endtime, tag, status, keyname).setProjection(Projections.rowCount());
 		int count = Integer.valueOf(hibernateTemplate.findByCriteria(query).get(0)+"");
-		diaryList = hibernateTemplate.findByCriteria(queryDiary(memberid, starttime, endtime, tag, status, keyname),firstRow,rowsPerpage);
+		diaryList = (List<Diary>) hibernateTemplate.findByCriteria(queryDiary(memberid, starttime, endtime, tag, status, keyname),firstRow,rowsPerpage);
 		Map<Long, Commu> commuMap = new HashMap<Long, Commu>();
 		for (Diary diary : diaryList) {
 			if(diary.getCommunityid()!=0)
@@ -314,7 +314,7 @@ public class AuditAdminController extends BaseAdminController {
 		int firstRow = pageNo * rowsPerpage;
 		DetachedCriteria query = queryDiaryComment(did, memberid, starttime, endtime, status, keyname).setProjection(Projections.rowCount());
 		Integer count = Integer.parseInt(hibernateTemplate.findByCriteria(query).get(0)+"");
-		dcList = hibernateTemplate.findByCriteria(queryDiaryComment(did, memberid, starttime, endtime,status, keyname),firstRow,rowsPerpage);
+		dcList = (List<DiaryComment>) hibernateTemplate.findByCriteria(queryDiaryComment(did, memberid, starttime, endtime,status, keyname),firstRow,rowsPerpage);
 		addCacheMember(model, ServiceHelper.getMemberIdListFromBeanList(dcList));
 		Map<Long, DiaryBase> diaryMap=new HashMap<Long, DiaryBase>();
 		for(DiaryComment diaryComment: dcList){
@@ -419,7 +419,7 @@ public class AuditAdminController extends BaseAdminController {
 		if(StringUtils.isNotBlank(status)) params.put("status", status);
 		if (StringUtils.isNotBlank(keyname)) params.put("keyname", keyname);
 		pageUtil.initPageInfo(params);
-		List<GewaQuestion> questionList = hibernateTemplate.findByCriteria(this.getQuestionQuery(memberid, starttime, endtime, status, keyname), pageNo
+		List<GewaQuestion> questionList = (List<GewaQuestion>) hibernateTemplate.findByCriteria(this.getQuestionQuery(memberid, starttime, endtime, status, keyname), pageNo
 				* rowsPerPage, rowsPerPage);
 		model.put("pageUtil", pageUtil);
 		model.put("questionList", questionList);
@@ -441,7 +441,7 @@ public class AuditAdminController extends BaseAdminController {
 		if(StringUtils.isNotBlank(status)) params.put("status", status);
 		if (StringUtils.isNotBlank(keyname)) params.put("keyname", keyname);
 		pageUtil.initPageInfo(params);
-		List<GewaQuestion> questionList = hibernateTemplate.findByCriteria(this.getQuestionQuery(memberid, starttime, endtime, status, keyname), pageNo
+		List<GewaQuestion> questionList = (List<GewaQuestion>) hibernateTemplate.findByCriteria(this.getQuestionQuery(memberid, starttime, endtime, status, keyname), pageNo
 				* rowsPerPage, rowsPerPage);
 		model.put("pageUtil", pageUtil);
 		model.put("questionList", questionList);
@@ -482,7 +482,7 @@ public class AuditAdminController extends BaseAdminController {
 		int firstRow = pageNo * rowsPerPage;
 		DetachedCriteria query = getAnswerQuery(qid, memberid, starttime, endtime, status, keyname).setProjection(Projections.rowCount());
 		Integer count = Integer.parseInt(hibernateTemplate.findByCriteria(query).get(0)+"");
-		answerList = hibernateTemplate.findByCriteria(getAnswerQuery(qid,  memberid, starttime, endtime, status, keyname),firstRow,rowsPerPage);
+		answerList = (List<GewaAnswer>) hibernateTemplate.findByCriteria(getAnswerQuery(qid,  memberid, starttime, endtime, status, keyname),firstRow,rowsPerPage);
 		PageUtil pageUtil = new PageUtil(count, rowsPerPage, pageNo, "admin/audit/answerList.xhtml");
 		RelatedHelper rh = new RelatedHelper();
 		model.put("relatedHelper", rh);
@@ -649,7 +649,7 @@ public class AuditAdminController extends BaseAdminController {
 		int firstRow = pageNo * rowsPerpage;
 		DetachedCriteria query = getSMSRecordQuery(keyname).setProjection(Projections.rowCount());
 		Integer count = Integer.parseInt(hibernateTemplate.findByCriteria(query).get(0)+"");
-		smsRecordList = hibernateTemplate.findByCriteria(getSMSRecordQuery(keyname), firstRow, rowsPerpage);
+		smsRecordList = (List<SMSRecord>) hibernateTemplate.findByCriteria(getSMSRecordQuery(keyname), firstRow, rowsPerpage);
 		Map params = new HashMap();
 		if(StringUtils.isNotBlank(status)) params.put("status", status);
 		if (StringUtils.isNotBlank(keyname)) params.put("keyname", keyname);

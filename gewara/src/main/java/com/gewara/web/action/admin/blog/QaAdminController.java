@@ -61,7 +61,7 @@ public class QaAdminController extends BaseAdminController {
 		Map params = new HashMap();
 		params.put("keyname", qc.getKeyname());
 		pageUtil.initPageInfo(params);
-		List<GewaQuestion> questionList = readOnlyTemplate.findByCriteria(this.getQaQuery(qc), qc.pageNo
+		List<GewaQuestion> questionList = (List<GewaQuestion>) readOnlyTemplate.findByCriteria(this.getQaQuery(qc), qc.pageNo
 				* qc.rowsPerPage, qc.rowsPerPage);
 		Map<Long, Member> lmMap = new HashMap<Long, Member>();
 		for (GewaQuestion question : questionList) {
@@ -149,7 +149,7 @@ public class QaAdminController extends BaseAdminController {
 		DetachedCriteria query = DetachedCriteria.forClass(GewaAnswer.class);
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.eq("answerstatus", GewaAnswer.AS_STATUS_Y));
-		List<GewaAnswer> answerList = readOnlyTemplate.findByCriteria(query);
+		List<GewaAnswer> answerList = (List<GewaAnswer>) readOnlyTemplate.findByCriteria(query);
 		Map<Long,Member> lmMap = new HashMap<Long,Member>();
 		for(GewaAnswer answer:answerList){
 			Member m = daoService.getObject(Member.class, answer.getMemberid());

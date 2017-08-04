@@ -120,6 +120,10 @@ public abstract class GewaIpConfig {
 		// 本地
 		return ip.contains("192.168.") || ip.equals("127.0.0.1") || ip.endsWith(":1")/*win10 local*/;
 	}
+	public static final boolean isGewaLocalIp(String ip) {
+		// 本地
+		return ip.contains("192.168.") || ip.equals("127.0.0.1") || ip.endsWith(":1")/*win10 local*/;
+	}
 
 	/**
 	 * 是开发人员环境的机器

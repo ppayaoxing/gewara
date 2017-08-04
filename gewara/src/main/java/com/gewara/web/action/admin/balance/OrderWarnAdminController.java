@@ -83,7 +83,7 @@ public class OrderWarnAdminController extends BaseAdminController {
 		}
 		
 		hibernateTemplate.setMaxResults(2000);
-		List<RepeatingPayorder> orders = hibernateTemplate.findByCriteria(query);
+		List<RepeatingPayorder> orders = (List<RepeatingPayorder>) hibernateTemplate.findByCriteria(query);
 		model.put("orders", orders);
 		
 		model.put("paytextMap", PaymethodConstant.getPayTextMap());
@@ -95,7 +95,7 @@ public class OrderWarnAdminController extends BaseAdminController {
 		if(startdate==null) startdate = DateUtil.addDay(date, -30);
 		if(enddate==null) enddate = date;
 		String sql = "from GewaOrder t where t.status like ? and t.addtime>=? and t.addtime<=? and (t.totalfee+t.itemfee+t.otherfee-discount)!=(gewapaid+alipaid) order by t.addtime desc";
-		List<GewaOrder> orderList = hibernateTemplate.find(sql, OrderConstant.STATUS_PAID+"%", DateUtil.getBeginningTimeOfDay(startdate), DateUtil.getLastTimeOfDay(enddate));
+		List<GewaOrder> orderList = (List<GewaOrder>) hibernateTemplate.find(sql, OrderConstant.STATUS_PAID+"%", DateUtil.getBeginningTimeOfDay(startdate), DateUtil.getLastTimeOfDay(enddate));
 		model.put("orderList", orderList);
 		return "admin/balance/warn/warnAmountOrder.vm";
 	}

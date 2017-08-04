@@ -9,6 +9,7 @@ import com.gewara.model.BaseObject;
 
 public abstract class GewaraUser extends BaseObject implements UserDetails{
 	private static final long serialVersionUID = 6078080839080249253L;
+	public static final String USER_TYPE_MEMBER = "user_type_member";
 	@Override
 	public final boolean isAccountNonExpired() {
 		return true;

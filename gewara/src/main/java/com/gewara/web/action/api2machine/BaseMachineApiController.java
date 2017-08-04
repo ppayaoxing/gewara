@@ -41,7 +41,7 @@ public class BaseMachineApiController extends BaseOpenApiMobileController{
 	}
 	protected OrderNote getOrderNoteByCheckpass(Long placeid, Timestamp addtime, String checkpass){
 		String qry = "from OrderNote where placeid=? and checkpass=? and addtime>?";
-		List<OrderNote> ttList = hibernateTemplate.find(qry, placeid, checkpass, addtime);
+		List<OrderNote> ttList = (List<OrderNote>) hibernateTemplate.find(qry, placeid, checkpass, addtime);
 		if(ttList.size()>0) {
 			return ttList.get(0);
 		}
@@ -50,7 +50,7 @@ public class BaseMachineApiController extends BaseOpenApiMobileController{
 	
 	protected MachineSynch getMachineSynch(Long placeid, String tag, String macid, Timestamp successtime){
 		String qry = "from MachineSynch where placeid=? and macid=?";
-		List<MachineSynch> msList = hibernateTemplate.find(qry, placeid, macid);
+		List<MachineSynch> msList = (List<MachineSynch>) hibernateTemplate.find(qry, placeid, macid);
 		MachineSynch ms = null;
 		if(msList.size()>0){
 			ms = msList.get(0);
@@ -69,7 +69,7 @@ public class BaseMachineApiController extends BaseOpenApiMobileController{
 	
 	protected TakeTicket validTakeTicket(Long placeid, String macid, String tradeno){
 		String qry = "from TakeTicket where placeid=? and macid=? and tradeno=?";
-		List<TakeTicket> ttList = hibernateTemplate.find(qry, placeid, macid, tradeno);
+		List<TakeTicket> ttList = (List<TakeTicket>) hibernateTemplate.find(qry, placeid, macid, tradeno);
 		if(ttList.size()>0){
 			return ttList.get(0);
 		}

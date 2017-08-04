@@ -90,7 +90,7 @@ public class AdAdminController extends BaseAdminController {
 		} else {
 			DetachedCriteria query = DetachedCriteria.forClass(Advertising.class);
 			query.addOrder(Order.asc("ordernum"));
-			adList = readOnlyTemplate.findByCriteria(query);
+			adList = (List<Advertising>) readOnlyTemplate.findByCriteria(query);
 		}
 		// 创建工作本
 		HSSFWorkbook wb = new HSSFWorkbook();

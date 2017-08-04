@@ -14,9 +14,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.gewara.Config;
-import com.gewara.hbase.HBaseService;
 import com.gewara.untrans.BaoKuService;
-//import com.gewara.untrans.hbase.HBaseService;
+import com.gewara.untrans.hbase.HBaseService;
 import com.gewara.util.GewaLogger;
 import com.gewara.util.LoggerUtils;
 import com.gewara.util.StringUtil;

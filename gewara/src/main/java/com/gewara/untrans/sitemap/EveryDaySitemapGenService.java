@@ -30,25 +30,25 @@ public class EveryDaySitemapGenService extends AbstractSitemapGenService impleme
 		String loc;
 		Timestamp firstDay = new Timestamp(DateUtil.getMonthFirstDay(new Date()).getTime());
 		//1)影院
-		List<Long> idList = hibernateTemplate.find("select c.id from Cinema c where c.addtime > ? ", firstDay);
+		List<Long> idList = (List<Long>) hibernateTemplate.find("select c.id from Cinema c where c.addtime > ? ", firstDay);
 		for(Long id:idList){
 			loc = siteUrl + "cinema/" + id;
 			this.writerUrl(writer, loc, lastmod, "hourly","0.8");
 		}
 		//5)运动场所
-		idList = hibernateTemplate.find("select c.id from Sport c where c.addtime > ? ", firstDay);
+		idList = (List<Long>) hibernateTemplate.find("select c.id from Sport c where c.addtime > ? ", firstDay);
 		for(Long id:idList){
 			loc = siteUrl + "sport/" + id;
 			this.writerUrl(writer, loc, lastmod, "hourly","0.8");
 		}
 		//6)电影
-		idList = hibernateTemplate.find("select c.id from Movie c where c.addtime > ? ", firstDay);
+		idList = (List<Long>) hibernateTemplate.find("select c.id from Movie c where c.addtime > ? ", firstDay);
 		for(Long id:idList){
 			loc = siteUrl + "movie/" + id;
 			this.writerUrl(writer, loc, lastmod, "hourly","0.8");
 		}
 		//7)Diary
-		List<Long> topicList = hibernateTemplate.find("select id from Diary where addtime > ? ", firstDay);
+		List<Long> topicList = (List<Long>) hibernateTemplate.find("select id from Diary where addtime > ? ", firstDay);
 		for(Long did:topicList){
 			loc = siteUrl + "blog/t" + did;
 			this.writerUrl(writer, loc, lastmod, "daily","0.8");

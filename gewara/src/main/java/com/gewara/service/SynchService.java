@@ -122,7 +122,7 @@ public interface SynchService {
 	 * @param specialComents
 	 * @return
 	 */
-	ErrorCode selfTicket(String tradeNo, Member member, String specialComents);
+	ErrorCode<?> selfTicket(String tradeNo, Member member, String specialComents);
 	/**
 	 * 话剧订单统计（OrderNote）
 	 * @param placeid

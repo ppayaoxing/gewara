@@ -1,8 +1,9 @@
 package com.gewara.json;
 
+import com.gewara.mongo.support.MGObject;
 import com.gewara.util.ObjectId;
 
-public class ValidEmail {
+public class ValidEmail extends MGObject{
 	public static final String TYPE_PASSWORD = "password";
 	public static final String TYPE_ACCOUNT_PASSWORD = "password_account";
 	

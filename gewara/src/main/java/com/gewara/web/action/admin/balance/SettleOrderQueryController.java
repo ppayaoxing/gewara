@@ -50,7 +50,7 @@ public class SettleOrderQueryController extends BaseAdminController{
 			hql = "from TicketOrder t where t.cinemaid=? and t.playtime>=? and t.playtime<=? and t.status like ? and t.settle='Y' order by t.addtime asc, playtime asc ";
 		}
 		
-		List<TicketOrder> orderList = hibernateTemplate.find(hql, cinemaid, timefrom, timeto, OrderConstant.STATUS_PAID + "%");
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.find(hql, cinemaid, timefrom, timeto, OrderConstant.STATUS_PAID + "%");
 		return orderList;
 	}
 

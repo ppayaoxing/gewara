@@ -2,13 +2,15 @@ package com.gewara.json.mobile;
 
 import java.io.Serializable;
 
+import com.gewara.mongo.support.MGObject;
+
 /**
  * 手机客户端抢票场次关联
  * 
  * @author taiqichao
  * 
  */
-public class MobileGrabTicketMpi implements Serializable {
+public class MobileGrabTicketMpi extends MGObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String id;

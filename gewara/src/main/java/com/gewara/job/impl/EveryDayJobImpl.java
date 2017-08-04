@@ -707,7 +707,7 @@ public class EveryDayJobImpl extends JobService implements EveryDayJob{
 		}
 		dbLogger.warn("用户名："+member.getNickname()+" 电影上映提醒产生的哇啦保存成功");
 		//电影下映提示
-		List<Map<String, Object>> movieProjectionCountList = mcpService.getMovieProjectionCount(DateUtil.addDay(DateUtil.parseDate(DateUtil.currentTimeStr(), "yyyy-MM-dd"), -21), OpiConstant.MPI_OPENSTATUS_OPEN);
+		List<Map<String, Object>> movieProjectionCountList = mcpService.getMovieProjectionCount(DateUtil.addDay(DateUtil.parseDate(DateUtil.currentDateStr(), "yyyy-MM-dd"), -21), OpiConstant.MPI_OPENSTATUS_OPEN);
 		for(Map<String, Object> map : movieProjectionCountList){
 			Long count = (Long)map.get("count");
 			Long movieid = (Long)map.get("movieid");

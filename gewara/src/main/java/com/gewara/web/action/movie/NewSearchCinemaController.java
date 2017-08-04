@@ -339,7 +339,7 @@ public class NewSearchCinemaController extends AnnotationController {
 		Map<Long, CinemaProfile> cprofileMap = new HashMap<Long, CinemaProfile>();
 		if(rowsCount > 0){
 			Date fyrq = DateUtil.getBeginningTimeOfDay(new Date());
-			cinemaList = readOnlyTemplate.findByCriteria(getCinemaQuery(cmd, citycode, relatedidList), 0, 300);
+			cinemaList = (List<Cinema>) readOnlyTemplate.findByCriteria(getCinemaQuery(cmd, citycode, relatedidList), 0, 300);
 			opiCinemaList = openPlayService.getOpiCinemaidList(citycode, null);
 			cinemaList = sortCinemaList(cinemaList,firstRow, cmd.getRowsPerpage(), opiCinemaList);
 			for (Cinema cinema : cinemaList) {

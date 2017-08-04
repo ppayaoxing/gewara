@@ -23,8 +23,9 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.RandomUtils;
-import org.codehaus.jackson.type.TypeReference;
+//import org.codehaus.jackson.type.TypeReference;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gewara.constant.AdminCityContant;
 import com.gewara.constant.PaymethodConstant;
 import com.gewara.helper.ticket.TicketUtil;
@@ -83,13 +84,15 @@ public class VmUtils extends VmBaseUtil {
 		str = JsonUtils.writeObjectToJson(str);
 		return str;
 	}
+	
 	private static String jsVersion = DateUtil.format(new Date(), "yyyyMMddHH");
-	public static void setJsVersion(String jv) {
+	public final static void setJsVersion(String jv) {
 		jsVersion = jv;
 	}
-	public static String getJsVersion() {
+	public final static String getJsVersion() {
 		return jsVersion;
 	}
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public String getTag(String category){
 		return ServiceHelper.getTag(category);

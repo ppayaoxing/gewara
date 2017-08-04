@@ -57,7 +57,7 @@ public class OpenTimeSaleServiceImpl extends BaseServiceImpl implements OpenTime
 				query.addOrder(Order.desc("s.addtime"));
 			}
 		}
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<OpenTimeSale>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	@Override
@@ -84,7 +84,7 @@ public class OpenTimeSaleServiceImpl extends BaseServiceImpl implements OpenTime
 		subQueryDeposit.setProjection(Projections.property("d.otsid"));
 		subQueryDeposit.add(Restrictions.eq("d.status", SellDeposit.STATUS_PAID_SUCCESS));
 		query.add(Subqueries.exists(subQueryDeposit));
-		List<OpenTimeSale> ostList = hibernateTemplate.findByCriteria(query);
+		List<OpenTimeSale> ostList = (List<OpenTimeSale>) hibernateTemplate.findByCriteria(query);
 		return ostList;
 	}
 	
@@ -92,7 +92,7 @@ public class OpenTimeSaleServiceImpl extends BaseServiceImpl implements OpenTime
 	public Integer getJoinOtsCount(String citycode, Long memberid, boolean valid){
 		DetachedCriteria query = queryCriteria(citycode, memberid, valid);
 		query.setProjection(Projections.rowCount());
-		List<Long> result = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(result.isEmpty()) return 0;
 		return result.get(0).intValue();
 	}
@@ -168,21 +168,21 @@ public class OpenTimeSaleServiceImpl extends BaseServiceImpl implements OpenTime
 	public List<OpenTimeSaleMember> getOtsMemberList(Long otsid, Long memberid, int from, int maxnum){
 		DetachedCriteria query = queryOtsMember(otsid, memberid, null, false);
 		query.addOrder(Order.desc("addtime"));
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<OpenTimeSaleMember>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 	
 	@Override
 	public List<OpenTimeSaleMember> getOtsMemberList(Long otsid, Long memberid){
 		DetachedCriteria query = queryOtsMember(otsid, memberid, null, false);
 		query.addOrder(Order.desc("addtime"));
-		return hibernateTemplate.findByCriteria(query);
+		return (List<OpenTimeSaleMember>) hibernateTemplate.findByCriteria(query);
 	}
 	
 	@Override
 	public Integer getOtsMemberCount(Long otsid, Long memberid){
 		DetachedCriteria query = queryOtsMember(otsid, memberid, null, true);
 		query.setProjection(Projections.rowCount());
-		List<Long> result = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(result.isEmpty()) return 0;
 		return result.get(0).intValue();
 	}
@@ -192,7 +192,7 @@ public class OpenTimeSaleServiceImpl extends BaseServiceImpl implements OpenTime
 		DetachedCriteria query = DetachedCriteria.forClass(OpenTimeSaleMember.class);
 		query.add(Restrictions.eq("memberid", memberid));
 		query.setProjection(Projections.distinct(Projections.property("otsid")));
-		List<Long> idList = hibernateTemplate.findByCriteria(query);
+		List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query);
 		return idList;
 	}
 	
@@ -200,7 +200,7 @@ public class OpenTimeSaleServiceImpl extends BaseServiceImpl implements OpenTime
 	public Integer getOtsMemberCount(Long otsid, Timestamp addtime){
 		DetachedCriteria query = queryOtsMember(otsid, null, addtime, true);
 		query.setProjection(Projections.rowCount());
-		List<Long> result = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<Long> result = (List<Long>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(result.isEmpty()) return 0;
 		return result.get(0).intValue();
 	}
@@ -266,7 +266,7 @@ public class OpenTimeSaleServiceImpl extends BaseServiceImpl implements OpenTime
 		DetachedCriteria query = DetachedCriteria.forClass(OpenTimeSaleMember.class , "o");
 		query.add(Restrictions.eq("o.otsid", otsid));
 		query.addOrder(Order.desc("o.addtime"));
-		List<OpenTimeSaleMember> saleMemberList = hibernateTemplate.findByCriteria(query, 0, 1);
+		List<OpenTimeSaleMember> saleMemberList = (List<OpenTimeSaleMember>) hibernateTemplate.findByCriteria(query, 0, 1);
 		if(saleMemberList.isEmpty()) return null;
 		return saleMemberList.get(0);
 	}
@@ -312,6 +312,6 @@ public class OpenTimeSaleServiceImpl extends BaseServiceImpl implements OpenTime
 				query.addOrder(Order.desc("s.addtime"));
 			}
 		}
-		return hibernateTemplate.findByCriteria(query, from, maxnum);
+		return (List<OpenTimeSale>) hibernateTemplate.findByCriteria(query, from, maxnum);
 	}
 }

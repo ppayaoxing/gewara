@@ -2,13 +2,15 @@ package com.gewara.json;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.gewara.mongo.support.MGObject;
 /**
  * 手机客户端升级
  * @author liushusong
  *
  */
 
-public class MobileQrCode implements Serializable{
+public class MobileQrCode extends MGObject implements Serializable{
 	private static final long serialVersionUID = 9120829955266984166L;
 	private String id;
 	private String title;//标题

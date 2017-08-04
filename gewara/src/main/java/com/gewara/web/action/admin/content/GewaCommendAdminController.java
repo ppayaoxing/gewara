@@ -421,7 +421,7 @@ public class GewaCommendAdminController extends GewaCommendBaseAdminController {
 		String signname = SignName.PARTNER_AD;
 		model.put("signname", signname);
 		String qry = "select new map(a.id as id, a.partnerpath as path, a.partnername as name) from ApiUser a order by a.id";
-		List<Map> partnerList = hibernateTemplate.find(qry);
+		List<Map> partnerList = (List<Map>) hibernateTemplate.find(qry);
 		List<GewaCommend> gcList = commonService.getGewaCommendList(getAdminCitycode(request) , signname, null,null, false,0, 50);
 		RelatedHelper rh = new RelatedHelper();
 		model.put("relatedHelper", rh);

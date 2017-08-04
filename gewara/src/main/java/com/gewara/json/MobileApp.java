@@ -3,13 +3,15 @@ package com.gewara.json;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import com.gewara.mongo.support.MGObject;
 /**
  * 手机客户端升级
  * @author liushusong
  *
  */
 
-public class MobileApp implements Serializable{
+public class MobileApp extends MGObject implements Serializable{
 	
 	private static final long serialVersionUID = 6351955802258321065L;
 	private String id;

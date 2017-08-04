@@ -3,9 +3,10 @@ package com.gewara.json;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.gewara.mongo.support.MGObject;
 import com.gewara.util.DateUtil;
 
-public class TicketRollCall implements Serializable{
+public class TicketRollCall extends MGObject implements Serializable{
 
 	private static final long serialVersionUID = 840605886815128092L;
 	private String id;

@@ -8,6 +8,8 @@ import com.gewara.api.vo.ResultCode;
 import com.gewara.drama.vo.DramaProfileVo;
 import com.gewara.drama.vo.DramaRaidersVo;
 import com.gewara.drama.vo.DramaVo;
+import com.gewara.drama.vo.OpenDramaItemVo;
+import com.gewara.drama.vo.TheatreVo;
 
 public interface DramaVoService {
 	
@@ -114,5 +116,9 @@ public interface DramaVoService {
 	* @param from maxnum
 	 */
 	ResultCode<List<DramaVo>> getDramaSomeDayCalendar(String citycode,Date someDay,int from,int maxnum);
+
+	ResultCode<TheatreVo> getTheatreVoById(Long theatreid);
+
+	ResultCode<OpenDramaItemVo> getOpenDramaItemVoById(Long dpid);
 
 }

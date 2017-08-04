@@ -908,7 +908,7 @@ public class BlogAdminController extends BaseAdminController {
 			query = "select mobile from TicketOrder where memberid=? and movieid=?";
 		if (StringUtils.equals(tag, "drama"))
 			query = "select mobile from DramaOrder where memberid=? and dramaid=?";
-		List<String> result = hibernateTemplate.find(query, memberid, relatedid);
+		List<String> result = (List<String>) hibernateTemplate.find(query, memberid, relatedid);
 		if (result.size() > 0)
 			return result.get(0);
 		return "";

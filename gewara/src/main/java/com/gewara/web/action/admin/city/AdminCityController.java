@@ -160,7 +160,7 @@ public class AdminCityController extends BaseAdminController{
 			return "admin/common/qryCityList.vm";
 		}
 		String hql = "from City c where c.cityname like ?";
-		List<City> cityList = hibernateTemplate.find(hql, "%"+cityname+"%");
+		List<City> cityList = (List<City>) hibernateTemplate.find(hql, "%"+cityname+"%");
 		if(cityList.size()==0){
 			return showJsonError(model, "城市不存在，请联系技术人员！");
 		}

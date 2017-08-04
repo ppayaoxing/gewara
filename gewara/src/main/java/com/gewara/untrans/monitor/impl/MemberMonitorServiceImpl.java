@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.gewara.Config;
 import com.gewara.support.ErrorCode;
+import com.gewara.support.magent.CommandProcessorGroup;
 import com.gewara.support.magent.MessageCommand;
 import com.gewara.support.magent.MessageCommandCenter;
 import com.gewara.support.magent.MessageCommandGroup;
@@ -31,7 +32,7 @@ import com.gewara.util.WebUtils;
 import com.gewara.web.support.DynamicStats;
 import com.gewara.web.support.DynamicStats.LogCounter;
 
-@Service("memberMonitorService")
+@Service("memberMonitorService")//CommandProcessorGroup
 public class MemberMonitorServiceImpl implements MemberMonitorService, InitializingBean, MessageCommandGroup{
 	private GewaLogger dbLogger = LoggerUtils.getLogger(this.getClass(), Config.getServerIp(), Config.SYSTEMID);
 	private Map<String, DynamicStats> monitorTypeMap = new ConcurrentHashMap<String, DynamicStats>();

@@ -15,6 +15,7 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.conversions.Bson;
 
 import com.gewara.util.Util4Script;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.model.Filters;
 
 /**
@@ -24,7 +25,7 @@ import com.mongodb.client.model.Filters;
  * @createDate 2015Äê7ÔÂ27ÈÕ
  * @link org.bson.conversions.Bson.Filters
  */
-public class Expression implements Util4Script{
+public class Expression extends BasicDBObject implements Util4Script{
 	public static enum LogicRelate {
 		AND, OR, NOT, NOR
 	};
