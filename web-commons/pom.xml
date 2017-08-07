@@ -13,10 +13,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>antlr</groupId>
 			<artifactId>antlr</artifactId>
 		</dependency>
