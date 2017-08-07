@@ -97,10 +97,10 @@ public class ReportAdminController extends BaseAdminController {
 		hql = hql + "group by opi.mpid, opi.moviename, opi.playtime, opi.roomname, opi.gewaprice order by opi.playtime";
 		List<Map> dataMap = new ArrayList<Map>();
 		if (StringUtils.isNotBlank(opentype))
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto), opentype);
 		else
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto));
 		model.put("dataMap", dataMap);
 		model.put("cinema", cinema);
@@ -119,10 +119,10 @@ public class ReportAdminController extends BaseAdminController {
 		hql = hql + "group by opi.cinemaid, to_char(opi.playtime, 'yyyy-MM-dd') order by opi.cinemaid, to_char(opi.playtime, 'yyyy-MM-dd')";
 		List<Map> dataMap = new ArrayList<Map>();
 		if (StringUtils.isNotBlank(opentype))
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto), opentype);
 		else
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto));
 		Map<Long, Cinema> cinemaMap = new HashMap<Long, Cinema>();
 		Map<Long, List<Map>> cdMap = new HashMap<Long, List<Map>>();
@@ -163,10 +163,10 @@ public class ReportAdminController extends BaseAdminController {
 		hql = hql + "group by opi.movieid,opi.costprice";
 		List<Map> list = new ArrayList<Map>();
 		if (StringUtils.isNotBlank(opentype))
-			list = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, DateUtil.getBeginningTimeOfDay(datefrom),
+			list = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto), opentype);
 		else
-			list = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, DateUtil.getBeginningTimeOfDay(datefrom),
+			list = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto));
 		Movie movie = null;
 		Integer costprice = null;
@@ -212,10 +212,10 @@ public class ReportAdminController extends BaseAdminController {
 		hql = hql + "group by opi.cinemaid,to_char(opi.playtime, 'yyyy-MM-dd') order by opi.cinemaid, to_char(opi.playtime, 'yyyy-MM-dd')";
 		List<Map> dataMap = new ArrayList<Map>();
 		if (StringUtils.isNotBlank(opentype))
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto), opentype);
 		else
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto));
 		Map<Long, Cinema> cinemaMap = new HashMap<Long, Cinema>();
 		Map<Long, List<Map>> cdMap = new HashMap<Long, List<Map>>();
@@ -266,7 +266,7 @@ public class ReportAdminController extends BaseAdminController {
 	@RequestMapping("/admin/gewapay/reportOpiDetail.xhtml")
 	public String reportOpiDetail(Long mpid, ModelMap model) {
 		String hql = "from TicketOrder t where t.mpid=? and t.status=? order by paidtime";
-		List<TicketOrder> orderList = hibernateTemplate.find(hql, new Object[] { mpid, OrderConstant.STATUS_PAID_SUCCESS });
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.find(hql, new Object[] { mpid, OrderConstant.STATUS_PAID_SUCCESS });
 		model.put("orderList", orderList);
 		return "admin/gewapay/report/reportOpiDetail.vm";
 	}
@@ -289,9 +289,9 @@ public class ReportAdminController extends BaseAdminController {
 		hql = hql + "order by t.addtime asc";
 		List<Map> dataMap = new ArrayList<Map>();
 		if (StringUtils.isNotBlank(opentype))
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, datefrom, dateto, opentype);
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, datefrom, dateto, opentype);
 		else
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, datefrom, dateto);
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, datefrom, dateto);
 		model.put("dataMap", dataMap);
 		model.put("cinema", cinema);
 		model.put("curtime", new Timestamp(System.currentTimeMillis()));
@@ -309,10 +309,10 @@ public class ReportAdminController extends BaseAdminController {
 		hql = hql + "group by opi.movieid order by sum(t.quantity) desc";
 		List<Map> dataMap = new ArrayList<Map>();
 		if (StringUtils.isNotBlank(opentype))
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto), opentype);
 		else
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto));
 		Map<Movie, Integer> mountMap = new LinkedHashMap<Movie, Integer>();
 		Movie movie = null;
@@ -340,10 +340,10 @@ public class ReportAdminController extends BaseAdminController {
 		hql = hql + "and opi.movieid =? group by opi.movieid, opi.cinemaid, opi.playtime, opi.mpid order by opi.playtime desc ";
 		List<Map> dataMap = new ArrayList<Map>();
 		if (StringUtils.isNotBlank(opentype))
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto), opentype, movieid);
 		else
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto), movieid);
 		for(Map map : dataMap){
 			Long mid = Long.valueOf(map.get("movieid")+"");
@@ -363,7 +363,7 @@ public class ReportAdminController extends BaseAdminController {
 	public String opiReport(Long mpid, ModelMap model) {
 		OpenPlayItem opi = daoService.getObjectByUkey(OpenPlayItem.class, "mpid", mpid, false);
 		String hql = "from TicketOrder t where t.mpid=? and t.status=? order by paidtime";
-		List<TicketOrder> orderList = hibernateTemplate.find(hql, new Object[] { mpid, OrderConstant.STATUS_PAID_SUCCESS });
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.find(hql, new Object[] { mpid, OrderConstant.STATUS_PAID_SUCCESS });
 		model.put("orderList", orderList);
 		model.put("opi", opi);
 		return "admin/gewapay/report/reportDetail.vm";
@@ -373,7 +373,7 @@ public class ReportAdminController extends BaseAdminController {
 	@RequestMapping("/admin/gewapay/reportSportDetail.xhtml")
 	public String reportSportDetail(Long ottid, ModelMap model) {
 		String hql = "from SportOrder t where t.ottid=? and t.status=? order by t.paidtime";
-		List<SportOrder> orderList = hibernateTemplate.find(hql, new Object[] { ottid, OrderConstant.STATUS_PAID_SUCCESS });
+		List<SportOrder> orderList = (List<SportOrder>) hibernateTemplate.find(hql, new Object[] { ottid, OrderConstant.STATUS_PAID_SUCCESS });
 		model.put("orderList", orderList);
 		return "admin/gewapay/report/reportSportDetail.vm";
 	}
@@ -396,9 +396,9 @@ public class ReportAdminController extends BaseAdminController {
 		hql = hql + "group by opi.movieid,opi.costprice";
 		List<Map> list = new ArrayList<Map>();
 		if (StringUtils.isNotBlank(opentype))
-			list = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, datefrom, dateto, opentype);
+			list = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, datefrom, dateto, opentype);
 		else
-			list = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, datefrom, dateto);
+			list = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, cinemaid, datefrom, dateto);
 		Movie movie = null;
 		Integer costprice = null;
 		Set costpriceList = new TreeSet();
@@ -432,7 +432,7 @@ public class ReportAdminController extends BaseAdminController {
 	private void getCityData(String citycode, ModelMap model) {
 		String cinemaHql = "select new map(c.id as cinemaid, c.name as cinemaname) from "
 				+ "Cinema c where c.citycode=? and c.id in (select p.id from CinemaProfile p)";
-		List<Map> cinemaList = hibernateTemplate.find(cinemaHql, citycode);
+		List<Map> cinemaList = (List<Map>) hibernateTemplate.find(cinemaHql, citycode);
 		model.put("cinemaList", cinemaList);
 	}
 
@@ -445,21 +445,21 @@ public class ReportAdminController extends BaseAdminController {
 			endtime = new Timestamp(System.currentTimeMillis());
 		String qry = "select new map(to_char(t.addtime,'hh24') as hh, count(*) as count) from TicketOrder t "
 				+ "where t.status=? and t.addtime>=? and t.addtime<? " + "group by to_char(t.addtime,'hh24') order by to_char(t.addtime,'hh24')";
-		List<Map> dataList = hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, starttime, endtime);
+		List<Map> dataList = (List<Map>) hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, starttime, endtime);
 		model.put("dataList", dataList);
 		return "admin/gewapay/report/reportByHour.vm";
 	}
 
 	@RequestMapping("/admin/gewapay/reportByMeal.xhtml")
 	public String meal(Long cid, Timestamp starttime, Timestamp endtime, ModelMap model) {
-		List<Long> cinemaidList = hibernateTemplate.find("select distinct g.relatedid from Goods g where g.tag=?", GoodsConstant.GOODS_TAG_BMH);
+		List<Long> cinemaidList = (List<Long>) hibernateTemplate.find("select distinct g.relatedid from Goods g where g.tag=?", GoodsConstant.GOODS_TAG_BMH);
 		List<Cinema> cinemaList = daoService.getObjectList(Cinema.class, cinemaidList);
 		model.put("cinemaList", cinemaList);
 		if (cid == null || starttime == null || endtime == null)
 			return "admin/gewapay/report/reportByMeal.vm";
 		String qry = "from GoodsOrder o where o.status=? and o.addtime>=? and o.addtime<=?"
 				+ "and exists(select g.id from Goods g where g.relatedid=? and g.tag=? and g.id=o.goodsid) order by o.addtime desc";
-		List<GoodsOrder> goodsOrderList = hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, starttime, endtime, cid,
+		List<GoodsOrder> goodsOrderList = (List<GoodsOrder>) hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_SUCCESS, starttime, endtime, cid,
 				GoodsConstant.GOODS_TAG_BMH);
 		List<String> tradenoList = BeanUtil.getBeanPropertyList(goodsOrderList, String.class, "tradeNo", true);
 		ErrorCode<List<TakeInfo>> tiCode = terminalService.getTakeInfoList(StringUtils.join(tradenoList, ","));
@@ -581,7 +581,7 @@ public class ReportAdminController extends BaseAdminController {
 		hql.append("sum(t.discount) as discount ) ");
 		hql.append(" from TicketOrder t where t.addtime>=? and t.addtime<=? and t.status like 'paid%' ");
 		hql.append(" group by t.citycode order by count(*) desc ");
-		List<Map<String, Object>> qryMapList = hibernateTemplate.find(hql.toString(), startTime, currentTime);
+		List<Map<String, Object>> qryMapList = (List<Map<String, Object>>) hibernateTemplate.find(hql.toString(), startTime, currentTime);
 		model.put("cityData", AdminCityContant.getCitycode2CitynameMap());
 		model.put("qryMapList", qryMapList);
 		model.put("startTime", startTime);
@@ -613,7 +613,7 @@ public class ReportAdminController extends BaseAdminController {
 			hql.append(" and c.citycode=? ");
 			params.add(citycode);
 		}
-		List<Map<String, Object>> qryMapList = hibernateTemplate.find(hql.toString(), params.toArray());
+		List<Map<String, Object>> qryMapList = (List<Map<String, Object>>) hibernateTemplate.find(hql.toString(), params.toArray());
 		model.put("cityData", AdminCityContant.getCitycode2CitynameMap());
 		model.put("qryMapList", qryMapList);
 		model.put("startTime", startTime);
@@ -666,7 +666,7 @@ public class ReportAdminController extends BaseAdminController {
 		final Date endT = currentTime;
 
 		// Ò³¼¯ºÏ
-		List<Map<String, Object>> qryMapList = hibernateTemplate.executeFind(new HibernateCallback() {
+		List<Map<String, Object>> qryMapList = (List<Map<String, Object>>) hibernateTemplate.executeFind(new HibernateCallback() {
 			@Override
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 				Query query = session.createSQLQuery(sql.toString()).addScalar("CINEMANAME", StringType.INSTANCE)

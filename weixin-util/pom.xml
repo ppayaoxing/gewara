@@ -1,27 +1,32 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.gewara</groupId>
-    <artifactId>gewara-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
- 	<artifactId>weixin-util</artifactId>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.gewara</groupId>
+		<artifactId>gewara-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>weixin-util</artifactId>
 	<packaging>jar</packaging>
 	<name>gewara weixin-util</name>
 
 	<dependencies>
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.gewara</groupId>
 			<artifactId>gw-commons</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.gewara</groupId>
 			<artifactId>web-commons</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
-		</dependency> -->
+		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -29,7 +34,7 @@
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
 				<configuration>
-					<!--<useProjectReferences>false</useProjectReferences>-->
+					<!--<useProjectReferences>false</useProjectReferences> -->
 				</configuration>
 			</plugin>
 		</plugins>

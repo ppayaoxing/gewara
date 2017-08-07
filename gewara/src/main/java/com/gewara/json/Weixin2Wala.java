@@ -2,7 +2,9 @@ package com.gewara.json;
 
 import java.io.Serializable;
 
-public class Weixin2Wala implements Serializable {
+import com.gewara.mongo.support.MGObject;
+
+public class Weixin2Wala extends MGObject implements Serializable {
 	/**
 	 * 
 	 */

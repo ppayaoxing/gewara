@@ -76,7 +76,7 @@ public class ApiCallCenterController extends BaseApiController {
 		query.add(Restrictions.eq("mobile", mobile));
 		query.add(Restrictions.ge("paidtime", DateUtil.addHour(DateUtil.getMillTimestamp(), -24)));
 		query.addOrder(Order.desc("paidtime"));
-		List<GewaOrder> orderList = hibernateTemplate.findByCriteria(query, 0, 10);
+		List<GewaOrder> orderList = (List<GewaOrder>) hibernateTemplate.findByCriteria(query, 0, 10);
 		return orderList;
 	}
 	
@@ -137,12 +137,12 @@ public class ApiCallCenterController extends BaseApiController {
 		DetachedCriteria criteria = DetachedCriteria.forClass(GewaOrder.class);
 		criteria.add(Restrictions.in("tradeNo", tradeNos))
 			.addOrder(Order.desc("addtime"));
-		List<GewaOrder> orders = this.hibernateTemplate.findByCriteria(criteria);
+		List<GewaOrder> orders = (List<GewaOrder>) this.hibernateTemplate.findByCriteria(criteria);
 		if(orders == null || orders.size() == 0){
 			return getErrorXmlView(model, ApiConstant.CODE_DATA_ERROR, "没有找到订单信息！");
 		}
 		List<Long> memberids = BeanUtil.getBeanPropertyList(orders, long.class, "memberid", false);
-		List<Member> members = this.hibernateTemplate.findByCriteria(DetachedCriteria.forClass(Member.class)
+		List<Member> members = (List<Member>) this.hibernateTemplate.findByCriteria(DetachedCriteria.forClass(Member.class)
 				.add(Restrictions.in("id",memberids)));
 		Map<Long,Member> memberMap = BeanUtil.beanListToMap(members, "id");
 		model.put("gewaOrderList", orders);
@@ -190,14 +190,14 @@ public class ApiCallCenterController extends BaseApiController {
 		query.add(Restrictions.eq("memberid", member.getId()));
 		query.add(Restrictions.like("status", status, MatchMode.START));
 		query.addOrder(Order.desc("addtime"));
-		List<GewaOrder> list =hibernateTemplate.findByCriteria(query);
+		List<GewaOrder> list =(List<GewaOrder>) hibernateTemplate.findByCriteria(query);
 		return list;
 	}
 	public Member getMember(String mobile){
 		DetachedCriteria query = DetachedCriteria.forClass(Member.class);
 		Criterion mobileOrEmail = Restrictions.or(Restrictions.eq("mobile", mobile), Restrictions.eq("email", mobile));
 		query.add(Restrictions.or(Restrictions.eq("nickname", mobile),mobileOrEmail));
-		List<Member> list =hibernateTemplate.findByCriteria(query);
+		List<Member> list =(List<Member>) hibernateTemplate.findByCriteria(query);
 		if(list.isEmpty()) return null;
 		return list.get(0);
 	}
@@ -299,7 +299,7 @@ public class ApiCallCenterController extends BaseApiController {
 	private List<GewaOrder> getGewaOrderList(Timestamp beginTime,Timestamp endTime,Integer pageNo,Integer maxnum,String citycode,String orderType,Long relatedid){
 		DetachedCriteria query = getQuery(beginTime, endTime, citycode,orderType, relatedid);
 		query.addOrder(Order.desc("addtime"));
-		List<GewaOrder> list =hibernateTemplate.findByCriteria(query,pageNo*maxnum,maxnum);
+		List<GewaOrder> list =(List<GewaOrder>) hibernateTemplate.findByCriteria(query,pageNo*maxnum,maxnum);
 		return list;
 	}
 	/**
@@ -315,7 +315,7 @@ public class ApiCallCenterController extends BaseApiController {
 	private long getGewaOrderListCount(Timestamp beginTime,Timestamp endTime,String citycode,String orderType, Long relatedid){
 		DetachedCriteria query = getQuery(beginTime, endTime, citycode,orderType, relatedid);
 		query.setProjection(Projections.rowCount());
-		List<Long> list =hibernateTemplate.findByCriteria(query);
+		List<Long> list =(List<Long>) hibernateTemplate.findByCriteria(query);
 		if (list.isEmpty()) return 0;
 		return Integer.parseInt(""+list.get(0));
 	}

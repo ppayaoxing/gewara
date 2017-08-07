@@ -211,7 +211,7 @@ public class MachineAdminController extends BaseAdminController {
 		for(String machineName : machineNumberSet){
 			DetachedCriteria query = DetachedCriteria.forClass(Machine.class);
 			query.add(Restrictions.eq("machinename", machineName));
-			List<Machine> machineList = hibernateTemplate.findByCriteria(query);
+			List<Machine> machineList = (List<Machine>) hibernateTemplate.findByCriteria(query);
 			if(machineList.size() == 0) continue;
 			for(Machine machine : machineList){
 				if(!StringUtils.contains(machine.getMachinenumber(), machineNumberMap.get(machineName))){

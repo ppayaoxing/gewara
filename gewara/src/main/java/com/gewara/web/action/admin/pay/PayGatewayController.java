@@ -54,7 +54,7 @@ public class PayGatewayController extends BaseAdminController {
 	@RequestMapping("/admin/pay/gateway/syn.xhtml")
 	public String synGateway(ModelMap model){		
 		GatewayGetAllRequest request = new GatewayGetAllRequest();
-		GatewayGetAllResponse response = gatewayApiService.getAll(request);
+		GatewayGetAllResponse response = gatewayApiService.getAll(request).getRetval();
 		try {
 			if(!response.isSuccess()){
 				return showJsonError(model, "Õ¨≤ΩAPI∑µªÿ ß∞‹£∫" + response.getMsg());

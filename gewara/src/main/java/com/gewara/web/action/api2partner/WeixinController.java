@@ -190,7 +190,7 @@ public class WeixinController extends BaseWeixinController{
 		Timestamp addtime = DateUtil.addDay(curtime, -6);
 		Timestamp playtime = DateUtil.addHour(curtime, -1);
 		String hql = "from TicketOrder t where t.memberid=? and t.status=? and t.addtime>? and t.playtime>? order by playtime";
-		List<TicketOrder> orderList = hibernateTemplate.find(hql, memberid, OrderConstant.STATUS_PAID_SUCCESS, addtime, playtime);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.find(hql, memberid, OrderConstant.STATUS_PAID_SUCCESS, addtime, playtime);
 		List<SMSRecord> smsList = new ArrayList<SMSRecord>();
 		for(TicketOrder order : orderList){
 			List<SMSRecord> smList = daoService.getObjectListByField(SMSRecord.class, "tradeNo", order.getTradeNo());
@@ -213,7 +213,7 @@ public class WeixinController extends BaseWeixinController{
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.gt("addtime", addtime));
 		query.addOrder(Order.desc("addtime"));
-		List<TicketOrder> orderList = hibernateTemplate.findByCriteria(query, 0, 5);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query, 0, 5);
 		Map<Long, Movie> movieMap = new HashMap<Long, Movie>();
 		Map<Long, OpenPlayItem> opiMap = new HashMap<Long, OpenPlayItem>();
 		for(TicketOrder order : orderList){

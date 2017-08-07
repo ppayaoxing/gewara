@@ -320,7 +320,7 @@ public class MemberAccountAdminController extends BaseAdminController{
 		int count = 0;
 		if(!list.isEmpty()) count = Integer.parseInt(list.get(0)+"");
 		int rows = 20;
-		List<Charge> chargeList = hibernateTemplate.findByCriteria(getChargeQry(memberid, membername, email, status, totalfee, startdate, enddate), pageNo*rows, rows);
+		List<Charge> chargeList = (List<Charge>) hibernateTemplate.findByCriteria(getChargeQry(memberid, membername, email, status, totalfee, startdate, enddate), pageNo*rows, rows);
 		PageUtil pageUtil = new PageUtil(count, rows, pageNo, "admin/account/qryCharge.xhtml");
 		Map params = new HashMap();
 		if(memberid!=null) params.put("memberid", memberid);

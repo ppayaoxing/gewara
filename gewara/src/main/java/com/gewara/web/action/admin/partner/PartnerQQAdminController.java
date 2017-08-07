@@ -113,7 +113,7 @@ public class PartnerQQAdminController extends BaseAdminController {
 
 	private PartnerMovie addMovie(String pmid) {
 		String qry = "from PartnerMovie m where m.pmid=? and m.partnerid=?";
-		List<PartnerMovie> mList = hibernateTemplate.find(qry, pmid, PARTNER_QQ);
+		List<PartnerMovie> mList = (List<PartnerMovie>) hibernateTemplate.find(qry, pmid, PARTNER_QQ);
 		if (mList.size() > 0)
 			return mList.get(0);
 		return null;
@@ -121,7 +121,7 @@ public class PartnerQQAdminController extends BaseAdminController {
 
 	private PartnerCinema addCinema(String pcid) {
 		String qry = "from PartnerCinema m where m.pcid=? and m.partnerid=?";
-		List<PartnerCinema> cList = hibernateTemplate.find(qry, pcid, PARTNER_QQ);
+		List<PartnerCinema> cList = (List<PartnerCinema>) hibernateTemplate.find(qry, pcid, PARTNER_QQ);
 		if (cList.size() > 0)
 			return cList.get(0);
 		return null;
@@ -130,7 +130,7 @@ public class PartnerQQAdminController extends BaseAdminController {
 	@RequestMapping("/admin/qq/movieList.xhtml")
 	public String getMovies(ModelMap model) {
 		String qry = "from PartnerMovie m order by m.id desc";
-		List<PartnerMovie> movieList = hibernateTemplate.find(qry);
+		List<PartnerMovie> movieList = (List<PartnerMovie>) hibernateTemplate.find(qry);
 		Map<Long, Movie> movieMap = new HashMap<Long, Movie>();
 		for (PartnerMovie pm : movieList) {
 			if (pm.getMovieid() != null) {
@@ -146,7 +146,7 @@ public class PartnerQQAdminController extends BaseAdminController {
 	@RequestMapping("/admin/qq/cinemaList.xhtml")
 	public String getCinemas(ModelMap model) {
 		String qry = "from PartnerCinema m order by m.cityname";
-		List<PartnerCinema> cinemaList = hibernateTemplate.find(qry);
+		List<PartnerCinema> cinemaList = (List<PartnerCinema>) hibernateTemplate.find(qry);
 		Map<Long, Cinema> cinemaMap = new HashMap<Long, Cinema>();
 		for (PartnerCinema pc : cinemaList) {
 			if (pc.getCinemaid() != null) {

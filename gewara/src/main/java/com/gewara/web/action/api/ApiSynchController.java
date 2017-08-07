@@ -582,7 +582,7 @@ public class ApiSynchController extends BaseMachineApiController{
 		Timestamp endTime = DateUtil.addHour(startTime, 12);
 		Timestamp lastPlayTime=null;
 		String hql="select new map( max(o.playtime) as lasttime ) from OpenPlayItem o where o.cinemaid=? and o.playtime>=? and o.playtime<=? ";
-		List<Map<String, Object>> resultList=hibernateTemplate.find(hql, venueId,startTime,endTime);
+		List<Map<String, Object>> resultList=(List<Map<String, Object>>) hibernateTemplate.find(hql, venueId,startTime,endTime);
 		if(resultList!=null&&resultList.size()>0){
 			lastPlayTime=(Timestamp) resultList.get(0).get("lasttime");
 		}

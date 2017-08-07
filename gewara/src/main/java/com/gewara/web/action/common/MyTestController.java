@@ -286,7 +286,7 @@ public class MyTestController extends BaseAdminController {
 	@ResponseBody
 	public String testSeq(){
 		List[] result = new ArrayList[2000];
-		List<String> seqList = hibernateTemplate.find("select seqNo from OpenPlayItem where playtime>? and seqNo is not null", new Timestamp(System.currentTimeMillis()));
+		List<String> seqList = (List<String>) hibernateTemplate.find("select seqNo from OpenPlayItem where playtime>? and seqNo is not null", new Timestamp(System.currentTimeMillis()));
 		for(String seq: seqList){
 			int s = Math.abs(seq.hashCode()*337)%2000;
 			if(result[s]==null) result[s] = new ArrayList();

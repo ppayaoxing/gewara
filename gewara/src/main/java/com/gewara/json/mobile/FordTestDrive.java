@@ -4,10 +4,12 @@ import java.io.Serializable;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.gewara.mongo.support.MGObject;
+
 /**
  * WAP“≥∏£Ãÿ ‘º›£¨≤Œ’’£∫http://rd.gewara.com/attachments/download/3253/ford.jpg
  */
-public class FordTestDrive implements Serializable {
+public class FordTestDrive extends  MGObject implements Serializable {
 
 	/**
 	 * 

@@ -242,7 +242,7 @@ public class Api2SportController extends BaseApiController {
 	}
 	private List<Sport> getSportListByItemid(Long itemid){
 		String query = "select distinct sportid from Sport2Item where itemid=? and booking=?";
-		List<Long> sportidList = hibernateTemplate.find(query, itemid, SportProfile.STATUS_OPEN);
+		List<Long> sportidList = (List<Long>) hibernateTemplate.find(query, itemid, SportProfile.STATUS_OPEN);
 		List<Sport> sportList = daoService.getObjectList(Sport.class, sportidList);
 		return sportList;
 	}
@@ -343,7 +343,7 @@ public class Api2SportController extends BaseApiController {
 				query.add(Restrictions.eq("itemid", itemid));
 				query.add(Restrictions.eq("booking", SportProfile.STATUS_OPEN));
 				query.setProjection(Projections.distinct(Projections.property("sportid")));
-				List<Long> sportidList2 = hibernateTemplate.findByCriteria(query);
+				List<Long> sportidList2 = (List<Long>) hibernateTemplate.findByCriteria(query);
 				retainSportidList = new ArrayList<Long>(sportidList2);
 				if(distance!=null){
 					List<Long> disIdList = getSportidListByDistance(itemid, citycode, pointx, pointy, distance);

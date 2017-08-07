@@ -1,8 +1,9 @@
 package com.gewara.json.machine;
 
+import com.gewara.mongo.support.MGObject;
 
 //一体机广告
-public class MachineAd {
+public class MachineAd extends MGObject{
 	private Long id;			
 	private String venueid;		//场馆id
 	private String adversion;	//版本

@@ -3,7 +3,9 @@ package com.gewara.json.mobile;
 import java.io.Serializable;
 import java.util.Date;
 
-public class MobileAdvertisingYouMi implements Serializable {
+import com.gewara.mongo.support.MGObject;
+
+public class MobileAdvertisingYouMi extends MGObject implements Serializable {
 	private static final long serialVersionUID = -4774336996322485278L;
 
 	private String id;

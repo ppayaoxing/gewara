@@ -235,7 +235,7 @@ public class Api2MobileMemberController extends BaseApiController {
 		query.add(Restrictions.or(Restrictions.isNull("restatus"), Restrictions.ne("restatus", GewaOrder.RESTATUS_DELETE)));
 		query.add(Restrictions.ge("addtime", qtime));
 		query.addOrder(Order.desc("addtime"));
-		List<T> result = hibernateTemplate.findByCriteria(query, from, maxnum);
+		List<T> result = (List<T>) hibernateTemplate.findByCriteria(query, from, maxnum);
 		return result;
 	}
 	

@@ -174,7 +174,7 @@ public class ApiTicketOrderController extends ApiTicketBaseController{
 				subquery.add(Restrictions.in("citycode", citycodeList));
 			}
 			subquery.add(Subqueries.exists(subquery));
-			roomList = hibernateTemplate.findByCriteria(query);
+			roomList = (List<CinemaRoom>) hibernateTemplate.findByCriteria(query);
 		}
 		model.put("roomList", roomList);
 		return getXmlView(model, "api/order/roomList.vm");

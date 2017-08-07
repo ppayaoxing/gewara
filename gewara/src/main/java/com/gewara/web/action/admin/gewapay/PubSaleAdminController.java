@@ -83,7 +83,7 @@ public class PubSaleAdminController extends BaseAdminController{
 	public String saleList(Long sid, ModelMap model){
 		PubSale sale = daoService.getObject(PubSale.class, sid);
 		String qry = "from PubMember m where m.pubid=? order by m.addtime desc";
-		List<PubMember> pmList = hibernateTemplate.find(qry, sale.getId());
+		List<PubMember> pmList = (List<PubMember>) hibernateTemplate.find(qry, sale.getId());
 		String sql = "select count(distinct p.pubid) from WEBDATA.pubmember p where p.memberid=?";
 		Map<Long,Integer> memberCount = new HashMap<Long, Integer>();
 		Map<Long, MemberInfo> memberInfoMap = new HashMap<Long, MemberInfo>();

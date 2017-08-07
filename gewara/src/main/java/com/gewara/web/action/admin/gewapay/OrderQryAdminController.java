@@ -73,7 +73,7 @@ public class OrderQryAdminController extends BaseAdminController {
 		Timestamp curtime = new Timestamp(System.currentTimeMillis());
 		String url = "admin/gewapay/confirmList.vm";
 		String hql = "from TicketOrder t where t.status=? and t.validtime>=? order by t.addtime asc";
-		List<TicketOrder> orderList = hibernateTemplate.find(hql, OrderConstant.STATUS_NEW_CONFIRM, DateUtil.addMinute(curtime, -minute));
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.find(hql, OrderConstant.STATUS_NEW_CONFIRM, DateUtil.addMinute(curtime, -minute));
 		model.put("orderList", orderList);
 		return url;
 	}

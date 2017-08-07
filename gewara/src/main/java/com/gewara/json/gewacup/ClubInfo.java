@@ -3,8 +3,10 @@ package com.gewara.json.gewacup;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.gewara.mongo.support.MGObject;
 
-public class ClubInfo implements Serializable{
+
+public class ClubInfo extends MGObject implements Serializable{
 	
 	private static final long serialVersionUID = 4045168091886382589L;
 	private Long id;			//È¦×ÓIDÖ÷¼ü

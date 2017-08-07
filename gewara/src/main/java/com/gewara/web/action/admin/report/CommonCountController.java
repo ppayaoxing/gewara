@@ -61,7 +61,7 @@ public class CommonCountController extends CountController{
 		model.put("payMap", PaymethodConstant.getPayTextMap());
 		model.put("partnerList", daoService.getAllObjects(ApiUser.class));
 		DetachedCriteria qry = getQry(movieid, cinemaid, partnerid, paymethod, gewa, status, starttime, endtime, asc);
-		List<TicketOrder> orderList = readOnlyTemplate.findByCriteria(qry, 0, 1000);
+		List<TicketOrder> orderList = (List<TicketOrder>) readOnlyTemplate.findByCriteria(qry, 0, 1000);
 		model.put("orderList", orderList);
 		model.put("fieldList", Arrays.asList(fields));
 		model.put("statusMap", OrderConstant.statusMap);

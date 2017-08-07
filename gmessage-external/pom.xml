@@ -16,6 +16,10 @@
 			<groupId>com.gewara</groupId>
 			<artifactId>gw-commons</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 	</dependencies>
 
 	<!-- <distributionManagement> <snapshotRepository> <id>gwother-snapshot</id> 

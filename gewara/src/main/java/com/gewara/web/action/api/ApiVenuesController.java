@@ -250,7 +250,7 @@ public class ApiVenuesController extends BaseApiController {
 		query.add(Restrictions.eq("sportid",sportid));
 		query.add(Restrictions.eq("itemid",itemid));
 		query.addOrder(Order.desc("createtime"));
-		List<SportOrder> list = this.hibernateTemplate.findByCriteria(query,0,1);
+		List<SportOrder> list = (List<SportOrder>) this.hibernateTemplate.findByCriteria(query,0,1);
 		return list.isEmpty()?null:list.get(0);
 	}
 	
@@ -258,7 +258,7 @@ public class ApiVenuesController extends BaseApiController {
 		DetachedCriteria query = DetachedCriteria.forClass(GoodsOrder.class);
 		query.add(Restrictions.eq("checkpass",checkpass));
 		query.addOrder(Order.desc("createtime"));
-		List<GoodsOrder> list = this.hibernateTemplate.findByCriteria(query,0,1);
+		List<GoodsOrder> list = (List<GoodsOrder>) this.hibernateTemplate.findByCriteria(query,0,1);
 		return list.isEmpty()?null:list.get(0);
 	}
 	
@@ -267,7 +267,7 @@ public class ApiVenuesController extends BaseApiController {
 		query.add(Restrictions.eq("checkpass",checkpass));
 		query.add(Restrictions.eq("theatreid",sportid));
 		query.addOrder(Order.desc("createtime"));
-		List<DramaOrder> list = this.hibernateTemplate.findByCriteria(query,0,1);
+		List<DramaOrder> list = (List<DramaOrder>) this.hibernateTemplate.findByCriteria(query,0,1);
 		return list.isEmpty()?null:list.get(0);
 	}
 	

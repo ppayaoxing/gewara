@@ -79,7 +79,7 @@ public class MachineTheatreController extends BaseMachineApiController {
 		if(theatre == null) return getErrorXmlView(model, ApiConstant.CODE_DATA_ERROR, "没有该剧院！");
 		ApiAuth auth = NewApiAuthenticationFilter.getApiAuth();
 		ApiUser apiUser = auth.getApiUser();
-		List<OrderNote> onmList = hibernateTemplate.find("from OrderNote where placeid=? and checkpass=? and substr(mobile,8,4)=? and express=?", theatreid, checkpass, shortmobile, Status.N);
+		List<OrderNote> onmList = (List<OrderNote>) hibernateTemplate.find("from OrderNote where placeid=? and checkpass=? and substr(mobile,8,4)=? and express=?", theatreid, checkpass, shortmobile, Status.N);
 		addCommonMap(apiUser, theatre, onmList, model);
 		model.put("nowtime", DateUtil.getMillTimestamp());
 		return getXmlView(model, "api2machine/downDramaOrderList2.vm");

@@ -3,6 +3,8 @@ package com.gewara.json;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.gewara.mongo.support.MGObject;
+
 /**
  * 运动终端机升级配置
  * 
@@ -10,7 +12,7 @@ import java.util.Date;
  * 
  */
 
-public class SportUpGrade implements Serializable {
+public class SportUpGrade extends MGObject implements Serializable {
 	private static final long serialVersionUID = 5334779739394551134L;
 	/**智能终端系统**/
 	public static final String SPORT_APP_ITS = "SPORT_ITS";

@@ -108,7 +108,7 @@ public class MovieAdminController extends BaseAdminController {
 			DetachedCriteria relationsQuery = DetachedCriteria.forClass(Video.class);
 			relationsQuery.add(Restrictions.eq("tag", Video.VIDEOTYPE_FILM));
 			relationsQuery.add(Restrictions.in("relatedid",  BeanUtil.getBeanPropertyList(movieList, Long.class, "id", true)));
-			List<Video> relations = hibernateTemplate.findByCriteria(relationsQuery);
+			List<Video> relations = (List<Video>) hibernateTemplate.findByCriteria(relationsQuery);
 			Map relationVideoMap = BeanUtil.beanListToMap(relations, "relatedid");
 			model.put("relationVideoMap", relationVideoMap);
 			model.put("relationVideoS", relationVideoMap.keySet());
@@ -381,7 +381,7 @@ public class MovieAdminController extends BaseAdminController {
 			DetachedCriteria relationsQuery = DetachedCriteria.forClass(Video.class);
 			relationsQuery.add(Restrictions.eq("tag", Video.VIDEOTYPE_FILM));
 			relationsQuery.add(Restrictions.in("relatedid",  BeanUtil.getBeanPropertyList(movieList, Long.class, "id", true)));
-			List<Video> relations = hibernateTemplate.findByCriteria(relationsQuery);
+			List<Video> relations = (List<Video>) hibernateTemplate.findByCriteria(relationsQuery);
 			Map relationVideoMap = BeanUtil.beanListToMap(relations, "relatedid");
 			model.put("relationVideoMap", relationVideoMap);
 			model.put("relationVideoS", relationVideoMap.keySet());

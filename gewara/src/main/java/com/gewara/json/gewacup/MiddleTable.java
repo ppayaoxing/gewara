@@ -3,8 +3,10 @@ package com.gewara.json.gewacup;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.gewara.mongo.support.MGObject;
 
-public class MiddleTable implements Serializable{
+
+public class MiddleTable extends MGObject implements Serializable{
 	
 	private static final long serialVersionUID = 354896119229586409L;
 	private String id;			

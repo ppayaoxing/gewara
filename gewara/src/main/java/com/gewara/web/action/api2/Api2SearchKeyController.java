@@ -58,7 +58,7 @@ public class Api2SearchKeyController extends BaseApiController {
 					.add(Projections.property("sp.generalmark"), "mk1")
 					.add(Projections.property("sp.generalmarkedtimes"), "mk2")));
 			query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-			searchList = hibernateTemplate.findByCriteria(query, 0, 5);
+			searchList = (List<Map>) hibernateTemplate.findByCriteria(query, 0, 5);
 		}else if("drama".equalsIgnoreCase(tag)){
 			DetachedCriteria query = DetachedCriteria.forClass(Theatre.class, "sp");
 			if(StringUtils.isNotBlank(indexName)){
@@ -73,7 +73,7 @@ public class Api2SearchKeyController extends BaseApiController {
 					.add(Projections.property("sp.generalmark"), "mk1")
 					.add(Projections.property("sp.generalmarkedtimes"), "mk2")));
 			query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-			searchList = hibernateTemplate.findByCriteria(query, 0, 5);
+			searchList = (List<Map>) hibernateTemplate.findByCriteria(query, 0, 5);
 		}else if("sport".equalsIgnoreCase(tag)){
 			DetachedCriteria query = DetachedCriteria.forClass(Sport.class, "sp");
 			if(StringUtils.isNotBlank(indexName)){
@@ -93,7 +93,7 @@ public class Api2SearchKeyController extends BaseApiController {
 					.add(Projections.property("sp.generalmark"), "mk1")
 					.add(Projections.property("sp.generalmarkedtimes"), "mk2")));
 			query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
-			searchList = hibernateTemplate.findByCriteria(query, 0, 5);
+			searchList = (List<Map>) hibernateTemplate.findByCriteria(query, 0, 5);
 		}else{
 			try {
 				Set<String> keyList = searchService.getSearchKeyList(tag, indexName, 5);

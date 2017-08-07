@@ -64,7 +64,7 @@ public class BarcodeAdminController extends BaseAdminController {
 			query.add(Restrictions.eq("macid", macid));
 		}
 		query.addOrder(Order.desc("id"));
-		List<MachineSynch> synchList = hibernateTemplate.findByCriteria(query);
+		List<MachineSynch> synchList = (List<MachineSynch>) hibernateTemplate.findByCriteria(query);
 		model.put("mcList", synchList);
 		return "admin/machine/moreMachineSynchList.vm";
 	}
@@ -82,7 +82,7 @@ public class BarcodeAdminController extends BaseAdminController {
 			query.add(Restrictions.eq("tradeno", tradeno));
 		}
 		query.addOrder(Order.desc("id"));
-		List<MachineSynch> ttList = hibernateTemplate.findByCriteria(query);
+		List<MachineSynch> ttList = (List<MachineSynch>) hibernateTemplate.findByCriteria(query);
 		model.put("ttList", ttList);
 		return "admin/machine/takeTicketList.vm";
 	}

@@ -273,7 +273,7 @@ public class ApiActivityController extends BaseApiController{
 		queryOrder.add(Restrictions.in("t.mpid", Ids));
 		queryOrder.add(Restrictions.or(Restrictions.isNull("t.unitprice"), Restrictions.eq("t.totalfee", 10)));
 		queryOrder.addOrder(Order.desc("t.addtime"));
-		List<TicketOrder> orderList = hibernateTemplate.findByCriteria(queryOrder);
+		List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(queryOrder);
 		model.put("orderList", orderList);
 		return getXmlView(model, "inner/activity/ticketOrderList.vm");
 	}

@@ -43,7 +43,7 @@ public class RemoteDramaAdminController extends BaseAdminController {
 		String citycode = getAdminCitycode(request);
 		if(StringUtils.isBlank(citycode)) citycode = AdminCityContant.CITYCODE_SH;
 		String hql = "select id from TheatreProfile tp where exists(select t.id from Theatre t where t.id=tp.id and t.citycode=?) and tp.opentype is not null and tp.opentype <>? "; 
-		List<Long> theatreIdList = hibernateTemplate.find(hql, citycode, OdiConstant.PARTNER_GEWA);
+		List<Long> theatreIdList = (List<Long>) hibernateTemplate.find(hql, citycode, OdiConstant.PARTNER_GEWA);
 		List<Theatre> theatreList = daoService.getObjectList(Theatre.class, theatreIdList);
 		Map<Long, TheatreProfile> profileMap = daoService.getObjectMap(TheatreProfile.class, theatreIdList);
 		model.put("theatreList", theatreList);

@@ -209,7 +209,7 @@ public class SynchAdminController extends BaseAdminController{
 		qry.add(Restrictions.ge("addtime", starttime));
 		qry.add(Restrictions.le("addtime", endtime));
 		qry.addOrder(Order.desc(order));
-		List<OrderNote> noteList = hibernateTemplate.findByCriteria(qry);
+		List<OrderNote> noteList = (List<OrderNote>) hibernateTemplate.findByCriteria(qry);
 		model.put("noteList", noteList);
 		return vm;
 	}
@@ -534,7 +534,7 @@ public class SynchAdminController extends BaseAdminController{
 		}
 		String qry = "from Synch s where s.successtime>=? and exists(select g.id from Goods g where g.tag=? and g.relatedid=s.cinemaid)" +
 				" and exists(select c.id from Cinema c where c.citycode=? and c.id=s.cinemaid and c.booking=?)";
-		List<Synch> synchList = hibernateTemplate.find(qry, starttime, GoodsConstant.GOODS_TAG_BMH, citycode, Cinema.BOOKING_OPEN);
+		List<Synch> synchList = (List<Synch>) hibernateTemplate.find(qry, starttime, GoodsConstant.GOODS_TAG_BMH, citycode, Cinema.BOOKING_OPEN);
 		Map<Long, Cinema> cinemaMap = new HashMap<Long, Cinema>();
 		Map<Long, Integer> ordernumMap = new HashMap<Long, Integer>();
 		Map<Long, Integer> synchnumMap = new HashMap<Long, Integer>();
@@ -581,7 +581,7 @@ public class SynchAdminController extends BaseAdminController{
 		String hql = "from GoodsOrder t where t.status=? and t.placeid=? " +
 							"and not exists(select r.tradeno from OrderResult r " +
 										"where r.taketime!=null and r.ordertype=? and r.tradeno=t.tradeNo)";
-		List<GoodsOrder> goodsOrderList = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, OrderResult.ORDERTYPE_MEAL);
+		List<GoodsOrder> goodsOrderList = (List<GoodsOrder>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, cinemaid, OrderResult.ORDERTYPE_MEAL);
 		orderList.addAll(goodsOrderList);
 		Collections.sort(orderList, new PropertyComparator("addtime", false, false));
 		model.put("orderList", orderList);
@@ -611,7 +611,7 @@ public class SynchAdminController extends BaseAdminController{
 		String qry = "select new map(c.id as cinemaid, c.name as name) from Cinema c " +
 				"where c.citycode=? and c.booking=? and " +
 				"exists(select p.id from CinemaProfile p where p.id=c.id))";
-		List<Map> cinemaList = hibernateTemplate.find(qry, citycode, Cinema.BOOKING_OPEN);
+		List<Map> cinemaList = (List<Map>) hibernateTemplate.find(qry, citycode, Cinema.BOOKING_OPEN);
 		model.put("cinemaList", cinemaList);
 		return "admin/synch/cinemaList.vm";
 	}
@@ -624,9 +624,9 @@ public class SynchAdminController extends BaseAdminController{
 		String qry = "select o.mpid from OpenPlayItem o where o.cinemaid=? and o.playtime>=? and o.playtime<=?";
 		if(StringUtils.equals(datetype, "add")){
 			qry = "select distinct t.mpid from TicketOrder t where t.cinemaid=? and t.status=? and t.addtime>=? and t.addtime<=?";
-			mpidList = hibernateTemplate.find(qry, cinemaid, OrderConstant.STATUS_PAID_SUCCESS, time1, time2);
+			mpidList = (List<Long>) hibernateTemplate.find(qry, cinemaid, OrderConstant.STATUS_PAID_SUCCESS, time1, time2);
 		}else {
-			mpidList = hibernateTemplate.find(qry, cinemaid, time1, time2);
+			mpidList = (List<Long>) hibernateTemplate.find(qry, cinemaid, time1, time2);
 		}
 		
 		model.put("idListStr", StringUtils.join(mpidList, ","));
@@ -638,7 +638,7 @@ public class SynchAdminController extends BaseAdminController{
 		Timestamp time1 = DateUtil.getBeginTimestamp(adddate);
 		Timestamp time2 = DateUtil.getLastTimeOfDay(time1);
 		String qry = "from GoodsOrder g where g.goodsid=? and g.status=? and g.addtime>=? and g.addtime<=?";
-		List<GoodsOrder> orderList = hibernateTemplate.find(qry, goodsid, OrderConstant.STATUS_PAID_SUCCESS, time1, time2);
+		List<GoodsOrder> orderList = (List<GoodsOrder>) hibernateTemplate.find(qry, goodsid, OrderConstant.STATUS_PAID_SUCCESS, time1, time2);
 		model.put("orderList", orderList);
 		return "admin/synch/goodsOrderList.vm";
 	}
@@ -903,7 +903,7 @@ public class SynchAdminController extends BaseAdminController{
 			int from = pageNo * rows;
 			DetachedCriteria query = getSynchQuery(monitor, newsys);
 			query.addOrder(Order.asc("cinemaid"));
-			synchList = hibernateTemplate.findByCriteria(query, from, rows);
+			synchList = (List<Synch>) hibernateTemplate.findByCriteria(query, from, rows);
 			int rowsCount = Integer.valueOf(hibernateTemplate.findByCriteria(getSynchQuery(monitor, newsys).setProjection(Projections.rowCount())).get(0)+"");
 			PageUtil pageUtil = new PageUtil(rowsCount, rows, pageNo, "/admin/synch/getSynchList.xhtml", true, true);
 			Map params = new HashMap();
@@ -1112,7 +1112,7 @@ public class SynchAdminController extends BaseAdminController{
 			Timestamp startTime = DateUtil.getBeginTimestamp(pushDate);
 			Timestamp endTime = DateUtil.getEndTimestamp(pushDate);
 			String hql = "select distinct mobile from GewaOrder where addtime >= ? and addtime < ? and status like ?";
-			List<String> moblieList = hibernateTemplate.find(hql, startTime, endTime, OrderConstant.STATUS_PAID + "%");
+			List<String> moblieList = (List<String>) hibernateTemplate.find(hql, startTime, endTime, OrderConstant.STATUS_PAID + "%");
 			if(!moblieList.isEmpty()){
 				mobileService.saveMobiles(moblieList);
 				msg = "共推送手机数：" + moblieList.size();

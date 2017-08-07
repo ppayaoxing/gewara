@@ -257,7 +257,7 @@ public class CommonIndexController extends BaseHomeController {
         }
         query.setProjection(Projections.property("id"));
         query.addOrder(Order.desc("id"));
-        List<Long> idList = hibernateTemplate.findByCriteria(query);
+        List<Long> idList = (List<Long>) hibernateTemplate.findByCriteria(query);
         List<T> baseInfoList = daoService.getObjectList(clazz, idList);
         return baseInfoList;
     }

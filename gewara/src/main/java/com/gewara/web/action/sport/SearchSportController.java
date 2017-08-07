@@ -219,7 +219,7 @@ public class SearchSportController extends BaseSportController {
 		}
 		count = Integer.valueOf(readOnlyTemplate.findByCriteria(getCriteria(ssc, citycode, sidList, true)).get(0)+"");
 		if(count >0){
-			sportList = readOnlyTemplate.findByCriteria(getCriteria(ssc, citycode, sidList, false), firstRow, rowsPerpage);
+			sportList = (List<Sport>) readOnlyTemplate.findByCriteria(getCriteria(ssc, citycode, sidList, false), firstRow, rowsPerpage);
 		}
 		Map<Long, List<SportItem>> itemMap = new HashMap<Long, List<SportItem>>();
 		Map<Long, SportProfile> spMap = new HashMap<Long, SportProfile>();

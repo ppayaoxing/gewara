@@ -181,7 +181,7 @@ public class ElecCardAdminController extends BaseAdminController {
 		if(bid != null){
 			batch = daoService.getObject(ElecCardBatch.class, bid);
 		}
-		List<ApiUser> partnerList = hibernateTemplate.find("from ApiUser a where a.status=? order by a.id", ApiUser.STATUS_OPEN);
+		List<ApiUser> partnerList = (List<ApiUser>) hibernateTemplate.find("from ApiUser a where a.status=? order by a.id", ApiUser.STATUS_OPEN);
 		model.put("batch", batch);
 		model.put("cityMap", AdminCityContant.getCitycode2CitynameMap());
 		model.put("partnerList", partnerList);

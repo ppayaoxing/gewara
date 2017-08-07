@@ -3,9 +3,10 @@ package com.gewara.json;
 import java.io.Serializable;
 
 import com.gewara.constant.Status;
+import com.gewara.mongo.support.MGObject;
 import com.gewara.util.DateUtil;
 
-public class SubjectActivity implements Serializable{
+public class SubjectActivity extends MGObject implements Serializable{
 
 	private static final long serialVersionUID = -8054853068756272632L;
 	private String id;

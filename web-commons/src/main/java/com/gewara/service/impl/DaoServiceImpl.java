@@ -384,4 +384,6 @@ public final class DaoServiceImpl implements DaoService {
 	public Map<Class, String> getEntityIdNameMap() {
 		return baseDao.getIdNameMap();
 	}
+
+	
 }

@@ -21,6 +21,7 @@ public interface CacheService extends CacheTools {
 	 * @param mpid
 	 */
 	<T extends BaseObject> void cleanUkey(Class<T> claszz, String key, Long mpid);
+	<T extends BaseObject> void cleanUkey(Class<T> claszz, String key, String ukey);
 
 	/**
 	 * @function ¶à¸ökey
@@ -110,4 +111,5 @@ public interface CacheService extends CacheTools {
 	 * @return
 	 */
 	int incrementAndGet(String regionName, String key, int by, int def, int exp);
+	void refreshVersion(Map<String, String> regionVersion);
 }

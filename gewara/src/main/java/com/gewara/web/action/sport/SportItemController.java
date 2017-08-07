@@ -471,7 +471,7 @@ public class SportItemController extends BaseSportController {
 		if(null != relatedid) query.add(Restrictions.eq("relatedid", relatedid));
 		query.add(Restrictions.ilike("body","#",MatchMode.ANYWHERE));
 		query.addOrder(Order.desc("addtime"));
-		List<Comment> commentList = readOnlyTemplate.findByCriteria(query, from, maxnum);
+		List<Comment> commentList = (List<Comment>) readOnlyTemplate.findByCriteria(query, from, maxnum);
 		return commentList;
 	}
 	
@@ -568,7 +568,7 @@ public class SportItemController extends BaseSportController {
 		subQuery.add(Restrictions.ge("o.closetime", cur));
 		subQuery.add(Restrictions.ge("o.playdate", startdate));
 		subQuery.setProjection(Projections.property("o.itemid"));
-		List<Long> list = readOnlyTemplate.findByCriteria(subQuery);
+		List<Long> list = (List<Long>) readOnlyTemplate.findByCriteria(subQuery);
 		return list;
 	}
 	//新运动项目详细

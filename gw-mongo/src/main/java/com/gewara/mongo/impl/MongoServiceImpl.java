@@ -734,7 +734,7 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 	@Override
 	public void saveOrUpdateMapList(List<Map> mapList, String string, String string2, boolean b, boolean c) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -746,7 +746,7 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 	@Override
 	public void update(String namespace, Map data, Map destMap) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -776,12 +776,18 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 	@Override
 	public void saveOrUpdateMap(Map map, String string, String string2, boolean b, boolean c) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void savePrimitiveObject(String keytype, String... join) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public <T> List<T> getDistinctPropertyList(String name, Map params, String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

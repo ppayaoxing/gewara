@@ -3,6 +3,9 @@ package com.gewara.untrans;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.gewara.bean.BlackMatcher;
 
 public interface AttackTestService {
@@ -48,4 +51,5 @@ public interface AttackTestService {
 	 * @param action
 	 */
 	void refreshWhite(String ips, String action);
+	
 }

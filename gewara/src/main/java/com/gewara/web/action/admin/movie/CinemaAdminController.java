@@ -169,7 +169,7 @@ public class CinemaAdminController extends BaseAdminController {
 			model.put("telephones", telephones);
 			return "admin/cinema/baseCinemaForm.vm";
 		}else if(StringUtils.equals(status, "showAround")){
-			List<Subwayline> lineList = hibernateTemplate.find("from Subwayline s where s.citycode=? order by s.id", citycode);
+			List<Subwayline> lineList = (List<Subwayline>) hibernateTemplate.find("from Subwayline s where s.citycode=? order by s.id", citycode);
 			Map<Long,String> stationMap = new HashMap<Long,String>();
 			for (Subwayline line : lineList) {
 				 List<Subwaystation> tmpList = placeService.getSubwaystationsByLineId(line.getId());

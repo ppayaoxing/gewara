@@ -2,7 +2,9 @@ package com.gewara.model.partner;
 
 import java.io.Serializable;
 
-public class BindUnionpayMember implements Serializable{
+import com.gewara.mongo.support.MGObject;
+
+public class BindUnionpayMember extends MGObject implements Serializable{
 	//TODO:ÒÆ×ß
 	private static final long serialVersionUID = -4363300428929625915L;
 	private String _id;

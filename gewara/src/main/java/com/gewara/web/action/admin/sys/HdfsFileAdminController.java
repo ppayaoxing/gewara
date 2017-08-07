@@ -40,7 +40,7 @@ public class HdfsFileAdminController extends BaseAdminController{
 		DetachedCriteria query = DetachedCriteria.forClass(UploadPic.class);
 		query.add(Restrictions.eq("status", "unsave"));
 		query.addOrder(Order.asc("picname"));
-		final List<UploadPic> uploadPicList = hibernateTemplate.findByCriteria(query, from, 3000);
+		final List<UploadPic> uploadPicList = (List<UploadPic>) hibernateTemplate.findByCriteria(query, from, 3000);
 		new CopyWorker(daoService, uploadPicList, gewaPicService, from).start();
 		dbLogger.error("save2hdfs:" + from);
 		return forwardMessage(model, "save working...." + from + ", count:" + uploadPicList.size());
@@ -69,7 +69,7 @@ public class HdfsFileAdminController extends BaseAdminController{
 		DetachedCriteria query = DetachedCriteria.forClass(UploadPic.class);
 		query.add(Restrictions.eq("status", "saved"));
 		query.addOrder(Order.asc("picname"));
-		final List<UploadPic> uploadPicList = hibernateTemplate.findByCriteria(query, from, 5000);
+		final List<UploadPic> uploadPicList = (List<UploadPic>) hibernateTemplate.findByCriteria(query, from, 5000);
 		new CheckWorker(daoService, uploadPicList, gewaPicService, from).start();
 		return forwardMessage(model, "check working...." + from);
 	}

@@ -702,7 +702,7 @@ public class SportOttAdminController extends BaseAdminController {
 		OpenTimeTable newTable = daoService.getObject(OpenTimeTable.class, ottid);
 		if(playdate == null) playdate = DateUtil.addDay(newTable.getPlaydate(), -7);
 		String qry = "from OpenTimeTable t where t.sportid=? and t.itemid=? and t.playdate=? and t.openType=? order by t.id desc";
-		List<OpenTimeTable> oldOttList = hibernateTemplate.find(qry, newTable.getSportid(), newTable.getItemid(), playdate, newTable.getOpenType());
+		List<OpenTimeTable> oldOttList = (List<OpenTimeTable>) hibernateTemplate.find(qry, newTable.getSportid(), newTable.getItemid(), playdate, newTable.getOpenType());
 		if(oldOttList.size()>0){
 			OpenTimeTable old = oldOttList.get(0);
 			int count = 0;
@@ -712,7 +712,7 @@ public class SportOttAdminController extends BaseAdminController {
 				if(newOti.getCostprice()*newOti.getPrice()*newOti.getNorprice()*newOti.getUpsetprice()==0 || !newTable.isBooking()){
 					if(isValidItem(newOti)){
 						qry = "from OpenTimeItem o where o.ottid=? and o.fieldid=? and o.hour=?";
-						List<OpenTimeItem> oldOtiList = hibernateTemplate.find(qry, old.getId(), newOti.getFieldid(), newOti.getHour());
+						List<OpenTimeItem> oldOtiList = (List<OpenTimeItem>) hibernateTemplate.find(qry, old.getId(), newOti.getFieldid(), newOti.getHour());
 						if(oldOtiList.size()>0){
 							OpenTimeItem oldOti = oldOtiList.get(0);
 							if(newOti.getCostprice()==0 || !newTable.isBooking()) newOti.setCostprice(oldOti.getCostprice());
@@ -932,7 +932,7 @@ public class SportOttAdminController extends BaseAdminController {
 	@RequestMapping("/admin/sport/open/sumcost.xhtml")
 	public String sumcost(ModelMap model){
 		String qry = "from SportOrder o where o.status like ? order by o.addtime";
-		List<SportOrder> orderList = hibernateTemplate.find(qry, OrderConstant.STATUS_PAID + "%");
+		List<SportOrder> orderList = (List<SportOrder>) hibernateTemplate.find(qry, OrderConstant.STATUS_PAID + "%");
 		int i = 0;
 		for(SportOrder order : orderList){
 			int sumcost = order.getSumcost();
@@ -949,14 +949,14 @@ public class SportOttAdminController extends BaseAdminController {
 			if(sportid==null) sportid = 0L;
 			//if(!StringUtil.md5(sportid+DateUtil.formatDate(new Date())).equals(checkValue))return "admin/sport/open/sportList.vm";
 			String qry = "select new map(s.id as id, s.name as name, s.briefname as briefname) from Sport s where s.id>=?";
-			sportList = hibernateTemplate.find(qry, sportid);
+			sportList = (List<Map>) hibernateTemplate.find(qry, sportid);
 		}else{
 			if(!StringUtil.md5(ids+DateUtil.formatDate(new Date())).equals(checkValue))return "admin/sport/open/sportList.vm";
 			List<Long> idList = BeanUtil.getIdList(ids, ",");
 			if(idList.size() != 0){
 				ids = StringUtils.join(idList.toArray(),",");
 				String qry = "select new map(s.id as id, s.name as name, s.briefname as briefname) from Sport s where s.id in ("+ids+")";
-				sportList = hibernateTemplate.find(qry);
+				sportList = (List<Map>) hibernateTemplate.find(qry);
 			}
 		}
 		model.put("sportList", sportList);
@@ -1315,7 +1315,7 @@ public class SportOttAdminController extends BaseAdminController {
 	@RequestMapping("/admin/sport/open/tempTime.xhtml")
 	public String tempTime(Timestamp addtime, ModelMap model) {
 		String sql = "from SportOrder s where s.addtime<=? and s.status like ?";
-		List<SportOrder> orderList = hibernateTemplate.find(sql, addtime, "paid%");
+		List<SportOrder> orderList = (List<SportOrder>) hibernateTemplate.find(sql, addtime, "paid%");
 		for(SportOrder order : orderList){
 			OpenTimeTable ott = daoService.getObject(OpenTimeTable.class, order.getOttid());
 			Map<String, String> descMap = VmUtils.readJsonToMap(order.getDescription2());
@@ -1348,7 +1348,7 @@ public class SportOttAdminController extends BaseAdminController {
 		for (OpenTimeTable newTable : ottList) {
 			Date playdate = DateUtil.addDay(newTable.getPlaydate(), -7);
 			String qry = "from OpenTimeTable t where t.sportid=? and t.itemid=? and t.playdate=? and t.openType=? order by t.id desc";
-			List<OpenTimeTable> oldOttList = hibernateTemplate.find(qry, newTable.getSportid(), newTable.getItemid(), playdate, newTable.getOpenType());
+			List<OpenTimeTable> oldOttList = (List<OpenTimeTable>) hibernateTemplate.find(qry, newTable.getSportid(), newTable.getItemid(), playdate, newTable.getOpenType());
 			if(oldOttList.size()>0){
 				OpenTimeTable old = oldOttList.get(0);
 				List<OpenTimeItem> newotiList = openTimeTableService.getOpenItemList(newTable.getId());
@@ -1357,7 +1357,7 @@ public class SportOttAdminController extends BaseAdminController {
 					if(newOti.hasZeroPrice()){
 						if(isValidItem(newOti)){
 							qry = "from OpenTimeItem o where o.ottid=? and o.fieldid=? and o.hour=?";
-							List<OpenTimeItem> oldOtiList = hibernateTemplate.find(qry, old.getId(), newOti.getFieldid(), newOti.getHour());
+							List<OpenTimeItem> oldOtiList = (List<OpenTimeItem>) hibernateTemplate.find(qry, old.getId(), newOti.getFieldid(), newOti.getHour());
 							if(oldOtiList.size()>0){
 								OpenTimeItem oldOti = oldOtiList.get(0);
 								if(newOti.getCostprice()==0) newOti.setCostprice(oldOti.getCostprice());

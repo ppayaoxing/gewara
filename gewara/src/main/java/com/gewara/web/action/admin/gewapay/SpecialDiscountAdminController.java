@@ -139,11 +139,11 @@ public class SpecialDiscountAdminController extends BaseAdminController{
 		List<SpecialDiscount> spdiscountList = null;
 		Timestamp cur = DateUtil.getCurTruncTimestamp();
 		if(StringUtils.equals("all", status)){
-			spdiscountList = hibernateTemplate.find("from SpecialDiscount order by sortnum desc");
+			spdiscountList = (List<SpecialDiscount>) hibernateTemplate.find("from SpecialDiscount order by sortnum desc");
 		}else if(StringUtils.equals("timeout", status)) {
-			spdiscountList = hibernateTemplate.find("from SpecialDiscount where timeto < ? order by sortnum desc", cur);
+			spdiscountList = (List<SpecialDiscount>) hibernateTemplate.find("from SpecialDiscount where timeto < ? order by sortnum desc", cur);
 		}else{
-			spdiscountList = hibernateTemplate.find("from SpecialDiscount where timeto >= ? order by sortnum desc", cur);
+			spdiscountList = (List<SpecialDiscount>) hibernateTemplate.find("from SpecialDiscount where timeto >= ? order by sortnum desc", cur);
 		}
 		model.put("spdiscountList", spdiscountList);
 		Map<Long, Spcounter> spcounterMap = daoService.getObjectMap(Spcounter.class, BeanUtil.getBeanPropertyList(spdiscountList, Long.class, "spcounterid", true));
@@ -177,7 +177,7 @@ public class SpecialDiscountAdminController extends BaseAdminController{
 			model.put("origdid", copyFrom);
 		}
 		String hql = "from ApiUser a where a.status=? order by id";
-		List<ApiUser> apiUserList = hibernateTemplate.find(hql, ApiUser.STATUS_OPEN);
+		List<ApiUser> apiUserList = (List<ApiUser>) hibernateTemplate.find(hql, ApiUser.STATUS_OPEN);
 		model.put("paytextMap", PaymethodConstant.getPayTextMap());
 		model.put("paybankMap", BankConstant.getPnrBankMap());
 		model.put("apiUserList", apiUserList);
@@ -220,9 +220,9 @@ public class SpecialDiscountAdminController extends BaseAdminController{
 			//TODO:分页？？
 			spcounterList = this.daoService.getObjectList(Spcounter.class, "id", false, 0, 1000);
 		}else if(StringUtils.equals("timeout", status)) {
-			spcounterList = hibernateTemplate.find("from Spcounter c where exists(select s.id from SpecialDiscount s where s.spcounterid = c.id and timeto < ?) order by id desc", cur);
+			spcounterList = (List<Spcounter>) hibernateTemplate.find("from Spcounter c where exists(select s.id from SpecialDiscount s where s.spcounterid = c.id and timeto < ?) order by id desc", cur);
 		}else{
-			spcounterList = hibernateTemplate.find("from Spcounter c where not exists(select s.id from SpecialDiscount s where s.spcounterid = c.id) or exists(select s.id from SpecialDiscount s where s.spcounterid = c.id and timeto >= ?) order by id desc", cur);
+			spcounterList = (List<Spcounter>) hibernateTemplate.find("from Spcounter c where not exists(select s.id from SpecialDiscount s where s.spcounterid = c.id) or exists(select s.id from SpecialDiscount s where s.spcounterid = c.id and timeto >= ?) order by id desc", cur);
 		}
 		model.put("spcounterList", spcounterList);
 		Map<Long,String> sdMap = new HashMap<Long,String>();
@@ -237,7 +237,7 @@ public class SpecialDiscountAdminController extends BaseAdminController{
 		DetachedCriteria query = DetachedCriteria.forClass(SpecialDiscount.class);
 		query.add(Restrictions.eq("spcounterid", spcounterid));
 		query.setProjection(Projections.property("flag"));
-		List<String> sdList = this.hibernateTemplate.findByCriteria(query);
+		List<String> sdList = (List<String>) this.hibernateTemplate.findByCriteria(query);
 		return sdList;
 	}
 	@RequestMapping("/admin/gewapay/spdiscount/getSpcounter.xhtml")
@@ -505,7 +505,7 @@ public class SpecialDiscountAdminController extends BaseAdminController{
 		if(sd.getRebates() > 0 && StringUtils.equals(sd.getRebatestype(), SpecialDiscount.REBATES_CASH)){
 			String flag = "rebates" + sd.getId();
 			String qry = "select payseqno from Charge where paymethod=? and paybank = ? and status = ? and updatetime>= ? ";
-			List<String> rebatesList = hibernateTemplate.find(qry, PaymethodConstant.PAYMETHOD_SYSPAY, flag, Charge.STATUS_PAID, sd.getTimefrom());
+			List<String> rebatesList = (List<String>) hibernateTemplate.find(qry, PaymethodConstant.PAYMETHOD_SYSPAY, flag, Charge.STATUS_PAID, sd.getTimefrom());
 			model.put("rebatesList", rebatesList);
 			Map<String, String> checkMap = new HashMap<String, String>();
 			for(int i=0, max=Math.min(qryMapList.size(), sd.getRebatesmax()); i<max; i++ ){
@@ -518,7 +518,7 @@ public class SpecialDiscountAdminController extends BaseAdminController{
 			model.put("checkMap", checkMap);
 		}else if(sd.getDrawactivity() != null && SpecialDiscount.REBATES_CARDD.equals(sd.getRebatestype())){
 			String qry = "select tradeNo from GewaOrder where otherinfo like ? and status = ?";
-			List<String> rebatesList = hibernateTemplate.find(qry, "%rebatesCard" + sd.getId() + "%",OrderConstant.STATUS_PAID_SUCCESS);
+			List<String> rebatesList = (List<String>) hibernateTemplate.find(qry, "%rebatesCard" + sd.getId() + "%",OrderConstant.STATUS_PAID_SUCCESS);
 			model.put("rebatesList", rebatesList);
 			Map<String, String> checkMap = new HashMap<String, String>();
 			for(int i=0, max=Math.min(qryMapList.size(), sd.getRebatesmax()); i<max; i++ ){
@@ -541,7 +541,7 @@ public class SpecialDiscountAdminController extends BaseAdminController{
 		//TODO:效率太底，重写
 		SpecialDiscount sd = daoService.getObject(SpecialDiscount.class, sid);
 		String qry = "from GewaOrder g where g.status=? and exists(select d.id from Discount d where d.orderid=g.id and d.relatedid=?) order by g.addtime desc";
-		List<GewaOrder> orderList = hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_FAILURE, sid);
+		List<GewaOrder> orderList = (List<GewaOrder>) hibernateTemplate.find(qry, OrderConstant.STATUS_PAID_FAILURE, sid);
 		model.put("orderList", orderList);
 		model.put("sd", sd);
 		return "admin/gewapay/spdiscount/failOrderList.vm";
@@ -658,11 +658,11 @@ public class SpecialDiscountAdminController extends BaseAdminController{
 				query.add(Subqueries.notExists(sub));
 			}
 			query.addOrder(Order.asc("addtime"));
-			List<TicketOrder> orderList = hibernateTemplate.findByCriteria(query);
+			List<TicketOrder> orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 
 			String flag = "rebates" + sd.getId();
 			String qry = "select payseqno from Charge where paymethod=? and paybank = ? and status = ? and updatetime>= ? ";
-			List<String> rebatesList = hibernateTemplate.find(qry, PaymethodConstant.PAYMETHOD_SYSPAY, flag, Charge.STATUS_PAID, sd.getTimefrom());
+			List<String> rebatesList = (List<String>) hibernateTemplate.find(qry, PaymethodConstant.PAYMETHOD_SYSPAY, flag, Charge.STATUS_PAID, sd.getTimefrom());
 			Map<String, String> checkMap = new HashMap<String, String>();
 			Map<Long, String> disableReasonMap = new HashMap<Long, String>();
 			Map<Long, OpenPlayItem> opiMap = new HashMap<Long, OpenPlayItem>();

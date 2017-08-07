@@ -8,7 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import com.gewara.model.common.BaseEntity;
 import com.gewara.util.DateUtil;
 
-public class Drama extends BaseEntity {
+public class Drama extends BaseEntity  {
 	private static final long serialVersionUID = -505984720950483214L;
 	
 	private String language;

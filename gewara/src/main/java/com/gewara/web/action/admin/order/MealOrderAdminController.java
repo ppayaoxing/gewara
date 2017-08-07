@@ -58,7 +58,7 @@ public class MealOrderAdminController extends BaseAdminController {
 		Timestamp cur = DateUtil.getCurFullTimestamp();
 		checkParams(cur, command);
 		if (StringUtils.isNotBlank(command.getErrorMsg())) {
-			List<Long> cinemaidList = hibernateTemplate.find("select distinct g.relatedid from Goods g where g.tag=? and g.status!=?", GoodsConstant.GOODS_TAG_BMH, Status.DEL);
+			List<Long> cinemaidList = (List<Long>) hibernateTemplate.find("select distinct g.relatedid from Goods g where g.tag=? and g.status!=?", GoodsConstant.GOODS_TAG_BMH, Status.DEL);
 			List<BaseInfo> cinemaList = new ArrayList<BaseInfo>();
 			BaseInfo info = null;
 			for(Long cid : cinemaidList){
@@ -76,7 +76,7 @@ public class MealOrderAdminController extends BaseAdminController {
 			this.exportExcel(command, response);
 			return null;
 		}
-		List<Long> cinemaidList = hibernateTemplate.find("select distinct g.relatedid from Goods g where g.tag=? and g.status!=?", GoodsConstant.GOODS_TAG_BMH, Status.DEL);
+		List<Long> cinemaidList = (List<Long>) hibernateTemplate.find("select distinct g.relatedid from Goods g where g.tag=? and g.status!=?", GoodsConstant.GOODS_TAG_BMH, Status.DEL);
 		List<BaseInfo> cinemaList = new ArrayList<BaseInfo>();
 		BaseInfo info = null;
 		for(Long cid : cinemaidList){
@@ -88,7 +88,7 @@ public class MealOrderAdminController extends BaseAdminController {
 		}
 		Map<Long, List<Goods>> goodsMap = new HashMap<Long, List<Goods>>();
 		for(BaseInfo bi : cinemaList){
-			goodsMap.put(bi.getId(), hibernateTemplate.find("from Goods g where g.tag=? and g.relatedid=? order by g.goodssort", GoodsConstant.GOODS_TAG_BMH, bi.getId()));
+			goodsMap.put(bi.getId(),(List<Goods>) hibernateTemplate.find("from Goods g where g.tag=? and g.relatedid=? order by g.goodssort", GoodsConstant.GOODS_TAG_BMH, bi.getId()));
 		}
 		model.put("goodsMap", goodsMap);
 		model.put("cinemaList", cinemaList);
@@ -152,7 +152,7 @@ public class MealOrderAdminController extends BaseAdminController {
 	
 	public void exportExcel(OrderParamsCommand command, HttpServletResponse response) throws IOException {
 		String[] str = {"序号","影院名/套餐名","订单号","购买方式","取票密码","下单时间","联系电话","用户/次数","总价","状态","取票状态"};
-		List<Long> cinemaidList = hibernateTemplate.find("select distinct g.relatedid from Goods g where g.tag=? and g.status!=?", GoodsConstant.GOODS_TAG_BMH, Status.DEL);
+		List<Long> cinemaidList = (List<Long>) hibernateTemplate.find("select distinct g.relatedid from Goods g where g.tag=? and g.status!=?", GoodsConstant.GOODS_TAG_BMH, Status.DEL);
 		BaseInfo info = null;
 		for(Long cid : cinemaidList){
 			info = daoService.getObject(Cinema.class, cid);

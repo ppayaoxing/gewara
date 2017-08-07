@@ -125,6 +125,7 @@ public interface MongoService {
 	int getCount(String namespace, Map params);
 
 	<T> List<T> getDistinctPropertyList(String namespace, Expression params, String propertyname, Class<T> clazz);
+	<T> List<T> getDistinctPropertyList(String name, Map params, String id);
 
 	// ~~~~~~~~~~~~~~~~~~~~~~modify method ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	/**
@@ -259,7 +260,6 @@ public interface MongoService {
 	Map getMap(String defaultIdName, String nsIndexDatasheet, Long indexKey);
 
 	<T extends MGObject> List<T> getObjectList(Class<T> class1, DBObject queryCondition);
-
 	<T extends MGObject> List<T> getObjectList(Class<T> class1, Map map, String orderField, boolean asc, int from,
 			int maxnum);
 
@@ -284,5 +284,7 @@ public interface MongoService {
 	List<Map> getMapList(String nsAutoSetterLimit);
 
 	void savePrimitiveObject(String keytype, String... join);
+
+	
 
 }

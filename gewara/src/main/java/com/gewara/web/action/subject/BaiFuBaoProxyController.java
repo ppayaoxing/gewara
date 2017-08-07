@@ -138,7 +138,7 @@ public class BaiFuBaoProxyController extends AnnotationController {
 		dbLogger.warn(""+WebUtils.getRequestMap(request));
 		String mycheck = StringUtil.md5(tradeNo + "sdlfkjsd23489");
 		String ip = WebUtils.getRemoteIp(request);
-		if(GewaIpConfig.isInnerIp(ip) || WebUtils.isLocalIp(ip)){
+		if(GewaIpConfig.isGewaInnerIp(ip) || WebUtils.isLocalIp(ip)){
 			if(!StringUtils.equals(check, mycheck)){
 				return "error";
 			}

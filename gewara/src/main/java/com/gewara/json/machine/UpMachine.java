@@ -1,7 +1,8 @@
 package com.gewara.json.machine;
 
+import com.gewara.mongo.support.MGObject;
 
-public class UpMachine {
+public class UpMachine extends MGObject{
 	public static final String UPMACHINE_CINEMA_VERSION = "4.7";
 	private Long id;
 	private Long placeid;

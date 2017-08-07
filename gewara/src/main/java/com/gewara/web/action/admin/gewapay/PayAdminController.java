@@ -53,7 +53,7 @@ public class PayAdminController extends BaseAdminController{
 	@RequestMapping("/admin/gewapay/couponOrderList.xhtml")
 	public String couponOrderList(Long cid, Timestamp timeFrom, Timestamp timeTo, String status, String mobile, String tradeNo, ModelMap model){
 		String qry = "select d.orderid from Discount d where d.relatedid=?";
-		List<Long> orderidList = hibernateTemplate.find(qry, cid);
+		List<Long> orderidList = (List<Long>) hibernateTemplate.find(qry, cid);
 		List<TicketOrder> orderList = new ArrayList<TicketOrder>();
 		if(orderidList.size() > 0) {
 			DetachedCriteria query = DetachedCriteria.forClass(TicketOrder.class, "t");
@@ -70,7 +70,7 @@ public class PayAdminController extends BaseAdminController{
 			if(StringUtils.isNotBlank(mobile)) query.add(Restrictions.eq("t.mobile", mobile));
 			if(StringUtils.isNotBlank(tradeNo)) query.add(Restrictions.eq("t.tradeNo", tradeNo));
 			query.addOrder(Order.desc("t.addtime"));
-			orderList = hibernateTemplate.findByCriteria(query);
+			orderList = (List<TicketOrder>) hibernateTemplate.findByCriteria(query);
 		}
 		List<Long> memberidList = ServiceHelper.getMemberIdListFromBeanList(orderList);
 		Map<Long, Member> memberMap = daoService.getObjectMap(Member.class, memberidList);

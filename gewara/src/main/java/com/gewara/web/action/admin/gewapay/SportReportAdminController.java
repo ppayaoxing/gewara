@@ -54,7 +54,7 @@ public class SportReportAdminController  extends BaseAdminController{
 		if (sportid != null)
 			qry.add(Restrictions.eq("sportid", sportid));
 		qry.addOrder(Order.asc("playdate"));
-		List<OpenTimeTable> openTimeTableList = hibernateTemplate.findByCriteria(qry);
+		List<OpenTimeTable> openTimeTableList = (List<OpenTimeTable>) hibernateTemplate.findByCriteria(qry);
 		model.put("openTimeTableList", openTimeTableList);
 		// String
 		// hql="select new map(ott.id as id,ott.sportname as sportname,ott.itemname as itemname,ott.playdate as playdate,count())from OpenTimeTable ott,OpenTimeItem oti where ott.id=oti.ottid,ott.status=? and ott.rstatus=? and ott.playdate>=? and ott.playdate<=? group by ott.id,ott.sportname,ott.itemname,ott.playdate";
@@ -74,12 +74,12 @@ public class SportReportAdminController  extends BaseAdminController{
 		if (sportid == null) {
 			hql = hql
 					+ "where t.ottid=ott.id and t.status=? and t.addtime>=? and t.addtime<=? group by ott.id,ott.playdate,ott.itemid order by ott.playdate";
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto));
 		} else {
 			hql = hql
 					+ "where t.ottid=ott.id and t.status=? and t.sportid=? and t.addtime>=? and t.addtime<=? group by ott.id,ott.playdate,ott.itemid order by ott.playdate";
-			dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, sportid, DateUtil.getBeginningTimeOfDay(datefrom),
+			dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, sportid, DateUtil.getBeginningTimeOfDay(datefrom),
 					DateUtil.getLastTimeOfDay(dateto));
 			Sport sport = daoService.getObject(Sport.class, sportid);
 			model.put("sport", sport);
@@ -116,7 +116,7 @@ public class SportReportAdminController  extends BaseAdminController{
 				+ "where t.ottid=ott.id and t.status=? and ott.playdate>=? and ott.playdate<=? ";
 		hql = hql + "group by ott.playdate,ott.sportid order by ott.playdate,ott.sportid";
 		List<Map> dataMap = new ArrayList<Map>();
-		dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
+		dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, DateUtil.getBeginningTimeOfDay(datefrom),
 				DateUtil.getLastTimeOfDay(dateto));
 		Map<Long, Sport> sportMap = new HashMap<Long, Sport>();
 		Map<Long, List<Map>> cdMap = new HashMap<Long, List<Map>>();
@@ -156,7 +156,7 @@ public class SportReportAdminController  extends BaseAdminController{
 		hql = hql + "group by ott.id,ott.playdate,ott.itemid order by ott.playdate";
 		List<Map> dataMap = new ArrayList<Map>();
 
-		dataMap = hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, sportid, DateUtil.getBeginningTimeOfDay(datefrom),
+		dataMap = (List<Map>) hibernateTemplate.find(hql, OrderConstant.STATUS_PAID_SUCCESS, sportid, DateUtil.getBeginningTimeOfDay(datefrom),
 				DateUtil.getLastTimeOfDay(dateto));
 
 		Map<Long, String> sportnameMap = new HashMap<Long, String>();
@@ -185,13 +185,13 @@ public class SportReportAdminController  extends BaseAdminController{
 	private void getSportData(ModelMap model) {
 		String sportHql = "select new map(s.id as sportid, s.name as sportname) from "
 				+ "Sport s where s.id in (select sp.id from SportProfile sp where sp.booking=?)";
-		List<Map> sportList = hibernateTemplate.find(sportHql, Sport.BOOKING_OPEN);
+		List<Map> sportList = (List<Map>) hibernateTemplate.find(sportHql, Sport.BOOKING_OPEN);
 		model.put("sportList", sportList);
 	}
 
 	private String getItemName(Long itemid) {
 		String hql = "select itemname from SportItem where id=?";
-		List<String> list = hibernateTemplate.find(hql, itemid);
+		List<String> list = (List<String>) hibernateTemplate.find(hql, itemid);
 		if (list.isEmpty())
 			return "";
 		return list.get(0);

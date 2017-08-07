@@ -232,7 +232,7 @@ public class MachineCommonController extends BaseMachineApiController{
 		Timestamp endTime = DateUtil.addHour(startTime, 12);
 		Timestamp lastPlayTime=null;
 		String hql="select new map(max(o.playtime) as lasttime ) from OpenPlayItem o where o.cinemaid=? and o.playtime>=? and o.playtime<=? ";
-		List<Map<String, Object>> resultList=hibernateTemplate.find(hql, venueId, startTime, endTime);
+		List<Map<String, Object>> resultList=(List<Map<String, Object>>) hibernateTemplate.find(hql, venueId, startTime, endTime);
 		if(resultList!=null&&resultList.size()>0){
 			lastPlayTime=(Timestamp) resultList.get(0).get("lasttime");
 		}
@@ -415,7 +415,7 @@ public class MachineCommonController extends BaseMachineApiController{
 		
 		String hql = "select tradeno from OrderRefund where tradeno is not null and addtime>? and refundtime>?";
 		
-		List<String> refundList = hibernateTemplate.find(hql, addtime, modifytime);
+		List<String> refundList = (List<String>) hibernateTemplate.find(hql, addtime, modifytime);
 		if (refundList.isEmpty()){
 			return getSingleResultXmlView(model, StringUtils.join(refundList, ","));
 		}
@@ -429,7 +429,7 @@ public class MachineCommonController extends BaseMachineApiController{
 		params.add(modifytime);
 		params.add(OrderConstant.STATUS_PAID_RETURN);
 		params.addAll(refundList);
-		List<GewaOrder> orderList = hibernateTemplate.find(sql, params.toArray());
+		List<GewaOrder> orderList = (List<GewaOrder>) hibernateTemplate.find(sql, params.toArray());
 		List<String> tradenoList = getTradeNoList(orderList, venueid);
 		return getSingleResultXmlView(model, StringUtils.join(tradenoList, ","));
 	}
