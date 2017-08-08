@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.collections.map.UnmodifiableMap;
 import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.tools.generic.MathTool;
@@ -59,7 +60,7 @@ public class Config implements InitializingBean {
 	/**
 	 * 是否是测试环境
 	 * 
-	 * @param systemId
+	 * @param
 	 * @return
 	 */
 	public static boolean isTestEnv() {
@@ -69,7 +70,7 @@ public class Config implements InitializingBean {
 	/**
 	 * 是否是机房预发环境
 	 * 
-	 * @param systemId
+	 * @param
 	 * @return
 	 */
 	public static boolean isPreEnv() {
@@ -80,8 +81,8 @@ public class Config implements InitializingBean {
 		return isHoutai;
 	}
 
-	private Map<String, String> configMap = new HashMap<String, String>();
-	private Map<String, Object> pageMap = new HashMap<String, Object>();
+	private Map<String, String> configMap = Maps.newHashMap();
+	private Map<String, Object> pageMap = Maps.newHashMap();
 	private static Map pageTools;
 
 	public static Map getPageTools() {
@@ -147,7 +148,7 @@ public class Config implements InitializingBean {
 	}
 
 	public void initPageTools() {
-		Map tmp = new HashMap();
+		Map tmp = Maps.newHashMap();
 		tmp.put("math", new MathTool());
 		tmp.put("DateUtil", new DateUtil());
 		tmp.putAll(pageMap);

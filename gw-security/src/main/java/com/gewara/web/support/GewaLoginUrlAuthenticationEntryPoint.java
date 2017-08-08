@@ -49,7 +49,7 @@ public class GewaLoginUrlAuthenticationEntryPoint  extends LoginUrlAuthenticatio
 		for(String key: loginFormMap.keySet()){
 			if(StringUtils.startsWith(uri, key)) return loginFormMap.get(key);
 		}
-		return getLoginFormUrl();
+		return super.getLoginFormUrl();
 	}
 	@Override
 	protected String buildRedirectUrlToLoginPage(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) {

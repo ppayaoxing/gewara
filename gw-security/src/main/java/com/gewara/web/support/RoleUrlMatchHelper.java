@@ -1,22 +1,20 @@
 package com.gewara.web.support;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.gewara.model.acl.WebModule;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import com.gewara.model.acl.WebModule;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 public class RoleUrlMatchHelper {
-	private Map<RequestMatcher, String/*roles*/> compiledUrlMap = new LinkedHashMap<RequestMatcher, String>();
+	private Map<RequestMatcher, String/*roles*/> compiledUrlMap = Maps.newLinkedHashMap();
 	//TODO:对存在的地址匹配做缓存
-	//private Map<String/*url*/, String/*roles*/> cacheMatcher = new ConcurrentHashMap<String, String>();
+	private Map<String/*url*/, String/*roles*/> cacheMatcher = Maps.newConcurrentMap();
 	public RoleUrlMatchHelper(List<WebModule> moduleList){
 		for(WebModule module: moduleList) {
 			if(StringUtils.isNotBlank(module.getModuleurl())) {

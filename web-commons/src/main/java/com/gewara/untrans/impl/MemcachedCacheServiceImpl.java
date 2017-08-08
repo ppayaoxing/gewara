@@ -173,4 +173,16 @@ public class MemcachedCacheServiceImpl extends AbstractCacheService {
 	public boolean isLocal() {
 		return false;
 	}
+
+	@Override
+	public <T extends BaseObject> void cleanUkey(Class<T> claszz, String key, String ukey) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void refreshVersion(Map<String, String> regionVersion) {
+		// TODO Auto-generated method stub
+		
+	}
 }
