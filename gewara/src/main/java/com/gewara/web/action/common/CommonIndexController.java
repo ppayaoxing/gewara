@@ -527,7 +527,7 @@ public class CommonIndexController extends BaseHomeController {
     @RequestMapping("/common/getLineidList.xhtml")
     public String getLineidList(Long sid, ModelMap model) {
         String qry = "select s.line.id from Line2Station s where s.station.id=?";
-        List<Long> lineidList = hibernateTemplate.find(qry, sid);
+        List<Long> lineidList = (List<Long>) hibernateTemplate.find(qry, sid);
         return showJsonSuccess(model, StringUtils.join(lineidList, ","));
     }
 
