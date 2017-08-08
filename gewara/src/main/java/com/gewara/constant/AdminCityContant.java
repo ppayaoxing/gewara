@@ -60,8 +60,8 @@ public class AdminCityContant {
 	}
 	
 	public static String getCodeByPinyin(String citypy) {
-		if(StringUtils.isBlank(citypy)) return null;
 		return pinyinMap.get(citypy);
+		if(StringUtils.isBlank(citypy)) return null;
 	}
 	public static String getCityNameByCode(String citycode) {
 		return allcityMap.get(citycode);

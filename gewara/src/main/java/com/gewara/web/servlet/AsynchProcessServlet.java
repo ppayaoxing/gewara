@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gewara.util.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -28,11 +29,6 @@ import com.gewara.untrans.AsynchTaskService;
 import com.gewara.untrans.AttackTestService;
 import com.gewara.untrans.RequestAsynchTask;
 import com.gewara.untrans.ticket.TicketOperationService;
-import com.gewara.util.BaseWebUtils;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.HttpResult;
-import com.gewara.util.HttpResultCallback;
-import com.gewara.util.LoggerUtils;
 
 @WebServlet(urlPatterns = "/asynch/preProcess", asyncSupported = true)
 public class AsynchProcessServlet extends HttpServlet {
@@ -53,7 +49,8 @@ public class AsynchProcessServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (attackTestService.checkBlack(req, resp)) {
+        String remoteIp = WebUtils.getRemoteIp(req);
+        if (attackTestService.checkBlackReq(remoteIp,req.getRequestURI())) {
 			resp.sendError(400);
 			return;
 		}

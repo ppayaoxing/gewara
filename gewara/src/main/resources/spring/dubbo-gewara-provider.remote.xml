@@ -13,10 +13,10 @@
 	<dubbo:provider timeout="30000"  />
 	
 	<dubbo:service interface="com.gewara.api.service.common.CommonVoService" ref="commonVoService" timeout="120000"/>
-	<dubbo:service interface="com.gewara.api.service.movie.MovieVoService" ref="movieVoService" timeout="120000"/>
-	<dubbo:service interface="com.gewara.api.service.movie.McpVoService" ref="mcpVoService" timeout="120000"/>
+	<dubbo:service interface="com.gewara.movie.api.service.MovieVoService" ref="movieVoService" timeout="120000"/>
+	<dubbo:service interface="com.gewara.movie.api.service.McpVoService" ref="mcpVoService" timeout="120000"/>
 	<dubbo:service interface="com.gewara.api.service.movie.TicketOrderVoService" ref="ticketOrderVoService" timeout="120000"/>
-	<dubbo:service interface="com.gewara.api.service.drama.DramaVoService" ref="dramaVoService" timeout="120000"/>
+	<dubbo:service interface="com.gewara.drama.dubbo.DramaVoService" ref="dramaVoService" timeout="120000"/>
 	<dubbo:service interface="com.gewara.api.service.drama.DramaOrderVoService" ref="dramaOrderVoService" timeout="120000"/>
 	<dubbo:service interface="com.gewara.api.service.sport.SportVoService" ref="sportVoService" timeout="120000"/>
 	

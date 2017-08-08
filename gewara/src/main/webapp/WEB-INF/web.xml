@@ -154,6 +154,9 @@
 			com.gewara.web.listener.StartupListener
 		</listener-class>
 	</listener>
+	<!--<listener>-->
+		<!--<listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>-->
+	<!--</listener>-->
   	<servlet>
 		<servlet-name>action</servlet-name>
 		<servlet-class>com.gewara.web.support.GewaDispatcherServlet</servlet-class>
