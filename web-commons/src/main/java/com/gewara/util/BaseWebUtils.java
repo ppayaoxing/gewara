@@ -21,6 +21,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -40,6 +41,10 @@ public abstract class BaseWebUtils {
 		return "";
 	}
 
+	/** 根据request获取ip地址
+	 * @param request
+	 * @return
+	 */
 	public static final String getRemoteIp(HttpServletRequest request) {
 		String xfwd = request.getHeader("X-Forwarded-For");
 		String result = getRemoteIpFromXfwd(xfwd);
@@ -104,14 +109,22 @@ public abstract class BaseWebUtils {
 		return paramsStr;
 	}
 
+	/**根据request封装请求消息头信息到 Map,并且禁止cookie日志打印
+	 * @param request
+	 * @return
+	 */
 	public static final String getHeaderStr(HttpServletRequest request) {
 		return "" + getHeaderMap(request);
 	}
 
+	/** 根据request封装请求参数到 Map
+	 * @param request
+	 * @return
+	 */
 	public static final Map<String, String> getRequestMap(HttpServletRequest request) {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = Maps.newHashMap();
 		Enumeration<String> it = request.getParameterNames();
-		String key = null;
+		String key = "";
 		while (it.hasMoreElements()) {
 			key = it.nextElement();
 			result.put(key, request.getParameter(key));
@@ -119,8 +132,12 @@ public abstract class BaseWebUtils {
 		return result;
 	}
 
+	/** 根据request封装请求消息头信息到 Map,并且禁止cookie日志打印
+	 * @param request
+	 * @return
+	 */
 	public static final Map<String, String> getHeaderMap(HttpServletRequest request) {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = Maps.newHashMap();
 		Enumeration<String> it = request.getHeaderNames();
 		String key = null;
 		while (it.hasMoreElements()) {
@@ -413,6 +430,12 @@ public abstract class BaseWebUtils {
 		return contextPath;
 	}
 
+	/** 获取请求参数,并且根据要求对敏感信息进行加密
+	 * @param request
+	 * @param removeSensitive
+	 * @param sensitiveKeys
+	 * @return
+	 */
 	public static final String getParamStr(HttpServletRequest request, boolean removeSensitive,
 			String... sensitiveKeys) {
 		Map<String, String> requestMap = getRequestMap(request);
@@ -426,6 +449,10 @@ public abstract class BaseWebUtils {
 			"check", "card");
 	private static final List<String> IGNORE_KEYS = Arrays.asList("mobileType");
 
+	/** 移除敏感信息
+	 * @param params
+	 * @param keys
+	 */
 	public static final void removeSensitiveInfo(Map<String, String> params, String... keys) {
 		List<String> keyList = null;
 		if (keys != null) {
@@ -443,6 +470,7 @@ public abstract class BaseWebUtils {
 			if (!IGNORE_KEYS.contains(pname)) {
 				for (String key : keyList) {
 					if (StringUtils.containsIgnoreCase(pname, key) && StringUtils.isNotBlank(params.get(pname))) {
+						//对敏感信息进行加密
 						params.put(pname, "MG" + StringUtil.md5("kcj3STidSC" + params.get(pname)));
 					}
 				}

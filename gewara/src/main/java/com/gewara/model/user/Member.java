@@ -14,8 +14,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 
 import com.gewara.model.acl.GewaraUser;
 
-/**
- * @author hxs(ncng_2006@hotmail.com)
+/** ≥…‘±
  * @since Jan 27, 2010 10:18:24 AM
  */
 public class Member extends GewaraUser{

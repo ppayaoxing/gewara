@@ -1,10 +1,10 @@
 package com.gewara.untrans.monitor.impl;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import com.gewara.Config;
 import com.gewara.untrans.monitor.MonitorEntry;
+import com.google.common.collect.Maps;
+
+import java.util.Map;
 
 public class MapMonitorEntry implements MonitorEntry{
 	public static final String HEADER_KEY = "__header__";
@@ -18,7 +18,7 @@ public class MapMonitorEntry implements MonitorEntry{
 	}
 	public MapMonitorEntry(String datatype, Map<String, String> rowdata){
 		this.datatype = datatype;
-		this.rowdata = new LinkedHashMap<String, String>(rowdata);
+		this.rowdata = Maps.newHashMap(rowdata);
 		this.rowdata.put(KEY_COLUMN_DATATYPE, datatype);
 		this.rowdata.put("systemid", Config.SYSTEMID);
 		this.rowdata.put("fromhost", Config.getHostname());

@@ -10,6 +10,9 @@ import com.gewara.util.BaseWebUtils;
 import com.gewara.util.LogTraceUtil.LogTrace;
 
 public class RequestTrace implements LogTrace{
+	/**
+	 * @return 获取请求路径和请求参数组成 trace跟踪信息
+	 */
 	@Override
 	public String getTrace() {
 		HttpServletRequest request = getRequest();

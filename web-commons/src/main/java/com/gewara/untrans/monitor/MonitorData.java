@@ -1,11 +1,16 @@
 package com.gewara.untrans.monitor;
 
+import com.google.common.collect.Maps;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
+/**
+ * 监控日志表集合
+ */
 public class MonitorData {
 	public static final String DATATYPE_CHANGEHIS = "CHANGEHIS";			//对象更改历史
 	public static final String DATATYPE_LOGENTRY = "LOG_ENTRY";				//错误日志
@@ -29,9 +34,9 @@ public class MonitorData {
 	public static final String DATATYPE_HISDATA = "HISDATA";
 	public static final String DATATYPE_TERMINALTAKE = "TERMINALTICKET";
 	public static final String DATATYPE_APICALL = "DATATYPEAPICALL";   //api调用
-	
-	
-	public static final Map<String, String> queueMap = new HashMap<String, String>();
+
+
+	public static final Map<String, String> queueMap = Maps.newHashMap();
 
 	public static final List<String> DATA_TYPE_LIST = Arrays.asList(DATATYPE_CHANGEHIS, DATATYPE_LOGENTRY,
 			DATATYPE_SYSWARN, DATATYPE_APILOG, DATATYPE_SYSLOG, DATATYPE_APISTATS, 

@@ -11,6 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.TypeMismatchException;
@@ -58,10 +59,14 @@ public abstract class AbstractMonitorService implements MonitorService {
 		result.put("queued", "" + executor.getTaskCount());
 		return result;
 	}
+
+	/** 根据线程池大小,初始化线程池
+	 * @param threadSize
+	 */
 	protected void setupConsumerThread(int threadSize){
 		//FixedPoolSize
 		executor = new ThreadPoolExecutor(threadSize, threadSize, 300, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new GewaExecutorThreadFactory(this.getClass().getSimpleName()));
-		executor.allowCoreThreadTimeOut(false);
+		executor.allowCoreThreadTimeOut(false);//设置主线程是否超时
 		dbLogger.warn("MonitorThread started!");
 	}
 	protected void destroyConsumerThread(){
@@ -261,14 +266,24 @@ public abstract class AbstractMonitorService implements MonitorService {
 		if(counter==null) return 0;
 		return counter.get();
 	}
+
+	/** 保存日志信息,根据异常类型保存
+	 * @param tag
+	 * @param location：uri 或 service、job方法
+	 * @param title        标题
+	 * @param ex
+	 * @param otherinfo
+	 * @return
+	 */
 	@Override
 	public String logException(EXCEPTION_TAG tag, String location, String title, Throwable ex, Map<String, String> otherinfo) {
-		Map<String, String> row = new HashMap<String, String>();
+		Map<String, String> row = Maps.newHashMap();
 		String exctrace = null;
 		String exceptionType = "UNKNOWN";
 		if(ex!=null){
 			String exceptionTrace = title + "\n";
 			String exceptionName = ex.getClass().getSimpleName();
+			// 根据异常类型,进行保存相应异常的详细堆栈信息行数
 			if(ex instanceof MissingServletRequestParameterException ||
 					ex instanceof TypeMismatchException || 
 					StringUtils.contains(ex.getClass().getName(), "ClientAbortException")){
@@ -313,18 +328,19 @@ public abstract class AbstractMonitorService implements MonitorService {
 		String curtime = DateUtil.getCurFullTimestampStr();
 		row.put("addtime", curtime);
 		row.put("adddate", curtime.substring(0, 10));
-
+		//添加日志(错误日志)
 		addMonitorEntry(MonitorData.DATATYPE_LOGENTRY, row);
 		
 		if(otherinfo != null){
 			String remoteIp = otherinfo.get("remoteIp");
+			//非法访问
 			if(StringUtils.isNotBlank(remoteIp) && !GewaIpConfig.isGewaInnerIp(remoteIp)){
 				if(StringUtils.equals(exceptionType, "AttackException")){
 					String reqUri = otherinfo.get("reqUri");
 					String reqParams = otherinfo.get("reqParams");
 					String exceptionName = row.get("exceptionName");
-					
-					Map<String, String> params = new HashMap<String,String>();
+
+					Map<String, String> params = Maps.newHashMap();
 					params.put("reqParams", reqParams);
 					params.put("exceptionType", "AttackException");
 					params.put("exceptionName", exceptionName);
@@ -334,11 +350,17 @@ public abstract class AbstractMonitorService implements MonitorService {
 		}
 		return exctrace;
 	}
+
+	/** 添加非法访问日志
+	 * @param ip
+	 * @param resource
+	 * @param params
+	 */
 	@Override
 	public void logViolation(String ip, String resource, Map<String, String> params) {
-		Map<String, String> row = new LinkedHashMap<String, String>();
+		Map<String, String> row = Maps.newLinkedHashMap();
 		row.put("ip", ip);
-		row.put("resource", resource);
+		row.put("resource", resource);//uri
 		row.put("systemId", Config.SYSTEMID);
 		row.put("accessTime", DateUtil.getCurFullTimestampStr());
 		

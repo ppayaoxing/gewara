@@ -22,6 +22,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.collections.Bag;
 import org.apache.commons.collections.bag.HashBag;
@@ -739,8 +740,12 @@ public class BeanUtil implements Util4Script{
 		return result;
 	}
 
+	/** ×ª³É¼òµ¥string Map
+	 * @param map
+	 * @return
+	 */
 	public static Map<String, String> toSimpleStringMap(Map map) {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = Maps.newHashMap();
 		for (Object key : map.keySet()) {
 			String tmpKey = getStringValue(key);
 			// if(ValidateUtil.isVariable(tmpKey, 1, 50)){

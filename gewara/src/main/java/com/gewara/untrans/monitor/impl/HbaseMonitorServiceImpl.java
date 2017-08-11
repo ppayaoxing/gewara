@@ -41,7 +41,7 @@ public class HbaseMonitorServiceImpl extends AbstractMonitorService implements M
 	}
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		setupConsumerThread(4);
+		super.setupConsumerThread(4);
 		useHbase = true;
 	}
 
@@ -53,7 +53,7 @@ public class HbaseMonitorServiceImpl extends AbstractMonitorService implements M
 		@Override
 		public void run() {
 			try{
-				String tag = entry.getDataMap().get("tag");
+				String tag = entry.getDataMap().get("tag"); //“Ï≥£¿‡–Õ PAGE JOB ...
 				String relatedid = entry.getDataMap().get("relatedid");
 				String tablename = MonitorHelper.getTable(entry.getDatatype());
 				if(StringUtils.isBlank(tablename)){

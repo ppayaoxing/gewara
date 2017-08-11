@@ -1,11 +1,11 @@
 package com.gewara.web.support;
 
-import java.io.PrintWriter;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.gewara.Config;
+import com.gewara.util.BaseWebUtils;
+import com.gewara.util.GewaLogger;
+import com.gewara.util.LogTraceUtil;
+import com.gewara.util.WebLogger;
+import com.gewara.web.util.ReqLogUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.tools.view.CookieTool;
@@ -13,13 +13,14 @@ import org.apache.velocity.tools.view.ParameterTool;
 import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
 import org.springframework.web.util.NestedServletException;
 
-import com.gewara.Config;
-import com.gewara.util.BaseWebUtils;
-import com.gewara.util.GewaLogger;
-import com.gewara.util.LogTraceUtil;
-import com.gewara.util.WebLogger;
-import com.gewara.web.util.ReqLogUtil;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.util.Map;
 
+/**
+ *  扩展velocity视图解析器
+ */
 public class GewaVelocityView extends VelocityToolboxView{
 	protected final transient GewaLogger log = WebLogger.getLogger(getClass());
 	public static final String RENDER_XML = "RENDER_TO_XML";
@@ -32,6 +33,7 @@ public class GewaVelocityView extends VelocityToolboxView{
 	public static final String RETURN_LOG_HEADER = "__add_log_header_";//是否将reqlog返回到response头中（便于openapi调用）
 	
 	static{
+		//用于定位错误信息
 		LogTraceUtil.addTrace(new RequestTrace());
 	}
 	public GewaVelocityView(){
@@ -70,6 +72,7 @@ public class GewaVelocityView extends VelocityToolboxView{
 				}
 			}
 		}catch(Exception e){
+
 		}
 	}
 	@Override
