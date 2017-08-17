@@ -19,6 +19,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
@@ -44,8 +45,7 @@ import com.gewara.web.support.GewaVelocityView;
 import com.gewara.web.util.PageUtil;
 
 /**
- * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28下午02:05:17
+ * 最上层父类,注释controller
  */
 public abstract class AnnotationController implements ApplicationContextAware {
     //此处没办法，只能写死
@@ -77,6 +77,13 @@ public abstract class AnnotationController implements ApplicationContextAware {
 
     protected WebApplicationContext applicationContext;
 
+    /** 获取页面分页工具
+     * @param count
+     * @param rowsPerpage
+     * @param pageNo
+     * @param params
+     * @return
+     */
     protected final PageUtil getScriptPageUtil(int count, int rowsPerpage, int pageNo, Map<String, Object> params) {
         PageUtil pageUtil = new PageUtil(count, rowsPerpage, pageNo, null);
         pageUtil.initPageInfo(params);
@@ -155,7 +162,7 @@ public abstract class AnnotationController implements ApplicationContextAware {
     }
 
     protected final String showJsonSuccess(ModelMap model, String retval, String jsname) {
-        Map jsonMap = new HashMap();
+        Map jsonMap = Maps.newHashMap();
         jsonMap.put("success", true);
         jsonMap.put("retval", retval);
         model.put("jsonMap", jsonMap);
@@ -177,7 +184,7 @@ public abstract class AnnotationController implements ApplicationContextAware {
     }
 
     protected final String showJsonError(ModelMap model, Map jsonMap, String jsname) {
-        if (jsonMap == null) jsonMap = new HashMap();
+        if (jsonMap == null) jsonMap = Maps.newHashMap();
         jsonMap.put("success", false);
         model.put("jsonMap", jsonMap);
         model.put("jsname", jsname);
@@ -185,7 +192,7 @@ public abstract class AnnotationController implements ApplicationContextAware {
     }
 
     protected final String showJsonError(ModelMap model, String msg, String jsname) {
-        Map jsonMap = new HashMap();
+        Map jsonMap = Maps.newHashMap();
         jsonMap.put("success", false);
         jsonMap.put("msg", msg);
         model.put("jsonMap", jsonMap);
@@ -193,10 +200,18 @@ public abstract class AnnotationController implements ApplicationContextAware {
         return "common/json.vm";
     }
 
+    /** 验证码错误
+     * @param model
+     * @return
+     */
     protected final String showJsonError_CAPTCHA_ERROR(ModelMap model) {
         return showJsonError(model, "验证码错误！", "data");
     }
 
+    /** 未登录
+     * @param model
+     * @return
+     */
     protected final String showJsonError_NOT_LOGIN(ModelMap model) {
         return showJsonError(model, "您还没有登录，请先登录！", "data");
     }
@@ -234,7 +249,7 @@ public abstract class AnnotationController implements ApplicationContextAware {
     }
 
     protected final String showJsonInfo(ModelMap model, String keys, Object... values) {
-        Map jsonMap = new HashMap();
+        Map jsonMap = Maps.newHashMap();
         String[] keyList = keys.split(",");
         for (int i = 0, len = Math.min(keyList.length, values.length); i < len; i++) {
             jsonMap.put(keyList[i], values[i]);
@@ -249,7 +264,7 @@ public abstract class AnnotationController implements ApplicationContextAware {
     /**
      * @param model
      * @param msg
-     * @param returnUrl /home/xxx.xhtm
+     * @param /home/xxx.xhtm
      * @return
      */
     protected final String alertMessage(ModelMap model, String msg) {
@@ -257,7 +272,7 @@ public abstract class AnnotationController implements ApplicationContextAware {
     }
 
     protected final String alertMessageSuccess(ModelMap model, String msg) {
-        Map jsonMap = new HashMap();
+        Map jsonMap = Maps.newHashMap();
         jsonMap.put("success", true);
         jsonMap.put("msg", msg);
         model.put("jsonMap", jsonMap);
@@ -265,15 +280,21 @@ public abstract class AnnotationController implements ApplicationContextAware {
     }
 
     protected final String alertMessageError(ModelMap model, String msg) {
-        Map jsonMap = new HashMap();
+        Map jsonMap = Maps.newHashMap();
         jsonMap.put("success", false);
         jsonMap.put("msg", msg);
         model.put("jsonMap", jsonMap);
         return "showMessage.vm";
     }
 
+    /** 弹框提示信息
+     * @param model
+     * @param msg
+     * @param returnUrl
+     * @return
+     */
     protected final String alertMessage(ModelMap model, String msg, String returnUrl) {
-        Map jsonMap = new HashMap();
+        Map jsonMap = Maps.newHashMap();
         jsonMap.put("msg", msg);
         jsonMap.put("returnUrl", returnUrl);
         model.put("jsonMap", jsonMap);
@@ -281,7 +302,7 @@ public abstract class AnnotationController implements ApplicationContextAware {
     }
 
     protected final String goBack(ModelMap model, String msg) {
-        Map jsonMap = new HashMap();
+        Map jsonMap = Maps.newHashMap();
         jsonMap.put("msg", msg);
         jsonMap.put("goback", true);
         model.put("jsonMap", jsonMap);
