@@ -12,6 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.hibernate.criterion.DetachedCriteria;
@@ -72,6 +73,7 @@ import com.gewara.util.ValidateUtil;
 import com.gewara.util.VmUtils;
 
 @Service("memberService")
+@Log4j
 public class MemberServiceImpl extends BaseServiceImpl implements MemberService {
 	@Autowired@Qualifier("memberCountService")
 	private MemberCountService memberCountService;
@@ -641,19 +643,29 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	}
 	@Override
 	public Map getCacheMemberInfoMap(Long memberid) {
+		//一天失效时间,过期后再从数据库中查询
 		Map result = (Map) cacheService.get(CacheConstant.REGION_ONEDAY, "MI" + memberid);
 		if(result==null){
 			MemberInfo mi = baseDao.getObject(MemberInfo.class, memberid);
 			if(mi!=null){
 				result = BeanUtil.getBeanMapWithKey(mi, "id", "nickname", "headpicUrl", "addtime");
-				cacheService.set(CacheConstant.REGION_ONEDAY, "MI" + memberid, result);
+				try {
+					cacheService.set(CacheConstant.REGION_ONEDAY, "MI" + memberid, result);
+				}catch (Exception e){
+					log.error("保存头像到缓存中失败,"+e);
+				}
 			}
 		}
 		return result;
 	}
+
+	/** 根据sessid获取缓存中头像图片url
+	 * @param memberid
+	 * @return
+	 */
 	@Override
 	public String getCacheHeadpicMap(Long memberid) {
-		Map result = getCacheMemberInfoMap(memberid);
+		Map result = this.getCacheMemberInfoMap(memberid);
 		if(result==null) return null;
 		return (String) result.get("headpicUrl");
 	}

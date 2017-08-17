@@ -463,6 +463,12 @@ public class BeanUtil implements Util4Script{
 		}
 		return result;
 	}
+
+	/** 获取bean 对应的属性,封装到Map中
+	 * @param bean
+	 * @param propertyList
+	 * @return
+	 */
 	public static Map getBeanMapWithKey(final Object bean, String... propertyList) {
 		return getBeanMapWithKey(bean, false, propertyList);
 	}

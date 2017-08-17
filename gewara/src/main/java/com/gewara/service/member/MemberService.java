@@ -106,6 +106,11 @@ public interface MemberService {
 	Map<Long, Map> getCacheMemberInfoMap(Collection<Long> memberidList);
 	Map<Long, String> getCacheHeadpicMap(Collection<Long> memberidList);
 	Map getCacheMemberInfoMap(Long memberid);
+
+	/**根据sessid获取缓存中头像图片url
+	 * @param memberid
+	 * @return
+	 */
 	String getCacheHeadpicMap(Long memberid);
 
 	/**

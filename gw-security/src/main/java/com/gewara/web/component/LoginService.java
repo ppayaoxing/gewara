@@ -49,5 +49,9 @@ public interface LoginService {
 	 * @return
 	 */
 	ErrorCode<Map> ssoAutoLogin(HttpServletRequest request, HttpServletResponse response, String sessid);
+
+	/** Ïú»Ùsessid
+	 * @param sessid
+	 */
 	void removeInvalidSessid(String sessid);
 }

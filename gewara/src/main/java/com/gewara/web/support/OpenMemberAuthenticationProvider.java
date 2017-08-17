@@ -60,6 +60,7 @@ public class OpenMemberAuthenticationProvider implements AuthenticationProvider 
 				"OpenMemberAuthenticationProvider only supports OpenMemberAuthenticationToken");
 		OpenMemberAuthenticationToken auth = (OpenMemberAuthenticationToken) authentication;
 		Member member = daoService.getObject(Member.class, auth.getMemberid());
+		//判断登录源-手机验证码动态登录
 		if(StringUtils.equals(auth.getSource(), MemberConstant.SOURCE_DYNCODE)){
 			if(!StringUtils.equals(member.getMobile(), auth.getIdentity()) || !ValidateUtil.isMobile(auth.getIdentity())){
 				dbLogger.warn("非法手机账号登录：" + auth.getIdentity());

@@ -45,9 +45,15 @@ public class ShLoginServiceImpl extends LoginServiceImpl implements ShLoginServi
 		aclService.setLogonType("member");
 		return autoLogin(request, response, auth);
 	}
+
+	/** 通过ip和sessid获取member
+	 * @param ip
+	 * @param sessid
+	 * @return
+	 */
 	@Override
 	public Member getLogonMemberBySessid(String ip, String sessid){
-		GewaraUser user = getLogonGewaraUserBySessid(ip, sessid);
+		GewaraUser user = super.getLogonGewaraUserBySessid(ip, sessid);
 		if(user instanceof Member) {
 			return (Member) user;
 		}
