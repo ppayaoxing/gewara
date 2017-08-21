@@ -71,7 +71,7 @@ import com.gewara.xmlbind.gym.RemoteGym;
 
 /**
  * @ClassName SearchController
- * @Description Õ¾ÄÚËÑË÷¿ØÖÆÆ÷
+ * @Description ç«™å†…æœç´¢æ§åˆ¶å™¨
  * @author weihonglin pau.wei2011@gmail.com
  * @date Aug 10, 2012
  */
@@ -135,7 +135,7 @@ public class SearchController extends AnnotationController {
 			HttpServletResponse response, ModelMap model) throws Exception {
 
 		String citycode = WebUtils.getAndSetDefault(request, response);
-		// ÓÒ±ßÊı¾İ
+		// å³è¾¹æ•°æ®
 		ErrorCode<List<RemoteActivity>> code = synchActivityService.getActivityListByStatus(citycode, Status.Y_PROCESS, 0, 4);
 		if(code.isSuccess()){
 			model.put("hotActivityList", code.getRetval());
@@ -147,7 +147,7 @@ public class SearchController extends AnnotationController {
 		model.put("recommendztList",recommendztList);
 		if (StringUtils.isBlank(skey))	{return "newindex/newKeyList.vm";}
 		model.put("queryString", skey);
-		// µ÷ÓÃSearchAPI
+		// è°ƒç”¨SearchAPI
 		Timestamp starttime = new Timestamp(System.currentTimeMillis());
 		String ip = WebUtils.getRemoteIp(request);
 		Map<String, Object> map = searchService.searchKey(ip,citycode,skey, channel,null,category, pageNo);
@@ -165,7 +165,7 @@ public class SearchController extends AnnotationController {
 		int start = SearchService.ROWS_PER_PAGE * pageNo+1;
 		int end = rowsCount>SearchService.ROWS_PER_PAGE*(pageNo+1)?SearchService.ROWS_PER_PAGE*(pageNo+1):rowsCount;
 
-		//¹ØÁªÊı¾İÕ¹Ê¾
+		//å…³è”æ•°æ®å±•ç¤º
 		Map<Long, Boolean> bookingMapDrama = new HashMap<Long, Boolean>();
 		Map<Long, List<CardItem>> gymCardMap = new HashMap<Long, List<CardItem>>();
 		Map<Long,List<RemoteCourse>> coachCourseMap=new HashMap<Long, List<RemoteCourse>>();
@@ -180,17 +180,17 @@ public class SearchController extends AnnotationController {
     				if(obj != null){
     					sk.setRelatedObj(obj);
        				if("drama".equals(sk.getCategory())){
-       					initDramaData(sk,bookingMapDrama);//Ñİ³ö¾çÔº,Æ±¼Û
+       					initDramaData(sk,bookingMapDrama);//æ¼”å‡ºå‰§é™¢,ç¥¨ä»·
        				}else if("gym".equals(sk.getCategory())){
-       					initGymData(sk,gymCardMap);//¿É¹º¿¨
+       					initGymData(sk,gymCardMap);//å¯è´­å¡
        				}else if("gymcoach".equals(sk.getCategory())){
-       					initGymcoachData(sk,coachCourseMap,coachGymMap);//¿ÉÔ¤¶¨¿Î³Ì
+       					initGymcoachData(sk,coachCourseMap,coachGymMap);//å¯é¢„å®šè¯¾ç¨‹
        				}else if("gewaquestion".equals(sk.getCategory())){
        					GewaQuestion qa =(GewaQuestion)obj;
-       					addCacheMember(model,qa.getMemberid());//·¢ÌûÓÃ»§ĞÅÏ¢
+       					addCacheMember(model,qa.getMemberid());//å‘å¸–ç”¨æˆ·ä¿¡æ¯
        				}else if("diary".equals(sk.getCategory())){
        					DiaryBase diary =(DiaryBase)obj;
-       					addCacheMember(model,diary.getMemberid());//·¢ÌûÓÃ»§ĞÅÏ¢
+       					addCacheMember(model,diary.getMemberid());//å‘å¸–ç”¨æˆ·ä¿¡æ¯
        				}else if(StringUtils.equals(TagConstant.TAG_MOVIE, sk.getCategory())){
        					markCountMap.put(sk.getRelatedid(), markService.getMarkCountByTagRelatedid(TagConstant.TAG_MOVIE, sk.getRelatedid()));
        				}
@@ -200,7 +200,7 @@ public class SearchController extends AnnotationController {
 		}
 		Map<Long, List<DramaStar>> dramaStarListMap= new HashMap<Long, List<DramaStar>>();
 		Map<Long, List<DramaStar>> dramaDirectorListMap= new HashMap<Long, List<DramaStar>>();
-		if(skList!=null&&!skList.isEmpty()){//¸ßÁÁ
+		if(skList!=null&&!skList.isEmpty()){//é«˜äº®
 			for(GewaSearchKey sk:skList){
 				if(sk.getRelatedObj() instanceof Drama){
 					Drama drama = (Drama) sk.getRelatedObj();
@@ -215,7 +215,7 @@ public class SearchController extends AnnotationController {
 						dramaDirectorListMap.put(drama.getId(), directorsList);
 					}
 				}
-				Map<String, Object> related = searchService.getBeanSearchLight(sk.getRelatedObj(), skey);//¸ßÁÁ½ØÈ¡³¤¶È×Ö·û´®
+				Map<String, Object> related = searchService.getBeanSearchLight(sk.getRelatedObj(), skey);//é«˜äº®æˆªå–é•¿åº¦å­—ç¬¦ä¸²
 				sk.setRelatedObj(related);
 			}
 
