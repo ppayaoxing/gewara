@@ -41,7 +41,7 @@ public abstract class BaseWebUtils {
 		return "";
 	}
 
-	/** ¸ù¾İrequest»ñÈ¡ipµØÖ·
+	/** æ ¹æ®requestè·å–ipåœ°å€
 	 * @param request
 	 * @return
 	 */
@@ -109,7 +109,7 @@ public abstract class BaseWebUtils {
 		return paramsStr;
 	}
 
-	/**¸ù¾İrequest·â×°ÇëÇóÏûÏ¢Í·ĞÅÏ¢µ½ Map,²¢ÇÒ½ûÖ¹cookieÈÕÖ¾´òÓ¡
+	/**æ ¹æ®requestå°è£…è¯·æ±‚æ¶ˆæ¯å¤´ä¿¡æ¯åˆ° Map,å¹¶ä¸”ç¦æ­¢cookieæ—¥å¿—æ‰“å°
 	 * @param request
 	 * @return
 	 */
@@ -117,7 +117,7 @@ public abstract class BaseWebUtils {
 		return "" + getHeaderMap(request);
 	}
 
-	/** ¸ù¾İrequest·â×°ÇëÇó²ÎÊıµ½ Map
+	/** æ ¹æ®requestå°è£…è¯·æ±‚å‚æ•°åˆ° Map
 	 * @param request
 	 * @return
 	 */
@@ -132,7 +132,7 @@ public abstract class BaseWebUtils {
 		return result;
 	}
 
-	/** ¸ù¾İrequest·â×°ÇëÇóÏûÏ¢Í·ĞÅÏ¢µ½ Map,²¢ÇÒ½ûÖ¹cookieÈÕÖ¾´òÓ¡
+	/** æ ¹æ®requestå°è£…è¯·æ±‚æ¶ˆæ¯å¤´ä¿¡æ¯åˆ° Map,å¹¶ä¸”ç¦æ­¢cookieæ—¥å¿—æ‰“å°
 	 * @param request
 	 * @return
 	 */
@@ -143,7 +143,7 @@ public abstract class BaseWebUtils {
 		while (it.hasMoreElements()) {
 			key = it.nextElement();
 			String value = request.getHeader(key);
-			// ½ûÖ¹cookieÈÕÖ¾´òÓ¡
+			// ç¦æ­¢cookieæ—¥å¿—æ‰“å°
 			if (StringUtils.containsIgnoreCase(key, "cookie")) {
 				value = "*******";
 			}
@@ -153,7 +153,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * ·µ»ØMap£¬µ«key=¡°head4¡±+originalKey
+	 * è¿”å›Mapï¼Œä½†key=â€œhead4â€+originalKey
 	 * 
 	 * @param request
 	 * @return
@@ -165,7 +165,7 @@ public abstract class BaseWebUtils {
 		while (it.hasMoreElements()) {
 			key = it.nextElement();
 			String value = request.getHeader(key);
-			// ½ûÖ¹cookieÈÕÖ¾´òÓ¡
+			// ç¦æ­¢cookieæ—¥å¿—æ‰“å°
 			if (StringUtils.containsIgnoreCase(key, "cookie")) {
 				value = "*******";
 			}
@@ -176,7 +176,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * »ñÈ¡htmlÖĞÍ¼Æ¬µÄurl
+	 * è·å–htmlä¸­å›¾ç‰‡çš„url
 	 * 
 	 * @param html
 	 * @return
@@ -190,7 +190,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * »ñÈ¡htmlÖĞÊÓÆµµÄurl
+	 * è·å–htmlä¸­è§†é¢‘çš„url
 	 * 
 	 * @param html
 	 * @return
@@ -263,9 +263,9 @@ public abstract class BaseWebUtils {
 		if (StringUtils.isBlank(str))
 			return false;
 		if (StringUtils.contains(StringUtils.lowerCase(str), "<script"))
-			return true;// ÑéÖ¤JS
+			return true;// éªŒè¯JS
 		if (StringUtils.contains(StringUtils.lowerCase(str), "<iframe"))
-			return true;// ÑéÖ¤iframe
+			return true;// éªŒè¯iframe
 		return false;
 	}
 
@@ -296,7 +296,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * ÅĞ¶ÏÓÃ»§ä¯ÀÀÆ÷ĞÅÏ¢
+	 * åˆ¤æ–­ç”¨æˆ·æµè§ˆå™¨ä¿¡æ¯
 	 */
 	public static final String getBrowerInfo(String userAgent) {
 		String browserInfo = "UNKNOWN";
@@ -325,7 +325,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * ²éÑ¯´®ÌáÈ¡
+	 * æŸ¥è¯¢ä¸²æå–
 	 * 
 	 * @param queryStr
 	 * @param encode
@@ -389,7 +389,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * ¶àÖµÓÃ¡°,¡±ºÅ¸ô¿ª
+	 * å¤šå€¼ç”¨â€œ,â€å·éš”å¼€
 	 * 
 	 * @param requestMap
 	 * @param encode
@@ -430,7 +430,7 @@ public abstract class BaseWebUtils {
 		return contextPath;
 	}
 
-	/** »ñÈ¡ÇëÇó²ÎÊı,²¢ÇÒ¸ù¾İÒªÇó¶ÔÃô¸ĞĞÅÏ¢½øĞĞ¼ÓÃÜ
+	/** è·å–è¯·æ±‚å‚æ•°,å¹¶ä¸”æ ¹æ®è¦æ±‚å¯¹æ•æ„Ÿä¿¡æ¯è¿›è¡ŒåŠ å¯†
 	 * @param request
 	 * @param removeSensitive
 	 * @param sensitiveKeys
@@ -449,7 +449,7 @@ public abstract class BaseWebUtils {
 			"check", "card");
 	private static final List<String> IGNORE_KEYS = Arrays.asList("mobileType");
 
-	/** ÒÆ³ıÃô¸ĞĞÅÏ¢
+	/** ç§»é™¤æ•æ„Ÿä¿¡æ¯
 	 * @param params
 	 * @param keys
 	 */
@@ -470,7 +470,7 @@ public abstract class BaseWebUtils {
 			if (!IGNORE_KEYS.contains(pname)) {
 				for (String key : keyList) {
 					if (StringUtils.containsIgnoreCase(pname, key) && StringUtils.isNotBlank(params.get(pname))) {
-						//¶ÔÃô¸ĞĞÅÏ¢½øĞĞ¼ÓÃÜ
+						//å¯¹æ•æ„Ÿä¿¡æ¯è¿›è¡ŒåŠ å¯†
 						params.put(pname, "MG" + StringUtil.md5("kcj3STidSC" + params.get(pname)));
 					}
 				}
@@ -478,7 +478,7 @@ public abstract class BaseWebUtils {
 		}
 	}
 
-	public static final String getRemotePort(HttpServletRequest request) {// »ñÈ¡ÇëÇó¶Ë¿ÚºÅ
+	public static final String getRemotePort(HttpServletRequest request) {// è·å–è¯·æ±‚ç«¯å£å·
 		String port = request.getHeader("x-client-port");
 		if (StringUtils.isBlank(port)) {
 			return "" + request.getRemotePort();

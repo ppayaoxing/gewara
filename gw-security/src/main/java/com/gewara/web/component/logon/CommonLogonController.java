@@ -52,7 +52,7 @@ public class CommonLogonController implements ApplicationContextAware {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth == null)
 			return null;
-		if (auth.isAuthenticated() && !auth.getName().equals("anonymous")) {// µÇÂ¼
+		if (auth.isAuthenticated() && !auth.getName().equals("anonymous")) {// ç™»å½•
 			GewaraUser user = (GewaraUser) auth.getPrincipal();
 			// refresh(user);
 			if (user instanceof User)
@@ -131,11 +131,11 @@ public class CommonLogonController implements ApplicationContextAware {
 		((DBFilterInvocationSecurityMetadataSource) securityMetadataSource).init();
 		MenuRepository repository = new MenuRepository(aclService.getMenuList(WebModule.TAG_GEWA));
 		applicationContext.getServletContext().setAttribute(MenuRepository.GEWA_MENU_REPOSITORY_KEY, repository);
-		return forwardMessage(model, "ÖØĞÂÔØÈë²Ëµ¥È¨ÏŞ³É¹¦£¡");
+		return forwardMessage(model, "é‡æ–°è½½å…¥èœå•æƒé™æˆåŠŸï¼");
 	}
 
 	/**
-	 * ×¢Ïú±¾Ó¦ÓÃµÄcookie
+	 * æ³¨é”€æœ¬åº”ç”¨çš„cookie
 	 * 
 	 * @param request
 	 * @return
@@ -147,11 +147,11 @@ public class CommonLogonController implements ApplicationContextAware {
 			loginService.removeInvalidSessid(ukey);
 		}
 		LoginUtils.removeLogonUkey(response);
-		return forwardMessage(model, "Çå³ıÓÃ»§»º´æ³É¹¦£¡");
+		return forwardMessage(model, "æ¸…é™¤ç”¨æˆ·ç¼“å­˜æˆåŠŸï¼");
 	}
 
 	/**
-	 * ×¢Ïú±¾Ó¦ÓÃµÄcookie
+	 * æ³¨é”€æœ¬åº”ç”¨çš„cookie
 	 * 
 	 * @param request
 	 * @return

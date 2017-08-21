@@ -9,7 +9,7 @@ import org.apache.commons.betwixt.XMLBeanInfo;
 import org.apache.commons.betwixt.XMLIntrospector;
 
 /**
- * Õë¶ÔÅäÖÃÎÄ¼ş×ö»º´æ,²âÊÔÖĞ
+ * é’ˆå¯¹é…ç½®æ–‡ä»¶åšç¼“å­˜,æµ‹è¯•ä¸­
  * @author gebiao(ge.biao@gewara.com)
  * @since Jul 18, 2013 10:58:41 PM
  */

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.gewara.untrans.CacheService;
 
 /**
- * TODO ´ı¶¨
+ * TODO å¾…å®š
  * 
  * @author sunder
  * 
@@ -19,21 +19,21 @@ public class CachableServiceHelper {
 
 	@Autowired
 	private CacheService cacheService;
-	private String serviceName; // service Ãû³Æ
-	private String dispatchServiceName; // µ÷¶ÈserviceÃû
+	private String serviceName; // service åç§°
+	private String dispatchServiceName; // è°ƒåº¦serviceå
 
 	/**
-	 * Çå³ı»º´æ
+	 * æ¸…é™¤ç¼“å­˜
 	 * 
 	 * @param key
 	 */
 	public void clearCache(String key) {
-		// TODO ´ı¶¨
+		// TODO å¾…å®š
 		cacheService.remove(dispatchServiceName, key);
 	}
 
 	/**
-	 * »ñÈ¡»º´æ
+	 * è·å–ç¼“å­˜
 	 * 
 	 * @param key
 	 * @param secondsTwentymin
@@ -41,7 +41,7 @@ public class CachableServiceHelper {
 	 * @return
 	 */
 	public <T> T cacheCall(String key, int secondsTwentymin, CachableCall<T> cachableCall) {
-		// TODO ´ı¶¨
+		// TODO å¾…å®š
 		T t = cachableCall.call();
 		cacheService.add(serviceName, key, t, secondsTwentymin);
 		return t;

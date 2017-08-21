@@ -88,7 +88,7 @@ public abstract class PictureUtil {
 	 * @param srcFile
 	 * @param maxWidth
 	 * @param maxHeight
-	 * @param crop ÊÇ·ñ´ÓÖĞ½ØÈ¡
+	 * @param crop æ˜¯å¦ä»ä¸­æˆªå–
 	 * @return
 	 */
 	public static boolean resize(String srcFile, int maxWidth, int maxHeight, boolean crop) {
@@ -110,13 +110,13 @@ public abstract class PictureUtil {
 	}
 
 	/**
-	 * Ëõ·ÅÍ¼Æ¬
+	 * ç¼©æ”¾å›¾ç‰‡
 	 * 
 	 * @param from
 	 * @param to
 	 * @param maxWidth
 	 * @param maxHeight
-	 * @param crop ÊÇ·ñ´ÓÖĞ½ØÈ¡
+	 * @param crop æ˜¯å¦ä»ä¸­æˆªå–
 	 * @return
 	 */
 	public static boolean resizeOrCrop(File from, File to, int maxWidth, int maxHeight, boolean crop) {
@@ -137,7 +137,7 @@ public abstract class PictureUtil {
 			int srcWidth = imageInfo.getImageWidth();
 			dbLogger.warn(from + srcHeight + "," + srcWidth + "--->" + maxWidth + "," + maxHeight);
 			if(srcHeight < maxHeight && srcWidth < maxWidth){
-				//Ö±½ÓcopyÖÁto
+				//ç›´æ¥copyè‡³to
 				FileUtils.copyFile(new File(from), new File(to));
 				return true;
 			}
@@ -160,7 +160,7 @@ public abstract class PictureUtil {
 	public static boolean addWaterMark(File src, File dst, File maskPath) {
 		try {
 			Info info = new Info(src.getCanonicalPath(), true);
-			if(info.getImageHeight()<240 || info.getImageWidth() <240) return false;//Ì«Ğ¡µÄÍ¼Æ¬²»¼ÓË®Ó¡
+			if(info.getImageHeight()<240 || info.getImageWidth() <240) return false;//å¤ªå°çš„å›¾ç‰‡ä¸åŠ æ°´å°
 			return addWaterMark(src.getCanonicalPath(), dst.getCanonicalPath(), maskPath.getCanonicalPath());
 		} catch (Exception e) {
 			dbLogger.error("", e);
@@ -208,11 +208,11 @@ public abstract class PictureUtil {
 		return false;
 	}
 	/**
-	 * ´ÓÍ¼Æ¬ÖĞ²¿½ØÈ¡
-	 * 1£©Ô­Í¼¿í¶È¡¢¸ß¶ÈÕßĞ¡ÓÚÄ¿±ê£¬Ö±½Ó·µ»ØÔ­Í¼
-	 * 2£©Ô­Í¼¿í¶È<Ä¿±ê¿í¶È£¬¸ß¶È>Ä¿±ê¿í¶È£¬´¹Ö±½ØÈ¡ÖĞ²¿
-	 * 3£©Ô­Í¼¿í¶È>Ä¿±ê¿í¶È£¬¸ß¶È<Ä¿±ê¿í¶È£¬Ë®Æ½½ØÈ¡ÖĞ²¿
-	 * 4£©Ô­Í¼¿í¶È¡¢¸ß¶ÈÕß´óÓÚÄ¿±ê£¬Ëõ·ÅºóÔÙÖ´ĞĞ2£©ºÍ3£©
+	 * ä»å›¾ç‰‡ä¸­éƒ¨æˆªå–
+	 * 1ï¼‰åŸå›¾å®½åº¦ã€é«˜åº¦è€…å°äºç›®æ ‡ï¼Œç›´æ¥è¿”å›åŸå›¾
+	 * 2ï¼‰åŸå›¾å®½åº¦<ç›®æ ‡å®½åº¦ï¼Œé«˜åº¦>ç›®æ ‡å®½åº¦ï¼Œå‚ç›´æˆªå–ä¸­éƒ¨
+	 * 3ï¼‰åŸå›¾å®½åº¦>ç›®æ ‡å®½åº¦ï¼Œé«˜åº¦<ç›®æ ‡å®½åº¦ï¼Œæ°´å¹³æˆªå–ä¸­éƒ¨
+	 * 4ï¼‰åŸå›¾å®½åº¦ã€é«˜åº¦è€…å¤§äºç›®æ ‡ï¼Œç¼©æ”¾åå†æ‰§è¡Œ2ï¼‰å’Œ3ï¼‰
 	 * @param src
 	 * @param dst
 	 * @param width
@@ -227,12 +227,12 @@ public abstract class PictureUtil {
 			int srcHeight = imageInfo.getImageHeight();
 			int srcWidth = imageInfo.getImageWidth();
 			dbLogger.warn(src + srcHeight + "," + srcWidth + "--->" + width + "," +  height);
-			if(srcHeight*width==srcWidth*height){	//µÈ±È
+			if(srcHeight*width==srcWidth*height){	//ç­‰æ¯”
 				dbLogger.warn("identity scale:" + src + "--->dst");
 				return resize(src, dst, width, height);
 			}
 			if(srcHeight < height && srcWidth < width){
-				//Ö±½ÓcopyÖÁto
+				//ç›´æ¥copyè‡³to
 				FileUtils.copyFile(new File(src), new File(dst));
 				return true;
 			}
@@ -242,7 +242,7 @@ public abstract class PictureUtil {
 				y = (srcHeight - height)/2;
 			}else if(srcHeight < height && srcWidth > width){
 				x = (srcWidth - width)/2;
-			}else{//×öËõ·Å
+			}else{//åšç¼©æ”¾
 				int maxWidth = width, maxHeight = height;
 				if(srcHeight*1.0/srcWidth >= height*1.0/width){
 					maxHeight = srcHeight;
@@ -261,7 +261,7 @@ public abstract class PictureUtil {
 		}
 	}
 	/**
-	 * »ñÈ¡Í¼Æ¬µÄ³¤¿í
+	 * è·å–å›¾ç‰‡çš„é•¿å®½
 	 * @param src
 	 * @return
 	 */
@@ -276,7 +276,7 @@ public abstract class PictureUtil {
 		}
 	}
 	/**
-	 * ´ÓÖ»½ØÈ¡²¿·Ö
+	 * ä»åªæˆªå–éƒ¨åˆ†
 	 * @param src
 	 * @param dst
 	 * @param width
@@ -301,12 +301,12 @@ public abstract class PictureUtil {
 	}
 
 	/**
-	 * ·µ»ØÑ¹Ëõ±È ĞÂ´óĞ¡/Ô­´óĞ¡
+	 * è¿”å›å‹ç¼©æ¯” æ–°å¤§å°/åŸå¤§å°
 	 * 
 	 * @param srcFilePath
 	 * @param descFilePath
 	 * @param quality
-	 *           ÕâÀïÖ¸¶¨Ñ¹ËõµÄ³Ì¶È£¬²ÎÊıqalityÊÇÈ¡Öµ0~1·¶Î§ÄÚ
+	 *           è¿™é‡ŒæŒ‡å®šå‹ç¼©çš„ç¨‹åº¦ï¼Œå‚æ•°qalityæ˜¯å–å€¼0~1èŒƒå›´å†…
 	 * @return
 	 */
 	public static void compressPic(String srcFilePath, String dstFilePath, int quality, CompressCallback callback) {
@@ -357,15 +357,15 @@ public abstract class PictureUtil {
 		ImageWriter imgWrier;
 		ImageWriteParam imgWriteParams;
 
-		// Ö¸¶¨Ğ´Í¼Æ¬µÄ·½Ê½Îª jpg
+		// æŒ‡å®šå†™å›¾ç‰‡çš„æ–¹å¼ä¸º jpg
 		imgWrier = ImageIO.getImageWritersByFormatName("jpg").next();
 		imgWriteParams = new JPEGImageWriteParam(null);
-		// ÒªÊ¹ÓÃÑ¹Ëõ£¬±ØĞëÖ¸¶¨Ñ¹Ëõ·½Ê½ÎªMODE_EXPLICIT
+		// è¦ä½¿ç”¨å‹ç¼©ï¼Œå¿…é¡»æŒ‡å®šå‹ç¼©æ–¹å¼ä¸ºMODE_EXPLICIT
 		imgWriteParams.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
 		imgWriteParams.setCompressionQuality(quality * 0.01f);
 		imgWriteParams.setProgressiveMode(JPEGImageWriteParam.MODE_DISABLED);
 		ColorModel colorModel = ColorModel.getRGBdefault();
-		// Ö¸¶¨Ñ¹ËõÊ±Ê¹ÓÃµÄÉ«²ÊÄ£Ê½
+		// æŒ‡å®šå‹ç¼©æ—¶ä½¿ç”¨çš„è‰²å½©æ¨¡å¼
 		imgWriteParams.setDestinationType(new javax.imageio.ImageTypeSpecifier(colorModel, colorModel.createCompatibleSampleModel(16, 16)));
 		try {
 			srcFile = new File(srcFilename);
@@ -375,9 +375,9 @@ public abstract class PictureUtil {
 			out = new FileOutputStream(destFile);
 
 			imgWrier.reset();
-			// ±ØĞëÏÈÖ¸¶¨ outÖµ£¬²ÅÄÜµ÷ÓÃwrite·½·¨, ImageOutputStream¿ÉÒÔÍ¨¹ıÈÎºÎ OutputStream¹¹Ôì
+			// å¿…é¡»å…ˆæŒ‡å®š outå€¼ï¼Œæ‰èƒ½è°ƒç”¨writeæ–¹æ³•, ImageOutputStreamå¯ä»¥é€šè¿‡ä»»ä½• OutputStreamæ„é€ 
 			imgWrier.setOutput(ImageIO.createImageOutputStream(out));
-			// µ÷ÓÃwrite·½·¨£¬¾Í¿ÉÒÔÏòÊäÈëÁ÷Ğ´Í¼Æ¬
+			// è°ƒç”¨writeæ–¹æ³•ï¼Œå°±å¯ä»¥å‘è¾“å…¥æµå†™å›¾ç‰‡
 			imgWrier.write(null, new IIOImage(src, null, null), imgWriteParams);
 			out.flush();
 			out.close();
@@ -393,12 +393,12 @@ public abstract class PictureUtil {
 	}
 
 	/**
-	 * ·µ»ØÑ¹Ëõ±È ĞÂ´óĞ¡/Ô­´óĞ¡
+	 * è¿”å›å‹ç¼©æ¯” æ–°å¤§å°/åŸå¤§å°
 	 * 
 	 * @param from
 	 * @param to
 	 * @param quality
-	 *           ÕâÀïÖ¸¶¨Ñ¹ËõµÄ³Ì¶È£¬²ÎÊıqalityÊÇÈ¡Öµ0~1·¶Î§ÄÚ
+	 *           è¿™é‡ŒæŒ‡å®šå‹ç¼©çš„ç¨‹åº¦ï¼Œå‚æ•°qalityæ˜¯å–å€¼0~1èŒƒå›´å†…
 	 * @return
 	 */
 	public static void compressPic(File from, File to, int quality, CompressCallback callback) {
@@ -420,17 +420,17 @@ public abstract class PictureUtil {
 		try {
 			File distFile = new File(distPath);
 			File warterFile = new File(warterPath);
-			// ¼ÓÔØ´ı´¦ÀíÍ¼Æ¬ÎÄ¼ş
+			// åŠ è½½å¾…å¤„ç†å›¾ç‰‡æ–‡ä»¶
 			Image img = ImageIO.read(distFile);
 			BufferedImage image = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
 			Graphics2D g = image.createGraphics();
 			g.drawImage(img, 0, 0, null);
-			// ¼ÓÔØË®Ó¡Í¼Æ¬ÎÄ¼ş
+			// åŠ è½½æ°´å°å›¾ç‰‡æ–‡ä»¶
 			Image src_biao = ImageIO.read(warterFile);
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
 			g.drawImage(src_biao, x, y, null);
 			g.dispose();
-			// ±£´æ´¦ÀíºóµÄÎÄ¼ş
+			// ä¿å­˜å¤„ç†åçš„æ–‡ä»¶
 			FileOutputStream out = new FileOutputStream(distFile);
 			ImageIO.write(image, "jpeg", out);
 			out.close();
@@ -449,12 +449,12 @@ public abstract class PictureUtil {
 	}
 	
 	/**
-	 * ½«pngÍ¼Æ¬×ª»»ÎªjpgÍ¼Æ¬<br>
-	 * Ä¿Ç°Ö»¼òµ¥ÅĞ¶ÏpngPathÊÇ·ñÒÔ".png"½áÎ²À´È·¶¨ÊÇ·ñÊÇpngÍ¼Æ¬<br>
-	 * Èç¹ûÊÇpngÍ¼Æ¬£¬Ôò×ª»»ÎªjpgÍ¼Æ¬<br>
-	 * Èç¹û²»ÊÇpngÍ¼Æ¬£¬Ö±½ÓÌø¹ı²»´¦Àí
-	 * @param pngPath ´ı×ª»»µÄpngÍ¼Æ¬Â·¾¶
-	 * @param jpgPath ×ª»»ºóµÄjpgÍ¼Æ¬Â·¾¶
+	 * å°†pngå›¾ç‰‡è½¬æ¢ä¸ºjpgå›¾ç‰‡<br>
+	 * ç›®å‰åªç®€å•åˆ¤æ–­pngPathæ˜¯å¦ä»¥".png"ç»“å°¾æ¥ç¡®å®šæ˜¯å¦æ˜¯pngå›¾ç‰‡<br>
+	 * å¦‚æœæ˜¯pngå›¾ç‰‡ï¼Œåˆ™è½¬æ¢ä¸ºjpgå›¾ç‰‡<br>
+	 * å¦‚æœä¸æ˜¯pngå›¾ç‰‡ï¼Œç›´æ¥è·³è¿‡ä¸å¤„ç†
+	 * @param pngPath å¾…è½¬æ¢çš„pngå›¾ç‰‡è·¯å¾„
+	 * @param jpgPath è½¬æ¢åçš„jpgå›¾ç‰‡è·¯å¾„
 	 * @return true/false
 	 */
 	public static boolean convertPng2Jpg(String pngPath, String jpgPath){

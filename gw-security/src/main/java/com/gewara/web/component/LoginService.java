@@ -12,7 +12,7 @@ import com.gewara.support.ErrorCode;
 
 public interface LoginService {
 	
-	/** ¸ù¾İÓÃ»§ÃûÃÜÂëµÇÂ¼
+	/** æ ¹æ®ç”¨æˆ·åå¯†ç ç™»å½•
 	 * @param request
 	 * @param response
 	 * @param username
@@ -21,28 +21,28 @@ public interface LoginService {
 	 */
 	ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, String username, String password);
 
-	/** ¸ù¾İsessid ºÍ ipµØÖ·µÇÂ¼
+	/** æ ¹æ®sessid å’Œ ipåœ°å€ç™»å½•
 	 * @param ip
 	 * @param sessid
 	 * @return
 	 */
 	GewaraUser getLogonGewaraUserBySessid(String ip, String sessid);
 
-	/**¸ù¾İsessid ºÍ ipµØÖ·»ñÈ¡ÈÏÖ¤ĞÅÏ¢
+	/**æ ¹æ®sessid å’Œ ipåœ°å€è·å–è®¤è¯ä¿¡æ¯
 	 * @param ip
 	 * @param sessid
 	 * @return
 	 */
 	Authentication loadAuthentication(String ip, String sessid);
 
-	/** ¸ù¾İsessidÅĞ¶ÏÊÇ·ñÊÇgewaraÓÃ»§µÇÂ¼
+	/** æ ¹æ®sessidåˆ¤æ–­æ˜¯å¦æ˜¯gewaraç”¨æˆ·ç™»å½•
 	 * @param request
 	 * @param sessid
 	 * @return
 	 */
 	boolean isGewaraUserLogon(HttpServletRequest request, String sessid);
 
-	/** µ¥µãµÇÂ¼
+	/** å•ç‚¹ç™»å½•
 	 * @param request
 	 * @param response
 	 * @param sessid
@@ -50,7 +50,7 @@ public interface LoginService {
 	 */
 	ErrorCode<Map> ssoAutoLogin(HttpServletRequest request, HttpServletResponse response, String sessid);
 
-	/** Ïú»Ùsessid
+	/** é”€æ¯sessid
 	 * @param sessid
 	 */
 	void removeInvalidSessid(String sessid);

@@ -31,8 +31,8 @@ public abstract class GcacheManager {
 	private static final String SCHEMA_CACHE = "cache";
 	private static final String SCHEMA_ID = "id";
 	private static final String SCHEMA_CLASS = "class";
-	private static final String SCHEMA_NOTIFY = "notify";//跨系统时额外的通知队列
-	private static final String SCHEMA_EAGER = "eager";//清除缓存时是否立立刻重新加载
+	private static final String SCHEMA_NOTIFY = "notify";//璺ㄧ郴缁熸椂棰濆鐨勯�氱煡闃熷垪
+	private static final String SCHEMA_EAGER = "eager";//娓呴櫎缂撳瓨鏃舵槸鍚︾珛绔嬪埢閲嶆柊鍔犺浇
 	private static final String SCHEMA_MAXIMUNSIZE = "maxnumSize";
 	private final static Map<Class, CacheMeta> cacheMetaMap =  new ConcurrentHashMap<>();
 	private final static Map<String/*tag*/, CacheMeta> tag2MetaMap = new ConcurrentHashMap<>();

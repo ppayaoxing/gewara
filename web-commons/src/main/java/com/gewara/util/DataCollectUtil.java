@@ -7,14 +7,14 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * Êı¾İ²É¼¯×¨ÓÃ
+ * æ•°æ®é‡‡é›†ä¸“ç”¨
  */
 public abstract class DataCollectUtil {
 	protected final static transient GewaLogger dbLogger = WebLogger.getLogger(DataCollectUtil.class);
 	private static final String LD_REG_KEY = "_LD_REG_KEY";
 	/**
-	 * ¸ú×ÙÌØ¼Û»î¶¯×¢²áÇé¿ö¡£
-	 * cookieÖµÎªÇ°ºóÁ½²¿·Öurl×é³É£¬ Ç°Îª×îĞÂ£¬ºóÉÏÒ»¸öÌØ¼Û»î¶¯Ò³Ãæ
+	 * è·Ÿè¸ªç‰¹ä»·æ´»åŠ¨æ³¨å†Œæƒ…å†µã€‚
+	 * cookieå€¼ä¸ºå‰åä¸¤éƒ¨åˆ†urlç»„æˆï¼Œ å‰ä¸ºæœ€æ–°ï¼Œåä¸Šä¸€ä¸ªç‰¹ä»·æ´»åŠ¨é¡µé¢
 	 * @param url
 	 * @param request
 	 * @param response

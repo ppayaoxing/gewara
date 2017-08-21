@@ -48,14 +48,14 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     @Qualifier("monitorService")
     protected MonitorService monitorService;
-    private int allowIpNum = 2;    //ÔÊĞíIP±ä¸üµÄ´ÎÊı
+    private int allowIpNum = 2;    //å…è®¸IPå˜æ›´çš„æ¬¡æ•°
 
     public void setAllowIpNum(int allowIpNum) {
         this.allowIpNum = allowIpNum;
     }
 
     /**
-     * ¸ù¾İÓÃ»§ÃûºÍÃÜÂëµÇÂ¼
+     * æ ¹æ®ç”¨æˆ·åå’Œå¯†ç ç™»å½•
      *
      * @param request
      * @param response
@@ -65,7 +65,7 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, String username, String password) {
-        if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) return ErrorCode.getFailure("ÓÃ»§ÃûÃÜÂë±ØÌî£¡");
+        if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) return ErrorCode.getFailure("ç”¨æˆ·åå¯†ç å¿…å¡«ï¼");
         Authentication auth = new UsernamePasswordAuthenticationToken(username, password);
         return autoLogin(request, response, auth);
     }
@@ -84,7 +84,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
-     * ¸ù¾İÈÏÖ¤ĞÅÏ¢µÇÂ¼
+     * æ ¹æ®è®¤è¯ä¿¡æ¯ç™»å½•
      *
      * @param request
      * @param response
@@ -103,24 +103,24 @@ public class LoginServiceImpl implements LoginService {
                 } else jsonMap.put("isMobile", false);
                 return ErrorCode.getSuccessReturn(jsonMap);
             } else {
-                errorMap.put("j_username", "ÓÃ»§Ãû»òÃÜÂë´íÎó£¡");
+                errorMap.put("j_username", "ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼");
             }
         } catch (DisabledException e) {
-            errorMap.put("j_username", "ÄãµÄÓÃ»§±»½ûÓÃ£¬ÇëÁªÏµ¿Í·ş£¡");
-        } catch (AuthenticationServiceException e) {//ÓÃ»§²»´æÔÚ.
-            errorMap.put("j_username", "ÄãµÄÕËºÅ²»´æÔÚ£¡");
-        } catch (BadCredentialsException e) {//ÃÜÂë´íÎó
-            errorMap.put("j_password", "ÃÜÂë´íÎó£¡");
+            errorMap.put("j_username", "ä½ çš„ç”¨æˆ·è¢«ç¦ç”¨ï¼Œè¯·è”ç³»å®¢æœï¼");
+        } catch (AuthenticationServiceException e) {//ç”¨æˆ·ä¸å­˜åœ¨.
+            errorMap.put("j_username", "ä½ çš„è´¦å·ä¸å­˜åœ¨ï¼");
+        } catch (BadCredentialsException e) {//å¯†ç é”™è¯¯
+            errorMap.put("j_password", "å¯†ç é”™è¯¯ï¼");
         } catch (Exception e) {
             dbLogger.warn("", e, 15);
-            errorMap.put("j_username", "ÓÃ»§Ãû»òÃÜÂë´íÎó£¡");
+            errorMap.put("j_username", "ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼");
         }
 
         return ErrorCode.getFailureReturn(errorMap);
     }
 
     /**
-     * Í¨¹ıidºÍsessid»ñÈ¡user
+     * é€šè¿‡idå’Œsessidè·å–user
      *
      * @param ip
      * @param sessid
@@ -134,7 +134,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
-     * ¼ÓÔØ²¢Ë¢ĞÂ¸üĞÂÊ±¼ä
+     * åŠ è½½å¹¶åˆ·æ–°æ›´æ–°æ—¶é—´
      *
      * @param ip
      * @param sessid
@@ -146,7 +146,7 @@ public class LoginServiceImpl implements LoginService {
         String ukey = LoginUtils.getCacheUkey(sessid);
         CachedAuthentication ca = (CachedAuthentication) cacheService.get(CacheService.REGION_LOGINAUTH, ukey);
         if (ca != null) {
-            if (!StringUtils.contains(ca.getIp(), ip)) {//IP±ä¸ü
+            if (!StringUtils.contains(ca.getIp(), ip)) {//IPå˜æ›´
                 Map entry = Maps.newHashMap();
                 entry.put("oldip", ca.getIp());
                 entry.put("newip", ip);
@@ -154,24 +154,24 @@ public class LoginServiceImpl implements LoginService {
                 entry.put("username", ca.getAuthentication().getName());
                 entry.put("usertype", ca.getAuthentication().getPrincipal().getClass().getName());
                 Long memberid = ((GewaraUser) ca.getAuthentication().getPrincipal()).getId();
-                // ±£´æµ½Ç°Ì¨ÓÃ»§ĞĞÎª,
+                // ä¿å­˜åˆ°å‰å°ç”¨æˆ·è¡Œä¸º,
                 monitorService.saveMemberLogMap(memberid, "login", entry, ip);
 
-                dbLogger.warn("µÇÂ¼IP²»Æ¥Åä£¬" + ca.getAuthentication().getName() + ":" + ca.getIp() + "---->" + ip);
+                dbLogger.warn("ç™»å½•IPä¸åŒ¹é…ï¼Œ" + ca.getAuthentication().getName() + ":" + ca.getIp() + "---->" + ip);
                 //
                 if (cannotChangeIp(ca.getAuthentication().getPrincipal(), ip)) {
-                    return null;//²»ÄÜ¸ü»»ID
+                    return null;//ä¸èƒ½æ›´æ¢ID
                 }
-                //TODO:Í¬Íø¶ÎµÄIP²»Ëã¸ü¸Ä¼ÆÊı
-                if (StringUtils.split(ca.getIp(), ",").length >= allowIpNum) {//³¬¹ı3¸öIP£¬Ö±½Óforbidden£¬ÒÆ³öµÇÂ¼ĞÅÏ¢
+                //TODO:åŒç½‘æ®µçš„IPä¸ç®—æ›´æ”¹è®¡æ•°
+                if (StringUtils.split(ca.getIp(), ",").length >= allowIpNum) {//è¶…è¿‡3ä¸ªIPï¼Œç›´æ¥forbiddenï¼Œç§»å‡ºç™»å½•ä¿¡æ¯
                     cacheService.remove(CacheService.REGION_LOGINAUTH, ukey);
                     return null;
                 }
                 ca.setIp(ca.getIp() + "," + ip);
                 cacheService.set(CacheService.REGION_LOGINAUTH, ukey, ca);
             }
-            if (ca.getTimeout() != null && ca.getTimeout() < System.currentTimeMillis() + DateUtil.m_minute * 20) {//20·ÖÖÓ¼´½«³¬Ê±£¬ÖØĞÂÉèÖÃ
-                // ÖØÖÃµÇÂ¼Ê±¼ä,Ë¢ĞÂµÇÂ¼ĞÅÏ¢
+            if (ca.getTimeout() != null && ca.getTimeout() < System.currentTimeMillis() + DateUtil.m_minute * 20) {//20åˆ†é’Ÿå³å°†è¶…æ—¶ï¼Œé‡æ–°è®¾ç½®
+                // é‡ç½®ç™»å½•æ—¶é—´,åˆ·æ–°ç™»å½•ä¿¡æ¯
                 cacheService.set(CacheService.REGION_LOGINAUTH, ukey, ca);
             }
             return ca.getAuthentication();
@@ -184,7 +184,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
-     * ¼ÓÔØ²¢Ë¢ĞÂ¸üĞÂÊ±¼ä
+     * åŠ è½½å¹¶åˆ·æ–°æ›´æ–°æ—¶é—´
      *
      * @param
      * @param sessid

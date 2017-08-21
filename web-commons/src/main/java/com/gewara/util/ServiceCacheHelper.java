@@ -3,7 +3,7 @@ package com.gewara.util;
 import java.util.Map;
 
 /**
- * Service·½·¨»º´æ£¬Ã¿¸öServiceÒ»¸ö
+ * Serviceæ–¹æ³•ç¼“å­˜ï¼Œæ¯ä¸ªServiceä¸€ä¸ª
  * @author gebiao(ge.biao@gewara.com)
  * @since Nov 5, 2013 10:25:21 PM
  */
@@ -13,10 +13,10 @@ public interface ServiceCacheHelper {
 	public boolean isLocal();
 	
 	/**
-	 * ²»ĞèÒªÍ¬²½
+	 * ä¸éœ€è¦åŒæ­¥
 	 * @param key
 	 * @param call
-	 * @param cacheSeconds:»º´æÊ±¼ä
+	 * @param cacheSeconds:ç¼“å­˜æ—¶é—´
 	 * @return
 	 */
 	public <T> T cacheCall(Integer cacheSeconds, CachableCall<T> call, String ukey, Object...params);
