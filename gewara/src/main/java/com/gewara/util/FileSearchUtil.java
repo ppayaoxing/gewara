@@ -12,9 +12,9 @@ import org.apache.commons.lang.StringUtils;
 
 public class FileSearchUtil {
 	/**
-	 * @param path ËÑË÷Â·¾¶
+	 * @param path æœç´¢è·¯å¾„
 	 * @param fileList
-	 * @param ext ÎÄ¼şÀ©Õ¹Ãû
+	 * @param ext æ–‡ä»¶æ‰©å±•å
 	 * @throws IOException
 	 */
 	public static Map getFileTree(String path, final String ext) throws IOException{

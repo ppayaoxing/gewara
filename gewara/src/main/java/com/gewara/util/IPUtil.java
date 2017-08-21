@@ -98,7 +98,7 @@ public class IPUtil {
 				ipData.ipList[i] = ipn1;
 				i ++;
 				ipData.pairMap.put(ipn1, ipn2);
-				//ÉÚ±ø
+				//å“¨å…µ
 				ipData.addressMap.put(ipn1, ipdata[2] + "  " +  ipdata[3]);
 				success ++;
 			}catch(Exception e){
@@ -153,7 +153,7 @@ public class IPUtil {
 		return isLocalIP(ip) || ipData.inneripList.contains(ip);
 	}
 	public static boolean isLocalIP(String ip) {
-		return ip.contains("192.168.") || ip.equals("127.0.0.1"); // ±¾µØ
+		return ip.contains("192.168.") || ip.equals("127.0.0.1"); // æœ¬åœ°
 	}
 
 }

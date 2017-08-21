@@ -2,49 +2,49 @@ package com.gewara.util;
 
 /**
  * <PRE>
- * Ìá¹©¶Ô×Ö·û´®µÄÈ«½Ç-&gt;°ë½Ç£¬°ë½Ç-&gt;È«½Ç×ª»»
+ * æä¾›å¯¹å­—ç¬¦ä¸²çš„å…¨è§’-&gt;åŠè§’ï¼ŒåŠè§’-&gt;å…¨è§’è½¬æ¢
  * </PRE>
  */
 public class BCConvert {
 	/**
-	 * ASCII±íÖĞ¿É¼û×Ö·û´Ó!¿ªÊ¼£¬Æ«ÒÆÎ»ÖµÎª33(Decimal)
+	 * ASCIIè¡¨ä¸­å¯è§å­—ç¬¦ä»!å¼€å§‹ï¼Œåç§»ä½å€¼ä¸º33(Decimal)
 	 */
-	static final char DBC_CHAR_START = 33; // °ë½Ç!
+	static final char DBC_CHAR_START = 33; // åŠè§’!
 
 	/**
-	 * ASCII±íÖĞ¿É¼û×Ö·ûµ½~½áÊø£¬Æ«ÒÆÎ»ÖµÎª126(Decimal)
+	 * ASCIIè¡¨ä¸­å¯è§å­—ç¬¦åˆ°~ç»“æŸï¼Œåç§»ä½å€¼ä¸º126(Decimal)
 	 */
-	static final char DBC_CHAR_END = 126; // °ë½Ç~
+	static final char DBC_CHAR_END = 126; // åŠè§’~
 
 	/**
-	 * È«½Ç¶ÔÓ¦ÓÚASCII±íµÄ¿É¼û×Ö·û´Ó£¡¿ªÊ¼£¬Æ«ÒÆÖµÎª65281
+	 * å…¨è§’å¯¹åº”äºASCIIè¡¨çš„å¯è§å­—ç¬¦ä»ï¼å¼€å§‹ï¼Œåç§»å€¼ä¸º65281
 	 */
-	static final char SBC_CHAR_START = 65281; // È«½Ç£¡
+	static final char SBC_CHAR_START = 65281; // å…¨è§’ï¼
 
 	/**
-	 * È«½Ç¶ÔÓ¦ÓÚASCII±íµÄ¿É¼û×Ö·ûµ½¡«½áÊø£¬Æ«ÒÆÖµÎª65374
+	 * å…¨è§’å¯¹åº”äºASCIIè¡¨çš„å¯è§å­—ç¬¦åˆ°ï½ç»“æŸï¼Œåç§»å€¼ä¸º65374
 	 */
-	static final char SBC_CHAR_END = 65374; // È«½Ç¡«
+	static final char SBC_CHAR_END = 65374; // å…¨è§’ï½
 
 	/**
-	 * ASCII±íÖĞ³ı¿Õ¸ñÍâµÄ¿É¼û×Ö·ûÓë¶ÔÓ¦µÄÈ«½Ç×Ö·ûµÄÏà¶ÔÆ«ÒÆ
+	 * ASCIIè¡¨ä¸­é™¤ç©ºæ ¼å¤–çš„å¯è§å­—ç¬¦ä¸å¯¹åº”çš„å…¨è§’å­—ç¬¦çš„ç›¸å¯¹åç§»
 	 */
-	static final int CONVERT_STEP = 65248; // È«½Ç°ë½Ç×ª»»¼ä¸ô
+	static final int CONVERT_STEP = 65248; // å…¨è§’åŠè§’è½¬æ¢é—´éš”
 
 	/**
-	 * È«½Ç¿Õ¸ñµÄÖµ£¬ËüÃ»ÓĞ×ñ´ÓÓëASCIIµÄÏà¶ÔÆ«ÒÆ£¬±ØĞëµ¥¶À´¦Àí
+	 * å…¨è§’ç©ºæ ¼çš„å€¼ï¼Œå®ƒæ²¡æœ‰éµä»ä¸ASCIIçš„ç›¸å¯¹åç§»ï¼Œå¿…é¡»å•ç‹¬å¤„ç†
 	 */
-	static final char SBC_SPACE = 12288; // È«½Ç¿Õ¸ñ 12288
+	static final char SBC_SPACE = 12288; // å…¨è§’ç©ºæ ¼ 12288
 
 	/**
-	 * °ë½Ç¿Õ¸ñµÄÖµ£¬ÔÚASCIIÖĞÎª32(Decimal)
+	 * åŠè§’ç©ºæ ¼çš„å€¼ï¼Œåœ¨ASCIIä¸­ä¸º32(Decimal)
 	 */
-	static final char DBC_SPACE = ' '; // °ë½Ç¿Õ¸ñ
+	static final char DBC_SPACE = ' '; // åŠè§’ç©ºæ ¼
 
 	/**
 	 * <PRE>
-	 * °ë½Ç×Ö·û->È«½Ç×Ö·û×ª»»  
-	 * Ö»´¦Àí¿Õ¸ñ£¬!µ½&tilde;Ö®¼äµÄ×Ö·û£¬ºöÂÔÆäËû
+	 * åŠè§’å­—ç¬¦->å…¨è§’å­—ç¬¦è½¬æ¢  
+	 * åªå¤„ç†ç©ºæ ¼ï¼Œ!åˆ°&tilde;ä¹‹é—´çš„å­—ç¬¦ï¼Œå¿½ç•¥å…¶ä»–
 	 * </PRE>
 	 */
 	public static String DBC2SBC(String src) {
@@ -54,11 +54,11 @@ public class BCConvert {
 		StringBuilder buf = new StringBuilder(src.length());
 		char[] ca = src.toCharArray();
 		for (int i = 0; i < ca.length; i++) {
-			if (ca[i] == DBC_SPACE) { // Èç¹ûÊÇ°ë½Ç¿Õ¸ñ£¬Ö±½ÓÓÃÈ«½Ç¿Õ¸ñÌæ´ú
+			if (ca[i] == DBC_SPACE) { // å¦‚æœæ˜¯åŠè§’ç©ºæ ¼ï¼Œç›´æ¥ç”¨å…¨è§’ç©ºæ ¼æ›¿ä»£
 				buf.append(SBC_SPACE);
-			} else if ((ca[i] >= DBC_CHAR_START) && (ca[i] <= DBC_CHAR_END)) { // ×Ö·ûÊÇ!µ½~Ö®¼äµÄ¿É¼û×Ö·û
+			} else if ((ca[i] >= DBC_CHAR_START) && (ca[i] <= DBC_CHAR_END)) { // å­—ç¬¦æ˜¯!åˆ°~ä¹‹é—´çš„å¯è§å­—ç¬¦
 				buf.append((char) (ca[i] + CONVERT_STEP));
-			} else { // ²»¶Ô¿Õ¸ñÒÔ¼°ascii±íÖĞÆäËû¿É¼û×Ö·ûÖ®ÍâµÄ×Ö·û×öÈÎºÎ´¦Àí
+			} else { // ä¸å¯¹ç©ºæ ¼ä»¥åŠasciiè¡¨ä¸­å…¶ä»–å¯è§å­—ç¬¦ä¹‹å¤–çš„å­—ç¬¦åšä»»ä½•å¤„ç†
 				buf.append(ca[i]);
 			}
 		}
@@ -67,8 +67,8 @@ public class BCConvert {
 
 	/**
 	 * <PRE>
-	 * È«½Ç×Ö·û->°ë½Ç×Ö·û×ª»»  
-	 * Ö»´¦ÀíÈ«½ÇµÄ¿Õ¸ñ£¬È«½Ç£¡µ½È«½Ç¡«Ö®¼äµÄ×Ö·û£¬ºöÂÔÆäËû
+	 * å…¨è§’å­—ç¬¦->åŠè§’å­—ç¬¦è½¬æ¢  
+	 * åªå¤„ç†å…¨è§’çš„ç©ºæ ¼ï¼Œå…¨è§’ï¼åˆ°å…¨è§’ï½ä¹‹é—´çš„å­—ç¬¦ï¼Œå¿½ç•¥å…¶ä»–
 	 * </PRE>
 	 */
 	public static String SBC2DBC(String src) {
@@ -78,11 +78,11 @@ public class BCConvert {
 		StringBuilder buf = new StringBuilder(src.length());
 		char[] ca = src.toCharArray();
 		for (int i = 0; i < src.length(); i++) {
-			if (ca[i] >= SBC_CHAR_START && ca[i] <= SBC_CHAR_END) { // Èç¹ûÎ»ÓÚÈ«½Ç£¡µ½È«½Ç¡«Çø¼äÄÚ
+			if (ca[i] >= SBC_CHAR_START && ca[i] <= SBC_CHAR_END) { // å¦‚æœä½äºå…¨è§’ï¼åˆ°å…¨è§’ï½åŒºé—´å†…
 				buf.append((char) (ca[i] - CONVERT_STEP));
-			} else if (ca[i] == SBC_SPACE) { // Èç¹ûÊÇÈ«½Ç¿Õ¸ñ
+			} else if (ca[i] == SBC_SPACE) { // å¦‚æœæ˜¯å…¨è§’ç©ºæ ¼
 				buf.append(DBC_SPACE);
-			} else { // ²»´¦ÀíÈ«½Ç¿Õ¸ñ£¬È«½Ç£¡µ½È«½Ç¡«Çø¼äÍâµÄ×Ö·û
+			} else { // ä¸å¤„ç†å…¨è§’ç©ºæ ¼ï¼Œå…¨è§’ï¼åˆ°å…¨è§’ï½åŒºé—´å¤–çš„å­—ç¬¦
 				buf.append(ca[i]);
 			}
 		}
