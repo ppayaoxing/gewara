@@ -38,7 +38,7 @@ public class DBFilterInvocationSecurityMetadataSource implements FilterInvocatio
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		aclService = applicationContext.getBean(AclService.class);
-		Assert.notNull(aclService, "±ØĞëÌá¹©aclServiceÊµÏÖ£¡");
+		Assert.notNull(aclService, "å¿…é¡»æä¾›aclServiceå®ç°ï¼");
 		init();
 	}
 

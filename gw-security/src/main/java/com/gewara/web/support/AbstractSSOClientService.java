@@ -9,7 +9,7 @@ import com.gewara.util.LoggerUtils;
 
 public abstract class AbstractSSOClientService implements SSOClientService{
 	protected final transient GewaLogger dbLogger = LoggerUtils.getLogger(getClass());
-	protected String targetUrlParameter;//要与GewaLoginUrlAuthenticationEntryPoint.targetUrlParameter保持一到致
+	protected String targetUrlParameter;//瑕佷笌GewaLoginUrlAuthenticationEntryPoint.targetUrlParameter淇濇寔涓�鍒拌嚧
 	protected AclService aclService;
 	public void setAclService(AclService aclService) {
 		this.aclService = aclService;

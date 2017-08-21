@@ -61,7 +61,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 	}
 	protected SessidGenerator sessidGenerator = new DefaultSessidGenerator();
 	/**
-	 * ÓÃ»§ÊÇ·ñÖØ¸´µÇÂ¼
+	 * ç”¨æˆ·æ˜¯å¦é‡å¤ç™»å½•
 	 */
 	protected boolean isRelogin = false;
 
@@ -88,7 +88,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 	}
 
 	/**
-	 * ÈÏÖ¤³É¹¦ºó´¦Àícookie¡¢cache
+	 * è®¤è¯æˆåŠŸåå¤„ç†cookieã€cache
 	 * @param request
 	 * @param response
 	 * @param authentication
@@ -112,7 +112,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 	}
 
 	/**
-	 * ÈÏÖ¤³É¹¦ºó´¦Àícookie¡¢cache
+	 * è®¤è¯æˆåŠŸåå¤„ç†cookieã€cache
 	 * @param request
 	 * @param response
 	 * @param authentication
@@ -145,7 +145,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 				Object sessidOld = cacheService.get(CacheService.REGION_LOGINAUTH, repeatKey);
 				if (sessidOld != null && !sessid.equals(sessidOld)) {
 					cacheService.remove(CacheService.REGION_LOGINAUTH, LoginUtils.getCacheUkey(sessidOld.toString()));
-					dbLogger.error("ÖØ¸´ÓÃ»§µÇÂ¼£¬ÌŞ³ıÓÃ»§" + repeatKey + " " + user.getUsername());
+					dbLogger.error("é‡å¤ç”¨æˆ·ç™»å½•ï¼Œå‰”é™¤ç”¨æˆ·" + repeatKey + " " + user.getUsername());
 				}
 				cacheService.set(CacheService.REGION_LOGINAUTH, repeatKey, sessid);
 			}
@@ -156,7 +156,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 	}
 	
 	/**
-	 * ´¦ÀíµÇÂ¼ĞÅÏ¢
+	 * å¤„ç†ç™»å½•ä¿¡æ¯
 	 * @param remoteIp
 	 * @param userAgent
 	 * @param port
@@ -193,7 +193,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 		successCallback(userAgent, port, user, ip, sessid);
 	}
 	protected void setLogonSessid(String sessid, HttpServletResponse response, int duration) {
-		// ÉèÖÃÇ°Ì¨µÇÂ¼Cookie
+		// è®¾ç½®å‰å°ç™»å½•Cookie
 		Cookie cookie = new Cookie(LoginUtils.SESS_COOKIE_NAME, sessid);
 		cookie.setMaxAge(duration);
 		cookie.setPath("/");

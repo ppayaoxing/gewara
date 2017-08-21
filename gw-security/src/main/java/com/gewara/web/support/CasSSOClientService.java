@@ -41,7 +41,7 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
 
     @Override
     public void afterPropertiesSet() {
-        Assert.notNull(aclService, "±ØĞëÌá¹©aclServiceÊµÏÖ£¡");
+        Assert.notNull(aclService, "å¿…é¡»æä¾›aclServiceå®ç°ï¼");
         String validateUrl = config.getString("ssoValidateUrl");
         ssoClient = new GewaraSsoClient(config.getString("ssoLoginUrl"), getPath(), validateUrl);
     }
@@ -54,7 +54,7 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
         String returnUrl = request.getParameter(targetUrlParameter);
         if (StringUtils.isBlank(returnUrl)) {
             String contextPath = request.getContextPath();
-            returnUrl = request.getRequestURI().substring(contextPath.length());//È¥³ıContextPath
+            returnUrl = request.getRequestURI().substring(contextPath.length());//å»é™¤ContextPath
             String qstr = request.getQueryString();
             if (StringUtils.isNotBlank(qstr)) {
                 try {
@@ -88,7 +88,7 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
             List<String> roles = ssoClient.loadUserAttributes(assertion);
             GewaraUser user = createCasUser(assertion);
             if (user == null) {
-                return ErrorCode.getFailure("ÓÃ»§ĞÅÏ¢Î´Í¬²½£¬ÇëÍ¬²½ÓÃ»§ĞÅÏ¢£¡£¡");
+                return ErrorCode.getFailure("ç”¨æˆ·ä¿¡æ¯æœªåŒæ­¥ï¼Œè¯·åŒæ­¥ç”¨æˆ·ä¿¡æ¯ï¼ï¼");
             }
             if (aclService.isCopyAuthorities()) {
                 StringBuffer rolenames = new StringBuffer();
@@ -102,14 +102,14 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
                     tmpAuth.add(new SimpleGrantedAuthority(role));
                 }
                 BeanUtil.set(user, "rolenames", rolenames.toString());
-                //×öÒ»´Î³õÊ¼»¯
+                //åšä¸€æ¬¡åˆå§‹åŒ–
                 user.getAuthorities();
             }
             BeanUtil.set(user, "usertype", UserType.USER_TYPE_SSO);
             return ErrorCode.getSuccessReturn(user);
         } catch (Exception e) {
             dbLogger.warn(e, 10);
-            return ErrorCode.getFailure("µ¥µãµÇÂ¼Ê§°Ü,Çëµ¥µãµÇÂ¼ÅäÖÃ£¡£¡");
+            return ErrorCode.getFailure("å•ç‚¹ç™»å½•å¤±è´¥,è¯·å•ç‚¹ç™»å½•é…ç½®ï¼ï¼");
         }
     }
 
@@ -122,12 +122,12 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
     private GewaraUser createCasUser(Assertion assertion) {
         User user = daoService.getObjectByUkey(User.class, "username", assertion.getPrincipal().getName());
         Long userid = Long.parseLong(GewaraSsoClient.loadUserAttributes(assertion, "id"));
-        boolean update = false;//Í³Ò»displayName¡¢mail¡¢mobile
+        boolean update = false;//ç»Ÿä¸€displayNameã€mailã€mobile
         if (user == null) {
             user = daoService.getObject(User.class, userid);
             update = true;
         }
-        // Èç¹ûÃ»ÓĞÍ¬²½£¬¼òµ¥±£´æÒ»ÏÂ
+        // å¦‚æœæ²¡æœ‰åŒæ­¥ï¼Œç®€å•ä¿å­˜ä¸€ä¸‹
         if (user == null) {
             user = new User();
             user.setUsername(assertion.getPrincipal().getName());
