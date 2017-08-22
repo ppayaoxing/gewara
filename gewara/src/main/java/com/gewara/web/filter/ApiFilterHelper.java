@@ -23,9 +23,9 @@ public class ApiFilterHelper {
 	}
 	
 	/**
-	 * ¼ÇÂ¼·ÃÎÊÈÕÖ¾
-	 * @param request ÇëÇó
-	 * @param result ÇëÇó½á¹û
+	 * è®°å½•è®¿é—®æ—¥å¿—
+	 * @param request è¯·æ±‚
+	 * @param result è¯·æ±‚ç»“æœ
 	 */
 	public void apiLog(HttpServletRequest request, Long calltime, boolean success) {
 		Map<String, String> params = WebUtils.getRequestMap(request);
@@ -63,10 +63,10 @@ public class ApiFilterHelper {
 			}
 			params.put(entry.getKey(),StringUtils.removeEnd(vb.toString(), ","));
 		}
-		if(ServletFileUpload.isMultipartContent(request)){//ÎÄ¼şFileData²»×öÇ©Ãû
+		if(ServletFileUpload.isMultipartContent(request)){//æ–‡ä»¶FileDataä¸åšç­¾å
 			params.remove("FileData");
 		}
-		params.remove(AsynchProcessServlet.ORIGINAL_URI_PARAM_NAME);	//ÏµÍ³ÌØÊâ±äÁ¿£¬ÒÆ³ı
+		params.remove(AsynchProcessServlet.ORIGINAL_URI_PARAM_NAME);	//ç³»ç»Ÿç‰¹æ®Šå˜é‡ï¼Œç§»é™¤
 		return params;
 	}
 
