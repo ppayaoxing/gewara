@@ -27,7 +27,7 @@ import com.gewara.web.action.inner.OpenApiAuth;
 import com.gewara.web.util.LoginUtils;
 
 /**
- * API2.0Éí·İ¹ıÂËÆ÷
+ * API2.0èº«ä»½è¿‡æ»¤å™¨
  * 
  * @author taiqichao
  * 
@@ -52,35 +52,35 @@ public class OpenApiMobileAuthenticationFilter extends GenericFilterBean  {
 		HttpServletResponse response = (HttpServletResponse) res;
 		String callIp = WebUtils.getRemoteIp(request);
 		if(!isInnerIp(callIp)) {
-			response.sendError(403, "Ö»ÄÜÄÚ²¿µ÷ÓÃ£¡");
+			response.sendError(403, "åªèƒ½å†…éƒ¨è°ƒç”¨ï¼");
 			return;
 		}
 		String apptype = request.getParameter("apptype");
 		if(StringUtils.isBlank(apptype)){
-			writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS,"apptype²»ÄÜÎª¿Õ");
+			writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS,"apptypeä¸èƒ½ä¸ºç©º");
 			return;
 		}
 		String appVersion = request.getParameter("appVersion");
 		if(StringUtils.isBlank(appVersion)){
-			writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS,"appVersion²»ÄÜÎª¿Õ");
+			writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS,"appVersionä¸èƒ½ä¸ºç©º");
 			return;
 		}
 		String citycode = request.getParameter("citycode");
 		String remoteIp = request.getHeader("GEWA-REMOTE-IP");
 		
 		if(StringUtils.isBlank(remoteIp)){
-			writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS, "·Ç·¨µ÷ÓÃ£¡");
+			writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS, "éæ³•è°ƒç”¨ï¼");
 			return;
 		}
 		String appkey = request.getParameter(ApiSysParamConstants.APPKEY);
 		ApiUser apiUser = apiMobileService.getApiUserByAppkey(appkey);
 		if (apiUser == null) {
-			writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS, "ºÏ×÷ÓÃ»§²»´æÔÚ");
+			writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS, "åˆä½œç”¨æˆ·ä¸å­˜åœ¨");
 			return;
 		}
 		if(StringUtils.isNotBlank(citycode)){
 			if(!apiUser.supportsCity(citycode)) { 
-				writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS, citycode+"²»Ö§³Ö");
+				writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS, citycode+"ä¸æ”¯æŒ");
 				return;
 			}
 		}
@@ -89,7 +89,7 @@ public class OpenApiMobileAuthenticationFilter extends GenericFilterBean  {
 		if(StringUtils.isNotBlank(memberEncode)){
 			member = memberService.getMemberByEncode(memberEncode);
 			if(member==null){
-				writeErrorResponse(response, ApiConstant.CODE_MEMBER_NOT_EXISTS, "²éÎŞÓÃ»§ĞÅÏ¢»òµÇÂ¼ĞÅÏ¢¹ıÆÚ,ÇëÖØĞÂµÇÂ¼ÖØÊÔ£¡");
+				writeErrorResponse(response, ApiConstant.CODE_MEMBER_NOT_EXISTS, "æŸ¥æ— ç”¨æˆ·ä¿¡æ¯æˆ–ç™»å½•ä¿¡æ¯è¿‡æœŸ,è¯·é‡æ–°ç™»å½•é‡è¯•ï¼");
 				return;
 			}
 			response.addHeader(LoginUtils.COOKIE_NAME_TRACE, LoginUtils.getTraceId(member.getId().toString()));

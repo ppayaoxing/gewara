@@ -13,7 +13,7 @@ public interface ShLoginService extends LoginService{
 	ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, OpenMember openMember);
 	ErrorCode<Map> autoLoginByDyncode(HttpServletRequest request, HttpServletResponse response, Member member);
 	/**
-	 * 根据ip和SessionId或取用户ID
+	 * 鏍规嵁ip鍜孲essionId鎴栧彇鐢ㄦ埛ID
 	 * @param ip
 	 * @param sessid
 	 * @return

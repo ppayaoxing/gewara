@@ -23,7 +23,7 @@ import com.gewara.util.WebUtils;
 import com.gewara.web.action.api.ApiAuth;
 
 /**
- * API2.0Éí·İ¹ıÂËÆ÷
+ * API2.0èº«ä»½è¿‡æ»¤å™¨
  * 
  * @author taiqichao
  * 
@@ -43,13 +43,13 @@ public class OpenApiPartnerAuthenticationFilter extends GenericFilterBean  {
 		HttpServletResponse response = (HttpServletResponse) res;
 		String remoteIp = WebUtils.getRemoteIp(request);
 		if(!isInnerIp(remoteIp)) {
-			response.sendError(403, "Ö»ÄÜÄÚ²¿µ÷ÓÃ£¡");
+			response.sendError(403, "åªèƒ½å†…éƒ¨è°ƒç”¨ï¼");
 			return;
 		}
 		String appkey = request.getParameter(ApiSysParamConstants.APPKEY);
 		ApiUser apiUser = apiMobileService.getApiUserByAppkey(appkey);
 		if (apiUser == null) {
-			ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS,"ÓÃ»§²»´æÔÚ");
+			ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS,"ç”¨æˆ·ä¸å­˜åœ¨");
 			return;
 		}
 		String partnerIp = request.getHeader("GEWA-REMOTE-IP");

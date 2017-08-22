@@ -67,14 +67,14 @@ public class ShWebAppPostProcessor implements WebAppPostProcessor{
 						keeperService.addPresistentNode(path, System.currentTimeMillis()+"");
 					}
 					String data = "http://" + Config.getServerIp() + ":2000" /*+ config.getBasePath()*/;
-					logger.warn("zookeeperÌí¼ÓÁÙÊ±½Úµã £º " + path + " ½ÚµãÄÚÈİÎª£º" + data);
+					logger.warn("zookeeperæ·»åŠ ä¸´æ—¶èŠ‚ç‚¹ ï¼š " + path + " èŠ‚ç‚¹å†…å®¹ä¸ºï¼š" + data);
 					keeperService.registerNode(path + "/s", data);
 					
 					path = "/OPENAPI/MOBILE";
 					if(!keeperService.exist(path)){
 						keeperService.addPresistentNode(path, System.currentTimeMillis()+"");
 					}
-					logger.warn("zookeeperÌí¼ÓÁÙÊ±½Úµã £º " + path + " ½ÚµãÄÚÈİÎª£º" + data);
+					logger.warn("zookeeperæ·»åŠ ä¸´æ—¶èŠ‚ç‚¹ ï¼š " + path + " èŠ‚ç‚¹å†…å®¹ä¸ºï¼š" + data);
 					keeperService.registerNode(path + "/s", data);
 				}catch(Exception ex){
 					logger.error("", ex);

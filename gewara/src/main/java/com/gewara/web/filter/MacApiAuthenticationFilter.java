@@ -9,7 +9,7 @@ import com.gewara.constant.ticket.PartnerConstant;
 import com.gewara.model.api.ApiUser;
 
 /**
- * API2.0Éí·Ý¹ýÂËÆ÷
+ * API2.0èº«ä»½è¿‡æ»¤å™¨
  * 
  * @author taiqichao
  * 

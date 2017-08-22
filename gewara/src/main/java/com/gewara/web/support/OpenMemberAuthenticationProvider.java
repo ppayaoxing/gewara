@@ -60,26 +60,26 @@ public class OpenMemberAuthenticationProvider implements AuthenticationProvider 
 				"OpenMemberAuthenticationProvider only supports OpenMemberAuthenticationToken");
 		OpenMemberAuthenticationToken auth = (OpenMemberAuthenticationToken) authentication;
 		Member member = daoService.getObject(Member.class, auth.getMemberid());
-		//ÅĞ¶ÏµÇÂ¼Ô´-ÊÖ»úÑéÖ¤Âë¶¯Ì¬µÇÂ¼
+		//åˆ¤æ–­ç™»å½•æº-æ‰‹æœºéªŒè¯ç åŠ¨æ€ç™»å½•
 		if(StringUtils.equals(auth.getSource(), MemberConstant.SOURCE_DYNCODE)){
 			if(!StringUtils.equals(member.getMobile(), auth.getIdentity()) || !ValidateUtil.isMobile(auth.getIdentity())){
-				dbLogger.warn("·Ç·¨ÊÖ»úÕËºÅµÇÂ¼£º" + auth.getIdentity());
-				throw new IllegalArgumentException("·Ç·¨ÊÖ»úÕËºÅµÇÂ¼!");
+				dbLogger.warn("éæ³•æ‰‹æœºè´¦å·ç™»å½•ï¼š" + auth.getIdentity());
+				throw new IllegalArgumentException("éæ³•æ‰‹æœºè´¦å·ç™»å½•!");
 			}
 		}else {
 			MemberInfo info = daoService.getObject(MemberInfo.class, auth.getMemberid()); 
 			String mSource = VmUtils.getJsonValueByKey(info.getOtherinfo(), "openMember");
 			if(!StringUtils.contains(mSource, auth.getSource())){
-				//TODO:ÎªÁË¼æÈİ²¿·ÖÒ»¸öÕË»§¶ÔÓ¦¶à¸öopenMemberµÄÇé¿ö
+				//TODO:ä¸ºäº†å…¼å®¹éƒ¨åˆ†ä¸€ä¸ªè´¦æˆ·å¯¹åº”å¤šä¸ªopenMemberçš„æƒ…å†µ
 			//if(!StringUtils.equals(mSource, auth.getSource())){
-				dbLogger.warn("·Ç·¨¿ª·ÅÕË»§µÇÂ¼£º" + auth.getSource() + ", memberid=" + auth.getMemberid());
-				throw new IllegalArgumentException("·Ç¿ª·ÅÕË»§£¡");
+				dbLogger.warn("éæ³•å¼€æ”¾è´¦æˆ·ç™»å½•ï¼š" + auth.getSource() + ", memberid=" + auth.getMemberid());
+				throw new IllegalArgumentException("éå¼€æ”¾è´¦æˆ·ï¼");
 			}
 		}
-		Assert.notNull(member, "ÓÃ»§²»ÄÜ¿Õ");
+		Assert.notNull(member, "ç”¨æˆ·ä¸èƒ½ç©º");
 		preAuthenticationChecks.check(member);
 		postAuthenticationChecks.check(member);
-		Assert.notNull(member, "ÓÃ»§²»ÄÜ¿Õ");
+		Assert.notNull(member, "ç”¨æˆ·ä¸èƒ½ç©º");
 		return createSuccessAuthentication(auth, member);
 	}
 

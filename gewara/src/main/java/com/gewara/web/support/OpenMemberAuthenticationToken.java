@@ -28,8 +28,8 @@ public class OpenMemberAuthenticationToken extends AbstractAuthenticationToken {
 		this.memberid = openMember.getMemberid();
 	}
 	/**
-	 * @param mobile ÊÖ»úºÅ
-	 * @param dPassword ¶¯Ì¬Âë
+	 * @param mobile æ‰‹æœºå·
+	 * @param dPassword åŠ¨æ€ç 
 	 */
 	public OpenMemberAuthenticationToken(Member member, String mobile){
 		super(null);

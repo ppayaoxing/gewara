@@ -95,7 +95,7 @@ public class WindowsLiveLogin {
 		setOldSecretExpiry(settings.get("oldsecretexpiry"));
 		setSecurityAlgorithm(settings.get("securityalgorithm"));
 		setPolicyUrl(settings.get("policyurl"));
-		// 自定义返回地址
+		// 鑷畾涔夎繑鍥炲湴鍧�
 		setReturnUrl(settings.get("returnurl"));
 		setBaseUrl(settings.get("baseurl"));
 		setSecureUrl(settings.get("secureurl"));

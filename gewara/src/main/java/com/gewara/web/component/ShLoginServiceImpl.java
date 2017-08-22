@@ -27,7 +27,7 @@ public class ShLoginServiceImpl extends LoginServiceImpl implements ShLoginServi
 	private CacheService cacheService;
 	@Override
 	public ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, String username, String password){
-		if(StringUtils.isBlank(username) || StringUtils.isBlank(password)) return ErrorCode.getFailure("用户名密码必填！");
+		if(StringUtils.isBlank(username) || StringUtils.isBlank(password)) return ErrorCode.getFailure("鐢ㄦ埛鍚嶅瘑鐮佸繀濉紒");
 		Authentication auth = new UsernamePasswordAuthenticationToken(username, password);
 		aclService.setLogonType("member");
 		return super.autoLogin(request, response, auth);
@@ -46,7 +46,7 @@ public class ShLoginServiceImpl extends LoginServiceImpl implements ShLoginServi
 		return autoLogin(request, response, auth);
 	}
 
-	/** 通过ip和sessid获取member
+	/** 閫氳繃ip鍜宻essid鑾峰彇member
 	 * @param ip
 	 * @param sessid
 	 * @return

@@ -31,7 +31,7 @@ import com.gewara.web.support.GewaMultipartResolver;
 import com.gewara.web.support.RoleUrlMatchHelper;
 
 /**
- * API2.0Éí·İ¹ıÂËÆ÷
+ * API2.0èº«ä»½è¿‡æ»¤å™¨
  * 
  * @author taiqichao
  * 
@@ -62,47 +62,47 @@ public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 		
-		if(ServletFileUpload.isMultipartContent(request)){//°ü×°ÎÄ¼şÉÏ´«ÇëÇó
+		if(ServletFileUpload.isMultipartContent(request)){//åŒ…è£…æ–‡ä»¶ä¸Šä¼ è¯·æ±‚
 			request=new GewaMultipartResolver().resolveMultipart(request);
 		}
 		
 		String appkey = request.getParameter(ApiSysParamConstants.APPKEY);
-		//ÓÃ»§Éí·İĞ£Ñé
+		//ç”¨æˆ·èº«ä»½æ ¡éªŒ
 		ApiUser apiUser = apiMobileService.getApiUserByAppkey(appkey);
 		if (apiUser == null) {
-			ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS,"ÓÃ»§²»´æÔÚ");
-			apiFilterHelper.apiLog(request, cur, false);//¼ÇÂ¼Ê§°ÜÈÕÖ¾
+			ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS,"ç”¨æˆ·ä¸å­˜åœ¨");
+			apiFilterHelper.apiLog(request, cur, false);//è®°å½•å¤±è´¥æ—¥å¿—
 			return;
 		}
 		String sign = request.getParameter(ApiSysParamConstants.SIGN);
 		String privateKey = getPrivateKey(apiUser, request);
-		//Ç©ÃûĞ£Ñé
+		//ç­¾åæ ¡éªŒ
 		String signData=Sign.signMD5(ApiFilterHelper.getTreeMap(request), privateKey);
 		if (!StringUtils.equalsIgnoreCase(sign, signData)) {
-			ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS,"Ğ£ÑéÇ©Ãû´íÎó!");
-			apiFilterHelper.apiLog(request, cur, false);//¼ÇÂ¼Ê§°ÜÈÕÖ¾
+			ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS,"æ ¡éªŒç­¾åé”™è¯¯!");
+			apiFilterHelper.apiLog(request, cur, false);//è®°å½•å¤±è´¥æ—¥å¿—
 			return;
 		}
 		
-		//È¨ÏŞĞ£Ñé
+		//æƒé™æ ¡éªŒ
 		boolean hasRights = checkRights(apiUser, request);
 		if(!hasRights){
-			ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS,"Ã»ÓĞÈ¨ÏŞ");
-			apiFilterHelper.apiLog(request, cur, false);//¼ÇÂ¼Ê§°ÜÈÕÖ¾
+			ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS,"æ²¡æœ‰æƒé™");
+			apiFilterHelper.apiLog(request, cur, false);//è®°å½•å¤±è´¥æ—¥å¿—
 			return;
 		}
 		
-		//×ÛÉÏÌõ¼şĞ£ÑéÍ¨¹ı
+		//ç»¼ä¸Šæ¡ä»¶æ ¡éªŒé€šè¿‡
 		try{
-			//±£´æµ±Ç°ÊÚÈ¨ÓÃ»§
+			//ä¿å­˜å½“å‰æˆæƒç”¨æˆ·
 			ApiUserExtra userExtra = apiMobileService.getApiUserExtraById(apiUser.getId());
 			apiAuthLocal.set(new ApiAuth(apiUser, userExtra));
-			//Ö´ĞĞÏÂÃæ·½·¨Á´
+			//æ‰§è¡Œä¸‹é¢æ–¹æ³•é“¾
 			chain.doFilter(request, response);
 		}finally{
-			//Çå³ıµ±Ç°ÊÚÈ¨ÓÃ»§
+			//æ¸…é™¤å½“å‰æˆæƒç”¨æˆ·
 			apiAuthLocal.set(null);
-			//¼ÇÂ¼³É¹¦ÈÕÖ¾
+			//è®°å½•æˆåŠŸæ—¥å¿—
 			apiFilterHelper.apiLog(request, cur, true);
 		}
 		

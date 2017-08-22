@@ -47,7 +47,7 @@ public class ApiAuthenticationFilter extends GenericFilterBean {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 		long cur = System.currentTimeMillis();
-		// ¿ªÊ¼´¦Àí ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// å¼€å§‹å¤„ç† ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		String urlRoles = helper.getFirstMatchUrlRoles(request);
 		boolean success = true;
 		if(StringUtils.isNotBlank(urlRoles)){
@@ -60,15 +60,15 @@ public class ApiAuthenticationFilter extends GenericFilterBean {
 				success = false;
 				ApiFilterHelper.writeErrorResponse(response, result.getErrcode(), result.getMsg());
 			}
-		}else{//Î´Æ¥Åä½ÇÉ«
-			ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS, "Ã»ÓĞÈ¨ÏŞ");
+		}else{//æœªåŒ¹é…è§’è‰²
+			ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS, "æ²¡æœ‰æƒé™");
 			success = false;
 		}
 		try{
 			if(success) {
 				chain.doFilter(request, response);
 			}
-		}finally{//×öÇåÀí
+		}finally{//åšæ¸…ç†
 			ApiAuthLocal.set(null);
 			apiFilterHelper.apiLog(request, cur, success);
 		}
@@ -83,14 +83,14 @@ public class ApiAuthenticationFilter extends GenericFilterBean {
 	
 	public ErrorCode checkRights(ApiUser apiUser, HttpServletRequest request) {
 		if(apiUser == null){
-			return ErrorCode.getFailure(ApiConstant.CODE_PARTNER_NOT_EXISTS, "ÓÃ»§²»´æÔÚ»òÃ»È¨ÏŞ");
+			return ErrorCode.getFailure(ApiConstant.CODE_PARTNER_NOT_EXISTS, "ç”¨æˆ·ä¸å­˜åœ¨æˆ–æ²¡æƒé™");
 		}
 		if(!apiUser.isEnabled()){
-			return ErrorCode.getFailure(ApiConstant.CODE_PARTNER_NORIGHTS, "Ã»ÓĞÈ¨ÏŞ");
+			return ErrorCode.getFailure(ApiConstant.CODE_PARTNER_NORIGHTS, "æ²¡æœ‰æƒé™");
 		}
 		boolean hasRights = helper.hasRights(apiUser.getRoles(), request);
 		if(!hasRights){
-			return ErrorCode.getFailure(ApiConstant.CODE_PARTNER_NORIGHTS, "Ã»ÓĞÈ¨ÏŞ");
+			return ErrorCode.getFailure(ApiConstant.CODE_PARTNER_NORIGHTS, "æ²¡æœ‰æƒé™");
 		}
 		return ErrorCode.SUCCESS;
 	}

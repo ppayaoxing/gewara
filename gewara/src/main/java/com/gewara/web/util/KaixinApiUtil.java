@@ -20,7 +20,7 @@ import com.gewara.util.VmUtils;
 
 
 /**
- * ¿ªĞÄAPIµ÷ÓÃ
+ * å¼€å¿ƒAPIè°ƒç”¨
  * @author acerge(acerge@163.com)
  * @since 4:53:06 PM Sep 14, 2010
  */
@@ -28,7 +28,7 @@ public abstract class KaixinApiUtil {
 	//private static final String APP_ID = "100001944";
 	private static final String API_URL = "http://rest.kaixin001.com/api/rest.php";
 	/**
-	 * »ñÈ¡µ±Ç°µÇÂ¼ÓÃ»§ID
+	 * è·å–å½“å‰ç™»å½•ç”¨æˆ·ID
 	 * @param sessionKey
 	 * @return userid
 	 */
@@ -46,9 +46,9 @@ public abstract class KaixinApiUtil {
 		return ""+userid;
 	}
 	/**
-	 * ²éÑ¯ÓÃ»§ĞÅÏ¢
+	 * æŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯
 	 * @param sessionKey
-	 * @param uidList ÓÃ»§ID
+	 * @param uidList ç”¨æˆ·ID
 	 * @return List<Map(uid,online,gender,logo50,name....)>
 	 */
 	public static Map<String/*uid*/, Map> getUserInfoMap(String sessionKey, List<String> uidList, Config config){
@@ -60,9 +60,9 @@ public abstract class KaixinApiUtil {
 		return result;
 	}
 	/**
-	 * ²éÑ¯ÓÃ»§ĞÅÏ¢
+	 * æŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯
 	 * @param sessionKey
-	 * @param uidList ÓÃ»§ID
+	 * @param uidList ç”¨æˆ·ID
 	 * @return List<Map(uid,online,gender,logo50,name....)>
 	 */
 	public static List<Map> getUserInfoList(String sessionKey, List<String> uidList, Config config){
@@ -75,9 +75,9 @@ public abstract class KaixinApiUtil {
 		return result;
 	}
 	/**
-	 * ²éÑ¯ÓÃ»§ĞÅÏ¢
+	 * æŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯
 	 * @param sessionKey
-	 * @param uids Ó¢ÎÄ¶ººÅ·Ö¸ô,×î¶à50¸ö
+	 * @param uids è‹±æ–‡é€—å·åˆ†éš”,æœ€å¤š50ä¸ª
 	 * @return List<Map(uid,online,gender,logo50,name....)>
 	 */
 	public static List<Map> getUserInfoList(String sessionKey, String uids, Config config){
@@ -91,7 +91,7 @@ public abstract class KaixinApiUtil {
 		return userList;
 	}
 	/**
-	 * »ñÈ¡µ±Ç°µÇÂ¼ÓÃ»§µÄÅóÓÑIDÁĞ±í
+	 * è·å–å½“å‰ç™»å½•ç”¨æˆ·çš„æœ‹å‹IDåˆ—è¡¨
 	 * @param sessionKey
 	 * @return
 	 */
@@ -105,9 +105,9 @@ public abstract class KaixinApiUtil {
 		return friendidList;
 	}
 	/**
-	 * ²éÑ¯µ±Ç°µÇÂ¼ÓÃ»§µÄÅóÓÑÁĞ±í
+	 * æŸ¥è¯¢å½“å‰ç™»å½•ç”¨æˆ·çš„æœ‹å‹åˆ—è¡¨
 	 * @param sessionKey
-	 * @param uids Ó¢ÎÄ¶ººÅ·Ö¸ô,×î¶à50¸ö
+	 * @param uids è‹±æ–‡é€—å·åˆ†éš”,æœ€å¤š50ä¸ª
 	 * @return List<Map(uid,online,gender,logo50,....)>
 	 */
 	public static List<Map> getFriendList(String sessionKey, Config config){
@@ -136,7 +136,7 @@ public abstract class KaixinApiUtil {
 			}
 		}
 		pstr += config.getString("kaixinsecretkey");
-		//Éú³ÉÇ©Ãû
+		//ç”Ÿæˆç­¾å
 		String sign = StringUtil.md5(pstr);
 		params.put("sig", sign);
 	}
