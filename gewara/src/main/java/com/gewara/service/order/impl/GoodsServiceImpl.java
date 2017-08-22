@@ -63,6 +63,16 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 	public void setMonitorService(MonitorService monitorService) {
 		this.monitorService = monitorService;
 	}
+
+	/** 查询商品列表(通用)
+	 * @param clazz
+	 * @param tag
+	 * @param relatedid
+	 * @param from
+	 * @param maxnum
+	 * @param <T>
+	 * @return
+	 */
 	@Override
 	public <T extends BaseGoods> List<T> getCurGoodsList(Class<T> clazz, String tag, Long relatedid, int from, int maxnum) {
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);

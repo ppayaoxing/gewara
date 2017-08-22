@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ import com.gewara.util.RelatedHelper;
 import com.gewara.util.StringUtil;
 
 /**
- * ÎªÁËĞ´Ò»Ğ©ControllerÖĞ³öÏÖµÄÒ»Ğ©¹²ÓÃ·½·¨
+ * ä¸ºäº†å†™ä¸€äº›Controllerä¸­å‡ºç°çš„ä¸€äº›å…±ç”¨æ–¹æ³•
  * @author acerge(acerge@163.com)
  * @since 7:39:47 PM Sep 23, 2011
  */
@@ -54,7 +55,7 @@ public class ControllerService {
 	@Autowired@Qualifier("blogService")
 	protected BlogService blogService;
 	/**
-	 * ÓÃÀ´×öÑéÖ¤Âë
+	 * ç”¨æ¥åšéªŒè¯ç 
 	 * @param request
 	 * @param captcha
 	 * @return
@@ -63,7 +64,7 @@ public class ControllerService {
 		return validateCaptcha(captchaId+CAPTCHAPRE, captcha, ip);
 	}
 	/**
-	 * ÓÃÀ´×öÑéÖ¤Âë
+	 * ç”¨æ¥åšéªŒè¯ç 
 	 * @param request
 	 * @param captcha
 	 * @return
@@ -77,17 +78,17 @@ public class ControllerService {
 		}
 		return validCaptcha;
 	}
-	//ÓÃ»§¹²ÓÃÊı¾İ
+	//ç”¨æˆ·å…±ç”¨æ•°æ®
 	public Map getCommonData(ModelMap modelMap, Member logonMember, Long memberid) {
 		Member member = daoService.getObject(Member.class, memberid);
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, memberid);
-		Map model = new HashMap();
+		Map model = Maps.newHashMap();
 		model.put("member", member);
 		addCacheMember(modelMap, memberid);
 		model.put("memberInfo", memberInfo);
 		model.put("logonMember", logonMember);
 		
-		//ÊÇÅóÓÑ/¹Ø×¢
+		//æ˜¯æœ‹å‹/å…³æ³¨
 		if(logonMember.getId().equals(memberid)){
 			model.put("isFriend", false);
 			model.put("isMyFriend", false);
@@ -98,7 +99,7 @@ public class ControllerService {
 		}
 		return model;
 	}
-	// VO±£´æotherinfo
+	// VOä¿å­˜otherinfo
 	public Map<String, Object> getAndSetOtherinfo(String otherinfo, List<String> itemList, HttpServletRequest request){
 		Map<String, Object> otherinfoMap = JsonUtils.readJsonToMap(otherinfo);
 		for(String otheritem: itemList){
@@ -140,7 +141,7 @@ public class ControllerService {
 	private void addCacheMember(ModelMap model, Long memberid) {
 		Map<Long, Map> cacheMemberMap = (Map<Long, Map>) model.get("cacheMemberMap");
 		if(cacheMemberMap==null){
-			cacheMemberMap = new HashMap<Long, Map>();
+			cacheMemberMap = Maps.newHashMap();
 			model.put("cacheMemberMap", cacheMemberMap);
 		}
 		Map singleInfo = memberService.getCacheMemberInfoMap(memberid);

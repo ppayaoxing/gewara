@@ -59,6 +59,9 @@ import com.gewara.web.util.PageUtil;
 import com.gewara.xmlbind.activity.RemoteActivity;
 import com.gewara.xmlbind.bbs.Comment;
 
+/**
+ * gewaraç§¯åˆ†
+ */
 @Controller
 public class ExchangeController extends AnnotationController {
 	private static final String pubSalePriKey = "x#abcd";
@@ -117,13 +120,14 @@ public class ExchangeController extends AnnotationController {
 	public void setAgendaService(AgendaService agendaService) {
 		this.agendaService = agendaService;
 	}
-	
+
 	@RequestMapping("/exchange/point/index.xhtml")
 	public String exchangePointList(@CookieValue(value=LOGIN_COOKIE_NAME, required=false)String sessid,
 			HttpServletRequest request, ModelMap model, HttpServletResponse response){
 		String ip = WebUtils.getRemoteIp(request);
 		Member member = loginService.getLogonMemberBySessid(ip, sessid);
 		if(member!=null)model.putAll(controllerService.getCommonData(model, member, member.getId()));
+		/** ç§¯åˆ†å…‘æ¢å•†å“åˆ—è¡¨*/
 		List<Goods> goodsList = goodsService.getCurGoodsList(Goods.class, GoodsConstant.GOODS_TAG_POINT, null, 0, 30);
 		GoodsFilterHelper.goodsFilter(goodsList, PartnerConstant.GEWA_SELF);
 		model.put("goodsList", goodsList);
@@ -185,7 +189,7 @@ public class ExchangeController extends AnnotationController {
 	public String exchangePointDetail(@CookieValue(value=LOGIN_COOKIE_NAME, required=false)String sessid,
 			HttpServletRequest request, Long gid, ModelMap model){
 		Goods goods = daoService.getObject(Goods.class, gid);
-		if(goods==null) return showMessage(model, "¸ÃÊı¾İ²»´æÔÚ£¡");
+		if(goods==null) return showMessage(model, "è¯¥æ•°æ®ä¸å­˜åœ¨ï¼");
 		String ip = WebUtils.getRemoteIp(request);
 		Member member = loginService.getLogonMemberBySessid(ip, sessid);
 		if(member!=null){
@@ -217,7 +221,7 @@ public class ExchangeController extends AnnotationController {
 				sale = saleList.get(0);
 			}
 		}
-		if(sale==null || sale.isClose()) return show404(model, "¸Ã¾ºÅÄ²»´æÔÚ»ò±»É¾³ı£¡");
+		if(sale==null || sale.isClose()) return show404(model, "è¯¥ç«æ‹ä¸å­˜åœ¨æˆ–è¢«åˆ é™¤ï¼");
 		DiaryBase diary = diaryService.getDiaryBase(3106298L);
 		model.put("sale", sale);
 		model.put("diary", diary);
@@ -225,7 +229,7 @@ public class ExchangeController extends AnnotationController {
 			model.put("diaryBody", blogService.getDiaryBody(diary.getId()));
 		}
 		
-		// 5Ìõ×îĞÂ¾ºÅÄ
+		// 5æ¡æœ€æ–°ç«æ‹
 		List<PubSale> saleList = pubSaleService.getPubSaleList(null, Status.Y, 0, 5);
 		model.put("saleListMap", BeanUtil.getBeanMapList(saleList, "id", "limg", "name"));
 		return "exchange/pubsale/index.vm";
@@ -241,9 +245,9 @@ public class ExchangeController extends AnnotationController {
 		Long memberid = null;
 		Long cur = System.currentTimeMillis();
 		Timestamp curtime = new Timestamp(cur);
-		if(sale.isSoon()) { 		//¼´½«¾ºÅÄ
+		if(sale.isSoon()) { 		//å³å°†ç«æ‹
 			countdown = sale.getBegintime().getTime() - cur;
-		}else if(sale.isJoin()){ //ÕıÔÚ¾ºÅÄ
+		}else if(sale.isJoin()){ //æ­£åœ¨ç«æ‹
 			countdown = sale.getLasttime().getTime() - cur;
 			if(countdown<=0 || sale.isEnd2()) {
 				sale.setStatus(Status.Y);
@@ -290,7 +294,7 @@ public class ExchangeController extends AnnotationController {
 			HttpServletRequest request, Long sid, ModelMap model) {
 		String ip = WebUtils.getRemoteIp(request);
 		Member member = loginService.getLogonMemberBySessid(ip, sessid);
-		if(member==null) return showJsonError(model, "ÇëÏÈµÇÂ¼£¡");
+		if(member==null) return showJsonError(model, "è¯·å…ˆç™»å½•ï¼");
 		Timestamp curtime = new Timestamp(System.currentTimeMillis());
 		PubSale sale = daoService.getObject(PubSale.class, sid);
 		if(sale == null) return showJsonError_NOT_FOUND(model);
@@ -298,24 +302,24 @@ public class ExchangeController extends AnnotationController {
 			sale.setStatus(Status.Y);
 			daoService.saveObject(sale);
 		}
-		if(!StringUtils.equals(sale.getStatus(), Status.Y)) return showJsonError(model, "¾ºÅÄÎ´½áÊø£¡");
-		if(!StringUtils.equals(sale.getMemberid()+"", member.getId()+"")) return showJsonError(model, "·Ç¾ºÅÄ³É¹¦ÓÃ»§£¡");
+		if(!StringUtils.equals(sale.getStatus(), Status.Y)) return showJsonError(model, "ç«æ‹æœªç»“æŸï¼");
+		if(!StringUtils.equals(sale.getMemberid()+"", member.getId()+"")) return showJsonError(model, "éç«æ‹æˆåŠŸç”¨æˆ·ï¼");
 		Timestamp totime = DateUtil.addDay(sale.getEndtime(), 1);
 		int paySuccessCount = pubSaleService.getMemberPubSaleOrderCountByMemberid(sale.getMemberid(), sale.getId(), sale.getBegintime(), totime, null);
-		if(paySuccessCount > 0) return showJsonError(model, "ÄãÒÑ³É¹¦Ö§¸¶£¡");
+		if(paySuccessCount > 0) return showJsonError(model, "ä½ å·²æˆåŠŸæ”¯ä»˜ï¼");
 		Long orderid = pubSaleService.stopPubSale(sale);
-		if(orderid==null) return showJsonError(model, "¶©µ¥Òì³££¡");
+		if(orderid==null) return showJsonError(model, "è®¢å•å¼‚å¸¸ï¼");
 		return showJsonSuccess(model, orderid+"");
 	}
 	@RequestMapping("/exchange/pubsale/join.shtml")
 	public String join(@CookieValue(value=LOGIN_COOKIE_NAME, required=false)String sessid,
 			HttpServletRequest request, Integer price, Long sid, ModelMap model) {
-		if(price == null) return showJsonError(model, "²ÎÊı´íÎó£¡");
+		if(price == null) return showJsonError(model, "å‚æ•°é”™è¯¯ï¼");
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
 		PubSale sale = daoService.getObject(PubSale.class, sid);
-		if(sale == null || sale.isClose()) return showJsonError(model, "¾ºÅÄ²»´æÔÚ»ò±»É¾³ı£¡");
-		if(sale.isEnd(cur)) return showJsonError(model, "¾ºÅÄÒÑ½áÊø£¡");
-		if(Status.Y.equals(sale.getStatus())) return showJsonError(model, "¾ºÅÄÒÑ½áÊø£¡");
+		if(sale == null || sale.isClose()) return showJsonError(model, "ç«æ‹ä¸å­˜åœ¨æˆ–è¢«åˆ é™¤ï¼");
+		if(sale.isEnd(cur)) return showJsonError(model, "ç«æ‹å·²ç»“æŸï¼");
+		if(Status.Y.equals(sale.getStatus())) return showJsonError(model, "ç«æ‹å·²ç»“æŸï¼");
 		String ip = WebUtils.getRemoteIp(request);
 		Member member = loginService.getLogonMemberBySessid(ip, sessid);
 		if(member == null) return showJsonError_NOT_LOGIN(model);
@@ -334,12 +338,12 @@ public class ExchangeController extends AnnotationController {
 					}
 				} catch (HibernateOptimisticLockingFailureException e) {
 					dbLogger.warn(StringUtil.getExceptionTrace(e));
-					if(i==2) return showJsonError(model, "¾ºÅÄÊ§°Ü£¬ÇëÖØÊÔ£¡");
+					if(i==2) return showJsonError(model, "ç«æ‹å¤±è´¥ï¼Œè¯·é‡è¯•ï¼");
 				}
 			}
 		}
 		
-		return showJsonError(model, "³ö¼ÛÊ§°Ü£¬×îĞÂ¼Û¸ñÒÑ¸ü¸ÄÎª¡°" + sale.gainRprice(sale.getCurprice()) + "Ôª¡±£¡");
+		return showJsonError(model, "å‡ºä»·å¤±è´¥ï¼Œæœ€æ–°ä»·æ ¼å·²æ›´æ”¹ä¸ºâ€œ" + sale.gainRprice(sale.getCurprice()) + "å…ƒâ€ï¼");
 	}
 	@RequestMapping("/exchange/pubsale/pmList.xhtml")
 	public String pmList(@CookieValue(value=LOGIN_COOKIE_NAME, required=false)String sessid,
@@ -395,7 +399,7 @@ public class ExchangeController extends AnnotationController {
 		}
 		return null;
 	}
-	//¾ºÅÄ¼ÓÈëÎÒµÄÉú»î
+	//ç«æ‹åŠ å…¥æˆ‘çš„ç”Ÿæ´»
 	@RequestMapping("/exchange/pubsale/pubSaleAgenda.xhtml")
 	public String addAgenda(@CookieValue(value=LOGIN_COOKIE_NAME, required=false)String sessid,
 			HttpServletRequest request, Long sid, Long aid, ModelMap model){
@@ -405,17 +409,17 @@ public class ExchangeController extends AnnotationController {
 			return gotoLogin("/exchange/pubsale/pubSaleAgenda.xhtml", request, model);
 		}
 		ErrorCode<RemoteActivity> code = synchActivityService.getRemoteActivity(aid);
-		if(!code.isSuccess()) return show404(model, "²ÎÊı´íÎó£¬¾ºÅÄÊı¾İ²»´æÔÚ£¡");
+		if(!code.isSuccess()) return show404(model, "å‚æ•°é”™è¯¯ï¼Œç«æ‹æ•°æ®ä¸å­˜åœ¨ï¼");
 		RemoteActivity activity = code.getRetval();
 		PubSale psale = daoService.getObject(PubSale.class, sid);
-		if(psale==null || psale.isClose()) return show404(model, "²ÎÊı´íÎó£¬¾ºÅÄÊı¾İ²»´æÔÚ£¡");
-		if(!psale.isSoon()) return show404(model, "ÇÀÆ±ÒÑ¾­¿ªÊ¼ÁË¡­¡­");
-		//if(PubSale.STATUS_Y.equals(psale.getStatus())) return show404(model, "¾ºÅÄÒÑ½áÊø£¬²»ÄÜÌí¼ÓÉú»î");
+		if(psale==null || psale.isClose()) return show404(model, "å‚æ•°é”™è¯¯ï¼Œç«æ‹æ•°æ®ä¸å­˜åœ¨ï¼");
+		if(!psale.isSoon()) return show404(model, "æŠ¢ç¥¨å·²ç»å¼€å§‹äº†â€¦â€¦");
+		//if(PubSale.STATUS_Y.equals(psale.getStatus())) return show404(model, "ç«æ‹å·²ç»“æŸï¼Œä¸èƒ½æ·»åŠ ç”Ÿæ´»");
 		Agenda agenda = agendaService.getAgendaByAction(psale.getId(), TagConstant.AGENDA_ACTION_PUBSALE, member.getId());
 		if(agenda != null){
 			Map jsonMap = new HashMap();
 			Map errorMap = new HashMap();
-			errorMap.put("error", "ÄãÒÑÉèÖÃ¹ıÉú»î°²ÅÅ£¡");
+			errorMap.put("error", "ä½ å·²è®¾ç½®è¿‡ç”Ÿæ´»å®‰æ’ï¼");
 			jsonMap.put("errorMap", errorMap);
 			return showJsonError(model, jsonMap);
 		}
@@ -431,19 +435,19 @@ public class ExchangeController extends AnnotationController {
 		Member member = loginService.getLogonMemberBySessid(ip, sessid);
 		ErrorCode<RemoteActivity> code = synchActivityService.getRemoteActivity(aid);
 		if(!code.isSuccess()) {
-			return show404(model, "²ÎÊı´íÎó£¬¾ºÅÄÊı¾İ²»´æÔÚ£¡");
+			return show404(model, "å‚æ•°é”™è¯¯ï¼Œç«æ‹æ•°æ®ä¸å­˜åœ¨ï¼");
 		}
 		RemoteActivity activity = code.getRetval();
 		if(member==null) return gotoLogin("/exchange/pubsale/pubSaleAgenda.xhtml", request, model);
 		PubSale psale = daoService.getObject(PubSale.class, sid);
-		if(psale==null || psale.isClose()) return show404(model, "²ÎÊı´íÎó£¬¾ºÅÄÊı¾İ²»´æÔÚ£¡");
-		if(!psale.isSoon()) return show404(model, "ÇÀÆ±ÒÑ¾­¿ªÊ¼ÁË¡­¡­");
-		//if(PubSale.STATUS_Y.equals(psale.getStatus())) return show404(model, "¾ºÅÄÒÑ½áÊø£¬²»ÄÜÌí¼ÓÉú»î");
+		if(psale==null || psale.isClose()) return show404(model, "å‚æ•°é”™è¯¯ï¼Œç«æ‹æ•°æ®ä¸å­˜åœ¨ï¼");
+		if(!psale.isSoon()) return show404(model, "æŠ¢ç¥¨å·²ç»å¼€å§‹äº†â€¦â€¦");
+		//if(PubSale.STATUS_Y.equals(psale.getStatus())) return show404(model, "ç«æ‹å·²ç»“æŸï¼Œä¸èƒ½æ·»åŠ ç”Ÿæ´»");
 		Agenda agenda = agendaService.getAgendaByAction(psale.getId(), TagConstant.AGENDA_ACTION_PUBSALE, member.getId());
 		if(agenda != null){
 			Map jsonMap = new HashMap();
 			Map errorMap = new HashMap();
-			errorMap.put("error", "ÄãÒÑÉèÖÃ¹ıÉú»î°²ÅÅ£¡");
+			errorMap.put("error", "ä½ å·²è®¾ç½®è¿‡ç”Ÿæ´»å®‰æ’ï¼");
 			jsonMap.put("errorMap", errorMap);
 			return showJsonError(model, jsonMap);
 		}
@@ -456,16 +460,16 @@ public class ExchangeController extends AnnotationController {
 			HttpServletRequest request, Long sid,Long aid, ModelMap model){
 		String ip = WebUtils.getRemoteIp(request);
 		Member member = loginService.getLogonMemberBySessid(ip, sessid);
-		if(member==null) return showJsonError(model, "ÇëÏÈµÇÂ¼£¡");
+		if(member==null) return showJsonError(model, "è¯·å…ˆç™»å½•ï¼");
 		String opkey = OperationService.TAG_SUBJECTAGENDA + member.getId();
 		ErrorCode<RemoteActivity> code = synchActivityService.getRemoteActivity(aid);
 		if(!code.isSuccess()) {
-			return showJsonError(model, "²ÎÊı´íÎó£¬5ÔªÇÀÆ±»î¶¯²»´æÔÚ£¡");
+			return showJsonError(model, "å‚æ•°é”™è¯¯ï¼Œ5å…ƒæŠ¢ç¥¨æ´»åŠ¨ä¸å­˜åœ¨ï¼");
 		}
 		GrabTicketSubject subject = daoService.getObject(GrabTicketSubject.class, sid);
-		if(subject == null) return showJsonError(model, "²ÎÊı´íÎó£¬5ÔªÇÀÆ±»î¶¯²»´æÔÚ£¡");
-		if(StringUtils.equals(subject.getStatus(), GrabTicketSubject.STATUS_STOP)) return showJsonError(model, "±¾ÆÚ5ÔªÇÀÆ±»î¶¯ÒÑ½áÊø£¡");
-		if(subject.getStarttime().before(DateUtil.currentTime()))return showJsonError(model, "5ÔªÇÀÆ±ÒÑ¿ªÊ¼£¬²»ÄÜÌí¼ÓÉú»î");
+		if(subject == null) return showJsonError(model, "å‚æ•°é”™è¯¯ï¼Œ5å…ƒæŠ¢ç¥¨æ´»åŠ¨ä¸å­˜åœ¨ï¼");
+		if(StringUtils.equals(subject.getStatus(), GrabTicketSubject.STATUS_STOP)) return showJsonError(model, "æœ¬æœŸ5å…ƒæŠ¢ç¥¨æ´»åŠ¨å·²ç»“æŸï¼");
+		if(subject.getStarttime().before(DateUtil.currentTime()))return showJsonError(model, "5å…ƒæŠ¢ç¥¨å·²å¼€å§‹ï¼Œä¸èƒ½æ·»åŠ ç”Ÿæ´»");
 		boolean allow = operationService.isAllowOperation(opkey, 5, OperationService.ONE_DAY, 1);
 		if(!allow) {
 			Map jsonMap = new HashMap();
@@ -478,7 +482,7 @@ public class ExchangeController extends AnnotationController {
 		if(agenda != null){
 			Map jsonMap = new HashMap();
 			Map errorMap = new HashMap();
-			errorMap.put("error", "ÄãÒÑÉèÖÃ¹ıÉú»î°²ÅÅ£¡");
+			errorMap.put("error", "ä½ å·²è®¾ç½®è¿‡ç”Ÿæ´»å®‰æ’ï¼");
 			jsonMap.put("errorMap", errorMap);
 			return showJsonError(model, jsonMap);
 		}
@@ -493,21 +497,21 @@ public class ExchangeController extends AnnotationController {
 			HttpServletRequest request, @RequestParam("aid")Long aid, ModelMap model){
 		String ip = WebUtils.getRemoteIp(request);
 		Member member = loginService.getLogonMemberBySessid(ip, sessid);
-		if(member==null) return showJsonError(model, "ÇëÏÈµÇÂ¼£¡");
+		if(member==null) return showJsonError(model, "è¯·å…ˆç™»å½•ï¼");
 		ErrorCode<RemoteActivity> code = synchActivityService.getRemoteActivity(aid);
 		if(!code.isSuccess()) {
-			return showJsonError(model, "²ÎÊı´íÎó£¬»î¶¯²»´æÔÚ£¡");
+			return showJsonError(model, "å‚æ•°é”™è¯¯ï¼Œæ´»åŠ¨ä¸å­˜åœ¨ï¼");
 		}
 		RemoteActivity activity = code.getRetval();
-		if(activity.isOver()) return showJsonError(model, "´Ë»î¶¯ÒÑ½áÊø£¡");
-		if(activity.isStart())return showJsonError(model, "»î¶¯ÒÑ¿ªÊ¼£¬²»ÄÜÌí¼ÓÉú»î");
+		if(activity.isOver()) return showJsonError(model, "æ­¤æ´»åŠ¨å·²ç»“æŸï¼");
+		if(activity.isStart())return showJsonError(model, "æ´»åŠ¨å·²å¼€å§‹ï¼Œä¸èƒ½æ·»åŠ ç”Ÿæ´»");
 		String action = TagConstant.AGENDA_ACTION_JOIN_ACTIVITY;
 		if(StringUtils.equals(activity.getSign(), RemoteActivity.SIGN_RESERVE)) action = TagConstant.AGENDA_ACTION_JOIN_RESERVE;
 		Agenda agenda = agendaService.getAgendaByAction(activity.getId(), action, member.getId());
 		if(agenda != null){
 			Map jsonMap = new HashMap();
 			Map errorMap = new HashMap();
-			errorMap.put("error", "ÄãÒÑÉèÖÃ¹ıÉú»î°²ÅÅ£¡");
+			errorMap.put("error", "ä½ å·²è®¾ç½®è¿‡ç”Ÿæ´»å®‰æ’ï¼");
 			jsonMap.put("errorMap", errorMap);
 			return showJsonError(model, jsonMap);
 		}
@@ -525,26 +529,26 @@ public class ExchangeController extends AnnotationController {
 		if(member == null) return showError_NOT_LOGIN(model);
 		String opkey = OperationService.TAG_SUBJECTAGENDA + member.getId();
 		Agenda agenda = daoService.getObject(Agenda.class, new Long(agendaid));
-		if(agenda == null) return showJsonError(model, "¸ÃÉú»îÊı¾İ²»´æÔÚ!");
-		//¶Ô×Ô¼º·¢ËÍÊÖ»úºÅÂë
-		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "ÊÖ»úºÅ¸ñÊ½²»ÕıÈ·");
+		if(agenda == null) return showJsonError(model, "è¯¥ç”Ÿæ´»æ•°æ®ä¸å­˜åœ¨!");
+		//å¯¹è‡ªå·±å‘é€æ‰‹æœºå·ç 
+		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "æ‰‹æœºå·æ ¼å¼ä¸æ­£ç¡®");
 		boolean allow = operationService.updateOperation(opkey, 5, OperationService.ONE_DAY, 1);
-		if(!allow) return showJsonError(model, "²Ù×÷¹ıÓÚÆµ·±£¡");
+		if(!allow) return showJsonError(model, "æ“ä½œè¿‡äºé¢‘ç¹ï¼");
 		String msgContent = "";
 		Object relate = null;
-		msgContent += "Äã°²ÅÅÁË:";
+		msgContent += "ä½ å®‰æ’äº†:";
 		if(agenda.getStartdate()!=null)
-			msgContent += DateUtil.format(agenda.getStartdate(), "MMÔÂddÈÕ");
+			msgContent += DateUtil.format(agenda.getStartdate(), "MMæœˆddæ—¥");
 		if(StringUtils.isNotBlank(agenda.getStarttime()))
 			msgContent += agenda.getStarttime();
 		if(agenda.getRelatedid() != null){
 			relate = relateService.getRelatedObject(agenda.getTag(), agenda.getRelatedid());
-			msgContent += " ÔÚ"+ BeanUtil.get(relate, "name");
+			msgContent += " åœ¨"+ BeanUtil.get(relate, "name");
 		}
 		if(StringUtils.isNotBlank(agenda.getTitle())){
 			msgContent += " "+agenda.getTitle();
 		}
-		//×ÖÊı³¬¹ı60¸ö×Ö£¬×Ô¶¯½ØÈ¡60¸ö×Ö
+		//å­—æ•°è¶…è¿‡60ä¸ªå­—ï¼Œè‡ªåŠ¨æˆªå–60ä¸ªå­—
 		if(msgContent.length()>60){
 			msgContent = msgContent.substring(0, 60);
 		}

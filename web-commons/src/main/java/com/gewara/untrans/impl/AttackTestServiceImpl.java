@@ -37,16 +37,16 @@ import com.gewara.util.WebLogger;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public class AttackTestServiceImpl implements AttackTestService, InitializingBean {
 	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
-	private Set<String> whiteList = new CopyOnWriteArraySet();	//°×Ãûµ¥
-	private Map<String, BlackMatcher> blackMap = new ConcurrentHashMap<String, BlackMatcher>(1000, 0.75f, 32);	//ºÚÃûµ¥
-	private Map<String, BlackMatcher> blackMap2 = new ConcurrentHashMap<String, BlackMatcher>(1000, 0.75f, 32);	//ºÚÃûµ¥2,Íø¶Î
+	private Set<String> whiteList = new CopyOnWriteArraySet();	//ç™½åå•
+	private Map<String, BlackMatcher> blackMap = new ConcurrentHashMap<String, BlackMatcher>(1000, 0.75f, 32);	//é»‘åå•
+	private Map<String, BlackMatcher> blackMap2 = new ConcurrentHashMap<String, BlackMatcher>(1000, 0.75f, 32);	//é»‘åå•2,ç½‘æ®µ
 	private Map<String/*url*/, String /*regScript*/> urlConfigMap = new ConcurrentHashMap<String, String>();
 	private boolean disabled = false;
-	private int recieveTimes = 0;	//ºÚÃûµ¥±ä»¯´ÎÊı
+	private int recieveTimes = 0;	//é»‘åå•å˜åŒ–æ¬¡æ•°
 	private Timestamp blackChangeTime = new Timestamp(System.currentTimeMillis());
 	private boolean loadDataFromMonitor = true;
 	@Autowired(required=false)
@@ -183,7 +183,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 			} catch (Exception e) {
 				dbLogger.error("", e);
 			}finally{
-				if(!reset && !GewaIpConfig.isLocalIp(Config.getServerIp()) && loadDataFromMonitor){//Ê§°Ü¹æ»®ÏÂ´Î£¬µ«²âÊÔ»·¾³²»ÓÃ
+				if(!reset && !GewaIpConfig.isLocalIp(Config.getServerIp()) && loadDataFromMonitor){//å¤±è´¥è§„åˆ’ä¸‹æ¬¡ï¼Œä½†æµ‹è¯•ç¯å¢ƒä¸ç”¨
 					TimerHelper.TIMER.schedule(new ResetWhiteTimerTask(), 30000);
 				}
 			}
@@ -201,7 +201,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 	/**
 	 * @param ip
 	 * @param uri
-	 * @param disableMin ½ûÓÃ·ÖÖÓ
+	 * @param disableMin ç¦ç”¨åˆ†é’Ÿ
 	 * @return
 	 */
 	private int addBlack(String ip, String uri, int disableMin){
@@ -267,7 +267,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 	
 	private boolean isBlack(String ip, String uri){
 		BlackMatcher matcher = blackMap.get(ip);
-		if(matcher ==null){//²é¿´Íø¶Î
+		if(matcher ==null){//æŸ¥çœ‹ç½‘æ®µ
 			int idx1 = ip.indexOf('.');
 			int idx2 = ip.indexOf('.', idx1+1);
 			int idx3 = ip.indexOf('.', idx2+1);
@@ -277,7 +277,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 		long cur = System.currentTimeMillis();
 		Long time = matcher.gainReleaseTime(uri);
 		if(time==null || time < cur){
-			time = matcher.gainReleaseTime(AttackConstant.ACCESS_URL_ALL);//Õû¸öIPÀ¹½Ø 
+			time = matcher.gainReleaseTime(AttackConstant.ACCESS_URL_ALL);//æ•´ä¸ªIPæ‹¦æˆª 
 		}
 		return time!=null && time > cur;
 	}
@@ -301,7 +301,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 	private class WhiteIpWatcher implements ConfigTrigger{
 		@Override
 		public void refreshCurrent(String newConfig) {
-			//°×Ãûµ¥Ö±½Ó´Óconfig¶ÁÈ¡
+			//ç™½åå•ç›´æ¥ä»configè¯»å–
 			if(StringUtils.startsWith(newConfig, "add:")){
 				List<String> ipList = Arrays.asList(StringUtils.split(newConfig.substring(4), ","));
 				whiteList.addAll(ipList);
@@ -313,7 +313,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 	}
 	
 	/**
-	 * ºÚÃûµ¥´ÓAPI»ñÈ¡×îĞÂµÄ
+	 * é»‘åå•ä»APIè·å–æœ€æ–°çš„
 	 * @return
 	 */
 	private List<BlackIp> getNewBlackList() {

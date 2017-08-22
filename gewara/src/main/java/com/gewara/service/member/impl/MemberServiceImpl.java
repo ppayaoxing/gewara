@@ -182,7 +182,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	@Override
 	public ErrorCode<String> getAndSetMemberEncode(Member member) {
 		if(!member.isEnabled()){
-			return ErrorCode.getFailure("ÕÊ»§±»½ûÓÃ£¬ÇëÁªÏµ¿Í·ş£¡");
+			return ErrorCode.getFailure("å¸æˆ·è¢«ç¦ç”¨ï¼Œè¯·è”ç³»å®¢æœï¼");
 		}
 		String time = DateUtil.format(DateUtils.addMonths(new Date(System.currentTimeMillis()), 1), "yyyyMM");
 		String pass = StringUtil.getRandomString(3) + StringUtil.md5(member.getPassword() + checkPass).substring(8, 16);
@@ -198,7 +198,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		if(StringUtils.isBlank(memberEncode)) return null;
 		Member member = (Member)cacheService.get(CacheConstant.REGION_API_LOGINAUTH, "API" + memberEncode);
 		if(member!=null){
-			//TODO:±»½ûÓÃµÄÓÃ»§ÔõÃ´°ì£¿
+			//TODO:è¢«ç¦ç”¨çš„ç”¨æˆ·æ€ä¹ˆåŠï¼Ÿ
 			return member;
 		}
 		String[] pair = memberEncode.split("@");
@@ -208,7 +208,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 					String data = PKCoderUtil.decryptString(pair[0], checkPass);
 					Long valtime = new Long(StringUtils.substring(data, data.length() - 6));
 					Long newtime = new Long(DateUtil.format(new Date(System.currentTimeMillis()), "yyyyMM"));
-					if(newtime <= valtime) {//ÓĞĞ§ÆÚÄÚ
+					if(newtime <= valtime) {//æœ‰æ•ˆæœŸå†…
 						Long memberid = new Long(data.substring(11, data.length() - 6));
 						String pass = StringUtils.substring(data, 3, 11);
 						member = baseDao.getObject(Member.class, new Long(memberid));
@@ -218,16 +218,16 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 						String mypass = StringUtil.md5(member.getPassword() + checkPass).substring(8, 16);
 						if(StringUtils.equals(pass, mypass)){
 							cacheService.set(CacheConstant.REGION_API_LOGINAUTH, "API" + memberEncode, member);
-							//ÑéÖ¤ºÏ·¨
+							//éªŒè¯åˆæ³•
 							return member;
 						}else{
-							dbLogger.warn("memberEncodeÓÃ»§µÇÂ¼´íÎó£º" + memberid);
+							dbLogger.warn("memberEncodeç”¨æˆ·ç™»å½•é”™è¯¯ï¼š" + memberid);
 						}
 					}
 				}
 			}
 		}catch(Exception e){
-			dbLogger.warn("memberEncodeÓÃ»§µÇÂ¼´íÎó£º", e);
+			dbLogger.warn("memberEncodeç”¨æˆ·ç™»å½•é”™è¯¯ï¼š", e);
 		}
 		return null;
 	}
@@ -283,7 +283,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			email = StringUtil.getRandomString(15) + "-open@" + source + ".com";
 			Member exists = getMemberByEmail(email);
 			if(exists!=null){
-				//²»¿ÉÄÜÁ½´Î¶¼Ò»Ñù°É£¿£¿£¿
+				//ä¸å¯èƒ½ä¸¤æ¬¡éƒ½ä¸€æ ·å§ï¼Ÿï¼Ÿï¼Ÿ
 				email = StringUtil.getRandomString(15) + "-open@" + source + ".com";
 			}
 		}
@@ -330,13 +330,13 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	public ErrorCode<Member> regMember(String nickname, String email, String password, Long inviteid, String invitetype, String regfrom, String citycode, String ip){
 				email = StringUtils.trim(StringUtils.lowerCase(email));
 		boolean isEmail = ValidateUtil.isEmail(email);
-		if(!isEmail)return ErrorCode.getFailure("ÓÊÏä¸ñÊ½²»ÕıÈ·£¡");
-		if(StringUtil.regMatch(email, "^[A-Z0-9._-]+@yahoo.com.cn$|^[A-Z0-9._-]+@yahoo.cn$", true)) return ErrorCode.getFailure("ÎªÁË±£Ö¤ÄúµÄºóĞø·şÎñ£¬Çë²»ÒªÊ¹ÓÃÑÅ»¢ÖĞ¹úÓÊÏä£¡");
+		if(!isEmail)return ErrorCode.getFailure("é‚®ç®±æ ¼å¼ä¸æ­£ç¡®ï¼");
+		if(StringUtil.regMatch(email, "^[A-Z0-9._-]+@yahoo.com.cn$|^[A-Z0-9._-]+@yahoo.cn$", true)) return ErrorCode.getFailure("ä¸ºäº†ä¿è¯æ‚¨çš„åç»­æœåŠ¡ï¼Œè¯·ä¸è¦ä½¿ç”¨é›…è™ä¸­å›½é‚®ç®±ï¼");
 		ErrorCode<Member> code = createMember(nickname, email, password, inviteid, invitetype, regfrom, citycode, MemberConstant.REGISTER_EMAIL, ip, "N");
 		if(!code.isSuccess()) return code;
 		Member member = code.getRetval();
 		if(inviteid != null){
-			//¼ÓºÃÓÑ
+			//åŠ å¥½å‹
 			//Friend friend = new Friend(inviteid, member.getId());
 			//Friend friend2 = new Friend(member.getId(), inviteid);
 			try {
@@ -345,9 +345,9 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 				treasure.setAction(Treasure.ACTION_COLLECT);
 				treasure.setTag(Treasure.TAG_MEMBER);
 				baseDao.saveObject(treasure);
-				//TODO: ÒÆ³ö
+				//TODO: ç§»å‡º
 				walaApiService.addTreasure(treasure);
-				//¹Ø×¢£¬·ÛË¿Êı¼ÓÒ»
+				//å…³æ³¨ï¼Œç²‰ä¸æ•°åŠ ä¸€
 				memberCountService.updateMemberCount(member.getId(), MemberStats.FIELD_ATTENTIONCOUNT, 1, true);
 				memberCountService.updateMemberCount(inviteid, MemberStats.FIELD_FANSCOUNT, 1, true);
 				
@@ -356,9 +356,9 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 				treasure1.setAction(Treasure.ACTION_COLLECT);
 				treasure1.setTag(Treasure.TAG_MEMBER);
 				baseDao.saveObject(treasure1);
-				//TODO: ÒÆ³ö
+				//TODO: ç§»å‡º
 				walaApiService.addTreasure(treasure1);
-				//¹Ø×¢£¬·ÛË¿Êı¼ÓÒ»
+				//å…³æ³¨ï¼Œç²‰ä¸æ•°åŠ ä¸€
 				memberCountService.updateMemberCount(inviteid, MemberStats.FIELD_ATTENTIONCOUNT, 1, true);
 				memberCountService.updateMemberCount(member.getId(), MemberStats.FIELD_FANSCOUNT, 1, true);
 				
@@ -382,14 +382,14 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	}
 	@Override
 	public ErrorCode<Member> regMemberWithMobile(String nickname, String mobile, String password, Long inviteid, String invitetype, String regfrom, String citycode, String ip){
-		if(!ValidateUtil.isMobile(mobile)) return ErrorCode.getFailure("ÊÖ»ú¸ñÊ½²»ÕıÈ·£¡");
+		if(!ValidateUtil.isMobile(mobile)) return ErrorCode.getFailure("æ‰‹æœºæ ¼å¼ä¸æ­£ç¡®ï¼");
 		Member member = baseDao.getObjectByUkey(Member.class, "mobile", mobile, false);
 		if(member != null){
 			MemberInfo memberInfo = baseDao.getObject(MemberInfo.class, member.getId());
 			Map<String, String> otherInfoMap = JsonUtils.readJsonToMap(memberInfo.getOtherinfo());
 			String bindstats = otherInfoMap.get(MemberConstant.TAG_SOURCE);
 			if(!StringUtils.equals(memberInfo.getSource(), MemberConstant.REGISTER_CODE) ||(StringUtils.equals(memberInfo.getSource(), MemberConstant.REGISTER_CODE) && !StringUtils.equals(bindstats, "fail"))){
-				return ErrorCode.getFailure("ÊÖ»úºÅÒÑ±»Ê¹ÓÃ£¬Çë»»Ò»¸ö£¡");
+				return ErrorCode.getFailure("æ‰‹æœºå·å·²è¢«ä½¿ç”¨ï¼Œè¯·æ¢ä¸€ä¸ªï¼");
 			}
 			member.setPassword(StringUtil.md5(password));
 			member.setNickname(nickname);
@@ -409,7 +409,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	
 	@Override
 	public ErrorCode<Member> createMemberWithBindMobile(String mobile, String checkpass, String citycode, String ip){
-		if(!ValidateUtil.isMobile(mobile)) return ErrorCode.getFailure("ÊÖ»ú¸ñÊ½²»ÕıÈ·£¡");
+		if(!ValidateUtil.isMobile(mobile)) return ErrorCode.getFailure("æ‰‹æœºæ ¼å¼ä¸æ­£ç¡®ï¼");
 		ErrorCode bindMobileCode = bindMobileService.checkBindMobile(BindConstant.TAG_REGISTERCODE, mobile, checkpass);
 		if(!bindMobileCode.isSuccess()) return ErrorCode.getFailure(bindMobileCode.getMsg());
 		
@@ -465,24 +465,24 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			String regfrom, String citycode, String source, String ip, String bindStatus){
 		boolean flag = false;
 		if(StringUtils.isBlank(password) || StringUtils.isBlank(nickname))
-			return ErrorCode.getFailure("êÇ³Æ£¬ÃÜÂëĞèÒªÈ«²¿ÌîĞ´£¡");
+			return ErrorCode.getFailure("æ˜µç§°ï¼Œå¯†ç éœ€è¦å…¨éƒ¨å¡«å†™ï¼");
 		if(!ValidateUtil.isPassword(password)){
-			return ErrorCode.getFailure("ÃÜÂë¸ñÊ½²»ÕıÈ·,Ö»ÄÜÊÇ×ÖÄ¸£¬Êı×Ö£¬ÏÂ»®Ïß£¬³¤¶È6¡ª14Î»£¡");
+			return ErrorCode.getFailure("å¯†ç æ ¼å¼ä¸æ­£ç¡®,åªèƒ½æ˜¯å­—æ¯ï¼Œæ•°å­—ï¼Œä¸‹åˆ’çº¿ï¼Œé•¿åº¦6â€”14ä½ï¼");
 		}
 		boolean matchNickname = ValidateUtil.isCNVariable(nickname, 1, 20);
-		if(!matchNickname) return ErrorCode.getFailure("ÓÃ»§êÇ³Æ¸ñÊ½²»ÕıÈ·£¬²»ÄÜ°üº¬ÌØÊâ·ûºÅ£¡");
+		if(!matchNickname) return ErrorCode.getFailure("ç”¨æˆ·æ˜µç§°æ ¼å¼ä¸æ­£ç¡®ï¼Œä¸èƒ½åŒ…å«ç‰¹æ®Šç¬¦å·ï¼");
 		boolean match = ValidateUtil.isVariable(password, 6, 14);
-		if(!match) return ErrorCode.getFailure("ÃÜÂë¸ñÊ½²»ÕıÈ·!");
+		if(!match) return ErrorCode.getFailure("å¯†ç æ ¼å¼ä¸æ­£ç¡®!");
 		if(ValidateUtil.isMobile(mobileOrEmail)){
 			boolean emailExist = isMemberMobileExists(mobileOrEmail);
-			if(emailExist) return ErrorCode.getFailure("¸ÃÊÖ»úÒÑ¾­´æÔÚ£¡");
+			if(emailExist) return ErrorCode.getFailure("è¯¥æ‰‹æœºå·²ç»å­˜åœ¨ï¼");
 			flag = true;
 		}else if(ValidateUtil.isEmail(mobileOrEmail)){
 			boolean emailExist = isMemberExists(mobileOrEmail, null);
-			if(emailExist) return ErrorCode.getFailure("¸ÃemailÒÑ¾­´æÔÚ£¡");
-		}else return ErrorCode.getFailure("ÊÖ»ú»òemail¸ñÊ½²»ÕıÈ·£¡");
+			if(emailExist) return ErrorCode.getFailure("è¯¥emailå·²ç»å­˜åœ¨ï¼");
+		}else return ErrorCode.getFailure("æ‰‹æœºæˆ–emailæ ¼å¼ä¸æ­£ç¡®ï¼");
 		boolean nickExist = isMemberExists(nickname, null);
-		if(nickExist) return ErrorCode.getFailure("¸ÃêÇ³ÆÒÑ¾­´æÔÚ£¡");
+		if(nickExist) return ErrorCode.getFailure("è¯¥æ˜µç§°å·²ç»å­˜åœ¨ï¼");
 		
 		
 		Member member = new Member(nickname);
@@ -492,7 +492,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			member.setBindStatus(bindStatus);
 		}
 		else member.setEmail(mobileOrEmail);
-		baseDao.saveObject(member);//±£´æÊı¾İ
+		baseDao.saveObject(member);//ä¿å­˜æ•°æ®
 
 		MemberInfo memberInfo = new MemberInfo(member.getId(), nickname);
 		if(StringUtils.isBlank(citycode)) citycode = AdminCityContant.CITYCODE_SH;
@@ -505,10 +505,10 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		else memberInfo.setInviteid(1L);
 		baseDao.saveObject(memberInfo);
 		
-		//ÈÕÖ¾
+		//æ—¥å¿—
 		StringBuilder msg=new StringBuilder();
-		if(flag)msg.append("ÊÖ»úºÅÂëÓÃ»§×¢²á³É¹¦");
-		else msg.append("EmailÓÃ»§×¢²á³É¹¦");
+		if(flag)msg.append("æ‰‹æœºå·ç ç”¨æˆ·æ³¨å†ŒæˆåŠŸ");
+		else msg.append("Emailç”¨æˆ·æ³¨å†ŒæˆåŠŸ");
 		dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_REGISTER, msg.toString() + member.getId());
 		return ErrorCode.getSuccessReturn(member);
 	}
@@ -531,9 +531,9 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			info.finishTask(MemberConstant.TASK_CONFIRMREG);
 			info.finishTaskOtherInfo(MemberConstant.TASK_CONFIRMREG);
 			baseDao.saveObject(info);
-			//ÓÃ»§¸ß¼¶È·ÈÏ¼Ó50»ı·Ö(´Ó100»ı·Ö¸Äµ½50»ı·Ö)
-			pointService.addPointInfo(memberid, PointConstant.SCORE_USERCONFIRM, "ÓÃ»§¸ß¼¶È·ÈÏ¼Ó50»ı·Ö", PointConstant.TAG_CONFIRM);
-			//Íê³É¸ß¼¶È·ÈÏ
+			//ç”¨æˆ·é«˜çº§ç¡®è®¤åŠ 50ç§¯åˆ†(ä»100ç§¯åˆ†æ”¹åˆ°50ç§¯åˆ†)
+			pointService.addPointInfo(memberid, PointConstant.SCORE_USERCONFIRM, "ç”¨æˆ·é«˜çº§ç¡®è®¤åŠ 50ç§¯åˆ†", PointConstant.TAG_CONFIRM);
+			//å®Œæˆé«˜çº§ç¡®è®¤
 			monitorService.saveMemberLog(info.getId(), MemberConstant.ACTION_NEWTASK, newtask, null);
 		}else {
 			if(StringUtils.equals(newtask, MemberConstant.TASK_BINDMOBILE)){
@@ -589,7 +589,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			count1 = new Integer(""+listSys.get(0));
 		}
 		
-		// Èº·¢Õ¾ÄÚĞÅ, ²éÑ¯´óÓÚµ±Ç°×î´óIDÖµ
+		// ç¾¤å‘ç«™å†…ä¿¡, æŸ¥è¯¢å¤§äºå½“å‰æœ€å¤§IDå€¼
 		Integer count2 = 0;
 		String qry = "select count(*) from JsonData t where t.tag='websiteMsg' and t.validtime > ?  and t.dkey > ?";
 		MemberInfo memberInfo = baseDao.getObject(MemberInfo.class, memberid);
@@ -601,7 +601,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			count2 = jsonDataService.countListByTag(JsonDataKey.KEY_WEBSITEMSG, DateUtil.getCurFullTimestamp());
 		}
 		
-		// mongoDB ÖĞ²éÑ¯
+		// mongoDB ä¸­æŸ¥è¯¢
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put(MongoData.ACTION_MEMBERID, memberid);
 		paramMap.put(MongoData.ACTION_MULTYWSMSG_ISREAD, "0");
@@ -643,7 +643,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	}
 	@Override
 	public Map getCacheMemberInfoMap(Long memberid) {
-		//Ò»ÌìÊ§Ğ§Ê±¼ä,¹ıÆÚºóÔÙ´ÓÊı¾İ¿âÖĞ²éÑ¯
+		//ä¸€å¤©å¤±æ•ˆæ—¶é—´,è¿‡æœŸåå†ä»æ•°æ®åº“ä¸­æŸ¥è¯¢
 		Map result = (Map) cacheService.get(CacheConstant.REGION_ONEDAY, "MI" + memberid);
 		if(result==null){
 			MemberInfo mi = baseDao.getObject(MemberInfo.class, memberid);
@@ -652,14 +652,14 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 				try {
 					cacheService.set(CacheConstant.REGION_ONEDAY, "MI" + memberid, result);
 				}catch (Exception e){
-					log.error("±£´æÍ·Ïñµ½»º´æÖĞÊ§°Ü,"+e);
+					log.error("ä¿å­˜å¤´åƒåˆ°ç¼“å­˜ä¸­å¤±è´¥,"+e);
 				}
 			}
 		}
 		return result;
 	}
 
-	/** ¸ù¾İsessid»ñÈ¡»º´æÖĞÍ·ÏñÍ¼Æ¬url
+	/** æ ¹æ®sessidè·å–ç¼“å­˜ä¸­å¤´åƒå›¾ç‰‡url
 	 * @param memberid
 	 * @return
 	 */
@@ -695,14 +695,14 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 
 	@Override
 	public void addExpForMember(Long memberId, Integer exp) {
-		//Ìí¼Ó»ı·Ö
+		//æ·»åŠ ç§¯åˆ†
 		MemberInfo memberInfo = baseDao.getObject(MemberInfo.class, memberId);
 		Integer beforeExp = memberInfo.getExpvalue();
 		Integer afterExp = beforeExp+exp;
 		if(afterExp<0) afterExp = 0;
 		memberInfo.setExpvalue(afterExp);
 		baseDao.saveObject(memberInfo);
-		//Éı¼¶¼ÇÂ¼ÓëÍ¨Öª
+		//å‡çº§è®°å½•ä¸é€šçŸ¥
 		Jobs jobBefore = getMemberPosition(beforeExp);
 		Jobs jobAfter = getMemberPosition(afterExp);
 		if(jobBefore.getId() != jobAfter.getId()){
@@ -738,11 +738,11 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			return memberList.get(0);
 		return null;
 	}
-	//»ñÈ¡Ö°Î»ĞÅÏ¢
+	//è·å–èŒä½ä¿¡æ¯
 	@Override
 	public Map getMemberJobsInfo(Long memberid){
 		Map model=new HashMap();
-		//×Ü¾­ÑéÖµ
+		//æ€»ç»éªŒå€¼
 		MemberInfo memberInfo = baseDao.getObject(MemberInfo.class, memberid);
 		if (memberInfo != null){
 				Jobs jobs = getMemberPosition(memberInfo.getExpvalue());
@@ -769,10 +769,10 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			if(member.isEnabled()){
 				return ErrorCode.getSuccessReturn(member);
 			}else{
-				return ErrorCode.getFailure("ÓÃ»§±»½ûÓÃ£¬ÇëÁªÏµ¿Í·ş£¡");
+				return ErrorCode.getFailure("ç”¨æˆ·è¢«ç¦ç”¨ï¼Œè¯·è”ç³»å®¢æœï¼");
 			}
 		}
-		return ErrorCode.getFailure("ÓÃ»§Ãû»òÃÜÂë´íÎó£¡");
+		return ErrorCode.getFailure("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼");
 	}
 	@Override
 	public List<MemberUsefulAddress> getMemberUsefulAddressByMeberid(Long memberid, int from, int maxnum){
@@ -785,13 +785,13 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	@Override
 	public ErrorCode<MemberUsefulAddress> saveMemberUsefulAddress(Long id, Long memberid, String realname, String provincecode, String provincename,
 			String citycode, String cityname, String countycode, String countyname, String address, String mobile, String postalcode, String IDcard){
-		//if(memberid == null) return ErrorCode.getFailure("ÓÃ»§ID²»ÄÜÎª¿Õ£¡");
-		if(StringUtils.isBlank(realname)) return ErrorCode.getFailure("ÊÕ¼şÈË²»ÄÜÎª¿Õ£¡");
-		if(StringUtils.isBlank(provincecode) || StringUtils.isBlank(provincename)) return ErrorCode.getFailure("Ê¡·İ²»ÄÜÎª¿Õ£¡");
-		if(StringUtils.isBlank(citycode) || StringUtils.isBlank(cityname)) return ErrorCode.getFailure("³ÇÊĞ²»ÄÜÎª¿Õ£¡");
-		if(StringUtils.isBlank(countycode) || StringUtils.isBlank(countyname)) return ErrorCode.getFailure("ÇøÓò²»ÄÜÎª¿Õ£¡");
-		if(StringUtils.isBlank(address)) return ErrorCode.getFailure("µØÖ·²»ÄÜÎª¿Õ£¡");
-		if(!ValidateUtil.isMobile(mobile)) return ErrorCode.getFailure("ÊÖ»úºÅ´íÎó£¡");
+		//if(memberid == null) return ErrorCode.getFailure("ç”¨æˆ·IDä¸èƒ½ä¸ºç©ºï¼");
+		if(StringUtils.isBlank(realname)) return ErrorCode.getFailure("æ”¶ä»¶äººä¸èƒ½ä¸ºç©ºï¼");
+		if(StringUtils.isBlank(provincecode) || StringUtils.isBlank(provincename)) return ErrorCode.getFailure("çœä»½ä¸èƒ½ä¸ºç©ºï¼");
+		if(StringUtils.isBlank(citycode) || StringUtils.isBlank(cityname)) return ErrorCode.getFailure("åŸå¸‚ä¸èƒ½ä¸ºç©ºï¼");
+		if(StringUtils.isBlank(countycode) || StringUtils.isBlank(countyname)) return ErrorCode.getFailure("åŒºåŸŸä¸èƒ½ä¸ºç©ºï¼");
+		if(StringUtils.isBlank(address)) return ErrorCode.getFailure("åœ°å€ä¸èƒ½ä¸ºç©ºï¼");
+		if(!ValidateUtil.isMobile(mobile)) return ErrorCode.getFailure("æ‰‹æœºå·é”™è¯¯ï¼");
 		
 		MemberUsefulAddress memAddress = baseDao.getObject(MemberUsefulAddress.class, id);
 		if(memAddress == null){
@@ -800,10 +800,10 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			memAddress.setAddtime(DateUtil.getCurFullTimestamp());
 		}else{
 			if(memberid != null){
-				if(memAddress.getMemberid() != null && !memAddress.getMemberid().equals(memberid)) return ErrorCode.getFailure("²»ÄÜĞŞ¸ÄËûÈËµØÖ·£¡");
+				if(memAddress.getMemberid() != null && !memAddress.getMemberid().equals(memberid)) return ErrorCode.getFailure("ä¸èƒ½ä¿®æ”¹ä»–äººåœ°å€ï¼");
 			}else{
 				if(!StringUtils.equals(memAddress.getMobile(), mobile)){
-					return ErrorCode.getFailure("²»ÄÜĞŞ¸ÄËûÈËµØÖ·£¡");
+					return ErrorCode.getFailure("ä¸èƒ½ä¿®æ”¹ä»–äººåœ°å€ï¼");
 				}
 			}
 		}
@@ -839,7 +839,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	@Override
 	public ErrorCode changeBind(Member member, String newmobile, String checkpass, String remoteIp) {
 		boolean exists = isMemberMobileExists(newmobile);
-		if(exists) return ErrorCode.getFailure("¸ÃºÅÂëÒÑ°ó¶¨ÆäËûÕÊºÅ£¬Çë¸ü»»ÆäËûÊÖ»úºÅÂë£¡");
+		if(exists) return ErrorCode.getFailure("è¯¥å·ç å·²ç»‘å®šå…¶ä»–å¸å·ï¼Œè¯·æ›´æ¢å…¶ä»–æ‰‹æœºå·ç ï¼");
 		return bindMobile(member, newmobile, newmobile, checkpass, null, remoteIp);
 	}
 
@@ -850,26 +850,26 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	}
 	@Override
 	public ErrorCode bindMobile(Member member, String mobile, String checkpass, User user, String remoteIp) {
-		if(user==null) return ErrorCode.getFailure("Î´µÇÂ¼ÓÃ»§£¡");
+		if(user==null) return ErrorCode.getFailure("æœªç™»å½•ç”¨æˆ·ï¼");
 		return bindMobile(member, mobile, mobile, checkpass, user, remoteIp);
 	}
 	private ErrorCode bindMobile(Member member, String checkMobile, String bindMobile, String checkpass, User user, String remoteIp) {
 		String oldMobile = member.getMobile();
 		if(!ValidateUtil.isMobile(bindMobile)){
-			return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "ÊÖ»úºÅÊäÈë´íÎó£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "æ‰‹æœºå·è¾“å…¥é”™è¯¯ï¼");
 		}
 		if(bindMobile.equals(member.getMobile())){
-			return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "¸ÃÊÖ»úºÅÂëÒÑ¾­°ó¶¨¹ıÕË»§£¬Çë¸ü»»ĞÂµÄÊÖ»úºÅÂë£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "è¯¥æ‰‹æœºå·ç å·²ç»ç»‘å®šè¿‡è´¦æˆ·ï¼Œè¯·æ›´æ¢æ–°çš„æ‰‹æœºå·ç ï¼");
 		}
 		Member bindedMember = baseDao.getObjectByUkey(Member.class, "mobile", bindMobile, false);
 		if(bindedMember != null){
-			return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "¸ÃÊÖ»úºÅÒÑ¾­±»°ó¶¨£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "è¯¥æ‰‹æœºå·å·²ç»è¢«ç»‘å®šï¼");
 		}
 		ErrorCode bindCode = bindMobileService.checkBindMobile(BindConstant.TAG_BINDMOBILE, checkMobile, checkpass);
 		if(!bindCode.isSuccess()){
 			return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, bindCode.getMsg());
 		}
-		//°ó¶¨µ½ÓÃ»§
+		//ç»‘å®šåˆ°ç”¨æˆ·
 		member.setMobile(bindMobile);
 		member.setBindStatus(MemberConstant.BINDMOBILE_STATUS_Y);
 		baseDao.saveObject(member);
@@ -891,10 +891,10 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	public ErrorCode unbindMobileByAdmin(Long memberid, User user, String remoteIp) {
 		Member member = baseDao.getObject(Member.class, memberid);
 		if (member == null){
-			return ErrorCode.getFailure("ÓÃ»§²»´æÔÚ£¡");
+			return ErrorCode.getFailure("ç”¨æˆ·ä¸å­˜åœ¨ï¼");
 		}
 		if (!member.isBindMobile()){
-			return ErrorCode.getFailure("¸ÃÓÃ»§Ã»ÓĞ°ó¶¨ÊÖ»úºÅ");
+			return ErrorCode.getFailure("è¯¥ç”¨æˆ·æ²¡æœ‰ç»‘å®šæ‰‹æœºå·");
 		}
 		MemberInfo memberInfo = baseDao.getObject(MemberInfo.class, member.getId());
 		MemberAccount memberAccount = baseDao.getObjectByUkey(MemberAccount.class, "memberid", member.getId());
@@ -905,11 +905,11 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		}
 		if (memberInfo.isRegisterSource(MemberConstant.REGISTER_MOBLIE) && StringUtils.isBlank(member.getEmail())
 				&& memberAccount!=null && (memberAccount.getBankcharge() != 0 || memberAccount.getOthercharge() != 0 || !noElecCard)) {
-			return ErrorCode.getFailure("¸ÃÓÃ»§ÎªÊÖ»ú×¢²áÓÃ»§ ÇÒ Î´°ó¶¨ÓÊÏä ÇÒ ÕË»§ÓĞ¿ÉÓÃÓà¶î¡¢Íß±Ò¡¢Æ±È¯£¬²»ÄÜ½â³ıÊÖ»ú°ó¶¨£¡");
+			return ErrorCode.getFailure("è¯¥ç”¨æˆ·ä¸ºæ‰‹æœºæ³¨å†Œç”¨æˆ· ä¸” æœªç»‘å®šé‚®ç®± ä¸” è´¦æˆ·æœ‰å¯ç”¨ä½™é¢ã€ç“¦å¸ã€ç¥¨åˆ¸ï¼Œä¸èƒ½è§£é™¤æ‰‹æœºç»‘å®šï¼");
 		}
 		Map<String, String> logInfo = new HashMap<String, String>();
 		logInfo.put("oldMobile", VmUtils.getSmobile(member.getMobile()));
-		logInfo.put("newMobile", "½â°ó");
+		logInfo.put("newMobile", "è§£ç»‘");
 		logInfo.put("bindByAdmin", "" + user.getId());
 		if(StringUtils.isBlank(member.getEmail()))
 			member.setEmail(member.getMobile()+StringUtil.getRandomString(6)+"@unbindmobile.com");
@@ -921,20 +921,20 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	}
 	@Override
 	public ErrorCode unbindMobile(Member member, String checkpass, String remoteIp) {
-		//TODO:¹¦ÄÜÄÚ¾Û£º½«ÊÖ»ú×¢²áµÄ²»ÄÜ½â°óµÈÂß¼­¼ÓÈë½øÀ´
+		//TODO:åŠŸèƒ½å†…èšï¼šå°†æ‰‹æœºæ³¨å†Œçš„ä¸èƒ½è§£ç»‘ç­‰é€»è¾‘åŠ å…¥è¿›æ¥
 		MemberInfo memberInfo = baseDao.getObject(MemberInfo.class, member.getId());
 		if(StringUtils.equals(memberInfo.getSource(), MemberConstant.REGISTER_MOBLIE)) {
-			return ErrorCode.getFailure("ÄúÎ´°ó¶¨ÊÖ»ú£¡");
+			return ErrorCode.getFailure("æ‚¨æœªç»‘å®šæ‰‹æœºï¼");
 		}
 		if(StringUtils.isBlank(member.getEmail()) || !memberInfo.isBindSuccess()) {
-			return ErrorCode.getFailure("ÇëÉèÖÃ°²È«ÓÊÏä£¡");
+			return ErrorCode.getFailure("è¯·è®¾ç½®å®‰å…¨é‚®ç®±ï¼");
 		}
 		if(StringUtils.isBlank(checkpass)) {
-			return ErrorCode.getFailure("ÊÖ»úÑéÖ¤Âë²»ÄÜÎª¿Õ£¡");
+			return ErrorCode.getFailure("æ‰‹æœºéªŒè¯ç ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		
 		if(!canChangeMobile(member)){
-			return ErrorCode.getFailure("ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜ½â³ı°ó¶¨£¡");			
+			return ErrorCode.getFailure("æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½è§£é™¤ç»‘å®šï¼");			
 		}
 		ErrorCode code = bindMobileService.checkBindMobile(BindConstant.TAG_BINDMOBILE, member.getMobile(), checkpass);
 		if(!code.isSuccess()) return ErrorCode.getFailure(code.getMsg());
@@ -983,7 +983,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			if (userInfo.get("error_code")==null) {
 				nickname = String.valueOf(userInfo.get("name"));
 				sex = String.valueOf(userInfo.get("gender"));
-				if(!StringUtils.isBlank(sex)) sex = sex.equals("m")?"ÄĞ":"Å®";
+				if(!StringUtils.isBlank(sex)) sex = sex.equals("m")?"ç”·":"å¥³";
 				headpic = String.valueOf(userInfo.get("avatar_large"));
 			}
 		}
@@ -1030,21 +1030,21 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	
 	
 	/**
-	 * µÚÈı·½ÓÃ»§×¢²á¸ñÍßÀ­ÕÊºÅ
+	 * ç¬¬ä¸‰æ–¹ç”¨æˆ·æ³¨å†Œæ ¼ç“¦æ‹‰å¸å·
 	 */
 	@Override
 	public ErrorCode<Member> createMemberWithPartner(String userid, String loginName, String nickname, String password, String citycode, String regForm, String source, String ip){
 		if (getMemberByEmailOrMobile(loginName) != null) {
-			return ErrorCode.getFailure("¸ÃÕÊºÅÒÑ±»×¢²á£¬ÇëÖ±½ÓµÇÂ¼£¡");
+			return ErrorCode.getFailure("è¯¥å¸å·å·²è¢«æ³¨å†Œï¼Œè¯·ç›´æ¥ç™»å½•ï¼");
 		}
 		
 		boolean nickExist = isMemberExists(nickname, null);
 		if (nickExist) {
-			return ErrorCode.getFailure("×¢²áÊ§°Ü£¬êÇ³ÆÒÑ´æÔÚ£¡"); 
+			return ErrorCode.getFailure("æ³¨å†Œå¤±è´¥ï¼Œæ˜µç§°å·²å­˜åœ¨ï¼"); 
 		}
 		ErrorCode<Member> code = createMember(nickname, loginName, password, null, null, regForm, citycode, source, ip, "N");
 		if (!code.isSuccess()) {
-			return ErrorCode.getFailure("×¢²áÊ§°Ü£¬ÇëÉÔºòÖØÊÔ£¡");
+			return ErrorCode.getFailure("æ³¨å†Œå¤±è´¥ï¼Œè¯·ç¨å€™é‡è¯•ï¼");
 		}
 		Member member = code.getRetval();
 		createOpenMemberByMember(member, source, userid);
@@ -1058,7 +1058,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	
 	@Override
 	public ErrorCode<Member> createWithMobile(String mobile, User user){
-		dbLogger.warn("ºóÌ¨ÓÃ»§´´½¨ÓÃ»§[" + user.getId() + "]" + mobile);
+		dbLogger.warn("åå°ç”¨æˆ·åˆ›å»ºç”¨æˆ·[" + user.getId() + "]" + mobile);
 		String nickname = StringUtil.getRandomString(10);
 		String password = StringUtil.getRandomString(8); 
 		ErrorCode<Member> code = createMember(nickname, mobile, password, null, null, null, null, MemberConstant.REGISTER_MOBLIE, null, "Y");
@@ -1086,23 +1086,23 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	@Override
 	public ErrorCode<TempMember> createTempMember(String mobile, String password, String flag, String ip, Map<String, String> otherMap) {
 		if(!ValidateUtil.isMobile(mobile)){
-			return ErrorCode.getFailure("ÊÖ»úºÅÓĞ´íÎó£¡");
+			return ErrorCode.getFailure("æ‰‹æœºå·æœ‰é”™è¯¯ï¼");
 		}
 		if(!ValidateUtil.isPassword(password)){
-			return ErrorCode.getFailure("ÃÜÂëÓĞ´íÎó£¬±ØĞëÊÇ6-14Î»×Ö·û£¡");
+			return ErrorCode.getFailure("å¯†ç æœ‰é”™è¯¯ï¼Œå¿…é¡»æ˜¯6-14ä½å­—ç¬¦ï¼");
 		}
 		Member member = getMemberByMobile(mobile);
 		if(member!=null){
-			return ErrorCode.getFailure("ÄúµÄÊÖ»úÒÑÔÚ¸ñÍßÀ­×¢²á£¬ÇëµÇÂ¼£¡");
+			return ErrorCode.getFailure("æ‚¨çš„æ‰‹æœºå·²åœ¨æ ¼ç“¦æ‹‰æ³¨å†Œï¼Œè¯·ç™»å½•ï¼");
 		}
 		String encodePass = StringUtil.md5(password);
 		TempMember tm = baseDao.getObjectByUkey(TempMember.class, "mobile", mobile);
 		if(tm!=null){
 			if(!StringUtils.equals(tm.getTmppwd(), encodePass)){
-				return ErrorCode.getFailure("ÄúµÄÊÖ»úÒÑÔÚ¸ñÍßÀ­×¢²á£¬ÇëµÇÂ¼¸ñÍßÀ­ÕË»§£¡");
+				return ErrorCode.getFailure("æ‚¨çš„æ‰‹æœºå·²åœ¨æ ¼ç“¦æ‹‰æ³¨å†Œï¼Œè¯·ç™»å½•æ ¼ç“¦æ‹‰è´¦æˆ·ï¼");
 			}
 			if(StringUtils.equals(tm.getStatus(), Status.Y)){
-				return ErrorCode.getFailure("¶Ô²»Æğ£¬ÄúÒÑ¾­ÇÀ¹º¹ı»î¶¯Âë£¬±¾»î¶¯½öÏŞ¹ºÂòÒ»´Î£¡");
+				return ErrorCode.getFailure("å¯¹ä¸èµ·ï¼Œæ‚¨å·²ç»æŠ¢è´­è¿‡æ´»åŠ¨ç ï¼Œæœ¬æ´»åŠ¨ä»…é™è´­ä¹°ä¸€æ¬¡ï¼");
 			}
 			tm.setFlag(flag);
 		}else{
@@ -1118,18 +1118,18 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	@Override
 	public ErrorCode<TempMember> createTempMemberBind(Member member, String mobile, String flag, String ip) {
 		String membertype = TempMember.MEMBERTYPE_BIND;
-		if(StringUtils.isNotBlank(mobile)){//Õë¶ÔÎ´°ó¶¨µÄÓÃ»§
-			if(StringUtils.isNotBlank(member.getMobile())){//Êµ¼ÊÒÑ°ó¶¨ÊÖ»ú
-				return ErrorCode.getFailure("ÄúÒÑ°ó¶¨ÊÖ»ú£¬²»ÄÜ¸ü¸Ä£¡");
+		if(StringUtils.isNotBlank(mobile)){//é’ˆå¯¹æœªç»‘å®šçš„ç”¨æˆ·
+			if(StringUtils.isNotBlank(member.getMobile())){//å®é™…å·²ç»‘å®šæ‰‹æœº
+				return ErrorCode.getFailure("æ‚¨å·²ç»‘å®šæ‰‹æœºï¼Œä¸èƒ½æ›´æ”¹ï¼");
 			}
 			membertype = TempMember.MEMBERTYPE_UNBIND;
 			Member same = baseDao.getObjectByUkey(Member.class, "mobile", mobile);
 			if(same!=null){
-				return ErrorCode.getFailure("´ËÊÖ»úºÅÒÑ¾­×¢²á¹ı£¡");
+				return ErrorCode.getFailure("æ­¤æ‰‹æœºå·å·²ç»æ³¨å†Œè¿‡ï¼");
 			}
-		}else{//Õë¶ÔÒÑ°ó¶¨µÄÓÃ»§
-			if(StringUtils.isBlank(member.getMobile())){//Êµ¼ÊÎ´°ó¶¨ÊÖ»ú
-				return ErrorCode.getFailure("ÄúÎ´°ó¶¨ÊÖ»ú£¬ÇëÌîĞ´ÊÖ»úºÅ£¡");
+		}else{//é’ˆå¯¹å·²ç»‘å®šçš„ç”¨æˆ·
+			if(StringUtils.isBlank(member.getMobile())){//å®é™…æœªç»‘å®šæ‰‹æœº
+				return ErrorCode.getFailure("æ‚¨æœªç»‘å®šæ‰‹æœºï¼Œè¯·å¡«å†™æ‰‹æœºå·ï¼");
 			}
 		}
 		TempMember tm = baseDao.getObjectByUkey(TempMember.class, "memberid", member.getId());
@@ -1137,14 +1137,14 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 			tm = new TempMember(mobile, member.getId(), flag, ip);	
 		}else{
 			if(StringUtils.equals(tm.getStatus(), Status.Y)){
-				return ErrorCode.getFailure("¶Ô²»Æğ£¬ÄúÒÑ¾­ÇÀ¹º¹ı»î¶¯Âë£¬±¾»î¶¯½öÏŞ¹ºÂòÒ»´Î£¡");
+				return ErrorCode.getFailure("å¯¹ä¸èµ·ï¼Œæ‚¨å·²ç»æŠ¢è´­è¿‡æ´»åŠ¨ç ï¼Œæœ¬æ´»åŠ¨ä»…é™è´­ä¹°ä¸€æ¬¡ï¼");
 			}
 			if(!StringUtils.equals(tm.getMobile(), mobile)){
 				tm.setMobile(mobile);
 			}
 		}
 		tm.setMembertype(membertype);
-		tm.setFlag(flag);//ĞŞ¸ÄFlag
+		tm.setFlag(flag);//ä¿®æ”¹Flag
 		baseDao.saveObject(tm);
 		return ErrorCode.getSuccessReturn(tm);
 	}
@@ -1158,7 +1158,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		if(code.isSuccess()){
 			Member m = code.getRetval();
 			m.setPassword(tm.getTmppwd());
-			m.setBindStatus("X");//Î´Öª×´Ì¬
+			m.setBindStatus("X");//æœªçŸ¥çŠ¶æ€
 			baseDao.saveObject(m);
 			tm.setMemberid(m.getId());
 			tm.setStatus(Status.Y);
@@ -1169,19 +1169,19 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 	@Override
 	public ErrorCode<Member> bindMobileFromTempMember(TempMember tm) {
 		Member member = baseDao.getObject(Member.class, tm.getMemberid());
-		if(StringUtils.isBlank(member.getMobile())){//Î´°ó¶¨
+		if(StringUtils.isBlank(member.getMobile())){//æœªç»‘å®š
 			member.setBindStatus("X");
 			member.setMobile(tm.getMobile());
 			baseDao.saveObject(member);
 			tm.setStatus(Status.Y);
 			baseDao.saveObject(tm);
 			return ErrorCode.getSuccessReturn(member);
-		}else if(StringUtils.equals(TempMember.MEMBERTYPE_BIND, tm.getMembertype())){//Ô­À´ÒÑ¾­°ó¶¨
+		}else if(StringUtils.equals(TempMember.MEMBERTYPE_BIND, tm.getMembertype())){//åŸæ¥å·²ç»ç»‘å®š
 			tm.setStatus(Status.Y);
 			baseDao.saveObject(tm);
 			return ErrorCode.getSuccessReturn(member);
 		}
-		return ErrorCode.getFailure("ÒÑ´¦Àí¹ı£¡");
+		return ErrorCode.getFailure("å·²å¤„ç†è¿‡ï¼");
 	}
 
 }

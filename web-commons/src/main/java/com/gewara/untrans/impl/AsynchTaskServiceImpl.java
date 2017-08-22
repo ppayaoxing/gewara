@@ -12,6 +12,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,20 +33,21 @@ import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
 public class AsynchTaskServiceImpl implements AsynchTaskService, InitializingBean {
 	private GewaLogger dbLogger = WebLogger.getLogger(getClass());
-	private Map<String/*task*/, AsynchTaskProcessor> processorMap = new HashMap<String, AsynchTaskProcessor>();
+	private Map<String/*task*/, AsynchTaskProcessor> processorMap = Maps.newHashMap();
+
 	@Autowired@Qualifier("monitorService")
 	private MonitorService monitorService;
 	@Autowired@Qualifier("lockService")
 	private LockService lockService;
 	private ThreadPoolExecutor executor;
 
-	private Map<String, WorkGroupThread> workGroupMap = new ConcurrentHashMap<String, WorkGroupThread>();
+	private Map<String, WorkGroupThread> workGroupMap =Maps.newConcurrentMap();
 	private int threadPoolSize = 60;//default 60
 	public void setThreadPoolSize(int threadPoolSize) {
 		this.threadPoolSize = threadPoolSize;
 	}
-	private Map<String, AtomicInteger> putCountMap = new HashMap<String, AtomicInteger>();
-	private Map<String, AtomicInteger> completeCountMap = new HashMap<String, AtomicInteger>();
+	private Map<String, AtomicInteger> putCountMap = Maps.newHashMap();
+	private Map<String, AtomicInteger> completeCountMap =Maps.newHashMap();
 	
 	@Override
 	public void addTask(AsynchTask task) {
@@ -115,7 +117,7 @@ public class AsynchTaskServiceImpl implements AsynchTaskService, InitializingBea
 		public void run() {
 			try {
 				if(task.isRequireLock()){
-					//lockKey�任
+					//lockKey变换
 					String lockKey = task.getTasktype() + (Math.abs(task.getTaskUkey().hashCode()) % processor.getLockSize());
 					lockService.doWithWriteLock(lockKey, this);
 				}else{
