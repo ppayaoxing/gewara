@@ -160,10 +160,10 @@ public class BarcodeServiceImpl  extends BaseServiceImpl implements BarcodeServi
 		return createBarcodeList(orderNote, odi.isOpenBarcode());
 	}
 	private ErrorCode<String> createBarcodeList(OrderNote orderNote, boolean isOpenBarcode){
-		if(!isOpenBarcode) return ErrorCode.getFailure("¿ª·ÅÀàĞÍ²»ÕıÈ·£¡");
+		if(!isOpenBarcode) return ErrorCode.getFailure("å¼€æ”¾ç±»å‹ä¸æ­£ç¡®ï¼");
 		Map<String, String> map = JsonUtils.readJsonToMap(orderNote.getDescription());
 		if(map.containsKey("barcode") && StringUtils.isNotBlank(map.get("barcode"))){
-			return ErrorCode.getFailure("ÌõĞÎÂëÒÑ¾­Éú²ú£¬²»ÄÜÖØĞÂÉú²ú£¡");
+			return ErrorCode.getFailure("æ¡å½¢ç å·²ç»ç”Ÿäº§ï¼Œä¸èƒ½é‡æ–°ç”Ÿäº§ï¼");
 		}
 		int ticketnum = orderNote.getTicketnum();
 		Long placeid = orderNote.getPlaceid();

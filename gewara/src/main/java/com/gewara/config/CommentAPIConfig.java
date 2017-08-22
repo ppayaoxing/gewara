@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * ÍÛÀ²APIÅäÖÃĞÅÏ¢
+ * å“‡å•¦APIé…ç½®ä¿¡æ¯
  * 
  * @author quzhuping
  * 
@@ -15,7 +15,7 @@ public class CommentAPIConfig {
 	private String saveCommentApiURL;
 
 	/**
-	 * »ñÈ¡±£´æÍÛÀ²APIµÄURL
+	 * è·å–ä¿å­˜å“‡å•¦APIçš„URL
 	 * 
 	 * @return
 	 */
@@ -27,7 +27,7 @@ public class CommentAPIConfig {
 	String deleteCommentURL;
 
 	/**
-	 * É¾³ıÍÛÀ²APIµÄURL
+	 * åˆ é™¤å“‡å•¦APIçš„URL
 	 * 
 	 * @return
 	 */
@@ -39,7 +39,7 @@ public class CommentAPIConfig {
 	String saveReCommentApiURL;
 
 	/**
-	 * »ñÈ¡±£´æÍÛÀ²ÆÀÂÛAPIµÄURL
+	 * è·å–ä¿å­˜å“‡å•¦è¯„è®ºAPIçš„URL
 	 * 
 	 * @return
 	 */
@@ -51,7 +51,7 @@ public class CommentAPIConfig {
 	String queryCommentByIdApiURL;
 
 	/**
-	 * »ñÈ¡µ¥¸öÍÛÀ²APIµÄURL
+	 * è·å–å•ä¸ªå“‡å•¦APIçš„URL
 	 * 
 	 * @return
 	 */
@@ -63,7 +63,7 @@ public class CommentAPIConfig {
 	String queryCommentsURL;
 
 	/**
-	 * »ñÈ¡¸öÈËÍÛÀ²ÁĞ±íURL
+	 * è·å–ä¸ªäººå“‡å•¦åˆ—è¡¨URL
 	 * 
 	 * @return
 	 */
@@ -81,7 +81,7 @@ public class CommentAPIConfig {
 		return queryHotCommentListURL;
 	}
 	/**
-	 * »ñÈ¡CommetListURL
+	 * è·å–CommetListURL
 	 * 
 	 * @return
 	 */
@@ -569,7 +569,7 @@ public class CommentAPIConfig {
 	public String getTopAddMemberUrl() {
 		return topAddMemberUrl;
 	}
-	// ¸ù¾İÈÕÆÚÇø¼ä¡¢Ó°Æ¬ID£¬»ñÈ¡Ó°Æ¬Ã¿ÌìµÄÍÛÀ²Êı
+	// æ ¹æ®æ—¥æœŸåŒºé—´ã€å½±ç‰‡IDï¼Œè·å–å½±ç‰‡æ¯å¤©çš„å“‡å•¦æ•°
 	@Value("${countByMovieIdAddDateUrl}")
 	private String countByMovieIdAddDateUrl;
 	public String getCountByMovieIdAddDateUrl() {

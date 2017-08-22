@@ -9,24 +9,24 @@ import com.gewara.model.drama.OpenDramaItem;
 import com.gewara.model.goods.BaseGoods;
 import com.gewara.model.ticket.OpenPlayItem;
 import com.gewara.util.DateUtil;
-//ÌõĞÎÂë
+//æ¡å½¢ç 
 public class Barcode extends BaseObject{
 	private static final long serialVersionUID = -6748209192667235170L;
 	public static final Integer BARCODE_MAXNUM = 1000;
 	public static final Integer BARCODE_HANDMAXNUM = 50000;
 	private Long id;
-	private String barcode;			//ÌõĞÎÂë
-	private String serialno;		//Á÷Ë®ºÅ
-	private Long relatedid;			//¹ØÁª³¡´Îid
-	private Long placeid;			//³¡¹İid
-	private Long itemid;			//ÏîÄ¿id
-	private String tradeno;			//¶©µ¥ºÅ
-	private String status;			//×´Ì¬		//N:Ä¬ÈÏÉú³É×´Ì¬ ,Y:ÒÑÍ¬²½, T:È¡Æ±
-	private String flag;			//±êÊ¶		
-	private Timestamp validtime;	//ÓĞĞ§Ê±¼ä
-	private Timestamp taketime;		//È¡Æ±Ê±¼ä
-	private Timestamp updatetime;	//¸üĞÂÊ±¼ä
-	private Timestamp addtime;		//Ôö¼ÓÊ±¼ä
+	private String barcode;			//æ¡å½¢ç 
+	private String serialno;		//æµæ°´å·
+	private Long relatedid;			//å…³è”åœºæ¬¡id
+	private Long placeid;			//åœºé¦†id
+	private Long itemid;			//é¡¹ç›®id
+	private String tradeno;			//è®¢å•å·
+	private String status;			//çŠ¶æ€		//N:é»˜è®¤ç”ŸæˆçŠ¶æ€ ,Y:å·²åŒæ­¥, T:å–ç¥¨
+	private String flag;			//æ ‡è¯†		
+	private Timestamp validtime;	//æœ‰æ•ˆæ—¶é—´
+	private Timestamp taketime;		//å–ç¥¨æ—¶é—´
+	private Timestamp updatetime;	//æ›´æ–°æ—¶é—´
+	private Timestamp addtime;		//å¢åŠ æ—¶é—´
 	public Barcode(){
 		
 	}

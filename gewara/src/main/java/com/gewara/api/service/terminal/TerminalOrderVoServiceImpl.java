@@ -93,7 +93,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	@Override
 	public ResultCode<List<TicketOrderVo>> getSuccessTicketOrderList(Long cinemaid, Timestamp playtime, Timestamp addtime) {
 		if(addtime==null){
-			return ResultCode.getFailure("addtime ²»ÄÜÎª¿É¿Õ£¡");
+			return ResultCode.getFailure("addtime ä¸èƒ½ä¸ºå¯ç©ºï¼");
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(TicketOrder.class);
 		query.add(Restrictions.eq("cinemaid", cinemaid));
@@ -123,10 +123,10 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	@Override
 	public ResultCode<List<GoodsOrderVo>> getSuccessGoodsOrderList(Long goodsid, Long relatedid, Timestamp addtime) {
 		if(addtime==null){
-			return ResultCode.getFailure("addtime ²»ÄÜÎª¿É¿Õ£¡");
+			return ResultCode.getFailure("addtime ä¸èƒ½ä¸ºå¯ç©ºï¼");
 		}
 		if(goodsid==null && relatedid==null){
-			return ResultCode.getFailure("goodsid ºÍ relatedid ²»ÄÜÍ¬Ê±¿É¿Õ£¡");
+			return ResultCode.getFailure("goodsid å’Œ relatedid ä¸èƒ½åŒæ—¶å¯ç©ºï¼");
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(GoodsOrder.class);
 		if(goodsid!=null){
@@ -161,7 +161,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	@Override
 	public ResultCode<List<String>> getRefundOrderList(Timestamp refundtime) {
 		if(refundtime==null){
-			return ResultCode.getFailure("refundtime ²»ÄÜÎª¿É¿Õ£¡");
+			return ResultCode.getFailure("refundtime ä¸èƒ½ä¸ºå¯ç©ºï¼");
 		}
 		Timestamp curtime = DateUtil.getMillTimestamp();
 		Timestamp addtime = DateUtil.addDay(curtime, -30);
@@ -172,7 +172,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	@Override
 	public ResultCode<List<OpenPlayItemVo>> getPeakOpenPlayItemList(Long cinemaid, Timestamp starttime, Timestamp endtime) {
 		if(cinemaid==null || starttime==null || endtime==null){
-			return ResultCode.getFailure("²éÑ¯Ìõ¼şÖµ²»ÄÜÎª¿Õ");
+			return ResultCode.getFailure("æŸ¥è¯¢æ¡ä»¶å€¼ä¸èƒ½ä¸ºç©º");
 		}
 		List<OpenPlayItem> opiList = synchService.getSynchPeakOpi(cinemaid, starttime, endtime);
 		return VoCopyUtil.copyListProperties(OpenPlayItemVo.class, opiList);
@@ -180,7 +180,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	@Override
 	public ResultCode<List<Map>> getPeakPeriodByTag(Long placeid, Timestamp starttime, Timestamp endtime, String tag) {
 		if(placeid==null || starttime==null || endtime==null){
-			return ResultCode.getFailure("²éÑ¯Ìõ¼şÖµ²»ÄÜÎª¿Õ");
+			return ResultCode.getFailure("æŸ¥è¯¢æ¡ä»¶å€¼ä¸èƒ½ä¸ºç©º");
 		}
 		List<Map> resList = synchService.getSynchPeakPeriod(placeid, starttime, endtime, tag);
 		return ResultCode.getSuccessReturn(resList);
@@ -188,7 +188,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	@Override
 	public ResultCode<List<SynchVo>> getSynchByPlaceids(List<Long> placeidList) {
 		if(VmUtils.size(placeidList)==0){
-			return ResultCode.getFailure("²éÑ¯Ìõ¼şÖµ²»ÄÜÎª¿Õ");
+			return ResultCode.getFailure("æŸ¥è¯¢æ¡ä»¶å€¼ä¸èƒ½ä¸ºç©º");
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(Synch.class);
 		query.add(Restrictions.in("cinemaid", placeidList));
@@ -210,9 +210,9 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	
 	private void initSportOrder(SportOrderVo vo, SportOrder order){
 		Map<String, String> descMap = VmUtils.readJsonToMap(order.getDescription2());
-		String timedes = descMap.get("Ê±¼ä");
-		String detail = descMap.get("ÏêÏ¸");
-		String timelen = descMap.get("Ê±³¤");
+		String timedes = descMap.get("æ—¶é—´");
+		String detail = descMap.get("è¯¦ç»†");
+		String timelen = descMap.get("æ—¶é•¿");
 		OpenTimeTable ott = baseDao.getObject(OpenTimeTable.class, order.getOttid());
 		vo.setSportname(ott.getSportname());
 		vo.setItemname(ott.getItemname());
@@ -224,7 +224,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	@Override
 	public ResultCode<List<SportOrderVo>> getSuccessTicketOrderList(Long sportid, Long itemid, Timestamp addtime) {
 		if(sportid==null || addtime==null){
-			return ResultCode.getFailure("sportidºÍaddtime ²»ÄÜÎª¿Õ£¡");
+			return ResultCode.getFailure("sportidå’Œaddtime ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(SportOrder.class);
 		query.add(Restrictions.eq("sportid", sportid));
@@ -331,10 +331,10 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 				vo.setSeller(odi.getSeller());
 				return ResultCode.getSuccessReturn(vo);
 			}else {
-				return ResultCode.getFailure("³¡´ÎÃ»ÓĞÉèÖÃÆ±°æ£¡");
+				return ResultCode.getFailure("åœºæ¬¡æ²¡æœ‰è®¾ç½®ç¥¨ç‰ˆï¼");
 			}
 		}
-		return ResultCode.getFailure("³¡´ÎÀàĞÍ´íÎó£¡");
+		return ResultCode.getFailure("åœºæ¬¡ç±»å‹é”™è¯¯ï¼");
 	}
 	@Override
 	public ResultCode<String> getDramaOrderPrintInfo(String tradeno) {
@@ -365,7 +365,7 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	@Override
 	public ResultCode<List<DramaOrderVo>> getSuccessDramaOrderList(Long dramaid, Timestamp addtime) {
 		if(dramaid==null){
-			return ResultCode.getFailure("dramaid ²»ÄÜÎª¿Õ£¡");
+			return ResultCode.getFailure("dramaid ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(DramaOrder.class);
 		query.add(Restrictions.eq("dramaid", dramaid));
@@ -386,10 +386,10 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	@Override
 	public ResultCode<List<String>> getSuccessTicketOrderListByPlaytime(List<Long> cinemaidList, Timestamp startPlaytime, Timestamp endPlaytime) {
 		if(startPlaytime==null || endPlaytime==null){
-			return ResultCode.getFailure("startPlaytime,endPlaytime ²»ÄÜÎª¿É¿Õ£¡");
+			return ResultCode.getFailure("startPlaytime,endPlaytime ä¸èƒ½ä¸ºå¯ç©ºï¼");
 		}
 		if(cinemaidList.size()==0){
-			return ResultCode.getFailure("Ó°Ôºid²»ÄÜÎª¿Õ£¡");
+			return ResultCode.getFailure("å½±é™¢idä¸èƒ½ä¸ºç©ºï¼");
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(TicketOrder.class);
 		query.add(Restrictions.in("cinemaid", cinemaidList));
@@ -403,10 +403,10 @@ public class TerminalOrderVoServiceImpl extends BaseServiceImpl implements Termi
 	@Override
 	public ResultCode<List<GoodsOrderVo>> getMealSuccessGoodsOrderList(List<Long> placeidList, Timestamp starttime, Timestamp endtime) {
 		if(starttime==null || endtime==null){
-			return ResultCode.getFailure("Ê±¼ä ²»ÄÜÎª¿É¿Õ£¡");
+			return ResultCode.getFailure("æ—¶é—´ ä¸èƒ½ä¸ºå¯ç©ºï¼");
 		}
 		if(placeidList.size()==0){
-			return ResultCode.getFailure("³¡¹İid²»ÄÜÎª¿Õ£¡");
+			return ResultCode.getFailure("åœºé¦†idä¸èƒ½ä¸ºç©ºï¼");
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(GoodsOrder.class);
 		query.add(Restrictions.in("placeid", placeidList));

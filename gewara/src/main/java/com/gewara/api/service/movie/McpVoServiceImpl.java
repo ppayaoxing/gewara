@@ -64,7 +64,7 @@ public class McpVoServiceImpl extends BaseServiceImpl implements McpVoService {
 	public ResultCode<List<McpPlayDateVo>> getCurCinemaPlayDate(long cinemaId, boolean includeMcpCount) {
 		Cinema cinema = baseDao.getObject(Cinema.class, cinemaId);
 		if (cinema == null) {
-			return ResultCode.getFailure("场馆不存在：" + cinemaId);
+			return ResultCode.getFailure("鍦洪涓嶅瓨鍦細" + cinemaId);
 		}
 		List<Date> playdateList = mcpService.getCurCinemaPlayDate(cinemaId);
 		List<McpPlayDateVo> vos = new LinkedList<McpPlayDateVo>();
@@ -122,7 +122,7 @@ public class McpVoServiceImpl extends BaseServiceImpl implements McpVoService {
 	public ResultCode<List<MoviePlayItemVo>> getCinemaMoviePlayItem(long cinemaId, Long movieId, Date playDate) {
 		Cinema cinema = baseDao.getObject(Cinema.class, cinemaId);
 		if (cinema == null) {
-			return ResultCode.getFailure("场馆不存在：" + cinemaId);
+			return ResultCode.getFailure("鍦洪涓嶅瓨鍦細" + cinemaId);
 		}
 		List<MoviePlayItem> mpiList = mcpService.getCurMpiList(cinemaId, movieId, playDate);
 		Timestamp starttime = new Timestamp(DateUtil.getBeginningTimeOfDay(playDate).getTime());

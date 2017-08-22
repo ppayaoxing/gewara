@@ -65,7 +65,7 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 		Timestamp time = DateUtil.addDay(curtime, -7);
 		String sql = "from OrderResult r where r.result=? and exists" +
 				"(select g.id from GewaOrder g where g.tradeNo=r.tradeno and g.status=? and g.citycode=? and g.addtime>? and (g.tradeNo like ? or g.tradeNo like ?) )";
-		//µ¥¶À¹ºÂò¸½ÊôÆ·
+		//å•ç‹¬è´­ä¹°é™„å±å“
 		List<OrderResult> orderResultList = (List<OrderResult>) hibernateTemplate.find(sql, "N", OrderConstant.STATUS_PAID_SUCCESS, citycode, time, PayUtil.FLAG_TICKET + "%", PayUtil.FLAG_GOODS + "%");
 		return orderResultList;
 	}
@@ -404,34 +404,34 @@ public class SynchServiceImpl  extends BaseServiceImpl implements SynchService{
 	@Override
 	public ErrorCode selfTicket(String tradeNo, Member member, String specialComents) {
 		if (StringUtils.isBlank(specialComents) || StringUtils.length(specialComents) > 15){
-			return ErrorCode.getFailure("¶¨ÖÆÀàÈİ²»·ûºÏ³¤¶È£¡");
+			return ErrorCode.getFailure("å®šåˆ¶ç±»å®¹ä¸ç¬¦åˆé•¿åº¦ï¼");
 		}
-		if(member==null) return  ErrorCode.getFailure("ÇëµÇÂ¼£¡");
+		if(member==null) return  ErrorCode.getFailure("è¯·ç™»å½•ï¼");
 		ErrorCode<String> code = GewaOrderHelper.validGreetings(specialComents);
 		if(!code.isSuccess()){
 			return ErrorCode.getFailure(code.getMsg());
 		}
 		specialComents = code.getRetval();
 		GewaOrder gorder = baseDao.getObjectByUkey(GewaOrder.class, "tradeNo", tradeNo);
-		if(gorder == null) return ErrorCode.getFailure("¶©µ¥ĞÅÏ¢²»´æÔÚ£¡");
+		if(gorder == null) return ErrorCode.getFailure("è®¢å•ä¿¡æ¯ä¸å­˜åœ¨ï¼");
 		if(!gorder.isAllPaid()){
-			return ErrorCode.getFailure("¶©µ¥²»ÊÇ³É¹¦¶©µ¥£¡");
+			return ErrorCode.getFailure("è®¢å•ä¸æ˜¯æˆåŠŸè®¢å•ï¼");
 		}
 		if(!DateUtil.isAfter(gorder.getPlaytime())){
-			return ErrorCode.getFailure("¶©µ¥ÒÑ¾­¹ıÆÚ£¡£¡");
+			return ErrorCode.getFailure("è®¢å•å·²ç»è¿‡æœŸï¼ï¼");
 		}
-		if (!gorder.getMemberid().equals(member.getId())) return ErrorCode.getFailure("²»ÄÜĞŞ¸ÄËûÈËµÄ¶©µ¥£¡");
+		if (!gorder.getMemberid().equals(member.getId())) return ErrorCode.getFailure("ä¸èƒ½ä¿®æ”¹ä»–äººçš„è®¢å•ï¼");
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("tradeno", tradeNo);
 		params.put("memberid", member.getId());
 		params.put("tag", TagConstant.TAG_CINEMA);
 		int paperCount = mongoService.getObjectCount(CustomPaper.class, params);
 		if (paperCount > 0){
-			return ErrorCode.getFailure("ÄúÒÑ×Ô¶¨Òå¹ıÆ±Ö½ÄÚÈİ£¡");
+			return ErrorCode.getFailure("æ‚¨å·²è‡ªå®šä¹‰è¿‡ç¥¨çº¸å†…å®¹ï¼");
 		}
 		CinemaProfile profile = baseDao.getObject(CinemaProfile.class, ((TicketOrder)gorder).getCinemaid());
 		if(!profile.hasDefinePaper()){
-			return ErrorCode.getFailure("¸ÃÓ°Ôº²»Ö§³Ö×Ô¶¨ÒåÆ±Ö½ÄÚÈİ£¡");
+			return ErrorCode.getFailure("è¯¥å½±é™¢ä¸æ”¯æŒè‡ªå®šä¹‰ç¥¨çº¸å†…å®¹ï¼");
 		}
 		OrderResult orderResult = baseDao.getObject(OrderResult.class, gorder.getTradeNo());
 		if(orderResult != null){

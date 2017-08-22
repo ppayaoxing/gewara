@@ -38,7 +38,7 @@ public class OrderResultVoServiceImpl extends BaseServiceImpl implements OrderRe
 	@Override
 	public ResultCode<List<OrderResultVo>> getOrderResultListByPlaceids(List<Long> placeidList, Timestamp updatetime) {
 		if(VmUtils.size(placeidList)==0){
-			return ResultCode.getFailure("���ݳ��ݼ��ϲ���Ϊ�գ�");
+			return ResultCode.getFailure("传递场馆集合不能为空！");
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(OrderResult.class);
 		query.add(Restrictions.in("placeid", placeidList));
@@ -50,10 +50,10 @@ public class OrderResultVoServiceImpl extends BaseServiceImpl implements OrderRe
 	@Override
 	public ResultCode<List<OrderResultVo>> getOrderResultListByPlaceids(List<Long> placeidList, Timestamp starttime, Timestamp endtime) {
 		if(VmUtils.size(placeidList)==0){
-			return ResultCode.getFailure("���ݳ��ݼ��ϲ���Ϊ�գ�");
+			return ResultCode.getFailure("传递场馆集合不能为空！");
 		}
 		if(starttime==null || endtime==null){
-			return ResultCode.getFailure("�������ڲ���Ϊ�գ�");
+			return ResultCode.getFailure("传递日期不能为空！");
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(OrderResult.class);
 		query.add(Restrictions.in("placeid", placeidList));
@@ -67,10 +67,10 @@ public class OrderResultVoServiceImpl extends BaseServiceImpl implements OrderRe
 	public ResultCode<List<OrderResultVo>> getOrderResultListByPlaceids(List<Long> placeidList, String ordertype, Timestamp starttime,
 			Timestamp endtime) {
 		if(VmUtils.size(placeidList)==0){
-			return ResultCode.getFailure("���ݳ��ݼ��ϲ���Ϊ�գ�");
+			return ResultCode.getFailure("传递场馆集合不能为空！");
 		}
 		if(starttime==null || endtime==null){
-			return ResultCode.getFailure("�������ڲ���Ϊ�գ�");
+			return ResultCode.getFailure("传递日期不能为空！");
 		}
 		DetachedCriteria query = DetachedCriteria.forClass(OrderResult.class);
 		query.add(Restrictions.in("placeid", placeidList));
