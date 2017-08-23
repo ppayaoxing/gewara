@@ -64,7 +64,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		this.monitorService = monitorService;
 	}
 
-	/** ²éÑ¯ÉÌÆ·ÁĞ±í(Í¨ÓÃ)
+	/** æŸ¥è¯¢å•†å“åˆ—è¡¨(é€šç”¨)
 	 * @param clazz
 	 * @param tag
 	 * @param relatedid
@@ -158,7 +158,17 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		if(goodsList.isEmpty()) return null;
 		return goodsList.get(0);
 	}
-	
+
+	/**æŸ¥è¯¢å•†å“æ•°é‡(é€šç”¨æ–¹æ³•)
+	 * @param clazz
+	 * @param tag
+	 * @param relatedid
+	 * @param isTotime
+	 * @param limitRelease
+	 * @param isGtZero
+	 * @param <T>
+	 * @return
+	 */
 	@Override
 	public <T extends BaseGoods> Integer getGoodsCount(Class<T> clazz, String tag, Long relatedid, boolean isTotime, boolean limitRelease, boolean isGtZero) {
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);
@@ -308,43 +318,43 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 	public ErrorCode<ActivityGoods> saveOrUpdateActivityGoods(Long userid, Long gid, Map<String, String> dataMap){
 		ActivityGoods goods = null;
 		String activityId = dataMap.get("relatedid");
-		if(StringUtils.isBlank(activityId)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "¹ØÁª»î¶¯²»ÄÜÎª¿Õ£¡");
+		if(StringUtils.isBlank(activityId)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "å…³è”æ´»åŠ¨ä¸èƒ½ä¸ºç©ºï¼");
 		String manager = dataMap.get("manager");
-		if(!GoodsConstant.MANAGER_LIST.contains(manager)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "½ÇÉ«ÀàĞÍ´íÎó£¡");
+		if(!GoodsConstant.MANAGER_LIST.contains(manager)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "è§’è‰²ç±»å‹é”™è¯¯ï¼");
 		Long relatedid = new Long(activityId);
 		String goodsname = dataMap.get("goodsname");
-		if(StringUtils.isBlank(goodsname)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "ÉÌÆ·Ãû³Æ²»ÄÜÎª¿Õ£¡");
+		if(StringUtils.isBlank(goodsname)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "å•†å“åç§°ä¸èƒ½ä¸ºç©ºï¼");
 		String fromtime = dataMap.get("fromtime");
-		if(StringUtils.isBlank(fromtime)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "Ô¤¶©¿ªÊ¼Ê±¼ä²»ÄÜÎª¿Õ£¡");
+		if(StringUtils.isBlank(fromtime)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "é¢„è®¢å¼€å§‹æ—¶é—´ä¸èƒ½ä¸ºç©ºï¼");
 		String totime = dataMap.get("totime");
-		if(StringUtils.isBlank(totime)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "Ô¤¶©½ØÖ¹Ê±¼ä²»ÄÜÎª¿Õ£¡");
-		if(DateUtil.parseTimestamp(fromtime).after(DateUtil.parseTimestamp(totime)))  return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "Ô¤¶©¿ªÊ¼Ê±¼ä²»ÄÜÔÚÔ¤¶©½ØÖ¹Ê±¼äÖ®ºó£¡");
+		if(StringUtils.isBlank(totime)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "é¢„è®¢æˆªæ­¢æ—¶é—´ä¸èƒ½ä¸ºç©ºï¼");
+		if(DateUtil.parseTimestamp(fromtime).after(DateUtil.parseTimestamp(totime)))  return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "é¢„è®¢å¼€å§‹æ—¶é—´ä¸èƒ½åœ¨é¢„è®¢æˆªæ­¢æ—¶é—´ä¹‹åï¼");
 		String price = dataMap.get("unitprice");
-		if(StringUtils.isBlank(price)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "µ¥¼Û²»ÄÜÎª¿Õ£¡");
+		if(StringUtils.isBlank(price)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "å•ä»·ä¸èƒ½ä¸ºç©ºï¼");
 		Integer unitprice = Integer.valueOf(price);
 		String memberId = dataMap.get("clerkid");
-		if(StringUtils.isBlank(memberId)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "·¢ÆğÕß²»ÄÜÎª¿Õ£¡");
+		if(StringUtils.isBlank(memberId)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "å‘èµ·è€…ä¸èƒ½ä¸ºç©ºï¼");
 		Long clerkid = Long.valueOf(memberId);
 		if(StringUtils.equals(manager, GoodsConstant.MANAGER_MEMBER)){
 			Member member = baseDao.getObject(Member.class, clerkid);
-			if(member == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "·¢ÆğÕß²»´æÔÚ£¡");
+			if(member == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "å‘èµ·è€…ä¸å­˜åœ¨ï¼");
 		}else if(StringUtils.equals(manager, GoodsConstant.MANAGER_USER)){
 			User user = baseDao.getObject(User.class, clerkid);
-			if(user == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "·¢ÆğÕß²»´æÔÚ£¡");
+			if(user == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "å‘èµ·è€…ä¸å­˜åœ¨ï¼");
 		}
 		ChangeEntry changeEntry = null;
 		if(gid != null){
 			goods = baseDao.getObject(ActivityGoods.class, gid);
-			if(goods == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "¸ÃÉÌÆ·²»´æÔÚ»ò±»É¾³ı£¡");
-			if(!goods.getRelatedid().equals(relatedid)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "²»ÄÜ¸ü¸Ä¹ØÁª»î¶¯£¡");
-			if(!goods.getClerkid().equals(clerkid)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "²»ÄÜĞŞ¸ÄËûÈËÉÌÆ·ĞÅÏ¢£¡");
+			if(goods == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "è¯¥å•†å“ä¸å­˜åœ¨æˆ–è¢«åˆ é™¤ï¼");
+			if(!goods.getRelatedid().equals(relatedid)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ä¸èƒ½æ›´æ”¹å…³è”æ´»åŠ¨ï¼");
+			if(!goods.getClerkid().equals(clerkid)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ä¸èƒ½ä¿®æ”¹ä»–äººå•†å“ä¿¡æ¯ï¼");
 			changeEntry = new ChangeEntry(goods);
 		}else{
 			goods = new ActivityGoods(relatedid, goodsname, unitprice, clerkid);
 		}
 		BindUtils.bindData(goods, dataMap);
 		if(goods.getReleasetime() == null) goods.setReleasetime(DateUtil.getCurFullTimestamp());
-		if(StringUtils.isBlank(goods.getCitycode())) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "³ÇÊĞ´úÂë²»ÄÜÎª¿Õ£¡");
+		if(StringUtils.isBlank(goods.getCitycode())) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "åŸå¸‚ä»£ç ä¸èƒ½ä¸ºç©ºï¼");
 		if(goods.getFromtime() == null){
 			goods.setFromtime(goods.getAddtime());
 		}
@@ -357,7 +367,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 		if(goods.getMinpoint() == null){
 			goods.setMinpoint(0);
 		}
-		//ÑéÖ¤ÄÚÈİ
+		//éªŒè¯å†…å®¹
 		String msg=ValidateUtil.validateNewsContent(null, goods.getDescription());
 		if(StringUtils.isNotBlank(msg)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, msg);
 		baseDao.saveObject(goods);
@@ -370,23 +380,23 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 	public ErrorCode<TicketGoods> saveCommonTicket(Long gid, String citycode, String goodsname, String tag, Long relatedid, String itemtype,Long itemid,
 			Long starid, Long roomid, Timestamp fromvalidtime, Timestamp tovalidtime, String language, String summary, String description,
 			Integer maxbuy, String period, User user){
-		if(StringUtils.isBlank(period)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "³¡´ÎÀàĞÍ²»ÄÜÎª¿Õ£¡");
+		if(StringUtils.isBlank(period)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "åœºæ¬¡ç±»å‹ä¸èƒ½ä¸ºç©ºï¼");
 		if(StringUtils.equals(period, Status.N)){
 			if(StringUtils.isBlank(goodsname))
-			return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "ÇëÊäÈëÎïÆ·Ãû³Æ£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "è¯·è¾“å…¥ç‰©å“åç§°ï¼");
 		}else{
 			goodsname = DateUtil.format(fromvalidtime, "yyyy-MM-dd") + " " + DateUtil.getCnWeek(fromvalidtime) + " " + DateUtil.format(fromvalidtime, "HH:mm");
 		}
-		if(StringUtils.isBlank(citycode)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "³ÇÊĞ±àÂë²»ÄÜÎª¿Õ£¡");
-		if(fromvalidtime == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "ÓĞĞ§¿ªÊ¼Ê±¼ä²»ÄÜÎª¿Õ£¡");
-		if(tovalidtime == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "ÓĞĞ§½áÊøÊ±¼ä²»ÄÜÎª¿Õ£¡");
-		if(roomid == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "Ñİ³öÌü²»ÄÜÎª¿Õ£¡");
-		if(maxbuy == null ||maxbuy < 1) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "µ¥´Î¹ºÂòÊı²»ÄÜÎª¿Õ»ò²»ÄÜĞ¡ÓÚ1£¡");
+		if(StringUtils.isBlank(citycode)) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "åŸå¸‚ç¼–ç ä¸èƒ½ä¸ºç©ºï¼");
+		if(fromvalidtime == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "æœ‰æ•ˆå¼€å§‹æ—¶é—´ä¸èƒ½ä¸ºç©ºï¼");
+		if(tovalidtime == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "æœ‰æ•ˆç»“æŸæ—¶é—´ä¸èƒ½ä¸ºç©ºï¼");
+		if(roomid == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "æ¼”å‡ºå…ä¸èƒ½ä¸ºç©ºï¼");
+		if(maxbuy == null ||maxbuy < 1) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "å•æ¬¡è´­ä¹°æ•°ä¸èƒ½ä¸ºç©ºæˆ–ä¸èƒ½å°äº1ï¼");
 		ChangeEntry changeEntry = null;
 		TicketGoods goods = null;
 		if(gid != null){
 			goods = baseDao.getObject(TicketGoods.class, gid);
-			if(goods == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "¸ÃÉÌÆ·²»´æÔÚ»ò±»É¾³ı£¡");
+			if(goods == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "è¯¥å•†å“ä¸å­˜åœ¨æˆ–è¢«åˆ é™¤ï¼");
 			changeEntry = new ChangeEntry(goods);
 		}else{
 			goods = new TicketGoods(tag, relatedid, itemtype, itemid);
@@ -408,7 +418,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 			goods.setPeriod(period);
 		}
 		PlayRoom room = baseDao.getObject(PlayRoom.class, roomid);
-		if(room == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "Ñİ³öÌü²»´æÔÚ»ò±»É¾³ı£¡");
+		if(room == null) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "æ¼”å‡ºå…ä¸å­˜åœ¨æˆ–è¢«åˆ é™¤ï¼");
 		goods.setStarid(starid);
 		goods.setRoomid(roomid);
 		goods.setRoomname(room.getRoomname());
@@ -594,7 +604,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
 	
 	@Override
 	public ErrorCode saveTicketGoods(TicketGoods goods, String playdates, String rooms){
-		if(goods==null) return ErrorCode.getFailure("¸Ã³¡´Î²»´æÔÚ");
+		if(goods==null) return ErrorCode.getFailure("è¯¥åœºæ¬¡ä¸å­˜åœ¨");
 		List<String> dateList = Arrays.asList(StringUtils.split(playdates, ","));
 		List<Long> roomidList = BeanUtil.getIdList(rooms, ",");
 		List<TheatreRoom> roomList = baseDao.getObjectList(TheatreRoom.class, roomidList);

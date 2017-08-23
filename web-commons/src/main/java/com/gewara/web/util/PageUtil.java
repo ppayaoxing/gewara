@@ -6,20 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.util.HtmlUtils;
 
 public class PageUtil {
-	//request ÖĞ¶¨ÒåµÄ²ÎÊıÃû³Æ
+	//request ä¸­å®šä¹‰çš„å‚æ•°åç§°
 	public static final String PARAM_PAGE_NUM = "pageNo";
 	public static final String PARAM_ROWS_COUNT = "rowsCount";
 	public static final String PARAM_ROWS_PER_PAGE ="rowsPerPage";
-	private int currentPage;//µ±Ç°Ò³
-	private int rowsCount;//¼ÇÂ¼Êı
-	private int startNum;//ÏÔÊ¾µÄµÚÒ»Ò³Âë
-	private int endNum;//ÏÔÊ¾µÄ×îºó
-	private int pageCount;//·ÖÒ³ÊıÁ¿
-	private int rowsPerPage;//Ã¿Ò³ÏÔÊ¾ÊıÁ¿
+	private int currentPage;//å½“å‰é¡µ
+	private int rowsCount;//è®°å½•æ•°
+	private int startNum;//æ˜¾ç¤ºçš„ç¬¬ä¸€é¡µç 
+	private int endNum;//æ˜¾ç¤ºçš„æœ€å
+	private int pageCount;//åˆ†é¡µæ•°é‡
+	private int rowsPerPage;//æ¯é¡µæ˜¾ç¤ºæ•°é‡
 	private boolean isShowFirst;
 	private boolean isShowLast;
 	private String scriptParams;
@@ -75,14 +76,14 @@ public class PageUtil {
 		this.isShowLast = isShowLast;
 	}
 	/**
-	 * »ñÈ¡²»Í¬·ÖÒ³µÄURI query²éÑ¯´®£¬Èç<br>
+	 * è·å–ä¸åŒåˆ†é¡µçš„URI queryæŸ¥è¯¢ä¸²ï¼Œå¦‚<br>
 	 * param1=xxxx&param2=YYYYY&pageNo=0<br>
 	 * param1=TTTT&param2=SSSSS&pageNo=1<br>
 	 * .......
 	 **/
 	public void initPageInfo(Map params, List paramNames){
-		pageInfoList = new ArrayList<PageInfo>();
-		//1¡¢»ñÈ¡²éÑ¯´®
+		pageInfoList = Lists.newArrayList();
+		//1ã€è·å–æŸ¥è¯¢ä¸²
 		String commonParam = "";
 		String scriptParam = "{";
 		if(params != null){
@@ -105,10 +106,10 @@ public class PageUtil {
 				}
 			}
 		}
-		//2¡¢ÕûÀí³öÒ³ÂëÁ´½Ó
+		//2ã€æ•´ç†å‡ºé¡µç é“¾æ¥
 		if(scriptParam.length() > 1) this.scriptParams = scriptParam.substring(0, scriptParam.length()-1) + "}";
 		this.commonParams = commonParam;
-		if(isPrePage()){//ÓĞÉÏÒ»Ò³
+		if(isPrePage()){//æœ‰ä¸Šä¸€é¡µ
 			String tmpUrl = baseUrl;
 			int pn = currentPage-1;
 			if(pn == 0){
@@ -125,14 +126,14 @@ public class PageUtil {
 					tmpUrl += "?" + StringUtils.substring(commonParam,1);
 			}else tmpUrl += "?pageNo=" + pn + commonParam;
 			pageInfo.setUrl(tmpUrl);
-			pageInfo.setPageNo(""+(pn+1));//ÏÔÊ¾µÄÒ³Âë
+			pageInfo.setPageNo(""+(pn+1));//æ˜¾ç¤ºçš„é¡µç 
 			pageInfo.setRealPageNo(pn);
 			if(pn == currentPage) pageInfo.setCurrentPage(true);
 			if(isLastPage()) {
 				if((pn+1)!=pageCount)pageInfoList.add(pageInfo);
 			}else pageInfoList.add(pageInfo);
 		}
-		if(isNextPage()){//ÓĞÏÂÒ»Ò³
+		if(isNextPage()){//æœ‰ä¸‹ä¸€é¡µ
 			this.nexturl = baseUrl + "?pageNo=" + (currentPage + 1) + commonParam;
 		}
 		if(isFirstPage()){

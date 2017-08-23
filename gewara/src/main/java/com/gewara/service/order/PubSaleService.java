@@ -12,23 +12,28 @@ import com.gewara.support.ErrorCode;
 
 public interface PubSaleService {
 	ErrorCode<Map> joinPubSale(Long sid, Member member, Integer pice, Timestamp addtime);
+
+	/**åœæ­¢ç«æ‹
+	 * @param sale
+	 * @return
+	 */
 	Long stopPubSale(PubSale sale);
 	void cancelPubSaleOrder(String order, Long memberid, String reason);
 	void cancelPubSaleOrder(PubSaleOrder order, Long memberid, String reason);
 	void processPubSaleOrder(PubSaleOrder order);
 	
 	Integer getPubSaleCount(String name, String status);
-	// ×î½ü¾ºÅÄ orderby (endtime)
+	// æœ€è¿‘ç«æ‹ orderby (endtime)
 	List<PubSale> getPubSaleList(String name, String status, int begin, int maxnum);
 	List<PubMember> getPubMemberList(Long sid, Long memberid);
 	List<PubMember> getPubMemberList(Long sid, Long memberid, int from, int maxnum);
 	/**
-	 * ·µ»ØaddtimeÖ®ºó²Î¼ÓµÄÊıÁ¿
+	 * è¿”å›addtimeä¹‹åå‚åŠ çš„æ•°é‡
 	 * @param sid
 	 * @param addtime
 	 * @return
 	 */
 	Integer getPubMemberCount(Long sid, Timestamp addtime);
-	//¾ºÅÄ³É¹¦¶©µ¥
+	//ç«æ‹æˆåŠŸè®¢å•
 	Integer getMemberPubSaleOrderCountByMemberid(Long memberid, Long relatedid, Timestamp fromtime, Timestamp totime,	String citycode);
 }

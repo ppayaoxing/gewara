@@ -19,5 +19,6 @@ public interface ShLoginService extends LoginService{
 	 * @return
 	 */
 	Member getLogonMemberBySessid(String ip, String sessid);
+	Member getLogonMemberByRequestAndSessid(HttpServletRequest request,String sessid);
 	void updateMemberAuth(String sessid, Member member);
 }

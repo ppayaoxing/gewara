@@ -11,8 +11,8 @@ import com.gewara.util.DateUtil;
 
 public class PubSaleOrder extends GewaOrder{
 	private static final long serialVersionUID = 3626427979990078589L;
-	private Long pubid;		//¾ºÅÄ»î¶¯µÄid
-	private Integer costprice;		//³É±¾¼Û
+	private Long pubid;		//ç«æ‹æ´»åŠ¨çš„id
+	private Integer costprice;		//æˆæœ¬ä»·
 	public PubSaleOrder(){
 		
 	}
@@ -53,17 +53,17 @@ public class PubSaleOrder extends GewaOrder{
 		return "pubsale";
 	}
 	public String getSuccessMsg(){
-		return "¸ñÍßÀ­Éú»îÍøÎÂÜ°ÌáÊ¾£ºÄú²ÎÓëµÄ¸ñÍßÀ­Éú»îÍø¾ºÅÄ»î¶¯ÒÑ¾ºÅÄ³É¹¦£¬ÇëÄúÔÚÓĞĞ§Ê±¼äÄÚ¶Ô¸Ã¶©µ¥½øĞĞÈ·ÈÏ¼°Ö§¸¶£¬Ğ»Ğ»£¡";
+		return "æ ¼ç“¦æ‹‰ç”Ÿæ´»ç½‘æ¸©é¦¨æç¤ºï¼šæ‚¨å‚ä¸çš„æ ¼ç“¦æ‹‰ç”Ÿæ´»ç½‘ç«æ‹æ´»åŠ¨å·²ç«æ‹æˆåŠŸï¼Œè¯·æ‚¨åœ¨æœ‰æ•ˆæ—¶é—´å†…å¯¹è¯¥è®¢å•è¿›è¡Œç¡®è®¤åŠæ”¯ä»˜ï¼Œè°¢è°¢ï¼";
 	}
 	public String getPostMsg(String company, String sno){
-		String result = "¸ñÍßÀ­Éú»îÍøÎÂÜ°ÌáÊ¾£ºÄúµÄÖĞ±êÉÌÆ·ÒÑ¼Ä³ö£¬";
+		String result = "æ ¼ç“¦æ‹‰ç”Ÿæ´»ç½‘æ¸©é¦¨æç¤ºï¼šæ‚¨çš„ä¸­æ ‡å•†å“å·²å¯„å‡ºï¼Œ";
 		if(StringUtils.isNotBlank(company)) {
-			result = result + "¿ìµİ¹«Ë¾Îª"+company;
+			result = result + "å¿«é€’å…¬å¸ä¸º"+company;
 		}
 		if(StringUtils.isNotBlank(sno)){
-			result = result + "£¬µ¥ºÅÎª" + sno;
+			result = result + "ï¼Œå•å·ä¸º" + sno;
 		}
-		result = result + "£¬Çë×¢Òâ²éÊÕ£¬Ğ»Ğ»£¡";
+		result = result + "ï¼Œè¯·æ³¨æ„æŸ¥æ”¶ï¼Œè°¢è°¢ï¼";
 		return result;
 	}
 	public Integer getCostprice() {
