@@ -5,6 +5,9 @@ import java.sql.Timestamp;
 
 import com.gewara.model.BaseObject;
 
+/**
+ * æ∫≈ƒ≤Œ”Î’ﬂ
+ */
 public class PubMember extends BaseObject {
 	private static final long serialVersionUID = -1233410827294999301L;
 	private Long id;

@@ -98,6 +98,16 @@ public interface GoodsOrderService extends GewaOrderService{
 	 * @return
 	 */
 	Integer getGewaorderCountByMobile(Long memberid, String mobile, String ordertype);
+
+	/**查询商品列表,根据商品id和memberid
+	 * @param goodsId 商品id
+	 * @param memberId 用户id
+	 * @param status 状态
+	 * @param like 是否模糊查询
+	 * @param order 是否排序
+	 * @param maxnum 查询列表数量
+	 * @return
+	 */
 	List<GoodsOrder> getGoodsOrderList(Long goodsId, Long memberId,
 			String status, boolean like, boolean order, int maxnum);
 	GoodsGift getBindGoodsGift(OpenPlayItem opi, Long partnerid);

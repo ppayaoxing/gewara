@@ -66,78 +66,69 @@ public class ExchangeController extends AnnotationController {
     @Autowired
     @Qualifier("goodsService")
     private GoodsService goodsService;
+    @Autowired
+    @Qualifier("controllerService")
+    private ControllerService controllerService;
+    @Autowired
+    @Qualifier("pubSaleService")
+    private PubSaleService pubSaleService;
+    @Autowired
+    @Qualifier("blogService")
+    private BlogService blogService;
+    @Autowired
+    @Qualifier("commonService")
+    private CommonService commonService;
+    @Autowired
+    @Qualifier("diaryService")
+    private DiaryService diaryService;
+    @Autowired
+    @Qualifier("commentService")
+    private CommentService commentService;
+    @Autowired
+    @Qualifier("operationService")
+    private OperationService operationService;
+    @Autowired
+    @Qualifier("synchActivityService")
+    private SynchActivityService synchActivityService;
+    @Autowired
+    @Qualifier("agendaService")
+    private AgendaService agendaService;
 
     public void setGoodsService(GoodsService goodsService) {
         this.goodsService = goodsService;
     }
 
-    @Autowired
-    @Qualifier("controllerService")
-    private ControllerService controllerService;
-
     public void setControllerService(ControllerService controllerService) {
         this.controllerService = controllerService;
     }
-
-    @Autowired
-    @Qualifier("pubSaleService")
-    private PubSaleService pubSaleService;
 
     public void setPubSaleService(PubSaleService pubSaleService) {
         this.pubSaleService = pubSaleService;
     }
 
-    @Autowired
-    @Qualifier("blogService")
-    private BlogService blogService;
-
     public void setBlogService(BlogService blogService) {
         this.blogService = blogService;
     }
-
-    @Autowired
-    @Qualifier("commonService")
-    private CommonService commonService;
 
     public void setCommonService(CommonService commonService) {
         this.commonService = commonService;
     }
 
-    @Autowired
-    @Qualifier("diaryService")
-    private DiaryService diaryService;
-
     public void setDiaryService(DiaryService diaryService) {
         this.diaryService = diaryService;
     }
-
-    @Autowired
-    @Qualifier("commentService")
-    private CommentService commentService;
 
     public void setCommentService(CommentService commentService) {
         this.commentService = commentService;
     }
 
-    @Autowired
-    @Qualifier("operationService")
-    private OperationService operationService;
-
     public void setOperationService(OperationService operationService) {
         this.operationService = operationService;
     }
 
-    @Autowired
-    @Qualifier("synchActivityService")
-    private SynchActivityService synchActivityService;
-
     public void setActivityRemoteService(SynchActivityService synchActivityService) {
         this.synchActivityService = synchActivityService;
     }
-
-    @Autowired
-    @Qualifier("agendaService")
-    private AgendaService agendaService;
 
     public void setAgendaService(AgendaService agendaService) {
         this.agendaService = agendaService;
@@ -344,6 +335,16 @@ public class ExchangeController extends AnnotationController {
         return showJsonSuccess(model, orderid + "");
     }
 
+    /**
+     * 出价加入竞拍,
+     *
+     * @param sessid
+     * @param request
+     * @param price   出价
+     * @param sid
+     * @param model
+     * @return
+     */
     @RequestMapping("/exchange/pubsale/join.shtml")
     public String join(@CookieValue(value = LOGIN_COOKIE_NAME, required = false) String sessid,
                        HttpServletRequest request, Integer price, Long sid, ModelMap model) {
@@ -351,10 +352,9 @@ public class ExchangeController extends AnnotationController {
         Timestamp cur = new Timestamp(System.currentTimeMillis());
         PubSale sale = daoService.getObject(PubSale.class, sid);
         if (sale == null || sale.isClose()) return showJsonError(model, "竞拍不存在或被删除！");
-        if (sale.isEnd(cur)) return showJsonError(model, "竞拍已结束！");
-        if (Status.Y.equals(sale.getStatus())) return showJsonError(model, "竞拍已结束！");
-        String ip = WebUtils.getRemoteIp(request);
-        Member member = loginService.getLogonMemberBySessid(ip, sessid);
+        if (sale.isEnd(cur) || Status.Y.equals(sale.getStatus())) return showJsonError(model, "竞拍已结束！");
+
+        Member member = loginService.getLogonMemberByRequestAndSessid(request, sessid);
         if (member == null) return showJsonError_NOT_LOGIN(model);
         if (!member.isBindMobile()) {
             return showJsonError(model, "mobile");

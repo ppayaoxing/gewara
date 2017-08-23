@@ -65,6 +65,13 @@ public class OperationServiceImpl extends BaseServiceImpl implements OperationSe
 		baseDao.saveObject(op);
 		return allow;
 	}
+
+	/**
+	 * scopeSecond这段时间内（秒）最多允许操作allowNum次
+	 * @param opkey
+	 * @param scopeSecond 时间范围（秒）
+	 * @return
+	 */
 	@Override
 	public boolean isAllowOperation(String opkey, int scopeSecond, int allowNum) {
 		UserOperation op = baseDao.getObject(UserOperation.class, opkey);
@@ -81,6 +88,14 @@ public class OperationServiceImpl extends BaseServiceImpl implements OperationSe
 	public boolean updateOperation(String opkey, int scopeSecond, int allowNum) {
 		return updateOperation(opkey, scopeSecond, allowNum, null);
 	}
+
+	/**更新用户scopeSecond这段时间内（秒）最多允许操作allowNum次
+	 * @param opkey
+	 * @param scopeSecond
+	 * @param allowNum
+	 * @param secondkey
+	 * @return
+	 */
 	@Override
 	public boolean updateOperation(String opkey, int scopeSecond, int allowNum, String secondkey) {
 		UserOperation op = baseDao.getObject(UserOperation.class, opkey);

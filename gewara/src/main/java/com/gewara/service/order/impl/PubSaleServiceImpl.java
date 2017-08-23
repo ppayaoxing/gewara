@@ -16,6 +16,7 @@ import com.gewara.support.ReadOnlyTemplate;
 import com.gewara.util.BeanUtil;
 import com.gewara.util.DateUtil;
 import com.gewara.util.JsonUtils;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,18 +43,27 @@ public class PubSaleServiceImpl extends GewaOrderServiceImpl implements PubSaleS
     @Qualifier("goodsOrderService")
     private GoodsOrderService goodsOrderService;
 
+    /** 参与竞价
+     * @param sid
+     * @param member
+     * @param pice
+     * @param addtime
+     * @return
+     */
     @Override
     public ErrorCode<Map> joinPubSale(Long sid, Member member, Integer pice, Timestamp addtime) {
         PubSale sale = baseDao.getObject(PubSale.class, sid);
-        Map map = new HashMap();
+        Map map = Maps.newHashMap();
         if (Status.Y.equals(sale.getStatus())) return ErrorCode.getSuccessReturn(map);
         if (StringUtils.equals(member.getId() + "", sale.getMemberid() + "")) {
             return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "休息一下，请不要重复竞拍！");
         }
-        final boolean pubnum = sale.getPubperiod() != null && sale.getPubperiod() > 0 && sale.getPubnumber() != null && sale.getPubnumber() > 0;
+        final boolean pubnum = sale.getPubperiod() != null && sale.getPubperiod() > 0
+                && sale.getPubnumber() != null && sale.getPubnumber() > 0;
         String opkey = "pubsale_" + sale.getId() + "_" + member.getId();
         if (pubnum) {
-            boolean allow = operationService.isAllowOperation(opkey, sale.getPubperiod() * 60, sale.getPubnumber());
+            boolean allow = operationService.isAllowOperation(opkey, sale.getPubperiod()/**可拍周期*/ * 60,
+                    sale.getPubnumber()/**可拍周期次数*/);
             if (!allow) {
                 return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "本次竞拍，每个用户只能参与" + sale.getPubnumber() + "次！");
             }
@@ -65,6 +75,7 @@ public class PubSaleServiceImpl extends GewaOrderServiceImpl implements PubSaleS
             }
         }
         MemberInfo info = baseDao.getObject(MemberInfo.class, member.getId());
+        /**用户积分和竞拍需要积分对比*/
         if (info.getPointvalue() < sale.getNeedpoint()) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "你的积分不够！");
         //积分
         if (sale.getNeedpoint() != 0) {
@@ -103,6 +114,10 @@ public class PubSaleServiceImpl extends GewaOrderServiceImpl implements PubSaleS
         return ErrorCode.getSuccessReturn(map);
     }
 
+    /** 停止竞拍
+     * @param sale
+     * @return
+     */
     @Override
     public Long stopPubSale(PubSale sale) {
         PubSaleOrder order = baseDao.getObjectByUkey(PubSaleOrder.class, "pubid", sale.getId(), false);
