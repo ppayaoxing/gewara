@@ -162,7 +162,7 @@ public class PojoUtils {
             if (ReflectUtils.isPublicInstanceField(field)) {
                 try {
                     Object fieldValue = field.get(pojo);
-                    // public filedÍ¬Ê±Ò²ÓĞget/set·½·¨£¬Èç¹ûget/set´æÈ¡µÄ²»ÊÇÇ°ÃæÄÇ¸ö public field ¸ÃÈçºÎ´¦Àí
+                    // public filedåŒæ—¶ä¹Ÿæœ‰get/setæ–¹æ³•ï¼Œå¦‚æœget/setå­˜å–çš„ä¸æ˜¯å‰é¢é‚£ä¸ª public field è¯¥å¦‚ä½•å¤„ç†
                     if (history.containsKey(pojo)) {
                         Object pojoGenerilizedValue = history.get(pojo);
                         if (pojoGenerilizedValue instanceof Map
@@ -371,7 +371,7 @@ public class PojoUtils {
                 }
             }
             Map<Object, Object> map ;
-            // ·µ»ØÖµÀàĞÍ²»ÊÇ·½·¨Ç©ÃûÀàĞÍµÄ×Ó¼¯ ²¢ÇÒ ²»ÊÇ½Ó¿ÚÀàĞÍ
+            // è¿”å›å€¼ç±»å‹ä¸æ˜¯æ–¹æ³•ç­¾åç±»å‹çš„å­é›† å¹¶ä¸” ä¸æ˜¯æ¥å£ç±»å‹
             if (! type.isInterface()
                     && ! type.isAssignableFrom(pojo.getClass())){
                 try {
@@ -474,14 +474,14 @@ public class PojoUtils {
     }
     
     /**
-     * »ñÈ¡·¶ĞÍµÄÀàĞÍ 
+     * è·å–èŒƒå‹çš„ç±»å‹ 
      * @param genericType
      * @param index
-     * @return List<Person>  ·µ»ØPerson.class ,Map<String,Person> index=0 ·µ»ØString.class index=1 ·µ»ØPerson.class
+     * @return List<Person>  è¿”å›Person.class ,Map<String,Person> index=0 è¿”å›String.class index=1 è¿”å›Person.class
      */
     private static Type getGenericClassByIndex(Type genericType, int index){
         Type clazz = null ;
-        //·¶ĞÍ²ÎÊı×ª»» 
+        //èŒƒå‹å‚æ•°è½¬æ¢ 
         if (genericType instanceof ParameterizedType){
             ParameterizedType t = (ParameterizedType)genericType;
             Type[] types = t.getActualTypeArguments();

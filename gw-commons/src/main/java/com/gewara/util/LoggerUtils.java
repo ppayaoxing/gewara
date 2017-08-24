@@ -20,9 +20,9 @@ public class LoggerUtils {
 		notUseJson = new File("/notUseJson.txt").exists();
 	}
 	private static final String tracePackage = "com.gewara";
-	private static int singleMax = 0;			//×î´óÒì³£´ÎÊı
-	private static AtomicInteger criticalCount = new AtomicInteger();		//¹Ø¼üÒì³£
-	private static String singleMaxName = "";	//×î´óÒì³£Ãû³Æ
+	private static int singleMax = 0;			//æœ€å¤§å¼‚å¸¸æ¬¡æ•°
+	private static AtomicInteger criticalCount = new AtomicInteger();		//å…³é”®å¼‚å¸¸
+	private static String singleMaxName = "";	//æœ€å¤§å¼‚å¸¸åç§°
 	public static String getSingleMaxName() {
 		return singleMaxName;
 	}
@@ -32,7 +32,7 @@ public class LoggerUtils {
 	private static Map<String/*exception or method*/, AtomicInteger> exceptionCount = new ConcurrentHashMap<String, AtomicInteger>();
 	private static Long exceptionTimefrom = System.currentTimeMillis();
 	private static Set<String> criticalException = new TreeSet<String>(Arrays.asList(
-			"com.alibaba.dubbo.rpc.ProviderException",//Ã»ÓĞ·şÎñÌá¹©Õß
+			"com.alibaba.dubbo.rpc.ProviderException",//æ²¡æœ‰æœåŠ¡æä¾›è€…
 			"com.mongodb.MongoException",
 			"java.lang.ArrayIndexOutOfBoundsException",
 			"java.net.UnknownHostException",

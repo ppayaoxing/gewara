@@ -55,7 +55,7 @@ public class IPUtil {
 				}
 			}
 		} catch (Exception e) {
-			dbLogger.error("获取城市代码错误", e);
+			dbLogger.error("鑾峰彇鍩庡競浠ｇ爜閿欒", e);
 		}
 		return new String[]{"","",""};
 	}
@@ -135,7 +135,7 @@ public class IPUtil {
 				ipData.ipList[i] = ipn1;
 				i++;
 				ipData.pairMap.put(ipn1, ipn2);
-				// 哨兵
+				// 鍝ㄥ叺
 				ipData.addressMap.put(ipn1, ipdata[2] + (ipdata.length>3?"  " + ipdata[3]:""));
 				success++;
 			} catch (Exception e) {

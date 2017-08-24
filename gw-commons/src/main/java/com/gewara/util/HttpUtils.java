@@ -81,32 +81,32 @@ import org.apache.http.util.EntityUtils;
  * Convenience class for setting and retrieving cookies.
  * 
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public class HttpUtils {
 
 	private static final transient GewaLogger dbLogger = LoggerUtils.getLogger(HttpUtils.class);
 
 	private static final String DEFAULT_CHARSET = "UTF-8";
-	/** ×î´óÁ¬½ÓÊı */
+	/** æœ€å¤§è¿æ¥æ•° */
 	public final static int MAX_TOTAL_CONNECTIONS = 3000;
-	/** Ã¿¸öÂ·ÓÉ×î´óÁ¬½ÓÊı */
+	/** æ¯ä¸ªè·¯ç”±æœ€å¤§è¿æ¥æ•° */
 	public final static int MAX_ROUTE_CONNECTIONS = 800;
 	public static final int DEFAULT_TIMEOUT = 60 * 1000;
 	public static final int SHORT_TIMEOUT = 30 * 1000;
 	public static final int LONG_TIMEOUT = 120 * 1000;
 	public static final int CONNECTION_TIMEOUT = 20 * 1000;
-	/** ´ÓÁ¬½Ó³Ø»ñÈ¡Á¬½ÓµÄ³¬Ê±Ê±¼ä */
+	/** ä»è¿æ¥æ± è·å–è¿æ¥çš„è¶…æ—¶æ—¶é—´ */
 	public static final int CONNECTION_REQUEST_TIMEOUT = 500;
-	/** Á¬½Ó³ØÖĞ£¬Á¬½Ó¿ÕÏĞ³¬Ê±Ê±¼ä£¬µ¥Î»ºÁÃë */
+	/** è¿æ¥æ± ä¸­ï¼Œè¿æ¥ç©ºé—²è¶…æ—¶æ—¶é—´ï¼Œå•ä½æ¯«ç§’ */
 	public static final int CONNECTION_IDLE_TIMEOUT = 30 * 1000;
 
-	public static final int EXCEPTION_HTTP_STATUSCODE = 9999;// httpÇëÇóÒì³£³öÏÖ£¬ÉèÖÃstatuscode
-	/** httpÇëÇó×´Ì¬£º9001£ºHttpHostConnectException */
+	public static final int EXCEPTION_HTTP_STATUSCODE = 9999;// httpè¯·æ±‚å¼‚å¸¸å‡ºç°ï¼Œè®¾ç½®statuscode
+	/** httpè¯·æ±‚çŠ¶æ€ï¼š9001ï¼šHttpHostConnectException */
 	public static final int HTTP_STATUSCODE_HTTP_HOST_CONNECT_EXCEPTION = 9001;
-	/** httpÇëÇó×´Ì¬£º9002£ºConnectTimeoutException */
+	/** httpè¯·æ±‚çŠ¶æ€ï¼š9002ï¼šConnectTimeoutException */
 	public static final int HTTP_STATUSCODE_CONNECT_TIMEOUT_EXCEPTION = 9002;
-	/** httpÇëÇó×´Ì¬£º9003£ºSocketTimeoutException */
+	/** httpè¯·æ±‚çŠ¶æ€ï¼š9003ï¼šSocketTimeoutException */
 	public static final int HTTP_STATUSCODE_SOCKET_TIMEOUT_EXCEPTION = 9003;
 
 	private static Map<String, AtomicLong> hostCountMap = new ConcurrentHashMap<String, AtomicLong>();
@@ -130,8 +130,8 @@ public class HttpUtils {
 		cm.setDefaultMaxPerRoute(MAX_ROUTE_CONNECTIONS);
 
 		scheduExec = Executors.newScheduledThreadPool(3);
-		scheduExec.scheduleWithFixedDelay(new LogHostCountCommand(), 1, 1200, TimeUnit.SECONDS);// Ã¿20·ÖÖÓÖ´ĞĞ
-		scheduExec.scheduleWithFixedDelay(new IdleConnectionEvictorCommand(), 1, 300, TimeUnit.SECONDS);// Ã¿5·ÖÖÓÖ´ĞĞ
+		scheduExec.scheduleWithFixedDelay(new LogHostCountCommand(), 1, 1200, TimeUnit.SECONDS);// æ¯20åˆ†é’Ÿæ‰§è¡Œ
+		scheduExec.scheduleWithFixedDelay(new IdleConnectionEvictorCommand(), 1, 300, TimeUnit.SECONDS);// æ¯5åˆ†é’Ÿæ‰§è¡Œ
 	}
 
 	private static SSLConnectionSocketFactory getSSLConnectionSocketFactory() {
@@ -354,9 +354,9 @@ public class HttpUtils {
 
 	/**
 	 * @param url
-	 *           ÉÏ´«µÄURL
+	 *           ä¸Šä¼ çš„URL
 	 * @param params
-	 *           ÆäËû²ÎÊı
+	 *           å…¶ä»–å‚æ•°
 	 * @param is
 	 * @param inputName
 	 *           <input name="xxxx"../>
@@ -753,7 +753,7 @@ public class HttpUtils {
 	}
 
 	/**
-	 * ²éÑ¯´®ÌáÈ¡
+	 * æŸ¥è¯¢ä¸²æå–
 	 * 
 	 * @param queryStr
 	 * @param encode
@@ -871,7 +871,7 @@ public class HttpUtils {
 		public void run() {
 			cm.closeExpiredConnections();
 			// cm.closeIdleConnections(CONNECTION_IDLE_TIMEOUT,
-			// TimeUnit.MILLISECONDS);//´Ë´¦¿ªÁË¿ÉÄÜÓĞÎÊÌâ
+			// TimeUnit.MILLISECONDS);//æ­¤å¤„å¼€äº†å¯èƒ½æœ‰é—®é¢˜
 			PoolStats poolStats = cm.getTotalStats();
 			dbLogger.warn("PoolStats----" + poolStats.toString());
 		}

@@ -48,8 +48,8 @@ public class ClassFinderUtil {
 	public static final String URL_PROTOCOL_VFSZIP = "vfszip";
 
 	/**
-	 * 查找包下所有类.(only classes, exclude jar file)
-	 * @param scannedPackage 如：com.gewara.model
+	 * 鏌ユ壘鍖呬笅鎵�鏈夌被.(only classes, exclude jar file)
+	 * @param scannedPackage 濡傦細com.gewara.model
 	 * @return
 	 */
 	public static List<Class<?>> find(String scannedPackage) {
@@ -349,7 +349,7 @@ public class ClassFinderUtil {
 		List<Class<?>> list = ClassFinderUtil.find(modelPackage);
 		for (Class clazz : list) {
 			try {
-				if (ClassUtil.isConcrete(clazz) && clazz.getCanonicalName().indexOf('$') < 0/* 非内部类 */) {
+				if (ClassUtil.isConcrete(clazz) && clazz.getCanonicalName().indexOf('$') < 0/* 闈炲唴閮ㄧ被 */) {
 					Wrapper wraper = Wrapper.getWrapper(clazz);
 					List<String> read = new ArrayList<>(Arrays.asList(wraper.getReadPropertyNames()));
 					List<String> write = new ArrayList<>(Arrays.asList(wraper.getWritePropertyNames()));

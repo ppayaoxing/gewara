@@ -32,7 +32,7 @@ import com.gewara.dubbo.bytecode.Wrapper;
 import com.gewara.support.TraceErrorException;
 
 /**
- * @function BeanUtil¹¤¾ßÀàÕë¶Ô¶ÔÏóµÄÊôĞÔ½øĞĞset/get µÈ²Ù×÷
+ * @function BeanUtilå·¥å…·ç±»é’ˆå¯¹å¯¹è±¡çš„å±æ€§è¿›è¡Œset/get ç­‰æ“ä½œ
  * @author bob.hu
  * @date 2011-04-11 10:28:07
  */
@@ -51,7 +51,7 @@ public class BeanUtil implements Util4Script{
 		return null;
 	}
 	/***
-	 * Ö»·µ»ØÓĞfieldsµÄÊı¾İ£¬²»·µ»Ø
+	 * åªè¿”å›æœ‰fieldsçš„æ•°æ®ï¼Œä¸è¿”å›
 	 * @param bean
 	 * @param nested
 	 * @return
@@ -67,7 +67,7 @@ public class BeanUtil implements Util4Script{
 		return result;
 	}
 	/**
-	 * »ñÈ¡BeanÊı×éµÄPrimitiveÊôĞÔµÄÖµ£¨Ö»°üº¬ÓĞFieldµÄÊı¾İ£©
+	 * è·å–Beanæ•°ç»„çš„Primitiveå±æ€§çš„å€¼ï¼ˆåªåŒ…å«æœ‰Fieldçš„æ•°æ®ï¼‰
 	 * @param beanList
 	 * @param nested
 	 * @return
@@ -98,7 +98,7 @@ public class BeanUtil implements Util4Script{
 		return (T) Wrapper.getWrapper(clazz).gainNewInstance();
 	}
 	/**
-	 * ·µ»ØclassÖĞÀàĞÍÎªListµÄ×Ö¶ÎÃû³Æ
+	 * è¿”å›classä¸­ç±»å‹ä¸ºListçš„å­—æ®µåç§°
 	 * @param clazz
 	 * @return
 	 */
@@ -140,7 +140,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	/**
-	 * »ñÈ¡¶ÔÏóµÄµ¥¸öÊôĞÔÖµ£¬Èç¹ûbeanÊÇMap£¬Ö±½Ó·µ»ØMap.get(property)
+	 * è·å–å¯¹è±¡çš„å•ä¸ªå±æ€§å€¼ï¼Œå¦‚æœbeanæ˜¯Mapï¼Œç›´æ¥è¿”å›Map.get(property)
 	 * @param bean
 	 * @param property
 	 * @return
@@ -202,7 +202,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	/**
-	 * ¸ù¾İpropertyµÄÖµ½«beanList·Ö×é
+	 * æ ¹æ®propertyçš„å€¼å°†beanListåˆ†ç»„
 	 * 
 	 * @param beanList
 	 * @param property
@@ -213,7 +213,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	/**
-	 * ¸ù¾İpropertyµÄÖµ½«beanList·Ö×é, null×÷Îªµ¥¶ÀÒ»×é£¬key ÎªnullKey
+	 * æ ¹æ®propertyçš„å€¼å°†beanListåˆ†ç»„, nullä½œä¸ºå•ç‹¬ä¸€ç»„ï¼Œkey ä¸ºnullKey
 	 * @param beanList
 	 * @param property
 	 * @param nullKey
@@ -242,7 +242,7 @@ public class BeanUtil implements Util4Script{
 	}
 	
 	/**
-	 * ¸ù¾İpropertyµÄÖµ½«beanList·Ö×éºó¼ÆÊı, null×÷Îªµ¥¶ÀÒ»×é£¬key ÎªnullKey
+	 * æ ¹æ®propertyçš„å€¼å°†beanListåˆ†ç»„åè®¡æ•°, nullä½œä¸ºå•ç‹¬ä¸€ç»„ï¼Œkey ä¸ºnullKey
 	 * @param beanList
 	 * @param property
 	 * @param nullKey
@@ -266,7 +266,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	/**
-	 * keypropertyµÄÖµÓ¦¸Ã¾ßÓĞÎ¨Ò»ĞÔ£¬·ñÔòºóÃæµÄbean»á¸²¸ÇÇ°ÃæµÄbean
+	 * keypropertyçš„å€¼åº”è¯¥å…·æœ‰å”¯ä¸€æ€§ï¼Œå¦åˆ™åé¢çš„beanä¼šè¦†ç›–å‰é¢çš„bean
 	 * @param beanList
 	 * @param keyproperty
 	 * @return
@@ -349,7 +349,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	/**
-	 * »ñÈ¡beanListÖĞµÄËùÓĞproperties
+	 * è·å–beanListä¸­çš„æ‰€æœ‰properties
 	 * 
 	 * @param beanList
 	 * @param properties
@@ -370,7 +370,7 @@ public class BeanUtil implements Util4Script{
 				try {
 					Object pv = null;
 					String keyname = property;
-					if (property.indexOf(".") > 0) {// ¸´ºÏÊôĞÔ
+					if (property.indexOf(".") > 0) {// å¤åˆå±æ€§
 						pv = PropertyUtils.getNestedProperty(bean, property);
 						keyname = keyname.replace('.', '_');
 					} else {
@@ -395,7 +395,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	/**
-	 * »ñÈ¡BeanµÄPrimitiveÊôĞÔµÄÖµ£¬×î¶àÔÊĞíÇ¶Ì×Ò»²ã£¬²»¿¼ÂÇÊı×é
+	 * è·å–Beançš„Primitiveå±æ€§çš„å€¼ï¼Œæœ€å¤šå…è®¸åµŒå¥—ä¸€å±‚ï¼Œä¸è€ƒè™‘æ•°ç»„
 	 * 
 	 * @param bean
 	 * @param nested
@@ -426,7 +426,7 @@ public class BeanUtil implements Util4Script{
 					if (ignoreNull){
 						beanMap.remove(key);
 					}
-				} else if (!isSimpleProperty(pv.getClass())) {// ·ÇPrimitiveÀàĞÍ
+				} else if (!isSimpleProperty(pv.getClass())) {// éPrimitiveç±»å‹
 					if (!nested) {
 						beanMap.remove(key);
 					} else {
@@ -440,7 +440,7 @@ public class BeanUtil implements Util4Script{
 					}
 				}
 			}
-			beanMap.remove("class");//classÊôĞÔÈ¥³ı
+			beanMap.remove("class");//classå±æ€§å»é™¤
 		} catch (Exception e) {
 			dbLogger.warn(e, 20);
 			return null;
@@ -464,7 +464,7 @@ public class BeanUtil implements Util4Script{
 		return result;
 	}
 
-	/** »ñÈ¡bean ¶ÔÓ¦µÄÊôĞÔ,·â×°µ½MapÖĞ
+	/** è·å–bean å¯¹åº”çš„å±æ€§,å°è£…åˆ°Mapä¸­
 	 * @param bean
 	 * @param propertyList
 	 * @return
@@ -491,7 +491,7 @@ public class BeanUtil implements Util4Script{
 				}else{
 					result.put(key, null);
 				}
-			} else if (!isSimpleProperty(pv.getClass())) {// ·ÇPrimitiveÀàĞÍ
+			} else if (!isSimpleProperty(pv.getClass())) {// éPrimitiveç±»å‹
 				if (nested) {
 					if (pv instanceof Collection){
 						result.put(key, getBeanMapList((Collection) pv, false));
@@ -507,7 +507,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	/**
-	 * »ñÈ¡BeanÊı×éµÄPrimitiveÊôĞÔµÄÖµ
+	 * è·å–Beanæ•°ç»„çš„Primitiveå±æ€§çš„å€¼
 	 * 
 	 * @param beanList
 	 * @param containNest
@@ -519,7 +519,7 @@ public class BeanUtil implements Util4Script{
 	/**
 	 * @param beanList
 	 * @param nested
-	 * @param onlyFields true ±íÊ¾Ö»»ñÈ¡ ÓĞÕæÊµ×Ö¶ÎµÄÊı¾İ
+	 * @param onlyFields true è¡¨ç¤ºåªè·å– æœ‰çœŸå®å­—æ®µçš„æ•°æ®
 	 * @return
 	 */
 	public static List getBeanMapList2(final Collection beanList, boolean nested, boolean onlyFields) {
@@ -589,7 +589,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	/**
-	 * »ñÈ¡beanListÖĞÒÔkeypropertyÖµÎªkey£¬valuePropertyÖµÎªvalueµÄMap
+	 * è·å–beanListä¸­ä»¥keypropertyå€¼ä¸ºkeyï¼ŒvaluePropertyå€¼ä¸ºvalueçš„Map
 	 * 
 	 * @param beanList
 	 * @param keyProperty
@@ -636,7 +636,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	/**
-	 * ½«longList·Ö³É¶à¸öList£¬Ã¿¸öListµÄ³¤¶ÈÎªlength£¬×îºóÒ»¸ö¿ÉÄÜ²»×ã
+	 * å°†longListåˆ†æˆå¤šä¸ªListï¼Œæ¯ä¸ªListçš„é•¿åº¦ä¸ºlengthï¼Œæœ€åä¸€ä¸ªå¯èƒ½ä¸è¶³
 	 * 
 	 * @param longList
 	 * @param length
@@ -693,7 +693,7 @@ public class BeanUtil implements Util4Script{
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~for hbase~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	/**
-	 * ·µ»Ø·ûºÏColumnFamily¹æ·¶µÄMap
+	 * è¿”å›ç¬¦åˆColumnFamilyè§„èŒƒçš„Map
 	 * 
 	 * @param bean
 	 * @return
@@ -736,7 +736,7 @@ public class BeanUtil implements Util4Script{
 			try {
 				if (ValidateUtil.isVariable(key, 1, 50)) {
 					pv = get(bean, key);
-					if (pv != null && BeanUtil.isSimpleProperty(pv.getClass())) {// ·ÇPrimitiveÀàĞÍ
+					if (pv != null && BeanUtil.isSimpleProperty(pv.getClass())) {// éPrimitiveç±»å‹
 						result.put(key, getStringValue(pv));
 					}
 				}
@@ -746,7 +746,7 @@ public class BeanUtil implements Util4Script{
 		return result;
 	}
 
-	/** ×ª³É¼òµ¥string Map
+	/** è½¬æˆç®€å•string Map
 	 * @param map
 	 * @return
 	 */

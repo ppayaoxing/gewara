@@ -20,7 +20,7 @@ import com.gewara.support.TraceErrorException;
  * String Utility Class This is used to encode passwords programmatically
  * 
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public class StringUtil implements Util4Script {
 	public static String md5(byte[] input) {
@@ -79,7 +79,7 @@ public class StringUtil implements Util4Script {
 	}
 
 	/**
-	 * ½ØÈ¡size¸ö×Ö½Ú
+	 * æˆªå–sizeä¸ªå­—èŠ‚
 	 * 
 	 * @param input
 	 * @param size
@@ -103,7 +103,7 @@ public class StringUtil implements Util4Script {
 	}
 
 	/**
-	 * ½ØÈ¡size¸ö×Ö½Ú Æ´´®
+	 * æˆªå–sizeä¸ªå­—èŠ‚ æ‹¼ä¸²
 	 * 
 	 * @param input
 	 * @param size
@@ -162,13 +162,13 @@ public class StringUtil implements Util4Script {
 		return result;
 	}
 
-	public static final String upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";// O,IÈ¥µô
-	public static final String lower = "abcdefghijkmnpqrstuvwxyz";// o,lÈ¥µô
+	public static final String upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";// O,Iå»æ‰
+	public static final String lower = "abcdefghijkmnpqrstuvwxyz";// o,lå»æ‰
 	public static final String digital = "23456789"; // 0,1
 
 	/**
 	 * @param length
-	 *            Éú³ÉµÄ×Ö·û´®³¤¶È£¬<100
+	 *            ç”Ÿæˆçš„å­—ç¬¦ä¸²é•¿åº¦ï¼Œ<100
 	 * @return
 	 */
 	public static String getRandomString(int length) {
@@ -198,14 +198,14 @@ public class StringUtil implements Util4Script {
 		if (includeDigital)
 			s += digital;
 		if (length > 100){
-			throw new TraceErrorException("Éú³ÉµÄ×Ö·û´®³¤¶È±ØĞë<100£¡");
+			throw new TraceErrorException("ç”Ÿæˆçš„å­—ç¬¦ä¸²é•¿åº¦å¿…é¡»<100ï¼");
 		}
 		return getRandomString(s, length);
 		
 	}
 	/**
 	 * @param length
-	 *            Éú³ÉµÄ×Ö·û´®³¤¶È£¬<100
+	 *            ç”Ÿæˆçš„å­—ç¬¦ä¸²é•¿åº¦ï¼Œ<100
 	 * @return
 	 */
 	public static String getRandomString(String charArray, int length) {
@@ -334,7 +334,7 @@ public class StringUtil implements Util4Script {
 	}
 
 	/**
-	 * Éú³ÉmaxÒÔÄÚ, count¸ö²»ÖØ¸´Ëæ»úÊı eg. getRandomNumber(20, 6) Éú³É20ÒÔÄÚ6¸ö²»ÖØ¸´Ëæ»úÊı
+	 * ç”Ÿæˆmaxä»¥å†…, countä¸ªä¸é‡å¤éšæœºæ•° eg. getRandomNumber(20, 6) ç”Ÿæˆ20ä»¥å†…6ä¸ªä¸é‡å¤éšæœºæ•°
 	 * 2011-02-23 bobo
 	 */
 	public static Set getRandomNumber(int max, int count) {
@@ -393,7 +393,7 @@ public class StringUtil implements Util4Script {
 		return matcher.find();
 	}
 
-	// Êı×ÖÈ«½Ç×ª°ë½Ç
+	// æ•°å­—å…¨è§’è½¬åŠè§’
 	public static String ToDBC(String input) {
 		char[] c = input.toCharArray();
 		for (int i = 0; i < c.length; i++) {
@@ -415,7 +415,7 @@ public class StringUtil implements Util4Script {
 		}
 	}
 	/**
-	 * 1)³¤¶ÈÊÇ2µÄ±¶Êı  2£©ÊÇÊ®Áù½øÖÆ×Ö·û 3£©¿Õ¡¢null ·µ»Øfalse
+	 * 1)é•¿åº¦æ˜¯2çš„å€æ•°  2ï¼‰æ˜¯åå…­è¿›åˆ¶å­—ç¬¦ 3ï¼‰ç©ºã€null è¿”å›false
 	 * @return
 	 */
 	public static boolean isHexDataStr(String str){

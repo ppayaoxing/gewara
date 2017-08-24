@@ -11,7 +11,7 @@ import com.gewara.util.LoggerUtils;
 public abstract class ExecutorManager {
 	private static final transient GewaLogger dbLogger = LoggerUtils.getLogger(HttpUtils.class);
 	/**
-	 * ×¢²áµÄÏß³Ì³Ø£¬µ±ÏµÍ³ÖØĞÂÆô¶¯Ê±£¬ÏÈµÈ´ıÏß³Ì³ØÖĞµÄÈÎÎñÍê³É£¬×î´ó30s
+	 * æ³¨å†Œçš„çº¿ç¨‹æ± ï¼Œå½“ç³»ç»Ÿé‡æ–°å¯åŠ¨æ—¶ï¼Œå…ˆç­‰å¾…çº¿ç¨‹æ± ä¸­çš„ä»»åŠ¡å®Œæˆï¼Œæœ€å¤§30s
 	 * @param executor
 	 * @param maxWaitSecondsBeforeDomainRestart
 	 */
@@ -20,7 +20,7 @@ public abstract class ExecutorManager {
 		executorMap.put(name, executor);
 	}
 	/**
-	 * ÔÚÏµÍ³ÖØÆôÇ°£¬µÈ´ıÒ»¶ÎÊ±¼ä£¬±ãÓÚÏß³Ì³ØÖ´ĞĞÍêÈÎÎñ
+	 * åœ¨ç³»ç»Ÿé‡å¯å‰ï¼Œç­‰å¾…ä¸€æ®µæ—¶é—´ï¼Œä¾¿äºçº¿ç¨‹æ± æ‰§è¡Œå®Œä»»åŠ¡
 	 * @param totalWait
 	 */
 	public static void waitComplete(int totalWait){

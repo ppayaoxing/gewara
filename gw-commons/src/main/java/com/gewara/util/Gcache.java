@@ -27,7 +27,7 @@ public class Gcache<K, V> implements Cache<K, V>, Serializable{
 		this.startCacheStats = cache.stats();
 	}
 	/**
-	 * Ä³¸ö¼üÖµ¶Ô±»´´½¨»òÖµ±»Ìæ»»ºó¶àÉÙÊ±¼äÒÆ³ı
+	 * æŸä¸ªé”®å€¼å¯¹è¢«åˆ›å»ºæˆ–å€¼è¢«æ›¿æ¢åå¤šå°‘æ—¶é—´ç§»é™¤
 	 * @param maxinumSize
 	 * @param duration
 	 * @param unit
@@ -57,7 +57,7 @@ public class Gcache<K, V> implements Cache<K, V>, Serializable{
 	public void put(K key, V value) {
 		//TODO instanceof BaseObject and not instanceof LocalCachable ,invalid!!
 		if(value instanceof LocalCachable){
-			//²»ÔÊĞíÊı¾İ¿â±ä¸ü
+			//ä¸å…è®¸æ•°æ®åº“å˜æ›´
 			((LocalCachable)value).fix2Cache();
 		}
 		cache.put(key, value);
@@ -67,7 +67,7 @@ public class Gcache<K, V> implements Cache<K, V>, Serializable{
 	@Override
 	public void putAll(Map<? extends K,? extends V> m) {
 		for(Entry<? extends K, ? extends V> entry: m.entrySet()){
-			//²»ÔÊĞíÊı¾İ¿â±ä¸ü
+			//ä¸å…è®¸æ•°æ®åº“å˜æ›´
 			if(entry.getValue()!=null && entry.getValue() instanceof LocalCachable){
 				((LocalCachable)entry.getValue()).fix2Cache();
 			}

@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringUtils;
 /**
  * @author Administrator
  * 
- * ±È½ÏÁ½¸ömapÖĞelnameÔªËØµÄpropertyÊôĞÔ
+ * æ¯”è¾ƒä¸¤ä¸ªmapä¸­elnameå…ƒç´ çš„propertyå±æ€§
  */
 public class MapItemComparator implements Comparator<Map> {
 	private String elname, property;

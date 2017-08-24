@@ -10,7 +10,7 @@ public class DoubleStringComparator<T> implements Comparator<T>{
 	/**
 	 * @param property
 	 * @param asc
-	 * @param invalidAsc ·ÇÊı×ÖÉıĞò
+	 * @param invalidAsc éæ•°å­—å‡åº
 	 */
 	public DoubleStringComparator(String property, boolean asc){
 		this.property = property;

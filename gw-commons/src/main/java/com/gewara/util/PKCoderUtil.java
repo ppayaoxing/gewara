@@ -11,10 +11,10 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public final class PKCoderUtil {
-	private static transient String Algorithm = "DES"; // ¶¨Òå ¼ÓÃÜËã·¨,¿ÉÓÃ DES,DESede(TripleDES),Blowfish
+	private static transient String Algorithm = "DES"; // å®šä¹‰ åŠ å¯†ç®—æ³•,å¯ç”¨ DES,DESede(TripleDES),Blowfish
 	private static transient byte[] DEFAULT_KEY={-72,-16,-79,-22,-79,-32,-48,-76};
 	private static final transient GewaLogger dbLogger = LoggerUtils.getLogger(PKCoderUtil.class);
 	
@@ -28,7 +28,7 @@ public final class PKCoderUtil {
 		return result;
 	}
 	private static final byte[] long2bytes(long num){
-		//ÉáÆú×î¸ßÎ»Ò»¸ö×Ö½Ú
+		//èˆå¼ƒæœ€é«˜ä½ä¸€ä¸ªå­—èŠ‚
 		byte[] b=new byte[7];
 		for(int i=1;i<8;i++){
 			b[i-1]=(byte)(num>>>(56-i*8));
@@ -68,7 +68,7 @@ public final class PKCoderUtil {
 			return null;
 		}
 	}
-	// ¼ÓÃÜ
+	// åŠ å¯†
 	public static final Long encodeNumer(long num){
 		byte[] bytes = long2bytes(num);
 		byte[] encoded = encode(bytes, DEFAULT_KEY);
@@ -96,7 +96,7 @@ public final class PKCoderUtil {
 		return null;
 	}
 
-	// ½âÃÜ
+	// è§£å¯†
 	private static byte[] decode(byte[] input, byte[] key) {
 		SecretKey deskey = new javax.crypto.spec.SecretKeySpec(key, Algorithm);
 		Cipher c1=null;
@@ -111,7 +111,7 @@ public final class PKCoderUtil {
 		return null;
 	}
 
-	// ×Ö½ÚÂë×ª»»³É16½øÖÆ×Ö·û´®
+	// å­—èŠ‚ç è½¬æ¢æˆ16è¿›åˆ¶å­—ç¬¦ä¸²
 	private static final String byte2hex(byte bytes[]) {
 		StringBuilder retString = new StringBuilder();
 		for (int i = 0; i < bytes.length; ++i) {
@@ -120,7 +120,7 @@ public final class PKCoderUtil {
 		return retString.toString();
 	}
 
-	// ½«16½øÖÆ×Ö·û´®×ª»»³É×Ö½ÚÂë
+	// å°†16è¿›åˆ¶å­—ç¬¦ä¸²è½¬æ¢æˆå­—èŠ‚ç 
 	private static final byte[] hex2byte(String hex) {
 		byte[] bts = new byte[hex.length() / 2];
 		for (int i = 0; i < bts.length; i++) {
@@ -129,7 +129,7 @@ public final class PKCoderUtil {
 		return bts;
 	}
 	public static final String encryptString(String original, String key){
-		String tmpKey = StringUtils.rightPad(key, 8, "¾­");
+		String tmpKey = StringUtils.rightPad(key, 8, "ç»");
 		try{
 			byte[] keys = Arrays.copyOf(tmpKey.getBytes("utf-8"), 8);
 			String str = original;
@@ -142,7 +142,7 @@ public final class PKCoderUtil {
 	public static final String decryptString(String encryptStr, String key){
 		if(StringUtils.isBlank(encryptStr)||encryptStr.length()%2==1) return "";
 		try{
-			String tmpKey = StringUtils.rightPad(key, 8, "¾­");
+			String tmpKey = StringUtils.rightPad(key, 8, "ç»");
 			byte[] keys = Arrays.copyOf(tmpKey.getBytes("utf-8"), 8);
 			String str = decodeString(encryptStr, keys);
 			return str;
@@ -152,20 +152,20 @@ public final class PKCoderUtil {
 		}
 	}
 	/**
-	 * @param pKey 3DESÃÜÔ¿/24
-	 * @param pIV 3DESÏòÁ¿/8
-	 * @param pContent ¼ÓÃÜÃ÷ÎÄ
+	 * @param pKey 3DESå¯†é’¥/24
+	 * @param pIV 3DESå‘é‡/8
+	 * @param pContent åŠ å¯†æ˜æ–‡
 	 * @return
 	 */
 	public static String TriDesEncrypt(String pKey, String pIV, String pContent){				
 		String ret="";
 		try {
-			//³õÊ¼»¯Cipher
+			//åˆå§‹åŒ–Cipher
 			javax.crypto.spec.IvParameterSpec iv = new javax.crypto.spec.IvParameterSpec(pIV.getBytes());
 			javax.crypto.spec.SecretKeySpec key = new javax.crypto.spec.SecretKeySpec(pKey.getBytes(),"DESede");
 			javax.crypto.Cipher cipher = javax.crypto.Cipher.getInstance("DESede/CBC/PKCS5Padding");
 		
-			//Ö´ĞĞ¼ÓÃÜ²¢×öBase64±àÂë
+			//æ‰§è¡ŒåŠ å¯†å¹¶åšBase64ç¼–ç 
 			cipher.init(javax.crypto.Cipher.ENCRYPT_MODE, key, iv);
 			
 			ret=Base64.encodeBase64String(cipher.doFinal(pContent.getBytes("utf-8")));
@@ -179,12 +179,12 @@ public final class PKCoderUtil {
 	public static String triDesDecrypt(String enc, String pKey, String pIV){				
 		String ret="";
 		try {
-			//³õÊ¼»¯Cipher
+			//åˆå§‹åŒ–Cipher
 			javax.crypto.spec.IvParameterSpec iv = new javax.crypto.spec.IvParameterSpec(pIV.getBytes());
 			javax.crypto.spec.SecretKeySpec key = new javax.crypto.spec.SecretKeySpec(pKey.getBytes(),"DESede");
 			javax.crypto.Cipher cipher = javax.crypto.Cipher.getInstance("DESede/CBC/PKCS5Padding");
 		
-			//Ö´ĞĞ¼ÓÃÜ²¢×öBase64±àÂë
+			//æ‰§è¡ŒåŠ å¯†å¹¶åšBase64ç¼–ç 
 			cipher.init(javax.crypto.Cipher.DECRYPT_MODE, key, iv);
 			ret = new String(cipher.doFinal(Base64.decodeBase64(enc)), "UTF-8");
 			return ret.replaceAll("\r\n","");
@@ -194,15 +194,15 @@ public final class PKCoderUtil {
 		}		
 	}
 	/**
-	 * RSA¼ÓÃÜ
-	 * @param pKey RSAÃÜÔ¿
-	 * @param pContent ¼ÓÃÜÃ÷ÎÄ
+	 * RSAåŠ å¯†
+	 * @param pKey RSAå¯†é’¥
+	 * @param pContent åŠ å¯†æ˜æ–‡
 	 * @return
 	 */
 	public static String RSAEncrypt(String pKey, String pContent) {				
 		String ret="";
 		try {
-			//½âÎöÃÜÔ¿µÃµ½¹«Ô¿
+			//è§£æå¯†é’¥å¾—åˆ°å…¬é’¥
 			int startIndex=pKey.indexOf("<Modulus>")+9;
 			int endIndex=pKey.indexOf("</Modulus>");		
 			
@@ -217,13 +217,13 @@ public final class PKCoderUtil {
 			
 			String E = byte2hex(b);
 			
-			//³õÊ¼»¯Cipher
+			//åˆå§‹åŒ–Cipher
 			java.math.BigInteger bigN=new java.math.BigInteger(N,16);
 			java.math.BigInteger bigE=new java.math.BigInteger(E,16);						
 			java.security.spec.RSAPublicKeySpec pubSpec=new java.security.spec.RSAPublicKeySpec(bigN,bigE);			
 			javax.crypto.Cipher cipher=javax.crypto.Cipher.getInstance("RSA/ECB/PKCS1Padding");			
 			
-			//Ö´ĞĞ¼ÓÃÜ²¢×öBase64±àÂë
+			//æ‰§è¡ŒåŠ å¯†å¹¶åšBase64ç¼–ç 
 			cipher.init(javax.crypto.Cipher.ENCRYPT_MODE, java.security.KeyFactory.getInstance("RSA").generatePublic(pubSpec));					
 			
 			ret = Base64.encodeBase64String(cipher.doFinal(pContent.getBytes("utf-8")));
@@ -235,10 +235,10 @@ public final class PKCoderUtil {
 		}		
 	}
 	/**
-	 * @param keyStr 24×Ö½Ú£¬base64±àÂë
-	 * @param plainText ´ı¼ÓÃÜµÄ×Ö·û
+	 * @param keyStr 24å­—èŠ‚ï¼Œbase64ç¼–ç 
+	 * @param plainText å¾…åŠ å¯†çš„å­—ç¬¦
 	 * @param encoding
-	 * @return ¼ÓÃÜºóÓÃbase64±àÂëµÄ×Ö·û´®
+	 * @return åŠ å¯†åç”¨base64ç¼–ç çš„å­—ç¬¦ä¸²
 	 */
 	public static String encryptWithThiDES(String keyStr, String plainText, String encoding) {
 		try{
@@ -252,9 +252,9 @@ public final class PKCoderUtil {
 		return null;
 	}
 	/**
-	 * @param keyStr 24×Ö½Ú£¬base64±àÂë
-	 * @param encrypt ¼ÓÃÜºóµÄ×Ö½ÚÓÃbase64±àÂëµÄ×Ö·û´®
-	 * @param encoding ±àÂë
+	 * @param keyStr 24å­—èŠ‚ï¼Œbase64ç¼–ç 
+	 * @param encrypt åŠ å¯†åçš„å­—èŠ‚ç”¨base64ç¼–ç çš„å­—ç¬¦ä¸²
+	 * @param encoding ç¼–ç 
 	 * @return
 	 * @throws Exception
 	 */
@@ -277,9 +277,9 @@ public final class PKCoderUtil {
 		return result;
 	}
 	public static byte[] decryptWithThiDES(byte[] key, byte[] encrypted) throws Exception {
-		//Éú³ÉÃÜÔ¿
+		//ç”Ÿæˆå¯†é’¥
 		SecretKey deskey = new SecretKeySpec(key, "DESede");
-		//½âÃÜ
+		//è§£å¯†
 		Cipher c1 = Cipher.getInstance("DESede");
 		c1.init(Cipher.DECRYPT_MODE, deskey);
 		byte[] result = c1.doFinal(encrypted);

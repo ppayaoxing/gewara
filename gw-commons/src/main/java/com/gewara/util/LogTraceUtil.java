@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringUtils;
 import java.util.List;
 
 /**
- * ÓÃÀ´×öÏµÍ³³ö´í¶¨Î»¸ú×Ù
+ * ç”¨æ¥åšç³»ç»Ÿå‡ºé”™å®šä½è·Ÿè¸ª
  *
  * @author gebiao(ge.biao@gewara.com)
  * @since Jan 18, 2014 3:12:29 PM

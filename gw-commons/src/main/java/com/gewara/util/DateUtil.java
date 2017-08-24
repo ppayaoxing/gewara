@@ -34,7 +34,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * »ñÈ¡ÏµÍ³Ê±¼ä´Á£¬ºÁÃë¼¶
+	 * è·å–ç³»ç»Ÿæ—¶é—´æˆ³ï¼Œæ¯«ç§’çº§
 	 * 
 	 * @return
 	 */
@@ -43,7 +43,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * µ±Ç°ÈÕÆÚ×Ö·û´®£¬yyyy-MM-dd
+	 * å½“å‰æ—¥æœŸå­—ç¬¦ä¸²ï¼Œyyyy-MM-dd
 	 * 
 	 * @return
 	 */
@@ -52,7 +52,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * µ±Ç°ÈÕÆÚ×Ö·û´®£¬yyyy-MM-dd HH:mm:ss
+	 * å½“å‰æ—¥æœŸå­—ç¬¦ä¸²ï¼Œyyyy-MM-dd HH:mm:ss
 	 * 
 	 * @return
 	 */
@@ -61,8 +61,8 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°ÈÕÆÚ <br>
-	 * ²Î¼û{@link #timeMillis()}
+	 * è·å–å½“å‰æ—¥æœŸ <br>
+	 * å‚è§{@link #timeMillis()}
 	 * 
 	 * @return
 	 */
@@ -71,8 +71,8 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * µ±Ç°timestamp×Ö·û´®£¬yyyy-MM-dd HH:mm:ss <br>
-	 * ²Î¼û{@link #format(Date, String)}
+	 * å½“å‰timestampå­—ç¬¦ä¸²ï¼Œyyyy-MM-dd HH:mm:ss <br>
+	 * å‚è§{@link #format(Date, String)}
 	 * 
 	 * @return
 	 */
@@ -81,8 +81,8 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * µ±Ç°timestamp <br>
-	 * ×Ö·û´®ÀàĞÍ·µ»Ø£¬²Î¼û{@link #currentTimestampStr()}
+	 * å½“å‰timestamp <br>
+	 * å­—ç¬¦ä¸²ç±»å‹è¿”å›ï¼Œå‚è§{@link #currentTimestampStr()}
 	 * 
 	 * @return
 	 */
@@ -91,8 +91,8 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * µ±Ç°ÔÂ·İµÄÏÂÒ»¸öÔÂ <br>
-	 * 1ÔÂ·İµÄÏÂÒ»¸öÔÂÎª 2£¬12ÔÂ·İµÄÏÂÒ»¸öÔÂÎª1
+	 * å½“å‰æœˆä»½çš„ä¸‹ä¸€ä¸ªæœˆ <br>
+	 * 1æœˆä»½çš„ä¸‹ä¸€ä¸ªæœˆä¸º 2ï¼Œ12æœˆä»½çš„ä¸‹ä¸€ä¸ªæœˆä¸º1
 	 * 
 	 * @return
 	 */
@@ -108,7 +108,7 @@ public class DateUtil implements Util4Script {
 	 * parse date using default pattern yyyy-MM-dd
 	 * 
 	 * @param strDate
-	 * @return Ê§°Ü·µ»Ønull
+	 * @return å¤±è´¥è¿”å›null
 	 */
 	public static final Date parseDate(String strDate) {
 		Date date = null;
@@ -129,7 +129,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * ÖĞ¹ú´«Í³ÒâÒåµÄÖÜ£¬ÖÜÒ»×öÎª¿ªÊ¼
+	 * ä¸­å›½ä¼ ç»Ÿæ„ä¹‰çš„å‘¨ï¼Œå‘¨ä¸€åšä¸ºå¼€å§‹
 	 * 
 	 * @param time
 	 * @return
@@ -143,11 +143,11 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * ¸ù¾İdate×Ö·û´®£¬»ñÈ¡timestamp
+	 * æ ¹æ®dateå­—ç¬¦ä¸²ï¼Œè·å–timestamp
 	 * 
 	 * @param strDate
-	 *            ±ØĞëÎª yyyy-MM-dd hh:mm:ss[.fffffffff]¸ñÊ½
-	 * @return Ê§°Ü·µ»Ønull
+	 *            å¿…é¡»ä¸º yyyy-MM-dd hh:mm:ss[.fffffffff]æ ¼å¼
+	 * @return å¤±è´¥è¿”å›null
 	 */
 	public static final Timestamp parseTimestamp(String strDate) {
 		try {
@@ -340,8 +340,8 @@ public class DateUtil implements Util4Script {
 			return null;
 		time = StringUtils.trim(time);
 		if (StringUtils.isBlank(time))
-			throw new IllegalArgumentException("Ê±¼ä¸ñÊ½ÓĞ´íÎó£¡");
-		time = time.replace('£º', ':');
+			throw new IllegalArgumentException("æ—¶é—´æ ¼å¼æœ‰é”™è¯¯ï¼");
+		time = time.replace('ï¼š', ':');
 		String[] times = time.split(":");
 		String result = "";
 		if (times[0].length() < 2)
@@ -394,12 +394,12 @@ public class DateUtil implements Util4Script {
 		return calendar.getTime();
 	}
 
-	private static String[] cnweek = new String[] { "", "ÖÜÈÕ", "ÖÜÒ»", "ÖÜ¶ş", "ÖÜÈı", "ÖÜËÄ", "ÖÜÎå", "ÖÜÁù" };
-	private static String[] cnSimpleweek = new String[] { "", "ÈÕ", "Ò»", "¶ş", "Èı", "ËÄ", "Îå", "Áù" };
+	private static String[] cnweek = new String[] { "", "å‘¨æ—¥", "å‘¨ä¸€", "å‘¨äºŒ", "å‘¨ä¸‰", "å‘¨å››", "å‘¨äº”", "å‘¨å…­" };
+	private static String[] cnSimpleweek = new String[] { "", "æ—¥", "ä¸€", "äºŒ", "ä¸‰", "å››", "äº”", "å…­" };
 
 	/**
 	 * @param date
-	 * @return "ÖÜÈÕ", "ÖÜÒ»", "ÖÜ¶ş", "ÖÜÈı", "ÖÜËÄ", "ÖÜÎå", "ÖÜÁù"
+	 * @return "å‘¨æ—¥", "å‘¨ä¸€", "å‘¨äºŒ", "å‘¨ä¸‰", "å‘¨å››", "å‘¨äº”", "å‘¨å…­"
 	 */
 	public static String getCnWeek(Date date) {
 		if (date == null)
@@ -411,7 +411,7 @@ public class DateUtil implements Util4Script {
 
 	/**
 	 * @param date
-	 * @return "ÈÕ", "Ò»", "¶ş", "Èı", "ËÄ", "Îå", "Áù"
+	 * @return "æ—¥", "ä¸€", "äºŒ", "ä¸‰", "å››", "äº”", "å…­"
 	 */
 	public static String getCnSimpleWeek(Date date) {
 		if (date == null)
@@ -449,7 +449,7 @@ public class DateUtil implements Util4Script {
 
 	/**
 	 * @param date
-	 * @return ÈÕÆÚËùÔÚÔÂ·İ
+	 * @return æ—¥æœŸæ‰€åœ¨æœˆä»½
 	 */
 	public static Integer getMonth(Date date) {
 		if (date == null)
@@ -490,7 +490,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * »ñÈ¡dateËùÔÚÔÂ·İµÄĞÇÆÚÎªweektypeÇÒÈÕÆÚÔÚdateÖ®ºó£¨»òµÈÓÚ£©µÄËùÓĞÈÕÆÚ
+	 * è·å–dateæ‰€åœ¨æœˆä»½çš„æ˜ŸæœŸä¸ºweektypeä¸”æ—¥æœŸåœ¨dateä¹‹åï¼ˆæˆ–ç­‰äºï¼‰çš„æ‰€æœ‰æ—¥æœŸ
 	 * 
 	 * @param weektype
 	 * @return
@@ -510,7 +510,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * »ñÈ¡dateÖ®ºó(°üÀ¨date)µÄnum¸öĞÇÆÚÎªweektypeÈÕÆÚ£¨²»ÏŞÖÆÔÂ·İ£©
+	 * è·å–dateä¹‹å(åŒ…æ‹¬date)çš„numä¸ªæ˜ŸæœŸä¸ºweektypeæ—¥æœŸï¼ˆä¸é™åˆ¶æœˆä»½ï¼‰
 	 * 
 	 * @param weektype
 	 * @return
@@ -529,7 +529,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * »ñÈ¡dateËùÔÚĞÇÆÚµÄÖÜÒ»ÖÁÖÜÈÕµÄÈÕÆÚ
+	 * è·å–dateæ‰€åœ¨æ˜ŸæœŸçš„å‘¨ä¸€è‡³å‘¨æ—¥çš„æ—¥æœŸ
 	 * 
 	 * @param date
 	 * @return
@@ -552,7 +552,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * »ñÈ¡ÈÕÆÚËùÔÚÔÂ·İµÄµÚÒ»Ìì
+	 * è·å–æ—¥æœŸæ‰€åœ¨æœˆä»½çš„ç¬¬ä¸€å¤©
 	 * 
 	 * @param date
 	 * @return
@@ -583,7 +583,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * »ñÈ¡ÈÕÆÚËùÔÚÔÂ·İµÄ×îºóÒ»Ìì
+	 * è·å–æ—¥æœŸæ‰€åœ¨æœˆä»½çš„æœ€åä¸€å¤©
 	 * 
 	 * @param days
 	 * @return
@@ -605,7 +605,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * ½ØÈ¡Ê±·ÖÃëºóµÄÊ±¼ä
+	 * æˆªå–æ—¶åˆ†ç§’åçš„æ—¶é—´
 	 * 
 	 * @return
 	 */
@@ -635,21 +635,21 @@ public class DateUtil implements Util4Script {
 		Long minute = ss / 60000;
 		if (minute < 1) {
 			Long second = ss / 1000;
-			timeContent = second + "ÃëÇ°";
+			timeContent = second + "ç§’å‰";
 		} else if (minute >= 60) {
 			Long hour = minute / 60;
 			if (hour >= 24) {
 				if (hour > 720)
-					timeContent = "1ÔÂÇ°";
+					timeContent = "1æœˆå‰";
 				else if (hour > 168 && hour <= 720)
-					timeContent = (hour / 168) + "ÖÜÇ°";
+					timeContent = (hour / 168) + "å‘¨å‰";
 				else
-					timeContent = (hour / 24) + "ÌìÇ°";
+					timeContent = (hour / 24) + "å¤©å‰";
 			} else {
-				timeContent = hour + "Ğ¡Ê±Ç°";
+				timeContent = hour + "å°æ—¶å‰";
 			}
 		} else {
-			timeContent = minute + "·ÖÖÓÇ°";
+			timeContent = minute + "åˆ†é’Ÿå‰";
 		}
 		return timeContent;
 	}
@@ -662,27 +662,27 @@ public class DateUtil implements Util4Script {
 		Long minute = ss / 60000;
 		if (minute < 1) {
 			Long second = ss / 1000;
-			timeContent = second + "ÃëÇ°";
+			timeContent = second + "ç§’å‰";
 		} else if (minute >= 60) {
 			Long hour = minute / 60;
 			if (hour >= 24) {
 				if (hour > 720)
-					timeContent = "1ÔÂÇ°";
+					timeContent = "1æœˆå‰";
 				else if (hour > 168 && hour <= 720)
-					timeContent = (hour / 168) + "ÖÜÇ°";
+					timeContent = (hour / 168) + "å‘¨å‰";
 				else
-					timeContent = (hour / 24) + "ÌìÇ°";
+					timeContent = (hour / 24) + "å¤©å‰";
 			} else {
-				timeContent = hour + "Ğ¡Ê±Ç°";
+				timeContent = hour + "å°æ—¶å‰";
 			}
 		} else {
-			timeContent = minute + "·ÖÖÓÇ°";
+			timeContent = minute + "åˆ†é’Ÿå‰";
 		}
 		return timeContent;
 	}
 
 	/**
-	 * author: bob date: 20100729 ½ØÈ¡ÈÕÆÚ, È¥µôÄê·İ param: date1 eg. ´«Èë"1986-07-28", ·µ»Ø
+	 * author: bob date: 20100729 æˆªå–æ—¥æœŸ, å»æ‰å¹´ä»½ param: date1 eg. ä¼ å…¥"1986-07-28", è¿”å›
 	 * 07-28
 	 */
 	public static String getMonthAndDay(Date date) {
@@ -698,7 +698,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * Ê±¼ä²î£ºday1-day2
+	 * æ—¶é—´å·®ï¼šday1-day2
 	 * 
 	 * @param day1
 	 * @param day2
@@ -710,16 +710,16 @@ public class DateUtil implements Util4Script {
 		long diff = day1.getTime() - day2.getTime();
 		long sign = diff / Math.abs(diff);
 		if (sign < 0)
-			return "ÒÑ¾­¹ıÆÚ";
+			return "å·²ç»è¿‡æœŸ";
 		diff = Math.abs(diff) / 1000;
 		long day = diff / 3600 / 24;
 		long hour = (diff - (day * 3600 * 24)) / 3600;
 		long minu = diff % 3600 / 60;
-		return (day == 0 ? "" : day + "Ìì") + (hour == 0 ? "" : hour + "Ğ¡Ê±") + (minu == 0 ? "" : minu + "·Ö");
+		return (day == 0 ? "" : day + "å¤©") + (hour == 0 ? "" : hour + "å°æ—¶") + (minu == 0 ? "" : minu + "åˆ†");
 	}
 
 	/**
-	 * Ê±¼ä²î£ºday1-day2
+	 * æ—¶é—´å·®ï¼šday1-day2
 	 * 
 	 * @param day1
 	 * @param day2
@@ -734,12 +734,12 @@ public class DateUtil implements Util4Script {
 		long hour = diff / 3600;
 		long minu = diff % 3600 / 60;
 		long second = diff % 60;
-		return (sign < 0 ? "-" : "+") + (hour == 0 ? "" : hour + "Ğ¡Ê±") + (minu == 0 ? "" : minu + "·Ö")
-				+ (second == 0 ? "" : second + "Ãë");
+		return (sign < 0 ? "-" : "+") + (hour == 0 ? "" : hour + "å°æ—¶") + (minu == 0 ? "" : minu + "åˆ†")
+				+ (second == 0 ? "" : second + "ç§’");
 	}
 
 	/**
-	 * Ê±¼ä²î£¨Ãë£©£ºday1-day2
+	 * æ—¶é—´å·®ï¼ˆç§’ï¼‰ï¼šday1-day2
 	 * 
 	 * @param day1
 	 * @param day2
@@ -757,7 +757,7 @@ public class DateUtil implements Util4Script {
 	}
 
 	/**
-	 * Ê±¼ä²î£¨·ÖÖÓ£©£ºday1-day2
+	 * æ—¶é—´å·®ï¼ˆåˆ†é’Ÿï¼‰ï¼šday1-day2
 	 * 
 	 * @param day1
 	 * @param day2
@@ -771,11 +771,11 @@ public class DateUtil implements Util4Script {
 			return 0;
 		long sign = diff / Math.abs(diff);
 		diff = Math.abs(diff) / 1000;
-		return Math.round(diff * 1.0d * 10 / 6.0) / 100.0 * sign;// Á½Î»Ğ¡Êı
+		return Math.round(diff * 1.0d * 10 / 6.0) / 100.0 * sign;// ä¸¤ä½å°æ•°
 	}
 
 	/**
-	 * Ê±¼ä²î£¨·Ö£©£ºtime1 - time2
+	 * æ—¶é—´å·®ï¼ˆåˆ†ï¼‰ï¼štime1 - time2
 	 * 
 	 * @param time1
 	 * @param time2
@@ -787,11 +787,11 @@ public class DateUtil implements Util4Script {
 			return 0;
 		long sign = diff / Math.abs(diff);
 		diff = Math.abs(diff) / 1000;
-		return Math.round(diff * 1.0d * 10 / 6.0) / 100.0 * sign;// Á½Î»Ğ¡Êı
+		return Math.round(diff * 1.0d * 10 / 6.0) / 100.0 * sign;// ä¸¤ä½å°æ•°
 	}
 
 	/**
-	 * Ê±¼ä²î£¨Ğ¡Ê±£©£ºday1 - day2
+	 * æ—¶é—´å·®ï¼ˆå°æ—¶ï¼‰ï¼šday1 - day2
 	 * 
 	 * @param day1
 	 * @param day2
@@ -803,13 +803,13 @@ public class DateUtil implements Util4Script {
 		long diff = day1.getTime() - day2.getTime();
 		long sign = diff / Math.abs(diff);
 		diff = Math.abs(diff) / 1000;
-		return Math.round(diff * 1.0d / 3.6) / 1000.0 * sign;// ÈıÎ»Ğ¡Êı
+		return Math.round(diff * 1.0d / 3.6) / 1000.0 * sign;// ä¸‰ä½å°æ•°
 	}
 
 	/**
 	 * @param day1
 	 * @param day2
-	 * @return ÈÕÆÚÏà²îÕûÊıround(abs£¨day1-day2))
+	 * @return æ—¥æœŸç›¸å·®æ•´æ•°round(absï¼ˆday1-day2))
 	 */
 	public static final <T extends Date> int getDiffDay(T day1, T day2) {
 		if (day1 == null || day2 == null)

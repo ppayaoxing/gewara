@@ -105,7 +105,7 @@ public abstract class Wrapper
 	 */
 	abstract public String[] getReadPropertyNames();
 	/**
-	 * 只包含有field对应的property 
+	 * 鍙寘鍚湁field瀵瑰簲鐨刾roperty 
 	 * @return
 	 */
 	abstract public String[] getFieldPropertyNames();
@@ -251,7 +251,7 @@ public abstract class Wrapper
 			fieldPns.add(fn); 
 			writePns.add(fn);
 		}
-		//临时记录，便于后面fieldPns处理
+		//涓存椂璁板綍锛屼究浜庡悗闈ieldPns澶勭悊
 		List<String> tmpFields = ReflectUtils.getBeanAllFieldNames(c);
 		
 		Method[] methods = c.getMethods();
@@ -451,7 +451,7 @@ public abstract class Wrapper
 
 	private static String propertyName(String pn)
 	{
-		//增加 Character.isDigit(pn.charAt(1))  如：  private int d3
+		//澧炲姞 Character.isDigit(pn.charAt(1))  濡傦細  private int d3
 		return pn.length() == 1 || Character.isLowerCase(pn.charAt(1)) || Character.isDigit(pn.charAt(1)) ? Character.toLowerCase(pn.charAt(0)) + pn.substring(1) : pn;
 	}
 	

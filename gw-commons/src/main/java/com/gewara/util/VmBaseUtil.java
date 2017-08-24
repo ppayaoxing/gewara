@@ -29,20 +29,20 @@ public class VmBaseUtil extends StringUtils implements Util4Script {
 	}
 
 	/**
-	 * ÏÈ½ØÈ¡ºó£¬ÔÙ½«ËùÓĞµÄHTML·ûºÅÈç:<, >, µÈÌæ»»Îª &gt, &lt
+	 * å…ˆæˆªå–åï¼Œå†å°†æ‰€æœ‰çš„HTMLç¬¦å·å¦‚:<, >, ç­‰æ›¿æ¢ä¸º &gt, &lt
 	 * 
 	 * @param str
 	 * @param length
 	 * @return
 	 */
 	public final static String escabbr(String str, int length) {
-		// ÓëhtmlabbrµÄÇø±ğÊÇ²»¾­¹ıÈ¥³ıhtml±êÇ©´¦Àí
+		// ä¸htmlabbrçš„åŒºåˆ«æ˜¯ä¸ç»è¿‡å»é™¤htmlæ ‡ç­¾å¤„ç†
 		String result = StringUtil.enabbr(str, length);
 		return HtmlUtils.htmlEscape(result);
 	}
 
 	/**
-	 * ½«htmlÖĞµÄÎÄ±¾Ìá³ö³öÀ´£¬ÔÙ½ØÈ¡length¸ö£¬ÔÙ½«ËùÓĞµÄHTML·ûºÅÈç:<, >, µÈÌæ»»Îª &gt, &lt
+	 * å°†htmlä¸­çš„æ–‡æœ¬æå‡ºå‡ºæ¥ï¼Œå†æˆªå–lengthä¸ªï¼Œå†å°†æ‰€æœ‰çš„HTMLç¬¦å·å¦‚:<, >, ç­‰æ›¿æ¢ä¸º &gt, &lt
 	 * 
 	 * @param html
 	 * @param length
@@ -284,7 +284,7 @@ public class VmBaseUtil extends StringUtils implements Util4Script {
 	}
 
 	public final static String formatPercent(Integer num1, Integer num2) {
-		return formatPercent(num1, num2, "0.00%");// ÉèÖÃ°Ù·ÖÂÊµÄÊä³öĞÎÊ½£¬ĞÎÈç00%,¸ù¾İĞèÒªÉè¶¨¡£
+		return formatPercent(num1, num2, "0.00%");// è®¾ç½®ç™¾åˆ†ç‡çš„è¾“å‡ºå½¢å¼ï¼Œå½¢å¦‚00%,æ ¹æ®éœ€è¦è®¾å®šã€‚
 	}
 
 	public final static String formatPercent(Integer num1, Integer num2, String format) {
@@ -303,7 +303,7 @@ public class VmBaseUtil extends StringUtils implements Util4Script {
 		if (num1.intValue() == num1.doubleValue() && num2.intValue() == num2.doubleValue()) {
 			format = "0%";
 		}
-		return formatPercent(num1, num2, format);// ÉèÖÃ°Ù·ÖÂÊµÄÊä³öĞÎÊ½£¬ĞÎÈç00%,¸ù¾İĞèÒªÉè¶¨¡£
+		return formatPercent(num1, num2, format);// è®¾ç½®ç™¾åˆ†ç‡çš„è¾“å‡ºå½¢å¼ï¼Œå½¢å¦‚00%,æ ¹æ®éœ€è¦è®¾å®šã€‚
 	}
 
 	public final static String formatPercent(Double num1, Double num2, String format) {
@@ -325,7 +325,7 @@ public class VmBaseUtil extends StringUtils implements Util4Script {
 		return mobile.substring(0, 3) + "****" + mobile.substring(7, 11);
 	}
 	/**
-	 * ĞèÒªĞ£ÑétokenµÄÒ³Ãæ£¨Èçtoken£©Éú³É¡¢Ğ£ÑétokenÓÃ
+	 * éœ€è¦æ ¡éªŒtokençš„é¡µé¢ï¼ˆå¦‚tokenï¼‰ç”Ÿæˆã€æ ¡éªŒtokenç”¨
 	 */
 	private static final String TOKEN_CONSTANT = "he#%&#he";
 	public static boolean isValidToken(String token) {

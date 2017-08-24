@@ -11,15 +11,15 @@ import com.gewara.util.DateUtil;
 
 /**
  * @author ge.biao
- * 只用于后台管理类dubbo接口数据封装
+ * 鍙敤浜庡悗鍙扮鐞嗙被dubbo鎺ュ彛鏁版嵁灏佽
  */
 public class RequestParamVo implements Serializable{
 	private static final long serialVersionUID = 118918163520189721L;
 	private Map<String, String> params;
-	private String reqUri;		//请求URI
-	private String systemid;	//系统ID
-	private Long logonUserId;	//登录用户ID
-	private String sessionid;	//登录用户sessionid
+	private String reqUri;		//璇锋眰URI
+	private String systemid;	//绯荤粺ID
+	private Long logonUserId;	//鐧诲綍鐢ㄦ埛ID
+	private String sessionid;	//鐧诲綍鐢ㄦ埛sessionid
 	private String remoteIp;
 	public Map<String, String> getParams() {
 		return params;

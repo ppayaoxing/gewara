@@ -3,7 +3,7 @@ package com.gewara.support;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-/**  Ö»¶ÁÊı¾İÔ´
+/**  åªè¯»æ•°æ®æº
  * @author sunder
  *
  */

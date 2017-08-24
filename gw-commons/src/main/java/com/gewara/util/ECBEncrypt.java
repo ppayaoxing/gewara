@@ -13,15 +13,15 @@ import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * ECB¼ÓÃÜÊµÏÖ£¬Éú³É8Î»µÄMACÂë£¬¼ÓÃÜ²ÉÓÃDES¼ÓÃÜ
+ * ECBåŠ å¯†å®ç°ï¼Œç”Ÿæˆ8ä½çš„MACç ï¼ŒåŠ å¯†é‡‡ç”¨DESåŠ å¯†
  */
 public class ECBEncrypt {
 
 	/**
-	 * ÊµÏÖECB¼ÓÃÜ£¬·µ»Ø16Î»Ê®Áù½øÖÆMACÂë,Èç¹û³öÏÖÒì³£·µ»Ønull
-	 * @param input Ã÷ÎÄ
-	 * @param key ÃÜÔ¿Ê®Áù½øÖÆ(Ã÷ÎÄ)
-	 * @return 8Î»MACÂë
+	 * å®ç°ECBåŠ å¯†ï¼Œè¿”å›16ä½åå…­è¿›åˆ¶MACç ,å¦‚æœå‡ºç°å¼‚å¸¸è¿”å›null
+	 * @param input æ˜æ–‡
+	 * @param key å¯†é’¥åå…­è¿›åˆ¶(æ˜æ–‡)
+	 * @return 8ä½MACç 
 	 */
 	public static String ecbEncrypt(String input, String key) {
 		return ecbEncrypt(input, key, "iso-8859-1", 8);
@@ -38,18 +38,18 @@ public class ECBEncrypt {
 			byte[] bt = input.getBytes(charset);//iso-8859-1
 			int len = bt.length;
 			int other = len % 8;
-			// Èç¹ûÃÜÎÄ×îºó²»×ã8¸ö×Ö½Ú£¬ÔòÒÔ0²¹×ã
+			// å¦‚æœå¯†æ–‡æœ€åä¸è¶³8ä¸ªå­—èŠ‚ï¼Œåˆ™ä»¥0è¡¥è¶³
 			if (other != 0) {
 				byte[] tt = bt;
 				bt = new byte[tt.length + (8 - other)];
 				System.arraycopy(tt, 0, bt, 0, len);
 			}
 
-			// ³õÊ¼»¯macÊı×é£¬×îÃ÷ÎÄµÄÇ°8¸ö×Ö½Ú£¬ÓÃÀ´½øĞĞÑ­»·Òì»ò
+			// åˆå§‹åŒ–macæ•°ç»„ï¼Œæœ€æ˜æ–‡çš„å‰8ä¸ªå­—èŠ‚ï¼Œç”¨æ¥è¿›è¡Œå¾ªç¯å¼‚æˆ–
 			for (int i = 0; i < 8; i++) {
 				mac[i] = bt[i];
 			}
-			// Ñ­»·Òì»ò
+			// å¾ªç¯å¼‚æˆ–
 			for (int i = 8; i <= bt.length; i++, z++) {
 				if (i != 8 && i % 8 == 0) {
 					for (int j = 0; j < 8; j++) {
@@ -62,7 +62,7 @@ public class ECBEncrypt {
 					temp[z] = bt[i];
 				}
 			}
-			byte[] tmpResult = new byte[8];// ÓÃÀ´´æ·ÅÒì»ò½á¹û
+			byte[] tmpResult = new byte[8];// ç”¨æ¥å­˜æ”¾å¼‚æˆ–ç»“æœ
 			tmpResult = des(mac, keys);
 			return Hex2String(tmpResult).toUpperCase().substring(0, length);
 		} catch (Exception e) {
@@ -71,9 +71,9 @@ public class ECBEncrypt {
 	}
 
 	/**
-	 * Description: ½«16½øÖÆµÄbyteÊı×é×ª»¯Îª16½øÖÆµÄ×Ö·û´®
+	 * Description: å°†16è¿›åˆ¶çš„byteæ•°ç»„è½¬åŒ–ä¸º16è¿›åˆ¶çš„å­—ç¬¦ä¸²
 	 * 
-	 * @author Administrator 2009-8-25 ÏÂÎç04:09:41
+	 * @author Administrator 2009-8-25 ä¸‹åˆ04:09:41
 	 * @param bytearr
 	 * @return
 	 */
@@ -94,9 +94,9 @@ public class ECBEncrypt {
 	}
 
 	/**
-	 * Description: ½«16½øÖÆ×Ö·û´®×ª»¯Îª16½øÖÆµÄbyteÊı×é
+	 * Description: å°†16è¿›åˆ¶å­—ç¬¦ä¸²è½¬åŒ–ä¸º16è¿›åˆ¶çš„byteæ•°ç»„
 	 * 
-	 * @author Ivan 2009-8-25 ÏÂÎç04:09:08
+	 * @author Ivan 2009-8-25 ä¸‹åˆ04:09:08
 	 * @param bytearr
 	 * @return
 	 */
@@ -116,9 +116,9 @@ public class ECBEncrypt {
 	}
 
 	/**
-	 * Description: des¼ÓÃÜ
+	 * Description: desåŠ å¯†
 	 * 
-	 * @author Ivan 2009-8-25 ÏÂÎç04:08:37
+	 * @author Ivan 2009-8-25 ä¸‹åˆ04:08:37
 	 * @param reqBytes
 	 * @param key
 	 * @return

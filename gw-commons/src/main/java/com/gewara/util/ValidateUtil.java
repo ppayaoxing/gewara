@@ -52,16 +52,16 @@ public class ValidateUtil implements Util4Script {
 	}
 	public static ErrorCode validatePassword(String pass1, String pass2){
 		if(StringUtils.isBlank(pass1) || StringUtils.isBlank(pass2)){
-			return  ErrorCode.getFailure("ÃÜÂë±ØĞë!");
+			return  ErrorCode.getFailure("å¯†ç å¿…é¡»!");
 		}
 		if(!StringUtils.equals(pass1, pass2)){
-			return  ErrorCode.getFailure("Á½´ÎÊäÈëµÄÃÜÂë²»Ò»ÖÂ!");
+			return  ErrorCode.getFailure("ä¸¤æ¬¡è¾“å…¥çš„å¯†ç ä¸ä¸€è‡´!");
 		}
 		if(!ValidateUtil.isPassword(pass1)){
-			return  ErrorCode.getFailure("ÃÜÂë¸ñÊ½²»ÕıÈ·,Ö»ÄÜÊÇ×ÖÄ¸£¬Êı×Ö£¬Ó¢ÎÄ±êµã£¬³¤¶È6¡ª14Î»£¡");
+			return  ErrorCode.getFailure("å¯†ç æ ¼å¼ä¸æ­£ç¡®,åªèƒ½æ˜¯å­—æ¯ï¼Œæ•°å­—ï¼Œè‹±æ–‡æ ‡ç‚¹ï¼Œé•¿åº¦6â€”14ä½ï¼");
 		}
 		if(ValidateUtil.isSimplePass(pass1)){
-			return ErrorCode.getFailure("ÃÜÂë¹ıÓÚ¼òµ¥£¬ÇëÖØĞÂÊäÈë£¡");
+			return ErrorCode.getFailure("å¯†ç è¿‡äºç®€å•ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
 		}
 		return ErrorCode.SUCCESS;
 
@@ -74,7 +74,7 @@ public class ValidateUtil implements Util4Script {
 		return simplePass.contains(md5);
 	}
 	/**
-	 * Êı×Ö¡¢ÏÂ»®Ïß¡¢×ÖÄ¸µÄ±êÊ¶·û
+	 * æ•°å­—ã€ä¸‹åˆ’çº¿ã€å­—æ¯çš„æ ‡è¯†ç¬¦
 	 * @param variable
 	 * @param length1
 	 * @param length2
@@ -85,7 +85,7 @@ public class ValidateUtil implements Util4Script {
 		return StringUtil.regMatch(variable, "^\\w{" + length1 + "," + length2 + "}$", true);
 	}
 	/**
-	 * Êı×Ö¡¢ÏÂ»®Ïß¡¢×ÖÄ¸¡¢ÖĞÎÄµÄ±êÊ¶·û
+	 * æ•°å­—ã€ä¸‹åˆ’çº¿ã€å­—æ¯ã€ä¸­æ–‡çš„æ ‡è¯†ç¬¦
 	 * @param variable
 	 * @param length1
 	 * @param length2
@@ -103,9 +103,9 @@ public class ValidateUtil implements Util4Script {
 		return StringUtil.regMatch(postcode, "^[0-9]{6}$", true);
 	}
 	private static char[] cncharRange = new char[]{'\u4e00','\u9fa5'};
-	private static String spcharList = "¡«£¡£¤¡­£¨£©¡ª¡ª£º¡°¡¶¡·£¿/£¬¡¢£»¡®¡¯¡°¡±¡¾¡¿¡¤¡£¡ï¡î¡ğ¡ñ¡ò¡ó¡ô¡õ¡ö¡÷¡ø¡ù¡ú¡û¡ü¡ı";
+	private static String spcharList = "ï½ï¼ï¿¥â€¦ï¼ˆï¼‰â€”â€”ï¼šâ€œã€Šã€‹ï¼Ÿ/ï¼Œã€ï¼›â€˜â€™â€œâ€ã€ã€‘Â·ã€‚â˜…â˜†â—‹â—â—â—‡â—†â–¡â– â–³â–²â€»â†’â†â†‘â†“";
 	/**
-	 * ÑéÖ¤ĞÂÎÅÄÚÈİÊÇ·ñÓĞ·Ç·¨×Ö·û
+	 * éªŒè¯æ–°é—»å†…å®¹æ˜¯å¦æœ‰éæ³•å­—ç¬¦
 	 * @param content
 	 * @return
 	 */

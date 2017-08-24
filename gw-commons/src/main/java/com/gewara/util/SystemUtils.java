@@ -11,7 +11,7 @@ public class SystemUtils {
 		return hostname;
 	}
 	/**
-	 * ·ÀÖ¹ÎÄ¼şÃûÓĞ".."ÕâÖÖÉÏ¼¶Ä¿Â¼¼°¿Õ¸ñ
+	 * é˜²æ­¢æ–‡ä»¶åæœ‰".."è¿™ç§ä¸Šçº§ç›®å½•åŠç©ºæ ¼
 	 * @param filename
 	 * @return
 	 */

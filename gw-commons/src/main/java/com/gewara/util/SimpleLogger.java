@@ -216,7 +216,7 @@ public class SimpleLogger extends LoggerWrapper implements Logger, GewaLogger {
 
 	@Override
 	public void warn(String msg, Throwable t) {
-		LoggerUtils.incrementCount(t, null/*ºöÂÔ*/);
+		LoggerUtils.incrementCount(t, null/*å¿½ç•¥*/);
 		if (!logger.isWarnEnabled())
 			return;
 		if (instanceofLAL) {
@@ -250,7 +250,7 @@ public class SimpleLogger extends LoggerWrapper implements Logger, GewaLogger {
 
 	@Override
 	public void error(String msg, Throwable t) {
-		LoggerUtils.incrementCount(t, null/*ºöÂÔ*/);
+		LoggerUtils.incrementCount(t, null/*å¿½ç•¥*/);
 		if (!logger.isErrorEnabled())
 			return;
 		if (instanceofLAL) {
@@ -308,7 +308,7 @@ public class SimpleLogger extends LoggerWrapper implements Logger, GewaLogger {
 
 	@Override
 	public void warnWithType(String type, String msg, Throwable t) {
-		LoggerUtils.incrementCount(t, null/*ºöÂÔ*/);
+		LoggerUtils.incrementCount(t, null/*å¿½ç•¥*/);
 		if (!logger.isWarnEnabled())
 			return;
 		if (instanceofLAL) {
@@ -341,7 +341,7 @@ public class SimpleLogger extends LoggerWrapper implements Logger, GewaLogger {
 
 	@Override
 	public void errorWithType(String type, String msg, Throwable t) {
-		LoggerUtils.incrementCount(t, null/*ºöÂÔ*/);
+		LoggerUtils.incrementCount(t, null/*å¿½ç•¥*/);
 		if (!logger.isErrorEnabled()) return;
 		if (instanceofLAL) {
 			((LocationAwareLogger) logger).log(null, FQCN, LocationAwareLogger.ERROR_INT, type + msg, null, t);

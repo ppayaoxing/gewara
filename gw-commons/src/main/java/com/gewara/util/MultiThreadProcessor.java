@@ -16,11 +16,11 @@ public class MultiThreadProcessor {
 		executorService = Executors.newFixedThreadPool(threadSize, new GewaExecutorThreadFactory(threadNamePre));
 	}
 	/**
-	 * ÄÚ²¿¶àÏß³ÌÖ´ĞĞÈÎÎñ£¬Í¬²½·µ»Ø
+	 * å†…éƒ¨å¤šçº¿ç¨‹æ‰§è¡Œä»»åŠ¡ï¼ŒåŒæ­¥è¿”å›
 	 * @param taskList
-	 * @param maxwait ×î´óµÈ´ıÊ±¼ä
+	 * @param maxwait æœ€å¤§ç­‰å¾…æ—¶é—´
 	 * @param unit
-	 * @return ³É¹¦´ÎÊı£¬Ê£Óà´ÎÊı
+	 * @return æˆåŠŸæ¬¡æ•°ï¼Œå‰©ä½™æ¬¡æ•°
 	 */
 	public long[] execute(Runnable[] taskList, Long maxwait, TimeUnit unit){
 		CountDownLatch cdl = new CountDownLatch(taskList.length);

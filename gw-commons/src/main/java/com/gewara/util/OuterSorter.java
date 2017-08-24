@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * ÓÃÀ´¶¨ÒåÍâ²¿×Ö¶ÎµÄÅÅĞò
+ * ç”¨æ¥å®šä¹‰å¤–éƒ¨å­—æ®µçš„æ’åº
  * @author gebiao(ge.biao@gewara.com)
  * @since Dec 6, 2012 2:24:51 PM
  * @param <T>

@@ -23,7 +23,7 @@ public class ResultCode<T> implements Serializable{
 		this.retval = retval;
 		this.success = StringUtils.equals(code, CODE_SUCCESS);
 	}
-	public static ResultCode SUCCESS = new ResultCode(CODE_SUCCESS, "²Ù×÷³É¹¦£¡", null);
+	public static ResultCode SUCCESS = new ResultCode(CODE_SUCCESS, "æ“ä½œæˆåŠŸï¼", null);
 	@Override
 	public boolean equals(Object another){
 		if(another == null || !(another instanceof ResultCode)) return false;
@@ -72,7 +72,7 @@ public class ResultCode<T> implements Serializable{
 		return exception;
 	}
 	/**
-	 * dubbo½Ó¿Ú·şÎñ¶ËÇë²»ÒªÉèÖÃ´ËÒì³££¡Ö»×÷Îª¿Í»§¶Ë·â×°Ê¹ÓÃ
+	 * dubboæ¥å£æœåŠ¡ç«¯è¯·ä¸è¦è®¾ç½®æ­¤å¼‚å¸¸ï¼åªä½œä¸ºå®¢æˆ·ç«¯å°è£…ä½¿ç”¨
 	 * @param exception
 	 */
 	public void setException(Throwable exception) {

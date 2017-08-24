@@ -1,7 +1,7 @@
 package com.gewara.support;
 
 /**
- * ÓÃÀ´µ÷ÊÔ¼°¶¨Î»ÎÊÌâ
+ * ç”¨æ¥è°ƒè¯•åŠå®šä½é—®é¢˜
  */
 public class TraceErrorException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

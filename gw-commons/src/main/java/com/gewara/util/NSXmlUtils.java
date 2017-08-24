@@ -30,7 +30,7 @@ public class NSXmlUtils {
 			document = reader.read(new CharArrayReader(xml.toCharArray()));
 		} catch (DocumentException e) {
 			dbLogger.error(LoggerUtils.getExceptionTrace(e, 100));
-		}// ¶ÁÈ¡XMLÎÄ¼ş
+		}// è¯»å–XMLæ–‡ä»¶
 		return document;
 	     
 		

@@ -6,10 +6,10 @@ import java.util.Random;
 public class RandomUtils {
 	
 	/**
-	 * ·µ»ØËæ»úÕûÊı
-	 * <p>·â×°java.util.Random
-	 * @param n ·¶Î§Öµ
-	 * @return n<=1,·µ»Ø0;ÆäËû·µ»Ø·¶Î§0~(n-1)ÄÚµÄËæ»úÕûÊı
+	 * è¿”å›éšæœºæ•´æ•°
+	 * <p>å°è£…java.util.Random
+	 * @param n èŒƒå›´å€¼
+	 * @return n<=1,è¿”å›0;å…¶ä»–è¿”å›èŒƒå›´0~(n-1)å†…çš„éšæœºæ•´æ•°
 	 */
 	public static int randomInt(int n){
 		if(n <= 1){
@@ -19,11 +19,11 @@ public class RandomUtils {
 	}
 	
 	/**
-	 * ·µ»ØËæ»úÕûÊı
-	 * <p>·â×°org.apache.commons.lang.math.RandomUtils
-	 * <p>ÔÚÍò´ÎÒÔÉÏµÄµ÷ÓÃÉÏ£¬Ê±¼äÓÅÓÚ{@link #randomInt(int)}
-	 * @param n ·¶Î§Öµ
-	 * @return n<=1,·µ»Ø0;ÆäËû·µ»Ø·¶Î§0~(n-1)ÄÚµÄËæ»úÕûÊı
+	 * è¿”å›éšæœºæ•´æ•°
+	 * <p>å°è£…org.apache.commons.lang.math.RandomUtils
+	 * <p>åœ¨ä¸‡æ¬¡ä»¥ä¸Šçš„è°ƒç”¨ä¸Šï¼Œæ—¶é—´ä¼˜äº{@link #randomInt(int)}
+	 * @param n èŒƒå›´å€¼
+	 * @return n<=1,è¿”å›0;å…¶ä»–è¿”å›èŒƒå›´0~(n-1)å†…çš„éšæœºæ•´æ•°
 	 */
 	public static int randomIntApache(int n){
 		if(n <= 1){
@@ -33,9 +33,9 @@ public class RandomUtils {
 	}
 
 	/**
-	 * Ëæ»ú·µ»ØListÖĞµÄÖµ£¬²ÉÓÃ{@link #randomInt(int)}
+	 * éšæœºè¿”å›Listä¸­çš„å€¼ï¼Œé‡‡ç”¨{@link #randomInt(int)}
 	 * @param list
-	 * @return Èç¹ûlistÎªnull»ò¿Õ£¬Ôò·µ»Ønull
+	 * @return å¦‚æœlistä¸ºnullæˆ–ç©ºï¼Œåˆ™è¿”å›null
 	 */
 	public static <T> T getRandomFromList(List<T> list){
 		if(list == null || list.isEmpty()){
@@ -45,10 +45,10 @@ public class RandomUtils {
 	}
 	
 	/**
-	 * Ëæ»ú·µ»ØListÖĞµÄÖµ£¬²ÉÓÃ{@link #randomIntApache(int)}
+	 * éšæœºè¿”å›Listä¸­çš„å€¼ï¼Œé‡‡ç”¨{@link #randomIntApache(int)}
 	 * @param <T>
 	 * @param list
-	 * @return Èç¹ûlistÎªnull»ò¿Õ£¬Ôò·µ»Ønull
+	 * @return å¦‚æœlistä¸ºnullæˆ–ç©ºï¼Œåˆ™è¿”å›null
 	 */
 	public static <T> T getRandomFromListApache(List<T> list){
 		if(list == null || list.isEmpty()){

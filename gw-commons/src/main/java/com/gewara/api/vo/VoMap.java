@@ -44,13 +44,13 @@ public class VoMap<K, V> implements Map<K, V>, Serializable{
 		}
 	}
 	/**
-	 * Ö»Ö§³Ö6²ã¼¯ºÏÇ¶Ì×£¬·ÀÖ¹»¥ÏàÒýÓÃËÀÑ­»·
+	 * åªæ”¯æŒ6å±‚é›†åˆåµŒå¥—ï¼Œé˜²æ­¢äº’ç›¸å¼•ç”¨æ­»å¾ªçŽ¯
 	 * @param value
 	 * @return
 	 */
 	private boolean checkValue(Object value, int deep){
 		if(value==null) return true;
-		if(deep >= 7){//×î¶à6²ãÇ¶Ì×
+		if(deep >= 7){//æœ€å¤š6å±‚åµŒå¥—
 			return false;
 		}
 		//1)primary, primary array...
@@ -73,7 +73,7 @@ public class VoMap<K, V> implements Map<K, V>, Serializable{
 		return false;
 	}
 	private boolean checkMap(Map value, int deep){
-		if(deep >= 7){//×î¶à6²ãÇ¶Ì×
+		if(deep >= 7){//æœ€å¤š6å±‚åµŒå¥—
 			return false;
 		}
 		Collection values = value.values();
@@ -89,7 +89,7 @@ public class VoMap<K, V> implements Map<K, V>, Serializable{
 		return true;
 	}
 	private boolean checkCollection(Collection value, int deep){
-		if(deep >= 7){//×î¶à6²ãÇ¶Ì×
+		if(deep >= 7){//æœ€å¤š6å±‚åµŒå¥—
 			return false;
 		}
 		Collection cv = (Collection) value;

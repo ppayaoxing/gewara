@@ -35,7 +35,7 @@ public class XmlUtils {
 		}
 	}
 	/**
-	 * Ö±½ÓĞ´Èë£¬²»¹Ø±Õwriter
+	 * ç›´æ¥å†™å…¥ï¼Œä¸å…³é—­writer
 	 * @param str
 	 * @param encoding
 	 * @param writer
@@ -60,7 +60,7 @@ public class XmlUtils {
 			document = reader.read(new CharArrayReader(xml.toCharArray()));
 		} catch (DocumentException e) {
 			dbLogger.error(LoggerUtils.getExceptionTrace(e, 100));
-		}// ¶ÁÈ¡XMLÎÄ¼ş
+		}// è¯»å–XMLæ–‡ä»¶
 		return document;
 	}
 
@@ -160,9 +160,9 @@ public class XmlUtils {
 		//dbLogger.warn(getNodeText(document, "/bookstore/book[2]/title/@lang"));
 		//dbLogger.warn(getNodeText(document, "/bookstore/book[2]/description"));
 		//dbLogger.warn("xx"+getNodeText(document, "/bookstore/book[1]/price22"));
-		//printNode(document, "//*");//ËùÓĞElement½Úµã
-		//printNode(document, "//node()");//ËùÓĞ½Úµã
-		//printNode(document, "//title | //price");//ËùÓĞ½Úµã
+		//printNode(document, "//*");//æ‰€æœ‰ElementèŠ‚ç‚¹
+		//printNode(document, "//node()");//æ‰€æœ‰èŠ‚ç‚¹
+		//printNode(document, "//title | //price");//æ‰€æœ‰èŠ‚ç‚¹
 		//dbLogger.warngetNodeTextList(document, "/bookstore/book/price", true));
 		Map<String, Object> map = xml2Map(xml);
 		System.out.println(map);

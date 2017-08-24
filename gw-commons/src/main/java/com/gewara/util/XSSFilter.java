@@ -479,10 +479,10 @@ public class XSSFilter {
 		return false;
 	}
 	/**
-	 * ¹ıÂËÌØÊâ×Ö·û  
+	 * è¿‡æ»¤ç‰¹æ®Šå­—ç¬¦  
 	 */
     public static String filterSpecStr(String str){
-    	//È«½Ç×ª°ë½Ç
+    	//å…¨è§’è½¬åŠè§’
     	str = BCConvert.SBC2DBC(str);
 		Pattern p = Pattern.compile(regExp);
 		Matcher m = p.matcher(str);
@@ -490,7 +490,7 @@ public class XSSFilter {
     }
   
     /**
-     * ¹ıÂË¶ÔÏóÖ¸¶¨µÄÊôĞÔ
+     * è¿‡æ»¤å¯¹è±¡æŒ‡å®šçš„å±æ€§
      * @param entity
      * @param attrs
      * @return
@@ -513,7 +513,7 @@ public class XSSFilter {
 	}
     
     /**
-     * ¹ıÂËµ¥¸öÊôĞÔ
+     * è¿‡æ»¤å•ä¸ªå±æ€§
      * @param attr
      * @return
      */

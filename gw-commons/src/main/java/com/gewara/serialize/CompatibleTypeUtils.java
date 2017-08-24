@@ -24,8 +24,8 @@ public class CompatibleTypeUtils {
     private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     /**
-     * ¼æÈİÀàĞÍ×ª»»¡£nullÖµÊÇOKµÄ¡£Èç¹û²»ĞèÒª×ª»»£¬Ôò·µ»ØÔ­À´µÄÖµ¡£
-     * ½øĞĞµÄ¼æÈİÀàĞÍ×ª»»ÈçÏÂ£º£¨»ù±¾Àà¶ÔÓ¦µÄWrapperÀàĞÍ²»ÔÙÁĞ³ö¡££©
+     * å…¼å®¹ç±»å‹è½¬æ¢ã€‚nullå€¼æ˜¯OKçš„ã€‚å¦‚æœä¸éœ€è¦è½¬æ¢ï¼Œåˆ™è¿”å›åŸæ¥çš„å€¼ã€‚
+     * è¿›è¡Œçš„å…¼å®¹ç±»å‹è½¬æ¢å¦‚ä¸‹ï¼šï¼ˆåŸºæœ¬ç±»å¯¹åº”çš„Wrapperç±»å‹ä¸å†åˆ—å‡ºã€‚ï¼‰
      * <ul>
      * <li> String -> char, enum, Date
      * <li> byte, short, int, long -> byte, short, int, long

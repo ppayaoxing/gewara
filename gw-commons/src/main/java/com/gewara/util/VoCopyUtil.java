@@ -57,7 +57,7 @@ public class VoCopyUtil {
 
 	public static <S extends BaseVo, T> ResultCode<S> copyProperties(Class<S> clazz, T item) {
 		if (item == null)
-			return ResultCode.getFailure(ResultCode.CODE_DATA_ERROR, "Êı¾İ²»´æÔÚ£¡");
+			return ResultCode.getFailure(ResultCode.CODE_DATA_ERROR, "æ•°æ®ä¸å­˜åœ¨ï¼");
 		try {
 			Wrapper srcWrapper = Wrapper.getWrapper(item.getClass());
 			Wrapper destWrapper = Wrapper.getWrapper(clazz);
@@ -67,7 +67,7 @@ public class VoCopyUtil {
 			return ResultCode.getSuccessReturn(itemVo);
 		} catch (Exception e) {
 			dbLogger.warn(e, 10);
-			return ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "Î´Öª´íÎó£¡");
+			return ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "æœªçŸ¥é”™è¯¯ï¼");
 		}
 	}
 	private static List<String> getJoinProperties(String[] srcProps, Class src, Class dest){
@@ -86,14 +86,14 @@ public class VoCopyUtil {
 						//ignore e.printStackTrace();
 					}
 				}
-				copyPropsMap.put(key, UnmodifiableList.decorate(propList)/*²»ÔÊĞí±ä¸ü*/);
+				copyPropsMap.put(key, UnmodifiableList.decorate(propList)/*ä¸å…è®¸å˜æ›´*/);
 			}
 		}
 		return propList;
 	}
 	/**
-	 * Á½¸öBeanÖ®Ç°¼òµ¥ÊôĞÔcopy
-	 * ÏŞÖÆ£º1£©dst,src²»ÄÜÊÇMap£¬Ö»ÄÜÊÇPOJO  2£©ÎŞ·¨¼¶Áª
+	 * ä¸¤ä¸ªBeanä¹‹å‰ç®€å•å±æ€§copy
+	 * é™åˆ¶ï¼š1ï¼‰dst,srcä¸èƒ½æ˜¯Mapï¼Œåªèƒ½æ˜¯POJO  2ï¼‰æ— æ³•çº§è”
 	 * @param dst
 	 * @param src
 	 */
@@ -134,12 +134,12 @@ public class VoCopyUtil {
 	}	
 
 	/**
-	 * Ä¿Ç°Ö»Ö§³Ö¼òµ¥¶ÔÏócopy</br>
-	 * ²ÎÊıbeanmap£¬keyÊÇ¶ÔÏóµÄÊôĞÔ£¬valueÊÇÊôĞÔ¶ÔÓ¦µÄÖµ
+	 * ç›®å‰åªæ”¯æŒç®€å•å¯¹è±¡copy</br>
+	 * å‚æ•°beanmapï¼Œkeyæ˜¯å¯¹è±¡çš„å±æ€§ï¼Œvalueæ˜¯å±æ€§å¯¹åº”çš„å€¼
 	 * @param dst
 	 * @param beanmap
 	 * @author leo
-	 * @addTime 2016Äê4ÔÂ27ÈÕÏÂÎç6:35:58
+	 * @addTime 2016å¹´4æœˆ27æ—¥ä¸‹åˆ6:35:58
 	 */
 	public static void copy(Object dst, Map<String, Object> beanmap)  {
 		Wrapper destWrapper = Wrapper.getWrapper(dst.getClass());
