@@ -8,12 +8,12 @@ import com.gewara.support.TraceErrorException;
 /**
  * equals() and hashCode();
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28下午02:05:17
+ * @since 2007-9-28涓嬪崍02:05:17
  */
 public abstract class BaseObject implements LocalCachable, Serializable {
 	private static final long serialVersionUID = -3658698824540003392L;
 	/**
-	 * @return 数据的真实ID，不加get方法减少相关反射输出
+	 * @return 鏁版嵁鐨勭湡瀹濱D锛屼笉鍔爂et鏂规硶鍑忓皯鐩稿叧鍙嶅皠杈撳嚭
 	 */
 	public abstract Serializable realId();
 	@Override

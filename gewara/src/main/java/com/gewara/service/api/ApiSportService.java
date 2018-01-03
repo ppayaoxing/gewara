@@ -11,18 +11,18 @@ import com.gewara.xmlbind.sport.GstSportField;
 
 public interface ApiSportService {	
 	/**
-	 * 同步场地基本信息
+	 * 鍚屾鍦哄湴鍩烘湰淇℃伅
 	 * @param sfList
 	 */
 	void addSportField(List<GstSportField> gstSportFieldList);
 
 	/**
-	 * 同步场次
+	 * 鍚屾鍦烘
 	 * @param gott
 	 */
 	ErrorCode<List<OpenTimeItem>> saveSportTimeTable(GstOtt gott);
 	/**
-	 * 修改场次
+	 * 淇敼鍦烘
 	 * @param rott
 	 */
 	void modSportTimeTable(GstOtt rott);

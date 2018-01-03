@@ -26,7 +26,7 @@ public class SingleColorBackgroundFactory implements BackgroundFactory {
 	public void fillBackground(BufferedImage dest) {
 		Graphics2D g = dest.createGraphics();
 		g.setBackground(this.colorFactory.getColor(0));
-		// Ìî³ä±³¾°É«
+		// å¡«å……èƒŒæ™¯è‰²
 		g.clearRect(0, 0, dest.getWidth(), dest.getHeight());
 	}
 }

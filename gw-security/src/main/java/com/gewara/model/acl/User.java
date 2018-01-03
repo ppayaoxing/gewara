@@ -11,7 +11,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28下午02:05:17
+ * @since 2007-9-28涓嬪崍02:05:17
  */
 public class User extends GewaraUser {
 	private static final long serialVersionUID = 3832626162173359411L;
@@ -23,7 +23,7 @@ public class User extends GewaraUser {
 	private String citycode;
 	private String mobile;
 	private String rolenames;
-	private String usertype; // 用户类型：inner:内部用户，其他：外部用户
+	private String usertype; // 鐢ㄦ埛绫诲瀷锛歩nner:鍐呴儴鐢ㄦ埛锛屽叾浠栵細澶栭儴鐢ㄦ埛
 	private String email;
 
 	public User() {

@@ -5,19 +5,19 @@ package com.gewara.monitor;
  * @since Mar 3, 2014 11:57:56 AM
  */
 public enum ReportType {
-	reqnum("ÕıÔÚ´¦ÀíµÄÇëÇóÊıÁ¿"),
-	dubbonum("DUBBOÕıÔÚ´¦ÀíµÄÇëÇóÊıÁ¿"),
-	jmsnum("ÕıÔÚ·¢ËÍµÄJMSÏûÏ¢ÊıÁ¿"),
+	reqnum("æ­£åœ¨å¤„ç†çš„è¯·æ±‚æ•°é‡"),
+	dubbonum("DUBBOæ­£åœ¨å¤„ç†çš„è¯·æ±‚æ•°é‡"),
+	jmsnum("æ­£åœ¨å‘é€çš„JMSæ¶ˆæ¯æ•°é‡"),
 	jvmdump("thread dump"),
-	reqstats("ÇëÇóÍ³¼Æ"),
-	exception("Òì³£Í³¼Æ"),
+	reqstats("è¯·æ±‚ç»Ÿè®¡"),
+	exception("å¼‚å¸¸ç»Ÿè®¡"),
 	scache("ServiceCache"),
 	pcache("PageCache"),
-	mongo("mongo±íÍ³¼Æ"),
+	mongo("mongoè¡¨ç»Ÿè®¡"),
 	gcache("GuavaCache"),
-	dubboReq("dubbo½Ó¿ÚÇëÇó"),
-	gworder("gworderÇëÇó´¦Àí"),
-	error("¸÷Àà´íÎó");//dubbo.xxxx, exception.xxxx
+	dubboReq("dubboæ¥å£è¯·æ±‚"),
+	gworder("gworderè¯·æ±‚å¤„ç†"),
+	error("å„ç±»é”™è¯¯");//dubbo.xxxx, exception.xxxx
 	
 	private String description;
 	public String getDescription() {

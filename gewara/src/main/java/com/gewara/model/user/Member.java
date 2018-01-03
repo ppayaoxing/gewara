@@ -14,7 +14,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 
 import com.gewara.model.acl.GewaraUser;
 
-/** ³ÉÔ±
+/** æˆå‘˜
  * @since Jan 27, 2010 10:18:24 AM
  */
 public class Member extends GewaraUser{
@@ -25,8 +25,8 @@ public class Member extends GewaraUser{
 	private String password;
 	private String mobile;
 	private String rejected;
-	private String bindStatus;					//N£ºÎ´°ó¶¨£¬X£ºÎ´Öª£¬ÌØÊâÓÃÍ¾£¬Y:°ó¶¨£¬Y_S£ºÊÖ»úÄÜÍ¨»°ÑéÖ¤¹ı
-	private String roles = "member";			//·ÖÅäµÄ½ÇÉ«
+	private String bindStatus;					//Nï¼šæœªç»‘å®šï¼ŒXï¼šæœªçŸ¥ï¼Œç‰¹æ®Šç”¨é€”ï¼ŒY:ç»‘å®šï¼ŒY_Sï¼šæ‰‹æœºèƒ½é€šè¯éªŒè¯è¿‡
+	private String roles = "member";			//åˆ†é…çš„è§’è‰²
 	private List<GrantedAuthority> tmpAuth;
 	@Override
 	public final List<GrantedAuthority> getAuthorities() {

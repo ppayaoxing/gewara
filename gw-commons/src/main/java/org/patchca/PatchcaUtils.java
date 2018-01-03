@@ -77,15 +77,15 @@ public class PatchcaUtils implements CaptchaUtil{
 		imgWriteParams.setProgressiveMode(JPEGImageWriteParam.MODE_DISABLED);
 		
 		ColorModel colorModel = ColorModel.getRGBdefault();
-		// Ö¸¶¨Ñ¹ËõÊ±Ê¹ÓÃµÄÉ«²ÊÄ£Ê½
+		// æŒ‡å®šå‹ç¼©æ—¶ä½¿ç”¨çš„è‰²å½©æ¨¡å¼
 		imgWriteParams.setDestinationType(new javax.imageio.ImageTypeSpecifier(colorModel, colorModel.createCompatibleSampleModel(16, 16)));
 		ImageWriter imgWrier = ImageIO.getImageWritersByFormatName("png").next();
 		imgWrier.setOutput(ImageIO.createImageOutputStream(os));
 		imgWrier.write(null, new IIOImage(bi, null, null), imgWriteParams);
-		// ´´½¨¿ÉÓÃÀ´½«Í¼ÏñÊı¾İ±àÂëÎªJPEGÊı¾İÁ÷µÄ±àÂëÆ÷
-		// Ç¿ĞĞ½«»º³åÇøµÄÄÚÈİÊäÈëµ½Ò³Ãæ
+		// åˆ›å»ºå¯ç”¨æ¥å°†å›¾åƒæ•°æ®ç¼–ç ä¸ºJPEGæ•°æ®æµçš„ç¼–ç å™¨
+		// å¼ºè¡Œå°†ç¼“å†²åŒºçš„å†…å®¹è¾“å…¥åˆ°é¡µé¢
 		os.flush();
-		// ¹Ø±ÕÊä³öÁ÷
+		// å…³é—­è¾“å‡ºæµ
 		os.close();
 	}
 }

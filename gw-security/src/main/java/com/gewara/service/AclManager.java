@@ -10,7 +10,7 @@ import com.gewara.model.acl.WebModule;
  * Business Service Interface to handle communication between web and
  * persistence layer.
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public interface AclManager {
 	Role getRole(String rolename);
@@ -22,13 +22,13 @@ public interface AclManager {
 	List<WebModule> getSubMenuList(String tag, String mainmenucode, boolean showAll);
 	List<Role> getRoleListByTag(String tag);
 	/**
-	 * »ñÈ¡Î´¹ØÁªÄ³½ÇÉ«µÄÓÃ»§
+	 * è·å–æœªå…³è”æŸè§’è‰²çš„ç”¨æˆ·
 	 * @param roleId
 	 * @return
 	 */
 	List<User> getUnrelatedUsersByRole(Long roleId);
 	/**
-	 * »ñÈ¡¹ØÁª½ÇÉ«µÄÓÃ»§
+	 * è·å–å…³è”è§’è‰²çš„ç”¨æˆ·
 	 * @param roleId
 	 * @return
 	 */

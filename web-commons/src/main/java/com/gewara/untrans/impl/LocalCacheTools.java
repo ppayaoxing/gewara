@@ -9,7 +9,7 @@ import com.gewara.util.StringUtil;
 
 /**
  * @author ge.biao
- * Ê¹ÓÃ±¾µØ»º´æ×öÒ»²ã´úÀí£¬Ê¹ÓÃ¼¯ÖĞ»º´æ×öÊı¾İÔ¤ÈÈ
+ * ä½¿ç”¨æœ¬åœ°ç¼“å­˜åšä¸€å±‚ä»£ç†ï¼Œä½¿ç”¨é›†ä¸­ç¼“å­˜åšæ•°æ®é¢„çƒ­
  */
 public class LocalCacheTools implements CacheTools{
 	private Gcache<String/*key*/, Object> cachedUkeyMap;

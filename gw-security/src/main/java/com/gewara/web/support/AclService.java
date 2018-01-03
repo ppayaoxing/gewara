@@ -10,7 +10,7 @@ import com.gewara.model.acl.GewaraUser;
 public interface AclService<T extends SecurityModule> extends UserDetailsService{
 	GewaraUser getGewaraUser(Long userid, String logonType);
 	/**
-	 * »ñÈ¡·ÇAPIµÄÀ¹½ØÄ£¿é
+	 * è·å–éAPIçš„æ‹¦æˆªæ¨¡å—
 	 * @return
 	 */
 	List<T> getSecurityModuleList();
@@ -20,7 +20,7 @@ public interface AclService<T extends SecurityModule> extends UserDetailsService
 	
 	
 	/**
-	 * ¸ù¾İÓÃ»§Ãû»ñÈ¡ÓÃ»§¶ÔÏó
+	 * æ ¹æ®ç”¨æˆ·åè·å–ç”¨æˆ·å¯¹è±¡
 	 * @param name
 	 * @param logonType
 	 * @return

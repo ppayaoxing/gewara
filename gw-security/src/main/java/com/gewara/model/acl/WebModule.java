@@ -9,7 +9,7 @@ import com.gewara.web.support.SecurityModule;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public class WebModule extends BaseObject implements SecurityModule{
 	public static final String TAG_GEWA = "G";
@@ -19,12 +19,12 @@ public class WebModule extends BaseObject implements SecurityModule{
 	
 	private Long id;
 	private String moduleurl;
-	private Integer matchorder; //ÔÚÈ¨ÏŞ·ÖÅäÊ±µÄÆ¥ÅäË³Ğò
+	private Integer matchorder; //åœ¨æƒé™åˆ†é…æ—¶çš„åŒ¹é…é¡ºåº
 	private String menucode;
 	private String menutitle;
 	private String target;
-	private String display; //ÊÇ·ñ
-	private String tag;		//·ÖÀà£ºgewa£¬partner
+	private String display; //æ˜¯å¦
+	private String tag;		//åˆ†ç±»ï¼šgewaï¼Œpartner
 	private String rolenames;
 	
 	private boolean top;

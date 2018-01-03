@@ -10,43 +10,43 @@ import org.patchca.color.SingleColorFactory;
 
 public class ComplexBackgroundFactory implements BackgroundFactory {
 	/**
-	 * ×Ô¶¨ÒåÑéÖ¤ÂëÍ¼Æ¬±³¾°,Ö÷Òª»­Ò»Ğ©ÔëµãºÍ¸ÉÈÅÏß
+	 * è‡ªå®šä¹‰éªŒè¯ç å›¾ç‰‡èƒŒæ™¯,ä¸»è¦ç”»ä¸€äº›å™ªç‚¹å’Œå¹²æ‰°çº¿
 	 */
 	private Random random = new Random();
 	private ColorFactory factory = new SingleColorFactory(new Color(25, 60, 170));
 	public void fillBackground(BufferedImage image) {
 		Graphics graphics = image.getGraphics();
 
-		// ÑéÖ¤ÂëÍ¼Æ¬µÄ¿í¸ß
+		// éªŒè¯ç å›¾ç‰‡çš„å®½é«˜
 		int imgWidth = image.getWidth();
 		int imgHeight = image.getHeight();
-		// Ìî³äÎª°×É«±³¾°
+		// å¡«å……ä¸ºç™½è‰²èƒŒæ™¯
 		graphics.setColor(Color.WHITE);
 		graphics.fillRect(0, 0, imgWidth, imgHeight);
 
-		// »­100¸öÔëµã(ÑÕÉ«¼°Î»ÖÃËæ»ú)
+		// ç”»100ä¸ªå™ªç‚¹(é¢œè‰²åŠä½ç½®éšæœº)
 		for (int i = 0; i < 10; i++) {
-			// Ëæ»úÑÕÉ«
+			// éšæœºé¢œè‰²
 			//int rInt = random.nextInt(255);
 			//int gInt = random.nextInt(255);
 			//int bInt = random.nextInt(255);
 
 			graphics.setColor(factory.getColor(1));
 
-			// Ëæ»úÎ»ÖÃ
+			// éšæœºä½ç½®
 			int xInt = random.nextInt(imgWidth - 3);
 			int yInt = random.nextInt(imgHeight - 2);
 
-			// Ëæ»úĞı×ª½Ç¶È
+			// éšæœºæ—‹è½¬è§’åº¦
 			int sAngleInt = random.nextInt(360);
 			int eAngleInt = random.nextInt(360);
 
-			// Ëæ»ú´óĞ¡
+			// éšæœºå¤§å°
 			int wInt = random.nextInt(6);
 			int hInt = random.nextInt(6);
 
 			graphics.fillArc(xInt, yInt, wInt, hInt, sAngleInt, eAngleInt);
-			// »­5Ìõ¸ÉÈÅÏß
+			// ç”»5æ¡å¹²æ‰°çº¿
 			if (i % 2 == 0) {
 				int xInt2 = random.nextInt(imgWidth);
 				int yInt2 = random.nextInt(imgHeight);

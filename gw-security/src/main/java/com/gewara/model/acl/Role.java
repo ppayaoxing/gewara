@@ -8,14 +8,14 @@ import com.gewara.model.BaseObject;
  * This class is used to represent available roles in the database.
  * </p>
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28下午02:05:17
+ * @since 2007-9-28涓嬪崍02:05:17
  */
 public class Role extends BaseObject {
 	private static final long serialVersionUID = 3690197650654049848L;
 	protected Long id;
 	protected String name;
 	protected String description;
-	protected String tag;				//分类：gewa，partner
+	protected String tag;				//鍒嗙被锛歡ewa锛宲artner
 	public Role() {
 	}
 

@@ -7,7 +7,7 @@ import com.gewara.model.BaseObject;
 import com.gewara.support.CachePair;
 
 public interface CacheService extends CacheTools {
-	// ¹Ì¶¨ÇøÓò
+	// å›ºå®šåŒºåŸŸ
 	String REGION_TENMIN = "tenMin";
 	String REGION_ONEHOUR = "oneHour";
 	String REGION_LOGINAUTH = "loginAuth"; // 2hour
@@ -24,23 +24,23 @@ public interface CacheService extends CacheTools {
 	<T extends BaseObject> void cleanUkey(Class<T> claszz, String key, String ukey);
 
 	/**
-	 * @function ¶à¸ökey
+	 * @function å¤šä¸ªkey
 	 */
 	Map<String, Object> getBulk(String regionName, Collection<String> keys);
 
 	/**
-	 * Ê¹ÓÃ¶ÀÁ¢µÄ³¬Ê±Ê±¼ä
+	 * ä½¿ç”¨ç‹¬ç«‹çš„è¶…æ—¶æ—¶é—´
 	 * 
 	 * @param regionName
 	 * @param key
 	 * @param value
 	 * @param timeoutSecond
-	 *            ³¬Ê±ÃëÊı
+	 *            è¶…æ—¶ç§’æ•°
 	 */
 	void set(String regionName, String key, Object value, int timeoutSecond);
 
 	/**
-	 * Ö±½Ó¸üĞÂ»º´æ
+	 * ç›´æ¥æ›´æ–°ç¼“å­˜
 	 */
 	void updateValue(String regionName, String key, String newvalue);
 
@@ -49,26 +49,26 @@ public interface CacheService extends CacheTools {
 	Integer getCacheTime(String region);
 
 	/**
-	 * Ôö¼Ó¼ÆÊı£¬·ÇÔ­×Ó²Ù×÷
+	 * å¢åŠ è®¡æ•°ï¼ŒéåŸå­æ“ä½œ
 	 * 
 	 * @param key
 	 * @param by
-	 *            Ìí¼ÓÖµ
+	 *            æ·»åŠ å€¼
 	 * @param defvalue
-	 *            Ä¬ÈÏÖµ
+	 *            é»˜è®¤å€¼
 	 * @return
 	 */
 	int incr(String regionName, String key, int by, int defvalue);
 
 	/**
-	 * Ô­×Ó¼Ó
+	 * åŸå­åŠ 
 	 * 
 	 * @param regionName
 	 * @param key
 	 * @param by
-	 *            Ôö¼Ó
+	 *            å¢åŠ 
 	 * @param def
-	 *            Ä¬ÈÏÖµ
+	 *            é»˜è®¤å€¼
 	 * @return the new value, or -1 if we were unable to increment or add
 	 */
 	int incrementAndGet(String regionName, String key, int by, int def);
@@ -88,7 +88,7 @@ public interface CacheService extends CacheTools {
 	void add(String regionName, String key, Object value, int expSeconds);
 
 	/**
-	 * Ô­×Ó¼õ
+	 * åŸå­å‡
 	 * 
 	 * @param regionName
 	 * @param key
@@ -100,14 +100,14 @@ public interface CacheService extends CacheTools {
 	int decrAndGet(String regionName, String key, int by, int def);
 
 	/**
-	 * Ô­×Ó¼Ó
+	 * åŸå­åŠ 
 	 * 
 	 * @param regionName
 	 * @param key
 	 * @param by
 	 * @param def
 	 * @param exp
-	 *            ³¬Ê±Ê±¼ä,Ãë
+	 *            è¶…æ—¶æ—¶é—´,ç§’
 	 * @return
 	 */
 	int incrementAndGet(String regionName, String key, int by, int def, int exp);
