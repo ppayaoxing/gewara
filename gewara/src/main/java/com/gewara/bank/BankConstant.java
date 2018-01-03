@@ -9,13 +9,13 @@ import java.util.Map;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
 public class BankConstant {
-	private static Map<String, String> alipayBankMap = null;		//Ö§¸¶±¦PCÒøĞĞ
-	private static Map<String, String> alipayCreditMap = null;		//Ö§¸¶±¦PC´ó¶îĞÅÓÃ¿¨
-	private static Map<String, String> alipayKjCreditMap = null;	//Ö§¸¶±¦PC¿ì½İĞÅÓÃ¿¨
-	private static Map<String, String> alipayMotoCreditMap = null;	//Ö§¸¶±¦PC¿ì½İÖ§¸¶ĞÅÓÃ¿¨Ç°ÖÃ
-	private static List<String> alipayWapCreditList = null;			//Ö§¸¶±¦WAPĞÅÓÃ¿¨
-	private static List<String> alipayWapDebitList = null;			//Ö§¸¶±¦WAP½è¼Ç¿¨
-	private static Map<String, String> pnrBankMap = null;			//»ã¸¶PCÒøĞĞ
+	private static Map<String, String> alipayBankMap = null;		//æ”¯ä»˜å®PCé“¶è¡Œ
+	private static Map<String, String> alipayCreditMap = null;		//æ”¯ä»˜å®PCå¤§é¢ä¿¡ç”¨å¡
+	private static Map<String, String> alipayKjCreditMap = null;	//æ”¯ä»˜å®PCå¿«æ·ä¿¡ç”¨å¡
+	private static Map<String, String> alipayMotoCreditMap = null;	//æ”¯ä»˜å®PCå¿«æ·æ”¯ä»˜ä¿¡ç”¨å¡å‰ç½®
+	private static List<String> alipayWapCreditList = null;			//æ”¯ä»˜å®WAPä¿¡ç”¨å¡
+	private static List<String> alipayWapDebitList = null;			//æ”¯ä»˜å®WAPå€Ÿè®°å¡
+	private static Map<String, String> pnrBankMap = null;			//æ±‡ä»˜PCé“¶è¡Œ
 	static{
 		alipayInit();
 		alipayWapInit();
@@ -23,91 +23,91 @@ public class BankConstant {
 	}
 	public static void alipayWapInit(){
 		alipayWapCreditList = new LinkedList<String>();
-		alipayWapCreditList.add("½¨ÉèÒøĞĞ,aliwapPay:CREDITCARD_CCB");
-		alipayWapCreditList.add("¹¤ÉÌÒøĞĞ,aliwapPay:CREDITCARD_ICBC");
-		alipayWapCreditList.add("¹ã·¢ÒøĞĞ,aliwapPay:CREDITCARD_GDB");
-		alipayWapCreditList.add("ÖĞ¹úÒøĞĞ,aliwapPay:CREDITCARD_BOC");
-		alipayWapCreditList.add("»ªÏÄÒøĞĞ,aliwapPay:CREDITCARD_HXBANK");
-		alipayWapCreditList.add("¸ü¶àÒøĞĞ,aliwapPay:CREDITCARD");
+		alipayWapCreditList.add("å»ºè®¾é“¶è¡Œ,aliwapPay:CREDITCARD_CCB");
+		alipayWapCreditList.add("å·¥å•†é“¶è¡Œ,aliwapPay:CREDITCARD_ICBC");
+		alipayWapCreditList.add("å¹¿å‘é“¶è¡Œ,aliwapPay:CREDITCARD_GDB");
+		alipayWapCreditList.add("ä¸­å›½é“¶è¡Œ,aliwapPay:CREDITCARD_BOC");
+		alipayWapCreditList.add("åå¤é“¶è¡Œ,aliwapPay:CREDITCARD_HXBANK");
+		alipayWapCreditList.add("æ›´å¤šé“¶è¡Œ,aliwapPay:CREDITCARD");
 		alipayWapDebitList = new LinkedList<String>();
-		alipayWapDebitList.add("½¨ÉèÒøĞĞ,aliwapPay:DEBITCARD_CCB");
-		alipayWapDebitList.add("½»Í¨ÒøĞĞ,aliwapPay:DEBITCARD_COMM");
-		alipayWapDebitList.add("Å©ÒµÒøĞĞ,aliwapPay:DEBITCARD_ABC");
-		alipayWapDebitList.add("ÖĞ¹úÒøĞĞ,aliwapPay:DEBITCARD_BOC");
-		alipayWapDebitList.add("¸ü¶àÒøĞĞ,aliwapPay:DEBITCARD");
+		alipayWapDebitList.add("å»ºè®¾é“¶è¡Œ,aliwapPay:DEBITCARD_CCB");
+		alipayWapDebitList.add("äº¤é€šé“¶è¡Œ,aliwapPay:DEBITCARD_COMM");
+		alipayWapDebitList.add("å†œä¸šé“¶è¡Œ,aliwapPay:DEBITCARD_ABC");
+		alipayWapDebitList.add("ä¸­å›½é“¶è¡Œ,aliwapPay:DEBITCARD_BOC");
+		alipayWapDebitList.add("æ›´å¤šé“¶è¡Œ,aliwapPay:DEBITCARD");
 	}
 	public static void alipayInit(){
 		Map<String, String> tmpMap = new LinkedHashMap<String, String>();
-		tmpMap.put("BOCB2C", "ÖĞ¹úÒøĞĞ");
-		tmpMap.put("ICBCB2C", "ÖĞ¹ú¹¤ÉÌÒøĞĞ");
-		tmpMap.put("CMB", "ÕĞÉÌÒøĞĞ");
-		tmpMap.put("CCB", "ÖĞ¹ú½¨ÉèÒøĞĞ");
-		tmpMap.put("ABC", "ÖĞ¹úÅ©ÒµÒøĞĞ");
-		tmpMap.put("SPDB", "ÉÏº£ÆÖ¶«·¢Õ¹ÒøĞĞ");
-		tmpMap.put("COMM", "½»Í¨ÒøĞĞ");
-		tmpMap.put("SPABANK", "Æ½°²ÒøĞĞ");
-		tmpMap.put("SHBANK", "ÉÏº£ÒøĞĞ");
-		tmpMap.put("CIB", "ĞËÒµÒøĞĞ");
-		tmpMap.put("CMBC", "ÖĞ¹úÃñÉúÒøĞĞ");
-		tmpMap.put("CITIC", "ÖĞĞÅÒøĞĞ");
-		tmpMap.put("CEBBANK", "¹â´óÒøĞĞ");
+		tmpMap.put("BOCB2C", "ä¸­å›½é“¶è¡Œ");
+		tmpMap.put("ICBCB2C", "ä¸­å›½å·¥å•†é“¶è¡Œ");
+		tmpMap.put("CMB", "æ‹›å•†é“¶è¡Œ");
+		tmpMap.put("CCB", "ä¸­å›½å»ºè®¾é“¶è¡Œ");
+		tmpMap.put("ABC", "ä¸­å›½å†œä¸šé“¶è¡Œ");
+		tmpMap.put("SPDB", "ä¸Šæµ·æµ¦ä¸œå‘å±•é“¶è¡Œ");
+		tmpMap.put("COMM", "äº¤é€šé“¶è¡Œ");
+		tmpMap.put("SPABANK", "å¹³å®‰é“¶è¡Œ");
+		tmpMap.put("SHBANK", "ä¸Šæµ·é“¶è¡Œ");
+		tmpMap.put("CIB", "å…´ä¸šé“¶è¡Œ");
+		tmpMap.put("CMBC", "ä¸­å›½æ°‘ç”Ÿé“¶è¡Œ");
+		tmpMap.put("CITIC", "ä¸­ä¿¡é“¶è¡Œ");
+		tmpMap.put("CEBBANK", "å…‰å¤§é“¶è¡Œ");
 		alipayBankMap = UnmodifiableMap.decorate(tmpMap);
 	
-		//ĞÅÓÃ¿¨Ö§³ÖÒøĞĞ
+		//ä¿¡ç”¨å¡æ”¯æŒé“¶è¡Œ
 		tmpMap = new LinkedHashMap<String, String>();
-		tmpMap.put("DEicbc301","ÖĞ¹ú¹¤ÉÌÒøĞĞ");
-		//tmpMap.put("DEccb301","ÖĞ¹ú½¨ÉèÒøĞĞ");
-		tmpMap.put("DEcmb301","ÕĞÉÌÒøĞĞ");
-		tmpMap.put("DEboc301","ÖĞ¹úÒøĞĞ");
-		tmpMap.put("DEcomm301","½»Í¨ÒøĞĞ");
-		tmpMap.put("DEgdb301","¹ã¶«·¢Õ¹ÒøĞĞ");
-		tmpMap.put("DEcib301","ĞËÒµÒøĞĞ");
-		tmpMap.put("DEceb301","ÖĞ¹ú¹â´óÒøĞĞ");
-		tmpMap.put("DEspabank301","Æ½°²ÒøĞĞ");
-		tmpMap.put("DEcitic302","ÖĞĞÅÒøĞĞ");
-		tmpMap.put("DEspdb301","ÆÖ·¢ÒøĞĞ");
-		//tmpMap.put("DEshbank301","ÉÏº£ÒøĞĞ");
+		tmpMap.put("DEicbc301","ä¸­å›½å·¥å•†é“¶è¡Œ");
+		//tmpMap.put("DEccb301","ä¸­å›½å»ºè®¾é“¶è¡Œ");
+		tmpMap.put("DEcmb301","æ‹›å•†é“¶è¡Œ");
+		tmpMap.put("DEboc301","ä¸­å›½é“¶è¡Œ");
+		tmpMap.put("DEcomm301","äº¤é€šé“¶è¡Œ");
+		tmpMap.put("DEgdb301","å¹¿ä¸œå‘å±•é“¶è¡Œ");
+		tmpMap.put("DEcib301","å…´ä¸šé“¶è¡Œ");
+		tmpMap.put("DEceb301","ä¸­å›½å…‰å¤§é“¶è¡Œ");
+		tmpMap.put("DEspabank301","å¹³å®‰é“¶è¡Œ");
+		tmpMap.put("DEcitic302","ä¸­ä¿¡é“¶è¡Œ");
+		tmpMap.put("DEspdb301","æµ¦å‘é“¶è¡Œ");
+		//tmpMap.put("DEshbank301","ä¸Šæµ·é“¶è¡Œ");
 		alipayCreditMap = UnmodifiableMap.decorate(tmpMap);
 		
 		tmpMap = new LinkedHashMap<String, String>();
-		tmpMap.put("KJICBC", "¹¤ÉÌÒøĞĞ");
-		tmpMap.put("KJABC", "Å©ÒµÒøĞĞ");
-		tmpMap.put("KJCMB", "ÕĞÉÌÒøĞĞ");
-		tmpMap.put("KJCCB", "½¨ÉèÒøĞĞ");
-		tmpMap.put("KJBOC", "ÖĞ¹úÒøĞĞ");
-		tmpMap.put("KJSDB", "ÉîÛÚ·¢Õ¹ÒøĞĞ");
-		tmpMap.put("KJCEB", "¹â´óÒøĞĞ");
-		//tmpMap.put("KJSPABANK", "Æ½°²ÒøĞĞ");
+		tmpMap.put("KJICBC", "å·¥å•†é“¶è¡Œ");
+		tmpMap.put("KJABC", "å†œä¸šé“¶è¡Œ");
+		tmpMap.put("KJCMB", "æ‹›å•†é“¶è¡Œ");
+		tmpMap.put("KJCCB", "å»ºè®¾é“¶è¡Œ");
+		tmpMap.put("KJBOC", "ä¸­å›½é“¶è¡Œ");
+		tmpMap.put("KJSDB", "æ·±åœ³å‘å±•é“¶è¡Œ");
+		tmpMap.put("KJCEB", "å…‰å¤§é“¶è¡Œ");
+		//tmpMap.put("KJSPABANK", "å¹³å®‰é“¶è¡Œ");
 		alipayKjCreditMap = UnmodifiableMap.decorate(tmpMap);
 		
 		tmpMap = new LinkedHashMap<String, String>();
-		tmpMap.put("MOCCB-MOTO-CREDIT", "ÖĞ¹ú½¨ÉèÒøĞĞ");
-		tmpMap.put("MOICBC-MOTO-CREDIT", "ÖĞ¹ú¹¤ÉÌÒøĞĞ");
-		tmpMap.put("MOBOC-MOTO-CREDIT", "ÖĞ¹úÒøĞĞ");
-		tmpMap.put("MOHXBANK-EXPRESS-CREDIT", "»ªÏÄÒøĞĞ");
-		tmpMap.put("MOABC-EXPRESS-CREDIT", "ÖĞ¹úÅ©ÒµÒøĞĞ");
+		tmpMap.put("MOCCB-MOTO-CREDIT", "ä¸­å›½å»ºè®¾é“¶è¡Œ");
+		tmpMap.put("MOICBC-MOTO-CREDIT", "ä¸­å›½å·¥å•†é“¶è¡Œ");
+		tmpMap.put("MOBOC-MOTO-CREDIT", "ä¸­å›½é“¶è¡Œ");
+		tmpMap.put("MOHXBANK-EXPRESS-CREDIT", "åå¤é“¶è¡Œ");
+		tmpMap.put("MOABC-EXPRESS-CREDIT", "ä¸­å›½å†œä¸šé“¶è¡Œ");
 		alipayMotoCreditMap = UnmodifiableMap.decorate(tmpMap);
 	}
 	public static void pnrInit(){
 		Map<String, String> tmp = new HashMap<String, String>();
-		tmp.put("07","ÕĞÉÌÒøĞĞ");
-		tmp.put("10","ÖĞ¹ú½¨ÉèÒøĞĞ");
-		tmp.put("12","ÖĞ¹úÃñÉúÒøĞĞ");
-		tmp.put("25","ÖĞ¹ú¹¤ÉÌÒøĞĞ");
-		tmp.put("45","ÖĞ¹úÒøĞĞ");
-		tmp.put("50","Æ½°²ÒøĞĞ");
-		tmp.put("41","½»Í¨ÒøĞĞ");
-		tmp.put("09","ĞËÒµÒøĞĞ");
-		tmp.put("29","ÖĞ¹úÅ©ÒµÒøĞĞ");
-		tmp.put("36","ÖĞ¹ú¹â´óÒøĞĞ");
-		tmp.put("16","ÆÖ¶«·¢Õ¹ÒøĞĞ");
-		tmp.put("33","ÖĞĞÅÒøĞĞ");
-		tmp.put("13","»ªÏÄÒøĞĞ");
-		tmp.put("49","ÄÏ¾©ÒøĞĞ");
-		tmp.put("53","ÕãÉÌÒøĞĞ");
-		tmp.put("51","º¼ÖİÒøĞĞ");
-		tmp.put("52","Äş²¨ÒøĞĞ");
-		tmp.put("14","ÉîÛÚ·¢Õ¹ÒøĞĞ");
+		tmp.put("07","æ‹›å•†é“¶è¡Œ");
+		tmp.put("10","ä¸­å›½å»ºè®¾é“¶è¡Œ");
+		tmp.put("12","ä¸­å›½æ°‘ç”Ÿé“¶è¡Œ");
+		tmp.put("25","ä¸­å›½å·¥å•†é“¶è¡Œ");
+		tmp.put("45","ä¸­å›½é“¶è¡Œ");
+		tmp.put("50","å¹³å®‰é“¶è¡Œ");
+		tmp.put("41","äº¤é€šé“¶è¡Œ");
+		tmp.put("09","å…´ä¸šé“¶è¡Œ");
+		tmp.put("29","ä¸­å›½å†œä¸šé“¶è¡Œ");
+		tmp.put("36","ä¸­å›½å…‰å¤§é“¶è¡Œ");
+		tmp.put("16","æµ¦ä¸œå‘å±•é“¶è¡Œ");
+		tmp.put("33","ä¸­ä¿¡é“¶è¡Œ");
+		tmp.put("13","åå¤é“¶è¡Œ");
+		tmp.put("49","å—äº¬é“¶è¡Œ");
+		tmp.put("53","æµ™å•†é“¶è¡Œ");
+		tmp.put("51","æ­å·é“¶è¡Œ");
+		tmp.put("52","å®æ³¢é“¶è¡Œ");
+		tmp.put("14","æ·±åœ³å‘å±•é“¶è¡Œ");
 		pnrBankMap = UnmodifiableMap.decorate(tmp);
 	}
 	public static Map<String, String> getAlipayBankMap() {
