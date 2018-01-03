@@ -160,21 +160,21 @@ public class TradeController extends BasePayController {
 	@RequestMapping("/gewapay/order.xhtml")
 	public String modifyOrder(@RequestParam("orderId")long orderId, ModelMap model) {
 		GewaOrder order = daoService.getObject(GewaOrder.class, orderId);
-		if(order == null) return show404(model, "¸Ã¶©µ¥²»´æÔÚ»ò±»É¾³ı£¡");
+		if(order == null) return show404(model, "è¯¥è®¢å•ä¸å­˜åœ¨æˆ–è¢«åˆ é™¤ï¼");
 		Member member = getLogonMember();
-		if (!order.getMemberid().equals(member.getId())) return show404(model, "²»ÄÜĞŞ¸ÄËûÈËµÄ¶©µ¥£¡");
-		if (order.isAllPaid() || order.isCancel()) return show404(model, "²»ÄÜĞŞ¸ÄÒÑÖ§¸¶»òÒÑ£¨¹ıÊ±£©È¡ÏûµÄ¶©µ¥£¡");
+		if (!order.getMemberid().equals(member.getId())) return show404(model, "ä¸èƒ½ä¿®æ”¹ä»–äººçš„è®¢å•ï¼");
+		if (order.isAllPaid() || order.isCancel()) return show404(model, "ä¸èƒ½ä¿®æ”¹å·²æ”¯ä»˜æˆ–å·²ï¼ˆè¿‡æ—¶ï¼‰å–æ¶ˆçš„è®¢å•ï¼");
 		model.put("logonMember", member);
 		model.put("order", order);
 		MemberInfo info = daoService.getObject(MemberInfo.class, member.getId());
 		Integer point = info.getPointvalue();
 		model.put("memberpoint", point);
-		//TODO:ÓÅ»¯£¬Ö»ÓĞĞèÒª²Å²éÑ¯
+		//TODO:ä¼˜åŒ–ï¼Œåªæœ‰éœ€è¦æ‰æŸ¥è¯¢
 		OrderAddress orderAddress = daoService.getObject(OrderAddress.class, order.getTradeNo());
 		model.put("orderAddress", orderAddress);
 		if(order instanceof TicketOrder){
 			if(((TicketOrder) order).hasUnlock())  {
-				return show404(model, "¶©µ¥×ùÎ»Î´Ëø¶¨£¬ÎŞ·¨Ö§¸¶£¡");
+				return show404(model, "è®¢å•åº§ä½æœªé”å®šï¼Œæ— æ³•æ”¯ä»˜ï¼");
 			}
 			putTicketOrderData((TicketOrder)order, info, model);
 			return "gewapay/ticket/wide_showOrder.vm";
@@ -202,12 +202,12 @@ public class TradeController extends BasePayController {
 			putMemberCardOrderData(memberCardOrder, model);
 			return "gewapay/sport/vip/wide_showOrder.vm";
 		}else{
-			//²»¿ÉÄÜ·¢Éú£¡£¡
-			return showError(model, "¶©µ¥ÀàĞÍ´íÎó£¡£¡");
+			//ä¸å¯èƒ½å‘ç”Ÿï¼ï¼
+			return showError(model, "è®¢å•ç±»å‹é”™è¯¯ï¼ï¼");
 		}
 	}
 
-	//µçÓ°Æ±ĞÅÏ¢
+	//ç”µå½±ç¥¨ä¿¡æ¯
 	private void putTicketOrderData(TicketOrder order, MemberInfo memberInfo, ModelMap model){
 		OpenPlayItem opi = daoService.getObjectByUkey(OpenPlayItem.class, "mpid", order.getMpid(), true);
 		model.put("movie", daoService.getObject(Movie.class,opi.getMovieid()));
@@ -221,7 +221,7 @@ public class TradeController extends BasePayController {
 			model.put("takeTopicId", cp.getTopicid());
 		}
 		if (opi.isOpenCardPay()) {
-			//TODO:ÓÅ»¯£ºÒì²½¼ÓÔØÎÒµÄÈ¯
+			//TODO:ä¼˜åŒ–ï¼šå¼‚æ­¥åŠ è½½æˆ‘çš„åˆ¸
 			ElecCardContainer container = elecCardService.getAvailableCardList(order, discountList, opi, memberInfo.getId());
 			model.put("cardList", container.getAvaliableList());
 		}
@@ -266,7 +266,7 @@ public class TradeController extends BasePayController {
 		
 		model.putAll(discountData);
 	}
-	//ÎïÆ·ĞÅÏ¢
+	//ç‰©å“ä¿¡æ¯
 	private String putGoodsOrderData(GoodsOrder order, ModelMap model){
 		BaseGoods baseGoods = daoService.getObject(BaseGoods.class, order.getGoodsid());
 		String view = "";
@@ -374,7 +374,7 @@ public class TradeController extends BasePayController {
 			model.put("agency", agency);
 			model.put("goods", goods);
 			view = "gewapay/sport/agency/wide_showOrder.vm";
-			//»ú¹¹ÔË¶¯
+			//æœºæ„è¿åŠ¨
 			applay_tag = TagConstant.TAG_SPORT;
 		}
 		String spflags = baseGoods.getSpflag();
@@ -434,7 +434,7 @@ public class TradeController extends BasePayController {
 				discountList, SpecialDiscount.OPENTYPE_GEWA, PayConstant.APPLY_TAG_DRAMA);
 		model.putAll(discountData);
 	}
-	//ÔË¶¯ĞÅÏ¢
+	//è¿åŠ¨ä¿¡æ¯
 	private void putSportOrderData(SportOrder order, ModelMap model){
 		OpenTimeTable ott = daoService.getObject(OpenTimeTable.class,  order.getOttid());
 		Sport sport = daoService.getObject(Sport.class, order.getSportid());
@@ -578,14 +578,14 @@ public class TradeController extends BasePayController {
 			putMemberCardOrderData(memberCardOrder, model);
 			return "gewapay/sport/vip/wide_confirmOrder.vm";
 		}else{
-			//²»¿ÉÄÜ·¢Éú£¡£¡
-			return showError(model, "¶©µ¥ÀàĞÍ´íÎó£¡£¡");
+			//ä¸å¯èƒ½å‘ç”Ÿï¼ï¼
+			return showError(model, "è®¢å•ç±»å‹é”™è¯¯ï¼ï¼");
 		}
 	}
 	private ErrorCode addConfirmOrderData(GewaOrder order, ModelMap model){
 		Member member = getLogonMember();
-		if (!order.getMemberid().equals(member.getId())) return ErrorCode.getFailure("²»ÄÜĞŞ¸ÄËûÈËµÄ¶©µ¥£¡");
-		if (order.isAllPaid() || order.isCancel()) return ErrorCode.getFailure("²»ÄÜĞŞ¸ÄÒÑÖ§¸¶»òÒÑ£¨¹ıÊ±£©È¡ÏûµÄ¶©µ¥£¡");
+		if (!order.getMemberid().equals(member.getId())) return ErrorCode.getFailure("ä¸èƒ½ä¿®æ”¹ä»–äººçš„è®¢å•ï¼");
+		if (order.isAllPaid() || order.isCancel()) return ErrorCode.getFailure("ä¸èƒ½ä¿®æ”¹å·²æ”¯ä»˜æˆ–å·²ï¼ˆè¿‡æ—¶ï¼‰å–æ¶ˆçš„è®¢å•ï¼");
 		MemberAccount account = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
 		if (account != null)	model.put("account", account);
 		model.put("order", order);
@@ -688,13 +688,13 @@ public class TradeController extends BasePayController {
 		model.put("orderOtherinfo", orderOtherinfo);
 		String bindpay = paymentService.getBindPay(discountList, orderOtherinfo, order);
 		if(StringUtils.isNotBlank(bindpay)){
-			if(StringUtils.equals(order.getPaymethod(), PaymethodConstant.PAYMETHOD_ELECARDPAY)){//µç×ÓÈ¯Ö§¸¶
+			if(StringUtils.equals(order.getPaymethod(), PaymethodConstant.PAYMETHOD_ELECARDPAY)){//ç”µå­åˆ¸æ”¯ä»˜
 				if(StringUtils.isNotBlank(orderOtherinfo.get(PayConstant.KEY_CARDBINDPAY)) && order.getDiscount() >0
 						|| StringUtils.isNotBlank(orderOtherinfo.get(PayConstant.KEY_CHANGECOST))){
 					if(order.getDue() > 0) {
-						//BÈ¯Òª²¹²î£¬µ«Ê¹ÓÃµÄÊıÁ¿ÒªÓë×ùÎ»ÊıÁ¿Ò»ÖÂ
+						//Båˆ¸è¦è¡¥å·®ï¼Œä½†ä½¿ç”¨çš„æ•°é‡è¦ä¸åº§ä½æ•°é‡ä¸€è‡´
 						if(discountList.size() < order.getQuantity()){
-							return ErrorCode.getFailure("´Ë¶©µ¥Ö»ÄÜÊ¹ÓÃÈ¯Ö§¸¶£¡");
+							return ErrorCode.getFailure("æ­¤è®¢å•åªèƒ½ä½¿ç”¨åˆ¸æ”¯ä»˜ï¼");
 						}
 					}
 				}
@@ -716,9 +716,9 @@ public class TradeController extends BasePayController {
 			String paypass, String smspass, ModelMap model, HttpServletRequest request) {
 		Member member = getLogonMember();
 		GewaOrder order = daoService.getObject(GewaOrder.class, orderId);
-		if (!order.getMemberid().equals(member.getId())) return showJsonError(model, "²»ÄÜĞŞ¸ÄËûÈËµÄ¶©µ¥£¡");
-		if (order.isAllPaid() || order.isCancel()) return showJsonError(model, "²»ÄÜ±£´æÒÑÖ§¸¶»òÒÑ£¨¹ıÊ±£©È¡ÏûµÄ¶©µ¥£¡");
-		if(StringUtils.isBlank(paymethod)) return showJsonError(model, "ÇëÑ¡ÔñÖ§¸¶·½Ê½£¡");
+		if (!order.getMemberid().equals(member.getId())) return showJsonError(model, "ä¸èƒ½ä¿®æ”¹ä»–äººçš„è®¢å•ï¼");
+		if (order.isAllPaid() || order.isCancel()) return showJsonError(model, "ä¸èƒ½ä¿å­˜å·²æ”¯ä»˜æˆ–å·²ï¼ˆè¿‡æ—¶ï¼‰å–æ¶ˆçš„è®¢å•ï¼");
+		if(StringUtils.isBlank(paymethod)) return showJsonError(model, "è¯·é€‰æ‹©æ”¯ä»˜æ–¹å¼ï¼");
 		String fullPaymethod = paymethod;
 		String[] pay = StringUtils.split(paymethod, ":");
 		paymethod = pay[0];
@@ -736,14 +736,14 @@ public class TradeController extends BasePayController {
 					if (StringUtils.equals(otherinfo.get(OpiConstant.ADDRESS), Status.Y)) {
 						OrderAddress orderAddress = daoService.getObjectByUkey(OrderAddress.class, "tradeno", order.getTradeNo());
 						if (orderAddress == null) {
-							return showJsonError(model, "ÇëÌîĞ´¿ìµİµØÖ·£¡");
+							return showJsonError(model, "è¯·å¡«å†™å¿«é€’åœ°å€ï¼");
 						}
 					}
 				}
 				List<SellSeat> seatList = ticketOrderService.getOrderSeatList(order.getId());
 				ErrorCode code = ticketOrderService.checkOrderSeat(torder, seatList);
 				if (!code.isSuccess()) {
-					dbLogger.error("¶©µ¥ÓĞ´í£º" + order.getTradeNo() + code.getMsg());
+					dbLogger.error("è®¢å•æœ‰é”™ï¼š" + order.getTradeNo() + code.getMsg());
 					return showJsonError(model, code.getMsg());
 				}
 			}else if(order instanceof SportOrder){
@@ -754,17 +754,17 @@ public class TradeController extends BasePayController {
 					OpenTimeItem item = daoService.getObject(OpenTimeItem.class, stt.getOtiid());
 					int count = sportOrderService.getSellTimeTableCount(stt.getOtiid(), stt.getStarttime());
 					if(sorder.getQuantity()+ count > item.getQuantity())
-						return showJsonError(model, "¿ÉÔ¤¶©ÈËÊıÒÑÂú£¡");
+						return showJsonError(model, "å¯é¢„è®¢äººæ•°å·²æ»¡ï¼");
 				}else{
 					List<OpenTimeItem> otiList = sportOrderService.getMyOtiList(sorder.getId());
 					ErrorCode code = sportOrderService.checkOrderField(sorder, otiList);
 					if(!code.isSuccess()){
-						dbLogger.error("ÔË¶¯¶©µ¥ÓĞ´í£º" + order.getTradeNo() + code.getMsg());
+						dbLogger.error("è¿åŠ¨è®¢å•æœ‰é”™ï¼š" + order.getTradeNo() + code.getMsg());
 						return showJsonError(model, code.getMsg());
 					}
 					if(sorder.hasMemberCardPay()){
 						if(StringUtils.isBlank(smspass)) {
-							return showJsonError(model, "ÇëÊäÈë¶ÌĞÅÑéÖ¤Âë");
+							return showJsonError(model, "è¯·è¾“å…¥çŸ­ä¿¡éªŒè¯ç ");
 						}else {
 							String otherinfo = JsonUtils.addJsonKeyValue(order.getOtherinfo(), MemberCardConstant.SMSPASS, smspass);
 							order.setOtherinfo(otherinfo);
@@ -776,7 +776,7 @@ public class TradeController extends BasePayController {
 				DramaOrder dorder = (DramaOrder)order;
 				ErrorCode code = dramaOrderService.checkOrderSeat(dorder, model);
 				if(!code.isSuccess()){
-					dbLogger.error("»°¾ç¶©µ¥ÓĞ´í£º" + order.getTradeNo() + code.getMsg());
+					dbLogger.error("è¯å‰§è®¢å•æœ‰é”™ï¼š" + order.getTradeNo() + code.getMsg());
 					return showJsonError(model, code.getMsg());
 				}
 			}else if(order instanceof GymOrder){
@@ -787,7 +787,7 @@ public class TradeController extends BasePayController {
 				}
 				ErrorCode code = openGymService.checkOrderCard(gymOrder);
 				if(!code.isSuccess()){
-					dbLogger.error("½¡Éí¶©µ¥ÓĞ´í£º" + order.getTradeNo() + code.getMsg());
+					dbLogger.error("å¥èº«è®¢å•æœ‰é”™ï¼š" + order.getTradeNo() + code.getMsg());
 					return showJsonError(model, code.getMsg());
 				}
 			}else if(order instanceof GoodsOrder){
@@ -801,7 +801,7 @@ public class TradeController extends BasePayController {
 			}
 			
 		} catch (Exception e) {
-			dbLogger.warn("È·ÈÏ¶©µ¥´íÎó£º" + order.getTradeNo(), e);
+			dbLogger.warn("ç¡®è®¤è®¢å•é”™è¯¯ï¼š" + order.getTradeNo(), e);
 			return showJsonError(model, e.getMessage());
 		}
 		if(order.getDue() > 0){
@@ -819,10 +819,10 @@ public class TradeController extends BasePayController {
 			PayValidHelper pvh = new PayValidHelper(otherinfoMap);
 			pvh.setLimitPay(limitPayList);
 			if(!pvh.supportPaymethod(fullPaymethod)){
-				return showJsonError(model, "±¾»î¶¯²»Ö§³Ö¸ÃÖ§¸¶·½Ê½£¡");
+				return showJsonError(model, "æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥æ”¯ä»˜æ–¹å¼ï¼");
 			}
 		}
-		//ÒÑÈ·ÈÏµÄ¶©µ¥£¬ÔÙ´ÎĞŞ¸Ä£¬¼ì²éÊÇ·ñÄÜ¸ü¸ÄÖ§¸¶·½Ê½
+		//å·²ç¡®è®¤çš„è®¢å•ï¼Œå†æ¬¡ä¿®æ”¹ï¼Œæ£€æŸ¥æ˜¯å¦èƒ½æ›´æ”¹æ”¯ä»˜æ–¹å¼
 		if((!StringUtils.equals(paymethod, order.getPaymethod()) || !StringUtils.equals(paybank, order.getPaybank()))){ 
 			ErrorCode code = paymentService.isAllowChangePaymethod(order, paymethod, paybank);
 			if(!code.isSuccess()) return showJsonError(model, code.getMsg());
@@ -843,35 +843,35 @@ public class TradeController extends BasePayController {
 			if(!code.isSuccess()) return showJsonError(model, code.getMsg());
 		}else if(StringUtils.equals(paymethod, PaymethodConstant.PAYMETHOD_TELECOM) || StringUtils.equals(paymethod, PaymethodConstant.PAYMETHOD_MOBILE_TELECOM)){
 			if(!StringUtils.equals(order.getCitycode(), AdminCityContant.CITYCODE_SH)) {
-				return showJsonError(model, "½öÖ§³ÖÉÏº£µçĞÅÊÖ»ú»ò¹Ì»°");
+				return showJsonError(model, "ä»…æ”¯æŒä¸Šæµ·ç”µä¿¡æ‰‹æœºæˆ–å›ºè¯");
 			}
 		}
 		daoService.saveObject(order);
 		Map jsonReturn = new HashMap();
 		jsonReturn.put("orderId", "" + order.getId());
 		if(PaymethodConstant.PAYMETHOD_GEWAPAY.equals(order.getPaymethod()) && !order.isZeroPay()){
-			if(!PaymethodConstant.isValidPayMethod(PaymethodConstant.PAYMETHOD_GEWAPAY)) return showJsonError(model, "Ö§¸¶·½Ê½²»Ö§³Ö£¡");
-			if(StringUtils.isBlank(paypass)) return showJsonError(model, "Ö§¸¶ÃÜÂë²»ÄÜÎª¿Õ£¡");
+			if(!PaymethodConstant.isValidPayMethod(PaymethodConstant.PAYMETHOD_GEWAPAY)) return showJsonError(model, "æ”¯ä»˜æ–¹å¼ä¸æ”¯æŒï¼");
+			if(StringUtils.isBlank(paypass)) return showJsonError(model, "æ”¯ä»˜å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 			MemberAccount account = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
-			if(account == null || account.isNopassword()) return showJsonError(model, "ÕË»§Îª¿Õ»òÃÜÂë¹ıÓÚ¼òµ¥£¡");
+			if(account == null || account.isNopassword()) return showJsonError(model, "è´¦æˆ·ä¸ºç©ºæˆ–å¯†ç è¿‡äºç®€å•ï¼");
 			if(!account.hasRights()){
-				return showJsonError(model, "ÄãµÄÕË»§Ôİ±»½ûÓÃ£¬Èç¹ûÓĞÒÉÎÊÇëÁªÏµ¿Í·ş");
+				return showJsonError(model, "ä½ çš„è´¦æˆ·æš‚è¢«ç¦ç”¨ï¼Œå¦‚æœæœ‰ç–‘é—®è¯·è”ç³»å®¢æœ");
 			}
-			if(!PayUtil.passEquals(paypass, account.getPassword())) return showJsonError(model, "Ö§¸¶ÃÜÂë²»ÕıÈ·£¡");
-			if(account.getBanlance()>0 && StringUtils.isBlank(checkGewaPay)) return showJsonError(model, "Çë¹´Ñ¡Óà¶îÖ§¸¶£¡");
+			if(!PayUtil.passEquals(paypass, account.getPassword())) return showJsonError(model, "æ”¯ä»˜å¯†ç ä¸æ­£ç¡®ï¼");
+			if(account.getBanlance()>0 && StringUtils.isBlank(checkGewaPay)) return showJsonError(model, "è¯·å‹¾é€‰ä½™é¢æ”¯ä»˜ï¼");
 			int banlance = account.getBanlance(), bankcharge = account.getBankcharge(), othercharge = account.getOthercharge(), depositcharge= account.getDepositcharge();
 			Long memberid = account.getMemberid();
-			if(banlance==0) return showJsonError(model, "ÕË»§Óà¶îÎª0£¬²»ÄÜÖ§¸¶£¡");
+			if(banlance==0) return showJsonError(model, "è´¦æˆ·ä½™é¢ä¸º0ï¼Œä¸èƒ½æ”¯ä»˜ï¼");
 			if(banlance!=(bankcharge + othercharge+depositcharge)){ 
-				dbLogger.warn("ÑÏÖØÒì³££ºmemberid:" + memberid + ", banlance:" + banlance + ", bankcharge:" + bankcharge + ", othercharge:" + othercharge);
-				return showJsonError(model, "ÕË»§½ğ¶îÒì³££¬ÇëÁªÏµ¿Í·ş£¡");
+				dbLogger.warn("ä¸¥é‡å¼‚å¸¸ï¼šmemberid:" + memberid + ", banlance:" + banlance + ", bankcharge:" + bankcharge + ", othercharge:" + othercharge);
+				return showJsonError(model, "è´¦æˆ·é‡‘é¢å¼‚å¸¸ï¼Œè¯·è”ç³»å®¢æœï¼");
 			}
 			int due = order.getDue();
 			if(account.getBanlance()-account.getDepositcharge()< due){
-				if(StringUtils.isBlank(chargeMethod)) return showJsonError(model, "ÇëÑ¡ÔñÍøÒø»òÖ§¸¶±¦Ö§¸¶");
+				if(StringUtils.isBlank(chargeMethod)) return showJsonError(model, "è¯·é€‰æ‹©ç½‘é“¶æˆ–æ”¯ä»˜å®æ”¯ä»˜");
 				List<String> chargeMethodList = Arrays.asList(PaymethodConstant.PAYMETHOD_ALIPAY, PaymethodConstant.PAYMETHOD_PNRPAY);
 				String[] mainMethod = StringUtils.split(chargeMethod, ":");
-				if(!chargeMethodList.contains(mainMethod[0])) return showJsonError(model, "³äÖµ·½Ê½´íÎó£¡");
+				if(!chargeMethodList.contains(mainMethod[0])) return showJsonError(model, "å……å€¼æ–¹å¼é”™è¯¯ï¼");
 				Charge charge = addCharge(member, account, order, mainMethod);
 				String redirectUrl = paymentService.getChargePayUrl(charge, WebUtils.getRemoteIp(request));
 				jsonReturn.put("url", redirectUrl);
@@ -892,38 +892,38 @@ public class TradeController extends BasePayController {
 				jsonReturn.put("url", config.getBasePath() + "gewapay/agrmt/cashier.xhtml?orderId=" + order.getId() + "&checkpass=" + StringUtil.md5(order.getId() + "&paymethod=" + order.getPaymethod()));
 			}
 		} else {
-			return showJsonError(model, "Ö§¸¶·½Ê½ÓĞ´íÎó£¡");
+			return showJsonError(model, "æ”¯ä»˜æ–¹å¼æœ‰é”™è¯¯ï¼");
 		}
-		orderMonitorService.addOrderChangeLog(order.getTradeNo(), "È¥Ö§¸¶", order, jsonReturn.toString() + ",host=" + Config.getServerIp());
+		orderMonitorService.addOrderChangeLog(order.getTradeNo(), "å»æ”¯ä»˜", order, jsonReturn.toString() + ",host=" + Config.getServerIp());
 		
-		dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_ORDER_PAY, "[ÓÃ»§Ö§¸¶¶©µ¥]ÓÃ»§:"+member.getId()+"¶©µ¥ºÅ:"+order.getTradeNo()+",Ö§¸¶·½Ê½:"+paymethod+"[IP:]"+WebUtils.getRemoteIp(request));
+		dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_ORDER_PAY, "[ç”¨æˆ·æ”¯ä»˜è®¢å•]ç”¨æˆ·:"+member.getId()+"è®¢å•å·:"+order.getTradeNo()+",æ”¯ä»˜æ–¹å¼:"+paymethod+"[IP:]"+WebUtils.getRemoteIp(request));
 		return showJsonSuccess(model, jsonReturn);
 	}
 	@RequestMapping("/gewapay/cancelOrder.xhtml")
 	public String cancleOrder(String tradeNo, String source, ModelMap model) {
-		String status = OrderConstant.STATUS_USER_CANCEL;	// ĞÂÔö:ÓÃ»§È¡Ïû
+		String status = OrderConstant.STATUS_USER_CANCEL;	// æ–°å¢:ç”¨æˆ·å–æ¶ˆ
 		Member member = getLogonMember();
 		try{
 			if(PayUtil.isTicketTrade(tradeNo)){
-				ticketOrderService.cancelTicketOrder2(tradeNo, member.getId(), status, "ÓÃ»§È¡Ïû");
+				ticketOrderService.cancelTicketOrder2(tradeNo, member.getId(), status, "ç”¨æˆ·å–æ¶ˆ");
 			}else if(PayUtil.isGoodsTrade(tradeNo)){
 				goodsOrderService.cancelGoodsOrder(tradeNo, member);
 			}else if(PayUtil.isSportTrade(tradeNo)){
 				SportOrder order = daoService.getObjectByUkey(SportOrder.class, "tradeNo", tradeNo, false);
-				sportUntransService.cancelSportOrder(order, member.getId(), "ÓÃ»§È¡Ïû");
+				sportUntransService.cancelSportOrder(order, member.getId(), "ç”¨æˆ·å–æ¶ˆ");
 			}else if(PayUtil.isDramaOrder(tradeNo)){
-				theatreOrderService.cancelDramaOrder(tradeNo, member.getId()+"", "ÓÃ»§È¡Ïû");
+				theatreOrderService.cancelDramaOrder(tradeNo, member.getId()+"", "ç”¨æˆ·å–æ¶ˆ");
 			}else if(PayUtil.isPubSaleOrder(tradeNo)){
-				pubSaleService.cancelPubSaleOrder(tradeNo, member.getId(), "ÓÃ»§È¡Ïû");
+				pubSaleService.cancelPubSaleOrder(tradeNo, member.getId(), "ç”¨æˆ·å–æ¶ˆ");
 			}else if(PayUtil.isGymTrade(tradeNo)){
-				openGymService.cancelGymOrder(tradeNo, member.getId(), status, "ÓÃ»§È¡Ïû");
+				openGymService.cancelGymOrder(tradeNo, member.getId(), status, "ç”¨æˆ·å–æ¶ˆ");
 			}
 		}catch(HibernateOptimisticLockingFailureException e){
 			dbLogger.warn(StringUtil.getExceptionTrace(e, 10));
-			return show404(model, "¶©µ¥È¡Ïû´íÎó£ºÖØ¸´È¡Ïû£¿");
+			return show404(model, "è®¢å•å–æ¶ˆé”™è¯¯ï¼šé‡å¤å–æ¶ˆï¼Ÿ");
 		}catch(Exception e){
 			dbLogger.warn(StringUtil.getExceptionTrace(e, 10));
-			return show404(model, "¶©µ¥È¡ÏûÊ§°Ü£¬ÇëÉÔºóÔÙÊÔ£¡");
+			return show404(model, "è®¢å•å–æ¶ˆå¤±è´¥ï¼Œè¯·ç¨åå†è¯•ï¼");
 		}
 		
 		if(StringUtils.isBlank(source)){
@@ -956,7 +956,7 @@ public class TradeController extends BasePayController {
 	public String checkOrderPay(String tradeNo, ModelMap model) {
 		TicketOrder order = daoService.getObjectByUkey(TicketOrder.class, "tradeNo", tradeNo, false);
 		if(order.isNetPaid()) return showJsonSuccess(model);
-		else return showJsonError(model, "¶Ô²»Æğ£¬Äú»¹Ã»ÓĞÖ§¸¶!");
+		else return showJsonError(model, "å¯¹ä¸èµ·ï¼Œæ‚¨è¿˜æ²¡æœ‰æ”¯ä»˜!");
 	}
 
 	private void setGoodsOrderInfo(BaseGoods baseGoods, ModelMap model){
@@ -983,7 +983,7 @@ public class TradeController extends BasePayController {
 			model.put("goodsGift", goodsGift);
 			model.put("goods", daoService.getObject(Goods.class, goodsGift.getGoodsid()));
 		}else {
-			//TODO:ÖØĞÂ´¦Àí£¬¶à¸öBuyItem
+			//TODO:é‡æ–°å¤„ç†ï¼Œå¤šä¸ªBuyItem
 			BuyItem item = daoService.getObjectByUkey(BuyItem.class, "orderid", order.getId(), true);
 			if(item != null) {
 				model.put("item", item);
