@@ -17,11 +17,11 @@ public class HeadInfoVo extends BaseVo {
 	private Long ordernum;
 	private String isslide;
 	private Timestamp addtime;
-	private String board;	// °æ¿é eg. movie/suject...etc.
+	private String board;	// ç‰ˆå— eg. movie/suject...etc.
 	private String citycode;
-	private String track;		//¸ú×ÙÍ¼Æ¬
-	private Timestamp starttime;	// ·ÖÏí¿ªÊ¼Ê±¼ä
-	private Timestamp stoptime;		// ·ÖÏí½áÊøÊ±¼ä
+	private String track;		//è·Ÿè¸ªå›¾ç‰‡
+	private Timestamp starttime;	// åˆ†äº«å¼€å§‹æ—¶é—´
+	private Timestamp stoptime;		// åˆ†äº«ç»“æŸæ—¶é—´
 	
 	public HeadInfoVo(){}
 

@@ -9,7 +9,7 @@ public interface PictureVoService {
 	
 	ResultCode<List<PictureVo>> getPictureList(String tag, Long relatedid, int from, int maxnum);
 	/**
-	 * Ê¹ÓÃ»º´æ(¹¦ÄÜÍ¬·½·¨£ºgetPictureList )
+	 * ä½¿ç”¨ç¼“å­˜(åŠŸèƒ½åŒæ–¹æ³•ï¼šgetPictureList )
 	 * @param tag
 	 * @param relatedid
 	 * @param from
@@ -18,7 +18,7 @@ public interface PictureVoService {
 	 */
 	ResultCode<List<PictureVo>> getPictureListUseCache(String tag, Long relatedid, int from, int maxnum);
 	/**
-	 * ²éÑ¯Í¼Æ¬ÊıÁ¿
+	 * æŸ¥è¯¢å›¾ç‰‡æ•°é‡
 	 * @param tag
 	 * @param relatedid
 	 * @return
@@ -26,7 +26,7 @@ public interface PictureVoService {
 	ResultCode<Integer> getPictureCount(String tag, Long relatedid);
 	
 	/**
-	 * ±£´æ»î¶¯ÏîÄ¿´«µÄÍ¼Æ¬ĞÅÏ¢
+	 * ä¿å­˜æ´»åŠ¨é¡¹ç›®ä¼ çš„å›¾ç‰‡ä¿¡æ¯
 	 * @param memberid
 	 * @param activityid
 	 * @param fileName
@@ -38,7 +38,7 @@ public interface PictureVoService {
 	ResultCode<PictureVo> getPicture(Long pid);
 	
 	/**
-	 * »ñÈ¡Í¼Æ¬¸öÊı
+	 * è·å–å›¾ç‰‡ä¸ªæ•°
 	 * @param tag
 	 * @param relatedid
 	 * @return
@@ -46,7 +46,7 @@ public interface PictureVoService {
 	ResultCode<Integer> getPictureCountByRelatedid(String tag, Long relatedid);
 	
 	/**
-	 * µÃµ½¹ØÁª¶ÔÏóµÄÍ¼Æ¬ÁĞ±í Ê¹ÓÃ10·ÖÖÓ»º´æ
+	 * å¾—åˆ°å…³è”å¯¹è±¡çš„å›¾ç‰‡åˆ—è¡¨ ä½¿ç”¨10åˆ†é’Ÿç¼“å­˜
 	 * @param tag
 	 * @param relatedid
 	 * @param from

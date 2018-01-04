@@ -14,31 +14,31 @@ import com.gewara.api.vo.BaseVo;
 public class VideoVo extends BaseVo{
 	private static final long serialVersionUID = 4914995483381697551L;
 	public static final int HOTVALUE_RECOMMEND = 1000;
-	public static final String VIDEOTYPE_FILM = "movieFilm";//µçÓ°Ó°Æ¬  tagÎªmovieÊÇÔ­À´µÄµçÓ°µÄÔ¤¸æÆ¬
+	public static final String VIDEOTYPE_FILM = "movieFilm";//ç”µå½±å½±ç‰‡  tagä¸ºmovieæ˜¯åŸæ¥çš„ç”µå½±çš„é¢„å‘Šç‰‡
 	private Long id;
-	private String tag;//ÀàĞÍ±êÇ©
-	private Long relatedid;//¹ØÁªId
+	private String tag;//ç±»å‹æ ‡ç­¾
+	private Long relatedid;//å…³è”Id
 	private String flag;
 	private String category;	
 	private Long categoryid;	
 	private String url;
-	private String videotitle;//ÊÓÆµ±êÌâ
-	private String logo; //Í¼±ê
-	private String content;//ÄÚÈİ
+	private String videotitle;//è§†é¢‘æ ‡é¢˜
+	private String logo; //å›¾æ ‡
+	private String content;//å†…å®¹
 	private Timestamp addtime;
-	private Long memberid; //ÓÃ»§
+	private Long memberid; //ç”¨æˆ·
 	private String memberType;
-	private Long verifymemberid; //ÉóºËÓÃ»§
+	private Long verifymemberid; //å®¡æ ¸ç”¨æˆ·
 	private Integer hotvalue;
 	private Timestamp updatetime;
-	private Integer clickedtimes; //µã»÷Êı
+	private Integer clickedtimes; //ç‚¹å‡»æ•°
 	private Integer orderNum;
-	private String videono;			// ÊÓÆµID
-	private String h5code;		//H5´úÂë
-	private String origin;		//µØÖ·Ô´£ºÓÅ¿á£¬ÍÁ¶¹µÈ
-	private String displayinfo;	//ÊÇ·ñÏÔÊ¾,Y±íÊ¾ÏÔÊ¾£¬N±íÊ¾²»ÏÔÊ¾
-	private String timelength;	//Ê±³¤£º3:15 
-	private String htmlcode;	//html´úÂë
+	private String videono;			// è§†é¢‘ID
+	private String h5code;		//H5ä»£ç 
+	private String origin;		//åœ°å€æºï¼šä¼˜é…·ï¼ŒåœŸè±†ç­‰
+	private String displayinfo;	//æ˜¯å¦æ˜¾ç¤º,Yè¡¨ç¤ºæ˜¾ç¤ºï¼ŒNè¡¨ç¤ºä¸æ˜¾ç¤º
+	private String timelength;	//æ—¶é•¿ï¼š3:15 
+	private String htmlcode;	//htmlä»£ç 
 	private String flashcode;	//flashcode
 	
 	public String getH5code() {

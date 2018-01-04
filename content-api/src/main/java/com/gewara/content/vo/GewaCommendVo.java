@@ -29,7 +29,7 @@ public class GewaCommendVo extends BaseVo {
 	private BaseObject relate;
 	private BaseObject relate2;
 	
-	private String otherinfo ; //ÏîÄ¿µÄÏà¹ØÊôĞÔ
+	private String otherinfo ; //é¡¹ç›®çš„ç›¸å…³å±æ€§
 	
 	public String getOtherinfo() {
 		return otherinfo;
@@ -61,7 +61,7 @@ public class GewaCommendVo extends BaseVo {
 		this.starttime = new Timestamp(System.currentTimeMillis());
 		this.stoptime = new Timestamp(System.currentTimeMillis());
 	}
-	// ÎªµçÓ°Ê×Ò³µ¯³ö¿òÍÆ¼ö ×öÇøÅÅĞò.
+	// ä¸ºç”µå½±é¦–é¡µå¼¹å‡ºæ¡†æ¨è åšåŒºæ’åº.
 	public GewaCommendVo(String signname, String title, Long relatedid, Integer ordernum){
 		this(signname);
 		this.title = title;

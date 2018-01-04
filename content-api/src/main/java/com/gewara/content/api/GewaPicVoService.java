@@ -13,14 +13,14 @@ public interface GewaPicVoService {
 	ResultCode<String> uploadPicture(String pic, String filetype, boolean retPicSize, Long memberid, String tag, Long relatedid, String path);
 
 	/**
-	 * Ó°ÔºÓ°Æ¬µÄ¾çÕÕ
+	 * å½±é™¢å½±ç‰‡çš„å‰§ç…§
 	 * 
 	 * @param appkey
-	 *            ºÏ×÷ÉÌappkey
+	 *            åˆä½œå•†appkey
 	 * @param relatedId
-	 *            Ó°ÔºID¡¢Ó°Æ¬ID¡­¡­
+	 *            å½±é™¢IDã€å½±ç‰‡IDâ€¦â€¦
 	 * @param tag
-	 *            Ó°Ôº£¨cinema£©£¬Ó°Æ¬£¨movie£©
+	 *            å½±é™¢ï¼ˆcinemaï¼‰ï¼Œå½±ç‰‡ï¼ˆmovieï¼‰
 	 * @param from
 	 * @param max
 	 * @return

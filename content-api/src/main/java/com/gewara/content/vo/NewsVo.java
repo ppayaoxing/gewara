@@ -9,15 +9,15 @@ import com.gewara.api.vo.BaseVo;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public class NewsVo extends BaseVo{
 	private static final long serialVersionUID = 4914995483381697551L;
 	private Long id;
-	private String tag;//ÀàĞÍ±êÇ©
+	private String tag;//ç±»å‹æ ‡ç­¾
 	private String title;
 	private String secondtitle;
-	private String summary; //ÕªÒª
+	private String summary; //æ‘˜è¦
 	private String logo;
 	private String smallLogo;
 	private String tplLogo;
@@ -28,11 +28,11 @@ public class NewsVo extends BaseVo{
 	private Timestamp releasetime;
 	private Timestamp updatetime;
 	private Timestamp addtime;
-	private Long relatedid;//¹ØÁª¶ÔÏó
+	private Long relatedid;//å…³è”å¯¹è±¡
 	private String category;
-	private String linksource; //À´Ô´µØ
+	private String linksource; //æ¥æºåœ°
 	private String countycode;
-	private String newslabel;	//ÊÖ¶¯ÉèÖÃ±êÇ©
+	private String newslabel;	//æ‰‹åŠ¨è®¾ç½®æ ‡ç­¾
 	private String author;
 	private Long categoryid;
 	private String citycode;

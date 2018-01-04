@@ -7,9 +7,9 @@ import com.gewara.api.vo.BaseVo;
 
 public class AdvertisingVo extends BaseVo {
 	private static final long serialVersionUID = -4548062751031282415L;
-	public static final String STATUS_UP = "up"; // 投放
-	public static final String STATUS_DOWN = "down"; // 下线
-	public static final String STATUS_DELETED = "deleted"; // 删除
+	public static final String STATUS_UP = "up"; // 鎶曟斁
+	public static final String STATUS_DOWN = "down"; // 涓嬬嚎
+	public static final String STATUS_DELETED = "deleted"; // 鍒犻櫎
 	private Long id;
 	private Long adpositionid;
 	private String link;
@@ -28,7 +28,7 @@ public class AdvertisingVo extends BaseVo {
 	private String logicaldir;
 	private boolean reassign;
 	private String citycode;
-	private String relateCity; //关联其它城市
+	private String relateCity; //鍏宠仈鍏跺畠鍩庡競
 	private String tag;
 	private Long relatedid;
 	private String track;

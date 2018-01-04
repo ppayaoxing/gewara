@@ -11,34 +11,34 @@ public interface GewaCommendVoService {
 
 	ResultCode<List<Map>> getGewaCommendList(String citycode, String signname, int from, int maxnum);
 	/**
-	 * ²éÑ¯ÍÆ¼öÄÚÈİ
-	 * @param citycode³ÇÊĞ´úÂë
-	 * @param signname Ãû³Æ
+	 * æŸ¥è¯¢æ¨èå†…å®¹
+	 * @param citycodeåŸå¸‚ä»£ç 
+	 * @param signname åç§°
 	 * @param parentid 
-	 * @param tag	±ê¼Ç
-	 * @param isGtZero ÊÇ·ñ°üº¬0
-	 * @param from	¿ªÊ¼
-	 * @param maxnum	ÌõÊı
-	 * @param isActivity ÊÇ·ñÅĞ¶ÏÔÚÓĞĞ§ÆÚÄÚ starttime>=curtime<=stoptime
+	 * @param tag	æ ‡è®°
+	 * @param isGtZero æ˜¯å¦åŒ…å«0
+	 * @param from	å¼€å§‹
+	 * @param maxnum	æ¡æ•°
+	 * @param isActivity æ˜¯å¦åˆ¤æ–­åœ¨æœ‰æ•ˆæœŸå†… starttime>=curtime<=stoptime
 	 * @return
 	 */
 	ResultCode<List<GewaCommendVo>> getGewaCommendListByWithActive(String citycode, String signname, Long parentid, String tag, boolean isGtZero, boolean isActivity, int from, int maxnum);
 	/**
-	 * ²éÑ¯ÍÆ¼öÄÚÈİ
-	 * @param citycode³ÇÊĞ´úÂë
-	 * @param signname Ãû³Æ
+	 * æŸ¥è¯¢æ¨èå†…å®¹
+	 * @param citycodeåŸå¸‚ä»£ç 
+	 * @param signname åç§°
 	 * @param parentid 
-	 * @param tag	±ê¼Ç
-	 * @param isGtZero ÊÇ·ñ°üº¬0
-	 * @param from	¿ªÊ¼
-	 * @param maxnum	ÌõÊı
-	 * @param isActivity ÊÇ·ñÅĞ¶ÏÔÚÓĞĞ§ÆÚÄÚ starttime>=curtime<=stoptime
-	 * @param relatedid ¹ØÁªID
+	 * @param tag	æ ‡è®°
+	 * @param isGtZero æ˜¯å¦åŒ…å«0
+	 * @param from	å¼€å§‹
+	 * @param maxnum	æ¡æ•°
+	 * @param isActivity æ˜¯å¦åˆ¤æ–­åœ¨æœ‰æ•ˆæœŸå†… starttime>=curtime<=stoptime
+	 * @param relatedid å…³è”ID
 	 * @return
 	 */
 	ResultCode<List<GewaCommendVo>> getGewaCommendListByActiveRealtedid(String citycode, String signname, Long relatedid, Long parentid, String tag, boolean isGtZero, boolean isActivity, int from, int maxnum);
 	/**
-	 * ²éÑ¯ÍÆ¼öÄÚÈİ
+	 * æŸ¥è¯¢æ¨èå†…å®¹
 	 * @param citycode
 	 * @param signname
 	 * @param parentid
@@ -51,7 +51,7 @@ public interface GewaCommendVoService {
 	ResultCode<List<GewaCommendVo>> getGewaCommendListByTag(String citycode, String signname, Long parentid,String tag, boolean isGtZero, int from, int maxnum);
 	ResultCode<List<Map>> getGewaCurCommendList(String citycode, String signname, int from, int maxnum);
 	/**
-	 * »ñÈ¡ËùÓĞÍÆ¼ö
+	 * è·å–æ‰€æœ‰æ¨è
 	 * @param citycode
 	 * @param signname
 	 * @param parentid
@@ -75,19 +75,19 @@ public interface GewaCommendVoService {
 	 */
 	ResultCode<Map<String, Integer>> getPictureCount();
 	/**
-	 * »ñÈ¡Ê×Ò³Ì×Í·
+	 * è·å–é¦–é¡µå¥—å¤´
 	 * @param gewaCity
 	 * @return
 	 */
 	ResultCode<HeadInfoVo> getIndexHeadInfo(String citycode);
 	/**
-	 * ¸ù¾İId»ñµÃÌ×Í·ĞÅÏ¢
+	 * æ ¹æ®Idè·å¾—å¥—å¤´ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
 	ResultCode<HeadInfoVo> getHeadInfoById(Long id);
 	/**
-	 * »ñµÃwalaCommendĞÅÏ¢
+	 * è·å¾—walaCommendä¿¡æ¯
 	 * @param citycode
 	 * @return
 	 */

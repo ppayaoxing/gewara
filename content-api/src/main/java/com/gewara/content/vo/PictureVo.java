@@ -9,20 +9,20 @@ import com.gewara.api.vo.BaseVo;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-10-9ÉÏÎç08:57:47
+ * @since 2007-10-9ä¸Šåˆ08:57:47
  */
 public class PictureVo extends BaseVo{
 	private static final long serialVersionUID = 4914995483381697551L;
 	private Long id;
-	private String tag;			//ÀàĞÍ±êÇ©
-	private Long relatedid;		//Ïà¹ØId
-	private String picturename;	//Í¼Æ¬Ãû³Æ
-	private String description;	//ÃèÊö
+	private String tag;			//ç±»å‹æ ‡ç­¾
+	private Long relatedid;		//ç›¸å…³Id
+	private String picturename;	//å›¾ç‰‡åç§°
+	private String description;	//æè¿°
 	private String category;		
 	private Long categoryid;	
 	private String name;
-	private Timestamp posttime;//·¢²¼Ê±¼ä
-	private Long memberid;//×¨ÇøÓÃ»§Ãû
+	private Timestamp posttime;//å‘å¸ƒæ—¶é—´
+	private Long memberid;//ä¸“åŒºç”¨æˆ·å
 	private String memberType;
 	private Integer clickedtimes;
 
