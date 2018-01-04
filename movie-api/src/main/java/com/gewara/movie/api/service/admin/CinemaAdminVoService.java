@@ -11,23 +11,23 @@ import com.gewara.api.vo.ResultCode;
 import com.gewara.movie.vo.CinemaRoomVo;
 import com.gewara.movie.vo.CinemaVo;
 /**
- * ºóÌ¨Ó°Ôº²éÑ¯·şÎñ£¬Ö»ÓĞºóÌ¨¿ÉÒÔµ÷ÓÃ
+ * åå°å½±é™¢æŸ¥è¯¢æœåŠ¡ï¼Œåªæœ‰åå°å¯ä»¥è°ƒç”¨
  * @author gewara
  *
  */
 public interface CinemaAdminVoService {
 	/**
-	 * »ñµÃÈÈÃÅ³ÇÊĞÓ°ÔºID
+	 * è·å¾—çƒ­é—¨åŸå¸‚å½±é™¢ID
 	 * @return
 	 */
 	ResultCode<List<Long>> getBookingOpenCinemaIdListByCityCodes(List<String> cityCodes);
 	/**
-	 * »ñµÃ³ÇÊĞÓ°ÔºÁĞ±í(ID NAME)
+	 * è·å¾—åŸå¸‚å½±é™¢åˆ—è¡¨(ID NAME)
 	 * @return
 	 */
 	ResultCode<List<Map>> getCinemaNameAndIdListByCityCodes(List<String> cityCodes);
 	/**
-	 * ¸ù¾İ³ÇÊĞ´úÂë²éÑ¯Ó°ÔºĞÅÏ¢£¨·ÖÒ³£©
+	 * æ ¹æ®åŸå¸‚ä»£ç æŸ¥è¯¢å½±é™¢ä¿¡æ¯ï¼ˆåˆ†é¡µï¼‰
 	 * @param citycode
 	 * @param from
 	 * @param maxnum
@@ -35,14 +35,14 @@ public interface CinemaAdminVoService {
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCitycodeForPage(String citycode, int from, int maxnum);
 	/**
-	 * ¸ù¾İ³ÇÊĞ´úÂë¡¢Ãû³Æ£¬²éÑ¯Ó°ÔºĞÅÏ¢
+	 * æ ¹æ®åŸå¸‚ä»£ç ã€åç§°ï¼ŒæŸ¥è¯¢å½±é™¢ä¿¡æ¯
 	 * @param citycode
 	 * @param name
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaPlaceByName(String citycode, String name);
 	/**
-	 * »ñÈ¡Ä³Ìì¿ª·Å¹ºÆ±µÄÓ°Ôº
+	 * è·å–æŸå¤©å¼€æ”¾è´­ç¥¨çš„å½±é™¢
 	 * @param citycode
 	 * @param cinemaid
 	 * @param playdate
@@ -50,14 +50,14 @@ public interface CinemaAdminVoService {
 	 */
 	ResultCode<List<CinemaVo>> getOpiCinemaList(String citycode, Long movieid, Date playdate);
 	/**
-	 * ±£´æcinema¶ÔÏó
+	 * ä¿å­˜cinemaå¯¹è±¡
 	 * @param paramVo
 	 * @param isPushSearchKey
 	 * @return
 	 */
 	ResultCode<CinemaVo> saveOrUpdateCinema(RequestParamVo paramVo, boolean isPushSearchKey);
 	/**
-	 * ĞŞ¸ÄcinemaÊôĞÔ
+	 * ä¿®æ”¹cinemaå±æ€§
 	 * @param cinemaId
 	 * @param properties
 	 * @param values
@@ -65,14 +65,14 @@ public interface CinemaAdminVoService {
 	 */
 	ResultCode<CinemaVo> updateCinemaProperties(Long cinemaId, String[] properties, Serializable[] values);
 	/**
-	 * ²éÑ¯Ó°ÔºĞÅÏ¢£¬¸ù¾İkeyºÍcitycode
+	 * æŸ¥è¯¢å½±é™¢ä¿¡æ¯ï¼Œæ ¹æ®keyå’Œcitycode
 	 * @param citycode
 	 * @param key
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByKeyAndCityCode(String citycode, String key);
 	/**
-	 * ĞŞ¸Äcinema¶ÔÏóÖĞ£¬¹ØÁªµÄroomId
+	 * ä¿®æ”¹cinemaå¯¹è±¡ä¸­ï¼Œå…³è”çš„roomId
 	 * @param cinemaId
 	 * @param cinemaRoomId
 	 * @param isAdd
@@ -80,7 +80,7 @@ public interface CinemaAdminVoService {
 	 */
 	ResultCode<CinemaVo> updateRecommendRoom(Long cinemaId, Long cinemaRoomId, boolean isAdd);
 	/**
-	 * ²éÑ¯Ó°ÔºĞÅÏ¢£¨·ÖÒ³£©
+	 * æŸ¥è¯¢å½±é™¢ä¿¡æ¯ï¼ˆåˆ†é¡µï¼‰
 	 * @param orderField
 	 * @param asc
 	 * @param from
@@ -89,13 +89,13 @@ public interface CinemaAdminVoService {
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListForPage(String orderField, boolean asc, int from, int rows);
 	/**
-	 * µ¼Èëpcid
+	 * å¯¼å…¥pcid
 	 * @param pcidData
 	 * @return
 	 */
 	ResultCode<LinkedList<String>> initImportCinemaPcid(String pcidData);
 	/**
-	 * ²éÑ¯cinemaRoomĞÅÏ¢
+	 * æŸ¥è¯¢cinemaRoomä¿¡æ¯
 	 * @param cinemaid
 	 * @param citycode
 	 * @param provincecode

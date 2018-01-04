@@ -5,7 +5,7 @@ import java.io.Writer;
 import com.gewara.web.support.DirectOut;
 
 /**
- * 直接输出json流，少一次大的String转换
+ * 鐩存帴杈撳嚭json娴侊紝灏戜竴娆″ぇ鐨凷tring杞崲
  * @param req
  * @param obj
  */

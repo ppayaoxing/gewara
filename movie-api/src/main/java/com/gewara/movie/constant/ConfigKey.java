@@ -1,33 +1,33 @@
 package com.gewara.movie.constant;
 
 public class ConfigKey {
-	public static final String SYSTEMID_MOVIE = "MOVIE"; //MOVIEÏîÄ¿¶ÔÍâµÄid
+	public static final String SYSTEMID_MOVIE = "MOVIE"; //MOVIEé¡¹ç›®å¯¹å¤–çš„id
 
-	public static final String KEY_LOCAL_CACHE_MOVIE = "Local_Cache_Movie";	// Ó°Æ¬»º´æ
-	public static final String KEY_LOCAL_CACHE_CINEMA = "Local_Cache_Cinema";//Ó°Ôº»º´æ
-	public static final String KEY_LOCAL_CACHE_CINEMAPROFILE = "Local_Cache_CinemaProfile";//Ó°ÌüÅäÖÃ»º´æ
-	public static final String KEY_LOCAL_CACHE_CINEMAROOM = "Local_Cache_CinemaRoom";//Ó°Ìü»º´æ
-	public static final String KEY_LOCAL_CACHE_SUBWAYSTATION = "Local_Cache_Subwaystation";//½»Í¨ĞÅÏ¢»º´æ
-	public static final String KEY_LOCAL_CACHE_CLOSERULEOPI = "Local_Cache_Closeruleopi";//ÉÌ»§¹Ø±Õ»º´æ
-	public static final String KEY_LOCAL_CACHE_MOVIEVIDEO = "Local_Cache_MovieVideo";//movieVideo¶ÔÏó»º´æ
-	public static final String KEY_LOCAL_CACHE_CASTPROFILE = "Local_Cache_castProfile";//castProfile¶ÔÏó»º´æ
-	public static final String KEY_LOCAL_CACHE_WORKSSTAFF = "Local_Cache_works_staff";//works_staff¶ÔÏó»º´æ
-	public static final String KEY_LOCAL_CACHE_GLOSSARYBASEINFO = "Local_Cache_glossary_baseinfo";//glossary_baseinfo¶ÔÏó»º´æ
-	public static final String KEY_QIANZHI_MOVIE = "qianzhimovie";		//Ç°ÖÃµçÓ°£¨·ÏÆú£©
-	public static final String KEY_GEWACITY = "GewaCity";		// Ë¢ĞÂ³ÇÊĞ
-	public static final String KEY_LOCAL_CACHE_OURPLAY = "Local_Cache_OurPlay";		// ÎÒÃÇ·ÅÓ³
-	public static final String KEY_GLOSSARY_BASE_INFO="glossaryBaseInfoCache";		// Ë¢ĞÂµ¼ÑİÑİÔ±
+	public static final String KEY_LOCAL_CACHE_MOVIE = "Local_Cache_Movie";	// å½±ç‰‡ç¼“å­˜
+	public static final String KEY_LOCAL_CACHE_CINEMA = "Local_Cache_Cinema";//å½±é™¢ç¼“å­˜
+	public static final String KEY_LOCAL_CACHE_CINEMAPROFILE = "Local_Cache_CinemaProfile";//å½±å…é…ç½®ç¼“å­˜
+	public static final String KEY_LOCAL_CACHE_CINEMAROOM = "Local_Cache_CinemaRoom";//å½±å…ç¼“å­˜
+	public static final String KEY_LOCAL_CACHE_SUBWAYSTATION = "Local_Cache_Subwaystation";//äº¤é€šä¿¡æ¯ç¼“å­˜
+	public static final String KEY_LOCAL_CACHE_CLOSERULEOPI = "Local_Cache_Closeruleopi";//å•†æˆ·å…³é—­ç¼“å­˜
+	public static final String KEY_LOCAL_CACHE_MOVIEVIDEO = "Local_Cache_MovieVideo";//movieVideoå¯¹è±¡ç¼“å­˜
+	public static final String KEY_LOCAL_CACHE_CASTPROFILE = "Local_Cache_castProfile";//castProfileå¯¹è±¡ç¼“å­˜
+	public static final String KEY_LOCAL_CACHE_WORKSSTAFF = "Local_Cache_works_staff";//works_staffå¯¹è±¡ç¼“å­˜
+	public static final String KEY_LOCAL_CACHE_GLOSSARYBASEINFO = "Local_Cache_glossary_baseinfo";//glossary_baseinfoå¯¹è±¡ç¼“å­˜
+	public static final String KEY_QIANZHI_MOVIE = "qianzhimovie";		//å‰ç½®ç”µå½±ï¼ˆåºŸå¼ƒï¼‰
+	public static final String KEY_GEWACITY = "GewaCity";		// åˆ·æ–°åŸå¸‚
+	public static final String KEY_LOCAL_CACHE_OURPLAY = "Local_Cache_OurPlay";		// æˆ‘ä»¬æ”¾æ˜ 
+	public static final String KEY_GLOSSARY_BASE_INFO="glossaryBaseInfoCache";		// åˆ·æ–°å¯¼æ¼”æ¼”å‘˜
 	
-	public static final String KEY_ENABLE_PAGECACHE = "enablePageCache";	//Ò³Ãæ»º´æ½ûÓÃÆôÓÃ
+	public static final String KEY_ENABLE_PAGECACHE = "enablePageCache";	//é¡µé¢ç¼“å­˜ç¦ç”¨å¯ç”¨
 	
-	public static final String KEY_APIUSER = "apiUser";						//ºÏ×÷ÉÌÅäÖÃ
+	public static final String KEY_APIUSER = "apiUser";						//åˆä½œå•†é…ç½®
 	
-	public static final String KEY_LOCAL_CACHE_BC_MPI = "Local_Cache_Bc_Mpi";//°ü³¡³¡´Î
-	public static final String KEY_LOCAL_CACHE_BC_CINEMAROOM = "Local_Cache_Bc_CinemaRoom";//°ü³¡Ó°Ìü
-	public static final String KEY_LOCAL_CACHE_BC_ORDER = "Local_Cache_Bc_Order";//°ü³¡¶©µ¥
-	public static final String KEY_LOCAL_CACHE_PHONE_ADVERT = "Local_Cache_Phone_Advert";//ÌØ¼ÛÄ£°å»º´æ
-	public static final String KEY_QIANZHI_MOVIELIST = "qianzhimovielist";		//Ç°ÖÃµçÓ°ÁĞ±í
-	public static final String KEY_FILMFEST_BASE_INFO = "filmfestkindmovieinfo";	// µçÓ°½Ú»º´æ
-	public static final String KEY_APP_GEWARA_MOVIE_PLAY = "app_gewara_movie_play";	// ¸ñÍßÀ­·ÅÓ³
+	public static final String KEY_LOCAL_CACHE_BC_MPI = "Local_Cache_Bc_Mpi";//åŒ…åœºåœºæ¬¡
+	public static final String KEY_LOCAL_CACHE_BC_CINEMAROOM = "Local_Cache_Bc_CinemaRoom";//åŒ…åœºå½±å…
+	public static final String KEY_LOCAL_CACHE_BC_ORDER = "Local_Cache_Bc_Order";//åŒ…åœºè®¢å•
+	public static final String KEY_LOCAL_CACHE_PHONE_ADVERT = "Local_Cache_Phone_Advert";//ç‰¹ä»·æ¨¡æ¿ç¼“å­˜
+	public static final String KEY_QIANZHI_MOVIELIST = "qianzhimovielist";		//å‰ç½®ç”µå½±åˆ—è¡¨
+	public static final String KEY_FILMFEST_BASE_INFO = "filmfestkindmovieinfo";	// ç”µå½±èŠ‚ç¼“å­˜
+	public static final String KEY_APP_GEWARA_MOVIE_PLAY = "app_gewara_movie_play";	// æ ¼ç“¦æ‹‰æ”¾æ˜ 
 
 }

@@ -6,13 +6,13 @@ import com.gewara.api.vo.BaseVo;
 
 public class MovieGeneralmarkDetailVo extends BaseVo{
 	private static final long serialVersionUID = -5015270045343038649L;
-	private String name; //µÈ¼¶ÃèÊö   Èç 9-10·Ö
-	private int value; //µÈ¼¶ÆÀ·Ö×ÜÊı  ÀıÈç 9-10·Ö100¸öÓÃ»§ÆÀ £¬ÕâÀï100¾ÍÊÇvalueµÄÖµ
-	private long percent; //Õ¼±È   ÀıÈç£º9-10·Ö ËùÔÚµÄ±ÈÀı  20  ¾Í±íÊ¾20%
-	private int pointY; // ¹ºÆ±ÓÃ»§ÆÀ·ÖÊı  ÀıÈç£º9-10·ÖÀïÃæ¹ºÆ±µÄÈËÊı
-	private int pointN; // ·Ç¹ºÆ±ÓÃ»§ÆÀ·Ö×ÜÊı ÀıÈç£º9-10·ÖÀïÃæ·Ç¹ºÆ±ÈËÊı
-	private long percenY; //¹ºÆ±ÓÃ»§ÆÀ·ÖÕ¼±È
-	private long percenN; //·Ç¹ºÆ±ÓÃ»§ÆÀ·ÖÕ¼±È
+	private String name; //ç­‰çº§æè¿°   å¦‚ 9-10åˆ†
+	private int value; //ç­‰çº§è¯„åˆ†æ€»æ•°  ä¾‹å¦‚ 9-10åˆ†100ä¸ªç”¨æˆ·è¯„ ï¼Œè¿™é‡Œ100å°±æ˜¯valueçš„å€¼
+	private long percent; //å æ¯”   ä¾‹å¦‚ï¼š9-10åˆ† æ‰€åœ¨çš„æ¯”ä¾‹  20  å°±è¡¨ç¤º20%
+	private int pointY; // è´­ç¥¨ç”¨æˆ·è¯„åˆ†æ•°  ä¾‹å¦‚ï¼š9-10åˆ†é‡Œé¢è´­ç¥¨çš„äººæ•°
+	private int pointN; // éè´­ç¥¨ç”¨æˆ·è¯„åˆ†æ€»æ•° ä¾‹å¦‚ï¼š9-10åˆ†é‡Œé¢éè´­ç¥¨äººæ•°
+	private long percenY; //è´­ç¥¨ç”¨æˆ·è¯„åˆ†å æ¯”
+	private long percenN; //éè´­ç¥¨ç”¨æˆ·è¯„åˆ†å æ¯”
 	
 	public String getName() {
 		return name;

@@ -8,7 +8,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface GewampiPartnerPlayItemVoService {
 	/**
-	 * »ñÈ¡³¡´ÎÁĞ±í
+	 * è·å–åœºæ¬¡åˆ—è¡¨
 	 * @param appkey
 	 * @param cinemaId
 	 * @param movieId
@@ -18,7 +18,7 @@ public interface GewampiPartnerPlayItemVoService {
 	 */
 	ResultCode<List<MovieItemVo>> getMpiVoList(String appkey, Long cinemaId, Long movieId, Date playdate, Long discountId);
 	/**
-	 * »ñÈ¡³¡´ÎÈÕÆÚ
+	 * è·å–åœºæ¬¡æ—¥æœŸ
 	 * @param citycode
 	 * @param appkey
 	 * @param movieId
@@ -28,17 +28,17 @@ public interface GewampiPartnerPlayItemVoService {
 	 */
 	ResultCode<List<Date>> openDateList(String citycode, String appkey, Long movieId, Long cinemaId, Long discountid);
 	/**
-	 * Ó°ÔºÕıÔÚÈÈÓ³µÄµçÓ°
+	 * å½±é™¢æ­£åœ¨çƒ­æ˜ çš„ç”µå½±
 	 * @param appkey
 	 * @param citycode
 	 * @param cinemaId
 	 * @param from
 	 * @param maxnum
-	 * @return µçÓ°IDÁĞ±í
+	 * @return ç”µå½±IDåˆ—è¡¨
 	 */
 	ResultCode<List<Long>> getCurMovieByCinemaId(String appkey, String citycode, Long cinemaId, Long discountid);
 	/**
-	 * »ñÈ¡0µã³¡µÄ³¡´Î
+	 * è·å–0ç‚¹åœºçš„åœºæ¬¡
 	 * @param spid
 	 * @param cinemaId
 	 * @param movieId

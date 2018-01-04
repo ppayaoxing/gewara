@@ -3,7 +3,7 @@ package com.gewara.weixin.poi;
 
 public class WxPoi {
 	/**
-	 * н╒пеце╣Й
+	 * Е╬╝Д©║И≈╗Е╨≈
 	 */
 	private String sid;
 	private String business_name;

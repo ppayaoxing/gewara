@@ -4,7 +4,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface BindMobileVoService {
 	/**
-	 * Î´µÇÂ¼Ç°µÄÑéÖ¤Âë
+	 * æœªç™»å½•å‰çš„éªŒè¯ç 
 	 * @param tag
 	 * @param mobile
 	 * @param ip
@@ -12,7 +12,7 @@ public interface BindMobileVoService {
 	 */
 	ResultCode refreshDynamicCode(String tag, String mobile, String ip);
 	/**
-	 * ÖØĞÂË¢ĞÂÑéÖ¤Âë
+	 * é‡æ–°åˆ·æ–°éªŒè¯ç 
 	 * @param tag
 	 * @param mobile
 	 * @return
@@ -24,15 +24,15 @@ public interface BindMobileVoService {
 	ResultCode refreshChangeMobile(String newmobile, Long memberid, String ip);
 	
 	/**
-	 * ²âÊÔ³É¹¦ºó´ÎÊıÖ±½ÓÓÃÍê
+	 * æµ‹è¯•æˆåŠŸåæ¬¡æ•°ç›´æ¥ç”¨å®Œ
 	 * @param tag
 	 * @param mobile
 	 * @param checkpass
-	 * @return ERRORCODE·ÖÁ½ÖÖ£º¿ÉÖØÊÔ»òÊ§Ğ§£¬Ç°Ì¨Çø·Ö
+	 * @return ERRORCODEåˆ†ä¸¤ç§ï¼šå¯é‡è¯•æˆ–å¤±æ•ˆï¼Œå‰å°åŒºåˆ†
 	 */
 	ResultCode checkBindMobile(String tag, String mobile, Long memberid, String checkpass);
 	/**
-	 * Î´×¢²á£¨»òÎ´µÇÂ¼Ç°£©µÄÑéÖ¤Âë°ó¶¨
+	 * æœªæ³¨å†Œï¼ˆæˆ–æœªç™»å½•å‰ï¼‰çš„éªŒè¯ç ç»‘å®š
 	 * @param tag
 	 * @param mobile
 	 * @param checkpass
@@ -40,7 +40,7 @@ public interface BindMobileVoService {
 	 */
 	ResultCode checkDynamicCode(String tag, String mobile, String checkpass);
 	/**
-	 * Ô¤ÏÈ¼ì²â£¬´ÎÊıÔö1
+	 * é¢„å…ˆæ£€æµ‹ï¼Œæ¬¡æ•°å¢1
 	 * @param tag
 	 * @param mobile
 	 * @param checkpass
@@ -52,14 +52,14 @@ public interface BindMobileVoService {
 	ResultCode<Boolean> isNeedToken(String type, String ip, int checkcount);
 
 	/**
-	 * ÕËºÅ»Ø¸´¶ÌĞÅÑéÖ¤
+	 * è´¦å·å›å¤çŸ­ä¿¡éªŒè¯
 	 * @param mobile
 	 * @param ip
 	 * @return
 	 */
 	ResultCode refreshSMSValid(String mobile, String ip);
 	/**
-	 * ÖØĞÂË¢ĞÂÑéÖ¤Âë(drama)
+	 * é‡æ–°åˆ·æ–°éªŒè¯ç (drama)
 	 * @param tag
 	 * @param mobile
 	 * @param ip

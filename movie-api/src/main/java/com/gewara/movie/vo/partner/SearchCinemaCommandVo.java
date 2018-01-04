@@ -13,24 +13,24 @@ public class SearchCinemaCommandVo implements Serializable  {
 	private String park;
 	private String playground;
 	private String visacard;
-	private String pairseat;		//������
-	private String coupon;			//�Ż�ȯ
+	private String pairseat;		//锟斤拷锟斤拷锟斤拷
+	private String coupon;			//锟脚伙拷券
 	private String booking;
 	public Long stationid;
-	public String popcorn;			//���׻�
+	public String popcorn;			//锟斤拷锟阶伙拷
 	public int pageNo=0;
 	public int rowsPerpage=10;
 	private String imax;
 	private String child;
-	private String cinemaids;		//�ҳ�ȥIDs
-	private String acthas;			//�Ƿ��л
-	private String refund;			//�Ƿ����Ʊ
-	private String characteristic;//��Ч��
-	private String hotcinema;		//����ӰԺ
-	private String ctype;			//��Ч������
-	private String lineall;			//���е�����·
-	private String buyInsure;  //�Ƿ�֧�ֹ�Ʊ��Ʊȡ����
-	private String showGawara; //�Ƿ��������ʾ��Y����������ʾ��N������������ʾ��
+	private String cinemaids;		//锟揭筹拷去IDs
+	private String acthas;			//锟角凤拷锟叫活动
+	private String refund;			//锟角凤拷锟斤拷锟狡�
+	private String characteristic;//锟斤拷效锟斤拷
+	private String hotcinema;		//锟斤拷锟斤拷影院
+	private String ctype;			//锟斤拷效锟斤拷锟斤拷锟斤拷
+	private String lineall;			//锟斤拷锟叫碉拷锟斤拷锟斤拷路
+	private String buyInsure;  //锟角凤拷支锟街癸拷票锟斤拷票取锟斤拷锟斤拷
+	private String showGawara; //锟角凤拷锟斤拷锟斤拷锟斤拷锟绞撅拷锟結锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷示锟斤拷N锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷示锟斤拷
 	
 	public String getImax() {
 		return imax;
@@ -78,7 +78,7 @@ public class SearchCinemaCommandVo implements Serializable  {
 		return cinemaname;
 	}
 	public void setCinemaname(String cinemaname) {
-		if(cinemaname!=null && cinemaname.contains("����")) {
+		if(cinemaname!=null && cinemaname.contains("锟斤拷锟斤拷")) {
             this.cinemaname = null;
         } else {
             this.cinemaname = cinemaname;

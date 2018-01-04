@@ -27,7 +27,7 @@ import com.alibaba.dubbo.rpc.filter.tps.DefaultTPSLimiter;
 import com.alibaba.dubbo.rpc.filter.tps.TPSLimiter;
 
 /**
- * ���� service �򷽷��� tps.
+ * 锟斤拷锟斤拷 service 锟津方凤拷锟斤拷 tps.
  *
  * @author <a href="mailto:gang.lvg@alibaba-inc.com">kimi</a>
  */

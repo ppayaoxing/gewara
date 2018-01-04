@@ -5,7 +5,7 @@ import java.io.Writer;
 
 /**
  * @author ge.biao
- * 在写入xml流过程中，直接过滤掉非法字符
+ * 鍦ㄥ啓鍏ml娴佽繃绋嬩腑锛岀洿鎺ヨ繃婊ゆ帀闈炴硶瀛楃
  */
 public class XmlFriendlyWriter extends Writer{
 	private Writer internal;

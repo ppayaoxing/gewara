@@ -6,7 +6,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface CityRoomCharacteristicVoService {
 	/**
-	 * 根据id(cityCode)查询城市影厅特色
+	 * 鏍规嵁id(cityCode)鏌ヨ鍩庡競褰卞巺鐗硅壊
 	 * @param cityCode
 	 * @return
 	 */

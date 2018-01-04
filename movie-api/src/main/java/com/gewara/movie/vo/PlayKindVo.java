@@ -7,16 +7,16 @@ import com.gewara.api.vo.BaseVo;
 
 public class PlayKindVo extends BaseVo {
 	private static final long serialVersionUID = -5154633937499593360L;
-	private Long id; //Î¨Ò»±êÊ¾
-	private String kindName; //·ÅÓ³Àà±ğÃû³Æ
-	private Integer orderNumber; //ÅÅĞòĞòºÅ
-	private Timestamp addtime; //Ìí¼ÓÊ±¼ä
-	private Timestamp updatetime;	//ĞŞ¸ÄÊ±¼ä 
-	private Integer status; //ÊÇ·ñÉ¾³ı 1=É¾³ı 0=Î´É¾³ı
-	private String isCur; //ÊÇ·ñÊÇµ±ÆÚ y=ÊÇ  n=·ñ
-	private String belongToKind;//ÊôÓÚÄÄ¸öÀà±ğ ĞÂÉÌÒµorĞÂ¾­µä ÏÖÔÚµÄÖµÓĞ newBusiness newClassics;
-	private String belongToKindPattern;//ÊôÓÚĞÂ¾­µäÊ²Ã´Ä£Ê½,ÀıÈç µ¥Æ¬Ä£Ê½(singular)£¬Õ¹Ó³Ä£Ê½()
-	private String isRecommend;//ÊÇ·ñÍÆ¼öy=ÊÇ  n=·ñ
+	private Long id; //å”¯ä¸€æ ‡ç¤º
+	private String kindName; //æ”¾æ˜ ç±»åˆ«åç§°
+	private Integer orderNumber; //æ’åºåºå·
+	private Timestamp addtime; //æ·»åŠ æ—¶é—´
+	private Timestamp updatetime;	//ä¿®æ”¹æ—¶é—´ 
+	private Integer status; //æ˜¯å¦åˆ é™¤ 1=åˆ é™¤ 0=æœªåˆ é™¤
+	private String isCur; //æ˜¯å¦æ˜¯å½“æœŸ y=æ˜¯  n=å¦
+	private String belongToKind;//å±äºå“ªä¸ªç±»åˆ« æ–°å•†ä¸šoræ–°ç»å…¸ ç°åœ¨çš„å€¼æœ‰ newBusiness newClassics;
+	private String belongToKindPattern;//å±äºæ–°ç»å…¸ä»€ä¹ˆæ¨¡å¼,ä¾‹å¦‚ å•ç‰‡æ¨¡å¼(singular)ï¼Œå±•æ˜ æ¨¡å¼()
+	private String isRecommend;//æ˜¯å¦æ¨èy=æ˜¯  n=å¦
 	public String getIsRecommend() {
 		return isRecommend;
 	}

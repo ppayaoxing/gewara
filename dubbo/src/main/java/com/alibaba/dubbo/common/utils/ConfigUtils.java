@@ -58,17 +58,17 @@ public class ConfigUtils {
 	}
 	
 	/**
-	 * À©Õ¹µãÁĞ±íÖĞ²åÈëÈ±Ê¡À©Õ¹µã¡£
+	 * æ‰©å±•ç‚¹åˆ—è¡¨ä¸­æ’å…¥ç¼ºçœæ‰©å±•ç‚¹ã€‚
 	 * <p>
-	 * À©Õ¹µãÁĞ±íÖ§³Ö<ul>
-	 * <li>ÌØÊâÖµ<code><strong>default</strong></code>£¬±íÊ¾È±Ê¡À©Õ¹µã²åÈëµÄÎ»ÖÃ
-	 * <li>ÌØÊâ·ûºÅ<code><strong>-</strong></code>£¬±íÊ¾ÌŞ³ı¡£ <code>-foo1</code>£¬ÌŞ³ıÌí¼ÓÈ±Ê¡À©Õ¹µãfoo1¡£<code>-default</code>£¬ÌŞ³ıÌí¼ÓËùÓĞÈ±Ê¡À©Õ¹µã¡£
+	 * æ‰©å±•ç‚¹åˆ—è¡¨æ”¯æŒ<ul>
+	 * <li>ç‰¹æ®Šå€¼<code><strong>default</strong></code>ï¼Œè¡¨ç¤ºç¼ºçœæ‰©å±•ç‚¹æ’å…¥çš„ä½ç½®
+	 * <li>ç‰¹æ®Šç¬¦å·<code><strong>-</strong></code>ï¼Œè¡¨ç¤ºå‰”é™¤ã€‚ <code>-foo1</code>ï¼Œå‰”é™¤æ·»åŠ ç¼ºçœæ‰©å±•ç‚¹foo1ã€‚<code>-default</code>ï¼Œå‰”é™¤æ·»åŠ æ‰€æœ‰ç¼ºçœæ‰©å±•ç‚¹ã€‚
 	 * </ul>
 	 * 
-	 * @param type À©Õ¹µãÀàĞÍ
-	 * @param cfg À©Õ¹µãÃûÁĞ±í
-	 * @param def È±Ê¡µÄÀ©Õ¹µãµÄÁĞ±í
-	 * @return Íê³ÉÈ±Ê¡µÄÀ©Õ¹µãÁĞ±í²åÈëºóµÄÁĞ±í
+	 * @param type æ‰©å±•ç‚¹ç±»å‹
+	 * @param cfg æ‰©å±•ç‚¹ååˆ—è¡¨
+	 * @param def ç¼ºçœçš„æ‰©å±•ç‚¹çš„åˆ—è¡¨
+	 * @return å®Œæˆç¼ºçœçš„æ‰©å±•ç‚¹åˆ—è¡¨æ’å…¥åçš„åˆ—è¡¨
 	 */
 	public static List<String> mergeValues(Class<?> type, String cfg, List<String> def) {
 	    List<String> defaults = new ArrayList<String>();
@@ -82,7 +82,7 @@ public class ConfigUtils {
         
 	    List<String> names = new ArrayList<String>();
 	    
-	    // ¼ÓÈë³õÊ¼Öµ
+	    // åŠ å…¥åˆå§‹å€¼
         String[] configs = (cfg == null || cfg.trim().length() == 0) ? new String[0] : Constants.COMMA_SPLIT_PATTERN.split(cfg);
         for (String config : configs) {
             if(config != null && config.trim().length() > 0) {
@@ -90,9 +90,9 @@ public class ConfigUtils {
             }
         }
 
-        // ²»°üº¬ -default
+        // ä¸åŒ…å« -default
         if (! names.contains(Constants.REMOVE_VALUE_PREFIX + Constants.DEFAULT_KEY)) {
-            // ¼ÓÈë ²åÈëÈ±Ê¡À©Õ¹µã
+            // åŠ å…¥ æ’å…¥ç¼ºçœæ‰©å±•ç‚¹
             int i = names.indexOf(Constants.DEFAULT_KEY);
             if (i > 0) {
                 names.addAll(i, defaults);
@@ -105,7 +105,7 @@ public class ConfigUtils {
             names.remove(Constants.DEFAULT_KEY);
         }
         
-        // ºÏ²¢-µÄÅäÖÃÏî
+        // åˆå¹¶-çš„é…ç½®é¡¹
         for (String name : new ArrayList<String>(names)) {
             if (name.startsWith(Constants.REMOVE_VALUE_PREFIX)) {
                 names.remove(name);
@@ -124,7 +124,7 @@ public class ConfigUtils {
         }
         Matcher matcher = VARIABLE_PATTERN.matcher(expression);
         StringBuffer sb = new StringBuffer();
-        while (matcher.find()) { // Öğ¸öÆ¥Åä
+        while (matcher.find()) { // é€ä¸ªåŒ¹é…
             String key = matcher.group(1);
             String value = System.getProperty(key);
             if (value == null && params != null) {

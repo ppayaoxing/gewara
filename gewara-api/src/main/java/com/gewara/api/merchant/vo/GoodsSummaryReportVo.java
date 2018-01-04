@@ -12,9 +12,9 @@ public class GoodsSummaryReportVo extends BaseVo {
 	private Long cinemaId;
 	private String cinemaName;
 	private String citycode;
-	private int orderCount;//¶©µ¥Êı
-	private int quantity; //Æ±Êı ¡¢·İÊı
-	private int totalcost;//½ğ¶î
+	private int orderCount;//è®¢å•æ•°
+	private int quantity; //ç¥¨æ•° ã€ä»½æ•°
+	private int totalcost;//é‡‘é¢
 	
 	public GoodsSummaryReportVo(){}
 	

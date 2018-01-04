@@ -9,13 +9,13 @@ import com.gewara.movie.vo.MovieVo;
 public interface MovieChkDataVoService {
 
 	/**
-	 * 查询未设置区县的影院
+	 * 鏌ヨ鏈缃尯鍘跨殑褰遍櫌
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCountyisnull();
 	
 	/**
-	 * 查询未设置视频的影片
+	 * 鏌ヨ鏈缃棰戠殑褰辩墖
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getMovieListByPrevideoisnull();

@@ -8,17 +8,17 @@ import com.gewara.api.vo.BaseVo;
 public class MemberMergerHisVo extends BaseVo{
 	private static final long serialVersionUID = 8946272152683008335L;
 	private Long id;
-	private Long memberId;//ºÏ²¢ÕË»§ID
-	private String memberPhone;//ºÏ²¢ÕË»§ÊÖ»ú
-	private Long mergerMemberId;//±»ºÏ²¢ÕË»§ID
-	private String mergerMemberNickName;//±»ºÏ²¢ÕË»§µÄêÇ³Æ
-	private Long operationUserId;//²Ù×÷ÈËID
-	private Timestamp addtime;//²åÈëÊ±¼ä
-	private Timestamp updatetime;//¸üĞÂÊ±¼ä
-	private String otherInfo;//ÆäËûĞÅÏ¢
-	private String status;//×´Ì¬£ºY:°ó¶¨N£ºÎ´°ó¶¨³É¹¦A£º´ıÉóºË
-	private String remark;//±¸×¢
-	private Long bindStep;//1£ºÍ¬²½ÓÃ»§ÍÛÀ²³É¹¦2£ºÍ¬²½ÓÃ»§µÄÓÅ»İ»î¶¯³É¹¦3£ºÍ¬²½ÓÃ»§µÄÓÅ»İÈ¯³É¹¦4£ºÍ¬²½Ôø¾­Ï²»¶³É¹¦5£ºÍ¬²½È¥¹ı³É¹¦
+	private Long memberId;//åˆå¹¶è´¦æˆ·ID
+	private String memberPhone;//åˆå¹¶è´¦æˆ·æ‰‹æœº
+	private Long mergerMemberId;//è¢«åˆå¹¶è´¦æˆ·ID
+	private String mergerMemberNickName;//è¢«åˆå¹¶è´¦æˆ·çš„æ˜µç§°
+	private Long operationUserId;//æ“ä½œäººID
+	private Timestamp addtime;//æ’å…¥æ—¶é—´
+	private Timestamp updatetime;//æ›´æ–°æ—¶é—´
+	private String otherInfo;//å…¶ä»–ä¿¡æ¯
+	private String status;//çŠ¶æ€ï¼šY:ç»‘å®šNï¼šæœªç»‘å®šæˆåŠŸAï¼šå¾…å®¡æ ¸
+	private String remark;//å¤‡æ³¨
+	private Long bindStep;//1ï¼šåŒæ­¥ç”¨æˆ·å“‡å•¦æˆåŠŸ2ï¼šåŒæ­¥ç”¨æˆ·çš„ä¼˜æƒ æ´»åŠ¨æˆåŠŸ3ï¼šåŒæ­¥ç”¨æˆ·çš„ä¼˜æƒ åˆ¸æˆåŠŸ4ï¼šåŒæ­¥æ›¾ç»å–œæ¬¢æˆåŠŸ5ï¼šåŒæ­¥å»è¿‡æˆåŠŸ
 	public Long getId() {
 		return id;
 	}

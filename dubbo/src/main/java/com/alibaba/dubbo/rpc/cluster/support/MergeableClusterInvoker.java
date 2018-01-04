@@ -67,7 +67,7 @@ public class MergeableClusterInvoker<T> implements Invoker<T> {
         List<Invoker<T>> invokers = directory.list(invocation);
         
         String merger = getUrl().getMethodParameter( invocation.getMethodName(), Constants.MERGER_KEY );
-        if ( ConfigUtils.isEmpty(merger) ) { // �����������ҪMerge���˻�Ϊֻ��һ��Group
+        if ( ConfigUtils.isEmpty(merger) ) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟揭狹erge锟斤拷锟剿伙拷为只锟斤拷一锟斤拷Group
             for(final Invoker<T> invoker : invokers ) {
                 if (invoker.isAvailable()) {
                     return invoker.invoke(invocation);

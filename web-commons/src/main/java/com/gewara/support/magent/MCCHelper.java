@@ -1,7 +1,7 @@
 package com.gewara.support.magent;
 
 /**
- * ÃüÁîÖĞĞÄ°ïÖúÀà
+ * å‘½ä»¤ä¸­å¿ƒå¸®åŠ©ç±»
  * @author gebiao(ge.biao@gewara.com)
  * @since Feb 27, 2014 8:34:53 PM
  */

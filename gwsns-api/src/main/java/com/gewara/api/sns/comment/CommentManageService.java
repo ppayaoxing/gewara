@@ -12,7 +12,7 @@ import com.gewara.command.CommentVoCommand;
 public interface CommentManageService {
 	
 	ResultCode<Long> updateComment(String commentJson);
-	//±£´æÍÛÀ²»Ø¸´--ĞÂÌí¼ÓµÄ·½·¨
+	//ä¿å­˜å“‡å•¦å›å¤--æ–°æ·»åŠ çš„æ–¹æ³•
 	ResultCode<Long> saveReComment(ReCommentVoCommand reComment);
 	
 	ResultCode<String> saveModeratorTag(Long id, List<String> titles);
@@ -20,13 +20,13 @@ public interface CommentManageService {
 	ResultCode<Integer> saveFlowerMember(Long memberid, String type, Long relatedid,String source);
 	
 	/**
-	 * ÄäÃûµãÔŞ
+	 * åŒ¿åç‚¹èµ
 	 */
 	ResultCode<Integer> saveAnonymFlowerMember(String type,Long relatedid,String gwtc);
 	
 	ResultCode<Long> saveComment(CommentVoCommand command);
 	/**
-	 * ²éÑ¯memberidÒÑÔŞ¹ıµÄ»Ø¸´
+	 * æŸ¥è¯¢memberidå·²èµè¿‡çš„å›å¤
 	 * @param memberid
 	 * @param type
 	 * @param relatedids
@@ -35,16 +35,16 @@ public interface CommentManageService {
 	ResultCode<List<Long>> hasFlowerMemberList(Long memberid, String type, List<Long> relatedids);
 	
 	/**
-	 * ÊÇ·ñÄäÃûµãÔŞ¹ı
+	 * æ˜¯å¦åŒ¿åç‚¹èµè¿‡
 	 */
 	ResultCode<Integer> hasAnonymFlowerMember(String type, Long relatedid,String gwtc);
 	
 	ResultCode<Integer> hasFlowerMember(Long memberid, String type, Long relatedid);
 	/**
-	 * ÓÃ»§µãÔŞ²Ù×÷
-	 * 			beforRelatedid=0 ÔòµãÔŞ
-	 *          afterRelatedid=0 ÔòÈ¡ÏûµãÔŞ
-	 *          ·ñÔòÊÇµãÔŞ±ä¸ü
+	 * ç”¨æˆ·ç‚¹èµæ“ä½œ
+	 * 			beforRelatedid=0 åˆ™ç‚¹èµ
+	 *          afterRelatedid=0 åˆ™å–æ¶ˆç‚¹èµ
+	 *          å¦åˆ™æ˜¯ç‚¹èµå˜æ›´
 	 * @param memberid
 	 * @param type
 	 * @param beforRelatedid
@@ -54,7 +54,7 @@ public interface CommentManageService {
 	 */
 	ResultCode<Integer> flowerMemberOperate(Long memberid, String type, Long beforRelatedid,Long afterRelatedid,String source);
 	/**
-	 * È¡ÏûµãÔŞ
+	 * å–æ¶ˆç‚¹èµ
 	 * @param memberid
 	 * @param type
 	 * @param relatedid
@@ -62,7 +62,7 @@ public interface CommentManageService {
 	 */
 	ResultCode<Integer> cancelFlowerMember(Long memberid, String type, Long relatedid);
 	
-	//ÄäÃûÈ¡ÏûµãÔŞ
+	//åŒ¿åå–æ¶ˆç‚¹èµ
 	ResultCode<Integer> cancelAnonymFlowerMember(String type,Long relatedid,String gwtc);
 	
 	ResultCode<List<CommentVo>> adminGetCommentList(Long memberid, Timestamp starttime, Timestamp endtime, String transfer, String status, String keyname, String isMicro, int from, int maxnum);	
@@ -85,13 +85,13 @@ public interface CommentManageService {
 	
 	ResultCode<Integer> adminGetReCommentCount(Long cid, Long memberid, Timestamp starttime, Timestamp endtime, String status, String keyname);
 	/**
-	 * ¾Ù±¨»Ø¸´
+	 * ä¸¾æŠ¥å›å¤
 	 * @param id
 	 * @return
 	 */
 	ResultCode saveCommentReport(Long id,Long memberid);
 	/**
-	 * ÊÇ·ñÒÑ¾Ù±¨
+	 * æ˜¯å¦å·²ä¸¾æŠ¥
 	 * @param id
 	 * @param memberid
 	 * @return

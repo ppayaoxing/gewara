@@ -11,7 +11,7 @@ import com.gewara.movie.vo.MovieVo;
 
 public interface MovieAdminVoService {
 	/**
-	 * »ñÈ¡Ä³Ìì¿ª·Å¹ºÆ±µÄÓ°Æ¬
+	 * è·å–æŸå¤©å¼€æ”¾è´­ç¥¨çš„å½±ç‰‡
 	 * @param citycode
 	 * @param cinemaid
 	 * @param playdate
@@ -19,19 +19,19 @@ public interface MovieAdminVoService {
 	 */
 	ResultCode<List<MovieVo>> getOpiMovieList(String citycode, Long cinemaid, Date playdate);
 	/**
-	 * »ñµÃÊ××ÖÄ¸ÅÅĞòµÄÓ°Æ¬
+	 * è·å¾—é¦–å­—æ¯æ’åºçš„å½±ç‰‡
 	 * @param movieid
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getMovieListFirstLetterSort(Long movieid);
 	/**
-	 * ±£´æÓ°Æ¬¶ÔÏó
+	 * ä¿å­˜å½±ç‰‡å¯¹è±¡
 	 * @param paramVo
 	 * @return
 	 */
 	ResultCode<MovieVo> saveOrUpdateMovie(RequestParamVo paramVo, boolean isPushSearchKey);
 	/**
-	 * ĞŞ¸ÄmovieÊôĞÔ
+	 * ä¿®æ”¹movieå±æ€§
 	 * @param userid
 	 * @param movieId
 	 * @param properties
@@ -40,19 +40,19 @@ public interface MovieAdminVoService {
 	 */
 	ResultCode<MovieVo> updateMovieProperties(Long movieId, String[] properties, Serializable[] values);
 	/**
-	 * ±£´æmovie¶ÔÏó£¬¼°Ïà¹ØÁª¶ÔÏó
+	 * ä¿å­˜movieå¯¹è±¡ï¼ŒåŠç›¸å…³è”å¯¹è±¡
 	 * @param paramVo
 	 * @return
 	 */
 	ResultCode<MovieVo> saveMovieAndRelatedObject(RequestParamVo paramVo);
 	/**
-	 * ²éÑ¯³öupdateTimeĞ¡ÓÚµÈÓÚdatatimeµÄÓ°Æ¬
+	 * æŸ¥è¯¢å‡ºupdateTimeå°äºç­‰äºdatatimeçš„å½±ç‰‡
 	 * @param dateTime
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getMovieListByUpdateTimeLeDateTime(Timestamp dateTime);
 	/**
-	 * µçÓ°½Ú·şÎñ£¬¸ù¾İidĞŞ¸Äflag
+	 * ç”µå½±èŠ‚æœåŠ¡ï¼Œæ ¹æ®idä¿®æ”¹flag
 	 * @param paramVo
 	 * @return
 	 */

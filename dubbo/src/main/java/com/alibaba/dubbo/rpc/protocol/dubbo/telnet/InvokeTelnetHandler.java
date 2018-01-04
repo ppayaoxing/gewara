@@ -120,7 +120,7 @@ public class InvokeTelnetHandler implements TelnetHandler {
         Method invokeMethod = null;
         for (Method m : methods) {
             if (m.getName().equals(method) && m.getParameterTypes().length == args.size()) {
-                if (invokeMethod != null) { // ����
+                if (invokeMethod != null) { // 锟斤拷锟斤拷
                     if (isMatch(invokeMethod.getParameterTypes(), args)) {
                         invokeMethod = m;
                         break;

@@ -16,8 +16,8 @@ public class SeeMovieVo extends BaseVo{
     private String adddate;
     private Date paidtime;
     private Date playDate;
-	private String effect;      //°æ±¾   ÀıÈç£º2D¡¢IMAX
-	private String effectFlag;  //ÌØĞ§±êÊ¶
+	private String effect;      //ç‰ˆæœ¬   ä¾‹å¦‚ï¼š2Dã€IMAX
+	private String effectFlag;  //ç‰¹æ•ˆæ ‡è¯†
 
 	@Override
 	public Serializable realId() {

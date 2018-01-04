@@ -11,37 +11,37 @@ import com.gewara.api.vo.ResultCode;
 
 public interface PartnerAppVoService {
 	/**
-	 * 为app、wap增加意见反馈
+	 * 涓篴pp銆亀ap澧炲姞鎰忚鍙嶉
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<String> addComplain(PartnerCommonReqVo reqVo);
 	/**
-	 * app升级接口
+	 * app鍗囩骇鎺ュ彛
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<UpGradeVo> getUpGrade(PartnerCommonReqVo reqVo);
 	/**
-	 * 获取手机活动广告详情
+	 * 鑾峰彇鎵嬫満娲诲姩骞垮憡璇︽儏
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<PhoneActivityVo> getPhoneActivity(PartnerCommonReqVo reqVo);
 	/**
-	 * 获取手机活动广告列表
+	 * 鑾峰彇鎵嬫満娲诲姩骞垮憡鍒楄〃
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<List<PhoneActivityVo>> getPhoneActivityList(PartnerCommonReqVo reqVo);
 	/**
-	 * 获取微信活动广告详情
+	 * 鑾峰彇寰俊娲诲姩骞垮憡璇︽儏
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<WeiXinAdVo> getWeiXinAd(PartnerCommonReqVo reqVo);
 	/**
-	 * 获取开放购票的城市
+	 * 鑾峰彇寮�鏀捐喘绁ㄧ殑鍩庡競
 	 * @param reqVo
 	 * @return
 	 */

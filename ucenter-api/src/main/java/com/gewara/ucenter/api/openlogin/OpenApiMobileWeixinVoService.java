@@ -6,7 +6,7 @@ import com.gewara.api.vo.ResultCode;
 import com.gewara.ucenter.vo.member.MemberVo;
 
 /**
- * APP微信联名登陆相关API
+ * APP寰俊鑱斿悕鐧婚檰鐩稿叧API
  * 
  */
 public interface OpenApiMobileWeixinVoService {
@@ -15,7 +15,7 @@ public interface OpenApiMobileWeixinVoService {
 
 	ResultCode<Map<String, Object>> getWeixinUser(String userid,Long partnerid);
 	/**
-	 * AndroidTV 扫码
+	 * AndroidTV 鎵爜
 	 */
 	ResultCode<Map<String,Object>> loginScan(String deviceId, String code, String state,String callBack, String remoteIp);
 }

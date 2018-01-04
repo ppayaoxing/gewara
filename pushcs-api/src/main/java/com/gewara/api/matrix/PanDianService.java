@@ -4,14 +4,14 @@ package com.gewara.api.matrix;
 import com.gewara.api.vo.PanDianVO;
 import com.gewara.api.vo.ResultCode;
 /**
- * @author Ñî¸£Æ½
- * ÅÌµãdubbo ½Ó¿Ú
+ * @author æ¨ç¦å¹³
+ * ç›˜ç‚¹dubbo æ¥å£
  */
 public interface PanDianService {
 	/**
-	 * Ê¹ÓÃmemberid»ñÈ¡ÓÃ»§¹ÛÓ°ÈÕ¼Ç
-	 * @param memberid ÓÃ»§id
-	 * @return PandianVO¶ÔÏó,·â×°ÁËÍ³¼Æ½á¹ûºóµÄÊı¾İ
+	 * ä½¿ç”¨memberidè·å–ç”¨æˆ·è§‚å½±æ—¥è®°
+	 * @param memberid ç”¨æˆ·id
+	 * @return PandianVOå¯¹è±¡,å°è£…äº†ç»Ÿè®¡ç»“æœåçš„æ•°æ®
 	 */
     ResultCode<PanDianVO> getUserMovieDiaryByMemberid(Long memberid);
 }

@@ -5,31 +5,31 @@ import java.sql.Timestamp;
 
 import com.gewara.api.vo.BaseVo;
 /**
- * ²ÂÆ±·¿ºóÌ¨ÉèÖÃ  
+ * çŒœç¥¨æˆ¿åå°è®¾ç½®  
  *
  */
 public class GuessSetupVo extends BaseVo{
 	private static final long serialVersionUID = -6238251192248125698L;
-	private Long id; //ÍÛÀ²id
-	private Integer consumepoint; //Æğ²½ÏûºÄ»ı·Ö
-	private Integer multiple; //±¶Êı
-	private Timestamp starttime;//¿ªÊ¼Ê±¼ä
-	private Timestamp endtime;//½áÊøÊ±¼ä
-	private Timestamp addtime;//´´½¨Ê±¼ä
-	private String status;//×´Ì¬Y_NEW --ĞÂ½¨  Y_END --½áÊø   N_DELETE --É¾³ı 
-	private Long winid;//¹«²¼Æ±·¿½á¹û(Ñ¡ÏîID)
-	private String winPic; //¹«²¼Æ±·¿½á¹ûÍ¼Æ¬
+	private Long id; //å“‡å•¦id
+	private Integer consumepoint; //èµ·æ­¥æ¶ˆè€—ç§¯åˆ†
+	private Integer multiple; //å€æ•°
+	private Timestamp starttime;//å¼€å§‹æ—¶é—´
+	private Timestamp endtime;//ç»“æŸæ—¶é—´
+	private Timestamp addtime;//åˆ›å»ºæ—¶é—´
+	private String status;//çŠ¶æ€Y_NEW --æ–°å»º  Y_END --ç»“æŸ   N_DELETE --åˆ é™¤ 
+	private Long winid;//å…¬å¸ƒç¥¨æˆ¿ç»“æœ(é€‰é¡¹ID)
+	private String winPic; //å…¬å¸ƒç¥¨æˆ¿ç»“æœå›¾ç‰‡
 	private String bgPic;
 	
 	//@Transient
-	private Long memberid; //ÍÛÀ²ÓÃ»§ID
-	private String title; //²ÂÆ±·¿±êÌâ
-	private String body;//²ÂÆ±·¿ÃèÊö
-	private Long movieid;//¹ØÁªµçÓ°ID
-	private String cover;//²ÂÆ±·¿·âÃæ
+	private Long memberid; //å“‡å•¦ç”¨æˆ·ID
+	private String title; //çŒœç¥¨æˆ¿æ ‡é¢˜
+	private String body;//çŒœç¥¨æˆ¿æè¿°
+	private Long movieid;//å…³è”ç”µå½±ID
+	private String cover;//çŒœç¥¨æˆ¿å°é¢
 	private String process;
-	private String shareTitle;//·ÖÏí±êÌâ
-	private String shareBody;//·ÖÏíÄÚÈİ
+	private String shareTitle;//åˆ†äº«æ ‡é¢˜
+	private String shareBody;//åˆ†äº«å†…å®¹
 	
 	@Override
 	public Serializable realId() {

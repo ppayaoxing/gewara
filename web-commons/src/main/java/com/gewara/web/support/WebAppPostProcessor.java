@@ -2,7 +2,7 @@ package com.gewara.web.support;
 
 public interface WebAppPostProcessor {
 	/**
-	 * WEB容器启动后期处理
+	 * WEB瀹瑰櫒鍚姩鍚庢湡澶勭悊
 	 */
 	void init();
 }

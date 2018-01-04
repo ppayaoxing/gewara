@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class PushNotifyNewVo implements Serializable{
 
 	private static final long serialVersionUID = -41880787313247599L;
-	private String product;//Ó¦ÓÃÃû³Æ
+	private String product;//åº”ç”¨åç§°
 	private String title;
 	private String msgType;
 	private String content;
@@ -50,16 +50,16 @@ public class PushNotifyNewVo implements Serializable{
 
 	/**
 	 * {@link #PushNotifyVo(Long, String, String, String, String, String, String, Timestamp, Integer, String)}
-	 * @param userId	ÓÃ»§ID
-	 * @param msgType 	ÏûÏ¢ÀàĞÍ Çø·ÖÓ¦ÓÃ
+	 * @param userId	ç”¨æˆ·ID
+	 * @param msgType 	æ¶ˆæ¯ç±»å‹ åŒºåˆ†åº”ç”¨
 	 * @param product cinema,sport
-	 * @param title	±êÌâ
-	 * @param content	ÄÚÈİ
-	 * @param links		Á´½Ó
-	 * @param relatedId	¹ØÁªID
-	 * @param sentTime ·¢ËÍÊ±¼ä
-	 * @param validTime ¿ÉÓÃÊ±¼ä
-	 * @param version °æ±¾ºÅ
+	 * @param title	æ ‡é¢˜
+	 * @param content	å†…å®¹
+	 * @param links		é“¾æ¥
+	 * @param relatedId	å…³è”ID
+	 * @param sentTime å‘é€æ—¶é—´
+	 * @param validTime å¯ç”¨æ—¶é—´
+	 * @param version ç‰ˆæœ¬å·
 	 */
 	public PushNotifyNewVo(Long userId, String msgType, String product,
 			String title, String content, String links, String relatedId,

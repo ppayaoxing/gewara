@@ -17,7 +17,7 @@ import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28����02:05:17
+ * @since 2007-9-28锟斤拷锟斤拷02:05:17
  */
 public class BaseServiceImpl implements BaseService{
 	protected final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());

@@ -5,25 +5,25 @@ import java.io.Serializable;
 import com.gewara.gmessage.external.constant.MCategory;
 
 /**
- * ÏûÏ¢·¢ËÍÕßµÄ²éÑ¯Ìõ¼ş
+ * æ¶ˆæ¯å‘é€è€…çš„æŸ¥è¯¢æ¡ä»¶
  *
  */
 public class SenderQueryParam implements Serializable {
 	
 	private static final long serialVersionUID = -7149461923621738247L;
 
-	/**·¢ËÍÓÃ»§ĞÅÏ¢*/
+	/**å‘é€ç”¨æˆ·ä¿¡æ¯*/
 	private MUser sender=null;
 	
-	/**Ò³Âë£¬Ä¬ÈÏµÚÒ»Ò³*/
-	private int pageNo=1;//Ò³Âë£¬Ä¬ÈÏµÚÒ»Ò³
+	/**é¡µç ï¼Œé»˜è®¤ç¬¬ä¸€é¡µ*/
+	private int pageNo=1;//é¡µç ï¼Œé»˜è®¤ç¬¬ä¸€é¡µ
 	
-	/**Ã¿Ò³µÄ¼ÇÂ¼Êı¡£Ä¬ÈÏ50*/
-	private int pageSize=50;//Ã¿Ò³µÄ¼ÇÂ¼Êı¡£Ä¬ÈÏ50£»
+	/**æ¯é¡µçš„è®°å½•æ•°ã€‚é»˜è®¤50*/
+	private int pageSize=50;//æ¯é¡µçš„è®°å½•æ•°ã€‚é»˜è®¤50ï¼›
 	
 	private MCategory messageCat=MCategory.INTERACT;
 	
-	/**·¢ËÍÈÕÆÚ£¬·µ»ØÖ¸¶¨ÈÕÆÚÖ®ºóµÄÏûÏ¢¡£²»Ö¸¶¨£¬Ä¬ÈÏÎª°ëÄêÄÚµÄÏûÏ¢*/
+	/**å‘é€æ—¥æœŸï¼Œè¿”å›æŒ‡å®šæ—¥æœŸä¹‹åçš„æ¶ˆæ¯ã€‚ä¸æŒ‡å®šï¼Œé»˜è®¤ä¸ºåŠå¹´å†…çš„æ¶ˆæ¯*/
 	private Long sendTimes=null;//
  
 	public MUser getSender() {

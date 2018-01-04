@@ -6,20 +6,20 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * Æ·ÅÆ--ÉÌ»§
+ * å“ç‰Œ--å•†æˆ·
  */
 public class BrandVo extends BaseVo{
 
 	private static final long serialVersionUID = 7873532222364050961L;
 	
 	private Long id;
-	private String brandname;	//Æ·ÅÆÃû³Æ
+	private String brandname;	//å“ç‰Œåç§°
 	private String logourl;		//logo
-	private Byte status;		//×´Ì¬
-	private Integer brandtype;	//Æ·ÅÆÀàĞÍ
+	private Byte status;		//çŠ¶æ€
+	private Integer brandtype;	//å“ç‰Œç±»å‹
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private String brandcolor;	//É«Öµ
+	private String brandcolor;	//è‰²å€¼
 	
 	public String getBrandcolor() {
 		return brandcolor;

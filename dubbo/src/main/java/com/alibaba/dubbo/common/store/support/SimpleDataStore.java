@@ -29,7 +29,7 @@ import com.alibaba.dubbo.common.store.DataStore;
  */
 public class SimpleDataStore implements DataStore {
 
-    // <����������ʶ, <������, ����ֵ>>
+    // <锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷识, <锟斤拷锟斤拷锟斤拷, 锟斤拷锟斤拷值>>
     private ConcurrentMap<String, ConcurrentMap<String, Object>> data =
         new ConcurrentHashMap<String, ConcurrentMap<String,Object>>();
 

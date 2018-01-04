@@ -11,16 +11,16 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.web.util.HtmlUtils;
 
 public class PageUtil {
-	//request 中定义的参数名称
+	//request 涓畾涔夌殑鍙傛暟鍚嶇О
 	public static final String PARAM_PAGE_NUM = "pageNo";
 	public static final String PARAM_ROWS_COUNT = "rowsCount";
 	public static final String PARAM_ROWS_PER_PAGE ="rowsPerPage";
-	private int currentPage;//当前页
-	private int rowsCount;//记录数
-	private int startNum;//显示的第一页码
-	private int endNum;//显示的最后
-	private int pageCount;//分页数量
-	private int rowsPerPage;//每页显示数量
+	private int currentPage;//褰撳墠椤�
+	private int rowsCount;//璁板綍鏁�
+	private int startNum;//鏄剧ず鐨勭涓�椤电爜
+	private int endNum;//鏄剧ず鐨勬渶鍚�
+	private int pageCount;//鍒嗛〉鏁伴噺
+	private int rowsPerPage;//姣忛〉鏄剧ず鏁伴噺
 	private boolean isShowFirst;
 	private boolean isShowLast;
 	private String scriptParams;
@@ -82,14 +82,14 @@ public class PageUtil {
 		this.isShowLast = isShowLast;
 	}
 	/**
-	 * 获取不同分页的URI query查询串，如<br>
+	 * 鑾峰彇涓嶅悓鍒嗛〉鐨刄RI query鏌ヨ涓诧紝濡�<br>
 	 * param1=xxxx&param2=YYYYY&pageNo=0<br>
 	 * param1=TTTT&param2=SSSSS&pageNo=1<br>
 	 * .......
 	 **/
 	public void initPageInfo(Map params, List paramNames){
 		pageInfoList = Lists.newArrayList();
-		//1、获取查询串
+		//1銆佽幏鍙栨煡璇覆
 		String commonParam = "";
 		String scriptParam = "{";
 		if(params != null){
@@ -121,12 +121,12 @@ public class PageUtil {
 				}
 			}
 		}
-		//2、整理出页码链接
+		//2銆佹暣鐞嗗嚭椤电爜閾炬帴
 		if(scriptParam.length() > 1) {
             this.scriptParams = scriptParam.substring(0, scriptParam.length() - 1) + "}";
         }
 		this.commonParams = commonParam;
-		if(isPrePage()){//有上一页
+		if(isPrePage()){//鏈変笂涓�椤�
 			String tmpUrl = baseUrl;
 			int pn = currentPage-1;
 			if(pn == 0){
@@ -149,7 +149,7 @@ public class PageUtil {
                 tmpUrl += "?pageNo=" + pn + commonParam;
             }
 			pageInfo.setUrl(tmpUrl);
-			pageInfo.setPageNo(""+(pn+1));//显示的页码
+			pageInfo.setPageNo(""+(pn+1));//鏄剧ず鐨勯〉鐮�
 			pageInfo.setRealPageNo(pn);
 			if(pn == currentPage) {
                 pageInfo.setCurrentPage(true);
@@ -162,7 +162,7 @@ public class PageUtil {
                 pageInfoList.add(pageInfo);
             }
 		}
-		if(isNextPage()){//有下一页
+		if(isNextPage()){//鏈変笅涓�椤�
 			this.nexturl = baseUrl + "?pageNo=" + (currentPage + 1) + commonParam;
 		}
 		if(isFirstPage()){

@@ -36,21 +36,21 @@ public class RandomLoadBalance extends AbstractLoadBalance {
 
     @Override
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {
-        int length = invokers.size(); // �ܸ���
-        int totalWeight = 0; // ��Ȩ��
-        boolean sameWeight = true; // Ȩ���Ƿ�һ��
+        int length = invokers.size(); // 锟杰革拷锟斤拷
+        int totalWeight = 0; // 锟斤拷权锟斤拷
+        boolean sameWeight = true; // 权锟斤拷锟角凤拷一锟斤拷
         for (int i = 0; i < length; i++) {
             int weight = getWeight(invokers.get(i), invocation);
-            totalWeight += weight; // �ۼ���Ȩ��
+            totalWeight += weight; // 锟桔硷拷锟斤拷权锟斤拷
             if (sameWeight && i > 0
                     && weight != getWeight(invokers.get(i - 1), invocation)) {
-                sameWeight = false; // ��������Ȩ���Ƿ�һ��
+                sameWeight = false; // 锟斤拷锟斤拷锟斤拷锟斤拷权锟斤拷锟角凤拷一锟斤拷
             }
         }
         if (totalWeight > 0 && ! sameWeight) {
-            // ���Ȩ�ز���ͬ��Ȩ�ش���0����Ȩ�������
+            // 锟斤拷锟饺拷夭锟斤拷锟酵拷锟饺拷卮锟斤拷锟�0锟斤拷锟斤拷权锟斤拷锟斤拷锟斤拷锟�
             int offset = random.nextInt(totalWeight);
-            // ��ȷ�����ֵ�����ĸ�Ƭ����
+            // 锟斤拷确锟斤拷锟斤拷锟街碉拷锟斤拷锟斤拷母锟狡拷锟斤拷锟�
             for (int i = 0; i < length; i++) {
                 offset -= getWeight(invokers.get(i), invocation);
                 if (offset < 0) {
@@ -58,7 +58,7 @@ public class RandomLoadBalance extends AbstractLoadBalance {
                 }
             }
         }
-        // ���Ȩ����ͬ��Ȩ��Ϊ0��������
+        // 锟斤拷锟饺拷锟斤拷锟酵拷锟饺拷锟轿�0锟斤拷锟斤拷锟斤拷锟斤拷
         return invokers.get(random.nextInt(length));
     }
 

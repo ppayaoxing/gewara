@@ -7,7 +7,7 @@ import com.gewara.api.vo.BaseVo;
 public class DiscountItemVo extends BaseVo {
 
 	private static final long serialVersionUID = -7701699951089429324L;
-	private String priceseqno;		//º€∏Ò±‡∫≈
+	private String priceseqno;		//‰ª∑Ê†ºÁºñÂè∑
 	private Double theatreprice;
 	private String distype;
 	private Double discount;

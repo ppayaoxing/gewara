@@ -41,12 +41,12 @@ public class CasSsoAclServiceImpl extends AbstractAclService implements AclServi
 	public List<WebModule> getSecurityModuleList(){
 		String url = config.getString("ssoResoureUrl");
 		if(StringUtils.isBlank(url)){
-			dbLogger.warn("请检查config.xml中ssoResoureUrl配置是否正确！");
+			dbLogger.warn("璇锋鏌onfig.xml涓璼soResoureUrl閰嶇疆鏄惁姝ｇ‘锛�");
 		}
 		try{
 			remoteModuleList = GewaraSsoClient.findResoureByName(url, Config.SYSTEMID);
 		}catch(Exception e){
-			dbLogger.warn("单点登录menu菜单获取不到：请检查config中ssoResoureUrl配置是否正确！", e);
+			dbLogger.warn("鍗曠偣鐧诲綍menu鑿滃崟鑾峰彇涓嶅埌锛氳妫�鏌onfig涓璼soResoureUrl閰嶇疆鏄惁姝ｇ‘锛�", e);
 		}
 		
 		return remoteModuleList;

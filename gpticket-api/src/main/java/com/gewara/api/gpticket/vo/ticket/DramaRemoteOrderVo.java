@@ -10,41 +10,41 @@ import com.gewara.api.vo.BaseVo;
 
 public class DramaRemoteOrderVo extends BaseVo {
 	private static final long serialVersionUID = -318165413477507019L;
-	private Long orderid;			//��GewaOrder����ID
-	private String serial;			//��ǰ��ˮ��
-	private String hisSerial;		//��ʷ��ˮ��:���ŷָ�
-	private Timestamp addtime;		//��������ʱ��
-	private Timestamp locktime;		//������Чʱ��
-	private String seqno;			//����ID
-	private String areaseqno;		//����ID ���ŷָ�
-	private String mobile;			//�û��ֻ���
-	private String bookingId;		//Զ�̶���ID
-	private String confirmationId;	//Զ�̶�������
-	private String tickets;			//ӰƱ�ţ����ŷָ�
-	private String seatlabel;		//�µ����ݣ�{"1233":"01:22,01:23"} (areaseq:seatline:seatrank ��  areaseq:priceseq:quantity)
-	private String seatno;			//��λ��ţ�1233:01:22,01:23 �� {"123_21":"32",}
-	private String status;			//���������lock��fixed��cancel...
-	private String seatText;		//��λ�ı�
+	private Long orderid;			//锟斤拷GewaOrder锟斤拷锟斤拷ID
+	private String serial;			//锟斤拷前锟斤拷水锟斤拷
+	private String hisSerial;		//锟斤拷史锟斤拷水锟斤拷:锟斤拷锟脚分革拷
+	private Timestamp addtime;		//锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷
+	private Timestamp locktime;		//锟斤拷锟斤拷锟斤拷效时锟斤拷
+	private String seqno;			//锟斤拷锟斤拷ID
+	private String areaseqno;		//锟斤拷锟斤拷ID 锟斤拷锟脚分革拷
+	private String mobile;			//锟矫伙拷锟街伙拷锟斤拷
+	private String bookingId;		//远锟教讹拷锟斤拷ID
+	private String confirmationId;	//远锟教讹拷锟斤拷锟斤拷锟斤拷
+	private String tickets;			//影票锟脚ｏ拷锟斤拷锟脚分革拷
+	private String seatlabel;		//锟铰碉拷锟斤拷锟捷ｏ拷{"1233":"01:22,01:23"} (areaseq:seatline:seatrank 锟斤拷  areaseq:priceseq:quantity)
+	private String seatno;			//锟斤拷位锟斤拷牛锟�1233:01:22,01:23 锟斤拷 {"123_21":"32",}
+	private String status;			//锟斤拷锟斤拷锟斤拷锟斤拷锟絣ock锟斤拷fixed锟斤拷cancel...
+	private String seatText;		//锟斤拷位锟侥憋拷
 	private String checkmark;		
-	private String opentype;		//ѡ������ѡ��
-	private String message;			//���һ�δ�����Ϣ
-	private String ordertype;		//�������ͣ�GPTBS
-	private Timestamp updatetime;	//����ʱ��
-	private String otherinfo;		//Զ�̶�����ϸ
-	private String manual;			//Y���˹��սᶩ��
-	private String userkey;			//�û�ID
+	private String opentype;		//选锟斤拷锟斤拷锟斤拷选锟斤拷
+	private String message;			//锟斤拷锟揭伙拷未锟斤拷锟斤拷锟较�
+	private String ordertype;		//锟斤拷锟斤拷锟斤拷锟酵ｏ拷GPTBS
+	private Timestamp updatetime;	//锟斤拷锟斤拷时锟斤拷
+	private String otherinfo;		//远锟教讹拷锟斤拷锟斤拷细
+	private String manual;			//Y锟斤拷锟剿癸拷锟秸结订锟斤拷
+	private String userkey;			//锟矫伙拷ID
 	private String takemethod;
 	private String realname;
 	private String address;
 	private String telphone;
 	private String expressno;
 	private String expressname;
-	private String bindMobile;		//�û����ֻ���
-	private String clientIp;		//�ͻ���IP
+	private String bindMobile;		//锟矫伙拷锟斤拷锟街伙拷锟斤拷
+	private String clientIp;		//锟酵伙拷锟斤拷IP
 	
-	private Integer ticketnum;		//����Ʊ��
-	private Double totalfee;		//�����ܽ��
-	private Double payfee;			//����֧�����
+	private Integer ticketnum;		//锟斤拷锟斤拷票锟斤拷
+	private Double totalfee;		//锟斤拷锟斤拷锟杰斤拷锟�
+	private Double payfee;			//锟斤拷锟斤拷支锟斤拷锟斤拷锟�
 	
 	@Override
 	public Serializable realId() {

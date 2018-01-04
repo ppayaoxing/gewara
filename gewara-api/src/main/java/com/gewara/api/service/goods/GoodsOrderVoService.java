@@ -11,7 +11,7 @@ public interface GoodsOrderVoService {
 	
 	ResultCode<GewaOrderVo> addActivityGoodsOrder(Long goodsid, Long memberid, String realname, String address, String mobile, String origin, Integer quantity, String citycode);
 	/**
-	 * Ôö¼Ópartnerkey²ÎÊı
+	 * å¢åŠ partnerkeyå‚æ•°
 	 * @param goodsid
 	 * @param memberid
 	 * @param realname
@@ -26,16 +26,16 @@ public interface GoodsOrderVoService {
 	ResultCode<GewaOrderVo> addActivityGoodsOrderWithParnter(Long goodsid, Long memberid, String realname, String address, String mobile, String origin, Integer quantity, String citycode, String partnerkey);	
 
 	/**
-	 * ¹ºÂòÔ¤ÊÛ²úÆ·  (ÆäÖĞ²ÎÊıÊÛÒÔÏÂ×Ö¶Î)
+	 * è´­ä¹°é¢„å”®äº§å“  (å…¶ä¸­å‚æ•°å”®ä»¥ä¸‹å­—æ®µ)
 	 * @param goodsid must
 	 * @param memberid must
-	 * @param addressId µØÖ·id, optional
-	 * @param category ·ÖÀà, optional
-	 * @param realname ÓÃ»§Ãû optional
-	 * @param address  ËÍ»õµØÖ· optional
-	 * @param remark ±¸×¢
+	 * @param addressId åœ°å€id, optional
+	 * @param category åˆ†ç±», optional
+	 * @param realname ç”¨æˆ·å optional
+	 * @param address  é€è´§åœ°å€ optional
+	 * @param remark å¤‡æ³¨
 	 * @param mobile  must
-	 * @param origin  À´Ô´£¬¼à¿ØÓÃ, optional
+	 * @param origin  æ¥æºï¼Œç›‘æ§ç”¨, optional
 	 * @param quantity must
 	 * @param citycode must
 	 * @return
@@ -44,20 +44,20 @@ public interface GoodsOrderVoService {
 	ResultCode<GewaOrderVo> addPreGoodsOrder(PreSalesOrderParams params);
 	
 	/**
-	 * Ô¤ÊÛÏÂµ¥
+	 * é¢„å”®ä¸‹å•
 	 * @param params
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> addPreGoodsOrderForWap(PreSalesOrderParams params);
 	/**
-	 * ÎïÆ·½»Ò×³É¹¦¶©µ¥ÊıÁ¿
+	 * ç‰©å“äº¤æ˜“æˆåŠŸè®¢å•æ•°é‡
 	 * @param tag
 	 * @param relatedid
 	 * @return
 	 */
 	ResultCode<Integer> getPaidSuccessOrderCount(String tag, Long relatedid);
 	/**
-	 * ÎïÆ·½»Ò×³É¹¦ºÍÍË¿îµÄ¶©µ¥
+	 * ç‰©å“äº¤æ˜“æˆåŠŸå’Œé€€æ¬¾çš„è®¢å•
 	 * @param activityid
 	 * @param starttime
 	 * @param endtime
@@ -66,20 +66,20 @@ public interface GoodsOrderVoService {
 	ResultCode<List<GewaOrderVo>> getPaidSuccessAndReturnOrderList(String tag, Long activityid, Timestamp starttime, Timestamp endtime);
 	
 	/**
-	 * È¡ÏûÉÏÒ»¸öÎ´Ö§¸¶µÄÎïÆ·¶©µ¥
+	 * å–æ¶ˆä¸Šä¸€ä¸ªæœªæ”¯ä»˜çš„ç‰©å“è®¢å•
 	 * @param params
 	 * @return
 	 */
 	ResultCode cancelLastNotPaidGoodsOrder(Long memberid);
 	/**
-	 * ¸ù¾İÉÌÆ·id¡¢ÓÃ»§id»ñÈ¡¶©µ¥ĞÅÏ¢
+	 * æ ¹æ®å•†å“idã€ç”¨æˆ·idè·å–è®¢å•ä¿¡æ¯
 	 * @param goodsId
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> getGewaOrderByGoods(Long goodsId, Long memberid);
 	/**
-	 * ²éÑ¯¶©µ¥³É¹¦ÊıÁ¿
+	 * æŸ¥è¯¢è®¢å•æˆåŠŸæ•°é‡
 	 * @param goodsId
 	 * @param memberid
 	 * @param status
@@ -87,16 +87,16 @@ public interface GoodsOrderVoService {
 	 */
 	ResultCode<Integer> getGewaOrderCount(Long goodsId, Long memberid, String status);
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯
 	 * @param tradeNo
-	 * @deprecated ¼ûgworder½Ó¿Ú
+	 * @deprecated è§gworderæ¥å£
 	 * @see com.gewara.api.gworder.service.GwOrderService.getOrderByTradeNo
 	 * @return
 	 */
 	@Deprecated
 	ResultCode<GewaOrderVo> getGewaOrderByTradeNo(String tradeNo);
 	/**
-	 * ÎïÆ·½»Ò×³É¹¦µÄ¶©µ¥
+	 * ç‰©å“äº¤æ˜“æˆåŠŸçš„è®¢å•
 	 * @param tag
 	 * @param activityid
 	 * @param starttime
@@ -105,7 +105,7 @@ public interface GoodsOrderVoService {
 	 */
 	ResultCode<List<GewaOrderVo>> getPaidSuccessOrderList(String tag, Long activityid, Timestamp starttime, Timestamp endtime);
 	/**
-	 * ²éÑ¯¶©µ¥ĞÅÏ¢
+	 * æŸ¥è¯¢è®¢å•ä¿¡æ¯
 	 * @param goodsId
 	 * @param status
 	 * @return

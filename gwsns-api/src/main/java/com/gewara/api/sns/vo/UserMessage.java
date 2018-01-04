@@ -6,11 +6,11 @@ import java.io.Serializable;
 public class UserMessage implements Serializable {
 
 	private static final long serialVersionUID = -3322684887723628280L;
-	private String memberId;//µ±Ç°ÓÃ»§id
-	private String mobileUserName;//ÊÖ»úÓÃ»§Ãû
-	private String sinaUserName;//ÊÖ»úÓÃ»§Ãû
-	private String mobile;//ÊÖ»úºÅ
-	private String gewaraMemberId;//ÊÖ»ú¶ÔÓ¦µÄ¸ñÍßÀ­ÓÃ»§id
+	private String memberId;//å½“å‰ç”¨æˆ·id
+	private String mobileUserName;//æ‰‹æœºç”¨æˆ·å
+	private String sinaUserName;//æ‰‹æœºç”¨æˆ·å
+	private String mobile;//æ‰‹æœºå·
+	private String gewaraMemberId;//æ‰‹æœºå¯¹åº”çš„æ ¼ç“¦æ‹‰ç”¨æˆ·id
 
 	public String getMemberId() {
 		return memberId;

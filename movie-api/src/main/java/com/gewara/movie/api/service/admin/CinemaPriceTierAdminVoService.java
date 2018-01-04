@@ -8,43 +8,43 @@ import com.gewara.api.vo.ResultCode;
 public interface CinemaPriceTierAdminVoService {
 	
 	/**
-	 * ¸ù¾İÓ°Ôºid²éÑ¯Ó°Ôº¼Û¸ñÀàĞÍ
-	 * @param cinemaId Ó°Ôºid
+	 * æ ¹æ®å½±é™¢idæŸ¥è¯¢å½±é™¢ä»·æ ¼ç±»å‹
+	 * @param cinemaId å½±é™¢id
 	 * @return
 	 */
 	ResultCode<Map> getCinemaPriceTierByCinemaId(Long cinemaId);
 	
 	/**
-	 * ¸ù¾İÓ°Ôºid²éÑ¯Ó°Ôº¼Û¸ñÀàĞÍÁĞ±í
-	 * @param cinemaId Ó°Ôºid
+	 * æ ¹æ®å½±é™¢idæŸ¥è¯¢å½±é™¢ä»·æ ¼ç±»å‹åˆ—è¡¨
+	 * @param cinemaId å½±é™¢id
 	 * @return
 	 */
 	ResultCode<List<Map>> getCinemaPriceTierListByCinemaId(Long cinemaId);
 	
 	/**
-	 * ¸ù¾İÓ°ÔºidÁĞ±í²éÑ¯Ó°Ôº¼Û¸ñÀàĞÍ
-	 * @param cinemaId Ó°Ôºid
+	 * æ ¹æ®å½±é™¢idåˆ—è¡¨æŸ¥è¯¢å½±é™¢ä»·æ ¼ç±»å‹
+	 * @param cinemaId å½±é™¢id
 	 * @return
 	 */
 	ResultCode<List<Map>> getCinemaPriceTierByCinemaIdList(List<Long> cinemaIdList);
 	
 	
 	/**
-	 * ¸ù¾İ³ÇÊĞ±àÂë²éÑ¯Ó°Ôº¼Û¸ñÀàĞÍ
+	 * æ ¹æ®åŸå¸‚ç¼–ç æŸ¥è¯¢å½±é™¢ä»·æ ¼ç±»å‹
 	 * @param cityCode
 	 * @return
 	 */
 	ResultCode<List<Map>> getCinemaPriceTierByCityCode(String cityCode);
 	
 	/**
-	 *¸ù¾İ³ÇÊĞ±àÂë²éÑ¯Ó°Ôº¼Û¸ñÀàĞÍ²¢ÅÅĞò
-	 *@param cityCode ³ÇÊĞ±àÂë
+	 *æ ¹æ®åŸå¸‚ç¼–ç æŸ¥è¯¢å½±é™¢ä»·æ ¼ç±»å‹å¹¶æ’åº
+	 *@param cityCode åŸå¸‚ç¼–ç 
 	 * @return
 	 */
 	ResultCode<List<Map>> getCinemaPriceTierByCityCodeAsc(String cityCode);
 	
 	/**
-	 * ¸ù¾İcinemaIdÉ¾³ıÓ°Ôº¼Û¸ñÀàĞÍ
+	 * æ ¹æ®cinemaIdåˆ é™¤å½±é™¢ä»·æ ¼ç±»å‹
 	 * @param cinemaId
 	 * @return
 	 */
@@ -52,19 +52,19 @@ public interface CinemaPriceTierAdminVoService {
 	
 	
 	/**
-	 * ĞÂÔöÓ°Ôº¼Û¸ñÀàĞÍ CinemaId
+	 * æ–°å¢å½±é™¢ä»·æ ¼ç±»å‹ CinemaId
 	 * @param cinemaPriceTier
 	 */
 	ResultCode addCinemaPriceTierByCinemaId(Map cinemaPriceTier);
 	
 	/**
-	 * ĞÂÔöÓ°Ôº¼Û¸ñÀàĞÍ  _id
+	 * æ–°å¢å½±é™¢ä»·æ ¼ç±»å‹  _id
 	 * @param cinemaPriceTier
 	 */
 	ResultCode addCinemaPriceTierBySystemId(Map cinemaPriceTier);
 	
 	/**
-	 * ĞÂÔö/¸üĞÂÓ°Ôº¼Û¸ñÀàĞÍ
+	 * æ–°å¢/æ›´æ–°å½±é™¢ä»·æ ¼ç±»å‹
 	 */
 	ResultCode saveOrUpdateByCinemaId(Map cinemaPriceTier);
 

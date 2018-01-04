@@ -17,30 +17,30 @@ import com.gewara.api.vo.mongo.WeixinFriendCardVo;
 public interface AvatarMongoVoService {
 
 	/**
-	 * »ñÈ¡¹ºÆ±ÅÅĞĞ
+	 * è·å–è´­ç¥¨æ’è¡Œ
 	 * @return
 	 */
 	ResultCode<List<Map>> getBuyTicketRankingList();
 	
 	/**
-	 * ¸ù¾İ³ÇÊĞ±àÂë²éÑ¯IndexPageEffectRoomÁĞ±í ,°´order×Ö¶ÎÅÅĞò
+	 * æ ¹æ®åŸå¸‚ç¼–ç æŸ¥è¯¢IndexPageEffectRoomåˆ—è¡¨ ,æŒ‰orderå­—æ®µæ’åº
 	 * @param cityCode
 	 * @return
 	 */
 	ResultCode<List<Map>> getIndexPageEffectRoomListByCityCodeAsc(String cityCode);
 	
 	/**
-	 * ²éÑ¯SeeMovieÁĞ±í
-	 * @param tag 			²»ÄÜÎª¿Õ
+	 * æŸ¥è¯¢SeeMovieåˆ—è¡¨
+	 * @param tag 			ä¸èƒ½ä¸ºç©º
 	 * @param relatedId
-	 * @param from			²»ÄÜÎª¿Õ
-	 * @param maxnum		²»ÄÜÎª¿Õ
+	 * @param from			ä¸èƒ½ä¸ºç©º
+	 * @param maxnum		ä¸èƒ½ä¸ºç©º
 	 * @return
 	 */
 	ResultCode<List<SeeMovieVo>> getSeeMovieList(String tag, Long relatedId, int from, int maxnum);
 	
 	/**
-	 * ±£´æShortUrl
+	 * ä¿å­˜ShortUrl
 	 * @param tradeNo
 	 * @param addNum
 	 * @return
@@ -48,14 +48,14 @@ public interface AvatarMongoVoService {
 	ResultCode<String> saveShortUrl(String tradeNo, int addNum);
 	
 	/**
-	 * ²éÑ¯ FriendCardCfg ÁĞ±í
+	 * æŸ¥è¯¢ FriendCardCfg åˆ—è¡¨
 	 * @param cardId
 	 * @return
 	 */
 	ResultCode<List<FriendCardCfgVo>> getFriendCardCfgListByCardId(String cardId);
 	
 	/**
-	 * ²éÑ¯Î¢ĞÅÅóÓÑ¿¨È¯ÁĞ±í
+	 * æŸ¥è¯¢å¾®ä¿¡æœ‹å‹å¡åˆ¸åˆ—è¡¨
 	 * @param cardId
 	 * @param openId
 	 * @param cardCode
@@ -64,61 +64,61 @@ public interface AvatarMongoVoService {
 	ResultCode<List<WeixinFriendCardVo>> getWeixinFriendCardList(String cardId, String openId, String cardCode);
 	
 	/**
-	 * ĞÂÔöÎ¢ĞÅÅóÓÑ¿¨È¯
+	 * æ–°å¢å¾®ä¿¡æœ‹å‹å¡åˆ¸
 	 * @param friendCard
 	 * @return
 	 */
 	ResultCode saveWeixinFriendCard(WeixinFriendCardVo friendCard);
 	
 	/**
-	 * »ñÈ¡¸ñÍßÀ­·ÅÓ³
+	 * è·å–æ ¼ç“¦æ‹‰æ”¾æ˜ 
 	 * @return
 	 */
 	ResultCode<List<GewaraMoviePlayVo>> getGewaraMoviePlayList();
 	
 	/**
-	 * »ñÈ¡MovieAppIconÁĞ±í 
+	 * è·å–MovieAppIconåˆ—è¡¨ 
 	 * @return
 	 */
 	ResultCode<List<MovieAppIconVo>> getMovieAppIconList();
 	
 	/**
-	 * ¸ù¾İID²éÑ¯µçÓ°APPÌØÊâ³¡´Î´ò±ê
+	 * æ ¹æ®IDæŸ¥è¯¢ç”µå½±APPç‰¹æ®Šåœºæ¬¡æ‰“æ ‡
 	 * @param id
 	 * @return
 	 */
 	ResultCode<SpecilMpiAppIconVo> getSpecilMpiAppIconById(String id);
 	
 	/**
-	 * ¸ù¾İµ±Ç°Ê±¼ä²éÑ¯PersonalSeat ÁĞ±í
-	 * ²éÑ¯Ê±¼ä> stoptime
+	 * æ ¹æ®å½“å‰æ—¶é—´æŸ¥è¯¢PersonalSeat åˆ—è¡¨
+	 * æŸ¥è¯¢æ—¶é—´> stoptime
 	 * @return
 	 */
 	ResultCode<List<PersonalSeatVo>> getPersonalSeatListGTStopTime();
 	
 	/**
-	 * ¸ù¾İµ±Ç°Ê±¼ä²éÑ¯PersonalSeat ÁĞ±í
-	 * ²éÑ¯Ê±¼ä>= stoptime
+	 * æ ¹æ®å½“å‰æ—¶é—´æŸ¥è¯¢PersonalSeat åˆ—è¡¨
+	 * æŸ¥è¯¢æ—¶é—´>= stoptime
 	 * @return
 	 */
 	ResultCode<List<PersonalSeatVo>> getPersonalSeatListGTEStopTime();
 	
 	/**
-	 * ¸ù¾İID²éÑ¯PhoneActivity
+	 * æ ¹æ®IDæŸ¥è¯¢PhoneActivity
 	 * @param activityId
 	 * @return
 	 */
 	ResultCode<PhoneActivityVo> getPhoneActivityById(String activityId);
 	
 	/**
-	 * ¸ù¾İroomId²éÑ¯ RoomOuterRingSeatÁĞ±í
+	 * æ ¹æ®roomIdæŸ¥è¯¢ RoomOuterRingSeatåˆ—è¡¨
 	 * @param roomId
 	 * @return
 	 */
 	ResultCode<List<RoomOuterRingSeatVo>> getRoomOuterRingSeatListByRoomId(Long roomId);
 	
 	/**
-	 * ĞÂÔö RoomOuterRingSeat
+	 * æ–°å¢ RoomOuterRingSeat
 	 * @param outerRingSeat
 	 * @return
 	 */

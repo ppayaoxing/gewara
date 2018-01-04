@@ -41,7 +41,7 @@ public final class RpcException extends RuntimeException {
     
     public static final int SERIALIZATION_EXCEPTION = 5;
     
-    private int code; // RpcException²»ÄÜÓĞ×ÓÀà£¬Òì³£ÀàĞÍÓÃErrorCode±íÊ¾£¬ÒÔ±ã±£³Ö¼æÈİ¡£
+    private int code; // RpcExceptionä¸èƒ½æœ‰å­ç±»ï¼Œå¼‚å¸¸ç±»å‹ç”¨ErrorCodeè¡¨ç¤ºï¼Œä»¥ä¾¿ä¿æŒå…¼å®¹ã€‚
 
     public RpcException() {
         super();

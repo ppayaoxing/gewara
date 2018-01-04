@@ -10,9 +10,9 @@ public class PartnerDramaOrderMultiPriceReqVo extends PartnerBaseReqVo {
 	private Long addressid;
 	private String takemethod;
 	private String origin;
-	// ÓÃ»§ID
+	// ç”¨æˆ·ID
 	private String memberEncode;
-	// ºÏ×÷ÉÌÓÃ»§±êÊ¶
+	// åˆä½œå•†ç”¨æˆ·æ ‡è¯†
 	private String ukey;
 	private String idnumber;
 	

@@ -153,8 +153,8 @@ public class RedisRegistry extends FailbackRegistry {
             @Override
             public void run() {
                 try {
-                    deferExpired(); // �ӳ�����ʱ��
-                } catch (Throwable t) { // �������ݴ�
+                    deferExpired(); // 锟接筹拷锟斤拷锟斤拷时锟斤拷
+                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
                     logger.error("Unexpected exception occur at defer expire time, cause: " + t.getMessage(), t);
                 }
             }
@@ -179,7 +179,7 @@ public class RedisRegistry extends FailbackRegistry {
                         clean(jedis);
                     }
                     if (! replicate) {
-                    	break;// ?�������������ͬ�����ݣ�ֻ��д�뵥̨����
+                    	break;// ?锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟酵拷锟斤拷锟斤拷荩锟街伙拷锟叫达拷氲ヌ拷锟斤拷锟�
                     }
                 } finally {
                     jedisPool.returnResource(jedis);
@@ -190,7 +190,7 @@ public class RedisRegistry extends FailbackRegistry {
         }
     }
     
-    // ������ĸ���ɾ������������
+    // 锟斤拷锟斤拷锟斤拷母锟斤拷锟缴撅拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
     private void clean(Jedis jedis) {
         Set<String> keys = jedis.keys(root + Constants.ANY_VALUE);
         if (keys != null && keys.size() > 0) {
@@ -227,7 +227,7 @@ public class RedisRegistry extends FailbackRegistry {
                 Jedis jedis = jedisPool.getResource();
                 try {
                 	if (jedis.isConnected()) {
-                        return true; // �����赥̨��������
+                        return true; // 锟斤拷锟斤拷锟借单台锟斤拷锟斤拷锟斤拷锟斤拷
                     }
                 } finally {
                     jedisPool.returnResource(jedis);
@@ -279,7 +279,7 @@ public class RedisRegistry extends FailbackRegistry {
                     jedis.publish(key, Constants.REGISTER);
                     success = true;
                     if (! replicate) {
-                    	break; // ?�������������ͬ�����ݣ�ֻ��д�뵥̨����
+                    	break; // ?锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟酵拷锟斤拷锟斤拷荩锟街伙拷锟叫达拷氲ヌ拷锟斤拷锟�
                     }
                 } finally {
                     jedisPool.returnResource(jedis);
@@ -312,7 +312,7 @@ public class RedisRegistry extends FailbackRegistry {
                     jedis.publish(key, Constants.UNREGISTER);
                     success = true;
                     if (! replicate) {
-                    	break; // ?�������������ͬ�����ݣ�ֻ��д�뵥̨����
+                    	break; // ?锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟酵拷锟斤拷锟斤拷荩锟街伙拷锟叫达拷氲ヌ拷锟斤拷锟�
                     }
                 } finally {
                     jedisPool.returnResource(jedis);
@@ -371,11 +371,11 @@ public class RedisRegistry extends FailbackRegistry {
                         doNotify(jedis, jedis.keys(service + Constants.PATH_SEPARATOR + Constants.ANY_VALUE), url, Arrays.asList(listener));
                     }
                     success = true;
-                    break; // ֻ���һ��������������
+                    break; // 只锟斤拷锟揭伙拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
                 } finally {
                     jedisPool.returnResource(jedis);
                 }
-            } catch(Throwable t) { // ������һ��������
+            } catch(Throwable t) { // 锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷
                 exception = new RpcException("Failed to subscribe service from redis registry. registry: " + entry.getKey() + ", service: " + url + ", cause: " + t.getMessage(), t);
             }
         }
@@ -500,7 +500,7 @@ public class RedisRegistry extends FailbackRegistry {
                     } finally {
                         jedisPool.returnResource(jedis);
                     }
-                } catch (Throwable t) { // TODO ֪ͨʧ��û�лָ����Ʊ���
+                } catch (Throwable t) { // TODO 通知失锟斤拷没锟叫恢革拷锟斤拷锟狡憋拷锟斤拷
                     logger.error(t.getMessage(), t);
                 }
             }
@@ -554,14 +554,14 @@ public class RedisRegistry extends FailbackRegistry {
         }
         
         private boolean isSkip() {
-            int skip = connectSkip.get(); // ������������
-            if (skip >= 10) { // �������������������10��ȡ�����
+            int skip = connectSkip.get(); // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+            if (skip >= 10) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�10锟斤拷取锟斤拷锟斤拷锟�
                 if (connectRandom == 0) {
                     connectRandom = random.nextInt(10);
                 }
                 skip = 10 + connectRandom;
             }
-            if (connectSkiped.getAndIncrement() < skip) { // �����������
+            if (connectSkiped.getAndIncrement() < skip) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
                 return true;
             }
             connectSkip.incrementAndGet();
@@ -598,20 +598,20 @@ public class RedisRegistry extends FailbackRegistry {
                                                 }
                                                 resetSkip();
                                             }
-                                            jedis.psubscribe(new NotifySub(jedisPool), service); // ����
+                                            jedis.psubscribe(new NotifySub(jedisPool), service); // 锟斤拷锟斤拷
                                         } else {
                                             if (! first) {
                                                 first = false;
                                                 doNotify(jedis, service);
                                                 resetSkip();
                                             }
-                                            jedis.psubscribe(new NotifySub(jedisPool), service + Constants.PATH_SEPARATOR + Constants.ANY_VALUE); // ����
+                                            jedis.psubscribe(new NotifySub(jedisPool), service + Constants.PATH_SEPARATOR + Constants.ANY_VALUE); // 锟斤拷锟斤拷
                                         }
                                         break;
                                     } finally {
                                         jedisPool.returnBrokenResource(jedis);
                                     }
-                                } catch (Throwable t) { // ������һ̨
+                                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷一台
                                     logger.warn("Failed to subscribe service from redis registry. registry: " + entry.getKey() + ", cause: " + t.getMessage(), t);
                                 }
                             }

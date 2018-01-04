@@ -34,7 +34,7 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 import com.alibaba.dubbo.rpc.cluster.LoadBalance;
 
 /**
- * ʧ��ת�ƣ�������ʧ�ܣ�����������������ͨ�����ڶ������������Ի���������ӳ١�
+ * 失锟斤拷转锟狡ｏ拷锟斤拷锟斤拷锟斤拷失锟杰ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷通锟斤拷锟斤拷锟节讹拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟皆伙拷锟斤拷锟斤拷锟斤拷锟斤拷映佟锟�
  * 
  * <a href="http://en.wikipedia.org/wiki/Failover">Failover</a>
  * 
@@ -63,12 +63,12 @@ public class FailoverClusterInvoker<T> extends AbstractClusterInvoker<T> {
         List<Invoker<T>> invoked = new ArrayList<Invoker<T>>(copyinvokers.size()); // invoked invokers.
         Set<String> providers = new HashSet<String>(len);
         for (int i = 0; i < len; i++) {
-        	//����ʱ����������ѡ�񣬱�������ʱinvoker�б��ѷ����仯.
-        	//ע�⣺����б����˱仯����ôinvoked�жϻ�ʧЧ����Ϊinvokerʾ���Ѿ��ı�
+        	//锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷选锟今，憋拷锟斤拷锟斤拷锟斤拷时invoker锟叫憋拷锟窖凤拷锟斤拷锟戒化.
+        	//注锟解：锟斤拷锟斤拷斜锟斤拷锟斤拷吮浠拷锟斤拷锟矫磇nvoked锟叫断伙拷失效锟斤拷锟斤拷为invoker示锟斤拷锟窖撅拷锟侥憋拷
         	if (i > 0) {
         		checkWheatherDestoried();
         		copyinvokers = list(invocation);
-        		//���¼��һ��
+        		//锟斤拷锟铰硷拷锟揭伙拷锟�
         		checkInvokers(copyinvokers, invocation);
         	}
             Invoker<T> invoker = select(loadbalance, invocation, copyinvokers, invoked);

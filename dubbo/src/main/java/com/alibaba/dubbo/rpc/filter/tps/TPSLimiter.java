@@ -25,11 +25,11 @@ import com.alibaba.dubbo.rpc.Invocation;
 public interface TPSLimiter {
 
     /**
-     * ¸ù¾İ tps ÏŞÁ÷¹æÔòÅĞ¶ÏÊÇ·ñÏŞÖÆ´Ë´Îµ÷ÓÃ.
+     * æ ¹æ® tps é™æµè§„åˆ™åˆ¤æ–­æ˜¯å¦é™åˆ¶æ­¤æ¬¡è°ƒç”¨.
      *
      * @param url url
      * @param invocation invocation
-     * @return true ÔòÔÊĞíµ÷ÓÃ£¬·ñÔò²»ÔÊĞí
+     * @return true åˆ™å…è®¸è°ƒç”¨ï¼Œå¦åˆ™ä¸å…è®¸
      */
     boolean isAllowable(URL url, Invocation invocation);
 

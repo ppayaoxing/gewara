@@ -6,12 +6,12 @@ import java.util.Map;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * QQ¹«ÖÚºÅÄ£°åÏûÏ¢
+ * QQå…¬ä¼—å·æ¨¡æ¿æ¶ˆæ¯
  * 
  */
 public class TemplateMsgVo extends BaseVo {
 	/**    
-	 * serialVersionUID:TODO£¨ÓÃÒ»¾ä»°ÃèÊöÕâ¸ö±äÁ¿±íÊ¾Ê²Ã´£©    
+	 * serialVersionUID:TODOï¼ˆç”¨ä¸€å¥è¯æè¿°è¿™ä¸ªå˜é‡è¡¨ç¤ºä»€ä¹ˆï¼‰    
 	 *    
 	 * @since Ver 1.1    
 	 */    

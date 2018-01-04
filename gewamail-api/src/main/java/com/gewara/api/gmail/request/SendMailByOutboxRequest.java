@@ -11,31 +11,31 @@ public class SendMailByOutboxRequest extends MsgRequest{
 	 */
 	private static final long serialVersionUID = 1202208449828370482L;
 
-	public static final String SENDER = "������������";
+	public static final String SENDER = "锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷";
 	
-	/**������service@gewara.com���ʼ�*/
+	/**锟斤拷锟斤拷锟斤拷service@gewara.com锟斤拷锟绞硷拷*/
 	public static final String OUTBOX_SERVICE = "service";
-	/**������operation021@gewara.com���ʼ�*/
+	/**锟斤拷锟斤拷锟斤拷operation021@gewara.com锟斤拷锟绞硷拷*/
 	public static final String OUTBOX_OPERATION021 = "operation021";
 
 	/**
-	 * ����
-	 * ָ�������䣬Ŀǰֻ֧��������service��operation021
-	 * ������� : OUTBOX_*
+	 * 锟斤拷锟斤拷
+	 * 指锟斤拷锟斤拷锟斤拷锟戒，目前只支锟斤拷锟斤拷锟斤拷锟斤拷service锟斤拷operation021
+	 * 锟斤拷锟斤拷锟斤拷锟� : OUTBOX_*
 	 * 
 	 */
 	private String outbox;
-	private String fromName; // ���������ƣ���Ҫ˵����
-	/**����*/
-	private String to; // �ռ���  ֧��;�ָ�
-	/**����*/
-	private String title; // ����
-	/**����*/
-	private String content; // ����
-	private String template;//ģ��
-	private Timestamp sendTime; // ����ʱ��
-	private Timestamp validTime;// ��ʱʱ��
-	private String sendType;// ��������
+	private String fromName; // 锟斤拷锟斤拷锟斤拷锟斤拷锟狡ｏ拷锟斤拷要说锟斤拷锟斤拷
+	/**锟斤拷锟斤拷*/
+	private String to; // 锟秸硷拷锟斤拷  支锟斤拷;锟街革拷
+	/**锟斤拷锟斤拷*/
+	private String title; // 锟斤拷锟斤拷
+	/**锟斤拷锟斤拷*/
+	private String content; // 锟斤拷锟斤拷
+	private String template;//模锟斤拷
+	private Timestamp sendTime; // 锟斤拷锟斤拷时锟斤拷
+	private Timestamp validTime;// 锟斤拷时时锟斤拷
+	private String sendType;// 锟斤拷锟斤拷锟斤拷锟斤拷
 
 	public SendMailByOutboxRequest() {
 	}

@@ -6,23 +6,23 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * ÈËÎï¡¢½ÇÉ«¹ØÏµ
+ * äººç‰©ã€è§’è‰²å…³ç³»
  */
 public class WorksStaffVo extends BaseVo {
 
 	private static final long serialVersionUID = -1527845351959168455L;
 	private Long id;
-	private Long castid;				//ÈËÎïID
-	private Long worksid;				//ÏîÄ¿ID
-	private String workstype;			//×÷Æ·ÀàĞÍ
-	private Long stafllrole;			//ÈËÎïÔÚ×÷Æ·ÖĞµÄ½ÇÉ«
-	private Integer sortby;				//ÅÅĞò
-	private String rolename;			//Ëù°çÑİ½ÇÉ«
-	private Timestamp addtime;			//ĞÂÔöÊ±¼ä
-	private Timestamp updatetime;	    //¸üĞÂÊ±¼ä
-	private String chinesename;			//ÖĞÎÄÃû
-	private String engname;				//Ó¢ÎÄÃû	
-	private String headPicUrl;				//Í·ÏñÍ¼Æ¬Â·¾¶	
+	private Long castid;				//äººç‰©ID
+	private Long worksid;				//é¡¹ç›®ID
+	private String workstype;			//ä½œå“ç±»å‹
+	private Long stafllrole;			//äººç‰©åœ¨ä½œå“ä¸­çš„è§’è‰²
+	private Integer sortby;				//æ’åº
+	private String rolename;			//æ‰€æ‰®æ¼”è§’è‰²
+	private Timestamp addtime;			//æ–°å¢æ—¶é—´
+	private Timestamp updatetime;	    //æ›´æ–°æ—¶é—´
+	private String chinesename;			//ä¸­æ–‡å
+	private String engname;				//è‹±æ–‡å	
+	private String headPicUrl;				//å¤´åƒå›¾ç‰‡è·¯å¾„	
 	public Long getId() {
 		return id;
 	}

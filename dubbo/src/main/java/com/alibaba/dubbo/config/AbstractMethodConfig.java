@@ -31,37 +31,37 @@ public abstract class AbstractMethodConfig extends AbstractConfig {
 
     private static final long serialVersionUID = 1L;
 
-    // Ô¶³Ìµ÷ÓÃ³¬Ê±Ê±¼ä(ºÁÃë)
+    // è¿œç¨‹è°ƒç”¨è¶…æ—¶æ—¶é—´(æ¯«ç§’)
     protected Integer             timeout;
 
-    // ÖØÊÔ´ÎÊı
+    // é‡è¯•æ¬¡æ•°
     protected Integer             retries;
 
-    // ×î´ó²¢·¢µ÷ÓÃ
+    // æœ€å¤§å¹¶å‘è°ƒç”¨
     protected Integer             actives;
     
-    // ¸ºÔØ¾ùºâ
+    // è´Ÿè½½å‡è¡¡
     protected String              loadbalance;
 
-    // ÊÇ·ñÒì²½
+    // æ˜¯å¦å¼‚æ­¥
     protected Boolean             async;
     
-    // Òì²½·¢ËÍÊÇ·ñµÈ´ı·¢ËÍ³É¹¦
+    // å¼‚æ­¥å‘é€æ˜¯å¦ç­‰å¾…å‘é€æˆåŠŸ
     protected Boolean             sent;
 
-    // ·şÎñ½Ó¿ÚµÄÊ§°ÜmockÊµÏÖÀàÃû
+    // æœåŠ¡æ¥å£çš„å¤±è´¥mockå®ç°ç±»å
     protected String              mock;
 
-    // ºÏ²¢Æ÷
+    // åˆå¹¶å™¨
     protected String              merger;
     
-    // ·şÎñ½Ó¿ÚµÄÊ§°ÜmockÊµÏÖÀàÃû
+    // æœåŠ¡æ¥å£çš„å¤±è´¥mockå®ç°ç±»å
     protected String              cache;
 
-    // ·şÎñ½Ó¿ÚµÄÊ§°ÜmockÊµÏÖÀàÃû
+    // æœåŠ¡æ¥å£çš„å¤±è´¥mockå®ç°ç±»å
     protected String              validation;
 
-    // ×Ô¶¨Òå²ÎÊı
+    // è‡ªå®šä¹‰å‚æ•°
     protected Map<String, String> parameters;
 
     public Integer getTimeout() {

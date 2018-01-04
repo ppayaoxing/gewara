@@ -8,8 +8,8 @@ import com.gewara.ucenter.vo.member.WeixinUserVo;
 
 public interface WeixinVoService {
 	/**
-	 * °ó¶¨Î¢ĞÅÕË»§µ½ÒÑ´æÔÚµÄ¸ñÍßÀ­ÕË»§
-	 * ĞèÒª×öµÇÂ¼Á÷³Ì
+	 * ç»‘å®šå¾®ä¿¡è´¦æˆ·åˆ°å·²å­˜åœ¨çš„æ ¼ç“¦æ‹‰è´¦æˆ·
+	 * éœ€è¦åšç™»å½•æµç¨‹
 	 * @param appkey
 	 * @param userid
 	 * @param unionid
@@ -20,8 +20,8 @@ public interface WeixinVoService {
 	 */
 	ResultCode<MemberVo> bindWeixin2Gewa(String appkey, String userid, String unionid, String username, String password, String remoteIp);
 	/**
-	 * Í¨¹ıcode²éÑ¯ÊÇ·ñ°ó¶¨¸ñÍßÀ­ÕË»§
-	 * ĞèÒª×öµÇÂ¼Á÷³Ì
+	 * é€šè¿‡codeæŸ¥è¯¢æ˜¯å¦ç»‘å®šæ ¼ç“¦æ‹‰è´¦æˆ·
+	 * éœ€è¦åšç™»å½•æµç¨‹
 	 * @param appkey
 	 * @param code
 	 * @param remoteIp
@@ -30,35 +30,35 @@ public interface WeixinVoService {
 	ResultCode<MemberVo> getUserByCode(String appkey, String code, String remoteIp);
 	
 	/**
-	 * ¸ù¾İcode
+	 * æ ¹æ®code
 	 * @param appkey
 	 * @param code
 	 * @return
 	 */
 	ResultCode<WeixinUserVo> getWeixinUserByCodeOnlyGet(String appkey, String code);
 	/**
-	 * ¸ù¾İcodeµÇÂ¼£¬²¢·µ»ØÎ¢ĞÅÓÃ»§ĞÅÏ¢
+	 * æ ¹æ®codeç™»å½•ï¼Œå¹¶è¿”å›å¾®ä¿¡ç”¨æˆ·ä¿¡æ¯
 	 * @param appkey
 	 * @param code
 	 * @return
 	 */
 	ResultCode<WeixinUserVo> getWeixinUserByCode(String appkey, String code);
 	/**
-	 * ¸ù¾İuserid»ñÈ¡Î¢ĞÅÓÃ»§
+	 * æ ¹æ®useridè·å–å¾®ä¿¡ç”¨æˆ·
 	 * @return
 	 */
 	ResultCode<WeixinUserVo> getWeixinUserByUserid(String appkey, String userid, String unionid);
 	/**
-	 * È¡Ïû°ó¶¨
+	 * å–æ¶ˆç»‘å®š
 	 * @return
 	 */
 	ResultCode cancelWeixinUser(String appkey, String userid);
 	
 	/***
-	 * ´´½¨openmember²¢µÇÂ¼
-	 * ĞèÒª×öµÇÂ¼Á÷³Ì
-	 * @param openid ÁªÃûµÇÂ¼»Ø´«
-	 * @param unionid ÁªÃûµÇÂ¼»Ø´«
+	 * åˆ›å»ºopenmemberå¹¶ç™»å½•
+	 * éœ€è¦åšç™»å½•æµç¨‹
+	 * @param openid è”åç™»å½•å›ä¼ 
+	 * @param unionid è”åç™»å½•å›ä¼ 
 	 * @param headiPic
 	 * @param nickname
 	 * @param remoteIp
@@ -66,8 +66,8 @@ public interface WeixinVoService {
 	 */
 	ResultCode<MemberVo> createMemberAndBindWeixinUser(String openid, String unionid, String headiPic, String nickname, String remoteIp) ;
 	/***
-	 * °ó¶¨Î¢ĞÅÕË»§
-	 * ĞèÒª×öµÇÂ¼Á÷³Ì
+	 * ç»‘å®šå¾®ä¿¡è´¦æˆ·
+	 * éœ€è¦åšç™»å½•æµç¨‹
 	 * @param username
 	 * @param password
 	 * @param openid
@@ -82,18 +82,18 @@ public interface WeixinVoService {
 	
 	ResultCode<MemberVo> createOpenmemberByCodeOnlyOpenid(String code, String citycode, String appkey, String remoteIp);
 	/**
-	 * °ó¶¨ÕË»§
-	 * ĞèÒª×öµÇÂ¼Á÷³Ì
+	 * ç»‘å®šè´¦æˆ·
+	 * éœ€è¦åšç™»å½•æµç¨‹
 	 * @param appkey
 	 * @param code
-	 * @param uuid ÓÃÓÚ»Øµ÷ĞÅÏ¢²éÑ¯µÄ
+	 * @param uuid ç”¨äºå›è°ƒä¿¡æ¯æŸ¥è¯¢çš„
 	 * @param remoteIp
 	 * @return
 	 */
 	ResultCode<Map<String, Object>> bindMemberByCode(String appkey, String code,String uuid, String remoteIp);
 
 	/**
-	 * ÕË»§ºÏ²¢
+	 * è´¦æˆ·åˆå¹¶
 	 * @param uuid currentMemberId
 	 * @param unionid bandMemberId
 	 * @return

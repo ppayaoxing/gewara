@@ -9,30 +9,30 @@ public class FilmFestTicketOrderVo extends BaseVo{
 	private static final long serialVersionUID = -6809158194654658394L;
 	private Long id;					//ID
 	private String orderType;
-	private String ordertitle;		//¶©µ¥±êÌâ
-	private String tradeNo;			//¶©µ¥ºÅ
-	private String mobile;			//ÁªÏµÊÖ»ú
-	private Date createtime;		//ÓÃ»§ÏÂµ¥Ê±¼ä
-	private Date addtime;		//Ôö¼ÓÊ±¼ä£ºµÚÒ»´Î´´½¨Ê±¼ä¡¢´ı´¦Àí´´½¨Ê±¼ä¡¢»ğ·ï»ËËø¶¨Ê±¼ä
-	private Date updatetime;		//ÓÃ»§ĞŞ¸ÄÊ±¼ä
-	private Date paidtime;		//¸¶¿îÊ±¼ä
-	private Date playtime;		//³¡´ÎÊ±¼ä
-	private Date taketime;		//È¡Æ±Ê±¼ä
-	private Long memberid;			//¹ØÁªÓÃ»§
-	private String description2;		//ÉÌÆ·ÃèÊö
-	private Integer alipaid;			//ÌÔ±¦»ò»ã¸¶Ö§¸¶µÄ½ğ¶î
-	private Integer wabi;				//Íß±ÒÏû·Ñ
-	private Integer totalcost;		//×Ü³É±¾¼Û
-	private Integer totalfee;			//¶©µ¥×Ü½ğ¶î
-	private Integer discount;			//¶©µ¥ÓÅ»İ
-	private Integer costprice;		//³É±¾¼Û
-	private Integer unitprice;		//µ¥¼Û
-	private Integer quantity;			//ÊıÁ¿
-	private Integer itemfee;			//¶©µ¥¸½ÊôÆ·×Ü¼Û
-	private String otherinfo;			//ÆäËûĞÅÏ¢
-	private String citycode;			//³ÇÊĞ´úÂë
-	private String category;			//¶©µ¥Àà±ğ
-	private Long placeid;			//¹ØÁª³¡¹İ£ºCinema¡¢Theatre
+	private String ordertitle;		//è®¢å•æ ‡é¢˜
+	private String tradeNo;			//è®¢å•å·
+	private String mobile;			//è”ç³»æ‰‹æœº
+	private Date createtime;		//ç”¨æˆ·ä¸‹å•æ—¶é—´
+	private Date addtime;		//å¢åŠ æ—¶é—´ï¼šç¬¬ä¸€æ¬¡åˆ›å»ºæ—¶é—´ã€å¾…å¤„ç†åˆ›å»ºæ—¶é—´ã€ç«å‡¤å‡°é”å®šæ—¶é—´
+	private Date updatetime;		//ç”¨æˆ·ä¿®æ”¹æ—¶é—´
+	private Date paidtime;		//ä»˜æ¬¾æ—¶é—´
+	private Date playtime;		//åœºæ¬¡æ—¶é—´
+	private Date taketime;		//å–ç¥¨æ—¶é—´
+	private Long memberid;			//å…³è”ç”¨æˆ·
+	private String description2;		//å•†å“æè¿°
+	private Integer alipaid;			//æ·˜å®æˆ–æ±‡ä»˜æ”¯ä»˜çš„é‡‘é¢
+	private Integer wabi;				//ç“¦å¸æ¶ˆè´¹
+	private Integer totalcost;		//æ€»æˆæœ¬ä»·
+	private Integer totalfee;			//è®¢å•æ€»é‡‘é¢
+	private Integer discount;			//è®¢å•ä¼˜æƒ 
+	private Integer costprice;		//æˆæœ¬ä»·
+	private Integer unitprice;		//å•ä»·
+	private Integer quantity;			//æ•°é‡
+	private Integer itemfee;			//è®¢å•é™„å±å“æ€»ä»·
+	private String otherinfo;			//å…¶ä»–ä¿¡æ¯
+	private String citycode;			//åŸå¸‚ä»£ç 
+	private String category;			//è®¢å•ç±»åˆ«
+	private Long placeid;			//å…³è”åœºé¦†ï¼šCinemaã€Theatre
 	private Long relatedid;			//mpid,goodsid,dpid(drama),pubid(pubsale)
 	private Long itemid;			//movieid,dramaid
 	private String filmTag;

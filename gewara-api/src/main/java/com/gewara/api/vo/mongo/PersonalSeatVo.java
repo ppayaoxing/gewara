@@ -9,8 +9,8 @@ public class PersonalSeatVo extends BaseVo{
 
 	private static final long serialVersionUID = 2369105876039440228L;
 	private String id;	
-	private String relatedidList;//关联电影id
-	private String relatedType;  //关联电影类型  1.电影id 2.场次id
+	private String relatedidList;//鍏宠仈鐢靛奖id
+	private String relatedType;  //鍏宠仈鐢靛奖绫诲瀷  1.鐢靛奖id 2.鍦烘id
     private String title;
     private String addtime;
     private Timestamp starttime;

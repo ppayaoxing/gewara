@@ -18,14 +18,14 @@ import com.gewara.api.vo.pay.SpecialDiscountTagVo;
 public interface PaymentVoService {
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ID²éÑ¯ÕÛ¿Û
+	 * æ ¹æ®è®¢å•IDæŸ¥è¯¢æŠ˜æ‰£
 	 * @param orderId
 	 * @return
 	 */
 	ResultCode<List<DiscountVo>> getDiscountByOrderId(Long orderId);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯ÕÛ¿Û
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢æŠ˜æ‰£
 	 * @param orderId
 	 * @return
 	 */
@@ -33,7 +33,7 @@ public interface PaymentVoService {
 	
 
 	/**
-	 * ¸ù¾İ¶©µ¥ID²éÑ¯ÆäËû·ÑÓÃÃ÷Ï¸
+	 * æ ¹æ®è®¢å•IDæŸ¥è¯¢å…¶ä»–è´¹ç”¨æ˜ç»†
 	 * @param orderId
 	 * @return
 	 */
@@ -41,26 +41,26 @@ public interface PaymentVoService {
 	
 	
 	/**
-	 * ²éÑ¯ÓÃ»§È¯ÊıÁ¿
+	 * æŸ¥è¯¢ç”¨æˆ·åˆ¸æ•°é‡
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<Integer> getCardCountByMemberid(Long memberid, String tag);
 	
 	/**
-	 * ²éÑ¯»î¶¯»ñµÃµÄÈ¯ÊıÁ¿
+	 * æŸ¥è¯¢æ´»åŠ¨è·å¾—çš„åˆ¸æ•°é‡
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<Integer> getSpCodeCountByMemberid(Long memberid);
 	/**
-	 * ²éÑ¯ÌØ¼Û»î¶¯ÊÇ·ñ¿ªÊ¼
+	 * æŸ¥è¯¢ç‰¹ä»·æ´»åŠ¨æ˜¯å¦å¼€å§‹
 	 * @param spid
 	 * @return
 	 */
 	ResultCode<String> getSpdEnabledCommon(String citycode,Long spid);
 	/**
-	 * »ñÈ¡ÓÃ»§ÓĞĞ§µÄ»î¶¯Âë
+	 * è·å–ç”¨æˆ·æœ‰æ•ˆçš„æ´»åŠ¨ç 
 	 * @param memberid
 	 * @param spid
 	 * @param fromnum
@@ -70,7 +70,7 @@ public interface PaymentVoService {
 	ResultCode<List<SpCodeVo>> getSpCodeList(Long memberid, Long spid, int fromnum, int maxnum);
 	
 	/**
-	 * ²éÑ¯ÓÃ»§È¯ÁĞ±í
+	 * æŸ¥è¯¢ç”¨æˆ·åˆ¸åˆ—è¡¨
 	 * @param memberid
 	 * @param spid
 	 * @param fromnum
@@ -80,33 +80,33 @@ public interface PaymentVoService {
 	ResultCode<List<ElecCardVo>> getCardListByMemberid(Long memberid, String tag, int fromnum, int maxnum);
 	
 	/**
-	 * ²éÑ¯ÓÅ»İÈ¯
+	 * æŸ¥è¯¢ä¼˜æƒ åˆ¸
 	 * @param cardid
 	 * @return
 	 */
 	ResultCode<ElecCardVo> getElecCardVo(Long cardid);
 	/**
-	 * ²éÑ¯»î¶¯Âë
+	 * æŸ¥è¯¢æ´»åŠ¨ç 
 	 * @param spCodeid
 	 * @return
 	 */
 	ResultCode<SpCodeVo> getSpCodeVo(Long spCodeid);
 	/**
-	 * ²éÑ¯ÌØ¼Û»î¶¯µÄ¿ÉÏÂµ¥ÊıÁ¿
+	 * æŸ¥è¯¢ç‰¹ä»·æ´»åŠ¨çš„å¯ä¸‹å•æ•°é‡
 	 * @param spid
 	 * @return
 	 */
 	ResultCode<Integer> getSpecialDiscountAllowaddnum(Long spid);
 	
 	/**
-	 * ²éÑ¯ÌØ¼Û»î¶¯µÄ¿ÉÏÂµ¥ÊıÁ¿
+	 * æŸ¥è¯¢ç‰¹ä»·æ´»åŠ¨çš„å¯ä¸‹å•æ•°é‡
 	 * @param spid
 	 * @return
 	 */
 	ResultCode<Integer> getSpecialDiscountAllowaddnumByFlag(String flag);
 	
 	/**
-	 * »ñÈ¡Ö§¸¶·½Ê½£¨Ê¹ÓÃÓÅ»İ£©
+	 * è·å–æ”¯ä»˜æ–¹å¼ï¼ˆä½¿ç”¨ä¼˜æƒ ï¼‰
 	 * @param appkey
 	 * @param tradeNo
 	 * @param discountId
@@ -122,16 +122,16 @@ public interface PaymentVoService {
 	ResultCode<List<PayMethodVo>> getPayMethodListByIdList(String ... ids);
 	
 	/**
-	 * ¼ì²éÌØ¼Û»î¶¯¿É¹ºÂòÊıÁ¿
+	 * æ£€æŸ¥ç‰¹ä»·æ´»åŠ¨å¯è´­ä¹°æ•°é‡
 	 * @param appkey		appkey
-	 * @param discountid	»î¶¯ID
-	 * @param citycode		³ÇÊĞ´úÂë
-	 * @param quantity		¹ºÂòÊıÁ¿
+	 * @param discountid	æ´»åŠ¨ID
+	 * @param citycode		åŸå¸‚ä»£ç 
+	 * @param quantity		è´­ä¹°æ•°é‡
 	 * @return
 	 */
 	ResultCode<Integer> checkSpdiscountQuantity(String appkey, Long discountid, String citycode, Integer quantity);
 	/**
-	 * ¹ÀËãµ±Ç°Ñ¡ÔñµÄ×ùÎ»¼Û¸ñ
+	 * ä¼°ç®—å½“å‰é€‰æ‹©çš„åº§ä½ä»·æ ¼
 	 * @param mpid
 	 * @param seatLabel
 	 * @param goodsid
@@ -141,7 +141,7 @@ public interface PaymentVoService {
 	 */
 	ResultCode<Integer> computerSeatAmount(String appkey,Long mpid, String seatLabel, Long goodsid, Integer quantity, Long discountid);
 	/**
-	 *  Ñ¡×ùÎ»ÊÇÈç¹ûÍ¨¹ıÓÅ»İÆµµÀ½øÈë£¬Ñ¡×ùÎ»Ê±½øĞĞĞ£Ñé ¼ÆËã¼Û¸ñ
+	 *  é€‰åº§ä½æ˜¯å¦‚æœé€šè¿‡ä¼˜æƒ é¢‘é“è¿›å…¥ï¼Œé€‰åº§ä½æ—¶è¿›è¡Œæ ¡éªŒ è®¡ç®—ä»·æ ¼
 	 * @param appkey
 	 * @param mpid
 	 * @param seatLabel
@@ -151,7 +151,7 @@ public interface PaymentVoService {
 	 */
 	ResultCode<Integer> validateSpdiscountIsUse(String appkey, Long mpid, String seatLabel, Long discountid, String mobile, Integer totalfee,String secid, String encodeOrSessid, String remoteIps);
 	/**
-	 * Í¨¹ıÎ¢ĞÅ¹«ÖÚºÃÖ§¸¶£¬¸øÓÃ»§³äÖµ
+	 * é€šè¿‡å¾®ä¿¡å…¬ä¼—å¥½æ”¯ä»˜ï¼Œç»™ç”¨æˆ·å……å€¼
 	 * @param toMemberid
 	 * @param fromMemberid
 	 * @param amount
@@ -160,20 +160,20 @@ public interface PaymentVoService {
 	 */
 	ResultCode<Map<String, String>> getWxChargeParams(Long toMemberid, Long fromMemberid, Integer amount, String remoteIp);
 	/**
-	 * »ñÈ¡SpecialDiscountTagList
+	 * è·å–SpecialDiscountTagList
 	 * @return
 	 */
 	ResultCode<List<SpecialDiscountTagVo>> getSpecialDiscountTagList();
 	
 	/**
-	 * ¹¦ÄÜ¼òÊö£º»ñÈ¡¿ÉÑÓÆÚÓÅ»İÈ¯
+	 * åŠŸèƒ½ç®€è¿°ï¼šè·å–å¯å»¶æœŸä¼˜æƒ åˆ¸
 	 * @param ebatchidList
 	 * @return
 	 */
 	ResultCode<Map<String, String>> getDelayElecCardNoMap(List<Long> ebatchidList);
 	
 	/**
-	 * ·µ»ØÊµ¼ÊÊÛ³öµÄÃû¶î¿ØÖÆÊıÁ¿
+	 * è¿”å›å®é™…å”®å‡ºçš„åé¢æ§åˆ¶æ•°é‡
 	 * spidList<=1000
 	 * @param spidList
 	 * @param citycode
@@ -182,7 +182,7 @@ public interface PaymentVoService {
 	ResultCode<Map<Long, String>> spcounterSpecialDiscountStatus(List<Long> spidList, String citycode);
 	
 	/**
-	 * ·µ»Øµç×ÓÈ¯Åú´ÎÁĞ±í
+	 * è¿”å›ç”µå­åˆ¸æ‰¹æ¬¡åˆ—è¡¨
 	 * spidList<=1000
 	 * @param spidList
 	 * @param citycode
@@ -190,34 +190,34 @@ public interface PaymentVoService {
 	 */
 	ResultCode<List<ElecCardBatchVo>> getElecCardBatchList(List<Long> batchidList);
 	/**
-	 * ¸ù¾İÓÃ»§ID»ñÈ¡ÉÌ»§ÁªÃËÈ¯
+	 * æ ¹æ®ç”¨æˆ·IDè·å–å•†æˆ·è”ç›Ÿåˆ¸
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<List<BSCardVo>> getBsCardListByMemberid(Long memberid, int fromnum, int maxnum);
 	/**
-	 * ¸ù¾İÓÃ»§ID»ñÈ¡ÉÌ»§ÁªÃËÈ¯
+	 * æ ¹æ®ç”¨æˆ·IDè·å–å•†æˆ·è”ç›Ÿåˆ¸
 	 * @param id
 	 * @return
 	 */
 	ResultCode<BSCardVo> getBsCardById(Long id);
 	
 	/**
-	 * ¸ù¾İÌØ¼ÛµÄĞŞ¸ÄÊ±¼ä£¬²éÑ¯ÌØ¼Û
+	 * æ ¹æ®ç‰¹ä»·çš„ä¿®æ”¹æ—¶é—´ï¼ŒæŸ¥è¯¢ç‰¹ä»·
 	 * @param updateStartTime
 	 * @param updateEndTime
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê11ÔÂ24ÈÕÏÂÎç2:56:48
+	 * @addTime 2015å¹´11æœˆ24æ—¥ä¸‹åˆ2:56:48
 	 */
 	ResultCode<List<Map<String, Object>>> findPromotionList(Timestamp updateStartTime, Timestamp updateEndTime);
 	/**
-	 * ¸ù¾İ¿¨ÃÜÕÒ¿¨
+	 * æ ¹æ®å¡å¯†æ‰¾å¡
 	 * @param cardpass
 	 */
 	ResultCode<ElecCardVo> getElecCardByPass(String cardpass); 
 	/**
-	 * ¸ù¾İ¿¨ºÅÕÒ¿¨
+	 * æ ¹æ®å¡å·æ‰¾å¡
 	 * @param cardno
 	 */
 	ResultCode<ElecCardVo> getElecCardByNo(String cardno);

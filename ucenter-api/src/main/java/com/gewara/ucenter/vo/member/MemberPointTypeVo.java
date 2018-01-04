@@ -6,7 +6,7 @@ import com.gewara.api.vo.BaseVo;
 
 
 /**
- * ºì°ü·½Ê½
+ * çº¢åŒ…æ–¹å¼
  * 
  * @author xinqi.gu@gewara.com
  */
@@ -25,12 +25,12 @@ public class MemberPointTypeVo extends BaseVo {
 	}
 
 	/**
-	 * ºì°ü·½Ê½Ãû³Æ
+	 * çº¢åŒ…æ–¹å¼åç§°
 	 */
 	private String name;
 	
 	/**
-	 * ºì°ü·½Ê½Öµ
+	 * çº¢åŒ…æ–¹å¼å€¼
 	 */
 	private String value;
 

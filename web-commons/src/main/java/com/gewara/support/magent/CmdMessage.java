@@ -3,10 +3,10 @@ package com.gewara.support.magent;
 import org.apache.commons.lang.StringUtils;
 
 public class CmdMessage {
-	private String cmd;			//消息内容
-	private String params;		//消息参数
-	private String userFrom;	//发送人
-	private Long timestamp;		//时间
+	private String cmd;			//娑堟伅鍐呭
+	private String params;		//娑堟伅鍙傛暟
+	private String userFrom;	//鍙戦�佷汉
+	private Long timestamp;		//鏃堕棿
 	public CmdMessage(String cmd, String userFrom){
 		this.timestamp = System.currentTimeMillis();
 		this.userFrom = userFrom;

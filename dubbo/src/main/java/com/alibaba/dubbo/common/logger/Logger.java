@@ -16,154 +16,154 @@
 package com.alibaba.dubbo.common.logger;
 
 /**
- * ÈÕÖ¾½Ó¿Ú <p/> ÉùÃ÷£ºÒıÓÃ×Ôcommons-logging
+ * æ—¥å¿—æ¥å£ <p/> å£°æ˜ï¼šå¼•ç”¨è‡ªcommons-logging
  *
  * @author william.liangf
  */
 public interface Logger {
 
     /**
-     * Êä³ö¸ú×ÙĞÅÏ¢
+     * è¾“å‡ºè·Ÿè¸ªä¿¡æ¯
      *
-     * @param msg ĞÅÏ¢ÄÚÈİ
+     * @param msg ä¿¡æ¯å†…å®¹
      */
     public void trace(String msg);
 
     /**
-     * Êä³ö¸ú×ÙĞÅÏ¢
+     * è¾“å‡ºè·Ÿè¸ªä¿¡æ¯
      *
-     * @param e Òì³£ĞÅÏ¢
+     * @param e å¼‚å¸¸ä¿¡æ¯
      */
     public void trace(Throwable e);
     
     /**
-     * Êä³ö¸ú×ÙĞÅÏ¢
+     * è¾“å‡ºè·Ÿè¸ªä¿¡æ¯
      *
-     * @param msg ĞÅÏ¢ÄÚÈİ
-     * @param e Òì³£ĞÅÏ¢
+     * @param msg ä¿¡æ¯å†…å®¹
+     * @param e å¼‚å¸¸ä¿¡æ¯
      */
     public void trace(String msg, Throwable e);
 
 	/**
-	 * Êä³öµ÷ÊÔĞÅÏ¢
+	 * è¾“å‡ºè°ƒè¯•ä¿¡æ¯
 	 *
-	 * @param msg ĞÅÏ¢ÄÚÈİ
+	 * @param msg ä¿¡æ¯å†…å®¹
 	 */
 	public void debug(String msg);
 
 	/**
-     * Êä³öµ÷ÊÔĞÅÏ¢
+     * è¾“å‡ºè°ƒè¯•ä¿¡æ¯
      *
-     * @param e Òì³£ĞÅÏ¢
+     * @param e å¼‚å¸¸ä¿¡æ¯
      */
 	public void debug(Throwable e);
 	
 	/**
-	 * Êä³öµ÷ÊÔĞÅÏ¢
+	 * è¾“å‡ºè°ƒè¯•ä¿¡æ¯
 	 *
-	 * @param msg ĞÅÏ¢ÄÚÈİ
-	 * @param e Òì³£ĞÅÏ¢
+	 * @param msg ä¿¡æ¯å†…å®¹
+	 * @param e å¼‚å¸¸ä¿¡æ¯
 	 */
 	public void debug(String msg, Throwable e);
 
 	/**
-	 * Êä³öÆÕÍ¨ĞÅÏ¢
+	 * è¾“å‡ºæ™®é€šä¿¡æ¯
 	 *
-	 * @param msg ĞÅÏ¢ÄÚÈİ
+	 * @param msg ä¿¡æ¯å†…å®¹
 	 */
 	public void info(String msg);
 
 	/**
-     * Êä³öÆÕÍ¨ĞÅÏ¢
+     * è¾“å‡ºæ™®é€šä¿¡æ¯
      *
-     * @param e Òì³£ĞÅÏ¢
+     * @param e å¼‚å¸¸ä¿¡æ¯
      */
 	public void info(Throwable e);
 	
 	/**
-	 * Êä³öÆÕÍ¨ĞÅÏ¢
+	 * è¾“å‡ºæ™®é€šä¿¡æ¯
 	 *
-	 * @param msg ĞÅÏ¢ÄÚÈİ
-	 * @param e Òì³£ĞÅÏ¢
+	 * @param msg ä¿¡æ¯å†…å®¹
+	 * @param e å¼‚å¸¸ä¿¡æ¯
 	 */
 	public void info(String msg, Throwable e);
 
 	/**
-	 * Êä³ö¾¯¸æĞÅÏ¢
+	 * è¾“å‡ºè­¦å‘Šä¿¡æ¯
 	 *
-	 * @param msg ĞÅÏ¢ÄÚÈİ
+	 * @param msg ä¿¡æ¯å†…å®¹
 	 */
 	public void warn(String msg);
 	
 	/**
-     * Êä³ö¾¯¸æĞÅÏ¢
+     * è¾“å‡ºè­¦å‘Šä¿¡æ¯
      *
-     * @param e Òì³£ĞÅÏ¢
+     * @param e å¼‚å¸¸ä¿¡æ¯
      */
 	public void warn(Throwable e);
 
 	/**
-	 * Êä³ö¾¯¸æĞÅÏ¢
+	 * è¾“å‡ºè­¦å‘Šä¿¡æ¯
 	 *
-	 * @param msg ĞÅÏ¢ÄÚÈİ
-	 * @param e Òì³£ĞÅÏ¢
+	 * @param msg ä¿¡æ¯å†…å®¹
+	 * @param e å¼‚å¸¸ä¿¡æ¯
 	 */
 	public void warn(String msg, Throwable e);
 
 	/**
-	 * Êä³ö´íÎóĞÅÏ¢
+	 * è¾“å‡ºé”™è¯¯ä¿¡æ¯
 	 *
-	 * @param msg ĞÅÏ¢ÄÚÈİ
+	 * @param msg ä¿¡æ¯å†…å®¹
 	 */
 	public void error(String msg);
 	
 	/**
-     * Êä³ö´íÎóĞÅÏ¢
+     * è¾“å‡ºé”™è¯¯ä¿¡æ¯
      *
-     * @param e Òì³£ĞÅÏ¢
+     * @param e å¼‚å¸¸ä¿¡æ¯
      */
 	public void error(Throwable e);
 
 	/**
-	 * Êä³ö´íÎóĞÅÏ¢
+	 * è¾“å‡ºé”™è¯¯ä¿¡æ¯
 	 *
-	 * @param msg ĞÅÏ¢ÄÚÈİ
-	 * @param e Òì³£ĞÅÏ¢
+	 * @param msg ä¿¡æ¯å†…å®¹
+	 * @param e å¼‚å¸¸ä¿¡æ¯
 	 */
 	public void error(String msg, Throwable e);
 
     /**
-     * ¸ú×ÙĞÅÏ¢ÊÇ·ñ¿ªÆô
+     * è·Ÿè¸ªä¿¡æ¯æ˜¯å¦å¼€å¯
      *
-     * @return ÊÇ·ñ¿ªÆô
+     * @return æ˜¯å¦å¼€å¯
      */
     public boolean isTraceEnabled();
 
 	/**
-	 * µ÷ÊÔĞÅÏ¢ÊÇ·ñ¿ªÆô
+	 * è°ƒè¯•ä¿¡æ¯æ˜¯å¦å¼€å¯
 	 *
-	 * @return ÊÇ·ñ¿ªÆô
+	 * @return æ˜¯å¦å¼€å¯
 	 */
 	public boolean isDebugEnabled();
 
 	/**
-	 * ÆÕÍ¨ĞÅÏ¢ÊÇ·ñ¿ªÆô
+	 * æ™®é€šä¿¡æ¯æ˜¯å¦å¼€å¯
 	 *
-	 * @return ÊÇ·ñ¿ªÆô
+	 * @return æ˜¯å¦å¼€å¯
 	 */
 	public boolean isInfoEnabled();
 
 	/**
-	 * ¾¯¸æĞÅÏ¢ÊÇ·ñ¿ªÆô
+	 * è­¦å‘Šä¿¡æ¯æ˜¯å¦å¼€å¯
 	 *
-	 * @return ÊÇ·ñ¿ªÆô
+	 * @return æ˜¯å¦å¼€å¯
 	 */
 	public boolean isWarnEnabled();
 	
 	/**
-	 * ´íÎóĞÅÏ¢ÊÇ·ñ¿ªÆô
+	 * é”™è¯¯ä¿¡æ¯æ˜¯å¦å¼€å¯
 	 *
-	 * @return ÊÇ·ñ¿ªÆô
+	 * @return æ˜¯å¦å¼€å¯
 	 */
 	public boolean isErrorEnabled();
 

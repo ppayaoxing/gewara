@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.gewara.api.vo.BaseVo;
 /**
- * °´ÌìÍ³¼ÆµÄ³¡´Î
+ * æŒ‰å¤©ç»Ÿè®¡çš„åœºæ¬¡
  * @author gang.liu
  *
  */
@@ -17,17 +17,17 @@ public class EverydayMpiReportVo extends BaseVo{
 	 */
 	private static final long serialVersionUID = -4481307586398663355L;
 
-	private Date playDate; //ÈÕÆÚ
+	private Date playDate; //æ—¥æœŸ
 	
-	private int cinemaCount;//Í³¼ÆÓ°ÔºÊı£º ¸ñÍßÀ­ ¸ñÍßÀ­ ÏµÍ³Ö±Á¬¼Æµ½µÄÓ°Ôº ×ÜÊı£¬º¬²»ÅÅÆ¬Ó°Ôº 
+	private int cinemaCount;//ç»Ÿè®¡å½±é™¢æ•°ï¼š æ ¼ç“¦æ‹‰ æ ¼ç“¦æ‹‰ ç³»ç»Ÿç›´è¿è®¡åˆ°çš„å½±é™¢ æ€»æ•°ï¼Œå«ä¸æ’ç‰‡å½±é™¢ 
 	
-	private int mpiCinemaCount;// ÅÅÆ¬Ó°ÔºÊı
+	private int mpiCinemaCount;// æ’ç‰‡å½±é™¢æ•°
 	
-	private int mpiCount; //×Ü³¡´ÎÊı
+	private int mpiCount; //æ€»åœºæ¬¡æ•°
 	
-	private List<Map<String,Long>> movieMpiCount ;// Ã¿²¿Ó°Æ¬ Ã¿ÌìµÄ³¡´ÎÊı MapµÄkeyÖµ ¶ÔÓ¦º¬Òå£ºmovieId µçÓ°id mpiCount£º¶ÔÓ¦µçÓ°Ä³ÌìµÄÅÅÆ¬Êı
+	private List<Map<String,Long>> movieMpiCount ;// æ¯éƒ¨å½±ç‰‡ æ¯å¤©çš„åœºæ¬¡æ•° Mapçš„keyå€¼ å¯¹åº”å«ä¹‰ï¼šmovieId ç”µå½±id mpiCountï¼šå¯¹åº”ç”µå½±æŸå¤©çš„æ’ç‰‡æ•°
 	
-	private List<Map<String,Long>> goleMovieMpiCount ;// »Æ½ğÊ±¶ÎÃ¿²¿Ó°Æ¬ Ã¿ÌìµÄ³¡´ÎÊı MapµÄkeyÖµ ¶ÔÓ¦º¬Òå£ºmovieId µçÓ°id mpiCount£º¶ÔÓ¦µçÓ°Ä³ÌìµÄÅÅÆ¬Êı
+	private List<Map<String,Long>> goleMovieMpiCount ;// é»„é‡‘æ—¶æ®µæ¯éƒ¨å½±ç‰‡ æ¯å¤©çš„åœºæ¬¡æ•° Mapçš„keyå€¼ å¯¹åº”å«ä¹‰ï¼šmovieId ç”µå½±id mpiCountï¼šå¯¹åº”ç”µå½±æŸå¤©çš„æ’ç‰‡æ•°
 	
 	public EverydayMpiReportVo(){}
 	

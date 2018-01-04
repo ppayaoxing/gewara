@@ -6,14 +6,14 @@ import com.gewara.api.vo.ResultCode;
 
 
 /**
- * Å©ÒµÒøĞĞÈÏÖ¤Ö§¸¶£¬·şÎñ½Ó¿Ú
+ * å†œä¸šé“¶è¡Œè®¤è¯æ”¯ä»˜ï¼ŒæœåŠ¡æ¥å£
  * @author dengyz
  *
  */
 public interface AbcPointPayFastApiService {
 	
 	/**
-	 * »ı·ÖÏû·Ñ
+	 * ç§¯åˆ†æ¶ˆè´¹
 	 * @param request
 	 * @return
 	 */

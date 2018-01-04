@@ -9,16 +9,16 @@ public class ShowPriceVo extends BaseVo{
 	private static final long serialVersionUID = -8924784923828458573L;
 	
 	private String sispseq;			// areaseq + partner + priceseqno;
-	private String saseqNo;			//ÇøÓò±àºÅ(ShowArea-->saseqNo)
-	private String siseq;			//³¡´ÎID
-	private String areaseq;			//µÚÈı·½ÇøÓòID
-	private String partner;			//µÚÈı·½±êÊ¶
-	private String pseqno;			//µÚÈı·½³¡´Î±àºÅ
-	private String ticketid;		//µÚÈı·½³¡´Î¼Û¸ñ±àºÅ
-	private Long dramaid;			//ÏîÄ¿±àºÅ
-	private Integer price;			//Âô¼Û
-	private Integer lowest;			//×îµÍÂô¼Û
-	private Integer ticketTotal;	//Æ±Êı
+	private String saseqNo;			//åŒºåŸŸç¼–å·(ShowArea-->saseqNo)
+	private String siseq;			//åœºæ¬¡ID
+	private String areaseq;			//ç¬¬ä¸‰æ–¹åŒºåŸŸID
+	private String partner;			//ç¬¬ä¸‰æ–¹æ ‡è¯†
+	private String pseqno;			//ç¬¬ä¸‰æ–¹åœºæ¬¡ç¼–å·
+	private String ticketid;		//ç¬¬ä¸‰æ–¹åœºæ¬¡ä»·æ ¼ç¼–å·
+	private Long dramaid;			//é¡¹ç›®ç¼–å·
+	private Integer price;			//å–ä»·
+	private Integer lowest;			//æœ€ä½å–ä»·
+	private Integer ticketTotal;	//ç¥¨æ•°
 	private Integer ticketLimit;	//
 	private Long priceid;			
 	private String status;

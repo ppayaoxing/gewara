@@ -3,13 +3,13 @@ package com.gewara.cons;
 import org.apache.commons.lang.StringUtils;
 
 public abstract class ChargeConstant {
-	public static final String TYPE_CHARGE = "charge";			//³äÖµ
-	public static final String TYPE_WABI_CHARGE = "wabicharge";			//Íß±Ò¼Ó³äÖµ
-	public static final String TYPE_ORDER = "order";			//¶©µ¥Ö§¸¶ÖĞ×ª
+	public static final String TYPE_CHARGE = "charge";			//å……å€¼
+	public static final String TYPE_WABI_CHARGE = "wabicharge";			//ç“¦å¸åŠ å……å€¼
+	public static final String TYPE_ORDER = "order";			//è®¢å•æ”¯ä»˜ä¸­è½¬
 	
-	public static final String BANKPAY = "bank";			//ÕË»§
-	public static final String WABIPAY = "wabi";			//Íß±Ò
-	public static final String USESDNUM = "useSdNum";				//Ê¹ÓÃÌØ¼Û»î¶¯
+	public static final String BANKPAY = "bank";			//è´¦æˆ·
+	public static final String WABIPAY = "wabi";			//ç“¦å¸
+	public static final String USESDNUM = "useSdNum";				//ä½¿ç”¨ç‰¹ä»·æ´»åŠ¨
 	public static final String KEY_CHARGE_VALIDTIME_ = "CHARGE_VALIDTIME_";
 	
 	public static boolean isBankPay(String chargetype){

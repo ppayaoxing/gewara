@@ -28,7 +28,7 @@ import com.alibaba.dubbo.common.logger.slf4j.Slf4jLoggerAdapter;
 import com.alibaba.dubbo.common.logger.support.FailsafeLogger;
 
 /**
- * ÈÕÖ¾Êä³öÆ÷¹¤³§
+ * æ—¥å¿—è¾“å‡ºå™¨å·¥å‚
  * 
  * @author william.liangf
  */
@@ -41,7 +41,7 @@ public class LoggerFactory {
 	
 	private static final ConcurrentMap<String, FailsafeLogger> LOGGERS = new ConcurrentHashMap<String, FailsafeLogger>();
 
-	// ²éÕÒ³£ÓÃµÄÈÕÖ¾¿ò¼Ü
+	// æŸ¥æ‰¾å¸¸ç”¨çš„æ—¥å¿—æ¡†æ¶
 	static {
 	    String logger = System.getProperty("dubbo.application.logger");
 	    if ("slf4j".equals(logger)) {
@@ -76,10 +76,10 @@ public class LoggerFactory {
 	}
 
 	/**
-	 * ÉèÖÃÈÕÖ¾Êä³öÆ÷¹©¸øÆ÷
+	 * è®¾ç½®æ—¥å¿—è¾“å‡ºå™¨ä¾›ç»™å™¨
 	 * 
 	 * @param loggerAdapter
-	 *            ÈÕÖ¾Êä³öÆ÷¹©¸øÆ÷
+	 *            æ—¥å¿—è¾“å‡ºå™¨ä¾›ç»™å™¨
 	 */
 	public static void setLoggerAdapter(LoggerAdapter loggerAdapter) {
 		if (loggerAdapter != null) {
@@ -93,11 +93,11 @@ public class LoggerFactory {
 	}
 
 	/**
-	 * »ñÈ¡ÈÕÖ¾Êä³öÆ÷
+	 * è·å–æ—¥å¿—è¾“å‡ºå™¨
 	 * 
 	 * @param key
-	 *            ·ÖÀà¼ü
-	 * @return ÈÕÖ¾Êä³öÆ÷, ºóÑéÌõ¼ş: ²»·µ»Ønull.
+	 *            åˆ†ç±»é”®
+	 * @return æ—¥å¿—è¾“å‡ºå™¨, åéªŒæ¡ä»¶: ä¸è¿”å›null.
 	 */
 	public static Logger getLogger(Class<?> key) {
 		FailsafeLogger logger = LOGGERS.get(key.getName());
@@ -109,11 +109,11 @@ public class LoggerFactory {
 	}
 
 	/**
-	 * »ñÈ¡ÈÕÖ¾Êä³öÆ÷
+	 * è·å–æ—¥å¿—è¾“å‡ºå™¨
 	 * 
 	 * @param key
-	 *            ·ÖÀà¼ü
-	 * @return ÈÕÖ¾Êä³öÆ÷, ºóÑéÌõ¼ş: ²»·µ»Ønull.
+	 *            åˆ†ç±»é”®
+	 * @return æ—¥å¿—è¾“å‡ºå™¨, åéªŒæ¡ä»¶: ä¸è¿”å›null.
 	 */
 	public static Logger getLogger(String key) {
 		FailsafeLogger logger = LOGGERS.get(key);
@@ -125,27 +125,27 @@ public class LoggerFactory {
 	}
 	
 	/**
-	 * ¶¯Ì¬ÉèÖÃÊä³öÈÕÖ¾¼¶±ğ
+	 * åŠ¨æ€è®¾ç½®è¾“å‡ºæ—¥å¿—çº§åˆ«
 	 * 
-	 * @param level ÈÕÖ¾¼¶±ğ
+	 * @param level æ—¥å¿—çº§åˆ«
 	 */
 	public static void setLevel(Level level) {
 		LOGGER_ADAPTER.setLevel(level);
 	}
 
 	/**
-	 * »ñÈ¡ÈÕÖ¾¼¶±ğ
+	 * è·å–æ—¥å¿—çº§åˆ«
 	 * 
-	 * @return ÈÕÖ¾¼¶±ğ
+	 * @return æ—¥å¿—çº§åˆ«
 	 */
 	public static Level getLevel() {
 		return LOGGER_ADAPTER.getLevel();
 	}
 	
 	/**
-	 * »ñÈ¡ÈÕÖ¾ÎÄ¼ş
+	 * è·å–æ—¥å¿—æ–‡ä»¶
 	 * 
-	 * @return ÈÕÖ¾ÎÄ¼ş
+	 * @return æ—¥å¿—æ–‡ä»¶
 	 */
 	public static File getFile() {
 		return LOGGER_ADAPTER.getFile();

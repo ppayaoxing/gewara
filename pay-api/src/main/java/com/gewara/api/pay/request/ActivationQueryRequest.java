@@ -12,10 +12,10 @@ public class ActivationQueryRequest extends ApiRequest {
 	 */
 	private static final long serialVersionUID = 7146445047023973426L;
 	
-	/**商户标识*/
+	/**鍟嗘埛鏍囪瘑*/
 	private String merchantCode;
 	
-	/**银行卡号*/
+	/**閾惰鍗″彿*/
 	private String cardNumber;
 	
 	public ActivationQueryRequest(){

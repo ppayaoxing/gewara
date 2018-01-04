@@ -117,7 +117,7 @@ public final class URL implements Serializable {
 	    this(protocol, null, null, host, port, null, (Map<String, String>) null);
 	}
 	
-	public URL(String protocol, String host, int port, String[] pairs) { // �䳤����...�������path������ͻ����Ϊ����
+	public URL(String protocol, String host, int port, String[] pairs) { // 锟戒长锟斤拷锟斤拷...锟斤拷锟斤拷锟斤拷锟絧ath锟斤拷锟斤拷锟斤拷突锟斤拷锟斤拷为锟斤拷锟斤拷
         this(protocol, null, null, host, port, null, CollectionUtils.toStringMap(pairs));
     }
 	
@@ -275,13 +275,13 @@ public final class URL implements Serializable {
 	}
 	
 	/**
-	 * ��ȡIP��ַ.
+	 * 锟斤拷取IP锟斤拷址.
 	 * 
-	 * ��ע�⣺
-	 * �����Socket�ĵ�ַ�Աȣ�
-	 * ���õ�ַ��ΪMap��Key���ң�
-	 * ��ʹ��IP������Host��
-	 * ��������������������
+	 * 锟斤拷注锟解：
+	 * 锟斤拷锟斤拷锟絊ocket锟侥碉拷址锟皆比ｏ拷
+	 * 锟斤拷锟矫碉拷址锟斤拷为Map锟斤拷Key锟斤拷锟揭ｏ拷
+	 * 锟斤拷使锟斤拷IP锟斤拷锟斤拷锟斤拷Host锟斤拷
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 * 
 	 * @return ip
 	 */
@@ -430,14 +430,14 @@ public final class URL implements Serializable {
     }
     
     private Map<String, Number> getNumbers() {
-        if (numbers == null) { // �������ظ�����
+        if (numbers == null) { // 锟斤拷锟斤拷锟斤拷锟截革拷锟斤拷锟斤拷
             numbers = new ConcurrentHashMap<String, Number>();
         }
         return numbers;
     }
 
     private Map<String, URL> getUrls() {
-        if (urls == null) { // �������ظ�����
+        if (urls == null) { // 锟斤拷锟斤拷锟斤拷锟截革拷锟斤拷锟斤拷
             urls = new ConcurrentHashMap<String, URL>();
         }
         return urls;
@@ -920,7 +920,7 @@ public final class URL implements Serializable {
                 || value == null || value.length() == 0) {
             return this;
         }
-        // ���û���޸ģ�ֱ�ӷ��ء�
+        // 锟斤拷锟矫伙拷锟斤拷薷模锟街憋拷臃锟斤拷亍锟�
         if(value.equals(getParameters().get(key))) { // value != null
             return this;
         }
@@ -962,7 +962,7 @@ public final class URL implements Serializable {
                 break;
             }
         }
-        // ���û���޸ģ�ֱ�ӷ��ء�
+        // 锟斤拷锟矫伙拷锟斤拷薷模锟街憋拷臃锟斤拷亍锟�
         if(hasAndEqual) {
             return this;
         }

@@ -22,14 +22,14 @@ public interface LockService {
 	/**
 	 * @param lockKey
 	 * @param waitSeconds
-	 *            µÈ´ıÊ±¼ä£¬Ğ¡ÓÚ 0 ±íÊ¾Ò»Ö±µÈ´ı
+	 *            ç­‰å¾…æ—¶é—´ï¼Œå°äº 0 è¡¨ç¤ºä¸€ç›´ç­‰å¾…
 	 * @param lc
 	 * @return
 	 */
 	<T> ErrorCode<T> doWithWriteLock(String lockKey, int waitSeconds, LockCallback<T> lc);
 
 	/**
-	 * ÎŞ·¨»ñµÃËøÊ±Ö±½ÓºöÂÔ
+	 * æ— æ³•è·å¾—é”æ—¶ç›´æ¥å¿½ç•¥
 	 * 
 	 * @param lockKey
 	 * @param lc

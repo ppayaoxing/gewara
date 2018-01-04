@@ -13,7 +13,7 @@ public class GetMerchantSpecRequest extends ApiRequest {
 	private static final long serialVersionUID = -5045993031881937584L;
 	
 
-	private String merchantCode;	//�̻��ű�ʶ
+	private String merchantCode;	//商户号标识
 
 	@Override
 	public Map<String, String> getTextParams() {

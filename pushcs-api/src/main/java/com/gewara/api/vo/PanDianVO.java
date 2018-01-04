@@ -3,57 +3,57 @@ package com.gewara.api.vo;
 import java.io.Serializable;
 
 /***
- * ÅÌµãModel¶ÔÏó
+ * ç›˜ç‚¹Modelå¯¹è±¡
  */
 public class PanDianVO implements Serializable{
 	private static final long serialVersionUID = 142345234562634L;
-	private Long memberid; //ÓÃ»§id
+	private Long memberid; //ç”¨æˆ·id
     //page1
-    private String nickName; //ÓÃ»§êÇ³Æ
-    private Integer registerDuration; //×¢²áÊ±³¤
+    private String nickName; //ç”¨æˆ·æ˜µç§°
+    private Integer registerDuration; //æ³¨å†Œæ—¶é•¿
     //page2
-    private Integer watchedMovieNum;//¿´¹ıµçÓ°Êı
-    private Integer dayNum; //°×Ìì¿´µÄµçÓ°Êı
-    private Integer nightNum;//ÍíÉÏ¿´µÄµçÓ°Êı
-    private String repeatMovies; //¹Û¿´µÄÖØ¸´µçÓ°ÁĞ±í
-    private Integer movieCost;//¿´µçÓ°Êµ¼Ê»¨·Ñ
-    private Integer saveMoney;//½ÚÊ¡·ÑÓÃ
+    private Integer watchedMovieNum;//çœ‹è¿‡ç”µå½±æ•°
+    private Integer dayNum; //ç™½å¤©çœ‹çš„ç”µå½±æ•°
+    private Integer nightNum;//æ™šä¸Šçœ‹çš„ç”µå½±æ•°
+    private String repeatMovies; //è§‚çœ‹çš„é‡å¤ç”µå½±åˆ—è¡¨
+    private Integer movieCost;//çœ‹ç”µå½±å®é™…èŠ±è´¹
+    private Integer saveMoney;//èŠ‚çœè´¹ç”¨
     //page3
-    private Long mostCinema;//³£È¥Ó°Ôºid
-    private Integer cinemaMovieNum;//¿´µÃµçÓ°Êı
-    private Integer cinemaUserCount;//µçÓ°Ôº¹ÛÓ°×ÜÈË´Î
-    private String  userMeetList;//ºÍÄÄĞ©ÓÃ»§²Á¼ç¶ø¹ı
+    private Long mostCinema;//å¸¸å»å½±é™¢id
+    private Integer cinemaMovieNum;//çœ‹å¾—ç”µå½±æ•°
+    private Integer cinemaUserCount;//ç”µå½±é™¢è§‚å½±æ€»äººæ¬¡
+    private String  userMeetList;//å’Œå“ªäº›ç”¨æˆ·æ“¦è‚©è€Œè¿‡
     //page4
-    private Integer maxTogetherNum; //Åã°éÈËÊı
-    private Integer aloneNum; //Ò»¸öÈË¹Û¿´´ÎÊı
+    private Integer maxTogetherNum; //é™ªä¼´äººæ•°
+    private Integer aloneNum; //ä¸€ä¸ªäººè§‚çœ‹æ¬¡æ•°
     //page5
-    private Integer totalMarkNum;//´ò·Ö´ÎÊı
-    private Integer leFiveNum; //Ğ¡ÓÚµÈÓÚ5·ÖµÄ´ÎÊı
-    private Integer geEightNum;  //´óÓÚµÈÓÚ8·ÖµÄ´ÎÊı
-    private Integer greatMovieNum;  //ÁË²»ÆğµçÓ°Êı
-    private String goodMovieIds; //  5²¿µçÓ°logo¡¢id¡¢ Ãû³Æ¡¢×Ô¼ºµÄÆÀ·Ö
-    private String badMovieIds;  //5²¿Å­´òµçÓ°logo¡¢id¡¢ Ãû³Æ¡¢×Ô¼ºµÄÆÀ·Ö
-    private String markMovieIds ; //´ò¹ı·ÖµÄµçÓ°.
+    private Integer totalMarkNum;//æ‰“åˆ†æ¬¡æ•°
+    private Integer leFiveNum; //å°äºç­‰äº5åˆ†çš„æ¬¡æ•°
+    private Integer geEightNum;  //å¤§äºç­‰äº8åˆ†çš„æ¬¡æ•°
+    private Integer greatMovieNum;  //äº†ä¸èµ·ç”µå½±æ•°
+    private String goodMovieIds; //  5éƒ¨ç”µå½±logoã€idã€ åç§°ã€è‡ªå·±çš„è¯„åˆ†
+    private String badMovieIds;  //5éƒ¨æ€’æ‰“ç”µå½±logoã€idã€ åç§°ã€è‡ªå·±çš„è¯„åˆ†
+    private String markMovieIds ; //æ‰“è¿‡åˆ†çš„ç”µå½±.
     //page6
-    private Integer totalOrdersNum; //Ò»Äê×Ü¶©µ¥Êı
-    private Integer walaCount;  //Ğ´ÍÛÀ²Êı
-    private String ticketWalaCount; //¹ºÆ±²¢·¢wala ´ÎÊı
-    private Integer beFloweredCount;    //ÍÛÀ²±»ÔŞ×ÜÊı
-    private Integer beReplyedCount; //ÍÛÀ²±»»Ø¸´×ÜÊı
-    private Long bestWalaID;    //»ñµÃÆÀÂÛ»òÕßÔŞÊı×î¶àµÄÒ»ÌõÍÛÀ²
+    private Integer totalOrdersNum; //ä¸€å¹´æ€»è®¢å•æ•°
+    private Integer walaCount;  //å†™å“‡å•¦æ•°
+    private String ticketWalaCount; //è´­ç¥¨å¹¶å‘wala æ¬¡æ•°
+    private Integer beFloweredCount;    //å“‡å•¦è¢«èµæ€»æ•°
+    private Integer beReplyedCount; //å“‡å•¦è¢«å›å¤æ€»æ•°
+    private Long bestWalaID;    //è·å¾—è¯„è®ºæˆ–è€…èµæ•°æœ€å¤šçš„ä¸€æ¡å“‡å•¦
     //page7
-    private Long bestMovieId; //¶©µ¥ÖĞÆÀ·Ö×î¸ßµÄµçÓ°
-    private Long recommendWalaID; //ÆÀÂÛ»òÔŞ×î¶àµÄÒ»Ìõwala
-    private Integer flowerCount;//µãÔŞ×ÜÊı
-    private Integer replyCount;//»Ø¸´×ÜÊı
-    private Integer friendCount; //µ¼ÈëÍ¨Ñ¶Â¼ÕÒµ½µÄºÃÓÑÊıÁ¿
+    private Long bestMovieId; //è®¢å•ä¸­è¯„åˆ†æœ€é«˜çš„ç”µå½±
+    private Long recommendWalaID; //è¯„è®ºæˆ–èµæœ€å¤šçš„ä¸€æ¡wala
+    private Integer flowerCount;//ç‚¹èµæ€»æ•°
+    private Integer replyCount;//å›å¤æ€»æ•°
+    private Integer friendCount; //å¯¼å…¥é€šè®¯å½•æ‰¾åˆ°çš„å¥½å‹æ•°é‡
     //page8
-    private Integer redPacketsNum;//ÁìÈ¡Ã¿ÈÕºì°üµÄ´ÎÊı
-    private Integer totalAnswerNum;//Ã¿ÈÕ´ğÌâµÄ´ÎÊı
-    private Integer rightAnswerNum;//´ğ¶Ô´ÎÊı
-    private Integer wrongAnswerNum;//´ğ´í´ÎÊı
-    private Integer joinActivityNum;//²Î¼Ó»î¶¯µÄ´ÎÊı
-    private String honorLabel;//ÈÙÓş±êÇ©
+    private Integer redPacketsNum;//é¢†å–æ¯æ—¥çº¢åŒ…çš„æ¬¡æ•°
+    private Integer totalAnswerNum;//æ¯æ—¥ç­”é¢˜çš„æ¬¡æ•°
+    private Integer rightAnswerNum;//ç­”å¯¹æ¬¡æ•°
+    private Integer wrongAnswerNum;//ç­”é”™æ¬¡æ•°
+    private Integer joinActivityNum;//å‚åŠ æ´»åŠ¨çš„æ¬¡æ•°
+    private String honorLabel;//è£èª‰æ ‡ç­¾
 
     public PanDianVO() {
     }

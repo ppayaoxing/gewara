@@ -13,7 +13,7 @@ public abstract class KeeperWatcher {
 	protected String path;
 	protected CuratorFramework client;
 	/**
-	 * ·µ»Ø¼àÌıÂ·¾¶
+	 * è¿”å›ç›‘å¬è·¯å¾„
 	 * @return
 	 */
 	public String getPath(){

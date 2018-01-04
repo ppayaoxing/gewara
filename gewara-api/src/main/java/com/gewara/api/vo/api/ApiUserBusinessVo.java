@@ -8,61 +8,61 @@ import com.gewara.api.vo.BaseVo;
 public class ApiUserBusinessVo extends BaseVo{
 	private static final long serialVersionUID = 1570825734279704022L;
 	private Long id;
-	private String showModel;		//Õ¹ÏÖ·½Ê½ android ios wap pc ÖÕ¶Ë»ú¡¢µçÊÓ»ú
-	private String coopModel;		//ºÏ×÷Ä£Ê½
-	private String createOrder;		//ÊÇ·ñ²úÉú¶©µ¥
-	private String moneyto;			//ÊÕ¿î·½
-	private String gewaBusUser;		//¸ñÍßÀ­ÉÌÎñ¸ºÔğÈË
-	private String gewaTecUser;		//¸ñÍßÀ­¼¼Êõ¸ºÔğÈË
-	private String partnerBusUser;	//ºÏ×÷ÉÌÉÌÎñÁªÏµÈË
-	private String partnerTecUser;	//ºÏ×÷ÉÌ¼¼ÊõÁªÏµÈË
-	private Timestamp onTime;		//ÉÏÏßÈÕÆÚ
-	private Timestamp offTime;		//ÏÂÏßÈÕÆÚ
-	private String webSite;			//ÏßÉÏµØÖ·
-	private String email;			//ºÏ×÷ÉÌÓÃ»§email ÓÃ»§·¢ÕË»§ĞÅÏ¢
+	private String showModel;		//å±•ç°æ–¹å¼ android ios wap pc ç»ˆç«¯æœºã€ç”µè§†æœº
+	private String coopModel;		//åˆä½œæ¨¡å¼
+	private String createOrder;		//æ˜¯å¦äº§ç”Ÿè®¢å•
+	private String moneyto;			//æ”¶æ¬¾æ–¹
+	private String gewaBusUser;		//æ ¼ç“¦æ‹‰å•†åŠ¡è´Ÿè´£äºº
+	private String gewaTecUser;		//æ ¼ç“¦æ‹‰æŠ€æœ¯è´Ÿè´£äºº
+	private String partnerBusUser;	//åˆä½œå•†å•†åŠ¡è”ç³»äºº
+	private String partnerTecUser;	//åˆä½œå•†æŠ€æœ¯è”ç³»äºº
+	private Timestamp onTime;		//ä¸Šçº¿æ—¥æœŸ
+	private Timestamp offTime;		//ä¸‹çº¿æ—¥æœŸ
+	private String webSite;			//çº¿ä¸Šåœ°å€
+	private String email;			//åˆä½œå•†ç”¨æˆ·email ç”¨æˆ·å‘è´¦æˆ·ä¿¡æ¯
 	private String remark;
 	
 	/** 
-	 * ÍË¿î²¿ÃÅ
-	 * 0:²ÆÎñ
-	 * 1:¿Í·ş
+	 * é€€æ¬¾éƒ¨é—¨
+	 * 0:è´¢åŠ¡
+	 * 1:å®¢æœ
 	 */
 	private Integer refundDepartment;
 	
 	/** 
-	 * ÍË¿î·½Ê½  
-	 * 0:Ô­Â·ÍË»Ø
-	 * 1:Í¨ÖªºÏ×÷·½ÍË¿î
-	 * 2:¸ñÍßÀ­ÏßÏÂÍË¿î
-	 * 3:´ıÈ·¶¨ÖĞ
+	 * é€€æ¬¾æ–¹å¼  
+	 * 0:åŸè·¯é€€å›
+	 * 1:é€šçŸ¥åˆä½œæ–¹é€€æ¬¾
+	 * 2:æ ¼ç“¦æ‹‰çº¿ä¸‹é€€æ¬¾
+	 * 3:å¾…ç¡®å®šä¸­
 	 */
 	private Integer refundWay;
 	
-	/** ÉÌ»§²éÑ¯Á´½Ó */
+	/** å•†æˆ·æŸ¥è¯¢é“¾æ¥ */
 	private String queryLink;
 	
-	/** ºÏ×÷·½ÍË¿îÁªÏµÈË */
+	/** åˆä½œæ–¹é€€æ¬¾è”ç³»äºº */
 	private String partnerRefundMan;
 	
-	/** ºÏ×÷·½ÍË¿îÓÊÏä */
+	/** åˆä½œæ–¹é€€æ¬¾é‚®ç®± */
 	private String partnerRefundEmail;
 	
-	/** ºÏ×÷·½ÍË¿îµç»° */
+	/** åˆä½œæ–¹é€€æ¬¾ç”µè¯ */
 	private String partnerRefundMobile;
 	
-	/** ÍË¿îÆäËû±¸×¢ */
+	/** é€€æ¬¾å…¶ä»–å¤‡æ³¨ */
 	private String refundRemark;
 	
-	/** ºÏ×÷ÉÌ±¨±íÀà±ğ */
+	/** åˆä½œå•†æŠ¥è¡¨ç±»åˆ« */
 	private String reportType;
 	
-	/** ·¢Æ±¿ª¾ß (ÏòÓÃ»§/ÏòºÏ×÷ÉÌ)*/
+	/** å‘ç¥¨å¼€å…· (å‘ç”¨æˆ·/å‘åˆä½œå•†)*/
 	private String invoiceDraw;
 	
-	/** ·¢Æ±¿ª¾ß½ğ¶î(È«¶î/²î¶î) */
+	/** å‘ç¥¨å¼€å…·é‡‘é¢(å…¨é¢/å·®é¢) */
 	private String invoiceAmount;
 	
-	/** ½áËãÖÜÆÚ¼°·ÑÂÊ(¿ªÊ¼Ê±¼ä-½áÊøÊ±¼ä-·ÑÂÊ(json¸ñÊ½))*/
+	/** ç»“ç®—å‘¨æœŸåŠè´¹ç‡(å¼€å§‹æ—¶é—´-ç»“æŸæ—¶é—´-è´¹ç‡(jsonæ ¼å¼))*/
 	private String cycleRates;
 	
 	public ApiUserBusinessVo(){

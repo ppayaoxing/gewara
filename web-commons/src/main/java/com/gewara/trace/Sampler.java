@@ -3,9 +3,9 @@ package com.gewara.trace;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ²ÉÑùÂÊ<br>
- * »ùÊı£¬Ã¿Ãë100<br>
- * ³¬¹ı100°´10%²ÉÑù
+ * é‡‡æ ·ç‡<br>
+ * åŸºæ•°ï¼Œæ¯ç§’100<br>
+ * è¶…è¿‡100æŒ‰10%é‡‡æ ·
  * @author quzhuping
  *
  */
@@ -19,8 +19,8 @@ public class Sampler {
     }
 
     /**
-     * ÊÇ·ñ²ÉÑù
-     * @return true²ÉÑù
+     * æ˜¯å¦é‡‡æ ·
+     * @return trueé‡‡æ ·
      */
     public boolean isSample(){
        boolean isSample = true;

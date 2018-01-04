@@ -22,7 +22,7 @@ import com.alibaba.dubbo.rpc.RpcException;
 import com.alibaba.dubbo.rpc.protocol.AbstractProtocol;
 
 /**
- * MockProtocol ������consumer side ͨ��url����������һ��mockInvoker
+ * MockProtocol 锟斤拷锟斤拷锟斤拷consumer side 通锟斤拷url锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷mockInvoker
  * @author chao.liuc
  *
  */

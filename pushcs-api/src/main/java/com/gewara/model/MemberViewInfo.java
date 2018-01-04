@@ -3,7 +3,7 @@ package com.gewara.model;
 import java.io.Serializable;
 import java.util.List;
 /**
- * ÓÃ»§¹ÛÓ°ĞÅÏ¢
+ * ç”¨æˆ·è§‚å½±ä¿¡æ¯
  * 
  * @author jeremylei
  * @date 2016/04/15
@@ -13,11 +13,11 @@ public class MemberViewInfo  implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -3363180767294549933L;
-	private Long movieid; // µçÓ°id
-	private Long cinemaid; // Ó°Ôºid
-	private Long playtime; // ·ÅÓ³Ê±¼ä
-	private Integer viewcounts; // ¸ÃµçÓ°¹ÛÓ°´ÎÊı
-	private List<Long> othermembers; // Í¬³¡´Î¹ÛÓ°ÓÃ»§idÁĞ±í
+	private Long movieid; // ç”µå½±id
+	private Long cinemaid; // å½±é™¢id
+	private Long playtime; // æ”¾æ˜ æ—¶é—´
+	private Integer viewcounts; // è¯¥ç”µå½±è§‚å½±æ¬¡æ•°
+	private List<Long> othermembers; // åŒåœºæ¬¡è§‚å½±ç”¨æˆ·idåˆ—è¡¨
 
 	public Long getMovieid() {
 		return movieid;

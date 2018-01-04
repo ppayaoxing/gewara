@@ -5,7 +5,7 @@ import com.gewara.api.vo.sport.SportVo;
 
 public interface SportVoService {
 
-	/** 通过id获取SportVo
+	/** 閫氳繃id鑾峰彇SportVo
 	 * @param sportid
 	 * @return
 	 */

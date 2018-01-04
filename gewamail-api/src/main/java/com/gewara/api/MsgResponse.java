@@ -20,7 +20,7 @@ public abstract class MsgResponse implements Serializable{
 	
 	public void setSuccess() {
 		this.code = "0000";
-		this.msg = "³É¹¦";
+		this.msg = "æˆåŠŸ";
 	}
 	
 	public void setSuccess(String msg) {
@@ -30,7 +30,7 @@ public abstract class MsgResponse implements Serializable{
 	
 	public void setFailure() {
 		this.code = "9999";
-		this.msg = "Ê§°Ü";
+		this.msg = "å¤±è´¥";
 	}
 	
 	public void setFailure(String msg) {
@@ -39,7 +39,7 @@ public abstract class MsgResponse implements Serializable{
 	}
 		
 	/**
-	 * ¡°0000¡±£º±íÊ¾³É¹¦£»¡°9999¡±£º±íÊ¾´íÎó
+	 * â€œ0000â€ï¼šè¡¨ç¤ºæˆåŠŸï¼›â€œ9999â€ï¼šè¡¨ç¤ºé”™è¯¯
 	 * 
 	 * @return
 	 *
@@ -55,7 +55,7 @@ public abstract class MsgResponse implements Serializable{
 	}
 	
 	/**
-	 * »ñÈ¡Ïà¹ØĞÅÏ¢
+	 * è·å–ç›¸å…³ä¿¡æ¯
 	 * 
 	 * @return
 	 *

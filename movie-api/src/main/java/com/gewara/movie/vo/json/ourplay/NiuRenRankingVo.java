@@ -14,9 +14,9 @@ public class NiuRenRankingVo extends BaseVo {
 	 */
 	private static final long serialVersionUID = 7497905842878021840L;
 	private Long memberid;
-	private Integer ranking;//牛人总榜排名
+	private Integer ranking;//鐗涗汉鎬绘鎺掑悕
 	private Timestamp addtime;
-	private  Integer point;//牛人分数
+	private  Integer point;//鐗涗汉鍒嗘暟
 	public Integer getPoint() {
 		return point;
 	}

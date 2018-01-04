@@ -8,7 +8,7 @@ import com.gewara.api.vo.ResultCode;
 public interface TaskRewardApiService {
 
 	/**
-	 * »ñÈ¡ÈÎÎñÁĞ±í
+	 * è·å–ä»»åŠ¡åˆ—è¡¨
 	 * 
 	 * @param type
 	 * @param name
@@ -19,7 +19,7 @@ public interface TaskRewardApiService {
 	ResultCode<List<TaskRewardVo>> getTaskRewardList(String type, String name, Integer score, String status);
 
 	/**
-	 * »ñÈ¡ÎªÍê³ÉµÄÈÎÎñ
+	 * è·å–ä¸ºå®Œæˆçš„ä»»åŠ¡
 	 * 
 	 * @param memberid
 	 * @param taskid
@@ -28,7 +28,7 @@ public interface TaskRewardApiService {
 	ResultCode<List<Long>> getUnFinishedTaskRewardList(Long memberid, List<Long> taskid);
 
 	/**
-	 * Íê³ÉÈÎÎñ
+	 * å®Œæˆä»»åŠ¡
 	 * 
 	 * @param memberid
 	 * @param type
@@ -36,7 +36,7 @@ public interface TaskRewardApiService {
 	void saveFinishedTask(Long memberid, String type);
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ×ö¹ı¸ÃÈÎÎñ
+	 * åˆ¤æ–­æ˜¯å¦åšè¿‡è¯¥ä»»åŠ¡
 	 * @param memberid
 	 * @param type
 	 * @return
@@ -44,28 +44,28 @@ public interface TaskRewardApiService {
 	ResultCode<Boolean> checkHasFinishedTask(Long memberid, String type);
 	
 	/**
-	 * »ñÈ¡ÏêÇé
+	 * è·å–è¯¦æƒ…
 	 * @param type
 	 * @return
 	 */
 	ResultCode<TaskRewardVo> getTaskRewardDetail(String type);
 	
 	/**
-	 * »ñÈ¡ÈÎÎñÅú´ÎĞÅÏ¢
+	 * è·å–ä»»åŠ¡æ‰¹æ¬¡ä¿¡æ¯
 	 * @param status
 	 * @return
 	 */
 	ResultCode<List> getTaskRewardBatch(String status, int from, int maxnum);
 	
 	/**
-	 * ¸ù¾İid²éÕÒÈÎÎñ
+	 * æ ¹æ®idæŸ¥æ‰¾ä»»åŠ¡
 	 * @param taskids
 	 * @return
 	 */
 	ResultCode<List<TaskRewardVo>> getTaskRewardListByIds(List<Long> taskids);
 	
 	/**
-	 * »ı·ÖÔùËÍÌáÊ¾Óï
+	 * ç§¯åˆ†èµ é€æç¤ºè¯­
 	 * @return
 	 */
 	ResultCode<String> getScoreDesc();

@@ -15,28 +15,28 @@ public class MovieMusicVo extends BaseVo{
 	 * 
 	 */
 	private static final long serialVersionUID = -4294404569766014178L;
-	private String song_id;//ÏºÃ×id
-	private String song_name;//¸èÇú
-	private List<Long> movieid;//µçÓ°ID
-	private String artist_id;//ÒÕÈËID
-	private String artist_name;//ÒÕÈËÃû×Ö
-	private String artist_logo;//ÒÕÈËÍ¼Æ¬
-	private String singers;//Ñİ³ªÕß
-	private String album_id;//×¨¼­ID
-	private String album_name;//×¨¼­Ãû³Æ 
-	private String album_logo;//×¨¼­logo
-	private Integer length;//¸èÇú³¤¶È
-	private Integer track;//¸èÇúĞòºÅ
-	private Integer cd_serial;//CDĞòºÅ
-	private Integer music_type;//ÒôÀÖÀàĞÍ
-	private Integer likeNum;//Ï²»¶Êı
-	private Integer talkNum;//ÌÖÂÛÊı
-	private List<String> relateid;//¹ØÁªµÄlist_id
-	private Timestamp createTime;//´´½¨Ê±¼ä
-	private Timestamp updateTime;//ĞŞ¸ÄÊ±¼ä
-	private String orderby;//ÅÅĞò 
-	private Integer hot = 0;//ÊÇ·ñÈÈÃÅÒôÀÖ£¬0£º²»ÈÈÃÅ£»1£ºÈÈÃÅ
-	private Long starid;//Ó°ÈËID
+	private String song_id;//è™¾ç±³id
+	private String song_name;//æ­Œæ›²
+	private List<Long> movieid;//ç”µå½±ID
+	private String artist_id;//è‰ºäººID
+	private String artist_name;//è‰ºäººåå­—
+	private String artist_logo;//è‰ºäººå›¾ç‰‡
+	private String singers;//æ¼”å”±è€…
+	private String album_id;//ä¸“è¾‘ID
+	private String album_name;//ä¸“è¾‘åç§° 
+	private String album_logo;//ä¸“è¾‘logo
+	private Integer length;//æ­Œæ›²é•¿åº¦
+	private Integer track;//æ­Œæ›²åºå·
+	private Integer cd_serial;//CDåºå·
+	private Integer music_type;//éŸ³ä¹ç±»å‹
+	private Integer likeNum;//å–œæ¬¢æ•°
+	private Integer talkNum;//è®¨è®ºæ•°
+	private List<String> relateid;//å…³è”çš„list_id
+	private Timestamp createTime;//åˆ›å»ºæ—¶é—´
+	private Timestamp updateTime;//ä¿®æ”¹æ—¶é—´
+	private String orderby;//æ’åº 
+	private Integer hot = 0;//æ˜¯å¦çƒ­é—¨éŸ³ä¹ï¼Œ0ï¼šä¸çƒ­é—¨ï¼›1ï¼šçƒ­é—¨
+	private Long starid;//å½±äººID
 	private Integer liked=0;
 	
 	public MovieMusicVo() {

@@ -7,8 +7,8 @@ import org.springframework.data.redis.support.collections.DefaultRedisMap;
 import com.gewara.support.concurrent.AtomicCounter;
 
 /**
- * redisÖ§³Ö·şÎñÀà
- * <br>»ùÓÚspring-redis·â×°
+ * redisæ”¯æŒæœåŠ¡ç±»
+ * <br>åŸºäºspring-rediså°è£…
  * @author quzhuping
  *
  * @param <E>
@@ -16,23 +16,23 @@ import com.gewara.support.concurrent.AtomicCounter;
 public interface RedisSupportService<E> {
 
 	/**
-	 * »ñÈ¡»ùÓÚredis listÊµÏÖµÄqueue£¬<b>ÒÑ¾­»º´æµ½±¾µØcache</b>
-	 * <br>Ê¹ÓÃ.poll()·½·¨»ñÈ¡Í·²¿Êı¾İ
-	 * <br>Ê¹ÓÃ.offer(E)
+	 * è·å–åŸºäºredis listå®ç°çš„queueï¼Œ<b>å·²ç»ç¼“å­˜åˆ°æœ¬åœ°cache</b>
+	 * <br>ä½¿ç”¨.poll()æ–¹æ³•è·å–å¤´éƒ¨æ•°æ®
+	 * <br>ä½¿ç”¨.offer(E)
 	 * @param key
 	 * @return
 	 */
 	BlockingQueue<E> getRedisQueue(String key);
 	
 	/**
-	 * »ñÈ¡»ùÓÚredis string ÊµÏÖµÄatomicCounter
+	 * è·å–åŸºäºredis string å®ç°çš„atomicCounter
 	 * @param key
 	 * @return
 	 */
 	AtomicCounter getRedisAtomicCounter(String key);
 
 	/**
-	 * »ñÈ¡redisMap£¬<b>ÒÑ¾­»º´æµ½±¾µØcache</b>
+	 * è·å–redisMapï¼Œ<b>å·²ç»ç¼“å­˜åˆ°æœ¬åœ°cache</b>
 	 * @param key
 	 * @return
 	 */

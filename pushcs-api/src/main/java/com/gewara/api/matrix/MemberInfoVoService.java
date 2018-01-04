@@ -9,35 +9,35 @@ import com.gewara.model.TrackVO;
 
 public interface MemberInfoVoService  {
 	/**
-	 * ¸ù¾İ»áÔ±ID£¬²éÑ¯Ó°¼£Êı
-	 * @param memberId »áÔ±id	 
+	 * æ ¹æ®ä¼šå‘˜IDï¼ŒæŸ¥è¯¢å½±è¿¹æ•°
+	 * @param memberId ä¼šå‘˜id	 
 	 */
 	ResultCode<Integer> getTrackCount(long memberId);
 	
 	/**
-	 * ¸ù¾İ»áÔ±IDÁĞ±í£¬²éÑ¯Ó°¼£ÊıÁĞ±í
-	 * @param memberId »áÔ±idÁĞ±í¡£	 
+	 * æ ¹æ®ä¼šå‘˜IDåˆ—è¡¨ï¼ŒæŸ¥è¯¢å½±è¿¹æ•°åˆ—è¡¨
+	 * @param memberId ä¼šå‘˜idåˆ—è¡¨ã€‚	 
 	 */
 	 ResultCode<Map<Long, Integer>> getTrackCountList(List<Long> memberIdList); 
 	
 	/**
-	 * ¸ù¾İ»áÔ±IDºÍÆğÊ¼Ó°¼£key£¬²éÑ¯ÏÂÒ»Ò³µÄÓ°¼£ÏêÇéÁĞ±í
-	 * @param memberId »áÔ±id	
-	 * @param startkey ÆğÊ¼Ó°¼£key£¬Ä¬ÈÏ×îºóÒ»Ìõ
-	 * @param pageSize Ã¿Ò³¼ÇÂ¼µÄÌõÊı£¬Ä¬ÈÏ10Ìõ	 
+	 * æ ¹æ®ä¼šå‘˜IDå’Œèµ·å§‹å½±è¿¹keyï¼ŒæŸ¥è¯¢ä¸‹ä¸€é¡µçš„å½±è¿¹è¯¦æƒ…åˆ—è¡¨
+	 * @param memberId ä¼šå‘˜id	
+	 * @param startkey èµ·å§‹å½±è¿¹keyï¼Œé»˜è®¤æœ€åä¸€æ¡
+	 * @param pageSize æ¯é¡µè®°å½•çš„æ¡æ•°ï¼Œé»˜è®¤10æ¡	 
 	 */
 	ResultCode<List<TrackVO>> getTrackListByStartkey(long memberId,String startKey,Integer pageSize);
 	
 	/**
-	 * ¸ù¾İ»áÔ±ID£¬²éÑ¯Ó°¼£ÏêÇéÁĞ±í£¨ÆúÓÃ£©
-	 * @param memberId »áÔ±id		 
+	 * æ ¹æ®ä¼šå‘˜IDï¼ŒæŸ¥è¯¢å½±è¿¹è¯¦æƒ…åˆ—è¡¨ï¼ˆå¼ƒç”¨ï¼‰
+	 * @param memberId ä¼šå‘˜id		 
 	 * 
 	 */
 	ResultCode<List<TrackVO>> getTrackDetail(long memberId);
 	
 	
 	/**
-	 * ¸ù¾İÓÃ»§id»ñÈ¡ÓÃ»§µÄ¹ÛÓ°¼ÇÂ¼,MemberViewInfo °´ playtime ´Ó½üµ½Ô¶ÅÅĞò
+	 * æ ¹æ®ç”¨æˆ·idè·å–ç”¨æˆ·çš„è§‚å½±è®°å½•,MemberViewInfo æŒ‰ playtime ä»è¿‘åˆ°è¿œæ’åº
 	 * 
 	 * @param memberid
 	 * @return
@@ -45,7 +45,7 @@ public interface MemberInfoVoService  {
 	ResultCode<MemberViewHistoryVo> getViewHistoryByMemberid(Long memberid);
 	
 	/**
-	 * ¸ù¾İÓÃ»§id»ñÈ¡ÓÃ»§µÄ¹ÛÓ°¼ÇÂ¼,MemberViewInfo °´ playtime ´Ó½üµ½Ô¶ÅÅĞò
+	 * æ ¹æ®ç”¨æˆ·idè·å–ç”¨æˆ·çš„è§‚å½±è®°å½•,MemberViewInfo æŒ‰ playtime ä»è¿‘åˆ°è¿œæ’åº
 	 * @param memberid
 	 * @param fromPlaytime
 	 * @param maxnum

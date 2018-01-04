@@ -32,42 +32,42 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
 
     private static final long      serialVersionUID = 1L;
 
-    // ����汾
+    // 锟斤拷锟斤拷姹�
     protected String               version;
 
-    // �������
+    // 锟斤拷锟斤拷锟斤拷锟�
     protected String               group;
 
-    // �����Ƿ��Ѿ�deprecated
+    // 锟斤拷锟斤拷锟角凤拷锟窖撅拷deprecated
     protected Boolean              deprecated;
 
-    // �ӳٱ�¶
+    // 锟接迟憋拷露
     protected Integer              delay;
 
-    // �Ƿ�¶
+    // 锟角凤拷露
     protected Boolean              export;
 
-    // Ȩ��
+    // 权锟斤拷
     protected Integer              weight;
 
-    // Ӧ���ĵ�
+    // 应锟斤拷锟侥碉拷
     protected String               document;
 
-    // ��ע��������ע��ɶ�̬�Ļ��Ǿ�̬�ķ���
+    // 锟斤拷注锟斤拷锟斤拷锟斤拷锟斤拷注锟斤拷啥锟教拷幕锟斤拷蔷锟教拷姆锟斤拷锟�
     protected Boolean              dynamic;
 
-    // �Ƿ�ʹ������
+    // 锟角凤拷使锟斤拷锟斤拷锟斤拷
     protected String               token;
 
-    // ������־
+    // 锟斤拷锟斤拷锟斤拷志
     protected String               accesslog;
 
-    // ����ִ��������
+    // 锟斤拷锟斤拷执锟斤拷锟斤拷锟斤拷锟斤拷
     private Integer                executes;
 
     protected List<ProtocolConfig> protocols;
 
-    // �Ƿ�ע��
+    // 锟角凤拷注锟斤拷
     private Boolean                register;
 
     public String getVersion() {

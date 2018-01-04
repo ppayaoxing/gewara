@@ -11,7 +11,7 @@ public class CreateMallOrderReq extends CreateOrderReq{
 	private Integer totalfee;
 	private Integer otherfee;
 	private Integer usedPoint;
-	private Long sdid;			//�ؼۻid
+	private Long sdid;			//锟截价活动id
 	private String category;
 	private String ukey;		
 	private String citycode;

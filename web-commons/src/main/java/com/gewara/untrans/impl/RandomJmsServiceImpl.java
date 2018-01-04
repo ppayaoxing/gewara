@@ -27,7 +27,7 @@ import com.gewara.web.support.ResourceStatsUtil;
 
 /**
  * @author ge.biao
- * ��̨jms������ѭ������
+ * 锟斤拷台jms锟斤拷锟斤拷锟斤拷循锟斤拷锟斤拷锟斤拷
  */
 public class RandomJmsServiceImpl implements JmsService, InitializingBean{
 	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
@@ -51,20 +51,20 @@ public class RandomJmsServiceImpl implements JmsService, InitializingBean{
 	public void afterPropertiesSet() {
 		Assert.isTrue(StringUtils.isNotBlank(jmsServers), "jmsServers can't be null!!");
 		//failover:(tcp://192.168.8.109:9521,tcp://192.168.8.108:9521)?randomize=false
-		//0,ȥ��failover
+		//0,去锟斤拷failover
 		int idx = jmsServers.indexOf('(');
 		if(idx>0){
 			int idx2 = jmsServers.indexOf(')');
 			jmsServers = jmsServers.substring(idx + 1, idx2);
 		}
-		//1,����
+		//1,锟斤拷锟斤拷
 		List<String> servers = new ArrayList<String>();
 		for(String server: StringUtils.split(jmsServers, ",")){
 			if(StringUtils.isNotBlank(server)){
 				servers.add(server.trim());
 			}
 		}
-		//2,���
+		//2,锟斤拷锟�
 		for(String server: servers){
 			List<String> list = new ArrayList<String>(servers);
 			list.remove(server);
@@ -166,7 +166,7 @@ public class RandomJmsServiceImpl implements JmsService, InitializingBean{
 				@Override
 				public Message createMessage(Session session) throws JMSException {
 					Message message = session.createTextMessage(msg);
-					if(delay!=null){//�ӳٷ���
+					if(delay!=null){//锟接迟凤拷锟斤拷
 						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
 					}
 					message.setStringProperty("msgtag", msgtag);
@@ -191,7 +191,7 @@ public class RandomJmsServiceImpl implements JmsService, InitializingBean{
 				@Override
 				public Message createMessage(Session session) throws JMSException {
 					MapMessage message = session.createMapMessage();
-					if(delay!=null){//�ӳٷ���
+					if(delay!=null){//锟接迟凤拷锟斤拷
 						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
 					}
 					message.setStringProperty("msgtag", msgtag);

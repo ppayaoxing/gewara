@@ -104,7 +104,7 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 			throw new MongoDataException("mongodb: id can't be null!");
 		}
 		execUpdate(BuilderUtils.prepareUpdate(bean.getClass())
-			.setCondition(new Expression().eq(idName, id))// ���null����Ҫ��bean��ȡֵ
+			.setCondition(new Expression().eq(idName, id))// 锟斤拷锟絥ull锟斤拷锟斤拷要锟斤拷bean锟斤拷取值
 			.setUpdateFirst(true).setInsert4NotFind(true).addData(beanMap));
 	}
 
@@ -125,7 +125,7 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 	
 	private Map getObjectMap(MGObject bean) {
 		Map beanMap = BeanUtil.getBeanMap(bean);
-		if(beanMap.containsKey("_id")){//�����û�ID
+		if(beanMap.containsKey("_id")){//锟斤拷锟斤拷锟矫伙拷ID
 			Object _id = BeanUtil.get(bean, "_id");
 			if(_id==null){
 				beanMap.remove("_id");
@@ -433,7 +433,7 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 	}
 
 	/**
-	 * ��ȡ���ݿ��µ�����collections�����ơ�
+	 * 锟斤拷取锟斤拷锟捷匡拷锟铰碉拷锟斤拷锟斤拷collections锟斤拷锟斤拷锟狡★拷
 	 * @return
 	 */
 	@Override
@@ -492,7 +492,7 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 		if(ub.getOtherSource()!=null && !ub.getOtherSource().isEmpty()){
 			if(data.isEmpty()){
 				data.putAll(ub.getOtherSource());
-			}else{//�ϲ�setԪ��
+			}else{//锟较诧拷set元锟斤拷
 				if(ub.getOtherSource().get("$set")!=null){
 					data.get("$set", Map.class).putAll((Map) ub.getOtherSource().remove("$set"));
 				}

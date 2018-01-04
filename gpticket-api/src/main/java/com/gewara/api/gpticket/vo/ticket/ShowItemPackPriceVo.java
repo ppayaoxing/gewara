@@ -10,19 +10,19 @@ public class ShowItemPackPriceVo extends BaseVo {
 	private static final long serialVersionUID = 6420436328856569550L;
 
 	private Long id;
-	private String name;			//Ì×Æ±Ãû³Æ
-	private String packpid;			//µÚÈı·½Ì×Æ±±àºÅ
-	private String siseq;			//³¡´ÎID(ShowItem-->siseq)
-	private String partner;			//µÚÈı·½±êÊ¶
-	private String pseqno;			//µÚÈı·½³¡´Î±àºÅ
-	private String ticketid;		//µÚÈı·½¼Û¸ñ±àºÅ
-	private Integer quantity;		//Ì×Æ±°ó¶¨Êı
-	private Integer price;			//¼Û¸ñ
-	private Integer discount;		//ÓÅ»İÕÛ¿Û
-	private Timestamp starttime;	//¿ªÊ¼Ê±¼ä
-	private Timestamp endtime;		//½áÊøÊ±¼ä
-	private String retail;			//ÊÇ·ñÁãÊÛ
-	private Long priceid;			//³¡´Î¼Û¸ñID
+	private String name;			//å¥—ç¥¨åç§°
+	private String packpid;			//ç¬¬ä¸‰æ–¹å¥—ç¥¨ç¼–å·
+	private String siseq;			//åœºæ¬¡ID(ShowItem-->siseq)
+	private String partner;			//ç¬¬ä¸‰æ–¹æ ‡è¯†
+	private String pseqno;			//ç¬¬ä¸‰æ–¹åœºæ¬¡ç¼–å·
+	private String ticketid;		//ç¬¬ä¸‰æ–¹ä»·æ ¼ç¼–å·
+	private Integer quantity;		//å¥—ç¥¨ç»‘å®šæ•°
+	private Integer price;			//ä»·æ ¼
+	private Integer discount;		//ä¼˜æƒ æŠ˜æ‰£
+	private Timestamp starttime;	//å¼€å§‹æ—¶é—´
+	private Timestamp endtime;		//ç»“æŸæ—¶é—´
+	private String retail;			//æ˜¯å¦é›¶å”®
+	private Long priceid;			//åœºæ¬¡ä»·æ ¼ID
 	private String status;
 	
 	private Timestamp addtime;

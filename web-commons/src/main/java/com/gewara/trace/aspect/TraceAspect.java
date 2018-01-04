@@ -21,8 +21,8 @@ import com.gewara.util.ObjectId;
 import com.gewara.util.WebLogger;
 
 /**
- * DTÏµÍ³AOP,½áºÏ<{@link GwTrace}>Ê¹ÓÃ
- * <br>²ÎÏê£º<hr>http://wk.gewara.com/pages/viewpage.action?pageId=19147575</hr>
+ * DTç³»ç»ŸAOP,ç»“åˆ<{@link GwTrace}>ä½¿ç”¨
+ * <br>å‚è¯¦ï¼š<hr>http://wk.gewara.com/pages/viewpage.action?pageId=19147575</hr>
  * @author quzhuping
  */
 @Component

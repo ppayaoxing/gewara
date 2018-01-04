@@ -78,13 +78,13 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
 		if (applicationContext != null) {
 		    SPRING_CONTEXT = applicationContext;
 		    try {
-	            Method method = applicationContext.getClass().getMethod("addApplicationListener", new Class<?>[]{ApplicationListener.class}); // ����Spring2.0.1
+	            Method method = applicationContext.getClass().getMethod("addApplicationListener", new Class<?>[]{ApplicationListener.class}); // 锟斤拷锟斤拷Spring2.0.1
 	            method.invoke(applicationContext, new Object[] {this});
 	            supportedApplicationListener = true;
 	        } catch (Throwable t) {
                 if (applicationContext instanceof AbstractApplicationContext) {
     	            try {
-    	                Method method = AbstractApplicationContext.class.getDeclaredMethod("addListener", new Class<?>[]{ApplicationListener.class}); // ����Spring2.0.1
+    	                Method method = AbstractApplicationContext.class.getDeclaredMethod("addListener", new Class<?>[]{ApplicationListener.class}); // 锟斤拷锟斤拷Spring2.0.1
                         if (! method.isAccessible()) {
                             method.setAccessible(true);
                         }
@@ -131,7 +131,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
             if (providerConfigMap != null && providerConfigMap.size() > 0) {
                 Map<String, ProtocolConfig> protocolConfigMap = applicationContext == null ? null  : BeanFactoryUtils.beansOfTypeIncludingAncestors(applicationContext, ProtocolConfig.class, false, false);
                 if ((protocolConfigMap == null || protocolConfigMap.size() == 0)
-                        && providerConfigMap.size() > 1) { // ���ݾɰ汾
+                        && providerConfigMap.size() > 1) { // 锟斤拷锟捷旧版本
                     List<ProviderConfig> providerConfigs = new ArrayList<ProviderConfig>();
                     for (ProviderConfig config : providerConfigMap.values()) {
                         if (config.isDefault() != null && config.isDefault().booleanValue()) {

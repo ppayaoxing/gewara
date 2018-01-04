@@ -333,7 +333,7 @@ public class AggMaker {
 	}
 
 	/**
-	 * 按照时间范围分组
+	 * 鎸夌収鏃堕棿鑼冨洿鍒嗙粍
 	 * 
 	 * @param field
 	 * @return
@@ -433,7 +433,7 @@ public class AggMaker {
 	}
 
 	/**
-	 * 构建范围查询
+	 * 鏋勫缓鑼冨洿鏌ヨ
 	 * 
 	 * @param field
 	 * @return
@@ -481,7 +481,7 @@ public class AggMaker {
 	}
 
 	/**
-	 * TOPHITS查询
+	 * TOPHITS鏌ヨ
 	 * 
 	 * @param field
 	 * @return

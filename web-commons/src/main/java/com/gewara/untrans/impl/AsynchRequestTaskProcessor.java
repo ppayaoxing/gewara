@@ -14,7 +14,7 @@ import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
 
 /**
- * �첽Servlet������
+ * 锟届步Servlet锟斤拷锟斤拷锟斤拷
  * @author gebiao(ge.biao@gewara.com)
  * @since Apr 9, 2013 2:34:31 PM
  */
@@ -26,7 +26,7 @@ public abstract class AsynchRequestTaskProcessor implements AsynchTaskProcessor<
 		HttpServletResponse res = (HttpServletResponse) actx.getResponse();
 		boolean dispatch = false;		
 		try {
-			if(task.isTimeout()){//��ʱ
+			if(task.isTimeout()){//锟斤拷时
 				processTimeout(task);
 			}else{
 				ErrorCode code = processRequest(task);
@@ -48,7 +48,7 @@ public abstract class AsynchRequestTaskProcessor implements AsynchTaskProcessor<
 			}
 		} catch (Exception e) {
 			dbLogger.warn("", e);
-			BaseWebUtils.writeJsonResponse(res, false, "���������쳣��");
+			BaseWebUtils.writeJsonResponse(res, false, "锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷");
 		} finally{
 			if(!dispatch) {
                 actx.complete();
@@ -61,7 +61,7 @@ public abstract class AsynchRequestTaskProcessor implements AsynchTaskProcessor<
 	private void processTimeout(AsynchTask task) {
 		AsyncContext actx = ((RequestAsynchTask)task).getCtx();
 		try{
-			BaseWebUtils.writeJsonResponse((HttpServletResponse) actx.getResponse(), false, "����ʱ��");
+			BaseWebUtils.writeJsonResponse((HttpServletResponse) actx.getResponse(), false, "锟斤拷锟斤拷时锟斤拷");
 		}catch (Exception e) {
 		}finally{
 			try{actx.complete();}catch(Exception e){

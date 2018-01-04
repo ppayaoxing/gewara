@@ -11,7 +11,7 @@ import com.gewara.untrans.monitor.MonitorData;
 import com.gewara.untrans.monitor.MonitorEntry;
 import com.gewara.untrans.monitor.MonitorService;
 /**
- * Í¨¹ıÏûÏ¢¶ÓÁĞÊµÏÖ
+ * é€šè¿‡æ¶ˆæ¯é˜Ÿåˆ—å®ç°
  * @author gebiao(ge.biao@gewara.com)
  * @since Feb 18, 2013 2:46:02 PM
  */
@@ -29,7 +29,7 @@ public class MonitorServiceImpl extends AbstractMonitorService implements Monito
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		//ÖØÖÃ¶ÓÁĞ£¬·ÀÖ¹ÅäÖÃÎÄ¼şÈ±Ê§¶ÓÁĞ
+		//é‡ç½®é˜Ÿåˆ—ï¼Œé˜²æ­¢é…ç½®æ–‡ä»¶ç¼ºå¤±é˜Ÿåˆ—
 		for(String queue: MonitorData.queueMap.values()){
 			monitorJmsService.addQueue(queue, false, false);
 		}

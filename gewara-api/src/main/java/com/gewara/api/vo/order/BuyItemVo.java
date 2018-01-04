@@ -11,39 +11,39 @@ public class BuyItemVo extends BaseVo {
 	private Long orderid;
 	private String checkpass;
 	private Long memberid;
-	private String tag;					//ÉÌÆ·»ò³¡´ÎÀàĞÍ
-	private Long relatedid;				//ÉÌÆ·»ò³¡´ÎID
+	private String tag;					//å•†å“æˆ–åœºæ¬¡ç±»å‹
+	private Long relatedid;				//å•†å“æˆ–åœºæ¬¡ID
 	private String goodsname;
 	private Integer quantity;
-	private Integer unitprice;			//µ¥¼Û
+	private Integer unitprice;			//å•ä»·
 	private String summary;
 	private Timestamp validtime;
 	private Timestamp addtime;
 	
-	private String bundle;				//ÊÇ·ñÔùÆ·
-	private Timestamp playtime;			//Ïû·ÑÊ±¼ä
-	private Integer costprice;			//³É±¾¼Û
-	private Integer oriprice;			//ÊĞ³¡¼Û¡¢³¡¹İ¼Û¡¢Ô­¼Û
-	private Integer totalcost;			//×Ü³É±¾¼Û
-	private Integer totalfee;			//ÉÌÆ·×Ü½ğ¶î
-	private Integer discount;			//ÉÌÆ·ÓÅ»İ
-	private String disreason;			//ÓÅ»İÀíÓÉ
-	private String placetype;			//³¡¹İÀàĞÍ
-	private Long placeid;				//³¡¹İID
-	private String itemtype;			//ÏîÄ¿ÀàĞÍ
-	private Long itemid;				//ÏîÄ¿ID
-	private String otherinfo;			//ÆäËûĞÅÏ¢
-	private String description;			//ÉÌÆ·ÃèÊö
-	private String smallitemtype;		//ÉÌÆ·Âô³ö·½Ê½(¼Û¸ñ)
-	private Long smallitemid;			//¹ØÁª¶ÔÏóID(Èç¼Û¸ñ)
-	private Long disid;					//ÓÅ»İÌ×Æ±ID
-	private Integer disfee;				//ÓÅ»İÌ×Æ±
-	private String express;				//ÊÇ·ñ¿ìµİ
+	private String bundle;				//æ˜¯å¦èµ å“
+	private Timestamp playtime;			//æ¶ˆè´¹æ—¶é—´
+	private Integer costprice;			//æˆæœ¬ä»·
+	private Integer oriprice;			//å¸‚åœºä»·ã€åœºé¦†ä»·ã€åŸä»·
+	private Integer totalcost;			//æ€»æˆæœ¬ä»·
+	private Integer totalfee;			//å•†å“æ€»é‡‘é¢
+	private Integer discount;			//å•†å“ä¼˜æƒ 
+	private String disreason;			//ä¼˜æƒ ç†ç”±
+	private String placetype;			//åœºé¦†ç±»å‹
+	private Long placeid;				//åœºé¦†ID
+	private String itemtype;			//é¡¹ç›®ç±»å‹
+	private Long itemid;				//é¡¹ç›®ID
+	private String otherinfo;			//å…¶ä»–ä¿¡æ¯
+	private String description;			//å•†å“æè¿°
+	private String smallitemtype;		//å•†å“å–å‡ºæ–¹å¼(ä»·æ ¼)
+	private Long smallitemid;			//å…³è”å¯¹è±¡ID(å¦‚ä»·æ ¼)
+	private Long disid;					//ä¼˜æƒ å¥—ç¥¨ID
+	private Integer disfee;				//ä¼˜æƒ å¥—ç¥¨
+	private String express;				//æ˜¯å¦å¿«é€’
 	
-	private Long settleid;				//½áËãÕÛ¿Û
+	private Long settleid;				//ç»“ç®—æŠ˜æ‰£
 	
 	private String fromup;
-	private Long tipid;					//Ñİ³ö³¡´Î¼Û¸ñID
+	private Long tipid;					//æ¼”å‡ºåœºæ¬¡ä»·æ ¼ID
 	
 	public BuyItemVo(){}
 	

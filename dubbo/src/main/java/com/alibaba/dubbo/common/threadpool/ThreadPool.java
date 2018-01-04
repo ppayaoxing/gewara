@@ -31,10 +31,10 @@ import com.alibaba.dubbo.common.extension.SPI;
 public interface ThreadPool {
     
     /**
-     * �̳߳�
+     * 线程池
      * 
-     * @param url �̲߳���
-     * @return �̳߳�
+     * @param url 线程参数
+     * @return 线程池
      */
     @Adaptive({Constants.THREADPOOL_KEY})
     Executor getExecutor(URL url);

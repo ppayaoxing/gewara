@@ -4,10 +4,10 @@ import com.gewara.api.vo.ResultCode;
 
 public interface PartnerPsbcappVoService {
 	/**
-	 * ÑéÖ¤ÓÊ´¢ÒøĞĞ¶©µ¥
+	 * éªŒè¯é‚®å‚¨é“¶è¡Œè®¢å•
 	 * 
-	 * @param userid   ºÏ×÷ÉÌ¶©µ¥ÓÃ»§Î¨Ò»±êÊ¶
-	 * @param seatcount ×ùÎ»Êı
+	 * @param userid   åˆä½œå•†è®¢å•ç”¨æˆ·å”¯ä¸€æ ‡è¯†
+	 * @param seatcount åº§ä½æ•°
 	 * @return
 	 */
 	ResultCode<Boolean> validPsbcappOrder(String userid, Integer seatcount);

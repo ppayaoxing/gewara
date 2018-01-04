@@ -8,93 +8,93 @@ import com.gewara.api.vo.pay.OtherFeeDetailVo;
 public interface OrderOperationService {
 	
 	/**
-	 * ´´½¨ÎïÆ·¶©µ¥
-	 * @param req ²»¿ÉÒÔÎª¿Õ
+	 * åˆ›å»ºç‰©å“è®¢å•
+	 * @param req ä¸å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê8ÔÂ3ÈÕÏÂÎç5:32:42
+	 * @addTime 2016å¹´8æœˆ3æ—¥ä¸‹åˆ5:32:42
 	 */
 	ResultCode<GewaOrderVo> createGoodsOrder(CreateGoodsOrderReq req);
 	
 	/**
-	 * ±£´æ¿ìµİ·ÑĞÅÏ¢
-	 * @param orderid ²»¿ÉÒÔÎª¿Õ
-	 * @param otherfee ²»¿ÉÒÔÎª¿Õ
-	 * @param expressPrice ²»¿ÉÒÔÎª¿Õ,¿ìµİ·Ñ
-	 * @param express ²»¿ÉÒÔÎª¿Õ
-	 * @param otherFeeDetail ²»¿ÉÒÔÎª¿Õ
+	 * ä¿å­˜å¿«é€’è´¹ä¿¡æ¯
+	 * @param orderid ä¸å¯ä»¥ä¸ºç©º
+	 * @param otherfee ä¸å¯ä»¥ä¸ºç©º
+	 * @param expressPrice ä¸å¯ä»¥ä¸ºç©º,å¿«é€’è´¹
+	 * @param express ä¸å¯ä»¥ä¸ºç©º
+	 * @param otherFeeDetail ä¸å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê8ÔÂ3ÈÕÏÂÎç5:32:56
+	 * @addTime 2016å¹´8æœˆ3æ—¥ä¸‹åˆ5:32:56
 	 */
 	ResultCode<OtherFeeDetailVo> saveExpressFee(Long orderid, int otherfee, int expressPrice, String express, OtherFeeDetailVo otherFeeDetail);
 	
 	/**
-	 * Drama,ÍÅÏú¶©µ¥
-	 * ÎïÆ·Æ´ÍÅ¹ºÂò£¬ÍÅÏúÊ±£¬ÉèÖÃ¿ìµİexpress
+	 * Drama,å›¢é”€è®¢å•
+	 * ç‰©å“æ‹¼å›¢è´­ä¹°ï¼Œå›¢é”€æ—¶ï¼Œè®¾ç½®å¿«é€’express
 	 * 
 	 * @param orderid
 	 * @param express
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê8ÔÂ3ÈÕÏÂÎç6:23:29
+	 * @addTime 2016å¹´8æœˆ3æ—¥ä¸‹åˆ6:23:29
 	 */
 	ResultCode changeDramaPreTypeTExpress(Long orderid, String express);
 	
 
 	/**
-	 * Çå³ı¿ìµİĞÅÏ¢
-	 * @param orderId ²»¿ÉÒÔÎª¿Õ
-	 * @param takemethodID ¿ÉÒÔÎª¿Õ
-	 * @param express ¿ÉÒÔÎª¿Õ
-	 * @param otherfee ¿ÉÒÔÎª¿Õ£¬´óÓÚµÈ0Ê±£¬ĞŞ¸Ä
-	 * @param otherFeeDetailId ¿ÉÒÔÎª¿Õ
+	 * æ¸…é™¤å¿«é€’ä¿¡æ¯
+	 * @param orderId ä¸å¯ä»¥ä¸ºç©º
+	 * @param takemethodID å¯ä»¥ä¸ºç©º
+	 * @param express å¯ä»¥ä¸ºç©º
+	 * @param otherfee å¯ä»¥ä¸ºç©ºï¼Œå¤§äºç­‰0æ—¶ï¼Œä¿®æ”¹
+	 * @param otherFeeDetailId å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê8ÔÂ4ÈÕÏÂÎç2:20:19
+	 * @addTime 2016å¹´8æœˆ4æ—¥ä¸‹åˆ2:20:19
 	 */
 	ResultCode clearExpressFee(Long orderId, String takemethodID, String express, int otherfee, Long otherFeeDetailId);
 	
 	/**
-	 * ´¦ÀíºÏ×÷ÉÌÖ§¸¶½á¹ûÍ¨Öª
-	 * @param appkey ºÏ×÷ÉÌkey
-	 * @param partnerServerIp ºÏ×÷ÉÌIP
+	 * å¤„ç†åˆä½œå•†æ”¯ä»˜ç»“æœé€šçŸ¥
+	 * @param appkey åˆä½œå•†key
+	 * @param partnerServerIp åˆä½œå•†IP
 	 * @param tradeno
 	 * @param paidAmount
 	 * @param payseqno
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê8ÔÂ8ÈÕÏÂÎç2:26:57
+	 * @addTime 2016å¹´8æœˆ8æ—¥ä¸‹åˆ2:26:57
 	 */
 	ResultCode partnerPayNotify(String appkey, String partnerServerIp, String tradeno, String paidAmount, String payseqno);
 	
 	/**
-	 * Èç¹û¶©µ¥×´Ì¬ÊÇSTATUS_NEW£¬½«ĞŞ¸Ä³ÉSTATUS_NEW_CONFIRM</br>
-	 * Í¬Ê±ĞŞ¸ÄpayMethodÎªgewaPay
+	 * å¦‚æœè®¢å•çŠ¶æ€æ˜¯STATUS_NEWï¼Œå°†ä¿®æ”¹æˆSTATUS_NEW_CONFIRM</br>
+	 * åŒæ—¶ä¿®æ”¹payMethodä¸ºgewaPay
 	 * @param orderid
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê9ÔÂ5ÈÕÏÂÎç16:05:32
+	 * @addTime 2016å¹´9æœˆ5æ—¥ä¸‹åˆ16:05:32
 	 */
 	ResultCode gewaPayToConfirm(Long orderid);
 	
 	/**
-	 * ÍËµçÓ°Æ±
+	 * é€€ç”µå½±ç¥¨
 	 * 
 	 * @param tradeNo
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê9ÔÂ12ÈÕÉÏÎç10:49:33
+	 * @addTime 2016å¹´9æœˆ12æ—¥ä¸Šåˆ10:49:33
 	 */
 	ResultCode cancelRemoteTicket(String tradeNo);
 	
 	/**
-	 * É¾³ıµçÓ°¶©µ¥BuyItem
+	 * åˆ é™¤ç”µå½±è®¢å•BuyItem
 	 * @param memberid
 	 * @param itemid
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê9ÔÂ12ÈÕÏÂÎç2:32:10
+	 * @addTime 2016å¹´9æœˆ12æ—¥ä¸‹åˆ2:32:10
 	 */
 	ResultCode<GewaOrderVo> removeTicketOrderBuyItem(Long memberid, Long itemid);
 }

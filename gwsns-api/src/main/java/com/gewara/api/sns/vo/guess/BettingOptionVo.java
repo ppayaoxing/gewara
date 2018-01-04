@@ -5,17 +5,17 @@ import java.sql.Timestamp;
 
 import com.gewara.api.vo.BaseVo;
 /**
- * 猜票房投注选项  
+ * 鐚滅エ鎴挎姇娉ㄩ�夐」  
  *
  */
 public class BettingOptionVo extends BaseVo{
 	private static final long serialVersionUID = -3353254174148150236L;
-	private Long id;//主键
-	private String body; //内容
-	private String status;// 状态Y_NEW --新建     N_DELETE --删除
-	private Long relatedid; //设置id
-	private Integer orderNum;//排序序号
-	private Timestamp addtime; //添加时间
+	private Long id;//涓婚敭
+	private String body; //鍐呭
+	private String status;// 鐘舵�乊_NEW --鏂板缓     N_DELETE --鍒犻櫎
+	private Long relatedid; //璁剧疆id
+	private Integer orderNum;//鎺掑簭搴忓彿
+	private Timestamp addtime; //娣诲姞鏃堕棿
 
 	public Long getId() {
 		return id;

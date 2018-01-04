@@ -12,42 +12,42 @@ import com.gewara.api.vo.draw.WinnerInfoVo;
 public interface DrawActivityVoService {
 	
 	/**
-	 * ²éÑ¯³é½±»î¶¯
+	 * æŸ¥è¯¢æŠ½å¥–æ´»åŠ¨
 	 * @param param
 	 * @return
 	 */
 	ResultCode<List<DrawActivityVo>> getDrawActivityList(ParamsVo param);
 	
 	/**
-	 * ¸ù¾İ²»Í¬»î¶¯ĞÅÏ¢£¬½±Æ·ÀàĞÍ£¬²éÑ¯»ñ½±ĞÅÏ¢
+	 * æ ¹æ®ä¸åŒæ´»åŠ¨ä¿¡æ¯ï¼Œå¥–å“ç±»å‹ï¼ŒæŸ¥è¯¢è·å¥–ä¿¡æ¯
 	 * @param param
 	 * @return
 	 */
 	ResultCode<List<WinnerInfoVo>> getWinnerList(ParamsVo param);
 	
 	/**
-	 * ¸ù¾İ²»Í¬»î¶¯ĞÅÏ¢£¬½±Æ·ÀàĞÍ£¬²éÑ¯»ñ½±ĞÅÏ¢ÊıÁ¿
+	 * æ ¹æ®ä¸åŒæ´»åŠ¨ä¿¡æ¯ï¼Œå¥–å“ç±»å‹ï¼ŒæŸ¥è¯¢è·å¥–ä¿¡æ¯æ•°é‡
 	 * @param param
 	 * @return
 	 */
 	ResultCode<Integer> getWinnerCount(ParamsVo param);
 	
 	/**
-	 * »ñÈ¡½±Æ·ÁĞ±í
+	 * è·å–å¥–å“åˆ—è¡¨
 	 * @param prizeIdList
 	 * @return
 	 */
 	ResultCode<List<PrizeVo>> getPrizeByList(List<Long> prizeIdList);
 	
 	/**
-	 * ¸ù¾İÖ÷¼ü»ñÈ¡»î¶¯
+	 * æ ¹æ®ä¸»é”®è·å–æ´»åŠ¨
 	 * @param activityId
 	 * @return
 	 */
 	ResultCode<DrawActivityVo> getDrawActivityById(Long activityId);
 	
 	/**
-	 * ¼ÆËã»ñ½±¸ÅÂÊ
+	 * è®¡ç®—è·å¥–æ¦‚ç‡
 	 * @param drawActivityId
 	 * @param memberid
 	 * @return
@@ -55,7 +55,7 @@ public interface DrawActivityVoService {
 	ResultCode<Integer> getCurChanceNum(Long drawActivityId, Long memberid);
 	
 	/**
-	 * ²éÑ¯µ±Ç°ÓÃ»§£¬ÔÚÕâ¸ö»î¶¯ÖĞÑûÇëµÄÈËÊı
+	 * æŸ¥è¯¢å½“å‰ç”¨æˆ·ï¼Œåœ¨è¿™ä¸ªæ´»åŠ¨ä¸­é‚€è¯·çš„äººæ•°
 	 * @param param
 	 * @return
 	 */
@@ -66,7 +66,7 @@ public interface DrawActivityVoService {
 	ResultCode<String> clickDraw(Long memberid, String tag, String source, String pricategory, String citycode, String pointxy, String ip);
 	
 	/**
-	 * ³é½±¼Ó´ÎÊıÏŞÖÆ
+	 * æŠ½å¥–åŠ æ¬¡æ•°é™åˆ¶
 	 * @param memberid
 	 * @param tag
 	 * @param source
@@ -81,7 +81,7 @@ public interface DrawActivityVoService {
 	ResultCode<String> clickDrawWithCountControl(Long memberid, String tag, String source, String pricategory, String citycode, String pointxy, String ip, boolean isMaxCount, Integer dayCount);
 
 	/**
-	 * ·ÇµÇÂ¼ÓÃ»§£¬ÊÖ»úºÅ³é½±£¨ºÏ×÷ÉÌÓÃ£©
+	 * éç™»å½•ç”¨æˆ·ï¼Œæ‰‹æœºå·æŠ½å¥–ï¼ˆåˆä½œå•†ç”¨ï¼‰
 	 * @param da
 	 * @param mobile
 	 * @param ip
@@ -90,24 +90,24 @@ public interface DrawActivityVoService {
 	ResultCode<String> clickDrawByMobile(String mobile, String tag, String source, String pricategory, String ip);
 	
 	/**
-	 * ¸ù¾İÊÖ»úºÅÂëÁìÈ¯(ÓÃ»§¿ÉÒÔ²»µÇÂ¼»ò²»ÊÇÎÒÃÇÏµÍ³µÄÓÃ»§):
-	 * 1:Èç¹ûoldUserTagºÍnewUserTag¶¼²»Îª¿Õ,ÔòËµÃ÷ÓĞÁ½¸ö½±³Ø,ĞÂÀÏÓÃ»§×ß²»Í¬µÄ½±³Ø
-	 * 2:Èç¹ûoldUserTagÎª¿Õ,newUserTag²»Îª¿Õ,Ôò±íÊ¾Ö»ÔÊĞíĞÂÓÃ»§³é½±
-	 * 3:Èç¹ûoldUserTagÎª¿Õ,newUserTagÎª¿Õ,²»ºÏ·¨
-	 * 4:Èç¹ûoldUserTag²»Îª¿Õ,newUserTagÎª¿Õ,Ôò±íÊ¾ĞÂÀÏÓÃ»§×ßÒ»¸ö½±³Ø,²¢²»ÊÇËµ²»ÔÊĞíĞÂÓÃ»§³é½±(´ËÊ±Ó¦¸Ãµ÷ÓÃÉÏÃæµÄ³é½±·½·¨)
+	 * æ ¹æ®æ‰‹æœºå·ç é¢†åˆ¸(ç”¨æˆ·å¯ä»¥ä¸ç™»å½•æˆ–ä¸æ˜¯æˆ‘ä»¬ç³»ç»Ÿçš„ç”¨æˆ·):
+	 * 1:å¦‚æœoldUserTagå’ŒnewUserTagéƒ½ä¸ä¸ºç©º,åˆ™è¯´æ˜æœ‰ä¸¤ä¸ªå¥–æ± ,æ–°è€ç”¨æˆ·èµ°ä¸åŒçš„å¥–æ± 
+	 * 2:å¦‚æœoldUserTagä¸ºç©º,newUserTagä¸ä¸ºç©º,åˆ™è¡¨ç¤ºåªå…è®¸æ–°ç”¨æˆ·æŠ½å¥–
+	 * 3:å¦‚æœoldUserTagä¸ºç©º,newUserTagä¸ºç©º,ä¸åˆæ³•
+	 * 4:å¦‚æœoldUserTagä¸ä¸ºç©º,newUserTagä¸ºç©º,åˆ™è¡¨ç¤ºæ–°è€ç”¨æˆ·èµ°ä¸€ä¸ªå¥–æ± ,å¹¶ä¸æ˜¯è¯´ä¸å…è®¸æ–°ç”¨æˆ·æŠ½å¥–(æ­¤æ—¶åº”è¯¥è°ƒç”¨ä¸Šé¢çš„æŠ½å¥–æ–¹æ³•)
 	 * @see clickDrawByMobile(mobile, tag, source, pricategory, ip)
 	 * @param mobile
-	 * @param oldUserTag ÀÏÓÃ»§³é½±±êÇ©,Èç¹û²»Çø±ğĞÂÀÏÓÃ»§,ÔòÊÇ³é½±±êÇ©.
+	 * @param oldUserTag è€ç”¨æˆ·æŠ½å¥–æ ‡ç­¾,å¦‚æœä¸åŒºåˆ«æ–°è€ç”¨æˆ·,åˆ™æ˜¯æŠ½å¥–æ ‡ç­¾.
 	 * @param source
 	 * @param pricategory
 	 * @param ip
-	 * @param newUserTag Èç¹ûÇø·ÖĞÂÀÏÓÃ»§,ÔòÕâ¸ö±ØÌî
+	 * @param newUserTag å¦‚æœåŒºåˆ†æ–°è€ç”¨æˆ·,åˆ™è¿™ä¸ªå¿…å¡«
 	 * @return
 	 */
 	ResultCode<String> clickDrawByMobileWithTag(String mobile, String oldUserTag, String source, String pricategory, String ip, String newUserTag);
 
 	/**
-	 * goods¶©µ¥×Ô¶¯³é½±
+	 * goodsè®¢å•è‡ªåŠ¨æŠ½å¥–
 	 * @param tradeno
 	 * @param tag
 	 * @param remoteIp
@@ -118,7 +118,7 @@ public interface DrawActivityVoService {
 	ResultCode<List<Map>> getWinnerInfoList(String tag, String prizeType, String prizeOtype, int from, int maxnum);
 
 	/**
-	 * ¸ù¾İºÏ×÷ÉÌÎ¨Ò»±êÊ¶partnerUkey³é½±(ÆÖ·¢)
+	 * æ ¹æ®åˆä½œå•†å”¯ä¸€æ ‡è¯†partnerUkeyæŠ½å¥–(æµ¦å‘)
 	 * @param mobile
 	 * @param tag
 	 * @param source
@@ -128,7 +128,7 @@ public interface DrawActivityVoService {
 	ResultCode<PrizeVo> clickDrawByPartnerUkeyPufa(String partnerUkey, String tag, String source, String ip);
 	
 	/**
-	 * ¸ù¾İºÏ×÷ÉÌÎ¨Ò»±êÊ¶partnerUkey³é½±
+	 * æ ¹æ®åˆä½œå•†å”¯ä¸€æ ‡è¯†partnerUkeyæŠ½å¥–
 	 * @param mobile
 	 * @param tag
 	 * @param source
@@ -138,7 +138,7 @@ public interface DrawActivityVoService {
 	ResultCode<PrizeVo> clickDrawByPartnerUkey(String partnerUkey, String tag, String source, String ip);
 
 	/**
-	 * ¸ù¾İwinnerinfoºÍpartnerukey¸ø°Ñ½±Æ·¸øÖ¸¶¨µÄÊÖ»úºÅ,memberid¿ÉÒÔÎª¿Õ
+	 * æ ¹æ®winnerinfoå’Œpartnerukeyç»™æŠŠå¥–å“ç»™æŒ‡å®šçš„æ‰‹æœºå·,memberidå¯ä»¥ä¸ºç©º
 	 * @param winnerInfoId
 	 * @param partnerUkey
 	 * @param mobile
@@ -148,7 +148,7 @@ public interface DrawActivityVoService {
 	
 	
 	/**
-	 * ±£´æ³é½±ÓÃ»§µÄÉè±¸ĞÅÏ¢
+	 * ä¿å­˜æŠ½å¥–ç”¨æˆ·çš„è®¾å¤‡ä¿¡æ¯
 	 * 
 	 * @param deviceId
 	 * @param imei
@@ -161,17 +161,17 @@ public interface DrawActivityVoService {
 	ResultCode<String> saveDrawDeviceInfo(String deviceId, String imei, String tag, String memberid, String mobile, String appSource);
 	
 	/**
-	 * °ó¶¨È¯
+	 * ç»‘å®šåˆ¸
 	 * @param memberid
-	 * @param cardNo  ºÃÏñÃ»ÓÃ
+	 * @param cardNo  å¥½åƒæ²¡ç”¨
 	 * @param cardPass
 	 * @param ip
-	 * @param costPoint ÏûºÄ¶àÉÙ»ı·Ö£¬<=0»ònull±íÊ¾²»ÏûºÄ»ı·Ö
+	 * @param costPoint æ¶ˆè€—å¤šå°‘ç§¯åˆ†ï¼Œ<=0æˆ–nullè¡¨ç¤ºä¸æ¶ˆè€—ç§¯åˆ†
 	 * @return
 	 */
 	ResultCode<String> bindECard(Long memberId, String cardNo, String cardPass, String ip, Integer costPoint);
 	/**
-	 * ÁìÈ¡½ÚÈÕºì°ü
+	 * é¢†å–èŠ‚æ—¥çº¢åŒ…
 	 * @param drawid
 	 * @param memberid
 	 * @return
@@ -180,14 +180,14 @@ public interface DrawActivityVoService {
 	
 	
 	/**
-	 * ¸ù¾İtag»ñÈ¡»î¶¯
+	 * æ ¹æ®tagè·å–æ´»åŠ¨
 	 * @param tag
 	 * @return
 	 */
 	ResultCode<DrawActivityVo> getDrawActivityByTag(String tag);
 	
 	/**
-	 * »ñÈ¡ÓÃ»§Ê£Óà³é½±´ÎÊı(¸ù¾İ»î¶¯ÅäÖÃÏîÄ¿Êı¾İ)
+	 * è·å–ç”¨æˆ·å‰©ä½™æŠ½å¥–æ¬¡æ•°(æ ¹æ®æ´»åŠ¨é…ç½®é¡¹ç›®æ•°æ®)
 	 * @param tag 
 	 * @param memberEncode
 	 * @param remoteIp
@@ -196,7 +196,7 @@ public interface DrawActivityVoService {
 	ResultCode<String> getDrawAllowNumber(String tag, Long memberid, String remoteIp);
 	
 	/**
-	 * ¸ù¾İ¹ºÆ±ÀàĞÍÀàĞÍ²éÑ¯³é½±»î¶¯
+	 * æ ¹æ®è´­ç¥¨ç±»å‹ç±»å‹æŸ¥è¯¢æŠ½å¥–æ´»åŠ¨
 	 * @param tickettype
 	 * @return
 	 */

@@ -16,42 +16,42 @@ public class CreateDramaOrderReq extends CreateOrderReq {
 	public static String OPENTYPE_AUTO = "auto";
 	public static String OPENTYPE_MULTI_PRICE = "multiPrice";
 
-	//Ñ¡×ù
-	private Long areaid;				//ÇøÓòID
-	private Long disid;					//Ì×Æ±ID
-	private String seatLabel;			//×ùÎ»ĞÅÏ¢
-	//¼Û¸ñ
-	private Long priceid;				//¼Û¸ñID
-	private Integer quantity;			//ÊıÁ¿
-	private String pricelist;			//¼Û¸ñĞÅÏ¢[{}]
+	//é€‰åº§
+	private Long areaid;				//åŒºåŸŸID
+	private Long disid;					//å¥—ç¥¨ID
+	private String seatLabel;			//åº§ä½ä¿¡æ¯
+	//ä»·æ ¼
+	private Long priceid;				//ä»·æ ¼ID
+	private Integer quantity;			//æ•°é‡
+	private String pricelist;			//ä»·æ ¼ä¿¡æ¯[{}]
 	
-	private String openType; 			//ÏÂµ¥ÀàĞÍ£¨seatÑ¡×ù£¬price¼Û¸ñ£¬multiPrice¶à¼Û¸ñ£©
-	private Long partnerId; 			//ºÏ×÷ÉÌID
+	private String openType; 			//ä¸‹å•ç±»å‹ï¼ˆseaté€‰åº§ï¼Œpriceä»·æ ¼ï¼ŒmultiPriceå¤šä»·æ ¼ï¼‰
+	private Long partnerId; 			//åˆä½œå•†ID
 	private String briefName;
-	private String ukey;				//ºÏ×÷ÉÌÓÃ»§Î¨Ò»±êÊ¶
-	private String nickName;			//ÓÃ»§êÇ³Æ
-	private String spkey; 				// À´×ÔÌØ¼Û»î¶¯
-	private String origin; 				// ÏÂµ¥À´Ô´
-	private String mobile; 				// ÏÂµ¥ÊÖ»úºÅ
-	private String idcard; 				// Éí·İÖ¤
-	private Integer orderPrice;      //ÏÂµ¥×Ü¼Û¸ñ
-	private boolean checkIdcard = true; // ÑéÖ¤Éí·İÖ¤ĞÅÏ¢
+	private String ukey;				//åˆä½œå•†ç”¨æˆ·å”¯ä¸€æ ‡è¯†
+	private String nickName;			//ç”¨æˆ·æ˜µç§°
+	private String spkey; 				// æ¥è‡ªç‰¹ä»·æ´»åŠ¨
+	private String origin; 				// ä¸‹å•æ¥æº
+	private String mobile; 				// ä¸‹å•æ‰‹æœºå·
+	private String idcard; 				// èº«ä»½è¯
+	private Integer orderPrice;      //ä¸‹å•æ€»ä»·æ ¼
+	private boolean checkIdcard = true; // éªŒè¯èº«ä»½è¯ä¿¡æ¯
 	private String userType;
 	private Long privilegeMemberid;
-	private String greetings;			//×Ô¶¨ÒåÆ±Ö½ÄÚÈİ
-	private Integer percent;			//crmÓÅ»İÕÛ¿ÛÎŞÓÅ»İÎª100,¾ÅÕÛÎª90
-	private String bindMobile;			//ÓÃ»§°ó¶¨ÊÖ»ú
-	private String supperseller;		//Ö§³Ö»òÅÅ³ıµÄ³¡´ÎÀàĞÍ
-	private String include;				//³¡´ÎÀàĞÍÌõ¼şY°üº¬/NÅÅ³ı
+	private String greetings;			//è‡ªå®šä¹‰ç¥¨çº¸å†…å®¹
+	private Integer percent;			//crmä¼˜æƒ æŠ˜æ‰£æ— ä¼˜æƒ ä¸º100,ä¹æŠ˜ä¸º90
+	private String bindMobile;			//ç”¨æˆ·ç»‘å®šæ‰‹æœº
+	private String supperseller;		//æ”¯æŒæˆ–æ’é™¤çš„åœºæ¬¡ç±»å‹
+	private String include;				//åœºæ¬¡ç±»å‹æ¡ä»¶YåŒ…å«/Næ’é™¤
 	
-	private String takemethod;			//È¡Æ±·½Ê½
-	private Long userAddressid;			//ÓÃ»§µØÖ·
-	private UserAddressReqVo addressReq;//¿ìµİµØÖ·£¨ºÏ×÷ÉÌÓÃ£©
+	private String takemethod;			//å–ç¥¨æ–¹å¼
+	private Long userAddressid;			//ç”¨æˆ·åœ°å€
+	private UserAddressReqVo addressReq;//å¿«é€’åœ°å€ï¼ˆåˆä½œå•†ç”¨ï¼‰
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~from odi~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
 	private boolean booking = true;
 	private Long dpid;
-	private Long configid;				//configidºÏ×÷ÉÌÏÂµ¥ÓÃ
+	private Long configid;				//configidåˆä½œå•†ä¸‹å•ç”¨
 	
 	public CreateDramaOrderReq(){
 		

@@ -16,110 +16,110 @@ import com.gewara.movie.vo.baochang.BaoChangOrderInfoVo;
 public interface BaoChangVoService {
 	
 	/**
-	 * ²éÑ¯°ü³¡Ó°ÔºĞÅÏ¢
+	 * æŸ¥è¯¢åŒ…åœºå½±é™¢ä¿¡æ¯
 	 * @return
 	 */
 	ResultCode<List<BaoChangCinemaInfoVo>> getBaoChangCinemaInfoList();
 	/**
-	 * ¸ù¾İÓ°ÔºID£¬²éÑ¯¸ÃÓ°ÔºÏÂÃæ¿ÉÒÔ°ü³¡µÄÓ°Ìü
+	 * æ ¹æ®å½±é™¢IDï¼ŒæŸ¥è¯¢è¯¥å½±é™¢ä¸‹é¢å¯ä»¥åŒ…åœºçš„å½±å…
 	 * @param cinemaid
 	 * @return
 	 */
 	ResultCode<List<BaoChangCinemaRoomInfoVo>> getBaoChangCinemaRoomListByCinemaid(Long cinemaid);
 	/**
-	 * ²éÑ¯°ü³¡Ó°ÌüĞÅÏ¢
+	 * æŸ¥è¯¢åŒ…åœºå½±å…ä¿¡æ¯
 	 * @param cinemaid
 	 * @param roomid
 	 * @return
 	 */
 	ResultCode<BaoChangCinemaRoomInfoVo> getBaoChangCinemaRoomListByCinemaidAndRoomid(Long cinemaid, Long roomid);
 	/**
-	 * ¸ù¾İÓ°ÔºID£¬²éÑ¯°ü³¡³¡´Î
+	 * æ ¹æ®å½±é™¢IDï¼ŒæŸ¥è¯¢åŒ…åœºåœºæ¬¡
 	 * @param cinemaid
 	 * @return
 	 */
 	ResultCode<List<BaoChangMpiInfoVo>> getBaoChangMpiInfoListByCinemaId(Long cinemaid);
 	/**
-	 * ¸ù¾İÓ°Ôºid£¬²éÑ¯°ü³¡¶©µ¥ĞÅÏ¢
+	 * æ ¹æ®å½±é™¢idï¼ŒæŸ¥è¯¢åŒ…åœºè®¢å•ä¿¡æ¯
 	 * @param cinemaid
 	 * @return
 	 */
 	ResultCode<List<BaoChangOrderInfoVo>> getBaoChangOrderInfoListByCinemaid(Long cinemaid);
 	/**
-	 * ¸ù¾İ°ü³¡¶©µ¥id£¬²éÑ¯±£µ¥¶©µ¥ĞÅÏ¢
+	 * æ ¹æ®åŒ…åœºè®¢å•idï¼ŒæŸ¥è¯¢ä¿å•è®¢å•ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
 	ResultCode<BaoChangOrderInfoVo> getBaoChangOrderInfoById(Long id);
 	/**
-	 * ¸ù¾İtag£¬²éÑ¯°ü³¡¶ÌĞÅÄ£°æ
+	 * æ ¹æ®tagï¼ŒæŸ¥è¯¢åŒ…åœºçŸ­ä¿¡æ¨¡ç‰ˆ
 	 * @param tag
 	 * @return
 	 */
 	ResultCode<String> getBaoChangMsgTemplate(String tag, String mobileType);
 	/**
-	 * ¸ù¾İtag£¬²éÑ¯°ü³¡¶ÌĞÅÄ£°æĞÅÏ¢
+	 * æ ¹æ®tagï¼ŒæŸ¥è¯¢åŒ…åœºçŸ­ä¿¡æ¨¡ç‰ˆä¿¡æ¯
 	 * @param tag
 	 * @return
 	 */
 	ResultCode<BaoChangMsgContentVo> getBaoChangMsgContentByTag(String tag, String mobileType);
 	/**
-	 * ²éÑ¯°ü³¡¼Û¸ñĞÅÏ¢£¬
-	 * µ±mpidÎª¿ÕÊ±£¬²éÑ¯BaoChangCinemaRoomInfo£¨Ó°Ìü¼Û¸ñ£©
-	 * ²»Îª¿ÕÊ±£¬²éÑ¯BaoChangMpiInfo£¨³¡´Î¼Û¸ñ£©
+	 * æŸ¥è¯¢åŒ…åœºä»·æ ¼ä¿¡æ¯ï¼Œ
+	 * å½“mpidä¸ºç©ºæ—¶ï¼ŒæŸ¥è¯¢BaoChangCinemaRoomInfoï¼ˆå½±å…ä»·æ ¼ï¼‰
+	 * ä¸ä¸ºç©ºæ—¶ï¼ŒæŸ¥è¯¢BaoChangMpiInfoï¼ˆåœºæ¬¡ä»·æ ¼ï¼‰
 	 * @param cinemaid
 	 * @param roomid
-	 * @param mpid ¿ÉÒÔÎª¿Õ
+	 * @param mpid å¯ä»¥ä¸ºç©º
 	 * @return
 	 */
 	ResultCode<BaoChangBasePriceInfoVo> getBaoChangPriceInfo(Long cinemaid, Long roomid, Long mpid);
 	/**
-	 * ´´½¨°ü³¡¶©µ¥ĞÅÏ¢
+	 * åˆ›å»ºåŒ…åœºè®¢å•ä¿¡æ¯
 	 * @param req
 	 * @return
 	 */
 	ResultCode<BaoChangOrderInfoVo> createBaoChangOrderInfo(BaoChangOrderInfoReq req);
 	/**
-	 * È¡Ïû°ü³¡¶©µ¥ĞÅÏ¢
+	 * å–æ¶ˆåŒ…åœºè®¢å•ä¿¡æ¯
 	 * @param req
 	 * @return
 	 */
 	ResultCode<List<BaoChangOrderInfoVo>> cancelBaoChangOrderInfo(BaoChangOrderInfoReq req);
 	/**
-	 * ÍË¿î°ü³¡¶©µ¥
+	 * é€€æ¬¾åŒ…åœºè®¢å•
 	 * @param req
 	 * @return
 	 */
 	ResultCode<List<BaoChangOrderInfoVo>> refundBaoChangOrderInfo(BaoChangOrderInfoReq req);
 	/**
-	 * ÏÂµ¥Ëø¶¨°ü³¡³¡´Î
+	 * ä¸‹å•é”å®šåŒ…åœºåœºæ¬¡
 	 * @param cinemaid
 	 * @param mpid
 	 * @return
 	 */
 	ResultCode<BaoChangMpiInfoVo> lockBaoChangMpi(Long cinemaid, Long mpid);
 	/**
-	 * È¡ÏûËø¶¨³¡´Î
+	 * å–æ¶ˆé”å®šåœºæ¬¡
 	 * @param cinemaid
 	 * @param mpid
 	 * @return
 	 */
 	ResultCode<BaoChangMpiInfoVo> unlockBaoChangMpi(Long cinemaid, Long mpid);
 	/**
-	 * ½»Ò×³É¹¦£¬¸üĞÂ³¡´Î×´Ì¬
+	 * äº¤æ˜“æˆåŠŸï¼Œæ›´æ–°åœºæ¬¡çŠ¶æ€
 	 * @param cinemaid
 	 * @param mpid
 	 * @return
 	 */
 	ResultCode<BaoChangMpiInfoVo> setBaoChangMpiSeccuss(Long cinemaid, Long mpid);
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯£¬°ü³¡¶©µ¥ĞÅÏ¢
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢ï¼ŒåŒ…åœºè®¢å•ä¿¡æ¯
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<BaoChangOrderInfoVo> getBaoChangOrderInfoByTradeNo(String tradeNo);
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯£¬°ü³¡¶©µ¥ĞÅÏ¢£¨Ğ£Ñé¶©µ¥£©
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢ï¼ŒåŒ…åœºè®¢å•ä¿¡æ¯ï¼ˆæ ¡éªŒè®¢å•ï¼‰
 	 * @param tradeNo
 	 * @param memberEncode
 	 * @param remoteIp
@@ -127,44 +127,44 @@ public interface BaoChangVoService {
 	 */
 	ResultCode<BaoChangOrderInfoVo> getBaoChangOrderInfo(String tradeNo, String memberEncode, String remoteIp);
 	/**
-	 * ½»Ò×³É¹¦£¬ÉèÖÃ°ü³¡ĞÅÏ¢×´Ì¬
+	 * äº¤æ˜“æˆåŠŸï¼Œè®¾ç½®åŒ…åœºä¿¡æ¯çŠ¶æ€
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<BaoChangOrderInfoVo> setBaoChangOrderPaidSuccess(String tradeNo);
 	/**
-	 * ²éÑ¯°ü³¡ÈË½»Ò×³É¹¦¶ÌĞÅ¡¢pushÄÚÈİ
+	 * æŸ¥è¯¢åŒ…åœºäººäº¤æ˜“æˆåŠŸçŸ­ä¿¡ã€pushå†…å®¹
 	 * @return
 	 */
 	ResultCode<Map<String, String>> getBaoChangMsgMap(Map<String, String> dataMap, String sendType);
 	/**
-	 * ¸ù¾İ³¡´ÎID£¬²éÑ¯Ö§¸¶³É¹¦¶©µ¥ĞÅÏ¢
+	 * æ ¹æ®åœºæ¬¡IDï¼ŒæŸ¥è¯¢æ”¯ä»˜æˆåŠŸè®¢å•ä¿¡æ¯
 	 * @param mpid
 	 * @return
 	 */
 	ResultCode<BaoChangOrderInfoVo> getBaoChangPaidSuccessOrderByMpid(Long mpid);
 	/**
-	 * ÍË¿î´¦Àí£¬³¡´Î×´Ì¬»ØÍËÎª¿ª·Å
+	 * é€€æ¬¾å¤„ç†ï¼Œåœºæ¬¡çŠ¶æ€å›é€€ä¸ºå¼€æ”¾
 	 * @param cinemaid
 	 * @param mpid
 	 * @return
 	 */
 	ResultCode<BaoChangMpiInfoVo> setBaoChangMpiRefund(Long cinemaid, Long mpid);
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯°ü³¡¶©µ¥ĞÅÏ¢£¬Ê¹ÓÃ»º´æ
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢åŒ…åœºè®¢å•ä¿¡æ¯ï¼Œä½¿ç”¨ç¼“å­˜
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<BaoChangOrderInfoVo> getBaoChangOrderInfoByTradeNoUseCache(String tradeNo);
 	/**
-	 * È¡µÃtoken
+	 * å–å¾—token
 	 * @param memberid
 	 * @param mpid
 	 * @return
 	 */
 	ResultCode<String> getEncryptInfo(Long memberid, Long mpid);
 	/**
-	 * Ğ£Ñétoken
+	 * æ ¡éªŒtoken
 	 * @param encryptbc
 	 * @param memberid
 	 * @param mpid
@@ -172,7 +172,7 @@ public interface BaoChangVoService {
 	 */
 	ResultCode<Boolean> isValidEncryptInfo(String encryptbc, Long memberid, Long mpid);
 	/**
-	 * È¡Ïû°ü³¡Ó°Ìü¡¢Ê±¼ä¶Î
+	 * å–æ¶ˆåŒ…åœºå½±å…ã€æ—¶é—´æ®µ
 	 * @param cinemaid
 	 * @param roomid
 	 * @param appointmentDate
@@ -182,7 +182,7 @@ public interface BaoChangVoService {
 	 */
 	ResultCode unlockBaoChangRoom(Long movieid, Long cinemaid, Long roomid, Date appointmentDate, String startTime, String endTime);
 	/**
-	 * ÍË¿îÊ±£¬É¾³ıËùÑ¡×ùÎ»ĞÅÏ¢ºÍÁôÑÔ
+	 * é€€æ¬¾æ—¶ï¼Œåˆ é™¤æ‰€é€‰åº§ä½ä¿¡æ¯å’Œç•™è¨€
 	 * @param mpid
 	 * @param memberid
 	 * @param seatsParams

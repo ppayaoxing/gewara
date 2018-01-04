@@ -3,7 +3,7 @@ package com.gewara.api.sms.response;
 import com.gewara.api.MsgResponse;
 
 /**
- * 短信发送接口，返回对象
+ * 鐭俊鍙戦�佹帴鍙ｏ紝杩斿洖瀵硅薄
  * 
  * @author leo.li
  * Modify Time Jan 15, 2013 11:21:33 AM

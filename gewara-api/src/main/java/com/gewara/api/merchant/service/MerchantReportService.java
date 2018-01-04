@@ -15,37 +15,37 @@ import com.gewara.api.vo.ResultCode;
 
 public interface MerchantReportService {
 	/**
-	 * Ó°Æ±ÏúÊÛÍ³¼Æ
+	 * å½±ç¥¨é”€å”®ç»Ÿè®¡
 	 * 
 	 * @param cinemaIds
-	 *            ¶à¸öÓ°Ôºid ÓÃ,·Ö¸ô
+	 *            å¤šä¸ªå½±é™¢id ç”¨,åˆ†éš”
 	 * @param movieId
-	 *            µçÓ°id£¬¿ÉÎª¿Õ
+	 *            ç”µå½±idï¼Œå¯ä¸ºç©º
 	 * @param timeType
-	 *            ·ÅÓ³Ê±¼ä£¬»¹ÊÇÏÂµ¥Ê±¼ä addtime ÎªÏÂµ¥Ê±¼ä ·ñÔò°´·ÅÓ³Ê±¼ä
+	 *            æ”¾æ˜ æ—¶é—´ï¼Œè¿˜æ˜¯ä¸‹å•æ—¶é—´ addtime ä¸ºä¸‹å•æ—¶é—´ å¦åˆ™æŒ‰æ”¾æ˜ æ—¶é—´
 	 * @param startTime
-	 *            Í³¼ÆµÄ¿ªÊ¼Ê±¼ä
+	 *            ç»Ÿè®¡çš„å¼€å§‹æ—¶é—´
 	 * @param endTime
-	 *            Í³¼ÆµÄ½áÊøÊ±¼ä
+	 *            ç»Ÿè®¡çš„ç»“æŸæ—¶é—´
 	 * @param from
-	 *            Êı¾İÆğÊ¹ÓÃÎ»ÖÃ
+	 *            æ•°æ®èµ·ä½¿ç”¨ä½ç½®
 	 * @param maxnum
-	 *            Ò»Ò³¶àÉÙ
+	 *            ä¸€é¡µå¤šå°‘
 	 * @return
 	 */
 	ResultCode<MovieSellerTotalVo> movieSellStatistics(String cinemaIds, Long movieId, String timeType,
 			Timestamp startTime, Timestamp endTime, int from, int maxnum);
 
 	/**
-	 * ¾ßÌåÓ°ÔºÏúÊÛÍ³¼Æ
+	 * å…·ä½“å½±é™¢é”€å”®ç»Ÿè®¡
 	 * 
 	 * @param cinemaId
 	 * @param movieId
-	 *            ¿ÉÎª¿Õ
+	 *            å¯ä¸ºç©º
 	 * @param timeType
-	 *            ·ÅÓ³Ê±¼ä£¬»¹ÊÇÏÂµ¥Ê±¼ä addtime ÎªÏÂµ¥Ê±¼ä ·ñÔò°´·ÅÓ³Ê±¼ä
+	 *            æ”¾æ˜ æ—¶é—´ï¼Œè¿˜æ˜¯ä¸‹å•æ—¶é—´ addtime ä¸ºä¸‹å•æ—¶é—´ å¦åˆ™æŒ‰æ”¾æ˜ æ—¶é—´
 	 * @param opentype
-	 *            ³¡´ÎÀàĞÍ
+	 *            åœºæ¬¡ç±»å‹
 	 * @param startTime
 	 * @param endTime
 	 * @return
@@ -57,14 +57,14 @@ public interface MerchantReportService {
 			Timestamp startTime, Timestamp endTime, int from, int maxnum);
 
 	/**
-	 * ÍË¿î±¨±í
+	 * é€€æ¬¾æŠ¥è¡¨
 	 * 
 	 * @param cinemaIds
-	 *            Ó°Ôºid£¬¶à¸ö, ºÅ·Ö¸ô
+	 *            å½±é™¢idï¼Œå¤šä¸ª, å·åˆ†éš”
 	 * @param movieId
-	 *            ¿ÉÒÔÎª¿Õ
+	 *            å¯ä»¥ä¸ºç©º
 	 * @param timeType
-	 *            ÖµÎªaddtimeÊ±£¬ÊÇ¸ù¾İÏÂµ¥Ê±¼ä£¬ playtimeÊ±£¬ÊÇ¸ù¾İÏû·ÑÊ±¼ä
+	 *            å€¼ä¸ºaddtimeæ—¶ï¼Œæ˜¯æ ¹æ®ä¸‹å•æ—¶é—´ï¼Œ playtimeæ—¶ï¼Œæ˜¯æ ¹æ®æ¶ˆè´¹æ—¶é—´
 	 * @param startTime
 	 * @param endTime
 	 * @param from
@@ -75,10 +75,10 @@ public interface MerchantReportService {
 			Timestamp endTime, int from, int maxnum);
 
 	/**
-	 * Ó°Ôº¾ßÌåÍËÆ±¶©µ¥
+	 * å½±é™¢å…·ä½“é€€ç¥¨è®¢å•
 	 * 
 	 * @param cinemaId
-	 *            ²»Îª¿Õ
+	 *            ä¸ä¸ºç©º
 	 * @param movieId
 	 * @param timeType
 	 * @param startTime
@@ -93,13 +93,13 @@ public interface MerchantReportService {
 	/**
 	 * 
 	 * @param cinemaIds
-	 *            ¶à¸öÓ°Ôºid ÓÃ,·Ö¸ô
+	 *            å¤šä¸ªå½±é™¢id ç”¨,åˆ†éš”
 	 * @param timetype
-	 *            ÏÂµ¥Ê±¼ä addtime ÎªÏÂµ¥Ê±¼ä ·ñÔò°´Ïû·ÑÊ±¼ä
+	 *            ä¸‹å•æ—¶é—´ addtime ä¸ºä¸‹å•æ—¶é—´ å¦åˆ™æŒ‰æ¶ˆè´¹æ—¶é—´
 	 * @param startTime
-	 *            ¿ªÊ¼Ê±¼ä
+	 *            å¼€å§‹æ—¶é—´
 	 * @param endTime
-	 *            ½áÊøÊ±¼ä
+	 *            ç»“æŸæ—¶é—´
 	 * @param from
 	 * @param maxnum
 	 * @return
@@ -108,16 +108,16 @@ public interface MerchantReportService {
 			Timestamp endTime, int from, int maxnum);
 
 	/**
-	 * ÏêÏ¸Ì×²Í±¨±í
+	 * è¯¦ç»†å¥—é¤æŠ¥è¡¨
 	 * 
 	 * @param cinemaId
-	 *            Ó°Ôºid
+	 *            å½±é™¢id
 	 * @param timetype
-	 *            ÏÂµ¥Ê±¼ä addtime ÎªÏÂµ¥Ê±¼ä ·ñÔò°´Ïû·ÑÊ±¼ä
+	 *            ä¸‹å•æ—¶é—´ addtime ä¸ºä¸‹å•æ—¶é—´ å¦åˆ™æŒ‰æ¶ˆè´¹æ—¶é—´
 	 * @param startTime
-	 *            ¿ªÊ¼Ê±¼ä
+	 *            å¼€å§‹æ—¶é—´
 	 * @param endTime
-	 *            ½áÊøÊ±¼ä
+	 *            ç»“æŸæ—¶é—´
 	 * @param from
 	 * @param maxnum
 	 * @return
@@ -126,38 +126,38 @@ public interface MerchantReportService {
 			Timestamp startTime, Timestamp endTime, int from, int maxnum);
 
 	/**
-	 * Í³¼ÆÃ¿ÌìµÄÅÅÆ¬ĞÅÏ¢
+	 * ç»Ÿè®¡æ¯å¤©çš„æ’ç‰‡ä¿¡æ¯
 	 * 
 	 * @param playDate
-	 *            ²éÑ¯ÈÕÆÚ £¬ÖµÎªµ±ÌìµÄ¿ªÊ¼Ê±¼ä ÀıÈç 2013-09-25 00:00:00
+	 *            æŸ¥è¯¢æ—¥æœŸ ï¼Œå€¼ä¸ºå½“å¤©çš„å¼€å§‹æ—¶é—´ ä¾‹å¦‚ 2013-09-25 00:00:00
 	 * @return
 	 */
 	ResultCode<EverydayMpiReportVo> mpiReportByPlayDate(Date playDate);
 
 	/**
-	 * Ê±¼ä¶ÎÄÚµçÓ°ÔÚ¾ßÌå³ÇÊĞµÄ¹ºÆ±Êı
+	 * æ—¶é—´æ®µå†…ç”µå½±åœ¨å…·ä½“åŸå¸‚çš„è´­ç¥¨æ•°
 	 * 
 	 * @param startTime
-	 *            ²éÑ¯¿ªÊ¼Ê±¼ä ÀıÈç 2013-09-27 13:00:00 ²éÑ¯Ê±ÊÇ >= startTimeµÄ
+	 *            æŸ¥è¯¢å¼€å§‹æ—¶é—´ ä¾‹å¦‚ 2013-09-27 13:00:00 æŸ¥è¯¢æ—¶æ˜¯ >= startTimeçš„
 	 * @param endTime
-	 *            ²éÑ¯½áÊøÊ±¼ä ÀıÈç 2013-09-27 14:00:00 ²éÑ¯Ê±ÊÇ< endTime µÄ
+	 *            æŸ¥è¯¢ç»“æŸæ—¶é—´ ä¾‹å¦‚ 2013-09-27 14:00:00 æŸ¥è¯¢æ—¶æ˜¯< endTime çš„
 	 * @return
 	 */
 	ResultCode<List<MovieCityBoughtReportVo>> movieCityBoughtReport(Timestamp startTime, Timestamp endTime);
 
 	/**
-	 * Ìí¼ÓÓ°Ôº¹«¸æ
+	 * æ·»åŠ å½±é™¢å…¬å‘Š
 	 * 
 	 * @param num
-	 *            ±àºÅid
+	 *            ç¼–å·id
 	 * @param cinemaId
-	 *            Ó°Ôºid
+	 *            å½±é™¢id
 	 * @param title
-	 *            ±êÌâ
+	 *            æ ‡é¢˜
 	 * @param content
-	 *            ÄÚÈİ
+	 *            å†…å®¹
 	 * @param publishUser
-	 *            ·¢²¼ÈËêÇ³Æ
+	 *            å‘å¸ƒäººæ˜µç§°
 	 * @return
 	 */
 	<T>ResultCode<T> addCinemaNotify(String num, Long cinemaId, String title, String content, String publishUser);

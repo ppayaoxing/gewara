@@ -11,7 +11,7 @@ public class CustomPaperVo extends BaseVo{
 	private String tradeno;
 	private String tag;
 	private Date addtime;
-	private String selfdomcontent;	//Æ±Ö½ÄÚÈÝ
+	private String selfdomcontent;	//ç¥¨çº¸å†…å®¹
 	
 	public CustomPaperVo(){}
 		

@@ -23,7 +23,7 @@ import org.jasig.cas.client.validation.Assertion;
 public class AuthenticationFilter  {
 
 	/**
-	 * CAS�����¼Login
+	 * CAS锟斤拷锟斤拷锟铰糒ogin
 	 */
 	private String casServerLoginUrl;
 
@@ -38,10 +38,10 @@ public class AuthenticationFilter  {
 	private boolean gateway = false;
 	
 	
-	/** ����tk������. */
+	/** 锟斤拷锟斤拷tk锟斤拷锟斤拷锟斤拷. */
     private String artifactParameterName = "ticket";
 
-    /** ���󱾵�service������ */
+    /** 锟斤拷锟襟本碉拷service锟斤拷锟斤拷锟斤拷 */
     private String serviceParameterName = "service";
     
     /** Sets where response.encodeUrl should be called on service urls when constructed. */
@@ -99,7 +99,7 @@ public class AuthenticationFilter  {
 	}
 
 	/**
-	 * ��ʼ��
+	 * 锟斤拷始锟斤拷
 	 * 
 	 */
 	public void init() {
@@ -150,7 +150,7 @@ public class AuthenticationFilter  {
 	}
 
 	/**
-	 * ����casserver��url
+	 * 锟斤拷锟斤拷casserver锟斤拷url
 	 * @param request
 	 * @param response
 	 * @return

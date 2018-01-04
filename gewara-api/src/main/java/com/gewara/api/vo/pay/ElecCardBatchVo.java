@@ -8,60 +8,60 @@ import com.gewara.api.vo.BaseVo;
 public class ElecCardBatchVo extends BaseVo {
 
 	private static final long serialVersionUID = 8738747879676531874L;
-	public static String COSTTYPE_MINADD = "minadd"; 		//Ó°Æ¬×îµ×¼Û¼ÓxÔª
-	public static String COSTTYPE_FIXED = "fixed"; 			//¹Ì¶¨¼Û¸ñ
-	public static String ACTIVATION_Y = "Y"; 				//ĞèÒª¼¤»î
-	public static String ACTIVATION_N = "N";				//²»Ğè¼¤»î
-	public static String EXCHANGETYPE_A = "A";				//¶Ò»»È¯Àà±ğ£º³ÈÈ¯
-	public static String EXCHANGETYPE_B = "B";				//¶Ò»»È¯Àà±ğ£ºÀ¶È¯
-	public static String EXCHANGETYPE_D = "D";				//¶Ò»»È¯Àà±ğ£º¶Ò»»È¯
-	public static String EXCHANGETYPE_E = "E";				//¶Ò»»È¯Àà±ğ£ºIMAXÈ¯
-	public static String SOLD_TYPE_P = "P";					//P ÔùÈ¯  SÏúÊÛ
-	public static String SOLD_TYPE_S = "S";					//ÏúÊÛ
+	public static String COSTTYPE_MINADD = "minadd"; 		//å½±ç‰‡æœ€åº•ä»·åŠ xå…ƒ
+	public static String COSTTYPE_FIXED = "fixed"; 			//å›ºå®šä»·æ ¼
+	public static String ACTIVATION_Y = "Y"; 				//éœ€è¦æ¿€æ´»
+	public static String ACTIVATION_N = "N";				//ä¸éœ€æ¿€æ´»
+	public static String EXCHANGETYPE_A = "A";				//å…‘æ¢åˆ¸ç±»åˆ«ï¼šæ©™åˆ¸
+	public static String EXCHANGETYPE_B = "B";				//å…‘æ¢åˆ¸ç±»åˆ«ï¼šè“åˆ¸
+	public static String EXCHANGETYPE_D = "D";				//å…‘æ¢åˆ¸ç±»åˆ«ï¼šå…‘æ¢åˆ¸
+	public static String EXCHANGETYPE_E = "E";				//å…‘æ¢åˆ¸ç±»åˆ«ï¼šIMAXåˆ¸
+	public static String SOLD_TYPE_P = "P";					//P èµ åˆ¸  Sé”€å”®
+	public static String SOLD_TYPE_S = "S";					//é”€å”®
 	public static String OTHERINFO_CINEMA = "validcinema";
 	public static String OTHERINFO_MOVIE = "validmovie";
 	public static String OTHERINFO_ITEM = "validitem";
 	private Long id;				//ID
-	private Long pid;				//¸¸Åú´ÎID
-	private String tag;				//±êÊ¶£ºmovie drama
-	private Integer amount;			//µÖÓÃ½ğ¶î
-	private String addtime1;		//ÏÂµ¥Ê±¶ÎÏŞ¶¨1£º0000
-	private String addtime2;		//ÏÂµ¥Ê±¶ÎÏŞ¶¨2£º2400
-	private String addweek;			//ÏÂµ¥ÖÜ¼¸
-	private String opentime;		//³¡´ÎÊ±¶Î£º¿ªÊ¼ 0600
-	private String closetime;		//³¡´ÎÊ±¶Î£º½áÊø 2300
-	private String weektype;		//³¡´ÎÖÜ¼¸
-	private String validcinema;		//¿ÉÓÃÓ°Ôº
-	private String validmovie;		//¿ÉÓÃÓ°Æ¬
-	private String validitem;		//¿ÉÓÃ³¡´Î
-	private String validprice;		//¿ÉÓÃ³¡´ÎÏÂµÄ¼Û¸ñid
-	private String bindpay;			//°ó¶¨Ö§¸¶·½Ê½
-	private String remark;			//ËµÃ÷
-	private Timestamp timefrom;		//¿¨ÓĞĞ§¿ªÊ¼Ê±¼ä
-	private Timestamp timeto;		//¿¨ÓĞĞ§½áÊøÊ±¼ä
-	private String cardtype;		//¿¨ÀàĞÍ
-	private String notifymsg;		//¶ÌĞÅÄ£°å
-	private Integer daynum;			//ÓĞĞ§ÌìÊı£¨·¢ËÍ½±Æ·Ö®ÈÕÆğµÄÓĞĞ§ÌìÊı£©
-	private String citycode;		//ÊÊÓÃ³ÇÊĞ
-	private String citypattern;		//°üº¬»¹ÊÇÅÅ³ı£¿
-	private String validpartner;	//¿ÉÓÃÉÌ¼Ò
-	private Long bindgoods;			//°ó¶¨Ì×²Í
-	private Integer bindratio;		//Ì×²Í¶Ò»»±ÈÀı£ºXÕÅÈ¯¶Ò»»1·İ
-	private String costtype;		//³É±¾¼ÛÀàĞÍ£ºÓ°Æ¬×îµ×¼Û¼ÓxÔª£¬½áËã¼Û¼ÓxÔª
-	private Integer costnum;		//³É±¾¼ÛÔöÁ¿
-	private Integer costnum3D;		//3D°æ±¾¶ÔÓ¦³É±¾¼Û
-	private String edition;			//¿ÉÓÃÓ°Æ¬°æ±¾£º2D¡¢3D¡¢All(2D+3D)¡¢IMAX¡¢4D¡¢4D+IMAX
-	private String limitdesc;		//A¿¨³¬³öÏŞ¶î³ö´í¸øÓÃ»§ÌáÊ¾
-	private String activation;		//ÊÇ·ñĞèÒª¼¤»î
-	private String exchangetype;	//¶Ò»»È¯Àà±ğ
-	private String channelinfo;		//ÇşµÀËµÃ÷
-	private Integer appoint;		//×î´ó°ó¶¨ÊıÁ¿
-	private String soldType;   //ÏúÊÛÀàĞÍ£¬ P ÔùÈ¯  SÏúÊÛ
-	private Integer delayDays; //¿ÉÉêÇëÑÓÆÚÌìÊı
-	private Integer delayUseDays;  // ÑÓÆÚÍ¨¹ıºóÊ¹ÓÃÌìÊı
-	private Integer delayFee;   // ÑÓÆÚ·ÑÓÃ
-	private String otherinfo; // ¿ØÖÆvalidcinema validmovie validitem ÊÇ¿ÉÓÃ»¹ÊÇ²»¿ÉÒÔÓÃ
-	private String bindmobile;		//ÊÇ·ñĞèÒª°ó¶¨ÊÖ»úºÅ
+	private Long pid;				//çˆ¶æ‰¹æ¬¡ID
+	private String tag;				//æ ‡è¯†ï¼šmovie drama
+	private Integer amount;			//æŠµç”¨é‡‘é¢
+	private String addtime1;		//ä¸‹å•æ—¶æ®µé™å®š1ï¼š0000
+	private String addtime2;		//ä¸‹å•æ—¶æ®µé™å®š2ï¼š2400
+	private String addweek;			//ä¸‹å•å‘¨å‡ 
+	private String opentime;		//åœºæ¬¡æ—¶æ®µï¼šå¼€å§‹ 0600
+	private String closetime;		//åœºæ¬¡æ—¶æ®µï¼šç»“æŸ 2300
+	private String weektype;		//åœºæ¬¡å‘¨å‡ 
+	private String validcinema;		//å¯ç”¨å½±é™¢
+	private String validmovie;		//å¯ç”¨å½±ç‰‡
+	private String validitem;		//å¯ç”¨åœºæ¬¡
+	private String validprice;		//å¯ç”¨åœºæ¬¡ä¸‹çš„ä»·æ ¼id
+	private String bindpay;			//ç»‘å®šæ”¯ä»˜æ–¹å¼
+	private String remark;			//è¯´æ˜
+	private Timestamp timefrom;		//å¡æœ‰æ•ˆå¼€å§‹æ—¶é—´
+	private Timestamp timeto;		//å¡æœ‰æ•ˆç»“æŸæ—¶é—´
+	private String cardtype;		//å¡ç±»å‹
+	private String notifymsg;		//çŸ­ä¿¡æ¨¡æ¿
+	private Integer daynum;			//æœ‰æ•ˆå¤©æ•°ï¼ˆå‘é€å¥–å“ä¹‹æ—¥èµ·çš„æœ‰æ•ˆå¤©æ•°ï¼‰
+	private String citycode;		//é€‚ç”¨åŸå¸‚
+	private String citypattern;		//åŒ…å«è¿˜æ˜¯æ’é™¤ï¼Ÿ
+	private String validpartner;	//å¯ç”¨å•†å®¶
+	private Long bindgoods;			//ç»‘å®šå¥—é¤
+	private Integer bindratio;		//å¥—é¤å…‘æ¢æ¯”ä¾‹ï¼šXå¼ åˆ¸å…‘æ¢1ä»½
+	private String costtype;		//æˆæœ¬ä»·ç±»å‹ï¼šå½±ç‰‡æœ€åº•ä»·åŠ xå…ƒï¼Œç»“ç®—ä»·åŠ xå…ƒ
+	private Integer costnum;		//æˆæœ¬ä»·å¢é‡
+	private Integer costnum3D;		//3Dç‰ˆæœ¬å¯¹åº”æˆæœ¬ä»·
+	private String edition;			//å¯ç”¨å½±ç‰‡ç‰ˆæœ¬ï¼š2Dã€3Dã€All(2D+3D)ã€IMAXã€4Dã€4D+IMAX
+	private String limitdesc;		//Aå¡è¶…å‡ºé™é¢å‡ºé”™ç»™ç”¨æˆ·æç¤º
+	private String activation;		//æ˜¯å¦éœ€è¦æ¿€æ´»
+	private String exchangetype;	//å…‘æ¢åˆ¸ç±»åˆ«
+	private String channelinfo;		//æ¸ é“è¯´æ˜
+	private Integer appoint;		//æœ€å¤§ç»‘å®šæ•°é‡
+	private String soldType;   //é”€å”®ç±»å‹ï¼Œ P èµ åˆ¸  Sé”€å”®
+	private Integer delayDays; //å¯ç”³è¯·å»¶æœŸå¤©æ•°
+	private Integer delayUseDays;  // å»¶æœŸé€šè¿‡åä½¿ç”¨å¤©æ•°
+	private Integer delayFee;   // å»¶æœŸè´¹ç”¨
+	private String otherinfo; // æ§åˆ¶validcinema validmovie validitem æ˜¯å¯ç”¨è¿˜æ˜¯ä¸å¯ä»¥ç”¨
+	private String bindmobile;		//æ˜¯å¦éœ€è¦ç»‘å®šæ‰‹æœºå·
 	@Override
 	public Serializable realId() {
 		return id;

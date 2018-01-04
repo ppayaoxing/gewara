@@ -16,7 +16,7 @@ public class UserVo extends BaseVo {
 	private String citycode;
 	private String mobile;
 	private String rolenames;
-	private String usertype; // 用户类型：inner:内部用户，其他：外部用户
+	private String usertype; // 鐢ㄦ埛绫诲瀷锛歩nner:鍐呴儴鐢ㄦ埛锛屽叾浠栵細澶栭儴鐢ㄦ埛
 	private String email;
 	
 	@Override

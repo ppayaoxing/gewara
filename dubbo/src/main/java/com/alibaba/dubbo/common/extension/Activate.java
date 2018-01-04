@@ -24,16 +24,16 @@ import java.lang.annotation.Target;
 /**
  * Activate
  * <p />
- * ¶ÔÓÚ¿ÉÒÔ±»¿ò¼ÜÖĞ×Ô¶¯¼¤»î¼ÓÔØÀ©Õ¹£¬´ËAnnotationÓÃÓÚÅäÖÃÀ©Õ¹±»×Ô¶¯¼¤»î¼ÓÔØÌõ¼ş¡£
- * ±ÈÈç£¬¹ıÂËÀ©Õ¹£¬ÓĞ¶à¸öÊµÏÖ£¬Ê¹ÓÃActivate AnnotationµÄÀ©Õ¹¿ÉÒÔ¸ù¾İÌõ¼ş±»×Ô¶¯¼ÓÔØ¡£
+ * å¯¹äºå¯ä»¥è¢«æ¡†æ¶ä¸­è‡ªåŠ¨æ¿€æ´»åŠ è½½æ‰©å±•ï¼Œæ­¤Annotationç”¨äºé…ç½®æ‰©å±•è¢«è‡ªåŠ¨æ¿€æ´»åŠ è½½æ¡ä»¶ã€‚
+ * æ¯”å¦‚ï¼Œè¿‡æ»¤æ‰©å±•ï¼Œæœ‰å¤šä¸ªå®ç°ï¼Œä½¿ç”¨Activate Annotationçš„æ‰©å±•å¯ä»¥æ ¹æ®æ¡ä»¶è¢«è‡ªåŠ¨åŠ è½½ã€‚
  * <ol>
- * <li>{@link Activate#group()}ÉúĞ§µÄGroup¡£¾ßÌåµÄÓĞÄÄĞ©GroupÖµÓÉ¿ò¼ÜSPI¸ø³ö¡£
- * <li>{@link Activate#value()}ÔÚ{@link com.alibaba.dubbo.common.URL}ÖĞKey¼¯ºÏÖĞÓĞ£¬ÔòÉúĞ§¡£
+ * <li>{@link Activate#group()}ç”Ÿæ•ˆçš„Groupã€‚å…·ä½“çš„æœ‰å“ªäº›Groupå€¼ç”±æ¡†æ¶SPIç»™å‡ºã€‚
+ * <li>{@link Activate#value()}åœ¨{@link com.alibaba.dubbo.common.URL}ä¸­Keyé›†åˆä¸­æœ‰ï¼Œåˆ™ç”Ÿæ•ˆã€‚
  * </ol>
  *
  * <p />
- * µ×²ã¿ò¼ÜSPIÌá¹©ÕßÍ¨¹ı{@link com.alibaba.dubbo.common.extension.ExtensionLoader}µÄ{@link ExtensionLoader#getActivateExtension}·½·¨
- * »ñµÃÌõ¼şµÄÀ©Õ¹¡£
+ * åº•å±‚æ¡†æ¶SPIæä¾›è€…é€šè¿‡{@link com.alibaba.dubbo.common.extension.ExtensionLoader}çš„{@link ExtensionLoader#getActivateExtension}æ–¹æ³•
+ * è·å¾—æ¡ä»¶çš„æ‰©å±•ã€‚
  *
  * @author william.liangf
  * @author ding.lid
@@ -47,37 +47,37 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface Activate {
     /**
-     * Group¹ıÂËÌõ¼ş¡£
+     * Groupè¿‡æ»¤æ¡ä»¶ã€‚
      * <br />
-     * °üº¬{@link ExtensionLoader#getActivateExtension}µÄgroup²ÎÊı¸øµÄÖµ£¬Ôò·µ»ØÀ©Õ¹¡£
+     * åŒ…å«{@link ExtensionLoader#getActivateExtension}çš„groupå‚æ•°ç»™çš„å€¼ï¼Œåˆ™è¿”å›æ‰©å±•ã€‚
      * <br />
-     * ÈçÃ»ÓĞGroupÉèÖÃ£¬Ôò²»¹ıÂË¡£
+     * å¦‚æ²¡æœ‰Groupè®¾ç½®ï¼Œåˆ™ä¸è¿‡æ»¤ã€‚
      */
     String[] group() default {};
 
     /**
-     * Key¹ıÂËÌõ¼ş¡£°üº¬{@link ExtensionLoader#getActivateExtension}µÄURLµÄ²ÎÊıKeyÖĞÓĞ£¬Ôò·µ»ØÀ©Õ¹¡£
+     * Keyè¿‡æ»¤æ¡ä»¶ã€‚åŒ…å«{@link ExtensionLoader#getActivateExtension}çš„URLçš„å‚æ•°Keyä¸­æœ‰ï¼Œåˆ™è¿”å›æ‰©å±•ã€‚
      * <p />
-     * Ê¾Àı£º<br/>
-     * ×¢½âµÄÖµ <code>@Activate("cache,validatioin")</code>£¬
-     * Ôò{@link ExtensionLoader#getActivateExtension}µÄURLµÄ²ÎÊıÓĞ<code>cache</code>Key£¬»òÊÇ<code>validatioin</code>Ôò·µ»ØÀ©Õ¹¡£
+     * ç¤ºä¾‹ï¼š<br/>
+     * æ³¨è§£çš„å€¼ <code>@Activate("cache,validatioin")</code>ï¼Œ
+     * åˆ™{@link ExtensionLoader#getActivateExtension}çš„URLçš„å‚æ•°æœ‰<code>cache</code>Keyï¼Œæˆ–æ˜¯<code>validatioin</code>åˆ™è¿”å›æ‰©å±•ã€‚
      * <br/>
-     * ÈçÃ»ÓĞÉèÖÃ£¬Ôò²»¹ıÂË¡£
+     * å¦‚æ²¡æœ‰è®¾ç½®ï¼Œåˆ™ä¸è¿‡æ»¤ã€‚
      */
     String[] value() default {};
 
     /**
-     * ÅÅĞòĞÅÏ¢£¬¿ÉÒÔ²»Ìá¹©¡£
+     * æ’åºä¿¡æ¯ï¼Œå¯ä»¥ä¸æä¾›ã€‚
      */
     String[] before() default {};
 
     /**
-     * ÅÅĞòĞÅÏ¢£¬¿ÉÒÔ²»Ìá¹©¡£
+     * æ’åºä¿¡æ¯ï¼Œå¯ä»¥ä¸æä¾›ã€‚
      */
     String[] after() default {};
 
     /**
-     * ÅÅĞòĞÅÏ¢£¬¿ÉÒÔ²»Ìá¹©¡£
+     * æ’åºä¿¡æ¯ï¼Œå¯ä»¥ä¸æä¾›ã€‚
      */
     int order() default 0;
 }

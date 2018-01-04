@@ -6,7 +6,7 @@ import com.gewara.api.vo.ResultCode;
 public interface PushNotifyServiceNew {
 	public ResultCode<String> sendPushNotify(PushNotifyVo pushNotify);
 	/**
-	 * ¸ù¾İÏûÏ¢Î¨Ò»±êÊ¶È¡Ïû·¢ËÍ
+	 * æ ¹æ®æ¶ˆæ¯å”¯ä¸€æ ‡è¯†å–æ¶ˆå‘é€
 	 * @param tradeNo
 	 */
 	public ResultCode<String> cancelPushNotify(String msgKey);

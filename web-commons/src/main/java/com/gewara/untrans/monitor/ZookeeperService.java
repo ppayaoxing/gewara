@@ -13,7 +13,7 @@ public interface ZookeeperService  {
 	boolean addPresistentNode(String path, String data);
 
 	/**
-	 * Ôö¼ÓÁÙÊ±½Úµã£¨EPHEMERAL½Úµã£¬session¹ıÆÚ»ò¹Ø±Õºó×Ô¶¯É¾³ı£©
+	 * å¢åŠ ä¸´æ—¶èŠ‚ç‚¹ï¼ˆEPHEMERALèŠ‚ç‚¹ï¼Œsessionè¿‡æœŸæˆ–å…³é—­åè‡ªåŠ¨åˆ é™¤ï¼‰
 	 * 
 	 * @param path
 	 * @param data
@@ -38,52 +38,52 @@ public interface ZookeeperService  {
 	public List<KeeperWatcher> getMonitor();
 
 	/**
-	 * ÏµÍ³Æô¶¯×¢²á½Úµã
+	 * ç³»ç»Ÿå¯åŠ¨æ³¨å†ŒèŠ‚ç‚¹
 	 * @param nodePath
 	 * @param nodeData
 	 */
 	void registerNode(String nodePath, String nodeData);
 
 	/**
-	 * ÏµÍ³Æô¶¯×¢²áÁÙÊ±½Úµã
-	 * <p>Èç¹ûnodePath²»ÒÔ "/s"½áÎ²£¬»áÄ¬ÈÏ¼ÓÉÏ
+	 * ç³»ç»Ÿå¯åŠ¨æ³¨å†Œä¸´æ—¶èŠ‚ç‚¹
+	 * <p>å¦‚æœnodePathä¸ä»¥ "/s"ç»“å°¾ï¼Œä¼šé»˜è®¤åŠ ä¸Š
 	 * @param nodePath
 	 * @param nodeData
 	 */
 	void registerEphemeralNode(String nodePath, String nodeData);
 	/**
-	 * É¾³ıÁÙÊ±½Úµã
-	 * <p> Èç¹ûnodePathÏÂÁÙÊ±½ÚµãµÄÖµµÈÓÚnodeData£¬ÔòÉ¾³ı¸ÃÁÙÊ±½Úµã
-	 * @param nodePath ÁÙÊ±½ÚµãÂ·¾¶
-	 * @param nodeData ´ı±È½ÏµÄÖµ
+	 * åˆ é™¤ä¸´æ—¶èŠ‚ç‚¹
+	 * <p> å¦‚æœnodePathä¸‹ä¸´æ—¶èŠ‚ç‚¹çš„å€¼ç­‰äºnodeDataï¼Œåˆ™åˆ é™¤è¯¥ä¸´æ—¶èŠ‚ç‚¹
+	 * @param nodePath ä¸´æ—¶èŠ‚ç‚¹è·¯å¾„
+	 * @param nodeData å¾…æ¯”è¾ƒçš„å€¼
 	 */
 	void unRegisterEphemeralNode(String nodePath, String nodeData);
 
 	/**
-	 * Ôö¼ÓzkÖØÁ¬ºóµÄ×¢²áÂß¼­
-	 * <p>ÊÊÓÃ³¡¾°£¬Èç£ºopenapi×¢²á·şÎñ
+	 * å¢åŠ zké‡è¿åçš„æ³¨å†Œé€»è¾‘
+	 * <p>é€‚ç”¨åœºæ™¯ï¼Œå¦‚ï¼šopenapiæ³¨å†ŒæœåŠ¡
 	 * @param nodePath 
-	 * <p> ²»ÄÜÒÔ"/s"½áÎ²£¬·ñÔòÅ×³öÒì³£
+	 * <p> ä¸èƒ½ä»¥"/s"ç»“å°¾ï¼Œå¦åˆ™æŠ›å‡ºå¼‚å¸¸
 	 * @param nodeData
 	 */
 	void addReconnectedStateListener(String nodePath, String nodeData);
 
 	/**
-	 * ´´½¨·Ö²¼Ê½Ëø
-	 * @param path zkÂ·¾¶
+	 * åˆ›å»ºåˆ†å¸ƒå¼é”
+	 * @param path zkè·¯å¾„
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê3ÔÂ28ÈÕÏÂÎç3:31:05
+	 * @addTime 2016å¹´3æœˆ28æ—¥ä¸‹åˆ3:31:05
 	 */
 	InterProcessMutex createInterProcessMutex(String path);
 
 	/**
-	 * ´´½¨LeaderLatch
-	 * @param latchPath zkÂ·¾¶
-	 * @param id ¸ÃLeaderLatchID
+	 * åˆ›å»ºLeaderLatch
+	 * @param latchPath zkè·¯å¾„
+	 * @param id è¯¥LeaderLatchID
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê3ÔÂ30ÈÕÏÂÎç6:10:08
+	 * @addTime 2016å¹´3æœˆ30æ—¥ä¸‹åˆ6:10:08
 	 */
 	LeaderLatch createLeaderLatch(String latchPath, String id);
 }

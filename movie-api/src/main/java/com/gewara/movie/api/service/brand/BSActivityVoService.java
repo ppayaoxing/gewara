@@ -9,31 +9,31 @@ import com.gewara.movie.vo.brand.BSActivityVo;
 public interface BSActivityVoService {
 	
 	/**
-	 * »ñÈ¡»î¶¯Êı¾İ
-	 * @param id	»î¶¯ID
+	 * è·å–æ´»åŠ¨æ•°æ®
+	 * @param id	æ´»åŠ¨ID
 	 * @return
 	 */
 	ResultCode<BSActivityVo> getActivityDataById(Long id);
 	
 
 	/**
-	 * ±£´æ»î¶¯Êı¾İ
+	 * ä¿å­˜æ´»åŠ¨æ•°æ®
 	 * @return
 	 */
 	ResultCode<BSActivityVo> save(BSActivityVo activity);
 	
 	/**
-	 * ²éÑ¯»î¶¯ÁĞ±í
-	 * @param citycode	³ÇÊĞcode
-	 * @param actType »î¶¯ÁĞ±í
+	 * æŸ¥è¯¢æ´»åŠ¨åˆ—è¡¨
+	 * @param citycode	åŸå¸‚code
+	 * @param actType æ´»åŠ¨åˆ—è¡¨
 	 * @param
 	 * @param
 	 */
 	ResultCode<List<BSActivityVo>> getActivityListByActType(String citycode, String actType);
 	
 	/**
-	 * ²éÑ¯»î¶¯ÁĞ±í
-	 * @param citycode	³ÇÊĞcode
+	 * æŸ¥è¯¢æ´»åŠ¨åˆ—è¡¨
+	 * @param citycode	åŸå¸‚code
 	 * @param
 	 * @param
 	 * @param 
@@ -41,19 +41,19 @@ public interface BSActivityVoService {
 	ResultCode<List<BSActivityVo>> getActivityList(String citycode);
 	
 	/**
-	 * ²éÑ¯»î¶¯Êı¾İÁ¿
+	 * æŸ¥è¯¢æ´»åŠ¨æ•°æ®é‡
 	 * @return
 	 */
 	ResultCode<Integer> getActivityCount();
 	
 	/**
-	 * »ñÈ¡»î¶¯ÁĞ±í
+	 * è·å–æ´»åŠ¨åˆ—è¡¨
 	 * @return
 	 */
 	ResultCode<List<BSActivityVo>> getActivityList(int from, int to, String time);
 	
 	/**
-	 * É¾³ı»î¶¯
+	 * åˆ é™¤æ´»åŠ¨
 	 * @param id
 	 * @return
 	 */

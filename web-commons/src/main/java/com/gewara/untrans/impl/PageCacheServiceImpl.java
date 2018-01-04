@@ -139,7 +139,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		PageView pv = null;
 		if(cached!=null){
 			if(cached < cur - DateUtil.m_minute) {
-                update = true; //1���Ӽ������ڣ���Ҫ����
+                update = true; //1锟斤拷锟接硷拷锟斤拷锟斤拷锟节ｏ拷锟斤拷要锟斤拷锟斤拷
             }
 			String content = (String)memcachedClient.get(getContentKey(pageUrl, pageParams, citycode));
 			if(content!=null){
@@ -151,7 +151,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		if(update && request!=null){
 			String userAgent = request.getHeader("User-Agent");
 			if(!StringUtils.containsIgnoreCase(userAgent, "bot")&& 
-					!StringUtils.containsIgnoreCase(userAgent, "spid")){//�����ˣ���������
+					!StringUtils.containsIgnoreCase(userAgent, "spid")){//锟斤拷锟斤拷锟剿ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷
 				String ip = BaseWebUtils.getRemoteIp(request);
 				sendMsg(pageUrl, pageParams, citycode, cur, cacheMin, ip);
 			}
@@ -168,7 +168,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		Map<String, Long> tmpMap = recentPageUrl;
 		Long last = tmpMap.get(key);
 		if(last != null && last + DateUtil.m_minute/2 > cur) {
-            return;//30���ڣ����ظ�����
+            return;//30锟斤拷锟节ｏ拷锟斤拷锟截革拷锟斤拷锟斤拷
         }
 		if(tmpMap.size() > 20000) {
 			recentPageUrl = new ConcurrentHashMap<String, Long>(20000, 0.75f, 200);
@@ -195,7 +195,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		PageView pv = null;
 		if(cached!=null){
 			if(cached < cur - DateUtil.m_minute) {
-                update = true; //1���Ӽ������ڣ���Ҫ����
+                update = true; //1锟斤拷锟接硷拷锟斤拷锟斤拷锟节ｏ拷锟斤拷要锟斤拷锟斤拷
             }
 			String content = (String)memcachedClient.get(getContentKey(pageUrl, pageParams, citycode));
 			if(content!=null){
@@ -248,7 +248,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		}
 		String path = getFullPath(pageUrl);
 		HttpResult result = HttpUtils.getUrlAsString(path, params, coolieList);
-		if(result.isSuccess()){//��Ч����
+		if(result.isSuccess()){//锟斤拷效锟斤拷锟斤拷
 			memcachedClient.set(getExistsKey(pageUrl, pageParams, citycode), 60 * 120, System.currentTimeMillis() + DateUtil.m_minute*cacheMin);
 			memcachedClient.set(getContentKey(pageUrl, pageParams, citycode), 60 * 120, result.getResponse());
 			updateCount(KEY_PUT);
@@ -260,9 +260,9 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 				if(Debugger.isDebugEnabled("pageCache")){
 					dbLogger.warn(result.getResponse());
 				}
-				monitorService.logException(EXCEPTION_TAG.SERVICE, "pageCacheService.refreshPageView", "��ȡҳ�滺�����:" + path + msg, null, params);
+				monitorService.logException(EXCEPTION_TAG.SERVICE, "pageCacheService.refreshPageView", "锟斤拷取页锟芥缓锟斤拷锟斤拷锟�:" + path + msg, null, params);
 			}else{
-				dbLogger.warn("��ȡҳ�滺�����, url��[" + path + "],params:" + params.toString() + ",returnResult:" + result.getStatus() + ",response:" + result.getResponse());
+				dbLogger.warn("锟斤拷取页锟芥缓锟斤拷锟斤拷锟�, url锟斤拷[" + path + "],params:" + params.toString() + ",returnResult:" + result.getStatus() + ",response:" + result.getResponse());
 			}
 		}
 		return false;
@@ -309,7 +309,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		BlockingQueue<Runnable> taskQueue = new ArrayBlockingQueue<Runnable>(30);
 		executor = new ThreadPoolExecutor(threadPoolSize, threadPoolSize, 0L, TimeUnit.SECONDS, taskQueue);
 		executor.allowCoreThreadTimeOut(false);
-		//�������ﵽ30��������������������JMS��Ϣ
+		//锟斤拷锟斤拷锟斤拷锟斤到30锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷JMS锟斤拷息
 		executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
 		Long cur = System.currentTimeMillis();
 		ResourceStatsUtil.getPageCacheStats().register(KEY_HIT, cur);
@@ -320,7 +320,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		ResourceStatsUtil.getPageCacheStats().register(KEY_IGNORE, cur);
 		refreshKeyVersion();
 		if(StringUtils.equals("true", config.getString("disablePageCache"))){
-			//�ر�ҳ�滺��
+			//锟截憋拷页锟芥缓锟斤拷
 			enableCache = false;
 		}
 	}
@@ -338,12 +338,12 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		if(!enableCache) {
             return false;
         }
-		//�����������߼�
+		//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟竭硷拷
 		if(StringUtils.isBlank(request.getParameter(NOT_USE_CACHE_KEY))) {
 			return true ;
 		}
 		String ip = BaseWebUtils.getRemoteIp(request);
-		//NOT_USE_CACHE_KEYֻ����ڲ�IP��Ч
+		//NOT_USE_CACHE_KEY只锟斤拷锟斤拷诓锟絀P锟斤拷效
 		return !(GewaIpConfig.isGewaInnerIp(ip) || GewaIpConfig.isOfficeIp(ip));
 	}
 
@@ -372,7 +372,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 				final String city = citycode;
 				final String page = pageUrl;
 				Long last = successMap.get(key);
-				if(last!=null && last+DateUtil.m_minute*5 > System.currentTimeMillis()){//5�����ڳɹ������������
+				if(last!=null && last+DateUtil.m_minute*5 > System.currentTimeMillis()){//5锟斤拷锟斤拷锟节成癸拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
 					updateCount(KEY_REPEAT);
 				}else{
 					String lockKey = "ppv" + Math.abs(key.hashCode()%1000);
@@ -382,7 +382,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 							
 							boolean refreshed = refreshPageView(page, pparam, city);
 							if(!refreshed) {
-								dbLogger.error("��ȡ����ʧ�ܣ�");
+								dbLogger.error("锟斤拷取锟斤拷锟斤拷失锟杰ｏ拷");
 								return false;
 							}else{
 								if(successMap.size()>50000){

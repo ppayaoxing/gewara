@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public interface PriorityObject extends Serializable{
 	/**
-	 * »ñÈ¡¶ÔÏóµÄÓÅÏÈÈ¨ÖØÖµ( 0 <= priority <= 99)
+	 * è·å–å¯¹è±¡çš„ä¼˜å…ˆæƒé‡å€¼( 0 <= priority <= 99)
 	 * @return
 	 */
 	public int getPriority();

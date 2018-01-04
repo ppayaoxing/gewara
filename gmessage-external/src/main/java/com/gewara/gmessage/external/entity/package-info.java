@@ -1,5 +1,5 @@
 /**
- * ¶¨Òå¶ÔÍâ½Ó¿ÚµÄ¸÷ÖÖpojo¡£
+ * å®šä¹‰å¯¹å¤–æ¥å£çš„å„ç§pojoã€‚
  * 
  * */
 package com.gewara.gmessage.external.entity;

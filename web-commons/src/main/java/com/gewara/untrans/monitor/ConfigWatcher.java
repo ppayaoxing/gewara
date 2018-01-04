@@ -14,7 +14,7 @@ public class ConfigWatcher extends DataChangeWatcher{
 	@Override
 	protected void processChange(String oldvalue, final String newvalue) {
 		delay = (delay + 4) % 100;
-		/*¼õÉÙ²¢·¢*/
+		/*å‡å°‘å¹¶å‘*/
 		TimerHelper.TIMER.schedule(new Runnable(){
 			@Override
 			public void run() {

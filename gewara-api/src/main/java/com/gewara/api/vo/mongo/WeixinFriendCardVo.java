@@ -18,13 +18,13 @@ public class WeixinFriendCardVo extends BaseVo{
 	private String userCardCode;
 	private String outerId;
 	private String del;
-	// 0Î´Ê¹ÓÃ£¬1ÒÑÊ¹ÓÃ£¬2ÒÑÔùËÍ
+	// 0æœªä½¿ç”¨ï¼Œ1å·²ä½¿ç”¨ï¼Œ2å·²èµ é€
 	private String used;
 	private String cardId;
 	private String tradeNo;
-	//¸Ã¿¨ºËÏúÒÔºó£¬ÓÃ»§ÊÇ·ñÒÑ¾­»ñÈ¡ÁËµÚ¶şÕÅÈ¯ 0 Î´»ñÈ¡£¬1ÒÑ»ñÈ¡
+	//è¯¥å¡æ ¸é”€ä»¥åï¼Œç”¨æˆ·æ˜¯å¦å·²ç»è·å–äº†ç¬¬äºŒå¼ åˆ¸ 0 æœªè·å–ï¼Œ1å·²è·å–
 	private String gived;
-	//¿¨ÊÇ·ñºËÏú 0Î´ºËÏú£¬1ÒÑºËÏú
+	//å¡æ˜¯å¦æ ¸é”€ 0æœªæ ¸é”€ï¼Œ1å·²æ ¸é”€
 	private String consume;
 	
 	@Override

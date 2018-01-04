@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * ÁÁµãÈë¿Ú
+ * äº®ç‚¹å…¥å£
  * @author weihua.wang
  *
  */
@@ -15,15 +15,15 @@ public class HighlightEntryVo extends BaseVo{
 	private static final long serialVersionUID = -3249617513980619848L;
 	
 	private Long id;
-	private String tag;//±êÇ©
-	private String title;//±êÌâ
-	private String type;//ÁÁµãÈë¿ÚÀàĞÍ
+	private String tag;//æ ‡ç­¾
+	private String title;//æ ‡é¢˜
+	private String type;//äº®ç‚¹å…¥å£ç±»å‹
 	private String url;//URL
-	private String citycode;//³ÇÊĞ±àÂë
-	private Timestamp addtime;//Ìí¼ÓÊ±¼ä
-	private Timestamp updatetime;//¸üĞÂÊ±¼ä
-	private Timestamp starttime;//¿ªÊ¼Ê±¼ä
-	private Timestamp endtime;//½áÊøÊ±¼ä
+	private String citycode;//åŸå¸‚ç¼–ç 
+	private Timestamp addtime;//æ·»åŠ æ—¶é—´
+	private Timestamp updatetime;//æ›´æ–°æ—¶é—´
+	private Timestamp starttime;//å¼€å§‹æ—¶é—´
+	private Timestamp endtime;//ç»“æŸæ—¶é—´
 	
 
 	public Long getId() {

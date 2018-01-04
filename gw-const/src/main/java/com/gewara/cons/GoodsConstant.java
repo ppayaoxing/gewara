@@ -9,56 +9,56 @@ import java.util.Map;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
 public abstract class GoodsConstant {
-	public static final String MANAGER_USER = "user";					//¹ÜÀíÔ±
-	public static final String MANAGER_MEMBER = "member";				//ÆÕÍ¨ÓÃ»§
-	public static final String MANAGER_ORGANIZATION = "organization";	//×éÖ¯
+	public static final String MANAGER_USER = "user";					//ç®¡ç†å‘˜
+	public static final String MANAGER_MEMBER = "member";				//æ™®é€šç”¨æˆ·
+	public static final String MANAGER_ORGANIZATION = "organization";	//ç»„ç»‡
 	public static final List<String> MANAGER_LIST = Arrays.asList(MANAGER_MEMBER, MANAGER_USER, MANAGER_ORGANIZATION);
 	
 	public static final String GOODS_TYPE_GOODS = "goods";		
-	public static final String GOODS_TYPE_ACTIVITY = "activity";					//»î¶¯ÊÕ·Ñ
-	public static final String GOODS_TYPE_TICKET = "ticket";							//Í¨Æ±
+	public static final String GOODS_TYPE_ACTIVITY = "activity";					//æ´»åŠ¨æ”¶è´¹
+	public static final String GOODS_TYPE_TICKET = "ticket";							//é€šç¥¨
 	
-	//»î¶¯ÊÕ·ÑµÄTAG
-	public static final String GOODS_TAG_POINT = "point"; 							//»ı·Ö¶Ò»»ÎïÆ·
-	public static final String GOODS_TAG_GROUPON = "groupon";						//ÍÅ¹º
-	public static final String GOODS_TAG_BMH = "bmh";								//Ó°Ôº¸½ÊôÉÌÆ·£º±¬Ã×»¨	
-	public static final String GOODS_TAG_BMH_THEATRE= "bmh_theatre";				//»°¾ç
+	//æ´»åŠ¨æ”¶è´¹çš„TAG
+	public static final String GOODS_TAG_POINT = "point"; 							//ç§¯åˆ†å…‘æ¢ç‰©å“
+	public static final String GOODS_TAG_GROUPON = "groupon";						//å›¢è´­
+	public static final String GOODS_TAG_BMH = "bmh";								//å½±é™¢é™„å±å•†å“ï¼šçˆ†ç±³èŠ±	
+	public static final String GOODS_TAG_BMH_THEATRE= "bmh_theatre";				//è¯å‰§
 	
-	//Ô¤ÊÛ¡¢ÑÜÉúÆ·
-	public static final String SMALLTYPE_PRE = "pre";								//Ô¤ÊÛÀàĞÍÂôÆ·
-	public static final String SMALLTYPE_DERIVATIVE = "derivative";					//ÑÜÉúÆ·
-	public static final String SMALLTYPE_POINT = "point"; 							//»ı·Ö¶Ò»»ÎïÆ·
-	public static final String SMALLTYPE_BMH = "bmh";									//Ó°Ôº¸½ÊôÉÌÆ·£º±¬Ã×»¨	
-	public static final String SMALLTYPE_BS_MP = "bs_maipin";						//ÉÌ»§ÁªÃË£ºÂôÆ·
-	public static final String SMALLTYPE_BS_DER = "bs_derivative";					//ÉÌ»§ÁªÃË£ºÑÜÉúÆ·
-	public static final String SMALLTYPE_BS_PART = "bs_partner";					//ÉÌ»§ÁªÃË£ºµÚÈı·½ÂôÆ·
+	//é¢„å”®ã€è¡ç”Ÿå“
+	public static final String SMALLTYPE_PRE = "pre";								//é¢„å”®ç±»å‹å–å“
+	public static final String SMALLTYPE_DERIVATIVE = "derivative";					//è¡ç”Ÿå“
+	public static final String SMALLTYPE_POINT = "point"; 							//ç§¯åˆ†å…‘æ¢ç‰©å“
+	public static final String SMALLTYPE_BMH = "bmh";									//å½±é™¢é™„å±å•†å“ï¼šçˆ†ç±³èŠ±	
+	public static final String SMALLTYPE_BS_MP = "bs_maipin";						//å•†æˆ·è”ç›Ÿï¼šå–å“
+	public static final String SMALLTYPE_BS_DER = "bs_derivative";					//å•†æˆ·è”ç›Ÿï¼šè¡ç”Ÿå“
+	public static final String SMALLTYPE_BS_PART = "bs_partner";					//å•†æˆ·è”ç›Ÿï¼šç¬¬ä¸‰æ–¹å–å“
 	
-	public static final String BS_ACTIVITYID = "bsActivityid";						//ÉÌ»§ÁªÃË£º»î¶¯ID
+	public static final String BS_ACTIVITYID = "bsActivityid";						//å•†æˆ·è”ç›Ÿï¼šæ´»åŠ¨ID
 
-	public static final String EXTRA_TYPE = "T";	//Ñİ³öÍÅÏú
+	public static final String EXTRA_TYPE = "T";	//æ¼”å‡ºå›¢é”€
 
 	public static final List<String> SMALLTYPE_BSLIST = Arrays.asList(SMALLTYPE_BS_MP, SMALLTYPE_BS_DER, SMALLTYPE_BS_PART);
 	
 	public static final List<String> SMALLTYPE_PRELIST = Arrays.asList(SMALLTYPE_PRE, SMALLTYPE_DERIVATIVE);
 	
-	public static final String DELIVER_ELEC = "elec"; 			//µç×ÓÈ¯
-	public static final String DELIVER_ENTITY= "entity"; 		//ÊµÎï
-	public static final String DELIVER_ADDRESS= "address"; 		//µØÖ·
-	public static final String GOODS_SHOPPING_COUNT = "shoppingcount";	//¹ºÂòÎïÆ·ÈËÊı
+	public static final String DELIVER_ELEC = "elec"; 			//ç”µå­åˆ¸
+	public static final String DELIVER_ENTITY= "entity"; 		//å®ç‰©
+	public static final String DELIVER_ADDRESS= "address"; 		//åœ°å€
+	public static final String GOODS_SHOPPING_COUNT = "shoppingcount";	//è´­ä¹°ç‰©å“äººæ•°
 	
-	public static final String PERIOD_Y = "Y";		//ÓĞÊ±¼ä
-	public static final String PERIOD_N = "N";		//ÎŞÊ±¼ä
+	public static final String PERIOD_Y = "Y";		//æœ‰æ—¶é—´
+	public static final String PERIOD_N = "N";		//æ— æ—¶é—´
 	
 	public static final String CHECK_GOODS_PRICE = "price";
 	public static final String CHECK_GOODS_DISCOUNT = "discount";
 	public static final List<String> CHECK_GOODSLIST = Arrays.asList(CHECK_GOODS_PRICE, CHECK_GOODS_DISCOUNT);
 	
 	
-	public static final String FEETYPE_O = "O"; //µÚÈı·½ÂôÆ·£¨ÎÒÃÇÂôÊÕ·şÎñ·Ñ£©
-	public static final String FEETYPE_G = "G";	//GewaraÂôÆ·£¨ÎÒÃÇ×Ô¼º»õÎï£©
-	public static final String FEETYPE_P = "P";	//´úÊÛÆ½Ì¨£¨±ğÈËÂôÊÕÓ¶½ğ£©
-	public static final String FEETYPE_C = "C";	//Ô¤ÊÛ(ÎïÆ·ÂôÈ¯·½Ê½ÊµÏÖ)
-	public static final String FEETYPE_T = "T";	//Ö¸¶¨·şÎñÆ½Ì¨
+	public static final String FEETYPE_O = "O"; //ç¬¬ä¸‰æ–¹å–å“ï¼ˆæˆ‘ä»¬å–æ”¶æœåŠ¡è´¹ï¼‰
+	public static final String FEETYPE_G = "G";	//Gewaraå–å“ï¼ˆæˆ‘ä»¬è‡ªå·±è´§ç‰©ï¼‰
+	public static final String FEETYPE_P = "P";	//ä»£å”®å¹³å°ï¼ˆåˆ«äººå–æ”¶ä½£é‡‘ï¼‰
+	public static final String FEETYPE_C = "C";	//é¢„å”®(ç‰©å“å–åˆ¸æ–¹å¼å®ç°)
+	public static final String FEETYPE_T = "T";	//æŒ‡å®šæœåŠ¡å¹³å°
 	
 	
 	public static final String GOODS_SHARE_KEY = "gsk@sWet";
@@ -69,29 +69,29 @@ public abstract class GoodsConstant {
 	public static final String GOODS_OTHER_EDITION = "edition";
 	public static final String GOODS_OTHER_CHARACTERISTIC = "characteristic";
 
-	public static final String TAG_CINEMA = "cinema";				//³¡¹İÀàĞÍ-cinema
-	public static final String TAG_THEATRE = "theatre";				//³¡¹İÀàĞÍ-theatre
+	public static final String TAG_CINEMA = "cinema";				//åœºé¦†ç±»å‹-cinema
+	public static final String TAG_THEATRE = "theatre";				//åœºé¦†ç±»å‹-theatre
 	
-	public static final String SERVICETYPE_MOVIE = "movie";					//µçÓ°Ä£¿é
-	public static final String SERVICETYPE_DRAMA = "drama";					//Ñİ³öÄ£¿é
-	public static final String SERVICETYPE_ACTIVITY = "activity";			//»î¶¯Ä£¿é
+	public static final String SERVICETYPE_MOVIE = "movie";					//ç”µå½±æ¨¡å—
+	public static final String SERVICETYPE_DRAMA = "drama";					//æ¼”å‡ºæ¨¡å—
+	public static final String SERVICETYPE_ACTIVITY = "activity";			//æ´»åŠ¨æ¨¡å—
 	
 	public static final Map<String, String> feetypeMap;
 	public static final Map<String, String> SERVICETYPEMAP;
-	public static final String TEAM_MSG_FLAG = "teammsgflag";	//Æ´ÍÅ¶ÌĞÅ×´Ì¬
+	public static final String TEAM_MSG_FLAG = "teammsgflag";	//æ‹¼å›¢çŸ­ä¿¡çŠ¶æ€
 	static{
 		Map<String, String> tmp = new LinkedHashMap<String, String>();
-		tmp.put(FEETYPE_O, "µÚÈı·½ÂôÆ·");
-		tmp.put(FEETYPE_G, "GewaraÂôÆ·");
-		tmp.put(FEETYPE_P, "´úÊÛÆ½Ì¨");
-		tmp.put(FEETYPE_C, "Ô¤ÊÛ");
-		tmp.put(FEETYPE_T, "Ö¸¶¨·şÎñÆ½Ì¨");
+		tmp.put(FEETYPE_O, "ç¬¬ä¸‰æ–¹å–å“");
+		tmp.put(FEETYPE_G, "Gewaraå–å“");
+		tmp.put(FEETYPE_P, "ä»£å”®å¹³å°");
+		tmp.put(FEETYPE_C, "é¢„å”®");
+		tmp.put(FEETYPE_T, "æŒ‡å®šæœåŠ¡å¹³å°");
 		feetypeMap = UnmodifiableMap.decorate(tmp);
 		
 		Map<String, String> tmpMap = new HashMap<String, String>();
-		tmpMap.put(SERVICETYPE_MOVIE, "µçÓ°Ä£¿é");
-		tmpMap.put(SERVICETYPE_DRAMA, "Ñİ³öÄ£¿é");
-		tmpMap.put(SERVICETYPE_ACTIVITY, "»î¶¯Ä£¿é");
+		tmpMap.put(SERVICETYPE_MOVIE, "ç”µå½±æ¨¡å—");
+		tmpMap.put(SERVICETYPE_DRAMA, "æ¼”å‡ºæ¨¡å—");
+		tmpMap.put(SERVICETYPE_ACTIVITY, "æ´»åŠ¨æ¨¡å—");
 		SERVICETYPEMAP = UnmodifiableMap.decorate(tmpMap);
 	}
 }

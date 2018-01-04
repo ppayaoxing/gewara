@@ -12,7 +12,7 @@ public class CheckfirstbindByPayseqnoRequest extends ApiRequest {
 	 */
 	private static final long serialVersionUID = -3650370086575450781L;
 	
-	/**支付交易流水*/
+	/**鏀粯浜ゆ槗娴佹按*/
 	private String payseqno;
 	
 	public CheckfirstbindByPayseqnoRequest(){}

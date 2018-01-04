@@ -8,26 +8,26 @@ import com.gewara.api.vo.ResultCode;
 public interface CityPriceTierAdminVoService {
 	
 	/**
-	 * ¸ù¾İidÉ¾³ı³ÇÊĞËùÔÚÀà±ğ
+	 * æ ¹æ®idåˆ é™¤åŸå¸‚æ‰€åœ¨ç±»åˆ«
 	 * @param cityCode
 	 * @return
 	 */
 	ResultCode removeCityPriceTierById(String cityCode);
 	
 	/**
-	 * ĞÂÔö/¸üĞÂ³ÇÊĞËùÔÚÀà±ğ
+	 * æ–°å¢/æ›´æ–°åŸå¸‚æ‰€åœ¨ç±»åˆ«
 	 * @param cityPriceTier
 	 */
 	ResultCode saveOrUpdateCityPriceTier(Map cityPriceTier);
 	
 	/**
-	 * »ñÈ¡ËùÓĞ³ÇÊĞËùÔÚÀà±ğ
+	 * è·å–æ‰€æœ‰åŸå¸‚æ‰€åœ¨ç±»åˆ«
 	 * @return
 	 */
 	ResultCode<List<Map>> getAllCityPriceTier();
 	
 	/**
-	 * ¸ù¾İid(citycode)²éÑ¯³ÇÊĞËùÔÚÀà±ğ
+	 * æ ¹æ®id(citycode)æŸ¥è¯¢åŸå¸‚æ‰€åœ¨ç±»åˆ«
 	 * @param citycode
 	 * @return
 	 */

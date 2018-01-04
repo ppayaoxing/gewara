@@ -11,29 +11,29 @@ import com.gewara.movie.vo.SeatTypeVo;
 public interface MovieMongoVoService {
 	
 	/**
-	 * 查询FilmfestDateList列表
-	 * @param filmfestCode 必填
-	 * @param dayNumber 可为null
+	 * 鏌ヨFilmfestDateList鍒楄〃
+	 * @param filmfestCode 蹇呭～
+	 * @param dayNumber 鍙负null
 	 * @return
 	 */
 	ResultCode<List<Map>> getFilmfestDateListByFilmfestCodeAndDayNumber(String filmfestCode,Integer dayNumber);
 	
 	/**
-	 * 根据recordId查询FilmfestDateList
+	 * 鏍规嵁recordId鏌ヨFilmfestDateList
 	 * @param recordId
 	 * @return
 	 */
 	ResultCode<Map> getFilmfestDateListByRecordId(String recordId);
 	
 	/**
-	 * 新增/更新 FilmfestDateList
+	 * 鏂板/鏇存柊 FilmfestDateList
 	 * @param param
 	 * @return
 	 */
 	ResultCode saveOrUpdateFilmfestDateList(Map param);
 	
 	/**
-	 * 根据recordId删除FilmfestDateList
+	 * 鏍规嵁recordId鍒犻櫎FilmfestDateList
 	 * @param recordId
 	 * @return
 	 */
@@ -41,14 +41,14 @@ public interface MovieMongoVoService {
 	
 	
 	/**
-	 * 根据recordId查询Filmfest_MovieIds
+	 * 鏍规嵁recordId鏌ヨFilmfest_MovieIds
 	 * @param recordId
 	 * @return
 	 */
 	ResultCode<Map> getFilmfestMovieIdsByRecordId(String recordId);
 	
 	/**
-	 * 新增/更新Filmfest_MovieIds
+	 * 鏂板/鏇存柊Filmfest_MovieIds
 	 * @param param
 	 * @return
 	 */
@@ -56,35 +56,35 @@ public interface MovieMongoVoService {
 	
 	
 	/**
-	 * 根据电影ID查询 MovieDetailTab列表
+	 * 鏍规嵁鐢靛奖ID鏌ヨ MovieDetailTab鍒楄〃
 	 * @param movieId
 	 * @return
 	 */
 	ResultCode<List<MovieDetailTabVo>> getMovieDetailTabListByMovieId(Long movieId);
 	
 	/**
-	 * 根据ID查询 MovieDetailTab
+	 * 鏍规嵁ID鏌ヨ MovieDetailTab
 	 * @param id
 	 * @return
 	 */
 	ResultCode<MovieDetailTabVo> getMovieDetailTabById(String id);
 	
 	/**
-	 * 根据ID删除MovieDetailTab
+	 * 鏍规嵁ID鍒犻櫎MovieDetailTab
 	 * @param id
 	 * @return
 	 */
 	ResultCode removeMovieDetailTabById(String id);
 	
 	/**
-	 * 新增 MovieDetailTab
+	 * 鏂板 MovieDetailTab
 	 * @param detailTab
 	 * @return
 	 */
 	ResultCode saveOrUpdateMovieDetailTab(MovieDetailTabVo detailTab);
 	
 	/**
-	 * 查询FilmFestTicketOrder数量
+	 * 鏌ヨFilmFestTicketOrder鏁伴噺
 	 * @param memberId
 	 * @param relatedId
 	 * @return
@@ -93,21 +93,21 @@ public interface MovieMongoVoService {
 	
 	
 	/**
-	 * 新增FilmFestTicketOrder
+	 * 鏂板FilmFestTicketOrder
 	 * @param order
 	 * @return
 	 */
 	ResultCode saveFilmFestTicketOrder(FilmFestTicketOrderVo order);
 	
 	/**
-	 * 根据ID查询SeatType
+	 * 鏍规嵁ID鏌ヨSeatType
 	 * @param id
 	 * @return
 	 */
 	ResultCode<SeatTypeVo> getSeatTypeById(String id);
 	
 	/**
-	 * 新增/更新 SeatType
+	 * 鏂板/鏇存柊 SeatType
 	 * @param seatType
 	 * @return
 	 */

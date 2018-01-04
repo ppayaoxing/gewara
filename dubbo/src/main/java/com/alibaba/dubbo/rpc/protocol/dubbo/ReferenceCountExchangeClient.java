@@ -142,7 +142,7 @@ final class ReferenceCountExchangeClient implements ExchangeClient {
         client.removeAttribute(key);
     }
     /* 
-     * close�����������ݵ�,������Ҫע��.
+     * close锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟捷碉拷,锟斤拷锟斤拷锟斤拷要注锟斤拷.
      */
     @Override
     public void close() {
@@ -161,9 +161,9 @@ final class ReferenceCountExchangeClient implements ExchangeClient {
         }
     }
     
-    //����client,
+    //锟斤拷锟斤拷client,
     private LazyConnectExchangeClient replaceWithLazyClient(){
-        //�������ֻΪ�˷�ֹ����bug����ر�client���ķ�����ʩ����ʼclient����Ϊfalse״̬
+        //锟斤拷锟斤拷锟斤拷锟街晃拷朔锟街癸拷锟斤拷锟絙ug锟斤拷锟斤拷乇锟絚lient锟斤拷锟侥凤拷锟斤拷锟斤拷施锟斤拷锟斤拷始client锟斤拷锟斤拷为false状态
         URL lazyUrl = url.addParameter(Constants.LAZY_CONNECT_INITIAL_STATE_KEY, Boolean.FALSE)
                 .addParameter(Constants.RECONNECT_KEY, Boolean.FALSE)
                 .addParameter(Constants.SEND_RECONNECT_KEY, Boolean.TRUE.toString())
@@ -172,7 +172,7 @@ final class ReferenceCountExchangeClient implements ExchangeClient {
                 .addParameter("_client_memo", "referencecounthandler.replacewithlazyclient");
         
         String key = url.getAddress();
-        //��������ֻ��һ����������
+        //锟斤拷锟斤拷锟斤拷锟斤拷只锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
         LazyConnectExchangeClient gclient = ghostClientMap.get(key);
         if (gclient == null || gclient.isClosed()){
             gclient = new LazyConnectExchangeClient(lazyUrl, client.getExchangeHandler());

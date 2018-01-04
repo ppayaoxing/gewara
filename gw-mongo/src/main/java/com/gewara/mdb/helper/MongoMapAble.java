@@ -3,11 +3,11 @@ package com.gewara.mdb.helper;
 import java.util.Map;
 
 /**
- * ÅäºÏArrayOperationÊ¹ÓÃ¡£
- * ¶ÔÓÚarrayOperationÖĞµÄ²Ù×÷µÄÖµ£¬Èç¹ûÊµÏÖÁË¸Ã½Ó¿Ú£¬Õâµ÷ÓÃ¸Ã½Ó¿Ú´¦Àí£¬
- * ·ñÔò°´ÕÕ»ù´¡Êı¾İÀàĞÍ½øĞĞ´¦Àí
- * @author ¶­Ã÷
- * @createDate 2015Äê10ÔÂ20ÈÕ
+ * é…åˆArrayOperationä½¿ç”¨ã€‚
+ * å¯¹äºarrayOperationä¸­çš„æ“ä½œçš„å€¼ï¼Œå¦‚æœå®ç°äº†è¯¥æ¥å£ï¼Œè¿™è°ƒç”¨è¯¥æ¥å£å¤„ç†ï¼Œ
+ * å¦åˆ™æŒ‰ç…§åŸºç¡€æ•°æ®ç±»å‹è¿›è¡Œå¤„ç†
+ * @author è‘£æ˜
+ * @createDate 2015å¹´10æœˆ20æ—¥
  */
 public interface MongoMapAble {
 	Map<String,Object> toMap();

@@ -20,7 +20,7 @@ import java.io.File;
 import com.alibaba.dubbo.common.extension.SPI;
 
 /**
- * ÈÕÖ¾Êä³öÆ÷¹©¸øÆ÷
+ * æ—¥å¿—è¾“å‡ºå™¨ä¾›ç»™å™¨
  *
  * @author william.liangf
  */
@@ -28,46 +28,46 @@ import com.alibaba.dubbo.common.extension.SPI;
 public interface LoggerAdapter {
 	
 	/**
-	 * »ñÈ¡ÈÕÖ¾Êä³öÆ÷
+	 * è·å–æ—¥å¿—è¾“å‡ºå™¨
 	 *
-	 * @param key ·ÖÀà¼ü
-	 * @return ÈÕÖ¾Êä³öÆ÷, ºóÑéÌõ¼ş: ²»·µ»Ønull.
+	 * @param key åˆ†ç±»é”®
+	 * @return æ—¥å¿—è¾“å‡ºå™¨, åéªŒæ¡ä»¶: ä¸è¿”å›null.
 	 */
 	Logger getLogger(Class<?> key);
 
 	/**
-	 * »ñÈ¡ÈÕÖ¾Êä³öÆ÷
+	 * è·å–æ—¥å¿—è¾“å‡ºå™¨
 	 *
-	 * @param key ·ÖÀà¼ü
-	 * @return ÈÕÖ¾Êä³öÆ÷, ºóÑéÌõ¼ş: ²»·µ»Ønull.
+	 * @param key åˆ†ç±»é”®
+	 * @return æ—¥å¿—è¾“å‡ºå™¨, åéªŒæ¡ä»¶: ä¸è¿”å›null.
 	 */
 	Logger getLogger(String key);
 	
 	/**
-	 * ÉèÖÃÊä³öµÈ¼¶
+	 * è®¾ç½®è¾“å‡ºç­‰çº§
 	 * 
-	 * @param level Êä³öµÈ¼¶
+	 * @param level è¾“å‡ºç­‰çº§
 	 */
 	void setLevel(Level level);
 	
 	/**
-	 * »ñÈ¡µ±Ç°ÈÕÖ¾µÈ¼¶
+	 * è·å–å½“å‰æ—¥å¿—ç­‰çº§
 	 * 
-	 * @return µ±Ç°ÈÕÖ¾µÈ¼¶
+	 * @return å½“å‰æ—¥å¿—ç­‰çº§
 	 */
 	Level getLevel();
 	
 	/**
-	 * »ñÈ¡µ±Ç°ÈÕÖ¾ÎÄ¼ş
+	 * è·å–å½“å‰æ—¥å¿—æ–‡ä»¶
 	 * 
-	 * @return µ±Ç°ÈÕÖ¾ÎÄ¼ş
+	 * @return å½“å‰æ—¥å¿—æ–‡ä»¶
 	 */
 	File getFile();
 	
 	/**
-	 * ÉèÖÃÊä³öÈÕÖ¾ÎÄ¼ş
+	 * è®¾ç½®è¾“å‡ºæ—¥å¿—æ–‡ä»¶
 	 * 
-	 * @param file Êä³öÈÕÖ¾ÎÄ¼ş
+	 * @param file è¾“å‡ºæ—¥å¿—æ–‡ä»¶
 	 */
 	void setFile(File file);
 

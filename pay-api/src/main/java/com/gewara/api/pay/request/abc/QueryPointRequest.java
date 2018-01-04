@@ -7,17 +7,17 @@ public class QueryPointRequest extends AbcRequest{
 	private static final long serialVersionUID = 556251408350901842L;
 
 	/**
-	 * ����
+	 * 锟斤拷锟斤拷
 	 */
 	private String cardno;
 	
 	/**
-	 * ����Ч��
+	 * 锟斤拷锟斤拷效锟斤拷
 	 */
 	private String cardexp;
 	
 	/**
-	 * У����
+	 * 校锟斤拷锟斤拷
 	 */
 	private String adddata;
 

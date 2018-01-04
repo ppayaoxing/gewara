@@ -44,10 +44,10 @@ import com.alibaba.dubbo.rpc.RpcContext;
 import com.alibaba.dubbo.rpc.RpcException;
 
 /**
- * ��¼Service��Access Log��
+ * 锟斤拷录Service锟斤拷Access Log锟斤拷
  * <p>
- * ʹ�õ�Logger key��<code><b>dubbo.accesslog</b></code>��
- * �����Ҫ����Access Logֻ������ָ����Appender�У�������Log4j��ע��������additivity������ʾ��:
+ * 使锟矫碉拷Logger key锟斤拷<code><b>dubbo.accesslog</b></code>锟斤拷
+ * 锟斤拷锟斤拷锟揭拷锟斤拷锟紸ccess Log只锟斤拷锟斤拷锟斤拷指锟斤拷锟斤拷Appender锟叫ｏ拷锟斤拷锟斤拷锟斤拷Log4j锟斤拷注锟斤拷锟斤拷锟斤拷锟斤拷additivity锟斤拷锟斤拷锟斤拷示锟斤拷:
  * <code>
  * <pre>
  * &lt;logger name="<b>dubbo.accesslog</b>" <font color="red">additivity="false"</font>&gt;

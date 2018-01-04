@@ -43,14 +43,14 @@ import com.alibaba.dubbo.common.utils.Holder;
 import com.alibaba.dubbo.common.utils.StringUtils;
 
 /**
- * Dubboʹ�õ���չ���ȡ��<p>
+ * Dubbo使锟矫碉拷锟斤拷展锟斤拷锟饺★拷锟�<p>
  * <ul>
- * <li>�Զ�ע�������չ�㡣</li>
- * <li>�Զ�Wrap����չ���Wrap�ࡣ</li>
- * <li>ȱʡ��õĵ���չ����һ��Adaptive Instance��
+ * <li>锟皆讹拷注锟斤拷锟斤拷锟斤拷锟秸癸拷恪�</li>
+ * <li>锟皆讹拷Wrap锟斤拷锟斤拷展锟斤拷锟絎rap锟洁。</li>
+ * <li>缺省锟斤拷玫牡锟斤拷锟秸癸拷锟斤拷锟揭伙拷锟紸daptive Instance锟斤拷
  * </ul>
  * 
- * @see <a href="http://java.sun.com/j2se/1.5.0/docs/guide/jar/jar.html#Service%20Provider">JDK5.0���Զ����ֻ���ʵ��</a>
+ * @see <a href="http://java.sun.com/j2se/1.5.0/docs/guide/jar/jar.html#Service%20Provider">JDK5.0锟斤拷锟皆讹拷锟斤拷锟街伙拷锟斤拷实锟斤拷</a>
  * 
  * @author william.liangf
  * @author ding.lid
@@ -265,9 +265,9 @@ public class ExtensionLoader<T> {
     }
 
     /**
-     * ������չ��ʵ�������û��ָ������չ����ǻ�û���أ���ʵ�������򷵻�<code>null</code>��ע�⣺�˷������ᴥ����չ��ļ��ء�
+     * 锟斤拷锟斤拷锟斤拷展锟斤拷实锟斤拷锟斤拷锟斤拷锟矫伙拷锟街革拷锟斤拷锟斤拷锟秸癸拷锟斤拷锟角伙拷没锟斤拷锟截ｏ拷锟斤拷实锟斤拷锟斤拷锟斤拷锟津返伙拷<code>null</code>锟斤拷注锟解：锟剿凤拷锟斤拷锟斤拷锟结触锟斤拷锟斤拷展锟斤拷募锟斤拷亍锟�
      * <p />
-     * һ��Ӧ�õ���{@link #getExtension(String)}���������չ����������ᴥ����չ����ء�
+     * 一锟斤拷应锟矫碉拷锟斤拷{@link #getExtension(String)}锟斤拷锟斤拷锟斤拷锟斤拷锟秸癸拷锟斤拷锟斤拷锟斤拷锟斤拷锟结触锟斤拷锟斤拷展锟斤拷锟斤拷亍锟�
      *
      * @see #getExtension(String)
      */
@@ -285,9 +285,9 @@ public class ExtensionLoader<T> {
     }
 
     /**
-     * �����Ѿ����ص���չ������֡�
+     * 锟斤拷锟斤拷锟窖撅拷锟斤拷锟截碉拷锟斤拷展锟斤拷锟斤拷锟斤拷帧锟�
      * <p />
-     * һ��Ӧ�õ���{@link #getSupportedExtensions()}���������չ����������᷵�����е���չ�㡣
+     * 一锟斤拷应锟矫碉拷锟斤拷{@link #getSupportedExtensions()}锟斤拷锟斤拷锟斤拷锟斤拷锟秸癸拷锟斤拷锟斤拷锟斤拷锟斤拷锟结返锟斤拷锟斤拷锟叫碉拷锟斤拷展锟姐。
      *
      * @see #getSupportedExtensions()
      */
@@ -296,7 +296,7 @@ public class ExtensionLoader<T> {
     }
 
     /**
-     * ����ָ�����ֵ���չ�����ָ�����ֵ���չ�����ڣ������쳣 {@link IllegalStateException}.
+     * 锟斤拷锟斤拷指锟斤拷锟斤拷锟街碉拷锟斤拷展锟斤拷锟斤拷锟街革拷锟斤拷锟斤拷值锟斤拷锟秸癸拷锟斤拷锟斤拷冢锟斤拷锟斤拷锟斤拷斐� {@link IllegalStateException}.
      *
      * @param name
      * @return
@@ -328,7 +328,7 @@ public class ExtensionLoader<T> {
 	}
 	
 	/**
-	 * ����ȱʡ����չ�����û�������򷵻�<code>null</code>�� 
+	 * 锟斤拷锟斤拷缺省锟斤拷锟斤拷展锟斤拷锟斤拷锟矫伙拷锟斤拷锟斤拷锟斤拷蚍祷锟�<code>null</code>锟斤拷 
 	 */
 	public T getDefaultExtension() {
 	    getExtensionClasses();
@@ -356,7 +356,7 @@ public class ExtensionLoader<T> {
     }
     
 	/**
-	 * ����ȱʡ����չ���������û������ȱʡ�򷵻�<code>null</code>�� 
+	 * 锟斤拷锟斤拷缺省锟斤拷锟斤拷展锟斤拷锟斤拷锟斤拷锟斤拷锟矫伙拷锟斤拷锟斤拷锟饺笔★拷蚍祷锟�<code>null</code>锟斤拷 
 	 */
 	public String getDefaultExtensionName() {
 	    getExtensionClasses();
@@ -364,11 +364,11 @@ public class ExtensionLoader<T> {
 	}
 
     /**
-     * ��̷�ʽ�������չ�㡣
+     * 锟斤拷谭锟绞斤拷锟斤拷锟斤拷锟斤拷展锟姐。
      *
-     * @param name ��չ����
-     * @param clazz ��չ����
-     * @throws IllegalStateException Ҫ�����չ�����Ѿ����ڡ�
+     * @param name 锟斤拷展锟斤拷锟斤拷
+     * @param clazz 锟斤拷展锟斤拷锟斤拷
+     * @throws IllegalStateException 要锟斤拷锟斤拷锟秸癸拷锟斤拷锟斤拷丫锟斤拷锟斤拷凇锟�
      */
     public void addExtension(String name, Class<?> clazz) {
         getExtensionClasses(); // load classes
@@ -404,12 +404,12 @@ public class ExtensionLoader<T> {
     }
 
     /**
-     * ��̷�ʽ����滻������չ�㡣
+     * 锟斤拷谭锟绞斤拷锟斤拷锟芥换锟斤拷锟斤拷锟斤拷展锟姐。
      *
-     * @param name ��չ����
-     * @param clazz ��չ����
-     * @throws IllegalStateException Ҫ�����չ�����Ѿ����ڡ�
-     * @deprecated ���Ƽ�Ӧ��ʹ�ã�һ��ֻ�ڲ���ʱ����ʹ��
+     * @param name 锟斤拷展锟斤拷锟斤拷
+     * @param clazz 锟斤拷展锟斤拷锟斤拷
+     * @throws IllegalStateException 要锟斤拷锟斤拷锟秸癸拷锟斤拷锟斤拷丫锟斤拷锟斤拷凇锟�
+     * @deprecated 锟斤拷锟狡硷拷应锟斤拷使锟矫ｏ拷一锟斤拷只锟节诧拷锟斤拷时锟斤拷锟斤拷使锟斤拷
      */
     @Deprecated
     public void replaceExtension(String name, Class<?> clazz) {
@@ -579,7 +579,7 @@ public class ExtensionLoader<T> {
         return classes;
 	}
 
-    // �˷����Ѿ�getExtensionClasses����ͬ������
+    // 锟剿凤拷锟斤拷锟窖撅拷getExtensionClasses锟斤拷锟斤拷同锟斤拷锟斤拷锟斤拷
     private Map<String, Class<?>> loadExtensionClasses() {
         final SPI defaultAnnotation = type.getAnnotation(SPI.class);
         if(defaultAnnotation != null) {
@@ -760,7 +760,7 @@ public class ExtensionLoader<T> {
                 break;
             }
         }
-        // ��ȫû��Adaptive����������Ҫ����Adaptive��
+        // 锟斤拷全没锟斤拷Adaptive锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷要锟斤拷锟斤拷Adaptive锟斤拷
         if(! hasAdaptiveAnnotation) {
             throw new IllegalStateException("No adaptive method on extension " + type.getName() + ", refuse to create the adaptive class!");
         }
@@ -788,7 +788,7 @@ public class ExtensionLoader<T> {
                         break;
                     }
                 }
-                // ������ΪURL�Ĳ���
+                // 锟斤拷锟斤拷锟斤拷为URL锟侥诧拷锟斤拷
                 if (urlTypeIndex != -1) {
                     // Null Point check
                     String s = String.format("\nif (arg%d == null) throw new IllegalArgumentException(\"url == null\");",
@@ -798,11 +798,11 @@ public class ExtensionLoader<T> {
                     s = String.format("\n%s url = arg%d;", URL.class.getName(), urlTypeIndex); 
                     code.append(s);
                 }
-                // ����û��URL����
+                // 锟斤拷锟斤拷没锟斤拷URL锟斤拷锟斤拷
                 else {
                     String attribMethod = null;
                     
-                    // �ҵ�������URL����
+                    // 锟揭碉拷锟斤拷锟斤拷锟斤拷URL锟斤拷锟斤拷
                     LBL_PTS:
                     for (int i = 0; i < pts.length; ++i) {
                         Method[] ms = pts[i].getMethods();
@@ -837,7 +837,7 @@ public class ExtensionLoader<T> {
                 }
                 
                 String[] value = adaptiveAnnotation.value();
-                // û������Key����ʹ�á���չ��ӿ����ĵ�ָ� ��ΪKey
+                // 没锟斤拷锟斤拷锟斤拷Key锟斤拷锟斤拷使锟矫★拷锟斤拷展锟斤拷涌锟斤拷锟斤拷牡锟街革拷 锟斤拷为Key
                 if(value.length == 0) {
                     char[] charArray = type.getSimpleName().toCharArray();
                     StringBuilder sb = new StringBuilder(128);

@@ -16,28 +16,28 @@ public class DiaryVo extends BaseVo implements Serializable {
 	private static final long serialVersionUID = 4909399739817173386L;
 
 	protected Long id;
-	protected Long memberid;		//�û�id
-	protected String subject;		//����
-	protected Integer flowernum;	// �ʻ���
-	protected Integer poohnum;		// ������
-	protected Integer sumnum;		//����
+	protected Long memberid;		//锟矫伙拷id
+	protected String subject;		//锟斤拷锟斤拷
+	protected Integer flowernum;	// 锟绞伙拷锟斤拷
+	protected Integer poohnum;		// 锟斤拷锟斤拷锟斤拷
+	protected Integer sumnum;		//锟斤拷锟斤拷
 	protected Integer sumnumed;
-	protected Timestamp addtime;	//���ʱ��
-	protected Integer clickedtimes;	//�������
+	protected Timestamp addtime;	//锟斤拷锟绞憋拷锟�
+	protected Integer clickedtimes;	//锟斤拷锟斤拷锟斤拷锟�
 	protected String tag;			
 	protected String category;		
 	protected Long categoryid;		
 	protected Long relatedid;
-	protected String status; 		// ״̬���磺��ɾ��
-	protected String summary; 		// ժҪ����Ҫ
-	protected Timestamp replytime;	//���ظ�ʱ��
-	protected Integer replycount;	//�ظ�����
+	protected String status; 		// 状态锟斤拷锟界：锟斤拷删锟斤拷
+	protected String summary; 		// 摘要锟斤拷锟斤拷要
+	protected Timestamp replytime;	//锟斤拷锟截革拷时锟斤拷
+	protected Integer replycount;	//锟截革拷锟斤拷锟斤拷
 	protected Long replyid;
-	protected String type; 			// һ������ͶƱ���ӡ�Ӱ����
-	protected Boolean viewed; 		// �鿴��
+	protected String type; 			// 一锟斤拷锟斤拷锟斤拷投票锟斤拷锟接★拷影锟斤拷锟斤拷
+	protected Boolean viewed; 		// 锟介看锟斤拷
 	protected Timestamp updatetime;
-	protected Date overdate; 		// ͶƱ��������
-	protected Timestamp utime; 		// �����ֶ�concat(REPLYTIME, UPDATETIME)
+	protected Date overdate; 		// 投票锟斤拷锟斤拷锟斤拷锟斤拷
+	protected Timestamp utime; 		// 锟斤拷锟斤拷锟街讹拷concat(REPLYTIME, UPDATETIME)
 	protected Long communityid;
 	protected String flag;
 	protected String range;
@@ -49,7 +49,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	protected String division;
 	protected String otherinfo;
 	protected String diaryImage;
-	protected String ip;			//�����û�IP
+	protected String ip;			//锟斤拷锟斤拷锟矫伙拷IP
 	
 	public String getDiaryImage() {
 		return diaryImage;
@@ -125,7 +125,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 		this.replycount = 0;
 		this.viewed = true;
 		this.status = Status.Y_NEW;
-		this.communityid = 0L;// Ĭ��ֵ
+		this.communityid = 0L;// 默锟斤拷值
 		this.division = DiaryConstant.DIVISION_N;
 		this.subject = subject;
 	}
@@ -342,7 +342,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 		this.status = status;
 	}
 
-	public boolean getPic() {// ����ͼƬ
+	public boolean getPic() {// 锟斤拷锟斤拷图片
 		return StringUtils.contains(flag, Flag.FLAG_USERFILES);
 	}
 

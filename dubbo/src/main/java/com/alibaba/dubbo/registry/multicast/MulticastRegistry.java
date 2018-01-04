@@ -53,7 +53,7 @@ import com.alibaba.dubbo.registry.support.FailbackRegistry;
  */
 public class MulticastRegistry extends FailbackRegistry {
 
-    // ��־���
+    // 锟斤拷志锟斤拷锟�
     private static final Logger logger = LoggerFactory.getLogger(MulticastRegistry.class);
 
     private static final int DEFAULT_MULTICAST_PORT = 1234;
@@ -122,8 +122,8 @@ public class MulticastRegistry extends FailbackRegistry {
                 @Override
                 public void run() {
                     try {
-                        clean(); // ���������
-                    } catch (Throwable t) { // �������ݴ�
+                        clean(); // 锟斤拷锟斤拷锟斤拷锟斤拷锟�
+                    } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
                         logger.error("Unexpected exception occur at clean expired provider, cause: " + t.getMessage(), t);
                     }
                 }
@@ -218,8 +218,8 @@ public class MulticastRegistry extends FailbackRegistry {
                     if (UrlUtils.isMatch(url, u)) {
                         String host = remoteAddress != null && remoteAddress.getAddress() != null 
                                 ? remoteAddress.getAddress().getHostAddress() : url.getIp();
-                        if (url.getParameter("unicast", true) // �����ߵĻ����Ƿ�ֻ��һ������
-                                && ! NetUtils.getLocalHost().equals(host)) { // ͬ��������̲�����unicast������Ϣ������ֻ����һ�������յ���Ϣ
+                        if (url.getParameter("unicast", true) // 锟斤拷锟斤拷锟竭的伙拷锟斤拷锟角凤拷只锟斤拷一锟斤拷锟斤拷锟斤拷
+                                && ! NetUtils.getLocalHost().equals(host)) { // 同锟斤拷锟斤拷锟斤拷锟斤拷滩锟斤拷锟斤拷锟絬nicast锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷锟斤拷只锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟秸碉拷锟斤拷息
                             unicast(Constants.REGISTER + " " + u.toFullString(), host);
                         } else {
                             broadcast(Constants.REGISTER + " " + u.toFullString());

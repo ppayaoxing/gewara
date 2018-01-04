@@ -10,10 +10,10 @@ public class RefundOrderReportVo implements Serializable{
 	private Long cinemaid;
 	private String cinemaName;
 	private String citycode;
-	private Long quantity;//ÍËÆ±Æ±Êı
-	private Long totalcost;//ÍËÆ±×Ü½ğ¶î
-	private Long orderCount;//ÍËÆ±¶©µ¥Êı
-	private Long totalCount;//×Ü¶©µ¥Êı
+	private Long quantity;//é€€ç¥¨ç¥¨æ•°
+	private Long totalcost;//é€€ç¥¨æ€»é‡‘é¢
+	private Long orderCount;//é€€ç¥¨è®¢å•æ•°
+	private Long totalCount;//æ€»è®¢å•æ•°
 	
 	public Long getCinemaid() {
 		return cinemaid;

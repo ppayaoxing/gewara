@@ -15,12 +15,12 @@ public class GewaAuthenticationEventPublisher implements AuthenticationEventPubl
 	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
 	@Override
 	public void publishAuthenticationFailure(AuthenticationException exception, Authentication authentication) {
-		dbLogger.warn("ÓÃ»§µÇÂ¼Ê§°Ü£º" + authentication.getName() + "Ê§°ÜÔ­Òò:" + exception.getMessage());
+		dbLogger.warn("ç”¨æˆ·ç™»å½•å¤±è´¥ï¼š" + authentication.getName() + "å¤±è´¥åŸå› :" + exception.getMessage());
 	}
 
 	@Override
 	public void publishAuthenticationSuccess(Authentication authentication) {
 		GewaraUser user = (GewaraUser) authentication.getPrincipal();
-		dbLogger.warn("ÓÃ»§µÇÂ¼³É¹¦£º" + user.getId() + ":" +user.getRealname());
+		dbLogger.warn("ç”¨æˆ·ç™»å½•æˆåŠŸï¼š" + user.getId() + ":" +user.getRealname());
 	}
 }

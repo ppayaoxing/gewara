@@ -12,128 +12,128 @@ import java.util.Map;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 public abstract class OpiConstant {
-	public static final String STATUS_BOOK = "Y";			//����Ԥ��
-	public static final String STATUS_NOBOOK = "N";			//������Ԥ��
-	public static final String STATUS_RECOVER = "R";		//��ɾ��״̬�ָ�����Ҫ����
-	public static final String STATUS_DISCARD = "D";		//����
-	public static final String STATUS_CLOSE = "C";			//����״̬	
-	public static final String STATUS_PAST = "P";			//���ι���
-	public static final String PARTNER_OPEN = "Y";			//���⿪��
-	public static final String PARTNER_CLOSE = "N";			//�����⿪��
+	public static final String STATUS_BOOK = "Y";			//锟斤拷锟斤拷预锟斤拷
+	public static final String STATUS_NOBOOK = "N";			//锟斤拷锟斤拷锟斤拷预锟斤拷
+	public static final String STATUS_RECOVER = "R";		//锟斤拷删锟斤拷状态锟街革拷锟斤拷锟斤拷要锟斤拷锟斤拷
+	public static final String STATUS_DISCARD = "D";		//锟斤拷锟斤拷
+	public static final String STATUS_CLOSE = "C";			//锟斤拷锟斤拷状态	
+	public static final String STATUS_PAST = "P";			//锟斤拷锟轿癸拷锟斤拷
+	public static final String PARTNER_OPEN = "Y";			//锟斤拷锟解开锟斤拷
+	public static final String PARTNER_CLOSE = "N";			//锟斤拷锟斤拷锟解开锟斤拷
 
-	//����
-	//public static final String OPEN_PNX = "PNX";			//�������ͣ��붫Ʊ�Խ�
-	public static final String OPEN_DADI = "DADI";			//�������Ժ��
-	public static final String OPEN_HFH = "HFH";			//�������ͣ�����˶Խ�
-	public static final String OPEN_WD = "WD";				//�������ͣ������Խ�
-	public static final String OPEN_VISTA = "VISTA";		//�������ͣ���Vista�Խ�
-	public static final String OPEN_JY = "JY";				//�������ͣ���JY�Խ�
-	public static final String OPEN_FB = "FB";				//������
-	public static final String OPEN_XFLH = "XFLH";			//�Ҹ�����
-	public static final String OPEN_LMA = "LMA";			//¬�װ�
-	public static final String OPEN_NJY = "NJY";			//����Ʊ��ӿڣ�����������
-	public static final String OPEN_TXPC = "TXPC";			//����Ʊ��
+	//锟斤拷锟斤拷
+	//public static final String OPEN_PNX = "PNX";			//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟诫东票锟皆斤拷
+	public static final String OPEN_DADI = "DADI";			//锟斤拷锟斤拷锟斤拷锟皆猴拷锟�
+	public static final String OPEN_HFH = "HFH";			//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟斤拷锟斤拷硕越锟�
+	public static final String OPEN_WD = "WD";				//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟斤拷锟斤拷锟皆斤拷
+	public static final String OPEN_VISTA = "VISTA";		//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟斤拷Vista锟皆斤拷
+	public static final String OPEN_JY = "JY";				//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟斤拷JY锟皆斤拷
+	public static final String OPEN_FB = "FB";				//锟斤拷锟斤拷锟斤拷
+	public static final String OPEN_XFLH = "XFLH";			//锟揭革拷锟斤拷锟斤拷
+	public static final String OPEN_LMA = "LMA";			//卢锟阶帮拷
+	public static final String OPEN_NJY = "NJY";			//锟斤拷锟斤拷票锟斤拷涌冢锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+	public static final String OPEN_TXPC = "TXPC";			//锟斤拷锟斤拷票锟斤拷
 	public static final String OPEN_UL = "UL";				//UL
-	public static final String OPEN_MJ = "MJ";				//����
-	public static final String OPEN_MJY = "MJY";				//���ݣ�2.4��
-	public static final String OPEN_WD2 = "WD2";				//���2
-	public static final String OPEN_FB2 = "FB2";				//������2
-	public static final String OPEN_DADI2 = "DADI2";				//���vista
-	public static final String OPEN_YXLT = "YXLT";				//��������
-	public static final String OPEN_WM = "WM";					//����
+	public static final String OPEN_MJ = "MJ";				//锟斤拷锟斤拷
+	public static final String OPEN_MJY = "MJY";				//锟斤拷锟捷ｏ拷2.4锟斤拷
+	public static final String OPEN_WD2 = "WD2";				//锟斤拷锟�2
+	public static final String OPEN_FB2 = "FB2";				//锟斤拷锟斤拷锟斤拷2
+	public static final String OPEN_DADI2 = "DADI2";				//锟斤拷锟絭ista
+	public static final String OPEN_YXLT = "YXLT";				//锟斤拷锟斤拷锟斤拷锟斤拷
+	public static final String OPEN_WM = "WM";					//锟斤拷锟斤拷
 	public static final String OPEN_VISTA2 = "VISTA2";			//vista2
-	public static final String OPEN_MJY2 = "MJY2";				//M����2 
+	public static final String OPEN_MJY2 = "MJY2";				//M锟斤拷锟斤拷2 
 	
-	//ʹ����
-	public static final String OPEN_GEWARA = "GEWA";		//�������ͣ�������˶Խ�
-	public static final String OPEN_MTX = "MTX";			//�������ͣ��������ǶԽ�
-	public static final String OPEN_DX = "DX";				//�������ͣ��붦�¶Խ�
-	public static final String OPEN_GPTBS = "GPTBS";		//Ʊ��ϵͳ
-	public static final String OPEN_STPF = "STPF";			//���ǣ�����°棩
-	public static final String OPEN_FB3 = "FB3";				//������3ƽ̨����
-	public static final String OPEN_XFLH2 = "XFLH2";			//�Ҹ�����2
+	//使锟斤拷锟斤拷
+	public static final String OPEN_GEWARA = "GEWA";		//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟斤拷锟斤拷锟斤拷硕越锟�
+	public static final String OPEN_MTX = "MTX";			//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟斤拷锟斤拷锟斤拷锟角对斤拷
+	public static final String OPEN_DX = "DX";				//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟诫鼎锟铰对斤拷
+	public static final String OPEN_GPTBS = "GPTBS";		//票锟斤拷系统
+	public static final String OPEN_STPF = "STPF";			//锟斤拷锟角ｏ拷锟斤拷锟斤拷掳妫�
+	public static final String OPEN_FB3 = "FB3";				//锟斤拷锟斤拷锟斤拷3平台锟斤拷锟斤拷
+	public static final String OPEN_XFLH2 = "XFLH2";			//锟揭革拷锟斤拷锟斤拷2
 	public static final String OPEN_M1905 = "M1905";			//1905
-	public static final String OPEN_DADI3 = "DADI3";			//���ֱӪƽ̨3
-	public static final String OPEN_DADI4 = "DADI4";			//���ֱӪƽ̨4
+	public static final String OPEN_DADI3 = "DADI3";			//锟斤拷锟街庇教�3
+	public static final String OPEN_DADI4 = "DADI4";			//锟斤拷锟街庇教�4
 	public static final String OPEN_CGV = "CGV";				//cgv
-	public static final String OPEN_CFC = "CFC";				//��Ӱ
-	public static final String OPEN_TXPC2 = "TXPC2";			//����Ʊ��2
-	public static final String OPEN_SDZX = "SDZX";				//ʱ������
-	public static final String OPEN_VISTA3 = "VISTA3";			//VISTA RESETƽ̨
-	public static final String OPEN_WP = "WP";			//΢Ʊ
-	public static final String OPEN_BL = "BL";			//����
-	public static final String OPEN_HFH2 = "HFH2";		//����2
-	public static final String OPEN_CTJH = "CTJH";		//����κ�
+	public static final String OPEN_CFC = "CFC";				//锟斤拷影
+	public static final String OPEN_TXPC2 = "TXPC2";			//锟斤拷锟斤拷票锟斤拷2
+	public static final String OPEN_SDZX = "SDZX";				//时锟斤拷锟斤拷锟斤拷
+	public static final String OPEN_VISTA3 = "VISTA3";			//VISTA RESET平台
+	public static final String OPEN_WP = "WP";			//微票
+	public static final String OPEN_BL = "BL";			//锟斤拷锟斤拷
+	public static final String OPEN_HFH2 = "HFH2";		//锟斤拷锟斤拷2
+	public static final String OPEN_CTJH = "CTJH";		//锟斤拷锟斤拷魏锟�
 	public static final String OPEN_WD3 = "WD3";		//WD3
 	public static final String OPEN_CGV2 = "CGV2";	//CGV2
 	
 	public static final List<String> OPEN_LOWEST_IS_COST = Arrays.asList(
 			OPEN_STPF,OPEN_XFLH2,OPEN_M1905,OPEN_DADI3,OPEN_DADI4,OPEN_CFC,OPEN_CGV,OPEN_TXPC2,OPEN_SDZX,
-			OPEN_VISTA3,OPEN_WP,OPEN_BL,OPEN_CTJH,OPEN_WD3,OPEN_CGV2);//��ͼۼ�����۵�����
+			OPEN_VISTA3,OPEN_WP,OPEN_BL,OPEN_CTJH,OPEN_WD3,OPEN_CGV2);//锟斤拷图奂锟斤拷锟斤拷锟桔碉拷锟斤拷锟斤拷
 
 	
-	public static final String OPERATION_DISCARD = "discard";//��������
+	public static final String OPERATION_DISCARD = "discard";//锟斤拷锟斤拷锟斤拷锟斤拷
 
-	public static final String PAYOPTION = "payoption";						//֧��ѡ��
-	public static final String PAYCMETHODLIST = "paymethodlist";			//֧������
-	public static final String CARDOPTION = "cardoption";					//ȯѡ��
-	public static final String BATCHIDLIST = "batchidlist";					//����id����
-	public static final String DEFAULTPAYMETHOD = "defaultpaymethod";		//Ĭ��֧����ʽ
-	public static final String MEALOPTION = "mealoption";					//�ײ���
-	public static final String UNVALIDSEATPOS = "unvalidseatpos";			//����֤ѡ�����λλ��
-	public static final String ISREFUND = "isRefund";						//�Ƿ������Ʊ
-	public static final String AUTO_OPEN_INFO = "autoOpen";					//�Զ�����
-	public static final String AUTO_OPEN_INFO_STATUS = "autoOpenStatus";	//�Զ���������״̬���ֶ������Զ���
-	public static final String AUTO_OPEN_SETTER_ID = "setterId";			//�Զ�������ID
-	public static final String AUTO_OPEN_DISCARD = "autoOpenDiscard";					//�Զ����ŷ������ĳ���
-	public static final String SMPNO = "smpno";								//�ض��ĳ��α��
-	public static final String SIGN = "sign";									//�������α�ʶ
-	public static final String	AREADESC = "areadesc";						//������������
-	public static final String LYMOVIEIDS = "lymovieids";					//��ӳ���γ���ids
-	public static final String SHOWLABEL = "showLabel";							//�Ƿ������ܱ�
+	public static final String PAYOPTION = "payoption";						//支锟斤拷选锟斤拷
+	public static final String PAYCMETHODLIST = "paymethodlist";			//支锟斤拷锟斤拷锟斤拷
+	public static final String CARDOPTION = "cardoption";					//券选锟斤拷
+	public static final String BATCHIDLIST = "batchidlist";					//锟斤拷锟斤拷id锟斤拷锟斤拷
+	public static final String DEFAULTPAYMETHOD = "defaultpaymethod";		//默锟斤拷支锟斤拷锟斤拷式
+	public static final String MEALOPTION = "mealoption";					//锟阶诧拷锟斤拷
+	public static final String UNVALIDSEATPOS = "unvalidseatpos";			//锟斤拷锟斤拷证选锟斤拷锟斤拷锟轿晃伙拷锟�
+	public static final String ISREFUND = "isRefund";						//锟角凤拷锟斤拷锟斤拷锟狡�
+	public static final String AUTO_OPEN_INFO = "autoOpen";					//锟皆讹拷锟斤拷锟斤拷
+	public static final String AUTO_OPEN_INFO_STATUS = "autoOpenStatus";	//锟皆讹拷锟斤拷锟斤拷锟斤拷锟斤拷状态锟斤拷锟街讹拷锟斤拷锟斤拷锟皆讹拷锟斤拷
+	public static final String AUTO_OPEN_SETTER_ID = "setterId";			//锟皆讹拷锟斤拷锟斤拷锟斤拷ID
+	public static final String AUTO_OPEN_DISCARD = "autoOpenDiscard";					//锟皆讹拷锟斤拷锟脚凤拷锟斤拷锟斤拷锟侥筹拷锟斤拷
+	public static final String SMPNO = "smpno";								//锟截讹拷锟侥筹拷锟轿憋拷锟�
+	public static final String SIGN = "sign";									//锟斤拷锟斤拷锟斤拷锟轿憋拷识
+	public static final String	AREADESC = "areadesc";						//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	public static final String LYMOVIEIDS = "lymovieids";					//锟斤拷映锟斤拷锟轿筹拷锟斤拷ids
+	public static final String SHOWLABEL = "showLabel";							//锟角凤拷锟斤拷锟斤拷锟杰憋拷
 	
-	public static final String SDIDS = "sdids";								//�����ؼۻid
-	public static final String SDIDSREMARK = "sdidsRemark";					//�����ؼۻid��ʾ���û�
+	public static final String SDIDS = "sdids";								//锟斤拷锟斤拷锟截价活动id
+	public static final String SDIDSREMARK = "sdidsRemark";					//锟斤拷锟斤拷锟截价活动id锟斤拷示锟斤拷锟矫伙拷
 	
-	public static final String FROM_SPID = "fromSpid";						//��ĳ�������µĶ���
-	public static final String ADDRESS = "address";							//��ַ����
-	public static final String UNOPENGEWA = "unopengewa";					//���β��Ը���������
-	public static final String UNSHOWGEWA = "unshowgewa";					//���β��Ը�������ʾ
-	public static final String OPENCLIENT = "openclient";					//���ſͻ���
+	public static final String FROM_SPID = "fromSpid";						//锟斤拷某锟斤拷锟斤拷锟斤拷锟铰的讹拷锟斤拷
+	public static final String ADDRESS = "address";							//锟斤拷址锟斤拷锟斤拷
+	public static final String UNOPENGEWA = "unopengewa";					//锟斤拷锟轿诧拷锟皆革拷锟斤拷锟斤拷锟斤拷锟斤拷
+	public static final String UNSHOWGEWA = "unshowgewa";					//锟斤拷锟轿诧拷锟皆革拷锟斤拷锟斤拷锟斤拷示
+	public static final String OPENCLIENT = "openclient";					//锟斤拷锟脚客伙拷锟斤拷
 	
 	public static final String MPI_OPENSTATUS_INIT = "init";
 	public static final String MPI_OPENSTATUS_OPEN = "open";
 	public static final String MPI_OPENSTATUS_CLOSE = "close";
 	public static final String MPI_OPENSTATUS_DISABLED = "disabled";		//
-	public static final String MPI_OPENSTATUS_PAST = "past";				//����
+	public static final String MPI_OPENSTATUS_PAST = "past";				//锟斤拷锟斤拷
 	
 	
-	public static final String MPITYPE_FILMFEST = "filmfest";			// ��Ӱ�ڱ�ʶ
-	public static final String MPITYPE_BAOCHANG = "baoChang";			// ������ʶ
-	public static final String MPITYPE_GWBAOCHANG = "gwBaoChang";			// �������Լ�������ʶ
+	public static final String MPITYPE_FILMFEST = "filmfest";			// 锟斤拷影锟节憋拷识
+	public static final String MPITYPE_BAOCHANG = "baoChang";			// 锟斤拷锟斤拷锟斤拷识
+	public static final String MPITYPE_GWBAOCHANG = "gwBaoChang";			// 锟斤拷锟斤拷锟斤拷锟皆硷拷锟斤拷锟斤拷锟斤拷识
 
-	//��λͼˢ��Ƶ��
-	public static final int SECONDS_SHOW_SEAT = 900;		//��ʾ��λͼ��20����
-	public static final int SECONDS_ADDORDER = 300;		//�µ���5����
-	public static final int SECONDS_UPDATE_SEAT = 60;		//���£�1����
-	public static final int SECONDS_FORCEUPDATE_SEAT = 10;		//���£�10��
+	//锟斤拷位图刷锟斤拷频锟斤拷
+	public static final int SECONDS_SHOW_SEAT = 900;		//锟斤拷示锟斤拷位图锟斤拷20锟斤拷锟斤拷
+	public static final int SECONDS_ADDORDER = 300;		//锟铰碉拷锟斤拷5锟斤拷锟斤拷
+	public static final int SECONDS_UPDATE_SEAT = 60;		//锟斤拷锟铰ｏ拷1锟斤拷锟斤拷
+	public static final int SECONDS_FORCEUPDATE_SEAT = 10;		//锟斤拷锟铰ｏ拷10锟斤拷
 	
-	public static final int MAX_MINUTS_TICKETS = 15;		//��ӰƱ���������ʱ�䣨���ӣ�
-	public static final int MAX_MINUTS_TICKETS_MTX = 10; 	//��������λ����ʱ��
-	public static final int MAX_MINUTS_TICKETS_PNX = 5;		//Ʊ��ϵͳ��λ����ʱ��
+	public static final int MAX_MINUTS_TICKETS = 15;		//锟斤拷影票锟斤拷锟斤拷锟斤拷锟斤拷锟绞憋拷洌拷锟斤拷樱锟�
+	public static final int MAX_MINUTS_TICKETS_MTX = 10; 	//锟斤拷锟斤拷锟斤拷锟斤拷位锟斤拷锟斤拷时锟斤拷
+	public static final int MAX_MINUTS_TICKETS_PNX = 5;		//票锟斤拷系统锟斤拷位锟斤拷锟斤拷时锟斤拷
 	
-	public static final int MAXSEAT_PER_ORDER = 5;			//���������
-	public static final int MAXSEAT_PER_ORDER_PNX = 4;		//�������������Ʊ�������ǣ�
+	public static final int MAXSEAT_PER_ORDER = 5;			//锟斤拷锟斤拷锟斤拷锟斤拷锟�
+	public static final int MAXSEAT_PER_ORDER_PNX = 4;		//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟狡憋拷锟斤拷锟斤拷锟斤拷牵锟�
 	
 	
-	public static final List<String> EDITIONS = Arrays.asList("2D","3D","IMAX2D","IMAX3D","˫��3D","��Ļ2D","��Ļ3D", "4D", "4DX", "5D", "6D");
-	public static final List<String> EDITIONS_3D = Arrays.asList("3D", "IMAX3D", "˫��3D","��Ļ3D", "4D", "4DX", "5D", "6D");
+	public static final List<String> EDITIONS = Arrays.asList("2D","3D","IMAX2D","IMAX3D","双锟斤拷3D","锟斤拷幕2D","锟斤拷幕3D", "4D", "4DX", "5D", "6D");
+	public static final List<String> EDITIONS_3D = Arrays.asList("3D", "IMAX3D", "双锟斤拷3D","锟斤拷幕3D", "4D", "4DX", "5D", "6D");
 	public static final List<String> ADV_EDITION = Arrays.asList("6D", "5D", "4DX");
 	public static final List<String> LANGUAGES = Arrays.asList(
-			"����","Ӣ��","����","����","����","���¿���","��������","����","����","����",
-			"̩��","�������","ӡ����","��������","ϣ����","��˹��","������","������",
-			"������","��������","������","��������","ӡ����","�ڿ�����","��������","������",
-			"Խ����","������","������","���ϻ�","������","ԭ��","����","����");
+			"锟斤拷锟斤拷","英锟斤拷","锟斤拷锟斤拷","锟斤拷锟斤拷","锟斤拷锟斤拷","锟斤拷锟铰匡拷锟斤拷","锟斤拷锟斤拷锟斤拷锟斤拷","锟斤拷锟斤拷","锟斤拷锟斤拷","锟斤拷锟斤拷",
+			"泰锟斤拷","锟斤拷锟斤拷锟斤拷锟�","印锟斤拷锟斤拷","锟斤拷锟斤拷锟斤拷锟斤拷","希锟斤拷锟斤拷","锟斤拷斯锟斤拷","锟斤拷锟斤拷锟斤拷","锟斤拷锟斤拷锟斤拷",
+			"锟斤拷锟斤拷锟斤拷","锟斤拷锟斤拷锟斤拷锟斤拷","锟斤拷锟斤拷锟斤拷","锟斤拷锟斤拷锟斤拷锟斤拷","印锟斤拷锟斤拷","锟节匡拷锟斤拷锟斤拷","锟斤拷锟斤拷锟斤拷锟斤拷","锟斤拷锟斤拷锟斤拷",
+			"越锟斤拷锟斤拷","锟斤拷锟斤拷锟斤拷","锟斤拷锟斤拷锟斤拷","锟斤拷锟较伙拷","锟斤拷锟斤拷锟斤拷","原锟斤拷","锟斤拷锟斤拷","锟斤拷锟斤拷");
 	public static boolean isValidEdition(String edition){
 		return StringUtils.isNotBlank(edition) && EDITIONS.contains(edition);
 	}
@@ -141,50 +141,50 @@ public abstract class OpiConstant {
 	public static final Map<String, String> partnerTextMap;
 	public static final Map<String, String> partnerFlagMap;
 	public static final Map<String, String> takemethodMap;
-	public static final Map<String, String> invaildPartnerMap;//��Ч������Map
+	public static final Map<String, String> invaildPartnerMap;//锟斤拷效锟斤拷锟斤拷锟斤拷Map
 	static{
 		Map<String, String> tmp = new HashMap<String, String>();
-		tmp.put(OPEN_HFH, "����");
-		tmp.put(OPEN_MTX, "������");
-		tmp.put(OPEN_DX, "����");
-		tmp.put(OPEN_WD, "���");
+		tmp.put(OPEN_HFH, "锟斤拷锟斤拷");
+		tmp.put(OPEN_MTX, "锟斤拷锟斤拷锟斤拷");
+		tmp.put(OPEN_DX, "锟斤拷锟斤拷");
+		tmp.put(OPEN_WD, "锟斤拷锟�");
 		tmp.put(OPEN_VISTA, "Vista");
-		tmp.put(OPEN_GEWARA, "������");
-		//tmp.put(OPEN_PNX, "��Ʊ");
-		tmp.put(OPEN_JY, "�Ͻ���");
-		tmp.put(OPEN_DADI, "���");
-		tmp.put(OPEN_FB, "������");
-		tmp.put(OPEN_XFLH, "�Ҹ�����");
-		tmp.put(OPEN_LMA, "¬�װ�");
-		tmp.put(OPEN_GPTBS, "Ʊ��ϵͳ");
-		tmp.put(OPEN_NJY, "���ݣ��£�");
-		tmp.put(OPEN_TXPC, "����Ʊ��");
-		tmp.put(OPEN_UL, "ULϵͳ");
-		tmp.put(OPEN_MJ, "����");
-		tmp.put(OPEN_MJY, "����");
-		tmp.put(OPEN_WD2, "���2");
-		tmp.put(OPEN_STPF, "����");
-		tmp.put(OPEN_FB2, "������2");
-		tmp.put(OPEN_FB3, "������3");
-		tmp.put(OPEN_DADI2, "���2");
-		tmp.put(OPEN_YXLT, "��������");
-		tmp.put(OPEN_WM, "����");
-		tmp.put(OPEN_XFLH2, "�Ҹ�����2");
-		tmp.put(OPEN_M1905, "1905��Ӱ");
-		tmp.put(OPEN_DADI3, "���3");
-		tmp.put(OPEN_DADI4, "���4");
+		tmp.put(OPEN_GEWARA, "锟斤拷锟斤拷锟斤拷");
+		//tmp.put(OPEN_PNX, "锟斤拷票");
+		tmp.put(OPEN_JY, "锟较斤拷锟斤拷");
+		tmp.put(OPEN_DADI, "锟斤拷锟�");
+		tmp.put(OPEN_FB, "锟斤拷锟斤拷锟斤拷");
+		tmp.put(OPEN_XFLH, "锟揭革拷锟斤拷锟斤拷");
+		tmp.put(OPEN_LMA, "卢锟阶帮拷");
+		tmp.put(OPEN_GPTBS, "票锟斤拷系统");
+		tmp.put(OPEN_NJY, "锟斤拷锟捷ｏ拷锟铰ｏ拷");
+		tmp.put(OPEN_TXPC, "锟斤拷锟斤拷票锟斤拷");
+		tmp.put(OPEN_UL, "UL系统");
+		tmp.put(OPEN_MJ, "锟斤拷锟斤拷");
+		tmp.put(OPEN_MJY, "锟斤拷锟斤拷");
+		tmp.put(OPEN_WD2, "锟斤拷锟�2");
+		tmp.put(OPEN_STPF, "锟斤拷锟斤拷");
+		tmp.put(OPEN_FB2, "锟斤拷锟斤拷锟斤拷2");
+		tmp.put(OPEN_FB3, "锟斤拷锟斤拷锟斤拷3");
+		tmp.put(OPEN_DADI2, "锟斤拷锟�2");
+		tmp.put(OPEN_YXLT, "锟斤拷锟斤拷锟斤拷锟斤拷");
+		tmp.put(OPEN_WM, "锟斤拷锟斤拷");
+		tmp.put(OPEN_XFLH2, "锟揭革拷锟斤拷锟斤拷2");
+		tmp.put(OPEN_M1905, "1905锟斤拷影");
+		tmp.put(OPEN_DADI3, "锟斤拷锟�3");
+		tmp.put(OPEN_DADI4, "锟斤拷锟�4");
 		tmp.put(OPEN_CGV, "CGV");
-		tmp.put(OPEN_CFC, "��Ӱ");
-		tmp.put(OPEN_TXPC2, "����Ʊ��2");
+		tmp.put(OPEN_CFC, "锟斤拷影");
+		tmp.put(OPEN_TXPC2, "锟斤拷锟斤拷票锟斤拷2");
 		tmp.put(OPEN_VISTA2, "vista2");
-		tmp.put(OPEN_SDZX, "ʱ������");
-		tmp.put(OPEN_MJY2, "M����2");
+		tmp.put(OPEN_SDZX, "时锟斤拷锟斤拷锟斤拷");
+		tmp.put(OPEN_MJY2, "M锟斤拷锟斤拷2");
 		tmp.put(OPEN_VISTA3, "VISTA3");
-		tmp.put(OPEN_WP, "΢Ʊ");
-		tmp.put(OPEN_BL, "����");
-		tmp.put(OPEN_HFH2, "����2");
-		tmp.put(OPEN_CTJH, "����κ�");
-		tmp.put(OPEN_WD3, "���3");
+		tmp.put(OPEN_WP, "微票");
+		tmp.put(OPEN_BL, "锟斤拷锟斤拷");
+		tmp.put(OPEN_HFH2, "锟斤拷锟斤拷2");
+		tmp.put(OPEN_CTJH, "锟斤拷锟斤拷魏锟�");
+		tmp.put(OPEN_WD3, "锟斤拷锟�3");
 		tmp.put(OPEN_CGV2, "CGV2");
 
 		partnerTextMap = MapUtils.unmodifiableMap(tmp);
@@ -233,25 +233,25 @@ public abstract class OpiConstant {
 		tmpFlag.put(OPEN_CGV2, "CGV2");
 		partnerFlagMap = MapUtils.unmodifiableMap(tmpFlag);
 		Map<String, String> tmpTakemethod = new LinkedHashMap<String, String>();
-		tmpTakemethod.put("P", "�ֳ�����");
-		tmpTakemethod.put("W", "ӰԺ��Ʊ����");
-		tmpTakemethod.put("A", "������ȡƱ��");
-		tmpTakemethod.put("F", "������ȫ��ȡƱ��");
-		tmpTakemethod.put("U", "����Ժ������ȡƱ��");
-		tmpTakemethod.put("L", "¬�װ�ӰԺ����ȡƱ��");
-		tmpTakemethod.put("D", "���Ժ������ȡƱ��");
-		tmpTakemethod.put("J", "����Ժ������ȡƱ��");
-		tmpTakemethod.put("M", "ӰԺ��Ա����ȡƱ��");
-		tmpTakemethod.put("E", "��ػ�ԱȡƱ��");
-		tmpTakemethod.put("T", "����Ʊ��ȡƱ��");
+		tmpTakemethod.put("P", "锟街筹拷锟斤拷锟斤拷");
+		tmpTakemethod.put("W", "影院锟斤拷票锟斤拷锟斤拷");
+		tmpTakemethod.put("A", "锟斤拷锟斤拷锟斤拷取票锟斤拷");
+		tmpTakemethod.put("F", "锟斤拷锟斤拷锟斤拷全锟斤拷取票锟斤拷");
+		tmpTakemethod.put("U", "锟斤拷锟斤拷院锟斤拷锟斤拷锟斤拷取票锟斤拷");
+		tmpTakemethod.put("L", "卢锟阶帮拷影院锟斤拷锟斤拷取票锟斤拷");
+		tmpTakemethod.put("D", "锟斤拷锟皆猴拷锟斤拷锟斤拷锟饺∑憋拷锟�");
+		tmpTakemethod.put("J", "锟斤拷锟斤拷院锟斤拷锟斤拷锟斤拷取票锟斤拷");
+		tmpTakemethod.put("M", "影院锟斤拷员锟斤拷锟斤拷取票锟斤拷");
+		tmpTakemethod.put("E", "锟斤拷鼗锟皆比∑憋拷锟�");
+		tmpTakemethod.put("T", "锟斤拷锟斤拷票锟斤拷取票锟斤拷");
 		takemethodMap = MapUtils.unmodifiableMap(tmpTakemethod);
 		
 		Map<String, String> tmpInvalidMap = new HashMap<String, String>();
-		tmpInvalidMap.put(OPEN_FB, "������");
-		tmpInvalidMap.put(OPEN_FB2, "������2");
-		tmpInvalidMap.put(OPEN_JY, "�Ͻ���");
-		tmpInvalidMap.put(OPEN_DADI, "���");
-		tmpInvalidMap.put(OPEN_XFLH, "�Ҹ�����");
+		tmpInvalidMap.put(OPEN_FB, "锟斤拷锟斤拷锟斤拷");
+		tmpInvalidMap.put(OPEN_FB2, "锟斤拷锟斤拷锟斤拷2");
+		tmpInvalidMap.put(OPEN_JY, "锟较斤拷锟斤拷");
+		tmpInvalidMap.put(OPEN_DADI, "锟斤拷锟�");
+		tmpInvalidMap.put(OPEN_XFLH, "锟揭革拷锟斤拷锟斤拷");
 		invaildPartnerMap = MapUtils.unmodifiableMap(tmpInvalidMap);
 	}
 	
@@ -273,11 +273,11 @@ public abstract class OpiConstant {
 		if(StringUtils.isNotBlank(tmpText)) {
             return tmpText;
         }
-		return "δ֪";
+		return "未知";
 	}
 
 	/**
-	 * ��֤��ӳ�汾��Ӱ�����Ƿ�ƥ��
+	 * 锟斤拷证锟斤拷映锟芥本锟斤拷影锟斤拷锟斤拷锟角凤拷匹锟斤拷
 	 * @param roomPlaytype
 	 * @param opiEdition
 	 * @return
@@ -299,12 +299,12 @@ public abstract class OpiConstant {
                 return "";
             }
 		}
-		return "���κ�Ӱ����ӳ�汾��ƥ�䣺" + roomPlaytype + "<---->" + opiEdition;
+		return "锟斤拷锟轿猴拷影锟斤拷锟斤拷映锟芥本锟斤拷匹锟戒：" + roomPlaytype + "<---->" + opiEdition;
 	}
 	/**
-	 * ���ص���Ƭ���Ӱ���ĳ����Զ�ת��Ϊ��Ӧ������
-	 * ����дΪ˫��3D��ֻҪ���ص��ĳ���Ϊ3D���Զ�ת��Ϊ˫��3D�����ص�λ2D���β�ת����
-	 * �磺��Ļ2D����Ļ3D�����ص���2D�����Զ�ת��Ϊ��Ļ2D��3D�����Զ�ת��Ϊ��Ļ3D��
+	 * 锟斤拷锟截碉拷锟斤拷片锟斤拷锟接帮拷锟斤拷某锟斤拷锟斤拷远锟阶拷锟轿拷锟接︼拷锟斤拷锟斤拷锟�
+	 * 锟斤拷锟斤拷写为双锟斤拷3D锟斤拷只要锟斤拷锟截碉拷锟侥筹拷锟斤拷为3D锟斤拷锟皆讹拷转锟斤拷为双锟斤拷3D锟斤拷锟斤拷锟截碉拷位2D锟斤拷锟轿诧拷转锟斤拷锟斤拷
+	 * 锟界：锟斤拷幕2D锟斤拷锟斤拷幕3D锟斤拷锟斤拷锟截碉拷锟斤拷2D锟斤拷锟斤拷锟皆讹拷转锟斤拷为锟斤拷幕2D锟斤拷3D锟斤拷锟斤拷锟皆讹拷转锟斤拷为锟斤拷幕3D锟斤拷
 	 * @param synchEdition
 	 * @param roomDefaultEdition
 	 * @return
@@ -313,7 +313,7 @@ public abstract class OpiConstant {
 		if(StringUtils.isBlank(synchEdition) || StringUtils.isBlank(roomDefaultEdition)){
 			return synchEdition;
 		}
-		// ���ΰ汾��Ӱ���汾����һ�£�����˳��Ϊ6D��5D��4DX
+		// 锟斤拷锟轿版本锟斤拷影锟斤拷锟芥本锟斤拷锟斤拷一锟铰ｏ拷锟斤拷锟斤拷顺锟斤拷为6D锟斤拷5D锟斤拷4DX
 		for(String edition : ADV_EDITION) {
 			if(roomDefaultEdition.contains(edition)) {
 				return edition;
@@ -328,7 +328,7 @@ public abstract class OpiConstant {
 		return synchEdition;
 	}
 	
-	//������¼���һ�θ���
+	//锟斤拷锟斤拷锟斤拷录锟斤拷锟揭伙拷胃锟斤拷锟�
 	public static String getLastChangeKey(Long mpid) {
 		return "LastChange" + mpid;
 	}

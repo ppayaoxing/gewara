@@ -5,12 +5,12 @@ import java.io.Serializable;
 import com.gewara.api.vo.BaseVo;
 
 public class UserAnswerVo extends BaseVo{
-	private String id;      //ÓÃ»§id+ÍÛÀ²id
-	private Integer Index;  //µÚ¼¸Ìâ
-	private Integer num;    //´ğ¶ÔÌâÊı
-	private String content; //ÓÃ»§´ğÌâÊı¾İ
-	private Integer total;  //ÌâÄ¿×Ü¼ÆÊı
-	private String relatedid;  //¹ØÁªÖ÷Ìâ
+	private String id;      //ç”¨æˆ·id+å“‡å•¦id
+	private Integer Index;  //ç¬¬å‡ é¢˜
+	private Integer num;    //ç­”å¯¹é¢˜æ•°
+	private String content; //ç”¨æˆ·ç­”é¢˜æ•°æ®
+	private Integer total;  //é¢˜ç›®æ€»è®¡æ•°
+	private String relatedid;  //å…³è”ä¸»é¢˜
 	
 	public String getId() {
 		return id;

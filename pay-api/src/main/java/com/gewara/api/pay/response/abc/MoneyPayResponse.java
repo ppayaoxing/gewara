@@ -5,13 +5,13 @@ public class MoneyPayResponse extends AbcResponse {
 
 	private static final long serialVersionUID = -1682608891737106050L;
 
-	private String cardno		;//½»Ò×¿¨ºÅ
-	private String trandate		;//½»Ò×ÈÕÆÚ
-	private String trantime		;//½»Ò×Ê±¼ä
-	private String sysdef		;//ÏµÍ³²Î¿¼ºÅ
-	private String settleno		;//Å©ĞĞÅú´ÎºÅ
-	private String termserial	;//ÖÕ¶ËÁ÷Ë®ºÅ
-	private String vouserial	;//Æ¾Ö¤ºÅ
+	private String cardno		;//äº¤æ˜“å¡å·
+	private String trandate		;//äº¤æ˜“æ—¥æœŸ
+	private String trantime		;//äº¤æ˜“æ—¶é—´
+	private String sysdef		;//ç³»ç»Ÿå‚è€ƒå·
+	private String settleno		;//å†œè¡Œæ‰¹æ¬¡å·
+	private String termserial	;//ç»ˆç«¯æµæ°´å·
+	private String vouserial	;//å‡­è¯å·
 	
 	public String getCardno() {
 		return cardno;

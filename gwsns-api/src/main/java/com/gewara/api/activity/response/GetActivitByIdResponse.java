@@ -7,7 +7,7 @@ import com.gewara.api.activity.domain.ActivityVo;
 public class GetActivitByIdResponse extends ApiResponse {
 	private static final long serialVersionUID = 291317996292156297L;
 	
-	/**活动信息*/
+	/**娲诲姩淇℃伅*/
 	private ActivityVo activityVo;
 
 	public GetActivitByIdResponse(){

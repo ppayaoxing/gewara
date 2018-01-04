@@ -7,15 +7,15 @@ import com.gewara.api.vo.ResultCode;
 public interface WalaProcessVoService {
 
 	/***
-	 * ÅĞ¶ÏwalaÊÇ·ñÊÇ¹ã¸æ
+	 * åˆ¤æ–­walaæ˜¯å¦æ˜¯å¹¿å‘Š
 	 * @param wala
-	 * @return true:¹ã¸æ,false:Õı³£
+	 * @return true:å¹¿å‘Š,false:æ­£å¸¸
 	 */
     public ResultCode<Boolean> recogniseWala(String wala);
     /***
-	 * Ìí¼Ówala 
-	 * @param walaId,walaSpam (¹ã¸æ»¹ÊÇÕı³£,hamÕı³£,spam¹ã¸æ),walaContent(walaÄÚÈİ),data_from(e.g.:µ÷ÓÃÏµÍ³Ãû:activi,wap .etc)
-	 * @return true:Ìí¼Ó³É¹¦,false:Ìí¼ÓÊ§°Ü
+	 * æ·»åŠ wala 
+	 * @param walaId,walaSpam (å¹¿å‘Šè¿˜æ˜¯æ­£å¸¸,hamæ­£å¸¸,spamå¹¿å‘Š),walaContent(walaå†…å®¹),data_from(e.g.:è°ƒç”¨ç³»ç»Ÿå:activi,wap .etc)
+	 * @return true:æ·»åŠ æˆåŠŸ,false:æ·»åŠ å¤±è´¥
 	 */
     public ResultCode<Boolean> addWalaSpam(Long walaId, String walaSpam, String walaContent,String data_from);
     

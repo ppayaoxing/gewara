@@ -23,7 +23,7 @@ import com.gewara.util.GewaIpConfig;
 import com.gewara.util.VmBaseUtil;
 @Controller("_sysBackController_")
 public class SysBackController  implements InitializingBean{
-	public static final String KEY_CACHE_VERSION = "cacheVersion";			//»º´æ°æ±¾
+	public static final String KEY_CACHE_VERSION = "cacheVersion";			//ç¼“å­˜ç‰ˆæœ¬
 
 	@Autowired(required=false)
 	private ConfigCenter configCenter;
@@ -63,7 +63,7 @@ public class SysBackController  implements InitializingBean{
 		return "success:" + Config.getServerIp();
 	}
 	/**
-	 * Ë¢ÐÂMemcache»º´æ°æ±¾
+	 * åˆ·æ–°Memcacheç¼“å­˜ç‰ˆæœ¬
 	 * @return
 	 */
 	@RequestMapping("/sysmgr/cache/refreshCacheVersion.xhtml")

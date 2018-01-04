@@ -24,32 +24,32 @@ public class BlackMatcher {
 	}
 	
 	/**
-	 * ��ȡָ��uri��Ӧ���ͷ�ʱ��
+	 * 锟斤拷取指锟斤拷uri锟斤拷应锟斤拷锟酵凤拷时锟斤拷
 	 * @param uri
 	 * @return
 	 * @author leo
-	 * @addTime 2014��5��20������5:37:45
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:37:45
 	 */
 	public Long get(String uri){
 		return matcherMap.get(uri);
 	}
 	
 	/**
-	 * ��ȡĬ��uri ip��Ӧ���ͷ�ʱ��
+	 * 锟斤拷取默锟斤拷uri ip锟斤拷应锟斤拷锟酵凤拷时锟斤拷
 	 * @return
 	 * @author leo
-	 * @addTime 2014��5��20������5:38:28
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:38:28
 	 */
 	public Long get(){
 		return matcherMap.get(AttackConstant.ACCESS_URL_ALL);
 	}
 
 	/**
-	 * ��ָ��uri�趨�ͷ�ʱ��
+	 * 锟斤拷指锟斤拷uri锟借定锟酵凤拷时锟斤拷
 	 * @param uri
 	 * @param releaseTime
 	 * @author leo
-	 * @addTime 2014��5��20������5:37:21
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:37:21
 	 */
 	public void put(String uri, Long releaseTime){
 		if(StringUtils.isBlank(uri)){
@@ -60,31 +60,31 @@ public class BlackMatcher {
 	}
 	
 	/**
-	 * Ĭ�ϸ�uri ip�����ͷ�ʱ��
+	 * 默锟较革拷uri ip锟斤拷锟斤拷锟酵凤拷时锟斤拷
 	 * @param releaseTime
 	 * @author leo
-	 * @addTime 2014��5��20������5:36:45
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:36:45
 	 */
 	public void put(Long releaseTime){
 		matcherMap.put(AttackConstant.ACCESS_URL_ALL, releaseTime);
 	}
 	
 	/**
-	 * ɾ��uri
+	 * 删锟斤拷uri
 	 * @param uri
 	 * @return
 	 * @author leo
-	 * @addTime 2014��5��20������5:37:45
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:37:45
 	 */
 	public void remove(String uri){
 		matcherMap.remove(uri);
 	}
 	
 	/**
-	 * ɾ��Ĭ��uri ip
+	 * 删锟斤拷默锟斤拷uri ip
 	 * @return
 	 * @author leo
-	 * @addTime 2014��5��20������5:38:28
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:38:28
 	 */
 	public void remove(){
 		matcherMap.remove(AttackConstant.ACCESS_URL_ALL);
@@ -116,7 +116,7 @@ public class BlackMatcher {
 		if(uriReleaseTime!=null){
 			return uriReleaseTime;
 		}
-		//ȫ��
+		//全锟斤拷
 		Long ipReleaseTime = matcherMap.get(AttackConstant.ACCESS_URL_ALL);
 		return ipReleaseTime;
 	}

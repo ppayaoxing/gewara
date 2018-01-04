@@ -14,39 +14,39 @@ import com.gewara.cons.AccountRefundConstant;
 import com.gewara.cons.PartnerConstant;
 import com.gewara.util.JsonUtils;
 /**
- * ÕË»§Ô­Â·ÍË¿î
+ * è´¦æˆ·åŸè·¯é€€æ¬¾
  * @author gebiao(ge.biao@gewara.com)
  * @since Aug 24, 2012 1:35:57 PM
  */
 public class AccountRefundVo extends BaseVo {
 	private static final long serialVersionUID = 6029378080103301843L;
 	
-	// Å©ĞĞÍË¿î±êÊ¶
-	public static final String ABC_OTHERINFO_AMOUNT ="amount";			     // ½ğ¶î
-	public static final String ABC_OTHERINFO_POINT ="point";			     // »ı·Ö
+	// å†œè¡Œé€€æ¬¾æ ‡è¯†
+	public static final String ABC_OTHERINFO_AMOUNT ="amount";			     // é‡‘é¢
+	public static final String ABC_OTHERINFO_POINT ="point";			     // ç§¯åˆ†
 
 	private Long id;
-	private Integer version;	//°æ±¾
-	private String tradeno;		//¶©µ¥ºÅ
-	private String reason;		//Ô­Òò
-	private String status;		//×´Ì¬
-	private String origin;		//À´Ô´£ºrefund:¶©µ¥ÍË¿î, apply:¿Í·ş¶ÀÁ¢ÉêÇë charge ³äÖµÍË¿î
-	private Integer amount;		//ÍË¿î½ğ¶î
+	private Integer version;	//ç‰ˆæœ¬
+	private String tradeno;		//è®¢å•å·
+	private String reason;		//åŸå› 
+	private String status;		//çŠ¶æ€
+	private String origin;		//æ¥æºï¼šrefund:è®¢å•é€€æ¬¾, apply:å®¢æœç‹¬ç«‹ç”³è¯· charge å……å€¼é€€æ¬¾
+	private Integer amount;		//é€€æ¬¾é‡‘é¢
 	private Long memberid;
-	private Long partnerid;		//ÉÌ¼ÒÍË¿î
+	private Long partnerid;		//å•†å®¶é€€æ¬¾
 	private String mobile;
-	private Timestamp addtime;	//Ôö¼ÓÈÕÆÚ
-	private Timestamp dealtime; //´¦ÀíÊ±¼ä
-	private String remark;		//ÌØ±ğËµÃ÷
-	private String paymethod;	//Ö§¸¶·½Ê½
-	private Long applyuser;		//ÉêÇëÈË
-	private Long dealuser;		//´¦ÀíÈË
-	private String otherinfo;	//ÆäËüĞÅÏ¢
-	private String payseqno;	//Íâ²¿¶©µ¥ºÅ
-	private String refundOrigin;//ÍË¿îÀ´Ô´£ºcustomer£º¿Í»§Ìá½»£¬ service£º¿Í·şÌá½»£¬ system£ºÏµÍ³Ìá½»
-	private String merchantCode;//ÉÌ»§ºÅ±êÊ¶
-	private String batchNo;     //Åú´ÎºÅ
-	private String tradenoBack; //¶©µ¥ºÅ
+	private Timestamp addtime;	//å¢åŠ æ—¥æœŸ
+	private Timestamp dealtime; //å¤„ç†æ—¶é—´
+	private String remark;		//ç‰¹åˆ«è¯´æ˜
+	private String paymethod;	//æ”¯ä»˜æ–¹å¼
+	private Long applyuser;		//ç”³è¯·äºº
+	private Long dealuser;		//å¤„ç†äºº
+	private String otherinfo;	//å…¶å®ƒä¿¡æ¯
+	private String payseqno;	//å¤–éƒ¨è®¢å•å·
+	private String refundOrigin;//é€€æ¬¾æ¥æºï¼šcustomerï¼šå®¢æˆ·æäº¤ï¼Œ serviceï¼šå®¢æœæäº¤ï¼Œ systemï¼šç³»ç»Ÿæäº¤
+	private String merchantCode;//å•†æˆ·å·æ ‡è¯†
+	private String batchNo;     //æ‰¹æ¬¡å·
+	private String tradenoBack; //è®¢å•å·
 	
 	public AccountRefundVo(){}
 	
@@ -168,10 +168,10 @@ public class AccountRefundVo extends BaseVo {
 		if (StringUtils.isNotBlank(this.otherinfo)) {
 			Map<String, String> otherInfoMap = JsonUtils.readJsonToMap(this.otherinfo);
 			if (otherInfoMap.containsKey(ABC_OTHERINFO_AMOUNT)) {
-				returnValue = returnValue + "½ğ¶î£º" + otherInfoMap.get(ABC_OTHERINFO_AMOUNT);
+				returnValue = returnValue + "é‡‘é¢ï¼š" + otherInfoMap.get(ABC_OTHERINFO_AMOUNT);
 			}
 			if (otherInfoMap.containsKey(ABC_OTHERINFO_POINT)) {
-				returnValue = returnValue + "£»»ı·Ö£º" + otherInfoMap.get(ABC_OTHERINFO_POINT);
+				returnValue = returnValue + "ï¼›ç§¯åˆ†ï¼š" + otherInfoMap.get(ABC_OTHERINFO_POINT);
 			}
 		}
 		return returnValue;

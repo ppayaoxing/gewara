@@ -22,7 +22,7 @@ public class LockOpServiceImpl implements LockOpService	{
 		}
 		Long v = System.currentTimeMillis() + allowIntervalSecond * 1000;
 		cacheService.set(CacheService.REGION_ONEHOUR, opkey, v);
-		//ÖØĞÂ»ñÈ¡£¬ÊÇ·ñ±»ÆäËû¸²¸Ç
+		//é‡æ–°è·å–ï¼Œæ˜¯å¦è¢«å…¶ä»–è¦†ç›–
 		value = (Long) cacheService.get(CacheService.REGION_ONEHOUR, opkey);
 		return v.equals(value)?v:null;
 	}
@@ -30,8 +30,8 @@ public class LockOpServiceImpl implements LockOpService	{
 	public Long updateFlagOperation(String opkey, int allowIntervalSecond, String flag) {
 		String pair = (String) cacheService.get(CacheService.REGION_ONEHOUR, opkey);
 		if(pair==null){
-			Long v1 = System.currentTimeMillis() + allowIntervalSecond * 1000;	//ËûÈË
-			Long v2 = System.currentTimeMillis() + allowIntervalSecond * 1000;	//×Ô¼º
+			Long v1 = System.currentTimeMillis() + allowIntervalSecond * 1000;	//ä»–äºº
+			Long v2 = System.currentTimeMillis() + allowIntervalSecond * 1000;	//è‡ªå·±
 			pair = v1+"," + v2 + "," + flag; 
 			cacheService.set(CacheService.REGION_ONEHOUR, opkey, pair);
 			return v2;
@@ -66,7 +66,7 @@ public class LockOpServiceImpl implements LockOpService	{
 	public void resetOperation(String opkey, Long locknum) {
 		if(locknum!=null){
 			Long value = (Long) cacheService.get(CacheService.REGION_ONEHOUR, opkey);
-			if(value!=null && value.equals(locknum)){//ÖµÎŞ±ä¸ü²ÅÒÆ³ı
+			if(value!=null && value.equals(locknum)){//å€¼æ— å˜æ›´æ‰ç§»é™¤
 				cacheService.remove(CacheService.REGION_ONEHOUR, opkey);
 			}
 		}

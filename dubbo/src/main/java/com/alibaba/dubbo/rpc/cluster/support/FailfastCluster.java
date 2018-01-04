@@ -21,7 +21,7 @@ import com.alibaba.dubbo.rpc.cluster.Cluster;
 import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
- * ����ʧ�ܣ�ֻ����һ�ε��ã�ʧ����������ͨ�����ڷ��ݵ��Ե�д������
+ * 锟斤拷锟斤拷失锟杰ｏ拷只锟斤拷锟斤拷一锟轿碉拷锟矫ｏ拷失锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷通锟斤拷锟斤拷锟节凤拷锟捷碉拷锟皆碉拷写锟斤拷锟斤拷锟斤拷
  *  
  * <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail-fast</a>
  * 

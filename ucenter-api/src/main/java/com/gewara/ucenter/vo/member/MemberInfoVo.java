@@ -16,27 +16,27 @@ public class MemberInfoVo extends BaseVo {
 	private static final long serialVersionUID = -3838425704891306595L;
 
 	private Long id;
-	//��Member���ƶ����˴�
-	private String nickname;		//��Member����ͬ
-	private String sex; // �Ա�
-	private String tag; // ����Ȥ�İ��
+	//锟斤拷Member锟斤拷锟狡讹拷锟斤拷锟剿达拷
+	private String nickname;		//锟斤拷Member锟斤拷锟斤拷同
+	private String sex; // 锟皆憋拷
+	private String tag; // 锟斤拷锟斤拷趣锟侥帮拷锟�
 	
 	private String fromcity;
 	private String realname;
-	private String invitetype;//ע�����ͣ����磺�齱����
-	private String source; //ע����Դ
+	private String invitetype;//注锟斤拷锟斤拷锟酵ｏ拷锟斤拷锟界：锟介奖锟斤拷锟斤拷
+	private String source; //注锟斤拷锟斤拷源
 	
-	//ϵͳ��Ϣ
+	//系统锟斤拷息
 	private String regfrom;
-	private String headpic; 		//ͷ��
+	private String headpic; 		//头锟斤拷
 	private Timestamp addtime;
 	private Timestamp updatetime;
 	private Integer expvalue;
-	private String newtask;//��������
-	private String otherinfo;	//������Ϣ���磺 usecard=xxxxx;changehis=2222
-	private Integer pointvalue;//������ֵ
-	private Long inviteid; //������ID
-	private String ip; //ע��IP
+	private String newtask;//锟斤拷锟斤拷锟斤拷锟斤拷
+	private String otherinfo;	//锟斤拷锟斤拷锟斤拷息锟斤拷锟界： usecard=xxxxx;changehis=2222
+	private Integer pointvalue;//锟斤拷锟斤拷锟斤拷值
+	private Long inviteid; //锟斤拷锟斤拷锟斤拷ID
+	private String ip; //注锟斤拷IP
 
 	public String getNickname() {
 		return nickname;
@@ -213,7 +213,7 @@ public class MemberInfoVo extends BaseVo {
 		return StringUtils.equals(value, "success");
 	}
 	
-	public int getBuyticket(){ //����1��ʶ��Ʊ�û�
+	public int getBuyticket(){ //锟斤拷锟斤拷1锟斤拷识锟斤拷票锟矫伙拷
 		List<String> taskList = new ArrayList<String>();
 		if(StringUtils.isNotBlank(getNewtask()))  {
 			taskList = new ArrayList(Arrays.asList(StringUtils.split(getNewtask(), ",")));
@@ -226,7 +226,7 @@ public class MemberInfoVo extends BaseVo {
 	
 	public boolean isFinishedTask(String task) {
 		if(StringUtils.isNotBlank(this.getNewtask())){
-			return ! MemberConstant.TASK_LIST.contains(task) /**�����ڵ�����*/
+			return ! MemberConstant.TASK_LIST.contains(task) /**锟斤拷锟斤拷锟节碉拷锟斤拷锟斤拷*/
 				||getNewtask().contains(task);
 		}else {
 			return false;

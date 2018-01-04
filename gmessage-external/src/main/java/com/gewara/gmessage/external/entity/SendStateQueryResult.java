@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 
 /**
- * ²éÑ¯ÏûÏ¢·¢ËÍ×´Ì¬½á¹û
+ * æŸ¥è¯¢æ¶ˆæ¯å‘é€çŠ¶æ€ç»“æœ
  * 
- * @author ¶­Ã÷
- * @createDate 2015Äê12ÔÂ4ÈÕ
+ * @author è‘£æ˜
+ * @createDate 2015å¹´12æœˆ4æ—¥
  */
 public class SendStateQueryResult implements Serializable{
 	private static final long serialVersionUID = -8509780580348754248L;
 	
-	private Long umid=null; //ÓÃ»§ÏûÏ¢ID
-	private MUser receiver = null;//½ÓÊÕÕßÏûÏ¢
-	private Long sendTime = null;// ËÍ´ïµ½½ÓÊÕÕßµÄÊ±¼ä
-	private Long readTime = null;// ½ÓÊÕÕßÔÄ¶ÁÊ±¼ä
-	private Long delTimes = null;// É¾³ıÊ±¼ä
+	private Long umid=null; //ç”¨æˆ·æ¶ˆæ¯ID
+	private MUser receiver = null;//æ¥æ”¶è€…æ¶ˆæ¯
+	private Long sendTime = null;// é€è¾¾åˆ°æ¥æ”¶è€…çš„æ—¶é—´
+	private Long readTime = null;// æ¥æ”¶è€…é˜…è¯»æ—¶é—´
+	private Long delTimes = null;// åˆ é™¤æ—¶é—´
 
 	public Long getUmid() {
 		return umid;

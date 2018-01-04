@@ -3,7 +3,7 @@ package com.gewara.untrans;
 public interface AsynchTaskProcessor<T extends AsynchTask> {
 	void processTask(T task);
 	/**
-	 * 锁的大致个数，锁重用
+	 * 閿佺殑澶ц嚧涓暟锛岄攣閲嶇敤
 	 * @param maxLock
 	 */
 	int getLockSize();

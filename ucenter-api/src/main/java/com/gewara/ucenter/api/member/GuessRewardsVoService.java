@@ -4,7 +4,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface GuessRewardsVoService {
 	/**
-	 * ²ÂÆ±·¿ËÍ»ı·Ö½Ó¿Ú
+	 * çŒœç¥¨æˆ¿é€ç§¯åˆ†æ¥å£
 	 * @param memberid
 	 * @param pointvalue
 	 * @param tag

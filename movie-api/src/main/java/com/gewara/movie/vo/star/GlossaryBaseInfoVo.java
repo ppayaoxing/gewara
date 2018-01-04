@@ -8,11 +8,11 @@ import com.gewara.api.vo.BaseVo;
 public class GlossaryBaseInfoVo extends BaseVo {
 	private static final long serialVersionUID = 7936910831268916569L;
 	private Long id;
-	private String infoname;		//Ãû³Æ
-	private String infotype;		//ĞÅÏ¢ÀàĞÍ
-	private Integer status;			//×´Ì¬
-	private Timestamp addtime;		//ĞÂÔöÊ±¼ä
-	private Timestamp updatetime;	//¸üĞÂÊ±¼ä
+	private String infoname;		//åç§°
+	private String infotype;		//ä¿¡æ¯ç±»å‹
+	private Integer status;			//çŠ¶æ€
+	private Timestamp addtime;		//æ–°å¢æ—¶é—´
+	private Timestamp updatetime;	//æ›´æ–°æ—¶é—´
 	
 	public GlossaryBaseInfoVo() {
 		this.status = 0;

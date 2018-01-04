@@ -17,12 +17,12 @@ import com.gewara.util.LoggerUtils;
 public class WeixinMenuUtil {
 	private static final transient GewaLogger dbLogger = LoggerUtils.getLogger(WeixinUtil.class);
 	public final static String CREATEMENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create";
-	//¹Ø×¢ÕËºÅ
+	//å…³æ³¨è´¦å·
 	public final static String EVENT_LOCATION= "location";
 	public final static String EVENT_SUBSCRIBE = "subscribe";
 	public final static String EVENT_UNSUBSCRIBE = "unsubscribe";
 	public final static String EVENT_SCAN = "SCAN";
-	//ÊÂ¼şÀàĞÍ
+	//äº‹ä»¶ç±»å‹
 	public final static String KEY_BOOKING = "booking";
 	public final static String KEY_DISCOUNT = "discount";
 	public final static String KEY_HOTMOVIE = "hotMovie";
@@ -39,11 +39,11 @@ public class WeixinMenuUtil {
 	public final static String KEY_BAGUA = "baGua";
 	public final static String KEY_NEWACT = "newAct";
 	public final static String KEY_ZXKEFU = "zxKefu";
-	//¿¨È¯Í¨¹ıÉóºË
+	//å¡åˆ¸é€šè¿‡å®¡æ ¸
 	public final static String KEY_CARD_PASS_CHECK = "card_pass_check";
 	public final static String KEY_USER_GET_CARD = "user_get_card";
 	public final static String KEY_USER_DEL_CARD = "user_del_card";
-	public final static String KEY_SCAN_QCODE = "qrscene_"; //Î´¹Ø×¢Ê±É¨Ãè´ø²ÎÊı¶şÎ¬ÂëÊÂ¼ş
+	public final static String KEY_SCAN_QCODE = "qrscene_"; //æœªå…³æ³¨æ—¶æ‰«æå¸¦å‚æ•°äºŒç»´ç äº‹ä»¶
 	public static final List<String> getEventList(){
 		List<String> eventList = new ArrayList();
 		eventList.add(KEY_MYORDER);
@@ -52,14 +52,14 @@ public class WeixinMenuUtil {
 		eventList.add(KEY_MYACCOUNT);
 		return eventList;
 	}
-	//´´½¨²Ëµ¥
+	//åˆ›å»ºèœå•
 	public Map<String, List<Button>> getButtonList(){
-		List<SubButton> subList1 = getSubButton(new String[]{"ÈÈÃÅµçÓ°,hotMovie","¼´½«ÉÏÓ³,upMovie","¹ÛÓ°Ö¸ÄÏ,dayWala","°ËØÔÌØËÑ¶Ó,baGua"});
-		List<SubButton> subList2 = getSubButton(new String[]{"Òª»ò²»Òª,newAct","Ë½ÈË¶¨ÖÆ,booking"});
-		List<SubButton> subList3 = getSubButton(new String[]{"Ó°ÔºÀ×´ï,nearCinema","ÎÒµÄ¶©µ¥,myOrder","È¡Æ±ÃÜÂë,ticketPwd","ÎÒµÄÕË»§,myAccount","ÏÂÔØAPP,downApp"});
-		Button b1 = new Button("·Ç³ÏÎğµã", subList1);
-		Button b2 = new Button("ºó»ÚÎŞÆÚ", subList2);
-		Button b3 = new Button("ÖÂÍßÓÑ", subList3);
+		List<SubButton> subList1 = getSubButton(new String[]{"çƒ­é—¨ç”µå½±,hotMovie","å³å°†ä¸Šæ˜ ,upMovie","è§‚å½±æŒ‡å—,dayWala","å…«å¦ç‰¹æœé˜Ÿ,baGua"});
+		List<SubButton> subList2 = getSubButton(new String[]{"è¦æˆ–ä¸è¦,newAct","ç§äººå®šåˆ¶,booking"});
+		List<SubButton> subList3 = getSubButton(new String[]{"å½±é™¢é›·è¾¾,nearCinema","æˆ‘çš„è®¢å•,myOrder","å–ç¥¨å¯†ç ,ticketPwd","æˆ‘çš„è´¦æˆ·,myAccount","ä¸‹è½½APP,downApp"});
+		Button b1 = new Button("éè¯šå‹¿ç‚¹", subList1);
+		Button b2 = new Button("åæ‚”æ— æœŸ", subList2);
+		Button b3 = new Button("è‡´ç“¦å‹", subList3);
 		List<Button> buttonList = new ArrayList();
 		buttonList.add(b1);
 		buttonList.add(b2);
@@ -72,12 +72,12 @@ public class WeixinMenuUtil {
 	
 	
 	public Map<String, List<Button>> getButtonList_weixinCard(){
-		List<SubButton> subList1 = getSubButton(new String[]{"¹ÛÓ°ÌùÊ¿,dayWala","¼´½«ÉÏÓ³,upMovie","ÈÈÃÅµçÓ°,hotMovie"});
-		List<SubButton> subList2 = getSubButton(new String[]{"ÕıÔÚÈÈÓ³,hotMovie","ÏÂÔØAPP,downApp"});
-		List<SubButton> subList3 = getSubButton(new String[]{"È¡Æ±ÃÜÂë,ticketPwd","ÎÒµÄÕË»§,myAccount","ÔÚÏß¿Í·ş,zxKefu"});
-		Button b1 = new Button("¹ÛÓ°Ö¸ÄÏ", subList1);
-		Button b2 = new Button("¹ºÆ±", subList2);
-		Button b3 = new Button("ÕÒ¿Í·ş", subList3);
+		List<SubButton> subList1 = getSubButton(new String[]{"è§‚å½±è´´å£«,dayWala","å³å°†ä¸Šæ˜ ,upMovie","çƒ­é—¨ç”µå½±,hotMovie"});
+		List<SubButton> subList2 = getSubButton(new String[]{"æ­£åœ¨çƒ­æ˜ ,hotMovie","ä¸‹è½½APP,downApp"});
+		List<SubButton> subList3 = getSubButton(new String[]{"å–ç¥¨å¯†ç ,ticketPwd","æˆ‘çš„è´¦æˆ·,myAccount","åœ¨çº¿å®¢æœ,zxKefu"});
+		Button b1 = new Button("è§‚å½±æŒ‡å—", subList1);
+		Button b2 = new Button("è´­ç¥¨", subList2);
+		Button b3 = new Button("æ‰¾å®¢æœ", subList3);
 		List<Button> buttonList = new ArrayList();
 		buttonList.add(b1);
 		buttonList.add(b2);
@@ -119,7 +119,7 @@ public class WeixinMenuUtil {
 		}
 		return subList;
 	}
-	//´´½¨²Ëµ¥	
+	//åˆ›å»ºèœå•	
 	public static ErrorCode<String> createMenu(String access_token, String body) {
 		HttpResult result = HttpUtils.postBodyAsString(CREATEMENU_URL + "?access_token=" + access_token, body);
 		String response = result.getResponse();

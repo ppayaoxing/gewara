@@ -8,7 +8,7 @@ import com.gewara.api.vo.VoMap;
 
 public interface HonorLableApiService {
 	/**
-	 * 根据用户id获取用户打标
+	 * 鏍规嵁鐢ㄦ埛id鑾峰彇鐢ㄦ埛鎵撴爣
 	 * @param memberid
 	 * @return
 	 */

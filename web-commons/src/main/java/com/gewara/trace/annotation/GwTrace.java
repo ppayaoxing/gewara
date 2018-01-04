@@ -6,9 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Èç¹û·½·¨ÖĞÊ¹ÓÃ¸Ã×¢½â£¬¸Ã·½·¨½«½øÈë¸ú×ÙÁ´<br/>
- * Èç¹ûÎª¸ú×ÙÈë¿Úµã,²¢ÇÒ<b>ĞèÒª²úÉútraceid</b>£¬ÔòĞèÉèÖÃstatusÖµÎªbegin,¼û{@link #status()}
- * <br>²ÎÏê£º<hr>http://wk.gewara.com/pages/viewpage.action?pageId=19147575</hr>
+ * å¦‚æœæ–¹æ³•ä¸­ä½¿ç”¨è¯¥æ³¨è§£ï¼Œè¯¥æ–¹æ³•å°†è¿›å…¥è·Ÿè¸ªé“¾<br/>
+ * å¦‚æœä¸ºè·Ÿè¸ªå…¥å£ç‚¹,å¹¶ä¸”<b>éœ€è¦äº§ç”Ÿtraceid</b>ï¼Œåˆ™éœ€è®¾ç½®statuså€¼ä¸ºbegin,è§{@link #status()}
+ * <br>å‚è¯¦ï¼š<hr>http://wk.gewara.com/pages/viewpage.action?pageId=19147575</hr>
  * @author quzhuping
  *
  */
@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface GwTrace {
 	/**
-	 * Èç¹ûÎª¸ú×ÙÈë¿Úµã,²¢ÇÒ<b>ĞèÒª²úÉútraceid</b>£¬ÔòĞèÉèÖÃÖµÎªbegin
+	 * å¦‚æœä¸ºè·Ÿè¸ªå…¥å£ç‚¹,å¹¶ä¸”<b>éœ€è¦äº§ç”Ÿtraceid</b>ï¼Œåˆ™éœ€è®¾ç½®å€¼ä¸ºbegin
 	 * <pre><code>@GwTrace(status="begin")</code></pre>
 	 * @return
 	 */

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class DateInfo implements Serializable{
 	private static final long serialVersionUID = 7504866618209037778L;
-	private String type;			//½öÖ§³ÖDATE_TYPE_FIX_TIME_RANGE
+	private String type;			//ä»…æ”¯æŒDATE_TYPE_FIX_TIME_RANGE
 	private Long begin_timestamp;
 	private Long end_timestamp;					
 	public DateInfo(){

@@ -19,7 +19,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 
 /**
- *  À©Õ¹velocityÊÓÍ¼½âÎöÆ÷
+ *  æ‰©å±•velocityè§†å›¾è§£æå™¨
  */
 public class GewaVelocityView extends VelocityToolboxView{
 	protected final transient GewaLogger log = WebLogger.getLogger(getClass());
@@ -30,10 +30,10 @@ public class GewaVelocityView extends VelocityToolboxView{
 	public static final String KEY_IGNORE_TOOLS = "IGNORE_EXPORT_TOOL";
 	public static final String DIRECT_OUTPUT = "directOut";
 	public static final String HEADER_KEY_LOG = "_header_log_";
-	public static final String RETURN_LOG_HEADER = "__add_log_header_";//ÊÇ·ñ½«reqlog·µ»Øµ½responseÍ·ÖĞ£¨±ãÓÚopenapiµ÷ÓÃ£©
+	public static final String RETURN_LOG_HEADER = "__add_log_header_";//æ˜¯å¦å°†reqlogè¿”å›åˆ°responseå¤´ä¸­ï¼ˆä¾¿äºopenapiè°ƒç”¨ï¼‰
 	
 	static{
-		//ÓÃÓÚ¶¨Î»´íÎóĞÅÏ¢
+		//ç”¨äºå®šä½é”™è¯¯ä¿¡æ¯
 		LogTraceUtil.addTrace(new RequestTrace());
 	}
 	public GewaVelocityView(){
@@ -55,7 +55,7 @@ public class GewaVelocityView extends VelocityToolboxView{
 				model.put("charset", request.getParameter("charset"));
 			}
 		}else if(model.get(RENDER_JSON) != null){
-			//jsonÊÓÍ¼ÉèÖÃ
+			//jsonè§†å›¾è®¾ç½®
 			model.remove(RENDER_JSON);
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("application/json;charset=utf-8");
@@ -81,7 +81,7 @@ public class GewaVelocityView extends VelocityToolboxView{
 		processHeader(request, response, model);
 		try {
 			PrintWriter writer = response.getWriter();//IllegalStateException
-			//ÎªÁËvmÖĞ¼äÄÜÖ±½ÓÊä³öJsonÁ÷£¬¼õÉÙÒ»´Îstring×ª»»
+			//ä¸ºäº†vmä¸­é—´èƒ½ç›´æ¥è¾“å‡ºJsonæµï¼Œå‡å°‘ä¸€æ¬¡stringè½¬æ¢
 			for(Object obj: model.values()){
 				if(obj!=null && obj instanceof DirectOut){
 					DirectOut dout = (DirectOut)obj;
@@ -124,7 +124,7 @@ public class GewaVelocityView extends VelocityToolboxView{
 	protected GewaViewContext createVelocityContext(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		GewaViewContext velocityContext = new GewaViewContext(getVelocityEngine(), request, response, getServletContext());
 		velocityContext.putModel(model);
-		if(model.get(KEY_IGNORE_TOOLS)==null){//APIµÈ²»ĞèÒªÕâĞ©äÖÈ¾
+		if(model.get(KEY_IGNORE_TOOLS)==null){//APIç­‰ä¸éœ€è¦è¿™äº›æ¸²æŸ“
 			ParameterTool tool = new ParameterTool(request);
 			velocityContext.put("params", tool);
 			CookieTool cookieTool = new CookieTool();

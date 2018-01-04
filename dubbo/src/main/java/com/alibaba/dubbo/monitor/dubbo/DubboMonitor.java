@@ -44,10 +44,10 @@ public class DubboMonitor implements Monitor {
     
     private static final int LENGTH = 10;
     
-    // ��ʱ����ִ����
+    // 锟斤拷时锟斤拷锟斤拷执锟斤拷锟斤拷
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3, new NamedThreadFactory("DubboMonitorSendTimer", true));
 
-    // ͳ����Ϣ�ռ���ʱ��
+    // 统锟斤拷锟斤拷息锟秸硷拷锟斤拷时锟斤拷
     private final ScheduledFuture<?> sendFuture;
     
     private final Invoker<MonitorService> monitorInvoker;
@@ -62,14 +62,14 @@ public class DubboMonitor implements Monitor {
         this.monitorInvoker = monitorInvoker;
         this.monitorService = monitorService;
         this.monitorInterval = monitorInvoker.getUrl().getPositiveParameter("interval", 60000);
-        // ����ͳ����Ϣ�ռ���ʱ��
+        // 锟斤拷锟斤拷统锟斤拷锟斤拷息锟秸硷拷锟斤拷时锟斤拷
         sendFuture = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                // �ռ�ͳ����Ϣ
+                // 锟秸硷拷统锟斤拷锟斤拷息
                 try {
                     send();
-                } catch (Throwable t) { // �������ݴ�
+                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
                     logger.error("Unexpected error occur at send statistic, cause: " + t.getMessage(), t);
                 }
             }
@@ -82,7 +82,7 @@ public class DubboMonitor implements Monitor {
         }
         String timestamp = String.valueOf(System.currentTimeMillis());
         for (Map.Entry<Statistics, AtomicReference<long[]>> entry : statisticsMap.entrySet()) {
-            // ��ȡ��ͳ������
+            // 锟斤拷取锟斤拷统锟斤拷锟斤拷锟斤拷
             Statistics statistics = entry.getKey();
             AtomicReference<long[]> reference = entry.getValue();
             long[] numbers = reference.get();
@@ -97,7 +97,7 @@ public class DubboMonitor implements Monitor {
             long maxElapsed = numbers[8];
             long maxConcurrent = numbers[9];
              
-            // ���ͻ�����Ϣ
+            // 锟斤拷锟酵伙拷锟斤拷锟斤拷息
             URL url = statistics.getUrl()
                     .addParameters(MonitorService.TIMESTAMP, timestamp,
                             MonitorService.SUCCESS, String.valueOf(success),
@@ -113,7 +113,7 @@ public class DubboMonitor implements Monitor {
                             );
             monitorService.collect(url);
             
-            // ������ͳ������
+            // 锟斤拷锟斤拷锟斤拷统锟斤拷锟斤拷锟斤拷
             long[] current;
             long[] update = new long[LENGTH];
             do {
@@ -139,21 +139,21 @@ public class DubboMonitor implements Monitor {
     
     @Override
     public void collect(URL url) {
-        // ��дͳ�Ʊ���
+        // 锟斤拷写统锟狡憋拷锟斤拷
         int success = url.getParameter(MonitorService.SUCCESS, 0);
         int failure = url.getParameter(MonitorService.FAILURE, 0);
         int input = url.getParameter(MonitorService.INPUT, 0);
         int output = url.getParameter(MonitorService.OUTPUT, 0);
         int elapsed = url.getParameter(MonitorService.ELAPSED, 0);
         int concurrent = url.getParameter(MonitorService.CONCURRENT, 0);
-        // ��ʼ��ԭ������
+        // 锟斤拷始锟斤拷原锟斤拷锟斤拷锟斤拷
         Statistics statistics = new Statistics(url);
         AtomicReference<long[]> reference = statisticsMap.get(statistics);
         if (reference == null) {
             statisticsMap.putIfAbsent(statistics, new AtomicReference<long[]>());
             reference = statisticsMap.get(statistics);
         }
-        // CompareAndSet��������ͳ������
+        // CompareAndSet锟斤拷锟斤拷锟斤拷锟斤拷统锟斤拷锟斤拷锟斤拷
         long[] current;
         long[] update = new long[LENGTH];
         do {

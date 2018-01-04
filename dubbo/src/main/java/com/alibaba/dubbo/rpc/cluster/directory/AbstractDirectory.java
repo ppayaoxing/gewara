@@ -33,13 +33,13 @@ import com.alibaba.dubbo.rpc.cluster.RouterFactory;
 import com.alibaba.dubbo.rpc.cluster.router.MockInvokersSelector;
 
 /**
- * ����router��Directory
+ * 锟斤拷锟斤拷router锟斤拷Directory
  * 
  * @author chao.liuc
  */
 public abstract class AbstractDirectory<T> implements Directory<T> {
 
-    // ��־���
+    // 锟斤拷志锟斤拷锟�
     private static final Logger logger = LoggerFactory.getLogger(AbstractDirectory.class);
 
     private final URL url ;

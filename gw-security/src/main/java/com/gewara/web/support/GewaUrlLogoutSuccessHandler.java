@@ -92,7 +92,7 @@ public class GewaUrlLogoutSuccessHandler extends AbstractAuthenticationTargetUrl
 	}
 	
 	public void casLogout(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		//TODO:Member��ô������
+		//TODO:Member锟斤拷么锟斤拷锟斤拷锟斤拷
 		//request.getSession().invalidate();
 		response.sendRedirect(config.getString("ssoValidateUrl")+"logout"+"?service=" + getPath() + config.getBasePath());
 	}

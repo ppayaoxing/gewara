@@ -4,7 +4,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface MovieSettingVoService {
 	/**
-	 * µçÓ°ÔùËÍ»ı·Ö
+	 * ç”µå½±èµ é€ç§¯åˆ†
 	 * @param movieid
 	 * @return
 	 */

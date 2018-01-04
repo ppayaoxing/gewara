@@ -4,8 +4,8 @@ import com.mongodb.Tag;
 import com.mongodb.TagSet;
 
 /**
- * @author ¶­Ã÷
- * @createDate 2015Äê11ÔÂ16ÈÕ
+ * @author è‘£æ˜Ž
+ * @createDate 2015å¹´11æœˆ16æ—¥
  */
 public class HostInfo {
 	private String tagName = null;

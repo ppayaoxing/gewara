@@ -14,7 +14,7 @@ public class QueryStrBuilder {
 	private String encode = "utf-8";
 	private String queryStr = "";
 	public void buildQueryStr(Map<String, String[]> params, String[] paramNames){
-		//1����ȡ��ѯ��
+		//1锟斤拷锟斤拷取锟斤拷询锟斤拷
 		List<String> keyList = new ArrayList<String>();
 		if(params != null){
 			if(paramNames==null) {
@@ -28,7 +28,7 @@ public class QueryStrBuilder {
 				if(values==null) {
                     continue;
                 }
-				if(values instanceof String[]){//��ֵ
+				if(values instanceof String[]){//锟斤拷值
 					for(String value:(String[])values){
 						if(StringUtils.isNotBlank(value)){
 							try {
@@ -37,7 +37,7 @@ public class QueryStrBuilder {
 							}
 						}
 					}
-				}else{//��ֵ
+				}else{//锟斤拷值
 					try {
 						queryStr += "&" + key + "=" + URLEncoder.encode(""+values,encode);
 					} catch (UnsupportedEncodingException e) {
@@ -59,7 +59,7 @@ public class QueryStrBuilder {
 		}
 		String result = this.queryStr;
 		int idx1 = StringUtils.indexOf(result, "&"+fieldname+"=");
-		if(idx1 >= 0){//�滻��ֵ
+		if(idx1 >= 0){//锟芥换锟斤拷值
 			int idx2 = StringUtils.indexOf(result, '&', idx1 + 1);
 			if(idx2 == -1) {
                 idx2 = result.length();

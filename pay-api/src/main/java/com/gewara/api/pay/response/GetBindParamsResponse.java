@@ -16,7 +16,7 @@ public class GetBindParamsResponse extends ApiResponse {
 	}
 	
 	/**
-	 * 银联卡激活跳转地址
+	 * 閾惰仈鍗℃縺娲昏烦杞湴鍧�
 	 */
 	private String bindCardUrl;
 	

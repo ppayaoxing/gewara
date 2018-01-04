@@ -3,7 +3,7 @@ package com.gewara.util;
 import java.util.Map;
 
 /**
- * Service方法缓存，每个Service一个
+ * Service鏂规硶缂撳瓨锛屾瘡涓猄ervice涓�涓�
  * @author gebiao(ge.biao@gewara.com)
  * @since Nov 5, 2013 10:25:21 PM
  */
@@ -13,10 +13,10 @@ public interface ServiceCacheHelper {
 	public boolean isLocal();
 	
 	/**
-	 * 不需要同步
+	 * 涓嶉渶瑕佸悓姝�
 	 * @param key
 	 * @param call
-	 * @param cacheSeconds:缓存时间
+	 * @param cacheSeconds:缂撳瓨鏃堕棿
 	 * @return
 	 */
 	public <T> T cacheCall(Integer cacheSeconds, CachableCall<T> call, String ukey, Object...params);

@@ -11,7 +11,7 @@ public class EncodeDataVo extends BaseVo {
 	private static final long serialVersionUID = -3735272053708968031L;
 	private long memberid;
 	private long validMonth;
-	private String passvalid;//密码验证结果：U 未做验证  Y 验证通过  N 验证未通过
+	private String passvalid;//瀵嗙爜楠岃瘉缁撴灉锛歎 鏈仛楠岃瘉  Y 楠岃瘉閫氳繃  N 楠岃瘉鏈�氳繃
 	
 
 	public long getMemberid() {

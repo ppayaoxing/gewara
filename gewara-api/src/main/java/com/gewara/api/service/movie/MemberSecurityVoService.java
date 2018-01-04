@@ -4,13 +4,13 @@ import com.gewara.api.vo.ResultCode;
 
 public interface MemberSecurityVoService {
 	/**
-	 * ÊÇ·ñĞèÒª°²È«ÑéÖ¤
+	 * æ˜¯å¦éœ€è¦å®‰å…¨éªŒè¯
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<Boolean> isSecurityVerify(String memberEncode, String remoteIp);
 	/**
-	 * »ñÈ¡¶¯Ì¬ÑéÖ¤Âë
+	 * è·å–åŠ¨æ€éªŒè¯ç 
 	 * @param memberid
 	 * @param mobile
 	 * @param ip
@@ -18,7 +18,7 @@ public interface MemberSecurityVoService {
 	 */
 	ResultCode getSecurityVerifyCode(String memberEncode, String mobile, String remoteIp);
 	/**
-	 * ÑéÖ¤¶¯Ì¬ÃÜÂë
+	 * éªŒè¯åŠ¨æ€å¯†ç 
 	 * @param memberid
 	 * @param mobile
 	 * @param checkcode
@@ -27,14 +27,14 @@ public interface MemberSecurityVoService {
 	 */
 	ResultCode preCheckBindMobile(String memberEncode, String mobile, String checkcode, String remoteIp);
 	/**
-	 * Ìí¼Ó°²È«ÑéÖ¤Í¨¹ı±êÊ¶
+	 * æ·»åŠ å®‰å…¨éªŒè¯é€šè¿‡æ ‡è¯†
 	 * @param memberid
 	 * @param checkCode
 	 * @return
 	 */
 	ResultCode addMemberSecurityVerify(String memberEncode, String checkCode, String remoteIp);
 	/**
-	 * Î´°ó¶¨ÊÖ»úÓÃ»§£¬°ó¶¨ÊÖ»ú²¢»ñÈ¡ÑéÖ¤Âë
+	 * æœªç»‘å®šæ‰‹æœºç”¨æˆ·ï¼Œç»‘å®šæ‰‹æœºå¹¶è·å–éªŒè¯ç 
 	 * @param memberid
 	 * @param mobile
 	 * @param remoteIp
@@ -42,7 +42,7 @@ public interface MemberSecurityVoService {
 	 */
 	ResultCode getSecurityVerifyCode4NotBindMobile(String memberEncode, String mobile, String remoteIp);
 	/**
-	 * °ó¶¨ÊÖ»úÓÃ»§£¬»ñÈ¡ÑéÖ¤Âë
+	 * ç»‘å®šæ‰‹æœºç”¨æˆ·ï¼Œè·å–éªŒè¯ç 
 	 * @param memberid
 	 * @param mobile
 	 * @param remoteIp
@@ -50,7 +50,7 @@ public interface MemberSecurityVoService {
 	 */
 	ResultCode getSecurityVerifyCode4BindMobile(String memberEncode, String mobile, String remoteIp);
 	/**
-	 * µ±Ã»ÓĞ°ó¶¨ÊÖ»ú£¬ÇÒÃ»ÓĞÖ§¸¶ÃÜÂëÊ±£¬½øĞĞ°ïÃ¦ÊÖ»úÑéÖ¤£¬Ê¹ÓÃ°ó¶¨ÊÖ»úÂß¼­
+	 * å½“æ²¡æœ‰ç»‘å®šæ‰‹æœºï¼Œä¸”æ²¡æœ‰æ”¯ä»˜å¯†ç æ—¶ï¼Œè¿›è¡Œå¸®å¿™æ‰‹æœºéªŒè¯ï¼Œä½¿ç”¨ç»‘å®šæ‰‹æœºé€»è¾‘
 	 * @param memberid
 	 * @param mobile
 	 * @param checkpass

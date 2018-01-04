@@ -31,20 +31,20 @@ public interface PartnerAdminVoService {
 	ResultCode saveMovieAppIcon(String id, MovieAppIconVo movieIcon);
 	
 	/**
-	 * »ñÈ¡ApiUser
+	 * è·å–ApiUser
 	 * @param apiUserId
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê9ÔÂ22ÈÕÏÂÎç4:32:16
+	 * @addTime 2016å¹´9æœˆ22æ—¥ä¸‹åˆ4:32:16
 	 */
 	ResultCode<com.gewara.api.vo.api.ApiUserVo> getApiUser(Long apiUserId);
 
 	/**
-	 * »ñÈ¡ApiUserExtra
+	 * è·å–ApiUserExtra
 	 * @param apiUserId
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê9ÔÂ22ÈÕÏÂÎç4:32:42
+	 * @addTime 2016å¹´9æœˆ22æ—¥ä¸‹åˆ4:32:42
 	 */
 	ResultCode<ApiUserExtraVo> getApiUserExtra(Long apiUserId);
 }

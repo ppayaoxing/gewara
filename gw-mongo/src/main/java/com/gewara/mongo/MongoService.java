@@ -42,7 +42,7 @@ public interface MongoService {
 	<T extends MGObject> List<T> getObjectList(Class<T> clazz, String orderField, boolean asc);
 
 	/**
-	 * ²éÑ¯
+	 * æŸ¥è¯¢
 	 * 
 	 * @param clazz
 	 * @param params
@@ -148,7 +148,7 @@ public interface MongoService {
 	boolean removeObjectById(String namespace, String idName, Serializable id);
 
 	/**
-	 * ·µ»ØÉ¾³ıµÄÊıÁ¿
+	 * è¿”å›åˆ é™¤çš„æ•°é‡
 	 * 
 	 * @param entityList
 	 * @return
@@ -202,7 +202,7 @@ public interface MongoService {
 	<T extends MGObject> void addObjectList(List<T> beanList, String idName);
 
 	/**
-	 * Õë¶Ô²éÑ¯µÄÊı¾İ×ö´¦Àí,·µ»Ø´¦ÀíµÄĞĞÊı
+	 * é’ˆå¯¹æŸ¥è¯¢çš„æ•°æ®åšå¤„ç†,è¿”å›å¤„ç†çš„è¡Œæ•°
 	 * 
 	 * @param namespace
 	 * @param params
@@ -245,7 +245,7 @@ public interface MongoService {
 
 	FindRes<Object> group(AggregationBuilder ab);
 
-	// =========================ĞÂ¼Ó·½·¨===================================
+	// =========================æ–°åŠ æ–¹æ³•===================================
 	DBObject queryBasicDBObject(String string, String string2, Object o);
 
 	DBObject queryAdvancedDBObject(String string, String[] strings, Date[] dates);

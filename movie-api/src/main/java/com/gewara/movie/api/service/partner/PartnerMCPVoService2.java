@@ -12,40 +12,40 @@ import com.gewara.movie.vo.partner.PartnerCommonReqVo;
 import com.gewara.movie.vo.partner.PartnerMovieReqVo;
 
 /**
- * ºÏ×÷ÉÌµçÓ°£¬°üÀ¨WAP
+ * åˆä½œå•†ç”µå½±ï¼ŒåŒ…æ‹¬WAP
  * 
  */
 public interface PartnerMCPVoService2 {
 	
 	/**
-	 * ÈÈÓ³Ó°Æ¬
+	 * çƒ­æ˜ å½±ç‰‡
 	 * 
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getHotMovies(PartnerMovieReqVo reqVo);
 
 	/**
-	 * »ñµÃÓ°ÔºÁĞ±í
+	 * è·å¾—å½±é™¢åˆ—è¡¨
 	 * 
 	 * @return
 	 */	
 	ResultCode<List<CinemaVo>> getCinemaList(PartnerCinemaQueryReqVo reqVo);
 
 	/**
-	 * ´ıÉÏÓ³Ó°Æ¬
+	 * å¾…ä¸Šæ˜ å½±ç‰‡
 	 * 
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getFutureMovies(String appkey, String citycode, Integer from, Integer maxnum);
 	/**
-	 * Ó°Æ¬ÏêÇé
+	 * å½±ç‰‡è¯¦æƒ…
 	 * 
 	 * @return
 	 */
 	ResultCode<MovieVo> getMovieDetail(String appkey, Long movieId);
 
 	/**
-	 * ÌØĞ§Ìü
+	 * ç‰¹æ•ˆå…
 	 * 
 	 * @param citycode
 	 * @param movieId
@@ -54,20 +54,20 @@ public interface PartnerMCPVoService2 {
 	ResultCode<String> characteristicList(String appkey, String citycode, Long movieId);
 
 	/**
-	 * Ó°ÔºÏêÇé
+	 * å½±é™¢è¯¦æƒ…
 	 * 
 	 * @return
 	 */
 	ResultCode<CinemaVo> getCinemaDetail(String appkey, Long cinemaId);
 	/**
-	 * »ñÈ¡Ó°ÔºÁĞ±í£¬°üº¬ÆÀ·ÖµÈ
+	 * è·å–å½±é™¢åˆ—è¡¨ï¼ŒåŒ…å«è¯„åˆ†ç­‰
 	 * @param appkey
 	 * @param movieidList
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getMovieVoList(String appkey, List<Long> movieidList);
 	/**
-	 * Ó°ÔºÕıÔÚÈÈÓ³µÄµçÓ°
+	 * å½±é™¢æ­£åœ¨çƒ­æ˜ çš„ç”µå½±
 	 * @param appkey
 	 * @param citycode
 	 * @param cinemaId
@@ -77,25 +77,25 @@ public interface PartnerMCPVoService2 {
 	 */
 	ResultCode<List<MovieVo>> getCurMovieByCinemaId(String appkey, String citycode, Long cinemaId, Long discountid, Integer from, Integer maxnum);
 	/**
-	 * ¸ù¾İ³ÇÊĞºÍÓ°Æ¬»ñÈ¡¹ºÆ±Ó°ÔºÁĞ±í
+	 * æ ¹æ®åŸå¸‚å’Œå½±ç‰‡è·å–è´­ç¥¨å½±é™¢åˆ—è¡¨
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCitycodeAndMovieid(PartnerCommonReqVo reqVo);
 	/**
-	 * »ñÈ¡µçÓ°ÌØĞ§Ìü
+	 * è·å–ç”µå½±ç‰¹æ•ˆå…
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<String> getMovieCharacteristic(String citycode,Long movieId);
 	/**
-	 * ¸ù¾İÌØĞ§Ìü²éÕÒÓ°Ôº
+	 * æ ¹æ®ç‰¹æ•ˆå…æŸ¥æ‰¾å½±é™¢
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getSpecailRoomCinemaList(PartnerCommonReqVo reqVo);
 	/**
-	 * µçÓ°ÌØĞ§Ìü
+	 * ç”µå½±ç‰¹æ•ˆå…
 	 * @param reqVo
 	 * @return
 	 */
@@ -104,13 +104,13 @@ public interface PartnerMCPVoService2 {
 	ResultCode<String> getMovieCharacteristic2(PartnerCommonReqVo reqVo,Date playdate);
 	
 	/**
-	 * ¸ù¾İÌØĞ§Ìü²éÕÒÓ°Ôº
+	 * æ ¹æ®ç‰¹æ•ˆå…æŸ¥æ‰¾å½±é™¢
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCountyAndMovieidAndPlaydate(PartnerCommonReqVo reqVo);
 	/**
-	 * ÌØ¼ÛÄ£°åÓ°ÔºÁĞ±í²éÑ¯·½·¨
+	 * ç‰¹ä»·æ¨¡æ¿å½±é™¢åˆ—è¡¨æŸ¥è¯¢æ–¹æ³•
 	 * @param paramsVo
 	 * @return
 	 */

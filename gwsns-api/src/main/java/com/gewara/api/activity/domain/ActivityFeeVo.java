@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import com.gewara.api.activity.ApiObject;
 
 /**
- * »î¶¯·ÑÓÃ
+ * æ´»åŠ¨è´¹ç”¨
  * @author leo
  *
  */
@@ -14,27 +14,27 @@ public class ActivityFeeVo extends ApiObject{
 
 	private static final long serialVersionUID = 2892910571679692378L;
 	private Long id;
-	private Long activityId;	//»î¶¯id
-	private Long goodsId;		//ÉÌÆ·id£¬Ö»ÓĞÍ¨¹ıÈÏÖ¤ÓÃ»§·¢²¼µÄÊÕ·Ñ»î¶¯²Å»áÓĞ¸ÃĞÅÏ¢£¬¹ÜÀíÔ±ÉóºËÍ¨¹ıºó²úÉú
-	private String feeName;		//ÊÕ·ÑÃû³Æ
-	private Integer price;		//¼Û¸ñ
-	private Timestamp beginTime;//³öÊÛ¿ªÊ¼Ê±¼ä
-	private Timestamp endTime;	//³öÊÛ½ØÖ¹Ê±¼ä
-	private Integer quantity;	//Æ±µÄÊıÁ¿
-	private Integer orderQuantity;//¶©µ¥ÊıÁ¿ >= quantity
-	private Integer validQuantity;//ÓàÆ±ÊıÁ¿
-	private String isLimited;	//ÊÇ·ñÏŞ¹º£¬Y»òN
-	private Integer limitCount;	//ÏŞ¹ºÊıÁ¿
-	private Integer limitOrderCount;	//ÏŞ¹º¶©µ¥ÊıÁ¿
-	private String islimitedOrder;//ÊÇ·ñÏŞÖÆ¶©µ¥ÊıÁ¿
-	private String status;		//×´Ì¬£¬ÊÇ·ñ±»É¾³ı Y_NEW,N_DELETE
-	private Timestamp addTime;	//¼ÇÂ¼Ìí¼ÓÊ±¼ä
-	private Timestamp updateTime;//¼ÇÂ¼ĞŞ¸ÄÊ±¼ä
+	private Long activityId;	//æ´»åŠ¨id
+	private Long goodsId;		//å•†å“idï¼Œåªæœ‰é€šè¿‡è®¤è¯ç”¨æˆ·å‘å¸ƒçš„æ”¶è´¹æ´»åŠ¨æ‰ä¼šæœ‰è¯¥ä¿¡æ¯ï¼Œç®¡ç†å‘˜å®¡æ ¸é€šè¿‡åäº§ç”Ÿ
+	private String feeName;		//æ”¶è´¹åç§°
+	private Integer price;		//ä»·æ ¼
+	private Timestamp beginTime;//å‡ºå”®å¼€å§‹æ—¶é—´
+	private Timestamp endTime;	//å‡ºå”®æˆªæ­¢æ—¶é—´
+	private Integer quantity;	//ç¥¨çš„æ•°é‡
+	private Integer orderQuantity;//è®¢å•æ•°é‡ >= quantity
+	private Integer validQuantity;//ä½™ç¥¨æ•°é‡
+	private String isLimited;	//æ˜¯å¦é™è´­ï¼ŒYæˆ–N
+	private Integer limitCount;	//é™è´­æ•°é‡
+	private Integer limitOrderCount;	//é™è´­è®¢å•æ•°é‡
+	private String islimitedOrder;//æ˜¯å¦é™åˆ¶è®¢å•æ•°é‡
+	private String status;		//çŠ¶æ€ï¼Œæ˜¯å¦è¢«åˆ é™¤ Y_NEW,N_DELETE
+	private Timestamp addTime;	//è®°å½•æ·»åŠ æ—¶é—´
+	private Timestamp updateTime;//è®°å½•ä¿®æ”¹æ—¶é—´
 	private String isAlgorithm;
 	private String algorithm;
 	private String allowaddnum;
 	private Integer maxbuy;
-	private Integer virtualcount = 0;//ĞéÄâ¿â´æ
+	private Integer virtualcount = 0;//è™šæ‹Ÿåº“å­˜
 	
 
 	public ActivityFeeVo(){

@@ -6,9 +6,9 @@ public class SendSmsResponse extends AbcResponse {
 
 	private static final long serialVersionUID = 320131114082724773L;
 
-	private String	cardno;			//交易卡号
-	private String	trandate;		//交易日期
-	private String	trantime;		//交易时间
+	private String	cardno;			//浜ゆ槗鍗″彿
+	private String	trandate;		//浜ゆ槗鏃ユ湡
+	private String	trantime;		//浜ゆ槗鏃堕棿
 	
 	public String getCardno() {
 		return cardno;

@@ -7,40 +7,40 @@ import com.gewara.api.vo.pay.PromotionVo;
 
 public interface PromotionVoService {
 	/**
-	 * ²éÑ¯ÌØÊâÓÅ»İ·½°¸
+	 * æŸ¥è¯¢ç‰¹æ®Šä¼˜æƒ æ–¹æ¡ˆ
 	 * @param relatedid
 	 * @return
 	 */
 	ResultCode<PromotionVo> getSpecialDiscount(Long relatedid);
 	/**
-	 * ²éÑ¯ÌØÊâÓÅ»İ·½°¸
+	 * æŸ¥è¯¢ç‰¹æ®Šä¼˜æƒ æ–¹æ¡ˆ
 	 * @param relatedid
 	 * @return
 	 */
 	ResultCode<PromotionVo> getSpecialDiscountByFlag(String flag);
 	/**
-	 * ÊÖ»ú¶ËÍÆ¼öµÄÌØ¼Û»î¶¯
+	 * æ‰‹æœºç«¯æ¨èçš„ç‰¹ä»·æ´»åŠ¨
 	 * @param citycode
 	 * @param partnerid
 	 * @return
 	 */
 	ResultCode<List<PromotionVo>> getDefaultMobileSpecialDiscountList(String citycode, Long partnerid);
 	/**
-	 * ¸ù¾İtagºÍ¿ª·ÅÀàĞÍ²éÑ¯ÌØ¼Û»î¶¯
+	 * æ ¹æ®tagå’Œå¼€æ”¾ç±»å‹æŸ¥è¯¢ç‰¹ä»·æ´»åŠ¨
 	 * @param tag
 	 * @param opentype
 	 * @return
 	 */
 	ResultCode<List<PromotionVo>> getSpecialDiscountList(String tag, String opentype);
 	/**
-	 * ²éÑ¯Ò»×é
+	 * æŸ¥è¯¢ä¸€ç»„
 	 * @param relatedid
 	 * @return
 	 */
 	ResultCode<List<PromotionVo>> getSpecialDiscountListByIds(Long ... relatedid);
 	
 	/**
-	 * ²éÑ¯Ò»×é
+	 * æŸ¥è¯¢ä¸€ç»„
 	 * @param relatedid
 	 * @return
 	 */

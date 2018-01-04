@@ -3,20 +3,20 @@ package com.gewara.gmessage.external.entity;
 import java.io.Serializable;
 
 /**
- * ²Ù×÷½á¹û¡£
- * @author ¶­Ã÷
- * @createDate 2015Äê3ÔÂ6ÈÕ
+ * æ“ä½œç»“æœã€‚
+ * @author è‘£æ˜
+ * @createDate 2015å¹´3æœˆ6æ—¥
  */
 public class OperateResult implements Serializable{
 	private static final long serialVersionUID = -4280148580555226376L;
 
-	/*²Ù×÷ÊÇ·ñ³É¹¦*/
-	private boolean success=true;//ÊÇ·ñ³É¹¦
+	/*æ“ä½œæ˜¯å¦æˆåŠŸ*/
+	private boolean success=true;//æ˜¯å¦æˆåŠŸ
 
-	/**²Ù×÷Ê§°Ü´úÂë*/
-	private String failCode=null;//Ê§°Ü´úÂë£»
-	/**²Ù×÷Ê§°ÜÔ­ÒòÃèÊö*/
-	private String failMessage=null;//Ê§°ÜÔ­ÒòÃèÊö£»
+	/**æ“ä½œå¤±è´¥ä»£ç */
+	private String failCode=null;//å¤±è´¥ä»£ç ï¼›
+	/**æ“ä½œå¤±è´¥åŸå› æè¿°*/
+	private String failMessage=null;//å¤±è´¥åŸå› æè¿°ï¼›
 	
 	public OperateResult(boolean success){
 		this.success=success;

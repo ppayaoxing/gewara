@@ -7,14 +7,14 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * 数据采集专用
+ * 鏁版嵁閲囬泦涓撶敤
  */
 public abstract class DataCollectUtil {
 	protected final static transient GewaLogger dbLogger = WebLogger.getLogger(DataCollectUtil.class);
 	private static final String LD_REG_KEY = "_LD_REG_KEY";
 	/**
-	 * 跟踪特价活动注册情况。
-	 * cookie值为前后两部分url组成， 前为最新，后上一个特价活动页面
+	 * 璺熻釜鐗逛环娲诲姩娉ㄥ唽鎯呭喌銆�
+	 * cookie鍊间负鍓嶅悗涓ら儴鍒唘rl缁勬垚锛� 鍓嶄负鏈�鏂帮紝鍚庝笂涓�涓壒浠锋椿鍔ㄩ〉闈�
 	 * @param url
 	 * @param request
 	 * @param response

@@ -35,12 +35,12 @@ import com.alibaba.dubbo.rpc.service.GenericService;
 /**
  * ExceptionInvokerFilter
  * <p>
- * ���ܣ�
+ * 锟斤拷锟杰ｏ拷
  * <ol>
- * <li>���������쳣��ERROR��־��Provider�ˣ�<br>
- *     ����������־���ǣ�û�еĽӿ���������Unchecked�쳣��
- * <li>�쳣����API���У���Wrapһ��RuntimeException��<br>
- *     RPC���ڵ�һ���쳣��ֱ�����л�����(Cause�쳣��String��)�������쳣��Client�����ܷ����л����⡣
+ * <li>锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷ERROR锟斤拷志锟斤拷Provider锟剿ｏ拷<br>
+ *     锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷志锟斤拷锟角ｏ拷没锟叫的接匡拷锟斤拷锟斤拷锟斤拷锟斤拷Unchecked锟届常锟斤拷
+ * <li>锟届常锟斤拷锟斤拷API锟斤拷锟叫ｏ拷锟斤拷Wrap一锟斤拷RuntimeException锟斤拷<br>
+ *     RPC锟斤拷锟节碉拷一锟斤拷锟届常锟斤拷直锟斤拷锟斤拷锟叫伙拷锟斤拷锟斤拷(Cause锟届常锟斤拷String锟斤拷)锟斤拷锟斤拷锟斤拷锟届常锟斤拷Client锟斤拷锟斤拷锟杰凤拷锟斤拷锟叫伙拷锟斤拷锟解。
  * </ol>
  * 
  * @author william.liangf
@@ -67,11 +67,11 @@ public class ExceptionFilter implements Filter {
                 try {
                     Throwable exception = result.getException();
 
-                    // �����checked�쳣��ֱ���׳�
+                    // 锟斤拷锟斤拷锟絚hecked锟届常锟斤拷直锟斤拷锟阶筹拷
                     if (! (exception instanceof RuntimeException) && (exception instanceof Exception)) {
                         return result;
                     }
-                    // �ڷ���ǩ������������ֱ���׳�
+                    // 锟节凤拷锟斤拷签锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷直锟斤拷锟阶筹拷
                     try {
                         Method method = invoker.getInterface().getMethod(invocation.getMethodName(), invocation.getParameterTypes());
                         Class<?>[] exceptionClassses = method.getExceptionTypes();
@@ -84,28 +84,28 @@ public class ExceptionFilter implements Filter {
                         return result;
                     }
 
-                    // δ�ڷ���ǩ���϶�����쳣���ڷ������˴�ӡERROR��־
+                    // 未锟节凤拷锟斤拷签锟斤拷锟较讹拷锟斤拷锟斤拷斐ｏ拷锟斤拷诜锟斤拷锟斤拷锟斤拷舜锟接RROR锟斤拷志
                     logger.error("Got unchecked and undeclared exception which called by " + RpcContext.getContext().getRemoteHost()
                             + ". service: " + invoker.getInterface().getName() + ", method: " + invocation.getMethodName()
                             + ", exception: " + exception.getClass().getName() + ": " + exception.getMessage(), exception);
 
-                    // �쳣��ͽӿ�����ͬһjar���ֱ���׳�
+                    // 锟届常锟斤拷徒涌锟斤拷锟斤拷锟酵籮ar锟斤拷锟斤，直锟斤拷锟阶筹拷
                     String serviceFile = ReflectUtils.getCodeBase(invoker.getInterface());
                     String exceptionFile = ReflectUtils.getCodeBase(exception.getClass());
                     if (serviceFile == null || exceptionFile == null || serviceFile.equals(exceptionFile)){
                         return result;
                     }
-                    // ��JDK�Դ����쳣��ֱ���׳�
+                    // 锟斤拷JDK锟皆达拷锟斤拷锟届常锟斤拷直锟斤拷锟阶筹拷
                     String className = exception.getClass().getName();
                     if (className.startsWith("java.") || className.startsWith("javax.")) {
                         return result;
                     }
-                    // ��Dubbo������쳣��ֱ���׳�
+                    // 锟斤拷Dubbo锟斤拷锟斤拷锟斤拷斐ｏ拷锟街憋拷锟斤拷壮锟�
                     if (exception instanceof RpcException) {
                         return result;
                     }
 
-                    // ���򣬰�װ��RuntimeException�׸��ͻ���
+                    // 锟斤拷锟津，帮拷装锟斤拷RuntimeException锟阶革拷锟酵伙拷锟斤拷
                     String excepStr = StringUtils.toString(exception);
                     if(!StringUtils.isBlank(excepStr)){
                     	if(excepStr.length() > 200){

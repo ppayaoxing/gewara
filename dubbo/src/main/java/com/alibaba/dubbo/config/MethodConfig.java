@@ -30,46 +30,46 @@ public class MethodConfig extends AbstractMethodConfig {
 
     private static final long serialVersionUID = 884908855422675941L;
 
-    // ·½·¨Ãû
+    // æ–¹æ³•å
     private String            name;
     
-    // Í³¼Æ²ÎÊı
+    // ç»Ÿè®¡å‚æ•°
     private Integer           stat;
 
-    // ÊÇ·ñÖØÊÔ
+    // æ˜¯å¦é‡è¯•
     private Boolean           retry;
 
-    // ÊÇ·ñÎª¿É¿¿Òì²½
+    // æ˜¯å¦ä¸ºå¯é å¼‚æ­¥
     private Boolean           reliable;
 
-    // ·½·¨Ê¹ÓÃÏß³ÌÊıÏŞÖÆ
+    // æ–¹æ³•ä½¿ç”¨çº¿ç¨‹æ•°é™åˆ¶
     private Integer           executes;
     
-    // ÊÇ·ñ¹ıÊ±
+    // æ˜¯å¦è¿‡æ—¶
     private Boolean           deprecated;
 
-    // ÊÇ·ñĞèÒª¿ªÆôstiky²ßÂÔ
+    // æ˜¯å¦éœ€è¦å¼€å¯stikyç­–ç•¥
     private Boolean           sticky;
 
-    // ÊÇ·ñĞèÒª·µ»Ø
+    // æ˜¯å¦éœ€è¦è¿”å›
     private Boolean           isReturn;
     
-    //Òì²½µ÷ÓÃ»Øµ÷ÊµÀı
+    //å¼‚æ­¥è°ƒç”¨å›è°ƒå®ä¾‹
     private Object            oninvoke;
 
-    //Òì²½µ÷ÓÃ»Øµ÷·½·¨
+    //å¼‚æ­¥è°ƒç”¨å›è°ƒæ–¹æ³•
     private String            oninvokeMethod;
     
-    //Òì²½µ÷ÓÃ»Øµ÷ÊµÀı
+    //å¼‚æ­¥è°ƒç”¨å›è°ƒå®ä¾‹
     private Object            onreturn;
 
-    //Òì²½µ÷ÓÃ»Øµ÷·½·¨
+    //å¼‚æ­¥è°ƒç”¨å›è°ƒæ–¹æ³•
     private String            onreturnMethod;
     
-    //Òì²½µ÷ÓÃÒì³£»Øµ÷ÊµÀı
+    //å¼‚æ­¥è°ƒç”¨å¼‚å¸¸å›è°ƒå®ä¾‹
     private Object            onthrow;
     
-    //Òì²½µ÷ÓÃÒì³£»Øµ÷·½·¨
+    //å¼‚æ­¥è°ƒç”¨å¼‚å¸¸å›è°ƒæ–¹æ³•
     private String            onthrowMethod;
     
     private List<ArgumentConfig> arguments;

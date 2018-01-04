@@ -12,7 +12,7 @@ import com.gewara.movie.vo.star.GlossaryBaseInfoVo;
 import com.gewara.movie.vo.star.WorksStaffVo;
 
 /**
- * Ó°ÈËÏà¹Ø²Ù×÷dubbo
+ * å½±äººç›¸å…³æ“ä½œdubbo
  * @author Administrator
  *
  */
@@ -21,28 +21,28 @@ public interface StarVoService {
 	ResultCode<List<WorksStaffVo>> getWorksStaffList(String tag,Long mid,int from ,int maxnum);
 	ResultCode<List<GlossaryBaseInfoVo>> getGlossaryBaseInfoListByCastIdInfoType(final Long castid, final String infotype);
 	/**
-	 * ¸ù¾İÈËÎïID»ñµÃÈËÎïÏêÇé
+	 * æ ¹æ®äººç‰©IDè·å¾—äººç‰©è¯¦æƒ…
 	 * @return CastProfileVo
 	 */
 	ResultCode<CastProfileVo> getCastProfileById(Long pid);
 	ResultCode<List<CastPictureVo>> getCastPictureListByRelatedid( Long relatedid, int from, int maxnum);
 	/**
-	 * ¸ù¾İÈËÎï¶ÔÓ¦µÄÀàĞÍÁĞ±í
+	 * æ ¹æ®äººç‰©å¯¹åº”çš„ç±»å‹åˆ—è¡¨
 	 */
 	ResultCode<List<GlossaryBaseInfoVo>> getPersonTypeById(Long pid);
 	
 	/**
-	 * »ñÈ¡ÕıÔÚÉÏÓ°µÄµçÓ°£¨Ó°ÈË²ÎÑİ£©
+	 * è·å–æ­£åœ¨ä¸Šå½±çš„ç”µå½±ï¼ˆå½±äººå‚æ¼”ï¼‰
 	 */
 	ResultCode<List<MovieVo>> getMovieListByCastProfileId(Long pid, String citycode);
 	
 	/**
-	 * »ñÈ¡Ó°ÈËµÄÏ²»¶Êı
+	 * è·å–å½±äººçš„å–œæ¬¢æ•°
 	 */
 	ResultCode<Long> getPersonCollectCountsById(Long pid);
 	
 	/**
-	 * ²Ù×÷Ó°ÈËµÄÏ²»¶Êı
+	 * æ“ä½œå½±äººçš„å–œæ¬¢æ•°
 	 */
 	ResultCode addPersonCollectCountsById(Long pid, Long num);
 	/**
@@ -56,20 +56,20 @@ public interface StarVoService {
 	 */
 	ResultCode<Map<Long,List<CastProfileVo>>> getStarByIdList(List<Long> movieidList);
 	/**
-	 * »ñÈ¡picwidth is nullÓ°ÈËÍ¼Æ¬ÁĞ±í
+	 * è·å–picwidth is nullå½±äººå›¾ç‰‡åˆ—è¡¨
 	 * @param from
 	 * @param maxnum
 	 * @return
 	 */
 	ResultCode<List<CastPictureVo>> getCastPictureList(int from, int maxnum);
 	/**
-	 * Í¨¹ımovieid »ñÈ¡WorksStaffVoÁĞ±í
-	 * @param workstype ×÷Æ·ÀàĞÍ
+	 * é€šè¿‡movieid è·å–WorksStaffVoåˆ—è¡¨
+	 * @param workstype ä½œå“ç±»å‹
 	 * @return
 	 */
 	ResultCode<List<WorksStaffVo>> getWorksStaffListByMovieId(Long movieId);
 	/**
-	 * ±£´æ»òÓ°ÈËÍ¼Æ¬
+	 * ä¿å­˜æˆ–å½±äººå›¾ç‰‡
 	 * @param paramVo
 	 */
 	ResultCode saveOrUpdateCastPicture(RequestParamVo paramVo);

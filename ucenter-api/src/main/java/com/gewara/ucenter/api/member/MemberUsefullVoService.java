@@ -8,20 +8,20 @@ import com.gewara.ucenter.vo.member.ExpressProvinceVo;
 import com.gewara.ucenter.vo.member.MemberUsefulAddressVo;
 
 /**
- * ¿ìµİÏà¹ØĞÅÏ¢²éÑ¯
+ * å¿«é€’ç›¸å…³ä¿¡æ¯æŸ¥è¯¢
  */
 public interface MemberUsefullVoService {
 
 	ResultCode<MemberUsefulAddressVo> checkCreanteUsefulAddress(UsefulAddressVo userAddress);
 	
 	/**
-	 * ¸ù¾İid»ñÈ¡MemberUsefulAddressVoÊµÀı
+	 * æ ¹æ®idè·å–MemberUsefulAddressVoå®ä¾‹
 	 * @param id
 	 * @return
 	 */
 	ResultCode<MemberUsefulAddressVo> getMemberUsefulAddressById(Long id);
 	/**
-	 * »ñÈ¡ÓÃ»§³£ÓÃµØÖ·
+	 * è·å–ç”¨æˆ·å¸¸ç”¨åœ°å€
 	 * @param memberid
 	 * @param from
 	 * @param maxnum
@@ -29,7 +29,7 @@ public interface MemberUsefullVoService {
 	 */
 	ResultCode<List<MemberUsefulAddressVo>> getMemberUsefulAddressByMeberid(Long memberid, int from, int maxnum);
 	/**
-	 * ¸ù¾İÓÃ»§ÊÖ»úºÅ»ñÈ¡³£ÓÃµØÖ·
+	 * æ ¹æ®ç”¨æˆ·æ‰‹æœºå·è·å–å¸¸ç”¨åœ°å€
 	 * @param mobile
 	 * @param from
 	 * @param maxnum
@@ -37,7 +37,7 @@ public interface MemberUsefullVoService {
 	 */
 	ResultCode<List<MemberUsefulAddressVo>> getMemberUsefulAddressByMobile(String mobile, int from, int maxnum);
 	/**
-	 * »ñÈ¡¸Ã¿ìµİ·½Ê½ÏÂÄ³Ò»Ê¡·İµÄÓÊ·ÑµÈĞÅÏ¢
+	 * è·å–è¯¥å¿«é€’æ–¹å¼ä¸‹æŸä¸€çœä»½çš„é‚®è´¹ç­‰ä¿¡æ¯
 	 * @param expressid
 	 * @param provincecode
 	 * @return
@@ -45,35 +45,35 @@ public interface MemberUsefullVoService {
 	ResultCode<ExpressProvinceVo> getExpressProvince(String expressid, String provincecode);
 	
 	/**
-	 * »ñÈ¡¸Ã¿ìµİ·½Ê½ÏÂËùÓĞÊ¡·İµÄÓÊ·ÑµÈĞÅÏ¢
+	 * è·å–è¯¥å¿«é€’æ–¹å¼ä¸‹æ‰€æœ‰çœä»½çš„é‚®è´¹ç­‰ä¿¡æ¯
 	 * @param expressid
 	 * @return
 	 */
 	ResultCode<List<ExpressProvinceVo>> getExpressProvinceList(String expressid);
 	/**
-	 * ´´½¨ÊÕ»õµØÖ·
+	 * åˆ›å»ºæ”¶è´§åœ°å€
 	 * @param usefulAddress
 	 * @return
 	 */
 	ResultCode<MemberUsefulAddressVo> addOrUpdateUsefulAddress(UsefulAddressVo usefulAddress);
 	/**
-	 * ¸ù¾İÖ÷¼üÄÃµØÖ·
+	 * æ ¹æ®ä¸»é”®æ‹¿åœ°å€
 	 * @param idList
 	 * @return
 	 */
 	ResultCode<List<MemberUsefulAddressVo>> getMemberUsefulAddressByIdList(List<Long> idList);
 	/**
-	 * ÓÃ»§É¾³ıµØÖ·
-	 * @param id µØÖ·id
-	 * @param memberid ÓÃ»§id
+	 * ç”¨æˆ·åˆ é™¤åœ°å€
+	 * @param id åœ°å€id
+	 * @param memberid ç”¨æˆ·id
 	 * @return
 	 */
 	ResultCode delOldAddress(Long id, Long memberid);
 	/**
-	 * ĞŞ¸ÄÄ¬ÈÏµØÖ·
-	 * @param id	µØÖ·id
-	 * @param memberid	ÓÃ»§id
-	 * @param defaultAddress ×´Ì¬
+	 * ä¿®æ”¹é»˜è®¤åœ°å€
+	 * @param id	åœ°å€id
+	 * @param memberid	ç”¨æˆ·id
+	 * @param defaultAddress çŠ¶æ€
 	 * @return
 	 */
 	ResultCode changeDefaultAddress(Long id, Long memberid, String defaultAddress);

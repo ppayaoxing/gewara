@@ -10,7 +10,7 @@ import org.springframework.web.context.support.ServletRequestHandledEvent;
 public interface RequestLogService {
 
 	/**
-	 * ¼ÇÂ¼ÈÕÖ¾ĞÅÏ¢
+	 * è®°å½•æ—¥å¿—ä¿¡æ¯
 	 * @param uri
 	 * @param params
 	 * @param ip
@@ -28,13 +28,13 @@ public interface RequestLogService {
 	void logRequest(String ip, String uri, String referer, String userAgent, String xForwardedHost, Map<String, String> params, String isAjaxReq, String uvKey, String memberKey);
 	
 	/**
-	 * ºöÂÔµÄÃô¸Ğ¹Ø¼ü²ÎÊı
+	 * å¿½ç•¥çš„æ•æ„Ÿå…³é”®å‚æ•°
 	 * @return
 	 */
 	void addSensitiveWords(String sensitive);
 	
 	/**
-	 * ºöÂÔµÄuri£¬Èç¹ûuriºóÃæ´ø¡°*¡±ºÅ£¬Ôò±íÊ¾Æ¥ÅäÇ°×º
+	 * å¿½ç•¥çš„uriï¼Œå¦‚æœuriåé¢å¸¦â€œ*â€å·ï¼Œåˆ™è¡¨ç¤ºåŒ¹é…å‰ç¼€
 	 * @return
 	 */
 	void addIgnoreUriList(List<String> ignoreUriList);

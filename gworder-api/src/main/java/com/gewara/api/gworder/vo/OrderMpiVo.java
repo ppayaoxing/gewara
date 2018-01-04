@@ -16,60 +16,60 @@ import com.gewara.util.StringUtil;
 public class OrderMpiVo extends BaseVo {
 	private static final long serialVersionUID = 7825970506234199792L;
 	
-	protected Long id;			//����ID
+	protected Long id;			//锟斤拷锟斤拷ID
 	protected Long mpid;			//
-	protected Long movieid;		//ӰƬID
-	protected Long cinemaid;		//ӰԺID
-	protected String language;	//����
-	protected Date playdate;		//��ӳ����
-	protected String showtime;	//��ӳʱ��
-	protected Integer price;		//ӰԺ��
-	protected Integer lowest;		//���Ʊ��
-	protected Integer gewaprice;	//��������
-	protected String edition;		//�汾
-	protected Long roomid;		//Ӱ��
+	protected Long movieid;		//影片ID
+	protected Long cinemaid;		//影院ID
+	protected String language;	//锟斤拷锟斤拷
+	protected Date playdate;		//锟斤拷映锟斤拷锟斤拷
+	protected String showtime;	//锟斤拷映时锟斤拷
+	protected Integer price;		//影院锟斤拷
+	protected Integer lowest;		//锟斤拷锟狡憋拷锟�
+	protected Integer gewaprice;	//锟斤拷锟斤拷锟斤拷锟斤拷
+	protected String edition;		//锟芥本
+	protected Long roomid;		//影锟斤拷
 	protected String roomnum;
-	protected String opentype;	//��������
-	protected String citycode;	//����
-	protected String seqNo;		//�ⲿ����ID
-	protected Long batch;				//���α�ʶ
-	protected Timestamp createtime;	//����ʱ��
-	protected String openStatus;		//����״̬��init����ʼ״̬��open���ѿ��ţ�close���Ժ�Ҳ������
-	protected String mpitype;			//�������� filmfest ��Ӱ�ڳ���
+	protected String opentype;	//锟斤拷锟斤拷锟斤拷锟斤拷
+	protected String citycode;	//锟斤拷锟斤拷
+	protected String seqNo;		//锟解部锟斤拷锟斤拷ID
+	protected Long batch;				//锟斤拷锟轿憋拷识
+	protected Timestamp createtime;	//锟斤拷锟斤拷时锟斤拷
+	protected String openStatus;		//锟斤拷锟斤拷状态锟斤拷init锟斤拷锟斤拷始状态锟斤拷open锟斤拷锟窖匡拷锟脚ｏ拷close锟斤拷锟皆猴拷也锟斤拷锟斤拷锟斤拷
+	protected String mpitype;			//锟斤拷锟斤拷锟斤拷锟斤拷 filmfest 锟斤拷影锟节筹拷锟斤拷
 	
-	//����Ϊopi����
-	protected Long openid;			//					------>ԭopi���id
+	//锟斤拷锟斤拷为opi锟斤拷锟斤拷
+	protected Long openid;			//					------>原opi锟斤拷锟絠d
 	protected String moviename;
 	protected String cinemaname;
 	protected String roomname;
-	protected Timestamp playtime;   //				------>ԭopi���playtime
-	protected Integer costprice; 		//�ɱ��ۣ�Ʊ��ۣ�
-	protected Integer fee;				//�����
-	protected String status;			//״̬����Ԥ��������Ԥ���� Y[��Ԥ��]N[����Ԥ��]D[ɾ��]
-	protected String partner;			//������鿪��״̬��Y���⿪��,N�����⿪��
-	protected Timestamp opentime;		//���Ź�Ʊʱ��
-	protected Timestamp closetime;		//�رչ�Ʊʱ��
-	protected String elecard;			//1)���õĵ���ȯ����ABC��2) M��ʾ�����̼������Żݻ
+	protected Timestamp playtime;   //				------>原opi锟斤拷锟絧laytime
+	protected Integer costprice; 		//锟缴憋拷锟桔ｏ拷票锟斤拷郏锟�
+	protected Integer fee;				//锟斤拷锟斤拷锟�
+	protected String status;			//状态锟斤拷锟斤拷预锟斤拷锟斤拷锟斤拷锟斤拷预锟斤拷锟斤拷 Y[锟斤拷预锟斤拷]N[锟斤拷锟斤拷预锟斤拷]D[删锟斤拷]
+	protected String partner;			//锟斤拷锟斤拷锟斤拷榭拷锟阶刺拷锟結锟斤拷锟解开锟斤拷,N锟斤拷锟斤拷锟解开锟斤拷
+	protected Timestamp opentime;		//锟斤拷锟脚癸拷票时锟斤拷
+	protected Timestamp closetime;		//锟截闭癸拷票时锟斤拷
+	protected String elecard;			//1)锟斤拷锟矫的碉拷锟斤拷券锟斤拷锟斤拷ABC锟斤拷2) M锟斤拷示锟斤拷锟斤拷锟教硷拷锟斤拷锟斤拷锟脚惠活动
 
-	protected String spflag;			//�ؼۻ��ʶ
+	protected String spflag;			//锟截价活动锟斤拷识
 	
-	protected String buylimit;			//�����������ƣ�1,2,3,4,5
-	protected Long topicid;				//ȡƱ����
-	protected String dayotime;			//day open time ÿ�տ���ʱ��
-	protected String dayctime;			//day close time ÿ�չر�ʱ��
-	protected Integer givepoint;		//�����֣�����ʾ���ӻ��֣�����ʾ������
-	protected String expressid;			//��ݷ�ʽ
+	protected String buylimit;			//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟狡ｏ拷1,2,3,4,5
+	protected Long topicid;				//取票锟斤拷锟斤拷
+	protected String dayotime;			//day open time 每锟秸匡拷锟斤拷时锟斤拷
+	protected String dayctime;			//day close time 每锟秸关憋拷时锟斤拷
+	protected Integer givepoint;		//锟斤拷锟斤拷锟街ｏ拷锟斤拷锟斤拷示锟斤拷锟接伙拷锟街ｏ拷锟斤拷锟斤拷示锟斤拷锟斤拷锟斤拷
+	protected String expressid;			//锟斤拷莘锟绞�
 	protected Integer lockminute;
 	protected Integer maxseat;
 	protected String roomtype;
 	protected String otherinfo;
-	protected String remark;			//��ע
-	protected Timestamp updatetime;	//����ʱ��
-	protected Integer seatnum;		//��λ����
-	protected Integer asellnum;		//allow ����������
-	protected Integer gsellnum;		//Gewa������
-	protected Integer csellnum;		//ӰԺ����
-	protected Integer locknum;		//Gewa������
+	protected String remark;			//锟斤拷注
+	protected Timestamp updatetime;	//锟斤拷锟斤拷时锟斤拷
+	protected Integer seatnum;		//锟斤拷位锟斤拷锟斤拷
+	protected Integer asellnum;		//allow 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	protected Integer gsellnum;		//Gewa锟斤拷锟斤拷锟斤拷
+	protected Integer csellnum;		//影院锟斤拷锟斤拷
+	protected Integer locknum;		//Gewa锟斤拷锟斤拷锟斤拷
 	
 	public OrderMpiVo(){}
 	@Override
@@ -501,19 +501,19 @@ public class OrderMpiVo extends BaseVo {
 			return "";
 		}
 		if(seatnum==null || asellnum==null ||  gsellnum==null || csellnum==null || locknum==null){
-			return "ѡ����Ʊ";
+			return "选锟斤拷锟斤拷票";
 		}
 		/*Integer remain = this.seatnum - this.gsellnum - this.csellnum - this.locknum;
 		if(remain <= 0) {
-			return "�����ˡ�";
+			return "锟斤拷锟斤拷锟剿★拷";
 		}else if(remain < 10) {
-			return "��λ����";
+			return "锟斤拷位锟斤拷锟斤拷";
 		}*/
 		Timestamp curtime = DateUtil.getCurFullTimestamp();
-		String resText = "ѡ����Ʊ";
+		String resText = "选锟斤拷锟斤拷票";
 		if(opentime!=null){
 			if(opentime.after(curtime) && DateUtil.formatDate(curtime).equals(DateUtil.formatDate(opentime))){
-				resText = DateUtil.format(opentime, "HH:mm")+"��Ʊ";
+				resText = DateUtil.format(opentime, "HH:mm")+"锟斤拷票";
 			}
 		}
 		return resText;
@@ -574,7 +574,7 @@ public class OrderMpiVo extends BaseVo {
 		}
 		return playtime;
 	}
-	//����ķ���ֻ�ں�̨��
+	//锟斤拷锟斤拷姆锟斤拷锟街伙拷诤锟教拷锟�
 	public boolean isOpen(){
 		if(hasOpenid()){
 			return opentime!=null && opentime.before(new Timestamp(System.currentTimeMillis()));

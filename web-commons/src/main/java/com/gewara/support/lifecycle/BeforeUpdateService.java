@@ -2,7 +2,7 @@ package com.gewara.support.lifecycle;
 
 public interface BeforeUpdateService {
 	/**
-	 * 在执行更新之前，会调用此方法
+	 * 鍦ㄦ墽琛屾洿鏂颁箣鍓嶏紝浼氳皟鐢ㄦ鏂规硶
 	 */
 	void beforeUpdate();
 }

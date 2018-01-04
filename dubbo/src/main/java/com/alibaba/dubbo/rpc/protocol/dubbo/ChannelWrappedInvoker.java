@@ -34,7 +34,7 @@ import com.alibaba.dubbo.rpc.RpcResult;
 import com.alibaba.dubbo.rpc.protocol.AbstractInvoker;
 
 /**
- * ��������channel��invoker. 
+ * 锟斤拷锟斤拷锟斤拷锟斤拷channel锟斤拷invoker. 
  * 
  * @author chao.liuc
  */
@@ -54,14 +54,14 @@ class ChannelWrappedInvoker<T> extends AbstractInvoker<T> {
     @Override
     protected Result doInvoke(Invocation invocation) throws Throwable {
         RpcInvocation inv = (RpcInvocation) invocation;
-        //�ò���client��export ��service path.Լ��Ϊinterface������.
+        //锟矫诧拷锟斤拷client锟斤拷export 锟斤拷service path.约锟斤拷为interface锟斤拷锟斤拷锟斤拷.
         inv.setAttachment(Constants.PATH_KEY, getInterface().getName());
         inv.setAttachment(Constants.CALLBACK_SERVICE_KEY, serviceKey);
 
         ExchangeClient currentClient = new HeaderExchangeClient(new ChannelWrapper(this.channel));
 
         try {
-            if (getUrl().getMethodParameter(invocation.getMethodName(), Constants.ASYNC_KEY, false)) { // ���ɿ��첽
+            if (getUrl().getMethodParameter(invocation.getMethodName(), Constants.ASYNC_KEY, false)) { // 锟斤拷锟缴匡拷锟届步
                 currentClient.send(inv,getUrl().getMethodParameter(invocation.getMethodName(), Constants.SENT_KEY, false));
                 return new RpcResult();
             }
@@ -172,7 +172,7 @@ class ChannelWrappedInvoker<T> extends AbstractInvoker<T> {
 
     @Override
     public void destroy() {
-        //channel��Դ�������channel���������.
+        //channel锟斤拷源锟斤拷锟斤拷锟斤拷锟絚hannel锟斤拷锟斤拷锟斤拷锟斤拷锟�.
 //        super.destroy();
 //        try {
 //            channel.close();

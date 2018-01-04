@@ -62,7 +62,7 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
         }
         
         this.directory = directory ;
-        //sticky ��Ҫ��� avaliablecheck 
+        //sticky 锟斤拷要锟斤拷锟� avaliablecheck 
         this.availablecheck = url.getParameter(Constants.CLUSTER_AVAILABLE_CHECK_KEY, Constants.DEFAULT_CLUSTER_AVAILABLE_CHECK) ;
     }
 
@@ -92,12 +92,12 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
     }
 
     /**
-     * ʹ��loadbalanceѡ��invoker.</br>
-     * a)��lbѡ�������selected�б��� ���� ��������������ʱ��������һ��(��ѡ),����ֱ�ӷ���</br>
-     * b)��ѡ��֤����selected > available .��֤��ѡ���Ľ����������select�У������ǿ��õ� 
+     * 使锟斤拷loadbalance选锟斤拷invoker.</br>
+     * a)锟斤拷lb选锟斤拷锟斤拷锟斤拷锟絪elected锟叫憋拷锟斤拷 锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷(锟斤拷选),锟斤拷锟斤拷直锟接凤拷锟斤拷</br>
+     * b)锟斤拷选锟斤拷证锟斤拷锟斤拷selected > available .锟斤拷证锟斤拷选锟斤拷锟侥斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟絪elect锟叫ｏ拷锟斤拷锟斤拷锟角匡拷锟矫碉拷 
      * 
-     * @param availablecheck �������true����ѡ���ʱ����ѡinvoker.available == true
-     * @param selected ��ѡ����invoker.ע�⣺���뱣֤���ظ�
+     * @param availablecheck 锟斤拷锟斤拷锟斤拷锟絫rue锟斤拷锟斤拷选锟斤拷锟绞憋拷锟斤拷锟窖nvoker.available == true
+     * @param selected 锟斤拷选锟斤拷锟斤拷invoker.注锟解：锟斤拷锟诫保证锟斤拷锟截革拷
      * 
      */
     protected Invoker<T> select(LoadBalance loadbalance, Invocation invocation, List<Invoker<T>> invokers, List<Invoker<T>> selected) throws RpcException {
@@ -134,13 +134,13 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
         if (invokers.size() == 1) {
             return invokers.get(0);
         }
-        // ���ֻ������invoker���˻�����ѭ
+        // 锟斤拷锟街伙拷锟斤拷锟斤拷锟絠nvoker锟斤拷锟剿伙拷锟斤拷锟斤拷循
         if (invokers.size() == 2 && selected != null && selected.size() > 0) {
             return selected.get(0) == invokers.get(0) ? invokers.get(1) : invokers.get(0);
         }
         Invoker<T> invoker = loadbalance.select(invokers, getUrl(), invocation);
         
-        //��� selected�а����������жϣ� ���� ������&&availablecheck=true ������.
+        //锟斤拷锟� selected锟叫帮拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫断ｏ拷 锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷&&availablecheck=true 锟斤拷锟斤拷锟斤拷.
         if( (selected != null && selected.contains(invoker))
                 ||(!invoker.isAvailable() && getUrl()!=null && availablecheck)){
             try{
@@ -148,10 +148,10 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
                 if(rinvoker != null){
                     invoker =  rinvoker;
                 }else{
-                    //���µ�һ��ѡ��λ�ã�����������ѡ+1λ��.
+                    //锟斤拷锟铰碉拷一锟斤拷选锟斤拷位锟矫ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷选+1位锟斤拷.
                     int index = invokers.indexOf(invoker);
                     try{
-                        //����ڱ�����ײ
+                        //锟斤拷锟斤拷诒锟斤拷锟斤拷锟阶�
                         invoker = index <invokers.size()-1?invokers.get(index+1) :invoker;
                     }catch (Exception e) {
                         logger.warn(e.getMessage()+" may because invokers list dynamic change, ignore.",e);
@@ -165,7 +165,7 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
     } 
     
     /**
-     * ��ѡ���ȴӷ�selected���б���ѡ��û���ڴ�selected�б���ѡ��.
+     * 锟斤拷选锟斤拷锟饺从凤拷selected锟斤拷锟叫憋拷锟斤拷选锟斤拷没锟斤拷锟节达拷selected锟叫憋拷锟斤拷选锟斤拷.
      * @param loadbalance
      * @param invocation
      * @param invokers
@@ -177,11 +177,11 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
                                 List<Invoker<T>> invokers, List<Invoker<T>> selected ,boolean availablecheck)
             throws RpcException {
         
-        //Ԥ�ȷ���һ��������б���һ�����õ���.
+        //预锟饺凤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷斜锟斤拷锟揭伙拷锟斤拷锟斤拷玫锟斤拷锟�.
         List<Invoker<T>> reselectInvokers = new ArrayList<Invoker<T>>(invokers.size()>1?(invokers.size()-1):invokers.size());
         
-        //�ȴӷ�select��ѡ
-        if( availablecheck ){ //ѡisAvailable �ķ�select
+        //锟饺从凤拷select锟斤拷选
+        if( availablecheck ){ //选isAvailable 锟侥凤拷select
             for(Invoker<T> invoker : invokers){
                 if(invoker.isAvailable()){
                     if(selected ==null || !selected.contains(invoker)){
@@ -192,7 +192,7 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
             if(reselectInvokers.size()>0){
                 return  loadbalance.select(reselectInvokers, getUrl(), invocation);
             }
-        }else{ //ѡȫ����select
+        }else{ //选全锟斤拷锟斤拷select
             for(Invoker<T> invoker : invokers){
                 if(selected ==null || !selected.contains(invoker)){
                     reselectInvokers.add(invoker);
@@ -202,11 +202,11 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
                 return  loadbalance.select(reselectInvokers, getUrl(), invocation);
             }
         }
-        //����select��ѡ���õ�. 
+        //锟斤拷锟斤拷select锟斤拷选锟斤拷锟矫碉拷. 
         {
             if(selected != null){
                 for(Invoker<T> invoker : selected){
-                    if((invoker.isAvailable()) //����ѡavailable 
+                    if((invoker.isAvailable()) //锟斤拷锟斤拷选available 
                             && !reselectInvokers.contains(invoker)){
                         reselectInvokers.add(invoker);
                     }

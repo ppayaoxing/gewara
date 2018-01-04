@@ -7,53 +7,53 @@ import com.gewara.api.vo.ResultCode;
 
 public interface GpticketOrderApiService {
 	/**
-	 * »ñÈ¡ÇøÓòËø¶¨×ùÎ»
+	 * è·å–åŒºåŸŸé”å®šåº§ä½
 	 * @param usertype
 	 * @param areaseqno
-	 * @return	1:1,1:2(×ùÎ»ºÅ)
+	 * @return	1:1,1:2(åº§ä½å·)
 	 */
 	ResultCode<String> getLockSeat(final String areaseqno);
 	ResultCode<String> getLockSeatByUsertype(final String usertype, final String areaseqno);
 	
 	/**
-	 * »ñÈ¡ÇøÓòÎ´Ëø¶¨¼Û¸ñÊıÁ¿
+	 * è·å–åŒºåŸŸæœªé”å®šä»·æ ¼æ•°é‡
 	 * @param usertype
 	 * @param areaseqno
-	 * @return 1001:200,1002:200  (¼Û¸ñ±àºÅ:Î´Ëø¶¨Êı)
+	 * @return 1001:200,1002:200  (ä»·æ ¼ç¼–å·:æœªé”å®šæ•°)
 	 */
 	ResultCode<String> getUnLockPrice(final String areaseqno);
 	ResultCode<String> getUnLockPriceByUsertype(final String usertype, final String areaseqno);
 
 	/**
-	 * ´´½¨¶©µ¥
+	 * åˆ›å»ºè®¢å•
 	 * @param orderCommand
 	 * @return
 	 */
 	ResultCode<DramaRemoteOrderVo> createOrder(final OrderCommandVo orderCommand);
 	
 	/**
-	 * Ëø¶¨¼Û¸ñ
+	 * é”å®šä»·æ ¼
 	 * @param orderCommand
 	 * @return
 	 */
 	ResultCode<DramaRemoteOrderVo> lockPrice(final OrderCommandVo orderCommand);
 	
 	/**
-	 * Ëø¶¨×ùÎ»
+	 * é”å®šåº§ä½
 	 * @param orderCommand
 	 * @return
 	 */
 	ResultCode<DramaRemoteOrderVo> lockSeat(final OrderCommandVo orderCommand);
 	
 	/**
-	 * È·ÈÏ¶©µ¥³öÆ±
+	 * ç¡®è®¤è®¢å•å‡ºç¥¨
 	 * @param orderCommand
 	 * @return
 	 */
 	ResultCode<DramaRemoteOrderVo> fixOrder(final OrderCommandVo orderCommand);
 	
 	/**
-	 * ½âËø¶©µ¥
+	 * è§£é”è®¢å•
 	 * @param orderIdVo
 	 * @return
 	 */
@@ -66,21 +66,21 @@ public interface GpticketOrderApiService {
 	ResultCode<DramaRemoteOrderVo> checkOrder(final OrderIdVo orderIdVo);
 	
 	/**
-	 * »ñÈ¡³¡´ÎÆ±Ãæ
+	 * è·å–åœºæ¬¡ç¥¨é¢
 	 * @param seqno
 	 * @return
 	 */
 	ResultCode<String> qryTicketFace(final String seqno);
 
 	/**
-	 * »ñÈ¡¶©µ¥´òÆ±ĞÅÏ¢
+	 * è·å–è®¢å•æ‰“ç¥¨ä¿¡æ¯
 	 * @param orderIdVo
 	 * @return
 	 */
 	ResultCode<String> qryOrderInfo(final OrderIdVo orderIdVo);
 
 	/**
-	 * ĞŞ¸Ä¶©µ¥¸öĞÔ»¯Êı¾İ
+	 * ä¿®æ”¹è®¢å•ä¸ªæ€§åŒ–æ•°æ®
 	 * @param orderIdVo
 	 * @return
 	 */

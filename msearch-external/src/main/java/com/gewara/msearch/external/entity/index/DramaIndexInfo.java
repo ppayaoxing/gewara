@@ -2,20 +2,20 @@ package com.gewara.msearch.external.entity.index;
 
 
 /**
- * Ñİ³öµÄĞÅÏ¢
+ * æ¼”å‡ºçš„ä¿¡æ¯
  * 
- * @author ¶­Ã÷
- * @createDate 2015Äê6ÔÂ3ÈÕ
+ * @author è‘£æ˜
+ * @createDate 2015å¹´6æœˆ3æ—¥
  */
 public class DramaIndexInfo  extends IndexData {
 
 	private static final long serialVersionUID = 7074469411495043856L;
 	
-	private String seotitle;  //SEO¹Ø¼ü×Ö
-	private String dramaname; //¾çÄ¿Ãû³Æ
-	private String englishname;//Ó¢ÎÄÃû³Æ
-	private String dramaalias;	//Ñİ³ö±ğÃû
-	private String type;//¾çÄ¿ÀàĞÍ
+	private String seotitle;  //SEOå…³é”®å­—
+	private String dramaname; //å‰§ç›®åç§°
+	private String englishname;//è‹±æ–‡åç§°
+	private String dramaalias;	//æ¼”å‡ºåˆ«å
+	private String type;//å‰§ç›®ç±»å‹
 	private String cityId;
 	
 	public String getSeotitle() {

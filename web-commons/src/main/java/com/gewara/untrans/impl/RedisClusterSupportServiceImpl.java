@@ -16,8 +16,8 @@ import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
 
 /**
- * 主从redis，可切换<br>
- * 默认使用主redis提供实现
+ * 涓讳粠redis锛屽彲鍒囨崲<br>
+ * 榛樿浣跨敤涓籸edis鎻愪緵瀹炵幇
  * @author quzhuping
  * @param <E>
  */
@@ -61,7 +61,7 @@ private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		if(redisTemplate == null){
-			throw new IllegalArgumentException("需要配置redisTemplate");
+			throw new IllegalArgumentException("闇�瑕侀厤缃畆edisTemplate");
 		}
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
 		redisTemplate.setValueSerializer(new HessianRedisSerializer<>());

@@ -15,8 +15,8 @@ import com.gewara.hbase.util.GroupFields;
  * example select ip,apiname,count(1),sum(totalcount) from apilog group by ip,apiname
  */
 public class AggregateData {
-	private List<String> groupByColumns;	//分组字段：ip,apiname
-	private List<String> sumColumns;			//求和字段：totalcount
+	private List<String> groupByColumns;	//鍒嗙粍瀛楁锛歩p,apiname
+	private List<String> sumColumns;			//姹傚拰瀛楁锛歵otalcount
 	private List<String> groupColumnValues;	//rowValues, 123.12.34.56@@com.gewara.service.getUser
 	private Map<String/*groupColumnValue*/, Map<String, Long>/*{rowcount:10,totalcount:500}*/> rowDataMap;
 	
@@ -84,7 +84,7 @@ public class AggregateData {
 		return result;
 	}
 	/**
-	 * 平铺的数据：groupColumsValue,sumCount,rowcount
+	 * 骞抽摵鐨勬暟鎹細groupColumsValue,sumCount,rowcount
 	 * @return
 	 */
 	public Iterator<List<Object>> dataIterator(){

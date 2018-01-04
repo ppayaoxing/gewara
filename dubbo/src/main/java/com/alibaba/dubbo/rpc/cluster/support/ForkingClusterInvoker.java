@@ -35,7 +35,7 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 import com.alibaba.dubbo.rpc.cluster.LoadBalance;
 
 /**
- * ���е��ã�ֻҪһ���ɹ������أ�ͨ������ʵʱ��Ҫ��ϸߵĲ���������Ҫ�˷Ѹ��������Դ��
+ * 锟斤拷锟叫碉拷锟矫ｏ拷只要一锟斤拷锟缴癸拷锟斤拷锟斤拷锟截ｏ拷通锟斤拷锟斤拷锟斤拷实时锟斤拷要锟斤拷细叩牟锟斤拷锟斤拷锟斤拷锟斤拷锟揭拷朔迅锟斤拷锟斤拷锟斤拷锟斤拷源锟斤拷
  * 
  * <a href="http://en.wikipedia.org/wiki/Fork_(topology)">Fork</a>
  * 
@@ -61,9 +61,9 @@ public class ForkingClusterInvoker<T> extends AbstractClusterInvoker<T>{
         } else {
             selected = new ArrayList<Invoker<T>>();
             for (int i = 0; i < forks; i++) {
-                //��invoker�б�(�ų�selected)��,���û��ѡ��,������ظ�ѭ������.��selectʵ��.
+                //锟斤拷invoker锟叫憋拷(锟脚筹拷selected)锟斤拷,锟斤拷锟矫伙拷锟窖★拷锟�,锟斤拷锟斤拷锟斤拷馗锟窖拷锟斤拷锟斤拷锟�.锟斤拷select实锟斤拷.
                 Invoker<T> invoker = select(loadbalance, invocation, invokers, selected);
-                if(!selected.contains(invoker)){//��ֹ�ظ����invoker
+                if(!selected.contains(invoker)){//锟斤拷止锟截革拷锟斤拷锟絠nvoker
                     selected.add(invoker);
                 }
             }

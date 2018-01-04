@@ -10,11 +10,11 @@ public class CreateBaoChangOrderReq extends CreateOrderReq{
 	private Long partnerid;
 	private Long movieid;
 	private String membername;
-	private Date appointmentDate;//Ô¤Ô¼ÈÕÆÚ
-	private String startTime;//Ô¤Ô¼Ê±¼ä¶Î£¨¿ªÊ¼Ê±¼ä£©
-	private String endTime;//Ô¤Ô¼Ê±¼ä¶Î£¨½áÊøÊ±¼ä£©
+	private Date appointmentDate;//é¢„çº¦æ—¥æœŸ
+	private String startTime;//é¢„çº¦æ—¶é—´æ®µï¼ˆå¼€å§‹æ—¶é—´ï¼‰
+	private String endTime;//é¢„çº¦æ—¶é—´æ®µï¼ˆç»“æŸæ—¶é—´ï¼‰
 	private BaoChangData baoChangData;
-	private String origin;			//¶©µ¥À´Ô´
+	private String origin;			//è®¢å•æ¥æº
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	private Map<String, String> descMap;
 	public CreateBaoChangOrderReq(){

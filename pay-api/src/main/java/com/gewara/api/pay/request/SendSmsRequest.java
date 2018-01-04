@@ -13,19 +13,19 @@ public class SendSmsRequest extends ApiRequest {
 	private static final long serialVersionUID = 2976473597715150062L;
 
 	
-	/**ÉÌ»§±êÊ¶*/
+	/**å•†æˆ·æ ‡è¯†*/
 	private String merchantCode;
 	
-	/**¶©µ¥ºÅ*/
+	/**è®¢å•å·*/
 	private String tradeNo;
 	
-	/**ÒøĞĞ¿¨ºÅ*/
+	/**é“¶è¡Œå¡å·*/
 	private String cardNumber;
 	
-	/**µç»°ºÅÂë*/
+	/**ç”µè¯å·ç */
 	private String phoneNumber;	
 	
-	/**Ó¦¸¶¿î*/
+	/**åº”ä»˜æ¬¾*/
 	private Integer fee;
 	
 	public SendSmsRequest(){

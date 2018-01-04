@@ -8,15 +8,15 @@ public class ShowItemPriceVo extends BaseVo {
 
 	private static final long serialVersionUID = 2070277567753457378L;
 	private Long id;
-	private String siseq;			//³¡´ÎID
-	private String partner;			//µÚÈı·½±êÊ¶
-	private String pseqno;			//µÚÈı·½³¡´Î±àºÅ
-	private String ticketid;		//µÚÈı·½³¡´Î¼Û¸ñ±àºÅ
-	private Long dramaid;			//ÏîÄ¿±àºÅ
-	private Integer price;			//Âô¼Û
-	private Integer lowest;			//×îµÍÂô¼Û
+	private String siseq;			//åœºæ¬¡ID
+	private String partner;			//ç¬¬ä¸‰æ–¹æ ‡è¯†
+	private String pseqno;			//ç¬¬ä¸‰æ–¹åœºæ¬¡ç¼–å·
+	private String ticketid;		//ç¬¬ä¸‰æ–¹åœºæ¬¡ä»·æ ¼ç¼–å·
+	private Long dramaid;			//é¡¹ç›®ç¼–å·
+	private Integer price;			//å–ä»·
+	private Integer lowest;			//æœ€ä½å–ä»·
 	private String flag;				//
-	private Long color;				// ÑÕÉ«
+	private Long color;				// é¢œè‰²
 	private String status;			
 	private String remark;			
 	

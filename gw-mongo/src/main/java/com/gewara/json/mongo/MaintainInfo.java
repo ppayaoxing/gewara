@@ -19,12 +19,12 @@ public class MaintainInfo extends MGObject {
 	@MPK
 	private String name;
 	private String desc;
-	private Date createtime;		//¼ÓÈëÊ±¼ä
+	private Date createtime;		//åŠ å…¥æ—¶é—´
 	private Long rowcount;
-	private Integer indexcount;	//Ë÷ÒıÊıÁ¿
+	private Integer indexcount;	//ç´¢å¼•æ•°é‡
 	private Long avgObjSize;
 	private Long storageSize;
-	private Date updatetime;		//¸üĞÂÊ±¼ä
+	private Date updatetime;		//æ›´æ–°æ—¶é—´
 
 	public MaintainInfo(){
 	}
@@ -62,7 +62,7 @@ public class MaintainInfo extends MGObject {
 		this.createtime = createtime;
 	}
 	public boolean manualUpdated(){
-		//ÊÇ·ñÈËÍêÕû¹¤Î¬»¤¹ı
+		//æ˜¯å¦äººå®Œæ•´å·¥ç»´æŠ¤è¿‡
 		return StringUtils.isNotBlank(desc);
 	}
 	public Long getRowcount() {

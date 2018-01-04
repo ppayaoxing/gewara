@@ -9,25 +9,25 @@ public interface MonitorService {
 	String PRE_WEBSERVICE = "PRE_WEBSERVICE";
 
 	enum EXCEPTION_TAG{
-		PAGE,		//Ò³ÃæÒì³£
-		SERVICE,	//·şÎñÒì³£
-		JOB			//¶¨Ê±ÈÎÎñÒì³£
+		PAGE,		//é¡µé¢å¼‚å¸¸
+		SERVICE,	//æœåŠ¡å¼‚å¸¸
+		JOB			//å®šæ—¶ä»»åŠ¡å¼‚å¸¸
 	}
 	/**
-	 * Ôö¼ÓÈÕÖ¾Êı¾İ
+	 * å¢åŠ æ—¥å¿—æ•°æ®
 	 * @param datatype
 	 * @param entry
 	 */
 	void addMonitorEntry(String datatype, Map<String, String> entry);
 	void addMonitorEntry(MonitorEntry entry);
 	/**
-	 * »ñÈ¡Í³¼ÆĞÅÏ¢£¬count£º´¦ÀíÌõÊı£¬queued£ºµ±Ç°¶ÓÁĞÊı
+	 * è·å–ç»Ÿè®¡ä¿¡æ¯ï¼Œcountï¼šå¤„ç†æ¡æ•°ï¼Œqueuedï¼šå½“å‰é˜Ÿåˆ—æ•°
 	 * @return
 	 */
 	Map<String, String> getMonitorStatus();
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~business method~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	/**
-	 * ºóÌ¨±à¼­Êı¾İ
+	 * åå°ç¼–è¾‘æ•°æ®
 	 * @param userid
 	 * @param clazz
 	 * @param relatedid
@@ -35,21 +35,21 @@ public interface MonitorService {
 	 */
 	void saveChangeLog(Long userid, Class clazz, Serializable relatedid, Map changeMap);
 	/**
-	 * ÏµÍ³Êı¾İ¸ü¸Ä
+	 * ç³»ç»Ÿæ•°æ®æ›´æ”¹
 	 * @param clazz
 	 * @param relatedid
 	 * @param changeMap
 	 */
 	void saveSysChangeLog(Class clazz, Serializable relatedid, Map changeMap);
 	/**
-	 * É¾³ıÊı¾İ
+	 * åˆ é™¤æ•°æ®
 	 * @param userid
 	 * @param relatedid
 	 * @param entity
 	 */
 	void saveDelLog(Long userid, Serializable relatedid, Object entity);
 	/**
-	 * Ôö¼ÓÊı¾İ
+	 * å¢åŠ æ•°æ®
 	 * @param userid
 	 * @param clazz
 	 * @param relatedid
@@ -57,7 +57,7 @@ public interface MonitorService {
 	 */
 	void saveAddLog(Long userid, Class clazz, Serializable relatedid, Object entity);
 	/**
-	 * Ç°Ì¨ÓÃ»§ĞĞÎª
+	 * å‰å°ç”¨æˆ·è¡Œä¸º
 	 * @param memberid
 	 * @param action
 	 * @param content
@@ -68,8 +68,8 @@ public interface MonitorService {
 	void saveMemberLog(Long memberid, String action, String content, String ip);
 
 	/**
-	 * Ç°Ì¨ÓÃ»§ĞĞÎª
-	 * @param membername: µÇÂ¼Ãû³Æ
+	 * å‰å°ç”¨æˆ·è¡Œä¸º
+	 * @param membername: ç™»å½•åç§°
 	 * @param action
 	 * @param content
 	 * @param ip
@@ -77,7 +77,7 @@ public interface MonitorService {
 	void saveMemberLogByName(String membername, String action, Map<String, String> info, String ip);
 
 	/**
-	 * ÏµÍ³¾¯¸æÄÚÈİ
+	 * ç³»ç»Ÿè­¦å‘Šå†…å®¹
 	 * @param action
 	 * @param title
 	 * @param content
@@ -86,7 +86,7 @@ public interface MonitorService {
 	void saveSysWarn(Class clazz, Serializable relatedid, String title, String content, RoleTag role);
 	void saveSysTemplateWarn(String title, String template, Map model, RoleTag role);
 	/**
-	 * ÏµÍ³¾¯¸æÄÚÈİ
+	 * ç³»ç»Ÿè­¦å‘Šå†…å®¹
 	 * @param action
 	 * @param title
 	 * @param template
@@ -96,12 +96,12 @@ public interface MonitorService {
 	
 	void addApiLog(Map<String, String> params, long calltime);
 	/**
-	 * Ôö¼Óµ÷ÓÃ´ÎÊı
+	 * å¢åŠ è°ƒç”¨æ¬¡æ•°
 	 * @param callname
 	 */
 	void incrementCallCount(String callname);
 	/**
-	 * ¼õÉÙµ÷ÓÃ´ÎÊı
+	 * å‡å°‘è°ƒç”¨æ¬¡æ•°
 	 * @param msgname
 	 */
 	void decrementCallCount(String callname);
@@ -112,13 +112,13 @@ public interface MonitorService {
 	/**
 	 * 
 	 * @param tag
-	 * @param location£ºuri »ò service¡¢job·½·¨
-	 * @param title ±êÌâ
+	 * @param locationï¼šuri æˆ– serviceã€jobæ–¹æ³•
+	 * @param title æ ‡é¢˜
 	 * @param e excepion
 	 */
 	String logException(EXCEPTION_TAG tag, String location, String title, Throwable e, Map<String, String> otherinfo);
 	/**
-	 * Ôö¼Ó·Ç·¨·ÃÎÊ¼ÇÂ¼
+	 * å¢åŠ éæ³•è®¿é—®è®°å½•
 	 * @param ip
 	 * @param params
 	 */

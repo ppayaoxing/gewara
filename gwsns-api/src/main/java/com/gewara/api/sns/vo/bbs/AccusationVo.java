@@ -23,19 +23,19 @@ public class AccusationVo extends BaseVo {
 	public static String TAG_COMMENT = "comment";
 	public static String TAG_USERMESSAGE="userMessage";
 	private Long id;
-	private Long memberid; // ¾Ù±¨ÈË
+	private Long memberid; // ä¸¾æŠ¥äºº
 	private String email;
-	private String tag; // Àà±ğ£ºÌû×Ó¡¢ÎÊ´ğ¡¢»î¶¯¡¢µãÆÀ
+	private String tag; // ç±»åˆ«ï¼šå¸–å­ã€é—®ç­”ã€æ´»åŠ¨ã€ç‚¹è¯„
 	private String tag2;
-	private Long relatedid; // ¹ØÁªID
+	private Long relatedid; // å…³è”ID
 	private Long relatedid2; 
-	private String referer; // Á´½ÓµØÖ·
-	private String body; // ÄÚÈİ
+	private String referer; // é“¾æ¥åœ°å€
+	private String body; // å†…å®¹
 	private String message;
-	private Long clerk; // ´¦ÀíÈË
-	private String status; // ×´Ì¬£ºnew processed
+	private Long clerk; // å¤„ç†äºº
+	private String status; // çŠ¶æ€ï¼šnew processed
 	private Timestamp addtime;
-	private Timestamp updatetime; // ´¦ÀíÊ±¼ä
+	private Timestamp updatetime; // å¤„ç†æ—¶é—´
 
 	public AccusationVo(){}
 	

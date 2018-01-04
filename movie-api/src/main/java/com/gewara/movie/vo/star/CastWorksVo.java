@@ -9,12 +9,12 @@ public class CastWorksVo extends BaseVo {
 
 	private static final long serialVersionUID = -1527835351959168455L;
 	private Long id;
-	private Long castid;					//人物ID
-	private Long worksid;					//项目ID
-	private String workstype;				//作品类型
-	private String achievement;			    //是否成就作品
-	private Timestamp addtime;			    //新增时间
-	private Timestamp updatetime;	        //更新时间
+	private Long castid;					//浜虹墿ID
+	private Long worksid;					//椤圭洰ID
+	private String workstype;				//浣滃搧绫诲瀷
+	private String achievement;			    //鏄惁鎴愬氨浣滃搧
+	private Timestamp addtime;			    //鏂板鏃堕棿
+	private Timestamp updatetime;	        //鏇存柊鏃堕棿
 	public Long getId() {
 		return id;
 	}

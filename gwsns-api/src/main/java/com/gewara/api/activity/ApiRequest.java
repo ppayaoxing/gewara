@@ -13,12 +13,12 @@ public abstract class ApiRequest implements Serializable{
 	public abstract Map<String, String> getTextParams();
 	
 	/**
-	 * ¼ì²é²ÎÊı
+	 * æ£€æŸ¥å‚æ•°
 	 * 
 	 * @return
 	 *
 	 * @author leo.li
-	 * Modify Time 2014Äê3ÔÂ28ÈÕ ÏÂÎç3:12:12
+	 * Modify Time 2014å¹´3æœˆ28æ—¥ ä¸‹åˆ3:12:12
 	 */
 	public abstract boolean checkParams();
 }

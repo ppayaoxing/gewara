@@ -9,27 +9,27 @@ public class OtherFeeRefundVo extends BaseVo {
 	private static final long serialVersionUID = 7420087805465434371L;
 
 	private Long id;
-	private Integer version;			//°æ±¾
-	private String tradeno;				//¶©µ¥ºÅ
-	private String ordertype;			//¶©µ¥ÀàĞÍ
-	private Long memberid;				//ÓÃ»§ID
-	private Long partnerid;				//ºÏ×÷ÉÌID
-	private String mobile;				//ÊÖ»úºÅ
-	private String orderstatus;			//×´Ì¬ÀàĞÍ£ºpaid_failure: ´ı´¦Àí¶©µ¥  paid_success: ³É½»¶©µ¥ paid_failure_unfix: ×ùÎ»´ı´¦Àí
-	private String origin;				//À´Ô´£¬·ÑÓÃÀàĞÍ
-	private String reason;				//Ô­Òò
-	private Integer gewaRetAmount;		//GewaraÍË¿î
+	private Integer version;			//ç‰ˆæœ¬
+	private String tradeno;				//è®¢å•å·
+	private String ordertype;			//è®¢å•ç±»å‹
+	private Long memberid;				//ç”¨æˆ·ID
+	private Long partnerid;				//åˆä½œå•†ID
+	private String mobile;				//æ‰‹æœºå·
+	private String orderstatus;			//çŠ¶æ€ç±»å‹ï¼špaid_failure: å¾…å¤„ç†è®¢å•  paid_success: æˆäº¤è®¢å• paid_failure_unfix: åº§ä½å¾…å¤„ç†
+	private String origin;				//æ¥æºï¼Œè´¹ç”¨ç±»å‹
+	private String reason;				//åŸå› 
+	private Integer gewaRetAmount;		//Gewaraé€€æ¬¾
 	private Integer oldFeeAmount;		//
-	private String retback;				//ÊÇ·ñÒªÔ­Â··µ»Ø£ºY£ºĞèÒª£¬N£º²»ĞèÒª£¬O£ºÎ´Öª, ²Î¼ûÃèÊö(Other)£¬S: ÒÑÌá½»ÕËÎñ(Submit) R£º²ÆÎñÒÑ¾­·µ»¹(Refund)£¬F£º²ÆÎñ·µ»¹³ö´í(Failure)
-	private Long applyuser;				//ÉêÇëÈË
-	private String applyinfo;			//ÉêÇëĞÅÏ¢
-	private String otherinfo;			//ÆäËûĞÅÏ¢£º´¦ÀíÈË£¬²ÆÎñ·µ»ØĞÅÏ¢
-	private Timestamp addtime;			//Ôö¼ÓÈÕÆÚ
-	private Timestamp refundtime; 		//ÍË¿îÊ±¼ä
-	private String status;				//×´Ì¬
-	private Long dealuser;				//´¦ÀíÈË
-	private String dealinfo;			//´¦ÀíĞÅÏ¢
-	private Long batch;					//Åú´Î±êÊ¶
+	private String retback;				//æ˜¯å¦è¦åŸè·¯è¿”å›ï¼šYï¼šéœ€è¦ï¼ŒNï¼šä¸éœ€è¦ï¼ŒOï¼šæœªçŸ¥, å‚è§æè¿°(Other)ï¼ŒS: å·²æäº¤è´¦åŠ¡(Submit) Rï¼šè´¢åŠ¡å·²ç»è¿”è¿˜(Refund)ï¼ŒFï¼šè´¢åŠ¡è¿”è¿˜å‡ºé”™(Failure)
+	private Long applyuser;				//ç”³è¯·äºº
+	private String applyinfo;			//ç”³è¯·ä¿¡æ¯
+	private String otherinfo;			//å…¶ä»–ä¿¡æ¯ï¼šå¤„ç†äººï¼Œè´¢åŠ¡è¿”å›ä¿¡æ¯
+	private Timestamp addtime;			//å¢åŠ æ—¥æœŸ
+	private Timestamp refundtime; 		//é€€æ¬¾æ—¶é—´
+	private String status;				//çŠ¶æ€
+	private Long dealuser;				//å¤„ç†äºº
+	private String dealinfo;			//å¤„ç†ä¿¡æ¯
+	private Long batch;					//æ‰¹æ¬¡æ ‡è¯†
 
 	public OtherFeeRefundVo(){}
 	

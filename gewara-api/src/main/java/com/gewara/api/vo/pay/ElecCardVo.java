@@ -9,20 +9,20 @@ public class ElecCardVo extends BaseVo {
 
 	private static final long serialVersionUID = 3978900461424543223L;
 	private Long id;
-	private String cardno;			//¿¨ºÅ
-	private String status;			//×´Ì¬
-	private ElecCardBatchVo ebatch;	//Åú´Î
-	private Long deluserid;			//·ÏÆúÈË
-	private Timestamp deltime;		//·ÏÆúÊ±¼ä
-	private Long possessor;			//ÓµÓĞÕß
-	private Long gainer;			//ÁìÈ¡Õß
-	private String mobile;			//»ñÈ¡ÊÖ»ú»ò°ó¶¨±êÖ¾
-	private Long orderid;			//Ê¹ÓÃµÄ¶©µ¥ºÅ
+	private String cardno;			//å¡å·
+	private String status;			//çŠ¶æ€
+	private ElecCardBatchVo ebatch;	//æ‰¹æ¬¡
+	private Long deluserid;			//åºŸå¼ƒäºº
+	private Timestamp deltime;		//åºŸå¼ƒæ—¶é—´
+	private Long possessor;			//æ‹¥æœ‰è€…
+	private Long gainer;			//é¢†å–è€…
+	private String mobile;			//è·å–æ‰‹æœºæˆ–ç»‘å®šæ ‡å¿—
+	private Long orderid;			//ä½¿ç”¨çš„è®¢å•å·
 	private Integer version;		//
 	private Timestamp begintime;
 	private Timestamp endtime;
-	private String remark;  //·ÏÆú±¸×¢ËµÃ÷
-	private Double useAmount; //Ê¹ÓÃ½ğ¶î
+	private String remark;  //åºŸå¼ƒå¤‡æ³¨è¯´æ˜
+	private Double useAmount; //ä½¿ç”¨é‡‘é¢
 	
 	@Override
 	public Serializable realId() {

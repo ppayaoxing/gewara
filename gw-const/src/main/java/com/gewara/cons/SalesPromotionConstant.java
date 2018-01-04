@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalesPromotionConstant {
-	//ÕÛ¿Û¿ÉÊ¹ÓÃµÄ°æ¿éSpecialDiscount
+	//æŠ˜æ‰£å¯ä½¿ç”¨çš„ç‰ˆå—SpecialDiscount
 	public static final String APPLY_TAG_MOVIE = "movie";
 	public static final String APPLY_TAG_DRAMA = "drama";
 	public static final String APPLY_TAG_MALL = "mall";
 	public static final String APPLY_TAG_BAOCHANG = "baoChang";
 	public static final String APPLY_TAG_GOODS = "goods";
-	public static final String APPLY_TAG_GENERAL = "general";	//Í¨ÓÃ£¬ÌØ±ğ¸´ÔÓµÄ¹æÔòÊ¹ÓÃ£¬ÉèÖÃĞè³ÌĞòÔ±ÅäºÏ
+	public static final String APPLY_TAG_GENERAL = "general";	//é€šç”¨ï¼Œç‰¹åˆ«å¤æ‚çš„è§„åˆ™ä½¿ç”¨ï¼Œè®¾ç½®éœ€ç¨‹åºå‘˜é…åˆ
 	public static final String APPLY_TAG_GOODSBINDMOBIE = "goodsbindmovie";
 
 	
@@ -31,42 +31,42 @@ public class SalesPromotionConstant {
 		TAG_LIST.add(TAG_GENERAL);
 	}
 	
-	public static final String DISCOUNT_TYPE_PERORDER = "order";			//Ã¿±Ê¶©µ¥ÕÛ¿Û
-	public static final String DISCOUNT_TYPE_PERTICKET = "uprice";			//Ã¿¸öÎïÆ·ÕÛ¿Û
-	public static final String DISCOUNT_TYPE_PERCENT = "percent";			//¶©µ¥×Ü¶î°Ù·Ö±È
-	public static final String DISCOUNT_TYPE_BUYONE_GIVEONE = "one2one";	//Âò1ËÍ1
-	public static final String DISCOUNT_TYPE_FIXPRICE = "fprice";			//fix priceÍ³Ò»µ¥¼Û£¨µ¥¼Û¹Ì¶¨£©
-	public static final String DISCOUNT_TYPE_EXPRESSION = "exp";				//±í´ïÊ½
+	public static final String DISCOUNT_TYPE_PERORDER = "order";			//æ¯ç¬”è®¢å•æŠ˜æ‰£
+	public static final String DISCOUNT_TYPE_PERTICKET = "uprice";			//æ¯ä¸ªç‰©å“æŠ˜æ‰£
+	public static final String DISCOUNT_TYPE_PERCENT = "percent";			//è®¢å•æ€»é¢ç™¾åˆ†æ¯”
+	public static final String DISCOUNT_TYPE_BUYONE_GIVEONE = "one2one";	//ä¹°1é€1
+	public static final String DISCOUNT_TYPE_FIXPRICE = "fprice";			//fix priceç»Ÿä¸€å•ä»·ï¼ˆå•ä»·å›ºå®šï¼‰
+	public static final String DISCOUNT_TYPE_EXPRESSION = "exp";				//è¡¨è¾¾å¼
 	
-	public static final String WEBVIEW_SIMPLE_TYPE = "sType";   //ÅÅÆ¬ÁĞ±íÏÔÊ¾
-	public static final String WEBVIEW_SIMPLE_TEXT = "sText";   //ÅÅÆ¬ÁĞ±íÏÔÊ¾
-	public static final String WEBVIEW_SIMPLE_ISHOW = "mpiIsShow";   //ÊÇ·ñÔÚÅÅÆ¬ÁĞ±íÏÔÊ¾
-	public static final String WEBVIEW_SIMPLE_INDEX = "mpiIndex";   //ÅÅÆ¬ÁĞ±íÖĞÏÔÊ¾µÄË³Ğò
+	public static final String WEBVIEW_SIMPLE_TYPE = "sType";   //æ’ç‰‡åˆ—è¡¨æ˜¾ç¤º
+	public static final String WEBVIEW_SIMPLE_TEXT = "sText";   //æ’ç‰‡åˆ—è¡¨æ˜¾ç¤º
+	public static final String WEBVIEW_SIMPLE_ISHOW = "mpiIsShow";   //æ˜¯å¦åœ¨æ’ç‰‡åˆ—è¡¨æ˜¾ç¤º
+	public static final String WEBVIEW_SIMPLE_INDEX = "mpiIndex";   //æ’ç‰‡åˆ—è¡¨ä¸­æ˜¾ç¤ºçš„é¡ºåº
 	
-	public static final String EXP_MINNUM = "exp_minnum";   	//¹«Ê½ÖĞµÄ×îĞ¡¹ºÂòÊıÁ¿
-	public static final String EXP_MAXNUM = "exp_maxnum";   	//¹«Ê½ÖĞµÄ×î´ó¹ºÂòÊıÁ¿
+	public static final String EXP_MINNUM = "exp_minnum";   	//å…¬å¼ä¸­çš„æœ€å°è´­ä¹°æ•°é‡
+	public static final String EXP_MAXNUM = "exp_maxnum";   	//å…¬å¼ä¸­çš„æœ€å¤§è´­ä¹°æ•°é‡
 	
-	public static final String UNCHECKCARDNUM = "unCheckCardnum";	//²»Ğ£Ñé¿¨bin£¨·À»ÆÅ£Ê¹ÓÃ¿¨×öÏŞÖÆ£ºÒòÎªÓĞÖ§¸¶±¦ºÍÎ¢ĞÅ£¬ËùÒÔ¿ÉÒÔ²»×öĞ£Ñé£©
-	public static final String ITEM_MAX_SELLNUM = "item_max_sellnum";//Ã¿¸ö³¡´Î×î¶àÂô³ö¶àÉÙ¸ö×ùÎ»
-	public static final String APP_OPI_SHOW = "app_opi_show";	// APP ÌØ¼Û³¡´ÎÏÔÊ¾ÓÃ
+	public static final String UNCHECKCARDNUM = "unCheckCardnum";	//ä¸æ ¡éªŒå¡binï¼ˆé˜²é»„ç‰›ä½¿ç”¨å¡åšé™åˆ¶ï¼šå› ä¸ºæœ‰æ”¯ä»˜å®å’Œå¾®ä¿¡ï¼Œæ‰€ä»¥å¯ä»¥ä¸åšæ ¡éªŒï¼‰
+	public static final String ITEM_MAX_SELLNUM = "item_max_sellnum";//æ¯ä¸ªåœºæ¬¡æœ€å¤šå–å‡ºå¤šå°‘ä¸ªåº§ä½
+	public static final String APP_OPI_SHOW = "app_opi_show";	// APP ç‰¹ä»·åœºæ¬¡æ˜¾ç¤ºç”¨
 	
-	public static final String DISCOUNT_PERIOD_A = "A";				//×Ô¶¯µÄÖÜÆÚ
-	public static final String DISCOUNT_PERIOD_D = "D";				//×ÔÈ»Ìì
-	public static final String DISCOUNT_PERIOD_W = "W";				//×ÔÈ»µÄÖÜÆÚ(Ò»ÖÜ)
-	public static final String DISCOUNT_PERIOD_DW = "DW";			//×ÔÈ»µÄÖÜÆÚ(Á½ÖÜ)
-	public static final String DISCOUNT_PERIOD_M = "M";				//×ÔÈ»µÄÖÜÆÚ(Ò»¸öÔÂ)
+	public static final String DISCOUNT_PERIOD_A = "A";				//è‡ªåŠ¨çš„å‘¨æœŸ
+	public static final String DISCOUNT_PERIOD_D = "D";				//è‡ªç„¶å¤©
+	public static final String DISCOUNT_PERIOD_W = "W";				//è‡ªç„¶çš„å‘¨æœŸ(ä¸€å‘¨)
+	public static final String DISCOUNT_PERIOD_DW = "DW";			//è‡ªç„¶çš„å‘¨æœŸ(ä¸¤å‘¨)
+	public static final String DISCOUNT_PERIOD_M = "M";				//è‡ªç„¶çš„å‘¨æœŸ(ä¸€ä¸ªæœˆ)
 	
-	public static final String REBATES_CASH = "Y";		//ÏÖ½ğ
-	public static final String REBATES_CARDA = "A";		//A¿¨
-	public static final String REBATES_CARDC = "C";		//C¿¨
-	public static final String REBATES_CARDD = "D";		//D¿¨
-	public static final String REBATES_POINT = "P";		//»ı·Ö
+	public static final String REBATES_CASH = "Y";		//ç°é‡‘
+	public static final String REBATES_CARDA = "A";		//Aå¡
+	public static final String REBATES_CARDC = "C";		//Cå¡
+	public static final String REBATES_CARDD = "D";		//Då¡
+	public static final String REBATES_POINT = "P";		//ç§¯åˆ†
 	
 	public static final String OPENTYPE_GEWA = "G"; 	//GewaPC 
-	public static final String OPENTYPE_WAP = "W";		//GewaPC ÊÖ»ú£¨app+wap£©ÓÉptnidsÏŞÖÆ
-	public static final String OPENTYPE_PC_WAP = "M";	//GewaPC + ÊÖ»ú
-	public static final String OPENTYPE_PARTNER = "P";	//ÉÌ¼ÒÇşµÀ³¡´Î¿ª·Å
-	public static final String OPENTYPE_SPECIAL = "S";	//ÌØ±ğÉèÖÃµÄ²Å¿ª·Å
+	public static final String OPENTYPE_WAP = "W";		//GewaPC æ‰‹æœºï¼ˆapp+wapï¼‰ç”±ptnidsé™åˆ¶
+	public static final String OPENTYPE_PC_WAP = "M";	//GewaPC + æ‰‹æœº
+	public static final String OPENTYPE_PARTNER = "P";	//å•†å®¶æ¸ é“åœºæ¬¡å¼€æ”¾
+	public static final String OPENTYPE_SPECIAL = "S";	//ç‰¹åˆ«è®¾ç½®çš„æ‰å¼€æ”¾
 	public static final List<String> OPENTYPELIST = new ArrayList<String>();
 	static {
 		OPENTYPELIST.add(SalesPromotionConstant.OPENTYPE_SPECIAL);
@@ -82,19 +82,19 @@ public class SalesPromotionConstant {
 	
 	public static final String ENCODE_KEY = "KE3a&h@";
 	
-	//µç×ÓÖ§¸¶·½Ê½
-	public static final String VERIFYTYPE_FIXED = "fixed";		//¹Ì¶¨Âë£¬¶àÈË¶à´ÎÖØ¸´Ê¹ÓÃ
-	public static final String VERIFYTYPE_ONLYONE = "onlyone";	//Ö»ÓÃÒ»´Î
+	//ç”µå­æ”¯ä»˜æ–¹å¼
+	public static final String VERIFYTYPE_FIXED = "fixed";		//å›ºå®šç ï¼Œå¤šäººå¤šæ¬¡é‡å¤ä½¿ç”¨
+	public static final String VERIFYTYPE_ONLYONE = "onlyone";	//åªç”¨ä¸€æ¬¡
 
-	//ÅäÖÃĞÅÏ¢¶ÔÓ¦key
-	public static final String MSG_REENTER_CARD_NO = "reenter_card_no";				//µ±ÓÃ»§ÊäÈëµÄ¿¨ºÅ²»ÔÚ´Ë´ÎÓÅ»İÖĞ£¬ÌáÊ¾ÓÃ»§ÖØĞÂÊäÈë¿¨ºÅÊ±£¬ĞèÒªÌáÊ¾µÄĞÅÏ¢¡£
-	public static final String MSG_CHECK_PAY_METHOD = "check_pay_method";			//µ±ÓÃ»§Ö§¸¶·½Ê½Ñ¡Ôñ´íÎóÊ±£¬ĞèÒªÌáÊ¾µÄĞÅÏ¢¡£
-	public static final String MSG_INPUT_RIGHT_BANK_NO = "input_right_bank_no";		//µ±ÓÃ»§ÊäÈëµÄÒøĞĞ¿¨ºÅÎ»Êı²»¶ÔÊ±£¬ĞèÒªÌáÊ¾µÄĞÅÏ¢¡£
-	public static final String MSG_WRONG_BANK_NO = "wrong_bank_no";					//µ±ÓÃ»§ÊäÈëµÄÒøĞĞ¿¨ºÅ´íÎóÊ±£¬£¬ĞèÒªÌáÊ¾µÄĞÅÏ¢¡£
-	public static final String MSG_NOT_SUPPORT_DISCOUNT = "not_support_discount";	//µ±ÓÃ»§ÊäÈëµÄ¿¨ºÅ²»ÔÚ´Ë´ÎÓÅ»İÖĞ£¬ĞèÒªÌáÊ¾µÄĞÅÏ¢¡£
+	//é…ç½®ä¿¡æ¯å¯¹åº”key
+	public static final String MSG_REENTER_CARD_NO = "reenter_card_no";				//å½“ç”¨æˆ·è¾“å…¥çš„å¡å·ä¸åœ¨æ­¤æ¬¡ä¼˜æƒ ä¸­ï¼Œæç¤ºç”¨æˆ·é‡æ–°è¾“å…¥å¡å·æ—¶ï¼Œéœ€è¦æç¤ºçš„ä¿¡æ¯ã€‚
+	public static final String MSG_CHECK_PAY_METHOD = "check_pay_method";			//å½“ç”¨æˆ·æ”¯ä»˜æ–¹å¼é€‰æ‹©é”™è¯¯æ—¶ï¼Œéœ€è¦æç¤ºçš„ä¿¡æ¯ã€‚
+	public static final String MSG_INPUT_RIGHT_BANK_NO = "input_right_bank_no";		//å½“ç”¨æˆ·è¾“å…¥çš„é“¶è¡Œå¡å·ä½æ•°ä¸å¯¹æ—¶ï¼Œéœ€è¦æç¤ºçš„ä¿¡æ¯ã€‚
+	public static final String MSG_WRONG_BANK_NO = "wrong_bank_no";					//å½“ç”¨æˆ·è¾“å…¥çš„é“¶è¡Œå¡å·é”™è¯¯æ—¶ï¼Œï¼Œéœ€è¦æç¤ºçš„ä¿¡æ¯ã€‚
+	public static final String MSG_NOT_SUPPORT_DISCOUNT = "not_support_discount";	//å½“ç”¨æˆ·è¾“å…¥çš„å¡å·ä¸åœ¨æ­¤æ¬¡ä¼˜æƒ ä¸­ï¼Œéœ€è¦æç¤ºçš„ä¿¡æ¯ã€‚
 	
-	public static final String SEATTYPE_ALL = "A";		// ËùÓĞ×ùÎ»£¨ÌØ¼Û»î¶¯ÊÊÓÃµÄ×ùÎ»ÀàĞÍ£©
-	public static final String SEATTYPE_NORMAL = "N";	// ÆÕÍ¨×ùÎ»£¨·ÇÇéÂÂ×ù£©
-	public static final String SEATTYPE_LOVESEAT = "L";	// ÇéÂÂ×ù
+	public static final String SEATTYPE_ALL = "A";		// æ‰€æœ‰åº§ä½ï¼ˆç‰¹ä»·æ´»åŠ¨é€‚ç”¨çš„åº§ä½ç±»å‹ï¼‰
+	public static final String SEATTYPE_NORMAL = "N";	// æ™®é€šåº§ä½ï¼ˆéæƒ…ä¾£åº§ï¼‰
+	public static final String SEATTYPE_LOVESEAT = "L";	// æƒ…ä¾£åº§
 	
 }

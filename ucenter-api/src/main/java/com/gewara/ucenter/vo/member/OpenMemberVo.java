@@ -10,16 +10,16 @@ public class OpenMemberVo extends BaseVo {
 	private static final long serialVersionUID = 8774133904980152319L;
 
 	private Long id;
-	private Long memberid;			//°ó¶¨µÄÓÃ»§
-	private String loginname;		//µÇÂ¼Ãû£ºEmail¡¢mobileµÈ
-	private String source;			//À´Ô´
-	private String category;		//Ğ¡Àà ±ÈÈçÖ§¸¶±¦£º·ÖÎª¿ì½İµÇÂ¼ºÍÇ®°ü
-	private String nickname;		//µÚÈı·½ÓÃ»§µÄêÇ³Æ
+	private Long memberid;			//ç»‘å®šçš„ç”¨æˆ·
+	private String loginname;		//ç™»å½•åï¼šEmailã€mobileç­‰
+	private String source;			//æ¥æº
+	private String category;		//å°ç±» æ¯”å¦‚æ”¯ä»˜å®ï¼šåˆ†ä¸ºå¿«æ·ç™»å½•å’Œé’±åŒ…
+	private String nickname;		//ç¬¬ä¸‰æ–¹ç”¨æˆ·çš„æ˜µç§°
 	private String headpic;
-	private String otherinfo;		//ÆäËûÊı¾İ
-	private Long relateid;			//µ±Ç°Í¬²½ÓÃ»§ID
-	private String mobile;			//½ö¶ÔÖ§¸¶±¦ÁªÃûµÇÂ¼ÓÃ»§Æğ×÷ÓÃ
-	private Timestamp validtime;	//ÓĞĞ§Ê±¼ä
+	private String otherinfo;		//å…¶ä»–æ•°æ®
+	private Long relateid;			//å½“å‰åŒæ­¥ç”¨æˆ·ID
+	private String mobile;			//ä»…å¯¹æ”¯ä»˜å®è”åç™»å½•ç”¨æˆ·èµ·ä½œç”¨
+	private Timestamp validtime;	//æœ‰æ•ˆæ—¶é—´
 	private String unionid;
 	
 	public String getUnionid() {

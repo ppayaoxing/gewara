@@ -7,14 +7,14 @@ import com.gewara.api.sns.vo.comment.CommentVo;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * ¾«Ñ¡ÍÛÀ²
+ * ç²¾é€‰å“‡å•¦
  * @author zf
  *
  */
 
 public interface CommentSelectedApiService {
 	/**
-	 * »ñÈ¡¾«Ñ¡ÍÛÀ²
+	 * è·å–ç²¾é€‰å“‡å•¦
 	 * @param tag
 	 * @param relatedid
 	 * @param beginDate
@@ -27,7 +27,7 @@ public interface CommentSelectedApiService {
 	
 	
 	/**
-	 * »ñÈ¡µ±Ç°È¨ÖØºóÃæµÄ¾«Ñ¡ÍÛÀ²
+	 * è·å–å½“å‰æƒé‡åé¢çš„ç²¾é€‰å“‡å•¦
 	 * @param commentid
 	 * @param beginDate
 	 * @param endDate
@@ -37,7 +37,7 @@ public interface CommentSelectedApiService {
 	ResultCode<List<CommentVo>> getNextCommentListByCommentSelected(Long commentid,Timestamp beginDate, Timestamp endDate,int maxnum);
 	
 	/**
-	 * »ñÈ¡µçÓ°Ïà¹Ø¾«Ñ¡ÍÛÀ²
+	 * è·å–ç”µå½±ç›¸å…³ç²¾é€‰å“‡å•¦
 	 * @param tag
 	 * @param relatedid
 	 * @param currentid 
@@ -49,7 +49,7 @@ public interface CommentSelectedApiService {
 	
 	
 	/**
-	 * »ñÈ¡µ±Ç°È¨ÖØºóÃæµÄµçÓ°Ïà¹Ø¾«Ñ¡ÍÛÀ²
+	 * è·å–å½“å‰æƒé‡åé¢çš„ç”µå½±ç›¸å…³ç²¾é€‰å“‡å•¦
 	 * @param commentid
 	 * @param tag
 	 * @param relatedid
@@ -60,7 +60,7 @@ public interface CommentSelectedApiService {
 	ResultCode<List<CommentVo>> getNextMovieCommentSelected(Long commentid,String tag,Long relatedid,int from,int maxnum);
 	
 	/**
-	 * »ñÈ¡¹Ø×¢µçÓ°µÄÏà¹Ø¾«Ñ¡ÍÛÀ²
+	 * è·å–å…³æ³¨ç”µå½±çš„ç›¸å…³ç²¾é€‰å“‡å•¦
 	 * @param tag
 	 * @param relatedids
 	 * @param notin 
@@ -71,7 +71,7 @@ public interface CommentSelectedApiService {
 	ResultCode<List<CommentVo>> getAttentionCommentSelected(String tag,List<Long> relatedids,List<Long> notin, int from, int maxnum);
 	
 	/**
-	 * »ñÈ¡¹Ø×¢µçÓ°µÄÏà¹Ø¾«Ñ¡ÍÛÀ²
+	 * è·å–å…³æ³¨ç”µå½±çš„ç›¸å…³ç²¾é€‰å“‡å•¦
 	 * @param tag
 	 * @param relatedids
 	 * @return

@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 import com.alibaba.dubbo.common.URL;
 
 /**
- * ÔÚ{@link ExtensionLoader}Éú³ÉExtensionµÄAdaptive InstanceÊ±£¬Îª{@link ExtensionLoader}Ìá¹©ĞÅÏ¢¡£
+ * åœ¨{@link ExtensionLoader}ç”ŸæˆExtensionçš„Adaptive Instanceæ—¶ï¼Œä¸º{@link ExtensionLoader}æä¾›ä¿¡æ¯ã€‚
  * 
  * @author ding.lid
  * @export
@@ -38,19 +38,19 @@ import com.alibaba.dubbo.common.URL;
 public @interface Adaptive {
     
     /**
-     * ´Ó{@link URL}µÄKeyÃû£¬¶ÔÓ¦µÄValue×÷ÎªÒªAdapt³ÉµÄExtensionÃû¡£
+     * ä»{@link URL}çš„Keyåï¼Œå¯¹åº”çš„Valueä½œä¸ºè¦Adaptæˆçš„Extensionåã€‚
      * <p>
-     * Èç¹û{@link URL}ÕâĞ©Key¶¼Ã»ÓĞValue£¬Ê¹ÓÃ ÓÃ È±Ê¡µÄÀ©Õ¹£¨ÔÚ½Ó¿ÚµÄ{@link SPI}ÖĞÉè¶¨µÄÖµ£©¡£<br>
-     * ±ÈÈç£¬<code>String[] {"key1", "key2"}</code>£¬±íÊ¾
+     * å¦‚æœ{@link URL}è¿™äº›Keyéƒ½æ²¡æœ‰Valueï¼Œä½¿ç”¨ ç”¨ ç¼ºçœçš„æ‰©å±•ï¼ˆåœ¨æ¥å£çš„{@link SPI}ä¸­è®¾å®šçš„å€¼ï¼‰ã€‚<br>
+     * æ¯”å¦‚ï¼Œ<code>String[] {"key1", "key2"}</code>ï¼Œè¡¨ç¤º
      * <ol>
-     * <li>ÏÈÔÚURLÉÏÕÒkey1µÄValue×÷ÎªÒªAdapt³ÉµÄExtensionÃû£»
-     * <li>key1Ã»ÓĞValue£¬ÔòÊ¹ÓÃkey2µÄValue×÷ÎªÒªAdapt³ÉµÄExtensionÃû¡£
-     * <li>key2Ã»ÓĞValue£¬Ê¹ÓÃÈ±Ê¡µÄÀ©Õ¹¡£
-     * <li>Èç¹ûÃ»ÓĞÉè¶¨È±Ê¡À©Õ¹£¬Ôò·½·¨µ÷ÓÃ»áÅ×³ö{@link IllegalStateException}¡£
+     * <li>å…ˆåœ¨URLä¸Šæ‰¾key1çš„Valueä½œä¸ºè¦Adaptæˆçš„Extensionåï¼›
+     * <li>key1æ²¡æœ‰Valueï¼Œåˆ™ä½¿ç”¨key2çš„Valueä½œä¸ºè¦Adaptæˆçš„Extensionåã€‚
+     * <li>key2æ²¡æœ‰Valueï¼Œä½¿ç”¨ç¼ºçœçš„æ‰©å±•ã€‚
+     * <li>å¦‚æœæ²¡æœ‰è®¾å®šç¼ºçœæ‰©å±•ï¼Œåˆ™æ–¹æ³•è°ƒç”¨ä¼šæŠ›å‡º{@link IllegalStateException}ã€‚
      * </ol>
      * <p>
-     * Èç¹û²»ÉèÖÃÔòÈ±Ê¡Ê¹ÓÃExtension½Ó¿ÚÀàÃûµÄµã·Ö¸ôĞ¡Ğ´×Ö´®¡£<br>
-     * ¼´¶ÔÓÚExtension½Ó¿Ú{@code com.alibaba.dubbo.xxx.YyyInvokerWrapper}µÄÈ±Ê¡ÖµÎª<code>String[] {"yyy.invoker.wrapper"}</code>
+     * å¦‚æœä¸è®¾ç½®åˆ™ç¼ºçœä½¿ç”¨Extensionæ¥å£ç±»åçš„ç‚¹åˆ†éš”å°å†™å­—ä¸²ã€‚<br>
+     * å³å¯¹äºExtensionæ¥å£{@code com.alibaba.dubbo.xxx.YyyInvokerWrapper}çš„ç¼ºçœå€¼ä¸º<code>String[] {"yyy.invoker.wrapper"}</code>
      * 
      * @see SPI#value()
      */

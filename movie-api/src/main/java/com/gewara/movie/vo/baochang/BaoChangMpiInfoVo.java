@@ -11,13 +11,13 @@ public class BaoChangMpiInfoVo extends BaoChangBasePriceInfoVo{
 	private Long movieid;
 	private String moviename;
 	private Long mpid;
-	private Date playdate;		//·ÅÓ³ÈÕÆÚ
-	private String showtime;	//·ÅÓ³Ê±¼ä
-	private String status;//×´Ì¬
-	private Integer seatNum;//Ó°Ìü×ùÎ»ÊıÁ¿
-	private Integer seatPrice;//Ó°Ôºµ¥ÕÅÆ±¼Û
-	private Integer seatGewaprice;//¸ñÍßµ¥ÕÅÂô¼Û
-	private Timestamp validtime;		//ÓĞĞ§Ê±¼ä
+	private Date playdate;		//æ”¾æ˜ æ—¥æœŸ
+	private String showtime;	//æ”¾æ˜ æ—¶é—´
+	private String status;//çŠ¶æ€
+	private Integer seatNum;//å½±å…åº§ä½æ•°é‡
+	private Integer seatPrice;//å½±é™¢å•å¼ ç¥¨ä»·
+	private Integer seatGewaprice;//æ ¼ç“¦å•å¼ å–ä»·
+	private Timestamp validtime;		//æœ‰æ•ˆæ—¶é—´
 	
 	public BaoChangMpiInfoVo(){}
 	

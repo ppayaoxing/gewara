@@ -61,7 +61,7 @@ public class ZookeeperLockServiceImpl implements LockService, InitializingBean {
 	}
 
 	/**
-	 * TODO ����
+	 * TODO 锟斤拷锟斤拷
 	 */
 	@Override
 	public AtomicCounter getAtomicCounter(String ticketTradeNO) {

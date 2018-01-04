@@ -21,7 +21,7 @@ public class DiaryCommentVo  extends BaseVo{
 	private Timestamp updatetime;
 	private String status;
 	private String citycode;
-	private String ip;//ªÿ∏¥»ÀIP
+	private String ip;//ÂõûÂ§ç‰∫∫IP
 	public DiaryCommentVo(){}
 	public DiaryCommentVo(Long memberid){
 		this.addtime = new Timestamp(System.currentTimeMillis());

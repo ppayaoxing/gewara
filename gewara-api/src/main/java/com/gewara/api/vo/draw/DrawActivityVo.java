@@ -25,8 +25,8 @@ public class DrawActivityVo extends BaseVo {
 	private Timestamp addtime;
 	private String showsite;
 	private String otherinfo;
-	private Integer limitnum;			//���ƴ���
-	private String projectid;			//��Ŀid
+	private Integer limitnum;			//锟斤拷锟狡达拷锟斤拷
+	private String projectid;			//锟斤拷目id
 	
 	public DrawActivityVo(){
 		

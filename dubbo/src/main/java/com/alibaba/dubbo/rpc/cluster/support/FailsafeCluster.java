@@ -21,7 +21,7 @@ import com.alibaba.dubbo.rpc.cluster.Cluster;
 import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
- * ʧ�ܰ�ȫ�������쳣ʱ��ֱ�Ӻ��ԣ�ͨ������д�������־�Ȳ����� 
+ * 失锟杰帮拷全锟斤拷锟斤拷锟斤拷锟届常时锟斤拷直锟接猴拷锟皆ｏ拷通锟斤拷锟斤拷锟斤拷写锟斤拷锟斤拷锟斤拷锟街撅拷炔锟斤拷锟斤拷锟� 
  * 
  * <a href="http://en.wikipedia.org/wiki/Fail-safe">Fail-safe</a>
  * 

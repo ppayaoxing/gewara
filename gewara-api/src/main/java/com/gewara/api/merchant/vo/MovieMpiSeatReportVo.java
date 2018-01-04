@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.gewara.api.vo.BaseVo;
 
-//TODO  ´ý¶¨
+//TODO  å¾…å®š
 public class MovieMpiSeatReportVo extends BaseVo {
 
 	/**

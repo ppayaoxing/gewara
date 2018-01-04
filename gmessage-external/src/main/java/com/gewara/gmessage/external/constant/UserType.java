@@ -2,13 +2,13 @@ package com.gewara.gmessage.external.constant;
 
 public enum UserType {
 	
-	/**gewara 会员*/
+	/**gewara 浼氬憳*/
 	MEMBER("M"),
 	
-	/**gewara 商户*/
+	/**gewara 鍟嗘埛*/
 	BUSINESS("B"),
 	
-	/**gewara 后台运维人员*/
+	/**gewara 鍚庡彴杩愮淮浜哄憳*/
 	MAINTAIN("A");
 	
 	private String value=null;

@@ -63,7 +63,7 @@ public abstract class UploadUtil {
 		}
 		String url = uploadPath + "/common/moveTempFilesTo.xhtml";
 		HttpResult result = HttpUtils.getUrlAsString(url, params);
-		if(result.isSuccess() && StringUtils.contains(result.getResponse(), "SUCCESS")){//�ɹ�
+		if(result.isSuccess() && StringUtils.contains(result.getResponse(), "SUCCESS")){//锟缴癸拷
 			return true;
 		}else{
 			return false;

@@ -9,35 +9,35 @@ import com.gewara.api.vo.BaseVo;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public class MemberAccountVo extends BaseVo{
 	private static final long serialVersionUID = 3832626162173359411L;
 	private Long id;
 	private Long memberid;
-	private String realname;			//ÕæÊµĞÕÃû
-	private String phone;				//µç»°
-	private Integer banlance;			//Óà¶î
-	private String idcard; 				//Éí·İÖ¤ºÅ
-	private Timestamp addtime;			//Ôö¼ÓÊ±¼ä
-	private Timestamp updatetime;		//¸üĞÂÊ±¼ä
-	private Integer version;			//°æ±¾
-	private Integer bankcharge;			//µ±Ç°¿ÉÍË¿î½ğ¶î
-	private Integer othercharge;		//µ±Ç°²»¿ÉÍË¿î½ğ¶î
-	private Integer depositcharge;		//±£Ö¤½ğ
-	private String encryidcard;			//¼ÓÃÜÖ¤¼şºÅ
-	private String forbid;				//½ûÖ¹
-	private Integer certtype;			//Ö¤¼şÀàĞÍ
-	private String emcontact;			//½ô¼±ÁªÏµÈË
-	private String emmobile;			//½ô¼±ÁªÏµÈËÊÖ»úºÅ
-	private String paymentAccount;		//Ö§¸¶ÕËºÅ   ´æJson
+	private String realname;			//çœŸå®å§“å
+	private String phone;				//ç”µè¯
+	private Integer banlance;			//ä½™é¢
+	private String idcard; 				//èº«ä»½è¯å·
+	private Timestamp addtime;			//å¢åŠ æ—¶é—´
+	private Timestamp updatetime;		//æ›´æ–°æ—¶é—´
+	private Integer version;			//ç‰ˆæœ¬
+	private Integer bankcharge;			//å½“å‰å¯é€€æ¬¾é‡‘é¢
+	private Integer othercharge;		//å½“å‰ä¸å¯é€€æ¬¾é‡‘é¢
+	private Integer depositcharge;		//ä¿è¯é‡‘
+	private String encryidcard;			//åŠ å¯†è¯ä»¶å·
+	private String forbid;				//ç¦æ­¢
+	private Integer certtype;			//è¯ä»¶ç±»å‹
+	private String emcontact;			//ç´§æ€¥è”ç³»äºº
+	private String emmobile;			//ç´§æ€¥è”ç³»äººæ‰‹æœºå·
+	private String paymentAccount;		//æ”¯ä»˜è´¦å·   å­˜Json
 	
-	//¼æÈİÒµÎñ×Ö¶Î
+	//å…¼å®¹ä¸šåŠ¡å­—æ®µ
 	private boolean incomplete;
 	private boolean nopassword;
 	
-	private Integer vipcharge;			//¿ÉÒÔ²ÎÓëÌØ¼Û»î¶¯µÄ´ÎÊı
-	private String password;			//ÃÜÂë
+	private Integer vipcharge;			//å¯ä»¥å‚ä¸ç‰¹ä»·æ´»åŠ¨çš„æ¬¡æ•°
+	private String password;			//å¯†ç 
 	
 	public String getEncryidcard() {
 		return encryidcard;
@@ -45,7 +45,7 @@ public class MemberAccountVo extends BaseVo{
 	public void setEncryidcard(String encryidcard) {
 		this.encryidcard = encryidcard;
 	}
-	public MemberAccountVo() {			//Ö»ÎªÄ¬ÈÏÊ¹ÓÃ
+	public MemberAccountVo() {			//åªä¸ºé»˜è®¤ä½¿ç”¨
 	}
 	@Override
 	public Serializable realId() {

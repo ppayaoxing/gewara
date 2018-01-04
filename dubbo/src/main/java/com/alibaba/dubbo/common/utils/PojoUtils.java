@@ -179,7 +179,7 @@ public class PojoUtils {
             if (ReflectUtils.isPublicInstanceField(field)) {
                 try {
                     Object fieldValue = field.get(pojo);
-                    // public filedͬʱҲ��get/set���������get/set��ȡ�Ĳ���ǰ���Ǹ� public field ����δ���
+                    // public filed同时也锟斤拷get/set锟斤拷锟斤拷锟斤拷锟斤拷锟絞et/set锟斤拷取锟侥诧拷锟斤拷前锟斤拷锟角革拷 public field 锟斤拷锟斤拷未锟斤拷锟�
                     if (history.containsKey(pojo)) {
                         Object pojoGenerilizedValue = history.get(pojo);
                         if (pojoGenerilizedValue instanceof Map
@@ -389,7 +389,7 @@ public class PojoUtils {
                 }
             }
             Map<Object, Object> map ;
-            // ����ֵ���Ͳ��Ƿ���ǩ�����͵��Ӽ� ���� ���ǽӿ�����
+            // 锟斤拷锟斤拷值锟斤拷锟酵诧拷锟角凤拷锟斤拷签锟斤拷锟斤拷锟酵碉拷锟接硷拷 锟斤拷锟斤拷 锟斤拷锟角接匡拷锟斤拷锟斤拷
             if (! type.isInterface()
                     && ! type.isAssignableFrom(pojo.getClass())){
                 try {
@@ -493,14 +493,14 @@ public class PojoUtils {
     }
     
     /**
-     * ��ȡ���͵����� 
+     * 锟斤拷取锟斤拷锟酵碉拷锟斤拷锟斤拷 
      * @param genericType
      * @param index
-     * @return List<Person>  ����Person.class ,Map<String,Person> index=0 ����String.class index=1 ����Person.class
+     * @return List<Person>  锟斤拷锟斤拷Person.class ,Map<String,Person> index=0 锟斤拷锟斤拷String.class index=1 锟斤拷锟斤拷Person.class
      */
     private static Type getGenericClassByIndex(Type genericType, int index){
         Type clazz = null ;
-        //���Ͳ���ת�� 
+        //锟斤拷锟酵诧拷锟斤拷转锟斤拷 
         if (genericType instanceof ParameterizedType){
             ParameterizedType t = (ParameterizedType)genericType;
             Type[] types = t.getActualTypeArguments();

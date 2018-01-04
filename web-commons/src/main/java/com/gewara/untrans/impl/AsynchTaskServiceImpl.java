@@ -117,7 +117,7 @@ public class AsynchTaskServiceImpl implements AsynchTaskService, InitializingBea
 		public void run() {
 			try {
 				if(task.isRequireLock()){
-					//lockKey变换
+					//lockKey鍙樻崲
 					String lockKey = task.getTasktype() + (Math.abs(task.getTaskUkey().hashCode()) % processor.getLockSize());
 					lockService.doWithWriteLock(lockKey, this);
 				}else{

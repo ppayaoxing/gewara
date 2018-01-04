@@ -4,13 +4,13 @@ import com.gewara.api.vo.ResultCode;
 
 public interface WpApiService {
 	/**
-	 * 获取项目名称
+	 * 鑾峰彇椤圭洰鍚嶇О
 	 * @param onlineid
 	 * @return
 	 */
 	ResultCode<String> getItem(String onlineid);
 	/**
-	 * 获取场馆名称
+	 * 鑾峰彇鍦洪鍚嶇О
 	 * @param venueid
 	 * @return
 	 */

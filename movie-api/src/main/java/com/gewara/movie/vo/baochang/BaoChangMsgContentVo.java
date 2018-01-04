@@ -7,13 +7,13 @@ import com.gewara.api.vo.BaseVo;
 public class BaoChangMsgContentVo extends BaseVo {
 	private static final long serialVersionUID = -8708356666973143888L;
 	
-	public static final String BAOCHANG_MSG_TAG_ORDER_PURCHASER = "order_purchaser";//π∫¬Ú»À
-	public static final String BAOCHANG_MSG_TAG_ORDER_PUSH_PURCHASER = "order_push_purchaser";//π∫¬Ú»À(push)
-	public static final String BAOCHANG_MSG_TAG_PAID_PURCHASER = "paid_purchaser";//π∫¬Ú»À
-	public static final String BAOCHANG_MSG_TAG_PAID_PUSH_PURCHASER = "paid_push_purchaser";//π∫¬Ú»À(push)
-	public static final String BAOCHANG_MSG_TAG_FAIL_PURCHASER = "fail_purchaser";//π∫¬Ú»À
-	public static final String BAOCHANG_MSG_TAG_FAIL_PUSH_PURCHASER = "fail_push_purchaser";//π∫¬Ú»À(push)
-	public static final String BAOCHANG_MSG_TAG_RECEIPTOR = "receiptor";//¡Ï»°»À
+	public static final String BAOCHANG_MSG_TAG_ORDER_PURCHASER = "order_purchaser";//Ë¥≠‰π∞‰∫∫
+	public static final String BAOCHANG_MSG_TAG_ORDER_PUSH_PURCHASER = "order_push_purchaser";//Ë¥≠‰π∞‰∫∫(push)
+	public static final String BAOCHANG_MSG_TAG_PAID_PURCHASER = "paid_purchaser";//Ë¥≠‰π∞‰∫∫
+	public static final String BAOCHANG_MSG_TAG_PAID_PUSH_PURCHASER = "paid_push_purchaser";//Ë¥≠‰π∞‰∫∫(push)
+	public static final String BAOCHANG_MSG_TAG_FAIL_PURCHASER = "fail_purchaser";//Ë¥≠‰π∞‰∫∫
+	public static final String BAOCHANG_MSG_TAG_FAIL_PUSH_PURCHASER = "fail_push_purchaser";//Ë¥≠‰π∞‰∫∫(push)
+	public static final String BAOCHANG_MSG_TAG_RECEIPTOR = "receiptor";//È¢ÜÂèñ‰∫∫
 	private String id;
 	private String tag;
 	private String mobileType;

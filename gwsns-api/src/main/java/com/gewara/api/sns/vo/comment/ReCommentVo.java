@@ -12,8 +12,8 @@ public class ReCommentVo extends BaseVo {
 	private static final long serialVersionUID = 6937601037315369836L;
 	public static final String ADDRESS_WEB="web";
 	public static final String ADDRESS_WAP="wap";
-	public static final String TAG_COMMENT = "comment"; //»Ø¸´ÍÛÀ²
-	public static final String TAG_RECOMMENT = "recomment"; //»Ø¸´»Ø¸´
+	public static final String TAG_COMMENT = "comment"; //å›å¤å“‡å•¦
+	public static final String TAG_RECOMMENT = "recomment"; //å›å¤å›å¤
 	private Long id;
 	private Long memberid;
 	private Long relatedid;
@@ -21,19 +21,19 @@ public class ReCommentVo extends BaseVo {
 	private Timestamp addtime;
 	private Long tomemberid;
 	private String status;
-	private String address;//·¢±íÀ´Ô´
+	private String address;//å‘è¡¨æ¥æº
 	private String tag;
 	private Long transferid;
-	private Integer isread;//Õë¶ÔÍÛÀ²ÊÇ·ñÒÑ¿´,0:Î´¶Á¡¢1£ºÒÑ¶Á
-	private Integer toRead;//Õë¶Ô»Ø¸´ÊÇ·ñÒÑ¿´,0:Î´¶Á¡¢1£ºÒÑ¶Á
-	private Integer toTop; // »Ø¸´ÖÃ¶¥ 1
+	private Integer isread;//é’ˆå¯¹å“‡å•¦æ˜¯å¦å·²çœ‹,0:æœªè¯»ã€1ï¼šå·²è¯»
+	private Integer toRead;//é’ˆå¯¹å›å¤æ˜¯å¦å·²çœ‹,0:æœªè¯»ã€1ï¼šå·²è¯»
+	private Integer toTop; // å›å¤ç½®é¡¶ 1
 	
-	private String imgPath;//´æ·ÅÍ¼Æ¬
-	private Integer flowernum; //ÏÊ»¨Êı
-	private Long mtid;	//±êÇ©id
+	private String imgPath;//å­˜æ”¾å›¾ç‰‡
+	private Integer flowernum; //é²œèŠ±æ•°
+	private Long mtid;	//æ ‡ç­¾id
 	
-	private String atmemberjson;	//{'ÓÃ»§êÇ³Æ':ÓÃ»§id}
-	private String replyids;		//»Ø¸´»Ø¸´µÄid  ÓÃ","Æ´½Ó
+	private String atmemberjson;	//{'ç”¨æˆ·æ˜µç§°':ç”¨æˆ·id}
+	private String replyids;		//å›å¤å›å¤çš„id  ç”¨","æ‹¼æ¥
 	
 	public String getReplyids() {
 		return replyids;

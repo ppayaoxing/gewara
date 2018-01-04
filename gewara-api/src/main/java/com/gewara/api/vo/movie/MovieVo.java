@@ -23,23 +23,23 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 	private String type;
 	private String honor;
 	private String website;
-	private Integer videolen; // ӰƬʱ�����Է���Ϊ��λ
-	private Integer mcpCount; // ӰƬʱ�����Է���Ϊ��λ
+	private Integer videolen; // 影片时锟斤拷锟斤拷锟皆凤拷锟斤拷为锟斤拷位
+	private Integer mcpCount; // 影片时锟斤拷锟斤拷锟皆凤拷锟斤拷为锟斤拷位
 
 	private String remark;
 	private String state;
 	private String prevideo;
-	private String highlight; // ����һ�仰
+	private String highlight; // 锟斤拷锟斤拷一锟戒话
 	private String playdate;
 	private Integer avgprice;
 	private Integer minprice;
 	private Integer maxprice;
 	private String imdbid;
 	private String flag;
-	private Integer boughtcount; // ��Ʊ�˴�
+	private Integer boughtcount; // 锟斤拷票锟剿达拷
 	private String otherinfo;
-	private String edition; // ��Ӱ�汾
-	private String colorEggs; // ��Ӱ�ʵ�
+	private String edition; // 锟斤拷影锟芥本
+	private String colorEggs; // 锟斤拷影锟绞碉拷
 	private static Map<String, Integer[]> priceMap = new HashMap();
 	static {
 		priceMap.put("1", new Integer[] { 0, 30 });
@@ -62,7 +62,7 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 		this.avgprice = 0;
 		this.minprice = 0;
 		this.maxprice = 0;
-		this.boughtcount = 0; // Ĭ��0
+		this.boughtcount = 0; // 默锟斤拷0
 		this.moviename = moviename;
 	}
 
@@ -194,7 +194,7 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 		if (videolen == null) {
             return "";
         }
-		return this.videolen + "����";
+		return this.videolen + "锟斤拷锟斤拷";
 	}
 
 	public String getRemark() {
@@ -314,8 +314,8 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 	}
 
 	/***
-	 * ����1=(����*2��3֮��������)�� 1�� ��Ʊ�˴�= �ϴι�Ʊ+����1 2�� �뿴�˴�= ʵ���뿴������ 3�� �����˴�= ʵ�ʿ�������+����1��
-	 * 4�� ����Ȥ�˴�= ʵ�ʵ������Ȥ�˴�+�뿴�˴Σ� 5�� �����= �ϴ��������+����1�� 6�� ����������= (ʵ�ʲ��������˴�+��Ʊ�˴�)/2��
+	 * 锟斤拷锟斤拷1=(锟斤拷锟斤拷*2锟斤拷3之锟斤拷锟斤拷锟斤拷锟斤拷)锟斤拷 1锟斤拷 锟斤拷票锟剿达拷= 锟较次癸拷票+锟斤拷锟斤拷1 2锟斤拷 锟诫看锟剿达拷= 实锟斤拷锟诫看锟斤拷锟斤拷锟斤拷 3锟斤拷 锟斤拷锟斤拷锟剿达拷= 实锟绞匡拷锟斤拷锟斤拷锟斤拷+锟斤拷锟斤拷1锟斤拷
+	 * 4锟斤拷 锟斤拷锟斤拷趣锟剿达拷= 实锟绞碉拷锟斤拷锟斤拷锟饺わ拷舜锟�+锟诫看锟剿次ｏ拷 5锟斤拷 锟斤拷锟斤拷锟�= 锟较达拷锟斤拷锟斤拷锟斤拷锟�+锟斤拷锟斤拷1锟斤拷 6锟斤拷 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷= (实锟绞诧拷锟斤拷锟斤拷锟斤拷锟剿达拷+锟斤拷票锟剿达拷)/2锟斤拷
 	 * 
 	 **/
 	public Integer getRxiangqu() {

@@ -2,40 +2,40 @@ package com.gewara.constant;
 
 
 public class AttackConstant {
-	/**ºÚÃûµ¥×´Ì¬£ºÓĞĞ§µÄ*/
+	/**é»‘åå•çŠ¶æ€ï¼šæœ‰æ•ˆçš„*/
 	public static final String STATUS_ACTIVATED = "activated";
-	/**ºÚÃûµ¥×´Ì¬£ºÎŞÓĞĞ§µÄ*/
+	/**é»‘åå•çŠ¶æ€ï¼šæ— æœ‰æ•ˆçš„*/
 	public static final String STATUS_DEACTIVATED = "deactivated";
-	/**ºÚÃûµ¥×´Ì¬£ºÒÑÉ¾³ıµÄ*/
+	/**é»‘åå•çŠ¶æ€ï¼šå·²åˆ é™¤çš„*/
 	public static final String STATUS_DELETED = "deleted";
 	
-	/**ĞÂÔöÀ´Ô´£ºÊÖ¶¯*/
+	/**æ–°å¢æ¥æºï¼šæ‰‹åŠ¨*/
 	public static final String ADDSOURCE_MANUAL = "manual";	
-	/**ĞÂÔöÀ´Ô´£ºurl*/
+	/**æ–°å¢æ¥æºï¼šurl*/
 	public static final String ADDSOURCE_URL = "url";	
-	/**ĞÂÔöÀ´Ô´£ºip*/
+	/**æ–°å¢æ¥æºï¼šip*/
 	public static final String ADDSOURCE_IP = "ip";
-	/**ĞÂÔöÀ´Ô´£ºException¹¥»÷*/
+	/**æ–°å¢æ¥æºï¼šExceptionæ”»å‡»*/
 	public static final String ADDSOURCE_ATTACK = "attack";
 	
-	public static final String ACCESS_URL_ALL = "ALL";//ÏŞÖÆIPËùÓĞ·ÃÎÊ
+	public static final String ACCESS_URL_ALL = "ALL";//é™åˆ¶IPæ‰€æœ‰è®¿é—®
 
 
-	/**ÖØµãuri·À»¤Í¬²½Ç°×º£¬Í¨Öªµ½¾ßÌåÏµÍ³£¬Ğè¼ÓÉÏÏµÍ³id*/
+	/**é‡ç‚¹urié˜²æŠ¤åŒæ­¥å‰ç¼€ï¼Œé€šçŸ¥åˆ°å…·ä½“ç³»ç»Ÿï¼Œéœ€åŠ ä¸Šç³»ç»Ÿid*/
 	public static final String CHANGE_URI = "attack.uri.change.";
 	public static final String CHANGE_BLACK = "attack.black.change";
 	public static final String CHANGE_WHITE = "attack.white.change";
 
 	/**
-	 * ÖØµãurl¹æÔòÅäÖÃĞŞ¸Ä±ä¶¯Í¨ÖªµØÖ·
+	 * é‡ç‚¹urlè§„åˆ™é…ç½®ä¿®æ”¹å˜åŠ¨é€šçŸ¥åœ°å€
 	 */
 	public static final String CHANGE_CONFIG = "attack.config.change";
 
-	/**ÓÃÀ´»ñÈ¡ºÚÃûµ¥IP*/
+	/**ç”¨æ¥è·å–é»‘åå•IP*/
 	public static final String URI_GET_BLACKLIST = "/inner/ip/blackList.xhtml";
-	/**ÓÃÀ´»ñÈ¡±ä¸üµÄºÚÃûµ¥IP*/
+	/**ç”¨æ¥è·å–å˜æ›´çš„é»‘åå•IP*/
 	public static final String URI_GET_CHANGED_BLACK ="/inner/ip/black/getNewBlackList.xhtml";
-	/**ÓÃÀ´»ñÈ¡°×Ãûµ¥IP*/
+	/**ç”¨æ¥è·å–ç™½åå•IP*/
 	public static final String URI_GET_ALLWHITE = "/inner/ip/white/getAll.xhtml";
 	
 	public static final String URI_GET_URL_CONFIG = "/inner/url/config/get.xhtml";

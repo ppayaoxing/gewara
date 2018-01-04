@@ -7,7 +7,7 @@ import com.gewara.model.BaseObject;
 import com.gewara.support.CachePair;
 
 public interface CacheService extends CacheTools {
-	// 固定区域
+	// 鍥哄畾鍖哄煙
 	String REGION_TENMIN = "tenMin";
 	String REGION_ONEHOUR = "oneHour";
 	String REGION_LOGINAUTH = "loginAuth"; // 2hour
@@ -24,23 +24,23 @@ public interface CacheService extends CacheTools {
 	<T extends BaseObject> void cleanUkey(Class<T> claszz, String key, String ukey);
 
 	/**
-	 * @function 多个key
+	 * @function 澶氫釜key
 	 */
 	Map<String, Object> getBulk(String regionName, Collection<String> keys);
 
 	/**
-	 * 使用独立的超时时间
+	 * 浣跨敤鐙珛鐨勮秴鏃舵椂闂�
 	 * 
 	 * @param regionName
 	 * @param key
 	 * @param value
 	 * @param timeoutSecond
-	 *            超时秒数
+	 *            瓒呮椂绉掓暟
 	 */
 	void set(String regionName, String key, Object value, int timeoutSecond);
 
 	/**
-	 * 直接更新缓存
+	 * 鐩存帴鏇存柊缂撳瓨
 	 */
 	void updateValue(String regionName, String key, String newvalue);
 
@@ -49,26 +49,26 @@ public interface CacheService extends CacheTools {
 	Integer getCacheTime(String region);
 
 	/**
-	 * 增加计数，非原子操作
+	 * 澧炲姞璁℃暟锛岄潪鍘熷瓙鎿嶄綔
 	 * 
 	 * @param key
 	 * @param by
-	 *            添加值
+	 *            娣诲姞鍊�
 	 * @param defvalue
-	 *            默认值
+	 *            榛樿鍊�
 	 * @return
 	 */
 	int incr(String regionName, String key, int by, int defvalue);
 
 	/**
-	 * 原子加
+	 * 鍘熷瓙鍔�
 	 * 
 	 * @param regionName
 	 * @param key
 	 * @param by
-	 *            增加
+	 *            澧炲姞
 	 * @param def
-	 *            默认值
+	 *            榛樿鍊�
 	 * @return the new value, or -1 if we were unable to increment or add
 	 */
 	int incrementAndGet(String regionName, String key, int by, int def);
@@ -88,7 +88,7 @@ public interface CacheService extends CacheTools {
 	void add(String regionName, String key, Object value, int expSeconds);
 
 	/**
-	 * 原子减
+	 * 鍘熷瓙鍑�
 	 * 
 	 * @param regionName
 	 * @param key
@@ -100,14 +100,14 @@ public interface CacheService extends CacheTools {
 	int decrAndGet(String regionName, String key, int by, int def);
 
 	/**
-	 * 原子加
+	 * 鍘熷瓙鍔�
 	 * 
 	 * @param regionName
 	 * @param key
 	 * @param by
 	 * @param def
 	 * @param exp
-	 *            超时时间,秒
+	 *            瓒呮椂鏃堕棿,绉�
 	 * @return
 	 */
 	int incrementAndGet(String regionName, String key, int by, int def, int exp);

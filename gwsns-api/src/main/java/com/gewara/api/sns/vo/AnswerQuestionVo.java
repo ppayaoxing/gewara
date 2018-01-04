@@ -6,21 +6,21 @@ import com.gewara.api.vo.BaseVo;
 
 public class AnswerQuestionVo extends BaseVo{
 	private Long id;
-	private String quesion; //ÎÊÌâ
-	private String title;   //Í·Í¼
-	private String answer1; //Ñ¡Ïî1
-	private String answer2; //Ñ¡Ïî2
-	private String answer3; //Ñ¡Ïî3
-	private String answer4; //Ñ¡Ïî4
-	private String realAnswer; //ÕıÈ·Ñ¡Ïî
-	private String relatedid;  //¹ØÁªÖ÷Ìâ
-	private Integer rightNum;  //×Ü´ğ¶ÔÈËÊı
-	private Integer total;     //×Ü´ğÌâÈËÊı  
-	private String updateTime; //Ê±¼ä
-	private Integer answer1Num; //Ñ¡Ïî1´ğÌâÈËÊı
-	private Integer answer2Num; //Ñ¡Ïî2´ğÌâÈËÊı
-	private Integer answer3Num; //Ñ¡Ïî3´ğÌâÈËÊı
-	private Integer answer4Num; //Ñ¡Ïî4´ğÌâÈËÊı
+	private String quesion; //é—®é¢˜
+	private String title;   //å¤´å›¾
+	private String answer1; //é€‰é¡¹1
+	private String answer2; //é€‰é¡¹2
+	private String answer3; //é€‰é¡¹3
+	private String answer4; //é€‰é¡¹4
+	private String realAnswer; //æ­£ç¡®é€‰é¡¹
+	private String relatedid;  //å…³è”ä¸»é¢˜
+	private Integer rightNum;  //æ€»ç­”å¯¹äººæ•°
+	private Integer total;     //æ€»ç­”é¢˜äººæ•°  
+	private String updateTime; //æ—¶é—´
+	private Integer answer1Num; //é€‰é¡¹1ç­”é¢˜äººæ•°
+	private Integer answer2Num; //é€‰é¡¹2ç­”é¢˜äººæ•°
+	private Integer answer3Num; //é€‰é¡¹3ç­”é¢˜äººæ•°
+	private Integer answer4Num; //é€‰é¡¹4ç­”é¢˜äººæ•°
 	
 	public Long getId() {
 		return id;

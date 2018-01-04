@@ -8,46 +8,46 @@ import com.gewara.api.vo.BaseVo;
 
 public class CommentVoCommand extends BaseVo implements Serializable{
 	private static final long serialVersionUID = -4003691784832936833L;
-	private Integer pageNumber;	//·ÖÒ³Ò³Âë
-	private Integer maxCount;	//ÌõÊı
-	private Integer fromcount; //¿ªÊ¼ÌõÊı
-	private String topic;		//»°Ìâ
-	private String tag;					//¶ÔÏóÀàĞÍ
-	private Long relatedid;				//¶ÔÏóID
-	private String status;				//wala×´Ì¬
-	private Integer bodyLength;		//´óÓÚ¶àÉÙ×ÖÊıµÄ
-	private Timestamp startTime;			//²éÑ¯ÍÛÀ²´øÊ±¼ä
+	private Integer pageNumber;	//åˆ†é¡µé¡µç 
+	private Integer maxCount;	//æ¡æ•°
+	private Integer fromcount; //å¼€å§‹æ¡æ•°
+	private String topic;		//è¯é¢˜
+	private String tag;					//å¯¹è±¡ç±»å‹
+	private Long relatedid;				//å¯¹è±¡ID
+	private String status;				//walaçŠ¶æ€
+	private Integer bodyLength;		//å¤§äºå¤šå°‘å­—æ•°çš„
+	private Timestamp startTime;			//æŸ¥è¯¢å“‡å•¦å¸¦æ—¶é—´
 	private Timestamp endTime;
-	private String flag;  				//ÖµÎªticket²éÑ¯¹ºÆ±ÓÃ»§·¢±íÍÛÀ²¡£
-	private Long mincommentid;			//²éÑ¯commentidÖ®ºóµÄÍÛÀ²
-	private List<Long> memberidList;	//²éÑ¯µÄÓÃ»§id ²»¿É³¬¹ı1000¸ö
-	private Long transferid;			//×ª·¢µÄcommentid
-	private String micrbody;			// Ä£ºı²éÑ¯ÄÚÈİ
-	private String queryType;			//²éÑ¯ÀàĞÍhot nothot					
-	private String order;   			// ÍÛÀ²ÅÅĞòflowernum ÈÈÃÅÍÛÀ²
-	private boolean asc;					//ÅÅĞò (Õıµ¹Ğò)
-	private Long moderatorid;			//»°Ìâid
-	private String mtids;					//±êÇ©id
-	private Integer basicweight;		//»ù´¡È¨ÖØ
-	private boolean gt;					//ÊÇ·ñ´óÓÚ
-	private String source;				//·¢ÍÛÀ²À´Ô´ wap,webµÈµÈ
-	private Integer marks;				//ÊÇ·ñÓĞÆÀ·Ö
-	private String pic;					//ÊÇ·ñÓĞÍ¼Æ¬
-	private String video;				//ÊÇ·ñÓĞÊÓÆµ
-	private String title;				//ÊÇ·ñÓĞ±êÌâ
-	private String qa;					//ÊÇ·ñÎªÎÊ´ğ
-	private Long memberid;				//·¢ËÍÓÃ»§id
-	private String nickname;			//ÓÃ»§êÇ³Æ
-	private String mtName;				//±êÇ©Ãû×Ö
+	private String flag;  				//å€¼ä¸ºticketæŸ¥è¯¢è´­ç¥¨ç”¨æˆ·å‘è¡¨å“‡å•¦ã€‚
+	private Long mincommentid;			//æŸ¥è¯¢commentidä¹‹åçš„å“‡å•¦
+	private List<Long> memberidList;	//æŸ¥è¯¢çš„ç”¨æˆ·id ä¸å¯è¶…è¿‡1000ä¸ª
+	private Long transferid;			//è½¬å‘çš„commentid
+	private String micrbody;			// æ¨¡ç³ŠæŸ¥è¯¢å†…å®¹
+	private String queryType;			//æŸ¥è¯¢ç±»å‹hot nothot					
+	private String order;   			// å“‡å•¦æ’åºflowernum çƒ­é—¨å“‡å•¦
+	private boolean asc;					//æ’åº (æ­£å€’åº)
+	private Long moderatorid;			//è¯é¢˜id
+	private String mtids;					//æ ‡ç­¾id
+	private Integer basicweight;		//åŸºç¡€æƒé‡
+	private boolean gt;					//æ˜¯å¦å¤§äº
+	private String source;				//å‘å“‡å•¦æ¥æº wap,webç­‰ç­‰
+	private Integer marks;				//æ˜¯å¦æœ‰è¯„åˆ†
+	private String pic;					//æ˜¯å¦æœ‰å›¾ç‰‡
+	private String video;				//æ˜¯å¦æœ‰è§†é¢‘
+	private String title;				//æ˜¯å¦æœ‰æ ‡é¢˜
+	private String qa;					//æ˜¯å¦ä¸ºé—®ç­”
+	private Long memberid;				//å‘é€ç”¨æˆ·id
+	private String nickname;			//ç”¨æˆ·æ˜µç§°
+	private String mtName;				//æ ‡ç­¾åå­—
 	private String pointx;
 	private String pointy;
 	private String ip;
 	private String otherinfo;
 	
-	private String type;					//ÍÛÀ²ÀàĞÍ
-	private String citycode;				//³ÇÊĞ±àÂë
+	private String type;					//å“‡å•¦ç±»å‹
+	private String citycode;				//åŸå¸‚ç¼–ç 
 	
-	private List<Long> biglabelidList;	//´ó±êÇ©idList
+	private List<Long> biglabelidList;	//å¤§æ ‡ç­¾idList
 	
 	public List<Long> getBiglabelidList() {
 		return biglabelidList;
@@ -338,7 +338,7 @@ public class CommentVoCommand extends BaseVo implements Serializable{
 	}
 
 	@Override
-	public Serializable realId() {//²»ÄÜÈ·¶¨Î¨Ò»ĞÔ
+	public Serializable realId() {//ä¸èƒ½ç¡®å®šå”¯ä¸€æ€§
 		return 0;
 	}
 

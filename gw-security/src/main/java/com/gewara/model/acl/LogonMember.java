@@ -9,10 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class LogonMember implements UserDetails{
 	private static final long serialVersionUID = 6078080839080249253L;
-	public static final String USER_TYPE_SSO = "sso";			//单点登录
-	public static final String USER_TYPE_USER = "user";			//单点后台
-	public static final String USER_TYPE_MEMBER = "member";		//前台用户
-	public static final String USER_TYPE_PARTNER = "partner";	//合作商家
+	public static final String USER_TYPE_SSO = "sso";			//鍗曠偣鐧诲綍
+	public static final String USER_TYPE_USER = "user";			//鍗曠偣鍚庡彴
+	public static final String USER_TYPE_MEMBER = "member";		//鍓嶅彴鐢ㄦ埛
+	public static final String USER_TYPE_PARTNER = "partner";	//鍚堜綔鍟嗗
 
 	private Long memberid;
 	private String nickname;
@@ -42,7 +42,7 @@ public class LogonMember implements UserDetails{
 	}
 	@Override
 	public String getPassword() {
-		//密码直接屏蔽
+		//瀵嗙爜鐩存帴灞忚斀
 		return null;
 	}
 	@Override

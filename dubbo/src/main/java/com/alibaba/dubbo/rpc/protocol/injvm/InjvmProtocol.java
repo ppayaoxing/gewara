@@ -97,21 +97,21 @@ public class InjvmProtocol extends AbstractProtocol implements Protocol {
     public boolean isInjvmRefer(URL url) {
     	final boolean isJvmRefer;
     	String scope = url.getParameter(Constants.SCOPE_KEY);
-    	//�����Ѿ���jvmЭ���ˣ����������̾�����.
+    	//锟斤拷锟斤拷锟窖撅拷锟斤拷jvm协锟斤拷锟剿ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟教撅拷锟斤拷锟斤拷.
     	if (Constants.LOCAL_PROTOCOL.toString().equals(url.getProtocol())) {
     		isJvmRefer = false;
     	} else if (Constants.SCOPE_LOCAL.equals(scope) || (url.getParameter("injvm", false))) {
-			//�������Ϊ��������
-			//scope=local || injvm=true �ȼ� injvm��ǩδ��������.
+			//锟斤拷锟斤拷锟斤拷锟轿拷锟斤拷锟斤拷锟斤拷锟�
+			//scope=local || injvm=true 锟饺硷拷 injvm锟斤拷签未锟斤拷锟斤拷锟斤拷锟斤拷.
 			isJvmRefer = true;
 		} else if (Constants.SCOPE_REMOTE.equals(scope)){
-			//��������Զ�����ã�������������
+			//锟斤拷锟斤拷锟斤拷锟斤拷远锟斤拷锟斤拷锟矫ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 			isJvmRefer = false;
 		} else if (url.getParameter(Constants.GENERIC_KEY, false)){
-			//�������ò��߱���
+			//锟斤拷锟斤拷锟斤拷锟矫诧拷锟竭憋拷锟斤拷
 			isJvmRefer = false;
 		} else if (getExporter(exporterMap, url) != null) {
-			//Ĭ���������������з���¶�������ñ��ط���.
+			//默锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫凤拷锟斤拷露锟斤拷锟斤拷锟斤拷锟矫憋拷锟截凤拷锟斤拷.
 			isJvmRefer = true;
 		} else {
 			isJvmRefer = false;

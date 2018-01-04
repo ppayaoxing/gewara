@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 public class OurPlayMovieVo  extends BaseVo{
 	private static final long serialVersionUID = -8678097443317181445L;
-	private Long movieId; //Ö÷¼ü µçÓ°id
+	private Long movieId; //ä¸»é”® ç”µå½±id
 	private Timestamp addTime;
 	
 	public Long getMovieId() {

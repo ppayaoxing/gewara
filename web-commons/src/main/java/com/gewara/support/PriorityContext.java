@@ -6,17 +6,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ¼òµ¥»ñÈ¡²ßÂÔÉÏÏÂÎÄÊµÏÖ<br>
- * <p><b>»ù±¾ÊµÏÖË¼Â·:</b>
- * <br>contextÖĞ³õÊ¼»¯sizeÎªmaxPriority+1µÄlist£¬maxPriorityÄ¬ÈÏÎª99
- * <br>listÖĞµÄÔªËØÎªLinkedBlockingQueue,queueLenÄ¬ÈÏÎª1000,<b>context×ÜÈİÁ¿=listSize * queueLen</b>
- * <br>ÍùcontextÖĞÌí¼ÓÔªËØÊ±£¬¸ù¾İ {@link PriorityObject#getPriority(int maxPriority)}µÄÖµ·ÅÈëµ½¶ÔÓ¦µÄqueueÖĞ
- * <br>»ñÈ¡ÔªËØ£¬±éÀúlistÖĞµÄQueue£¬»ñÈ¡ÆäµÚÒ»¸ö½Úµã£¬·Ç¿ÕÁ¢¼´·µ»Ø
- * <br>contextÎª¿ÕÔò·µ»Ønull
- * <p><b>Ê¹ÓÃ³¡¾°¾ÙÀı£º</b>
- * <br>Õı³£µÄÇëÇó¶ÔÏóµÄpriorityËæ»úÎª0~98
- * <br>·ÇÕı³£ÇëÇó¶ÔÏóµÄpriorityÉèÖÃÎª99
- * <br>Ôò¿ÉÒÔÊµÏÖ99:1µÄ»ñÈ¡¹ØÏµ
+ * ç®€å•è·å–ç­–ç•¥ä¸Šä¸‹æ–‡å®ç°<br>
+ * <p><b>åŸºæœ¬å®ç°æ€è·¯:</b>
+ * <br>contextä¸­åˆå§‹åŒ–sizeä¸ºmaxPriority+1çš„listï¼ŒmaxPriorityé»˜è®¤ä¸º99
+ * <br>listä¸­çš„å…ƒç´ ä¸ºLinkedBlockingQueue,queueLené»˜è®¤ä¸º1000,<b>contextæ€»å®¹é‡=listSize * queueLen</b>
+ * <br>å¾€contextä¸­æ·»åŠ å…ƒç´ æ—¶ï¼Œæ ¹æ® {@link PriorityObject#getPriority(int maxPriority)}çš„å€¼æ”¾å…¥åˆ°å¯¹åº”çš„queueä¸­
+ * <br>è·å–å…ƒç´ ï¼Œéå†listä¸­çš„Queueï¼Œè·å–å…¶ç¬¬ä¸€ä¸ªèŠ‚ç‚¹ï¼Œéç©ºç«‹å³è¿”å›
+ * <br>contextä¸ºç©ºåˆ™è¿”å›null
+ * <p><b>ä½¿ç”¨åœºæ™¯ä¸¾ä¾‹ï¼š</b>
+ * <br>æ­£å¸¸çš„è¯·æ±‚å¯¹è±¡çš„priorityéšæœºä¸º0~98
+ * <br>éæ­£å¸¸è¯·æ±‚å¯¹è±¡çš„priorityè®¾ç½®ä¸º99
+ * <br>åˆ™å¯ä»¥å®ç°99:1çš„è·å–å…³ç³»
  * @author quzhuping
  * @param <T> extends {@link PriorityObject}
  */
@@ -29,14 +29,14 @@ public class PriorityContext<T extends PriorityObject> {
 	private final int latch; 
 
 	/**
-	 * ³õÊ¼»¯maxPriority=99µÄcontext
+	 * åˆå§‹åŒ–maxPriority=99çš„context
 	 */
 	public PriorityContext(){
 		this(99, 1000);
 	}
 	
 	/**
-	 * Èç¹ûmaxPriorityÎª0£¬Ôò½á¹¹µÈÍ¬ÓÚµ¥Ò»Queue
+	 * å¦‚æœmaxPriorityä¸º0ï¼Œåˆ™ç»“æ„ç­‰åŒäºå•ä¸€Queue
 	 * @param maxPriority (0 <= value <= 99)
 	 * @param bucketQueueLen (1<= value < 10000)
 	 */
@@ -63,7 +63,7 @@ public class PriorityContext<T extends PriorityObject> {
 		}
 	}
 	/**
-	 * »ñÈ¡²¢ÒÆ³ıcontextÖĞµÄobj£¬Èç¹ûcontextÎª¿Õ£¬Ôò·µ»Ø null¡£
+	 * è·å–å¹¶ç§»é™¤contextä¸­çš„objï¼Œå¦‚æœcontextä¸ºç©ºï¼Œåˆ™è¿”å› nullã€‚
 	 * @return
 	 */
 	public T poll(){
@@ -82,8 +82,8 @@ public class PriorityContext<T extends PriorityObject> {
 	}
 	
 	/**
-	 * ´ÓcontextÖĞÒÆ³ıÖ¸¶¨obj
-	 * @param obj ´øÒÆ³ıµÄobj
+	 * ä»contextä¸­ç§»é™¤æŒ‡å®šobj
+	 * @param obj å¸¦ç§»é™¤çš„obj
 	 * @return
 	 */
 	public boolean remove(T obj){
@@ -99,11 +99,11 @@ public class PriorityContext<T extends PriorityObject> {
 	}
 	
 	/**
-	 * Ìí¼Óobjµ½contextÖĞ
-	 * <br>Èç¹ûobjµÄpriority>maxPriorityÔò½«¶ÔÏó·ÅÈë×îºóÒ»¸öqueueÖĞ
-	 * <br>Èç¹ûobjµÄpriority<0Ôò½«¶ÔÏó·ÅÈëµÚÒ»¸öqueueÖĞ(list.index = 0)
+	 * æ·»åŠ objåˆ°contextä¸­
+	 * <br>å¦‚æœobjçš„priority>maxPriorityåˆ™å°†å¯¹è±¡æ”¾å…¥æœ€åä¸€ä¸ªqueueä¸­
+	 * <br>å¦‚æœobjçš„priority<0åˆ™å°†å¯¹è±¡æ”¾å…¥ç¬¬ä¸€ä¸ªqueueä¸­(list.index = 0)
 	 * @param obj
-	 * @return true³É¹¦£¬false¶ÓÁĞÂú
+	 * @return trueæˆåŠŸï¼Œfalseé˜Ÿåˆ—æ»¡
 	 */
 	public boolean offer(T obj){
 		int priority = obj.getPriority();
@@ -118,7 +118,7 @@ public class PriorityContext<T extends PriorityObject> {
 	}
 	
 	/**
-	 * contexÖĞµÄelements
+	 * contexä¸­çš„elements
 	 * @return
 	 */
 	public int size(){

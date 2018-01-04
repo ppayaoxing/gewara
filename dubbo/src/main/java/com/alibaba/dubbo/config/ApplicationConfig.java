@@ -34,37 +34,37 @@ public class ApplicationConfig extends AbstractConfig {
 
     private static final long    serialVersionUID = 5508512956753757169L;
 
-    // Ó¦ÓÃÃû³Æ
+    // åº”ç”¨åç§°
     private String               name;
 
-    // Ä£¿é°æ±¾
+    // æ¨¡å—ç‰ˆæœ¬
     private String               version;
 
-    // Ó¦ÓÃ¸ºÔğÈË
+    // åº”ç”¨è´Ÿè´£äºº
     private String               owner;
 
-    // ×éÖ¯Ãû(BU»ò²¿ÃÅ)
+    // ç»„ç»‡å(BUæˆ–éƒ¨é—¨)
     private String               organization;
 
-    // ·Ö²ã
+    // åˆ†å±‚
     private String               architecture;
 
-    // »·¾³£¬Èç£ºdev/test/run
+    // ç¯å¢ƒï¼Œå¦‚ï¼šdev/test/run
     private String               environment;
 
-    // Java´úÂë±àÒëÆ÷
+    // Javaä»£ç ç¼–è¯‘å™¨
     private String               compiler;
 
-    // ÈÕÖ¾Êä³ö·½Ê½
+    // æ—¥å¿—è¾“å‡ºæ–¹å¼
     private String               logger;
 
-    // ×¢²áÖĞĞÄ
+    // æ³¨å†Œä¸­å¿ƒ
     private List<RegistryConfig> registries;
 
-    // ·şÎñ¼à¿Ø
+    // æœåŠ¡ç›‘æ§
     private MonitorConfig        monitor;
 
-    // ÊÇ·ñÎªÈ±Ê¡
+    // æ˜¯å¦ä¸ºç¼ºçœ
     private Boolean              isDefault;
 
     public ApplicationConfig() {

@@ -87,7 +87,7 @@ public class RpcUtils {
 	}
     
     /**
-     * ÃİµÈ²Ù×÷:Òì²½²Ù×÷Ä¬ÈÏÌí¼Óinvocation id
+     * å¹‚ç­‰æ“ä½œ:å¼‚æ­¥æ“ä½œé»˜è®¤æ·»åŠ invocation id
      * @param url
      * @param inv
      */
@@ -100,13 +100,13 @@ public class RpcUtils {
     private static boolean isAttachInvocationId(URL url , Invocation invocation) {
     	String value = url.getMethodParameter(invocation.getMethodName(), Constants.AUTO_ATTACH_INVOCATIONID_KEY);
     	if ( value == null ) {
-    		//Òì²½²Ù×÷Ä¬ÈÏÌí¼Óinvocationid
+    		//å¼‚æ­¥æ“ä½œé»˜è®¤æ·»åŠ invocationid
     		return isAsync(url,invocation) ;
     	} else if (Boolean.TRUE.toString().equalsIgnoreCase(value)) {
-    		//ÉèÖÃÎªÌí¼Ó£¬ÔòÒ»¶¨Ìí¼Ó
+    		//è®¾ç½®ä¸ºæ·»åŠ ï¼Œåˆ™ä¸€å®šæ·»åŠ 
     		return true;
     	} else {
-    		//valueÎªfalseÊ±£¬²»Ìí¼Ó
+    		//valueä¸ºfalseæ—¶ï¼Œä¸æ·»åŠ 
     		return false;
     	}
     }
@@ -151,7 +151,7 @@ public class RpcUtils {
     
     public static boolean isAsync(URL url, Invocation inv) {
     	boolean isAsync ;
-    	//Èç¹ûJava´úÂëÖĞÉèÖÃÓÅÏÈ.
+    	//å¦‚æœJavaä»£ç ä¸­è®¾ç½®ä¼˜å…ˆ.
     	if (Boolean.TRUE.toString().equals(inv.getAttachment(Constants.ASYNC_KEY))) {
     		isAsync = true;
     	} else {
@@ -162,7 +162,7 @@ public class RpcUtils {
     
     public static boolean isOneway(URL url, Invocation inv) {
     	boolean isOneway ;
-    	//Èç¹ûJava´úÂëÖĞÉèÖÃÓÅÏÈ.
+    	//å¦‚æœJavaä»£ç ä¸­è®¾ç½®ä¼˜å…ˆ.
     	if (Boolean.FALSE.toString().equals(inv.getAttachment(Constants.RETURN_KEY))) {
     		isOneway = true;
     	} else {

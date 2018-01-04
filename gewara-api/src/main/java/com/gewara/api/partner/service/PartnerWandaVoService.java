@@ -5,15 +5,15 @@ import com.gewara.api.vo.ResultCode;
 
 public interface PartnerWandaVoService {
 	/**
-	 * 获取万达选座地址2
+	 * 鑾峰彇涓囪揪閫夊骇鍦板潃2
 	 */
 	ResultCode<String> getSeatInfo2(PartnerCommonReqVo reqVo);
 	/**
-	 * 万达下单2
+	 * 涓囪揪涓嬪崟2
 	 */
 	ResultCode<String> createOrder2(PartnerCommonReqVo reqVo);
 	/**
-	 * 获取特价活动的购买提示（相关的购买限制）
+	 * 鑾峰彇鐗逛环娲诲姩鐨勮喘涔版彁绀猴紙鐩稿叧鐨勮喘涔伴檺鍒讹級
 	 * @param sdid
 	 * @return
 	 */

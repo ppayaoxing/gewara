@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface HBaseService extends com.gewara.hbase.HBaseService {
 	/**
-	 * 保存记录
+	 * 淇濆瓨璁板綍
 	 * 
 	 * @param tableSmsrecordhis
 	 * @param fb
@@ -21,7 +21,7 @@ public interface HBaseService extends com.gewara.hbase.HBaseService {
 	void saveRowListByString(String tablename, String idName, List<Map<String, String>> rowList);
 
 	/**
-	 * 获取记录
+	 * 鑾峰彇璁板綍
 	 * 
 	 * @param tablename
 	 * @param rowid

@@ -12,13 +12,13 @@ public interface CommentMemberService {
 	ResultCode<List<Long>> getFlowerMemberIdList(String type, Long relatedid, int from, int maxnum);
 	
 	/**
-	 * ¸ù¾İmemberId »ñÈ¡µãÔŞÁĞ±í
+	 * æ ¹æ®memberId è·å–ç‚¹èµåˆ—è¡¨
 	 */
 	ResultCode<List<FlowerMemberVo>> getFlowerMemberByParent(Long memberid, Long parentid, String parenttype, int from, int maxnum);
 	
 	ResultCode<List<CommentVo>> getCommentListByMemberIdAndTags(String tags, Long memberId, String beginTime, String endTime, int from, int maxnum);
 	/**
-	 * µÃµ½ÓÃ»§·¢±íÍÛÀ²ÊıºÍ»Ø¸´Êı
+	 * å¾—åˆ°ç”¨æˆ·å‘è¡¨å“‡å•¦æ•°å’Œå›å¤æ•°
 	 * @param memberid
 	 * @return key:commentcount minaddtime maxaddtime maxid
 	 */

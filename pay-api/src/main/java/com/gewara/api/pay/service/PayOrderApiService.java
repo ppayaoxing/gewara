@@ -12,35 +12,35 @@ import com.gewara.api.vo.ResultCode;
 public interface PayOrderApiService {
 
 	/**
-	 * Í¨¹ıtradeNo»ñÈ¡Ö§¸¶¶©µ¥ĞÅÏ¢
+	 * é€šè¿‡tradeNoè·å–æ”¯ä»˜è®¢å•ä¿¡æ¯
 	 * @param request
 	 * @return
 	 */
 	ResultCode<GetPayOrderResponse> get(GetPayOrderRequest request);
 	
 	/**
-	 * Í¨¹ıtradeNo»ñÈ¡ÒøĞĞÁ÷Ë®ĞÅÏ¢ĞÅÏ¢
+	 * é€šè¿‡tradeNoè·å–é“¶è¡Œæµæ°´ä¿¡æ¯ä¿¡æ¯
 	 * @param request
 	 * @return
 	 */
 	ResultCode<GetPayRecordResponse> getPayRecordByTradeNo(GetPayRecordByTradeNoRequest request);
 	
 	/**
-	 * »ñÈ¡Ò»¶ÎÊ±¼äÄÚµÄ£¬ÖØ¸´¶©µ¥¶ÔÓ¦µÄPayRecord
+	 * è·å–ä¸€æ®µæ—¶é—´å†…çš„ï¼Œé‡å¤è®¢å•å¯¹åº”çš„PayRecord
 	 * @return
 	 */
 	ResultCode<GetPayRecordResponse> getPayRecord(GetPayRecordRequest request);
 	
 	/**
-	 * »ñÈ¡Ò»¶ÎÊ±¼äÄÚ£¬ÖØ¸´Ö§¸¶ÒøĞĞÁ÷Ë®ĞÅÏ¢
-	 * ×¢Òâ£º1¡¢¿ªÊ¼Ê±¼äÓë½áÊøÇø¼ä×î´ó²»ÄÜ³¬¹ı10Ìì£» 2¡¢list½á¹û¼ÇÂ¼Êı×î´óÎª1000£¬×Ü¼ÇÂ¼Êı¼ÇÂ¼ÔÚtotalÖĞ
+	 * è·å–ä¸€æ®µæ—¶é—´å†…ï¼Œé‡å¤æ”¯ä»˜é“¶è¡Œæµæ°´ä¿¡æ¯
+	 * æ³¨æ„ï¼š1ã€å¼€å§‹æ—¶é—´ä¸ç»“æŸåŒºé—´æœ€å¤§ä¸èƒ½è¶…è¿‡10å¤©ï¼› 2ã€listç»“æœè®°å½•æ•°æœ€å¤§ä¸º1000ï¼Œæ€»è®°å½•æ•°è®°å½•åœ¨totalä¸­
 	 * @param request
 	 * @return
 	 */
 	ResultCode<GetPayRepeatTradeResponse> getPayRepeatTrade(GetPayRepeatTradeRequest request);
 	
 	/**
-	 * »ñÈ¡Ò»¶ÎÊ±¼äÄÚ,Ö¸¶¨gatewayCodeºÍmerchantCode¶ÔÓ¦µÄÒøĞĞÁ÷Ë®ĞÅÏ¢ĞÅÏ¢
+	 * è·å–ä¸€æ®µæ—¶é—´å†…,æŒ‡å®šgatewayCodeå’ŒmerchantCodeå¯¹åº”çš„é“¶è¡Œæµæ°´ä¿¡æ¯ä¿¡æ¯
 	 * @return
 	 */
 	ResultCode<GetPayRecordResponse> queryPayRecord(GetPayRecordRequest request);

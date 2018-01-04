@@ -62,7 +62,7 @@ public interface Endpoint {
      * send message.
      * 
      * @param message
-     * @param sent ÊÇ·ñÒÑ·¢ËÍÍê³É
+     * @param sent æ˜¯å¦å·²å‘é€å®Œæˆ
      */
     void send(Object message, boolean sent) throws RemotingException;
 

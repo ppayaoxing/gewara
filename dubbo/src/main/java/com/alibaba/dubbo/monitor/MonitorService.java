@@ -64,23 +64,23 @@ public interface MonitorService {
     String MAX_CONCURRENT = "max.concurrent";
 
     /**
-     * ¼à¿ØÊı¾İ²É¼¯.
-     * 1. Ö§³Öµ÷ÓÃ´ÎÊıÍ³¼Æ£ºcount://host/interface?application=foo&method=foo&provider=10.20.153.11:20880&success=12&failure=2&elapsed=135423423
-     * 1.1 host,application,interface,group,version,method ¼ÇÂ¼¼à¿ØÀ´Ô´Ö÷»ú£¬Ó¦ÓÃ£¬½Ó¿Ú£¬·½·¨ĞÅÏ¢¡£
-     * 1.2 Èç¹ûÊÇÏû·ÑÕß·¢ËÍµÄÊı¾İ£¬¼ÓÉÏproviderµØÖ·²ÎÊı£¬·´Ö®£¬¼ÓÉÏÀ´Ô´consumerµØÖ·²ÎÊı¡£
-     * 1.3 success,faulure,elapsed ¼ÇÂ¼¾àÉÏ´Î²É¼¯£¬µ÷ÓÃµÄ³É¹¦´ÎÊı£¬Ê§°Ü´ÎÊı£¬³É¹¦µ÷ÓÃ×ÜºÄÊ±£¬Æ½¾ùÊ±¼ä½«ÓÃ×ÜºÄÊ±³ıÒÔ³É¹¦´ÎÊı¡£
+     * ç›‘æ§æ•°æ®é‡‡é›†.
+     * 1. æ”¯æŒè°ƒç”¨æ¬¡æ•°ç»Ÿè®¡ï¼šcount://host/interface?application=foo&method=foo&provider=10.20.153.11:20880&success=12&failure=2&elapsed=135423423
+     * 1.1 host,application,interface,group,version,method è®°å½•ç›‘æ§æ¥æºä¸»æœºï¼Œåº”ç”¨ï¼Œæ¥å£ï¼Œæ–¹æ³•ä¿¡æ¯ã€‚
+     * 1.2 å¦‚æœæ˜¯æ¶ˆè´¹è€…å‘é€çš„æ•°æ®ï¼ŒåŠ ä¸Šprovideråœ°å€å‚æ•°ï¼Œåä¹‹ï¼ŒåŠ ä¸Šæ¥æºconsumeråœ°å€å‚æ•°ã€‚
+     * 1.3 success,faulure,elapsed è®°å½•è·ä¸Šæ¬¡é‡‡é›†ï¼Œè°ƒç”¨çš„æˆåŠŸæ¬¡æ•°ï¼Œå¤±è´¥æ¬¡æ•°ï¼ŒæˆåŠŸè°ƒç”¨æ€»è€—æ—¶ï¼Œå¹³å‡æ—¶é—´å°†ç”¨æ€»è€—æ—¶é™¤ä»¥æˆåŠŸæ¬¡æ•°ã€‚
      * 
      * @param statistics
      */
     void collect(URL statistics);
 
     /**
-     * ¼à¿ØÊı¾İ²éÑ¯.?
-     * 1. Ö§³Ö°´Ìì²éÑ¯£ºcount://host/interface?application=foo&method=foo&side=provider&view=chart&date=2012-07-03
-     * 1.1 host,application,interface,group,version,method ²éÑ¯Ö÷»ú£¬Ó¦ÓÃ£¬½Ó¿Ú£¬·½·¨µÄÆ¥ÅäÌõ¼ş£¬È±Ê§µÄÌõ¼şµÄ±íÊ¾È«²¿£¬hostÓÃ0.0.0.0±íÊ¾È«²¿¡£
-     * 1.2 side=consumer,provider ²éÑ¯ÓÉµ÷ÓÃµÄÄÄÒ»¶Ë²É¼¯µÄÊı¾İ£¬È±Ê¡Îª¶¼²éÑ¯¡£
-     * 1.3 È±Ê¡Îªview=summary£¬·µ»ØÈ«Ìì»ã×ÜĞÅÏ¢£¬Ö§³Öview=chart±íÊ¾·µ»ØÈ«ÌìÇ÷ÊÆÍ¼±íÍ¼Æ¬µÄURLµØÖ·£¬¿ÉÒÔ½ø½ÓÇ¶ÈëÆäËüÏµÍ³µÄÒ³ÃæÉÏÕ¹Ê¾¡£
-     * 1.4 date=2012-07-03 Ö¸¶¨²éÑ¯Êı¾İµÄÈÕÆÚ£¬È±Ê¡Îªµ±Ìì¡£
+     * ç›‘æ§æ•°æ®æŸ¥è¯¢.?
+     * 1. æ”¯æŒæŒ‰å¤©æŸ¥è¯¢ï¼šcount://host/interface?application=foo&method=foo&side=provider&view=chart&date=2012-07-03
+     * 1.1 host,application,interface,group,version,method æŸ¥è¯¢ä¸»æœºï¼Œåº”ç”¨ï¼Œæ¥å£ï¼Œæ–¹æ³•çš„åŒ¹é…æ¡ä»¶ï¼Œç¼ºå¤±çš„æ¡ä»¶çš„è¡¨ç¤ºå…¨éƒ¨ï¼Œhostç”¨0.0.0.0è¡¨ç¤ºå…¨éƒ¨ã€‚
+     * 1.2 side=consumer,provider æŸ¥è¯¢ç”±è°ƒç”¨çš„å“ªä¸€ç«¯é‡‡é›†çš„æ•°æ®ï¼Œç¼ºçœä¸ºéƒ½æŸ¥è¯¢ã€‚
+     * 1.3 ç¼ºçœä¸ºview=summaryï¼Œè¿”å›å…¨å¤©æ±‡æ€»ä¿¡æ¯ï¼Œæ”¯æŒview=chartè¡¨ç¤ºè¿”å›å…¨å¤©è¶‹åŠ¿å›¾è¡¨å›¾ç‰‡çš„URLåœ°å€ï¼Œå¯ä»¥è¿›æ¥åµŒå…¥å…¶å®ƒç³»ç»Ÿçš„é¡µé¢ä¸Šå±•ç¤ºã€‚
+     * 1.4 date=2012-07-03 æŒ‡å®šæŸ¥è¯¢æ•°æ®çš„æ—¥æœŸï¼Œç¼ºçœä¸ºå½“å¤©ã€‚
      * 
      * @param query
      * @return statistics

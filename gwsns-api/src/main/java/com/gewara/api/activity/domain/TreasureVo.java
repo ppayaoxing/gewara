@@ -8,42 +8,42 @@ import com.gewara.api.vo.BaseVo;
 public class TreasureVo extends BaseVo{
 	
 	private static final long serialVersionUID = -673268778354641818L;
-	//³¡ËùÓëÈËµÄÊÕ²Ø
+	//åœºæ‰€ä¸äººçš„æ”¶è—
 	public static final String ACTION_COLLECT = "collect";
-	//Ç©µ½
+	//ç­¾åˆ°
 	public static final String ACTION_SIGN = "sign";
-	//³¡ËùµÄÏëÈ¥£¬µçÓ°µÄÏë¿´
+	//åœºæ‰€çš„æƒ³å»ï¼Œç”µå½±çš„æƒ³çœ‹
 	public static final String ACTION_XIANGQU = "xiangqu";
-	//³¡ËùµÄÈ¥¹ı£¬µçÓ°µÄ¿´¹ı
+	//åœºæ‰€çš„å»è¿‡ï¼Œç”µå½±çš„çœ‹è¿‡
 	public static final String ACTION_QUGUO = "quguo";
-	//Ïë¸úÄ³½ÌÁ·Ñ§
+	//æƒ³è·ŸæŸæ•™ç»ƒå­¦
 	public static final String ACTION_XIANGXUE="xiangxue";
-	//ÕıÔÚÁ·è¤Ù¤
+	//æ­£åœ¨ç»ƒç‘œä¼½
 	public static final String ACTION_PLAYING="playing";
-	//Á·¹ıè¤Ù¤
+	//ç»ƒè¿‡ç‘œä¼½
 	public static final String ACTION_PLAYED="played";
-	//ÏëÒ»ÆğÁ·è¤Ù¤
+	//æƒ³ä¸€èµ·ç»ƒç‘œä¼½
 	public static final String ACTION_TOGETHER="together";
 	
-	//¹Ø×¢ÈË
+	//å…³æ³¨äºº
 	public static final String TAG_MEMBER = "member";
 	
-	// »°¾çÃ÷ĞÇ°æ¿é
-	public static final String ACTION_FANS = "fans";	// ³ÉÎª·ÛË¿
-	//ÊÕ²Ø»î¶¯
+	// è¯å‰§æ˜æ˜Ÿç‰ˆå—
+	public static final String ACTION_FANS = "fans";	// æˆä¸ºç²‰ä¸
+	//æ”¶è—æ´»åŠ¨
 	public static final String ACTION_ACTIVITY = "activity";
 	
 	private Long id;
-	private Long memberid; //¶¯×÷·¢³öÕß
-	//private Member member; //ÊÖ¹¤¹ØÁª
-	private String tag; //Ä£¿é
-	private String action;//¶¯×÷£ºxiangqu¡¢quguo¡¢collect¡¢xiangxue
-	private Long relatedid;//¹ØÁªµÄ¶ÔÏó
+	private Long memberid; //åŠ¨ä½œå‘å‡ºè€…
+	//private Member member; //æ‰‹å·¥å…³è”
+	private String tag; //æ¨¡å—
+	private String action;//åŠ¨ä½œï¼šxiangquã€quguoã€collectã€xiangxue
+	private Long relatedid;//å…³è”çš„å¯¹è±¡
 	private Timestamp addtime; 
 	
 	//20110418
-	private String actionlabel; //±êÇ©
-	private Integer unreadnum; //Î´¶Á±êÇ©ÊıÁ¿
+	private String actionlabel; //æ ‡ç­¾
+	private Integer unreadnum; //æœªè¯»æ ‡ç­¾æ•°é‡
 	
 	public String getActionlabel() {
 		return actionlabel;

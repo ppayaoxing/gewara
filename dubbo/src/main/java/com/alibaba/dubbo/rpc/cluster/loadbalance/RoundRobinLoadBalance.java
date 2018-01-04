@@ -42,15 +42,15 @@ public class RoundRobinLoadBalance extends AbstractLoadBalance {
     @Override
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {
         String key = invokers.get(0).getUrl().getServiceKey() + "." + invocation.getMethodName();
-        int length = invokers.size(); // �ܸ���
-        int maxWeight = 0; // ���Ȩ��
-        int minWeight = Integer.MAX_VALUE; // ��СȨ��
+        int length = invokers.size(); // 锟杰革拷锟斤拷
+        int maxWeight = 0; // 锟斤拷锟饺拷锟�
+        int minWeight = Integer.MAX_VALUE; // 锟斤拷小权锟斤拷
         for (int i = 0; i < length; i++) {
             int weight = getWeight(invokers.get(i), invocation);
-            maxWeight = Math.max(maxWeight, weight); // �ۼ����Ȩ��
-            minWeight = Math.min(minWeight, weight); // �ۼ���СȨ��
+            maxWeight = Math.max(maxWeight, weight); // 锟桔硷拷锟斤拷锟饺拷锟�
+            minWeight = Math.min(minWeight, weight); // 锟桔硷拷锟斤拷小权锟斤拷
         }
-        if (maxWeight > 0 && minWeight < maxWeight) { // Ȩ�ز�һ��
+        if (maxWeight > 0 && minWeight < maxWeight) { // 权锟截诧拷一锟斤拷
             AtomicPositiveInteger weightSequence = weightSequences.get(key);
             if (weightSequence == null) {
                 weightSequences.putIfAbsent(key, new AtomicPositiveInteger());
@@ -58,7 +58,7 @@ public class RoundRobinLoadBalance extends AbstractLoadBalance {
             }
             int currentWeight = weightSequence.getAndIncrement() % maxWeight;
             List<Invoker<T>> weightInvokers = new ArrayList<Invoker<T>>();
-            for (Invoker<T> invoker : invokers) { // ɸѡȨ�ش��ڵ�ǰȨ�ػ�����Invoker
+            for (Invoker<T> invoker : invokers) { // 筛选权锟截达拷锟节碉拷前权锟截伙拷锟斤拷锟斤拷Invoker
                 if (getWeight(invoker, invocation) > currentWeight) {
                     weightInvokers.add(invoker);
                 }
@@ -76,7 +76,7 @@ public class RoundRobinLoadBalance extends AbstractLoadBalance {
             sequences.putIfAbsent(key, new AtomicPositiveInteger());
             sequence = sequences.get(key);
         }
-        // ȡģ��ѭ
+        // 取模锟斤拷循
         return invokers.get(sequence.getAndIncrement() % length);
     }
 

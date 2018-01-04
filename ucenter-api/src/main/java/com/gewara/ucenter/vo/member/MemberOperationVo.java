@@ -7,19 +7,19 @@ import com.gewara.api.vo.BaseVo;
 public class MemberOperationVo extends BaseVo{
 	private static final long serialVersionUID = -3522154958693872559L;
 	/**
-	 * ĞŞ¸ÄÃÜÂë
+	 * ä¿®æ”¹å¯†ç 
 	 */
 	public static String OPS_PW = "W";
 	/**
-	 * °ó¶¨ÊÖ»ú
+	 * ç»‘å®šæ‰‹æœº
 	 */
 	public static String OPS_BIND = "B";
 	/**
-	 * ½â³ıÊÖ»ú°ó¶¨
+	 * è§£é™¤æ‰‹æœºç»‘å®š
 	 */
 	public static String OPS_UNBIND = "U";
 	/**
-	 * ÖØÖÃÖ§¸¶ÃÜÂë
+	 * é‡ç½®æ”¯ä»˜å¯†ç 
 	 */
 	public static String OPS_PAYCODE = "P";
 
@@ -27,8 +27,8 @@ public class MemberOperationVo extends BaseVo{
 	private Long userid;
 	private Long memberid;
 	private String applyIp;
-	private Long applyUserid;	//ÉêÇëÈË
-	private Long auditUserid;	//ÉóºËÈË
+	private Long applyUserid;	//ç”³è¯·äºº
+	private Long auditUserid;	//å®¡æ ¸äºº
 	private String auditIp;
 	private String mobile;
 	private String email;

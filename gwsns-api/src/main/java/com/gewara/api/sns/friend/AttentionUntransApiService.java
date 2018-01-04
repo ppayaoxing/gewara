@@ -10,33 +10,33 @@ import com.gewara.api.vo.VoMap;
 public interface AttentionUntransApiService {
 
 	/**
-	 * ¹Ø×¢ÓÃ»§
+	 * å…³æ³¨ç”¨æˆ·
 	 * @param memberid 
-	 * @param attentionid ±»¹Ø×¢µÄÓÃ»§id
+	 * @param attentionid è¢«å…³æ³¨çš„ç”¨æˆ·id
 	 */
 	ResultCode addAttention(Long memberid, Long attentionid);
 	
 	/**
-	 * È¡Ïû¹Ø×¢
+	 * å–æ¶ˆå…³æ³¨
 	 * @param memberid
-	 * @param attentionid ±»È¡ÏûµÄÓÃ»§id
+	 * @param attentionid è¢«å–æ¶ˆçš„ç”¨æˆ·id
 	 */
 	ResultCode cancelAttention(Long memberid, Long attentionid);
 	/**
-	 * ¹Ø×¢Êı ·ÛË¿Êı ĞÂÔö·ÛË¿Êı
+	 * å…³æ³¨æ•° ç²‰ä¸æ•° æ–°å¢ç²‰ä¸æ•°
 	 * @param memberid
-	 * @return key: total(¹Ø×¢) betotal(·ÛË¿) count(ĞÂÔö)
+	 * @return key: total(å…³æ³¨) betotal(ç²‰ä¸) count(æ–°å¢)
 	 */
 	ResultCode<VoMap<String,Integer>> getUserAttentionTotalVoMap(Long memberid);
 	/**
-	 * ÊÇ·ñ¹Ø×¢ÁË¸ÃÓÃ»§
+	 * æ˜¯å¦å…³æ³¨äº†è¯¥ç”¨æˆ·
 	 * @param memberid
 	 * @param attentionid
 	 * @return
 	 */
 	ResultCode<Boolean> hasAttention(Long memberid, Long attentionid);
 	/**
-	 * ¹Ø×¢ÁĞ±í
+	 * å…³æ³¨åˆ—è¡¨
 	 * @param memberid
 	 * @param from
 	 * @param maxnum
@@ -44,7 +44,7 @@ public interface AttentionUntransApiService {
 	 */
 	ResultCode<List> getUserAttention(Long memberid, int from, int maxnum);
 	/**
-	 * ·ÛË¿ÁĞ±í
+	 * ç²‰ä¸åˆ—è¡¨
 	 * @param memberid
 	 * @param from
 	 * @param maxnum
@@ -52,61 +52,61 @@ public interface AttentionUntransApiService {
 	 */
 	ResultCode<List> getUserBeAttention(Long memberid, int from, int maxnum);
 	/**
-	 * ÓÃ»§¹ØÏµ
-	 * @param memberid   µ±Ç°ÓÃ»§id
-	 * @param memberids  Æ¥ÅäÓÃ»§id
+	 * ç”¨æˆ·å…³ç³»
+	 * @param memberid   å½“å‰ç”¨æˆ·id
+	 * @param memberids  åŒ¹é…ç”¨æˆ·id
 	 * @return
 	 */
 	ResultCode<VoMap<Long,String>> relationShipVoMap(Long memberid, List<Long> memberids);
 	/**
-	 * ÊÇ·ñÊÇÎÒµÄ·ÛË¿
+	 * æ˜¯å¦æ˜¯æˆ‘çš„ç²‰ä¸
 	 * @param memberid
 	 * @param attentionid
 	 * @return
 	 */
 	ResultCode<Boolean> hasBeAttention(Long memberid, Long attentionid);
 	/**
-	 * µ¥¸öÓÃ»§¹ØÏµ
+	 * å•ä¸ªç”¨æˆ·å…³ç³»
 	 * @param memberid
 	 * @param attentionid
 	 * @return
 	 */
 	ResultCode<String> relationShip(Long memberid, Long attentionid);
 	/**
-	 * »ñÈ¡ÓÃ»§Ğ´¹ıµÄÍÛÀ²
+	 * è·å–ç”¨æˆ·å†™è¿‡çš„å“‡å•¦
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<List<Long>> getMemberTagCommentList(Long memberid);
 	/**
-	 * ÅúÁ¿¹Ø×¢ÓÃ»§
+	 * æ‰¹é‡å…³æ³¨ç”¨æˆ·
 	 * @param memberid 
-	 * @param attentionid ±»¹Ø×¢µÄÓÃ»§id
+	 * @param attentionid è¢«å…³æ³¨çš„ç”¨æˆ·id
 	 */
 	ResultCode addAttentions(Long memberid, List<Long> attentionid);
 	/**
-	 * Ôö¼ÓÓÃ»§ºÚÃûµ¥½Ó¿Ú
+	 * å¢åŠ ç”¨æˆ·é»‘åå•æ¥å£
 	 * @param memberid
 	 * @param beMemberid
 	 * @return
 	 */
 	ResultCode addBlackForUser(Long memberid, Long beMemberid);
 	/**
-	 * È¡ÏûÓÃ»§ºÚÃûµ¥½Ó¿Ú
+	 * å–æ¶ˆç”¨æˆ·é»‘åå•æ¥å£
 	 * @param memberid
 	 * @param beMemberid
 	 * @return
 	 */
 	ResultCode cancelBlackForUser(Long memberid, Long beMemberid);
 	/**
-	 * ÊÇ·ñÀ­ºÚ
+	 * æ˜¯å¦æ‹‰é»‘
 	 * @param memberid
 	 * @param beMemberid
 	 * @return
 	 */
 	ResultCode<Boolean> checkIsBlackUser(Long memberid,Long beMemberid); 
 	/**
-	 * »ñÈ¡Ö¸¶¨ÓÃ»§µÄºÚÃûµ¥ÓÃ»§
+	 * è·å–æŒ‡å®šç”¨æˆ·çš„é»‘åå•ç”¨æˆ·
 	 * @param memberid
 	 * @return
 	 */

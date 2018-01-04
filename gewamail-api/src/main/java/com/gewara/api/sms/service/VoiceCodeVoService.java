@@ -6,7 +6,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface VoiceCodeVoService {
 	/**
-	 * 发送语音短信验证码
+	 * 鍙戦�佽闊崇煭淇￠獙璇佺爜
 	 * @param mobile
 	 * @param checkcode
 	 * @param memberid

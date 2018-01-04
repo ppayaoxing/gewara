@@ -12,9 +12,9 @@ public class SportVo extends BaseVo {
 	public static final String BOOKING_CLOSE = "close";
 	protected Long id;
 	protected String name;
-	protected String briefname;// Ãû³Æ¼ò³Æ
-	protected String seotitle; // SEO¹Ø¼ü×Ö
-	protected String seodescription; // SEOÃèÊö
+	protected String briefname;// åç§°ç®€ç§°
+	protected String seotitle; // SEOå…³é”®å­—
+	protected String seodescription; // SEOæè¿°
 	protected String englishname;
 	protected String pinyin;
 	protected String content;
@@ -25,17 +25,17 @@ public class SportVo extends BaseVo {
 	protected String firstpic;
 	protected Integer clickedtimes;
 	protected Integer quguo;
-	protected Integer xiangqu; // »°¾çÃ÷ĞÇ°æ¿é: Ïë³ÉÎª·ÛË¿
+	protected Integer xiangqu; // è¯å‰§æ˜æ˜Ÿç‰ˆå—: æƒ³æˆä¸ºç²‰ä¸
 	protected Integer generalmark;
 	protected Integer generalmarkedtimes;
 
 	protected Integer avggeneral;
-	protected Integer collectedtimes; // ±»ÊÕ²Ø´ÎÊı
+	protected Integer collectedtimes; // è¢«æ”¶è—æ¬¡æ•°
 	private String services;
 	private String openinfo;
 	private String flag;
-	public static final String FLAG_RECOMMEND = "recommend";// ÍÆ¼ö·ÖÀà
-	public static final String FLAG_HOT = "hot";// ÍÆ¼öÈÈÃÅ
+	public static final String FLAG_RECOMMEND = "recommend";// æ¨èåˆ†ç±»
+	public static final String FLAG_HOT = "hot";// æ¨èçƒ­é—¨
 	private Integer avgfield;
 	private String booking;
 	private String floorplan;

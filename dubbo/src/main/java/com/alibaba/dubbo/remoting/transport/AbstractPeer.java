@@ -92,7 +92,7 @@ public abstract class AbstractPeer implements Endpoint, ChannelHandler {
     }
     
     /**
-     * �������յ�handler�������ѱ�wrap,��Ҫ������getChannelHandler
+     * 锟斤拷锟斤拷锟斤拷锟秸碉拷handler锟斤拷锟斤拷锟斤拷锟窖憋拷wrap,锟斤拷要锟斤拷锟斤拷锟斤拷getChannelHandler
      * @return ChannelHandler
      */
     public ChannelHandler getDelegateHandler() {

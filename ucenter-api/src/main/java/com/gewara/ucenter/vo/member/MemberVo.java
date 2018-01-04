@@ -25,8 +25,8 @@ public class MemberVo extends BaseVo{
 	private String bindStatus;		
 	private String headpicUrl;
 	private Timestamp addtime;
-	private long lastLoginTime; //ÓÃ»§×îºóµÇÂ¼Ê±¼ä´Á
-	private String needValid;	//»ÆÅ£¿ÉÄÜĞÔ£ºY ĞèÒª¶ÌĞÅ»Ø¸´ÑéÖ¤£¬N£º²»ĞèÒªÑéÖ¤£¬U£ºÔİ²»ĞèÒªÑéÖ¤
+	private long lastLoginTime; //ç”¨æˆ·æœ€åç™»å½•æ—¶é—´æˆ³
+	private String needValid;	//é»„ç‰›å¯èƒ½æ€§ï¼šY éœ€è¦çŸ­ä¿¡å›å¤éªŒè¯ï¼ŒNï¼šä¸éœ€è¦éªŒè¯ï¼ŒUï¼šæš‚ä¸éœ€è¦éªŒè¯
 	private String memberEncode;
 	private String gewara_uskey_;
 	

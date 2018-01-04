@@ -7,7 +7,7 @@ import com.gewara.api.vo.ResultCode;
 public interface DrawActivityService {
 
 	/**
-	 * 根据专题模板id获取抽奖信息
+	 * 鏍规嵁涓撻妯℃澘id鑾峰彇鎶藉淇℃伅
 	 * @param drawId
 	 * @return
 	 */

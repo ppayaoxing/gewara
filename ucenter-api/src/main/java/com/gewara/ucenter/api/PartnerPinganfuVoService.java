@@ -5,21 +5,21 @@ import com.gewara.ucenter.vo.member.MemberVo;
 
 public interface PartnerPinganfuVoService {
 	/**
-	 * Æ½°²¸¶ÁªÃûµÇÂ¼½Ó¿Ú
-	 * @param loginToken      Æ½°²¸¶µÄµÇÂ¼token
-	 * @param uid			     ÁªÃûÓÃ»§µÄÎ¨Ò»ID
-	 * @param citycode        ³ÇÊĞ±àÂë
-	 * @param remoteIp        µÇÂ¼ÓÃ»§IP
-	 * @return                ÓÃ»§ÊµÌå¶ÔÏó
+	 * å¹³å®‰ä»˜è”åç™»å½•æ¥å£
+	 * @param loginToken      å¹³å®‰ä»˜çš„ç™»å½•token
+	 * @param uid			     è”åç”¨æˆ·çš„å”¯ä¸€ID
+	 * @param citycode        åŸå¸‚ç¼–ç 
+	 * @param remoteIp        ç™»å½•ç”¨æˆ·IP
+	 * @return                ç”¨æˆ·å®ä½“å¯¹è±¡
 	 */
 	public ResultCode<MemberVo> pinganfuLogin(String loginToken, String uid, String citycode, String remoteIp);
 	
 	/**
 	 * 
-	 * »ñÈ¡»ñÈ¡Æ½°²¸¶µÇÂ¼token
-	 * @param memberId            ¸ñÍßÀ­ÓÃ»§id
-	 * @param transactionId       Æ½°²¸¶ÓÃ»§Î¨Ò»±êÊ¶
-	 * @return                    Æ½°²¸¶ÓÃ»§µÇÂ¼token
+	 * è·å–è·å–å¹³å®‰ä»˜ç™»å½•token
+	 * @param memberId            æ ¼ç“¦æ‹‰ç”¨æˆ·id
+	 * @param transactionId       å¹³å®‰ä»˜ç”¨æˆ·å”¯ä¸€æ ‡è¯†
+	 * @return                    å¹³å®‰ä»˜ç”¨æˆ·ç™»å½•token
 	 */
 	public ResultCode<String> getLoginToken(Long memberId, String transactionId);
 }

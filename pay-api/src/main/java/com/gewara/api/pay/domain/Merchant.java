@@ -6,14 +6,14 @@ public class Merchant extends ApiObject{
 
 	private static final long serialVersionUID = -7238549364422637305L;
 	
-	private Long id;	//Ö÷¼ü
-	private Long gatewayId;	//Ö§ÅäÅäÖÃID
-	private String merchantCode;	//ÉÌ»§ºÅ±êÊ¶
-	private String merchantNo;	//ÉÌ»§ºÅ
-	private String cityCode;	//³ÇÊĞ
-	private String acquiringBank;	//ÊÕµ¥ĞĞ
-	private String description;	//ÉÌ»§ºÅËµÃ÷
-	private String status;	//ÉÌ»§ºÅ×´Ì¬£ºNO_USE£ºÎ´ÆôÓÃ£»IN_USE£ºÊ¹ÓÃÖĞ£»DESUETUDE£º·ÏÆú£»
+	private Long id;	//ä¸»é”®
+	private Long gatewayId;	//æ”¯é…é…ç½®ID
+	private String merchantCode;	//å•†æˆ·å·æ ‡è¯†
+	private String merchantNo;	//å•†æˆ·å·
+	private String cityCode;	//åŸå¸‚
+	private String acquiringBank;	//æ”¶å•è¡Œ
+	private String description;	//å•†æˆ·å·è¯´æ˜
+	private String status;	//å•†æˆ·å·çŠ¶æ€ï¼šNO_USEï¼šæœªå¯ç”¨ï¼›IN_USEï¼šä½¿ç”¨ä¸­ï¼›DESUETUDEï¼šåºŸå¼ƒï¼›
 	
 	public Long getId() {
 		return id;

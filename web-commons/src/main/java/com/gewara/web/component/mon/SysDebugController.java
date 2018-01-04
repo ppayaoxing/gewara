@@ -54,7 +54,7 @@ public class SysDebugController {
 		String ip = BaseWebUtils.getRemoteIp(request);
 		GewaIpConfig.filterOfficeIp(ip);
 		if(StringUtils.isNotBlank(f)){
-			model.put("f", f);//²âÊÔ
+			model.put("f", f);//æµ‹è¯•
 			ViewContextDebugger.ignoreField = Arrays.asList(StringUtils.split(f, ","));
 		}
 		return GewaIpConfig.getHostname() +":" + ViewContextDebugger.isDebugEnabled() + ":" + f;

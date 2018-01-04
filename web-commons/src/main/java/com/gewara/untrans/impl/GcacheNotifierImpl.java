@@ -14,7 +14,7 @@ import com.gewara.util.GcacheManager;
 import com.gewara.util.JsonUtils;
 
 /**
- * 基于redis pub/sub实现
+ * 鍩轰簬redis pub/sub瀹炵幇
  * @author quzhuping
  */
 public class GcacheNotifierImpl implements GcacheNotifier {

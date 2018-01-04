@@ -11,21 +11,21 @@ public class CreateMovieOrderReq extends CreateOrderReq {
 	public static String SOURCE_PC_PARTNER_SH = "pc_partner_sh";
 	public static String SOURCE_H5_PARTNER_SH = "h5_partner_sh";
 	public static String SOURCE_H5_GEWA_SH = "h5_gewa_sh";
-	private String memberNickName;	//ÓÃ»§êÇ³Æ
-	private String seatLabel;		//×ùÎ»£º1:2,1:3
-	private String secid;			//Ó°ÌüÇøÓòºÅ
-	private String mobile;			//ÓÃ»§¶©Æ±ÊÖ»úºÅ
-	private Long goodsid;			//ÎïÆ·id
-	private Integer quantity;		//ÎïÆ·ÊıÁ¿
+	private String memberNickName;	//ç”¨æˆ·æ˜µç§°
+	private String seatLabel;		//åº§ä½ï¼š1:2,1:3
+	private String secid;			//å½±å…åŒºåŸŸå·
+	private String mobile;			//ç”¨æˆ·è®¢ç¥¨æ‰‹æœºå·
+	private Long goodsid;			//ç‰©å“id
+	private Integer quantity;		//ç‰©å“æ•°é‡
 	private String spkey;			//
 	private String origin;			//
 	private String paymethod;		//
 	
 	private Long partnerId;			//
 	private String partnerBriefname;// 
-	private String partnerUkey;		//ºÏ×÷ÉÌÓÃ»§Î¨Ò»±êÊ¶
+	private String partnerUkey;		//åˆä½œå•†ç”¨æˆ·å”¯ä¸€æ ‡è¯†
 	
-	private String ignoreSeatPosValid = "N";//ºöÂÔ¹Â×ùÑéÖ¤
+	private String ignoreSeatPosValid = "N";//å¿½ç•¥å­¤åº§éªŒè¯
 	private OrderMpiVo mpiVo;
 	public CreateMovieOrderReq(){
 		
@@ -118,7 +118,7 @@ public class CreateMovieOrderReq extends CreateOrderReq {
 		this.ignoreSeatPosValid = ignoreSeatPosValid;
 	}
 	/**
-	 * ºöÂÔ¹Â×ùÑéÖ¤
+	 * å¿½ç•¥å­¤åº§éªŒè¯
 	 * @return
 	 */
 	public boolean ignoreSeatPos(){

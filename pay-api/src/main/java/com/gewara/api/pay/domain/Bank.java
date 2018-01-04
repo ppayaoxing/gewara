@@ -6,11 +6,11 @@ public class Bank extends ApiObject{
 	
 	private static final long serialVersionUID = -1244879481213909584L;
 	
-	private Long id;	//主键
-	private Long gatewayId;	//支配配置ID
-	private String gwraBankCode;	//格瓦银行代码
-	private String bankName;	//银行名称
-	private String bankType;	//银行类型，少数支付平台银行代码不一样，如支付宝，默认值为：DEFAULT
+	private Long id;	//涓婚敭
+	private Long gatewayId;	//鏀厤閰嶇疆ID
+	private String gwraBankCode;	//鏍肩摝閾惰浠ｇ爜
+	private String bankName;	//閾惰鍚嶇О
+	private String bankType;	//閾惰绫诲瀷锛屽皯鏁版敮浠樺钩鍙伴摱琛屼唬鐮佷笉涓�鏍凤紝濡傛敮浠樺疂锛岄粯璁ゅ�间负锛欴EFAULT
 	
 	
 	public String getPayBank(){

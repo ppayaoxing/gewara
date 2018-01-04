@@ -71,7 +71,7 @@ public class ConditionRouter implements Router, Comparable<Router> {
             String thenRule = i < 0 ? rule.trim() : rule.substring(i + 2).trim();
             Map<String, MatchPair> when = StringUtils.isBlank(whenRule) || "true".equals(whenRule) ? new HashMap<String, MatchPair>() : parseRule(whenRule);
             Map<String, MatchPair> then = StringUtils.isBlank(thenRule) || "false".equals(thenRule) ? null : parseRule(thenRule);
-            // NOTE: When����������Ϊ�յģ��ⲿҵ������֤���Ƶ�Լ������
+            // NOTE: When锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷为锟秸的ｏ拷锟解部业锟斤拷锟斤拷锟斤拷证锟斤拷锟狡碉拷约锟斤拷锟斤拷锟斤拷
             this.whenCondition = when;
             this.thenCondition = then;
         } catch (ParseException e) {
@@ -153,20 +153,20 @@ public class ConditionRouter implements Router, Comparable<Router> {
         if(StringUtils.isBlank(rule)) {
             return condition;
         }        
-        // ƥ���ƥ��Key-Value��
+        // 匹锟斤拷锟狡ワ拷锟終ey-Value锟斤拷
         MatchPair pair = null;
-        // ���Valueֵ
+        // 锟斤拷锟絍alue值
         Set<String> values = null;
         final Matcher matcher = ROUTE_PATTERN.matcher(rule);
-        while (matcher.find()) { // ���ƥ��
+        while (matcher.find()) { // 锟斤拷锟狡ワ拷锟�
             String separator = matcher.group(1);
             String content = matcher.group(2);
-            // ���ʽ��ʼ
+            // 锟斤拷锟绞斤拷锟绞�
             if (separator == null || separator.length() == 0) {
                 pair = new MatchPair();
                 condition.put(content, pair);
             }
-            // KV��ʼ
+            // KV锟斤拷始
             else if ("&".equals(separator)) {
                 if (condition.get(content) == null) {
                     pair = new MatchPair();
@@ -175,7 +175,7 @@ public class ConditionRouter implements Router, Comparable<Router> {
                     condition.put(content, pair);
                 }
             }
-            // KV��Value���ֿ�ʼ
+            // KV锟斤拷Value锟斤拷锟街匡拷始
             else if ("=".equals(separator)) {
                 if (pair == null) {
                     throw new ParseException("Illegal route rule \""
@@ -187,7 +187,7 @@ public class ConditionRouter implements Router, Comparable<Router> {
                 values = pair.matches;
                 values.add(content);
             }
-            // KV��Value���ֿ�ʼ
+            // KV锟斤拷Value锟斤拷锟街匡拷始
             else if ("!=".equals(separator)) {
                 if (pair == null) {
                     throw new ParseException("Illegal route rule \""
@@ -199,8 +199,8 @@ public class ConditionRouter implements Router, Comparable<Router> {
                 values = pair.mismatches;
                 values.add(content);
             }
-            // KV��Value���ֵĶ����Ŀ
-            else if (",".equals(separator)) { // ���Ϊ���ű�ʾ
+            // KV锟斤拷Value锟斤拷锟街的讹拷锟斤拷锟侥�
+            else if (",".equals(separator)) { // 锟斤拷锟轿拷锟斤拷疟锟绞�
                 if (values == null || values.size() == 0) {
                     throw new ParseException("Illegal route rule \""
                             + rule + "\", The error char '" + separator

@@ -42,7 +42,7 @@ import com.alibaba.dubbo.remoting.p2p.exchange.ExchangePeer;
  */
 public abstract class AbstractExchangeGroup implements ExchangeGroup {
 
-    // ��־���
+    // 锟斤拷志锟斤拷锟�
     protected static final Logger logger = LoggerFactory.getLogger(AbstractExchangeGroup.class);
     
     protected final URL url;
@@ -91,7 +91,7 @@ public abstract class AbstractExchangeGroup implements ExchangeGroup {
     @Override
     public ExchangePeer join(URL url, ExchangeHandler handler) throws RemotingException {
         ExchangeServer server = servers.get(url);
-        if (server == null) { // TODO �в�����϶
+        if (server == null) { // TODO 锟叫诧拷锟斤拷锟斤拷隙
             server = Exchangers.bind(url, handler);
             servers.put(url, server);
             dispatcher.addChannelHandler(handler);
@@ -112,7 +112,7 @@ public abstract class AbstractExchangeGroup implements ExchangeGroup {
             return null;
         }
         ExchangeClient client = clients.get(url);
-        if (client == null) { // TODO �в�����϶
+        if (client == null) { // TODO 锟叫诧拷锟斤拷锟斤拷隙
             client = Exchangers.connect(url, dispatcher);
             clients.put(url, client);
         }

@@ -5,19 +5,19 @@ import com.gewara.api.vo.BaseVo;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public class FieldAreaSeatVo extends BaseVo{
 	private static final long serialVersionUID = -4016785855588367848L;
 	
 	private Long id;
-	private Long areaid;		//ÇøÓòID
-	private Integer lineno;		//Ç°ÆğµÚ¼¸ÅÅ,ÏµÍ³Éú³É
-	private Integer rankno;		//×óÆğµÚ¼¸ÁĞ,ÏµÍ³Éú²ú
-	private String seatline;	//×ùÎ»ĞĞºÅ
-	private String seatrank;	//×ùÎ»ÁĞºÅ
-	private String loveInd;		//ÇéÂÂ×ù 0£ºÆÕÍ¨×ùÎ» 1£ºÇéÂÂ×ùÊ××ùÎ»±ê¼Ç 2£ºÇéÂÂ×ùµÚ¶ş×ùÎ»±ê¼Ç
-	private String seatno;		//×ùÎ»±àºÅ
+	private Long areaid;		//åŒºåŸŸID
+	private Integer lineno;		//å‰èµ·ç¬¬å‡ æ’,ç³»ç»Ÿç”Ÿæˆ
+	private Integer rankno;		//å·¦èµ·ç¬¬å‡ åˆ—,ç³»ç»Ÿç”Ÿäº§
+	private String seatline;	//åº§ä½è¡Œå·
+	private String seatrank;	//åº§ä½åˆ—å·
+	private String loveInd;		//æƒ…ä¾£åº§ 0ï¼šæ™®é€šåº§ä½ 1ï¼šæƒ…ä¾£åº§é¦–åº§ä½æ ‡è®° 2ï¼šæƒ…ä¾£åº§ç¬¬äºŒåº§ä½æ ‡è®°
+	private String seatno;		//åº§ä½ç¼–å·
 
 	@Override
 	public Serializable realId() {
@@ -77,7 +77,7 @@ public class FieldAreaSeatVo extends BaseVo{
 		this.seatrank = seatrank;
 	}
 	public String getSeatLabel(){
-		return seatline+"ÅÅ"+seatrank+"×ù";
+		return seatline+"æ’"+seatrank+"åº§";
 	}
 	
 	public String getLoveInd() {

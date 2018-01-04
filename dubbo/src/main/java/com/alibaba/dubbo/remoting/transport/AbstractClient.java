@@ -68,10 +68,10 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
     
     private final AtomicInteger reconnect_count = new AtomicInteger(0);
     
-    //������error��־�Ƿ��Ѿ������ù�.
+    //锟斤拷锟斤拷锟斤拷error锟斤拷志锟角凤拷锟窖撅拷锟斤拷锟斤拷锟矫癸拷.
     private final AtomicBoolean reconnect_error_log_flag = new AtomicBoolean(false) ;
     
-    //����warning�ļ��.(waring���ٴ�֮��warningһ��) //for test
+    //锟斤拷锟斤拷warning锟侥硷拷锟�.(waring锟斤拷锟劫达拷之锟斤拷warning一锟斤拷) //for test
     private final int reconnect_warning_period ;
     
     //the last successed connected time
@@ -87,7 +87,7 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
         
         shutdown_timeout = url.getParameter(Constants.SHUTDOWN_TIMEOUT_KEY, Constants.DEFAULT_SHUTDOWN_TIMEOUT);
         
-        //Ĭ���������2s��1800��ʾ1Сʱwarningһ��.
+        //默锟斤拷锟斤拷锟斤拷锟斤拷锟�2s锟斤拷1800锟斤拷示1小时warning一锟斤拷.
         reconnect_warning_period = url.getParameter("reconnect.waring.period", 1800);
         
         try {
@@ -279,7 +279,7 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
             connect();
         }
         Channel channel = getChannel();
-        //TODO getChannel���ص�״̬�Ƿ����null��Ҫ�Ľ�
+        //TODO getChannel锟斤拷锟截碉拷状态锟角凤拷锟斤拷锟絥ull锟斤拷要锟侥斤拷
         if (channel == null || ! channel.isConnected()) {
           throw new RemotingException(this, "message can not send, because channel is closed . url:" + getUrl());
         }

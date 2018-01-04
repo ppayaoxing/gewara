@@ -181,9 +181,9 @@ public class NetUtils {
     private static volatile InetAddress LOCAL_ADDRESS = null;
 
     /**
-     * �����������������ص�һ�������IP��
+     * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟截碉拷一锟斤拷锟斤拷锟斤拷锟絀P锟斤拷
      * 
-     * @return ��������IP
+     * @return 锟斤拷锟斤拷锟斤拷锟斤拷IP
      */
     public static InetAddress getLocalAddress() {
         if (LOCAL_ADDRESS != null) {

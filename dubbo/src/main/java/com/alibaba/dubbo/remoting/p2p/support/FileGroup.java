@@ -44,10 +44,10 @@ public class FileGroup extends AbstractGroup {
     
     private volatile long last;
 
-    // ��ʱ����ִ����
+    // 锟斤拷时锟斤拷锟斤拷执锟斤拷锟斤拷
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3, new NamedThreadFactory("FileGroupModifiedChecker", true));
 
-    // ������ʱ������ʱ��������Ƿ���ã�������ʱ�����޴�����
+    // 锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷锟斤拷欠锟斤拷锟矫ｏ拷锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟睫达拷锟斤拷锟斤拷
     private final ScheduledFuture<?> checkModifiedFuture;
 
     public FileGroup(URL url){
@@ -57,10 +57,10 @@ public class FileGroup extends AbstractGroup {
         checkModifiedFuture = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                // ����ļ����
+                // 锟斤拷锟斤拷募锟斤拷锟斤拷
                 try {
                     check();
-                } catch (Throwable t) { // �������ݴ�
+                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
                     logger.error("Unexpected error occur at reconnect, cause: " + t.getMessage(), t);
                 }
             }

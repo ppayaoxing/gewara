@@ -93,7 +93,7 @@ public abstract class PictureUtil {
 	 * @param srcFile
 	 * @param maxWidth
 	 * @param maxHeight
-	 * @param crop 是否从中截取
+	 * @param crop 鏄惁浠庝腑鎴彇
 	 * @return
 	 */
 	public static boolean resize(String srcFile, int maxWidth, int maxHeight, boolean crop) {
@@ -115,13 +115,13 @@ public abstract class PictureUtil {
 	}
 
 	/**
-	 * 缩放图片
+	 * 缂╂斁鍥剧墖
 	 * 
 	 * @param from
 	 * @param to
 	 * @param maxWidth
 	 * @param maxHeight
-	 * @param crop 是否从中截取
+	 * @param crop 鏄惁浠庝腑鎴彇
 	 * @return
 	 */
 	public static boolean resizeOrCrop(File from, File to, int maxWidth, int maxHeight, boolean crop) {
@@ -142,7 +142,7 @@ public abstract class PictureUtil {
 			int srcWidth = imageInfo.getImageWidth();
 			dbLogger.warn(from + srcHeight + "," + srcWidth + "--->" + maxWidth + "," + maxHeight);
 			if(srcHeight < maxHeight && srcWidth < maxWidth){
-				//直接copy至to
+				//鐩存帴copy鑷硉o
 				FileUtils.copyFile(new File(from), new File(to));
 				return true;
 			}
@@ -166,7 +166,7 @@ public abstract class PictureUtil {
 		try {
 			Info info = new Info(src.getCanonicalPath(), true);
 			if(info.getImageHeight()<240 || info.getImageWidth() <240) {
-                return false;//太小的图片不加水印
+                return false;//澶皬鐨勫浘鐗囦笉鍔犳按鍗�
             }
 			return addWaterMark(src.getCanonicalPath(), dst.getCanonicalPath(), maskPath.getCanonicalPath());
 		} catch (Exception e) {
@@ -215,11 +215,11 @@ public abstract class PictureUtil {
 		return false;
 	}
 	/**
-	 * 从图片中部截取
-	 * 1）原图宽度、高度者小于目标，直接返回原图
-	 * 2）原图宽度<目标宽度，高度>目标宽度，垂直截取中部
-	 * 3）原图宽度>目标宽度，高度<目标宽度，水平截取中部
-	 * 4）原图宽度、高度者大于目标，缩放后再执行2）和3）
+	 * 浠庡浘鐗囦腑閮ㄦ埅鍙�
+	 * 1锛夊師鍥惧搴︺�侀珮搴﹁�呭皬浜庣洰鏍囷紝鐩存帴杩斿洖鍘熷浘
+	 * 2锛夊師鍥惧搴�<鐩爣瀹藉害锛岄珮搴�>鐩爣瀹藉害锛屽瀭鐩存埅鍙栦腑閮�
+	 * 3锛夊師鍥惧搴�>鐩爣瀹藉害锛岄珮搴�<鐩爣瀹藉害锛屾按骞虫埅鍙栦腑閮�
+	 * 4锛夊師鍥惧搴︺�侀珮搴﹁�呭ぇ浜庣洰鏍囷紝缂╂斁鍚庡啀鎵ц2锛夊拰3锛�
 	 * @param src
 	 * @param dst
 	 * @param width
@@ -234,12 +234,12 @@ public abstract class PictureUtil {
 			int srcHeight = imageInfo.getImageHeight();
 			int srcWidth = imageInfo.getImageWidth();
 			dbLogger.warn(src + srcHeight + "," + srcWidth + "--->" + width + "," +  height);
-			if(srcHeight*width==srcWidth*height){	//等比
+			if(srcHeight*width==srcWidth*height){	//绛夋瘮
 				dbLogger.warn("identity scale:" + src + "--->dst");
 				return resize(src, dst, width, height);
 			}
 			if(srcHeight < height && srcWidth < width){
-				//直接copy至to
+				//鐩存帴copy鑷硉o
 				FileUtils.copyFile(new File(src), new File(dst));
 				return true;
 			}
@@ -249,7 +249,7 @@ public abstract class PictureUtil {
 				y = (srcHeight - height)/2;
 			}else if(srcHeight < height && srcWidth > width){
 				x = (srcWidth - width)/2;
-			}else{//做缩放
+			}else{//鍋氱缉鏀�
 				int maxWidth = width, maxHeight = height;
 				if(srcHeight*1.0/srcWidth >= height*1.0/width){
 					maxHeight = srcHeight;
@@ -270,7 +270,7 @@ public abstract class PictureUtil {
 		}
 	}
 	/**
-	 * 获取图片的长宽
+	 * 鑾峰彇鍥剧墖鐨勯暱瀹�
 	 * @param src
 	 * @return
 	 */
@@ -285,7 +285,7 @@ public abstract class PictureUtil {
 		}
 	}
 	/**
-	 * 从只截取部分
+	 * 浠庡彧鎴彇閮ㄥ垎
 	 * @param src
 	 * @param dst
 	 * @param width
@@ -310,12 +310,12 @@ public abstract class PictureUtil {
 	}
 
 	/**
-	 * 返回压缩比 新大小/原大小
+	 * 杩斿洖鍘嬬缉姣� 鏂板ぇ灏�/鍘熷ぇ灏�
 	 * 
 	 * @param srcFilePath
 	 * @param descFilePath
 	 * @param quality
-	 *           这里指定压缩的程度，参数qality是取值0~1范围内
+	 *           杩欓噷鎸囧畾鍘嬬缉鐨勭▼搴︼紝鍙傛暟qality鏄彇鍊�0~1鑼冨洿鍐�
 	 * @return
 	 */
 	public static void compressPic(String srcFilePath, String dstFilePath, int quality, CompressCallback callback) {
@@ -366,15 +366,15 @@ public abstract class PictureUtil {
 		ImageWriter imgWrier;
 		ImageWriteParam imgWriteParams;
 
-		// 指定写图片的方式为 jpg
+		// 鎸囧畾鍐欏浘鐗囩殑鏂瑰紡涓� jpg
 		imgWrier = ImageIO.getImageWritersByFormatName("jpg").next();
 		imgWriteParams = new JPEGImageWriteParam(null);
-		// 要使用压缩，必须指定压缩方式为MODE_EXPLICIT
+		// 瑕佷娇鐢ㄥ帇缂╋紝蹇呴』鎸囧畾鍘嬬缉鏂瑰紡涓篗ODE_EXPLICIT
 		imgWriteParams.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
 		imgWriteParams.setCompressionQuality(quality * 0.01f);
 		imgWriteParams.setProgressiveMode(JPEGImageWriteParam.MODE_DISABLED);
 		ColorModel colorModel = ColorModel.getRGBdefault();
-		// 指定压缩时使用的色彩模式
+		// 鎸囧畾鍘嬬缉鏃朵娇鐢ㄧ殑鑹插僵妯″紡
 		imgWriteParams.setDestinationType(new javax.imageio.ImageTypeSpecifier(colorModel, colorModel.createCompatibleSampleModel(16, 16)));
 		try {
 			srcFile = new File(srcFilename);
@@ -384,9 +384,9 @@ public abstract class PictureUtil {
 			out = new FileOutputStream(destFile);
 
 			imgWrier.reset();
-			// 必须先指定 out值，才能调用write方法, ImageOutputStream可以通过任何 OutputStream构造
+			// 蹇呴』鍏堟寚瀹� out鍊硷紝鎵嶈兘璋冪敤write鏂规硶, ImageOutputStream鍙互閫氳繃浠讳綍 OutputStream鏋勯��
 			imgWrier.setOutput(ImageIO.createImageOutputStream(out));
-			// 调用write方法，就可以向输入流写图片
+			// 璋冪敤write鏂规硶锛屽氨鍙互鍚戣緭鍏ユ祦鍐欏浘鐗�
 			imgWrier.write(null, new IIOImage(src, null, null), imgWriteParams);
 			out.flush();
 			out.close();
@@ -403,12 +403,12 @@ public abstract class PictureUtil {
 	}
 
 	/**
-	 * 返回压缩比 新大小/原大小
+	 * 杩斿洖鍘嬬缉姣� 鏂板ぇ灏�/鍘熷ぇ灏�
 	 * 
 	 * @param from
 	 * @param to
 	 * @param quality
-	 *           这里指定压缩的程度，参数qality是取值0~1范围内
+	 *           杩欓噷鎸囧畾鍘嬬缉鐨勭▼搴︼紝鍙傛暟qality鏄彇鍊�0~1鑼冨洿鍐�
 	 * @return
 	 */
 	public static void compressPic(File from, File to, int quality, CompressCallback callback) {
@@ -430,17 +430,17 @@ public abstract class PictureUtil {
 		try {
 			File distFile = new File(distPath);
 			File warterFile = new File(warterPath);
-			// 加载待处理图片文件
+			// 鍔犺浇寰呭鐞嗗浘鐗囨枃浠�
 			Image img = ImageIO.read(distFile);
 			BufferedImage image = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
 			Graphics2D g = image.createGraphics();
 			g.drawImage(img, 0, 0, null);
-			// 加载水印图片文件
+			// 鍔犺浇姘村嵃鍥剧墖鏂囦欢
 			Image src_biao = ImageIO.read(warterFile);
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
 			g.drawImage(src_biao, x, y, null);
 			g.dispose();
-			// 保存处理后的文件
+			// 淇濆瓨澶勭悊鍚庣殑鏂囦欢
 			FileOutputStream out = new FileOutputStream(distFile);
 			ImageIO.write(image, "jpeg", out);
 			out.close();
@@ -459,12 +459,12 @@ public abstract class PictureUtil {
 	}
 	
 	/**
-	 * 将png图片转换为jpg图片<br>
-	 * 目前只简单判断pngPath是否以".png"结尾来确定是否是png图片<br>
-	 * 如果是png图片，则转换为jpg图片<br>
-	 * 如果不是png图片，直接跳过不处理
-	 * @param pngPath 待转换的png图片路径
-	 * @param jpgPath 转换后的jpg图片路径
+	 * 灏唒ng鍥剧墖杞崲涓簀pg鍥剧墖<br>
+	 * 鐩墠鍙畝鍗曞垽鏂璸ngPath鏄惁浠�".png"缁撳熬鏉ョ‘瀹氭槸鍚︽槸png鍥剧墖<br>
+	 * 濡傛灉鏄痯ng鍥剧墖锛屽垯杞崲涓簀pg鍥剧墖<br>
+	 * 濡傛灉涓嶆槸png鍥剧墖锛岀洿鎺ヨ烦杩囦笉澶勭悊
+	 * @param pngPath 寰呰浆鎹㈢殑png鍥剧墖璺緞
+	 * @param jpgPath 杞崲鍚庣殑jpg鍥剧墖璺緞
 	 * @return true/false
 	 */
 	public static boolean convertPng2Jpg(String pngPath, String jpgPath){

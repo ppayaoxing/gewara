@@ -6,48 +6,48 @@ import java.util.Map;
 import com.gewara.api.partner.req.vo.PartnerCommonReqVo;
 import com.gewara.api.vo.ResultCode;
 /**
- * (Ç©Ô¼Ö§¸¶)
+ * (ç­¾çº¦æ”¯ä»˜)
  * @author chunhui.wang
  *
  */
 public interface PartnerContractPayVoService {
 	
 	/**
-	 * ·¢ËÍÇ©Ô¼¶ÌĞÅ
+	 * å‘é€ç­¾çº¦çŸ­ä¿¡
 	 */
 	ResultCode sendSignMsg(PartnerCommonReqVo reqVo);
 	
 	/**
-	 * ¿ì½İÇ©Ô¼
-	 * @param params ²ÎÊı¼¯ºÏ
+	 * å¿«æ·ç­¾çº¦
+	 * @param params å‚æ•°é›†åˆ
 	 * @return
 	 */
 	ResultCode doSign(PartnerCommonReqVo reqVo);
 	
 	/**
-	 * ¿ìËÙ½âÔ¼
+	 * å¿«é€Ÿè§£çº¦
 	 * @param params
 	 * @return
 	 */
 	ResultCode unSign(PartnerCommonReqVo reqVo);
 	
 	/**
-	 * Ö§¸¶¶ÌĞÅ
-	 * @param params ²ÎÊı¼¯ºÏ
+	 * æ”¯ä»˜çŸ­ä¿¡
+	 * @param params å‚æ•°é›†åˆ
 	 * @return
 	 */
 	ResultCode sendPayMsg(PartnerCommonReqVo reqVo);
 	
 	/**
-	 * Ö§¸¶
-	 * @param tradeNo ¶©µ¥ºÅ
+	 * æ”¯ä»˜
+	 * @param tradeNo è®¢å•å·
 	 * @return
 	 */
 	ResultCode doPay(PartnerCommonReqVo reqVo);
 	
 	/**
-	 * Ç©Ô¼ID²éÑ¯ 
-	 * @param merUserid ÓÃ»§ID
+	 * ç­¾çº¦IDæŸ¥è¯¢ 
+	 * @param merUserid ç”¨æˆ·ID
 	 * @return
 	 */
 	ResultCode<List<Map>> querySignContents(String merUserid,String payMethod);

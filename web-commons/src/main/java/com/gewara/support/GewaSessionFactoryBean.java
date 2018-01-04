@@ -216,7 +216,7 @@ public class GewaSessionFactoryBean extends HibernateExceptionTranslator
 					throw new IllegalArgumentException(
 							"Mapping directory location [" + resource + "] does not denote a directory");
 				}
-				// ½â¾ö¶àÌ¨HibernateÉú³ÉsqlÓï¾ä²»Ò»ÖÂÎÊÌâ£¨org.hibernate.mapping.Table.uniqueInteger£©
+				// è§£å†³å¤šå°Hibernateç”Ÿæˆsqlè¯­å¥ä¸ä¸€è‡´é—®é¢˜ï¼ˆorg.hibernate.mapping.Table.uniqueIntegerï¼‰
 				TreeSet<File> sorted = new TreeSet<>();
 				add2FileList(file, sorted);
 				for (File hbm : sorted) {

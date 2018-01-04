@@ -10,12 +10,12 @@ public class MarkChartsDataVo extends BaseVo{
 	private String mkey;
 	private String tag;
 	private Long relatedid;
-	private Integer bookingmarks;   //ÒÑ¹ºÆ± ÆÀ·ÖÖµ
-	private Integer bookingtimes;   //ÒÑ¹ºÆ± ÆÀ·ÖÈËÊý
-	private Integer unbookingmarks; //Î´¹ºÆ± ÆÀ·ÖÖµ
-	private Integer unbookingtimes; //Î´¹ºÆ± ÆÀ·ÖÈËÊý
+	private Integer bookingmarks;   //å·²è´­ç¥¨ è¯„åˆ†å€¼
+	private Integer bookingtimes;   //å·²è´­ç¥¨ è¯„åˆ†äººæ•°
+	private Integer unbookingmarks; //æœªè´­ç¥¨ è¯„åˆ†å€¼
+	private Integer unbookingtimes; //æœªè´­ç¥¨ è¯„åˆ†äººæ•°
 	private String markValue;
-	private String statisticDate;   //Í³¼ÆÊ±¼ä
+	private String statisticDate;   //ç»Ÿè®¡æ—¶é—´
 	private String addTime;
 	@Override
 	public Serializable realId() {

@@ -22,7 +22,7 @@ public class GewaraConsumerFilter extends GenericFilter {
 	public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
 		User user = getLogonUser();
 		if(user == null){
-			return new ResponseResult(ResultCode.getFailure("���ȵ�¼��"));
+			return new ResponseResult(ResultCode.getFailure("锟斤拷锟饺碉拷录锟斤拷"));
 		}
 		RpcContext context = RpcContext.getContext();
 		context.setAttachment(AutherFilterConstant.SYSTEMID, Config.SYSTEMID);
@@ -38,7 +38,7 @@ public class GewaraConsumerFilter extends GenericFilter {
 		if(auth == null){
 			return getBackgroundUser();
 		}
-		if(auth.isAuthenticated() && !"anonymous".equals(auth.getName())){//��¼
+		if(auth.isAuthenticated() && !"anonymous".equals(auth.getName())){//锟斤拷录
 			GewaraUser user = (GewaraUser) auth.getPrincipal();
 			//refresh(user);
 			if(user instanceof User) {

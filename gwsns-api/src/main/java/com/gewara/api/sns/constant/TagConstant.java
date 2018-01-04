@@ -5,53 +5,53 @@ import java.util.List;
 
 
 public class TagConstant {
-	public static final String TAG_TOPIC = "topic";					//ÆÕÍ¨ÎŞ¹ØÁªÍÛÀ²
-	public static final String TAG_DIARY = "diary";					//Ìû×Ó_ÍÛÀ²
+	public static final String TAG_TOPIC = "topic";					//æ™®é€šæ— å…³è”å“‡å•¦
+	public static final String TAG_DIARY = "diary";					//å¸–å­_å“‡å•¦
 	public static final String TAG_DIARY_MEMBER = "member_diary";
-	public static final String TAG_QA = "qa";						//QA_ÍÛÀ²
-	public static final String TAG_QA_MEMBER = "member_qa";			//ÓÃ»§ÖªµÀ
-	public static final String TAG_VIDEO = "video";					//ÉÏ´«ÊÓÆµÍÛÀ²
-	public static final String TAG_PICTURE = "picture";				//ÉÏ´«Í¼Æ¬ÍÛÀ²
+	public static final String TAG_QA = "qa";						//QA_å“‡å•¦
+	public static final String TAG_QA_MEMBER = "member_qa";			//ç”¨æˆ·çŸ¥é“
+	public static final String TAG_VIDEO = "video";					//ä¸Šä¼ è§†é¢‘å“‡å•¦
+	public static final String TAG_PICTURE = "picture";				//ä¸Šä¼ å›¾ç‰‡å“‡å•¦
 	public static final String TAG_MOVIE = "movie";
-	public static final String TAG_MOVIE_DOWN= "movie_down"; 		//µçÓ°ÏÂÓ³
-	public static final String TAG_MOVIE_RELEASE= "movie_release"; 	//µçÓ°ÉÏÓ³
+	public static final String TAG_MOVIE_DOWN= "movie_down"; 		//ç”µå½±ä¸‹æ˜ 
+	public static final String TAG_MOVIE_RELEASE= "movie_release"; 	//ç”µå½±ä¸Šæ˜ 
 	public static final String TAG_MOVIE_COMMENT= "movie_comment";
-	public static final String TAG_CINEMA = "cinema";               //µçÓ°Ôº
-	public static final String TAG_STAR = "star";                   //Ó°ÈË
-	public static final String TAG_STAR_DETAIL="starDetail";        //Ó°ÈËÏêÇéÒ³Tag
-	public static final String TAG_DRAMA = "drama";					//»°¾ç
-	public static final String TAG_DRAMASTAR = "dramastar";			//ÉçÍÅ¡¢µ¼Ñİ¡¢Ã÷ĞÇ
-	public static final String TAG_AGENCY = "agency";				//»ú¹¹ÅàÑµ
-	public static final String TAG_CINEMA_ACTIVITY = "cinema_activity";				//Ó°Ôº»î¶¯
-	public static final String TAG_THEATRE_ACTIVITY = "theatre_activity";			//¾çÔº»î¶¯
-	public static final String TAG_THEATRE = "theatre";         		//¾çÔº
-	public static final String TAG_ACTIVITY = "activity";				//»î¶¯
-	public static final String TAG_ACTIVITY_MEMBER = "member_activity";	//»î¶¯
-	public static final String TAG_PICTURE_MEMBER = "member_picture";	//¹ÜÀíÔ±´«Í¼Æ¬
-	public static final String TAG_MEMBERPICTURE_MEMBER = "member_memberpicture";	//ÓÃ»§´«Í¼Æ¬
-	public static final String TAG_CONACTIVITY = "conllectactivity";	//¹Ø×¢»î¶¯
-	public static final Integer MULTIPLE_EXPVALUE= 10000;//×îµÍ¾­ÑéÖµ»ùÊı
-	public static final Integer EXPVALUE_TO_POINT = 1000;//¾­ÑéÖµ×ª»»³É»ı·Ö
-	public static final String TAG_QUESTION = "gewaquestion";						//	ÎÊÌâ
-	public static final String TAG_COMMU_MEMBER = "member_commu";						//	ÓÃ»§È¦×Ó
-	public static final String TAG_COMMENT = "member_comment";						//	ÍÛÀ²
-	public static final String TAG_COMMU_ACTIVITY = "commu_activity"; //È¦×Ó»î¶¯
-	public static final String TAG_COMMU = "commu"; //È¦×Ó
-	public static final String TAG_MEMBER_CINEMA = "member_cinema";						//ÓÃ»§ÆÀÂÛÓ°ÔºÍÛÀ²
-	public static final String TAG_MEMBER_THEATRE = "member_theatre";						//ÓÃ»§ÆÀÂÛ¾çÔºÍÛÀ²
-	public static final String TAG_POINT = "everyPoint";//Ã¿ÈÕºì°ü
+	public static final String TAG_CINEMA = "cinema";               //ç”µå½±é™¢
+	public static final String TAG_STAR = "star";                   //å½±äºº
+	public static final String TAG_STAR_DETAIL="starDetail";        //å½±äººè¯¦æƒ…é¡µTag
+	public static final String TAG_DRAMA = "drama";					//è¯å‰§
+	public static final String TAG_DRAMASTAR = "dramastar";			//ç¤¾å›¢ã€å¯¼æ¼”ã€æ˜æ˜Ÿ
+	public static final String TAG_AGENCY = "agency";				//æœºæ„åŸ¹è®­
+	public static final String TAG_CINEMA_ACTIVITY = "cinema_activity";				//å½±é™¢æ´»åŠ¨
+	public static final String TAG_THEATRE_ACTIVITY = "theatre_activity";			//å‰§é™¢æ´»åŠ¨
+	public static final String TAG_THEATRE = "theatre";         		//å‰§é™¢
+	public static final String TAG_ACTIVITY = "activity";				//æ´»åŠ¨
+	public static final String TAG_ACTIVITY_MEMBER = "member_activity";	//æ´»åŠ¨
+	public static final String TAG_PICTURE_MEMBER = "member_picture";	//ç®¡ç†å‘˜ä¼ å›¾ç‰‡
+	public static final String TAG_MEMBERPICTURE_MEMBER = "member_memberpicture";	//ç”¨æˆ·ä¼ å›¾ç‰‡
+	public static final String TAG_CONACTIVITY = "conllectactivity";	//å…³æ³¨æ´»åŠ¨
+	public static final Integer MULTIPLE_EXPVALUE= 10000;//æœ€ä½ç»éªŒå€¼åŸºæ•°
+	public static final Integer EXPVALUE_TO_POINT = 1000;//ç»éªŒå€¼è½¬æ¢æˆç§¯åˆ†
+	public static final String TAG_QUESTION = "gewaquestion";						//	é—®é¢˜
+	public static final String TAG_COMMU_MEMBER = "member_commu";						//	ç”¨æˆ·åœˆå­
+	public static final String TAG_COMMENT = "member_comment";						//	å“‡å•¦
+	public static final String TAG_COMMU_ACTIVITY = "commu_activity"; //åœˆå­æ´»åŠ¨
+	public static final String TAG_COMMU = "commu"; //åœˆå­
+	public static final String TAG_MEMBER_CINEMA = "member_cinema";						//ç”¨æˆ·è¯„è®ºå½±é™¢å“‡å•¦
+	public static final String TAG_MEMBER_THEATRE = "member_theatre";						//ç”¨æˆ·è¯„è®ºå‰§é™¢å“‡å•¦
+	public static final String TAG_POINT = "everyPoint";//æ¯æ—¥çº¢åŒ…
 	
 	public static final String TAG_MEMBERCARD = "membercard";	
 	
-	public static final String TAG_COMMENT_TYPE = "comment";				//ÍÛÀ²
-	public static final String TAG_MODERATOR_TYPE = "moderator";			//»°Ìâ
+	public static final String TAG_COMMENT_TYPE = "comment";				//å“‡å•¦
+	public static final String TAG_MODERATOR_TYPE = "moderator";			//è¯é¢˜
 	
-	public static final String TAG_BIGLABEL="biglabel";        //±êÇ©¹ØÁªÍÛÀ²	
-	// ½ÌÓı¾­Àú
+	public static final String TAG_BIGLABEL="biglabel";        //æ ‡ç­¾å…³è”å“‡å•¦	
+	// æ•™è‚²ç»å†
 	public static final String TAG_EDU = "edu";
-	// ¹¤×÷¾­Àú
+	// å·¥ä½œç»å†
 	public static final String TAG_JOB = "job";
-	//ÊÊºÏÈËÈº
+	//é€‚åˆäººç¾¤
 	public static final String TAG_CROWD = "crowd";
 	
 	public static final List<String> TAGList = Arrays.asList(new String[]{"cinema", "movie", "theatre", "drama", "dramastar", "agency"});
@@ -63,29 +63,29 @@ public class TagConstant {
 	public static final Integer READ_STATUS_ALL = -1;
 	public static final String STATUS_FDEL = "fdel";
 	public static final String STATUS_TDEL = "tdel";
-	public static final String STATUS_TOALL = "toall";//¹ÜÀíÔ±·¢¸øÈ«Õ¾ÓÃ»§µÄÌû×Ó(ÔİÎ´Ê¹ÓÃ)
-	public static final Long ADMIN_FROMMEMBERID = 0L;	// ¹ÜÀíÔ±·¢ËÍ¸øÈ«Õ¾ÓÃ»§, ÉèÖÃ¹ÜÀíÔ±IDÎª   0
-	public static final Long ADMIN_TOMEMBERID = 0L;	// ¹ÜÀíÔ±·¢ËÍ¸øÈ«Õ¾ÓÃ»§, ÉèÖÃÈ«Õ¾ÓÃ»§IDÎª 0
+	public static final String STATUS_TOALL = "toall";//ç®¡ç†å‘˜å‘ç»™å…¨ç«™ç”¨æˆ·çš„å¸–å­(æš‚æœªä½¿ç”¨)
+	public static final Long ADMIN_FROMMEMBERID = 0L;	// ç®¡ç†å‘˜å‘é€ç»™å…¨ç«™ç”¨æˆ·, è®¾ç½®ç®¡ç†å‘˜IDä¸º   0
+	public static final Long ADMIN_TOMEMBERID = 0L;	// ç®¡ç†å‘˜å‘é€ç»™å…¨ç«™ç”¨æˆ·, è®¾ç½®å…¨ç«™ç”¨æˆ·IDä¸º 0
 	
-	public static final String DEFAULT_SUBJECT = "Õ¾ÄÚĞÅ";
-	public static final Integer MAX_SECOND = 20; //·¢¶ÌĞÅÊ±¼ä¼ä¸ô£¬·ÀÖ¹Ë¢»ú
+	public static final String DEFAULT_SUBJECT = "ç«™å†…ä¿¡";
+	public static final Integer MAX_SECOND = 20; //å‘çŸ­ä¿¡æ—¶é—´é—´éš”ï¼Œé˜²æ­¢åˆ·æœº
 	
-	public static final String DATETYPE_LASTWEEK = "lastweek";//ÉÏÖÜ
-	public static final String DATETYPE_THISWEEK = "thisweek";//±¾ÖÜ
-	public static final String DATETYPE_NEXTWEEK = "nextweek";//ÏÂÖÜ
+	public static final String DATETYPE_LASTWEEK = "lastweek";//ä¸Šå‘¨
+	public static final String DATETYPE_THISWEEK = "thisweek";//æœ¬å‘¨
+	public static final String DATETYPE_NEXTWEEK = "nextweek";//ä¸‹å‘¨
 	
 	public static final String LAST_WEEK_DIR = "lastweekdir";
 	public static final String NEXT_WEEK_DIR = "nextweekdir";
 	
-	public static final String AGENDA_ACTION_TICKET = "ticket";						//ÂòµçÓ°Æ±°²ÅÅÉú»î
-	public static final String AGENDA_ACTION_DRAMA = "drama";						//Âò»°¾çÆ±°²ÅÅÉú»î
-	public static final String AGENDA_ACTION_AGENDA = "agenda";						//×Ô¼º°²ÅÅÉú»î
-	public static final String AGENDA_ACTION_JOIN_ACTIVITY = "joinactivity";		//²Î¼Ó»î¶¯°²ÅÅÉú»î
-	public static final String AGENDA_ACTION_CREATE_ACTIVITY = "createactivity";	//´´½¨»î¶¯°²ÅÅÉú»î
-	public static final String AGENDA_ACTION_CREATE_RESERVE = "createreserve";		//·¢ÆğÔ¼Õ½°²ÅÅÉú»î
-	public static final String AGENDA_ACTION_JOIN_RESERVE = "joinreserve";			//²Î¼ÓÔ¼Õ½°²ÅÅÉú»î
-	public static final String AGENDA_ACTION_PUBSALE="pubsale";//¾ºÅÄ
-	public static final String AGENDA_ACTION_PRICE5="price5";//5ÔªÇÀÆ±
+	public static final String AGENDA_ACTION_TICKET = "ticket";						//ä¹°ç”µå½±ç¥¨å®‰æ’ç”Ÿæ´»
+	public static final String AGENDA_ACTION_DRAMA = "drama";						//ä¹°è¯å‰§ç¥¨å®‰æ’ç”Ÿæ´»
+	public static final String AGENDA_ACTION_AGENDA = "agenda";						//è‡ªå·±å®‰æ’ç”Ÿæ´»
+	public static final String AGENDA_ACTION_JOIN_ACTIVITY = "joinactivity";		//å‚åŠ æ´»åŠ¨å®‰æ’ç”Ÿæ´»
+	public static final String AGENDA_ACTION_CREATE_ACTIVITY = "createactivity";	//åˆ›å»ºæ´»åŠ¨å®‰æ’ç”Ÿæ´»
+	public static final String AGENDA_ACTION_CREATE_RESERVE = "createreserve";		//å‘èµ·çº¦æˆ˜å®‰æ’ç”Ÿæ´»
+	public static final String AGENDA_ACTION_JOIN_RESERVE = "joinreserve";			//å‚åŠ çº¦æˆ˜å®‰æ’ç”Ÿæ´»
+	public static final String AGENDA_ACTION_PUBSALE="pubsale";//ç«æ‹
+	public static final String AGENDA_ACTION_PRICE5="price5";//5å…ƒæŠ¢ç¥¨
 	
 	
 	public static final String RIGHTS_ALBUM_PUBLIC = "album_public";
@@ -95,37 +95,37 @@ public class TagConstant {
 	public static final String ALBUM_PRIVATE = "private";
 	public static final String ALBUM_FRIEND = "friend";
 	
-	public static final String TAG_DRAMAORDER = "dramaOrder"; //Ñİ³ö¹ºÆ±
-	public static final String TAG_MOVIEORDER = "movieOrder"; //µçÓ°¹ºÆ±
-	public static final String TAG_JOINACTIVITY = "joinActivity";//¶ÌĞÅÔ¤Ô¼²Î¼Ó»î¶¯
-	public static final String TAG_ACTIVITYORDER = "activityOrder"; //»î¶¯ÊÕ·Ñ
+	public static final String TAG_DRAMAORDER = "dramaOrder"; //æ¼”å‡ºè´­ç¥¨
+	public static final String TAG_MOVIEORDER = "movieOrder"; //ç”µå½±è´­ç¥¨
+	public static final String TAG_JOINACTIVITY = "joinActivity";//çŸ­ä¿¡é¢„çº¦å‚åŠ æ´»åŠ¨
+	public static final String TAG_ACTIVITYORDER = "activityOrder"; //æ´»åŠ¨æ”¶è´¹
 	public static final String TAG_ZHUANTI = "zhuanti";
 
 	public static final String TAG_AGENDA = "agenda";
-	public static final String TAG_MOVIEAGENDA_MEMBER = "member_movieagenda"; //µçÓ°Éú»î°²ÅÅ
-	public static final String TAG_DRAMAAGENDA_MEMBER = "member_dramaagenda"; //»°¾çÉú»î°²ÅÅ
-	public static final String TAG_AGENDA_MEMBER = "member_agenda";//ÓÃ»§Éú»î°²ÅÅ
-	public static final String TAG_SUBJECTACTIVITY = "subjectActivity"; 	//»î¶¯×¨Ìâ
+	public static final String TAG_MOVIEAGENDA_MEMBER = "member_movieagenda"; //ç”µå½±ç”Ÿæ´»å®‰æ’
+	public static final String TAG_DRAMAAGENDA_MEMBER = "member_dramaagenda"; //è¯å‰§ç”Ÿæ´»å®‰æ’
+	public static final String TAG_AGENDA_MEMBER = "member_agenda";//ç”¨æˆ·ç”Ÿæ´»å®‰æ’
+	public static final String TAG_SUBJECTACTIVITY = "subjectActivity"; 	//æ´»åŠ¨ä¸“é¢˜
 	
 	public static final String SUBJECT_CHRISTMAS="christmas";
 	
-	public static final String SQUARE_MODEL="square_model";//¹ã³¡Ä£¿é
-	//APP¹ã³¡ÍÆ¼öÉèÖÃ
-	public static final String SQUARE_RECOMMENDED="square_recommended";//APP¹ã³¡ÍÆ¼öÉèÖÃ
-	//ÍÆ¼ö´óVÓÃ»§
-	public static final String RECOMMENDED_USERS="recommended_users";//ÍÆ¼ö´óVÓÃ»§
+	public static final String SQUARE_MODEL="square_model";//å¹¿åœºæ¨¡å—
+	//APPå¹¿åœºæ¨èè®¾ç½®
+	public static final String SQUARE_RECOMMENDED="square_recommended";//APPå¹¿åœºæ¨èè®¾ç½®
+	//æ¨èå¤§Vç”¨æˆ·
+	public static final String RECOMMENDED_USERS="recommended_users";//æ¨èå¤§Vç”¨æˆ·
 	
-	// ÍÆ¼ö
-	public static final String RECOMMENDED_BATCHTYPE_FRIEND = "friend";// µçÓ°È¦ÍÆ¼ö
-	public static final String RECOMMENDED_BATCHTYPE_SQUARE = "square";// ¹ã³¡ÍÆ¼ö
-	//app¸öÈËÖ÷Ò³ÍÆ¼öÊı¾İ
-	public static final String RECOMMENDED_PERSON="recommended_person";//app¸öÈËÖ÷Ò³ÍÆ¼öÊı¾İ  
-	//app¸öÈËÖ÷Ò³±³¾°Í¼Æ¬
-	public static final String RECOMMENDED_BACKGROUND="recommended_background";//app¸öÈËÖ÷Ò³±³¾°Í¼Æ¬
-	//app¸öÈËÖĞĞÄ¶¯Ì¬½Úµã
-	public static final String RECOMMENDED_DYNAMIC = "recommended_dynamic";	//app¸öÈËÖĞĞÄ¶¯Ì¬½Úµã
-	//app¸öÈËÖĞĞÄ¸öÈËÏ²ºÃ
-	public static final String RECOMMENDED_FANCY = "recommended_fancy";	//app¸öÈËÖĞĞÄ¸öÈËÏ²ºÃ
-	public static final String RECOMMENDED_SHORTWALA = "recommended_shortWala";	//app7.0ÍÆ¼öÍÛÀ²(¶ÌÍÛÀ²)
-	public static final String RECOMMENDED_LONGWALA = "recommended_longWala";	//app7.0ÍÆ¼öÍÛÀ²(¶ÌÍÛÀ²)
+	// æ¨è
+	public static final String RECOMMENDED_BATCHTYPE_FRIEND = "friend";// ç”µå½±åœˆæ¨è
+	public static final String RECOMMENDED_BATCHTYPE_SQUARE = "square";// å¹¿åœºæ¨è
+	//appä¸ªäººä¸»é¡µæ¨èæ•°æ®
+	public static final String RECOMMENDED_PERSON="recommended_person";//appä¸ªäººä¸»é¡µæ¨èæ•°æ®  
+	//appä¸ªäººä¸»é¡µèƒŒæ™¯å›¾ç‰‡
+	public static final String RECOMMENDED_BACKGROUND="recommended_background";//appä¸ªäººä¸»é¡µèƒŒæ™¯å›¾ç‰‡
+	//appä¸ªäººä¸­å¿ƒåŠ¨æ€èŠ‚ç‚¹
+	public static final String RECOMMENDED_DYNAMIC = "recommended_dynamic";	//appä¸ªäººä¸­å¿ƒåŠ¨æ€èŠ‚ç‚¹
+	//appä¸ªäººä¸­å¿ƒä¸ªäººå–œå¥½
+	public static final String RECOMMENDED_FANCY = "recommended_fancy";	//appä¸ªäººä¸­å¿ƒä¸ªäººå–œå¥½
+	public static final String RECOMMENDED_SHORTWALA = "recommended_shortWala";	//app7.0æ¨èå“‡å•¦(çŸ­å“‡å•¦)
+	public static final String RECOMMENDED_LONGWALA = "recommended_longWala";	//app7.0æ¨èå“‡å•¦(çŸ­å“‡å•¦)
 }

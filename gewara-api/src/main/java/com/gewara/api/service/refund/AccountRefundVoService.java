@@ -15,7 +15,7 @@ public interface AccountRefundVoService {
 	ResultCode<Integer> getAccountRefundCount(ParamsVo param);
 	
 	/**
-	 * ¸ù¾İ²¿ÃÅ²éÑ¯ÍË¿îĞÅÏ¢
+	 * æ ¹æ®éƒ¨é—¨æŸ¥è¯¢é€€æ¬¾ä¿¡æ¯
 	 * @param param
 	 * @return
 	 */

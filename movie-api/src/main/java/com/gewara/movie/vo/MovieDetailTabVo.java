@@ -8,15 +8,15 @@ public class MovieDetailTabVo extends BaseVo {
 
 	private static final long serialVersionUID = -1118829041626421812L;
 	private String id;
-	// Ó°Æ¬ID
+	// å½±ç‰‡ID
 	private Long movieId;
-	// Ó°Æ¬ÏêÇéµÄ±êÇ©
+	// å½±ç‰‡è¯¦æƒ…çš„æ ‡ç­¾
 	private String tag;
-	// Í¼Æ¬
+	// å›¾ç‰‡
 	private String pic;
-	// ±êÌâ
+	// æ ‡é¢˜
 	private String title;
-	// µã»÷Ö®ºóµÄÁ¬½ÓURL
+	// ç‚¹å‡»ä¹‹åçš„è¿æ¥URL
 	private String link;
 
 	private String content;

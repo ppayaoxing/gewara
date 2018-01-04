@@ -17,12 +17,12 @@ public class MovieTierPriceVo extends BaseVo {
 	private Integer editionJumu;
 	private Integer editionIMAX;
 	
-	private Timestamp startTime; //¿ªÊ¼Ê±¼ä
-	private Timestamp endTime; //½áÊøÊ±¼ä
-	private Integer rangeEdition3D; //Ê±¼ä¶ÎÄÚ¼Û¸ñ
-	private Integer rangePrice; //Ê±¼ä¶ÎÄÚ¼Û¸ñ
-	private Integer rangeEditionJumu;//Ê±¼ä¶ÎÄÚ¼Û¸ñ
-	private Integer rangeEditionIMAX;//Ê±¼ä¶ÎÄÚ¼Û¸ñ
+	private Timestamp startTime; //å¼€å§‹æ—¶é—´
+	private Timestamp endTime; //ç»“æŸæ—¶é—´
+	private Integer rangeEdition3D; //æ—¶é—´æ®µå†…ä»·æ ¼
+	private Integer rangePrice; //æ—¶é—´æ®µå†…ä»·æ ¼
+	private Integer rangeEditionJumu;//æ—¶é—´æ®µå†…ä»·æ ¼
+	private Integer rangeEditionIMAX;//æ—¶é—´æ®µå†…ä»·æ ¼
 	
 	public MovieTierPriceVo(){}
 	public MovieTierPriceVo(Long movieid, String type, Integer price){

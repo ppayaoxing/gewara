@@ -7,29 +7,29 @@ import com.gewara.movie.vo.highlightentry.HighlightEntryVo;
 
 
 /**
- * 亮点入口管理
+ * 浜偣鍏ュ彛绠＄悊
  * @author weihua.wang
  *
  */
 public interface HighlightEntryVoService {
 	/**
-	 * 获取亮点入口列表
+	 * 鑾峰彇浜偣鍏ュ彛鍒楄〃
 	 * @return
 	 */
 	ResultCode<List<HighlightEntryVo>> getHighlightEntryVoList(int from ,int maxnum);
 	
 	/**
-	 * 更新亮点入口
+	 * 鏇存柊浜偣鍏ュ彛
 	 */
 	ResultCode<HighlightEntryVo> updateHighlightEntryVo(HighlightEntryVo entry);
 	
 	/**
-	 * 添加亮点入口
+	 * 娣诲姞浜偣鍏ュ彛
 	 */
 	ResultCode<HighlightEntryVo> saveHighlightEntryVo(HighlightEntryVo entry);
 	
 	/**
-	 * 获取亮点入口
+	 * 鑾峰彇浜偣鍏ュ彛
 	 * @param entryId
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public interface HighlightEntryVoService {
 	
 	
 	/**
-	 * 删除亮点入口
+	 * 鍒犻櫎浜偣鍏ュ彛
 	 * @param entryId
 	 */
 	ResultCode<HighlightEntryVo> removeHighlightEntryVoById(Long entryId);

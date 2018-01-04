@@ -31,7 +31,7 @@ public class InsertBuilder<T> {
 	}
 
 	/**
-	 * ѡ�����ģʽ.�������ݲ���ʱ��Ӱ�� Ĭ�ϵ�����ǣ�˳����룬�����һ��ʧ�ܣ���ֹͣ�� ����������ָ��ÿ��doc�Ĳ����Ƕ����ģ�����Ӱ�졣
+	 * 选择插入模式.多条数据插入时有影响 默认的情况是，顺序插入，如果有一个失败，则停止。 独立插入是指，每个doc的插入是独立的，互不影响。
 	 * 
 	 * @param alone
 	 * @return
@@ -60,12 +60,12 @@ public class InsertBuilder<T> {
 	}
 
 	/**
-	 * ���Ӽ�¼��һ��bean��Ӧһ����¼ <br/>
-	 * ������������������ƣ���ô���Զ���bean�л�ȡ��Ӧ���ֶε�ֵ��Ϊ������ֵ�� <br/>
-	 * ���δָ������ʹ��ϵͳĬ�ϵ��������ɻ��ơ�
+	 * 添加记录，一个bean对应一条记录 <br/>
+	 * 如果有设置了主键名称，那么在自动从bean中获取对应的字段的值作为主键的值。 <br/>
+	 * 如果未指定，则使用系统默认的主键生成机制。
 	 * 
 	 * @param data
-	 *           ��Ҫ���ӵ����ݡ����������
+	 *           需要添加的数据。如果有设置
 	 * @return
 	 */
 	public InsertBuilder<T> addData4Bean(T... datas) {

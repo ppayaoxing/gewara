@@ -9,7 +9,7 @@ import com.gewara.api.vo.pay.OrderAddressVo;
 public interface OrderAddressVoService {
 
 	/**
-	 * 获取用户最近买购过的订单快递地址编号  @see  MemberUsefullAddress.id
+	 * 鑾峰彇鐢ㄦ埛鏈�杩戜拱璐繃鐨勮鍗曞揩閫掑湴鍧�缂栧彿  @see  MemberUsefullAddress.id
 	 * @param memberid
 	 * @param departmentFlag
 	 * @param starttime

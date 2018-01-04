@@ -70,7 +70,7 @@ public class Projection {
 
    
     /**
-     * ָ��array����ЩԪ�ر����ء�
+     * 指锟斤拷array锟斤拷锟斤拷些元锟截憋拷锟斤拷锟截★拷
      * @param fieldName
      * @param condition
      * @return
@@ -82,7 +82,7 @@ public class Projection {
 
    
     /**
-     * �����ı�����
+     * 锟斤拷锟斤拷锟侥憋拷锟斤拷锟斤拷
      * @param fieldName
      * @return
      */

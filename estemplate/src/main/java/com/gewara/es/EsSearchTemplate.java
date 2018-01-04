@@ -50,7 +50,7 @@ public class EsSearchTemplate implements EsSearchOperations {
 	private SearchDao searchDao;
 
 	/**
-	 * ��ʼ��
+	 * 锟斤拷始锟斤拷
 	 * 
 	 * @param Cluster
 	 * @param hosts

@@ -10,7 +10,7 @@ import com.gewara.model.acl.GewaraUser;
 public interface AclService<T extends SecurityModule> extends UserDetailsService{
 	GewaraUser getGewaraUser(Long userid, String logonType);
 	/**
-	 * 获取非API的拦截模块
+	 * 鑾峰彇闈濧PI鐨勬嫤鎴ā鍧�
 	 * @return
 	 */
 	List<T> getSecurityModuleList();
@@ -20,7 +20,7 @@ public interface AclService<T extends SecurityModule> extends UserDetailsService
 	
 	
 	/**
-	 * 根据用户名获取用户对象
+	 * 鏍规嵁鐢ㄦ埛鍚嶈幏鍙栫敤鎴峰璞�
 	 * @param name
 	 * @param logonType
 	 * @return

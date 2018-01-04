@@ -21,7 +21,7 @@ public class InnerRequestFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) res;
 		String remoteIp = BaseWebUtils.getRemoteIp(request);
 		if(!GewaIpConfig.isGewaInnerIp(remoteIp) && !GewaIpConfig.isLocalIp(remoteIp)) {
-			response.sendError(403, "Ö»ÄÜÄÚ²¿µ÷ÓÃ£¡");
+			response.sendError(403, "åªèƒ½å†…éƒ¨è°ƒç”¨ï¼");
 			return;
 		}
 		chain.doFilter(request, response);

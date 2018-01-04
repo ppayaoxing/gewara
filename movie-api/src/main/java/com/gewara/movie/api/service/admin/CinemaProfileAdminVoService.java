@@ -9,7 +9,7 @@ import com.gewara.movie.vo.CinemaProfileVo;
 
 public interface CinemaProfileAdminVoService {
 	/**
-	 * ±£´æCinemaProfile¶ÔÏó
+	 * ä¿å­˜CinemaProfileå¯¹è±¡
 	 * @param userid
 	 * @param cinemaId
 	 * @param dataMap
@@ -17,7 +17,7 @@ public interface CinemaProfileAdminVoService {
 	 */
 	ResultCode<CinemaProfileVo> saveOrUpdateCinemaProfile(RequestParamVo paramVo);
 	/**
-	 * ĞŞ¸ÄcinemaprofileÊôĞÔ
+	 * ä¿®æ”¹cinemaprofileå±æ€§
 	 * @param userid
 	 * @param movieId
 	 * @param properties
@@ -26,7 +26,7 @@ public interface CinemaProfileAdminVoService {
 	 */
 	ResultCode<CinemaProfileVo> updateCinemaProfileProperties(Long userid, Long cinemaId, String[] properties, Serializable[] values);
 	/**
-	 * ÅúÁ¿ÉèÖÃInsure
+	 * æ‰¹é‡è®¾ç½®Insure
 	 * @param userid
 	 * @param cityCode
 	 * @param status
@@ -34,7 +34,7 @@ public interface CinemaProfileAdminVoService {
 	 */
 	ResultCode<List<CinemaProfileVo>> batchSetCinemaInsureStatus(Long userid, String cityCode, String status);
 	/**
-	 * ÉèÖÃInsure
+	 * è®¾ç½®Insure
 	 * @param userid
 	 * @param cinemaId
 	 * @param status
@@ -42,14 +42,14 @@ public interface CinemaProfileAdminVoService {
 	 */
 	ResultCode<CinemaProfileVo> setCinemaInsureStatus(Long userid, Long cinemaId, String status);
 	/**
-	 * Çå¿Õcinemaprof µÄopentype
+	 * æ¸…ç©ºcinemaprof çš„opentype
 	 * @param cinemaid
 	 * @return
 	 */
 	ResultCode<CinemaProfileVo> cleanCinemaInfo(Long cinemaid);
 	
 	/**
-	 * ¸ù¾İid»ñÈ¡CinemaProfileVo
+	 * æ ¹æ®idè·å–CinemaProfileVo
 	 * @param cinemaid
 	 * @return
 	 */

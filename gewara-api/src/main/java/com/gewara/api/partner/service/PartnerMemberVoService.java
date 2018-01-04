@@ -9,43 +9,43 @@ import com.gewara.api.vo.ResultCode;
 
 public interface PartnerMemberVoService {
 	/**
-	 * ¸ù¾İmemberid»ñÈ¡ÓÃ»§ĞÅÏ¢
+	 * æ ¹æ®memberidè·å–ç”¨æˆ·ä¿¡æ¯
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<BaseMemberVo> getMemberByMemberid(PartnerCommonReqVo reqVo);
 	/**
-	 * ÓÃ»§°ó¶¨È¯
+	 * ç”¨æˆ·ç»‘å®šåˆ¸
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<String> bindCard(PartnerCommonReqVo reqVo);
 	/**
-	 * »ñÈ¡°ó¶¨ÊÖ»úºÅµÄ¶¯Ì¬Âë
+	 * è·å–ç»‘å®šæ‰‹æœºå·çš„åŠ¨æ€ç 
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode getBindMobileDynamicNumber(PartnerCommonReqVo reqVo);
 	/**
-	 * ÓÃ»§°ó¶¨ÊÖ»úºÅ
+	 * ç”¨æˆ·ç»‘å®šæ‰‹æœºå·
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode bindMobile(PartnerCommonReqVo reqVo);
 	/**
-	 * ¹ó±ö¿¨³äÖµ
+	 * è´µå®¾å¡å……å€¼
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<Integer> bindVipCard(PartnerCommonReqVo reqVo);
 	/**
-	 * »ñÈ¡ÓÃ»§µÄµç×ÓÈ¯ÁĞ±í
+	 * è·å–ç”¨æˆ·çš„ç”µå­åˆ¸åˆ—è¡¨
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<List<MemberECardVo>> getMemberECardList(PartnerCommonReqVo reqVo);
 	/**
-	 * »ñÈ¡Æ±È¯ÏêÏ¸£¬ÎªH5¿¨È¯ÏêÏ¸Ò³Ê¹ÓÃ
+	 * è·å–ç¥¨åˆ¸è¯¦ç»†ï¼Œä¸ºH5å¡åˆ¸è¯¦ç»†é¡µä½¿ç”¨
 	 * @param appkey
 	 * @param cardno
 	 * @return

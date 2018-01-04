@@ -8,7 +8,7 @@ import com.gewara.api.vo.order.GewaOrderVo;
 
 public interface GwOrderQueryVoService {
 	/**
-	 * ²éÑ¯PostorderµÄÉÌ³Ç¶©µ¥
+	 * æŸ¥è¯¢Postorderçš„å•†åŸè®¢å•
 	 * @param memberid
 	 * @param startTime
 	 * @param endTime
@@ -18,7 +18,7 @@ public interface GwOrderQueryVoService {
 	 */
 	ResultCode<List<GewaOrderVo>> getMallPostOrderListByMemberId(Long memberid, Timestamp startTime, Timestamp endTime, int from, int maxnum);
 	/**
-	 * ²éÑ¯GewaOrderÖĞµÄÉÌ³Ç¶©µ¥
+	 * æŸ¥è¯¢GewaOrderä¸­çš„å•†åŸè®¢å•
 	 * @param memberid
 	 * @param startTime
 	 * @param endTime
@@ -27,29 +27,29 @@ public interface GwOrderQueryVoService {
 	ResultCode<List<GewaOrderVo>> getMallOrderListByMemberId(Long memberid, Timestamp startTime, Timestamp endTime);
 	
 	/**
-	 * ²éÑ¯ÓÃ»§¶©µ¥£¬°üÀ¨µ±Ç°µÄ
+	 * æŸ¥è¯¢ç”¨æˆ·è®¢å•ï¼ŒåŒ…æ‹¬å½“å‰çš„
 	 * @param memberId
 	 * @param from
 	 * @param maxnum
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê3ÔÂ23ÈÕÉÏÎç11:22:59
+	 * @addTime 2016å¹´3æœˆ23æ—¥ä¸Šåˆ11:22:59
 	 */
 	ResultCode<List<GewaOrderVo>> getOrderScheduleList(Long memberId, int from, int maxnum);
 	
 	/**
-	 * ²éÑ¯ÓÃ»§µ±ÌìµÄ¶©µ¥
+	 * æŸ¥è¯¢ç”¨æˆ·å½“å¤©çš„è®¢å•
 	 * @param memberId
 	 * @param from
 	 * @param maxnum
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê3ÔÂ23ÈÕÉÏÎç11:23:15
+	 * @addTime 2016å¹´3æœˆ23æ—¥ä¸Šåˆ11:23:15
 	 */
 	ResultCode<List<GewaOrderVo>> getCurrentTicketOrderByMemberId(Long memberId, int from, int maxnum);
 	
 	/**
-	 * ¸ù¾İÓÃ»§ID£¬Ó°ÔºIDlist£¬²éÑ¯ÓÃ»§µÄÎïÆ·¶©µ¥
+	 * æ ¹æ®ç”¨æˆ·IDï¼Œå½±é™¢IDlistï¼ŒæŸ¥è¯¢ç”¨æˆ·çš„ç‰©å“è®¢å•
 	 * @param memberId
 	 * @param from
 	 * @param maxnum
@@ -57,7 +57,7 @@ public interface GwOrderQueryVoService {
 	 */
 	ResultCode<List<GewaOrderVo>> getCurrentGoodsOrderList(Long memberId, List<Long> cinemaIdList, Timestamp addTime);
 	/**
-	 * ¸ù¾İÓÃ»§ID²éÑ¯ÓÃ»§µÄÎïÆ·¶©µ¥
+	 * æ ¹æ®ç”¨æˆ·IDæŸ¥è¯¢ç”¨æˆ·çš„ç‰©å“è®¢å•
 	 * @param memberId
 	 * @param from
 	 * @param maxnum
@@ -70,7 +70,7 @@ public interface GwOrderQueryVoService {
 
 	
 	/**
-	 * ¸ù¾İºÏ×÷ÉÌid²éÑ¯¶©µ¥£¬Ö»²éÑ¯Ò»ÌìÖ®ÄÚµÄ³É¹¦¶©µ¥
+	 * æ ¹æ®åˆä½œå•†idæŸ¥è¯¢è®¢å•ï¼ŒåªæŸ¥è¯¢ä¸€å¤©ä¹‹å†…çš„æˆåŠŸè®¢å•
 	 * @param memberid
 	 * @param partnerid
 	 * @param startTime
@@ -80,12 +80,12 @@ public interface GwOrderQueryVoService {
 	
 	/**
 	 * 
-	 * ²éÑ¯ÓÃ»§µ±Ìì£¬ÔÚ·ÅÓ³Ê±¼äplaytimeÒÔºóµÄ¶©µ¥£¬Ö»ÔÚPostOrderÖĞ²éÑ¯
+	 * æŸ¥è¯¢ç”¨æˆ·å½“å¤©ï¼Œåœ¨æ”¾æ˜ æ—¶é—´playtimeä»¥åçš„è®¢å•ï¼Œåªåœ¨PostOrderä¸­æŸ¥è¯¢
 	 * @param memberId
-	 * @param playtime	·ÅÓ³Ê±¼ä
+	 * @param playtime	æ”¾æ˜ æ—¶é—´
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê5ÔÂ26ÈÕÉÏÎç11:41:13
+	 * @addTime 2016å¹´5æœˆ26æ—¥ä¸Šåˆ11:41:13
 	 */
 	ResultCode<List<GewaOrderVo>> getCurrentTicketOrderByMemberId(Long memberId, Timestamp playtime);
 	
@@ -95,7 +95,7 @@ public interface GwOrderQueryVoService {
 	 * 
 	 * @param memberId
 	 * @param isM5V
-	 * @param orderType, ¶à¸öÇëÓÃ","ºÅ¸ô¿ª
+	 * @param orderType, å¤šä¸ªè¯·ç”¨","å·éš”å¼€
 	 * @param days
 	 * @param from
 	 * @param maxnum

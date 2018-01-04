@@ -46,7 +46,7 @@ public class JVMCommandProcessorGroup implements CommandProcessorGroup {
 
 		@Override
 		public String getHelp() {
-			return "[json] dumpµ±Ç°Ïß³Ì£¬±£´æÔÚ¡°/opt/lamp/weblog/dump/hostname_systemid_yyMMddHHmmss.tdump]¡±Ä¿Â¼ÖĞ¡£json±íÊ¾½á¹û·µ»ØJson¸ñÊ½(»úÆ÷Ö®¼ä)";
+			return "[json] dumpå½“å‰çº¿ç¨‹ï¼Œä¿å­˜åœ¨â€œ/opt/lamp/weblog/dump/hostname_systemid_yyMMddHHmmss.tdump]â€ç›®å½•ä¸­ã€‚jsonè¡¨ç¤ºç»“æœè¿”å›Jsonæ ¼å¼(æœºå™¨ä¹‹é—´)";
 		}
 
 		@Override
@@ -93,7 +93,7 @@ public class JVMCommandProcessorGroup implements CommandProcessorGroup {
 
 		@Override
 		public String getHelp() {
-			return "[json]Í¬dth£¬µ«°üº¬ËøĞÅÏ¢£¬±È½ÏÈ«Ãæ";
+			return "[json]åŒdthï¼Œä½†åŒ…å«é”ä¿¡æ¯ï¼Œæ¯”è¾ƒå…¨é¢";
 		}
 
 		@Override

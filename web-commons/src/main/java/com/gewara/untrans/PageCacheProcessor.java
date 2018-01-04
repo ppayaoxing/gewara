@@ -6,17 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface PageCacheProcessor {
 	/**
-	 * »º´æ·¢ËÍ¶ÓÁĞ
+	 * ç¼“å­˜å‘é€é˜Ÿåˆ—
 	 * @param params
 	 */
 	void sendMsgToDst(Map<String, String> params);
 	/**
-	 * »º´æµÄÒ³ÃæÇ°×º
+	 * ç¼“å­˜çš„é¡µé¢å‰ç¼€
 	 * @return
 	 */
 	String getKeyPre();
 	/**
-	 * ÊÇ·ñÓĞÇå³ı»º´æµÄÈ¨ÏŞ
+	 * æ˜¯å¦æœ‰æ¸…é™¤ç¼“å­˜çš„æƒé™
 	 * @param request
 	 * @return
 	 */

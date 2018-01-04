@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface JobStatsService {
 	/**
-	 * 获取定时任务统计信息
+	 * 鑾峰彇瀹氭椂浠诲姟缁熻淇℃伅
 	 * @param from
 	 * @param to
 	 * @return List<Map(jobname,status,execCount)>

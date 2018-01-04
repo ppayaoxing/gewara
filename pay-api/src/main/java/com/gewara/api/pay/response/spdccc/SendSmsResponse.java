@@ -11,9 +11,9 @@ public class SendSmsResponse extends ApiResponse {
 	
 	private String tradeNo;
 	
-	private String verifyCode;//¶ÌĞÅÑéÖ¤Âë
+	private String verifyCode;//çŸ­ä¿¡éªŒè¯ç 
 	
-	private String teleNo;//ÊÖ»úºÅ
+	private String teleNo;//æ‰‹æœºå·
 	
 	public SendSmsResponse(){
 		super();

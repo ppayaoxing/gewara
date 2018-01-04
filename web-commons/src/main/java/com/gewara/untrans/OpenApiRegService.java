@@ -2,14 +2,14 @@ package com.gewara.untrans;
 
 public interface OpenApiRegService {
 	/**
-	 * ×¢²áopenapi
+	 * æ³¨å†Œopenapi
 	 * @param path
 	 * @param data
 	 */
 	void registerOpenApi(String path, String data);
 
 	/**
-	 * È¡Ïû×¢²áopenapi
+	 * å–æ¶ˆæ³¨å†Œopenapi
 	 */
 	void unregisterOpenApi();
 }

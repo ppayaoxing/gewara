@@ -11,18 +11,18 @@ import com.gewara.cons.SeatConstant;
 
 public class SellSeatVo extends BaseVo {
 	private static final long serialVersionUID = 7220661632796433750L;
-	public static final String SECTION_UP = "up";		//Â¥ÉÏ
-	public static final String SECTION_DOWN = "dw";		//Â¥ÏÂ
-	private Long id;				//ÓëOpenSeat¹²ÓÃId
-	private Integer version;		//°æ±¾
-	private Long orderid;			//¶©µ¥ºÅ
-	private Long mpid;				//¹ØÁª³¡´Î
-	private String seatline;		//×ùÎ»ĞĞºÅ
-	private String seatrank;		//×ùÎ»ÁĞºÅ
-	private String secid;			//ÇøÓò±àºÅ
+	public static final String SECTION_UP = "up";		//æ¥¼ä¸Š
+	public static final String SECTION_DOWN = "dw";		//æ¥¼ä¸‹
+	private Long id;				//ä¸OpenSeatå…±ç”¨Id
+	private Integer version;		//ç‰ˆæœ¬
+	private Long orderid;			//è®¢å•å·
+	private Long mpid;				//å…³è”åœºæ¬¡
+	private String seatline;		//åº§ä½è¡Œå·
+	private String seatrank;		//åº§ä½åˆ—å·
+	private String secid;			//åŒºåŸŸç¼–å·
 	private Timestamp validtime;
 	private Integer price;
-	private String status;			//×´Ì¬
+	private String status;			//çŠ¶æ€
 	public SellSeatVo(){}
 	public SellSeatVo(RoomSeatVo rseat, Long mpid, Integer price, Timestamp validtime){
 		this.mpid = mpid;
@@ -116,12 +116,12 @@ public class SellSeatVo extends BaseVo {
 		//return getSeatLabel(secid, seatline, seatrank);
 		if(StringUtils.isNotBlank(secid)){
 			if(SECTION_UP.equals(secid)){
-				return "Â¥ÉÏ" + seatline + "ÅÅ"+seatrank+"×ù";
+				return "æ¥¼ä¸Š" + seatline + "æ’"+seatrank+"åº§";
 			}else if(SECTION_DOWN.equals(secid)){
-				return "Â¥ÏÂ" + seatline + "ÅÅ" + seatrank + "×ù";
+				return "æ¥¼ä¸‹" + seatline + "æ’" + seatrank + "åº§";
 			}
 		}
-		return seatline+"ÅÅ"+seatrank+"×ù";
+		return seatline+"æ’"+seatrank+"åº§";
 	}
 	public Long getOrderid() {
 		return orderid;

@@ -7,7 +7,7 @@ public interface PushNotifyService {
 	public ResultCode<String> sendPushNotify(PushNotifyVo pushNotify);
 
 	/**
-	 * ¸ù¾İÏûÏ¢Î¨Ò»±êÊ¶È¡Ïû·¢ËÍ
+	 * æ ¹æ®æ¶ˆæ¯å”¯ä¸€æ ‡è¯†å–æ¶ˆå‘é€
 	 * 
 	 * @param tradeNo
 	 */

@@ -9,7 +9,7 @@ import com.gewara.api.activity.ApiRequest;
 public class GetActivitByIdRequest extends ApiRequest {
 	private static final long serialVersionUID = 6111593872840003414L;
 	
-	/**�Id*/
+	/**活动Id*/
 	private Long activityId;
 	
 	public GetActivitByIdRequest(){

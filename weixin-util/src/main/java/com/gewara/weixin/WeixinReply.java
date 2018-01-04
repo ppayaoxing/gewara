@@ -5,7 +5,7 @@ public class WeixinReply{
 	private String fromUserName;
 	private String createTime;
 	private String msgType;
-	//文本消息
+	//鏂囨湰娑堟伅
 	private String content;
 	private String funcFlag;
 	

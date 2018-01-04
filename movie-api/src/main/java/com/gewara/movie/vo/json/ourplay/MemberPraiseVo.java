@@ -12,14 +12,14 @@ public class MemberPraiseVo extends BaseVo{
 	 */
 	private static final long serialVersionUID = 7680984355389224217L;
 	private String me_movieid;
-	private Long memberid;//ÓÃ»§ID
-	private Long movieid;//Ó°Æ¬id
-	private Long walaid;//ÍÛÀ²id
-	private Timestamp ordertime;//¶©µ¥Ê±¼ä
-	private Integer packetstatus;//ºì°ü·¢ËÍ×´Ì¬(0Î´·¢ºì°ü,1ÒÑ·¢ºì°ü)
-	private Long playMovieId;//·ÅÓ³µçÓ°ID
-	private Timestamp createtime;//´´½¨Ê±¼ä
-	private Timestamp updatetime;//×îºó¸üĞÂÊ±¼ä
+	private Long memberid;//ç”¨æˆ·ID
+	private Long movieid;//å½±ç‰‡id
+	private Long walaid;//å“‡å•¦id
+	private Timestamp ordertime;//è®¢å•æ—¶é—´
+	private Integer packetstatus;//çº¢åŒ…å‘é€çŠ¶æ€(0æœªå‘çº¢åŒ…,1å·²å‘çº¢åŒ…)
+	private Long playMovieId;//æ”¾æ˜ ç”µå½±ID
+	private Timestamp createtime;//åˆ›å»ºæ—¶é—´
+	private Timestamp updatetime;//æœ€åæ›´æ–°æ—¶é—´
 	
 
 	public MemberPraiseVo() {

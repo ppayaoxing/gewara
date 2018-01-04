@@ -35,12 +35,12 @@ public interface QaApiService {
 	ResultCode<List<GewaAnswerVo>> getAnswerListByQuestionAndMemId(int start, int maxnum, Long questionid, Long memberId);
 
 	/**
-	 * ¸ù¾İÎÊÌâ²éÑ¯»Ø¸´ status=Y_NEW
+	 * æ ¹æ®é—®é¢˜æŸ¥è¯¢å›å¤ status=Y_NEW
 	 */
 	ResultCode<Integer> getAnswerCountByQuestionId(Long questionid);
 
 	/**
-	 * Ta»Ø´ğµÄÎÊÌâµÄÊıÁ¿
+	 * Taå›ç­”çš„é—®é¢˜çš„æ•°é‡
 	 * 
 	 * @param mid
 	 * @return
@@ -48,7 +48,7 @@ public interface QaApiService {
 	ResultCode<Integer> getAnswerCountByMemberidAndNStatus(Long mid);
 
 	/**
-	 * Ta»Ø´ğµÄÎÊÌâ±»²ÉÄÉµÄÊıÁ¿
+	 * Taå›ç­”çš„é—®é¢˜è¢«é‡‡çº³çš„æ•°é‡
 	 * 
 	 * @param mid
 	 * @return
@@ -56,7 +56,7 @@ public interface QaApiService {
 	ResultCode<Integer> getBestAnswerCountByMemberid(Long mid);
 
 	/**
-	 * ÓÃ»§ÊÇ·ñ¿ÉÒÔÌá³öÎÊÌâ
+	 * ç”¨æˆ·æ˜¯å¦å¯ä»¥æå‡ºé—®é¢˜
 	 * 
 	 * @param memberid
 	 * @param maxdays
@@ -65,7 +65,7 @@ public interface QaApiService {
 	ResultCode<Boolean> isQuestion(Long memberid, Integer maxdays);
 
 	/**
-	 * ÓÃ»§ÊÇ·ñÒÑ¾­»Ø´ğÁËÕâ¸öÎÊÌâ
+	 * ç”¨æˆ·æ˜¯å¦å·²ç»å›ç­”äº†è¿™ä¸ªé—®é¢˜
 	 * 
 	 * @param qid
 	 * @param mid
@@ -74,7 +74,7 @@ public interface QaApiService {
 	ResultCode<Boolean> isAnswerQuestion(Long qid, Long mid);
 
 	/**
-	 * ÎÊÌâµÄ×î¼Ñ´ğ°¸
+	 * é—®é¢˜çš„æœ€ä½³ç­”æ¡ˆ
 	 * 
 	 * @param qid
 	 * @return
@@ -82,7 +82,7 @@ public interface QaApiService {
 	ResultCode<GewaAnswerVo> getBestAnswerByQuestionid(Long qid);
 
 	/**
-	 * ÓÃ»§ÊÇ·ñÊÇ×¨¼Ò
+	 * ç”¨æˆ·æ˜¯å¦æ˜¯ä¸“å®¶
 	 * 
 	 * @param mid
 	 * @return
@@ -90,7 +90,7 @@ public interface QaApiService {
 	ResultCode<GewaQaExpertVo> getQaExpertByMemberid(Long mid);
 
 	/**
-	 * ¸ü¸ÄÎÊÌâµÄÈÈ¶È
+	 * æ›´æ”¹é—®é¢˜çš„çƒ­åº¦
 	 * 
 	 * @param id
 	 * @param hotvalue
@@ -99,7 +99,7 @@ public interface QaApiService {
 	ResultCode<Boolean> updateQAHotValue(Long id, Integer hotvalue);
 
 	/**
-	 * ĞŞ¸Ä×¨¼ÒĞÅÏ¢ÈÈ¶È
+	 * ä¿®æ”¹ä¸“å®¶ä¿¡æ¯çƒ­åº¦
 	 * 
 	 * @param id
 	 * @param hotvalue
@@ -108,7 +108,7 @@ public interface QaApiService {
 	ResultCode<Boolean> updateQAExpertHotValue(Long id, Integer hotvalue);
 
 	/**
-	 * ²éÑ¯×¨¼ÒĞÅÏ¢ÊıÁ¿
+	 * æŸ¥è¯¢ä¸“å®¶ä¿¡æ¯æ•°é‡
 	 * 
 	 * @return 2009-10-29
 	 */
@@ -116,14 +116,14 @@ public interface QaApiService {
 	ResultCode<Integer> getQAExpertCount();
 
 	/**
-	 * ²éÑ¯×¨¼ÒĞÅÏ¢
+	 * æŸ¥è¯¢ä¸“å®¶ä¿¡æ¯
 	 * 
 	 * @return 2009-10-29
 	 */
 	ResultCode<List<GewaQaExpertVo>> getQaExpertList();
 
 	/**
-	 * ²éÕÒÎÊÌâ
+	 * æŸ¥æ‰¾é—®é¢˜
 	 * 
 	 * @param tag
 	 * @param relatedid
@@ -134,7 +134,7 @@ public interface QaApiService {
 	ResultCode<List<GewaQuestionVo>> getQuestionByTagAndRelatedid(String citycode, String tag, Long relatedid, int from, int maxnum);
 
 	/**
-	 * ²éÕÒÎÊÌâ
+	 * æŸ¥æ‰¾é—®é¢˜
 	 * 
 	 * @param category
 	 * @param categoryid
@@ -151,7 +151,7 @@ public interface QaApiService {
 	ResultCode<Integer> getQuestionCountByCategoryAndCid(String citycode, String category, Long categoryid);
 
 	/**
-	 * ÓÃ»§×î¼Ñ´ğ°¸¶àÉÙÅÅĞĞ
+	 * ç”¨æˆ·æœ€ä½³ç­”æ¡ˆå¤šå°‘æ’è¡Œ
 	 * 
 	 * @param from
 	 * @param maxnum
@@ -162,7 +162,7 @@ public interface QaApiService {
 	ResultCode<Integer> getTopMemberCountByBestAnswer();
 
 	/**
-	 * ²éÑ¯×¨¼ÒĞÅÏ¢±íµÄ×´Ì¬
+	 * æŸ¥è¯¢ä¸“å®¶ä¿¡æ¯è¡¨çš„çŠ¶æ€
 	 * 
 	 * @return 2009-10-30
 	 */
@@ -171,7 +171,7 @@ public interface QaApiService {
 	ResultCode<List<GewaAnswerVo>> getAnswerByMemberId(Long id);
 
 	/**
-	 * ÓÃ»§»Ø´ğÎÊÌâ¶àÉÙÅÅĞĞ
+	 * ç”¨æˆ·å›ç­”é—®é¢˜å¤šå°‘æ’è¡Œ
 	 * 
 	 * @param from
 	 * @param maxnum
@@ -182,7 +182,7 @@ public interface QaApiService {
 	ResultCode<Integer> getTopMemberCountByAnswer();
 
 	/**
-	 * ÓÃ»§¾­ÑéÖµ¶àÉÙÅÅĞĞ
+	 * ç”¨æˆ·ç»éªŒå€¼å¤šå°‘æ’è¡Œ
 	 */
 	ResultCode<List<VoMap<String,Object>>> getTopMemberVoMapListByPoint(int from, int maxnum);
 
@@ -212,7 +212,7 @@ public interface QaApiService {
 	ResultCode<GewaQaPointVo> getGewaQaPointByQuestionidAndTag(Long qid, String tag);
 
 	/**
-	 * ÓÃ»§ÀÛ¼ÆµÄÎÊ´ğ¾­ÑéÖµ
+	 * ç”¨æˆ·ç´¯è®¡çš„é—®ç­”ç»éªŒå€¼
 	 * 
 	 * @param mid
 	 * @return
@@ -225,56 +225,56 @@ public interface QaApiService {
 			int maxnum);
 
 	/**
-	 * ²éÑ¯ÎÊÌâ×ÜÊıÁ¿
+	 * æŸ¥è¯¢é—®é¢˜æ€»æ•°é‡
 	 * 
 	 * @param citycode
-	 *            ³ÇÊĞ´úÂë
+	 *            åŸå¸‚ä»£ç 
 	 * @param tag
-	 *            ¹ØÁªÀàĞÍ
+	 *            å…³è”ç±»å‹
 	 * @param relatedid
-	 *            ¹ØÁª¶ÔÏóid
+	 *            å…³è”å¯¹è±¡id
 	 * @param status
-	 *            ÎÊÌâ×´Ì¬,¿ÉÑ¡Öµ:N(´ı½â¾ö),Y(ÒÑ½â¾ö),Z(Áã½â¾ö),noproper(ÎŞÂúÒâ´ğ°¸)
+	 *            é—®é¢˜çŠ¶æ€,å¯é€‰å€¼:N(å¾…è§£å†³),Y(å·²è§£å†³),Z(é›¶è§£å†³),noproper(æ— æ»¡æ„ç­”æ¡ˆ)
 	 * @return
 	 */
 	ResultCode<Integer> getQuestionCount(String citycode, String tag, Long relatedid, String status);
 
 	/**
-	 * ·ÖÒ³²éÑ¯ÎÊÌâ
+	 * åˆ†é¡µæŸ¥è¯¢é—®é¢˜
 	 * 
 	 * @param citycode
-	 *            ³ÇÊĞ´úÂë
+	 *            åŸå¸‚ä»£ç 
 	 * @param tag
-	 *            ¹ØÁªÀàĞÍ
+	 *            å…³è”ç±»å‹
 	 * @param relatedid
-	 *            ¹ØÁª¶ÔÏóid
+	 *            å…³è”å¯¹è±¡id
 	 * @param status
-	 *            ÎÊÌâ×´Ì¬,¿ÉÑ¡Öµ:N(´ı½â¾ö),Y(ÒÑ½â¾ö),Z(Áã½â¾ö),noproper(ÎŞÂúÒâ´ğ°¸)
+	 *            é—®é¢˜çŠ¶æ€,å¯é€‰å€¼:N(å¾…è§£å†³),Y(å·²è§£å†³),Z(é›¶è§£å†³),noproper(æ— æ»¡æ„ç­”æ¡ˆ)
 	 * @param order
-	 *            ÅÅĞò
+	 *            æ’åº
 	 * @param from
-	 *            Ò³Âë
+	 *            é¡µç 
 	 * @param maxnum
-	 *            ½á¹ûÌõÊı
+	 *            ç»“æœæ¡æ•°
 	 * @return
 	 */
 	ResultCode<List<GewaQuestionVo>> getQuestionList(String citycode, String tag, Long relatedid, String status, String order,
 			int from, int maxnum);
 
 	/**
-	 * ¸ù¾İhotvalue²éÑ¯ÖªµÀÊıÁ¿
+	 * æ ¹æ®hotvalueæŸ¥è¯¢çŸ¥é“æ•°é‡
 	 */
 	ResultCode<Integer> getQuestionCountByHotvalue(String citycode, Integer hotvalue);
 
 	/**
-	 * »ñÈ¡Ñİ³ö¹ÜÀíÈËÔ±»Ø¸´µÄmemberid;
+	 * è·å–æ¼”å‡ºç®¡ç†äººå‘˜å›å¤çš„memberid;
 	 * 
 	 * @return
 	 */
 	ResultCode<Long> getGewaraAnswerByMemberid();
 
 	/**
-	 * ²éÑ¯Êı¾İ
+	 * æŸ¥è¯¢æ•°æ®
 	 * @param memberId
 	 * @param answerstatus
 	 * 
@@ -285,17 +285,17 @@ public interface QaApiService {
 	
 
 	/**
-	 * ²éÑ¯±¨±íĞÅÏ¢
+	 * æŸ¥è¯¢æŠ¥è¡¨ä¿¡æ¯
 	 * @param datefrom
-	 *            ¿ª·¢ÈÕÆÚ
+	 *            å¼€å‘æ—¥æœŸ
 	 * @param dateto
-	 *            ½áÊøÈÕÆÚ
+	 *            ç»“æŸæ—¥æœŸ
 	 * @return
 	 */
 	ResultCode<VoMap<String, Integer>> getQaReportLstVoMap(Date datefrom, Date dateto);
 
 	/**
-	 * ¸ù¾İtilte ºÍ  ×´Ì¬ ²éÑ¯GewaQuestion
+	 * æ ¹æ®tilte å’Œ  çŠ¶æ€ æŸ¥è¯¢GewaQuestion
 	 * @param keyname
 	 * @param status
 	 * @param i
@@ -305,7 +305,7 @@ public interface QaApiService {
 	ResultCode<List<GewaQuestionVo>> getQuestionByTitleAndStatus(String keyname, String status, int i, Integer rowsPerPage);
 	
 	/**
-	 * ¸ù¾İtilte ºÍ  ×´Ì¬ ²éÑ¯ GewaQuestionÒ³Êı
+	 * æ ¹æ®tilte å’Œ  çŠ¶æ€ æŸ¥è¯¢ GewaQuestioné¡µæ•°
 	 * @param keyname
 	 * @param status
 	 * @return
@@ -313,7 +313,7 @@ public interface QaApiService {
 	ResultCode<Integer> getQuestionCountByTitleAndStatus(String keyname, String status);
 
 	/**
-	 * ²éÑ¯ AnswerÒ³Êı
+	 * æŸ¥è¯¢ Answeré¡µæ•°
 	 * @param qid
 	 * @param memberid
 	 * @param starttime
@@ -326,7 +326,7 @@ public interface QaApiService {
 			String keyname);
 
 	/**
-	 * ²éÑ¯ Answer
+	 * æŸ¥è¯¢ Answer
 	 * @param qid
 	 * @param memberid
 	 * @param starttime
@@ -341,7 +341,7 @@ public interface QaApiService {
 			String keyname, int firstRow, int rowsPerPage);
 	
 	/**
-	 * ²éÑ¯ QuestionÒ³Êı
+	 * æŸ¥è¯¢ Questioné¡µæ•°
 	 * @param memberid
 	 * @param starttime
 	 * @param endtime
@@ -352,7 +352,7 @@ public interface QaApiService {
 	ResultCode<Integer> getQuestionCount(Long memberid, Timestamp starttime, Timestamp endtime, String status, String keyname);
 
 	/**
-	 * ²éÑ¯ Question
+	 * æŸ¥è¯¢ Question
 	 * @param memberid
 	 * @param starttime
 	 * @param endtime
@@ -366,16 +366,16 @@ public interface QaApiService {
 			String keyname, int firstRow, Integer rowsPerPage);
 
 	/**
-	 * ²éÑ¯ QuestionÊıÁ¿
-	 * @param command ²éÑ¯²ÎÊı
+	 * æŸ¥è¯¢ Questionæ•°é‡
+	 * @param command æŸ¥è¯¢å‚æ•°
 	 * @param order
 	 * @return
 	 */
 	ResultCode<Integer> getQuestionCount(QuestionCommand command, String order);
 
 	/**
-	 * ²éÑ¯Question
-	 * @param qc ²éÑ¯²ÎÊı
+	 * æŸ¥è¯¢Question
+	 * @param qc æŸ¥è¯¢å‚æ•°
 	 * @param citycode
 	 * @return
 	 */
@@ -383,76 +383,76 @@ public interface QaApiService {
 
 	
 	/**
-	 * ²éÑ¯ÒÑ¾­É¾³ıË÷ÒıµÄGewaQuestion
+	 * æŸ¥è¯¢å·²ç»åˆ é™¤ç´¢å¼•çš„GewaQuestion
 	 * @param isDeleteDbRecord TODO
 	 * @return
 	 */
 	ResultCode<List<GewaQuestionVo>> getDeletedQuestionList(boolean isDeleteDbRecord);
     
     /**
-     * ²éÑ¯Question idÁĞ±í
+     * æŸ¥è¯¢Question idåˆ—è¡¨
      * @return
      */
 	ResultCode<List<Long>> getQuestionIds();
     
     
     /**
-	 * ²éÑ¯µ±Ç°ÓÃ»§·¢±íµÄÖªµÀ
+	 * æŸ¥è¯¢å½“å‰ç”¨æˆ·å‘è¡¨çš„çŸ¥é“
 	 */
 	ResultCode<List<GewaQuestionVo>> getQuestionByMemberid(Long memberid, int from, int maxnum);
 	
 	/**
-	 * ²éÑ¯µ±Ç°ÓÃ»§·¢±íµÄÖªµÀĞÅÏ¢ÊıÁ¿
+	 * æŸ¥è¯¢å½“å‰ç”¨æˆ·å‘è¡¨çš„çŸ¥é“ä¿¡æ¯æ•°é‡
 	 */
 	ResultCode<Integer> getQuestionCountByMemberid(Long memberid);
 	
 	/**
-	 * ²éÑ¯µ±Ç°ÓÃ»§»Ø¸´µÄÖªµÀ
-	 * page µ±Ç°Ò³Âë
+	 * æŸ¥è¯¢å½“å‰ç”¨æˆ·å›å¤çš„çŸ¥é“
+	 * page å½“å‰é¡µç 
 	 */
 	ResultCode<List<GewaQuestionVo>> getAnswerByMemberid(Long memberid, int from, int maxnum);
 	
 	/**
-	 * ²éÑ¯µ±Ç°ÓÃ»§»Ø¸´µÄÖªµÀĞÅÏ¢ÊıÁ¿
+	 * æŸ¥è¯¢å½“å‰ç”¨æˆ·å›å¤çš„çŸ¥é“ä¿¡æ¯æ•°é‡
 	 */
 	ResultCode<Integer> getAnswerCountByMemberid(Long memberid);
 	
 	/**
-	 * ¸ù¾İquestionid²éÑ¯gewaAnswer
+	 * æ ¹æ®questionidæŸ¥è¯¢gewaAnswer
 	 * @return
 	 */
 	ResultCode<GewaAnswerVo> getGewaAnswerByAnswerid(Long questionid, Long memberid);
 
 	/**
-	 * Í¨¹ıId²éÑ¯GewaQuestion
+	 * é€šè¿‡IdæŸ¥è¯¢GewaQuestion
 	 * @param id
 	 * @return
 	 */
 	ResultCode<GewaQuestionVo> getQuestion(Long id);
 
 	/**
-	 * Í¨¹ıId²éÑ¯GewaAnswer
+	 * é€šè¿‡IdæŸ¥è¯¢GewaAnswer
 	 * @param id
 	 * @return
 	 */
 	ResultCode<GewaAnswerVo> getAnswer(Long id);
 
 	/**
-	 * ±£´æGewaQuestion
+	 * ä¿å­˜GewaQuestion
 	 * @param question
 	 * @return
 	 */
 	ResultCode<GewaQuestionVo> saveQuestion(GewaQuestionVo question);
 
 	/**
-	 * ±£´æGewaAnswer
+	 * ä¿å­˜GewaAnswer
 	 * @param question
 	 * @return
 	 */
 	ResultCode<GewaAnswerVo> saveAnswer(GewaAnswerVo answer);
 
 	/**
-	 * Í¨¹ıId²éÑ¯GewaQaExpert
+	 * é€šè¿‡IdæŸ¥è¯¢GewaQaExpert
 	 * @param id
 	 * @return
 	 */
@@ -460,41 +460,41 @@ public interface QaApiService {
 	
 
 	/**
-	 * ±£´æGewaQaPoint
+	 * ä¿å­˜GewaQaPoint
 	 * @param qaPoint
 	 * @return
 	 */
 	ResultCode<GewaQaPointVo> saveQaPoint(GewaQaPointVo qaPoint);
 
 	/**
-	 * Í¨¹ıId²éÑ¯GewaQaPoint
+	 * é€šè¿‡IdæŸ¥è¯¢GewaQaPoint
 	 * @param id
 	 * @return
 	 */
 	ResultCode<GewaQaPointVo> getQaPoint(Long id);
 
 	/**
-	 * ±£´æGewaQaExpert
+	 * ä¿å­˜GewaQaExpert
 	 * @param expert
 	 * @return
 	 */
 	ResultCode<GewaQaExpertVo> saveQaExpert(GewaQaExpertVo expert);
 
 	/**
-	 * É¾³ıGewaQaPoint
+	 * åˆ é™¤GewaQaPoint
 	 * @param qaPoint
 	 */
 	ResultCode removeQAPoint(Long id);
 
 	/**
-	 * É¾³ıGewaQaPoint
+	 * åˆ é™¤GewaQaPoint
 	 * @param qaPoint
 	 * @return
 	 */
 	ResultCode<GewaQaPointVo> removeQaPoint(GewaQaPointVo qaPoint);
 
 	/**
-	 * ±£´æGewaAnswer List
+	 * ä¿å­˜GewaAnswer List
 	 * @param answerlist
 	 */
 	ResultCode saveAnswerList(List<GewaAnswerVo> answerlist);

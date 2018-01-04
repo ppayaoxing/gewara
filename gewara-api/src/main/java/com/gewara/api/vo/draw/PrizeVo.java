@@ -8,26 +8,26 @@ import com.gewara.api.vo.BaseVo;
 public class PrizeVo extends BaseVo {
 	private static final long serialVersionUID = -953298279131566566L;
 	public static final String PRIZE_TYPE_DRAMA = "drama";
-	public static final String PRIZE_REMARK = "remark";//ÆäËû½±Æ·
-	public static final String PRIZE_TYPE_WAIBI="waibi";//Íß±Ò
-	public static final String PRIZE_TYPE_SPDISCOUNT="sd";//ÌØ¼Û»î¶¯Ãû¶î
+	public static final String PRIZE_REMARK = "remark";//å…¶ä»–å¥–å“
+	public static final String PRIZE_TYPE_WAIBI="waibi";//ç“¦å¸
+	public static final String PRIZE_TYPE_SPDISCOUNT="sd";//ç‰¹ä»·æ´»åŠ¨åé¢
 	
 	
 	private Long id;
 	private Long activityid;
-	private String ptype;			//½±Æ·ÀàĞÍ
-	private Integer pvalue;			//ÃæÖµ
-	private Integer chancenum; 		//¸ÅÂÊÖµ
-	private Integer pnumber;		//½±Æ·ÊıÁ¿
-	private Integer psendout;		//´Ë½±Æ·ÒÑ³ö¶àÉÙ
+	private String ptype;			//å¥–å“ç±»å‹
+	private Integer pvalue;			//é¢å€¼
+	private Integer chancenum; 		//æ¦‚ç‡å€¼
+	private Integer pnumber;		//å¥–å“æ•°é‡
+	private Integer psendout;		//æ­¤å¥–å“å·²å‡ºå¤šå°‘
 	private Timestamp addtime;
 	private String remark;
-	private String tag;				//¶ÔÓ¦²»Í¬µç×ÓÈ¯µÄ±êÊ¶
-	private String plevel;			//½±Æ·¼¶±ğ
-	private String msgcontent;  	//¶ÌĞÅÄ£°å
-	private String otype;			//ÆäËü½±Æ·ÀàĞÍ(×Ô¶¨Òå)
+	private String tag;				//å¯¹åº”ä¸åŒç”µå­åˆ¸çš„æ ‡è¯†
+	private String plevel;			//å¥–å“çº§åˆ«
+	private String msgcontent;  	//çŸ­ä¿¡æ¨¡æ¿
+	private String otype;			//å…¶å®ƒå¥–å“ç±»å‹(è‡ªå®šä¹‰)
 	private String otherinfo;
-	private String topPrize;		//ÊÇ·ñÊÇ´ó½±£¨½ûÖ¹»ÆÅ£ÖĞ´ó½±£©
+	private String topPrize;		//æ˜¯å¦æ˜¯å¤§å¥–ï¼ˆç¦æ­¢é»„ç‰›ä¸­å¤§å¥–ï¼‰
 	
 	public String getOtherinfo() {
 		return otherinfo;

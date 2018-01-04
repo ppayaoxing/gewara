@@ -27,7 +27,7 @@ public class VelocityTemplate {
 		try {
 			velocityEngine.mergeTemplate(template, "UTF-8", context, writer);
 		} catch (Exception e) {
-			log.warn("Ä£°å´íÎó", e);
+			log.warn("æ¨¡æ¿é”™è¯¯", e);
 		}
 		return writer.toString();
 	}
@@ -37,7 +37,7 @@ public class VelocityTemplate {
 		try {
 			velocityEngine.mergeTemplate(template, "UTF-8", context, writer);
 		} catch (Exception e) {
-			log.warn("Ä£°å´íÎó", e);
+			log.warn("æ¨¡æ¿é”™è¯¯", e);
 		}
 	}
 	public void parseTemplate(String template, Map model, OutputStream os){

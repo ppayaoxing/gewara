@@ -17,8 +17,8 @@ import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
 
 /**
- * kafkaÏû·ÑÄ£°å<br>
- * Ê¹ÓÃ·½·¨£º<br>
+ * kafkaæ¶ˆè´¹æ¨¡æ¿<br>
+ * ä½¿ç”¨æ–¹æ³•ï¼š<br>
  * {@code <bean id="kafkaConsumerTemplate" class="com.gewara.kafka.consumer.KafkaConsumerTemplate">}<br>
  * {@code    <property name="brokers" value="${kafka.brokers}"/>}<br>
  * {@code    <property name="topics" value="userlog,dubbomonitor"/>}<br>
@@ -27,13 +27,13 @@ import com.gewara.util.WebLogger;
  * {@code    <property name="isSeekBegin" value="true"/>}<br>
  * {@code </bean>}<br>
  * {@code <bean id="kafkaConumserCallback" class="com.gewara.untrans.impl.KafkaConsumerCallbackImpl"/>}<br>
- * ËµÃ÷£º<br>
- * brokersÎªkafkaµØÖ·, ip:port,ip:port<br>
- * topicsÎª¼Æ»®Ïû·ÑµÄtopic,¶à¸öÓÃ','·Ö¸î£º topicName,topicName<br>
+ * è¯´æ˜ï¼š<br>
+ * brokersä¸ºkafkaåœ°å€, ip:port,ip:port<br>
+ * topicsä¸ºè®¡åˆ’æ¶ˆè´¹çš„topic,å¤šä¸ªç”¨','åˆ†å‰²ï¼š topicName,topicName<br>
  * groupId<br>
- * callbackÎª´¦ÀíÏûÏ¢»Øµ÷ÊµÏÖ{@link KafkaConsumerCallback#doCallBack(String, String, String)}<br>
- * ÒÔÉÏ4¸ö²ÎÊı±ØĞëÉèÖÃ<br>
- * isSeekBeginÊÇ·ñ´ÓÍ·¿ªÊ¼Ïû·ÑÊı¾İ,Ä¬ÈÏfalse,¿ÉÒÔ²»ÅäÖÃ<br>
+ * callbackä¸ºå¤„ç†æ¶ˆæ¯å›è°ƒå®ç°{@link KafkaConsumerCallback#doCallBack(String, String, String)}<br>
+ * ä»¥ä¸Š4ä¸ªå‚æ•°å¿…é¡»è®¾ç½®<br>
+ * isSeekBeginæ˜¯å¦ä»å¤´å¼€å§‹æ¶ˆè´¹æ•°æ®,é»˜è®¤false,å¯ä»¥ä¸é…ç½®<br>
  * @author quzhuping
  *
  */

@@ -37,16 +37,16 @@ import com.gewara.util.WebLogger;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28下午02:05:17
+ * @since 2007-9-28涓嬪崍02:05:17
  */
 public class AttackTestServiceImpl implements AttackTestService, InitializingBean {
 	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
-	private Set<String> whiteList = new CopyOnWriteArraySet();	//白名单
-	private Map<String, BlackMatcher> blackMap = new ConcurrentHashMap<String, BlackMatcher>(1000, 0.75f, 32);	//黑名单
-	private Map<String, BlackMatcher> blackMap2 = new ConcurrentHashMap<String, BlackMatcher>(1000, 0.75f, 32);	//黑名单2,网段
+	private Set<String> whiteList = new CopyOnWriteArraySet();	//鐧藉悕鍗�
+	private Map<String, BlackMatcher> blackMap = new ConcurrentHashMap<String, BlackMatcher>(1000, 0.75f, 32);	//榛戝悕鍗�
+	private Map<String, BlackMatcher> blackMap2 = new ConcurrentHashMap<String, BlackMatcher>(1000, 0.75f, 32);	//榛戝悕鍗�2,缃戞
 	private Map<String/*url*/, String /*regScript*/> urlConfigMap = new ConcurrentHashMap<String, String>();
 	private boolean disabled = false;
-	private int recieveTimes = 0;	//黑名单变化次数
+	private int recieveTimes = 0;	//榛戝悕鍗曞彉鍖栨鏁�
 	private Timestamp blackChangeTime = new Timestamp(System.currentTimeMillis());
 	private boolean loadDataFromMonitor = true;
 	@Autowired(required=false)
@@ -183,7 +183,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 			} catch (Exception e) {
 				dbLogger.error("", e);
 			}finally{
-				if(!reset && !GewaIpConfig.isLocalIp(Config.getServerIp()) && loadDataFromMonitor){//失败规划下次，但测试环境不用
+				if(!reset && !GewaIpConfig.isLocalIp(Config.getServerIp()) && loadDataFromMonitor){//澶辫触瑙勫垝涓嬫锛屼絾娴嬭瘯鐜涓嶇敤
 					TimerHelper.TIMER.schedule(new ResetWhiteTimerTask(), 30000);
 				}
 			}
@@ -201,7 +201,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 	/**
 	 * @param ip
 	 * @param uri
-	 * @param disableMin 禁用分钟
+	 * @param disableMin 绂佺敤鍒嗛挓
 	 * @return
 	 */
 	private int addBlack(String ip, String uri, int disableMin){
@@ -267,7 +267,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 	
 	private boolean isBlack(String ip, String uri){
 		BlackMatcher matcher = blackMap.get(ip);
-		if(matcher ==null){//查看网段
+		if(matcher ==null){//鏌ョ湅缃戞
 			int idx1 = ip.indexOf('.');
 			int idx2 = ip.indexOf('.', idx1+1);
 			int idx3 = ip.indexOf('.', idx2+1);
@@ -279,7 +279,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 		long cur = System.currentTimeMillis();
 		Long time = matcher.gainReleaseTime(uri);
 		if(time==null || time < cur){
-			time = matcher.gainReleaseTime(AttackConstant.ACCESS_URL_ALL);//整个IP拦截 
+			time = matcher.gainReleaseTime(AttackConstant.ACCESS_URL_ALL);//鏁翠釜IP鎷︽埅 
 		}
 		return time!=null && time > cur;
 	}
@@ -303,7 +303,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 	private class WhiteIpWatcher implements ConfigTrigger{
 		@Override
 		public void refreshCurrent(String newConfig) {
-			//白名单直接从config读取
+			//鐧藉悕鍗曠洿鎺ヤ粠config璇诲彇
 			if(StringUtils.startsWith(newConfig, "add:")){
 				List<String> ipList = Arrays.asList(StringUtils.split(newConfig.substring(4), ","));
 				whiteList.addAll(ipList);
@@ -315,7 +315,7 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 	}
 	
 	/**
-	 * 黑名单从API获取最新的
+	 * 榛戝悕鍗曚粠API鑾峰彇鏈�鏂扮殑
 	 * @return
 	 */
 	private List<BlackIp> getNewBlackList() {

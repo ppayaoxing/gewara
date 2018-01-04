@@ -20,7 +20,7 @@ import com.gewara.util.WebLogger;
 
 /**
  * @author ge.biao
- * TODO:���ϵͳ���������Զ�����
+ * TODO:锟斤拷锟较低筹拷锟斤拷锟斤拷锟斤拷锟斤拷远锟斤拷锟斤拷锟�
  */
 public class OpenApiRegServiceImpl implements OpenApiRegService, BeforeUpdateService {
 	private GewaLogger logger = WebLogger.getLogger(getClass());
@@ -35,7 +35,7 @@ public class OpenApiRegServiceImpl implements OpenApiRegService, BeforeUpdateSer
 	}
 	
 	/**
-	 * OPENAPI����ע�ᴦ��
+	 * OPENAPI锟斤拷锟斤拷注锟结处锟斤拷
 	 */
 	@Override
 	public void registerOpenApi(final String path, final String data){
@@ -54,7 +54,7 @@ public class OpenApiRegServiceImpl implements OpenApiRegService, BeforeUpdateSer
 				if(!keeperService.exist(path)){
 					keeperService.addPresistentNode(path, System.currentTimeMillis()+"");
 				}
-				logger.warn("zookeeper�����ʱ�ڵ� �� " + path + " �ڵ�����Ϊ��" + data);
+				logger.warn("zookeeper锟斤拷锟斤拷锟绞憋拷诘锟� 锟斤拷 " + path + " 锟节碉拷锟斤拷锟斤拷为锟斤拷" + data);
 				keeperService.registerNode(path + "/s", data);
 				Set<String> dataList = regData.get(path);
 				if(dataList==null){
@@ -69,7 +69,7 @@ public class OpenApiRegServiceImpl implements OpenApiRegService, BeforeUpdateSer
 	}
 	@Override
 	public void unregisterOpenApi(){
-		//ע��OPENAPI
+		//注锟斤拷OPENAPI
 		logger.warn("unregister to openapi~~");
 		for(Map.Entry<String, Set<String>> reg: regData.entrySet()){
 			for(String data: reg.getValue()){

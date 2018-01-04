@@ -6,14 +6,14 @@ import java.sql.Timestamp;
 import com.gewara.api.activity.ApiObject;
 
 public class ActivityInfoVo extends ApiObject{
-	private Long memberid; //ÓÃ»§id
-	private String mobile; //ÊÖ»úºÅ
-	private String realname;//ÕæÊµĞÕÃû
-	private String sex; //ĞÔ±ğ
-	private String address;//µØÖ·
-	private Timestamp updatetime;//¸üĞÂÊ±¼ä 
-	private String birthday;//³öÉúÄêÔÂ
-	private String otherinfo;//±¸ÓÃ×Ö¶Î
+	private Long memberid; //ç”¨æˆ·id
+	private String mobile; //æ‰‹æœºå·
+	private String realname;//çœŸå®å§“å
+	private String sex; //æ€§åˆ«
+	private String address;//åœ°å€
+	private Timestamp updatetime;//æ›´æ–°æ—¶é—´ 
+	private String birthday;//å‡ºç”Ÿå¹´æœˆ
+	private String otherinfo;//å¤‡ç”¨å­—æ®µ
 	
 	public Long getMemberid() {
 		return memberid;

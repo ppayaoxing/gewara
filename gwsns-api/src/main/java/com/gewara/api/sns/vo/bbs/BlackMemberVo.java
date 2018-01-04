@@ -7,7 +7,7 @@ import com.gewara.api.vo.BaseVo;
 public class BlackMemberVo extends BaseVo{
 	private static final long serialVersionUID = -3188650815451237075L;
 	private Long id;
-	private Long memberId;//¹ØÁªµÄÓÃ»§
+	private Long memberId;//å…³è”çš„ç”¨æˆ·
 	private Long operatorId;
 	private String description;
 	private Timestamp addtime;

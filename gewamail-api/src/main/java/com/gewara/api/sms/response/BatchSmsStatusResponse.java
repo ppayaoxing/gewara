@@ -2,7 +2,7 @@ package com.gewara.api.sms.response;
 
 import com.gewara.api.MsgResponse;
 /**
- * Åú´Î¶ÌĞÅ·¢ËÍ×´Ì¬
+ * æ‰¹æ¬¡çŸ­ä¿¡å‘é€çŠ¶æ€
  */
 public class BatchSmsStatusResponse extends MsgResponse{
 
@@ -11,7 +11,7 @@ public class BatchSmsStatusResponse extends MsgResponse{
 	 */
 	private static final long serialVersionUID = -7944063687032876841L;
 	/**
-	 * Åú´Î¶ÌĞÅ·¢ËÍ×´Ì¬£¬ÄÚÈİÒÔJson¸ñÊ½
+	 * æ‰¹æ¬¡çŸ­ä¿¡å‘é€çŠ¶æ€ï¼Œå†…å®¹ä»¥Jsonæ ¼å¼
 	 */
 	private String statusInfo;
 

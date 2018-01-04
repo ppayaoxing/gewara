@@ -1,7 +1,7 @@
 package com.gewara.msearch.external.entity.index;
 
 /**
- * 剧院索引信息
+ * 鍓ч櫌绱㈠紩淇℃伅
  */
 public class TheatreIndexInfo extends IndexData{
 	
@@ -20,7 +20,7 @@ public class TheatreIndexInfo extends IndexData{
 	}
 	
 	/**
-	 * 所在的城市ID，不参加模糊搜索，只用来进行精确搜索
+	 * 鎵�鍦ㄧ殑鍩庡競ID锛屼笉鍙傚姞妯＄硦鎼滅储锛屽彧鐢ㄦ潵杩涜绮剧‘鎼滅储
 	 * @return
 	 */
 	public String getCityID() {

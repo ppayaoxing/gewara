@@ -18,20 +18,20 @@ public class PubSaleVo extends BaseVo {
 	public static final String SALETYPE_GOODS = "goods";
 	public static final String SALETYPE_CARD = "card";
 	private Long id;
-	private String name; 			// ����
-	private Integer lowerprice; 	// �ͼ� ��λ�� ����Ԫ
-	private Integer curprice; 		// ��ǰ���ļ� ��λ�� ����Ԫ
-	private String dupprice; 		// ÿ��������� ��λ�� ����Ԫ
-	private Integer needpoint; 	// ÿ�ξ�����Ҫ����
-	private Integer countdown; 	// ����ʱ
-	private Integer ordernum; 		// ����
-	private Timestamp begintime; 	// ��ʼʱ��
-	private Timestamp endtime; 	// ����ʱ��
-	private String status; 			// ״̬ N, Y, N_DELETE 
+	private String name; 			// 锟斤拷锟斤拷
+	private Integer lowerprice; 	// 锟酵硷拷 锟斤拷位锟斤拷 锟斤拷锟斤拷元
+	private Integer curprice; 		// 锟斤拷前锟斤拷锟侥硷拷 锟斤拷位锟斤拷 锟斤拷锟斤拷元
+	private String dupprice; 		// 每锟斤拷锟斤拷锟斤拷锟斤拷锟� 锟斤拷位锟斤拷 锟斤拷锟斤拷元
+	private Integer needpoint; 	// 每锟轿撅拷锟斤拷锟斤拷要锟斤拷锟斤拷
+	private Integer countdown; 	// 锟斤拷锟斤拷时
+	private Integer ordernum; 		// 锟斤拷锟斤拷
+	private Timestamp begintime; 	// 锟斤拷始时锟斤拷
+	private Timestamp endtime; 	// 锟斤拷锟斤拷时锟斤拷
+	private String status; 			// 状态 N, Y, N_DELETE 
 	private String logo;
-	private String source;			//��Դ
-	private String remark; 			// ����
-	private String description;	// ��ϸ
+	private String source;			//锟斤拷源
+	private String remark; 			// 锟斤拷锟斤拷
+	private String description;	// 锟斤拷细
 	private Integer version;
 	private String nickname;
 	private Long memberid;
@@ -40,9 +40,9 @@ public class PubSaleVo extends BaseVo {
 	private String cardpass;
 	private String citycode;
 	private Long goodsid;
-	private Integer pubperiod;			//��������
-	private Integer pubnumber;			//�������ڴ���
-	private Integer unitMinute;			//�ɹ��������
+	private Integer pubperiod;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private Integer pubnumber;			//锟斤拷锟斤拷锟斤拷锟节达拷锟斤拷
+	private Integer unitMinute;			//锟缴癸拷锟斤拷锟斤拷锟斤拷锟�
 	private String expressid;
 	@Override
 	public Serializable realId() {

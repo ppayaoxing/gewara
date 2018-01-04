@@ -17,7 +17,7 @@ import com.gewara.api.vo.pay.OrderNoteVo;
 
 public interface OrderQueryVoService {
 	/**
-	 * ²éÑ¯Ó°Æ±¶©µ¥
+	 * æŸ¥è¯¢å½±ç¥¨è®¢å•
 	 * @param clazz
 	 * @param command
 	 * @param from
@@ -27,112 +27,112 @@ public interface OrderQueryVoService {
 	ResultCode<List<GewaOrderVo>> getTicketOrderList(ParamsVo param);
 	
 	/**
-	 * ²éÑ¯µçÓ°Æ±¹ØÁª±í
+	 * æŸ¥è¯¢ç”µå½±ç¥¨å…³è”è¡¨
 	 * @param soc
 	 * @return
 	 */
 	ResultCode<List<GewaOrderVo>> searchTicketOrderList(SearchOrderCommandVo soc);
 
 	/**
-	 * »ñÈ¡¶©µ¥µØÖ·ÁĞ±í
+	 * è·å–è®¢å•åœ°å€åˆ—è¡¨
 	 * @param tradeNoList
 	 * @return
 	 */
 	ResultCode<List<OrderAddressVo>> getOrderAddressVoList(List<String> tradeNoList);
 	
 	/**
-	 * »ñÈ¡¹ºÂòÁĞ±í
+	 * è·å–è´­ä¹°åˆ—è¡¨
 	 * @param orderId
 	 * @return
 	 */
 	ResultCode<List<BuyItemVo>> getItemList(Long orderId);
 
 	/**
-	 * »ñÈ¡¶©µ¥ĞÅÏ¢ÁĞ±í
+	 * è·å–è®¢å•ä¿¡æ¯åˆ—è¡¨
 	 * @param orderId
 	 * @return
 	 */
 	ResultCode<List<OrderNoteVo>> getNoteList(Long orderId);
 	
 	/**
-	 * ²éÑ¯¶©µ¥ÊıÁ¿
+	 * æŸ¥è¯¢è®¢å•æ•°é‡
 	 * @param command
 	 * @return
 	 */
 	ResultCode<Integer> getOrderCount(OrderParamsVo command);
 	
 	/**
-	 * ²éÑ¯¶©µ¥ÁĞ±í
+	 * æŸ¥è¯¢è®¢å•åˆ—è¡¨
 	 * @param param
 	 * @return
 	 */
 	ResultCode<List<GewaOrderVo>> getOrderList(ParamsVo param);
 	
 	/**
-	 * ²éÑ¯³¬Ê±È¡Ïû¶©µ¥
+	 * æŸ¥è¯¢è¶…æ—¶å–æ¶ˆè®¢å•
 	 * @param param
 	 * @return
 	 */
 	ResultCode<List<GewaOrderVo>> getCurFailureOrderList(ParamsVo param);
 	
 	/**
-	 * ¸ù¾İÖ÷¼ü²éÑ¯¶©µ¥
+	 * æ ¹æ®ä¸»é”®æŸ¥è¯¢è®¢å•
 	 * @param orderId
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> getGewaOrder(Long orderId);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯µØÖ·
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢åœ°å€
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<OrderAddressVo> getOrderAddressVo(String tradeNo);
 	
 	/**
-	 * »ñÈ¡ÂôÆ·¶©µ¥ÁĞ±í
+	 * è·å–å–å“è®¢å•åˆ—è¡¨
 	 * @param param
 	 * @return
 	 */
 	ResultCode<List<GewaOrderVo>> getGoodsOrderList(ParamsVo param);
 	
 	/**
-	 * ¸ù¾İµç»°²éÑ¯¶©µ¥ÊıÁ¿
+	 * æ ¹æ®ç”µè¯æŸ¥è¯¢è®¢å•æ•°é‡
 	 * @param param
 	 * @return
 	 */
 	ResultCode<Integer> getGewaorderCountByMobile(ParamsVo param);
 	
 	/**
-	 * ²éÑ¯¶©µ¥ÊÇ·ñÖ§³Ö¿ìµİ
+	 * æŸ¥è¯¢è®¢å•æ˜¯å¦æ”¯æŒå¿«é€’
 	 * @param tradeno
 	 * @return
 	 */
 	ResultCode<Boolean> isTakeByTradeno(String tradeno);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> getGewaOrderByTradeNo(String tradeNo);
 	
 	/**
-	 * ²éÑ¯¶©µ¥Map
+	 * æŸ¥è¯¢è®¢å•Map
 	 * @param orderMap
 	 * @return
 	 */
 	ResultCode<GewaOrderMapVo> getGewaOrderMap(GewaOrderMapVo orderMap);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ÍØÕ¹ĞÅÏ¢
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•æ‹“å±•ä¿¡æ¯
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<OrderExtraVo> getOrderExtraByTradeNo(String tradeNo);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯
 	 * @param tradeNo
 	 * @return
 	 */
@@ -140,14 +140,14 @@ public interface OrderQueryVoService {
 	
 	
 	/**
-	 * »ñÈ¡ÓÃ»§¹ºÆ±ÊıÁ¿
+	 * è·å–ç”¨æˆ·è´­ç¥¨æ•°é‡
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<Integer> getOrderMemberHis(Long memberid);
 	
 	/**
-	 * »ñÈ¡ÓÃ»§¹ºÆ±ÊıÁ¿
+	 * è·å–ç”¨æˆ·è´­ç¥¨æ•°é‡
 	 * @param memberid
 	 * @param ordertype
 	 * @return
@@ -157,21 +157,21 @@ public interface OrderQueryVoService {
 	ResultCode<List<GewaOrderMapVo>> getGewaOrderMapList(List<GewaOrderVo> orderList);
 	
 	/**
-	 * ¸ù¾İÓÃ»§ID»ñÈ¡¶©µ¥ĞÅÏ¢
+	 * æ ¹æ®ç”¨æˆ·IDè·å–è®¢å•ä¿¡æ¯
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<List<GewaOrderVo>> getHisOrderListByMemberid(ParamsVo param);
 	
 	/**
-	 * ¸ù¾İÓÃ»§ID»ñÈ¡¶©µ¥ĞÅÏ¢
+	 * æ ¹æ®ç”¨æˆ·IDè·å–è®¢å•ä¿¡æ¯
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<List<GewaOrderVo>> getGewaOrderListByTradenoList(List<String> tradenos);
 	
 	/**
-	 * ¸ù¾İmpid²éÑ¯£¨¹ıÆÚ£©³¡´ÎĞÅÏ¢
+	 * æ ¹æ®mpidæŸ¥è¯¢ï¼ˆè¿‡æœŸï¼‰åœºæ¬¡ä¿¡æ¯
 	 * @param mpid
 	 * @return
 	 */

@@ -6,7 +6,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface GpticketCrmApiService {
 	/**
-	 * 获取用户优惠折扣
+	 * 鑾峰彇鐢ㄦ埛浼樻儬鎶樻墸
 	 * @param programid
 	 * @param scheduleid
 	 * @param mobile

@@ -63,7 +63,7 @@ public class DTFilter implements Filter {
 	    	if(isConsumerSide && traceContext != null){
 	    		traceContext.setParentId(parentId);
 	    	}
-	    	if(isProviderSide){//释放ThreadLocal，发生trace消息
+	    	if(isProviderSide){//閲婃斁ThreadLocal锛屽彂鐢焧race娑堟伅
 	    		if(span != null){
 	    			span.setRvTime(System.currentTimeMillis());
 	    			TraceContextHolder.addSpan(span);

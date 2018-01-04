@@ -9,10 +9,10 @@ public class BaseMemberVo extends BaseVo{
 	private static final long serialVersionUID = 7900654577749680105L;
 	protected Long id;
 	protected String nickname;
-	protected String headpic;				//用户logo
-	protected String sex;					//性别
+	protected String headpic;				//鐢ㄦ埛logo
+	protected String sex;					//鎬у埆
 	protected String source;
-	protected Integer pointvalue;				//积分
+	protected Integer pointvalue;				//绉垎
 	protected String otherinfo;
 	public String getSource() {
 		return source;

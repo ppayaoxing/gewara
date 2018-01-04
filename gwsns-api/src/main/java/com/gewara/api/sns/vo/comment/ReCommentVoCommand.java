@@ -16,13 +16,13 @@ public class ReCommentVoCommand extends BaseVo {
 	private Timestamp addtime;
 	private Long tomemberid;
 	private String status;
-	private String address;//·¢±íÀ´Ô´
+	private String address;//å‘è¡¨æ¥æº
 	private String tag;
 	private Long transferid;
-	private String imgPath;//´æ·ÅÍ¼Æ¬
-	private Integer flowernum; //ÏÊ»¨Êı
-	private Long mtid;	//±êÇ©id
-	private String ip;//»Ø¸´ÓÃ»§IP
+	private String imgPath;//å­˜æ”¾å›¾ç‰‡
+	private Integer flowernum; //é²œèŠ±æ•°
+	private Long mtid;	//æ ‡ç­¾id
+	private String ip;//å›å¤ç”¨æˆ·IP
 	private String atmemberids;
 	private Long replyid;
 	@Override

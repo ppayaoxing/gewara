@@ -7,20 +7,20 @@ import com.gewara.hbase.util.FilterBuilder;
 import com.gewara.hbase.util.GroupFields;
 
 /**
- * @author gebiao ±¾³ÌĞòÊÇµ÷ÓÃHBaseµÄ½Ó¿Ú£¬ÓĞĞ©¾ÖÏŞĞÔ£º 1£©²»¿¼ÂÇĞŞ¸Ä¼ÇÂ¼ 2£©Êı¾İ¸ñÊ½Òª¹æ·¶£¬key±ØĞëÎªÕı³£µÄkey
+ * @author gebiao æœ¬ç¨‹åºæ˜¯è°ƒç”¨HBaseçš„æ¥å£ï¼Œæœ‰äº›å±€é™æ€§ï¼š 1ï¼‰ä¸è€ƒè™‘ä¿®æ”¹è®°å½• 2ï¼‰æ•°æ®æ ¼å¼è¦è§„èŒƒï¼Œkeyå¿…é¡»ä¸ºæ­£å¸¸çš„key
  */
 public interface HBaseService {
 
-	///////////////////// ½Ó¿Ú³£Á¿/////////////////////
+	///////////////////// æ¥å£å¸¸é‡/////////////////////
 	String COUNT_FLAG_HOUR = "hour";
 	String COUNT_FLAG_MIN = "min";
 	String COUNT_FLAG_DAY = "day";
-	String COLUMN_ADDTIME = "addtime"; // ¿Í»§»¯±£Áô×Ö¶Î£¬ÓÃÓÚ´æ´¢¼ÇÂ¼µÄ²úÉúÊ±¼ä,·¶Î§²éÑ¯Ê±×öÊ±¼ä±È½Ï
-	int CACHE_SIZE = 500; // SCAN »º´æÌõÊı
+	String COLUMN_ADDTIME = "addtime"; // å®¢æˆ·åŒ–ä¿ç•™å­—æ®µï¼Œç”¨äºå­˜å‚¨è®°å½•çš„äº§ç”Ÿæ—¶é—´,èŒƒå›´æŸ¥è¯¢æ—¶åšæ—¶é—´æ¯”è¾ƒ
+	int CACHE_SIZE = 500; // SCAN ç¼“å­˜æ¡æ•°
 
-	///////////////////// Ìí¼Óµ¥Ìõ¼ÇÂ¼ API/////////////////////
+	///////////////////// æ·»åŠ å•æ¡è®°å½• API/////////////////////
 	/**
-	 * ±£´æ¼ÇÂ¼£¬×Ô¶¯²úÉúrowid,rowid µÄ¹æÔòÊÇ»ùÓÚÊ±¼ä timestamp[32bit]
+	 * ä¿å­˜è®°å½•ï¼Œè‡ªåŠ¨äº§ç”Ÿrowid,rowid çš„è§„åˆ™æ˜¯åŸºäºæ—¶é—´ timestamp[32bit]
 	 * 
 	 * @param tablename
 	 * @param rowdata
@@ -28,7 +28,7 @@ public interface HBaseService {
 	void saveRow(String tablename, Map<String, String> rowdata);
 
 	/**
-	 * ±£´æ¼ÇÂ¼£¬Ê¹ÓÃ×Ô¶¨ÒåµÄ rowid¸ñÊ½,¶ş½øÖÆÊı¾İ
+	 * ä¿å­˜è®°å½•ï¼Œä½¿ç”¨è‡ªå®šä¹‰çš„ rowidæ ¼å¼,äºŒè¿›åˆ¶æ•°æ®
 	 * 
 	 * @param tablename
 	 * @param rowid
@@ -37,7 +37,7 @@ public interface HBaseService {
 	void saveRow(String tablename, byte[] rowid, Map<String, String> rowdata);
 
 	/**
-	 * ±£´æ¼ÇÂ¼£¬Ê¹ÓÃ×Ô¶¨ÒåµÄ rowid¸ñÊ½,hexidÎªbyte[]µÄhex±àÂë,16½øÖÆ±àÂë
+	 * ä¿å­˜è®°å½•ï¼Œä½¿ç”¨è‡ªå®šä¹‰çš„ rowidæ ¼å¼,hexidä¸ºbyte[]çš„hexç¼–ç ,16è¿›åˆ¶ç¼–ç 
 	 * 
 	 * @param tablename
 	 * @param hexid
@@ -45,14 +45,14 @@ public interface HBaseService {
 	 */
 	void saveRow(String tablename, String hexid, Map<String, String> row);
 
-	///////////////////// Ìí¼Ó¶àÌõ¼ÇÂ¼ API/////////////////////
+	///////////////////// æ·»åŠ å¤šæ¡è®°å½• API/////////////////////
 	void saveRowListByStrId(String tablename, String idName, List<Map<String, String>> rowList);
 
 	void saveRowListByHex(String tablename, String hexidName, List<Map<String, String>> rowList);
 
 	void saveRowList(String tablename, List<Row> rowList);
 
-	///////////////////// É¾³ı API/////////////////////
+	///////////////////// åˆ é™¤ API/////////////////////
 	void removeRowById(String tablename, byte[] rowid);
 
 	void removeRowByHex(String tablename, String hexid);
@@ -65,7 +65,7 @@ public interface HBaseService {
 
 	int removeByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime, String column);
 
-	///////////////////// ²éÑ¯ API/////////////////////
+	///////////////////// æŸ¥è¯¢ API/////////////////////
 	boolean isAvaliable();
 
 	Row getRowByHex(String tablename, String hexid);
@@ -75,7 +75,7 @@ public interface HBaseService {
 	Row getRowById(String tablename, byte[] rowid);
 
 	/**
-	 * »ñÈ¡¶à´ÎĞŞ¸ÄµÄ¼ÇÂ¼
+	 * è·å–å¤šæ¬¡ä¿®æ”¹çš„è®°å½•
 	 * 
 	 * @param tablename
 	 * @param rowid
@@ -129,15 +129,15 @@ public interface HBaseService {
 	 * @param endtime
 	 * @param maxnum
 	 * @param column
-	 *            Ö»·µ»ØÖ¸¶¨ÁĞÖµ£¬ÒÔ¼õÉÙÊı¾İ´«Êä
+	 *            åªè¿”å›æŒ‡å®šåˆ—å€¼ï¼Œä»¥å‡å°‘æ•°æ®ä¼ è¾“
 	 * @return
 	 */
 	List<byte[]> getRowidListByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime, int maxnum,
 			String column);
 
-	///////////////////// ·¶Î§´¦Àí API/////////////////////
+	///////////////////// èŒƒå›´å¤„ç† API/////////////////////
 	/**
-	 * °´Ê±¼ä¶Î·¶Î§´¦Àí
+	 * æŒ‰æ—¶é—´æ®µèŒƒå›´å¤„ç†
 	 * 
 	 * @param tableName
 	 * @param query
@@ -150,7 +150,7 @@ public interface HBaseService {
 			RowDataCallback callback, RowFilter filter);
 
 	/**
-	 * °´rowid·¶Î§´¦Àí
+	 * æŒ‰rowidèŒƒå›´å¤„ç†
 	 * 
 	 * @param tableName
 	 * @param query
@@ -162,7 +162,7 @@ public interface HBaseService {
 	void processRowListByRowIdRange(String tableName, FilterBuilder fb, byte[] startRowId, byte[] endRowId,
 			RowDataCallback callback, RowFilter filter);
 
-	///////////////////// ¾Û¼¯²éÑ¯ API/////////////////////
+	///////////////////// èšé›†æŸ¥è¯¢ API/////////////////////
 	/**
 	 * @param tableName
 	 * @param fb
@@ -173,12 +173,12 @@ public interface HBaseService {
 	long getRowCountByRange(String tableName, FilterBuilder fb, Long starttime, Long endtime);
 
 	/**
-	 * ĞÂ½¨Ò»ÕÅ±í£¨Èç¹ûÒÑ¾­´æÔÚ¾Í²»½¨£©£¬columnFamilyÊÇÄ¬ÈÏµÄDF£¬Ä¬ÈÏÑ¹Ëõ create 'table',{NAME => 'DF',
+	 * æ–°å»ºä¸€å¼ è¡¨ï¼ˆå¦‚æœå·²ç»å­˜åœ¨å°±ä¸å»ºï¼‰ï¼ŒcolumnFamilyæ˜¯é»˜è®¤çš„DFï¼Œé»˜è®¤å‹ç¼© create 'table',{NAME => 'DF',
 	 * VERSIONS => 1, COMPRESSION => 'SNAPPY'}
 	 * 
 	 * @param tableName
 	 * @param maxVersions
-	 *            > 0 Ê±ÉèÖÃ
+	 *            > 0 æ—¶è®¾ç½®
 	 * @return
 	 */
 	boolean createTable(String tableName, int maxVersions);

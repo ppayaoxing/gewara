@@ -8,15 +8,15 @@ public class OrderItemVo implements Serializable{
 	private static final long serialVersionUID = -2463980550332199912L;
 	public static final String TYPE_PRICE = "price";
 	public static final String TYPE_SEAT = "seat";
-	private String siseqno;			//³¡´Î±àºÅ
-	private String type; 			//ÀàĞÍ
-	private String seatIds; 		//×ùÆ±±êÊ¶ĞòÁĞ,Õ¾Æ±±êÊ¶ĞòÁĞ,¸ñÊ½£º[lineno:rankno,....],Èç1:1,1:2£»ËøÆ±ĞÅÏ¢
-	private String ticketRange;		//Õ¾Æ±ÇëÇó £¬³¡Çø_Æ±¼Û:ÊıÁ¿£¬¸ñÊ½£º{"³¡´ÎÇøÓòID_Æ±¼ÛID":"ÊıÁ¿"} Àı×Ó£º{"2183_602":"1"}
-	private String packTicketId; 	//Ì×Æ±ID
+	private String siseqno;			//åœºæ¬¡ç¼–å·
+	private String type; 			//ç±»å‹
+	private String seatIds; 		//åº§ç¥¨æ ‡è¯†åºåˆ—,ç«™ç¥¨æ ‡è¯†åºåˆ—,æ ¼å¼ï¼š[lineno:rankno,....],å¦‚1:1,1:2ï¼›é”ç¥¨ä¿¡æ¯
+	private String ticketRange;		//ç«™ç¥¨è¯·æ±‚ ï¼ŒåœºåŒº_ç¥¨ä»·:æ•°é‡ï¼Œæ ¼å¼ï¼š{"åœºæ¬¡åŒºåŸŸID_ç¥¨ä»·ID":"æ•°é‡"} ä¾‹å­ï¼š{"2183_602":"1"}
+	private String packTicketId; 	//å¥—ç¥¨ID
 	private String priceInfo;
 	private Map<String, Integer> priceMap = new HashMap<String, Integer>();
 	private Integer discountTotal;
-	private String idnumber;		//Éí·İÖ¤ĞÅÏ¢
+	private String idnumber;		//èº«ä»½è¯ä¿¡æ¯
 	
 	public OrderItemVo(){}
 	

@@ -9,41 +9,41 @@ public class WeixinMsg implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7752796432896344309L;
-	//¹«ÓÃĞÅÏ¢
+	//å…¬ç”¨ä¿¡æ¯
 	private String toUserName;
 	private String fromUserName;
 	private String createTime;
 	private String msgType;
 	private String msgId;
-	//ÎÄ±¾ÏûÏ¢
+	//æ–‡æœ¬æ¶ˆæ¯
 	private String content;
-	//µØÀíÎ»ÖÃÏûÏ¢
+	//åœ°ç†ä½ç½®æ¶ˆæ¯
 	private String location_X;
 	private String location_Y;
 	private String latitude;
 	private String longitude;
 	private String scale;
 	private String label;
-	//Í¼Æ¬ÏûÏ¢
+	//å›¾ç‰‡æ¶ˆæ¯
 	private String picUrl;
 	
 	private String event;
 	private String eventKey;
 	
-	//ÊÓÆµÏûÏ¢Ã½Ìåid
+	//è§†é¢‘æ¶ˆæ¯åª’ä½“id
 	private String mediaId;
 
-	// Î¢ĞÅ¿¨¾íºÅ
+	// å¾®ä¿¡å¡å·å·
 	private String cardId;
-	// Î¢ĞÅ¿¨È¯»¥Í¨£¬cardid
+	// å¾®ä¿¡å¡åˆ¸äº’é€šï¼Œcardid
 	private String cardID;
 	
 	
-	// Î¢ĞÅ¿¨°ü
-	private String friendUserName;	// ÔùËÍ·½ÕËºÅ£¨Ò»¸öOpenID£©
-	private String isGiveByFriend;	// ÊÇ·ñÎª×ªÔù£¬1 ´ú±íÊÇ£¬0 ´ú±í·ñ
-	private String userCardCode;	// code ĞòÁĞºÅ
-	private String outerId;			// ÁìÈ¡³¡¾°Öµ£¬ÓÃÓÚÁìÈ¡ÇşµÀÊı¾İÍ³¼Æ
+	// å¾®ä¿¡å¡åŒ…
+	private String friendUserName;	// èµ é€æ–¹è´¦å·ï¼ˆä¸€ä¸ªOpenIDï¼‰
+	private String isGiveByFriend;	// æ˜¯å¦ä¸ºè½¬èµ ï¼Œ1 ä»£è¡¨æ˜¯ï¼Œ0 ä»£è¡¨å¦
+	private String userCardCode;	// code åºåˆ—å·
+	private String outerId;			// é¢†å–åœºæ™¯å€¼ï¼Œç”¨äºé¢†å–æ¸ é“æ•°æ®ç»Ÿè®¡
 	
 
 	public String getToUserName() {

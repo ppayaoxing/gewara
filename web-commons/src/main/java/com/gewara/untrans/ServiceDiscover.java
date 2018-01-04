@@ -7,7 +7,7 @@ import org.apache.curator.x.discovery.ServiceInstance;
 public interface ServiceDiscover {
 
 	/**
-	 * ¸ù¾İname»ñÈ¡basePahÂ·¾¶ÏÂµÄ·şÎñÊµÀı<br>
+	 * æ ¹æ®nameè·å–basePahè·¯å¾„ä¸‹çš„æœåŠ¡å®ä¾‹<br>
 	 * {@link ServiceDiscover#getServiceInstance(String, String)}
 	 * @param name
 	 * @return
@@ -16,8 +16,8 @@ public interface ServiceDiscover {
 	List<ServiceInstance<ServiceDetails>> getServiceInstance(String name) throws Exception;
 
 	/**
-	 * ¸ù¾İ·şÎñÌá¹©·½systemId ºÍ name»ñÈ¡basePahÂ·¾¶ÏÂµÄ·şÎñÊµÀı
-	 * <br>ÓÃÓÚ·şÎñ²éÕÒµÄserviceNameÊ¹ÓÃ{@link ServiceDetails#buildServiceName(String, String)}´´½¨
+	 * æ ¹æ®æœåŠ¡æä¾›æ–¹systemId å’Œ nameè·å–basePahè·¯å¾„ä¸‹çš„æœåŠ¡å®ä¾‹
+	 * <br>ç”¨äºæœåŠ¡æŸ¥æ‰¾çš„serviceNameä½¿ç”¨{@link ServiceDetails#buildServiceName(String, String)}åˆ›å»º
 	 * @param providerSystemId
 	 * @param name
 	 * @return

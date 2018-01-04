@@ -9,11 +9,11 @@ public class ShareMemberVo extends BaseVo{
 	private static final long serialVersionUID = -3780232793962344744L;
 	
 	private Long id;
-	private Long memberid;			//°ó¶¨µÄÓÃ»§
-	private String loginname;		//µÇÂ¼Ãû£ºEmail¡¢mobileµÈ
-	private String source;			//À´Ô´
-	private String otherinfo;		//ÆäËûÊı¾İ
-	private Timestamp addtime;		//°ó¶¨Ê±¼ä
+	private Long memberid;			//ç»‘å®šçš„ç”¨æˆ·
+	private String loginname;		//ç™»å½•åï¼šEmailã€mobileç­‰
+	private String source;			//æ¥æº
+	private String otherinfo;		//å…¶ä»–æ•°æ®
+	private Timestamp addtime;		//ç»‘å®šæ—¶é—´
 
 	public Long getId() {
 		return id;

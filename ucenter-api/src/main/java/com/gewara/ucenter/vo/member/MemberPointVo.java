@@ -26,7 +26,7 @@ public class MemberPointVo extends BaseVo {
 		this.id = id;
 	}
 
-	/** ×Ü»ı·Ö */
+	/** æ€»ç§¯åˆ† */
 	private Integer pointvalue = 0;
 	
 	public Integer getPointvalue() {
@@ -154,47 +154,47 @@ public class MemberPointVo extends BaseVo {
 	private Timestamp pointtime;
 
 	/**
-	 * ×´Ì¬(fail(µ±ÈÕÎ´Áì¹ı)/success(µ±ÈÕÁì¹ı))
+	 * çŠ¶æ€(fail(å½“æ—¥æœªé¢†è¿‡)/success(å½“æ—¥é¢†è¿‡))
 	 */
 	private String pointstatus;
 
 	/**
-	 * ÌáÊ¾
+	 * æç¤º
 	 */
 	private String tips;
 
 	/**
-	 * ºì°üĞÅÏ¢
+	 * çº¢åŒ…ä¿¡æ¯
 	 */
 	private String pointinfo;
 
 	/**
-	 * ºì°ü·½Ê½¼¯ºÏ
+	 * çº¢åŒ…æ–¹å¼é›†åˆ
 	 */
 	private List<MemberPointTypeVo> pointTypeList = new ArrayList<MemberPointTypeVo>();
 	
-	/** ÁìÈ¡·½Ê½ */
+	/** é¢†å–æ–¹å¼ */
 	private String reason;
 	
-	/** ÁìÈ¡·ÖÖµ */
+	/** é¢†å–åˆ†å€¼ */
 	private Integer point;
 	
-	/** ÁìÈ¡Ê±¼ä  */
+	/** é¢†å–æ—¶é—´  */
 	private Timestamp addtime;
 	
-	/** êÇ³Æ */
+	/** æ˜µç§° */
 	private String nickname;
 	
-	/** Í·Ïñ */
+	/** å¤´åƒ */
 	private String headpic;
 	
-	/** ±¸×¢ */
+	/** å¤‡æ³¨ */
 	private String remark;
 	
-	/** »ı·Ö»ñÈ¡ÀàĞÍ  */
+	/** ç§¯åˆ†è·å–ç±»å‹  */
 	private String tag;
 	
-	/** Á¬ĞøÁìÈ¡ÌìÊı */
+	/** è¿ç»­é¢†å–å¤©æ•° */
 	private Integer continunum;
 
 	@Override

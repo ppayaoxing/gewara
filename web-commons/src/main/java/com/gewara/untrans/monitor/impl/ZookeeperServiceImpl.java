@@ -145,7 +145,7 @@ public class ZookeeperServiceImpl implements ZookeeperService, DisposableBean {
 	@Override
 	public void addMonitor(KeeperWatcher monitor){
 		synchronized(this){
-			//ͬһ·����ͬ�಻���ظ���ֻע��һ�Σ�
+			//同一路锟斤拷锟斤拷同锟洁不锟斤拷锟截革拷锟斤拷只注锟斤拷一锟轿ｏ拷
 			for(KeeperWatcher watcher : watcherList){
 				if(StringUtils.equals(watcher.getPath(), monitor.getPath()) && 
 						watcher.getClass().equals(monitor)){
@@ -168,7 +168,7 @@ public class ZookeeperServiceImpl implements ZookeeperService, DisposableBean {
 	@Override
 	public void registerNode(String nodePath, String nodeData) {
 		registerMap.put(nodePath, nodeData);
-		//TODO:�жϽڵ������Ƿ��ظ�
+		//TODO:锟叫断节碉拷锟斤拷锟斤拷锟角凤拷锟截革拷
 		addSeqNode(nodePath, nodeData);
 	}
 	
@@ -179,7 +179,7 @@ public class ZookeeperServiceImpl implements ZookeeperService, DisposableBean {
 			tmpPath = nodePath + "/s";
 		}
 		registerMap.put(tmpPath, nodeData);
-		//TODO:�жϽڵ������Ƿ��ظ�
+		//TODO:锟叫断节碉拷锟斤拷锟斤拷锟角凤拷锟截革拷
 		addSeqNode(tmpPath, nodeData);
 	}
 	
@@ -195,7 +195,7 @@ public class ZookeeperServiceImpl implements ZookeeperService, DisposableBean {
 			if(StringUtils.equals(this.getNodeData(delPath), nodeData)){
 				dbLogger.warn("del Node :" + delPath);
 				this.delNode(delPath);
-				//ֱ��return��????
+				//直锟斤拷return锟斤拷????
 			}
 		}	
 	}

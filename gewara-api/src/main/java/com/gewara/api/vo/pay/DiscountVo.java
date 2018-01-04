@@ -7,15 +7,15 @@ import com.gewara.api.vo.BaseVo;
 public class DiscountVo extends BaseVo{
 	private static final long serialVersionUID = -8589068211776703733L;
 	private Long id;				//ID
-	private Long orderid;			//¶©µ¥ID
-	private String tag;				//ÕÛ¿ÛÀàĞÍ
-	private Long relatedid;			//¹ØÁª¶ÔÏó(Èç¿¨ºÅ,ÓÃ»§ID,ÉÌ¼ÒID)
-	private Long goodsid;			//µÖÏûµÄÎïÆ·
-	private String description;		//ÃèÊö
-	private String cardtype;		//ÕÛ¿Û¿¨Àà
-	private Integer amount;			//ÕÛ¿Û½ğ¶î
-	private Long batchid;			//Åú´ÎID
-	private String status;			//×´Ì¬£º²Î¼ûOrderConstant.DISCOUNT_STATUS
+	private Long orderid;			//è®¢å•ID
+	private String tag;				//æŠ˜æ‰£ç±»å‹
+	private Long relatedid;			//å…³è”å¯¹è±¡(å¦‚å¡å·,ç”¨æˆ·ID,å•†å®¶ID)
+	private Long goodsid;			//æŠµæ¶ˆçš„ç‰©å“
+	private String description;		//æè¿°
+	private String cardtype;		//æŠ˜æ‰£å¡ç±»
+	private Integer amount;			//æŠ˜æ‰£é‡‘é¢
+	private Long batchid;			//æ‰¹æ¬¡ID
+	private String status;			//çŠ¶æ€ï¼šå‚è§OrderConstant.DISCOUNT_STATUS
 	@Override
 	public Serializable realId() {
 		return id;

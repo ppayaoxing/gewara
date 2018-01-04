@@ -5,7 +5,7 @@ import com.gewara.movie.vo.MovieVideoVo;
 
 public interface MovieVideoAdminVoService {
 	/**
-	 * 保存movievideo对象
+	 * 淇濆瓨movievideo瀵硅薄
 	 * @param movieid
 	 * @param videoid
 	 * @param imgUrl
@@ -13,13 +13,13 @@ public interface MovieVideoAdminVoService {
 	 */
 	ResultCode<MovieVideoVo> saveOrUpdateMovieVideo(Long movieid, String videoid, String imgUrl);
 	/**
-	 * 删除movievideo对象
+	 * 鍒犻櫎movievideo瀵硅薄
 	 * @param videoid
 	 * @return
 	 */
 	ResultCode<MovieVideoVo> removeMovieVideoByVideoid(String videoid);
 	/**
-	 * 根据videoid查询MovieVideo
+	 * 鏍规嵁videoid鏌ヨMovieVideo
 	 * @param videoid
 	 * @return
 	 */

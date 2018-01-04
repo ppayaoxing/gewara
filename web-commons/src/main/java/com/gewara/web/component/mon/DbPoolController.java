@@ -35,7 +35,7 @@ public class DbPoolController implements InitializingBean{
 	private ReadOnlyDaoService readOnlyDaoService;
 	
 	/**
-	 * @param seconds£¨Ê±³¤£©
+	 * @param secondsï¼ˆæ—¶é•¿ï¼‰
 	 * @return
 	 */
 	@RequestMapping("/sysmgr/dbpool/enableCheck.xhtml")
@@ -51,7 +51,7 @@ public class DbPoolController implements InitializingBean{
 		GWPostgresConnValidation.enableValidate(endtime);
 		try{
 			GWMysqlConnValidation.enableValidate(endtime);
-		}catch(Throwable e){//³ÌĞòÎ´Éı¼¶
+		}catch(Throwable e){//ç¨‹åºæœªå‡çº§
 		}
 		return "ok";
 	}

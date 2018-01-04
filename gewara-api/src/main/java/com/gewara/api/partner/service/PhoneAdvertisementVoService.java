@@ -8,26 +8,26 @@ import com.gewara.api.vo.ResultCode;
 
 public interface PhoneAdvertisementVoService {
 	/**
-	 * ²éÑ¯ÍÆ¼ö»î¶¯
-	 * @param id »î¶¯ID
+	 * æŸ¥è¯¢æ¨èæ´»åŠ¨
+	 * @param id æ´»åŠ¨ID
 	 * @return
 	 */
 	ResultCode<PhoneAdvertisementVo> getPhoneAdverVo(Long id);
 	/**
-	 * ¸ù¾İÅú´Î²éÑ¯³ÇÊĞÁĞ±í
-	 * @param batchid Åú´ÎID
+	 * æ ¹æ®æ‰¹æ¬¡æŸ¥è¯¢åŸå¸‚åˆ—è¡¨
+	 * @param batchid æ‰¹æ¬¡ID
 	 * @return
 	 */
 	ResultCode<Map<String, Long>> getCitycodesByBatchid(String batchid);
 	/**
-	 * ¸ù¾İ¹ØÁªID»ñÈ¡ËùÓĞ¹ØÁª»î¶¯
+	 * æ ¹æ®å…³è”IDè·å–æ‰€æœ‰å…³è”æ´»åŠ¨
 	 * @param adverId
 	 * @param sourceId
 	 * @return
 	 */
 	ResultCode<List<Map<String, String>>> getLinkedListBySourceId(Long adverId, Long sourceId);
 	/**
-	 * È¡µÃÍ¬µÈ¼¶»î¶¯ÖĞ°üº¬¸ÄcitycodeµÄ»î¶¯ID
+	 * å–å¾—åŒç­‰çº§æ´»åŠ¨ä¸­åŒ…å«æ”¹citycodeçš„æ´»åŠ¨ID
 	 * @param adverId
 	 * @param citycode
 	 * @return
@@ -35,7 +35,7 @@ public interface PhoneAdvertisementVoService {
 	ResultCode<Long> getSameLevelIdByCitycode(Long adverId, String citycode);
 	
 	/**
-	 * ²éÑ¯¹ã¸æÁĞ±í
+	 * æŸ¥è¯¢å¹¿å‘Šåˆ—è¡¨
 	 * @param apptype
 	 * @param osType
 	 * @param citycode

@@ -11,16 +11,16 @@ import com.gewara.api.vo.BaseVo;
 public class PaymethodIconVo extends BaseVo{
 	private static final long serialVersionUID = 2047438443244820893L;
 	private Long id;
-	/** ´´½¨ÈË */
+	/** åˆ›å»ºäºº */
 	private String createstaff;
 	
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createtime;
-	/** ±¸×¢ */
+	/** å¤‡æ³¨ */
 	private String remark;
-	/** Ö§¸¶·½Ê½ */
+	/** æ”¯ä»˜æ–¹å¼ */
 	private String paymethod;
-	/** Í¼±ê */
+	/** å›¾æ ‡ */
 	private String iconurl;
 	public String getCreatetime() {
 		return createtime;

@@ -9,23 +9,23 @@ import com.gewara.api.vo.VoMap;
 
 public interface UserMessageDBApiService {
 	/**
-	 * ±£´æÉÏ´«Í¨Ñ¶Â¼
+	 * ä¿å­˜ä¸Šä¼ é€šè®¯å½•
 	 */
 	ResultCode save(Long memberid, List<UserUploadMessage> userMessageList, String type); 
 	/**
-	 * ÉÏ´«¹ıÍ¨Ñ¶Â¼¼ÇÂ¼
+	 * ä¸Šä¼ è¿‡é€šè®¯å½•è®°å½•
 	 */
 	ResultCode<List<VoMap<String,Object>>> getMongoUserVoMapList(Long memberid, Integer from, Integer maxnum, String source);
 	/**
-	 * »ñÈ¡ÍÆ¼öºÃÓÑÁĞ±í
+	 * è·å–æ¨èå¥½å‹åˆ—è¡¨
 	 */
 	ResultCode<List<UserUploadMessage>> getRecommendFriends(Long memberid, Integer from, Integer maxnum);
 	/**
-	 * »ñÈ¡ÍÆ¼öºÃÓÑÊıÁ¿
+	 * è·å–æ¨èå¥½å‹æ•°é‡
 	 */
 	ResultCode<Integer> getRecommendUserNum(Long memberid);
 	/**
-	 * Ôö¼ÓÆ¥ÅäÍÆ¼öÓÃ»§ÁĞ±í
+	 * å¢åŠ åŒ¹é…æ¨èç”¨æˆ·åˆ—è¡¨
 	 */
 	ResultCode<VoMap<Long,UserUploadMessage>> getRecommendFriendsVoMapByMemberid(Long memberid, Integer from, Integer maxnum, boolean flag,List<Long> attenList);
 }

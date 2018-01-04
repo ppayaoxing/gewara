@@ -12,7 +12,7 @@ public class MemberRegInfoVo extends BaseVo {
 	private MemberVo member;
 	private MemberInfoVo memberInfo;
 	private String memberEncode;
-	private boolean onlyBind = false; // 账户之前可能存在,只是重新动态码登录
+	private boolean onlyBind = false; // 璐︽埛涔嬪墠鍙兘瀛樺湪,鍙槸閲嶆柊鍔ㄦ�佺爜鐧诲綍
 
 	public MemberRegInfoVo() {
 		super();

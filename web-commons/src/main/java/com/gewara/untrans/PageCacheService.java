@@ -10,12 +10,12 @@ import com.gewara.json.PageView;
 public interface PageCacheService {
 	String NOT_USE_CACHE_KEY = "notUseCache";
 	/**
-	 * »ñÈ¡Ò³Ãæ»º´æ
+	 * è·å–é¡µé¢ç¼“å­˜
 	 * @param request
-	 * @param pageUrl Ò³ÃæµØÖ·
+	 * @param pageUrl é¡µé¢åœ°å€
 	 * @param params
 	 * @param citycode
-	 * @param cacheMin »º´æ·ÖÖÓ
+	 * @param cacheMin ç¼“å­˜åˆ†é’Ÿ
 	 * @return
 	 */
 	PageView getPageView(String pageUrl, PageParams params, String citycode, String ip);
@@ -29,13 +29,13 @@ public interface PageCacheService {
 	Integer getCacheMin(String pageUrl);
 	boolean isUseCache(HttpServletRequest request);
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÊÇ×îĞÂ»º´æ
+	 * åˆ¤æ–­æ˜¯å¦æ˜¯æœ€æ–°ç¼“å­˜
 	 * @param pageParams
 	 * @return
 	 */
 	boolean isUpdated(String pageUrl, String citycode, Long cur, PageParams pageParams);
 	/**
-	 * ´¦Àí¸üĞÂ»º´æ
+	 * å¤„ç†æ›´æ–°ç¼“å­˜
 	 * @param pageUrl
 	 * @param params
 	 * @param citycode
@@ -44,7 +44,7 @@ public interface PageCacheService {
 	void setEnableCache(boolean enableCache);
 	
 	/**
-	 * ÉèÖÃÒ³Ãæ»º´æÍ·£ºÈç¹ûouterAllow && isUseCache(request) ÔòÉèÖÃ»º´æÏà¹ØÍ·
+	 * è®¾ç½®é¡µé¢ç¼“å­˜å¤´ï¼šå¦‚æœouterAllow && isUseCache(request) åˆ™è®¾ç½®ç¼“å­˜ç›¸å…³å¤´
 	 * @param allow
 	 * @param request
 	 * @param response

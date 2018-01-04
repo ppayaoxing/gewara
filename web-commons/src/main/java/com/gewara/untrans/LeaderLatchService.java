@@ -3,10 +3,10 @@ package com.gewara.untrans;
 public interface LeaderLatchService {
 	
 	/**
-	 * Ìí¼Ó¼àÌı
+	 * æ·»åŠ ç›‘å¬
 	 * @param listener
 	 * @author leo
-	 * @addTime 2016Äê3ÔÂ31ÈÕÉÏÎç9:49:12
+	 * @addTime 2016å¹´3æœˆ31æ—¥ä¸Šåˆ9:49:12
 	 */
 	void addListener(GewaLeaderLatchListener listener);
 

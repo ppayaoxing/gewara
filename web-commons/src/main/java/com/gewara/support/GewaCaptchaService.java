@@ -42,7 +42,7 @@ public class GewaCaptchaService {
 		this.cacheService = cacheService;
 	}
 	/**
-	 * ĞèÒªµÇÂ¼µÄÑéÖ¤Âë
+	 * éœ€è¦ç™»å½•çš„éªŒè¯ç 
 	 * @param captchaId
 	 * @param ip
 	 * @param memberid
@@ -67,7 +67,7 @@ public class GewaCaptchaService {
 		return (String) cacheService.get(CacheService.REGION_TENMIN, KEY_CAPTCHA + captchaId);
 	}
 
-	/** ¸ù¾İ ÑéÖ¤Âëid,ipºÍÑéÖ¤ÂëÑéÖ¤.
+	/** æ ¹æ® éªŒè¯ç id,ipå’ŒéªŒè¯ç éªŒè¯.
 	 * @param captchaId
 	 * @param captcha
 	 * @param ip
@@ -77,29 +77,29 @@ public class GewaCaptchaService {
 		checkCount ++;
 		if(checkCount % 1000==0){
 			checkCount = 0;
-			dbLogger.warn("ÑéÖ¤Âë1000´Î¼ÆÊı£º" + checkCount);
+			dbLogger.warn("éªŒè¯ç 1000æ¬¡è®¡æ•°ï¼š" + checkCount);
 		}
 		if(captcha==null) {
 			Map<String, String> entry = Maps.newHashMap();
 			entry.put("errtype", "captcha");
 			entry.put("captchaId", captchaId);
 			entry.put("response", captcha);
-			entry.put("msg", "Î´ÊäÈëÑéÖ¤Âë");
+			entry.put("msg", "æœªè¾“å…¥éªŒè¯ç ");
 			return ErrorCode.getFailureReturn(entry);
 		}
 		captcha = StringUtils.replace(captcha, " ", "");
 		String captchaText = (String) cacheService.get(CacheService.REGION_TENMIN, KEY_CAPTCHA + captchaId);
 		if(captchaText != null){
 			int count = cacheService.incr(CacheService.REGION_ONEHOUR, KEY_CAPTCHA_COUNT + captchaId, 1, 1);
-			if(count > 20){//Í¬Ò»ÑéÖ¤ÂëÑéÖ¤²»ÄÜ³¬¹ı20´Î
-				dbLogger.warn("ÑéÖ¤Âë´íÎó,´ÎÊı³¬³ö£º" + captchaId  + "£º" + captchaText + "--->" + captcha + ", " + ip);
-				return ErrorCode.getFailureReturn(getLogEntry(captchaId, captchaText, captcha, "ÑéÖ¤Âë´ÎÊı³¬³ö"));
+			if(count > 20){//åŒä¸€éªŒè¯ç éªŒè¯ä¸èƒ½è¶…è¿‡20æ¬¡
+				dbLogger.warn("éªŒè¯ç é”™è¯¯,æ¬¡æ•°è¶…å‡ºï¼š" + captchaId  + "ï¼š" + captchaText + "--->" + captcha + ", " + ip);
+				return ErrorCode.getFailureReturn(getLogEntry(captchaId, captchaText, captcha, "éªŒè¯ç æ¬¡æ•°è¶…å‡º"));
 			}
 			cacheService.remove(CacheService.REGION_TENMIN, KEY_CAPTCHA + captchaId);
 			boolean result = captchaText.equalsIgnoreCase(captcha);
 			if(!result) {
-				dbLogger.warn("ÑéÖ¤Âë´íÎó£º" + captchaId  + "£º" + captchaText + "--->" + captcha + ", " + ip);
-				return ErrorCode.getFailureReturn(getLogEntry(captchaId, captchaText, captcha, "ÑéÖ¤Âë´íÎó"));
+				dbLogger.warn("éªŒè¯ç é”™è¯¯ï¼š" + captchaId  + "ï¼š" + captchaText + "--->" + captcha + ", " + ip);
+				return ErrorCode.getFailureReturn(getLogEntry(captchaId, captchaText, captcha, "éªŒè¯ç é”™è¯¯"));
 			}
 			return ErrorCode.SUCCESS;
 		}else{
@@ -107,7 +107,7 @@ public class GewaCaptchaService {
 			entry.put("errtype", "captcha");
 			entry.put("captchaId", captchaId);
 			entry.put("response", captcha);
-			entry.put("msg", "ÑéÖ¤Âë²»´æÔÚ£¡");
+			entry.put("msg", "éªŒè¯ç ä¸å­˜åœ¨ï¼");
 			return ErrorCode.getFailureReturn(entry);
 		}
 		
@@ -122,11 +122,11 @@ public class GewaCaptchaService {
 		return entry;
 	}
 	
-	public static final String upper = "ABCDEFGHJKLMNPRSTUVWXYZabcdefghkmnrstuvwxz2345678";// I,O,Q,i,j,l,o,p,q,y,1,9,0È¥µô
+	public static final String upper = "ABCDEFGHJKLMNPRSTUVWXYZabcdefghkmnrstuvwxz2345678";// I,O,Q,i,j,l,o,p,q,y,1,9,0å»æ‰
 
 	/**
 	 * @param length
-	 *            Éú³ÉµÄ×Ö·û´®³¤¶È£¬<100
+	 *            ç”Ÿæˆçš„å­—ç¬¦ä¸²é•¿åº¦ï¼Œ<100
 	 * @return
 	 */
 	public static String getRandomString(int length) {

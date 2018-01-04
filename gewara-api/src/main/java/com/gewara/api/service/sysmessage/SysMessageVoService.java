@@ -5,14 +5,14 @@ import com.gewara.api.vo.ResultCode;
 public interface SysMessageVoService {
 
 	/**
-	 * 根据后台运营系统消息id获取  图文混排内容
+	 * 鏍规嵁鍚庡彴杩愯惀绯荤粺娑堟伅id鑾峰彇  鍥炬枃娣锋帓鍐呭
 	 * @param id
 	 * @return
 	 */
 	ResultCode<String> getSysMessageContentById(String id);
 	
 	/**
-	 * 重新加载权限列表
+	 * 閲嶆柊鍔犺浇鏉冮檺鍒楄〃
 	 * @return
 	 */
 	ResultCode<String> reloadAcl();

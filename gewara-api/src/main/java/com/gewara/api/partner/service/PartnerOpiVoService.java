@@ -8,13 +8,13 @@ import com.gewara.api.vo.ResultCode;
 
 public interface PartnerOpiVoService {
 	/**
-	 * »ñÈ¡»º´æ×ùÎ»Í¼
+	 * è·å–ç¼“å­˜åº§ä½å›¾
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<OpiSeatVo> getOpiCacheSeat(PartnerCommonReqVo reqVo);
 	/**
-	 * »ñÈ¡ÊµÊ±×ùÎ»Í¼
+	 * è·å–å®æ—¶åº§ä½å›¾
 	 * @param reqVo
 	 * @return
 	 */

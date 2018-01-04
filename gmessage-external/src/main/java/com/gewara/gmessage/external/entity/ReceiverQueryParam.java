@@ -7,7 +7,7 @@ import com.gewara.gmessage.external.constant.MType;
 import com.gewara.gmessage.external.constant.UserType;
 
 /**
- * °´ÕÕÏûÏ¢½ÓÊÕÕß½øĞĞ²éÑ¯Ê±µÄ²éÑ¯Ìõ¼ş
+ * æŒ‰ç…§æ¶ˆæ¯æ¥æ”¶è€…è¿›è¡ŒæŸ¥è¯¢æ—¶çš„æŸ¥è¯¢æ¡ä»¶
  *
  */
 public class ReceiverQueryParam implements Serializable{
@@ -24,16 +24,16 @@ public class ReceiverQueryParam implements Serializable{
 	
 	
 	/**
-	 * @param receiver ÏûÏ¢½ÓÊÜÕßID
-	 * @param userType ÏûÏ¢½ÓÊÕÕßÀàĞÍ
+	 * @param receiver æ¶ˆæ¯æ¥å—è€…ID
+	 * @param userType æ¶ˆæ¯æ¥æ”¶è€…ç±»å‹
 	 */
 	public ReceiverQueryParam(String receiver,UserType userType){
 		this.receiver=new MUser(receiver,userType);
 	}
 	
 	/**
-	 * @param receiver ÏûÏ¢½ÓÊÜÕßID
-	 * @param userType ÏûÏ¢½ÓÊÕÕßÀàĞÍ
+	 * @param receiver æ¶ˆæ¯æ¥å—è€…ID
+	 * @param userType æ¶ˆæ¯æ¥æ”¶è€…ç±»å‹
 	 */
 	public ReceiverQueryParam(MUser receiver){
 		this.receiver=receiver;
@@ -43,7 +43,7 @@ public class ReceiverQueryParam implements Serializable{
 		return receiver;
 	}
 
-	/**½ÓÊÕÕß*/
+	/**æ¥æ”¶è€…*/
 	public void setReceiver(MUser receiver) {
 		this.receiver = receiver;
 	}
@@ -56,12 +56,12 @@ public class ReceiverQueryParam implements Serializable{
 		this.pageNo = pageNo;
 	}
 	
-	/**Ò³Âë£¬Ä¬ÈÏµÚÒ»Ò³*/
+	/**é¡µç ï¼Œé»˜è®¤ç¬¬ä¸€é¡µ*/
 	public int getPageSize() {
 		return pageSize;
 	}
 	
-	/** Ã¿Ò³µÄ¼ÇÂ¼Êı¡£Ä¬ÈÏ50£»*/
+	/** æ¯é¡µçš„è®°å½•æ•°ã€‚é»˜è®¤50ï¼›*/
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
@@ -70,7 +70,7 @@ public class ReceiverQueryParam implements Serializable{
 		return read;
 	}
 	
-	/**true£¬·µ»ØÒÑ¶ÁÏûÏ¢£¬ false£¬·µ»ØÎ´¶ÁÏûÏ¢£¬ÉèÖÃÎªnull·µ»ØËùÓĞ¡£Ä¬ÈÏ·µ»ØÎ´¶ÁÏûÏ¢*/
+	/**trueï¼Œè¿”å›å·²è¯»æ¶ˆæ¯ï¼Œ falseï¼Œè¿”å›æœªè¯»æ¶ˆæ¯ï¼Œè®¾ç½®ä¸ºnullè¿”å›æ‰€æœ‰ã€‚é»˜è®¤è¿”å›æœªè¯»æ¶ˆæ¯*/
 	public void setRead(Boolean read) {
 		this.read = read;
 	}
@@ -79,7 +79,7 @@ public class ReceiverQueryParam implements Serializable{
 		return messageCat;
 	}
 	
-	/**ÏûÏ¢ÖÖÀà¡£±ØĞëÌîĞ´¡£Ä¬ÈÏ»¥¶¯¡£*/
+	/**æ¶ˆæ¯ç§ç±»ã€‚å¿…é¡»å¡«å†™ã€‚é»˜è®¤äº’åŠ¨ã€‚*/
 	public void setMessageCat(MCategory messageCat) {
 		this.messageCat = messageCat;
 	}
@@ -96,7 +96,7 @@ public class ReceiverQueryParam implements Serializable{
 		return reciveTimes;
 	}
 	
-	/**ÊÕµ½ÏûÏ¢µÄÈÕÆÚ¡£·µ»ØÖ¸¶¨ÈÕÆÚÖ®ºóµÄÏûÏ¢¡£¸ÃÊ±¼ä¶ÎÉèÖÃÇë²»Òª³¬¹ı180.ÁíÍâ¸Ã×Ö¶ÎÎªnull£¬¾ÍÄ¬ÈÏÎªÉÏ´Î²éÑ¯Ê±¼ä*/
+	/**æ”¶åˆ°æ¶ˆæ¯çš„æ—¥æœŸã€‚è¿”å›æŒ‡å®šæ—¥æœŸä¹‹åçš„æ¶ˆæ¯ã€‚è¯¥æ—¶é—´æ®µè®¾ç½®è¯·ä¸è¦è¶…è¿‡180.å¦å¤–è¯¥å­—æ®µä¸ºnullï¼Œå°±é»˜è®¤ä¸ºä¸Šæ¬¡æŸ¥è¯¢æ—¶é—´*/
 	public void setReciveTimes(Long reciveTimes) {
 		this.reciveTimes = reciveTimes;
 	}

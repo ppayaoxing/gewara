@@ -9,7 +9,7 @@ import org.springframework.security.web.RedirectStrategy;
 
 import com.gewara.util.BaseWebUtils;
 /**
- * ��¼��ת��Ҫ��֧��POST
+ * 锟斤拷录锟斤拷转锟斤拷要锟斤拷支锟斤拷POST
  * @author acerge(acerge@163.com)
  * @since 7:38:30 PM Jan 11, 2011
  */

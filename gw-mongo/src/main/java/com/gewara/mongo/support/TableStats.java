@@ -2,10 +2,10 @@ package com.gewara.mongo.support;
 
 public class TableStats {
 	private String namespace;		//collect
-	private long starttime;			//统计时间
-	private int queryCount;			//查询次数
-	private int updateCount;		//更新次数
-	private int removeCount;		//删除次数
+	private long starttime;			//缁熻鏃堕棿
+	private int queryCount;			//鏌ヨ娆℃暟
+	private int updateCount;		//鏇存柊娆℃暟
+	private int removeCount;		//鍒犻櫎娆℃暟
 	
 	public TableStats(){
 	}

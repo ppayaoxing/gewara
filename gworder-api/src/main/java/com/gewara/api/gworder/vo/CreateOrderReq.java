@@ -8,8 +8,8 @@ import org.apache.commons.lang.StringUtils;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * ¶©µ¥´´½¨ÇëÇó¶ÔÏó
- * <br>Ä¬ÈÏ´´½¨µ½½øÈëÒµÎñ´¦ÀíÂß¼­½Úµã³¬Ê±Ê±¼äÎª30Ãë
+ * è®¢å•åˆ›å»ºè¯·æ±‚å¯¹è±¡
+ * <br>é»˜è®¤åˆ›å»ºåˆ°è¿›å…¥ä¸šåŠ¡å¤„ç†é€»è¾‘èŠ‚ç‚¹è¶…æ—¶æ—¶é—´ä¸º30ç§’
  * @author quzhuping
  *
  */
@@ -20,14 +20,14 @@ public class CreateOrderReq extends BaseVo {
 	public  static final String TAG_DRAMA="drama";
 	public  static final String TAG_GOODS="goods";
 	
-	protected String tag;				//movie¡¢drama¡£¡£¡£
-	protected String contextKey;		//ÉÏÏÂÎÄkey
-	protected String asyncQueueKey;		//Òì²½ÏìÓ¦¶ÓÁĞkey£¬ÇëÇó¶ËÉèÖÃ
-	protected Long invalidTime;			//ÇëÇó¶ÔÏóÓĞĞ§Ê±¼ä£¬³¬³öÓĞĞ§Ê±¼äÅ×Æú¸ÃÇëÇóµÄºóĞø´¦Àí
-	protected Long memberId;			//¹ØÁªÓÃ»§
+	protected String tag;				//movieã€dramaã€‚ã€‚ã€‚
+	protected String contextKey;		//ä¸Šä¸‹æ–‡key
+	protected String asyncQueueKey;		//å¼‚æ­¥å“åº”é˜Ÿåˆ—keyï¼Œè¯·æ±‚ç«¯è®¾ç½®
+	protected Long invalidTime;			//è¯·æ±‚å¯¹è±¡æœ‰æ•ˆæ—¶é—´ï¼Œè¶…å‡ºæœ‰æ•ˆæ—¶é—´æŠ›å¼ƒè¯¥è¯·æ±‚çš„åç»­å¤„ç†
+	protected Long memberId;			//å…³è”ç”¨æˆ·
 	protected Long relatedId;			//mpid,goodsid,ottid(sport),dpid(drama),pubid(pubsale),gci(gym),mctid(membercard)
-	protected String remoteIp;			//ÓÃ»§ip
-	protected String source;			//¶©µ¥À´Ô´£¬ÓÃÀ´±êÊ¶¶©µ¥À´Ô´£º±ÈÈçÍøÕ¾£¬Openapi
+	protected String remoteIp;			//ç”¨æˆ·ip
+	protected String source;			//è®¢å•æ¥æºï¼Œç”¨æ¥æ ‡è¯†è®¢å•æ¥æºï¼šæ¯”å¦‚ç½‘ç«™ï¼ŒOpenapi
 	public CreateOrderReq(){
 		invalidTime = System.currentTimeMillis() + 60 * 1000;
 	}
@@ -101,16 +101,16 @@ public class CreateOrderReq extends BaseVo {
 	}
 
 	/**
-	 * ÉèÖÃÒì²½ÏìÓ¦¶ÓÁĞkey,·¢ËÍÏûÏ¢µ½µ÷ÓÃ·½»úÆ÷
-	 * @param asyncQueueKey ¹æÔò£ºqueueName + systemId + systemhost
+	 * è®¾ç½®å¼‚æ­¥å“åº”é˜Ÿåˆ—key,å‘é€æ¶ˆæ¯åˆ°è°ƒç”¨æ–¹æœºå™¨
+	 * @param asyncQueueKey è§„åˆ™ï¼šqueueName + systemId + systemhost
 	 */
 	public void setAsyncQueueKey(String asyncQueueKey) {
 		this.asyncQueueKey = asyncQueueKey;
 	}
 
 	/**
-	 * Éú³ÉÎ¨Ò»key,Èç¹ûÓÃ»§²»Ö¸¶¨ÔòÊ¹ÓÃÄ¬ÈÏ¹æÔò
-	 * <br>Òì²½ÉÏÏÂÎÄ¹ØÁªÊ¹ÓÃ
+	 * ç”Ÿæˆå”¯ä¸€key,å¦‚æœç”¨æˆ·ä¸æŒ‡å®šåˆ™ä½¿ç”¨é»˜è®¤è§„åˆ™
+	 * <br>å¼‚æ­¥ä¸Šä¸‹æ–‡å…³è”ä½¿ç”¨
 	 * @return
 	 */
 	public String buildContextKey(){
@@ -121,7 +121,7 @@ public class CreateOrderReq extends BaseVo {
 	}
 	
 	/**
-	 * ÉèÖÃ³¬Ê±Ê±¼ä
+	 * è®¾ç½®è¶…æ—¶æ—¶é—´
 	 * @param invalidTime
 	 */
 	public void setInvalidTime(long invalidTime, TimeUnit unit){
@@ -129,8 +129,8 @@ public class CreateOrderReq extends BaseVo {
 	}
 
 	/**
-	 * ÊÇ·ñÊÇ³¬Ê±ÇëÇó
-	 * @return true ³¬Ê±£¬false Î´³¬Ê±
+	 * æ˜¯å¦æ˜¯è¶…æ—¶è¯·æ±‚
+	 * @return true è¶…æ—¶ï¼Œfalse æœªè¶…æ—¶
 	 */
 	public boolean isTimeoutReq(){
 		return (System.currentTimeMillis() - invalidTime) > 0;

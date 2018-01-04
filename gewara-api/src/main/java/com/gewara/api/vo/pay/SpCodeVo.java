@@ -10,25 +10,25 @@ import com.gewara.api.vo.BaseVo;
 public class SpCodeVo extends BaseVo {
 
 	private static final long serialVersionUID = -6167296620246800818L;
-	public static final String PASSPRE = "I";	//ÂëÇ°×º
+	public static final String PASSPRE = "I";	//ç å‰ç¼€
 	private Long id;
 	private Integer version;	//
-	private Long sdid;			//ÌØ¼Û»î¶¯
-	private Long memberid;		//ÓÃ»§ID	
-	private String mobile;		//ÊÖ»ú
-	private Timestamp sendtime;	//·¢³öÊ±¼ä
-	private Long orderid;		//¹ØÁª¶©µ¥
-	private Integer usedcount;	//Ê¹ÓÃ´ÎÊı
+	private Long sdid;			//ç‰¹ä»·æ´»åŠ¨
+	private Long memberid;		//ç”¨æˆ·ID	
+	private String mobile;		//æ‰‹æœº
+	private Timestamp sendtime;	//å‘å‡ºæ—¶é—´
+	private Long orderid;		//å…³è”è®¢å•
+	private Integer usedcount;	//ä½¿ç”¨æ¬¡æ•°
 	private String temppass;
 	@Override
 	public Serializable realId() {
 		return id;
 	}
 
-	public boolean hasBound(){//ÒÑ¾­°ó¶¨µÄÈ¯
+	public boolean hasBound(){//å·²ç»ç»‘å®šçš„åˆ¸
 		return this.memberid > 0 || StringUtils.length(mobile) == 11 || this.usedcount > 0;
 	}
-	public boolean canUseByMember(Long mid){//ÊÇ·ñ±»ËûÈËÕ¼ÓÃ
+	public boolean canUseByMember(Long mid){//æ˜¯å¦è¢«ä»–äººå ç”¨
 		return memberid<=0 || memberid.equals(mid);
 	}
 	

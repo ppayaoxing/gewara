@@ -14,11 +14,11 @@ public class BSGoodsStoreVo  extends BaseVo{
 private static final long serialVersionUID = 8688622692815979865L;
 	
 	private Long id;			//ID
-	private Long goodsid;		//活动名称
-	private Long storeid;		//活动名称
-	private Timestamp addtime;	//创建时间
+	private Long goodsid;		//娲诲姩鍚嶇О
+	private Long storeid;		//娲诲姩鍚嶇О
+	private Timestamp addtime;	//鍒涘缓鏃堕棿
 	
-	/**构造子函数**/
+	/**鏋勯�犲瓙鍑芥暟**/
 	public BSGoodsStoreVo() {}
 
 	public Long getId() {

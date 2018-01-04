@@ -6,9 +6,9 @@ import org.apache.curator.framework.CuratorFramework;
 
 public interface CuratorConnectionFactroy {
 	/**
-	 * 获取初始化后的CuratorFramework
+	 * 鑾峰彇鍒濆鍖栧悗鐨凜uratorFramework
 	 * @return
-	 * @throws IOException 未初始化完成
+	 * @throws IOException 鏈垵濮嬪寲瀹屾垚
 	 */
 	CuratorFramework getCuratorFramework() throws IOException ;
 	

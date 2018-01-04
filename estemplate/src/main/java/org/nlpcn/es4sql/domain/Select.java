@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 将sql语句转换为select 对象
+ * 灏唖ql璇彞杞崲涓簊elect 瀵硅薄
  * 
  * @author ansj
  */

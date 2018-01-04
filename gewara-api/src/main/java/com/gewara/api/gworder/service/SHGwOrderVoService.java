@@ -12,13 +12,13 @@ import com.gewara.api.vo.order.CheckAddOrderGoodsGiftRes;
 
 public interface SHGwOrderVoService {
 	/**
-	 * ÏÂµ¥µÄÊ±ºò£¬ÔÚ¶©µ¥ĞÅÏ¢otherinfoÀï¼ÇÂ¼Ç¿ÖÆ°ó¶¨µÄÌ×²Í
+	 * ä¸‹å•çš„æ—¶å€™ï¼Œåœ¨è®¢å•ä¿¡æ¯otherinfoé‡Œè®°å½•å¼ºåˆ¶ç»‘å®šçš„å¥—é¤
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode bindOrderGoodsGift(String tradeNo);
 	/**
-	 * ÏÂµ¥µÄÊ±ºòÓÃ»§Ñ¡ÔñµÄÌ×²ÍĞÅÏ¢
+	 * ä¸‹å•çš„æ—¶å€™ç”¨æˆ·é€‰æ‹©çš„å¥—é¤ä¿¡æ¯
 	 * @param tradeNo
 	 * @param goodsid
 	 * @param quantity
@@ -26,7 +26,7 @@ public interface SHGwOrderVoService {
 	 */
 	ResultCode addOrderGoodsGift(String tradeNo, Long goodsid, Integer quantity);
 	/**
-	 * Ôö¼Ó¶©µ¥Ôö¼ÓÌØ¼Û»î¶¯idµ½¶©µ¥otherinfoÖĞ
+	 * å¢åŠ è®¢å•å¢åŠ ç‰¹ä»·æ´»åŠ¨idåˆ°è®¢å•otherinfoä¸­
 	 * @param spkey
 	 * @param tradeNo
 	 * @param mpid
@@ -35,20 +35,20 @@ public interface SHGwOrderVoService {
 	ResultCode addSpid2OrderOtherinfo(String spkey, String tradeNo, Long mpid);
 	
 	/**
-	 * Èç¹û¶©µ¥×´Ì¬ÊÇ£ºpaid_failure£¬È¥×öÒÔÏÂÊÂÇé£º<br/>
-	 * 1¡¢´¦Àí¶©µ¥Ö§¸¶£¬È·ÈÏÖ§¸¶¹ıµÄ¶©µ¥£¬ÓÅ»İ£¬Æ±È¯£¬»ı·Ö
-	 * 2¡¢ÑéÖ¤³É¹¦£¬·µ»Ø¶©µ¥×´Ì¬±êÊ¶£¬×¢Ã÷¶©µ¥×´Ì¬¿ÉÖÃÎª£ºpaid_failure_unfix
+	 * å¦‚æœè®¢å•çŠ¶æ€æ˜¯ï¼špaid_failureï¼Œå»åšä»¥ä¸‹äº‹æƒ…ï¼š<br/>
+	 * 1ã€å¤„ç†è®¢å•æ”¯ä»˜ï¼Œç¡®è®¤æ”¯ä»˜è¿‡çš„è®¢å•ï¼Œä¼˜æƒ ï¼Œç¥¨åˆ¸ï¼Œç§¯åˆ†
+	 * 2ã€éªŒè¯æˆåŠŸï¼Œè¿”å›è®¢å•çŠ¶æ€æ ‡è¯†ï¼Œæ³¨æ˜è®¢å•çŠ¶æ€å¯ç½®ä¸ºï¼špaid_failure_unfix
 	 * 
-	 * Í¬Ê±·µ»ØÈ¡Æ±ÃÜÂë£¬¶©µ¥ÖĞÒÑ¾­ÓĞµÄÖ±½Ó·µ»Ø£¬Ã»ÓĞµÄÉú³É¸ö·µ»Ø
+	 * åŒæ—¶è¿”å›å–ç¥¨å¯†ç ï¼Œè®¢å•ä¸­å·²ç»æœ‰çš„ç›´æ¥è¿”å›ï¼Œæ²¡æœ‰çš„ç”Ÿæˆä¸ªè¿”å›
 	 * 
 	 * @param tradeNo
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê8ÔÂ12ÈÕÏÂÎç4:26:15
+	 * @addTime 2015å¹´8æœˆ12æ—¥ä¸‹åˆ4:26:15
 	 */
 	ResultCode<ProcessOrderPayVo> processOrderPay(String tradeNo);
 	/**
-	 * ¸ù¾İÓ°ÔºIDºÍÈÕÆÚ»ñÈ¡Í³¼ÆÊı¾İ
+	 * æ ¹æ®å½±é™¢IDå’Œæ—¥æœŸè·å–ç»Ÿè®¡æ•°æ®
 	 * @param cinemaid
 	 * @param dateStr
 	 * @return
@@ -56,7 +56,7 @@ public interface SHGwOrderVoService {
 	ResultCode<Map<String, CinemaMerchantGoodsStatisVo>> getCinemaStatisData(String token, Long cinemaid, Timestamp sdate);
 	
 	/**
-	 * ºÏ×÷ÉÌÍ¨Öª£¬ºÏ×÷ÉÌÑéÖ¤£¬Ö§¸¶½á¹û·´²éÑ¯
+	 * åˆä½œå•†é€šçŸ¥ï¼Œåˆä½œå•†éªŒè¯ï¼Œæ”¯ä»˜ç»“æœåæŸ¥è¯¢
 	 * 
 	 * @param appkey
 	 * @param tradeno
@@ -64,18 +64,18 @@ public interface SHGwOrderVoService {
 	 * @param payseqno
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ7ÈÕÏÂÎç4:50:01
+	 * @addTime 2015å¹´9æœˆ7æ—¥ä¸‹åˆ4:50:01
 	 */
 	ResultCode<ValidateOpenApiPayVo> validateOpenApiPay(String appkey, String partnerServerIp, String tradeno, String paidAmount, String payseqno);
 	
 	/**
-	 * ¸ø¶©µ¥ĞÂÔöÀñÆ·Ê±£¬ĞëÏÈ¼ì²éÒ»Ğ©Âß¼­£¬È»ºó¸ù¾İ·µ»ØµÄCheckAddOrderGoodsGiftRes£¬¸ø¶©µ¥ĞÂÔöÀñÆ·»òÕßÔùÆ·
+	 * ç»™è®¢å•æ–°å¢ç¤¼å“æ—¶ï¼Œé¡»å…ˆæ£€æŸ¥ä¸€äº›é€»è¾‘ï¼Œç„¶åæ ¹æ®è¿”å›çš„CheckAddOrderGoodsGiftResï¼Œç»™è®¢å•æ–°å¢ç¤¼å“æˆ–è€…èµ å“
 	 * @param tradeNo
 	 * @param goodsid
 	 * @param quantity
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê9ÔÂ12ÈÕÏÂÎç4:10:18
+	 * @addTime 2016å¹´9æœˆ12æ—¥ä¸‹åˆ4:10:18
 	 */
 	ResultCode<CheckAddOrderGoodsGiftRes> checkAddOrderGoodsGift(String tradeNo, Long goodsid, Integer quantity);
 }

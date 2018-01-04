@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class AbstractInfo implements Serializable{
 	private static final long serialVersionUID = -4922262696501830877L;
-	private String abstract1;			//ÓÅ»İÏêÇéÕªÒª×Ö¶Î½á¹¹ÌåÃû³Æ
-	private String[] icon_url_list;		//·âÃæÍ¼Æ¬ÁĞ±í£¬½öÖ§³ÖÌîÈëÒ»¸ö·âÃæÍ¼Æ¬Á´½Ó£¬ÉÏ´«Í¼Æ¬½Ó¿ÚÉÏ´«»ñÈ¡Í¼Æ¬»ñµÃÁ´½Ó£¬ÌîĞ´·ÇCDNÁ´½Ó»á±¨´í£¬²¢ÔÚ´ËÌîÈë¡£½¨ÒéÍ¼Æ¬³ß´çÏñËØ850*350 
-	private String text_image_list;		//Í¼ÎÄÁĞ±í£¬ÏÔÊ¾ÔÚÏêÇéÄÚÒ³£¬ÓÅ»İÈ¯È¯¿ª·¢ÕßĞëÖÁÉÙ´«ÈëÒ»×éÍ¼ÎÄÁĞ±í 
+	private String abstract1;			//ä¼˜æƒ è¯¦æƒ…æ‘˜è¦å­—æ®µç»“æ„ä½“åç§°
+	private String[] icon_url_list;		//å°é¢å›¾ç‰‡åˆ—è¡¨ï¼Œä»…æ”¯æŒå¡«å…¥ä¸€ä¸ªå°é¢å›¾ç‰‡é“¾æ¥ï¼Œä¸Šä¼ å›¾ç‰‡æ¥å£ä¸Šä¼ è·å–å›¾ç‰‡è·å¾—é“¾æ¥ï¼Œå¡«å†™éCDNé“¾æ¥ä¼šæŠ¥é”™ï¼Œå¹¶åœ¨æ­¤å¡«å…¥ã€‚å»ºè®®å›¾ç‰‡å°ºå¯¸åƒç´ 850*350 
+	private String text_image_list;		//å›¾æ–‡åˆ—è¡¨ï¼Œæ˜¾ç¤ºåœ¨è¯¦æƒ…å†…é¡µï¼Œä¼˜æƒ åˆ¸åˆ¸å¼€å‘è€…é¡»è‡³å°‘ä¼ å…¥ä¸€ç»„å›¾æ–‡åˆ—è¡¨ 
 	public AbstractInfo(){
 		
 	}

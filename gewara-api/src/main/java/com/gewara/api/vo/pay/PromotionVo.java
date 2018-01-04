@@ -20,118 +20,118 @@ public class PromotionVo extends BaseVo{
 
 	private Long id;
 
-	/***������Ϣ----------------------------------------------------------------------------------------------*/
+	/***锟斤拷锟斤拷锟斤拷息----------------------------------------------------------------------------------------------*/
 	
-	private String extraInfo;			//��չ��Ϣ
-	private String flag;				//�����ʶ
-	private String tag;					//�������ͣ���PayConstant.APPLY_TAG*
-	private Integer sortnum;			//��������
-	private String opentype;			//��������   
-	private String ptnids;				//֧������id���� �̼�ID
-	private Integer discount;			//�Żݽ�� �ۿ۽��
-	private String distype;				//�Żݷ�ʽ
-	private String refundEnable;		// �Ƿ�֧����Ʊ��Y�����ˣ�N��������
-	private String spType; 				//�������
-	private String expression;			//������ʽ
-	private String specialrule;			//���������ʽ
-	private Integer limitperiod;		//�����޹����ڣ����ӣ�
-	private Integer limitnum;			//�����޹�����
-	private Integer minbuy;				//ÿ���޹���:��������
-	private Integer buynum;				//ÿ���޹���:�������
-	private String periodtype;			//�޹���������
-	private String uniqueby;			//ʹ��ʲô����Ψһ�� Ψһ��ʶ
-	private String description;			//��Ҫ˵��
-	private Timestamp timefrom;			//�Żݿ�ʼʱ��
-	private Timestamp timeto;			//�Żݽ���ʱ��	
+	private String extraInfo;			//锟斤拷展锟斤拷息
+	private String flag;				//锟斤拷锟斤拷锟绞�
+	private String tag;					//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟斤拷PayConstant.APPLY_TAG*
+	private Integer sortnum;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private String opentype;			//锟斤拷锟斤拷锟斤拷锟斤拷   
+	private String ptnids;				//支锟斤拷锟斤拷锟斤拷id锟斤拷锟斤拷 锟教硷拷ID
+	private Integer discount;			//锟脚惠斤拷锟� 锟桔扣斤拷锟�
+	private String distype;				//锟脚惠凤拷式
+	private String refundEnable;		// 锟角凤拷支锟斤拷锟斤拷票锟斤拷Y锟斤拷锟斤拷锟剿ｏ拷N锟斤拷锟斤拷锟斤拷锟斤拷
+	private String spType; 				//锟筋动锟斤拷锟斤拷锟斤拷
+	private String expression;			//锟斤拷锟斤拷锟斤拷式
+	private String specialrule;			//锟斤拷锟斤拷锟斤拷锟斤拷锟绞�
+	private Integer limitperiod;		//锟斤拷锟斤拷锟睫癸拷锟斤拷锟节ｏ拷锟斤拷锟接ｏ拷
+	private Integer limitnum;			//锟斤拷锟斤拷锟睫癸拷锟斤拷锟斤拷
+	private Integer minbuy;				//每锟斤拷锟睫癸拷锟斤拷:锟斤拷锟斤拷锟斤拷锟斤拷
+	private Integer buynum;				//每锟斤拷锟睫癸拷锟斤拷:锟斤拷锟斤拷锟斤拷锟�
+	private String periodtype;			//锟睫癸拷锟斤拷锟斤拷锟斤拷锟斤拷
+	private String uniqueby;			//使锟斤拷什么锟斤拷锟斤拷唯一锟斤拷 唯一锟斤拷识
+	private String description;			//锟斤拷要说锟斤拷
+	private Timestamp timefrom;			//锟脚惠匡拷始时锟斤拷
+	private Timestamp timeto;			//锟脚惠斤拷锟斤拷时锟斤拷	
 	
-	private Timestamp orderTimeFrom;	// �µ���ʼ����
-	private Timestamp orderTimeTo;		// �µ���������	
-	private String addtime1;			//�µ�ʱ���޶�1��0000
-	private String addtime2;			//�µ�ʱ���޶�2��2400
-	private String addweek;				//�µ��ܼ�
+	private Timestamp orderTimeFrom;	// 锟铰碉拷锟斤拷始锟斤拷锟斤拷
+	private Timestamp orderTimeTo;		// 锟铰碉拷锟斤拷锟斤拷锟斤拷锟斤拷	
+	private String addtime1;			//锟铰碉拷时锟斤拷锟睫讹拷1锟斤拷0000
+	private String addtime2;			//锟铰碉拷时锟斤拷锟睫讹拷2锟斤拷2400
+	private String addweek;				//锟铰碉拷锟杰硷拷
 	
-	private String remark;				//������ʱ˵�� �����ñ���
-	private String enableRemark;		//����ʱ��˵�� ���ñ���
-	private String adcontent;			//������� ��ϸ˵��
-	private String recommendRemark;		//�Ƽ�ʱ��˵��
-	private String configMessage;   	// ��ʾ��Ϣ
-	private String banner;				//����bannerͼƬ
-	private String loginfrom;			//��¼��Դ
-	private String citycode;			//�����б�
-	private Integer fullTotalfee;		//�����ٲŲ����Żݣ�������
-	private String otherinfo;			//������Ϣ:
-	//������binУ�� ;;;
-	//sType��sText��mpiIsShow��exp_minnum��ʽ��С��������exp_maxnum��ʽ���������unCheckCardnum��mpiIndex��
+	private String remark;				//锟斤拷锟斤拷锟斤拷时说锟斤拷 锟斤拷锟斤拷锟矫憋拷锟斤拷
+	private String enableRemark;		//锟斤拷锟斤拷时锟斤拷说锟斤拷 锟斤拷锟矫憋拷锟斤拷
+	private String adcontent;			//锟斤拷锟斤拷锟斤拷锟� 锟斤拷细说锟斤拷
+	private String recommendRemark;		//锟狡硷拷时锟斤拷说锟斤拷
+	private String configMessage;   	// 锟斤拷示锟斤拷息
+	private String banner;				//锟斤拷锟斤拷banner图片
+	private String loginfrom;			//锟斤拷录锟斤拷源
+	private String citycode;			//锟斤拷锟斤拷锟叫憋拷
+	private Integer fullTotalfee;		//锟斤拷锟斤拷锟劫才诧拷锟斤拷锟脚惠ｏ拷锟斤拷锟斤拷锟斤拷
+	private String otherinfo;			//锟斤拷锟斤拷锟斤拷息:
+	//锟斤拷锟斤拷锟斤拷bin校锟斤拷 ;;;
+	//sType锟斤拷sText锟斤拷mpiIsShow锟斤拷exp_minnum锟斤拷式锟斤拷小锟斤拷锟斤拷锟斤拷锟斤拷exp_maxnum锟斤拷式锟斤拷锟斤拷锟斤拷锟斤拷锟絬nCheckCardnum锟斤拷mpiIndex锟斤拷
 	
-	/***ҵ����Ϣ----------------------------------------------------------------------------------------------*/
+	/***业锟斤拷锟斤拷息----------------------------------------------------------------------------------------------*/
 		
 	
-	/***֧����Ϣ----------------------------------------------------------------------------------------------*/
-	private String paymethod;			//����֧����ʽ
-	private String logo;				//����Logo
-	private String cardbinUkey;  	 	//������֤��ʶ
-	private String validateUrl;			//��֤��תURL
-	private String validBackUrl;		//֧��֪ͨURL��֤
-	private String cardUkey;			//����֤Ψһ��ʶ ����֤��
-	private String cardNumUnique;  		//�Ƿ����п�������֤ ��������
-	private Integer cardNumPeriodIntvel; //���п�ÿ��ʹ���޹����� �������
-	private Integer cardNumPeriodSpan;	//���п�������� �޹�����
-	private Integer cardNumLimitnum; 	//���п��޹����� �޹�����
+	/***支锟斤拷锟斤拷息----------------------------------------------------------------------------------------------*/
+	private String paymethod;			//锟斤拷锟斤拷支锟斤拷锟斤拷式
+	private String logo;				//锟斤拷锟斤拷Logo
+	private String cardbinUkey;  	 	//锟斤拷锟斤拷锟斤拷证锟斤拷识
+	private String validateUrl;			//锟斤拷证锟斤拷转URL
+	private String validBackUrl;		//支锟斤拷通知URL锟斤拷证
+	private String cardUkey;			//锟斤拷锟斤拷证唯一锟斤拷识 锟斤拷锟斤拷证锟斤拷
+	private String cardNumUnique;  		//锟角凤拷锟斤拷锟叫匡拷锟斤拷锟斤拷锟斤拷证 锟斤拷锟斤拷锟斤拷锟斤拷
+	private Integer cardNumPeriodIntvel; //锟斤拷锟叫匡拷每锟斤拷使锟斤拷锟睫癸拷锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷锟�
+	private Integer cardNumPeriodSpan;	//锟斤拷锟叫匡拷锟斤拷锟斤拷锟斤拷锟� 锟睫癸拷锟斤拷锟斤拷
+	private Integer cardNumLimitnum; 	//锟斤拷锟叫匡拷锟睫癸拷锟斤拷锟斤拷 锟睫癸拷锟斤拷锟斤拷
 	
-	/***������Ϣ----------------------------------------------------------------------------------------------*/
-	private String bankname;			//��������
-	private Integer extdiscount;		//�ⲿ�Żݽ��
-	private String channel;				//���ͣ���Ż�/���������Ż�
-	private String bindmobile;			//���ֻ�
-	//���ĳɱ��ۣ���ȯ���߼�һ��
-	private String costtype;		//�ɱ������ͣ�ӰƬ��׼ۼ�xԪ������ۼ�xԪ  ���ĳɱ���
-	private Integer costnum;		//�ɱ�������  �ɱ�������
-	private String verifyType;		//��̬����֤���ͣ��ޣ����ظ�ʹ�ã�������ʹ�ã��������ظ�ʹ�� VERIFYTYPE_ONLYONE  ���������
-	private String showCoupon;	//	�Ƿ���ǰ̨չʾ��Ϊ�˼����ϵ�Ĭ��ΪY������ΪY��������ΪN��
-	private String excludeSpid;		//�ų������ؼۻ ���������ؼۻ
-	private Integer rebates;			//ÿ�ʶ������� ������
-	private Integer rebatesmax;			//ǰ���������� ��������
-	private String rebatestype;			//�������ͣ���ֵ���Ϳ� 
-	private Long drawactivity;  		//�û�����Ʊ�󷵻�ȯ���ó齱��ʽ�����û� �齱�id
-	private Integer drawperiod;			//��Ʊ�ɹ���ȡ��ȯ���� ��ȡ����
-	private Integer bindDrawCardNum;	//��������ȡ�������� ��ȡ����
-	private Long bindgoods;				//�����ײ� ���ײ�
-	private Integer bindnum;			//�ײ͹�Ʊ���� ʹ������
-	private Integer ipLimitedOrderCount;//��ip�����µ�����	
-	private Long spcounterid;			//ʹ��������������ID
+	/***锟斤拷锟斤拷锟斤拷息----------------------------------------------------------------------------------------------*/
+	private String bankname;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private Integer extdiscount;		//锟解部锟脚惠斤拷锟�
+	private String channel;				//锟斤拷锟酵ｏ拷锟筋动锟脚伙拷/锟斤拷锟斤拷锟斤拷锟斤拷锟脚伙拷
+	private String bindmobile;			//锟斤拷锟街伙拷
+	//锟斤拷锟侥成憋拷锟桔ｏ拷锟斤拷券锟斤拷锟竭硷拷一锟斤拷
+	private String costtype;		//锟缴憋拷锟斤拷锟斤拷锟酵ｏ拷影片锟斤拷准奂锟絰元锟斤拷锟斤拷锟斤拷奂锟絰元  锟斤拷锟侥成憋拷锟斤拷
+	private Integer costnum;		//锟缴憋拷锟斤拷锟斤拷锟斤拷  锟缴憋拷锟斤拷锟斤拷锟斤拷
+	private String verifyType;		//锟斤拷态锟斤拷锟斤拷证锟斤拷锟酵ｏ拷锟睫ｏ拷锟斤拷锟截革拷使锟矫ｏ拷锟斤拷锟斤拷锟斤拷使锟矫ｏ拷锟斤拷锟斤拷锟斤拷锟截革拷使锟斤拷 VERIFYTYPE_ONLYONE  锟斤拷锟斤拷锟斤拷锟斤拷锟�
+	private String showCoupon;	//	锟角凤拷锟斤拷前台展示锟斤拷为锟剿硷拷锟斤拷锟较碉拷默锟斤拷为Y锟斤拷锟斤拷锟斤拷为Y锟斤拷锟斤拷锟斤拷锟斤拷为N锟斤拷
+	private String excludeSpid;		//锟脚筹拷锟斤拷锟斤拷锟截价活动 锟斤拷锟斤拷锟斤拷锟斤拷锟截价活动
+	private Integer rebates;			//每锟绞讹拷锟斤拷锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷
+	private Integer rebatesmax;			//前锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷锟斤拷
+	private String rebatestype;			//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟斤拷值锟斤拷锟酵匡拷 
+	private Long drawactivity;  		//锟矫伙拷锟斤拷锟斤拷票锟襟返伙拷券锟斤拷锟矫抽奖锟斤拷式锟斤拷锟斤拷锟矫伙拷 锟介奖锟筋动id
+	private Integer drawperiod;			//锟斤拷票锟缴癸拷锟斤拷取锟斤拷券锟斤拷锟斤拷 锟斤拷取锟斤拷锟斤拷
+	private Integer bindDrawCardNum;	//锟斤拷锟斤拷锟斤拷锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷 锟斤拷取锟斤拷锟斤拷
+	private Long bindgoods;				//锟斤拷锟斤拷锟阶诧拷 锟斤拷锟阶诧拷
+	private Integer bindnum;			//锟阶餐癸拷票锟斤拷锟斤拷 使锟斤拷锟斤拷锟斤拷
+	private Integer ipLimitedOrderCount;//锟斤拷ip锟斤拷锟斤拷锟铰碉拷锟斤拷锟斤拷	
+	private Long spcounterid;			//使锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷ID
 	
-	/***ҵ����Ϣ----------------------------------------------------------------------------------------------*/
-	private Timestamp playTimeFrom;		// ���ο�ʼ����
-	private Timestamp playTimeTo;		// ���ν�������	
-	private String excludeOpiFlg;		// �ų����ⳡ��Y���ų���N�����ų�	
-	private String time1;				//��ӳʱ���޶�1��0000 ����ʱ��
-	private String time2;				//��ӳʱ���޶�2��2400 ����ʱ��
-	private String weektype;			//�����ܼ� ��������
+	/***业锟斤拷锟斤拷息----------------------------------------------------------------------------------------------*/
+	private Timestamp playTimeFrom;		// 锟斤拷锟轿匡拷始锟斤拷锟斤拷
+	private Timestamp playTimeTo;		// 锟斤拷锟轿斤拷锟斤拷锟斤拷锟斤拷	
+	private String excludeOpiFlg;		// 锟脚筹拷锟斤拷锟解场锟斤拷Y锟斤拷锟脚筹拷锟斤拷N锟斤拷锟斤拷锟脚筹拷	
+	private String time1;				//锟斤拷映时锟斤拷锟睫讹拷1锟斤拷0000 锟斤拷锟斤拷时锟斤拷
+	private String time2;				//锟斤拷映时锟斤拷锟睫讹拷2锟斤拷2400 锟斤拷锟斤拷时锟斤拷
+	private String weektype;			//锟斤拷锟斤拷锟杰硷拷 锟斤拷锟斤拷锟斤拷锟斤拷
 	
-	private String relatedid;			//������б�  ����ID
-	private String relatedidEnable;	    // ����ID�Ƿ���ã�Ϊ�˼����ϵ�Ĭ��ΪY������ΪY��������ΪN
-	private String categoryid;			//С�����б� ��ĿID
-	private String categoryidEnable;	//	��ĿID�Ƿ���ã�Ϊ�˼����ϵ�Ĭ��ΪY������ΪY��������ΪN
-	private String itemid;				//��ϸ�����б� ����ID
-	private String itemidEnable;		//	����ID�Ƿ���ã�Ϊ�˼����ϵ�Ĭ��ΪY������Y��������ΪN
-	private String roomId;				// Ӱ��ID
-	private String roomIdEnable;		// Ӱ��ID�Ƿ����
-	private String goodsid;				//���ط����б� ��ƷID
-	//���� rateinfo gainGoodsBindMovieQuantity
-	private String seatType;			//��λ���� ֧����λ
-	private String edition;				//�汾���� �汾
-	private Integer price1;				//���۷�Χ1
-	private Integer price2;				//���۷�Χ2
-	private Integer pricegap;			//gewa������ɱ��� ��۷�Χ
-	private Integer costprice1;			//�ɱ��۷�Χ1
-	private Integer costprice2;			//�ɱ��۷�Χ2
-	private String fieldid;				//���ط����б� ����ID
-	private Integer daynum;			// ��Ч���� 
+	private String relatedid;			//锟斤拷锟斤拷锟斤拷斜锟�  锟斤拷锟斤拷ID
+	private String relatedidEnable;	    // 锟斤拷锟斤拷ID锟角凤拷锟斤拷茫锟轿拷思锟斤拷锟斤拷系锟侥拷锟轿猋锟斤拷锟斤拷锟斤拷为Y锟斤拷锟斤拷锟斤拷锟斤拷为N
+	private String categoryid;			//小锟斤拷锟斤拷锟叫憋拷 锟斤拷目ID
+	private String categoryidEnable;	//	锟斤拷目ID锟角凤拷锟斤拷茫锟轿拷思锟斤拷锟斤拷系锟侥拷锟轿猋锟斤拷锟斤拷锟斤拷为Y锟斤拷锟斤拷锟斤拷锟斤拷为N
+	private String itemid;				//锟斤拷细锟斤拷锟斤拷锟叫憋拷 锟斤拷锟斤拷ID
+	private String itemidEnable;		//	锟斤拷锟斤拷ID锟角凤拷锟斤拷茫锟轿拷思锟斤拷锟斤拷系锟侥拷锟轿猋锟斤拷锟斤拷锟斤拷Y锟斤拷锟斤拷锟斤拷锟斤拷为N
+	private String roomId;				// 影锟斤拷ID
+	private String roomIdEnable;		// 影锟斤拷ID锟角凤拷锟斤拷锟�
+	private String goodsid;				//锟斤拷锟截凤拷锟斤拷锟叫憋拷 锟斤拷品ID
+	//锟斤拷锟斤拷 rateinfo gainGoodsBindMovieQuantity
+	private String seatType;			//锟斤拷位锟斤拷锟斤拷 支锟斤拷锟斤拷位
+	private String edition;				//锟芥本锟斤拷锟斤拷 锟芥本
+	private Integer price1;				//锟斤拷锟桔凤拷围1
+	private Integer price2;				//锟斤拷锟桔凤拷围2
+	private Integer pricegap;			//gewa锟斤拷锟斤拷锟斤拷杀锟斤拷锟� 锟斤拷鄯锟轿�
+	private Integer costprice1;			//锟缴憋拷锟桔凤拷围1
+	private Integer costprice2;			//锟缴憋拷锟桔凤拷围2
+	private String fieldid;				//锟斤拷锟截凤拷锟斤拷锟叫憋拷 锟斤拷锟斤拷ID
+	private Integer daynum;			// 锟斤拷效锟斤拷锟斤拷 
 	
 	private BaseObject relate;
 
-	private Timestamp createtime;		//����ʱ��
-	private Timestamp updatetime;		//��������ʱ��
+	private Timestamp createtime;		//锟斤拷锟斤拷时锟斤拷
+	private Timestamp updatetime;		//锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷
 		
 	@Override
 	public Serializable realId() {
@@ -498,7 +498,7 @@ public class PromotionVo extends BaseVo{
 			day = hour/24;
 			hour = hour % 24;
 		}
-		String result = (day > 0?day+"��":"") + (hour>0? hour+"Сʱ":"") + (min>0?min+"��":"");
+		String result = (day > 0?day+"锟斤拷":"") + (hour>0? hour+"小时":"") + (min>0?min+"锟斤拷":"");
 		return result;
 	}
 	
@@ -562,23 +562,23 @@ public class PromotionVo extends BaseVo{
 	public String gainDiscountType(){
 		String tmp = "";
 		if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERORDER)){
-			tmp = "����";
+			tmp = "锟斤拷锟斤拷";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERTICKET)){
-			tmp = "����";
+			tmp = "锟斤拷锟斤拷";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERCENT)){
-			tmp = "�ۿ�";
+			tmp = "锟桔匡拷";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_BUYONE_GIVEONE)){
-			tmp = tmp + "��1��1";
+			tmp = tmp + "锟斤拷1锟斤拷1";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_FIXPRICE)){
-			tmp = "��" + this.discount;
+			tmp = "锟斤拷" + this.discount;
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
-			tmp = "�";
+			tmp = "锟筋动";
 		}
 		if(StringUtils.isBlank(tmp)){
 			if(this.rebates>0){
-				tmp = "����";
+				tmp = "锟斤拷锟斤拷";
 			}else{
-				tmp = "�Ż�";
+				tmp = "锟脚伙拷";
 			}
 		}
 		return tmp;
@@ -594,21 +594,21 @@ public class PromotionVo extends BaseVo{
 		}
 		String tmp = "";
 		if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERORDER)){
-			tmp = "��";
+			tmp = "锟斤拷";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERTICKET)){
-			tmp = "��";
+			tmp = "锟斤拷";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERCENT)){
-			tmp = "��";
+			tmp = "锟斤拷";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_BUYONE_GIVEONE)){
-			tmp = "��";
+			tmp = "锟斤拷";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_FIXPRICE)){
-			tmp = "��";
+			tmp = "锟斤拷";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
-			tmp = "��";
+			tmp = "锟斤拷";
 		}
 		if(StringUtils.isBlank(tmp)){
 			if(this.rebates>0){
-				tmp = "��";
+				tmp = "锟斤拷";
 			}
 		}
 		return tmp;
@@ -621,28 +621,28 @@ public class PromotionVo extends BaseVo{
 		}
 		String tmp = "";
 		if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERORDER)){
-			tmp = "discountԪ";
+			tmp = "discount元";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERTICKET)){
-			tmp = "discountԪ";
+			tmp = "discount元";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERCENT)){
-			tmp = "discount��";
+			tmp = "discount锟斤拷";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_BUYONE_GIVEONE)){
-			tmp = "��һ��һ";
+			tmp = "锟斤拷一锟斤拷一";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_FIXPRICE)){
-			tmp = "discountԪ";
+			tmp = "discount元";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
-			tmp = "����";
+			tmp = "锟斤拷锟斤拷";
 		}
 		if(StringUtils.isBlank(tmp)){
 			if(this.rebates>0){
 				if(hasRebatestype("Y")) {
-                    tmp += "rebatesԪ";
+                    tmp += "rebates元";
                 }
 				if(hasRebatestype("P")) {
-                    tmp += "rebates����";
+                    tmp += "rebates锟斤拷锟斤拷";
                 }
 				if(hasRebatestype("A") || hasRebatestype("D")) {
-                    tmp += "rebatesԪȯ";
+                    tmp += "rebates元券";
                 }
 				tmp = StringUtils.replace(tmp, "rebates", rebatesText);
 			}
@@ -655,18 +655,18 @@ public class PromotionVo extends BaseVo{
 		String tmp = "bankname";
 		if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERORDER)){
 			if(this.discount != null && this.discount > 0){
-				tmp = tmp + "ÿ�ʶ�������discountԪ";
+				tmp = tmp + "每锟绞讹拷锟斤拷锟斤拷锟斤拷discount元";
 			}
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERTICKET)){
 			if(this.discount != null && this.discount > 0){
-				tmp = tmp + "ÿ��Ʊ����discountԪ";
+				tmp = tmp + "每锟斤拷票锟斤拷锟斤拷discount元";
 			}
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERCENT)){
-			tmp = tmp + "ÿ�ʶ���discount���Ż�";
+			tmp = tmp + "每锟绞讹拷锟斤拷discount锟斤拷锟脚伙拷";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_BUYONE_GIVEONE)){
-			tmp = tmp + "��������һ��һ";
+			tmp = tmp + "锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷一";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_FIXPRICE)){
-			tmp = tmp + "ÿ��Ʊ����discountԪ";
+			tmp = tmp + "每锟斤拷票锟斤拷锟斤拷discount元";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
 			tmp = tmp + this.description;
 		}
@@ -674,18 +674,18 @@ public class PromotionVo extends BaseVo{
 		tmp = StringUtils.replace(tmp, "discount", discountText);
 		if(this.rebates>0){
 			if((hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERTICKET) || hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERORDER)) && !(this.discount != null && this.discount > 0)){
-				tmp += "����rebates";
+				tmp += "锟斤拷锟斤拷rebates";
 			}else{
-				tmp += ", ����rebates";
+				tmp += ", 锟斤拷锟斤拷rebates";
 			}
 			if(hasRebatestype("Y")) {
-                tmp += "Ԫ";
+                tmp += "元";
             }
 			if(hasRebatestype("P")) {
-                tmp += "����";
+                tmp += "锟斤拷锟斤拷";
             }
 			if(hasRebatestype("A") || hasRebatestype("D")) {
-                tmp += "Ԫȯ";
+                tmp += "元券";
             }
 			tmp = StringUtils.replace(tmp, "rebates", rebatesText);
 		}
@@ -710,7 +710,7 @@ public class PromotionVo extends BaseVo{
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_BUYONE_GIVEONE)){
 			tmpDiscount = "X";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
-			tmpDiscount = "XԪ";
+			tmpDiscount = "X元";
 		}
 		return tmpDiscount;
 	}
@@ -966,7 +966,7 @@ public class PromotionVo extends BaseVo{
 	public void setSpType(String spType) {
 		this.spType = spType;
 	}
-	//����Ǳ��ʽ�Ļ�����й�ʽ�������Ƶģ��򰴹�ʽ�������������������磺1-2�Ű��ۿۼ۸񣬳���2�ŵİ�ԭ��
+	//锟斤拷锟斤拷潜锟斤拷式锟侥活动锟斤拷锟斤拷锟叫癸拷式锟斤拷锟斤拷锟斤拷锟狡的ｏ拷锟津按癸拷式锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟界：1-2锟脚帮拷锟桔扣价格，筹拷锟斤拷2锟脚的帮拷原锟斤拷
 	public Integer gainRealQuantity(int quantity){
 		if(StringUtils.equals(distype, SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
 			Map<String, String> otherMap = JsonUtils.readJsonToMap(otherinfo);

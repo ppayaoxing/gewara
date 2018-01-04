@@ -47,12 +47,12 @@ final class LazyConnectExchangeClient implements ExchangeClient{
     private final ExchangeHandler         requestHandler;
     private volatile ExchangeClient       client;
     private final Lock                    connectLock = new ReentrantLock();
-    //lazy connect ���û�г�ʼ��ʱ������״̬
+    //lazy connect 锟斤拷锟矫伙拷谐锟绞硷拷锟绞憋拷锟斤拷锟斤拷锟阶刺�
     private final boolean                 initialState ;
     
     protected final  boolean requestWithWarning;
     
-    //������ʱwarning���������warning����ʾ������ܴ���bug.
+    //锟斤拷锟斤拷锟斤拷时warning锟斤拷锟斤拷锟斤拷锟斤拷锟絯arning锟斤拷锟斤拷示锟斤拷锟斤拷锟斤拷艽锟斤拷锟絙ug.
     static final  String REQUEST_WITH_WARNING_KEY = "lazyclient_request_with_warning";
     
     private AtomicLong warningcount = new AtomicLong(0);
@@ -112,7 +112,7 @@ final class LazyConnectExchangeClient implements ExchangeClient{
     }
     
     /**
-     * ��������˵���warning����ÿ����5000��warningһ��.
+     * 锟斤拷锟斤拷锟斤拷锟斤拷说锟斤拷锟絯arning锟斤拷锟斤拷每锟斤拷锟斤拷5000锟斤拷warning一锟斤拷.
      * @param request
      */
     private void warning(Object request){

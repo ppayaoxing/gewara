@@ -85,7 +85,7 @@ final public class MockInvoker<T> implements Invoker<T> {
             mock = mock.replace('`', '"');
             if (StringUtils.isBlank(mock)){
             	throw new RpcException(" mocked exception for Service degradation. ");
-            } else { //�û��Զ�����
+            } else { //锟矫伙拷锟皆讹拷锟斤拷锟斤拷
             	Throwable t = getThrowable(mock);
 				throw new RpcException(RpcException.BIZ_EXCEPTION, t);
             }

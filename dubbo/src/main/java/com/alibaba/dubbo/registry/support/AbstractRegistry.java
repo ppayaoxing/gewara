@@ -56,27 +56,27 @@ import com.alibaba.dubbo.registry.Registry;
  */
 public abstract class AbstractRegistry implements Registry {
 
-    // ��־���
+    // 锟斤拷志锟斤拷锟�
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
-    // URL��ַ�ָ����������ļ������У������ṩ��URL�ָ�
+    // URL锟斤拷址锟街革拷锟斤拷锟斤拷锟斤拷锟斤拷锟侥硷拷锟斤拷锟斤拷锟叫ｏ拷锟斤拷锟斤拷锟结供锟斤拷URL锟街革拷
     private static final char URL_SEPARATOR = ' ';
 
-    // URL��ַ�ָ�������ʽ�����ڽ����ļ������з����ṩ��URL�б�
+    // URL锟斤拷址锟街革拷锟斤拷锟斤拷锟斤拷式锟斤拷锟斤拷锟节斤拷锟斤拷锟侥硷拷锟斤拷锟斤拷锟叫凤拷锟斤拷锟结供锟斤拷URL锟叫憋拷
     private static final String URL_SPLIT = "\\s+";
 
     private URL registryUrl;
 
-    // ���ش��̻����ļ�
+    // 锟斤拷锟截达拷锟教伙拷锟斤拷锟侥硷拷
     private File file;
 
-    // ���ش��̻��棬���������keyֵ.registies��¼ע�������б�������Ϊnotified�����ṩ���б�
+    // 锟斤拷锟截达拷锟教伙拷锟芥，锟斤拷锟斤拷锟斤拷锟斤拷锟絢ey值.registies锟斤拷录注锟斤拷锟斤拷锟斤拷锟叫憋拷锟斤拷锟斤拷锟斤拷为notified锟斤拷锟斤拷锟结供锟斤拷锟叫憋拷
     private final Properties properties = new Properties();
 
-    // �ļ����涨ʱд��
+    // 锟侥硷拷锟斤拷锟芥定时写锟斤拷
     private final ExecutorService registryCacheExecutor = Executors.newFixedThreadPool(1, new NamedThreadFactory("DubboSaveRegistryCache", true));
 
-    //�Ƿ���ͬ�������ļ�
+    //锟角凤拷锟斤拷同锟斤拷锟斤拷锟斤拷锟侥硷拷
     private final boolean syncSaveFile ;
     
     private final AtomicLong lastCacheChanged = new AtomicLong();
@@ -89,7 +89,7 @@ public abstract class AbstractRegistry implements Registry {
 
     public AbstractRegistry(URL url) {
         setUrl(url);
-        // �����ļ����涨ʱ��
+        // 锟斤拷锟斤拷锟侥硷拷锟斤拷锟芥定时锟斤拷
         syncSaveFile = url.getParameter(Constants.REGISTRY_FILESAVE_SYNC_KEY, false);
         String filename = url.getParameter(Constants.FILE_KEY, System.getProperty("user.home") + "/.dubbo/dubbo-registry-" + url.getHost() + ".cache");
         File file = null;
@@ -161,7 +161,7 @@ public abstract class AbstractRegistry implements Registry {
             return;
         }
         Properties newProperties = new Properties();
-        // ����֮ǰ�ȶ�ȡһ�飬��ֹ���ע������֮���ͻ
+        // 锟斤拷锟斤拷之前锟饺讹拷取一锟介，锟斤拷止锟斤拷锟阶拷锟斤拷锟斤拷锟街拷锟斤拷突
         InputStream in = null;
         try {
             if (file.exists()) {
@@ -179,7 +179,7 @@ public abstract class AbstractRegistry implements Registry {
                 }
             }
         }     
-     // ����
+     // 锟斤拷锟斤拷
         try {
 			newProperties.putAll(properties);
             File lockfile = new File(file.getAbsolutePath() + ".lock");
@@ -194,7 +194,7 @@ public abstract class AbstractRegistry implements Registry {
                 	if (lock == null) {
                         throw new IOException("Can not lock the registry cache file " + file.getAbsolutePath() + ", ignore and retry later, maybe multi java process use the file, please config: dubbo.registry.file=xxx.properties");
                     }
-                	// ����
+                	// 锟斤拷锟斤拷
                     try {
                     	if (! file.exists()) {
                             file.createNewFile();
@@ -285,7 +285,7 @@ public abstract class AbstractRegistry implements Registry {
                     reference.set(urls);
                 }
             };
-            subscribe(url, listener); // �����߼���֤��һ��notify���ٷ���
+            subscribe(url, listener); // 锟斤拷锟斤拷锟竭硷拷锟斤拷证锟斤拷一锟斤拷notify锟斤拷锟劫凤拷锟斤拷
             List<URL> urls = reference.get();
             if (urls != null && urls.size() > 0) {
                 for (URL u : urls) {

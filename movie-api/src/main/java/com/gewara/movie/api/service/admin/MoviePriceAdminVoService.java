@@ -11,19 +11,19 @@ import com.gewara.movie.vo.MovieTierPriceVo;
 
 public interface MoviePriceAdminVoService {
 	/**
-	 * ±£´æmovieprice¶ÔÏó
+	 * ä¿å­˜moviepriceå¯¹è±¡
 	 * @param paramVo
 	 * @return
 	 */
 	ResultCode<MoviePriceVo> saveMovieLowestPrice(RequestParamVo paramVo);
 	/**
-	 * ±£´æmovieprice¶ÔÏó
+	 * ä¿å­˜moviepriceå¯¹è±¡
 	 * @param paramVo
 	 * @return
 	 */
 	ResultCode<MoviePriceVo> setMoviePrice(RequestParamVo paramVo);
 	/**
-	 * ¸ù¾Ý¿ª·Å³¡´ÎÓ°Æ¬£¬Í¬²½movieprice¶ÔÏó
+	 * æ ¹æ®å¼€æ”¾åœºæ¬¡å½±ç‰‡ï¼ŒåŒæ­¥moviepriceå¯¹è±¡
 	 * @param curMovieIdList
 	 * @param cinemaid
 	 * @param synchFlag
@@ -32,13 +32,13 @@ public interface MoviePriceAdminVoService {
 	 */
 	ResultCode<List<String>> syncMoviePriceByCurMovieIdList(List<Long> curMovieIdList, Long cinemaid, String synchFlag, Long userid);
 	/**
-	 * ÐÞ¸ÄcinemaPrice¶ÔÏó
+	 * ä¿®æ”¹cinemaPriceå¯¹è±¡
 	 * @param cinemaPriceList
 	 * @return
 	 */
 	ResultCode<Integer> upgradeCinemaPrice(List<Map> cinemaPriceList);
 	/**
-	 * ÅúÁ¿Í¬²½movieprice¶ÔÏó
+	 * æ‰¹é‡åŒæ­¥moviepriceå¯¹è±¡
 	 * @param mids
 	 * @param synchFlag
 	 * @param userid
@@ -46,14 +46,14 @@ public interface MoviePriceAdminVoService {
 	 */
 	ResultCode<List<String>> batchSyncMoviePriceByMids(String mids, String synchFlag, Long userid);
 	/**
-	 * ¸ù¾Ý¿ª·Å³¡´ÎÓ°Æ¬£¬Í¬²½movieprice¶ÔÏó
+	 * æ ¹æ®å¼€æ”¾åœºæ¬¡å½±ç‰‡ï¼ŒåŒæ­¥moviepriceå¯¹è±¡
 	 * @param curMovieIdList
 	 * @param synchFlag
 	 * @return
 	 */
 	ResultCode<List<String>> syncMoviePriceToCinemaByCurMovieIdList(List<Long> curMovieIdList, String synchFlag);
 	/**
-	 * ¸ù¾Ý¿ª·Å³¡´ÎÓ°Æ¬£¬Í¬²½movieprice¶ÔÏó
+	 * æ ¹æ®å¼€æ”¾åœºæ¬¡å½±ç‰‡ï¼ŒåŒæ­¥moviepriceå¯¹è±¡
 	 * @param mids
 	 * @param synchFlag
 	 * @param userid
@@ -61,14 +61,14 @@ public interface MoviePriceAdminVoService {
 	 */
 	ResultCode<List<String>> batchSyncMoviePriceToCinemaByMids(String mids, String synchFlag, Long userid);
 	/**
-	 * ±£´æMovieTierPrice¶ÔÏó
+	 * ä¿å­˜MovieTierPriceå¯¹è±¡
 	 * @param movieid
 	 * @param type
 	 * @return
 	 */
 	ResultCode<MovieTierPriceVo> saveMovieTierPrice(Long movieid, String type, Map<String, String> dataMap);
 	/**
-	 * ¸üÐÂmovietierpriceµÄstarttime¡¢endtime
+	 * æ›´æ–°movietierpriceçš„starttimeã€endtime
 	 * @param movieid
 	 * @param startTime
 	 * @param endTime

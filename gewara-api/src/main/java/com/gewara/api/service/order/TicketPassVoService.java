@@ -4,7 +4,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface TicketPassVoService {
 	/**
-	 * 获取取票短信密码模板
+	 * 鑾峰彇鍙栫エ鐭俊瀵嗙爜妯℃澘
 	 * @return
 	 */
 	ResultCode<String> getCheckpassTemplate(String tradeNo);

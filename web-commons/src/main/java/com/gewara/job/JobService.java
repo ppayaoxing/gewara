@@ -20,7 +20,7 @@ public abstract class JobService implements InitializingBean {
 		serviceName = Config.SYSTEMID + "." + getClass().getSimpleName();
 		dbLogger.warn(serviceName);
 		if(names.contains(serviceName)) {
-			throw new TraceErrorException("JobService ÷ÿ√˚");
+			throw new TraceErrorException("JobService ÈáçÂêç");
 		}
 		names.add(serviceName);
 		initJobService();

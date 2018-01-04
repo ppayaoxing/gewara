@@ -6,23 +6,23 @@ import java.sql.Timestamp;
 public class EmailRecord implements Serializable{
 	private static final long serialVersionUID = -6346809268260336714L;
 	public static final String SENDER_WARNING 	= "warning";
-	public static final String SENDER_GEWARA 	= "������������";
+	public static final String SENDER_GEWARA 	= "锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷";
 	public static final String SENDER_GEWA 		= "gewara";
 
 	private Long id;
-	private String sender;			//������
-	private String title;			//����
-	private String content;			//����
-	private String email;			//��ַ
-	private String type;			//�ʼ�����
-	private String mailtype;		//�ʼ�����
-	private String tag;				//����
-	private Long relatedid;			//����
-	private Timestamp sendtime;	//����ʱ��
-	private String status;			//����״̬
-	private String template;		//ģ��
-	private Integer sendnum;		//���ʹ���
-	private Timestamp validtime;	//��Чʱ��
+	private String sender;			//锟斤拷锟斤拷锟斤拷
+	private String title;			//锟斤拷锟斤拷
+	private String content;			//锟斤拷锟斤拷
+	private String email;			//锟斤拷址
+	private String type;			//锟绞硷拷锟斤拷锟斤拷
+	private String mailtype;		//锟绞硷拷锟斤拷锟斤拷
+	private String tag;				//锟斤拷锟斤拷
+	private Long relatedid;			//锟斤拷锟斤拷
+	private Timestamp sendtime;	//锟斤拷锟斤拷时锟斤拷
+	private String status;			//锟斤拷锟斤拷状态
+	private String template;		//模锟斤拷
+	private Integer sendnum;		//锟斤拷锟酵达拷锟斤拷
+	private Timestamp validtime;	//锟斤拷效时锟斤拷
 	
 	public Integer getSendnum() {
 		return sendnum;

@@ -8,119 +8,119 @@ import org.apache.commons.collections.map.UnmodifiableMap;
 
 
 /**
- * API¶©Æ±ÏµÍ³ÖĞÓÃµ½µÄ³£Á¿
+ * APIè®¢ç¥¨ç³»ç»Ÿä¸­ç”¨åˆ°çš„å¸¸é‡
  * @author acerge(acerge@163.com)
  * @since 12:27:06 PM Apr 22, 2011
- * 0000	³É¹¦
- * 1001  ³¡´Î²»´æÔÚ
- * 1002  ³¡´Îµ±Ç°Î´¿ª·Å¶©Æ±£º1£©¹Ø±Õ 2£©Ö»ÔÚ10£º00¡«18£º00¿ª·Å 3£©Ó°Ôº¹Ø±Õ¶ÔÍâ¶©Æ± µÈ
- * 1003  Ó°Ôº³¡´ÎĞÅÏ¢²»Í¬²½£ºĞèÒªµÈ´ıGewaraÏµÍ³¸üĞÂÓ°ÔºĞÅÏ¢
+ * 0000	æˆåŠŸ
+ * 1001  åœºæ¬¡ä¸å­˜åœ¨
+ * 1002  åœºæ¬¡å½“å‰æœªå¼€æ”¾è®¢ç¥¨ï¼š1ï¼‰å…³é—­ 2ï¼‰åªåœ¨10ï¼š00ï½18ï¼š00å¼€æ”¾ 3ï¼‰å½±é™¢å…³é—­å¯¹å¤–è®¢ç¥¨ ç­‰
+ * 1003  å½±é™¢åœºæ¬¡ä¿¡æ¯ä¸åŒæ­¥ï¼šéœ€è¦ç­‰å¾…Gewaraç³»ç»Ÿæ›´æ–°å½±é™¢ä¿¡æ¯
  *
- * 2001  ÎŞ·¨Á¬½ÓÓ°Ôº
- * 2002  ×ùÎ»Î»ÖÃ´íÎó£º²úÉú¹Â×ù£¬µ¥Ñ¡ÇéÂÂ×ùµÈ
- * 2003  ×ùÎ»±»Õ¼ÓÃ
- * 2004  ×ùÎ»ÊıÁ¿ÏŞÖÆ´íÎó£º³¬³ö5¸ö£¬Ä³Ğ©³¡´ÎÖĞÖ»ÄÜÂòÁ½¸ö»òËÄ¸öµÈ
- * 2005  ×ùÎ»ÆäËûÏŞÖÆ´íÎó£ºÓĞ»ı·ÖÏŞÖÆµÈ
- * 2006  Î¥·´¹æÔò£ºÈç¹Â×ùµÈ
- * 2098  ÕıÔÚ¸üĞÂÓ°ÔºÊı¾İ
- * 2099  ×ùÎ»´íÎó£ºÎ´Öª´íÎó
- * 4001  ÉÌ¼Ò²»´æÔÚ  
- * 4002  ÉÌ¼ÒÎŞÈ¨ÏŞ  
- * 4003  Ğ£Ñé´íÎó  
- * 4004  ²ÎÊı´íÎó£ºÈ±ÉÙ²ÎÊı»ò¸ñÊ½²»ÕıÈ·  
- * 4005  Êı¾İ´íÎó£ºÈç²éÑ¯µÄÊı¾İ²»´æÔÚµÈ
- * 4006  Ö§¸¶´íÎó  
+ * 2001  æ— æ³•è¿æ¥å½±é™¢
+ * 2002  åº§ä½ä½ç½®é”™è¯¯ï¼šäº§ç”Ÿå­¤åº§ï¼Œå•é€‰æƒ…ä¾£åº§ç­‰
+ * 2003  åº§ä½è¢«å ç”¨
+ * 2004  åº§ä½æ•°é‡é™åˆ¶é”™è¯¯ï¼šè¶…å‡º5ä¸ªï¼ŒæŸäº›åœºæ¬¡ä¸­åªèƒ½ä¹°ä¸¤ä¸ªæˆ–å››ä¸ªç­‰
+ * 2005  åº§ä½å…¶ä»–é™åˆ¶é”™è¯¯ï¼šæœ‰ç§¯åˆ†é™åˆ¶ç­‰
+ * 2006  è¿åè§„åˆ™ï¼šå¦‚å­¤åº§ç­‰
+ * 2098  æ­£åœ¨æ›´æ–°å½±é™¢æ•°æ®
+ * 2099  åº§ä½é”™è¯¯ï¼šæœªçŸ¥é”™è¯¯
+ * 4001  å•†å®¶ä¸å­˜åœ¨  
+ * 4002  å•†å®¶æ— æƒé™  
+ * 4003  æ ¡éªŒé”™è¯¯  
+ * 4004  å‚æ•°é”™è¯¯ï¼šç¼ºå°‘å‚æ•°æˆ–æ ¼å¼ä¸æ­£ç¡®  
+ * 4005  æ•°æ®é”™è¯¯ï¼šå¦‚æŸ¥è¯¢çš„æ•°æ®ä¸å­˜åœ¨ç­‰
+ * 4006  æ”¯ä»˜é”™è¯¯  
  *	
- * 5000	ÓÃ»§²»´æÔÚ
- * 5001	ÓÃ»§Î´µÇÂ¼
- * 5002	ÓÃ»§ÎŞÈ¨ÏŞ
- * 5003	²»ÄÜÖØ¸´²Ù×÷
+ * 5000	ç”¨æˆ·ä¸å­˜åœ¨
+ * 5001	ç”¨æˆ·æœªç™»å½•
+ * 5002	ç”¨æˆ·æ— æƒé™
+ * 5003	ä¸èƒ½é‡å¤æ“ä½œ
  * 
- * 9999  Î´Öª´íÎó£ºÆäËûÎ´·ÖÀàµÄ´íÎó
+ * 9999  æœªçŸ¥é”™è¯¯ï¼šå…¶ä»–æœªåˆ†ç±»çš„é”™è¯¯
  */
 public abstract class ApiConstant {
 	public static final String OPENAPI_AUTH_KEY = "__OPENAPI_AUTH_KEY__";//servlet request key for OpenApiAuth
-	public static final String CODE_SUCCESS = "0000";				//³É¹¦
-	public static final String CODE_OPI_NOT_EXISTS = "1001";		//³¡´Î²»´æÔÚ
-	public static final String CODE_OPI_CLOSED = "1002";			//³¡´Î¹Ø±Õ
-	public static final String CODE_OPI_UNSYNCH = "1003";			//³¡´ÎĞÅÏ¢²»Í¬²½
+	public static final String CODE_SUCCESS = "0000";				//æˆåŠŸ
+	public static final String CODE_OPI_NOT_EXISTS = "1001";		//åœºæ¬¡ä¸å­˜åœ¨
+	public static final String CODE_OPI_CLOSED = "1002";			//åœºæ¬¡å…³é—­
+	public static final String CODE_OPI_UNSYNCH = "1003";			//åœºæ¬¡ä¿¡æ¯ä¸åŒæ­¥
 	
-	public static final String CODE_OPI_UNTO_OPENTIME = "1100";		//Ã»µ½¿ª·ÅÊ±¼ä
-	public static final String CODE_OPI_EXPIRE  = "1101";				//³¡´Î¹ıÆÚ
-	public static final String CODE_OPI_STATUS_CLOSE  = "1102";		//³¡´Î×´Ì¬¹Ø±Õ
-	public static final String CODE_OPI_BEFORE_CLOSETIME  = "1104";//³¡´ÎÒÑ¹Ø±Õ
-	public static final String CODE_OPI_SOLD_OUT  = "1105";			//×ùÎ»ÒÑÊÛÍê
-	public static final String CODE_OPI_UN_MID_TIME  = "1106";		//²»ÔÚÃ¿Ìì¿ª·ÅÊ±¼ä¶Î
-	// ÅĞ¶ÏÌØ¼Û»î¶¯ÊÇ·ñ¿ÉÓÃ
-	public static final String CODE_OPI_SD_QUOTA_FULL  = "1201";	//Ãû¶îÒÑÂú
-	public static final String CODE_OPI_SD_QUTY_MORE = "1202";		//ÈËÊı¹ı¶È
+	public static final String CODE_OPI_UNTO_OPENTIME = "1100";		//æ²¡åˆ°å¼€æ”¾æ—¶é—´
+	public static final String CODE_OPI_EXPIRE  = "1101";				//åœºæ¬¡è¿‡æœŸ
+	public static final String CODE_OPI_STATUS_CLOSE  = "1102";		//åœºæ¬¡çŠ¶æ€å…³é—­
+	public static final String CODE_OPI_BEFORE_CLOSETIME  = "1104";//åœºæ¬¡å·²å…³é—­
+	public static final String CODE_OPI_SOLD_OUT  = "1105";			//åº§ä½å·²å”®å®Œ
+	public static final String CODE_OPI_UN_MID_TIME  = "1106";		//ä¸åœ¨æ¯å¤©å¼€æ”¾æ—¶é—´æ®µ
+	// åˆ¤æ–­ç‰¹ä»·æ´»åŠ¨æ˜¯å¦å¯ç”¨
+	public static final String CODE_OPI_SD_QUOTA_FULL  = "1201";	//åé¢å·²æ»¡
+	public static final String CODE_OPI_SD_QUTY_MORE = "1202";		//äººæ•°è¿‡åº¦
 	
 	
 	public static final String CODE_CONNECTION_ERROR = "2001";
 	public static final String CODE_SEAT_POS_ERROR = "2002";
-	public static final String CODE_SEAT_OCCUPIED = "2003";			//×ùÎ»±»Õ¼ÓÃ
-	public static final String CODE_SEAT_NUM_ERROR = "2004";			//×ùÎ»ÊıÁ¿´íÎó
+	public static final String CODE_SEAT_OCCUPIED = "2003";			//åº§ä½è¢«å ç”¨
+	public static final String CODE_SEAT_NUM_ERROR = "2004";			//åº§ä½æ•°é‡é”™è¯¯
 	public static final String CODE_SEAT_LIMITED = "2005";
 	public static final String CODE_SEAT_BREAK_RULE = "2006";
 	public static final String CODE_SEAT_SEATTYPE_ERROR = "2007";
-	public static final String CODE_SEAT_LOCK_ERROR_CINEMA = "2010";	//Ëø¶¨×ùÎ»³ö´í
-	public static final String CODE_CCTO_ERROR = "2011";					//µÚÈı·½ÓëÓ°ÔºÁ¬½Ó²»Õı³£
-	public static final String CODE_TC_ERROR = "2012";						//µÚÈı·½´íÎó
-	public static final String CODE_SEAT_RELEASED = "2013";				//×ùÎ»ÒÑ¾­ÊÍ·Å»ò²»´æÔÚ
-	public static final String CODE_SYNCH_DATA = "2098";					//ÕıÔÚ¸üĞÂÓ°ÔºÊı¾İ
+	public static final String CODE_SEAT_LOCK_ERROR_CINEMA = "2010";	//é”å®šåº§ä½å‡ºé”™
+	public static final String CODE_CCTO_ERROR = "2011";					//ç¬¬ä¸‰æ–¹ä¸å½±é™¢è¿æ¥ä¸æ­£å¸¸
+	public static final String CODE_TC_ERROR = "2012";						//ç¬¬ä¸‰æ–¹é”™è¯¯
+	public static final String CODE_SEAT_RELEASED = "2013";				//åº§ä½å·²ç»é‡Šæ”¾æˆ–ä¸å­˜åœ¨
+	public static final String CODE_SYNCH_DATA = "2098";					//æ­£åœ¨æ›´æ–°å½±é™¢æ•°æ®
 	public static final String CODE_SEAT_LOCK_ERROR = "2099";
 	
-	public static final String CODE_ORDER_NEED_CANCEL = "3100";		//¶©µ¥ĞèÒªÈ¡Ïû£¬²ÅÄÜÏÂµ¥
-	public static final String CODE_ORDER_SD_REPEAT = "3101";		//ÖØ¸´²Î¼ÓÌØ¼Û»î¶¯
+	public static final String CODE_ORDER_NEED_CANCEL = "3100";		//è®¢å•éœ€è¦å–æ¶ˆï¼Œæ‰èƒ½ä¸‹å•
+	public static final String CODE_ORDER_SD_REPEAT = "3101";		//é‡å¤å‚åŠ ç‰¹ä»·æ´»åŠ¨
 	
-	public static final String CODE_PARTNER_NOT_EXISTS = "4001";	//ÉÌ¼Ò²»´æÔÚ
-	public static final String CODE_PARTNER_NORIGHTS = "4002";		//ÉÌ¼ÒÎŞÈ¨ÏŞ
-	public static final String CODE_SIGN_ERROR = "4003";				//Ğ£Ñé´íÎó  
-	public static final String CODE_PARAM_ERROR = "4004";				//²ÎÊı´íÎó£ºÈ±ÉÙ²ÎÊı»ò¸ñÊ½²»ÕıÈ·  
-	public static final String CODE_DATA_ERROR = "4005";				//Êı¾İ´íÎó£ºÈç²éÑ¯µÄÊı¾İ²»´æÔÚµÈ
-	public static final String CODE_PAY_ERROR = "4006";				//Ö§¸¶´íÎó
-	public static final String CODE_SECURITY_VERIFY = "4999";		//ÊÖ»ú¶ÌĞÅ½øĞĞ°²È«ÈÏÖ¤
+	public static final String CODE_PARTNER_NOT_EXISTS = "4001";	//å•†å®¶ä¸å­˜åœ¨
+	public static final String CODE_PARTNER_NORIGHTS = "4002";		//å•†å®¶æ— æƒé™
+	public static final String CODE_SIGN_ERROR = "4003";				//æ ¡éªŒé”™è¯¯  
+	public static final String CODE_PARAM_ERROR = "4004";				//å‚æ•°é”™è¯¯ï¼šç¼ºå°‘å‚æ•°æˆ–æ ¼å¼ä¸æ­£ç¡®  
+	public static final String CODE_DATA_ERROR = "4005";				//æ•°æ®é”™è¯¯ï¼šå¦‚æŸ¥è¯¢çš„æ•°æ®ä¸å­˜åœ¨ç­‰
+	public static final String CODE_PAY_ERROR = "4006";				//æ”¯ä»˜é”™è¯¯
+	public static final String CODE_SECURITY_VERIFY = "4999";		//æ‰‹æœºçŸ­ä¿¡è¿›è¡Œå®‰å…¨è®¤è¯
 	
-	public static final String CODE_SUBSCRIBE_ERROR = "4040";		//Ô¤Ô¼±£´æÊ§°Ü
+	public static final String CODE_SUBSCRIBE_ERROR = "4040";		//é¢„çº¦ä¿å­˜å¤±è´¥
 	
-	public static final String CODE_WEIBO_EXPRIES = "4100"; 			//Î¢²©¹ıÆÚ
-	public static final String CODE_UNBIND_MOBILE = "4101"; 			//Ã»ÓĞ°ó¶¨ÊÖ»ú
+	public static final String CODE_WEIBO_EXPRIES = "4100"; 			//å¾®åšè¿‡æœŸ
+	public static final String CODE_UNBIND_MOBILE = "4101"; 			//æ²¡æœ‰ç»‘å®šæ‰‹æœº
 	
-	public static final String CODE_MEMBER_NOT_EXISTS = "5000";		//ÓÃ»§²»´æÔÚ
-	public static final String CODE_NOTLOGIN = "5001";					//ÓÃ»§Î´µÇÂ¼
-	public static final String CODE_USER_NORIGHTS = "5002";			//ÓÃ»§ÎŞÈ¨ÏŞ
-	public static final String CODE_REPEAT_OPERATION = "5003";		//²»ÄÜÖØ¸´²Ù×÷
+	public static final String CODE_MEMBER_NOT_EXISTS = "5000";		//ç”¨æˆ·ä¸å­˜åœ¨
+	public static final String CODE_NOTLOGIN = "5001";					//ç”¨æˆ·æœªç™»å½•
+	public static final String CODE_USER_NORIGHTS = "5002";			//ç”¨æˆ·æ— æƒé™
+	public static final String CODE_REPEAT_OPERATION = "5003";		//ä¸èƒ½é‡å¤æ“ä½œ
 	public static final String CODE_NOT_EXISTS = "5004";
-	public static final String CODE_DATA_NULL = "5005"; 				//Êı¾İÎª¿Õ
-	//public static final String CODE_ERROR = "5006"; //Òì³£
+	public static final String CODE_DATA_NULL = "5005"; 				//æ•°æ®ä¸ºç©º
+	//public static final String CODE_ERROR = "5006"; //å¼‚å¸¸
 
 	
-	public static final String CODE_TRAFFIC_CONTROL = "6000";	//±»Á÷Á¿¿ØÖÆ
-	public static final String CODE_PAYPASS_ERROR = "6001";		//Ö§¸¶ÃÜÂë¹ıÓÚ¼òµ¥
+	public static final String CODE_TRAFFIC_CONTROL = "6000";	//è¢«æµé‡æ§åˆ¶
+	public static final String CODE_PAYPASS_ERROR = "6001";		//æ”¯ä»˜å¯†ç è¿‡äºç®€å•
 	
-	public static final String CODE_ELECARD_ISBIND = "8001";		// È¯ÒÑ¾­±»°ó¶¨
-	public static final String CODE_NIDE_BINDMOBILE = "8100";	// ĞèÒª°ó¶¨ÊÖ»úºÅ
-	public static final String CODE_MOBILE_NOTREG = "8101";		// ÊÖ»úºÅÎ´×¢²á
+	public static final String CODE_ELECARD_ISBIND = "8001";		// åˆ¸å·²ç»è¢«ç»‘å®š
+	public static final String CODE_NIDE_BINDMOBILE = "8100";	// éœ€è¦ç»‘å®šæ‰‹æœºå·
+	public static final String CODE_MOBILE_NOTREG = "8101";		// æ‰‹æœºå·æœªæ³¨å†Œ
 	
 
 	public static final String CODE_UNKNOWN_ERROR = "9999";
 	
-	public static final String CODE_GETED_POINT_STABLE_ERROR   = "9001";//ºì°üÒÑ¾­ÁìÈ¡¹ı-ÎÈ×¬ĞÍ
-	public static final String CODE_GETED_POINT_BIT_ERROR      = "9002";//ºì°üÒÑ¾­ÁìÈ¡¹ı-Ã°ÏÕĞÍ
-	public static final String CODE_GETED_POINT_BRT_ERROR      = "9003";//ºì°üÒÑ¾­ÁìÈ¡¹ı-Î¢²©¿Ø
-	public static final String CODE_GETED_POINT_FESTIVAL_ERROR = "9004";//ºì°üÒÑ¾­ÁìÈ¡¹ı-½ÚÈÕ
+	public static final String CODE_GETED_POINT_STABLE_ERROR   = "9001";//çº¢åŒ…å·²ç»é¢†å–è¿‡-ç¨³èµšå‹
+	public static final String CODE_GETED_POINT_BIT_ERROR      = "9002";//çº¢åŒ…å·²ç»é¢†å–è¿‡-å†’é™©å‹
+	public static final String CODE_GETED_POINT_BRT_ERROR      = "9003";//çº¢åŒ…å·²ç»é¢†å–è¿‡-å¾®åšæ§
+	public static final String CODE_GETED_POINT_FESTIVAL_ERROR = "9004";//çº¢åŒ…å·²ç»é¢†å–è¿‡-èŠ‚æ—¥
 
-	public static final String CODE_MOBILE_VALID = "9900";// APPĞèÒªÌø×ªµ½H5½øĞĞÑéÖ¤µÄcode
+	public static final String CODE_MOBILE_VALID = "9900";// APPéœ€è¦è·³è½¬åˆ°H5è¿›è¡ŒéªŒè¯çš„code
 	
-	public static final String CODE_FCARD_ERROR = "9101";// µã¿¨Ö§¸¶ÓëÓÅ»İ»¥³â
-	public static final String CODE_FCARD_CHANGE_ERROR = "9102";// µã¿¨Ö§¸¶²»Í¬¿¨ÖØ¸´Ê¹ÓÃ
-	public static final String CODE_FCARD_USE_ERROR = "9103";// µã¿¨ÕıÔÚÊ¹ÓÃ
-	public static final String CODE_FCARD_USEOUT = "9104";// µã¿¨Óà¶î²»×ã
+	public static final String CODE_FCARD_ERROR = "9101";// ç‚¹å¡æ”¯ä»˜ä¸ä¼˜æƒ äº’æ–¥
+	public static final String CODE_FCARD_CHANGE_ERROR = "9102";// ç‚¹å¡æ”¯ä»˜ä¸åŒå¡é‡å¤ä½¿ç”¨
+	public static final String CODE_FCARD_USE_ERROR = "9103";// ç‚¹å¡æ­£åœ¨ä½¿ç”¨
+	public static final String CODE_FCARD_USEOUT = "9104";// ç‚¹å¡ä½™é¢ä¸è¶³
 	
-	public static final String CODE_FCARD_LOCK = "9201";//µã¿¨ÒÑËø¶¨
-	public static final String CODE_FCARD_LOCK_FAIL = "9202";//µã¿¨Ëø¶¨Ê§°Ü
-	public static final String CODE_FCARD_LOCK_NOT_MATCH="9203";//Ëø¿¨ĞÅÏ¢²»Æ¥Åä
-	public static final String CODE_FCARD_NOT_LOCK="9204";//µã¿¨Î´Ëø¶¨
+	public static final String CODE_FCARD_LOCK = "9201";//ç‚¹å¡å·²é”å®š
+	public static final String CODE_FCARD_LOCK_FAIL = "9202";//ç‚¹å¡é”å®šå¤±è´¥
+	public static final String CODE_FCARD_LOCK_NOT_MATCH="9203";//é”å¡ä¿¡æ¯ä¸åŒ¹é…
+	public static final String CODE_FCARD_NOT_LOCK="9204";//ç‚¹å¡æœªé”å®š
 	
 	public static final Map<String, String> ORDER_STATUS_MAP;
 	static{

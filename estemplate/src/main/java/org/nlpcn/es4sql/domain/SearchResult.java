@@ -24,7 +24,7 @@ import org.nlpcn.es4sql.exception.SqlParseException;
 
 public class SearchResult {
 	/**
-	 * 查询结果
+	 * 鏌ヨ缁撴灉
 	 */
 	private List<Map<String, Object>> results;
 
@@ -76,7 +76,7 @@ public class SearchResult {
 	}
 
 	/**
-	 * 讲es的field域转换为你Object
+	 * 璁瞖s鐨刦ield鍩熻浆鎹负浣燨bject
 	 * 
 	 * @param fields
 	 * @return
@@ -95,7 +95,7 @@ public class SearchResult {
 	}
 
 	/**
-	 * 讲es的field域转换为你Object
+	 * 璁瞖s鐨刦ield鍩熻浆鎹负浣燨bject
 	 * 
 	 * @param fields
 	 * @return

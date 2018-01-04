@@ -19,10 +19,10 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.client.model.Filters;
 
 /**
- * ±í´ïÊ½¡£
+ * è¡¨è¾¾å¼ã€‚
  * 
- * @author ¶­Ã÷
- * @createDate 2015Äê7ÔÂ27ÈÕ
+ * @author è‘£æ˜
+ * @createDate 2015å¹´7æœˆ27æ—¥
  * @link org.bson.conversions.Bson.Filters
  */
 public class Expression extends BasicDBObject implements Util4Script{
@@ -60,14 +60,14 @@ public class Expression extends BasicDBObject implements Util4Script{
 	protected final List<Bson> condition = new ArrayList<Bson>();
 
 	/**
-	 * Ä¬ÈÏÎªAnd¹ØÏµ¡£
+	 * é»˜è®¤ä¸ºAndå…³ç³»ã€‚
 	 */
 	public Expression() {
 		this(LogicRelate.AND);
 	}
 
 	/**
-	 * ÓÃÀ´Ö¸Ã÷ÔÚ¸Ã±í´ïÊ½ÖĞ£¬Ã¿¸ö²Ù×÷Ö®¼äµÄ¹ØÏµ¡£
+	 * ç”¨æ¥æŒ‡æ˜åœ¨è¯¥è¡¨è¾¾å¼ä¸­ï¼Œæ¯ä¸ªæ“ä½œä¹‹é—´çš„å…³ç³»ã€‚
 	 * 
 	 * @param logic
 	 */
@@ -110,7 +110,7 @@ public class Expression extends BasicDBObject implements Util4Script{
 	 * @param min
 	 * @param max
 	 * @param range
-	 *           ÓÃÀ´Ö¸¶¨Æä±ÕºÏ×´Ì¬¡£
+	 *           ç”¨æ¥æŒ‡å®šå…¶é—­åˆçŠ¶æ€ã€‚
 	 * @return
 	 */
 	public Expression between(final String fieldName, final Object min, final Object max, final OpenCloseState range) {
@@ -246,7 +246,7 @@ public class Expression extends BasicDBObject implements Util4Script{
 	}
 
 	/**
-	 * Ìí¼ÓÆäËûµÄ²éÑ¯±í´ïÊ½ Õâ¸ö·½·¨Ö÷ÒªÊÇÎªÁË¼æÈİ3.0ÒÔÇ°µÄapi¡£ ²»ÊÇ±ØĞëµÄÇé¿öÏÂ£¬Çë²»Òªµ÷ÓÃ¸Ã·½·¨¡£
+	 * æ·»åŠ å…¶ä»–çš„æŸ¥è¯¢è¡¨è¾¾å¼ è¿™ä¸ªæ–¹æ³•ä¸»è¦æ˜¯ä¸ºäº†å…¼å®¹3.0ä»¥å‰çš„apiã€‚ ä¸æ˜¯å¿…é¡»çš„æƒ…å†µä¸‹ï¼Œè¯·ä¸è¦è°ƒç”¨è¯¥æ–¹æ³•ã€‚
 	 * 
 	 * @param bsons
 	 * @return
@@ -266,7 +266,7 @@ public class Expression extends BasicDBObject implements Util4Script{
 	}
 
 	/**
-	 * ½«Ö¸¶¨express ×ª»¯ÎªBson¶ÔÏó
+	 * å°†æŒ‡å®šexpress è½¬åŒ–ä¸ºBsonå¯¹è±¡
 	 * 
 	 * @param matchCondition
 	 * @return

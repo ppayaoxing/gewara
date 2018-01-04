@@ -8,18 +8,18 @@ import com.gewara.api.vo.ResultCode;
 
 
 /**
- * ÉÌ»§¹Ø±Õ¹æÔò
+ * å•†æˆ·å…³é—­è§„åˆ™
  */
 public interface PartnerCloseRuleVoService {
 	
 	/**
-	 * »ñÈ¡´óÓÚµ±Ç°Ê±¼äµÄÉÌ»§¹Ø±Õ¹æÔò
+	 * è·å–å¤§äºå½“å‰æ—¶é—´çš„å•†æˆ·å…³é—­è§„åˆ™
 	 * @return
 	 */
 	ResultCode<List<PartnerCloseRuleVo>> getCloseRuleListByCurrentTime();
 	
 	/**
-	 * ¸ù¾İID²éÑ¯ÉÌ»§¹Ø±Õ¹æÔò
+	 * æ ¹æ®IDæŸ¥è¯¢å•†æˆ·å…³é—­è§„åˆ™
 	 * @param ruleId
 	 * @return
 	 */

@@ -10,48 +10,48 @@ import com.gewara.api.vo.ResultCode;
 public interface MovieItemComplexQueryService {
 
 	/**
-	 * ¸ù¾İ¸÷ÖÖÌõ¼ş²éÑ¯³¡´Î
-	 * °´·ÅÓ³Ê±¼äÕıĞòÅÅ
-	 * ÏµÍ³×Ô¶¯½«½á¹û»º´æ10·ÖÖÓ
-	 * ·ÏÆú£¬ÈÕºóÎªµçÓ°½ÚÌá¹©×¨ÃÅ½Ó¿Ú
+	 * æ ¹æ®å„ç§æ¡ä»¶æŸ¥è¯¢åœºæ¬¡
+	 * æŒ‰æ”¾æ˜ æ—¶é—´æ­£åºæ’
+	 * ç³»ç»Ÿè‡ªåŠ¨å°†ç»“æœç¼“å­˜10åˆ†é’Ÿ
+	 * åºŸå¼ƒï¼Œæ—¥åä¸ºç”µå½±èŠ‚æä¾›ä¸“é—¨æ¥å£
 	 * @param request
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê6ÔÂ29ÈÕÏÂÎç4:29:01
+	 * @addTime 2015å¹´6æœˆ29æ—¥ä¸‹åˆ4:29:01
 	 */
 	@Deprecated
 	ResultCode<List<MovieItemVo>> findByBasicQuery(MovieItemBasicQueryRequest request);
 	
 	/**
-	 * ²éÑ¯ÅÅÆ¬ÊıÁ¿
-	 * ÏµÍ³×Ô¶¯½«½á¹û»º´æ10·ÖÖÓ
+	 * æŸ¥è¯¢æ’ç‰‡æ•°é‡
+	 * ç³»ç»Ÿè‡ªåŠ¨å°†ç»“æœç¼“å­˜10åˆ†é’Ÿ
 	 * @param request
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê6ÔÂ30ÈÕÏÂÎç4:04:34
+	 * @addTime 2015å¹´6æœˆ30æ—¥ä¸‹åˆ4:04:34
 	 */
 	@Deprecated
 	ResultCode<Integer> findCountByBasicQuery(final MovieItemBasicQueryRequest request);
 	
 	/**
-	 * ½«ÅÅÆ¬ÖĞÄ³¸öÊôĞÔ·µ»Ø
-	 * ÏµÍ³×Ô¶¯½«½á¹û»º´æ10·ÖÖÓ
+	 * å°†æ’ç‰‡ä¸­æŸä¸ªå±æ€§è¿”å›
+	 * ç³»ç»Ÿè‡ªåŠ¨å°†ç»“æœç¼“å­˜10åˆ†é’Ÿ
 	 * @param request
 	 * @return
 	 * @author leo
 	 * @see com.gewara.api.gewampi.service.PlayItemVoService#findCinemaIdByCharacteristic(String characteristic, String citycode, Long movieid, Date playdate)
-	 * @addTime 2015Äê6ÔÂ30ÈÕÏÂÎç4:04:50
+	 * @addTime 2015å¹´6æœˆ30æ—¥ä¸‹åˆ4:04:50
 	 */
 	@Deprecated
 	ResultCode<List> findPropertyListByBasicQuery(final MovieItemBasicQueryRequest request);
 	
 	/**
-	 * ½«ÅÅÆ¬ÖĞÄ³¸öÊôĞÔ£¬È¥ÖØºóµÄÊıÁ¿
-	 * ÏµÍ³×Ô¶¯½«½á¹û»º´æ10·ÖÖÓ
+	 * å°†æ’ç‰‡ä¸­æŸä¸ªå±æ€§ï¼Œå»é‡åçš„æ•°é‡
+	 * ç³»ç»Ÿè‡ªåŠ¨å°†ç»“æœç¼“å­˜10åˆ†é’Ÿ
 	 * @param request
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê6ÔÂ30ÈÕÏÂÎç4:49:23
+	 * @addTime 2015å¹´6æœˆ30æ—¥ä¸‹åˆ4:49:23
 	 */
 	@Deprecated
 	ResultCode<Integer> findPropertyCountByBasicQuery(MovieItemBasicQueryRequest request);

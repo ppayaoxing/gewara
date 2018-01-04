@@ -5,7 +5,7 @@ public class WxCard {
 	private Long begin_time;
 	private Long end_time;
 	private String user_card_status;
-	private String can_consume;		//ÎªtrueÊ±ºò ±íÊ¾¿¨×´Ì¬Õı³££¬ÎªfalseÊ±ºòÓĞuser_card_status	
+	private String can_consume;		//ä¸ºtrueæ—¶å€™ è¡¨ç¤ºå¡çŠ¶æ€æ­£å¸¸ï¼Œä¸ºfalseæ—¶å€™æœ‰user_card_status	
 	public WxCard(){
 		
 	}

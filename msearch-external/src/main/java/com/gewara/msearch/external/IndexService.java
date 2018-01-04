@@ -7,14 +7,14 @@ import com.gewara.msearch.external.constant.DataType;
 import com.gewara.msearch.external.entity.index.IndexData;
 
 public interface IndexService {
-	/**Ìí¼ÓË÷Òı
+	/**æ·»åŠ ç´¢å¼•
 	 * @param type
-	 * @param data Ë÷ÒıÊı¾İ
+	 * @param data ç´¢å¼•æ•°æ®
 	 */
 	public <T extends IndexData> ResultCode<String> addIndex(DataType type,T... datas);
 	
 	/**
-	 * Ìí¼ÓÔ­À´Ö÷Õ¾ÉÏµÄË÷ÒıÊı¾İ
+	 * æ·»åŠ åŸæ¥ä¸»ç«™ä¸Šçš„ç´¢å¼•æ•°æ®
 	 * @param type
 	 * @param datas
 	 * @return
@@ -22,16 +22,16 @@ public interface IndexService {
 	public <T extends IndexData> ResultCode<String> addGwSearchIndex(DataType type, List<T> datas);
 	
 	/**
-	 * ĞŞ¸ÄË÷ÒıÊı¾İ
-	 * @param type Ä¿Ç°Ö»Ö§³ÖmemberÀàµÄĞŞ¸Ä
-	 * @param modifyPropsName ´ıĞŞ¸ÄµÄÊôĞÔÃû³Æ
-	 * @param datas ĞŞ¸ÄºóµÄ¶ÔÏó£¬¶ÔÏóid²»ÄÜÎª¿Õ
+	 * ä¿®æ”¹ç´¢å¼•æ•°æ®
+	 * @param type ç›®å‰åªæ”¯æŒmemberç±»çš„ä¿®æ”¹
+	 * @param modifyPropsName å¾…ä¿®æ”¹çš„å±æ€§åç§°
+	 * @param datas ä¿®æ”¹åçš„å¯¹è±¡ï¼Œå¯¹è±¡idä¸èƒ½ä¸ºç©º
 	 * @return
 	 */
 	public <T extends IndexData> ResultCode<String> updateIndex(DataType type,List<String> modifyPropsName, T...datas);
 	
 	/**
-	 * É¾³ımobileÏÂµÄindex
+	 * åˆ é™¤mobileä¸‹çš„index
 	 * @param type
 	 * @param data
 	 * @return
@@ -39,14 +39,14 @@ public interface IndexService {
 	public <T extends IndexData> boolean  deleteIndex(DataType type, T data);
 	
 	/**
-	 * É¾³ıpcÉÏµÄindex
-	 * @param id ÇëÊ¹ÓÃcategory+id×éºÏ£¬Èç£ºactivity20134894
+	 * åˆ é™¤pcä¸Šçš„index
+	 * @param id è¯·ä½¿ç”¨category+idç»„åˆï¼Œå¦‚ï¼šactivity20134894
 	 * @return
 	 */
 	public boolean deletePcIndex(String id);
 	
 	/**
-	 * É¾³ıESÖĞµÄindex
+	 * åˆ é™¤ESä¸­çš„index
 	 * @param indexName
 	 * @param indexType
 	 * @param documentID

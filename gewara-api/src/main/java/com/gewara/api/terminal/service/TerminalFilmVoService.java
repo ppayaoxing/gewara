@@ -9,7 +9,7 @@ import com.gewara.api.vo.order.GewaOrderVo;
 
 public interface TerminalFilmVoService {
 	/**
-	 * ²éÑ¯µçÓ°³¡´ÎµÄ´òÓ¡²¼¾Ö
+	 * æŸ¥è¯¢ç”µå½±åœºæ¬¡çš„æ‰“å°å¸ƒå±€
 	 * @param mpid
 	 * @return
 	 */
@@ -17,7 +17,7 @@ public interface TerminalFilmVoService {
 	
 	ResultCode<String> getMpiLayoutVo(Long mpid);
 	/**
-	 * ²éÑ¯µçÓ°½Ú¶©µ¥¼¯ºÏ
+	 * æŸ¥è¯¢ç”µå½±èŠ‚è®¢å•é›†åˆ
 	 * @param cinemaid
 	 * @param playtime
 	 * @param addtime
@@ -25,14 +25,14 @@ public interface TerminalFilmVoService {
 	 */
 	ResultCode<List<String>> getSuccessFilmOrderList(Long cinemaid, Timestamp playtime, Timestamp addtime);
 	/**
-	 * ¸ü¼ÓÓ°Ôº»ñÈ¡¶©µ¥
+	 * æ›´åŠ å½±é™¢è·å–è®¢å•
 	 * @param cinemaid
 	 * @param addtime
 	 * @return
 	 */
 	ResultCode<List<String>> getMovieSuccessTradenoList(Long cinemaid, Timestamp addtime);
 	/**
-	 * ²éÑ¯µçÓ°¶©µ¥
+	 * æŸ¥è¯¢ç”µå½±è®¢å•
 	 * @param tradeno
 	 * @return
 	 */

@@ -8,26 +8,26 @@ import com.gewara.api.vo.BaseVo;
 public class ShowItemVo extends BaseVo {
 	private static final long serialVersionUID = 6391912619089689711L;
 	
-	private String siseq;		//ÅÅÆ¬ĞòºÅ£ºpartner+pseqno(DramaPlayItem-->sellerseq)
-	private String showname;		//³¡´ÎÃû³Æ
-	private Long dramaid;			//ÏîÄ¿ID
-	private Long theatreid;		//³¡¹İID
-	private String fieldnum;		//³¡µØĞòºÅ
-	private String fieldname;		//³¡µØÃû³Æ
-	private Timestamp playtime;	//·ÅÓ³Ê±¼ä
-	private Timestamp endtime;	//½áÊøÊ±¼ä
+	private String siseq;		//æ’ç‰‡åºå·ï¼špartner+pseqno(DramaPlayItem-->sellerseq)
+	private String showname;		//åœºæ¬¡åç§°
+	private Long dramaid;			//é¡¹ç›®ID
+	private Long theatreid;		//åœºé¦†ID
+	private String fieldnum;		//åœºåœ°åºå·
+	private String fieldname;		//åœºåœ°åç§°
+	private Timestamp playtime;	//æ”¾æ˜ æ—¶é—´
+	private Timestamp endtime;	//ç»“æŸæ—¶é—´
 	private Timestamp opentime;
 	private Timestamp closetime;
 	
 	private String citycode;
 	
-	private String partner;		//µÚÈı·½
-	private String pseqno;		//µÚÈı·½ID
-	private String itemtype;		//Ñ¡×ù£¬Ñ¡¼Û¸ñ£¬
-	private String period;		//ÊÇ·ñÓĞÊ±¼ä
-	private String express;		//¿ìµİ·½Ê½
-	private String showtype;		//³¡´ÎÀàĞÍ
-	private String crmflag;		//ÉÌ»§±êÊ¶
+	private String partner;		//ç¬¬ä¸‰æ–¹
+	private String pseqno;		//ç¬¬ä¸‰æ–¹ID
+	private String itemtype;		//é€‰åº§ï¼Œé€‰ä»·æ ¼ï¼Œ
+	private String period;		//æ˜¯å¦æœ‰æ—¶é—´
+	private String express;		//å¿«é€’æ–¹å¼
+	private String showtype;		//åœºæ¬¡ç±»å‹
+	private String crmflag;		//å•†æˆ·æ ‡è¯†
 	private String takemethod;
 	private String takeAddress;
 	private Integer maxbuy;
@@ -35,9 +35,9 @@ public class ShowItemVo extends BaseVo {
 	private String fieldlogo;
 	private String idcard;
 	
-	private String status;		//×´Ì¬£º¿ÉÓÃ¡¢É¾³ı
-	private Timestamp createtime;	//´´½¨Ê±¼ä
-	private Timestamp updatetime;	//¸üĞÂÊ±¼ä
+	private String status;		//çŠ¶æ€ï¼šå¯ç”¨ã€åˆ é™¤
+	private Timestamp createtime;	//åˆ›å»ºæ—¶é—´
+	private Timestamp updatetime;	//æ›´æ–°æ—¶é—´
 	
 	@Override
 	public Serializable realId() {

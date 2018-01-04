@@ -19,51 +19,51 @@ public class BSActivityVo  extends BaseVo{
 	private static final long serialVersionUID = -763330768091727133L;
 	
 	private Long id;			//ID
-	private String name;		//�����
-	private Timestamp fromtime;	//����ʱ��
-	private Timestamp totime;	//����ʱ��
-	private Timestamp addtime;	//����ʱ��
-	private Integer allnum;		//���ʾ����
-	private String shopid;		//��ƷID
-	private String citycode;	//�����б�
+	private String name;		//锟筋动锟斤拷锟斤拷
+	private Timestamp fromtime;	//锟斤拷锟斤拷时锟斤拷
+	private Timestamp totime;	//锟斤拷锟斤拷时锟斤拷
+	private Timestamp addtime;	//锟斤拷锟斤拷时锟斤拷
+	private Integer allnum;		//锟筋动锟斤拷示锟斤拷锟斤拷
+	private String shopid;		//锟斤拷品ID
+	private String citycode;	//锟斤拷锟斤拷锟叫憋拷
 	
-	private String relatedMovieId;	//����ӰƬID
-	private String movieIdEnable;	// Y������  ��N��������  MOVIEIDENABLE
-	private String relatedCinemaId;	//����ӰԺID
-	private String cinemaIdEnable;	// Y������  ��N�������� CINEMAIDENABLE
-	private String relatedMpId;		//��������
-	private String mpIdEnable;		// Y������  ��N�������� MPIDENABLE
-	private String edition;			// �汾
+	private String relatedMovieId;	//锟斤拷锟斤拷影片ID
+	private String movieIdEnable;	// Y锟斤拷锟斤拷锟斤拷  锟斤拷N锟斤拷锟斤拷锟斤拷锟斤拷  MOVIEIDENABLE
+	private String relatedCinemaId;	//锟斤拷锟斤拷影院ID
+	private String cinemaIdEnable;	// Y锟斤拷锟斤拷锟斤拷  锟斤拷N锟斤拷锟斤拷锟斤拷锟斤拷 CINEMAIDENABLE
+	private String relatedMpId;		//锟斤拷锟斤拷锟斤拷锟斤拷
+	private String mpIdEnable;		// Y锟斤拷锟斤拷锟斤拷  锟斤拷N锟斤拷锟斤拷锟斤拷锟斤拷 MPIDENABLE
+	private String edition;			// 锟芥本
 	
-	private String mpiTimePeriod;	//����ʱ���
-	private String time1;			// ����ʱ��
-	private String time2;			// ����ʱ��
-	private String week;			//��������
-	private String addtime1;		// �µ�ʱ��
-	private String addtime2;		// �µ�ʱ��
-	private String addweek;			// �µ�����
+	private String mpiTimePeriod;	//锟斤拷锟斤拷时锟斤拷锟�
+	private String time1;			// 锟斤拷锟斤拷时锟斤拷
+	private String time2;			// 锟斤拷锟斤拷时锟斤拷
+	private String week;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private String addtime1;		// 锟铰碉拷时锟斤拷
+	private String addtime2;		// 锟铰碉拷时锟斤拷
+	private String addweek;			// 锟铰碉拷锟斤拷锟斤拷
 	
-	private Integer price1;			// ����
-	private Integer price2;			// ����
-	private Integer costprice1;		// �ɱ���
-	private Integer costprice2;		// �ɱ���
-	private Integer payUnitPrice1;	// ֧������
-	private Integer payUnitPrice2;	// ֧������
+	private Integer price1;			// 锟斤拷锟斤拷
+	private Integer price2;			// 锟斤拷锟斤拷
+	private Integer costprice1;		// 锟缴憋拷锟斤拷
+	private Integer costprice2;		// 锟缴憋拷锟斤拷
+	private Integer payUnitPrice1;	// 支锟斤拷锟斤拷锟斤拷
+	private Integer payUnitPrice2;	// 支锟斤拷锟斤拷锟斤拷
 	
-	private Integer mustBuyNum;		//�ع�Ʊ����
-	private String exchangeWay;		//�һ���ʽ
-	private String remark;			//���ע
-	private String otherinfo;		//�������� json��ʽ�� ���֧��������Ϣ��
-	private Integer sortnum;		//����
-	private String logo;			//ͼƬ
-	private String animationImg;	//����ͼƬ
-	private String actType;			// �����
-	private String smsContent;		// Ӫ������
-	private String printPaper;		// �Ƿ��ӡƱֽ�� Y���ǣ� N����
-	private String rateinfo;		// ����
+	private Integer mustBuyNum;		//锟截癸拷票锟斤拷锟斤拷
+	private String exchangeWay;		//锟揭伙拷锟斤拷式
+	private String remark;			//锟筋动锟斤拷注
+	private String otherinfo;		//锟斤拷锟斤拷锟斤拷锟斤拷 json锟斤拷式锟斤拷 锟斤拷锟街э拷锟斤拷锟斤拷锟斤拷锟较拷锟�
+	private Integer sortnum;		//锟斤拷锟斤拷
+	private String logo;			//图片
+	private String animationImg;	//锟斤拷锟斤拷图片
+	private String actType;			// 锟筋动锟斤拷锟斤拷
+	private String smsContent;		// 营锟斤拷锟斤拷锟斤拷
+	private String printPaper;		// 锟角凤拷锟接∑敝斤拷锟� Y锟斤拷锟角ｏ拷 N锟斤拷锟斤拷
+	private String rateinfo;		// 锟斤拷锟斤拷
 	
 	
-	/**�����Ӻ���**/
+	/**锟斤拷锟斤拷锟接猴拷锟斤拷**/
 	public BSActivityVo() {}
 
 	public String getShopid() {

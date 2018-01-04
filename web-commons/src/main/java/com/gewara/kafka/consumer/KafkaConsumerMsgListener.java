@@ -6,7 +6,7 @@ import org.springframework.beans.factory.InitializingBean;
 import com.gewara.support.TraceErrorException;
 
 /**
- * 使用方法参详{@link KafkaConsumerGroupFactory}
+ * 浣跨敤鏂规硶鍙傝{@link KafkaConsumerGroupFactory}
  * @author quzhuping
  *
  */

@@ -23,11 +23,11 @@ final class MongoReplicateInfo {
 	private  MongoClient _mongoClient;
 	private  List<String> _dblist=null;
 	private  Map<String,MongoDatabase> _mdatabases=new LinkedHashMap<>();
-	private  List<HostInfo> hosts = new ArrayList<>(0);//��Ⱥ��ÿ̨����
+	private  List<HostInfo> hosts = new ArrayList<>(0);//锟斤拷群锟斤拷每台锟斤拷锟斤拷
 	
 	/**
-	 * ��ʼ��mongoClient��
-	 * �����ʼ���Ķ��Ǿ�̬������
+	 * 锟斤拷始锟斤拷mongoClient锟斤拷
+	 * 锟斤拷锟斤拷锟绞硷拷锟斤拷亩锟斤拷蔷锟教拷锟斤拷锟斤拷锟�
 	 * @param hosts1
 	 * @param accounts
 	 * @param options
@@ -43,8 +43,8 @@ final class MongoReplicateInfo {
 	
 	
 	/**
-	 * ��ʼ��mongoClient��
-	 * �����ʼ���Ķ��Ǿ�̬������
+	 * 锟斤拷始锟斤拷mongoClient锟斤拷
+	 * 锟斤拷锟斤拷锟绞硷拷锟斤拷亩锟斤拷蔷锟教拷锟斤拷锟斤拷锟�
 	 * @param hosts1
 	 * @param accounts
 	 * @param options
@@ -52,7 +52,7 @@ final class MongoReplicateInfo {
 	 */
 	protected synchronized  void initMongoClient(GwMongoClientOptions options,String mechanism, List<HostInfo> hosts1, List<GWMongoAccount> accounts){
 		if(_mongoClient!=null){
-			logger.warn("MongoClient�Ѿ�����ʼ�����벻Ҫ�ظ���(���γ�ʼ��Ҫ���ѱ�����)");
+			logger.warn("MongoClient锟窖撅拷锟斤拷锟斤拷始锟斤拷锟斤拷锟诫不要锟截革拷锟斤拷(锟斤拷锟轿筹拷始锟斤拷要锟斤拷锟窖憋拷锟斤拷锟斤拷)");
 			return;
 		}
 		
@@ -93,7 +93,7 @@ final class MongoReplicateInfo {
 	}
 	
 	/**
-	 * ����ĳ����Ⱥ�����л�����Ϣ
+	 * 锟斤拷锟斤拷某锟斤拷锟斤拷群锟斤拷锟斤拷锟叫伙拷锟斤拷锟斤拷息
 	 * @param replicate
 	 * @return
 	 */

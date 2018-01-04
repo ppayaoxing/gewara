@@ -17,7 +17,7 @@ import com.gewara.web.support.SecurityModule;
  * Create the javascript required for the Xtree menu functionality
  * 
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28下午02:05:17
+ * @since 2007-9-28涓嬪崍02:05:17
  */
 public class GBMenuDataBuilder<T extends SecurityModule> {
 	public static final String MENU_DATA_KEY = "com.gewara.web.menu.MENU_DATA_KEY";
@@ -59,7 +59,7 @@ public class GBMenuDataBuilder<T extends SecurityModule> {
 	private void buildMenuRepository(StringBuilder sb) {
 		sb.append("{");
 		sb.append("'id':'0',");
-		sb.append("'text':'主菜单',");
+		sb.append("'text':'涓昏彍鍗�',");
 		sb.append("'iconCls':'icon-pkg',");
 		sb.append("'cls':'package',");
 		sb.append("'singleClickExpand':true,");
@@ -152,7 +152,7 @@ public class GBMenuDataBuilder<T extends SecurityModule> {
 	 */
 	private boolean isAllowed(T menu) {
 		String menuRoles = menu.getRolenames();
-		// 无角色，默认允许
+		// 鏃犺鑹诧紝榛樿鍏佽
 		if (StringUtils.isBlank(menuRoles)) {
             return false;
         }

@@ -8,7 +8,7 @@ public class SeatTypeVo extends BaseVo{
 
 	private static final long serialVersionUID = 3496007931623453141L;
 	private String type;
-	private String seaturl;//�Զ��ŷֿ�
+	private String seaturl;//以逗号分开
 	private String ratio;
 	private String id;
 	private String addtime;

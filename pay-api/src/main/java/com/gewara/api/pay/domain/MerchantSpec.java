@@ -5,39 +5,39 @@ import java.sql.Timestamp;
 import com.gewara.api.pay.ApiObject;
 
 /**
- * ÉÌ»§ÌØ±ğĞÅÏ¢£¬ÓÉ²ÆÎñÎ¬»¤
+ * å•†æˆ·ç‰¹åˆ«ä¿¡æ¯ï¼Œç”±è´¢åŠ¡ç»´æŠ¤
  * 
  * @author leo.li
- * Modify Time 2014Äê3ÔÂ28ÈÕ ÏÂÎç3:01:49
+ * Modify Time 2014å¹´3æœˆ28æ—¥ ä¸‹åˆ3:01:49
  */
 public class MerchantSpec extends ApiObject{
 		
 	private static final long serialVersionUID = 3131371299419499986L;
 	
-	/**ÍË¿î¸ºÔğ²¿ÃÅ£ºCW£º²ÆÎñ*/
+	/**é€€æ¬¾è´Ÿè´£éƒ¨é—¨ï¼šCWï¼šè´¢åŠ¡*/
 	public static final String REFUNDDEPT_CW = "CW";
-	/**ÍË¿î¸ºÔğ²¿ÃÅ£ºKF£º¿Í·ş*/
+	/**é€€æ¬¾è´Ÿè´£éƒ¨é—¨ï¼šKFï¼šå®¢æœ*/
 	public static final String REFUNDDEPT_KF = "KF";
 	
 	
-	private String merchantCode;//ÉÌ»§ºÅ±êÊ¶
-	private String gatewayCode;//Ö§¸¶Íø¹Ø
-	private String cityCode;//³ÇÊĞ
-	private String acquiringBank;//ÊÕµ¥ĞĞ
-	private String refundDept;//ÍË¿î¸ºÔğ²¿ÃÅ£ºCW£º²ÆÎñ£»KF£º¿Í·ş
-	private String refundHandling;//ÍË¿î´¦Àí·½Ê½ :Ô­Â·ÍË»Ø:ylth;Í¨ÖªºÏ×÷·½ÍË¿î:tzhzftk;¸ñÍßÀ­ÏßÏÂÍË¿î:gwxxtk;´ıÈ·¶¨ÖĞ:dqdz
-	private String queryUrl;//ÉÌ»§²éÑ¯Á´½Ó
-	private String partnerLinkman;//ºÏ×÷·½ÍË¿îÁªÏµÈË
-	private String partnerRefundEmail;//ºÏ×÷·½ÍË¿îÓÊÏä
-	private String partnerRefundPhoneCode;//ºÏ×÷·½ÍË¿îµç»°
-	private String description;//±¸×¢
-	private Timestamp addTime;	//ĞÂÔöÊ±¼ä
-	private Timestamp modifyTime;	//ĞŞ¸ÄÊ±¼ä
-	private String modifyUser;//ĞŞ¸ÄÈË
+	private String merchantCode;//å•†æˆ·å·æ ‡è¯†
+	private String gatewayCode;//æ”¯ä»˜ç½‘å…³
+	private String cityCode;//åŸå¸‚
+	private String acquiringBank;//æ”¶å•è¡Œ
+	private String refundDept;//é€€æ¬¾è´Ÿè´£éƒ¨é—¨ï¼šCWï¼šè´¢åŠ¡ï¼›KFï¼šå®¢æœ
+	private String refundHandling;//é€€æ¬¾å¤„ç†æ–¹å¼ :åŸè·¯é€€å›:ylth;é€šçŸ¥åˆä½œæ–¹é€€æ¬¾:tzhzftk;æ ¼ç“¦æ‹‰çº¿ä¸‹é€€æ¬¾:gwxxtk;å¾…ç¡®å®šä¸­:dqdz
+	private String queryUrl;//å•†æˆ·æŸ¥è¯¢é“¾æ¥
+	private String partnerLinkman;//åˆä½œæ–¹é€€æ¬¾è”ç³»äºº
+	private String partnerRefundEmail;//åˆä½œæ–¹é€€æ¬¾é‚®ç®±
+	private String partnerRefundPhoneCode;//åˆä½œæ–¹é€€æ¬¾ç”µè¯
+	private String description;//å¤‡æ³¨
+	private Timestamp addTime;	//æ–°å¢æ—¶é—´
+	private Timestamp modifyTime;	//ä¿®æ”¹æ—¶é—´
+	private String modifyUser;//ä¿®æ”¹äºº
 
-	private String shoukuanStatus;//ÊÕ¿îÏµÍ³½ÓÈë×´Ì¬
-	private String shoukuanPayChannel;//ÊÕ¿îÏµÍ³Ö§¸¶ÇşµÀ
-	private String reportType;//±¨±íÏµÍ³ÀàĞÍ
+	private String shoukuanStatus;//æ”¶æ¬¾ç³»ç»Ÿæ¥å…¥çŠ¶æ€
+	private String shoukuanPayChannel;//æ”¶æ¬¾ç³»ç»Ÿæ”¯ä»˜æ¸ é“
+	private String reportType;//æŠ¥è¡¨ç³»ç»Ÿç±»å‹
 	
 	public String getMerchantCode() {
 		return merchantCode;

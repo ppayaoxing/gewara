@@ -5,15 +5,15 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author ¶­Ã÷
- * @createDate 2015Äê9ÔÂ14ÈÕ
+ * @author è‘£æ˜
+ * @createDate 2015å¹´9æœˆ14æ—¥
  */
 public class MultiReplicatMongoClient {
 	private final List<NameGWMongoClient> replicates=new ArrayList<NameGWMongoClient>();
 	
 	/**
-	 * @param replicatName  mongo¼¯ÈºµÄÃû³Æ
-	 * @param mongoClient   mongo¼¯ÈºµÄÁ¬½Ó³Ø
+	 * @param replicatName  mongoé›†ç¾¤çš„åç§°
+	 * @param mongoClient   mongoé›†ç¾¤çš„è¿æ¥æ± 
 	 */
 	public MultiReplicatMongoClient(List<NameGWMongoClient> multiMongo){
 		replicates.addAll(multiMongo);

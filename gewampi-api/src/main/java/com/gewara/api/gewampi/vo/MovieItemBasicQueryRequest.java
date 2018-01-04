@@ -13,41 +13,41 @@ public class MovieItemBasicQueryRequest implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -1363532714670489706L;
-	private String citycode;	//³ÇÊĞ
-	private String countycode;  //ÇøÓò
-	private Long cinemaid;		//Ó°ÔºID
-	private Long movieid;		//Ó°Æ¬ID
-	private Date playdate;		//·ÅÓ³ÈÕÆÚ	
-	private String opentype;	//¿ª·ÅÀàĞÍ
-	private String seqNo;		//Íâ²¿¹ØÁªID
-	private Long batch;				//Åú´Î±êÊ¶
-	private String openStatus;		//¿ª·Å×´Ì¬£ºinit£º³õÊ¼×´Ì¬£¬open£ºÒÑ¿ª·Å£¬close£ºÒÔºóÒ²²»¿ª·Å
-	private String mpitype;			//³¡´ÎÀàĞÍ filmfest µçÓ°½Ú³¡´Î
+	private String citycode;	//åŸå¸‚
+	private String countycode;  //åŒºåŸŸ
+	private Long cinemaid;		//å½±é™¢ID
+	private Long movieid;		//å½±ç‰‡ID
+	private Date playdate;		//æ”¾æ˜ æ—¥æœŸ	
+	private String opentype;	//å¼€æ”¾ç±»å‹
+	private String seqNo;		//å¤–éƒ¨å…³è”ID
+	private Long batch;				//æ‰¹æ¬¡æ ‡è¯†
+	private String openStatus;		//å¼€æ”¾çŠ¶æ€ï¼šinitï¼šåˆå§‹çŠ¶æ€ï¼Œopenï¼šå·²å¼€æ”¾ï¼Œcloseï¼šä»¥åä¹Ÿä¸å¼€æ”¾
+	private String mpitype;			//åœºæ¬¡ç±»å‹ filmfest ç”µå½±èŠ‚åœºæ¬¡
 	
-	//ÒÔÏÂÎªopiÊôĞÔ
-	private Long openid;			//					------>Ô­opiÀïµÄid
-	private String status;			//×´Ì¬£º¿ÉÔ¤¶©£¬²»¿ÉÔ¤¶¨µÈ Y[¿ÉÔ¤¶©]N[²»¿ÉÔ¤¶©]D[É¾³ı]
-	private String partner;			//ºÏ×÷»ï°é¿ª·Å×´Ì¬£ºY¶ÔÍâ¿ª·Å,N²»¶ÔÍâ¿ª·Å
+	//ä»¥ä¸‹ä¸ºopiå±æ€§
+	private Long openid;			//					------>åŸopié‡Œçš„id
+	private String status;			//çŠ¶æ€ï¼šå¯é¢„è®¢ï¼Œä¸å¯é¢„å®šç­‰ Y[å¯é¢„è®¢]N[ä¸å¯é¢„è®¢]D[åˆ é™¤]
+	private String partner;			//åˆä½œä¼™ä¼´å¼€æ”¾çŠ¶æ€ï¼šYå¯¹å¤–å¼€æ”¾,Nä¸å¯¹å¤–å¼€æ”¾
 	private String characteristic;
 	
-	//²»ÔÚMapÖĞµÄ²éÑ¯Ìõ¼ş
-	private Timestamp playtimeGte; //·ÅÓ³Ê±¼ä´óÓÚµÈÓÚ¸ÃÊ±¼ä
-	private Timestamp playtimeLt; //·ÅÓ³Ê±¼äĞ¡ÓÚ¸ÃÊ±¼ä	
-	private String showtimeGte; //´óÓÚµÈÓÚ¸ÃÊ±¼ä£¬¸ÃÖµÖ»ÓĞÔÚplaydate²»Îª¿ÕÊ±£¬²ÅÓĞĞ§
-	private String showtimeLt;  //Ğ¡ÓÚ¸ÃÊ±¼ä£¬¸ÃÖµÖ»ÓĞÔÚplaydate²»Îª¿ÕÊ±£¬²ÅÓĞĞ§
+	//ä¸åœ¨Mapä¸­çš„æŸ¥è¯¢æ¡ä»¶
+	private Timestamp playtimeGte; //æ”¾æ˜ æ—¶é—´å¤§äºç­‰äºè¯¥æ—¶é—´
+	private Timestamp playtimeLt; //æ”¾æ˜ æ—¶é—´å°äºè¯¥æ—¶é—´	
+	private String showtimeGte; //å¤§äºç­‰äºè¯¥æ—¶é—´ï¼Œè¯¥å€¼åªæœ‰åœ¨playdateä¸ä¸ºç©ºæ—¶ï¼Œæ‰æœ‰æ•ˆ
+	private String showtimeLt;  //å°äºè¯¥æ—¶é—´ï¼Œè¯¥å€¼åªæœ‰åœ¨playdateä¸ä¸ºç©ºæ—¶ï¼Œæ‰æœ‰æ•ˆ
 	
-	//ÆäËü²ÎÊı	
+	//å…¶å®ƒå‚æ•°	
 	private Integer from;
 	private Integer maxnum;
 	
-	private String propertyName;	//DistinctPropertyÊ±ĞèÒª
+	private String propertyName;	//DistinctPropertyæ—¶éœ€è¦
 	
 	/**
-	 * gteShowtime£¬²»°üÀ¨ÔÚÄÚ
-	 * Èô²éÑ¯·½·¨Ê¹ÓÃ»º´æ£¬Çë×¢Òâ¸ÃÖµ¼ÓÈëkeyÖĞ
+	 * gteShowtimeï¼Œä¸åŒ…æ‹¬åœ¨å†…
+	 * è‹¥æŸ¥è¯¢æ–¹æ³•ä½¿ç”¨ç¼“å­˜ï¼Œè¯·æ³¨æ„è¯¥å€¼åŠ å…¥keyä¸­
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê6ÔÂ30ÈÕÏÂÎç2:20:18
+	 * @addTime 2015å¹´6æœˆ30æ—¥ä¸‹åˆ2:20:18
 	 */
 	public Map<String, Object> gainParamsMap(){
 		Map<String, Object> params = new RequestParamsMap<String, Object>();

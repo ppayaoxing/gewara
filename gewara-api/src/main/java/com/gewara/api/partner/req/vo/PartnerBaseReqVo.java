@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class PartnerBaseReqVo implements Serializable {
 	private static final long serialVersionUID = -678888982991963704L;
-	protected String appkey;		// 合作商APPKEY
+	protected String appkey;		// 鍚堜綔鍟咥PPKEY
 	protected String citycode;
-	protected String remoteIp;	// 城市编码
+	protected String remoteIp;	// 鍩庡競缂栫爜
 	public String getRemoteIp() {
 		return remoteIp;
 	}

@@ -5,14 +5,14 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * (ÇëÇóÏûÏ¢ÊµÌå)
+ * (è¯·æ±‚æ¶ˆæ¯å®ä½“)
  * @author chunhui.wang
  */
 public class PushCommonReqVo implements Serializable {
 	private static final long serialVersionUID = 4572609223488668907L;
 	
-	protected String remoteIp;//ÖÕ¶ËIP
-	private Map<String, Object> commonMap;//Èë²Î¼¯
+	protected String remoteIp;//ç»ˆç«¯IP
+	private Map<String, Object> commonMap;//å…¥å‚é›†
 	
 	public PushCommonReqVo(){}
 	

@@ -41,7 +41,7 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
 
     @Override
     public void afterPropertiesSet() {
-        Assert.notNull(aclService, "必须提供aclService实现！");
+        Assert.notNull(aclService, "蹇呴』鎻愪緵aclService瀹炵幇锛�");
         String validateUrl = config.getString("ssoValidateUrl");
         ssoClient = new GewaraSsoClient(config.getString("ssoLoginUrl"), getPath(), validateUrl);
     }
@@ -54,7 +54,7 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
         String returnUrl = request.getParameter(targetUrlParameter);
         if (StringUtils.isBlank(returnUrl)) {
             String contextPath = request.getContextPath();
-            returnUrl = request.getRequestURI().substring(contextPath.length());//去除ContextPath
+            returnUrl = request.getRequestURI().substring(contextPath.length());//鍘婚櫎ContextPath
             String qstr = request.getQueryString();
             if (StringUtils.isNotBlank(qstr)) {
                 try {
@@ -88,7 +88,7 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
             List<String> roles = ssoClient.loadUserAttributes(assertion);
             GewaraUser user = createCasUser(assertion);
             if (user == null) {
-                return ErrorCode.getFailure("用户信息未同步，请同步用户信息！！");
+                return ErrorCode.getFailure("鐢ㄦ埛淇℃伅鏈悓姝ワ紝璇峰悓姝ョ敤鎴蜂俊鎭紒锛�");
             }
             if (aclService.isCopyAuthorities()) {
                 StringBuffer rolenames = new StringBuffer();
@@ -102,14 +102,14 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
                     tmpAuth.add(new SimpleGrantedAuthority(role));
                 }
                 BeanUtil.set(user, "rolenames", rolenames.toString());
-                //做一次初始化
+                //鍋氫竴娆″垵濮嬪寲
                 user.getAuthorities();
             }
             BeanUtil.set(user, "usertype", UserType.USER_TYPE_SSO);
             return ErrorCode.getSuccessReturn(user);
         } catch (Exception e) {
             dbLogger.warn(e, 10);
-            return ErrorCode.getFailure("单点登录失败,请单点登录配置！！");
+            return ErrorCode.getFailure("鍗曠偣鐧诲綍澶辫触,璇峰崟鐐圭櫥褰曢厤缃紒锛�");
         }
     }
 
@@ -124,12 +124,12 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
     private GewaraUser createCasUser(Assertion assertion) {
         User user = daoService.getObjectByUkey(User.class, "username", assertion.getPrincipal().getName());
         Long userid = Long.parseLong(GewaraSsoClient.loadUserAttributes(assertion, "id"));
-        boolean update = false;//统一displayName、mail、mobile
+        boolean update = false;//缁熶竴displayName銆乵ail銆乵obile
         if (user == null) {
             user = daoService.getObject(User.class, userid);
             update = true;
         }
-        // 如果没有同步，简单保存一下
+        // 濡傛灉娌℃湁鍚屾锛岀畝鍗曚繚瀛樹竴涓�
         if (user == null) {
             user = new User();
             user.setUsername(assertion.getPrincipal().getName());

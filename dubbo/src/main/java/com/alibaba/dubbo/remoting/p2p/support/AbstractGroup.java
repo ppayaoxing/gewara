@@ -38,7 +38,7 @@ import com.alibaba.dubbo.remoting.transport.ChannelHandlerDispatcher;
  */
 public abstract class AbstractGroup implements Group {
 
-    // ��־���
+    // 锟斤拷志锟斤拷锟�
     protected static final Logger logger = LoggerFactory.getLogger(AbstractGroup.class);
     
     protected final URL url;
@@ -82,7 +82,7 @@ public abstract class AbstractGroup implements Group {
     @Override
     public Peer join(URL url, ChannelHandler handler) throws RemotingException {
         Server server = servers.get(url);
-        if (server == null) { // TODO �в�����϶
+        if (server == null) { // TODO 锟叫诧拷锟斤拷锟斤拷隙
             server = Transporters.bind(url, handler);
             servers.put(url, server);
             dispatcher.addChannelHandler(handler);
@@ -103,7 +103,7 @@ public abstract class AbstractGroup implements Group {
             return null;
         }
         Client client = clients.get(url);
-        if (client == null) { // TODO �в�����϶
+        if (client == null) { // TODO 锟叫诧拷锟斤拷锟斤拷隙
             client = Transporters.connect(url, dispatcher);
             clients.put(url, client);
         }

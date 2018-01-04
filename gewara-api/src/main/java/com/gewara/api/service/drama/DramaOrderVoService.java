@@ -13,25 +13,25 @@ public interface DramaOrderVoService {
 	
 	public ResultCode<ItemSeatMapVo> getChooseSeat(AreaSeatParamsVo paramsVo) ;
 	/**
-	 * ²éÑ¯Ñİ³ö¶©µ¥
+	 * æŸ¥è¯¢æ¼”å‡ºè®¢å•
 	 * @param command
 	 * @return
 	 */
 	ResultCode<List<GewaOrderVo>> getDramaOrderVoList(OrderParamsVo command, int from, int maxnum);
 	
 	/**
-	 * »ñÈ¡¹ºÂòÁĞ±í				
-	 * @param orderId ¶©µ¥id
+	 * è·å–è´­ä¹°åˆ—è¡¨				
+	 * @param orderId è®¢å•id
 	 * @return
-	 * @author ÕÔĞÛÓ¥
-	 * @date 2014Äê10ÔÂ23ÈÕ 14:37:58
+	 * @author èµµé›„é¹°
+	 * @date 2014å¹´10æœˆ23æ—¥ 14:37:58
 	 */
 	ResultCode<List<BuyItemVo>> getItemList(Long orderId);
 	
 	/**
-	 * ²éÑ¯Ñİ³ö¶©µ¥
+	 * æŸ¥è¯¢æ¼”å‡ºè®¢å•
 	 * @param orderid
-	 * @deprecated ¼ûgworder½Ó¿Ú
+	 * @deprecated è§gworderæ¥å£
 	 * @see com.gewara.api.gworder.service.GwOrderService.getOrderById
 	 * @return
 	 */
@@ -46,7 +46,7 @@ public interface DramaOrderVoService {
 	/*****
 	 * 
 	* @Title: 
-	* @Description: »ñÈ¡»ı·Ö
+	* @Description: è·å–ç§¯åˆ†
 	* @param orderid
 	* @return
 	* @return ResultCode<OrderOtherVo>
@@ -54,7 +54,7 @@ public interface DramaOrderVoService {
 	ResultCode<OrderOtherVo> getDramaOrderOtherData(Long orderid);
 	
 	/**
-	 * ÑéÖ¤ÓÃ»§Æ±È¯ÎÊÌâ
+	 * éªŒè¯ç”¨æˆ·ç¥¨åˆ¸é—®é¢˜
 	 * @param dramaid
 	 * @param memberid
 	 * @return 
@@ -64,7 +64,7 @@ public interface DramaOrderVoService {
 	ResultCode checkPriorizite(Long dramaid, Long memberid);
 	
 	/**
-	 * ±£´æÔ¶³Ì´òÆ±ĞÅÏ¢
+	 * ä¿å­˜è¿œç¨‹æ‰“ç¥¨ä¿¡æ¯
 	 * @param orderid
 	 * @param remotePrintInfo
 	 * @return
@@ -72,7 +72,7 @@ public interface DramaOrderVoService {
 	ResultCode saveOrderPrintInfo(Long orderid, String remotePrintInfo);
 	
 	/**
-	 * ±£´æ¶©µ¥¿ìµİĞÅÏ¢
+	 * ä¿å­˜è®¢å•å¿«é€’ä¿¡æ¯
 	 * @param orderid
 	 * @param addressid
 	 * @return

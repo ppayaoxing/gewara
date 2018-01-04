@@ -11,27 +11,27 @@ public class FilmFestConstant {
 	
 	public static final String MPITYPE_FILMFEST = "filmfest";
 	
-	// ±±¾©µçÓ°½ÚCODE
+	// åŒ—äº¬ç”µå½±èŠ‚CODE
 	public static final String CODE_BEIJING5 = "beijing5";
 	
-	// ÈËÆøÖ®Ñ¡
+	// äººæ°”ä¹‹é€‰
 	public static final String CODE_BEIJING5_RQZX = "beijing5_rqzx";
-	// ÎªÄã¶¨ÖÆ
+	// ä¸ºä½ å®šåˆ¶
 	public static final String CODE_BEIJING5_DINGZHI = "beijing5_dingzhi";
-	// ¾ºÈüµ¥Ôª
+	// ç«èµ›å•å…ƒ
 	public static final String CODE_BEIJING5_JSDY = "beijing5_jsdy";
-	// µçÓ°½Ú±êÊ¶
+	// ç”µå½±èŠ‚æ ‡è¯†
 	public static final String MPITYPE_FILMFEST5 = "filmfest";
 	
-	// ±±¾©µçÓ°½ÚCODE
+	// åŒ—äº¬ç”µå½±èŠ‚CODE
 	public static final String CODE_BEIJING6 = "beijing6";
-	// ÈËÆøÖ®Ñ¡
+	// äººæ°”ä¹‹é€‰
 	public static final String CODE_BEIJING6_RQZX = "beijing6_rqzx";
-	// ÎªÄã¶¨ÖÆ
+	// ä¸ºä½ å®šåˆ¶
 	public static final String CODE_BEIJING6_DINGZHI = "beijing6_dingzhi";
-	// ¾ºÈüµ¥Ôª
+	// ç«èµ›å•å…ƒ
 	public static final String CODE_BEIJING6_JSDY = "beijing6_jsdy";
-	// µçÓ°½Ú±êÊ¶
+	// ç”µå½±èŠ‚æ ‡è¯†
 	public static final String MPITYPE_FILMFEST6 = "filmfest";
 	
 	
@@ -44,7 +44,7 @@ public class FilmFestConstant {
 	
 	
 	
-	public static final String TAG_FILMFEST_16 = "16film";	//µÚ16½ìµçÓ°½Ú
+	public static final String TAG_FILMFEST_16 = "16film";	//ç¬¬16å±Šç”µå½±èŠ‚
 	public static final String TAG_FILMFEST_17 = "17film";
 	public static final String GEWARA_FILMFEST = "gewara_filmfest_";
 	
@@ -77,12 +77,12 @@ public class FilmFestConstant {
 		MESSAGE_MSG_EN = UnmodifiableMap.decorate(tmpEnMap);
 		
 		Map<String, String> tmpZhMap = new HashMap<String, String>();
-		tmpZhMap.put(MESSAGE_CODE_MOVIEID, "ÄãÒÑÔ¤Ô¼¹ıÏàÍ¬Ó°Æ¬£¬ÇëÑ¡ÔñÆäËüÓ°Æ¬£¡");
-		tmpZhMap.put(MESSAGE_CODE_PLAYTIME, "ÄúÒÑÔ¤Ô¼¹ıÏàÍ¬ÈÕÆÚÊ±¼äµÄÆäËûÓ°Æ¬£¬ÇëÑ¡ÔñÆäËûÊ±¼äµÄÓ°Æ¬£¡");
-		tmpZhMap.put(MESSAGE_CODE_QUANTITY, "ÄúËùÔ¤Ô¼µÄÓ°Æ¬ÊıÁ¿ÒÑ´ï10³¡£¡");
-		tmpZhMap.put(MESSAGE_CODE_NOSEAT, "ÇëÑ¡Ôñ×ùÎ»£¡");
-		tmpZhMap.put(MESSAGE_CODE_ONESEAT, "ÄúÖ»ÄÜÑ¡ÔñÒ»¸ö×ùÎ»£¡");
-		tmpZhMap.put(MESSAGE_CODE_CAPTCHA, "ÑéÖ¤Âë´íÎó£¡");
+		tmpZhMap.put(MESSAGE_CODE_MOVIEID, "ä½ å·²é¢„çº¦è¿‡ç›¸åŒå½±ç‰‡ï¼Œè¯·é€‰æ‹©å…¶å®ƒå½±ç‰‡ï¼");
+		tmpZhMap.put(MESSAGE_CODE_PLAYTIME, "æ‚¨å·²é¢„çº¦è¿‡ç›¸åŒæ—¥æœŸæ—¶é—´çš„å…¶ä»–å½±ç‰‡ï¼Œè¯·é€‰æ‹©å…¶ä»–æ—¶é—´çš„å½±ç‰‡ï¼");
+		tmpZhMap.put(MESSAGE_CODE_QUANTITY, "æ‚¨æ‰€é¢„çº¦çš„å½±ç‰‡æ•°é‡å·²è¾¾10åœºï¼");
+		tmpZhMap.put(MESSAGE_CODE_NOSEAT, "è¯·é€‰æ‹©åº§ä½ï¼");
+		tmpZhMap.put(MESSAGE_CODE_ONESEAT, "æ‚¨åªèƒ½é€‰æ‹©ä¸€ä¸ªåº§ä½ï¼");
+		tmpZhMap.put(MESSAGE_CODE_CAPTCHA, "éªŒè¯ç é”™è¯¯ï¼");
 		MESSAGE_MSG_ZH = UnmodifiableMap.decorate(tmpZhMap);
 	}
 	

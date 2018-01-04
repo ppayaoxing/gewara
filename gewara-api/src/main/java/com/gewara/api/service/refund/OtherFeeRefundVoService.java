@@ -7,12 +7,12 @@ import com.gewara.api.vo.pay.OtherFeeRefundVo;
 
 public interface OtherFeeRefundVoService {
 	/**
-	 * ²éÑ¯¶©µ¥ÆäËü·ÑÓÃÍË¿îĞÅÏ¢
-	 * @param origin	ÆäËü·ÑÓÃÀ´Ô´(²Î¿¼OtherFeeRefundConstantÀà)
-	 * @param tradeno	¶©µ¥ºÅ
-	 * @param status	ÍË¿î×´Ì¬
-	 * @param memberid	ÓÃ»§ID
-	 * @param mobile	ÊÖ»úºÅ
+	 * æŸ¥è¯¢è®¢å•å…¶å®ƒè´¹ç”¨é€€æ¬¾ä¿¡æ¯
+	 * @param origin	å…¶å®ƒè´¹ç”¨æ¥æº(å‚è€ƒOtherFeeRefundConstantç±»)
+	 * @param tradeno	è®¢å•å·
+	 * @param status	é€€æ¬¾çŠ¶æ€
+	 * @param memberid	ç”¨æˆ·ID
+	 * @param mobile	æ‰‹æœºå·
 	 * @param from		
 	 * @param maxnum
 	 * @return
@@ -20,20 +20,20 @@ public interface OtherFeeRefundVoService {
 	ResultCode<List<OtherFeeRefundVo>> getOtherFeeRefundList(String origin, String tradeno, String status, Long memberid, String mobile, int from, int maxnum);
 	
 	/**
-	 * ²éÑ¯¶©µ¥ÆäËü·ÑÓÃÍË¿îÊıÁ¿
-	 * @param origin	ÆäËü·ÑÓÃÀ´Ô´(²Î¿¼OtherFeeRefundConstantÀà)
-	 * @param tradeno	¶©µ¥ºÅ
-	 * @param status	ÍË¿î×´Ì¬
-	 * @param memberid	ÓÃ»§ID
-	 * @param mobile	ÊÖ»úºÅ
+	 * æŸ¥è¯¢è®¢å•å…¶å®ƒè´¹ç”¨é€€æ¬¾æ•°é‡
+	 * @param origin	å…¶å®ƒè´¹ç”¨æ¥æº(å‚è€ƒOtherFeeRefundConstantç±»)
+	 * @param tradeno	è®¢å•å·
+	 * @param status	é€€æ¬¾çŠ¶æ€
+	 * @param memberid	ç”¨æˆ·ID
+	 * @param mobile	æ‰‹æœºå·
 	 * @return
 	 */
 	ResultCode<Integer> getOtherFeeRefundCount(String origin, String tradeno, String status, Long memberid, String mobile);
 	
 	/**
-	 * ²éÑ¯¶©µ¥ÆäËü·ÑÓÃÍË¿îĞÅÏ¢
-	 * @param origin	ÆäËü·ÑÓÃÀ´Ô´(²Î¿¼OtherFeeRefundConstantÀà)
-	 * @param tradeno	¶©µ¥ºÅ
+	 * æŸ¥è¯¢è®¢å•å…¶å®ƒè´¹ç”¨é€€æ¬¾ä¿¡æ¯
+	 * @param origin	å…¶å®ƒè´¹ç”¨æ¥æº(å‚è€ƒOtherFeeRefundConstantç±»)
+	 * @param tradeno	è®¢å•å·
 	 * @return
 	 */
 	ResultCode<OtherFeeRefundVo> getOtherFeeRefund(String origin, String tradeno);

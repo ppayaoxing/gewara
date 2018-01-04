@@ -7,17 +7,17 @@ import com.gewara.api.vo.BaseVo;
 
 public class MemberApplyVo extends BaseVo {
 	private static final long serialVersionUID = -211000489988251450L;
-	private String recordid; //Î¨Ò»±êÊ¾
-	private Long memberid; //ÉêÇëÈËµÄid
-	private String mobile; //ÊÖ»úºÅ
-	private String moviename; //µçÓ°Ãû³Æ
-	private Long movieid;	//µçÓ°id
-	private String reason; //ÉêÇëÀíÓÉ 140¸ö×Ö
-//	private Date playtime; //·ÅÓ³Ê±¼ä
-	private Boolean isWin; //ÊÇ·ñÖĞ½±
+	private String recordid; //å”¯ä¸€æ ‡ç¤º
+	private Long memberid; //ç”³è¯·äººçš„id
+	private String mobile; //æ‰‹æœºå·
+	private String moviename; //ç”µå½±åç§°
+	private Long movieid;	//ç”µå½±id
+	private String reason; //ç”³è¯·ç†ç”± 140ä¸ªå­—
+//	private Date playtime; //æ”¾æ˜ æ—¶é—´
+	private Boolean isWin; //æ˜¯å¦ä¸­å¥–
 	private Date addTime; //addTime
-	private String nickname;//êÇ³Æ
-	private Date updateTime; //¸üĞÂÊ±¼ä
+	private String nickname;//æ˜µç§°
+	private Date updateTime; //æ›´æ–°æ—¶é—´
 	public String getRecordid() {
 		return recordid;
 	}

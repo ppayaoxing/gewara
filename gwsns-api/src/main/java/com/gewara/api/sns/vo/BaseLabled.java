@@ -4,8 +4,8 @@ package com.gewara.api.sns.vo;
 public class BaseLabled{
 
 	private Long id;
-	private Integer sort;//ÅÅĞò
-	private Long code;//¹ØÁªcode
+	private Integer sort;//æ’åº
+	private Long code;//å…³è”code
 	private String tag = "movie";
 	
 

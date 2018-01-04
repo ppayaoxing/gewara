@@ -272,9 +272,9 @@ public final class ReflectUtils {
         try {
             ParameterizedType parameterizedType = ((ParameterizedType) cls.getGenericInterfaces()[0]);
             Object genericClass = parameterizedType.getActualTypeArguments()[i];
-            if (genericClass instanceof ParameterizedType) { // ����༶����
+            if (genericClass instanceof ParameterizedType) { // 锟斤拷锟斤拷嗉讹拷锟斤拷锟�
                 return (Class<?>) ((ParameterizedType) genericClass).getRawType();
-            } else if (genericClass instanceof GenericArrayType) { // �������鷺��
+            } else if (genericClass instanceof GenericArrayType) { // 锟斤拷锟斤拷锟斤拷锟介泛锟斤拷
                 return (Class<?>) ((GenericArrayType) genericClass).getGenericComponentType();
             } else {
                 return (Class<?>) genericClass;
@@ -859,14 +859,14 @@ public final class ReflectUtils {
 	}
 
 	/**
-	 * ���ݷ���ǩ���������ҳ�������
+	 * 锟斤拷锟捷凤拷锟斤拷签锟斤拷锟斤拷锟斤拷锟斤拷锟揭筹拷锟斤拷锟斤拷锟斤拷
 	 * 
-	 * @param clazz ���ҵ��ࡣ
-	 * @param methodName ����ǩ��������method1(int, String)��Ҳ����ֻ��������������ֻ�з�����������method2��
-	 * @return ���ز��ҵ��ķ�����
+	 * @param clazz 锟斤拷锟揭碉拷锟洁。
+	 * @param methodName 锟斤拷锟斤拷签锟斤拷锟斤拷锟斤拷锟斤拷method1(int, String)锟斤拷也锟斤拷锟斤拷只锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷只锟叫凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷method2锟斤拷
+	 * @return 锟斤拷锟截诧拷锟揭碉拷锟侥凤拷锟斤拷锟斤拷
 	 * @throws NoSuchMethodException
 	 * @throws ClassNotFoundException  
-	 * @throws IllegalStateException �����ķ���ǩ���ҵ��������������ǩ����û��ָ�����������������صķ����������
+	 * @throws IllegalStateException 锟斤拷锟斤拷锟侥凤拷锟斤拷签锟斤拷锟揭碉拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟角╋拷锟斤拷锟矫伙拷锟街革拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷氐姆锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 */
 	public static Method findMethodByMethodSignature(Class<?> clazz, String methodName, String[] parameterTypes)
 	        throws NoSuchMethodException, ClassNotFoundException {
@@ -934,13 +934,13 @@ public final class ReflectUtils {
     }
 
     /**
-     * �������Ƿ���ָ���ӿڵ�ʵ�֡�
+     * 锟斤拷锟斤拷锟斤拷锟角凤拷锟斤拷指锟斤拷锟接口碉拷实锟街★拷
      * <p>
-     * ���ᴥ����ָ���ӿڵ�{@link Class}���������ClassLoader��û��ָ���ӿ���ʱ��Ҳ�������
+     * 锟斤拷锟结触锟斤拷锟斤拷指锟斤拷锟接口碉拷{@link Class}锟斤拷锟斤拷锟斤拷锟斤拷锟紺lassLoader锟斤拷没锟斤拷指锟斤拷锟接匡拷锟斤拷时锟斤拷也锟斤拷锟斤拷锟斤拷锟�
      * 
-     * @param obj Ҫ���Ķ���
-     * @param interfaceClazzName ָ���Ľӿ���
-     * @return ����{@code true}���������ʵ����ָ���ӿڣ����򷵻�{@code false}��
+     * @param obj 要锟斤拷锟侥讹拷锟斤拷
+     * @param interfaceClazzName 指锟斤拷锟侥接匡拷锟斤拷
+     * @return 锟斤拷锟斤拷{@code true}锟斤拷锟斤拷锟斤拷锟斤拷锟绞碉拷锟斤拷锟街革拷锟斤拷涌冢锟斤拷锟斤拷蚍祷锟絳@code false}锟斤拷
      */
     public static boolean isInstance(Object obj, String interfaceClazzName) {
         for (Class<?> clazz = obj.getClass(); 

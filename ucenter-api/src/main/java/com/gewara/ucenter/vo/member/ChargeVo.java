@@ -15,27 +15,27 @@ import com.gewara.util.StringUtil;
  */
 public class ChargeVo extends BaseVo{
 	private static final long serialVersionUID = 4914995483381697551L;
-	//����״̬
-	public static final String STATUS_NEW = "new";						//�¶���
-	public static final String STATUS_WAITPAY = "new_wait";			//�¶���,�ȴ�����
-	public static final String STATUS_PAID = "paid_success";			//�����
-	public static final String STATUS_CANCEL = "cancel";				//����ȡ����
-	private Integer version;		//���°汾
+	//锟斤拷锟斤拷状态
+	public static final String STATUS_NEW = "new";						//锟铰讹拷锟斤拷
+	public static final String STATUS_WAITPAY = "new_wait";			//锟铰讹拷锟斤拷,锟饺达拷锟斤拷锟斤拷
+	public static final String STATUS_PAID = "paid_success";			//锟斤拷锟斤拷锟�
+	public static final String STATUS_CANCEL = "cancel";				//锟斤拷锟斤拷取锟斤拷锟斤拷
+	private Integer version;		//锟斤拷锟铰版本
 	private Long id;				//ID
-	private String tradeNo;			//������
-	private Timestamp addtime;		//����ʱ��
-	private Timestamp updatetime;	//�޸�ʱ��
-	private Timestamp validtime;	//��Ч����	
-	private String status;			//����״̬
-	private Long memberid;			//�����û�
-	private String membername;		//�û���
-	private String paymethod;		//֧������:�Ա����㸶
-	private String paybank;			//֧������
-	private String payseqno;		//�ⲿ���׺�
-	private Integer totalfee;    	//��ֵ���
-	private String chargetype;		//��ֵ����:��ֵ �� Ϊ���������ֵ
-	private Long outorderid;		//��������id
-	private String chargeto;		//��ֵ��ʽ bank, wabi
+	private String tradeNo;			//锟斤拷锟斤拷锟斤拷
+	private Timestamp addtime;		//锟斤拷锟斤拷时锟斤拷
+	private Timestamp updatetime;	//锟睫革拷时锟斤拷
+	private Timestamp validtime;	//锟斤拷效锟斤拷锟斤拷	
+	private String status;			//锟斤拷锟斤拷状态
+	private Long memberid;			//锟斤拷锟斤拷锟矫伙拷
+	private String membername;		//锟矫伙拷锟斤拷
+	private String paymethod;		//支锟斤拷锟斤拷锟斤拷:锟皆憋拷锟斤拷锟姐付
+	private String paybank;			//支锟斤拷锟斤拷锟斤拷
+	private String payseqno;		//锟解部锟斤拷锟阶猴拷
+	private Integer totalfee;    	//锟斤拷值锟斤拷锟�
+	private String chargetype;		//锟斤拷值锟斤拷锟斤拷:锟斤拷值 锟斤拷 为锟斤拷锟斤拷锟斤拷锟斤拷锟街�
+	private Long outorderid;		//锟斤拷锟斤拷锟斤拷锟斤拷id
+	private String chargeto;		//锟斤拷值锟斤拷式 bank, wabi
 	
 	public ChargeVo(){
 		this.version = 0;
@@ -59,7 +59,7 @@ public class ChargeVo extends BaseVo{
 		this.chargetype = chargetype;
 	}
 	/**
-	 * @return �����Ľ��
+	 * @return 锟斤拷锟斤拷锟侥斤拷锟�
 	 */
 	public int getFee(){
 		return totalfee;
@@ -72,21 +72,21 @@ public class ChargeVo extends BaseVo{
 	}
 	public String getStatusText(){
 		if(isNew()) {
-            return "�ȴ�����";
+            return "锟饺达拷锟斤拷锟斤拷";
         }
 		if(isPaid()) {
-            return "��ֵ�ɹ�";
+            return "锟斤拷值锟缴癸拷";
         }
 		if(isCancel()) {
-            return "ȡ��";
+            return "取锟斤拷";
         }
-		return "������";
+		return "锟斤拷锟斤拷锟斤拷";
 	}
 	public boolean isCancel() {
 		return status.startsWith(STATUS_CANCEL);
 	}
 	public String getDescription() {
-		return "Gewara��վ�˻���ֵ��������վ��֧��";
+		return "Gewara锟斤拷站锟剿伙拷锟斤拷值锟斤拷锟斤拷锟斤拷锟斤拷站锟斤拷支锟斤拷";
 	}
 	public int getTotalfee() {
 		return totalfee;
@@ -137,7 +137,7 @@ public class ChargeVo extends BaseVo{
 		this.paymethod = paymethod;
 	}
 	public String getOrdertitle(){
-		return "Gewara�˻���ֵ" + "*�����ţ�" + tradeNo;
+		return "Gewara锟剿伙拷锟斤拷值" + "*锟斤拷锟斤拷锟脚ｏ拷" + tradeNo;
 	}
 	public String getPayseqno() {
 		return payseqno;
@@ -198,13 +198,13 @@ public class ChargeVo extends BaseVo{
 		return StringUtils.startsWith(this.status, STATUS_NEW) && isOvertime(); 
 	}
 	/**
-	 * FIXME: ʹ��Helper����
+	 * FIXME: 使锟斤拷Helper锟斤拷锟斤拷
 	 * public boolean isCanInvoice(){
 		return status.equals(STATUS_PAID) && StringUtils.equals(chargeto, ChargeConstant.WABIPAY) && canInvoiceList.contains(paymethod);
 	}
 	public String getPaytext(){
 		String result = PaymethodConstant.getPaymethodText(paymethod);
-		if(PaymethodConstant.PAYMETHOD_CHARGECARD.equals(paymethod)) result="�����"+ payseqno + "����";
+		if(PaymethodConstant.PAYMETHOD_CHARGECARD.equals(paymethod)) result="锟斤拷锟斤拷锟�"+ payseqno + "锟斤拷锟斤拷";
 		return result;
 	}*/
 

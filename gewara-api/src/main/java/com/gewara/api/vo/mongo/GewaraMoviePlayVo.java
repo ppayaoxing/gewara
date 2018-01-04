@@ -17,11 +17,11 @@ public class GewaraMoviePlayVo extends BaseVo{
 	private String movieIdList;
 	private List<String> cityList;
 	private Integer orderSort;
-	private String pattern;//Ä£Ê½£¬µ¥Æ¬»òÕßÓ°Õ¹ µ¥Æ¬Ö»ÄÜÓĞÒ»²¿µçÓ°£¬Ó°Õ¹¿ÉÒÔÓĞ3²¿
-	private String singularpattern;//µ¥Æ¬Ä£Ê½£ºµãÓ³»¹ÊÇÕĞÄ¼
-	private String oneword;//Ò»¾ä»°µãÆÀ
-	private String advlogo;//ÉÏ´«µ¥Æ¬µÄºá·ùº£±¨
-	private String logourl;//µçÓ°º£±¨µÄURL
+	private String pattern;//æ¨¡å¼ï¼Œå•ç‰‡æˆ–è€…å½±å±• å•ç‰‡åªèƒ½æœ‰ä¸€éƒ¨ç”µå½±ï¼Œå½±å±•å¯ä»¥æœ‰3éƒ¨
+	private String singularpattern;//å•ç‰‡æ¨¡å¼ï¼šç‚¹æ˜ è¿˜æ˜¯æ‹›å‹Ÿ
+	private String oneword;//ä¸€å¥è¯ç‚¹è¯„
+	private String advlogo;//ä¸Šä¼ å•ç‰‡çš„æ¨ªå¹…æµ·æŠ¥
+	private String logourl;//ç”µå½±æµ·æŠ¥çš„URL
 	
 	@Override
 	public Serializable realId() {

@@ -12,7 +12,7 @@ public class CheckfirstbindByTradeNoRequest extends ApiRequest {
 	 */
 	private static final long serialVersionUID = 4462122364999604768L;
 	
-	/**∂©µ•∫≈*/
+	/**ËÆ¢ÂçïÂè∑*/
 	private String tradeNo;
 	
 	public CheckfirstbindByTradeNoRequest(){}

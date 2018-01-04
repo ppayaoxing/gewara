@@ -11,17 +11,17 @@ public class MusicAlbumVo extends BaseVo{
 	 * 
 	 */
 	private static final long serialVersionUID = 309009193307051030L;
-	private String list_id;//¾«Ñ¡¼¯ID
-	private String collect_name;//¾«Ñ¡¼¯Ãû³Æ
-	private String collect_logo;//¾«Ñ¡¼¯LOGO
-	private List<Long> movieid;//µçÓ°ID
-	private Integer likeNum;//Ï²»¶Êı
-	private Integer talkNum;//ÌÖÂÛÊı
-	private Timestamp createTime;//´´½¨Ê±¼ä
-	private Timestamp updateTime;//ĞŞ¸ÄÊ±¼ä
-	private List<MovieMusicVo> songs;//ÒôÀÖ
-	private Boolean isUpdate;//ÊÇ·ñ¸üĞÂ
-	private String type;//×¨¼­ ¾«Ñ¡¼¯ ¸èÇúÁĞ±í(album,collection,song)
+	private String list_id;//ç²¾é€‰é›†ID
+	private String collect_name;//ç²¾é€‰é›†åç§°
+	private String collect_logo;//ç²¾é€‰é›†LOGO
+	private List<Long> movieid;//ç”µå½±ID
+	private Integer likeNum;//å–œæ¬¢æ•°
+	private Integer talkNum;//è®¨è®ºæ•°
+	private Timestamp createTime;//åˆ›å»ºæ—¶é—´
+	private Timestamp updateTime;//ä¿®æ”¹æ—¶é—´
+	private List<MovieMusicVo> songs;//éŸ³ä¹
+	private Boolean isUpdate;//æ˜¯å¦æ›´æ–°
+	private String type;//ä¸“è¾‘ ç²¾é€‰é›† æ­Œæ›²åˆ—è¡¨(album,collection,song)
 	public MusicAlbumVo() {
 		super();
 	}

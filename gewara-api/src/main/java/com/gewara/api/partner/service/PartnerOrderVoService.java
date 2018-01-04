@@ -25,14 +25,14 @@ import com.gewara.api.vo.pay.SelectPayMethodVo;
 
 public interface PartnerOrderVoService {
 	/**
-	 * ´´½¨µçÓ°¶©µ¥
+	 * åˆ›å»ºç”µå½±è®¢å•
 	 * 
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> addTicketOrder(PartnerAddOrderReqVo reqVo);
 	/**
-	 * ¶©µ¥ÏêÇé
+	 * è®¢å•è¯¦æƒ…
 	 * 
 	 * @param appkey
 	 * @param memberId
@@ -41,13 +41,13 @@ public interface PartnerOrderVoService {
 	 */
 	ResultCode<GewaOrderVo> getOrderDetail(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * »ñÈ¡¶©µ¥ÏêÇé
+	 * è·å–è®¢å•è¯¦æƒ…
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> getGewaOrder(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * ¶©µ¥µ¹¼ÆÊ±
+	 * è®¢å•å€’è®¡æ—¶
 	 * 
 	 * @param appkey
 	 * @param memberId
@@ -57,7 +57,7 @@ public interface PartnerOrderVoService {
 	ResultCode<Long> getValidTime(PartnerOrderInfoReqVo reqVo);
 
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ»ñÈ¡ÌØ¼Û»î¶¯ÁĞ±í
+	 * æ ¹æ®è®¢å•å·è·å–ç‰¹ä»·æ´»åŠ¨åˆ—è¡¨
 	 * 
 	 * @param appkey
 	 * @param memberId
@@ -67,7 +67,7 @@ public interface PartnerOrderVoService {
 	ResultCode<List<SpDiscountVo>> getDiscountList(PartnerOrderInfoReqVo reqVo);
 
 	/**
-	 * ¶©µ¥µÄÖ§¸¶·½Ê½ÁĞ±í
+	 * è®¢å•çš„æ”¯ä»˜æ–¹å¼åˆ—è¡¨
 	 * 
 	 * @param appkey
 	 * @param memberId
@@ -77,7 +77,7 @@ public interface PartnerOrderVoService {
 	ResultCode<PayMethodInfoVo> showPayMethodList(PartnerOrderInfoReqVo reqVo);
 
 	/**
-	 * ¸ù¾İÖ§¸¶·½Ê½»ñÈ¡Ìá½»²ÎÊıĞÅÏ¢
+	 * æ ¹æ®æ”¯ä»˜æ–¹å¼è·å–æäº¤å‚æ•°ä¿¡æ¯
 	 * 
 	 * @param appkey
 	 * @param memberId
@@ -86,98 +86,98 @@ public interface PartnerOrderVoService {
 	 */
 	ResultCode<SelectPayMethodVo> selectPayMethod(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * »ñÈ¡¶©µ¥µÄÈ¡Æ±¶ÌĞÅ
+	 * è·å–è®¢å•çš„å–ç¥¨çŸ­ä¿¡
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<String> getOrderTakeTicketMsg(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * »ñÈ¡¶©µ¥µÄ×´Ì¬
+	 * è·å–è®¢å•çš„çŠ¶æ€
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<String> getOrderStatus(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * ÓÃ»§È¡Ïû¶©µ¥
+	 * ç”¨æˆ·å–æ¶ˆè®¢å•
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode cancelOrder(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * ÓÃ»§È¡ÏûÊ¹ÓÃÓÅ»İ
+	 * ç”¨æˆ·å–æ¶ˆä½¿ç”¨ä¼˜æƒ 
 	 * @param vo
 	 * @return
 	 */
 	ResultCode cancelOrderDiscount(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * ÓÃ»§Óà¶îÖ§¸¶
+	 * ç”¨æˆ·ä½™é¢æ”¯ä»˜
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode balancePay(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * »ñÈ¡¶©µ¥¿ÉÒÔÊ¹ÓÃµÄ¶Ò»»È¯
+	 * è·å–è®¢å•å¯ä»¥ä½¿ç”¨çš„å…‘æ¢åˆ¸
 	 * @param vo
 	 * @return
 	 */
 	ResultCode<List<OrderCardVo>> getCardListByTradeNo(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * Ê¹ÓÃÈ¯»òÂë
+	 * ä½¿ç”¨åˆ¸æˆ–ç 
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<OrderCardVo> useCard(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * È¯È·ÈÏÖ§¸¶
+	 * åˆ¸ç¡®è®¤æ”¯ä»˜
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<Integer> confirmCardPay(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * »ñÈ¡ÓÃ»§¶©µ¥ĞÅÏ¢ÁĞ±í
+	 * è·å–ç”¨æˆ·è®¢å•ä¿¡æ¯åˆ—è¡¨
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<List<GewaOrderVo>> getMemberOrderList(PartnerOrderQueryReqVo reqVo);
 	/**
-	 * Ê¹ÓÃÌØ¼Û»î¶¯Âë
+	 * ä½¿ç”¨ç‰¹ä»·æ´»åŠ¨ç 
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<Map> useSpcode(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * »ñÈ¡ÌØ¼Û»î¶¯ÂëÁĞ±í
+	 * è·å–ç‰¹ä»·æ´»åŠ¨ç åˆ—è¡¨
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<List<OrderSpCodeVo>> getSpCodeVoList(PartnerSpCodeReqVo reqVo);
 	/**
-	 * unionWapFastÖ§¸¶
+	 * unionWapFastæ”¯ä»˜
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode unionWapFast(PartnerCommonReqVo reqVo);
 
 	/**
-	 * ºÏ×÷ÉÌ´´½¨¶©µ¥£¬·Ç¸ñÍßÀ­ÓÃ»§¡¢·ÇÁªÃûµÇÂ¼ÓÃ»§
+	 * åˆä½œå•†åˆ›å»ºè®¢å•ï¼Œéæ ¼ç“¦æ‹‰ç”¨æˆ·ã€éè”åç™»å½•ç”¨æˆ·
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> addPartnerUserTicketOrder(PartnerAddOrderReqVo reqVo);
 	/**
-	 * »ñÈ¡¹ºÂòÁĞ±í
+	 * è·å–è´­ä¹°åˆ—è¡¨
 	 * @param orderId
 	 * @return
 	 */
 	ResultCode<List<BuyItemVo>> getItemList(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ÍË¿î
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•é€€æ¬¾
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<OrderRefundVo> getOrderRefundByTradeNo(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * Ìá½»ÍË¿î
+	 * æäº¤é€€æ¬¾
 	 * @param orderId
 	 * @param tradeNo
 	 * @param retback
@@ -186,31 +186,31 @@ public interface PartnerOrderVoService {
 	 */
 	ResultCode confirmRefundOrder(PartnerOrderRefundInfoReqVo reqVo);
 	/**
-	 * ¼ì²é¶©µ¥ÄÜ·ñÍË¿î
+	 * æ£€æŸ¥è®¢å•èƒ½å¦é€€æ¬¾
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode checkRefundOrder(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * ¼ì²é¶©µ¥ÄÜ·ñÍË¿î
+	 * æ£€æŸ¥è®¢å•èƒ½å¦é€€æ¬¾
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode filterRefundOrder(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯ÎïÁ÷ĞÅÏ¢
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢ç‰©æµä¿¡æ¯
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<List<RouteVo>> getRouteVoByTradeNo(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ÍØÕ¹ĞÅÏ¢
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•æ‹“å±•ä¿¡æ¯
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<OrderExtraVo> getOrderExtraByTradeNo(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯µØÖ·
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢åœ°å€
 	 * @param tradeNo
 	 * @return
 	 */
@@ -223,14 +223,14 @@ public interface PartnerOrderVoService {
 	ResultCode<List<OrderSpCodeVo>> getSpCodeVoListByMemberId(PartnerSpCodeReqVo reqVo);
 	ResultCode<List<OrderSpCodeVo>> getUnoverdueSpCodeVoList(PartnerSpCodeReqVo reqVo);
 	/**
-	 * Ê¹ÓÃ»ı·Ö
+	 * ä½¿ç”¨ç§¯åˆ†
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode usePoint(String memberEncode,String tradeNo,int usePoint,String ip);
 	ResultCode sendVoiceCode(String tradeNo, String ip, String mobile, boolean checkSecurity);
 	/**
-	 * µ±¶©µ¥ÒÑÑ¡Ôñ»î¶¯ºó,²»ÄÜÓëÆäËûÓÅ»İ·½Ê½¹²ÏíµÄ»î¶¯×´Ì¬·µ»ØÎª¿ÉÓÃ
+	 * å½“è®¢å•å·²é€‰æ‹©æ´»åŠ¨å,ä¸èƒ½ä¸å…¶ä»–ä¼˜æƒ æ–¹å¼å…±äº«çš„æ´»åŠ¨çŠ¶æ€è¿”å›ä¸ºå¯ç”¨
 	 * @param tradeNo
 	 * @return
 	 */
@@ -238,40 +238,40 @@ public interface PartnerOrderVoService {
 	
 	ResultCode<Map<String, String>> getRelatedData(GewaOrderVo order);
 	/**
-	 * È¡Ïû°ü³¡gewaOrder¶©µ¥
+	 * å–æ¶ˆåŒ…åœºgewaOrderè®¢å•
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode cancelBaoChangGewaOrder(PartnerOrderInfoReqVo reqVo);
 	/**
-	 * Ô­getMemberOrderList²éÑ¯¶©µ¥·½·¨£¬²»²éÑ¯HisOrderµÄ¶©µ¥£»
-	 * getMemberOrderListNew·½·¨£¬²éÑ¯GewaOrder¡¢PostOrder¡¢HisOrder
+	 * åŸgetMemberOrderListæŸ¥è¯¢è®¢å•æ–¹æ³•ï¼Œä¸æŸ¥è¯¢HisOrderçš„è®¢å•ï¼›
+	 * getMemberOrderListNewæ–¹æ³•ï¼ŒæŸ¥è¯¢GewaOrderã€PostOrderã€HisOrder
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<List<GewaOrderVo>> getMemberOrderListNew(PartnerOrderQueryReqVo reqVo);
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ»ñÈ¡Î¢ĞÅÅóÓÑÈ¯Êı¾İ
+	 * æ ¹æ®è®¢å•å·è·å–å¾®ä¿¡æœ‹å‹åˆ¸æ•°æ®
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<Map<String, String>> getWxFriendCardData(String tradeNo);
 	/**
-	 * ÓÃ»§É¾³ı¶©µ¥£¨wapÓÃ£©
+	 * ç”¨æˆ·åˆ é™¤è®¢å•ï¼ˆwapç”¨ï¼‰
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> removeOrderForWap(PartnerOrderInfoReqVo reqVo);
 
 	/**
-	 * »ñÈ¡¶©µ¥µÄÈ¡Æ±ÃÜÂë
+	 * è·å–è®¢å•çš„å–ç¥¨å¯†ç 
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<String> getTicketPassMsg(PartnerOrderInfoReqVo reqVo);
 
 	/**
-	 * »ñÈ¡À´×ÔQQÁªÃûµÇÂ¼µÄ¶©µ¥ĞÅÏ¢
+	 * è·å–æ¥è‡ªQQè”åç™»å½•çš„è®¢å•ä¿¡æ¯
 	 * 
 	 * @param tradeNo
 	 * @return
@@ -279,7 +279,7 @@ public interface PartnerOrderVoService {
 	ResultCode<Map<String, String>> getQQcardConsumeInfo(String tradeNo);
 
 	/**
-	 * ±£´æÀ´×ÔQQÁªÃûµÇÂ¼µÄ¶©µ¥ĞÅÏ¢£¬¸øQQ¿¨È¯ºËÏúÊ±Ê¹ÓÃ
+	 * ä¿å­˜æ¥è‡ªQQè”åç™»å½•çš„è®¢å•ä¿¡æ¯ï¼Œç»™QQå¡åˆ¸æ ¸é”€æ—¶ä½¿ç”¨
 	 * 
 	 * @param tradeNo
 	 * @param cardId
@@ -288,7 +288,7 @@ public interface PartnerOrderVoService {
 	 */
 	ResultCode<String> saveQQcardConsumeInfo(String tradeNo, String cardId, String code);
 	/**
-	 * Ê¹ÓÃµã¿¨(FCard)
+	 * ä½¿ç”¨ç‚¹å¡(FCard)
 	 * @param reqVo
 	 * @return
 	 */

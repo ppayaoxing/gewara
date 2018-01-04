@@ -11,14 +11,14 @@ public class ExpressProvinceVo extends BaseVo {
 	private static final long serialVersionUID = -6669986405172603038L;
 	
 	private Long id;
-	private String name;			//ÅäËÍÇøÓòÃû³Æ
-	private String provincename;	//ÅäËÍÊ¡·İÃû³Æ
-	private String provincecode;	//ÅäËÍÊ¡·İ´úÂë
-	private Timestamp addtime;		//Ìí¼ÓÊ±¼ä
-	private Timestamp updatetime;	//¸üĞÂÊ±¼ä
-	private String expressid;		//ÅäËÍ·½Ê½id
-	private Integer expressfee;		//¼Ä¼ş·ÑÓÃ
-	private Integer freelimit;		//Ãâ·Ñ¶î¶È(ÀıÈç£º¹ºÂòÎïÆ·Âú300ÔªÃâ¿ìµİ·Ñ)
+	private String name;			//é…é€åŒºåŸŸåç§°
+	private String provincename;	//é…é€çœä»½åç§°
+	private String provincecode;	//é…é€çœä»½ä»£ç 
+	private Timestamp addtime;		//æ·»åŠ æ—¶é—´
+	private Timestamp updatetime;	//æ›´æ–°æ—¶é—´
+	private String expressid;		//é…é€æ–¹å¼id
+	private Integer expressfee;		//å¯„ä»¶è´¹ç”¨
+	private Integer freelimit;		//å…è´¹é¢åº¦(ä¾‹å¦‚ï¼šè´­ä¹°ç‰©å“æ»¡300å…ƒå…å¿«é€’è´¹)
 
 	public ExpressProvinceVo(){}
 	

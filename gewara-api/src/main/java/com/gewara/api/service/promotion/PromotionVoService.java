@@ -10,7 +10,7 @@ import com.gewara.api.vo.pay.PromotionVo;
 import com.gewara.cons.SalesPromotionConstant;
 
 /**
- * AvatarÌá¹©µÄAPI
+ * Avataræä¾›çš„API
  * @author leo
  *
  */
@@ -36,22 +36,22 @@ public interface PromotionVoService {
 	
 	
 	/**
-	 * ²éÑ¯ÌØ¼Û
-	 * @param id ÌØ¼ÛID
+	 * æŸ¥è¯¢ç‰¹ä»·
+	 * @param id ç‰¹ä»·ID
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê3ÔÂ9ÈÕÉÏÎç10:49:55
+	 * @addTime 2016å¹´3æœˆ9æ—¥ä¸Šåˆ10:49:55
 	 */
 	ResultCode<PromotionVo> getPromotion(Long id);
 	
 	/**
 	 * 
-	 * ²éÑ¯ÌØ¼Û
+	 * æŸ¥è¯¢ç‰¹ä»·
 	 * @param tag SalesPromotionConstant.TAG_*, PromotionVoService.TAG_PROMOTION_MAIN
-	 * @param id Ïà¹Ø±íID
+	 * @param id ç›¸å…³è¡¨ID
 	 * 
 	 * @author leo
-	 * @addTime 2016Äê6ÔÂ24ÈÕÏÂÎç14:53:16
+	 * @addTime 2016å¹´6æœˆ24æ—¥ä¸‹åˆ14:53:16
 	 */
 	ResultCode<PromotionVo> getPromotionByTag(String tag, Long id);
 }

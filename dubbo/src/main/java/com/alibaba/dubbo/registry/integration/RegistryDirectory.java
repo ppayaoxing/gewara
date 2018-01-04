@@ -68,17 +68,17 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
 
     private static final ConfiguratorFactory configuratorFactory = ExtensionLoader.getExtensionLoader(ConfiguratorFactory.class).getAdaptiveExtension();
 
-    private Protocol protocol; // ע��ʱ��ʼ�������Բ�Ϊnull
+    private Protocol protocol; // 注锟斤拷时锟斤拷始锟斤拷锟斤拷锟斤拷锟皆诧拷为null
 
-    private Registry registry; // ע��ʱ��ʼ�������Բ�Ϊnull
+    private Registry registry; // 注锟斤拷时锟斤拷始锟斤拷锟斤拷锟斤拷锟皆诧拷为null
 
-    private final String serviceKey; // ����ʱ��ʼ�������Բ�Ϊnull
+    private final String serviceKey; // 锟斤拷锟斤拷时锟斤拷始锟斤拷锟斤拷锟斤拷锟皆诧拷为null
 
-    private final Class<T> serviceType; // ����ʱ��ʼ�������Բ�Ϊnull
+    private final Class<T> serviceType; // 锟斤拷锟斤拷时锟斤拷始锟斤拷锟斤拷锟斤拷锟皆诧拷为null
     
-    private final Map<String, String> queryMap; // ����ʱ��ʼ�������Բ�Ϊnull
+    private final Map<String, String> queryMap; // 锟斤拷锟斤拷时锟斤拷始锟斤拷锟斤拷锟斤拷锟皆诧拷为null
 
-    private final URL directoryUrl; // ����ʱ��ʼ�������Բ�Ϊnull���������Ǹ���nullֵ
+    private final URL directoryUrl; // 锟斤拷锟斤拷时锟斤拷始锟斤拷锟斤拷锟斤拷锟皆诧拷为null锟斤拷锟斤拷锟斤拷锟斤拷锟角革拷锟斤拷null值
     
     private final String[] serviceMethods;
 
@@ -86,23 +86,23 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
 
     private volatile boolean forbidden = false;
     
-    private volatile URL overrideDirectoryUrl; // ����ʱ��ʼ�������Բ�Ϊnull���������Ǹ���nullֵ
+    private volatile URL overrideDirectoryUrl; // 锟斤拷锟斤拷时锟斤拷始锟斤拷锟斤拷锟斤拷锟皆诧拷为null锟斤拷锟斤拷锟斤拷锟斤拷锟角革拷锟斤拷null值
 
-    /*override���� 
-     * ���ȼ���override>-D>consumer>provider
-     * ��һ�ֹ������ĳ��provider <ip:port,timeout=100>
-     * �ڶ��ֹ����������provider <* ,timeout=5000>
+    /*override锟斤拷锟斤拷 
+     * 锟斤拷锟饺硷拷锟斤拷override>-D>consumer>provider
+     * 锟斤拷一锟街癸拷锟斤拷锟斤拷锟侥筹拷锟絧rovider <ip:port,timeout=100>
+     * 锟节讹拷锟街癸拷锟斤拷锟斤拷锟斤拷锟斤拷锟絧rovider <* ,timeout=5000>
      */
-    private volatile List<Configurator> configurators; // ��ʼΪnull�Լ���;���ܱ���Ϊnull����ʹ�þֲ���������
+    private volatile List<Configurator> configurators; // 锟斤拷始为null锟皆硷拷锟斤拷途锟斤拷锟杰憋拷锟斤拷为null锟斤拷锟斤拷使锟矫局诧拷锟斤拷锟斤拷锟斤拷锟斤拷
     
     // Map<url, Invoker> cache service url to invoker mapping.
-    private volatile Map<String, Invoker<T>> urlInvokerMap; // ��ʼΪnull�Լ���;���ܱ���Ϊnull����ʹ�þֲ���������
+    private volatile Map<String, Invoker<T>> urlInvokerMap; // 锟斤拷始为null锟皆硷拷锟斤拷途锟斤拷锟杰憋拷锟斤拷为null锟斤拷锟斤拷使锟矫局诧拷锟斤拷锟斤拷锟斤拷锟斤拷
     
     // Map<methodName, Invoker> cache service method to invokers mapping.
-    private volatile Map<String, List<Invoker<T>>> methodInvokerMap; // ��ʼΪnull�Լ���;���ܱ���Ϊnull����ʹ�þֲ���������
+    private volatile Map<String, List<Invoker<T>>> methodInvokerMap; // 锟斤拷始为null锟皆硷拷锟斤拷途锟斤拷锟杰憋拷锟斤拷为null锟斤拷锟斤拷使锟矫局诧拷锟斤拷锟斤拷锟斤拷锟斤拷
     
     // Set<invokerUrls> cache invokeUrls to invokers mapping.
-    private volatile Set<URL> cachedInvokerUrls; // ��ʼΪnull�Լ���;���ܱ���Ϊnull����ʹ�þֲ���������
+    private volatile Set<URL> cachedInvokerUrls; // 锟斤拷始为null锟皆硷拷锟斤拷途锟斤拷锟杰憋拷锟斤拷为null锟斤拷锟斤拷使锟矫局诧拷锟斤拷锟斤拷锟斤拷锟斤拷
 
     public RegistryDirectory(Class<T> serviceType, URL url) {
         super(url);
@@ -148,7 +148,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         } catch (Throwable t) {
             logger.warn("unexpeced error when unsubscribe service " + serviceKey + "from registry" + registry.getUrl(), t);
         }
-        super.destroy(); // ������unsubscribe֮��ִ��
+        super.destroy(); // 锟斤拷锟斤拷锟斤拷unsubscribe之锟斤拷执锟斤拷
         try {
             destroyAllInvokers();
         } catch (Throwable t) {
@@ -188,7 +188,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
             }
         }
         List<Configurator> localConfigurators = this.configurators; // local reference
-        // �ϲ�override����
+        // 锟较诧拷override锟斤拷锟斤拷
         this.overrideDirectoryUrl = directoryUrl;
         if (localConfigurators != null && localConfigurators.size() > 0) {
             for (Configurator configurator : localConfigurators) {
@@ -201,34 +201,34 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     
     
     /**
-     * ����invokerURL�б�ת��Ϊinvoker�б�ת���������£�
-     * 1.���url�Ѿ���ת��Ϊinvoker�������������ã�ֱ�Ӵӻ����л�ȡ��ע�����url���κ�һ���������Ҳ����������
-     * 2.��������invoker�б�Ϊ�գ����ʾ���µ�invoker�б�
-     * 3.��������invokerUrl�б��ǿգ����ʾֻ���·���override�����route������Ҫ���½���Աȣ������Ƿ���Ҫ�������á�
-     * @param invokerUrls ����Ĳ�������Ϊnull
+     * 锟斤拷锟斤拷invokerURL锟叫憋拷转锟斤拷为invoker锟叫憋拷转锟斤拷锟斤拷锟斤拷锟斤拷锟铰ｏ拷
+     * 1.锟斤拷锟絬rl锟窖撅拷锟斤拷转锟斤拷为invoker锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟矫ｏ拷直锟接从伙拷锟斤拷锟叫伙拷取锟斤拷注锟斤拷锟斤拷锟絬rl锟斤拷锟轿猴拷一锟斤拷锟斤拷锟斤拷锟斤拷锟揭诧拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+     * 2.锟斤拷锟斤拷锟斤拷锟斤拷invoker锟叫憋拷为锟秸ｏ拷锟斤拷锟绞撅拷锟斤拷碌锟絠nvoker锟叫憋拷
+     * 3.锟斤拷锟斤拷锟斤拷锟斤拷invokerUrl锟叫憋拷锟角空ｏ拷锟斤拷锟绞局伙拷锟斤拷路锟斤拷锟給verride锟斤拷锟斤拷锟絩oute锟斤拷锟斤拷锟斤拷要锟斤拷锟铰斤拷锟斤拷员龋锟斤拷锟斤拷锟斤拷欠锟斤拷锟揭拷锟斤拷锟斤拷锟斤拷谩锟�
+     * @param invokerUrls 锟斤拷锟斤拷牟锟斤拷锟斤拷锟斤拷锟轿猲ull
      */
     private void refreshInvoker(List<URL> invokerUrls){
         if (invokerUrls != null && invokerUrls.size() == 1 && invokerUrls.get(0) != null
                 && Constants.EMPTY_PROTOCOL.equals(invokerUrls.get(0).getProtocol())) {
-            this.forbidden = true; // ��ֹ����
-            this.methodInvokerMap = null; // �ÿ��б�
-            destroyAllInvokers(); // �ر�����Invoker
+            this.forbidden = true; // 锟斤拷止锟斤拷锟斤拷
+            this.methodInvokerMap = null; // 锟矫匡拷锟叫憋拷
+            destroyAllInvokers(); // 锟截憋拷锟斤拷锟斤拷Invoker
         } else {
-            this.forbidden = false; // �������
+            this.forbidden = false; // 锟斤拷锟斤拷锟斤拷锟�
             Map<String, Invoker<T>> oldUrlInvokerMap = this.urlInvokerMap; // local reference
             if (invokerUrls.size() == 0 && this.cachedInvokerUrls != null){
                 invokerUrls.addAll(this.cachedInvokerUrls);
             } else {
                 this.cachedInvokerUrls = new HashSet<URL>();
-                this.cachedInvokerUrls.addAll(invokerUrls);//����invokerUrls�б����ڽ���Ա�
+                this.cachedInvokerUrls.addAll(invokerUrls);//锟斤拷锟斤拷invokerUrls锟叫憋拷锟斤拷锟节斤拷锟斤拷员锟�
             }
             if (invokerUrls.size() ==0 ){
             	return;
             }
-            Map<String, Invoker<T>> newUrlInvokerMap = toInvokers(invokerUrls) ;// ��URL�б�ת��Invoker�б�
-            Map<String, List<Invoker<T>>> newMethodInvokerMap = toMethodInvokers(newUrlInvokerMap); // ��������ӳ��Invoker�б�
+            Map<String, Invoker<T>> newUrlInvokerMap = toInvokers(invokerUrls) ;// 锟斤拷URL锟叫憋拷转锟斤拷Invoker锟叫憋拷
+            Map<String, List<Invoker<T>>> newMethodInvokerMap = toMethodInvokers(newUrlInvokerMap); // 锟斤拷锟斤拷锟斤拷锟斤拷映锟斤拷Invoker锟叫憋拷
             // state change
-            //�����������򲻽��д���.
+            //锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟津不斤拷锟叫达拷锟斤拷.
             if (newUrlInvokerMap == null || newUrlInvokerMap.size() == 0 ){
                 logger.error(new IllegalStateException("urls to invokers error .invokerUrls.size :"+invokerUrls.size() + ", invoker.size :0. urls :"+invokerUrls.toString()));
                 return ;
@@ -236,7 +236,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
             this.methodInvokerMap = multiGroup ? toMergeMethodInvokerMap(newMethodInvokerMap) : newMethodInvokerMap;
             this.urlInvokerMap = newUrlInvokerMap;
             try{
-                destroyUnusedInvokers(oldUrlInvokerMap,newUrlInvokerMap); // �ر�δʹ�õ�Invoker
+                destroyUnusedInvokers(oldUrlInvokerMap,newUrlInvokerMap); // 锟截憋拷未使锟矫碉拷Invoker
             }catch (Exception e) {
                 logger.warn("destroyUnusedInvokers error. ", e);
             }
@@ -274,14 +274,14 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
     
     /**
-     * ��overrideURLת��Ϊmap��������referʱʹ��.
-     * ÿ���·�ȫ������ȫ��������װ����
+     * 锟斤拷overrideURL转锟斤拷为map锟斤拷锟斤拷锟斤拷锟斤拷refer时使锟斤拷.
+     * 每锟斤拷锟铰凤拷全锟斤拷锟斤拷锟斤拷全锟斤拷锟斤拷锟斤拷锟斤拷装锟斤拷锟斤拷
      * @param urls
-     * ��Լ��
-     * </br>1.override://0.0.0.0/...(��override://ip:port...?anyhost=true)&para1=value1...��ʾȫ�ֹ���(�����е��ṩ��ȫ����Ч)
-     * </br>2.override://ip:port...?anyhost=false ��������ֻ���ĳ���ṩ����Ч��
-     * </br>3.��֧��override://����... ��Ҫע���������м���.
-     * </br>4.����������override://0.0.0.0/ ��ʾ���override 
+     * 锟斤拷约锟斤拷
+     * </br>1.override://0.0.0.0/...(锟斤拷override://ip:port...?anyhost=true)&para1=value1...锟斤拷示全锟街癸拷锟斤拷(锟斤拷锟斤拷锟叫碉拷锟结供锟斤拷全锟斤拷锟斤拷效)
+     * </br>2.override://ip:port...?anyhost=false 锟斤拷锟斤拷锟斤拷锟斤拷只锟斤拷锟侥筹拷锟斤拷峁╋拷锟斤拷锟叫э拷锟�
+     * </br>3.锟斤拷支锟斤拷override://锟斤拷锟斤拷... 锟斤拷要注锟斤拷锟斤拷锟斤拷锟斤拷锟叫硷拷锟斤拷.
+     * </br>4.锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷override://0.0.0.0/ 锟斤拷示锟斤拷锟給verride 
      * @return
      */
     public static List<Configurator> toConfigurators(List<URL> urls){
@@ -295,7 +295,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
                 break;
             }
             Map<String,String> override = new HashMap<String, String>(url.getParameters());
-            //override �ϵ�anyhost�������Զ���ӵģ�����Ӱ��ı�url�ж�
+            //override 锟较碉拷anyhost锟斤拷锟斤拷锟斤拷锟皆讹拷锟斤拷拥模锟斤拷锟斤拷锟接帮拷锟侥憋拷url锟叫讹拷
             override.remove(Constants.ANYHOST_KEY);
             if (override.size() == 0){
                 configurators.clear();
@@ -341,7 +341,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
     
     /**
-     * ��urlsת��invokers,���url�Ѿ���refer���������������á�
+     * 锟斤拷urls转锟斤拷invokers,锟斤拷锟絬rl锟窖撅拷锟斤拷refer锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟矫★拷
      * 
      * @param urls
      * @param overrides
@@ -356,7 +356,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         Set<String> keys = new HashSet<String>();
         String queryProtocols = this.queryMap.get(Constants.PROTOCOL_KEY);
         for (URL providerUrl : urls) {
-        	//���reference��������protocol����ֻѡ��ƥ���protocol
+        	//锟斤拷锟絩eference锟斤拷锟斤拷锟斤拷锟斤拷protocol锟斤拷锟斤拷只选锟斤拷匹锟斤拷锟絧rotocol
         	if (queryProtocols != null && queryProtocols.length() >0) {
         		boolean accept = false;
         		String[] acceptProtocols = queryProtocols.split(",");
@@ -380,15 +380,15 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
             }
             URL url = mergeUrl(providerUrl);
             
-            String key = url.toFullString(); // URL�����������
-            if (keys.contains(key)) { // �ظ�URL
+            String key = url.toFullString(); // URL锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+            if (keys.contains(key)) { // 锟截革拷URL
                 continue;
             }
             keys.add(key);
-            // ����keyΪû�кϲ����Ѷ˲�����URL���������Ѷ���κϲ���������������URL�����仯��������refer
+            // 锟斤拷锟斤拷key为没锟叫合诧拷锟斤拷锟窖端诧拷锟斤拷锟斤拷URL锟斤拷锟斤拷锟斤拷锟斤拷锟窖讹拷锟斤拷魏喜锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟経RL锟斤拷锟斤拷锟戒化锟斤拷锟斤拷锟斤拷锟斤拷refer
             Map<String, Invoker<T>> localUrlInvokerMap = this.urlInvokerMap; // local reference
             Invoker<T> invoker = localUrlInvokerMap == null ? null : localUrlInvokerMap.get(key);
-            if (invoker == null) { // ������û�У�����refer
+            if (invoker == null) { // 锟斤拷锟斤拷锟斤拷没锟叫ｏ拷锟斤拷锟斤拷refer
                 try {
                 	boolean enabled = true;
                 	if (url.hasParameter(Constants.DISABLED_KEY)) {
@@ -402,7 +402,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
                 } catch (Throwable t) {
                     logger.error("Failed to refer invoker for interface:"+serviceType+",url:("+url+")" + t.getMessage(), t);
                 }
-                if (invoker != null) { // ���µ����÷��뻺��
+                if (invoker != null) { // 锟斤拷锟铰碉拷锟斤拷锟矫凤拷锟诫缓锟斤拷
                     newUrlInvokerMap.put(key, invoker);
                 }
             }else {
@@ -414,13 +414,13 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
     
     /**
-     * �ϲ�url���� ˳��Ϊoverride > -D >Consumer > Provider
+     * 锟较诧拷url锟斤拷锟斤拷 顺锟斤拷为override > -D >Consumer > Provider
      * @param providerUrl
      * @param overrides
      * @return
      */
     private URL mergeUrl(URL providerUrl){
-        providerUrl = ClusterUtils.mergeUrl(providerUrl, queryMap); // �ϲ����Ѷ˲���
+        providerUrl = ClusterUtils.mergeUrl(providerUrl, queryMap); // 锟较诧拷锟斤拷锟窖端诧拷锟斤拷
         
         List<Configurator> localConfigurators = this.configurators; // local reference
         if (localConfigurators != null && localConfigurators.size() > 0) {
@@ -429,13 +429,13 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
             }
         }
         
-        providerUrl = providerUrl.addParameter(Constants.CHECK_KEY, String.valueOf(false)); // ����������Ƿ�ɹ������Ǵ���Invoker��
+        providerUrl = providerUrl.addParameter(Constants.CHECK_KEY, String.valueOf(false)); // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷欠锟缴癸拷锟斤拷锟斤拷锟角达拷锟斤拷Invoker锟斤拷
         
-        //directoryUrl �� override �ϲ�����notify��������ﲻ�ܹ�����
-        this.overrideDirectoryUrl = this.overrideDirectoryUrl.addParametersIfAbsent(providerUrl.getParameters()); // �ϲ��ṩ�߲���        
+        //directoryUrl 锟斤拷 override 锟较诧拷锟斤拷锟斤拷notify锟斤拷锟斤拷锟斤拷锟斤拷锊伙拷芄锟斤拷锟斤拷锟�
+        this.overrideDirectoryUrl = this.overrideDirectoryUrl.addParametersIfAbsent(providerUrl.getParameters()); // 锟较诧拷锟结供锟竭诧拷锟斤拷        
         
         if ((providerUrl.getPath() == null || providerUrl.getPath().length() == 0)
-                && "dubbo".equals(providerUrl.getProtocol())) { // ����1.0
+                && "dubbo".equals(providerUrl.getProtocol())) { // 锟斤拷锟斤拷1.0
             //fix by tony.chenl DUBBO-44
             String path = directoryUrl.getParameter(Constants.INTERFACE_KEY);
             if (path != null) {
@@ -467,14 +467,14 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
 
     /**
-     * ��invokers�б�ת���뷽����ӳ���ϵ
+     * 锟斤拷invokers锟叫憋拷转锟斤拷锟诫方锟斤拷锟斤拷映锟斤拷锟较�
      * 
-     * @param invokersMap Invoker�б�
-     * @return Invoker�뷽����ӳ���ϵ
+     * @param invokersMap Invoker锟叫憋拷
+     * @return Invoker锟诫方锟斤拷锟斤拷映锟斤拷锟较�
      */
     private Map<String, List<Invoker<T>>> toMethodInvokers(Map<String, Invoker<T>> invokersMap) {
         Map<String, List<Invoker<T>>> newMethodInvokerMap = new HashMap<String, List<Invoker<T>>>();
-        // ���ṩ��URL��������methods���࣬����ע������ִ��·�ɹ��˵���methods
+        // 锟斤拷锟结供锟斤拷URL锟斤拷锟斤拷锟斤拷锟斤拷methods锟斤拷锟洁，锟斤拷锟斤拷注锟斤拷锟斤拷锟斤拷执锟斤拷路锟缴癸拷锟剿碉拷锟斤拷methods
         List<Invoker<T>> invokersList = new ArrayList<Invoker<T>>();
         if (invokersMap != null && invokersMap.size() > 0) {
             for (Invoker<T> invoker : invokersMap.values()) {
@@ -518,7 +518,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
 
     /**
-     * �ر�����Invoker
+     * 锟截憋拷锟斤拷锟斤拷Invoker
      */
     private void destroyAllInvokers() {
         Map<String, Invoker<T>> localUrlInvokerMap = this.urlInvokerMap; // local reference
@@ -536,8 +536,8 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
     
     /**
-     * ��黺���е�invoker�Ƿ���Ҫ��destroy
-     * ���url��ָ��refer.autodestroy=false����ֻ���Ӳ����٣����ܻ���referй©��
+     * 锟斤拷榛猴拷锟斤拷械锟絠nvoker锟角凤拷锟斤拷要锟斤拷destroy
+     * 锟斤拷锟絬rl锟斤拷指锟斤拷refer.autodestroy=false锟斤拷锟斤拷只锟斤拷锟接诧拷锟斤拷锟劫ｏ拷锟斤拷锟杰伙拷锟斤拷refer泄漏锟斤拷
      * 
      * @param invokers
      */
@@ -591,7 +591,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
             Object[] args = RpcUtils.getArguments(invocation);
             if(args != null && args.length > 0 && args[0] != null
                     && (args[0] instanceof String || args[0].getClass().isEnum())) {
-                invokers = localMethodInvokerMap.get(methodName + "." + args[0]); // �ɸ��ݵ�һ������ö��·��
+                invokers = localMethodInvokerMap.get(methodName + "." + args[0]); // 锟缴革拷锟捷碉拷一锟斤拷锟斤拷锟斤拷枚锟斤拷路锟斤拷
             }
             if(invokers == null) {
                 invokers = localMethodInvokerMap.get(methodName);
@@ -667,7 +667,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
     
     /**
-     * �����࣬��Ҫ���ڴ洢ע�������·���url��ַ��������������referʱ�ܹ�����providerURL queryMap overrideMap������װ
+     * 锟斤拷锟斤拷锟洁，锟斤拷要锟斤拷锟节存储注锟斤拷锟斤拷锟斤拷锟铰凤拷锟斤拷url锟斤拷址锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷refer时锟杰癸拷锟斤拷锟斤拷providerURL queryMap overrideMap锟斤拷锟斤拷锟斤拷装
      * 
      * @author chao.liuc
      *

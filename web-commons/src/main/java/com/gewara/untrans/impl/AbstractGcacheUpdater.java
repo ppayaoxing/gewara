@@ -50,12 +50,12 @@ public abstract class AbstractGcacheUpdater implements InitializingBean{
 
 	private void refreshCurrent(String newConfig) {
 		String tag = null, ids = null, op = null;
-		if(StringUtils.startsWith(newConfig, "{")){//json¸ñÊ½
+		if(StringUtils.startsWith(newConfig, "{")){//jsonæ ¼å¼
 			Map<String, String> dataMap = JsonUtils.readJsonToMap(newConfig);
 			tag = dataMap.get("tag");
 			ids = dataMap.get("ids");
 			op = dataMap.get("op");
-		}else{//×Ö·û´®Æ´½Ó£ºtag#@op#@ids, split by #@
+		}else{//å­—ç¬¦ä¸²æ‹¼æ¥ï¼štag#@op#@ids, split by #@
 			String[] pair = StringUtils.split(newConfig, "#@");
 			tag = pair[0];
 			op = pair[1];

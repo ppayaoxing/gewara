@@ -1,14 +1,14 @@
 package com.gewara.support.magent;
 
 /**
- * ÏûÏ¢´¦ÀíÆ÷£¬ÓÃÀ´´¦ÀíÃüÁî
+ * æ¶ˆæ¯å¤„ç†å™¨ï¼Œç”¨æ¥å¤„ç†å‘½ä»¤
  * @author gebiao(ge.biao@gewara.com)
  * @since Feb 28, 2014 10:04:10 PM
  */
 public interface CommandProcessor{
 	String NODATA = "!!nodata!!";
 	String SUCCESS = "reply:success";
-	String UNKNOWN = "unknown command, please type ¡°help¡± for help!";
+	String UNKNOWN = "unknown command, please type â€œhelpâ€ for help!";
 
 	String getName();
 	String getGroup();

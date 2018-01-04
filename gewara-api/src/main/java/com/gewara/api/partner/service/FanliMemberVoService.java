@@ -5,13 +5,13 @@ import com.gewara.api.vo.partner.FanliMemberVo;
 
 public interface FanliMemberVoService {
 	/**
-	 * ¸ù¾İid»ñÈ¡·µÀûÍøÓÃ»§ĞÅÏ¢
+	 * æ ¹æ®idè·å–è¿”åˆ©ç½‘ç”¨æˆ·ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
 	ResultCode<FanliMemberVo> getFanliMemberById(Long id);
 	/**
-	 * ¸üĞÂ·µÀûÍøÓÃ»§ĞÅÏ¢
+	 * æ›´æ–°è¿”åˆ©ç½‘ç”¨æˆ·ä¿¡æ¯
 	 */
 	ResultCode<Boolean> updateFanliMember(FanliMemberVo member);
 }

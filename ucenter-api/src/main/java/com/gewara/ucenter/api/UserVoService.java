@@ -7,15 +7,15 @@ import com.gewara.ucenter.vo.user.UserVo;
 
 public interface UserVoService {
 	/**
-	 * »ñÈ¡¹ÜÀíÔ±ĞÅÏ¢
-	 * @param id ¹ÜÀíÔ±id
-	 * @return ¹ÜÀíÔ±ÊµÌå¶ÔÏó
+	 * è·å–ç®¡ç†å‘˜ä¿¡æ¯
+	 * @param id ç®¡ç†å‘˜id
+	 * @return ç®¡ç†å‘˜å®ä½“å¯¹è±¡
 	 */
 	ResultCode<UserVo> getUserVoById(Long id);
 	/**
-	 * ÅúÁ¿»ñÈ¡¹ÜÀíÔ±
-	 * @param ids  ¹ÜÀíÔ±idÊı×é
-	 * @return   ¹ÜÀíÔ±ÊµÌå¶ÔÏóÊı×é
+	 * æ‰¹é‡è·å–ç®¡ç†å‘˜
+	 * @param ids  ç®¡ç†å‘˜idæ•°ç»„
+	 * @return   ç®¡ç†å‘˜å®ä½“å¯¹è±¡æ•°ç»„
 	 */
 	ResultCode<List<UserVo>> getUserVoListByIdList(Long ... ids);
 

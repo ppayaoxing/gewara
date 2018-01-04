@@ -34,10 +34,10 @@ import com.alibaba.dubbo.monitor.MonitorService;
  */
 public abstract class AbstractMonitorFactory implements MonitorFactory {
 
-    // ע�����Ļ�ȡ������
+    // 注锟斤拷锟斤拷锟侥伙拷取锟斤拷锟斤拷锟斤拷
     private static final ReentrantLock LOCK = new ReentrantLock();
     
-    // ע�����ļ��� Map<RegistryAddress, Registry>
+    // 注锟斤拷锟斤拷锟侥硷拷锟斤拷 Map<RegistryAddress, Registry>
     private static final Map<String, Monitor> MONITORS = new ConcurrentHashMap<String, Monitor>();
 
     public static Collection<Monitor> getMonitors() {
@@ -61,7 +61,7 @@ public abstract class AbstractMonitorFactory implements MonitorFactory {
             MONITORS.put(key, monitor);
             return monitor;
         } finally {
-            // �ͷ���
+            // 锟酵凤拷锟斤拷
             LOCK.unlock();
         }
     }

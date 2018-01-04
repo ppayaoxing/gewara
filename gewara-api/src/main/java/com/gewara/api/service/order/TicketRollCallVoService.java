@@ -4,7 +4,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface TicketRollCallVoService {
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÊÇ»ÆÅ£ÓÃ»§
+	 * åˆ¤æ–­æ˜¯å¦æ˜¯é»„ç‰›ç”¨æˆ·
 	 * @param memberId
 	 * @param mobile
 	 * @return

@@ -33,22 +33,22 @@ public class RegistryConfig extends AbstractConfig {
 	
 	public static final String NO_AVAILABLE = "N/A";
 
-    // ע�����ĵ�ַ
+    // 注锟斤拷锟斤拷锟侥碉拷址
     private String            address;
     
-	// ע�����ĵ�¼�û���
+	// 注锟斤拷锟斤拷锟侥碉拷录锟矫伙拷锟斤拷
     private String            username;
 
-    // ע�����ĵ�¼����
+    // 注锟斤拷锟斤拷锟侥碉拷录锟斤拷锟斤拷
     private String            password;
 
-    // ע������ȱʡ�˿�
+    // 注锟斤拷锟斤拷锟斤拷缺省锟剿匡拷
     private Integer           port;
     
-    // ע������Э��
+    // 注锟斤拷锟斤拷锟斤拷协锟斤拷
     private String            protocol;
 
-    // �ͻ���ʵ��
+    // 锟酵伙拷锟斤拷实锟斤拷
     private String            transporter;
     
     private String            server;
@@ -61,34 +61,34 @@ public class RegistryConfig extends AbstractConfig {
 
 	private String            version;
 
-    // ע����������ʱʱ��(����)
+    // 注锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷时时锟斤拷(锟斤拷锟斤拷)
     private Integer           timeout;
 
-    // ע�����ĻỰ��ʱʱ��(����)
+    // 注锟斤拷锟斤拷锟侥会话锟斤拷时时锟斤拷(锟斤拷锟斤拷)
     private Integer           session;
     
-    // ��̬ע�������б�洢�ļ�
+    // 锟斤拷态注锟斤拷锟斤拷锟斤拷锟叫憋拷娲拷募锟�
     private String            file;
     
-    // ֹͣʱ�Ⱥ����֪ͨʱ��
+    // 停止时锟饺猴拷锟斤拷锟酵ㄖ憋拷锟�
     private Integer           wait;
     
-    // ����ʱ���ע�������Ƿ����
+    // 锟斤拷锟斤拷时锟斤拷锟阶拷锟斤拷锟斤拷锟斤拷欠锟斤拷锟斤拷
     private Boolean           check;
 
-    // �ڸ�ע��������ע���Ƕ�̬�Ļ��Ǿ�̬�ķ���
+    // 锟节革拷注锟斤拷锟斤拷锟斤拷锟斤拷注锟斤拷锟角讹拷态锟侥伙拷锟角撅拷态锟侥凤拷锟斤拷
     private Boolean           dynamic;
     
-    // �ڸ�ע�������Ϸ����Ƿ�¶
+    // 锟节革拷注锟斤拷锟斤拷锟斤拷锟较凤拷锟斤拷锟角凤拷露
     private Boolean           register;
     
-    // �ڸ�ע�������Ϸ����Ƿ�����
+    // 锟节革拷注锟斤拷锟斤拷锟斤拷锟较凤拷锟斤拷锟角凤拷锟斤拷锟斤拷
     private Boolean           subscribe;
 
-    // �Զ������
+    // 锟皆讹拷锟斤拷锟斤拷锟�
     private Map<String, String> parameters;
 
-    // �Ƿ�Ϊȱʡ
+    // 锟角凤拷为缺省
     private Boolean             isDefault;
     
     public RegistryConfig() {

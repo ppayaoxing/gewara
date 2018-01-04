@@ -13,20 +13,20 @@ public class GetPayOrderResponse extends ApiResponse {
 	
 	private String tradeno;	
 	
-	//Ö§¸¶Ïà¹Ø
-	private String status;			//Ö§¸¶×´Ì¬
-	private Timestamp paidtime;		//Ö§¸¶Ê±¼ä
-	private Integer paidAmount;		//Ö§¸¶½ğ¶î£¬µ¥Î»£º·Ö
-	private String payseqno;		//µÚÈı·½Ö§¸¶ĞòºÅ
+	//æ”¯ä»˜ç›¸å…³
+	private String status;			//æ”¯ä»˜çŠ¶æ€
+	private Timestamp paidtime;		//æ”¯ä»˜æ—¶é—´
+	private Integer paidAmount;		//æ”¯ä»˜é‡‘é¢ï¼Œå•ä½ï¼šåˆ†
+	private String payseqno;		//ç¬¬ä¸‰æ–¹æ”¯ä»˜åºå·
 	
-	//Í¨ÖªÏà¹Ø
-	private String notifyStatus;	//Ö§¸¶Í¨Öª×´Ì¬
-	private Timestamp lastNotify;	//×îºóÍ¨Öª×´Ì¬
-	private Integer notifyTimes;	//Í¨Öª´ÎÊı
+	//é€šçŸ¥ç›¸å…³
+	private String notifyStatus;	//æ”¯ä»˜é€šçŸ¥çŠ¶æ€
+	private Timestamp lastNotify;	//æœ€åé€šçŸ¥çŠ¶æ€
+	private Integer notifyTimes;	//é€šçŸ¥æ¬¡æ•°
 	
-	private String gatewayCode;//Ö§¸¶Íø¹Ø´úÂë	
-	private String merchantCode;//ÉÌ»§ºÅ±êÊ¶
-	private String tradeNoSuffix;//¶©µ¥ºÅºó×º£¬Ä³Ğ©Ö§¸¶Æ½Ì¨ÒªÇóÉÌ»§¶©µ¥ºÅ²»ÄÜÖØ¸´Ìá½»£¬ËùÒÔËæ»úÉú³É4Î»¼ÓÔÚ¶©µ¥ºÅºóÃæ´«¸øÒøĞĞ£¬Ã¿´ÎÉú³É¶¼×·¼ÓÔÚÕâ¸ö×Ö¶Î
+	private String gatewayCode;//æ”¯ä»˜ç½‘å…³ä»£ç 	
+	private String merchantCode;//å•†æˆ·å·æ ‡è¯†
+	private String tradeNoSuffix;//è®¢å•å·åç¼€ï¼ŒæŸäº›æ”¯ä»˜å¹³å°è¦æ±‚å•†æˆ·è®¢å•å·ä¸èƒ½é‡å¤æäº¤ï¼Œæ‰€ä»¥éšæœºç”Ÿæˆ4ä½åŠ åœ¨è®¢å•å·åé¢ä¼ ç»™é“¶è¡Œï¼Œæ¯æ¬¡ç”Ÿæˆéƒ½è¿½åŠ åœ¨è¿™ä¸ªå­—æ®µ
 	
 	public String getTradeno() {
 		return tradeno;

@@ -14,11 +14,11 @@ public class SendPayResponse extends ApiResponse {
 	}
 	
 	/**
-	 * 订单号，支付请求成功返回该号
+	 * 璁㈠崟鍙凤紝鏀粯璇锋眰鎴愬姛杩斿洖璇ュ彿
 	 */
 	private String tradeNo;
 	/**
-	 * 订单请求流水
+	 * 璁㈠崟璇锋眰娴佹按
 	 */
 	private String bigOrderReqNo;
 

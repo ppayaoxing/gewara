@@ -2,7 +2,7 @@ package com.gewara.untrans;
 
 
 /**
- * DeferredResult�첽ִ��
+ * DeferredResult异步执行
  *  <pre> {@code
  * 
  * DeferredResult<String> deferredResult = new DeferredResult<String>(5000L, "timeout");		

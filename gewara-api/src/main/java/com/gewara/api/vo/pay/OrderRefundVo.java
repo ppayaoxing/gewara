@@ -11,54 +11,54 @@ import org.apache.commons.lang.StringUtils;
 import com.gewara.api.vo.BaseVo;
 import com.gewara.util.DateUtil;
 /**
- * ¶©µ¥ÍË¿î
+ * è®¢å•é€€æ¬¾
  * @author gebiao(ge.biao@gewara.com)
  * @since Aug 20, 2012 4:43:34 PM
  */
 public class OrderRefundVo extends BaseVo {
 	private static final long serialVersionUID = 6029378080103301843L;
 	private Long id;
-	private Integer version;			//°æ±¾
-	private String tradeno;				//¶©µ¥ºÅ
-	private String ordertype;			//¶©µ¥ÀàĞÍ
-	private Long placeid;				//³¡¹İID
-	private Long memberid;				//ÓÃ»§ID
-	private String mobile;				//ÊÖ»úºÅ
-	private String orderstatus;			//×´Ì¬ÀàĞÍ£ºpaid_failure: ´ı´¦Àí¶©µ¥  paid_success: ³É½»¶©µ¥ paid_failure_unfix: ×ùÎ»´ı´¦Àí
-	private String refundtype;			//ÍË¿îÀàĞÍ£ºunknown, all È«¶îÍË¿î£ºpart ²¿·ÖÍË¿î£ºsupplement Ôö²¹
-	private Long partnerid;				//ºÏ×÷ÉÌ¼Ò
-	private Timestamp expiretime;		//¶©µ¥¹ıÆÚÊ±¼ä
+	private Integer version;			//ç‰ˆæœ¬
+	private String tradeno;				//è®¢å•å·
+	private String ordertype;			//è®¢å•ç±»å‹
+	private Long placeid;				//åœºé¦†ID
+	private Long memberid;				//ç”¨æˆ·ID
+	private String mobile;				//æ‰‹æœºå·
+	private String orderstatus;			//çŠ¶æ€ç±»å‹ï¼špaid_failure: å¾…å¤„ç†è®¢å•  paid_success: æˆäº¤è®¢å• paid_failure_unfix: åº§ä½å¾…å¤„ç†
+	private String refundtype;			//é€€æ¬¾ç±»å‹ï¼šunknown, all å…¨é¢é€€æ¬¾ï¼špart éƒ¨åˆ†é€€æ¬¾ï¼šsupplement å¢è¡¥
+	private Long partnerid;				//åˆä½œå•†å®¶
+	private Timestamp expiretime;		//è®¢å•è¿‡æœŸæ—¶é—´
 	
-	private Integer gewaRetAmount;		//GewaraÍË¿î
-	private Integer merRetAmount;		//ÉÌ¼ÒÍË¿î
+	private Integer gewaRetAmount;		//Gewaraé€€æ¬¾
+	private Integer merRetAmount;		//å•†å®¶é€€æ¬¾
 
-	private Integer oldSettle;			//Ô­½áËã½ğ¶î
-	private Integer newSettle;			//ĞÂ½áËã½ğ¶î
-	private String settletype;			//½áËãÀàĞÍ
-	private String cardno;				//²¹³¥È¯ºÅ
+	private Integer oldSettle;			//åŸç»“ç®—é‡‘é¢
+	private Integer newSettle;			//æ–°ç»“ç®—é‡‘é¢
+	private String settletype;			//ç»“ç®—ç±»å‹
+	private String cardno;				//è¡¥å¿åˆ¸å·
 	
-	private String opmark;				//²Ù×÷±êÊ¶£º¼ÇÂ¼ĞèÒª»òÍê³ÉµÄ²Ù×÷
-	private String reason;				//Ô­Òò
-	private String retback;				//ÊÇ·ñÒªÔ­Â··µ»Ø£ºY£ºĞèÒª£¬N£º²»ĞèÒª£¬O£ºÎ´Öª, ²Î¼ûÃèÊö(Other)£¬S: ÒÑÌá½»ÕËÎñ(Submit) R£º²ÆÎñÒÑ¾­·µ»¹(Refund)£¬F£º²ÆÎñ·µ»¹³ö´í(Failure)
-	private Long applyuser;				//ÉêÇëÈË
-	private String applyinfo;			//ÉêÇëĞÅÏ¢
+	private String opmark;				//æ“ä½œæ ‡è¯†ï¼šè®°å½•éœ€è¦æˆ–å®Œæˆçš„æ“ä½œ
+	private String reason;				//åŸå› 
+	private String retback;				//æ˜¯å¦è¦åŸè·¯è¿”å›ï¼šYï¼šéœ€è¦ï¼ŒNï¼šä¸éœ€è¦ï¼ŒOï¼šæœªçŸ¥, å‚è§æè¿°(Other)ï¼ŒS: å·²æäº¤è´¦åŠ¡(Submit) Rï¼šè´¢åŠ¡å·²ç»è¿”è¿˜(Refund)ï¼ŒFï¼šè´¢åŠ¡è¿”è¿˜å‡ºé”™(Failure)
+	private Long applyuser;				//ç”³è¯·äºº
+	private String applyinfo;			//ç”³è¯·ä¿¡æ¯
 	
-	private String otherinfo;			//ÆäËûĞÅÏ¢£º´¦ÀíÈË£¬²ÆÎñ·µ»ØĞÅÏ¢
+	private String otherinfo;			//å…¶ä»–ä¿¡æ¯ï¼šå¤„ç†äººï¼Œè´¢åŠ¡è¿”å›ä¿¡æ¯
 	
 	
-	//½áËã·½Ê½
-	private Timestamp addtime;			//Ôö¼ÓÈÕÆÚ
-	private Timestamp refundtime; 		//ÍË¿îÊ±¼ä
-	private String status;				//×´Ì¬
-	private String dealinfo;			//´¦ÀíĞÅÏ¢
+	//ç»“ç®—æ–¹å¼
+	private Timestamp addtime;			//å¢åŠ æ—¥æœŸ
+	private Timestamp refundtime; 		//é€€æ¬¾æ—¶é—´
+	private String status;				//çŠ¶æ€
+	private String dealinfo;			//å¤„ç†ä¿¡æ¯
 
-	private String preinfo;				//Ô¤´¦ÀíÒªÇó
-	private String cancelinfo;			//ÖĞ¶ÏÀíÓÉ
+	private String preinfo;				//é¢„å¤„ç†è¦æ±‚
+	private String cancelinfo;			//ä¸­æ–­ç†ç”±
 	
-	private String origin;				//À´Ô´   user£ºÓÃ»§   kf£º¿Í·ş 
-	private String reasoninfo;			//Èç¹ûÊÇÓÃ»§ÍË¿î£¬¼ÇÂ¼ÓÃ»§ÍË¿îÔ­Òò	
+	private String origin;				//æ¥æº   userï¼šç”¨æˆ·   kfï¼šå®¢æœ 
+	private String reasoninfo;			//å¦‚æœæ˜¯ç”¨æˆ·é€€æ¬¾ï¼Œè®°å½•ç”¨æˆ·é€€æ¬¾åŸå› 	
 	
-	private String ticketRefund;		//ÍËÆ±ÀàĞÍ
+	private String ticketRefund;		//é€€ç¥¨ç±»å‹
 	
 	public OrderRefundVo(){}
 
@@ -188,7 +188,7 @@ public class OrderRefundVo extends BaseVo {
 	public void setExpiretime(Timestamp expiretime) {
 		this.expiretime = expiretime;
 	}
-	public boolean gainExpired(){//ÊÇ¹ıÆÚ¶©µ¥
+	public boolean gainExpired(){//æ˜¯è¿‡æœŸè®¢å•
 		return expiretime != null && expiretime.before(new Timestamp(System.currentTimeMillis())); 
 	}
 	public String getPreinfo() {
@@ -247,11 +247,11 @@ public class OrderRefundVo extends BaseVo {
 	}*/
 	public String getRefundStatusText(){
 		if(StringUtils.equals(status, "finish") || StringUtils.equals(status, "success")){
-			return "ÒÑÍË¿î";
+			return "å·²é€€æ¬¾";
 		}else if(StringUtils.equals(status, "reject") || StringUtils.equals(status, "user_reject")){
-			return "ÍË¿îÊ§°Ü";
+			return "é€€æ¬¾å¤±è´¥";
 		}else{
-			return "ÍË¿î´¦ÀíÖĞ";
+			return "é€€æ¬¾å¤„ç†ä¸­";
 		}
 	}	
 	

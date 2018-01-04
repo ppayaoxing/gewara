@@ -16,61 +16,61 @@ import com.gewara.util.JsonUtils;
 
 public class GewaOrderVo extends BaseVo{
 	private static final long serialVersionUID = 4914995483381697551L;
-	public static final String RESTATUS_DELETE = "D";// ����ɾ��״̬
-	//����״̬
+	public static final String RESTATUS_DELETE = "D";// 锟斤拷锟斤拷删锟斤拷状态
+	//锟斤拷锟斤拷状态
 	private Long id;					//ID
-	private Integer version;			//���°汾
-	private String ordertitle;		//��������
-	private String tradeNo;			//������
-	private String mobile;			//��ϵ�ֻ�
-	private Timestamp createtime;		//�û��µ�ʱ��
-	private Timestamp addtime;		//����ʱ�䣺��һ�δ���ʱ�䡢��������ʱ�䡢��������ʱ��
-	private Timestamp updatetime;		//�û��޸�ʱ��
-	private Timestamp validtime;		//��Чʱ��
-	private Timestamp paidtime;		//����ʱ��
-	private Timestamp playtime;		//����ʱ��
-	private Timestamp taketime;		//ȡƱʱ��
-	private String status;			//����״̬
-	private Long memberid;			//�����û�
-	private Long partnerid;			//�����̼�
-	private String membername;		//�û���/��λ����
-	private String paymethod;			//֧������:վ���˻����Ա�������֧��
-	private String paybank;			//֧������
-	private String payseqno;			//�ⲿ������
-	private String description2;		//��Ʒ����
-	private Long clerkid;				//����������
-	private String remark;			//�ر�˵��
-	private Integer gewapaid;			//�˻����֧���Ľ��
-	private Integer alipaid;			//�Ա���㸶֧���Ľ��
-	private Integer wabi;				//�߱�����
-	private Integer totalcost;		//�ܳɱ���
-	private Integer totalfee;			//�����ܽ��
-	private Integer discount;			//�����Ż�
-	private String disreason;			//�Ż�����
-	private String changehis;			//������ʷ��¼
-	private Integer costprice;		//�ɱ���
-	private Integer unitprice;		//����
-	private Integer quantity;			//����
-	private String ukey;				//��ʶPartner����Ψһ�û�
-	private String checkpass;			//ȡƱ����
-	private Integer itemfee;			//��������Ʒ�ܼ�
-	private String otherinfo;			//������Ϣ
-	private String citycode;			//���д���
-	private Integer otherfee;			//������
-	private String settle;			//�Ƿ�����������㣺Y��N
-	private String restatus;			//�Ƿ�ɾ��
-	private String pricategory;		//�������ࣨģ�飩
-	private String category;			//�������
-	private String otherFeeRemark;	//��������ϸ
+	private Integer version;			//锟斤拷锟铰版本
+	private String ordertitle;		//锟斤拷锟斤拷锟斤拷锟斤拷
+	private String tradeNo;			//锟斤拷锟斤拷锟斤拷
+	private String mobile;			//锟斤拷系锟街伙拷
+	private Timestamp createtime;		//锟矫伙拷锟铰碉拷时锟斤拷
+	private Timestamp addtime;		//锟斤拷锟斤拷时锟戒：锟斤拷一锟轿达拷锟斤拷时锟戒、锟斤拷锟斤拷锟斤拷锟斤拷时锟戒、锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷
+	private Timestamp updatetime;		//锟矫伙拷锟睫革拷时锟斤拷
+	private Timestamp validtime;		//锟斤拷效时锟斤拷
+	private Timestamp paidtime;		//锟斤拷锟斤拷时锟斤拷
+	private Timestamp playtime;		//锟斤拷锟斤拷时锟斤拷
+	private Timestamp taketime;		//取票时锟斤拷
+	private String status;			//锟斤拷锟斤拷状态
+	private Long memberid;			//锟斤拷锟斤拷锟矫伙拷
+	private Long partnerid;			//锟斤拷锟斤拷锟教硷拷
+	private String membername;		//锟矫伙拷锟斤拷/锟斤拷位锟斤拷锟斤拷
+	private String paymethod;			//支锟斤拷锟斤拷锟斤拷:站锟斤拷锟剿伙拷锟斤拷锟皆憋拷锟斤拷睢拷锟斤拷锟街э拷锟�
+	private String paybank;			//支锟斤拷锟斤拷锟斤拷
+	private String payseqno;			//锟解部锟斤拷锟斤拷锟斤拷
+	private String description2;		//锟斤拷品锟斤拷锟斤拷
+	private Long clerkid;				//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	private String remark;			//锟截憋拷说锟斤拷
+	private Integer gewapaid;			//锟剿伙拷锟斤拷锟街э拷锟斤拷慕锟斤拷
+	private Integer alipaid;			//锟皆憋拷锟斤拷愀吨э拷锟斤拷慕锟斤拷
+	private Integer wabi;				//锟竭憋拷锟斤拷锟斤拷
+	private Integer totalcost;		//锟杰成憋拷锟斤拷
+	private Integer totalfee;			//锟斤拷锟斤拷锟杰斤拷锟�
+	private Integer discount;			//锟斤拷锟斤拷锟脚伙拷
+	private String disreason;			//锟脚伙拷锟斤拷锟斤拷
+	private String changehis;			//锟斤拷锟斤拷锟斤拷史锟斤拷录
+	private Integer costprice;		//锟缴憋拷锟斤拷
+	private Integer unitprice;		//锟斤拷锟斤拷
+	private Integer quantity;			//锟斤拷锟斤拷
+	private String ukey;				//锟斤拷识Partner锟斤拷锟斤拷唯一锟矫伙拷
+	private String checkpass;			//取票锟斤拷锟斤拷
+	private Integer itemfee;			//锟斤拷锟斤拷锟斤拷锟斤拷品锟杰硷拷
+	private String otherinfo;			//锟斤拷锟斤拷锟斤拷息
+	private String citycode;			//锟斤拷锟叫达拷锟斤拷
+	private Integer otherfee;			//锟斤拷锟斤拷锟斤拷
+	private String settle;			//锟角凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷悖篩锟斤拷N
+	private String restatus;			//锟角凤拷删锟斤拷
+	private String pricategory;		//锟斤拷锟斤拷锟斤拷锟洁（模锟介）
+	private String category;			//锟斤拷锟斤拷锟斤拷锟�
+	private String otherFeeRemark;	//锟斤拷锟斤拷锟斤拷锟斤拷细
 	private String express;
-	private String prepay;			//Ԥ�۶��� Y, ��������S, ��Ԥ�۶���N
-	private Long placeid;				//�������ݣ�Cinema��Theatre
-	private String gatewayCode;		//֧�����ش���	
-	private String merchantCode;		//�̻��ű�ʶ
-	private String origin;			//������Դ
+	private String prepay;			//预锟桔讹拷锟斤拷 Y, 锟斤拷锟斤拷锟斤拷锟斤拷S, 锟斤拷预锟桔讹拷锟斤拷N
+	private Long placeid;				//锟斤拷锟斤拷锟斤拷锟捷ｏ拷Cinema锟斤拷Theatre
+	private String gatewayCode;		//支锟斤拷锟斤拷锟截达拷锟斤拷	
+	private String merchantCode;		//锟教伙拷锟脚憋拷识
+	private String origin;			//锟斤拷锟斤拷锟斤拷源
 	private Long relatedid;			//mpid,goodsid,dpid(drama),pubid(pubsale),mctid(membercard)
 	private Long itemid;				//movieid,dramaid
-	private String ordertype;		//��������
+	private String ordertype;		//锟斤拷锟斤拷锟斤拷锟斤拷
 	private String hfhpass;
 	private Long areaid;				//DramaOrder, cardid()
 	private String seats;			//SellSeatID
@@ -99,8 +99,8 @@ public class GewaOrderVo extends BaseVo{
 		this.createtime = new Timestamp(System.currentTimeMillis());
 		this.updatetime = this.createtime;
 		this.addtime = this.createtime;
-		this.paymethod = PaymethodConstant.PAYMETHOD_UNKNOWN;	//Ĭ��PNR
-		this.validtime = DateUtil.addDay(this.addtime, 1);		//Ĭ��һ��
+		this.paymethod = PaymethodConstant.PAYMETHOD_UNKNOWN;	//默锟斤拷PNR
+		this.validtime = DateUtil.addDay(this.addtime, 1);		//默锟斤拷一锟斤拷
 		this.status = OrderConstant.STATUS_NEW_UNLOCK;
 		this.pricategory = OrderConstant.ORDER_PRICATEGORY_MOVIE;
 		this.alipaid = 0;
@@ -273,7 +273,7 @@ public class GewaOrderVo extends BaseVo{
 	public boolean isNetPaid(){
 		return alipaid > 0;
 	}
-	//Ӧ����
+	//应锟斤拷锟斤拷
 	public Integer getDue(){
 		int due = totalfee + itemfee + otherfee - discount;
 		return due < 0? 0 : due;
@@ -465,18 +465,18 @@ public class GewaOrderVo extends BaseVo{
         }
 		return status;
 	}
-	public String getStatusText2(){//��ʾ���û���
+	public String getStatusText2(){//锟斤拷示锟斤拷锟矫伙拷锟斤拷
 		if(isCancel()) {
-            return "��ʱȡ��";
+            return "锟斤拷时取锟斤拷";
         }
 		if(isPaidSuccess()) {
-            return "���׳ɹ�";
+            return "锟斤拷锟阶成癸拷";
         }
 		if(StringUtils.equals(status, OrderConstant.STATUS_PAID_RETURN)) {
-            return "���˿�";
+            return "锟斤拷锟剿匡拷";
         }
 		if(isAllPaid()) {
-            return "�Ѹ��ȷ����";
+            return "锟窖革拷锟筋，确锟斤拷锟斤拷";
         }
 		return OrderConstant.statusMap.get(status);
 	}
@@ -484,7 +484,7 @@ public class GewaOrderVo extends BaseVo{
 		return status.startsWith(OrderConstant.STATUS_NEW) && !isTimeout();
 	}
 	/**
-	 * ����״̬Ϊȷ��ȥ����
+	 * 锟斤拷锟斤拷状态为确锟斤拷去锟斤拷锟斤拷
 	 * @return
 	 */
 	public boolean isNewConfirm(){
@@ -509,7 +509,7 @@ public class GewaOrderVo extends BaseVo{
 		return gewapaid+alipaid;
 	}
 	/**
-	 * ���õ���ȯֱ��֧�������ý��ɳ����������
+	 * 锟斤拷锟矫碉拷锟斤拷券直锟斤拷支锟斤拷锟斤拷睿拷锟斤拷媒锟斤拷沙锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 * @return
 	 */
 	public boolean isZeroPay() {
@@ -523,7 +523,7 @@ public class GewaOrderVo extends BaseVo{
 		return validtime!=null && validtime.before(new Timestamp(System.currentTimeMillis()));
 	}
 	/**
-	 * ���Դ���
+	 * 锟斤拷锟皆达拷锟斤拷
 	 * @return
 	 */
 	public boolean canProcess(){
@@ -542,17 +542,17 @@ public class GewaOrderVo extends BaseVo{
 	public boolean surePartner(){
 		return this.partnerid>1;
 	}
-	public boolean sureOutPartner(){//�ⲿ�̼�
+	public boolean sureOutPartner(){//锟解部锟教硷拷
 		return PartnerConstant.isOutPartner(memberid);
 	}
-	public boolean sureGewaPartner(){//�ڲ�WAP,IPHONE...
+	public boolean sureGewaPartner(){//锟节诧拷WAP,IPHONE...
 		return PartnerConstant.isGewaPartner(memberid, partnerid);
 	}
 	
-/*	public boolean sureOutPartner(){//�ⲿ�̼�
+/*	public boolean sureOutPartner(){//锟解部锟教硷拷
 		return PartnerConstant.isOutPartner(memberid);
 	}
-	public boolean sureGewaPartner(){//�ڲ�WAP,IPHONE...
+	public boolean sureGewaPartner(){//锟节诧拷WAP,IPHONE...
 		return PartnerConstant.isGewaPartner(memberid, partnerid);
 	}
 */

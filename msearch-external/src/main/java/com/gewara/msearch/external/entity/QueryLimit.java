@@ -5,10 +5,10 @@ import java.io.Serializable;
 import com.gewara.msearch.external.constant.DataType;
 
 /**
- * �ر�ע�⣬���ÿһ���������ͣ�ֻ����һ�����ơ�
- * ���ر�����equals������hasCode�����������ԡ�
- * @author ����
- * @createDate 2015��6��2��
+ * 锟截憋拷注锟解，锟斤拷锟矫恳伙拷锟斤拷锟斤拷锟斤拷锟斤拷停锟街伙拷锟斤拷锟揭伙拷锟斤拷锟斤拷啤锟�
+ * 锟斤拷锟截憋拷锟斤拷锟斤拷equals锟斤拷锟斤拷锟斤拷hasCode锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟皆★拷
+ * @author 锟斤拷锟斤拷
+ * @createDate 2015锟斤拷6锟斤拷2锟斤拷
  */
 public class QueryLimit implements Serializable {
 
@@ -37,7 +37,7 @@ public class QueryLimit implements Serializable {
 	}
 
 	/**
-	 * ��������
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷
 	 * @param dataType
 	 */
 	private void setDataType(DataType dataType) {
@@ -46,8 +46,8 @@ public class QueryLimit implements Serializable {
 	}
 
 	/**
-	 * �����������ͷ��ص�������ݼ�¼��
-	 * @param limit limit��ֵ��0��100֮�䣨������0��100��
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟酵凤拷锟截碉拷锟斤拷锟斤拷锟斤拷菁锟铰硷拷锟�
+	 * @param limit limit锟斤拷值锟斤拷0锟斤拷100之锟戒（锟斤拷锟斤拷锟斤拷0锟斤拷100锟斤拷
 	 */
 	private void setLimit(int limit) {
 		assert(limit>0 && limit<100);
@@ -59,8 +59,8 @@ public class QueryLimit implements Serializable {
 	}
 
 	/**
-	 * ����ID����ȷƥ�䡣
-	 * Ŀǰֻ��cinema��action��Ч
+	 * 锟斤拷锟斤拷ID锟斤拷锟斤拷确匹锟戒。
+	 * 目前只锟斤拷cinema锟斤拷action锟斤拷效
 	 * @param cityID
 	 */
 	public void setCityID(String cityID) {

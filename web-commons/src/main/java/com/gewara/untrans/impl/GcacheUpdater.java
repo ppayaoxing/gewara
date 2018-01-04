@@ -22,7 +22,7 @@ public class GcacheUpdater extends AbstractGcacheUpdater  {
 	private void cleanDataByIds(CacheMeta meta, String ids){
 		Class type = cacheObjectService.getEntityIdType(meta.gclass);
 		if(type!=null){
-			//只支持String和Long
+			//鍙敮鎸丼tring鍜孡ong
 			if(type==String.class){
 				String[] idList = StringUtils.split(ids, ",");
 				for (final String id : idList) {
@@ -54,7 +54,7 @@ public class GcacheUpdater extends AbstractGcacheUpdater  {
 		}
 	}
 	protected void refreshOther(Class clazz, Serializable id){
-		//其他业务逻辑
+		//鍏朵粬涓氬姟閫昏緫
 	}
 	@Override
 	public final List<String> getListenerTags() {

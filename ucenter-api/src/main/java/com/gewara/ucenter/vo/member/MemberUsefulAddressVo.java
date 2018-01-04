@@ -9,9 +9,9 @@ public class MemberUsefulAddressVo extends BaseVo {
 
 	private static final long serialVersionUID = 7753224940238308243L;
 	
-	// 默认地址
+	// 榛樿鍦板潃
 	public static final String DEFAULT_ADDRESS = "Y";
-	// 非默认地址
+	// 闈為粯璁ゅ湴鍧�
 	public static final String NOT_DEFAULT_ADDRESS = "N";
 	
 	private Long id;
@@ -30,7 +30,7 @@ public class MemberUsefulAddressVo extends BaseVo {
 	private String countycode;
 	private String countyname;
 	
-	// 默认地址：Y是，N不是
+	// 榛樿鍦板潃锛歒鏄紝N涓嶆槸
 	private String defaultAddress;
 
 	public MemberUsefulAddressVo(){

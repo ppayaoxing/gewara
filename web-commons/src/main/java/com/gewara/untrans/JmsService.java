@@ -4,17 +4,17 @@ import java.util.Map;
 
 public interface JmsService {
 	/**
-	 * Ôö¼ÓÒ»¸ö·¢ËÍ¶ÓÁĞ
+	 * å¢åŠ ä¸€ä¸ªå‘é€é˜Ÿåˆ—
 	 * @param queue
 	 * @param persist
-	 * @param override ÒÑ´æÔÚÊÇ·ñ¸²¸Ç
+	 * @param override å·²å­˜åœ¨æ˜¯å¦è¦†ç›–
 	 * @return
 	 */
 	void addQueue(String queue, boolean persist, boolean override);
 	/**
 	 * @param msgtag
-	 * @param keyList ÓÃ,·Ö¸ô£¬¶à¸ökey
-	 * @param params ÓëkeyList¶ÔÓ¦£¬¶à¸öÖµ
+	 * @param keyList ç”¨,åˆ†éš”ï¼Œå¤šä¸ªkey
+	 * @param params ä¸keyListå¯¹åº”ï¼Œå¤šä¸ªå€¼
 	 */
 	void sendMsgToDst(String dst, String tag, String msg);
 	void sendMsgToDst(String dst, String tag, Map msg);
@@ -22,30 +22,30 @@ public interface JmsService {
 	void sendMsgToDstWithMultiHead(String dst, String tag, Map msg, Map<String, String> headMap);
 	
 	/**
-	 * ¶¨Ê±·¢ËÍÄ¿±ê
+	 * å®šæ—¶å‘é€ç›®æ ‡
 	 * @param dst
 	 * @param tag
 	 * @param msgMap
-	 * @param delay Ê×´ÎÑÓ³Ù(ms)
+	 * @param delay é¦–æ¬¡å»¶è¿Ÿ(ms)
 	 */
 	void delaySendMsgToDst(String dst, String tag, Map msgMap, long delay);
 	/**
-	 * ¶¨Ê±·¢ËÍÄ¿±ê
+	 * å®šæ—¶å‘é€ç›®æ ‡
 	 * @param dst
 	 * @param tag
 	 * @param msg
-	 * @param delay Ê×´ÎÑÓ³Ù(ms)
+	 * @param delay é¦–æ¬¡å»¶è¿Ÿ(ms)
 	 */
 	void delaySendMsgToDst(String dst, String tag, String msg, long delay);
 	/**
 	 * TODO:test
-	 * ¶¨Ê±ÖØ¸´·¢ËÍÏûÏ¢µ½dst
+	 * å®šæ—¶é‡å¤å‘é€æ¶ˆæ¯åˆ°dst
 	 * @param dst
 	 * @param tag
 	 * @param msgMap
-	 * @param delay Ê×´ÎÑÓ³Ù(ms)
-	 * @param period Ã¿´Î¼ä¸ô (ms)
-	 * @param repeatNum ÖØ·¢´ÎÊı(µÚÒ»´Î·¢ÍêºóÔÙÖØ¸´repeatNum´Î£©
+	 * @param delay é¦–æ¬¡å»¶è¿Ÿ(ms)
+	 * @param period æ¯æ¬¡é—´éš” (ms)
+	 * @param repeatNum é‡å‘æ¬¡æ•°(ç¬¬ä¸€æ¬¡å‘å®Œåå†é‡å¤repeatNumæ¬¡ï¼‰
 	 */
 	void periodSendMsgToDst(String dst, String tag, Map msgMap, long delay, long period, int repeatNum);
 }

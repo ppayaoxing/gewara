@@ -9,13 +9,13 @@ public class SpDiscountVo extends BaseVo{
 	private Long id;
 	private String title;				
 	private String description;
-	private Integer isenable;			//²»Ö§³Ö´Ë³¡´Î»î¶¯  1Ö§³Ö  0²»Ö§³Ö
-	private String validUrl;			//ÑéÖ¤url ÀıÈçÊäÈë¿¨ºÅ
-	private Integer needBindMobile;		//ĞèÒª°ó¶¨ÊÖ»úºÅ
-	private Long usedDiscountId;		//ÒÑ¾­Ê¹ÓÃ²ÎÉúµÄÕÛ¿Ûid
-	private String cancelable;			//ÊÇ·ñÄÜÈ¡Ïû
-	private String paymethod;			//Ö§¸¶·½Ê½
-	private Integer needSpcode;			//ÊÇ·ñĞèÒªÌØ¼Û»î¶¯Âë
+	private Integer isenable;			//ä¸æ”¯æŒæ­¤åœºæ¬¡æ´»åŠ¨  1æ”¯æŒ  0ä¸æ”¯æŒ
+	private String validUrl;			//éªŒè¯url ä¾‹å¦‚è¾“å…¥å¡å·
+	private Integer needBindMobile;		//éœ€è¦ç»‘å®šæ‰‹æœºå·
+	private Long usedDiscountId;		//å·²ç»ä½¿ç”¨å‚ç”Ÿçš„æŠ˜æ‰£id
+	private String cancelable;			//æ˜¯å¦èƒ½å–æ¶ˆ
+	private String paymethod;			//æ”¯ä»˜æ–¹å¼
+	private Integer needSpcode;			//æ˜¯å¦éœ€è¦ç‰¹ä»·æ´»åŠ¨ç 
 	private Integer discount;           
 	private String discountType;
 	private String otherinfo;

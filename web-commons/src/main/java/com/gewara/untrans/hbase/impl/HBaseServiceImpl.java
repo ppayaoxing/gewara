@@ -11,12 +11,12 @@ public class HBaseServiceImpl extends com.gewara.hbase.impl.HBaseServiceImpl imp
 	@Override
 	public List<Map<String, String>> getRowListByIdRange(String tableSmsrecordhis, Object fb, Object startRowId,
 			byte[] startRowId2, byte[] endRowId, int maxnum) {
-		// TODO ÔÝ¶¨
+		// TODO æš‚å®š
 		return null;
 	}
 
 	/**
-	 * TODO ÔÝ¶¨
+	 * TODO æš‚å®š
 	 */
 	@Override
 	public void saveRowListByString(String tableName, final String idName, final List<Map<String, String>> rowList) {
@@ -24,7 +24,7 @@ public class HBaseServiceImpl extends com.gewara.hbase.impl.HBaseServiceImpl imp
 	}
 
 	/**
-	 * TODO ÔÝ¶¨
+	 * TODO æš‚å®š
 	 */
 	@Override
 	public Map<String, String> getRow(String tablename, byte[] rowid) {

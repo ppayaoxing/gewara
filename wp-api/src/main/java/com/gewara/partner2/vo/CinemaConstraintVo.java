@@ -9,15 +9,15 @@ public class CinemaConstraintVo extends BaseVo {
 
 	private static final long serialVersionUID = 1138307994529929676L;
 
-	private long id; // Ö÷¼ü
-	private String patnerkey; // ºÏ×÷ÉÌkey
-	private String provincename; // Ê¡·İ
-	private String citycode; // ³ÇÊĞÂë
-	private String hidetype; // Òş²ØÀàĞÍ 1Ó°Ôº2 ¼Û¸ñÇø¼ä3 Ê±¼äÇø¼ä
-	private String cckey; // Î¨Ò»Ô¼Êø
-	private String hideconstraint; // Òş²ØÄÚÈİ
-	private Timestamp addtime; // Ìí¼ÓÊ±¼ä
-	private Timestamp updatetime; // ĞŞ¸ÄÊ±¼ä
+	private long id; // ä¸»é”®
+	private String patnerkey; // åˆä½œå•†key
+	private String provincename; // çœä»½
+	private String citycode; // åŸå¸‚ç 
+	private String hidetype; // éšè—ç±»å‹ 1å½±é™¢2 ä»·æ ¼åŒºé—´3 æ—¶é—´åŒºé—´
+	private String cckey; // å”¯ä¸€çº¦æŸ
+	private String hideconstraint; // éšè—å†…å®¹
+	private Timestamp addtime; // æ·»åŠ æ—¶é—´
+	private Timestamp updatetime; // ä¿®æ”¹æ—¶é—´
 
 	public long getId() {
 		return id;

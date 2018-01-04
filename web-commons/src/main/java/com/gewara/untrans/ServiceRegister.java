@@ -3,15 +3,15 @@ package com.gewara.untrans;
 public interface ServiceRegister {
 
 	/**
-	 * Ïòzk×¢²á·şÎñ½Ó¿ÚÊı¾İ
-	 * ÓÃÓÚ·şÎñ·¢ÏÖµÄserviceNameÊ¹ÓÃ{@link ServiceDetails#buildServiceName(String, String)}´´½¨
+	 * å‘zkæ³¨å†ŒæœåŠ¡æ¥å£æ•°æ®
+	 * ç”¨äºæœåŠ¡å‘ç°çš„serviceNameä½¿ç”¨{@link ServiceDetails#buildServiceName(String, String)}åˆ›å»º
 	 * @param details
 	 * @throws Exception
 	 */
 	void registerService(ServiceDetails details) throws Exception;
 
 	/**
-	 * ĞŞ¸ÄzkÒÑ¾­×¢²áµÄ·şÎñ½Ó¿ÚÊı¾İ
+	 * ä¿®æ”¹zkå·²ç»æ³¨å†Œçš„æœåŠ¡æ¥å£æ•°æ®
 	 * @param details
 	 * @throws Exception
 	 */

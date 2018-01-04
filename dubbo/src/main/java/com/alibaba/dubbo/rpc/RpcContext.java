@@ -35,8 +35,8 @@ import com.alibaba.dubbo.common.utils.NetUtils;
 /**
  * Thread local context. (API, ThreadLocal, ThreadSafe)
  * 
- * ע�⣺RpcContext��һ����ʱ״̬��¼���������յ�RPC���󣬻���RPC����ʱ��RpcContext��״̬����仯��
- * ���磺A��B��B�ٵ�C����B�����ϣ���B��C֮ǰ��RpcContext��¼����A��B����Ϣ����B��C֮��RpcContext��¼����B��C����Ϣ��
+ * 注锟解：RpcContext锟斤拷一锟斤拷锟斤拷时状态锟斤拷录锟斤拷锟斤拷锟斤拷锟斤拷锟秸碉拷RPC锟斤拷锟襟，伙拷锟斤拷RPC锟斤拷锟斤拷时锟斤拷RpcContext锟斤拷状态锟斤拷锟斤拷浠拷锟�
+ * 锟斤拷锟界：A锟斤拷B锟斤拷B锟劫碉拷C锟斤拷锟斤拷B锟斤拷锟斤拷锟较ｏ拷锟斤拷B锟斤拷C之前锟斤拷RpcContext锟斤拷录锟斤拷锟斤拷A锟斤拷B锟斤拷锟斤拷息锟斤拷锟斤拷B锟斤拷C之锟斤拷RpcContext锟斤拷录锟斤拷锟斤拷B锟斤拷C锟斤拷锟斤拷息锟斤拷
  * 
  * @see com.alibaba.dubbo.rpc.filter.ContextFilter
  * @author qian.lei
@@ -556,9 +556,9 @@ public class RpcContext {
     }
     
     /**
-     * �첽���� ����Ҫ����ֵ����ʹ������Future.get������Ҳ�ᴦ����ó�ʱ����.
+     * 锟届步锟斤拷锟斤拷 锟斤拷锟斤拷要锟斤拷锟斤拷值锟斤拷锟斤拷使锟斤拷锟斤拷锟斤拷Future.get锟斤拷锟斤拷锟斤拷也锟结处锟斤拷锟斤拷贸锟绞憋拷锟斤拷锟�.
      * @param callable
-     * @return ͨ��future.get()��ȡ���ؽ��.
+     * @return 通锟斤拷future.get()锟斤拷取锟斤拷锟截斤拷锟�.
      */
     @SuppressWarnings("unchecked")
 	public <T> Future<T> asyncCall(Callable<T> callable) {
@@ -566,7 +566,7 @@ public class RpcContext {
 	    	try {
 	    		setAttachment(Constants.ASYNC_KEY, Boolean.TRUE.toString());
 				final T o = callable.call();
-				//local���û�ֱ�ӷ��ؽ��.
+				//local锟斤拷锟矫伙拷直锟接凤拷锟截斤拷锟�.
 				if (o != null) {
 					FutureTask<T> f = new FutureTask<T>(new Callable<T>() {
 						@Override
@@ -614,7 +614,7 @@ public class RpcContext {
     }
     
 	/**
-	 * oneway���ã�ֻ�������󣬲����շ��ؽ��.
+	 * oneway锟斤拷锟矫ｏ拷只锟斤拷锟斤拷锟斤拷锟襟，诧拷锟斤拷锟秸凤拷锟截斤拷锟�.
 	 * @param callable
 	 */
 	public void asyncCall(Runnable runable) {
@@ -622,7 +622,7 @@ public class RpcContext {
     		setAttachment(Constants.RETURN_KEY, Boolean.FALSE.toString());
     		runable.run();
 		} catch (Throwable e) {
-			//FIXME �쳣�Ƿ�Ӧ�÷���future�У�
+			//FIXME 锟届常锟角凤拷应锟矫凤拷锟斤拷future锟叫ｏ拷
 			throw new RpcException("oneway call error ." + e.getMessage(), e);
 		} finally {
 			removeAttachment(Constants.RETURN_KEY);

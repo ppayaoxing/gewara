@@ -12,7 +12,7 @@ import com.gewara.support.ErrorCode;
 
 public interface LoginService {
 	
-	/** 根据用户名密码登录
+	/** 鏍规嵁鐢ㄦ埛鍚嶅瘑鐮佺櫥褰�
 	 * @param request
 	 * @param response
 	 * @param username
@@ -21,28 +21,28 @@ public interface LoginService {
 	 */
 	ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, String username, String password);
 
-	/** 根据sessid 和 ip地址登录
+	/** 鏍规嵁sessid 鍜� ip鍦板潃鐧诲綍
 	 * @param ip
 	 * @param sessid
 	 * @return
 	 */
 	GewaraUser getLogonGewaraUserBySessid(String ip, String sessid);
 
-	/**根据sessid 和 ip地址获取认证信息
+	/**鏍规嵁sessid 鍜� ip鍦板潃鑾峰彇璁よ瘉淇℃伅
 	 * @param ip
 	 * @param sessid
 	 * @return
 	 */
 	Authentication loadAuthentication(String ip, String sessid);
 
-	/** 根据sessid判断是否是gewara用户登录
+	/** 鏍规嵁sessid鍒ゆ柇鏄惁鏄痝ewara鐢ㄦ埛鐧诲綍
 	 * @param request
 	 * @param sessid
 	 * @return
 	 */
 	boolean isGewaraUserLogon(HttpServletRequest request, String sessid);
 
-	/** 单点登录
+	/** 鍗曠偣鐧诲綍
 	 * @param request
 	 * @param response
 	 * @param sessid
@@ -50,7 +50,7 @@ public interface LoginService {
 	 */
 	ErrorCode<Map> ssoAutoLogin(HttpServletRequest request, HttpServletResponse response, String sessid);
 
-	/** 销毁sessid
+	/** 閿�姣乻essid
 	 * @param sessid
 	 */
 	void removeInvalidSessid(String sessid);

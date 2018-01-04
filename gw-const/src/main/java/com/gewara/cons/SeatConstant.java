@@ -6,30 +6,30 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class SeatConstant {
-	public static final String STATUS_NEW = "A";//ĞÂ×ùÎ»
-	public static final String STATUS_SELLING = "W";//ÊÛ³ö´ı¸¶¿î£¨Êı¾İ¿âÖĞ²»´æÔÚ´Ë×´Ì¬£¬Ö»ÓĞstatus==A and validtime<cur²Å»á·µ»Ø´Ë×´Ì¬£©
-	public static final String STATUS_SOLD = "S";//ÊÛ³ö
+	public static final String STATUS_NEW = "A";//æ–°åº§ä½
+	public static final String STATUS_SELLING = "W";//å”®å‡ºå¾…ä»˜æ¬¾ï¼ˆæ•°æ®åº“ä¸­ä¸å­˜åœ¨æ­¤çŠ¶æ€ï¼Œåªæœ‰status==A and validtime<curæ‰ä¼šè¿”å›æ­¤çŠ¶æ€ï¼‰
+	public static final String STATUS_SOLD = "S";//å”®å‡º
 	
-	public static final String STATUS_LOCKB = "B";//Ó°ÔºÊÛ³öËø¶¨
-	public static final String STATUS_LOCKC = "C";//±£Áô×ùÎ»Ëø¶¨
-	public static final String STATUS_LOCKD = "D";//ÔùÆ±Ëø¶¨
+	public static final String STATUS_LOCKB = "B";//å½±é™¢å”®å‡ºé”å®š
+	public static final String STATUS_LOCKC = "C";//ä¿ç•™åº§ä½é”å®š
+	public static final String STATUS_LOCKD = "D";//èµ ç¥¨é”å®š
 	
-	public static final String STATUS_LOCKZ = "Z";//Ó°ÔºÎ¬ĞŞËø¶¨
+	public static final String STATUS_LOCKZ = "Z";//å½±é™¢ç»´ä¿®é”å®š
 	
-	public static final String STATUS_LOCKM = "M";	//ÆÕÍ¨ÓÃ»§Ëø¶¨×ùÎ»
-	public static final String STATUS_LOCKG = "G";	//À´±öÓÃ»§Ëø¶¨×ùÎ»
+	public static final String STATUS_LOCKM = "M";	//æ™®é€šç”¨æˆ·é”å®šåº§ä½
+	public static final String STATUS_LOCKG = "G";	//æ¥å®¾ç”¨æˆ·é”å®šåº§ä½
 	
-	public static final String STATUS_LOCK_REMOTE = "R";//Ó°ÔºÊÛ³öËø¶¨
+	public static final String STATUS_LOCK_REMOTE = "R";//å½±é™¢å”®å‡ºé”å®š
 	
 	private static final Map<String, String> statusTextMap = new HashMap<String, String>();
 	static{
-		statusTextMap.put(STATUS_LOCKB, "Ó°ÔºÊÛ³öËø¶¨");
-		statusTextMap.put(STATUS_LOCKC, "±£Áô×ùÎ»Ëø¶¨");
-		statusTextMap.put(STATUS_LOCKD, "ÔùÆ±Ëø¶¨");
-		statusTextMap.put(STATUS_LOCKZ, "Ó°ÔºÎ¬ĞŞËø¶¨");
+		statusTextMap.put(STATUS_LOCKB, "å½±é™¢å”®å‡ºé”å®š");
+		statusTextMap.put(STATUS_LOCKC, "ä¿ç•™åº§ä½é”å®š");
+		statusTextMap.put(STATUS_LOCKD, "èµ ç¥¨é”å®š");
+		statusTextMap.put(STATUS_LOCKZ, "å½±é™¢ç»´ä¿®é”å®š");
 	}
 	public static final List<String> STATUS_LOCK_LIST = Arrays.asList(STATUS_LOCKB, STATUS_LOCKC, STATUS_LOCKD);
-	//°üº¬Î¬ĞŞ×ùÎ»
+	//åŒ…å«ç»´ä¿®åº§ä½
 	public static final List<String> STATUS_LOCK_LIST2 = Arrays.asList(STATUS_LOCKB, STATUS_LOCKC, STATUS_LOCKD, STATUS_LOCKZ);
 
 

@@ -37,32 +37,32 @@ import com.alibaba.dubbo.registry.RegistryService;
  */
 public abstract class AbstractRegistryFactory implements RegistryFactory {
 
-    // ��־���
+    // 锟斤拷志锟斤拷锟�
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractRegistryFactory.class);
 
-    // ע�����Ļ�ȡ������
+    // 注锟斤拷锟斤拷锟侥伙拷取锟斤拷锟斤拷锟斤拷
     private static final ReentrantLock LOCK = new ReentrantLock();
 
-    // ע�����ļ��� Map<RegistryAddress, Registry>
+    // 注锟斤拷锟斤拷锟侥硷拷锟斤拷 Map<RegistryAddress, Registry>
     private static final Map<String, Registry> REGISTRIES = new ConcurrentHashMap<String, Registry>();
 
     /**
-     * ��ȡ����ע������
+     * 锟斤拷取锟斤拷锟斤拷注锟斤拷锟斤拷锟斤拷
      * 
-     * @return ����ע������
+     * @return 锟斤拷锟斤拷注锟斤拷锟斤拷锟斤拷
      */
     public static Collection<Registry> getRegistries() {
         return Collections.unmodifiableCollection(REGISTRIES.values());
     }
 
     /**
-     * �ر������Ѵ���ע������
+     * 锟截憋拷锟斤拷锟斤拷锟窖达拷锟斤拷注锟斤拷锟斤拷锟斤拷
      */
     public static void destroyAll() {
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Close all registries " + getRegistries());
         }
-        // ����ע�����Ĺرչ���
+        // 锟斤拷锟斤拷注锟斤拷锟斤拷锟侥关闭癸拷锟斤拷
         LOCK.lock();
         try {
             for (Registry registry : getRegistries()) {
@@ -74,7 +74,7 @@ public abstract class AbstractRegistryFactory implements RegistryFactory {
             }
             REGISTRIES.clear();
         } finally {
-            // �ͷ���
+            // 锟酵凤拷锟斤拷
             LOCK.unlock();
         }
     }
@@ -85,7 +85,7 @@ public abstract class AbstractRegistryFactory implements RegistryFactory {
     			.addParameter(Constants.INTERFACE_KEY, RegistryService.class.getName())
     			.removeParameters(Constants.EXPORT_KEY, Constants.REFER_KEY);
     	String key = url.toServiceString();
-        // ����ע�����Ļ�ȡ���̣���֤ע�����ĵ�һʵ��
+        // 锟斤拷锟斤拷注锟斤拷锟斤拷锟侥伙拷取锟斤拷锟教ｏ拷锟斤拷证注锟斤拷锟斤拷锟侥碉拷一实锟斤拷
         LOCK.lock();
         try {
             Registry registry = REGISTRIES.get(key);
@@ -99,7 +99,7 @@ public abstract class AbstractRegistryFactory implements RegistryFactory {
             REGISTRIES.put(key, registry);
             return registry;
         } finally {
-            // �ͷ���
+            // 锟酵凤拷锟斤拷
             LOCK.unlock();
         }
     }

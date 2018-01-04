@@ -9,7 +9,7 @@ import com.gewara.ucenter.vo.member.ShareMemberVo;
 
 public interface ShareVoService {
 	/**
-	 * Ìí¼ÓÒª·ÖÏíµÄĞÅÏ¢
+	 * æ·»åŠ è¦åˆ†äº«çš„ä¿¡æ¯
 	 * @param tag
 	 * @param tagid
 	 * @param memberid
@@ -17,7 +17,7 @@ public interface ShareVoService {
 	 * @return
 	 */
 	ResultCode sendShareInfo(String tag, Long tagid, Long memberid, String category);
-	/**×Ô¶¨Òå·ÖÏíÄÚÈİ
+	/**è‡ªå®šä¹‰åˆ†äº«å†…å®¹
 	 * @param tag
 	 * @param tagid
 	 * @param memberid
@@ -27,14 +27,14 @@ public interface ShareVoService {
 	 */
 	ResultCode sendShareInfo(String tag, Long tagid, Long memberid, String content, String picUrl);
 	/**
-	 * ¸ù¾İÀ´Ô´»ñÈ¡¹ØÁªÍ¬²½ÓÃ»§
+	 * æ ¹æ®æ¥æºè·å–å…³è”åŒæ­¥ç”¨æˆ·
 	 * @param source
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<List<ShareMemberVo>> getShareMemberByMemberid(List<String> source, Long memberid);
 	/**
-	 * ´´½¨sharemember
+	 * åˆ›å»ºsharemember
 	 * @param memberid
 	 * @param source
 	 * @param loginname
@@ -45,7 +45,7 @@ public interface ShareVoService {
 	 */
 	ResultCode createShareMember(Long memberid, String source, String loginname, String token, String tokensecret, String expires);
 	/**
-	 * ĞŞ¸ÄotherinfoÏà¹Ø²Ù×÷
+	 * ä¿®æ”¹otherinfoç›¸å…³æ“ä½œ
 	 * @param shareMemberid
 	 * @param otherinfoKey
 	 * @param otherinfoValue
@@ -53,7 +53,7 @@ public interface ShareVoService {
 	 */
 	ResultCode updateShareMemberRights(Long shareMemberid, String otherinfoKey, String otherinfoValue);
 	/**
-	 * ÒÆ³ı
+	 * ç§»é™¤
 	 * @param shareMemberid
 	 * @return
 	 */

@@ -12,40 +12,40 @@ import com.gewara.model.BaseObject;
 public class GewaQuestionVo extends BaseVo {
 	private static final long serialVersionUID = 5578727148166770087L;
 	public static Map<String,String> ssMap = new HashMap<String,String>();
-	public static final int HOTVALUE_HOT = 30000; // ÈÈÃÅ
-	public static final int HOTVALUE_RECOMMEND = 50000; // ÍÆ¼ö
-	public static final String QS_STATUS_N = "N"; //´ı½â¾ö
-	public static final String QS_STATUS_Y = "Y"; //ÒÑ½â¾ö
-	public static final String QS_STATUS_Z = "Z"; //Áã½â¾ö
-	public static final String QS_STATUS_NOPROPER = "noproper"; //ÎŞÂúÒâ´ğ°¸
-	public static final Integer MAXDAYS = 15; //×î´ó¹ıÆÚÊ±¼ä
+	public static final int HOTVALUE_HOT = 30000; // çƒ­é—¨
+	public static final int HOTVALUE_RECOMMEND = 50000; // æ¨è
+	public static final String QS_STATUS_N = "N"; //å¾…è§£å†³
+	public static final String QS_STATUS_Y = "Y"; //å·²è§£å†³
+	public static final String QS_STATUS_Z = "Z"; //é›¶è§£å†³
+	public static final String QS_STATUS_NOPROPER = "noproper"; //æ— æ»¡æ„ç­”æ¡ˆ
+	public static final Integer MAXDAYS = 15; //æœ€å¤§è¿‡æœŸæ—¶é—´
 	private Long id;
-	private String title; // ±êÌâ
-	private String content; // ÄÚÈİ
-	private String addinfo; //²¹³ä
-	private Integer reward; // ĞüÉÍ·Ö
-	private String tag; // °æ¿é£ºmovie,....
+	private String title; // æ ‡é¢˜
+	private String content; // å†…å®¹
+	private String addinfo; //è¡¥å……
+	private Integer reward; // æ‚¬èµåˆ†
+	private String tag; // ç‰ˆå—ï¼šmovie,....
 	private String category;
 	private Long categoryid;
 	private Long relatedid;
-	private Long memberid; // ÌáÎÊÈË
-	private Integer replycount; // ¹²»Ø¸´´ÎÊı
-	private Long replymemberid; // ×îºó»Ø¸´ÈË
+	private Long memberid; // æé—®äºº
+	private Integer replycount; // å…±å›å¤æ¬¡æ•°
+	private Long replymemberid; // æœ€åå›å¤äºº
 	private Integer clickedtimes;
 	private Integer hotvalue;
-	private String questionstatus; // ½â¾ö×´Ì¬ ´ı½â¾ö:N, ÒÑ½â¾ö£ºY, Áã½â¾ö£ºZ  ÎŞÂúÒâ´ğ°¸ noproper
-	private String status;// É¾³ı×´Ì¬ Î´É¾³ı£ºN ÒÑÉ¾³ı£ºY
+	private String questionstatus; // è§£å†³çŠ¶æ€ å¾…è§£å†³:N, å·²è§£å†³ï¼šY, é›¶è§£å†³ï¼šZ  æ— æ»¡æ„ç­”æ¡ˆ noproper
+	private String status;// åˆ é™¤çŠ¶æ€ æœªåˆ é™¤ï¼šN å·²åˆ é™¤ï¼šY
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private Timestamp modtime;	//×îºóĞŞ¸ÄÊ±¼ä
+	private Timestamp modtime;	//æœ€åä¿®æ”¹æ—¶é—´
 	private Timestamp addinfotime;
 	private Timestamp recommendtime;
 	private Timestamp dealtime;
-	private Long tomemberid; // ÏòTaÌáÎÊ
+	private Long tomemberid; // å‘Taæé—®
 	private String countycode;
 	private String membername;
 	private String citycode;
-	private String ip; //ÌáÎÊÕßIP
+	private String ip; //æé—®è€…IP
 	private BaseObject relate;
 	private BaseObject relate2;
 	
@@ -244,10 +244,10 @@ public class GewaQuestionVo extends BaseVo {
 		return ssMap.get(this.tag);
 	}
 	static{
-		ssMap.put("cinema", "¿´µçÓ°");
-		ssMap.put("theatre", "»°¾ç");
-		ssMap.put("activity", "»î¶¯");
-		ssMap.put("", "ÆäËü");
+		ssMap.put("cinema", "çœ‹ç”µå½±");
+		ssMap.put("theatre", "è¯å‰§");
+		ssMap.put("activity", "æ´»åŠ¨");
+		ssMap.put("", "å…¶å®ƒ");
 	}
 	public String getAddinfo() {
 		return addinfo;

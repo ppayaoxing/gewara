@@ -39,7 +39,7 @@ public class MonitorUtil {
 	}
 	
 	/**
-	 * ±¨¾¯ 
+	 * æŠ¥è­¦ 
 	 * @see http://monitor.gewara.com/monitor/admin/sysmgr/msggroovy.xhtml
 	 * @see http://monitor.gewara.com/monitor/admin/sysmgr/testMsgGroovy.xhtml
 	 * @param systemid

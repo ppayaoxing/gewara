@@ -7,7 +7,7 @@ import com.gewara.api.vo.pay.PubSaleVo;
 public interface PubSaleVoService {
 
 	/**
-	 * 获取竞拍数据
+	 * 鑾峰彇绔炴媿鏁版嵁
 	 * @param id
 	 * @return
 	 */

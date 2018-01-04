@@ -15,8 +15,8 @@ import com.gewara.support.TraceErrorException;
 import com.gewara.support.serializer.HessianRedisSerializer;
 
 /**
- * ����jedis clusterʵ�ֵ�cache<br>
- * Object���͵�valueʹ��HessianSerializer,���Ӧ��keyʹ��string serializer
+ * 锟斤拷锟斤拷jedis cluster实锟街碉拷cache<br>
+ * Object锟斤拷锟酵碉拷value使锟斤拷HessianSerializer,锟斤拷锟接︼拷锟絢ey使锟斤拷string serializer
  * 
  * @author quzhuping
  */
@@ -82,9 +82,9 @@ public class RedisClusterCacheServiceImpl extends AbstractCacheService {
 	}
 
 	/**
-	 * ԭ�ӼӲ���<br>
-	 * ����redis�������ԣ�def����ڸ÷�������Ч��defֵΪ0 <br>
-	 * ���ʹ�÷���Ĭ��ֵ���ο�ʹ��{@link AtomicCounter4RedisSharded}
+	 * 原锟接加诧拷锟斤拷<br>
+	 * 锟斤拷锟斤拷redis锟斤拷锟斤拷锟斤拷锟皆ｏ拷def锟斤拷锟斤拷诟梅锟斤拷锟斤拷锟斤拷锟叫э拷锟絛ef值为0 <br>
+	 * 锟斤拷锟绞癸拷梅锟斤拷锟侥拷锟街碉拷锟斤拷慰锟绞癸拷锟絳@link AtomicCounter4RedisSharded}
 	 */
 	@Override
 	public int incrementAndGet(String regionName, String key, int by, int def) {
@@ -118,9 +118,9 @@ public class RedisClusterCacheServiceImpl extends AbstractCacheService {
 	}
 
 	/**
-	 * ԭ�Ӽ�����<br>
-	 * ����redis�������ԣ�def����ڸ÷�������Ч��defֵΪ0 <br>
-	 * ���ʹ�÷���Ĭ��ֵ���ο�ʹ��{@link AtomicCounter4RedisSharded}
+	 * 原锟接硷拷锟斤拷锟斤拷<br>
+	 * 锟斤拷锟斤拷redis锟斤拷锟斤拷锟斤拷锟皆ｏ拷def锟斤拷锟斤拷诟梅锟斤拷锟斤拷锟斤拷锟叫э拷锟絛ef值为0 <br>
+	 * 锟斤拷锟绞癸拷梅锟斤拷锟侥拷锟街碉拷锟斤拷慰锟绞癸拷锟絳@link AtomicCounter4RedisSharded}
 	 */
 	@Override
 	public int decrAndGet(String regionName, String key, int by, int def) {
@@ -137,9 +137,9 @@ public class RedisClusterCacheServiceImpl extends AbstractCacheService {
 	}
 
 	/**
-	 * ԭ�ӼӲ���<br>
-	 * ����redis�������ԣ�def�����ڸ÷�������Ч��defֵΪ0 <br>
-	 * ���ʹ�÷���Ĭ��ֵ���ο�ʹ��{@link AtomicCounter4RedisSharded}
+	 * 原锟接加诧拷锟斤拷<br>
+	 * 锟斤拷锟斤拷redis锟斤拷锟斤拷锟斤拷锟皆ｏ拷def锟斤拷锟斤拷锟节该凤拷锟斤拷锟斤拷锟斤拷效锟斤拷def值为0 <br>
+	 * 锟斤拷锟绞癸拷梅锟斤拷锟侥拷锟街碉拷锟斤拷慰锟绞癸拷锟絳@link AtomicCounter4RedisSharded}
 	 */
 	@Override
 	public int incrementAndGet(String regionName, String key, int by, int def, int exp) {

@@ -63,18 +63,18 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
 
     private static final Map<String, Integer> RANDOM_PORT_MAP = new HashMap<String, Integer>();
 
-    // �ӿ�����
+    // 锟接匡拷锟斤拷锟斤拷
     private String              interfaceName;
 
     private Class<?>            interfaceClass;
 
-    // �ӿ�ʵ��������
+    // 锟接匡拷实锟斤拷锟斤拷锟斤拷锟斤拷
     private T                   ref;
 
-    // ��������
+    // 锟斤拷锟斤拷锟斤拷锟斤拷
     private String              path;
 
-    // ��������
+    // 锟斤拷锟斤拷锟斤拷锟斤拷
     private List<MethodConfig>  methods;
 
     private ProviderConfig provider;
@@ -244,7 +244,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
     }
 
     private void checkRef() {
-        // ������ò�Ϊ�գ��������ñ���ʵ�ֽӿ�
+        // 锟斤拷锟斤拷锟斤拷貌锟轿拷眨锟斤拷锟斤拷锟斤拷锟斤拷帽锟斤拷锟绞碉拷纸涌锟�
         if (ref == null) {
             throw new IllegalStateException("ref not allow null!");
         }
@@ -372,17 +372,17 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                 List<ArgumentConfig> arguments = method.getArguments();
                 if (arguments != null && arguments.size() > 0) {
                     for (ArgumentConfig argument : arguments) {
-                        //�����Զ�ת��.
+                        //锟斤拷锟斤拷锟皆讹拷转锟斤拷.
                         if(argument.getType() != null && argument.getType().length() >0){
                             Method[] methods = interfaceClass.getMethods();
-                            //�������з���
+                            //锟斤拷锟斤拷锟斤拷锟叫凤拷锟斤拷
                             if(methods != null && methods.length > 0){
                                 for (int i = 0; i < methods.length; i++) {
                                     String methodName = methods[i].getName();
-                                    //ƥ�䷽�����ƣ���ȡ����ǩ��.
+                                    //匹锟戒方锟斤拷锟斤拷锟狡ｏ拷锟斤拷取锟斤拷锟斤拷签锟斤拷.
                                     if(methodName.equals(method.getName())){
                                         Class<?>[] argtypes = methods[i].getParameterTypes();
-                                        //һ�������е���callback
+                                        //一锟斤拷锟斤拷锟斤拷锟叫碉拷锟斤拷callback
                                         if (argument.getIndex() != -1 ){
                                             if (argtypes[argument.getIndex()].getName().equals(argument.getType())){
                                                 appendParameters(map, argument, method.getName() + "." + argument.getIndex());
@@ -390,7 +390,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                                                 throw new IllegalArgumentException("argument config error : the index attribute and type attirbute not match :index :"+argument.getIndex() + ", type:" + argument.getType());
                                             }
                                         } else {
-                                            //һ�������ж��callback
+                                            //一锟斤拷锟斤拷锟斤拷锟叫讹拷锟絚allback
                                             for (int j = 0 ;j<argtypes.length ;j++) {
                                                 Class<?> argclazz = argtypes[j];
                                                 if (argclazz.getName().equals(argument.getType())){
@@ -444,7 +444,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
             protocolConfig.setRegister(false);
             map.put("notify", "false");
         }
-        // ��������
+        // 锟斤拷锟斤拷锟斤拷锟斤拷
         String contextPath = protocolConfig.getContextpath();
         if ((contextPath == null || contextPath.length() == 0) && provider != null) {
             contextPath = provider.getContextpath();
@@ -458,14 +458,14 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
         }
 
         String scope = url.getParameter(Constants.SCOPE_KEY);
-        //����Ϊnone����¶
+        //锟斤拷锟斤拷为none锟斤拷锟斤拷露
         if (! Constants.SCOPE_NONE.toString().equalsIgnoreCase(scope)) {
 
-            //���ò���remote������������ر�¶ (����Ϊremote�����ʾֻ��¶Զ�̷���)
+            //锟斤拷锟矫诧拷锟斤拷remote锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷乇锟铰� (锟斤拷锟斤拷为remote锟斤拷锟斤拷锟绞局伙拷锟铰对讹拷谭锟斤拷锟�)
             if (!Constants.SCOPE_REMOTE.toString().equalsIgnoreCase(scope)) {
                 exportLocal(url);
             }
-            //������ò���local��¶ΪԶ�̷���.(����Ϊlocal�����ʾֻ��¶Զ�̷���)
+            //锟斤拷锟斤拷锟斤拷貌锟斤拷锟絣ocal锟斤拷露为远锟教凤拷锟斤拷.(锟斤拷锟斤拷为local锟斤拷锟斤拷锟绞局伙拷锟铰对讹拷谭锟斤拷锟�)
             if (! Constants.SCOPE_LOCAL.toString().equalsIgnoreCase(scope) ){
                 if (logger.isInfoEnabled()) {
                     logger.info("Export dubbo service " + interfaceClass.getName() + " to url " + url);
@@ -524,7 +524,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                 && provider != null) {
             setProtocols(provider.getProtocols());
         }
-    	// ���ݾɰ汾
+    	// 锟斤拷锟捷旧版本
         if (protocols == null || protocols.size() == 0) {
             setProtocol(new ProtocolConfig());
         }

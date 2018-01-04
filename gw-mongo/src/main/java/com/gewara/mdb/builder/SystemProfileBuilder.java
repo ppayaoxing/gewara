@@ -18,9 +18,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 /**
- * ���ڻ�ȡsystem.profile��¼
- * @author ����
- * @createDate 2015��11��11��
+ * 锟斤拷锟节伙拷取system.profile锟斤拷录
+ * @author 锟斤拷锟斤拷
+ * @createDate 2015锟斤拷11锟斤拷11锟斤拷
  */
 public class SystemProfileBuilder {
 	private Collection<MongoCollection<Document>> profileCollections=null;
@@ -36,8 +36,8 @@ public class SystemProfileBuilder {
 	}
 	
 	/**
-	 * ����������ѯ��
-	 * @param date ��������ѯ��¼����С����ʱ�䡣
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷询锟斤拷
+	 * @param date 锟斤拷锟斤拷锟斤拷锟斤拷询锟斤拷录锟斤拷锟斤拷小锟斤拷锟斤拷时锟戒。
 	 */
 	public SystemProfileBuilder setMinCreateTime(Date ts){
 		Expression expre=new Expression().gt("ts",ts);
@@ -57,8 +57,8 @@ public class SystemProfileBuilder {
 	}
 	
 	/**
-	 * �ڲ�ѯ����У��Ѿ��Զ���ip��ַ��Ϣ�����˲�ѯ����С� 
-	 * ����ͨ��get("hostIP")��ȡIP��Ϣ�� get("hostTag")��ȡmong����Ķ���tag value��
+	 * 锟节诧拷询锟斤拷锟斤拷校锟斤拷丫锟斤拷远锟斤拷锟絠p锟斤拷址锟斤拷息锟斤拷锟斤拷锟剿诧拷询锟斤拷锟斤拷小锟� 
+	 * 锟斤拷锟斤拷通锟斤拷get("hostIP")锟斤拷取IP锟斤拷息锟斤拷 get("hostTag")锟斤拷取mong锟斤拷锟斤拷亩锟斤拷锟絫ag value锟斤拷
 	 * 
 	 * @param rowdataProcess
 	 */

@@ -8,7 +8,7 @@ import com.gewara.movie.vo.CinemaRoomVo;
 
 public interface CinemaRoomAdminVoService {
 	/**
-	 * ±£´æcinemaRoom¶ÔÏó
+	 * ä¿å­˜cinemaRoomå¯¹è±¡
 	 * @param roomId
 	 * @param seatStyle
 	 * @param seatMark
@@ -16,8 +16,8 @@ public interface CinemaRoomAdminVoService {
 	 */
 	ResultCode<CinemaRoomVo> addOuterRingSeat(Long roomId, String seatStyle, String seatMark);
 	/**
-	 * ĞŞ¸ÄcinemaRoomÊôĞÔÖµ
-	 * @param userid ²»ÄÜÎª¿Õ
+	 * ä¿®æ”¹cinemaRoomå±æ€§å€¼
+	 * @param userid ä¸èƒ½ä¸ºç©º
 	 * @param roomid
 	 * @param properties
 	 * @param values
@@ -25,27 +25,27 @@ public interface CinemaRoomAdminVoService {
 	 */
 	ResultCode<CinemaRoomVo> updateCinemaRoomProperties(Long userid, Long roomid, String[] properties, Serializable[] values);
 	/**
-	 * ±£´æcinemaRoom¶ÔÏó
-	 * @param userid ²»ÄÜÎª¿Õ
+	 * ä¿å­˜cinemaRoomå¯¹è±¡
+	 * @param userid ä¸èƒ½ä¸ºç©º
 	 * @param roomid
 	 * @param dataMap
 	 * @return
 	 */
 	ResultCode<CinemaRoomVo> saveOrUpdateCinemaRoom(RequestParamVo paramVo);
 	/**
-	 * Ó°ÌüÌØĞ§Êı¾İÉı¼¶
+	 * å½±å…ç‰¹æ•ˆæ•°æ®å‡çº§
 	 * @return
 	 */
 	ResultCode<String> updateCinemaRoomData();
 	/**
-	 * ĞŞ¸ÄcinemaRoom¶ÔÏó
+	 * ä¿®æ”¹cinemaRoomå¯¹è±¡
 	 * @param paramVo
 	 * @return
 	 */
 	ResultCode<String> updateRoom(RequestParamVo paramVo);
 		
 	/**
-	 * ¸ù¾İTicketRoom¸üĞÂCinemaRoom
+	 * æ ¹æ®TicketRoomæ›´æ–°CinemaRoom
 	 * @param cinemaid
 	 * @return
 	 */

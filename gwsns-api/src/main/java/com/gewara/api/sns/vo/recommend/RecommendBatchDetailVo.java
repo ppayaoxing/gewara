@@ -6,19 +6,19 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * ÍÆ¼öµÄÏêÏ¸ÄÚÈİ
+ * æ¨èçš„è¯¦ç»†å†…å®¹
  * @author zxl
  *
  */
 public class RecommendBatchDetailVo extends BaseVo {
 
 	private static final long serialVersionUID = -7002538981573566217L;
-	private Long id; // Ö÷¼ü
-	private Long batchId; // Åú´Îid
-	private String tag;// TAG_STAR¡¢TAG_MOVIE¡¢TAG_BIGLABEL¡¢TAG_COMMENT_TYPE
-	private Long relatedid;// ¹ØÁª¶ÔÏóid
-	private String status;// Y_NEW¡¢N_DELETE
-	private Integer sortNum;// ÅÅĞò
+	private Long id; // ä¸»é”®
+	private Long batchId; // æ‰¹æ¬¡id
+	private String tag;// TAG_STARã€TAG_MOVIEã€TAG_BIGLABELã€TAG_COMMENT_TYPE
+	private Long relatedid;// å…³è”å¯¹è±¡id
+	private String status;// Y_NEWã€N_DELETE
+	private Integer sortNum;// æ’åº
 	private Timestamp addtime;
 	private Long memberid;
 	private String nickname;

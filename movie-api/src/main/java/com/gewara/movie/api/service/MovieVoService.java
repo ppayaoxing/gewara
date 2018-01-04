@@ -16,7 +16,7 @@ import com.gewara.movie.vo.common.EntityClobVo;
 
 public interface MovieVoService {
 	/**
-	 * ¸ù¾İÓ°Æ¬ID»ñµÃÓ°Æ¬ÏêÇé
+	 * æ ¹æ®å½±ç‰‡IDè·å¾—å½±ç‰‡è¯¦æƒ…
 	 * 
 	 * @param movieId
 	 * @return MovieVo
@@ -24,7 +24,7 @@ public interface MovieVoService {
 	ResultCode<MovieVo> getMovieById(Long movieId);
 
 	/**
-	 * ¸ù¾İÓ°Æ¬ukey»ñµÃÓ°Æ¬ÏêÇé
+	 * æ ¹æ®å½±ç‰‡ukeyè·å¾—å½±ç‰‡è¯¦æƒ…
 	 * 
 	 * @param ukey
 	 * @return MovieVo
@@ -32,7 +32,7 @@ public interface MovieVoService {
 	ResultCode<MovieVo> getMovieByUkey(String ukeyName, Serializable ukeyValue);
 
 	/**
-	 * ¸ù¾İÓ°Æ¬ID¼¯ºÏ»ñµÃÓ°Æ¬¼¯ºÏ
+	 * æ ¹æ®å½±ç‰‡IDé›†åˆè·å¾—å½±ç‰‡é›†åˆ
 	 * 
 	 * @param movieIds
 	 * @return List<MovieVo>
@@ -40,7 +40,7 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getMovieListByIdList(List<Long> idList);
 
 	/**
-	 * ¸ù¾İÓ°Æ¬ID¼¯ºÏ»ñµÃÓ°Æ¬¼¯ºÏ ×¢Òâ£º¸Ã·½·¨ÓÃÓÚjmsÍ¬²½movieÊı¾İµ½avatar,Ö±½Ó²émysqlÊı¾İ¿â£¬²»×ß»º´æ£¬É÷ÓÃ¡£
+	 * æ ¹æ®å½±ç‰‡IDé›†åˆè·å¾—å½±ç‰‡é›†åˆ æ³¨æ„ï¼šè¯¥æ–¹æ³•ç”¨äºjmsåŒæ­¥movieæ•°æ®åˆ°avatar,ç›´æ¥æŸ¥mysqlæ•°æ®åº“ï¼Œä¸èµ°ç¼“å­˜ï¼Œæ…ç”¨ã€‚
 	 * 
 	 * @param movieIds
 	 * @return List<MovieVo>
@@ -48,7 +48,7 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getMovieListByIdListWithOutCache(List<Long> idList);
 
 	/**
-	 * ¸ù¾İÓ°Æ¬ID»ñµÃÓ°Æ¬ÃèÊö
+	 * æ ¹æ®å½±ç‰‡IDè·å¾—å½±ç‰‡æè¿°
 	 * 
 	 * @param movieId
 	 * @return EntityClobVo
@@ -56,7 +56,7 @@ public interface MovieVoService {
 	ResultCode<EntityClobVo> getMovieEntityClob(Long movieId);
 
 	/**
-	 * ¸ù¾İ¼´½«ÉÏÓ³µÄÓ°Æ¬
+	 * æ ¹æ®å³å°†ä¸Šæ˜ çš„å½±ç‰‡
 	 * 
 	 * @param from
 	 * @param maxnum
@@ -66,14 +66,14 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getFutureMovieList(int from, int maxnum, String order);
 
 	/**
-	 * ²éÑ¯ÈÈÓ³Ó°Æ¬
+	 * æŸ¥è¯¢çƒ­æ˜ å½±ç‰‡
 	 * 
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getCurMovieList();
 
 	/**
-	 * ¸ù¾İ³ÇÊĞ²éÑ¯ÈÈÓ³µçÓ°£¬´ø·ÖÒ³
+	 * æ ¹æ®åŸå¸‚æŸ¥è¯¢çƒ­æ˜ ç”µå½±ï¼Œå¸¦åˆ†é¡µ
 	 * 
 	 * @param citycode
 	 * @param from
@@ -83,18 +83,18 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getCurMovieListByCitycode(String citycode, int from, int maxnum);
 
 	/**
-	 * ¸ù¾İreleasedate²éÑ¯µçÓ°IDÁĞ±í
+	 * æ ¹æ®releasedateæŸ¥è¯¢ç”µå½±IDåˆ—è¡¨
 	 * 
 	 * @param startDate
-	 *            ÆğÊ¼Ê±¼ä
+	 *            èµ·å§‹æ—¶é—´
 	 * @param endDate
-	 *            ½áÊøÊ±¼ä
+	 *            ç»“æŸæ—¶é—´
 	 * @return
 	 */
 	ResultCode<List<Long>> getMovieListByReleasedate(Date startDate, Date endDate);
 
 	/**
-	 * ¸ù¾İ³ÇÊĞ²éÑ¯ÈÈÓ³µçÓ°£¬°´ÕÕclickedtimes¡¢ASCÅÅĞò
+	 * æ ¹æ®åŸå¸‚æŸ¥è¯¢çƒ­æ˜ ç”µå½±ï¼ŒæŒ‰ç…§clickedtimesã€ASCæ’åº
 	 * 
 	 * @param citycode
 	 * @param from
@@ -104,14 +104,14 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getCurMovieListByCitycodeOrderClickedtimes(String citycode);
 
 	/**
-	 * Ë¢ĞÂÇ°ÖÃµçÓ°ID
+	 * åˆ·æ–°å‰ç½®ç”µå½±ID
 	 * 
 	 * @return
 	 */
 	ResultCode<Long> refreshQzMovieid();
 
 	/**
-	 * ¸ù¾İÓ°Æ¬id£¬Ó°Æ¬Ãû³Æ»ñµÃÓ°Æ¬ÌõÊı
+	 * æ ¹æ®å½±ç‰‡idï¼Œå½±ç‰‡åç§°è·å¾—å½±ç‰‡æ¡æ•°
 	 * 
 	 * @param movieid
 	 * @param movieName
@@ -120,7 +120,7 @@ public interface MovieVoService {
 	ResultCode<Integer> getMovieCountByidAndName(Long movieid, String movieName);
 
 	/**
-	 * ¸ù¾İÓ°Æ¬Ãû³Æ²éÑ¯Ó°Æ¬
+	 * æ ¹æ®å½±ç‰‡åç§°æŸ¥è¯¢å½±ç‰‡
 	 * 
 	 * @param moviename
 	 * @return
@@ -128,7 +128,7 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getMovieListByMovieName(String moviename);
 
 	/**
-	 * ¸ù¾İÓ°Æ¬Ãû³Æ²éÑ¯Ó°Æ¬
+	 * æ ¹æ®å½±ç‰‡åç§°æŸ¥è¯¢å½±ç‰‡
 	 * 
 	 * @param moviename
 	 * @return
@@ -136,7 +136,7 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getMovieListByLikeMovieName(String moviename);
 
 	/**
-	 * »ñÈ¡ÏÂÏßµÄÓ°Æ¬ÁĞ±í
+	 * è·å–ä¸‹çº¿çš„å½±ç‰‡åˆ—è¡¨
 	 * 
 	 * @param citycode
 	 * @param order
@@ -145,7 +145,7 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getOffLineMoveList(String citycode, String order);
 
 	/**
-	 * ºóÌ¨¹ÜÀíÓ°Æ¬ÁĞ±í
+	 * åå°ç®¡ç†å½±ç‰‡åˆ—è¡¨
 	 * 
 	 * @param hot
 	 * @param moviename
@@ -156,7 +156,7 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getAdminMovieList(String hot, String moviename, Date fromDate, Date toDate);
 
 	/**
-	 * ¸ù¾İ·ÅÓ³ÈÕÆÚºÍ½áÊøÊ±¼ä²éÑ¯Ó°Æ¬ĞÅÏ¢
+	 * æ ¹æ®æ”¾æ˜ æ—¥æœŸå’Œç»“æŸæ—¶é—´æŸ¥è¯¢å½±ç‰‡ä¿¡æ¯
 	 * 
 	 * @param playdate
 	 * @param endDate
@@ -165,15 +165,15 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getMovieListByDate(String playdate, String endDate);
 
 	/**
-	 * ¸ü¾ßÓ°ÔºID²éÑ¯µ±Ç°ÈÈÃÅÓ°Æ¬
+	 * æ›´å…·å½±é™¢IDæŸ¥è¯¢å½“å‰çƒ­é—¨å½±ç‰‡
 	 * 
 	 * @param cinemaId
-	 * @return µ±Ç°µçÓ°ÔºµÄ·ÅÓ³Ó°Æ¬ÁĞ±í
+	 * @return å½“å‰ç”µå½±é™¢çš„æ”¾æ˜ å½±ç‰‡åˆ—è¡¨
 	 */
 	ResultCode<List<MovieVo>> getCurMovieListByCinemaId(Long cinemaId);
 
 	/**
-	 * Ä³Ó°ÔºÄ³ÌìµÄÓ°Æ¬
+	 * æŸå½±é™¢æŸå¤©çš„å½±ç‰‡
 	 * 
 	 * @param cinemaId
 	 * @param playdate
@@ -182,7 +182,7 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getCurMovieListByCinemaIdAndDate(Long cinemaId, Date playdate);
 
 	/**
-	 * °´ÕÕµçÓ°µÄ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä²éÑ¯Ó°Æ¬ĞÅÏ¢ÓĞ·ÖÒ³
+	 * æŒ‰ç…§ç”µå½±çš„å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´æŸ¥è¯¢å½±ç‰‡ä¿¡æ¯æœ‰åˆ†é¡µ
 	 * 
 	 * @param playdate
 	 * @param endDate
@@ -191,7 +191,7 @@ public interface MovieVoService {
 	ResultCode<List<MovieVo>> getMovieListByDateAndPage(String playdate, String endDate, int from, int maxnum);
 
 	/**
-	 * ¸ù¾İ·ÅÓ³ÈÕÆÚºÍ½áÊøÊ±¼ä²éÑ¯Ó°Æ¬Êı
+	 * æ ¹æ®æ”¾æ˜ æ—¥æœŸå’Œç»“æŸæ—¶é—´æŸ¥è¯¢å½±ç‰‡æ•°
 	 * 
 	 * @param playdate
 	 * @param endDate
@@ -200,7 +200,7 @@ public interface MovieVoService {
 	ResultCode<Integer> countMovieListByDate(String playdate, String endDate);
 
 	/**
-	 * »ñÈ¡µ±Ç°µçÓ°¹ØÁªµÄÊÓÆµ
+	 * è·å–å½“å‰ç”µå½±å…³è”çš„è§†é¢‘
 	 * 
 	 * @param movieid
 	 * @return
@@ -208,7 +208,7 @@ public interface MovieVoService {
 	ResultCode<MovieVideoVo> getMovieVideoByMovieId(Long movieid);
 
 	/**
-	 * »ñÈ¡ÊÓÆµ
+	 * è·å–è§†é¢‘
 	 * 
 	 * @param videoid
 	 * @return
@@ -216,15 +216,15 @@ public interface MovieVoService {
 	ResultCode<MovieVideoVo> getMovieVideoByVideoid(String videoid);
 
 	/**
-	 * Ğ£ÑémovieÊÇ·ñ´æÔÚ
+	 * æ ¡éªŒmovieæ˜¯å¦å­˜åœ¨
 	 * 
 	 * @param idList
-	 * @return ·µ»Ø²»´æÔÚµÄid
+	 * @return è¿”å›ä¸å­˜åœ¨çš„id
 	 */
 	ResultCode<List<Long>> checkMovieExist(List<Long> idList);
 
 	/**
-	 * ²éÑ¯µçÓ°½ÚµçÓ°
+	 * æŸ¥è¯¢ç”µå½±èŠ‚ç”µå½±
 	 * 
 	 * @param flag
 	 * @return
@@ -232,7 +232,7 @@ public interface MovieVoService {
 	ResultCode<List<Long>> getFilmFestMovieIdList(String flag);
 
 	/**
-	 * »ñµÃÈÈÃÅµçÓ°ºÍÓ°ÈË
+	 * è·å¾—çƒ­é—¨ç”µå½±å’Œå½±äºº
 	 * 
 	 * @param citycode
 	 * @param cinemaid
@@ -242,34 +242,34 @@ public interface MovieVoService {
 	ResultCode<Map<String, Object>> getHotMovieAndStar(String citycode, Long cinemaid, Date playdate);
 
 	/**
-	 * »ñÈ¡Ó°Æ¬ÁĞ±í
+	 * è·å–å½±ç‰‡åˆ—è¡¨
 	 * 
 	 * @param from
-	 *            ¿ªÊ¼¼ÇÂ¼Êı
+	 *            å¼€å§‹è®°å½•æ•°
 	 * @param rows
-	 *            »ñÈ¡¼ÇÂ¼Êı
+	 *            è·å–è®°å½•æ•°
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getMovieList(Integer from, Integer rows);
 
 	/**
-	 * Ó°Æ¬µÄ×Ü¼ÇÂ¼Êı
+	 * å½±ç‰‡çš„æ€»è®°å½•æ•°
 	 * 
 	 * @return
 	 */
 	ResultCode<Integer> getAllMovieCount();
 
 	/**
-	 * ¸ù¾İµçÓ°ID²éÑ¯Ã÷ĞÇ¼ûÃæ»á
+	 * æ ¹æ®ç”µå½±IDæŸ¥è¯¢æ˜æ˜Ÿè§é¢ä¼š
 	 * 
 	 * @param movieid
-	 *            µçÓ°ID£¬²»ÄÜÎª¿Õ
-	 * @return ·µ»Ø·ûºÏÌõ¼şµÄ³¡´ÎIDÁĞ±í
+	 *            ç”µå½±IDï¼Œä¸èƒ½ä¸ºç©º
+	 * @return è¿”å›ç¬¦åˆæ¡ä»¶çš„åœºæ¬¡IDåˆ—è¡¨
 	 */
 	ResultCode<List<Long>> getMpidListByMovieidAndStarmeet(final Long movieid);
 
 	/**
-	 * ¸ù¾İ¸üĞÂÊ±¼ä»ñÈ¡ĞèÒª×Ö¶ÎµÄListMap
+	 * æ ¹æ®æ›´æ–°æ—¶é—´è·å–éœ€è¦å­—æ®µçš„ListMap
 	 * 
 	 * @param fields
 	 * @param updatetime
@@ -280,70 +280,70 @@ public interface MovieVoService {
 	ResultCode<List<Map>> getFieldsMapByUpdate(String fields, Timestamp updatetime, int from, int maxnum);
 
 	/**
-	 * ¸ù¾İµçÓ°ID»ñÈ¡Ó°ÈË½Ó¿Ú
+	 * æ ¹æ®ç”µå½±IDè·å–å½±äººæ¥å£
 	 * 
 	 * @param movieId
 	 * @return Map<key, value>
-	 *         key:startid(½ÇÉ«ID),relename(ÊÎÑİ½ÇÉ«),chinesename(ÖĞÎÄÃû),engname(Ó¢ÎÄÃû),headPicUrl(Í·Ïñ),role
+	 *         key:startid(è§’è‰²ID),relename(é¥°æ¼”è§’è‰²),chinesename(ä¸­æ–‡å),engname(è‹±æ–‡å),headPicUrl(å¤´åƒ),role
 	 * 
 	 */
 	ResultCode<List<Map<String, Object>>> getStarListByMovieId(Long movieId);
 
 	ResultCode<MovieVo> updateMovieProperties(Long movieId, String[] properties, Serializable[] values);
 
-	// TODO ×¨Ìâ·¢°æºóÉ¾³ı¸Ã½Ó¿Ú
+	// TODO ä¸“é¢˜å‘ç‰ˆååˆ é™¤è¯¥æ¥å£
 	/**
-	 * ²éÑ¯µ±ÈÕ·ÅÓ³µÄµçÓ°
+	 * æŸ¥è¯¢å½“æ—¥æ”¾æ˜ çš„ç”µå½±
 	 * 
 	 * @param playdate
-	 *            ÈÕÆÚÀàĞÍ
+	 *            æ—¥æœŸç±»å‹
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getCurMovieListByDate(Date playdate);
 
 	/**
-	 * ²éÑ¯µ±ÈÕ·ÅÓ³µÄµçÓ°
+	 * æŸ¥è¯¢å½“æ—¥æ”¾æ˜ çš„ç”µå½±
 	 * 
 	 * @param playdate
-	 *            ÈÕÆÚÀàĞÍ
+	 *            æ—¥æœŸç±»å‹
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getCurMovieListByDate(String citycode, Date playdate, int from, int maxnum);
 
 	/**
-	 * ²éÑ¯·ÅÓ³ÈÕÆÚÔÚÊ±¼ä¶ÎÄÚµÄÓ°Æ¬
+	 * æŸ¥è¯¢æ”¾æ˜ æ—¥æœŸåœ¨æ—¶é—´æ®µå†…çš„å½±ç‰‡
 	 * 
 	 * @param startPlayDate
-	 *            ±ØÊä
+	 *            å¿…è¾“
 	 * @param endPlayDate
-	 *            ±ØÊä
+	 *            å¿…è¾“
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getMovieListBetweenPlaydate(String startPlayDate, String endPlayDate);
 
 	/**
-	 * ²éÑ¯È«ÇòÊ×Ó³ÈÕÆÚÔÚÊ±¼ä¶ÎÄÚµÄÓ°Æ¬
+	 * æŸ¥è¯¢å…¨çƒé¦–æ˜ æ—¥æœŸåœ¨æ—¶é—´æ®µå†…çš„å½±ç‰‡
 	 * 
 	 * @param startReleasedate
-	 *            ±ØÊä
+	 *            å¿…è¾“
 	 * @param endReleasedate
-	 *            ±ØÊä
+	 *            å¿…è¾“
 	 * @param offlineDate
-	 *            ¿ÉÒÔÎª¿Õ
+	 *            å¯ä»¥ä¸ºç©º
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getMovieListBetweenReleasedate(Date startReleasedate, Date endReleasedate,
 			String offlineDate);
 
 	/**
-	 * »ñÈ¡¿ÉËÑË÷µÄµçÓ°ÁĞ±í
+	 * è·å–å¯æœç´¢çš„ç”µå½±åˆ—è¡¨
 	 * 
 	 * @return
 	 */
 	ResultCode<String> getSearchMovieOrderReleasedate();
 
 	/**
-	 * »ñÈ¡µçÓ°ÆÀ·Ö
+	 * è·å–ç”µå½±è¯„åˆ†
 	 * 
 	 * @param movieId
 	 * @return
@@ -351,7 +351,7 @@ public interface MovieVoService {
 	ResultCode<String> getMovieMark(Long movieId);
 
 	/**
-	 * ¸ù¾İµçÓ°Ãû³Æ»ñÈ¡µçÓ°ID£¬»º´æ2Ğ¡Ê±
+	 * æ ¹æ®ç”µå½±åç§°è·å–ç”µå½±IDï¼Œç¼“å­˜2å°æ—¶
 	 * 
 	 * @param moviename
 	 * @return
@@ -359,7 +359,7 @@ public interface MovieVoService {
 	ResultCode<Long> getCacheMovieIdByMoviename(String moviename);
 
 	/**
-	 * »ñÈ¡Ö¸¶¨¸üĞÂÊ±¼äÖ®ºóµÄµçÓ°IDÁĞ±í
+	 * è·å–æŒ‡å®šæ›´æ–°æ—¶é—´ä¹‹åçš„ç”µå½±IDåˆ—è¡¨
 	 * 
 	 * @return
 	 */

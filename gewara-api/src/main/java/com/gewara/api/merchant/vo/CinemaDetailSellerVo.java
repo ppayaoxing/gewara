@@ -8,14 +8,14 @@ public class CinemaDetailSellerVo implements Serializable{
 	private Long movieId;
 	private Long mpId;
 	private String movieName;
-	private String roomName;//Ó°ÌüÃû³Æ
-	private String opentype;	//¿ª·ÅÀàĞÍ
-	private Timestamp playTime; //·ÅÓ³Ê±¼ä
-	private String concatprice;//µ¥¼Û
-	private Long quantity;//Ó°Æ±Êı
-	private Long totalcost;//×Ü½ğ¶î
-	private Long totalcount;//×Ü¶©µ¥Êı
-	private String edition; //°æ±¾
+	private String roomName;//å½±å…åç§°
+	private String opentype;	//å¼€æ”¾ç±»å‹
+	private Timestamp playTime; //æ”¾æ˜ æ—¶é—´
+	private String concatprice;//å•ä»·
+	private Long quantity;//å½±ç¥¨æ•°
+	private Long totalcost;//æ€»é‡‘é¢
+	private Long totalcount;//æ€»è®¢å•æ•°
+	private String edition; //ç‰ˆæœ¬
 	
 	public Long getMovieId() {
 		return movieId;

@@ -15,9 +15,9 @@ public abstract class PartnerDramaOrderReqVo extends PartnerBaseReqVo {
 	protected Long addressid;
 	protected String origin;
 	protected String takemethod;
-	// ÓÃ»§ID
+	// ç”¨æˆ·ID
 	protected String memberEncode;
-	// ºÏ×÷ÉÌÓÃ»§±êÊ¶
+	// åˆä½œå•†ç”¨æˆ·æ ‡è¯†
 	protected String ukey;
 	protected String idnumber;
 	

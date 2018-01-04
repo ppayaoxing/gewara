@@ -36,7 +36,7 @@ public class ClusterUtils {
         if (remoteMap != null && remoteMap.size() > 0) {
             map.putAll(remoteMap);
             
-            //线程池配置不使用提供者的
+            //绾跨▼姹犻厤缃笉浣跨敤鎻愪緵鑰呯殑
             map.remove(Constants.THREAD_NAME_KEY);
             map.remove(Constants.DEFAULT_KEY_PREFIX + Constants.THREAD_NAME_KEY);
 
@@ -60,7 +60,7 @@ public class ClusterUtils {
             map.putAll(localMap);
         }
         if (remoteMap != null && remoteMap.size() > 0) { 
-            // 版本号使用提供者的
+            // 鐗堟湰鍙蜂娇鐢ㄦ彁渚涜�呯殑
             String dubbo = remoteMap.get(Constants.DUBBO_VERSION_KEY);
             if (dubbo != null && dubbo.length() > 0) {
                 map.put(Constants.DUBBO_VERSION_KEY, dubbo);
@@ -77,7 +77,7 @@ public class ClusterUtils {
             if (methods != null && methods.length() > 0) {
                 map.put(Constants.METHODS_KEY, methods);
             }
-            // 合并filter和listener
+            // 鍚堝苟filter鍜宭istener
             String remoteFilter = remoteMap.get(Constants.REFERENCE_FILTER_KEY);
             String localFilter = localMap.get(Constants.REFERENCE_FILTER_KEY);
             if (remoteFilter != null && remoteFilter.length() > 0

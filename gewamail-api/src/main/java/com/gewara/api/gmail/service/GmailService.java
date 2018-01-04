@@ -11,23 +11,23 @@ import com.gewara.api.vo.ResultCode;
 
 
 /**
- * ÓÊ¼ş¹ÜÀí
+ * é‚®ä»¶ç®¡ç†
  * @author zhaorq
  *
  */
 public interface GmailService {
 
 	/**
-	 * ·¢ËÍÓÊ¼ş
+	 * å‘é€é‚®ä»¶
      * @see #sendMail2
 	 */
 	@Deprecated
 	public Response sendMail(EmailRecordVO msg);
 	
-	//·¢ËÍÓÊ¼ş
+	//å‘é€é‚®ä»¶
 	public ResultCode sendMail2(EmailRecordVO msg);
 	
-	//·¢ËÍÓÊ¼ş
+	//å‘é€é‚®ä»¶
 	/**
 	 * 
      * @see #sendMailWithAttachments2
@@ -35,11 +35,11 @@ public interface GmailService {
 	@Deprecated
 	public Response sendMailWithAttachments(EmailRecordVO msg, List<Map<String, Object>> attachments);
 	
-	//·¢ËÍÓÊ¼ş
+	//å‘é€é‚®ä»¶
 	public ResultCode sendMailWithAttachments2(EmailRecordVO msg, List<Map<String, Object>> attachments);
 	
 	/**
-	 * Ö¸¶¨·¢¼şÏä·¢ËÍÓÊ¼ş
+	 * æŒ‡å®šå‘ä»¶ç®±å‘é€é‚®ä»¶
 	 * 
 	 * @param request
 	 * @return
@@ -52,7 +52,7 @@ public interface GmailService {
 	public SendMailByOutboxResponse sendMailByOutbox(SendMailByOutboxRequest request);
 	
 	/**
-	 * Ö¸¶¨·¢¼şÏä·¢ËÍÓÊ¼ş
+	 * æŒ‡å®šå‘ä»¶ç®±å‘é€é‚®ä»¶
 	 * 
 	 * @param request
 	 * @return
@@ -63,26 +63,26 @@ public interface GmailService {
 	public ResultCode sendMailByOutbox2(SendMailByOutboxRequest request);
 	
 	/**
-	 * Ö¸¶¨·¢¼şÏä·¢ËÍÓÊ¼ş£¬²»ÊÇ¼´Ê±·¢ËÍ£¬°´ÏŞÖÆÅä¶î¶¨Ê±·¢ËÍ
+	 * æŒ‡å®šå‘ä»¶ç®±å‘é€é‚®ä»¶ï¼Œä¸æ˜¯å³æ—¶å‘é€ï¼ŒæŒ‰é™åˆ¶é…é¢å®šæ—¶å‘é€
 	 * 
 	 * @param request
 	 * @return
 	 *
 	 * @author leo.li
-	 * Modify Time 2014Äê2ÔÂ27ÈÕ ÏÂÎç2:26:23
+	 * Modify Time 2014å¹´2æœˆ27æ—¥ ä¸‹åˆ2:26:23
      * @see #limitSendMailByOutbox2
 	 */
 	@Deprecated
 	public SendMailByOutboxResponse limitSendMailByOutbox(SendMailByOutboxRequest request);
 	
 	/**
-	 * Ö¸¶¨·¢¼şÏä·¢ËÍÓÊ¼ş£¬²»ÊÇ¼´Ê±·¢ËÍ£¬°´ÏŞÖÆÅä¶î¶¨Ê±·¢ËÍ
+	 * æŒ‡å®šå‘ä»¶ç®±å‘é€é‚®ä»¶ï¼Œä¸æ˜¯å³æ—¶å‘é€ï¼ŒæŒ‰é™åˆ¶é…é¢å®šæ—¶å‘é€
 	 * 
 	 * @param request
 	 * @return
 	 *
 	 * @author leo.li
-	 * Modify Time 2014Äê2ÔÂ27ÈÕ ÏÂÎç2:26:23
+	 * Modify Time 2014å¹´2æœˆ27æ—¥ ä¸‹åˆ2:26:23
 	 */
 	public ResultCode limitSendMailByOutbox2(SendMailByOutboxRequest request);
 }

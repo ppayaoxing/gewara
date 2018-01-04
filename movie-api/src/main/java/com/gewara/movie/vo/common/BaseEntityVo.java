@@ -18,17 +18,17 @@ public class BaseEntityVo extends BaseVo implements Serializable{
 	protected String logo;
 	protected String fullLogo;
 	protected String firstpic;
-	protected Integer generalmark;//����
+	protected Integer generalmark;//锟斤拷锟斤拷
 	protected Integer generalmarkedtimes;
 	protected Integer avggeneral;
-	protected Integer collectedtimes;// �ղ� ����Ȥ
-	protected Integer clickedtimes;//��ע
-	protected String briefname;//���Ƽ��
-	protected Integer xiangqu;	// �������ǰ��: ���Ϊ��˿
-	protected String seotitle; //SEO�ؼ���
-	protected String seodescription; //SEO����
+	protected Integer collectedtimes;// 锟秸诧拷 锟斤拷锟斤拷趣
+	protected Integer clickedtimes;//锟斤拷注
+	protected String briefname;//锟斤拷锟狡硷拷锟�
+	protected Integer xiangqu;	// 锟斤拷锟斤拷锟斤拷锟角帮拷锟�: 锟斤拷锟轿拷锟剿�
+	protected String seotitle; //SEO锟截硷拷锟斤拷
+	protected String seodescription; //SEO锟斤拷锟斤拷
 	protected Timestamp addtime;
-	protected Timestamp updatetime;	//�޸�ʱ��
+	protected Timestamp updatetime;	//锟睫革拷时锟斤拷
 	protected Integer hotvalue=0; 
 	protected Integer quguo;
 	

@@ -54,50 +54,50 @@ public class MonitorFilter implements Filter {
         this.monitorFactory = monitorFactory;
     }
     
-    // ���ù�������
+    // 锟斤拷锟矫癸拷锟斤拷锟斤拷锟斤拷
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         if (invoker.getUrl().hasParameter(Constants.MONITOR_KEY)) {
-            RpcContext context = RpcContext.getContext(); // �ṩ��������invoke()֮ǰ��ȡcontext��Ϣ
-            long start = System.currentTimeMillis(); // ��¼��ʼʱ��¾
-            getConcurrent(invoker, invocation).incrementAndGet(); // ��������
+            RpcContext context = RpcContext.getContext(); // 锟结供锟斤拷锟斤拷锟斤拷锟斤拷invoke()之前锟斤拷取context锟斤拷息
+            long start = System.currentTimeMillis(); // 锟斤拷录锟斤拷始时锟斤拷戮
+            getConcurrent(invoker, invocation).incrementAndGet(); // 锟斤拷锟斤拷锟斤拷锟斤拷
             try {
-                Result result = invoker.invoke(invocation); // �õ���������ִ��
+                Result result = invoker.invoke(invocation); // 锟矫碉拷锟斤拷锟斤拷锟斤拷锟斤拷执锟斤拷
                 collect(invoker, invocation, result, context, start, false);
                 return result;
             } catch (RpcException e) {
                 collect(invoker, invocation, null, context, start, true);
                 throw e;
             } finally {
-                getConcurrent(invoker, invocation).decrementAndGet(); // ��������
+                getConcurrent(invoker, invocation).decrementAndGet(); // 锟斤拷锟斤拷锟斤拷锟斤拷
             }
         } else {
             return invoker.invoke(invocation);
         }
     }
     
-    // ��Ϣ�ɼ�
+    // 锟斤拷息锟缴硷拷
     private void collect(Invoker<?> invoker, Invocation invocation, Result result, RpcContext context, long start, boolean error) {
         try {
-            // ---- ������Ϣ��ȡ ----
-            long elapsed = System.currentTimeMillis() - start; // ������ú�ʱ
-            int concurrent = getConcurrent(invoker, invocation).get(); // ��ǰ������
+            // ---- 锟斤拷锟斤拷锟斤拷息锟斤拷取 ----
+            long elapsed = System.currentTimeMillis() - start; // 锟斤拷锟斤拷锟斤拷煤锟绞�
+            int concurrent = getConcurrent(invoker, invocation).get(); // 锟斤拷前锟斤拷锟斤拷锟斤拷
             String application = invoker.getUrl().getParameter(Constants.APPLICATION_KEY);
-            String service = invoker.getInterface().getName(); // ��ȡ��������
-            String method = RpcUtils.getMethodName(invocation); // ��ȡ������
+            String service = invoker.getInterface().getName(); // 锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷
+            String method = RpcUtils.getMethodName(invocation); // 锟斤拷取锟斤拷锟斤拷锟斤拷
             URL url = invoker.getUrl().getUrlParameter(Constants.MONITOR_KEY);
             Monitor monitor = monitorFactory.getMonitor(url);
             int localPort;
             String remoteKey;
             String remoteValue;
             if (Constants.CONSUMER_SIDE.equals(invoker.getUrl().getParameter(Constants.SIDE_KEY))) {
-                // ---- �������ѷ���� ----
-                context = RpcContext.getContext(); // ���ѷ�������invoke()֮���ȡcontext��Ϣ
+                // ---- 锟斤拷锟斤拷锟斤拷锟窖凤拷锟斤拷锟� ----
+                context = RpcContext.getContext(); // 锟斤拷锟窖凤拷锟斤拷锟斤拷锟斤拷invoke()之锟斤拷锟饺ontext锟斤拷息
                 localPort = 0;
                 remoteKey = MonitorService.PROVIDER;
                 remoteValue = invoker.getUrl().getAddress();
             } else {
-                // ---- �����ṩ����� ----
+                // ---- 锟斤拷锟斤拷锟结供锟斤拷锟斤拷锟� ----
                 localPort = invoker.getUrl().getPort();
                 remoteKey = MonitorService.CONSUMER;
                 remoteValue = context.getRemoteHost();
@@ -126,7 +126,7 @@ public class MonitorFilter implements Filter {
         }
     }
     
-    // ��ȡ����������
+    // 锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
     private AtomicInteger getConcurrent(Invoker<?> invoker, Invocation invocation) {
         String key = invoker.getInterface().getName() + "." + invocation.getMethodName();
         AtomicInteger concurrent = concurrents.get(key);

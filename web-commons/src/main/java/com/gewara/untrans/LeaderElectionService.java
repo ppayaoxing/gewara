@@ -6,49 +6,49 @@ import java.util.List;
 public interface LeaderElectionService {
 
 	/**
-	 * ´´½¨Ñ¡¾Ù
-	 * @param key	´´½¨Ò»¸öÑ¡¾ÙÎ¨Ò»±êÊ¶£¬¸Ã±ØĞë·ûºÏZK½ÚµãÃüÃû¹æ·¶
-	 * @param listener	¼àÌı
+	 * åˆ›å»ºé€‰ä¸¾
+	 * @param key	åˆ›å»ºä¸€ä¸ªé€‰ä¸¾å”¯ä¸€æ ‡è¯†ï¼Œè¯¥å¿…é¡»ç¬¦åˆZKèŠ‚ç‚¹å‘½åè§„èŒƒ
+	 * @param listener	ç›‘å¬
 	 * @throws Exception
 	 * @author leo
-	 * @addTime 2016Äê4ÔÂ18ÈÕÏÂÎç5:17:26
+	 * @addTime 2016å¹´4æœˆ18æ—¥ä¸‹åˆ5:17:26
 	 */
 	void createElection(String key, GewaLeaderLatchListener listener) throws Exception;
 
 	/**
-	 * ´´½¨Ñ¡¾Ù
-	 * @param key	´´½¨Ò»¸öÑ¡¾ÙÎ¨Ò»±êÊ¶£¬¸Ã±ØĞë·ûºÏZK½ÚµãÃüÃû¹æ·¶
-	 * @param listenerList	¼àÌı
+	 * åˆ›å»ºé€‰ä¸¾
+	 * @param key	åˆ›å»ºä¸€ä¸ªé€‰ä¸¾å”¯ä¸€æ ‡è¯†ï¼Œè¯¥å¿…é¡»ç¬¦åˆZKèŠ‚ç‚¹å‘½åè§„èŒƒ
+	 * @param listenerList	ç›‘å¬
 	 * @throws Exception
 	 * @author leo
-	 * @addTime 2016Äê4ÔÂ18ÈÕÏÂÎç5:17:26
+	 * @addTime 2016å¹´4æœˆ18æ—¥ä¸‹åˆ5:17:26
 	 */
 	void createElection(String key, List<GewaLeaderLatchListener> listenerList) throws Exception;
 
 	/**
-	 * ¹Ø±ÕÑ¡¾Ù
-	 * @param key	Ñ¡¾ÙÎ¨Ò»±êÊ¶
+	 * å…³é—­é€‰ä¸¾
+	 * @param key	é€‰ä¸¾å”¯ä¸€æ ‡è¯†
 	 * @throws IOException
 	 * @author leo
-	 * @addTime 2016Äê4ÔÂ18ÈÕÏÂÎç5:23:58
+	 * @addTime 2016å¹´4æœˆ18æ—¥ä¸‹åˆ5:23:58
 	 */
 	void closeElection(String key) throws IOException;
 
 	/**
-	 * Ìí¼Ó¼àÌı
-	 * @param key	Ñ¡¾ÙÎ¨Ò»±êÊ¶
+	 * æ·»åŠ ç›‘å¬
+	 * @param key	é€‰ä¸¾å”¯ä¸€æ ‡è¯†
 	 * @param listener
 	 * @author leo
-	 * @addTime 2016Äê4ÔÂ18ÈÕÏÂÎç5:24:16
+	 * @addTime 2016å¹´4æœˆ18æ—¥ä¸‹åˆ5:24:16
 	 */
 	void addListener(String key, GewaLeaderLatchListener listener);
 	
 	/**
-	 * ÅĞ¶Ïµ±Ç°ÊÇ·ñÊÇleader
+	 * åˆ¤æ–­å½“å‰æ˜¯å¦æ˜¯leader
 	 * @param key
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê4ÔÂ21ÈÕÏÂÎç4:37:43
+	 * @addTime 2016å¹´4æœˆ21æ—¥ä¸‹åˆ4:37:43
 	 */
 	boolean isLeader(String key);
 

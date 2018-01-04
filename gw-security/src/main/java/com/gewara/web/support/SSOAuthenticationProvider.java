@@ -53,7 +53,7 @@ public class SSOAuthenticationProvider implements AuthenticationProvider, Initia
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		aclService = applicationContext.getBean(AclService.class);
-		Assert.notNull(aclService, "±ØĞëÌá¹©aclServiceÊµÏÖ£¡");
+		Assert.notNull(aclService, "å¿…é¡»æä¾›aclServiceå®ç°ï¼");
 	}
 
 	@Override
@@ -62,10 +62,10 @@ public class SSOAuthenticationProvider implements AuthenticationProvider, Initia
 				"SSOAuthenticationProvider only supports SSOAuthenticationToken");
 		SSOAuthenticationToken auth = (SSOAuthenticationToken) authentication;
 		//auth.setAuthenticated(true);
-		//TODO:ÔİÊ±Ğ´ËÀ
+		//TODO:æš‚æ—¶å†™æ­»
 		//GewaraUser user = aclService.getGewaraUser(auth.getUserid(), "user");
 		GewaraUser user=(GewaraUser)auth.getPrincipal();
-		Assert.notNull(user, "ÓÃ»§²»ÄÜ¿Õ");
+		Assert.notNull(user, "ç”¨æˆ·ä¸èƒ½ç©º");
 		preAuthenticationChecks.check(user);
 		postAuthenticationChecks.check(user);
 		return createSuccessAuthentication(auth, user);

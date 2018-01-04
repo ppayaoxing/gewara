@@ -21,8 +21,8 @@ import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
 
 /**
- * Ö÷´Óredis£¬¿ÉÇĞ»»<br>
- * Ä¬ÈÏÊ¹ÓÃÖ÷redisÌá¹©ÊµÏÖ
+ * ä¸»ä»redisï¼Œå¯åˆ‡æ¢<br>
+ * é»˜è®¤ä½¿ç”¨ä¸»redisæä¾›å®ç°
  * @author quzhuping
  * @param <E>
  */
@@ -36,13 +36,13 @@ public class RedisSupportServiceImpl<E> implements RedisSupportService<E>, Confi
 	private ConfigCenter configCenter;
 	private AtomicBoolean useMaster = new AtomicBoolean(true);
 	
-	//Ö÷redis
+	//ä¸»redis
 	private RedisTemplate<String, E> redisTemplate;
 	public void setRedisTemplate(RedisTemplate<String, E> redisTemplate) {
 		this.redisTemplate = redisTemplate;
 	}
 
-	//´Óredis
+	//ä»redis
 	private RedisTemplate<String, E> redisTemplateBack;
 	public void setRedisTemplateBack(RedisTemplate<String, E> redisTemplateBack) {
 		this.redisTemplateBack = redisTemplateBack;
@@ -79,15 +79,15 @@ public class RedisSupportServiceImpl<E> implements RedisSupportService<E>, Confi
 	@Override
 	public void refreshCurrent(String newConfig) {
 		if(useMaster.get()){
-			dbLogger.warn("ÇĞ»»redis´Ó·şÎñ½Úµã");
+			dbLogger.warn("åˆ‡æ¢redisä»æœåŠ¡èŠ‚ç‚¹");
 			useMaster.set(false);
 			RedisAtomicCounter.useMaster = false;
-			curTemplate = redisTemplateBack;//ÇĞ»»µ½´Óredis
+			curTemplate = redisTemplateBack;//åˆ‡æ¢åˆ°ä»redis
 		}else{
-			dbLogger.warn("ÇĞ»»redisÖ÷·şÎñ½Úµã");
+			dbLogger.warn("åˆ‡æ¢redisä¸»æœåŠ¡èŠ‚ç‚¹");
 			useMaster.set(true);
 			RedisAtomicCounter.useMaster = true;
-			curTemplate = redisTemplate;//ÇĞ»»µ½Ö÷redis
+			curTemplate = redisTemplate;//åˆ‡æ¢åˆ°ä¸»redis
 		}
 		queueMap = new ConcurrentHashMap<>(64);
 		redisMapCache = new ConcurrentHashMap<>(64);
@@ -96,7 +96,7 @@ public class RedisSupportServiceImpl<E> implements RedisSupportService<E>, Confi
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		if(redisTemplate == null || redisTemplateBack == null){
-			throw new IllegalArgumentException("ĞèÒªÅäÖÃÖ÷´ÓredisTemplate");
+			throw new IllegalArgumentException("éœ€è¦é…ç½®ä¸»ä»redisTemplate");
 		}
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
 		redisTemplateBack.setKeySerializer(new StringRedisSerializer());

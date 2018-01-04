@@ -12,27 +12,27 @@ import com.gewara.util.PKCoderUtil;
 import com.gewara.util.StringUtil;
 
 public abstract class LoginUtils {
-	//public static final String LOG_TYPE_LOGIN = "login";			// ��¼����
-	//public static final String LOG_TYPE_LOGOUT = "logout";			// �û��˳�
-	//public static final String LOG_TYPE_USERLOGIN = "userlogin";	// ��̨��¼����
+	//public static final String LOG_TYPE_LOGIN = "login";			// 锟斤拷录锟斤拷锟斤拷
+	//public static final String LOG_TYPE_LOGOUT = "logout";			// 锟矫伙拷锟剿筹拷
+	//public static final String LOG_TYPE_USERLOGIN = "userlogin";	// 锟斤拷台锟斤拷录锟斤拷锟斤拷
 	
 
 	public static final String SESS_COOKIE_NAME = Config.SESSION_COOKIE_NAME;
 	public static final String COOKIE_NAME_TRACE = "_gwtc_"; 
-	public static final String ERROR_PASSORNAME = "passOrName"; 	//�û������������
-	public static final String ERROR_USERNAME = "username"; 		//�û���������
-	public static final String ERROR_PASSWORD = "password"; 		//�������
-	public static final String ERROR_CAPTCHA = "captcha"; 			//��֤�����
-	public static final String ERROR_REJECTED = "rejected"; 		//�û���������
-	public static final String ERROR_LOGOUT = "logout";				//�˳�
-	public static final String ERROR_IPCHANGE = "ipChange";			//ip����
+	public static final String ERROR_PASSORNAME = "passOrName"; 	//锟矫伙拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+	public static final String ERROR_USERNAME = "username"; 		//锟矫伙拷锟斤拷锟斤拷锟斤拷锟斤拷
+	public static final String ERROR_PASSWORD = "password"; 		//锟斤拷锟斤拷锟斤拷锟�
+	public static final String ERROR_CAPTCHA = "captcha"; 			//锟斤拷证锟斤拷锟斤拷锟�
+	public static final String ERROR_REJECTED = "rejected"; 		//锟矫伙拷锟斤拷锟斤拷锟斤拷锟斤拷
+	public static final String ERROR_LOGOUT = "logout";				//锟剿筹拷
+	public static final String ERROR_IPCHANGE = "ipChange";			//ip锟斤拷锟斤拷
 	
 	private static String encKey = "skTeis@2";
 	public static String getTraceId(String memberid){
 		return PKCoderUtil.encryptString(""+memberid, encKey);
 	}
 	public static String getUserIdByTraceId(String traceId){
-		if(StringUtil.isHexDataStr(traceId)){//�Ϸ��Ĳ�ȡֵ
+		if(StringUtil.isHexDataStr(traceId)){//锟较凤拷锟侥诧拷取值
 			return PKCoderUtil.decryptString(traceId, encKey);
 		}
 		return null;
@@ -53,7 +53,7 @@ public abstract class LoginUtils {
 		String[] tracePair = StringUtils.split(track, "@");
 		return tracePair;
 	}
-	//��¼cacheKey
+	//锟斤拷录cacheKey
 	public static final String KEY_TIMEOUT_ = "TIMEOUT_";
 	
 	public static boolean isValidSessid(String ukey){

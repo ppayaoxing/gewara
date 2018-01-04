@@ -76,7 +76,7 @@ final class NettyCodecAdapter {
 
         @Override
         protected Object encode(ChannelHandlerContext ctx, Channel ch, Object msg) throws Exception {
-            UnsafeByteArrayOutputStream os = new UnsafeByteArrayOutputStream(1024); // ²»ĞèÒª¹Ø±Õ
+            UnsafeByteArrayOutputStream os = new UnsafeByteArrayOutputStream(1024); // ä¸éœ€è¦å…³é—­
             NettyChannel channel = NettyChannel.getOrAddChannel(ch, url, handler);
             try {
             	codec.encode(channel, os, msg);
@@ -128,7 +128,7 @@ final class NettyCodecAdapter {
                     input.readBytes(buf, limit, read);
                     limit += read;
                     readable -= read;
-                    bis = new UnsafeByteArrayInputStream(buf, off, limit - off); // ²»ĞèÒª¹Ø±Õ
+                    bis = new UnsafeByteArrayInputStream(buf, off, limit - off); // ä¸éœ€è¦å…³é—­
                     // decode object.
                     do {
                         try {

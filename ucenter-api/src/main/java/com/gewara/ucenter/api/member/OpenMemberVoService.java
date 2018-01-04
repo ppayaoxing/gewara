@@ -10,13 +10,13 @@ import com.gewara.ucenter.vo.member.MemberVo;
 import com.gewara.ucenter.vo.member.OpenMemberVo;
 
 /**
- * Íâ²¿ÉÌ¼ÒºÏ×÷µÇÂ¼ÕËºÅĞÅÏ¢½Ó¿Ú
+ * å¤–éƒ¨å•†å®¶åˆä½œç™»å½•è´¦å·ä¿¡æ¯æ¥å£
  * 
  * @author shenlibin
  */
 public interface OpenMemberVoService {
 	/**
-	 * ¸ù¾İsource,loginName²éÑ¯ÁªÃûµÇÂ¼ÓÃ»§
+	 * æ ¹æ®source,loginNameæŸ¥è¯¢è”åç™»å½•ç”¨æˆ·
 	 * 
 	 * @param source
 	 * @param loginName
@@ -25,7 +25,7 @@ public interface OpenMemberVoService {
 	ResultCode<OpenMemberVo> getOpenMemberByLoginname(String source, String loginName);
 
 	/**
-	 * ºÏ×÷ÉÌÁªÃûµÇÂ¼½Ó¿Ú
+	 * åˆä½œå•†è”åç™»å½•æ¥å£
 	 * 
 	 * @param source
 	 * @param citycode
@@ -35,13 +35,13 @@ public interface OpenMemberVoService {
 	 */
 	ResultCode<MemberVo> partnerJointLogin(String source, String citycode, String loginName, String remoteIp);
 	/**
-	 * ¸ù¾İmemberid»ñÈ¡¹ØÁª¿ª·ÅÕË»§
+	 * æ ¹æ®memberidè·å–å…³è”å¼€æ”¾è´¦æˆ·
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<List<OpenMemberVo>> getOpenMemberListByMemberid(Long memberid);
 	/**
-	 * ¸ù¾İudi»ñÈ¡¹ØÁª¿ª·¢ÕË»§
+	 * æ ¹æ®udiè·å–å…³è”å¼€å‘è´¦æˆ·
 	 * uidList.size()<=1000
 	 * @param source
 	 * @param 
@@ -49,7 +49,7 @@ public interface OpenMemberVoService {
 	 */
 	ResultCode<Map<Long, Map>> getOpenMemberByUidList(String source, List<String> uidList);
 	/**
-	 * ¸ù¾İmemberid»ñÈ¡¹ØÁª¿ª·ÅÕË»§
+	 * æ ¹æ®memberidè·å–å…³è”å¼€æ”¾è´¦æˆ·
 	 * @param memberid
 	 * @param source
 	 * @return
@@ -57,10 +57,10 @@ public interface OpenMemberVoService {
 	ResultCode<List<OpenMemberVo>> getOpenMemberListByMemberidSource(Long memberid, String source);
 	
 	/**
-	 * ĞŞ¸Ä¿ª·ÅÕË»§ĞÅÏ¢
+	 * ä¿®æ”¹å¼€æ”¾è´¦æˆ·ä¿¡æ¯
 	 * @param openMemberVo
 	 * @param unionid
-	 * @param cloumn Õë¶Ô ¶ÔÏó£¬ÒªĞŞ¸ÄµÄ¶ÔÏóÊôĞÔÁĞ±í
+	 * @param cloumn é’ˆå¯¹ å¯¹è±¡ï¼Œè¦ä¿®æ”¹çš„å¯¹è±¡å±æ€§åˆ—è¡¨
 	 * @return
 	 */
 	ResultCode<OpenMemberVo> updateOpenMember(OpenMemberVo openMemberVo,String unionid, String [] cloumn);
@@ -74,12 +74,12 @@ public interface OpenMemberVoService {
 	ResultCode<MemberRegInfoVo> createMemberWithBindMobile2(String mobile, String checkpass, String ip);	
 	
 	/**
-	 * µÚÈı·½ÕË»§½â°ó¹¦ÄÜ
-	 * @param memberid ÓÃ»§id
-	 * @param source µÚÈı·½±êÊ¶
-	 * @param reson  Ô­Òò
-	 * @param adminid  ºóÌ¨²Ù×÷ÈËid
-	 * @param adminname   ºóÌ¨²Ù×÷ÈËĞÕÃû
+	 * ç¬¬ä¸‰æ–¹è´¦æˆ·è§£ç»‘åŠŸèƒ½
+	 * @param memberid ç”¨æˆ·id
+	 * @param source ç¬¬ä¸‰æ–¹æ ‡è¯†
+	 * @param reson  åŸå› 
+	 * @param adminid  åå°æ“ä½œäººid
+	 * @param adminname   åå°æ“ä½œäººå§“å
 	 * @return
 	 */
 	ResultCode cancelOpenMemberBySource(Long memberid, String source, String reson, Long adminid, String adminname);

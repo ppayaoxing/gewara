@@ -18,16 +18,16 @@ public class SubscribeVo extends BaseVo{
     private Long memberid;
 	private Long cinemaid;
     private Long movieid;
-    private String addtime;//Ô¤Ô¼ÈÕÆÚ
-    private String special;//ÌØĞ§
-    private String timeindex;//Ê±¶Î
+    private String addtime;//é¢„çº¦æ—¥æœŸ
+    private String special;//ç‰¹æ•ˆ
+    private String timeindex;//æ—¶æ®µ
     private String aleryPush;
     
     private String _id;
     private Integer isSub;
     private String citycode;
-    private String time;//Ìí¼ÓÊ±¼ä
-    private String isopen;//ÊÇ·ñ¿ª·Å³¡´Î
+    private String time;//æ·»åŠ æ—¶é—´
+    private String isopen;//æ˜¯å¦å¼€æ”¾åœºæ¬¡
     
     
 	@Override

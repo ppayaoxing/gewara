@@ -4,7 +4,7 @@ import com.gewara.api.vo.ResultCode;
 import com.gewara.ucenter.vo.member.OpenResultVo;
 
 /**
- * APP¶ËÖ§¸¶±¦µÇÂ½Ïà¹ØAPI
+ * APPç«¯æ”¯ä»˜å®ç™»é™†ç›¸å…³API
  * 
  */
 public interface OpenApiMobileAliVoService {
@@ -12,7 +12,7 @@ public interface OpenApiMobileAliVoService {
 	ResultCode<OpenResultVo> aliUserDetail(String authcode, String userid,
 			String appId, String remoteIp);
 	/**
-	 * Ö§¸¶±¦Ç®°üÓÃ»§µÇÂ¼ 
+	 * æ”¯ä»˜å®é’±åŒ…ç”¨æˆ·ç™»å½• 
 	 * @param accessToken
 	 * @param remoteIp
 	 * @return

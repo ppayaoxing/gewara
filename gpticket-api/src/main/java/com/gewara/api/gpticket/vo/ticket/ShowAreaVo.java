@@ -11,31 +11,31 @@ public class ShowAreaVo extends BaseVo {
 	private static final long serialVersionUID = 2546956596028166852L;
 	
 	private String saseqNo;				//partner + areaserial(TheatreSeatArea-->sellerseq)
-	private String areaname;			//��������
-	private String enname;				//����Ӣ����
-	private String partner;				//��������ʶ
-	private String areaserial;			//�������������
-	private String fieldserial;			//���������ر��
-	private String pseqno;				//���������α��
-	private Long theatreid;				//����ID
-	private Long dramaid;				//��ĿID
-	private String fieldnum;			//�������
-	private String areanum;				//�������
-	private String siseqNo;				//���α��
+	private String areaname;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private String enname;				//锟斤拷锟斤拷英锟斤拷锟斤拷
+	private String partner;				//锟斤拷锟斤拷锟斤拷锟斤拷识
+	private String areaserial;			//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+	private String fieldserial;			//锟斤拷锟斤拷锟斤拷锟斤拷锟截憋拷锟�
+	private String pseqno;				//锟斤拷锟斤拷锟斤拷锟斤拷锟轿憋拷锟�
+	private Long theatreid;				//锟斤拷锟斤拷ID
+	private Long dramaid;				//锟斤拷目ID
+	private String fieldnum;			//锟斤拷锟斤拷锟斤拷锟�
+	private String areanum;				//锟斤拷锟斤拷锟斤拷锟�
+	private String siseqNo;				//锟斤拷锟轿憋拷锟�
 	
-	private String description;			//��������
-	private String standing;			//�Ƿ�վƱ
-	private Integer totalnum;				//վƱ/��λ������
-	private Integer limitnum;				//������
-	private Integer firstline;			//��ʼ��
-	private Integer firstrank;			//��ʼ��
-	private Integer linenum;			//�����
-	private Integer ranknum;			//���߶�
-	private String hotzone;				//����ֵ
+	private String description;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private String standing;			//锟角凤拷站票
+	private Integer totalnum;				//站票/锟斤拷位锟斤拷锟斤拷锟斤拷
+	private Integer limitnum;				//锟斤拷锟斤拷锟斤拷
+	private Integer firstline;			//锟斤拷始锟斤拷
+	private Integer firstrank;			//锟斤拷始锟斤拷
+	private Integer linenum;			//锟斤拷锟斤拷锟�
+	private Integer ranknum;			//锟斤拷锟竭讹拷
+	private String hotzone;				//锟斤拷锟斤拷值
 	
-	private String status;				//״̬�����á�ɾ��
-	private Timestamp createtime;		//����ʱ��
-	private Timestamp updatetime;		//����ʱ��
+	private String status;				//状态锟斤拷锟斤拷锟矫★拷删锟斤拷
+	private Timestamp createtime;		//锟斤拷锟斤拷时锟斤拷
+	private Timestamp updatetime;		//锟斤拷锟斤拷时锟斤拷
 	
 	public ShowAreaVo(){}
 

@@ -6,23 +6,23 @@ public class SenderMessage extends MessageBaseInfo{
 	private static final long serialVersionUID = 5203539060269685510L;
 	
 
-	/**ÏûÏ¢ID*/
+	/**æ¶ˆæ¯ID*/
 	private long messageID=-1;
 	
-	/**ÏûÏ¢·¢ËÍÕß*/
+	/**æ¶ˆæ¯å‘é€è€…*/
 	private MUser sender=null;
 	
-	/**·¢ËÍÊ±¼ä*/
+	/**å‘é€æ—¶é—´*/
 	private long sendTimes=-1;
 	
-	/**Ê§Ğ§Ê±¼ä,²»°üº¬Õâ¸öµã¡£*/
+	/**å¤±æ•ˆæ—¶é—´,ä¸åŒ…å«è¿™ä¸ªç‚¹ã€‚*/
 	private Long expiryTimes=null;
 	
-	/**ÏûÏ¢Í¨ÖªÀàĞÍ*/
+	/**æ¶ˆæ¯é€šçŸ¥ç±»å‹*/
 	private NoticeType[] noticeType =null;
 
 	/**
-	 * ÏûÏ¢ID
+	 * æ¶ˆæ¯ID
 	 * @return
 	 */
 	public long getMessageID() {
@@ -30,7 +30,7 @@ public class SenderMessage extends MessageBaseInfo{
 	}
 
 	/**
-	 * ÏûÏ¢·¢ËÍÕßĞÅÏ¢
+	 * æ¶ˆæ¯å‘é€è€…ä¿¡æ¯
 	 * @return
 	 */
 	public MUser getSender() {
@@ -38,7 +38,7 @@ public class SenderMessage extends MessageBaseInfo{
 	}
 
 	/**
-	 * ÏûÏ¢·¢ËÍÊ±¼ä£¬ºÁÃë
+	 * æ¶ˆæ¯å‘é€æ—¶é—´ï¼Œæ¯«ç§’
 	 * @return
 	 */
 	public long getSendTimes() {
@@ -46,7 +46,7 @@ public class SenderMessage extends MessageBaseInfo{
 	}
 
 	/**
-	 * ÏûÏ¢Ê§Ğ§Ê±¼ä
+	 * æ¶ˆæ¯å¤±æ•ˆæ—¶é—´
 	 * @return
 	 */
 	public Long getExpiryTimes() {
@@ -54,7 +54,7 @@ public class SenderMessage extends MessageBaseInfo{
 	}
 
 	/**
-	 * ÏûÏ¢ÌáĞÑ·½Ê½
+	 * æ¶ˆæ¯æé†’æ–¹å¼
 	 * @return
 	 */
 	public NoticeType[] getNoticeType() {

@@ -35,8 +35,8 @@ public class ProtocolUtils {
     public static boolean isGeneric(String generic) {
         return generic != null
             && !"".equals(generic)
-            && (Constants.GENERIC_SERIALIZATION_DEFAULT.equalsIgnoreCase(generic)  /* Õı³£µÄ·º»¯µ÷ÓÃ */
-            || Constants.GENERIC_SERIALIZATION_NATIVE_JAVA.equalsIgnoreCase(generic)); /* Ö§³ÖjavaĞòÁĞ»¯µÄÁ÷Ê½·º»¯µ÷ÓÃ */
+            && (Constants.GENERIC_SERIALIZATION_DEFAULT.equalsIgnoreCase(generic)  /* æ­£å¸¸çš„æ³›åŒ–è°ƒç”¨ */
+            || Constants.GENERIC_SERIALIZATION_NATIVE_JAVA.equalsIgnoreCase(generic)); /* æ”¯æŒjavaåºåˆ—åŒ–çš„æµå¼æ³›åŒ–è°ƒç”¨ */
     }
 
     public static boolean isDefaultGenericSerialization(String generic) {

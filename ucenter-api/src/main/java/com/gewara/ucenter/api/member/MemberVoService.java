@@ -14,14 +14,14 @@ import com.gewara.ucenter.vo.member.MemberVo;
 import com.gewara.ucenter.vo.member.PersonDescribes;
 
 /**
- * ÓÃ»§ĞÅÏ¢½Ó¿Ú
+ * ç”¨æˆ·ä¿¡æ¯æ¥å£
  * @author user
  *
  */
 public interface MemberVoService {
 	/**
-	 * ²éÑ¯ÓÃ»§ĞÅÏ¢
-	 * ´Ë·½·¨²ğ·Ö³É ÏÂÃæµÄgetUserInfo2ºÍ gewara-api.jar TicketRollCallVoService.isTicketRollCallMember Á½·½·¨×é³É
+	 * æŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯
+	 * æ­¤æ–¹æ³•æ‹†åˆ†æˆ ä¸‹é¢çš„getUserInfo2å’Œ gewara-api.jar TicketRollCallVoService.isTicketRollCallMember ä¸¤æ–¹æ³•ç»„æˆ
 	 * @param mobile
 	 * @return
 	 */
@@ -29,7 +29,7 @@ public interface MemberVoService {
 	ResultCode<MemberVo> getMemberVo(Long memberid);
 	
 	/**
-	 * ÅúÁ¿²éÑ¯ÓÃ»§ĞÅÏ¢
+	 * æ‰¹é‡æŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯
 	 * memberids<=1000
 	 * @param memberids
 	 * @return
@@ -37,21 +37,21 @@ public interface MemberVoService {
 	ResultCode<List<MemberVo>> getMemberVoList(Long... memberids);
 	
 	/**
-	 * ²éÑ¯ÓÃ»§ĞÅÏ¢
+	 * æŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<MemberInfoVo> getMemberInfoVo(Long memberid);
 	
 	/**
-	 * ²éÑ¯ÓÃ»§ÁĞ±íĞÅÏ¢£¬memberids<=1000
+	 * æŸ¥è¯¢ç”¨æˆ·åˆ—è¡¨ä¿¡æ¯ï¼Œmemberids<=1000
 	 * @param memberids
 	 * @return
 	 */
 	ResultCode<List<MemberInfoVo>> getMemberInfoVoList(Long ... memberids);
 	
 	/**
-	 * »ñÈ¡ÕÊ»§ÓÃ»§ĞÅÏ¢
+	 * è·å–å¸æˆ·ç”¨æˆ·ä¿¡æ¯
 	 * @param memberid
 	 * @return
 	 */
@@ -60,32 +60,32 @@ public interface MemberVoService {
 	ResultCode updateMemberCount(Long memberid, String key, int value, boolean isAdd);
 	
 	/**
-	 * »ñÈ¡ÓÃ»§µÄÍ·Ïñ
+	 * è·å–ç”¨æˆ·çš„å¤´åƒ
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<String> getCacheMemberHeadpic(Long memberid);
 	/**
-	 * »ñÈ¡ÓÃ»§Í·Ïñ¼¯ºÏ memberidList<=1000
+	 * è·å–ç”¨æˆ·å¤´åƒé›†åˆ memberidList<=1000
 	 * @param memberidList
 	 * @return
 	 */
 	ResultCode<Map<Long, String>> getCacheHeadpicMap(Collection<Long> memberidList);
 	/**
-	 * »ñÈ¡ÓÃ»§µÄĞÅÏ¢ memberidList<=1000
+	 * è·å–ç”¨æˆ·çš„ä¿¡æ¯ memberidList<=1000
 	 * @param memberidList
 	 * @return
 	 */
 	ResultCode<Map<Long, Map>> getCacheMemberInfoMap(Collection<Long> memberidList);
 	ResultCode<Map> getCacheMemberInfo(Long memberid);
 	/**
-	 * Ë¢ĞÂÓÃ»§»º´æ
+	 * åˆ·æ–°ç”¨æˆ·ç¼“å­˜
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<Map> resetMemberCache(Long memberid);
 	/**
-	 * ÊÇ·ñÎª¹ºÆ±ÓÃ»§
+	 * æ˜¯å¦ä¸ºè´­ç¥¨ç”¨æˆ·
 	 * @param memberid
 	 * @param tag
 	 * @param id
@@ -94,7 +94,7 @@ public interface MemberVoService {
 	ResultCode<Boolean> isPlayMemberByTagAndId(Long memberid, String tag, Long id);
 	ResultCode<Map> getPlayMemberByTagAndId(Long memberid, String tag, Long id);
 	/**
-	 * ¸ù¾İÊÖ»úºÅ»ñÈ¡ÓÃ»§êÇ³Æ¡¢»áÔ±id
+	 * æ ¹æ®æ‰‹æœºå·è·å–ç”¨æˆ·æ˜µç§°ã€ä¼šå‘˜id
 	 * mobileList.size()<=1000
 	 */
 	ResultCode<Map<Long, Map>> getMemberByMobile(List<String> mobileList);
@@ -107,19 +107,19 @@ public interface MemberVoService {
 	 */
 	ResultCode<MemberInfoVo> getMemberInfoByMobile(String mobile);
 	/**
-	 * »ñÈ¡µ¥¸öÓÃ»§µÄ¸öÈË¼ò½é
+	 * è·å–å•ä¸ªç”¨æˆ·çš„ä¸ªäººç®€ä»‹
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<String> getPersonDescribe(Long memberid);
 	/**
-	 * »ñÈ¡Ò»×éÓÃ»§µÄ¸öÈË¼ò½é,memberidList.size()<=1000
+	 * è·å–ä¸€ç»„ç”¨æˆ·çš„ä¸ªäººç®€ä»‹,memberidList.size()<=1000
 	 * @param memberidList
 	 * @return
 	 */
 	ResultCode<Map<Long,String>> getPersonDescribeByMemberidList(List<Long> memberidList);
 	/**
-	 * ±£´æ¸öÈË¼ò½é
+	 * ä¿å­˜ä¸ªäººç®€ä»‹
 	 * @param memberid
 	 * @param describe
 	 * @return
@@ -129,19 +129,19 @@ public interface MemberVoService {
 	ResultCode<PersonDescribes> getPersonDescribeMap(Long memberid);
 	
 	/**
-	 * ¸ù¾İÊÖ»úºÅÂë»ñÈ¡ÓÃ»§ĞÅÏ¢
-	 * @param mobile ÓÃ»§ÊÖ»úºÅÂë
+	 * æ ¹æ®æ‰‹æœºå·ç è·å–ç”¨æˆ·ä¿¡æ¯
+	 * @param mobile ç”¨æˆ·æ‰‹æœºå·ç 
 	 */
 	ResultCode<MemberVo> getMemberVoByMobile(String mobile);
 	
 	/**
-	 * ¸ù¾İÓÊÏäµØÖ·»ñÈ¡ÓÃ»§ĞÅÏ¢
-	 * @param email ×¢²áÓÊÏäµØÖ·
+	 * æ ¹æ®é‚®ç®±åœ°å€è·å–ç”¨æˆ·ä¿¡æ¯
+	 * @param email æ³¨å†Œé‚®ç®±åœ°å€
 	 */
 	ResultCode<MemberVo> getMemberVoByEmail(String email);
 	
 	/**
-	 *  ÊÇ·ñĞèÒªÊÖ»ú¶ÌĞÅ°²È«ÑéÖ¤
+	 *  æ˜¯å¦éœ€è¦æ‰‹æœºçŸ­ä¿¡å®‰å…¨éªŒè¯
 	 * @param securityCode
 	 * @param deviceId
 	 * @param memberid
@@ -149,7 +149,7 @@ public interface MemberVoService {
 	 */
 	ResultCode<Integer> isMobileSecurityVerify(String securityCode, String deviceId, Long memberid);
 	/**
-	 * Ôö¼ÓÊÖ»ú¶ÌĞÅ°²È«ÈÏÖ¤
+	 * å¢åŠ æ‰‹æœºçŸ­ä¿¡å®‰å…¨è®¤è¯
 	 * @author qilun
 	 * Feb 23, 2016
 	 * @param deviceId
@@ -158,14 +158,14 @@ public interface MemberVoService {
 	 */
 	ResultCode<String> addMobileSecurityVerify(String deviceId, Long memberid);
 	/**
-	 * »ñÈ¡ÊÖ»úÉÏĞĞ¶ÌĞÅÏà¹ØĞÅÏ¢£¨ÉÏĞĞÂë£¬Ëæ»úÂë£©
+	 * è·å–æ‰‹æœºä¸Šè¡ŒçŸ­ä¿¡ç›¸å…³ä¿¡æ¯ï¼ˆä¸Šè¡Œç ï¼Œéšæœºç ï¼‰
 	 * @param deviceId
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<Map<String, String>> getMobileSecurityUpdata(String deviceId, Long memberid);
 	/**
-	 * Í¨¹ı¶ÌĞÅÉÏĞĞµÄ·½Ê½Ôö¼ÓÊÖ»ú¶ÌĞÅ°²È«ÈÏÖ¤
+	 * é€šè¿‡çŸ­ä¿¡ä¸Šè¡Œçš„æ–¹å¼å¢åŠ æ‰‹æœºçŸ­ä¿¡å®‰å…¨è®¤è¯
 	 * @param deviceId
 	 * @param memberid
 	 * @return
@@ -173,12 +173,12 @@ public interface MemberVoService {
 	ResultCode<String> addMobileSecurityVerify4MobileUpdata(String deviceId, Long memberid);
 
 	/**
-	 * @function ÓÃ»§ÊÖ»úºÅÎ¨Ò»ĞÔ¼ì²â
+	 * @function ç”¨æˆ·æ‰‹æœºå·å”¯ä¸€æ€§æ£€æµ‹
 	 */
 	boolean isMemberMobileExists(String mobile); 
 	
 	/**
-	 * °ó¶¨ÊÖ»ú
+	 * ç»‘å®šæ‰‹æœº
 	 * @param member
 	 * @param mobile
 	 * @param checkpass
@@ -188,7 +188,7 @@ public interface MemberVoService {
 	ResultCode<MemberVo> bindMobile(Long memberid, String mobile, String checkpass, String remoteIp, boolean isInitBind);
 
 	/**
-	 * ½â³ıÊÖ»ú°ó¶¨
+	 * è§£é™¤æ‰‹æœºç»‘å®š
 	 * @param member
 	 * @param dynamicCode
 	 * @param remoteIp
@@ -197,7 +197,7 @@ public interface MemberVoService {
 	ResultCode unbindMobile(Long memberid, String checkpass, String remoteIp);
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞEmai¡¢êÇ³ÆÏàÍ¬µÄÓÃ»§
+	 * åˆ¤æ–­æ˜¯å¦æœ‰Emaiã€æ˜µç§°ç›¸åŒçš„ç”¨æˆ·
 	 * @param emailOrNicknameOrMobile
 	 * @param memberId
 	 * @return
@@ -206,14 +206,14 @@ public interface MemberVoService {
 
 
 	/**
-	 * ÊÇ²»ÄÜ½â°ó»ò¸ü»»ÊÖ»úºÅ
+	 * æ˜¯ä¸èƒ½è§£ç»‘æˆ–æ›´æ¢æ‰‹æœºå·
 	 * @param member
 	 * @return
 	 */
 	ResultCode<Boolean> canChangeMobile(Long memberid);
 	
 	/**
-	 * Í¨¹ıemailÈ¡ÓÃ»§
+	 * é€šè¿‡emailå–ç”¨æˆ·
 	 * @param email
 	 * @return
 	 */
@@ -222,12 +222,12 @@ public interface MemberVoService {
 	ResultCode<MemberVo> isValidMemberPass(String loginName, String plainPass, String ip, String userAgent, String ckcitycode, String port);
 
 	/**
-	 * ĞÂÊÖÈÎÎñ
+	 * æ–°æ‰‹ä»»åŠ¡
 	 */
 	ResultCode<MemberInfoVo> saveNewTask(Long memberid, String newtask);
 	
 	/**
-	 * ¸ù¾İÊÖ»úºÅÂë²éÑ¯ÓÃ»§
+	 * æ ¹æ®æ‰‹æœºå·ç æŸ¥è¯¢ç”¨æˆ·
 	 * @param mobile
 	 * @return
 	 */
@@ -240,37 +240,37 @@ public interface MemberVoService {
 	ResultCode<MemberInfoVo> updateHeadPic(Long memberid, String headpic);
 	
 	/**
-	 * ĞŞ¸ÄÓÃ»§ÃÜÂë
+	 * ä¿®æ”¹ç”¨æˆ·å¯†ç 
 	 * @param member
-	 * @param password  ÊäÈëµÄÃÜÂë
+	 * @param password  è¾“å…¥çš„å¯†ç 
 	 * @param remoteIp  IP
-	 * @param isBind2Gewara  ÁªÃûµÇÂ¼ÓÃ»§°ó¶¨GewaraÕËºÅ
-	 * @param from  À´Ô´
+	 * @param isBind2Gewara  è”åç™»å½•ç”¨æˆ·ç»‘å®šGewaraè´¦å·
+	 * @param from  æ¥æº
 	 * @return 
 	 */
 	ResultCode changePassword(Long memberid, String password, String remoteIp, String from);
 
 	ResultCode<MemberInfoVo> addMemberOtherInfo(Long memberid, String tag, String value);	
 	/**
-	 * ĞŞ¸ÄÓÃ»§ĞèÒªÉÏĞĞ¶ÌĞÅÑéÖ¤
+	 * ä¿®æ”¹ç”¨æˆ·éœ€è¦ä¸Šè¡ŒçŸ­ä¿¡éªŒè¯
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode updateMemberNeedValidSetY(Long memberid);
 	/**
-	 * ³É¹¦ÑûÇëºÃÓÑ´ÎÊı£¬²¢ÇÒÒÑ°ó¶¨ÊÖ»ú
+	 * æˆåŠŸé‚€è¯·å¥½å‹æ¬¡æ•°ï¼Œå¹¶ä¸”å·²ç»‘å®šæ‰‹æœº
 	 * @return
 	 */
 	ResultCode<Integer> getInviteCount(String invitetype, Long inviteid);
 	/**
-	 * ¸ù¾İÔ­ÃÜÂëĞŞ¸ÄĞÂÃÜÂë
-	 * @param memberid		ÓÃ»§id
-	 * @param password		Ô­ÃÜÂë
-	 * @param password1		ĞÂÃÜÂë
-	 * @param password2		È·ÈÏĞÂÃÜÂë
+	 * æ ¹æ®åŸå¯†ç ä¿®æ”¹æ–°å¯†ç 
+	 * @param memberid		ç”¨æˆ·id
+	 * @param password		åŸå¯†ç 
+	 * @param password1		æ–°å¯†ç 
+	 * @param password2		ç¡®è®¤æ–°å¯†ç 
 	 * @param ip		
-	 * @param from			²Ù×÷mapping
-	 * @param encodeOrSessid Ë¢ĞÂ
+	 * @param from			æ“ä½œmapping
+	 * @param encodeOrSessid åˆ·æ–°
 	 * @return
 	 */
 	ResultCode changePasswordByOldpass(Long memberid, String password, String password1, String password2, String ip, String from, String encodeOrSessid);
@@ -288,17 +288,17 @@ public interface MemberVoService {
 	 */
 	ResultCode<MemberVo> changePasswordByMobileCode(String tag, String mobile, String checkpass, String newpwd, String repassword, String ip, String from, String encodeOrSessid);
 	/**
-	 * ÊÇ·ñ×öÃÜÂëÓĞĞ§ĞÔÑéÖ¤
+	 * æ˜¯å¦åšå¯†ç æœ‰æ•ˆæ€§éªŒè¯
 	 * @param memberEncode
 	 * @param doValidate
 	 * @return
 	 */
 	ResultCode<EncodeDataVo> getMemberEncodeDataVo(String memberEncode, boolean doValidate);
 	/**
-	 * ¸ù¾İÓÊ¼şencodeĞŞ¸ÄÓÊÏä
-	 * @param memberid 	ÓÃ»§id
-	 * @param email		ĞÂÓÊÏä
-	 * @param random		¼ÓÃÜ²ÎÊı
+	 * æ ¹æ®é‚®ä»¶encodeä¿®æ”¹é‚®ç®±
+	 * @param memberid 	ç”¨æˆ·id
+	 * @param email		æ–°é‚®ç®±
+	 * @param random		åŠ å¯†å‚æ•°
 	 * @param encode		
 	 * @param ip
 	 * @param encodeOrSessid
@@ -306,7 +306,7 @@ public interface MemberVoService {
 	 */
 	ResultCode exchangeEmail(Long memberid, String email, String random, String encode, String ip, String encodeOrSessid);
 	/**
-	 * ·¢ËÍÓÊÏäĞŞ¸ÄÓÊ¼ş
+	 * å‘é€é‚®ç®±ä¿®æ”¹é‚®ä»¶
 	 * @param memberid
 	 * @param email1
 	 * @param email2

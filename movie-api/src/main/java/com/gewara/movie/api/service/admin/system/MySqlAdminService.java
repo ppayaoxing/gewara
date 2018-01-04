@@ -6,26 +6,26 @@ import java.util.Map;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * mysql¹ÜÀíÔ±Êı¾İ¿â²Ù×÷½Ó¿Ú
+ * mysqlç®¡ç†å‘˜æ•°æ®åº“æ“ä½œæ¥å£
  */
 public interface MySqlAdminService {
 
 	/**
-	 * ¸ù¾İSQL²éÑ¯Ö¸¶¨¶ÔÏóµÄÒ»Ìõ¼ÇÂ¼£¬²¢·µ»ØÎªMap
+	 * æ ¹æ®SQLæŸ¥è¯¢æŒ‡å®šå¯¹è±¡çš„ä¸€æ¡è®°å½•ï¼Œå¹¶è¿”å›ä¸ºMap
 	 * @param sql
 	 * @return
 	 */
 	ResultCode<Map<String, Object>> queryOneRowForMap(String sql);
 	
 	/**
-	 * ¸ù¾İSQL²éÑ¯£¬·µ»ØMapµÄ¼¯ºÏList£¨°üº¬¶àÌõ¼ÇÂ¼£©
+	 * æ ¹æ®SQLæŸ¥è¯¢ï¼Œè¿”å›Mapçš„é›†åˆListï¼ˆåŒ…å«å¤šæ¡è®°å½•ï¼‰
 	 * @param sql
 	 * @return
 	 */
 	ResultCode<List<Map<String, Object>>> queryMapListBySQL(String sql);
 	
 	/**
-	 * ¸ù¾İÀàÃû»ñÈ¡±íĞÅÏ¢
+	 * æ ¹æ®ç±»åè·å–è¡¨ä¿¡æ¯
 	 * @param clazzName
 	 * @return
 	 */

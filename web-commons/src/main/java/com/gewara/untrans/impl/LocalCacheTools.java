@@ -9,7 +9,7 @@ import com.gewara.util.StringUtil;
 
 /**
  * @author ge.biao
- * 使用本地缓存做一层代理，使用集中缓存做数据预热
+ * 浣跨敤鏈湴缂撳瓨鍋氫竴灞備唬鐞嗭紝浣跨敤闆嗕腑缂撳瓨鍋氭暟鎹鐑�
  */
 public class LocalCacheTools implements CacheTools{
 	private Gcache<String/*key*/, Object> cachedUkeyMap;

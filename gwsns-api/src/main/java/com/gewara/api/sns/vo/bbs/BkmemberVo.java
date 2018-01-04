@@ -9,21 +9,21 @@ import com.gewara.api.vo.BaseVo;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28����02:05:17
+ * @since 2007-9-28锟斤拷锟斤拷02:05:17
  */
 public class BkmemberVo extends BaseVo{
-	public static final int ROLE_USER = 1; //��ͨ�û�
-	public static final int ROLE_BANZHU = 2; //����
-	public static final int ROLE_MANAGER = 4; //����Ա
-	public static final int ROLE_OWNER = 8; //ӵ����
+	public static final int ROLE_USER = 1; //锟斤拷通锟矫伙拷
+	public static final int ROLE_BANZHU = 2; //锟斤拷锟斤拷
+	public static final int ROLE_MANAGER = 4; //锟斤拷锟斤拷员
+	public static final int ROLE_OWNER = 8; //拥锟斤拷锟斤拷
 	private static final long serialVersionUID = 4476980910614491968L;
 	private Long id;
 	private Long memberid;
 	private String tag;
-	private String remark; //���磬�������ɵ�
+	private String remark; //锟斤拷锟界，锟斤拷锟斤拷锟斤拷锟缴碉拷
 	private Long relatedid;
 	private Timestamp addtime;
-	private Integer applyrole;//���뵱����
+	private Integer applyrole;//锟斤拷锟诫当锟斤拷锟斤拷
 	private Integer role;
 	public BkmemberVo(){}
 	
@@ -82,13 +82,13 @@ public class BkmemberVo extends BaseVo{
             return false;
         }
 		if(StringUtils.isBlank(stag) && StringUtils.isBlank(this.tag) || 
-				StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))){//���
+				StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))){//锟斤拷锟�
 			if(this.relatedid == null) {
                 return true;
             }
 			return this.relatedid.equals(srelatedid);
 		}
-		if(StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))){//����
+		if(StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))){//锟斤拷锟斤拷
 			if(this.relatedid != null) {
                 return false;
             }
@@ -98,16 +98,16 @@ public class BkmemberVo extends BaseVo{
 	}
 	public boolean hasRights(String stag, Long srelatedid){
 		if(this.role < ROLE_BANZHU) {
-            return false;//��Ȩ��
+            return false;//锟斤拷权锟斤拷
         }
 		if(StringUtils.isBlank(stag) && StringUtils.isBlank(this.tag) || 
-				StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))){//���
+				StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))){//锟斤拷锟�
 			if(this.relatedid == null) {
                 return true;
             }
 			return this.relatedid.equals(srelatedid);
 		}
-		if(StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))){//����
+		if(StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))){//锟斤拷锟斤拷
 			if(this.relatedid != null) {
                 return false;
             }
@@ -129,18 +129,18 @@ public class BkmemberVo extends BaseVo{
 	}
 	public String getRolename(){
 		if(this.role == null) {
-            return "δ֪";
+            return "未知";
         }
 		if(this.role == 1) {
-            return "��ͨ��Ա";
+            return "锟斤拷通锟斤拷员";
         }
 		if(this.role == 2) {
-            return "����";
+            return "锟斤拷锟斤拷";
         }
 		if(this.role == 4) {
-            return "����Ա";
+            return "锟斤拷锟斤拷员";
         }
-		return "δ֪";
+		return "未知";
 	}
 	public String getRemark() {
 		return remark;

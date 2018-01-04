@@ -8,12 +8,12 @@ import com.gewara.api.vo.BaseVo;
 public class MovieBaseRelationVo extends BaseVo {
 	private static final long serialVersionUID = 843392976501206925L;
 	private Long id;
-	private Long movieid;				//电影ID
-	private Long baseinfoid;			//基本信息ID
-	private String infotype;			//信息类型
-	private Timestamp addtime;			//新增时间
-	private Timestamp updatetime;		//更新时间
-	private Integer ordernum;			//排序序号
+	private Long movieid;				//鐢靛奖ID
+	private Long baseinfoid;			//鍩烘湰淇℃伅ID
+	private String infotype;			//淇℃伅绫诲瀷
+	private Timestamp addtime;			//鏂板鏃堕棿
+	private Timestamp updatetime;		//鏇存柊鏃堕棿
+	private Integer ordernum;			//鎺掑簭搴忓彿
 
 	public Long getId() {
 		return id;

@@ -10,14 +10,14 @@ public class BaoChangCinemaInfoVo extends BaseVo  {
 	private static final long serialVersionUID = 2668138927290077502L;
 	
 	private Long id;
-	private Long cinemaid; //影院ID
-	private String cinemaName;//影院名称
+	private Long cinemaid; //褰遍櫌ID
+	private String cinemaName;//褰遍櫌鍚嶇О
 	private String citycode;
-	private List<Long> roomIdList;//影厅ID
-	private Map<Long, String> roomNameMap;//影厅信息
-	private Integer applyCount;//申请人数
-	private Integer roomnum;//影院个数
-	private Integer mpinum;//场次个数
+	private List<Long> roomIdList;//褰卞巺ID
+	private Map<Long, String> roomNameMap;//褰卞巺淇℃伅
+	private Integer applyCount;//鐢宠浜烘暟
+	private Integer roomnum;//褰遍櫌涓暟
+	private Integer mpinum;//鍦烘涓暟
 	
 	public BaoChangCinemaInfoVo(){}
 	

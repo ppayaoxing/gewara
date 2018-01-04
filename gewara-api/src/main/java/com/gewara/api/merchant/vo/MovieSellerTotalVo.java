@@ -11,13 +11,13 @@ public class MovieSellerTotalVo implements Serializable{
 	private List<MovieSellerVo> movieSellerVoList;
 	private List<CinemaDetailSellerVo> cinemaSellerVoList;
 	
-	private Integer cinemaCount;//²éÑ¯Ìõ¼şÄÚÓ°Ôº×ÜÊı
-	private Integer movieCount;//Ó°Æ¬×ÜÊı
-	private Long tolalMpi;//³¡´Î×ÜÊı
-	private Long totalQuantity;//Ó°Æ±×ÜÊı
-	private Long totalOrder;//×Ü¶©µ¥Êı
-	private Long totalcost;//×Ü½ğ¶î
-	private int totalCount;//×ÜÌõÊı
+	private Integer cinemaCount;//æŸ¥è¯¢æ¡ä»¶å†…å½±é™¢æ€»æ•°
+	private Integer movieCount;//å½±ç‰‡æ€»æ•°
+	private Long tolalMpi;//åœºæ¬¡æ€»æ•°
+	private Long totalQuantity;//å½±ç¥¨æ€»æ•°
+	private Long totalOrder;//æ€»è®¢å•æ•°
+	private Long totalcost;//æ€»é‡‘é¢
+	private int totalCount;//æ€»æ¡æ•°
 	
 	public List<MovieSellerVo> getMovieSellerVoList() {
 		return movieSellerVoList;

@@ -9,24 +9,24 @@ import com.mongodb.DB;
 import com.mongodb.client.MongoDatabase;
 
 /**
- * ·â×°ÁËMongoClient¡£
- * GWMongoClientÖ§³Ö¶àÊı¾İ¿â²Ù×÷¡£ 
- * ÇĞ»»Êı¾İ¿âÓÃÇëÊ¹ÓÃGWMongoClientµÄuseDatabase·½·¨À´»ñÈ¡Ò»¸öGWMongoClientµÄĞÂµÄÊµÀı¡£
+ * å°è£…äº†MongoClientã€‚
+ * GWMongoClientæ”¯æŒå¤šæ•°æ®åº“æ“ä½œã€‚ 
+ * åˆ‡æ¢æ•°æ®åº“ç”¨è¯·ä½¿ç”¨GWMongoClientçš„useDatabaseæ–¹æ³•æ¥è·å–ä¸€ä¸ªGWMongoClientçš„æ–°çš„å®ä¾‹ã€‚
  * 
- * @author ¶­Ã÷
- * @createDate 2015Äê9ÔÂ6ÈÕ
+ * @author è‘£æ˜
+ * @createDate 2015å¹´9æœˆ6æ—¥
  */
 public class GWMongoClient {
 	private final MongoReplicateInfo _mongo=new MongoReplicateInfo();
-	/*Ö»ÓĞµ±Ç°Êı¾İ¿âºÍ¾ßÌåÊµÀıÏà¹Ø*/
+	/*åªæœ‰å½“å‰æ•°æ®åº“å’Œå…·ä½“å®ä¾‹ç›¸å…³*/
 	private MongoDatabase currentDB=null;
 
 	/**
-	 * ¹¹½¨mongo client
-	 * @param hosts mongo·şÎñÆ÷IPÁĞ±í¡£¸ñÊ½Îªip:port
-	 * @param accounts mongo·şÎñµÄÊı¾İ¿âÕË»§¡£
-	 * @param options  mongo¿Í»§¶ËÊôĞÔÉèÖÃ
-	 * @param mechanism mongoµÄÈ¨ÏŞÑéÖ¤²ßÂÔ¡£ÆäÖµÖ»Ö§³Ö£º cr,plain,sha1ÈıÖÖ·½Ê½¡£²»ÉèÖÃ£¬Ê¹ÓÃ·şÎñÆ÷Ä¬ÈÏÅäÖÃ¡£
+	 * æ„å»ºmongo client
+	 * @param hosts mongoæœåŠ¡å™¨IPåˆ—è¡¨ã€‚æ ¼å¼ä¸ºip:port
+	 * @param accounts mongoæœåŠ¡çš„æ•°æ®åº“è´¦æˆ·ã€‚
+	 * @param options  mongoå®¢æˆ·ç«¯å±æ€§è®¾ç½®
+	 * @param mechanism mongoçš„æƒé™éªŒè¯ç­–ç•¥ã€‚å…¶å€¼åªæ”¯æŒï¼š cr,plain,sha1ä¸‰ç§æ–¹å¼ã€‚ä¸è®¾ç½®ï¼Œä½¿ç”¨æœåŠ¡å™¨é»˜è®¤é…ç½®ã€‚
 	 */
 	public GWMongoClient(List<String> hosts, List<GWMongoAccount> accounts, GwMongoClientOptions options,String mechanism){
 		_mongo.initMongoClient(hosts,accounts,options,mechanism);
@@ -38,9 +38,9 @@ public class GWMongoClient {
 		this.currentDB=_mongo.getDefaultMongoDatabase();
 	}
 	
-	/**Ê¹ÓÃÄ¬ÈÏµÄÈÏÖ¤ÅäÖÃµÇÂ¼
+	/**ä½¿ç”¨é»˜è®¤çš„è®¤è¯é…ç½®ç™»å½•
 	 * @param hosts
-	 * @param accounts ¸ñÊ½Îª£º db:user:pwd
+	 * @param accounts æ ¼å¼ä¸ºï¼š db:user:pwd
 	 * @param options
 	 */
 	public GWMongoClient(List<String> hosts, List<String> accounts, GwMongoClientOptions options){
@@ -48,12 +48,12 @@ public class GWMongoClient {
 		for(String account:accounts){
 			accountList.add(new GWMongoAccount(account,":"));
 		}
-		_mongo.initMongoClient(hosts,accountList,options,null);//¾²Ì¬ĞÅÏ¢¡£
+		_mongo.initMongoClient(hosts,accountList,options,null);//é™æ€ä¿¡æ¯ã€‚
 		this.currentDB=_mongo.getDefaultMongoDatabase();
 	}
 	
 	/**
-	 * Ê¹ÓÃÄ¬ÈÏÅäÖÃ£¬Ä¬ÈÏÈÏÖ¤·½Ê½³õÊ¼»¯mongoClient
+	 * ä½¿ç”¨é»˜è®¤é…ç½®ï¼Œé»˜è®¤è®¤è¯æ–¹å¼åˆå§‹åŒ–mongoClient
 	 * @param hosts
 	 * @param accounts
 	 */
@@ -62,7 +62,7 @@ public class GWMongoClient {
 	}
 	
 	/**
-	 * ·µ»ØGWMongoClientÊµÀıµÄµ±Ç°²Ù×÷µÄÊı¾İ¿â
+	 * è¿”å›GWMongoClientå®ä¾‹çš„å½“å‰æ“ä½œçš„æ•°æ®åº“
 	 * @return
 	 */
 	public MongoDatabase prepareDatabase(){
@@ -74,9 +74,9 @@ public class GWMongoClient {
 	}
 	
 	/**
-	 * ·µ»ØGWMongoClientÊµÀıÖĞÖ¸¶¨µÄÊı¾İ¿â
+	 * è¿”å›GWMongoClientå®ä¾‹ä¸­æŒ‡å®šçš„æ•°æ®åº“
 	 * @param databaseName
-	 * @return Ö¸¶¨µÄÊı¾İ¿âÈç¹û²»´æÔÚ£¬Ôò·µ»Ønull¡£ Ö»Ö§³ÖÔÚÅäÖÃÎÄ¼şÖĞ×¢²áµÄÊı¾İ¿â¡£
+	 * @return æŒ‡å®šçš„æ•°æ®åº“å¦‚æœä¸å­˜åœ¨ï¼Œåˆ™è¿”å›nullã€‚ åªæ”¯æŒåœ¨é…ç½®æ–‡ä»¶ä¸­æ³¨å†Œçš„æ•°æ®åº“ã€‚
 	 */
 	public MongoDatabase prepareDatabase(String databaseName){
 		return _mongo.getMongoDatabase(databaseName);

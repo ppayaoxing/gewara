@@ -10,37 +10,37 @@ public class QueryPointResponse extends AbcResponse{
 	private static final long serialVersionUID = -1164293328300492123L;
 
 	/**
-	 * ½»Ò×¿¨ºÅ
+	 * äº¤æ˜“å¡å·
 	 */
 	private String cardno;
 	
 	/**
-	 * ×Ü»ı·Ö
+	 * æ€»ç§¯åˆ†
 	 */
 	private String totalpoint;
 	
 	/**
-	 * ±¾Î»±Ò»ı·Ö
+	 * æœ¬ä½å¸ç§¯åˆ†
 	 */
 	private String point;
 	
 	/**
-	 * Íâ±Ò´úÂë
+	 * å¤–å¸ä»£ç 
 	 */
 	private String curr;
 	
 	/**
-	 * Íâ±Ò»ı·Ö
+	 * å¤–å¸ç§¯åˆ†
 	 */
 	private String currpoint;
 	
 	/**
-	 * ½»Ò×ÈÕÆÚ
+	 * äº¤æ˜“æ—¥æœŸ
 	 */
 	private String trandate;
 	
 	/**
-	 * ½»Ò×Ê±¼ä
+	 * äº¤æ˜“æ—¶é—´
 	 */
 	private String trantime;
 

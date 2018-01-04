@@ -10,17 +10,17 @@ import com.gewara.api.vo.BaseVo;
 public class GewaQaExpertVo extends BaseVo {
 	private static final long serialVersionUID = -2898820814440297249L;
 	public static Map<String,String> ssMap = new HashMap<String,String>();
-	public static final int HOTVALUE_HOT = 30000; // ÈÈÃÅ
-	public static final int HOTVALUE_RECOMMEND = 50000; // ÍÆ¼ö
+	public static final int HOTVALUE_HOT = 30000; // çƒ­é—¨
+	public static final int HOTVALUE_RECOMMEND = 50000; // æ¨è
 	public static String STATUS_N = "N";
 	public static String STATUS_Y = "Y";
 	private Long id;
-	private Long memberid; //ÉêÇëÈË
-	private String status; //ÊÇ·ñÍ¨¹ıÉóºË
-	private Integer hotvalue; //ÍÆ¼öÖµ
-	private Long userid; //¹ÜÀíÔ±
+	private Long memberid; //ç”³è¯·äºº
+	private String status; //æ˜¯å¦é€šè¿‡å®¡æ ¸
+	private Integer hotvalue; //æ¨èå€¼
+	private Long userid; //ç®¡ç†å‘˜
 	private String tag;
-	private String reason; //ÉêÇëÀíÓÉ
+	private String reason; //ç”³è¯·ç†ç”±
 	private Timestamp addtime; 
 	private Timestamp updatetime;
 	@Override
@@ -94,7 +94,7 @@ public class GewaQaExpertVo extends BaseVo {
 		return ssMap.get(this.tag);
 	}
 	static{
-		ssMap.put("cinema", "µçÓ°");
-		ssMap.put("", "ÆäËü");
+		ssMap.put("cinema", "ç”µå½±");
+		ssMap.put("", "å…¶å®ƒ");
 	}
 }

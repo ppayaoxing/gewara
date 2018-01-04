@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class FriendCard implements Serializable{
 	private static final long serialVersionUID = -6183884043365444307L;
-	private String card_type;	//券类型，现仅支持代金券类型和礼品券类型，填写CASH或者GIFT 
+	private String card_type;	//鍒哥被鍨嬶紝鐜颁粎鏀寔浠ｉ噾鍒哥被鍨嬪拰绀煎搧鍒哥被鍨嬶紝濉啓CASH鎴栬�匞IFT 
 	private FriendCash cash;
 	public FriendCard(){
 		

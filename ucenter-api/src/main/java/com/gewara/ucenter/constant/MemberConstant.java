@@ -4,50 +4,50 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MemberConstant {
-	// ×¢²áÀ´Ô´
-	public static final String REGISTER_EMAIL = "email"; //ÓÊÏä×¢²á
-	public static final String REGISTER_MOBLIE = "mobile"; // ÊÖ»ú×¢²á
-	public static final String REGISTER_CODE = "code"; //¶¯Ì¬Âë
-	public static final String REGISTER_APP = "app"; //ÁªÃûµÇÂ¼
+	// æ³¨å†Œæ¥æº
+	public static final String REGISTER_EMAIL = "email"; //é‚®ç®±æ³¨å†Œ
+	public static final String REGISTER_MOBLIE = "mobile"; // æ‰‹æœºæ³¨å†Œ
+	public static final String REGISTER_CODE = "code"; //åŠ¨æ€ç 
+	public static final String REGISTER_APP = "app"; //è”åç™»å½•
 
 	public static final String NEWTASK = "newtask";
-	//ÏÖÓÃ
-	public static final String TASK_CONFIRMREG = "confirmreg";		//×¢²áºóÓÊÏäÈ·ÈÏ
-	public static final String TASK_SENDWALA = "sendwala";			//·¢±íÒ»ÌõÍÛÀ²
-	public static final String TASK_UPDATE_HEAD_PIC= "headpic"; 	//¸üĞÂÍ·Ïñ
-	public static final String TASK_BINDMOBILE = "bindmobile";		//°ó¶¨ÊÖ»ú
+	//ç°ç”¨
+	public static final String TASK_CONFIRMREG = "confirmreg";		//æ³¨å†Œåé‚®ç®±ç¡®è®¤
+	public static final String TASK_SENDWALA = "sendwala";			//å‘è¡¨ä¸€æ¡å“‡å•¦
+	public static final String TASK_UPDATE_HEAD_PIC= "headpic"; 	//æ›´æ–°å¤´åƒ
+	public static final String TASK_BINDMOBILE = "bindmobile";		//ç»‘å®šæ‰‹æœº
 
-	public static final String TASK_BUYED_TICKET = "buyticket"; 	//³É¹¦¹ºÂòµçÓ°Æ±
-	public static final String MODIFY_NICKNAME = "modify_nickname";	//ÓÃ»§ĞŞ¸ÄÁËêÇ³Æ
+	public static final String TASK_BUYED_TICKET = "buyticket"; 	//æˆåŠŸè´­ä¹°ç”µå½±ç¥¨
+	public static final String MODIFY_NICKNAME = "modify_nickname";	//ç”¨æˆ·ä¿®æ”¹äº†æ˜µç§°
 	
 	public static final List<String> TASK_LIST = Arrays.asList(
 			TASK_UPDATE_HEAD_PIC, TASK_BUYED_TICKET, TASK_BINDMOBILE, TASK_CONFIRMREG, TASK_SENDWALA);
 	
-	//~~~~~~~~~~~~ÁªÃûµÇÂ¼~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public static final String TAG_SOURCE = "bindstatus"; //·Ç×Ô¶¯×¢²áÓÃ»§µÄotherinfo±êÊ¶
+	//~~~~~~~~~~~~è”åç™»å½•~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	public static final String TAG_SOURCE = "bindstatus"; //éè‡ªåŠ¨æ³¨å†Œç”¨æˆ·çš„otherinfoæ ‡è¯†
 	public static final String TAG_MOBILE_BINDTIME = "mblbindtime";
 	public static final String TAG_EMAIL_BINDTIME = "emlbindtime";
 	public static final String TAG_DANGER = "danger";
 	
-	public static final String SOURCE_ALIPAY = "alipay";	//Ö§¸¶±¦
+	public static final String SOURCE_ALIPAY = "alipay";	//æ”¯ä»˜å®
 	public static final String SOURCE_SDO = "sdo";
 	public static final String SOURCE_SINA = "sina";
 	public static final String SOURCE_QQ ="qq";
-	public static final String SOURCE_TENCENT = "tencent"; //ÌÚÑ¶QQ
-	public static final String SOURCE_CHINAPAY = "chinapay"; //ÒøÁª
-	public static final String SOURCE_DYNCODE = "dyncode"; //ÊÖ»ú¶¯Ì¬ÂëµÇÂ¼
+	public static final String SOURCE_TENCENT = "tencent"; //è…¾è®¯QQ
+	public static final String SOURCE_CHINAPAY = "chinapay"; //é“¶è”
+	public static final String SOURCE_DYNCODE = "dyncode"; //æ‰‹æœºåŠ¨æ€ç ç™»å½•
 	public static final String SOURCE_TAOBAO = "taobao";
 	public static final String SOURCE_BAIDU = "baidu";
-	public static final String SOURCE_FILMFEST = "filmfest"; //µçÓ°½Ú
+	public static final String SOURCE_FILMFEST = "filmfest"; //ç”µå½±èŠ‚
 	
 	public static final String SOURCE_WEIXIN = "weixin";
 	public static final String SOURCE_WEIXIN_DELETE = "weixin_delete";
-	public static final String SOURCE_PINGANFU = "pinganfu";	// Æ½°²¸¶
+	public static final String SOURCE_PINGANFU = "pinganfu";	// å¹³å®‰ä»˜
 	
-	//ÃñÉúÆäÃîapp
+	//æ°‘ç”Ÿå…¶å¦™app
 	public static final String SOURCE_CMBCQM = "cmbcqm";
 	
-	// ½»ĞĞ
+	// äº¤è¡Œ
 	public static final String SOURCE_BANKCOMM = "bankcomm";
 	public static final String SOURCE_CHUBAO = "chubao";
 	
@@ -61,49 +61,49 @@ public class MemberConstant {
 	public static final String CATEGORY_ALIKUAIJIE = "alikuaijie";
 	public static final String CATEGORY_ALIWALLET = "aliwallet";
 	
-	//~~~~~~~~~~~~~~~~~~~~ÓÃ»§ĞĞÎª¼ÇÂ¼~~~~~~~~~~~~~~~
-	public static final String ACTION_REGCARD = "regcard";		//°ó¶¨¿¨
-	public static final String ACTION_MODPWD = "modpwd";		//ĞŞ¸ÄÃÜÂë
-	public static final String ACTION_NEWTASK = "newtask";		//Íê³ÉĞÂÊÖÈÎÎñ
-	public static final String ACTION_SETPAYPWD = "setpaypwd";	//ÉèÖÃÖ§¸¶ÃÜÂë
-	public static final String ACTION_GETPAYPWD = "getpaypwd";	//ÕÒ»ØÖ§¸¶ÃÜÂë
-	public static final String ACTION_MDYPAYPWD = "mdypaypwd";	//ĞŞ¸ÄÖ§¸¶ÃÜÂë
-	public static final String ACTION_MODEMAIL = "modemail";	//ĞŞ¸ÄÓÊÏä
-	public static final String ACTION_BINDMOBILE = "bindmobile";//°ó¶¨ÊÖ»ú
-	public static final String ACTION_VDDRAWMOBILE = "validdrawmobile";//ÑéÖ¤³é½±ÊÖ»ú
-	public static final String ACTION_CHGBINDMOBILE = "chgbindmobile";//ĞŞ¸Ä°ó¶¨ÊÖ»ú
-	public static final String ACTION_RELIEVEMOBILE = "relievemobile";//½â°óÊÖ»ú
-	public static final String ACTION_TOWABI = "towabi";		//ÕË»§½ğ¶î×ªwabi
-	public static final String ACTION_DROPMESS = "drpmessage";	//É¾³ıË½ĞÅ
-	public static final String ACTION_LOGIN = "login";	//µÇÂ¼
+	//~~~~~~~~~~~~~~~~~~~~ç”¨æˆ·è¡Œä¸ºè®°å½•~~~~~~~~~~~~~~~
+	public static final String ACTION_REGCARD = "regcard";		//ç»‘å®šå¡
+	public static final String ACTION_MODPWD = "modpwd";		//ä¿®æ”¹å¯†ç 
+	public static final String ACTION_NEWTASK = "newtask";		//å®Œæˆæ–°æ‰‹ä»»åŠ¡
+	public static final String ACTION_SETPAYPWD = "setpaypwd";	//è®¾ç½®æ”¯ä»˜å¯†ç 
+	public static final String ACTION_GETPAYPWD = "getpaypwd";	//æ‰¾å›æ”¯ä»˜å¯†ç 
+	public static final String ACTION_MDYPAYPWD = "mdypaypwd";	//ä¿®æ”¹æ”¯ä»˜å¯†ç 
+	public static final String ACTION_MODEMAIL = "modemail";	//ä¿®æ”¹é‚®ç®±
+	public static final String ACTION_BINDMOBILE = "bindmobile";//ç»‘å®šæ‰‹æœº
+	public static final String ACTION_VDDRAWMOBILE = "validdrawmobile";//éªŒè¯æŠ½å¥–æ‰‹æœº
+	public static final String ACTION_CHGBINDMOBILE = "chgbindmobile";//ä¿®æ”¹ç»‘å®šæ‰‹æœº
+	public static final String ACTION_RELIEVEMOBILE = "relievemobile";//è§£ç»‘æ‰‹æœº
+	public static final String ACTION_TOWABI = "towabi";		//è´¦æˆ·é‡‘é¢è½¬wabi
+	public static final String ACTION_DROPMESS = "drpmessage";	//åˆ é™¤ç§ä¿¡
+	public static final String ACTION_LOGIN = "login";	//ç™»å½•
 	
 	
-	public static final String OM_MOBILE = "mobile";			//µÚÈı·½ÊÖ»úºÅ
-	public static final String OPENMEMBER = "openMember";		//¼ÇÂ¼ÊÇµÚÈı·½ÓÃ»§µÇÂ½
+	public static final String OM_MOBILE = "mobile";			//ç¬¬ä¸‰æ–¹æ‰‹æœºå·
+	public static final String OPENMEMBER = "openMember";		//è®°å½•æ˜¯ç¬¬ä¸‰æ–¹ç”¨æˆ·ç™»é™†
 	
-	public static final String ALIWALLET_SHORTTOKEN = "aliwallet_shorttoken";	//Ö§¸¶±¦Ç®°ü¶Ìtoken
-	public static final String ALIWALLET_LONGTOKEN = "aliwallet_longtoken";		//Ö§¸¶±¦Ç®°ü¶Ìtoken
-	public static final String ALIWALLET_EXPIRESIN = "aliwallet_expiresIn";		//Ö§¸¶±¦Ç®°ü¶Ìtoken
-	public static final String ALIWALLET_REEXPIRESIN = "aliwallet_reExpiresIn";		//Ö§¸¶±¦Ç®°ü¶Ìtoken
-	public static final String ALIWALLET_SHORTVALIDTIME = "aliwallet_shortvalidtime";	//Ö§¸¶±¦Ç®°ü¶Ìtoken
+	public static final String ALIWALLET_SHORTTOKEN = "aliwallet_shorttoken";	//æ”¯ä»˜å®é’±åŒ…çŸ­token
+	public static final String ALIWALLET_LONGTOKEN = "aliwallet_longtoken";		//æ”¯ä»˜å®é’±åŒ…çŸ­token
+	public static final String ALIWALLET_EXPIRESIN = "aliwallet_expiresIn";		//æ”¯ä»˜å®é’±åŒ…çŸ­token
+	public static final String ALIWALLET_REEXPIRESIN = "aliwallet_reExpiresIn";		//æ”¯ä»˜å®é’±åŒ…çŸ­token
+	public static final String ALIWALLET_SHORTVALIDTIME = "aliwallet_shortvalidtime";	//æ”¯ä»˜å®é’±åŒ…çŸ­token
 	public static final String ALIWALLET_LONGVALIDTIME = "aliwallet_longvalidtime";
 	public static final String ALIWALLET_EXTERN_TOKEN = "extern_token";
 	
 	public static final String PINGAN1QBPAY_LOGINKEND = "loginToken";
 	public static final String PINGAN1QBPAY_REFRESHTOKEN = "refreshToken";
 	
-	public static final String BINDMOBILE_STATUS_Y = "Y";	//°ó¶¨
-	public static final String BINDMOBILE_STATUS_N = "N";	//Î´°ó¶¨
-	public static final String BINDMOBILE_STATUS_YS = "Y_S";	//ÊÖ»úÄÜÍ¨»°ÑéÖ¤¹ı
-	//public static final String BINDMOBILE_STATUS_X = "X";	//Î´Öª
-	public static final String TYPE_MEMBER_BAND = "member_band_type";	//ÕË»§°ó¶¨
-	public static final String TYPE_MEMBER_BAND_AND_GET_HEAD_PIC = "member_band_type_and_get_head_pic";	//ÕË»§°ó¶¨²¢»ñÈ¡Í·Ïñ·µ»Ø
+	public static final String BINDMOBILE_STATUS_Y = "Y";	//ç»‘å®š
+	public static final String BINDMOBILE_STATUS_N = "N";	//æœªç»‘å®š
+	public static final String BINDMOBILE_STATUS_YS = "Y_S";	//æ‰‹æœºèƒ½é€šè¯éªŒè¯è¿‡
+	//public static final String BINDMOBILE_STATUS_X = "X";	//æœªçŸ¥
+	public static final String TYPE_MEMBER_BAND = "member_band_type";	//è´¦æˆ·ç»‘å®š
+	public static final String TYPE_MEMBER_BAND_AND_GET_HEAD_PIC = "member_band_type_and_get_head_pic";	//è´¦æˆ·ç»‘å®šå¹¶è·å–å¤´åƒè¿”å›
 	
-	public static final String NEEDVALID_Y = "Y";	//ĞèÒªÉÏĞĞÑéÖ¤
-	public static final String NEEDVALID_N = "N";	//²»ĞèÒªÉÏĞĞÑéÖ¤
-	public static final String NEEDVALID_U = "U";	//ÔİÊ±²»ĞèÒªÉÏĞĞÑéÖ¤
-	public static final String NEEDVALID_MSG = "Îª±£Ö¤ÄúµÄÕËºÅ°²È«£¬Çë°´¶ÌĞÅÖ¸Ê¾ÑéÖ¤ÕËºÅ£¬Íê³ÉÑéÖ¤ºóÇëÖØÊÔ£¡";
-	public static final String RESET_PASSWORD = "mustResetPass";	//ÖØÉèÃÜÂë
-	public static final String RESET_PASS_ERROR_MSG = "ÄúµÄÕË»§´æÔÚ°²È«·çÏÕ£¬Çëµã»÷¡°Íü¼ÇÃÜÂë¡±ÖØÉèÃÜÂë£¡";
-	public static final String RELOGIN_MSG = "»ñÈ¡µÇÂ¼ĞÅÏ¢Ê§°Ü£¬ÇëË¢ĞÂÖØÊÔ»òÖØĞÂµÇÂ¼£¡";
+	public static final String NEEDVALID_Y = "Y";	//éœ€è¦ä¸Šè¡ŒéªŒè¯
+	public static final String NEEDVALID_N = "N";	//ä¸éœ€è¦ä¸Šè¡ŒéªŒè¯
+	public static final String NEEDVALID_U = "U";	//æš‚æ—¶ä¸éœ€è¦ä¸Šè¡ŒéªŒè¯
+	public static final String NEEDVALID_MSG = "ä¸ºä¿è¯æ‚¨çš„è´¦å·å®‰å…¨ï¼Œè¯·æŒ‰çŸ­ä¿¡æŒ‡ç¤ºéªŒè¯è´¦å·ï¼Œå®ŒæˆéªŒè¯åè¯·é‡è¯•ï¼";
+	public static final String RESET_PASSWORD = "mustResetPass";	//é‡è®¾å¯†ç 
+	public static final String RESET_PASS_ERROR_MSG = "æ‚¨çš„è´¦æˆ·å­˜åœ¨å®‰å…¨é£é™©ï¼Œè¯·ç‚¹å‡»â€œå¿˜è®°å¯†ç â€é‡è®¾å¯†ç ï¼";
+	public static final String RELOGIN_MSG = "è·å–ç™»å½•ä¿¡æ¯å¤±è´¥ï¼Œè¯·åˆ·æ–°é‡è¯•æˆ–é‡æ–°ç™»å½•ï¼";
 }

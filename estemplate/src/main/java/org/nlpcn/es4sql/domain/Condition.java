@@ -9,7 +9,7 @@ import com.google.common.collect.HashBiMap;
 import org.nlpcn.es4sql.exception.SqlParseException;
 
 /**
- * 过滤条件
+ * 杩囨护鏉′欢
  * 
  * @author ansj
  */

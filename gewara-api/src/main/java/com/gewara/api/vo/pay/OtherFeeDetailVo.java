@@ -6,18 +6,18 @@ import com.gewara.api.vo.BaseVo;
 
 public class OtherFeeDetailVo extends BaseVo{
 	private static final long serialVersionUID = 2420637586145837449L;
-	public static final String FEETYPE_E = "E";		//¿ìµİ·Ñ
-	public static final String FEETYPE_U = "U";		//ÒÆ¶¯ÊÖĞø·Ñ
-	public static final String FEETYPE_C = "C";		//¸ü»»¶©µ¥²úÉú¶àÓàµÄ·ÑÓÃ
+	public static final String FEETYPE_E = "E";		//å¿«é€’è´¹
+	public static final String FEETYPE_U = "U";		//ç§»åŠ¨æ‰‹ç»­è´¹
+	public static final String FEETYPE_C = "C";		//æ›´æ¢è®¢å•äº§ç”Ÿå¤šä½™çš„è´¹ç”¨
 	
 	private Long id;
-	private Long orderid;		//¶©µ¥µÄid
-	private Integer fee;		//·ÑÓÃ
-	private Integer quantity;	//ÊıÁ¿
-	private String feetype;		//·ÑÓÃÀàĞÍ
-	private String reason;		//Ô­Òò  £¨orderid+reason£©Î¨Ò»
+	private Long orderid;		//è®¢å•çš„id
+	private Integer fee;		//è´¹ç”¨
+	private Integer quantity;	//æ•°é‡
+	private String feetype;		//è´¹ç”¨ç±»å‹
+	private String reason;		//åŸå›   ï¼ˆorderid+reasonï¼‰å”¯ä¸€
 	private String status;     //
-	private String otherinfo;  //µçÓ°ÍËÆ±ÏÕ ±£´æĞÕÃû ÉúÈÕ
+	private String otherinfo;  //ç”µå½±é€€ç¥¨é™© ä¿å­˜å§“å ç”Ÿæ—¥
 	
 	public OtherFeeDetailVo(){
 	}

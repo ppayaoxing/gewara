@@ -9,31 +9,31 @@ import java.util.Map;
 
 
 /**
- * ¼à¿ØÈÕÖ¾±í¼¯ºÏ
+ * ç›‘æ§æ—¥å¿—è¡¨é›†åˆ
  */
 public class MonitorData {
-	public static final String DATATYPE_CHANGEHIS = "CHANGEHIS";			//¶ÔÏó¸ü¸ÄÀúÊ·
-	public static final String DATATYPE_LOGENTRY = "LOG_ENTRY";				//´íÎóÈÕÖ¾
-	public static final String DATATYPE_SYSWARN = "SYSWARN";					//ÏµÍ³±¨¾¯
-	public static final String DATATYPE_APILOG = "APILOG";					//APIÈÕÖ¾
-	public static final String DATATYPE_SYSLOG = "SYSLOG";					//ÏµÍ³ÈÕÖ¾
-	public static final String DATATYPE_APISTATS = "APISTATS";				//APIÍ³¼Æ
-	public static final String DATATYPE_MEMBERLOG = "MEMBERLOG";			//ÓÃ»§Ç°Ì¨ĞĞÎª
-	public static final String DATATYPE_MEMBERLOG2 = "MEMBERLOG2";			//ÓÃ»§Ç°Ì¨ĞĞÎª:membernameÎªÖ÷¼ü
-	public static final String DATATYPE_GEWAORDER = "GEWAORDER";			//ĞÂ¶©µ¥ÈÕÖ¾
-	public static final String DATATYPE_DOMAINLOG = "DOMAINLOG";			//ºóÌ¨ÈÕÖ¾Êı¾İ
-	public static final String DATATYPE_COUNTRECORD = "COUNTRECORD";		//ÏµÍ³ÈÕÖ¾
-	public static final String DATATYPE_VIOLATION = "VIOLATION";			//·Ç·¨·ÃÎÊ
+	public static final String DATATYPE_CHANGEHIS = "CHANGEHIS";			//å¯¹è±¡æ›´æ”¹å†å²
+	public static final String DATATYPE_LOGENTRY = "LOG_ENTRY";				//é”™è¯¯æ—¥å¿—
+	public static final String DATATYPE_SYSWARN = "SYSWARN";					//ç³»ç»ŸæŠ¥è­¦
+	public static final String DATATYPE_APILOG = "APILOG";					//APIæ—¥å¿—
+	public static final String DATATYPE_SYSLOG = "SYSLOG";					//ç³»ç»Ÿæ—¥å¿—
+	public static final String DATATYPE_APISTATS = "APISTATS";				//APIç»Ÿè®¡
+	public static final String DATATYPE_MEMBERLOG = "MEMBERLOG";			//ç”¨æˆ·å‰å°è¡Œä¸º
+	public static final String DATATYPE_MEMBERLOG2 = "MEMBERLOG2";			//ç”¨æˆ·å‰å°è¡Œä¸º:membernameä¸ºä¸»é”®
+	public static final String DATATYPE_GEWAORDER = "GEWAORDER";			//æ–°è®¢å•æ—¥å¿—
+	public static final String DATATYPE_DOMAINLOG = "DOMAINLOG";			//åå°æ—¥å¿—æ•°æ®
+	public static final String DATATYPE_COUNTRECORD = "COUNTRECORD";		//ç³»ç»Ÿæ—¥å¿—
+	public static final String DATATYPE_VIOLATION = "VIOLATION";			//éæ³•è®¿é—®
 	public static final String DATATYPE_OPISTATS = "OPISTATS";
-	public static final String DATATYPE_BEANDATA = "BEANDATA"; 				//ÒµÎñÊı¾İ
-	public static final String DATATYPE_APPREPORT = "APPREPORT"; 			//ÒµÎñÊı¾İ
+	public static final String DATATYPE_BEANDATA = "BEANDATA"; 				//ä¸šåŠ¡æ•°æ®
+	public static final String DATATYPE_APPREPORT = "APPREPORT"; 			//ä¸šåŠ¡æ•°æ®
 	public static final String DATATYPE_ACCESSLOG = "ACCESSLOG"; 			//accessLog
-	public static final String DATATYPE_EVENT = "EVENT";						//ÉÙÁ¿µÄÊÂ¼ş£ººóÌ¨²Ù×÷£¬ÏµÍ³¸üĞÂ
-	public static final String DATATYPE_ERRORLOG = "ERRORLOG";				//´íÎóÈÕÖ¾
+	public static final String DATATYPE_EVENT = "EVENT";						//å°‘é‡çš„äº‹ä»¶ï¼šåå°æ“ä½œï¼Œç³»ç»Ÿæ›´æ–°
+	public static final String DATATYPE_ERRORLOG = "ERRORLOG";				//é”™è¯¯æ—¥å¿—
 	public static final String DATATYPE_APPSOURCE = "APPSOURCE";			//APPSOURCE
 	public static final String DATATYPE_HISDATA = "HISDATA";
 	public static final String DATATYPE_TERMINALTAKE = "TERMINALTICKET";
-	public static final String DATATYPE_APICALL = "DATATYPEAPICALL";   //apiµ÷ÓÃ
+	public static final String DATATYPE_APICALL = "DATATYPEAPICALL";   //apiè°ƒç”¨
 
 
 	public static final Map<String, String> queueMap = Maps.newHashMap();
@@ -43,7 +43,7 @@ public class MonitorData {
 			DATATYPE_MEMBERLOG, DATATYPE_GEWAORDER, DATATYPE_DOMAINLOG, DATATYPE_COUNTRECORD, DATATYPE_VIOLATION,   
 			DATATYPE_OPISTATS, DATATYPE_BEANDATA, DATATYPE_APPREPORT,DATATYPE_ACCESSLOG,
 			DATATYPE_EVENT, DATATYPE_ERRORLOG, DATATYPE_APPSOURCE, DATATYPE_HISDATA, DATATYPE_MEMBERLOG2, DATATYPE_TERMINALTAKE);
-	public static final String QUEUE_OTHER = "otherLogQueue";	//Î´ÖªÏîÄ¿
+	public static final String QUEUE_OTHER = "otherLogQueue";	//æœªçŸ¥é¡¹ç›®
 
 	static{
 		queueMap.put(DATATYPE_CHANGEHIS, "changeLogQueue");
@@ -66,7 +66,7 @@ public class MonitorData {
 		queueMap.put(DATATYPE_ERRORLOG, "errorLogQueue");
 		queueMap.put(DATATYPE_APPSOURCE, "appsourceQueue");
 		queueMap.put(DATATYPE_TERMINALTAKE, "terminalTicketQueue");
-		queueMap.put(DATATYPE_HISDATA, "hisDataQueue");//ÀúÊ·Êı¾İ£¬±íÃûÎ´¶¨
+		queueMap.put(DATATYPE_HISDATA, "hisDataQueue");//å†å²æ•°æ®ï¼Œè¡¨åæœªå®š
 	}
 	public static String getQueue(String datatype){
 		String result = queueMap.get(datatype);

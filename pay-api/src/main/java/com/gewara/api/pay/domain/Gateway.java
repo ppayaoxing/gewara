@@ -9,13 +9,13 @@ public class Gateway extends ApiObject{
 	private static final long serialVersionUID = -8456169610882556337L;
 	
 	private Long id ;
-	private String gatewayCode;	//Ö§¸¶Íø¹Ø
-	private String gatewayName;	//Ö§¸¶Íø¹ØÃû³Æ
-	private String supportBank;	//ÊÇ·ñÖ§³ÖÒøĞĞ
-	private String gatewayType;	//ÀàĞÍ£ºPLATFORM£ºÖ§¸¶Æ½Ì¨£»BANK£ºÒøĞĞÖ±Á¬£»CARD£º¿¨Ö§¸¶
-	private String status;		//×´Ì¬£ºNO_USE£ºÎ´ÆôÓÃ£»IN_USE£ºÊ¹ÓÃÖĞ£»DESUETUDE£º·ÏÆú£»
-	private String bankTypeKey;	//ÒøĞĞÀàĞÍkey£¬ÕâÀïÖ»·ÅÌØÊâµÄ£¬ĞÎÈç{"C":"ĞÅÓÃ¿¨","KJ":"¿ì½İĞÅÓÃ¿¨Ö§¸¶"}
-	private boolean supportRefund;//ÊÇ·ñÖ§³ÖÍË¿î
+	private String gatewayCode;	//æ”¯ä»˜ç½‘å…³
+	private String gatewayName;	//æ”¯ä»˜ç½‘å…³åç§°
+	private String supportBank;	//æ˜¯å¦æ”¯æŒé“¶è¡Œ
+	private String gatewayType;	//ç±»å‹ï¼šPLATFORMï¼šæ”¯ä»˜å¹³å°ï¼›BANKï¼šé“¶è¡Œç›´è¿ï¼›CARDï¼šå¡æ”¯ä»˜
+	private String status;		//çŠ¶æ€ï¼šNO_USEï¼šæœªå¯ç”¨ï¼›IN_USEï¼šä½¿ç”¨ä¸­ï¼›DESUETUDEï¼šåºŸå¼ƒï¼›
+	private String bankTypeKey;	//é“¶è¡Œç±»å‹keyï¼Œè¿™é‡Œåªæ”¾ç‰¹æ®Šçš„ï¼Œå½¢å¦‚{"C":"ä¿¡ç”¨å¡","KJ":"å¿«æ·ä¿¡ç”¨å¡æ”¯ä»˜"}
+	private boolean supportRefund;//æ˜¯å¦æ”¯æŒé€€æ¬¾
 	
 	private List<Merchant> merchantList;
 	

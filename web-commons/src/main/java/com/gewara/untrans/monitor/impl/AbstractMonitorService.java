@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ͨ����Ϣ����ʵ��
+ * 通锟斤拷锟斤拷息锟斤拷锟斤拷实锟斤拷
  *
  * @author gebiao(ge.biao@gewara.com)
  * @since Feb 18, 2013 2:46:02 PM
@@ -45,7 +45,7 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public void addApiCall(Map<String, String> paramsLog, long cur, boolean success) {
-        //TODO ����
+        //TODO 锟斤拷锟斤拷
 
     }
 
@@ -58,14 +58,14 @@ public abstract class AbstractMonitorService implements MonitorService {
     }
 
     /**
-     * �����̳߳ش�С,��ʼ���̳߳�
+     * 锟斤拷锟斤拷锟竭程池达拷小,锟斤拷始锟斤拷锟竭程筹拷
      *
      * @param threadSize
      */
     protected void setupConsumerThread(int threadSize) {
         //FixedPoolSize
         executor = new ThreadPoolExecutor(threadSize, threadSize, 300, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new GewaExecutorThreadFactory(this.getClass().getSimpleName()));
-        executor.allowCoreThreadTimeOut(false);//�������߳��Ƿ�ʱ
+        executor.allowCoreThreadTimeOut(false);//锟斤拷锟斤拷锟斤拷锟竭筹拷锟角凤拷时
         dbLogger.warn("MonitorThread started!");
     }
 
@@ -136,7 +136,7 @@ public abstract class AbstractMonitorService implements MonitorService {
         addMonitorEntry(MonitorData.DATATYPE_CHANGEHIS, map);
     }
 
-    /** �����û�ǰ̨��Ϊ,����memberId
+    /** 锟斤拷锟斤拷锟矫伙拷前台锟斤拷为,锟斤拷锟斤拷memberId
      * @param memberid
      * @param action
      * @param info
@@ -164,8 +164,8 @@ public abstract class AbstractMonitorService implements MonitorService {
         addMonitorEntry(MonitorData.DATATYPE_MEMBERLOG, info);
     }
 
-    /** �����û�ǰ̨��Ϊ,���ݵ�¼����
-     * @param membername: ��¼����
+    /** 锟斤拷锟斤拷锟矫伙拷前台锟斤拷为,锟斤拷锟捷碉拷录锟斤拷锟斤拷
+     * @param membername: 锟斤拷录锟斤拷锟斤拷
      * @param action
      * @param info
      * @param ip
@@ -196,7 +196,7 @@ public abstract class AbstractMonitorService implements MonitorService {
     }
 
 
-    // -------------------------ϵͳ������Ϣ------------------
+    // -------------------------系统锟斤拷锟斤拷锟斤拷息------------------
     @Override
     public void saveSysWarn(String title, String content, RoleTag role) {
         saveSysWarn(null, null, title, content, role);
@@ -326,11 +326,11 @@ public abstract class AbstractMonitorService implements MonitorService {
     }
 
     /**
-     * ������־��Ϣ,�����쳣���ͱ���
+     * 锟斤拷锟斤拷锟斤拷志锟斤拷息,锟斤拷锟斤拷锟届常锟斤拷锟酵憋拷锟斤拷
      *
      * @param tag
-     * @param location��uri �� service��job����
-     * @param title        ����
+     * @param location锟斤拷uri 锟斤拷 service锟斤拷job锟斤拷锟斤拷
+     * @param title        锟斤拷锟斤拷
      * @param ex
      * @param otherinfo
      * @return
@@ -343,7 +343,7 @@ public abstract class AbstractMonitorService implements MonitorService {
         if (ex != null) {
             String exceptionTrace = title + "\n";
             String exceptionName = ex.getClass().getSimpleName();
-            // �����쳣����,���б�����Ӧ�쳣����ϸ��ջ��Ϣ����
+            // 锟斤拷锟斤拷锟届常锟斤拷锟斤拷,锟斤拷锟叫憋拷锟斤拷锟斤拷应锟届常锟斤拷锟斤拷细锟斤拷栈锟斤拷息锟斤拷锟斤拷
             if (ex instanceof MissingServletRequestParameterException ||
                     ex instanceof TypeMismatchException ||
                     StringUtils.contains(ex.getClass().getName(), "ClientAbortException")) {
@@ -356,7 +356,7 @@ public abstract class AbstractMonitorService implements MonitorService {
             }
             exceptionTrace += exctrace;
             if (ex instanceof IllegalStateException && ex.getCause() instanceof CharConversionException) {
-                //url������󣬲����Ǽ�
+                //url锟斤拷锟斤拷锟斤拷螅锟斤拷锟斤拷羌锟�
                 return exctrace;
             }
             if (StringUtils.equals(exceptionName, "BindException")
@@ -370,7 +370,7 @@ public abstract class AbstractMonitorService implements MonitorService {
             row.put("exceptionTrace", exceptionTrace);
             row.put("exceptionType", exceptionType);
         } else {
-            row.put("exceptionName", "��");
+            row.put("exceptionName", "锟斤拷");
             row.put("exceptionTrace", title + "\n" + location + "\n" + otherinfo);
         }
 
@@ -378,7 +378,7 @@ public abstract class AbstractMonitorService implements MonitorService {
             row.putAll(otherinfo);
         }
         if (tag == EXCEPTION_TAG.JOB) {
-            //��ʱ����ǳ���Ҫ
+            //锟斤拷时锟斤拷锟斤拷浅锟斤拷锟揭�
             exceptionType = "UNKNOWN";
         }
         row.put("tag", "" + tag);
@@ -388,12 +388,12 @@ public abstract class AbstractMonitorService implements MonitorService {
         String curtime = DateUtil.getCurFullTimestampStr();
         row.put("addtime", curtime);
         row.put("adddate", curtime.substring(0, 10));
-        //�����־(������־)
+        //锟斤拷锟斤拷锟街�(锟斤拷锟斤拷锟斤拷志)
         addMonitorEntry(MonitorData.DATATYPE_LOGENTRY, row);
 
         if (otherinfo != null) {
             String remoteIp = otherinfo.get("remoteIp");
-            //�Ƿ�����
+            //锟角凤拷锟斤拷锟斤拷
             if (StringUtils.isNotBlank(remoteIp) && !GewaIpConfig.isGewaInnerIp(remoteIp)) {
                 if (StringUtils.equals(exceptionType, "AttackException")) {
                     String reqUri = otherinfo.get("reqUri");
@@ -412,7 +412,7 @@ public abstract class AbstractMonitorService implements MonitorService {
     }
 
     /**
-     * ��ӷǷ�������־
+     * 锟斤拷臃欠锟斤拷锟斤拷锟斤拷锟街�
      *
      * @param ip
      * @param resource

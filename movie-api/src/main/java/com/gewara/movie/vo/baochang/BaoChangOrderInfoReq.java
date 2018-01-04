@@ -6,23 +6,23 @@ import java.util.Date;
 public class BaoChangOrderInfoReq implements Serializable {
 	private static final long serialVersionUID = 7752957508279898304L;
 	
-	private Long cinemaid;//Ó°Ôº
-	private Long roomid;//Ó°ÌüID.
-	private Long mpid;//³¡´ÎID
-	private Date appointmentDate;//Ô¤Ô¼ÈÕÆÚ
-	private String startTime;//Ô¤Ô¼Ê±¼ä¶Î£¨¿ªÊ¼Ê±¼ä£©
-	private String endTime;//Ô¤Ô¼Ê±¼ä¶Î£¨½áÊøÊ±¼ä£©
-	private String mobile;//Ô¤ÁôÊÖ»úºÅ
-	private String tradeNo;//¶©µ¥ºÅ
+	private Long cinemaid;//å½±é™¢
+	private Long roomid;//å½±å…ID.
+	private Long mpid;//åœºæ¬¡ID
+	private Date appointmentDate;//é¢„çº¦æ—¥æœŸ
+	private String startTime;//é¢„çº¦æ—¶é—´æ®µï¼ˆå¼€å§‹æ—¶é—´ï¼‰
+	private String endTime;//é¢„çº¦æ—¶é—´æ®µï¼ˆç»“æŸæ—¶é—´ï¼‰
+	private String mobile;//é¢„ç•™æ‰‹æœºå·
+	private String tradeNo;//è®¢å•å·
 	private Long memberid;
-	private String citycode;			//³ÇÊĞ´úÂë
+	private String citycode;			//åŸå¸‚ä»£ç 
 	private Long movieid;
-	private Integer price;		//³É±¾¼Û
-	private Integer gewaprice;	//¸ñÍßÂô¼Û
-	private Integer successPrice;//Êµ¼ÊÈ·ÈÏ¼Û¸ñ
-	private String userRemark;//°ü³¡ÈËËµÃ÷
-	private String username;//°ü³¡ÈËĞÕÃû
-	private String from;//ÏÂµ¥À´Ô´£¨orderInfo£º°²×¿£»ios£ºIOS£©
+	private Integer price;		//æˆæœ¬ä»·
+	private Integer gewaprice;	//æ ¼ç“¦å–ä»·
+	private Integer successPrice;//å®é™…ç¡®è®¤ä»·æ ¼
+	private String userRemark;//åŒ…åœºäººè¯´æ˜
+	private String username;//åŒ…åœºäººå§“å
+	private String from;//ä¸‹å•æ¥æºï¼ˆorderInfoï¼šå®‰å“ï¼›iosï¼šIOSï¼‰
 	
 	public BaoChangOrderInfoReq(){}
 	

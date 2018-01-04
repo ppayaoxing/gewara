@@ -25,8 +25,8 @@ public class DynamicStats {
 	private Map<String, LogCounter> counterMap = new ConcurrentHashMap<String, LogCounter>();
 	private Map<String, String> specialTypes = new HashMap<>();
 	private AtomicInteger totalProcessing = new AtomicInteger(0);
-	private long lastRemoveTime = 0; // �ϴ�ɾ��ʱ��
-	private long lastCleanTime = 0; // �ϴ�����ʱ��
+	private long lastRemoveTime = 0; // 锟较达拷删锟斤拷时锟斤拷
+	private long lastCleanTime = 0; // 锟较达拷锟斤拷锟斤拷时锟斤拷
 	private boolean init = false;
 	private String type;
 
@@ -55,7 +55,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ����������
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 * 
 	 * @return
 	 */
@@ -64,7 +64,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ��ǰ�ܹ��������
+	 * 锟斤拷前锟杰癸拷锟斤拷锟斤拷锟斤拷锟�
 	 * 
 	 * @return
 	 */
@@ -73,7 +73,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ��ȡ���ڴ���������б�
+	 * 锟斤拷取锟斤拷锟节达拷锟斤拷锟斤拷锟斤拷锟斤拷斜锟�
 	 * 
 	 * @param waitmill
 	 * @return Map(url,avgwait,processing,processed)
@@ -116,7 +116,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ע������
+	 * 注锟斤拷锟斤拷锟斤拷
 	 * 
 	 * @param sourceName
 	 * @param type
@@ -138,7 +138,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ���봦����У���ɺ�afterProcess�˳��������
+	 * 锟斤拷锟诫处锟斤拷锟斤拷校锟斤拷锟缴猴拷afterProcess锟剿筹拷锟斤拷锟斤拷锟斤拷锟�
 	 * 
 	 * @param resourceName
 	 * @param curtime
@@ -155,7 +155,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ��ȡ��Դ���ڴ��������
+	 * 锟斤拷取锟斤拷源锟斤拷锟节达拷锟斤拷锟斤拷锟斤拷锟�
 	 * 
 	 * @param resourceName
 	 * @return
@@ -182,7 +182,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * �˳��������
+	 * 锟剿筹拷锟斤拷锟斤拷锟斤拷锟�
 	 * 
 	 * @param counter
 	 * @param curtime
@@ -204,7 +204,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ���¼���
+	 * 锟斤拷锟铰硷拷锟斤拷
 	 * 
 	 * @param uri
 	 * @param count
@@ -224,7 +224,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ����������ʱ��
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷
 	 * 
 	 * @param uri
 	 * @param time
@@ -253,7 +253,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ��������ﵽmaxnum�������
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锏絤axnum锟斤拷锟斤拷锟斤拷锟�
 	 * 
 	 * @param maxnum
 	 * @return
@@ -276,7 +276,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ��������ﵽmaxnum�������
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锏絤axnum锟斤拷锟斤拷锟斤拷锟�
 	 * 
 	 * @param maxnum
 	 * @return
@@ -303,7 +303,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * starttime��timeBefore֮ǰ������
+	 * starttime锟斤拷timeBefore之前锟斤拷锟斤拷锟斤拷
 	 * 
 	 * @param timeBefore
 	 * @return List<Map(count,url,starttime,endtime)>
@@ -327,7 +327,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ��ȡ����ͳ��
+	 * 锟斤拷取锟斤拷锟斤拷统锟斤拷
 	 * 
 	 * @return
 	 */
@@ -343,7 +343,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ���ݴ��������ȡurlͳ��
+	 * 锟斤拷锟捷达拷锟斤拷锟斤拷锟斤拷锟饺rl统锟斤拷
 	 * 
 	 * @param mincount
 	 * @param reqFields
@@ -361,7 +361,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ��ȡ��δʹ�ù���url
+	 * 锟斤拷取锟斤拷未使锟矫癸拷锟斤拷url
 	 * 
 	 * @return
 	 */
@@ -376,7 +376,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ��ȡ����ע�����Դ
+	 * 锟斤拷取锟斤拷锟斤拷注锟斤拷锟斤拷锟皆�
 	 * 
 	 * @return
 	 */
@@ -386,7 +386,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ��ȡ��ǰ������ͳ����Ϣ
+	 * 锟斤拷取锟斤拷前锟斤拷锟斤拷锟斤拷统锟斤拷锟斤拷息
 	 * 
 	 * @param counter
 	 * @return
@@ -413,7 +413,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ����ͳ�ƣ����������ڴ���
+	 * 锟斤拷锟斤拷统锟狡ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟节达拷锟斤拷
 	 * 
 	 * @param counter
 	 * @param cur
@@ -443,18 +443,18 @@ public class DynamicStats {
 	}
 
 	public static class LogCounter {
-		private String type; // ���ͣ�req or job
+		private String type; // 锟斤拷锟酵ｏ拷req or job
 		private String url;
 		private Long starttime;
 		private Long endtime;
-		private AtomicLong totaltime; // �ɹ�����ʱ��
-		private AtomicInteger count; // �ɹ�����
-		private AtomicInteger count2; // ����1������
-		private AtomicLong count2Time; // ����1��ʱ��
-		private AtomicInteger processed; // �ܹ������������
-		private AtomicLong processTime; // ÿ������processTime +=
+		private AtomicLong totaltime; // 锟缴癸拷锟斤拷锟斤拷时锟斤拷
+		private AtomicInteger count; // 锟缴癸拷锟斤拷锟斤拷
+		private AtomicInteger count2; // 锟斤拷锟斤拷1锟斤拷锟斤拷锟斤拷
+		private AtomicLong count2Time; // 锟斤拷锟斤拷1锟斤拷时锟斤拷
+		private AtomicInteger processed; // 锟杰癸拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+		private AtomicLong processTime; // 每锟斤拷锟斤拷锟斤拷processTime +=
 										// System.currentTimeMillis();
-		private AtomicInteger processing; // ��ǰ���ڴ���������������ʱ���ӣ���ɺ����
+		private AtomicInteger processing; // 锟斤拷前锟斤拷锟节达拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷锟接ｏ拷锟斤拷珊锟斤拷锟斤拷
 
 		public String getType() {
 			return type;

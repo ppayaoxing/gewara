@@ -8,11 +8,11 @@ import java.util.Map;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
 public class OurPlayConstant {
-	public static final String BELONGTOKIND_NEWBUSINESS = "newBusiness";   //–¬…Ã“µ
-	public static final String BELONGTOKIND_NEWCLASSICS = "newClassics";   //–¬æ≠µ‰
-	public static final String BELONGTOKIND_YINGZHAN = "yingzhan";      //”∞’π
+	public static final String BELONGTOKIND_NEWBUSINESS = "newBusiness";   //Êñ∞ÂïÜ‰∏ö
+	public static final String BELONGTOKIND_NEWCLASSICS = "newClassics";   //Êñ∞ÁªèÂÖ∏
+	public static final String BELONGTOKIND_YINGZHAN = "yingzhan";      //ÂΩ±Â±ï
 	
-	public static final String OURPLAY_CONFIG_INDEX_IMG = "ourplay_index_img";      //”∞’π
+	public static final String OURPLAY_CONFIG_INDEX_IMG = "ourplay_index_img";      //ÂΩ±Â±ï
 	
 	public static final List<String> belongToKindList = Arrays.asList(BELONGTOKIND_NEWBUSINESS,
 			BELONGTOKIND_NEWCLASSICS, BELONGTOKIND_YINGZHAN);
@@ -23,9 +23,9 @@ public class OurPlayConstant {
 	public static final Map<String, String> belongToKindMap;
 	static{
 		Map<String, String> tmp = new LinkedHashMap<String, String>();
-		tmp.put(BELONGTOKIND_NEWBUSINESS, "–¬…Ã“µ");
-		tmp.put(BELONGTOKIND_NEWCLASSICS, "–¬æ≠µ‰");
-		tmp.put(BELONGTOKIND_YINGZHAN, "”∞’π");
+		tmp.put(BELONGTOKIND_NEWBUSINESS, "Êñ∞ÂïÜ‰∏ö");
+		tmp.put(BELONGTOKIND_NEWCLASSICS, "Êñ∞ÁªèÂÖ∏");
+		tmp.put(BELONGTOKIND_YINGZHAN, "ÂΩ±Â±ï");
 		belongToKindMap = UnmodifiableMap.decorate(tmp);
 		
 	}

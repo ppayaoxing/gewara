@@ -30,25 +30,25 @@ public class ModuleConfig extends AbstractConfig {
 
     private static final long    serialVersionUID = 5508512956753757169L;
 
-    // Ä£¿éÃû³Æ
+    // æ¨¡å—åç§°
     private String               name;
 
-    // Ä£¿é°æ±¾
+    // æ¨¡å—ç‰ˆæœ¬
     private String               version;
 
-    // Ó¦ÓÃ¸ºÔğÈË
+    // åº”ç”¨è´Ÿè´£äºº
     private String               owner;
 
-    // ×éÖ¯Ãû(BU»ò²¿ÃÅ)
+    // ç»„ç»‡å(BUæˆ–éƒ¨é—¨)
     private String               organization;
 
-    // ×¢²áÖĞĞÄ
+    // æ³¨å†Œä¸­å¿ƒ
     private List<RegistryConfig> registries;
 
-    // ·şÎñ¼à¿Ø
+    // æœåŠ¡ç›‘æ§
     private MonitorConfig        monitor;
 
-    // ÊÇ·ñÎªÈ±Ê¡
+    // æ˜¯å¦ä¸ºç¼ºçœ
     private Boolean              isDefault;
 
     public ModuleConfig() {

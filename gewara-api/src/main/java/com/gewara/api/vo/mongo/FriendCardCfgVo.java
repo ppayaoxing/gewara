@@ -9,19 +9,19 @@ import com.gewara.util.ObjectId;
 public class FriendCardCfgVo extends BaseVo{
 
 	private String _id;
-	private String title;				//È¯Ãû³Æ
-	private Integer amount;				//ÓÅ»İ½ğ¶î
-	private String description;			//ÃèÊö£¨Ê¹ÓÃ·¶Î§£©
-	private Long sdid;					//ÌØ¼Û»î¶¯id
-	private String centerTitle;			//°´Å¥ÎÄ×Ö
-	private String centerSubtitle;		//°´Å¥ÏÂÃæµÄÎÄ×Ö
-	private String abstractText;		//´ú½ğÈ¯ÏêÇéÏÂÃæµÄÎÄ×Ö
-	private String icon;				//´ú½ğÈ¯ÏêÇéÏÂÃæµÄÎÄ×ÖÏÂÃæµÄÍ¼Æ¬
-	private String img;					//ÏêÇéÒ³ÃæÏÂµÄ£¨Í¼ÎÄ½éÉÜ)
-	private String imgText;				//ÏêÇéÒ³Ãæ£¨Í¼Æ¬ÎÄ×Ö½éÉÜ£©
-	private String addtime;				//Ìí¼ÓÊ±¼ä
+	private String title;				//åˆ¸åç§°
+	private Integer amount;				//ä¼˜æƒ é‡‘é¢
+	private String description;			//æè¿°ï¼ˆä½¿ç”¨èŒƒå›´ï¼‰
+	private Long sdid;					//ç‰¹ä»·æ´»åŠ¨id
+	private String centerTitle;			//æŒ‰é’®æ–‡å­—
+	private String centerSubtitle;		//æŒ‰é’®ä¸‹é¢çš„æ–‡å­—
+	private String abstractText;		//ä»£é‡‘åˆ¸è¯¦æƒ…ä¸‹é¢çš„æ–‡å­—
+	private String icon;				//ä»£é‡‘åˆ¸è¯¦æƒ…ä¸‹é¢çš„æ–‡å­—ä¸‹é¢çš„å›¾ç‰‡
+	private String img;					//è¯¦æƒ…é¡µé¢ä¸‹çš„ï¼ˆå›¾æ–‡ä»‹ç»)
+	private String imgText;				//è¯¦æƒ…é¡µé¢ï¼ˆå›¾ç‰‡æ–‡å­—ä»‹ç»ï¼‰
+	private String addtime;				//æ·»åŠ æ—¶é—´
 	
-	private String cardId;				//Î¢ĞÅ½Ó¿Ú·µ»ØµÄcard_id
+	private String cardId;				//å¾®ä¿¡æ¥å£è¿”å›çš„card_id
 	public FriendCardCfgVo(){
 		set_id(ObjectId.uuid());
 		this.addtime = DateUtil.getCurFullTimestampStr();

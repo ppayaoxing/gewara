@@ -20,8 +20,8 @@ public class UpdateMStateParam implements Serializable{
 	
 	/**
 	 * 
-	 * @param receiver ����Ϊ�ա� 
-	 * @param opertionType 1��-1�� 
+	 * @param receiver 锟斤拷锟斤拷为锟秸★拷 
+	 * @param opertionType 1锟斤拷-1锟斤拷 
 	 */
 	public UpdateMStateParam(MUser receiver,int opertionType){
 		this.receiver=receiver;
@@ -39,7 +39,7 @@ public class UpdateMStateParam implements Serializable{
 
 
 	/**
-	 * �������ͣ� 1��ʾ �Ѷ������� -1��ʾɾ��������
+	 * 锟斤拷锟斤拷锟斤拷锟酵ｏ拷 1锟斤拷示 锟窖讹拷锟斤拷锟斤拷锟斤拷 -1锟斤拷示删锟斤拷锟斤拷锟斤拷锟斤拷
 	 * @return
 	 */
 	public Integer getOpertionType() {
@@ -69,8 +69,8 @@ public class UpdateMStateParam implements Serializable{
 	}
 	
 	/**
-	 * �����û���ϢID�б������û���Ϣ״̬��
-	 * @param messageIDs �û���ϢID�б�
+	 * 锟斤拷锟斤拷锟矫伙拷锟斤拷息ID锟叫憋拷锟斤拷锟斤拷锟矫伙拷锟斤拷息状态锟斤拷
+	 * @param messageIDs 锟矫伙拷锟斤拷息ID锟叫憋拷
 	 */
 	public void setMessageIDs(Collection<Long> messageIDs) {
 		this.messageIDs = messageIDs;
@@ -85,10 +85,10 @@ public class UpdateMStateParam implements Serializable{
 
 
 	/**
-	 * ���ݹ����� Ŀ��ID�������ͽ��и�����Ϣ״̬��
-	 * �ر�ע�⣬���������û���ϢID�б�Ĺ�ϵ�ǻ�Ĺ�ϵ��
-	 * @param realeaID  �û���Ϣ�й����� ����Ŀ��ID
-	 * @param realeaIDType �û���Ϣ�й����� ����Ŀ��ID������
+	 * 锟斤拷锟捷癸拷锟斤拷锟斤拷 目锟斤拷ID锟斤拷锟斤拷锟斤拷锟酵斤拷锟叫革拷锟斤拷锟斤拷息状态锟斤拷
+	 * 锟截憋拷注锟解，锟斤拷锟斤拷锟斤拷锟斤拷锟矫伙拷锟斤拷息ID锟叫憋拷墓锟较碉拷腔锟侥癸拷系锟斤拷
+	 * @param realeaID  锟矫伙拷锟斤拷息锟叫癸拷锟斤拷锟斤拷 锟斤拷锟斤拷目锟斤拷ID
+	 * @param realeaIDType 锟矫伙拷锟斤拷息锟叫癸拷锟斤拷锟斤拷 锟斤拷锟斤拷目锟斤拷ID锟斤拷锟斤拷锟斤拷
 	 */
 	public void setRealeaID(MCategory category,String realeaID,String realeaIDType) {
 		this.category=category;

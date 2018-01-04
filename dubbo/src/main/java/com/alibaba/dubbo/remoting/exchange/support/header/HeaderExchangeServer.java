@@ -53,10 +53,10 @@ public class HeaderExchangeServer implements ExchangeServer {
                                                                                                                                "dubbo-remoting-server-heartbeat",
                                                                                                                                true));
 
-    // ������ʱ��
+    // 锟斤拷锟斤拷锟斤拷时锟斤拷
     private ScheduledFuture<?> heatbeatTimer;
 
-    // ������ʱ�����롣ȱʡ0������ִ��������
+    // 锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟诫。缺省0锟斤拷锟斤拷锟斤拷执锟斤拷锟斤拷锟斤拷锟斤拷
     private int                            heartbeat;
 
     private int                            heartbeatTimeout;

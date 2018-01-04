@@ -188,7 +188,7 @@ public class DubboBeanDefinitionParser implements BeanDefinitionParser {
                                             || "version".equals(property) && "0.0.0".equals(value)
                                             || "stat".equals(property) && "-1".equals(value)
                                             || "reliable".equals(property) && "false".equals(value)) {
-                                        // ���ݾɰ汾xsd�е�defaultֵ
+                                        // 锟斤拷锟捷旧版本xsd锟叫碉拷default值
                                         value = null;
                                     }
                                     reference = value;
@@ -199,14 +199,14 @@ public class DubboBeanDefinitionParser implements BeanDefinitionParser {
                                     if ("dubbo:provider".equals(element.getTagName())) {
                                         logger.warn("Recommended replace <dubbo:provider protocol=\"" + value + "\" ... /> to <dubbo:protocol name=\"" + value + "\" ... />");
                                     }
-                                    // ���ݾɰ汾����
+                                    // 锟斤拷锟捷旧版本锟斤拷锟斤拷
                                     ProtocolConfig protocol = new ProtocolConfig();
                                     protocol.setName(value);
                                     reference = protocol;
                                 } else if ("monitor".equals(property) 
                                         && (! parserContext.getRegistry().containsBeanDefinition(value)
                                                 || ! MonitorConfig.class.getName().equals(parserContext.getRegistry().getBeanDefinition(value).getBeanClassName()))) {
-                                    // ���ݾɰ汾����
+                                    // 锟斤拷锟捷旧版本锟斤拷锟斤拷
                                     reference = convertMonitor(value);
                                 } else if ("onreturn".equals(property)) {
                                     int index = value.lastIndexOf(".");

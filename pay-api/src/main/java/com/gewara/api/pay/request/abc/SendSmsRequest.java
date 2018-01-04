@@ -6,11 +6,11 @@ public class SendSmsRequest extends AbcRequest {
 
 	private static final long serialVersionUID = -6958225413916134949L;
 
-	private String cardno	;//���׿���
-	private String cardexp	;//����Ч��
-	private String mobile	;//�ֻ�����
+	private String cardno	;//锟斤拷锟阶匡拷锟斤拷
+	private String cardexp	;//锟斤拷锟斤拷效锟斤拷
+	private String mobile	;//锟街伙拷锟斤拷锟斤拷
 	private String adddata	;//CVD2
-	private Integer amount	;//���׽��
+	private Integer amount	;//锟斤拷锟阶斤拷锟�
 	
 	public SendSmsRequest(){}
 	

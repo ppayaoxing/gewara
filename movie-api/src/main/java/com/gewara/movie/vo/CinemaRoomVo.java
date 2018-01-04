@@ -9,45 +9,45 @@ import org.apache.commons.lang.StringUtils;
 import com.gewara.api.vo.BaseVo;
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28����02:05:17
+ * @since 2007-9-28锟斤拷锟斤拷02:05:17
  */
 public class CinemaRoomVo extends BaseVo implements Comparable<CinemaRoomVo>{
-	public static final String OPEN_GEWARA = "GEWA";		//�������ͣ�������˶Խ�
+	public static final String OPEN_GEWARA = "GEWA";		//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟斤拷锟斤拷锟斤拷硕越锟�
 	private static final long serialVersionUID = -1894201195221566397L;
 	private Long id;
-	private String roomname;			//����
-	private String content;			//��ϸ����
-	private Integer linenum;			//��λ����
-	private Integer ranknum;			//��λ����
-	private Integer seatnum;			//��λ����
-	private String num;				//����
-	private String sections;			//����������ö��Ÿ���
+	private String roomname;			//锟斤拷锟斤拷
+	private String content;			//锟斤拷细锟斤拷锟斤拷
+	private Integer linenum;			//锟斤拷位锟斤拷锟斤拷
+	private Integer ranknum;			//锟斤拷位锟斤拷锟斤拷
+	private Integer seatnum;			//锟斤拷位锟斤拷锟斤拷
+	private String num;				//锟斤拷锟斤拷
+	private String sections;			//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷枚锟斤拷鸥锟斤拷锟�
 	private String roomtype;
-	private Timestamp updatetime;		//��λ����ʱ��
+	private Timestamp updatetime;		//锟斤拷位锟斤拷锟斤拷时锟斤拷
 	private Integer firstline;
 	private Integer firstrank;		
 	private String logo;				//LOGO
 	private Long cinemaid;
-	private Integer screenheight; 		//��Ļ��
-	private Integer screenwidth; 		//��Ļ��
-	private Integer allowsellnum;		//����������
-	private String vipflag;				//�Ƿ�ΪVIP
-	private String seatmap;				//��λͼ��λͼ��
-	private String loveflag;			//�Ƿ���������
-	private Date effectivedate;			//��λ��Ч����
-	private String playtype;			//�������ͣ���ӳ3D��2D��IMAX
-	private String roomDoor;         //Ӱ������
+	private Integer screenheight; 		//锟斤拷幕锟斤拷
+	private Integer screenwidth; 		//锟斤拷幕锟斤拷
+	private Integer allowsellnum;		//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	private String vipflag;				//锟角凤拷为VIP
+	private String seatmap;				//锟斤拷位图锟斤拷位图锟斤拷
+	private String loveflag;			//锟角凤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	private Date effectivedate;			//锟斤拷位锟斤拷效锟斤拷锟斤拷
+	private String playtype;			//锟斤拷锟斤拷锟斤拷锟酵ｏ拷锟斤拷映3D锟斤拷2D锟斤拷IMAX
+	private String roomDoor;         //影锟斤拷锟斤拷锟斤拷
 	private String otherinfo;
-	private String characteristic;	//��ɫ������
-	private String defaultEdition; //Ĭ�ϰ汾�����Ӣ�Ķ���,�ָ 
-	protected String roomnum;			//����
-	protected String buylimit;		//�����������ƣ�1,2,3,4,5
-	private String newCharacteristic;	//�°���ɫ������ ֧�ֶ�����Ч�ö��ŷֿ�  ע�⣺��̨����ά����4D��4DX����ͬʱ���ڣ����Բ�ѯ4D��ʱ���õ���4DX�����
-	private String status; 				// Ӱ��״̬��open/close
-	private String secid;				//�ڶ���������
-	private Integer lovstExtraFee;		//�������Ӽ۽��
-	private String secretKey;			//��ӳ����Կ
-	private String isLoveSeatRoom;          //�Ƿ�������Ӱ�����ǣ�"1"����"0"
+	private String characteristic;	//锟斤拷色锟斤拷锟斤拷锟斤拷
+	private String defaultEdition; //默锟较版本锟斤拷锟斤拷锟接拷亩锟斤拷锟�,锟街割开 
+	protected String roomnum;			//锟斤拷锟斤拷
+	protected String buylimit;		//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟狡ｏ拷1,2,3,4,5
+	private String newCharacteristic;	//锟铰帮拷锟斤拷色锟斤拷锟斤拷锟斤拷 支锟街讹拷锟斤拷锟斤拷效锟矫讹拷锟脚分匡拷  注锟解：锟斤拷台锟斤拷锟斤拷维锟斤拷锟斤拷4D锟斤拷4DX锟斤拷锟斤拷同时锟斤拷锟节ｏ拷锟斤拷锟皆诧拷询4D锟斤拷时锟斤拷锟矫碉拷锟斤拷4DX锟斤拷锟斤拷锟�
+	private String status; 				// 影锟斤拷状态锟斤拷open/close
+	private String secid;				//锟节讹拷锟斤拷锟斤拷锟斤拷锟斤拷
+	private Integer lovstExtraFee;		//锟斤拷锟斤拷锟斤拷锟接价斤拷锟�
+	private String secretKey;			//锟斤拷映锟斤拷锟斤拷钥
+	private String isLoveSeatRoom;          //锟角凤拷锟斤拷锟斤拷锟斤拷影锟斤拷锟斤拷锟角ｏ拷"1"锟斤拷锟斤拷"0"
 	
 	public CinemaRoomVo(){}
 	public CinemaRoomVo(Long cinemaId, String roomtype){
@@ -60,7 +60,7 @@ public class CinemaRoomVo extends BaseVo implements Comparable<CinemaRoomVo>{
 		this.vipflag = "N";
 		this.loveflag = "Y";
 		this.allowsellnum = 9999;
-		this.status = "open";	// Ӱ��Ĭ�Ͽ���
+		this.status = "open";	// 影锟斤拷默锟较匡拷锟斤拷
 		this.lovstExtraFee = 0; 
 	}
 	

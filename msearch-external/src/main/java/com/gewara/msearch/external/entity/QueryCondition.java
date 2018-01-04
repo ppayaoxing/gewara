@@ -7,9 +7,9 @@ import java.util.Set;
 import com.gewara.msearch.external.constant.DataType;
 
 /**
- * ²éÑ¯Ìõ¼ş
- * @author ¶­Ã÷
- * @createDate 2015Äê6ÔÂ3ÈÕ
+ * æŸ¥è¯¢æ¡ä»¶
+ * @author è‘£æ˜
+ * @createDate 2015å¹´6æœˆ3æ—¥
  */
 	
 public class QueryCondition implements Serializable{
@@ -23,7 +23,7 @@ public class QueryCondition implements Serializable{
 	private Set<QueryLimit> queryLimits = null;
 
 	/**
-	 * ²éÑ¯µÄÎÄ±¾
+	 * æŸ¥è¯¢çš„æ–‡æœ¬
 	 * @return
 	 */
 	public String getQueryStr() {
@@ -31,7 +31,7 @@ public class QueryCondition implements Serializable{
 	}
 
 	/**
-	 * ²éÑ¯µÄÊı¾İÀàĞÍ£¬ÒÔ¼°Ã¿ÖÖÊı¾İÀàĞÍ·µ»ØµÄÌõÊı¡£
+	 * æŸ¥è¯¢çš„æ•°æ®ç±»å‹ï¼Œä»¥åŠæ¯ç§æ•°æ®ç±»å‹è¿”å›çš„æ¡æ•°ã€‚
 	 * 
 	 * @return
 	 */
@@ -48,7 +48,7 @@ public class QueryCondition implements Serializable{
 	}
 
 	/**
-	 * ÉèÖÃ´ÓµÚ¼¸Ìõ¼ÇÂ¼¿ªÊ¼»ñÈ¡,°üº¬
+	 * è®¾ç½®ä»ç¬¬å‡ æ¡è®°å½•å¼€å§‹è·å–,åŒ…å«
 	 * @param from
 	 */
 	public void setFrom(int from) {
@@ -62,8 +62,8 @@ public class QueryCondition implements Serializable{
 	}
 
 	/**
-	 * queryLimitÍ¬Ê±Ò²ÓÃÀ´¿ØÖÆÃ¿´Î²éÑ¯µÄÊı¾İÖÖÀà¡£Î´Ö¸¶¨µÄ£¬²»²éÑ¯¡£
-	 * Çë×¢ÒâQueryLimit µÄequalsºÍhashCodeµÄÌØÊâĞÔ£¨Ã¿ÖÖÊı¾İÀàĞÍ£¬Ö»ÄÜÓĞÒ»¸öQueryLimit£©¡£
+	 * queryLimitåŒæ—¶ä¹Ÿç”¨æ¥æ§åˆ¶æ¯æ¬¡æŸ¥è¯¢çš„æ•°æ®ç§ç±»ã€‚æœªæŒ‡å®šçš„ï¼Œä¸æŸ¥è¯¢ã€‚
+	 * è¯·æ³¨æ„QueryLimit çš„equalså’ŒhashCodeçš„ç‰¹æ®Šæ€§ï¼ˆæ¯ç§æ•°æ®ç±»å‹ï¼Œåªèƒ½æœ‰ä¸€ä¸ªQueryLimitï¼‰ã€‚
 	 * @param queryLimit
 	 */
 	public void setQueryLimit(Set<QueryLimit> queryLimit) {
@@ -87,7 +87,7 @@ public class QueryCondition implements Serializable{
 	}
 	
 	/**
-	 * ÓÃÓÚĞ£Ñé²éÑ¯²ÎÊıÊÇ·ñºÏ·¨¡£
+	 * ç”¨äºæ ¡éªŒæŸ¥è¯¢å‚æ•°æ˜¯å¦åˆæ³•ã€‚
 	 * @return
 	 */
 	public boolean validate(){

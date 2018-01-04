@@ -54,7 +54,7 @@ public abstract class MessageBaseInfo implements Serializable{
 	}
 	
 	/**
-	 * ÏûÏ¢±êÌâ£¬·Ç±ØĞë
+	 * æ¶ˆæ¯æ ‡é¢˜ï¼Œéå¿…é¡»
 	 * @param title
 	 */
 	public void setTitle(String title) {
@@ -62,7 +62,7 @@ public abstract class MessageBaseInfo implements Serializable{
 	}
 	
 	/**
-	 * ÏûÏ¢ÄÚÈİ£¬±ØĞë
+	 * æ¶ˆæ¯å†…å®¹ï¼Œå¿…é¡»
 	 * @param content
 	 */
 	public void setContent(String content) {
@@ -70,7 +70,7 @@ public abstract class MessageBaseInfo implements Serializable{
 	}
 	
 	/**
-	 * ÏûÏ¢Ïà¹ØµÄURL, ·Ç±ØĞë
+	 * æ¶ˆæ¯ç›¸å…³çš„URL, éå¿…é¡»
 	 * @param releaseURL
 	 */
 	public void setReleaseURL(String releaseURL) {
@@ -78,7 +78,7 @@ public abstract class MessageBaseInfo implements Serializable{
 	}
 	
 	/**
-	 * ºÍÏûÏ¢Ïà¹ØµÄÄ¿±êID,ÅäºÏreleaseIDTypeÊ¹ÓÃ£¬¶şÕß±ØĞëÍ¬Ê±ÌîĞ´£¬·Ç±ØÌî×Ö¶Î
+	 * å’Œæ¶ˆæ¯ç›¸å…³çš„ç›®æ ‡ID,é…åˆreleaseIDTypeä½¿ç”¨ï¼ŒäºŒè€…å¿…é¡»åŒæ—¶å¡«å†™ï¼Œéå¿…å¡«å­—æ®µ
 	 * @param releaseID
 	 */
 	public void setReleaseID(String releaseID,String releaseIDType) {
@@ -87,9 +87,9 @@ public abstract class MessageBaseInfo implements Serializable{
 	}
 	
 	/**
-	 * ÏûÏ¢±êÇ©£¬Ö÷ÒªÊÇÁô¸øÒµÎñÏµÍ³ÊµÏÖ×Ô¼ºµÄÒµÎñÊ¹ÓÃ¡£ ·Ç±ØĞë
-	 * Õë¶ÔtagÉèÖÃÁË [GM.WALA.MERGE]µÄÏûÏ¢£¬Èç¹ûÆärealeaseID£¬typeÏàÍ¬µÄ»°£¬½øĞĞºÏ²¢´¦Àí
-	 * £¨½ö½ö±£Áô×îÔçÒ»Ìõ¼ÇÂ¼£¬µ«·¢ËÍÈËĞÅÏ¢Ìí¼ÓÖÁÆäÖĞ¡£½ö½öºÏ²¢Á½´Î²éÑ¯Ö®¼äµÄ£©£¨¿ªÊ¼ÊÇÖ»ºÏ²¢ÍÛÀ²£¬Ä¿Ç°ÒÑ¾­·ºÖ¸ÁË£©¡£
+	 * æ¶ˆæ¯æ ‡ç­¾ï¼Œä¸»è¦æ˜¯ç•™ç»™ä¸šåŠ¡ç³»ç»Ÿå®ç°è‡ªå·±çš„ä¸šåŠ¡ä½¿ç”¨ã€‚ éå¿…é¡»
+	 * é’ˆå¯¹tagè®¾ç½®äº† [GM.WALA.MERGE]çš„æ¶ˆæ¯ï¼Œå¦‚æœå…¶realeaseIDï¼Œtypeç›¸åŒçš„è¯ï¼Œè¿›è¡Œåˆå¹¶å¤„ç†
+	 * ï¼ˆä»…ä»…ä¿ç•™æœ€æ—©ä¸€æ¡è®°å½•ï¼Œä½†å‘é€äººä¿¡æ¯æ·»åŠ è‡³å…¶ä¸­ã€‚ä»…ä»…åˆå¹¶ä¸¤æ¬¡æŸ¥è¯¢ä¹‹é—´çš„ï¼‰ï¼ˆå¼€å§‹æ˜¯åªåˆå¹¶å“‡å•¦ï¼Œç›®å‰å·²ç»æ³›æŒ‡äº†ï¼‰ã€‚
 	 * 
 	 * 
 	 * @param tag
@@ -98,7 +98,7 @@ public abstract class MessageBaseInfo implements Serializable{
 		this.tag = tag;
 	}
 	/**
-	 * ÏûÏ¢ÖÖÀàÒÔ¼°ÏûÏ¢ÀàĞÍ¡£±ØĞë
+	 * æ¶ˆæ¯ç§ç±»ä»¥åŠæ¶ˆæ¯ç±»å‹ã€‚å¿…é¡»
 	 * @param category
 	 */
 	public void setCategory(MCategory category,MType type) {
@@ -107,7 +107,7 @@ public abstract class MessageBaseInfo implements Serializable{
 	}
 	
 	/**
-	 * Õâ¸ö×Ö¶ÎÓÃÀ´±íÃ÷£¬¸ÃÏûÏ¢ÊÇÓÉÊ²Ã´ĞĞÎª´¥·¢µÄ£¬±ØĞëÌîĞ´
+	 * è¿™ä¸ªå­—æ®µç”¨æ¥è¡¨æ˜ï¼Œè¯¥æ¶ˆæ¯æ˜¯ç”±ä»€ä¹ˆè¡Œä¸ºè§¦å‘çš„ï¼Œå¿…é¡»å¡«å†™
 	 * @return
 	 */
 	public void setOptType(String optType) {
@@ -115,9 +115,9 @@ public abstract class MessageBaseInfo implements Serializable{
 	}
 	
 	/**
-	 * Õâ¸ö×Ö¶ÎÓÃÀ´¼ÇÂ¼ºÍ¸ÃÏûÏ¢Ïà¹ØµÄÀ©Õ¹ĞÅÏ¢¡£ ·Ç±ØĞë
-	 * ÈçĞè·¢ËÍÌØ¶¨ĞÅÏ¢Ö»pushÏµÍ³£¬Ôò¸Ä×Ö¶ÎµÄ¸ñÊ½±ØĞëÈçÏÂ
-	 * {push:{}}»òÕß{push:[]}¡£ json¸ñÊ½£¬±ØĞëÓĞpushÕâ¸ö×Ö¶Î£¬ÆäÖµºÍ¸ñÊ½¸ù¾İÒµÎñÒªÇó×Ô¶¨Òå¡£
+	 * è¿™ä¸ªå­—æ®µç”¨æ¥è®°å½•å’Œè¯¥æ¶ˆæ¯ç›¸å…³çš„æ‰©å±•ä¿¡æ¯ã€‚ éå¿…é¡»
+	 * å¦‚éœ€å‘é€ç‰¹å®šä¿¡æ¯åªpushç³»ç»Ÿï¼Œåˆ™æ”¹å­—æ®µçš„æ ¼å¼å¿…é¡»å¦‚ä¸‹
+	 * {push:{}}æˆ–è€…{push:[]}ã€‚ jsonæ ¼å¼ï¼Œå¿…é¡»æœ‰pushè¿™ä¸ªå­—æ®µï¼Œå…¶å€¼å’Œæ ¼å¼æ ¹æ®ä¸šåŠ¡è¦æ±‚è‡ªå®šä¹‰ã€‚
 	 * @param releaseExt
 	 */
 	public void setReleaseExt(String releaseExt) {

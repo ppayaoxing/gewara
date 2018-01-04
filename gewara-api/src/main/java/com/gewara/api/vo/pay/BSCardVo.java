@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * ÉÌ»§ÁªÃËÈ¯
+ * å•†æˆ·è”ç›Ÿåˆ¸
  * @author zhoufy
  */
 public class BSCardVo extends BaseVo {
@@ -14,17 +14,17 @@ public class BSCardVo extends BaseVo {
 	private static final long serialVersionUID = -6845529792674703434L;
 	
 	private Long id;
-	private String cardnum;		//È¯ºÅ
-	private Long goodsid;		//ÎïÆ·ID
-	private String brandname;	//Æ·ÅÆÃû³Æ
-	private Long orderid;		//¶©µ¥ºÅ
-	private Long memberid;		//ÓÃ»§ID
-	private String status;		//×´Ì¬ 	Î´Ê¹ÓÃ£ºStatus.N	ÒÑÊ¹ÓÃ£ºStatus.Y
-	private String remark;		//±¸×¢
+	private String cardnum;		//åˆ¸å·
+	private Long goodsid;		//ç‰©å“ID
+	private String brandname;	//å“ç‰Œåç§°
+	private Long orderid;		//è®¢å•å·
+	private Long memberid;		//ç”¨æˆ·ID
+	private String status;		//çŠ¶æ€ 	æœªä½¿ç”¨ï¼šStatus.N	å·²ä½¿ç”¨ï¼šStatus.Y
+	private String remark;		//å¤‡æ³¨
 	private Timestamp fromtime;
 	private Timestamp totime;
 	private Timestamp addtime;
-	private Timestamp bindtime;	//Ê¹ÓÃÊ±¼ä
+	private Timestamp bindtime;	//ä½¿ç”¨æ—¶é—´
 	private Long brandid;
 	
 	public String getBrandname() {

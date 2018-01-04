@@ -29,7 +29,7 @@ import com.alibaba.dubbo.common.threadpool.support.AbortPolicyWithReport;
 import com.alibaba.dubbo.common.utils.NamedThreadFactory;
 
 /**
- * ���̳߳�һֱ������ֱ�����ޣ�������������
+ * 锟斤拷锟竭程筹拷一直锟斤拷锟斤拷锟斤拷直锟斤拷锟斤拷锟睫ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
  * 
  * @author <a href="mailto:gang.lvg@alibaba-inc.com">kimi</a>
  */

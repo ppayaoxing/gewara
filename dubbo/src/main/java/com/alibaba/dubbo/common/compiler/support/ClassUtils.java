@@ -125,11 +125,11 @@ public class ClassUtils {
         try {
             return arrayForName(className);
         } catch (ClassNotFoundException e) {
-            if (className.indexOf('.') == -1) { // ����java.lang��
+            if (className.indexOf('.') == -1) { // 锟斤拷锟斤拷java.lang锟斤拷
                 try {
                     return arrayForName("java.lang." + className);
                 } catch (ClassNotFoundException e2) {
-                    // ���Գ����쳣, �׳�ԭʼ�쳣
+                    // 锟斤拷锟皆筹拷锟斤拷锟届常, 锟阶筹拷原始锟届常
                 }
             }
             throw e;
@@ -270,9 +270,9 @@ public class ClassUtils {
         try {
             ParameterizedType parameterizedType = ((ParameterizedType) cls.getGenericInterfaces()[0]);
             Object genericClass = parameterizedType.getActualTypeArguments()[i];
-            if (genericClass instanceof ParameterizedType) { // ����༶����
+            if (genericClass instanceof ParameterizedType) { // 锟斤拷锟斤拷嗉讹拷锟斤拷锟�
                 return (Class<?>) ((ParameterizedType) genericClass).getRawType();
-            } else if (genericClass instanceof GenericArrayType) { // �������鷺��
+            } else if (genericClass instanceof GenericArrayType) { // 锟斤拷锟斤拷锟斤拷锟介泛锟斤拷
                 return (Class<?>) ((GenericArrayType) genericClass).getGenericComponentType();
             } else if (genericClass != null) {
                 return (Class<?>) genericClass;

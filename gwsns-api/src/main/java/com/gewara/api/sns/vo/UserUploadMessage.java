@@ -7,19 +7,19 @@ import com.gewara.api.vo.BaseVo;
 public class UserUploadMessage extends BaseVo implements Serializable {
  
 	private static final long serialVersionUID = -3322684887723628280L;
-	private Long memberId;//µ±Ç°ÓÃ»§id
-	private String codeName;//source¶ÔÓ¦µÄÃû³Æ
-	private String code;//source¶ÔÓ¦µÄcode
-	private Long gewaraMemberId;//ÊÖ»ú¶ÔÓ¦µÄ¸ñÍßÀ­ÓÃ»§id
-	private String isNewUser;//ĞÂÆ¥Åäµ½µÄÓÃ»§±ê¼Ç
+	private Long memberId;//å½“å‰ç”¨æˆ·id
+	private String codeName;//sourceå¯¹åº”çš„åç§°
+	private String code;//sourceå¯¹åº”çš„code
+	private Long gewaraMemberId;//æ‰‹æœºå¯¹åº”çš„æ ¼ç“¦æ‹‰ç”¨æˆ·id
+	private String isNewUser;//æ–°åŒ¹é…åˆ°çš„ç”¨æˆ·æ ‡è®°
 	private String headpicUrl;
 	private String nickname;
 	private String personDescribe;
-	private String relationship;//ÓÃ»§¹ØÏµ
-	private String updaTime;//Ê±¼ä
-	private String source;//ÀàĞÍ
-	private Integer traceNum;//Ó°¼£ÊıÁ¿
-	private Object[] userMark; //ÈÙÓş±êÇ©
+	private String relationship;//ç”¨æˆ·å…³ç³»
+	private String updaTime;//æ—¶é—´
+	private String source;//ç±»å‹
+	private Integer traceNum;//å½±è¿¹æ•°é‡
+	private Object[] userMark; //è£èª‰æ ‡ç­¾
 	private String nickName;
 	
 	public Long getMemberId() {

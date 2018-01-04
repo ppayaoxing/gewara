@@ -7,7 +7,7 @@ import com.gewara.ucenter.vo.member.MemberVo;
 import com.gewara.ucenter.vo.member.OpenResultVo;
 
 /**
- * APP µÇÂ½Ïà¹ØAPI
+ * APP ç™»é™†ç›¸å…³API
  * 
  */
 public interface OpenApiMobileLoginVoService {

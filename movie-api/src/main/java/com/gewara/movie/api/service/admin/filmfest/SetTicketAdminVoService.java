@@ -7,26 +7,26 @@ import com.gewara.api.vo.ResultCode;
 import com.gewara.movie.vo.filmfest.SetTicketVo;
 public interface SetTicketAdminVoService {
 	/**
-	 * ¸ù¾İID²éÑ¯
+	 * æ ¹æ®IDæŸ¥è¯¢
 	 * @param id
 	 * @return
 	 */
 	ResultCode<SetTicketVo> getSetTicketVoById(String id);
 	/**
-	 * ¸ù¾İµçÓ°½Útag²éÑ¯Ì×Æ±ÁĞ±í
+	 * æ ¹æ®ç”µå½±èŠ‚tagæŸ¥è¯¢å¥—ç¥¨åˆ—è¡¨
 	 * @param filmTag
 	 * @return
 	 */
 	ResultCode<List<SetTicketVo>> getSetTicketListByTag(String filmTag);
 	/**
-	 * ²éÑ¯»òÕßĞŞ¸ÄÌ×Æ±
+	 * æŸ¥è¯¢æˆ–è€…ä¿®æ”¹å¥—ç¥¨
 	 * @param id
 	 * @param dataMap
 	 * @return
 	 */
 	ResultCode<SetTicketVo> saveSetTicketVo(String id, Map<String, String> dataMap);
 	/**
-	 * É¾³ıÌ×Æ±
+	 * åˆ é™¤å¥—ç¥¨
 	 * @param id
 	 * @return
 	 */

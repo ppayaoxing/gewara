@@ -17,11 +17,11 @@ public class OrderParamsVo implements Serializable {
 	private String paymethod;
 	private String category;
 	private String citycode;
-	private Long placeid;				//����ID
-	private Long itemid;				//��ĿID
-	private Long relatedid;				//����ID
+	private Long placeid;				//锟斤拷锟斤拷ID
+	private Long itemid;				//锟斤拷目ID
+	private Long relatedid;				//锟斤拷锟斤拷ID
 	private String express;
-	private String expressstatus;		//���״̬
+	private String expressstatus;		//锟斤拷锟阶刺�
 	private String sourcetype;
 	private Long partnerid;
 	

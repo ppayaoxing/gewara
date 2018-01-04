@@ -7,18 +7,18 @@ import com.gewara.api.pay.ApiObject;
 public class PayRecord extends ApiObject{
 
 	private static final long serialVersionUID = -4420072502903272043L;
-	//½»Ò××´Ì¬
+	//äº¤æ˜“çŠ¶æ€
 	private String id;				//ID
-	private String tradeNo;			//¶©µ¥ºÅ
-	private String merTradeNo;		//¶©µ¥ºÅ
-	private String payseqno;		//µÚÈı·½Ö§¸¶ĞòºÅ
-	private String gatewayCode;		//Ö§¸¶Íø¹Ø´úÂë	
-	private String merchantCode;	//ÉÌ»§ºÅ±êÊ¶
-	private Integer paidAmount;		//Ö§¸¶½ğ¶î£¬µ¥Î»£º·Ö
-	private Timestamp notifyTime;		//Ö§¸¶Ê±¼ä
-	private Integer notifyCount;	//Í¨Öª´ÎÊı
-	private String status;			//Ö§¸¶×´Ì¬
-	private String otherinfo;	    //ÆäËûĞÅÏ¢
+	private String tradeNo;			//è®¢å•å·
+	private String merTradeNo;		//è®¢å•å·
+	private String payseqno;		//ç¬¬ä¸‰æ–¹æ”¯ä»˜åºå·
+	private String gatewayCode;		//æ”¯ä»˜ç½‘å…³ä»£ç 	
+	private String merchantCode;	//å•†æˆ·å·æ ‡è¯†
+	private Integer paidAmount;		//æ”¯ä»˜é‡‘é¢ï¼Œå•ä½ï¼šåˆ†
+	private Timestamp notifyTime;		//æ”¯ä»˜æ—¶é—´
+	private Integer notifyCount;	//é€šçŸ¥æ¬¡æ•°
+	private String status;			//æ”¯ä»˜çŠ¶æ€
+	private String otherinfo;	    //å…¶ä»–ä¿¡æ¯
 
 	public String getId() {
 		return id;

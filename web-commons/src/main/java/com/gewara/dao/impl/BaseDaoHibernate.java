@@ -71,7 +71,7 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
             return null;
         }
 		if(cachable.contains(clazz)){
-			//�������
+			//锟斤拷锟斤拷锟斤拷锟�
 			DetachedCriteria query = DetachedCriteria.forClass(clazz);
 			query.setProjection(Projections.id());
 			List idList = hibernateTemplate.findByCriteria(query);
@@ -122,7 +122,7 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 			}
 			count ++;
 			if(System.currentTimeMillis() - t > DateUtil.m_minute*2 && count<100){
-				//100�����ڣ�����2min�����������⣬ֱ�����쳣
+				//100锟斤拷锟斤拷锟节ｏ拷锟斤拷锟斤拷2min锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟解，直锟斤拷锟斤拷锟届常
 				throw new TraceErrorException("cache too slow!!");
 			}
 		}
@@ -250,7 +250,7 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	@Override
 	public <T extends BaseObject, S extends Serializable> Map getObjectPropertyMap(Class<T> clazz, String keyname, String valuename, Collection<S> idList){
 		Map result = new HashMap();
-		//TODO: �ж϶����Ƿ���cache����cacheʹ�����淽����hibernateTemplate.getSessionFactory().;
+		//TODO: 锟叫断讹拷锟斤拷锟角凤拷锟斤拷cache锟斤拷锟斤拷cache使锟斤拷锟斤拷锟芥方锟斤拷锟斤拷hibernateTemplate.getSessionFactory().;
 		for(S id:idList){
 			T entity = getObject(clazz, id);
 			if(entity != null) {
@@ -264,7 +264,7 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	public <T extends BaseObject> List<T> getObjectListByField(Class<T> clazz, String fieldname, Serializable fieldvalue){
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);
 		query.add(Restrictions.eq(fieldname, fieldvalue));
-		if(cachable.contains(clazz)){//��������Ȳ�ѯID
+		if(cachable.contains(clazz)){//锟斤拷锟斤拷锟斤拷锟斤拷炔锟窖疘D
 			query.setProjection(Projections.id());
 			List idList = hibernateTemplate.findByCriteria(query);
 			return getObjectListUsingCache(clazz, idList);
@@ -296,7 +296,7 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
             return null;
         }
 		if(result.size() > 1) {
-            throw new IllegalStateException("��ѯ�������¼��" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+            throw new IllegalStateException("锟斤拷询锟斤拷锟斤拷锟斤拷锟铰硷拷锟�" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
         }
 		return (T)result.get(0);
 	}
@@ -316,12 +316,12 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 				}
 			}else{
 				result = getObject(clazz, id);
-				if(result == null){//�����ڣ�������ID�仯�ز�һ��
+				if(result == null){//锟斤拷锟斤拷锟节ｏ拷锟斤拷锟斤拷锟斤拷ID锟戒化锟截诧拷一锟斤拷
 					id = getIdByUkey(clazz, ukeyName, ukeyValue);
-					if(id!=null){//����id����ˣ��������û���
+					if(id!=null){//锟斤拷锟斤拷id锟斤拷锟斤拷耍锟斤拷锟斤拷锟斤拷锟斤拷没锟斤拷锟�
 						setUkey(clazz, ukeyName, ukeyValue, id);
 						result = getObject(clazz, id);
-					}else{//���󲻴��ڣ����
+					}else{//锟斤拷锟襟不达拷锟节ｏ拷锟斤拷锟�
 						setUkey(clazz, ukeyName, ukeyValue, null);
 					}
 				}
@@ -338,7 +338,7 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
             return null;
         }
 		if(result.size() > 1) {
-            throw new IllegalStateException("��ѯ�������¼��" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+            throw new IllegalStateException("锟斤拷询锟斤拷锟斤拷锟斤拷锟铰硷拷锟�" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
         }
 		return (Serializable)result.get(0);
 	}
@@ -438,7 +438,7 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	public <T extends BaseObject> T getObjectByUkey(Class<T> clazz, String ukeyName, Serializable ukeyValue,
 			boolean b) {
 		if(b) {
-            this.getObjectByUkey(clazz, ukeyName, ukeyValue); //TODO ����b���,�ж��Ƿ���Ҫ����
+            this.getObjectByUkey(clazz, ukeyName, ukeyValue); //TODO 锟斤拷锟斤拷b锟斤拷锟�,锟叫讹拷锟角凤拷锟斤拷要锟斤拷锟斤拷
         }
 		return this.getObjectByUkey(clazz, ukeyName, ukeyValue);
 	}

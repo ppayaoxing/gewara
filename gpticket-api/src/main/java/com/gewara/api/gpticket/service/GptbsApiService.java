@@ -8,7 +8,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface GptbsApiService {
 	/**
-	 * »ñÈ¡¶©µ¥ĞÅÏ¢£¬ÎŞÏŞÏŞ¿ØÖÆ(ËùÓĞµÄ¶©µ¥)
+	 * è·å–è®¢å•ä¿¡æ¯ï¼Œæ— é™é™æ§åˆ¶(æ‰€æœ‰çš„è®¢å•)
 	 * @param tOrderNo
 	 * @param entry
 	 * @return
@@ -16,7 +16,7 @@ public interface GptbsApiService {
 	ResultCode<Map> getOrderPrintInfo2(String tOrderNo);
 	
 	/**
-	 * ¸ù¾İ¸üĞÂÊ±¼äÅúÁ¿»ñÈ¡¶©µ¥ĞÅÏ¢£¬ÎŞÏŞÏŞ¿ØÖÆ(ËùÓĞµÄ¶©µ¥)
+	 * æ ¹æ®æ›´æ–°æ—¶é—´æ‰¹é‡è·å–è®¢å•ä¿¡æ¯ï¼Œæ— é™é™æ§åˆ¶(æ‰€æœ‰çš„è®¢å•)
 	 * @param updatetime
 	 * @param endtime
 	 * @param entry
@@ -24,21 +24,21 @@ public interface GptbsApiService {
 	 */
 	ResultCode<List<Map>> getOrderPrintInfo(Timestamp updatetime, Timestamp endtime);
 	/**
-	 * ³¡´ÎÆ±°æ£¬ÎŞÏŞÏŞ¿ØÖÆ(ËùÓĞµÄ³¡´ÎÆ±°æ)
+	 * åœºæ¬¡ç¥¨ç‰ˆï¼Œæ— é™é™æ§åˆ¶(æ‰€æœ‰çš„åœºæ¬¡ç¥¨ç‰ˆ)
 	 * @param scheduleId
 	 * @return
 	 */
 	ResultCode<String> getTicketFaceExp(String scheduleId);
 	
 	/**
-	 * Í¨¹ı¸üĞÂÊ±¼ä»ñÈ¡³¡¹İĞÅÏ¢
+	 * é€šè¿‡æ›´æ–°æ—¶é—´è·å–åœºé¦†ä¿¡æ¯
 	 * @param updatetime
 	 * @return
 	 */
 	ResultCode<List<Map>> getStadiumListByUpdate(Timestamp updatetime);
 	
 	/**
-	 * Í¨Öª¸üĞÂÈ¡×´Ì¬
+	 * é€šçŸ¥æ›´æ–°å–çŠ¶æ€
 	 * @param requestData
 	 * @return
 	 */

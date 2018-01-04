@@ -22,14 +22,14 @@ import com.alibaba.dubbo.rpc.cluster.RouterFactory;
 /**
  * ScriptRouterFactory
  * 
- * Script Router Factory�õ���URL���磺
+ * Script Router Factory锟矫碉拷锟斤拷URL锟斤拷锟界：
  * <ol>
  * <li> script://registyAddress?type=js&rule=xxxx
  * <li> script:///path/to/routerfile.js?type=js&rule=xxxx
  * <li> script://D:\path\to\routerfile.js?type=js&rule=xxxx
  * <li> script://C:/path/to/routerfile.js?type=js&rule=xxxx
  * </ol>
- * URL��Hostһ�ΰ�������Script Router���ݵ���Դ��Registry��File etc
+ * URL锟斤拷Host一锟轿帮拷锟斤拷锟斤拷锟斤拷Script Router锟斤拷锟捷碉拷锟斤拷源锟斤拷Registry锟斤拷File etc
  * 
  * @author william.liangf
  */

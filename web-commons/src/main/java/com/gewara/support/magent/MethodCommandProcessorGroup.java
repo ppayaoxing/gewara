@@ -36,7 +36,7 @@ public class MethodCommandProcessorGroup implements CommandProcessorGroup{
 
 		@Override
 		public String getHelp() {
-			return "ÏµÍ³ExceptionµÄÍ³¼ÆÊıÁ¿";
+			return "ç³»ç»ŸExceptionçš„ç»Ÿè®¡æ•°é‡";
 		}
 
 		@Override

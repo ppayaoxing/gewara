@@ -8,17 +8,17 @@ import com.gewara.api.vo.BaseVo;
 
 public class RoomSeatVo extends BaseVo{
 	private static final long serialVersionUID = 6030230522663576759L;
-	public static final String SECTION_UP = "up";		//Â¥ÉÏ
-	public static final String SECTION_DOWN = "dw";		//Â¥ÏÂ
+	public static final String SECTION_UP = "up";		//æ¥¼ä¸Š
+	public static final String SECTION_DOWN = "dw";		//æ¥¼ä¸‹
 	private Long id;
-	private Long roomid;		//Ó°ÌüID
-	private Integer lineno;		//Ç°ÆğµÚ¼¸ÅÅ,ÏµÍ³Éú³É
-	private Integer rankno;		//×óÆğµÚ¼¸ÁĞ,ÏµÍ³Éú²ú
-	private String seatline;	//×ùÎ»ĞĞºÅ
-	private String seatrank;	//×ùÎ»ÁĞºÅ
-	private String loveInd;		//ÇéÂÂ×ù 0£ºÆÕÍ¨×ùÎ» 1£ºÇéÂÂ×ùÊ××ùÎ»±ê¼Ç 2£ºÇéÂÂ×ùµÚ¶ş×ùÎ»±ê¼Ç
-	private String initstatus;	//Ã¿´Î¿ª·Å³õÊ¼×´Ì¬
-	private String secid;		//ÇøÓòID
+	private Long roomid;		//å½±å…ID
+	private Integer lineno;		//å‰èµ·ç¬¬å‡ æ’,ç³»ç»Ÿç”Ÿæˆ
+	private Integer rankno;		//å·¦èµ·ç¬¬å‡ åˆ—,ç³»ç»Ÿç”Ÿäº§
+	private String seatline;	//åº§ä½è¡Œå·
+	private String seatrank;	//åº§ä½åˆ—å·
+	private String loveInd;		//æƒ…ä¾£åº§ 0ï¼šæ™®é€šåº§ä½ 1ï¼šæƒ…ä¾£åº§é¦–åº§ä½æ ‡è®° 2ï¼šæƒ…ä¾£åº§ç¬¬äºŒåº§ä½æ ‡è®°
+	private String initstatus;	//æ¯æ¬¡å¼€æ”¾åˆå§‹çŠ¶æ€
+	private String secid;		//åŒºåŸŸID
 	private String seatStatus;
 	public RoomSeatVo(){
 		
@@ -26,12 +26,12 @@ public class RoomSeatVo extends BaseVo{
 	public String getSeatLabel(){
 		if(StringUtils.isNotBlank(secid)){
 			if(SECTION_UP.equals(secid)){
-				return "Â¥ÉÏ" + seatline + "ÅÅ"+seatrank+"×ù";
+				return "æ¥¼ä¸Š" + seatline + "æ’"+seatrank+"åº§";
 			}else if(SECTION_DOWN.equals(secid)){
-				return "Â¥ÏÂ" + seatline + "ÅÅ" + seatrank + "×ù";
+				return "æ¥¼ä¸‹" + seatline + "æ’" + seatrank + "åº§";
 			}
 		}
-		return seatline+"ÅÅ"+seatrank+"×ù";
+		return seatline+"æ’"+seatrank+"åº§";
 	}
 	public String getKey(){
 		return this.seatline+":"+this.seatrank;

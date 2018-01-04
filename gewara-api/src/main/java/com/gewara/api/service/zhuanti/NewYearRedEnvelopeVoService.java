@@ -10,13 +10,13 @@ import com.gewara.api.vo.order.GewaOrderVo;
 public interface NewYearRedEnvelopeVoService {
 	/**
 	 * 
-	 * ¸ù¾İ¶©µ¥ĞÅÏ¢ ²éÑ¯ ÊÇ·ñÄÜÉú³Éºì°ü
+	 * æ ¹æ®è®¢å•ä¿¡æ¯ æŸ¥è¯¢ æ˜¯å¦èƒ½ç”Ÿæˆçº¢åŒ…
 	 * @param GewaOrderVo  gewaOrder
 	 * @return
 	 */
 	ResultCode<RedEnvelopeManagerVo> findRedEnvelopeManager(GewaOrderVo gewaOrder);
 	/**
-	 * ¸ù¾İµçÓ°ID²éÑ¯ºì°üTAG
+	 * æ ¹æ®ç”µå½±IDæŸ¥è¯¢çº¢åŒ…TAG
 	* @remark
 	* @param relatedId
 	* @return

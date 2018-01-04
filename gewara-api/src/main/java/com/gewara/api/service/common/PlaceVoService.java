@@ -12,25 +12,25 @@ import com.gewara.api.vo.common.ProvinceVo;
 
 public interface PlaceVoService {
 	/**
-	 * »ñÈ¡Ê¡·İÁĞ±í
+	 * è·å–çœä»½åˆ—è¡¨
 	 * @return
 	 */
 	ResultCode<List<ProvinceVo>> getProvinceList();
 	/**
-	 * ¸ù¾İÊ¡·İ»ñÈ¡³ÇÊĞÁĞ±í
+	 * æ ¹æ®çœä»½è·å–åŸå¸‚åˆ—è¡¨
 	 * @return
 	 */
 	ResultCode<List<CityVo>> getCityListByProvincecode(String provincecode);
 	/**
-	 * Í¨¹ı³ÇÊĞ±àÂë»ñÈ¡½»Í¨Â·Ïß(key=id, value=name)
+	 * é€šè¿‡åŸå¸‚ç¼–ç è·å–äº¤é€šè·¯çº¿(key=id, value=name)
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<Map<String, String>> getSubwaylineMap(String citycode);
 	
 	/**
-	 * »ñÈ¡ÏîÄ¿ĞÅÏ¢
-	 * @deprecated ÇëÏîÄ¿×Ô¼ºÊµÏÖ
+	 * è·å–é¡¹ç›®ä¿¡æ¯
+	 * @deprecated è¯·é¡¹ç›®è‡ªå·±å®ç°
 	 * @param category
 	 * @param categoryid
 	 * @return
@@ -39,7 +39,7 @@ public interface PlaceVoService {
 	
 	
 	/**
-	 * ¸ù¾İ³ÇÊĞ»ñÈ¡ÇøÏØÁĞ±í
+	 * æ ¹æ®åŸå¸‚è·å–åŒºå¿åˆ—è¡¨
 	 * 
 	 * @param appkey
 	 * @param citycode
@@ -48,7 +48,7 @@ public interface PlaceVoService {
 	ResultCode<List<CountyVo>> countyList(String citycode);
 
 	/**
-	 * ¸ù¾İÇøÏØ±àÂë»ñÈ¡ÇøÏØÏêÇé
+	 * æ ¹æ®åŒºå¿ç¼–ç è·å–åŒºå¿è¯¦æƒ…
 	 * 
 	 * @param appkey
 	 * @param countyCodes
@@ -57,7 +57,7 @@ public interface PlaceVoService {
 	ResultCode<List<CountyVo>> countyListBycodes(List<String> countyCodes);
 
 	/**
-	 * ³ÇÊĞµÄÈÈÃÅÉÌÈ¦
+	 * åŸå¸‚çš„çƒ­é—¨å•†åœˆ
 	 * 
 	 * @param appkey
 	 * @param citycode
@@ -66,7 +66,7 @@ public interface PlaceVoService {
 	ResultCode<List<IndexareaVo>> hotIndexareaList(String citycode);
 	
 	/**
-	 * ºÏ×÷ÉÌ¿ª·ÅµÄ³ÇÊĞÁĞ±í
+	 * åˆä½œå•†å¼€æ”¾çš„åŸå¸‚åˆ—è¡¨
 	 * 
 	 * @param appkey
 	 * @return
@@ -74,7 +74,7 @@ public interface PlaceVoService {
 	ResultCode<Map<String, List<CityVo>>> cityList(String appkey);
 	
 	/**
-	 * »ñÈ¡Ê¡·İ
+	 * è·å–çœä»½
 	 * @return
 	 */
 	ResultCode<ProvinceVo> getProvince(String provincecode);

@@ -11,7 +11,7 @@ import com.gewara.api.pay.response.SendSmsResponse;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * ÒøÁªÈÏÖ¤Ö§¸¶2.0£¬·şÎñ½Ó¿Ú
+ * é“¶è”è®¤è¯æ”¯ä»˜2.0ï¼ŒæœåŠ¡æ¥å£
  * 
  * @author leo.li
  * Modify Time Nov 6, 2013 2:43:00 PM
@@ -19,7 +19,7 @@ import com.gewara.api.vo.ResultCode;
 public interface UnionPayFastApiService {
 
 	/**
-	 * ÒøÁªÈÏÖ¤Ö§¸¶2.0£¬·¢ËÍ¶ÌĞÅÑéÖ¤Âë·şÎñ
+	 * é“¶è”è®¤è¯æ”¯ä»˜2.0ï¼Œå‘é€çŸ­ä¿¡éªŒè¯ç æœåŠ¡
 	 * 
 	 * @param request
 	 * @return
@@ -30,7 +30,7 @@ public interface UnionPayFastApiService {
 	ResultCode<SendSmsResponse> sendSms(SendSmsRequest request);
 	
 	/**
-	 * ¿¨¿ªÍ¨×´Ì¬²éÑ¯
+	 * å¡å¼€é€šçŠ¶æ€æŸ¥è¯¢
 	 * 
 	 * @param request
 	 * @return
@@ -41,7 +41,7 @@ public interface UnionPayFastApiService {
 	ResultCode<ActivationQueryResponse> activationQuery(ActivationQueryRequest request);
 	
 	/**
-	 * »ñÈ¡¿¨¼¤»î²ÎÊı
+	 * è·å–å¡æ¿€æ´»å‚æ•°
 	 * 
 	 * @param request
 	 * @return
@@ -52,7 +52,7 @@ public interface UnionPayFastApiService {
 	ResultCode<GetBindParamsResponse> getBindParams(GetBindParamsRequest request);
 	
 	/**
-	 * ·¢ËÍÖ§¸¶ÇëÇó
+	 * å‘é€æ”¯ä»˜è¯·æ±‚
 	 * 
 	 * @param request
 	 * @return

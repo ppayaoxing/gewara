@@ -8,15 +8,15 @@ import com.gewara.api.vo.BaseVo;
 public class RefundMerchantVo extends BaseVo {
 	private static final long serialVersionUID = 6029378080103301843L;
 	
-	private Long id;	//Ö÷¼ü
-	private Long gatewayId;	//Ö§ÅäÅäÖÃID
-	private String merchantNo;	//ÉÌ»§ºÅ
-	private String merchantCode;	//ÉÌ»§ºÅ±êÊ¶
-	private String cityCode;	//³ÇÊĞ
-	private String acquiringBank;	//ÊÕµ¥ĞĞ
-	private String description;	//ÉÌ»§ºÅËµÃ÷
-	private String status;	//ÉÌ»§ºÅ×´Ì¬£ºNO_USE£ºÎ´ÆôÓÃ£»IN_USE£ºÊ¹ÓÃÖĞ£»DESUETUDE£º·ÏÆú£»
-	private Timestamp updateTime;	//Í¬²½Ê±¼ä	
+	private Long id;	//ä¸»é”®
+	private Long gatewayId;	//æ”¯é…é…ç½®ID
+	private String merchantNo;	//å•†æˆ·å·
+	private String merchantCode;	//å•†æˆ·å·æ ‡è¯†
+	private String cityCode;	//åŸå¸‚
+	private String acquiringBank;	//æ”¶å•è¡Œ
+	private String description;	//å•†æˆ·å·è¯´æ˜
+	private String status;	//å•†æˆ·å·çŠ¶æ€ï¼šNO_USEï¼šæœªå¯ç”¨ï¼›IN_USEï¼šä½¿ç”¨ä¸­ï¼›DESUETUDEï¼šåºŸå¼ƒï¼›
+	private Timestamp updateTime;	//åŒæ­¥æ—¶é—´	
 
 	@Override
 	public Serializable realId() {

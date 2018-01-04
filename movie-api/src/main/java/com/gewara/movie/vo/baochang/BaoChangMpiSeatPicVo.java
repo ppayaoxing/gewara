@@ -20,11 +20,11 @@ public class BaoChangMpiSeatPicVo extends BaseVo{
 	
 	private String id;
 	private Long mpid;
-	private String seatline;//座位行号
-	private String seatrank;//座位列号
-	private String nickname;//别名
-	private String picUrl;//图片url
-	private String showFlag;//是否显示
+	private String seatline;//搴т綅琛屽彿
+	private String seatrank;//搴т綅鍒楀彿
+	private String nickname;//鍒悕
+	private String picUrl;//鍥剧墖url
+	private String showFlag;//鏄惁鏄剧ず
 	
 	public BaoChangMpiSeatPicVo(){}
 	

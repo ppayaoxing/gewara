@@ -21,7 +21,7 @@ import com.alibaba.dubbo.rpc.cluster.Cluster;
 import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
- * ʧ��ת�ƣ�������ʧ�ܣ�����������������ͨ�����ڶ������������Ի���������ӳ١� 
+ * 失锟斤拷转锟狡ｏ拷锟斤拷锟斤拷锟斤拷失锟杰ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷通锟斤拷锟斤拷锟节讹拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟皆伙拷锟斤拷锟斤拷锟斤拷锟斤拷映佟锟� 
  * 
  * <a href="http://en.wikipedia.org/wiki/Failover">Failover</a>
  * 

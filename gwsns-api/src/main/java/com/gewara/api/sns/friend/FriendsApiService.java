@@ -16,7 +16,7 @@ import com.gewara.api.vo.VoMap;
 public interface FriendsApiService {
 	
 	/**
-	 * »ñÈ¡ÅóÓÑÈ¦ÍÛÀ²
+	 * è·å–æœ‹å‹åœˆå“‡å•¦
 	 * @param memberid
 	 * @param from
 	 * @param maxnum
@@ -25,14 +25,14 @@ public interface FriendsApiService {
 	ResultCode<List<CommentVo>> getMyFriendsCommentList(Long memberid, int from, int maxnum);
 	
 	/**
-	 * »ñÈ¡ÅóÓÑÈ¦ÍÛÀ²×ÜÊı
+	 * è·å–æœ‹å‹åœˆå“‡å•¦æ€»æ•°
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<Integer> getMyFriendsCommentsIdsCount(Long memberid);
 	
 	/**
-	 * »ñÈ¡ÎÒ¹Ø×¢µÄºÃÓÑÔÚTagÏÂµÄÍÛÀ²
+	 * è·å–æˆ‘å…³æ³¨çš„å¥½å‹åœ¨Tagä¸‹çš„å“‡å•¦
 	 * @param mid
 	 * @param tag
 	 * @param relateId
@@ -42,7 +42,7 @@ public interface FriendsApiService {
 	 */
 	ResultCode<List<CommentVo>> getMyFriendsCommentsForTag(Long mid, String tag, Long relateId, int from, int maxnum);
 	/**
-	 * »ñÈ¡ÎÒµÄºÃÓÑ¹Ø×¢µÄµçÓ°
+	 * è·å–æˆ‘çš„å¥½å‹å…³æ³¨çš„ç”µå½±
 	 * @param tag
 	 * @param relatedid
 	 * @param memberId
@@ -52,7 +52,7 @@ public interface FriendsApiService {
 	 */
 	ResultCode<List<Long>> getMyFriendsTreasureList(String tag,Long relatedid, Long memberId, int from, int maxnum);
 	/**
-	 * »ñÈ¡ÎÒµÄºÃÓÑ¹Ø×¢µÄÊıÁ¿
+	 * è·å–æˆ‘çš„å¥½å‹å…³æ³¨çš„æ•°é‡
 	 * @param tag
 	 * @param relatedid
 	 * @param memberId
@@ -61,7 +61,7 @@ public interface FriendsApiService {
 	ResultCode<Integer> getMyFriendsTreasureCount(String tag,Long relatedid, Long memberId);
 	
 	/**
-	 * »ñÈ¡ÎÒ¹Ø×¢µÄºÃÓÑÔÚTagÏÂµÄÍÛÀ²µÄÊıÁ¿
+	 * è·å–æˆ‘å…³æ³¨çš„å¥½å‹åœ¨Tagä¸‹çš„å“‡å•¦çš„æ•°é‡
 	 * @param mid
 	 * @param tag
 	 * @param relateId
@@ -70,14 +70,14 @@ public interface FriendsApiService {
 	ResultCode<Integer> getMyFriendsCommentsIdsForTagCount(Long mid, String tag, Long relateId);
 
 	/**
-	 * »ñÈ¡ÎÒÅóÓÑÈ¦ÖĞÌáĞÑµÄÍÛÀ²ÊıÁ¿£¨ºìµã£©
+	 * è·å–æˆ‘æœ‹å‹åœˆä¸­æé†’çš„å“‡å•¦æ•°é‡ï¼ˆçº¢ç‚¹ï¼‰
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<Integer> getMyFriendsWalaCount(Long memberid);
 	
 	/**
-	 * »ñÈ¡ºÃÓÑµÄºÃÓÑËµÊıÁ¿
+	 * è·å–å¥½å‹çš„å¥½å‹è¯´æ•°é‡
 	 * @param memberid
 	 * @param tag
 	 * @param relateIds
@@ -85,7 +85,7 @@ public interface FriendsApiService {
 	 */
 	ResultCode<VoMap<Long,Integer>> getMyFriedsSayCountVoMapByList(Long memberid,String tag,List<Long> relateIds);
 	/**
-	 * ÎÒ¹Ø×¢µÄºÃÓÑ
+	 * æˆ‘å…³æ³¨çš„å¥½å‹
 	 * @param mid
 	 * @param tag
 	 * @param relateId

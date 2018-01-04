@@ -9,20 +9,20 @@ public class ApiUserVo extends BaseVo {
 
 	private static final long serialVersionUID = -8764502160288937246L;
 	private Long id;
-	private String usertype;		//ÓÃ»§ÀàĞÍ£ºgewa,partner
-	private String category;		//·ÖÀà£ºticket....
-	private String partnername;		//ºÏ×÷»ï°éÃû³Æ
-	private String briefname;		//¼ò³Æ
-	private String partnerip;		//ºÏ×÷»ï°éIP
-	private String content;			//ÃèÊö
-	private Timestamp updatetime;	//¸üĞÂÊ±¼ä
-	private Long clerk;				//²Ù×÷ÈË
-	private String status;			//µ±Ç°×´Ì¬£ºÔİÍ£Ê¹ÓÃ¡¢½ûÓÃ¡¢Õı³£Ê¹ÓÃ
-	private String logo;			//¹«Ë¾LOGO
-	private String roles;			//·ÖÅäµÄ½ÇÉ«
-	private String partnerpath;		//¹«Ë¾Path
-	private String citycode;		//¿ª·ÅµÄ³ÇÊĞ
-	private String defaultCity;		//Ä¬ÈÏ³ÇÊĞ
+	private String usertype;		//ç”¨æˆ·ç±»å‹ï¼šgewa,partner
+	private String category;		//åˆ†ç±»ï¼šticket....
+	private String partnername;		//åˆä½œä¼™ä¼´åç§°
+	private String briefname;		//ç®€ç§°
+	private String partnerip;		//åˆä½œä¼™ä¼´IP
+	private String content;			//æè¿°
+	private Timestamp updatetime;	//æ›´æ–°æ—¶é—´
+	private Long clerk;				//æ“ä½œäºº
+	private String status;			//å½“å‰çŠ¶æ€ï¼šæš‚åœä½¿ç”¨ã€ç¦ç”¨ã€æ­£å¸¸ä½¿ç”¨
+	private String logo;			//å…¬å¸LOGO
+	private String roles;			//åˆ†é…çš„è§’è‰²
+	private String partnerpath;		//å…¬å¸Path
+	private String citycode;		//å¼€æ”¾çš„åŸå¸‚
+	private String defaultCity;		//é»˜è®¤åŸå¸‚
 	private String partnerkey;
 	private String otherinfo;
 	private String privatekey;

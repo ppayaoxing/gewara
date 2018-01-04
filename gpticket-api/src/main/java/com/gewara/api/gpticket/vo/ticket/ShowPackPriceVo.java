@@ -7,25 +7,25 @@ import com.gewara.api.vo.BaseVo;
 
 public class ShowPackPriceVo extends BaseVo {
 	private static final long serialVersionUID = -6403056517188327510L;
-	private String packpseq;		//Ì×Æ±±àºÅ
-	private String name;			//Ì×Æ±Ãû³Æ
-	private String packpid;			//µÚÈı·½Ì×Æ±±àºÅ
-	private String saseqNo;			//ÇøÓò±àºÅ(ShowArea-->saseqNo)
-	private String siseq;			//³¡´ÎID
-	private String areaseq;			//µÚÈı·½ÇøÓòID
-	private String partner;			//µÚÈı·½±êÊ¶
-	private String pseqno;			//µÚÈı·½³¡´Î±àºÅ
-	private String sispseq;			//¼Û¸ñ±àºÅ
-	private String ticketid;		//µÚÈı·½¼Û¸ñ±àºÅ
-	private Integer quantity;		//Ì×Æ±°ó¶¨Êı
-	private Integer price;			//¼Û¸ñ
-	private Timestamp starttime;	//¿ªÊ¼Ê±¼ä
-	private Timestamp endtime;		//½áÊøÊ±¼ä
-	private String retail;			//ÊÇ·ñÁãÊÛ
-	private String status;			//×´Ì¬
-	private Long priceid;			//³¡´Î¼Û¸ñID
-	private Long itemPackid;		//³¡¹İÌ×Æ±ID	
-	private Integer maxBuyNumberEachOrder;//Ã¿µ¥µÄµ¥¸öÆ±¼ÛµÄ×î´ó¹ºÆ±ÊıÄ¿
+	private String packpseq;		//å¥—ç¥¨ç¼–å·
+	private String name;			//å¥—ç¥¨åç§°
+	private String packpid;			//ç¬¬ä¸‰æ–¹å¥—ç¥¨ç¼–å·
+	private String saseqNo;			//åŒºåŸŸç¼–å·(ShowArea-->saseqNo)
+	private String siseq;			//åœºæ¬¡ID
+	private String areaseq;			//ç¬¬ä¸‰æ–¹åŒºåŸŸID
+	private String partner;			//ç¬¬ä¸‰æ–¹æ ‡è¯†
+	private String pseqno;			//ç¬¬ä¸‰æ–¹åœºæ¬¡ç¼–å·
+	private String sispseq;			//ä»·æ ¼ç¼–å·
+	private String ticketid;		//ç¬¬ä¸‰æ–¹ä»·æ ¼ç¼–å·
+	private Integer quantity;		//å¥—ç¥¨ç»‘å®šæ•°
+	private Integer price;			//ä»·æ ¼
+	private Timestamp starttime;	//å¼€å§‹æ—¶é—´
+	private Timestamp endtime;		//ç»“æŸæ—¶é—´
+	private String retail;			//æ˜¯å¦é›¶å”®
+	private String status;			//çŠ¶æ€
+	private Long priceid;			//åœºæ¬¡ä»·æ ¼ID
+	private Long itemPackid;		//åœºé¦†å¥—ç¥¨ID	
+	private Integer maxBuyNumberEachOrder;//æ¯å•çš„å•ä¸ªç¥¨ä»·çš„æœ€å¤§è´­ç¥¨æ•°ç›®
 	
 	@Override
 	public Serializable realId() {

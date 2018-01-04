@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class UsefulAddressVo implements Serializable{
 	private static final long serialVersionUID = -8208050132548716011L;
-	private String tag;            //标识类别
+	private String tag;            //鏍囪瘑绫诲埆
 	private Long dpid;
 	private Long memberid;
 	private Long addressid;

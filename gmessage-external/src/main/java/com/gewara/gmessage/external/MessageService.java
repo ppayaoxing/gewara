@@ -14,37 +14,37 @@ import com.gewara.gmessage.external.entity.UnReadCountResult;
 import com.gewara.gmessage.external.entity.UpdateMStateParam;
 
 /**
- * ÏûÏ¢¶ÔÍâ½Ó¿Ú¡£
- * @author ¶­Ã÷
- * @createDate 2015Äê3ÔÂ9ÈÕ
+ * æ¶ˆæ¯å¯¹å¤–æ¥å£ã€‚
+ * @author è‘£æ˜
+ * @createDate 2015å¹´3æœˆ9æ—¥
  */
 public interface MessageService {
 
 	/**
-	 * ·¢ËÍÏûÏ¢
+	 * å‘é€æ¶ˆæ¯
 	 * 
-	 * @param source ÏµÍ³À´Ô´
-	 * @param message ÏûÏ¢Ìå
-	 * @param version Ö¸¶¨Êı¾İ°æ±¾£¬²»Ö¸¶¨£¬Ä¬ÈÏÎª 0.0
-	 * @return ³É¹¦ ·µ»ØÏûÏ¢ID£¬Ê§°Ü£¬·µ»ØÊ§°Ü´úÂë¡£
+	 * @param source ç³»ç»Ÿæ¥æº
+	 * @param message æ¶ˆæ¯ä½“
+	 * @param version æŒ‡å®šæ•°æ®ç‰ˆæœ¬ï¼Œä¸æŒ‡å®šï¼Œé»˜è®¤ä¸º 0.0
+	 * @return æˆåŠŸ è¿”å›æ¶ˆæ¯IDï¼Œå¤±è´¥ï¼Œè¿”å›å¤±è´¥ä»£ç ã€‚
 	 */
 	ResultCode<String> sendMessage(String source,Message message,String version);
 	
 	/**
-	 * ÓÃ»§µÄËùÓĞÏûÏ¢£¨ÒÑ¹ıÆÚÏûÏ¢ºÍÒÑÉ¾³ıÏûÏ¢²»°üº¬ÔÚÄÚ£©£¬°´ÕÕ·¢ËÍÊ±¼äÊ±¼äµ¹Ğò½øĞĞÅÅÁĞ¡£
-	 * Èç¹û²éÑ¯ËùÓĞµÄÏûÏ¢£¬Î´¶ÁÏûÏ¢»áÅÅÔÚÇ°Ãæ¡£ 
-	 * NOTE£ºreciveTimes Èç¹û²»ÉèÖÃ£¬Ä¬ÈÏ»áÊ¹ÓÃÉÏÒ»´Î²éÑ¯Ê±¼ä£¬¸ÃÊ±¼äµÄ×î´óÖµÎª°ëÄêÄÚ¡£
-	 * @param source ÏµÍ³À´Ô´
-	 * @param query ²éÑ¯Ìõ¼ş
-	 * @param version Ö¸¶¨×îµÍ°æ±¾¡£ ¸ßÓÚ»òÕßµÈÓÚ¸Ã°æ±¾µÄÊı¾İ²Å»á·µ»Ø¡£
-	 * @return ·µ»ØÏûÏ¢ÁĞ±í
+	 * ç”¨æˆ·çš„æ‰€æœ‰æ¶ˆæ¯ï¼ˆå·²è¿‡æœŸæ¶ˆæ¯å’Œå·²åˆ é™¤æ¶ˆæ¯ä¸åŒ…å«åœ¨å†…ï¼‰ï¼ŒæŒ‰ç…§å‘é€æ—¶é—´æ—¶é—´å€’åºè¿›è¡Œæ’åˆ—ã€‚
+	 * å¦‚æœæŸ¥è¯¢æ‰€æœ‰çš„æ¶ˆæ¯ï¼Œæœªè¯»æ¶ˆæ¯ä¼šæ’åœ¨å‰é¢ã€‚ 
+	 * NOTEï¼šreciveTimes å¦‚æœä¸è®¾ç½®ï¼Œé»˜è®¤ä¼šä½¿ç”¨ä¸Šä¸€æ¬¡æŸ¥è¯¢æ—¶é—´ï¼Œè¯¥æ—¶é—´çš„æœ€å¤§å€¼ä¸ºåŠå¹´å†…ã€‚
+	 * @param source ç³»ç»Ÿæ¥æº
+	 * @param query æŸ¥è¯¢æ¡ä»¶
+	 * @param version æŒ‡å®šæœ€ä½ç‰ˆæœ¬ã€‚ é«˜äºæˆ–è€…ç­‰äºè¯¥ç‰ˆæœ¬çš„æ•°æ®æ‰ä¼šè¿”å›ã€‚
+	 * @return è¿”å›æ¶ˆæ¯åˆ—è¡¨
 	
 	 * @return
 	 */
 	ResultCode<Collection<ReceiverMessage>> findMessageListByReceiver(String source,ReceiverQueryParam query,String version);
 	
 	/**
-	 * ²éÑ¯µ¥¸öÏûÏ¢
+	 * æŸ¥è¯¢å•ä¸ªæ¶ˆæ¯
 	 * @param category
 	 * @param messageID
 	 * @return
@@ -53,16 +53,16 @@ public interface MessageService {
 	
 	
 	/**
-	 * Í³¼ÆÎ´¶ÁÏûÏ¢
-	 * @param source ÏµÍ³À´Ô´
-	 * @param receiver ½ÓÊÕÕßÓÃ»§ĞÅÏ¢
-	 * @return ·µ»ØÏûÏ¢ÖÖÀàÍ³¼Æ½á¹û
+	 * ç»Ÿè®¡æœªè¯»æ¶ˆæ¯
+	 * @param source ç³»ç»Ÿæ¥æº
+	 * @param receiver æ¥æ”¶è€…ç”¨æˆ·ä¿¡æ¯
+	 * @return è¿”å›æ¶ˆæ¯ç§ç±»ç»Ÿè®¡ç»“æœ
 	 */
 	ResultCode<UnReadCountResult> countUnReadMessage(String source,MUser receiverID);
 	
 	
 	/**
-	 * ¸üĞÂÓÃ»§ÏûÏ¢×´Ì¬¡£
+	 * æ›´æ–°ç”¨æˆ·æ¶ˆæ¯çŠ¶æ€ã€‚
 	 * @param source
 	 * @param param
 	 * @return
@@ -70,16 +70,16 @@ public interface MessageService {
 	ResultCode<String> updateMessageState(String source,UpdateMStateParam param);
 	
 	/**
-	 * »ñÈ¡ÏûÏ¢µÄ·¢ËÍÇé¿ö.
-	 * ±¾ÏµÍ³ÎŞ·¨»ñÈ¡push£¬smsµÈµÄ·¢ËÍ×´Ì¬¡£
-	 * @param source  ÏµÍ³À´Ô´ 
-	 * @param messageID  ÏûÏ¢ID
-	 * @return ·µ»ØÏûÏ¢·¢ËÍÇé¿ö
+	 * è·å–æ¶ˆæ¯çš„å‘é€æƒ…å†µ.
+	 * æœ¬ç³»ç»Ÿæ— æ³•è·å–pushï¼Œsmsç­‰çš„å‘é€çŠ¶æ€ã€‚
+	 * @param source  ç³»ç»Ÿæ¥æº 
+	 * @param messageID  æ¶ˆæ¯ID
+	 * @return è¿”å›æ¶ˆæ¯å‘é€æƒ…å†µ
 	 */
 	ResultCode<Collection<SendStateQueryResult>> findMessageStateByRelateID(String source,SendStateQueryParam query);
 	
 	/**
-	 * ¸ù±¾°æ±¾»ñÈ¡ÓÃ»§µÄÎ´¶ÁÏûÏ¢ÊıÁ¿
+	 * æ ¹æœ¬ç‰ˆæœ¬è·å–ç”¨æˆ·çš„æœªè¯»æ¶ˆæ¯æ•°é‡
 	 * @param source
 	 * @param query
 	 * @param version
@@ -88,26 +88,26 @@ public interface MessageService {
 	ResultCode<UnReadCountResult> getUserUnReadCount(String source, ReceiverQueryParam query, String version);
 	
 	/**
-	 * ÆÁ±ÎÄ³Ò»ÀàÏûÏ¢£¬»òÕßÄ³Ò»·¢ËÍÕßµÄÏûÏ¢¡£¶şÕß±ØĞëÌîĞ´Ò»¸ö£¬Õ¼¿Ó
-	 * ·¢ËÍÕßIDºÍ·¢ËÍÕßÀàĞÍ
-	 * @param source ÏµÍ³À´Ô´
-	 * @param messageType ÏûÏ¢ÀàĞÍ
-	 * @param sender  ·¢ËÍÕß
+	 * å±è”½æŸä¸€ç±»æ¶ˆæ¯ï¼Œæˆ–è€…æŸä¸€å‘é€è€…çš„æ¶ˆæ¯ã€‚äºŒè€…å¿…é¡»å¡«å†™ä¸€ä¸ªï¼Œå å‘
+	 * å‘é€è€…IDå’Œå‘é€è€…ç±»å‹
+	 * @param source ç³»ç»Ÿæ¥æº
+	 * @param messageType æ¶ˆæ¯ç±»å‹
+	 * @param sender  å‘é€è€…
 	 * @return 
 	 */
 	//OperateResult shieldMessage(String source,Short messageType,MUser sender);
 	
 	/**======================================================*/
 	/**
-	 * ÓÃ»§µÄËùÓĞÏûÏ¢£¬°´ÕÕ·¢ËÍÊ±¼äµ¹Ğò½øĞĞÅÅÁĞ¡£
-	 * @param source ÏµÍ³À´Ô´
-	 * @param query ²éÑ¯Ìõ¼ş
-	 * @return ·µ»ØÖ¸¶¨·¢ËÍÕßµÄÏûÏ¢ÁĞ±í
+	 * ç”¨æˆ·çš„æ‰€æœ‰æ¶ˆæ¯ï¼ŒæŒ‰ç…§å‘é€æ—¶é—´å€’åºè¿›è¡Œæ’åˆ—ã€‚
+	 * @param source ç³»ç»Ÿæ¥æº
+	 * @param query æŸ¥è¯¢æ¡ä»¶
+	 * @return è¿”å›æŒ‡å®šå‘é€è€…çš„æ¶ˆæ¯åˆ—è¡¨
 	 */
 	//Collection<SenderMessage> findMessageListBySender(String source,SenderQueryParam query);
 	
 	/**
-	 * ÆÁ±ÎÏûÏ¢£¬ÆÁ±Îºó£¬ËùÓĞ½ÓÊÕÕß¶¼½«½ÓÊÜ²»µ½¸ÃÏûÏ¢
+	 * å±è”½æ¶ˆæ¯ï¼Œå±è”½åï¼Œæ‰€æœ‰æ¥æ”¶è€…éƒ½å°†æ¥å—ä¸åˆ°è¯¥æ¶ˆæ¯
 	 * @param messageID
 	 * @return
 	 * 

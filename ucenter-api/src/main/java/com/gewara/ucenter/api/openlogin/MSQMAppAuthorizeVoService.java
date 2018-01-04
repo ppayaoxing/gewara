@@ -6,8 +6,8 @@ import com.gewara.ucenter.vo.member.OpenResultVo;
 public interface MSQMAppAuthorizeVoService {
 	
 	/**
-	 * 民生其妙app 密文登录
-	 * @param context 密文
+	 * 姘戠敓鍏跺app 瀵嗘枃鐧诲綍
+	 * @param context 瀵嗘枃
 	 * @return
 	 */
 	ResultCode<OpenResultVo> getMSQMLoginMemberVoByContext(String context, String remoteIp);

@@ -2,7 +2,7 @@ package com.gewara.api.sns.vo;
 
 public class VoteTagVo {
 	
-	private String voteTag;//ͶƱ��
+	private String voteTag;//投票项
 
 	public String getVoteTag() {
 		return voteTag;

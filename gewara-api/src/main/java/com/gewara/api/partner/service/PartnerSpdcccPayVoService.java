@@ -12,7 +12,7 @@ public interface PartnerSpdcccPayVoService {
 	
 	
 	/**
-	 * Å©ÐÐÖ§¸¶
+	 * å†œè¡Œæ”¯ä»˜
 	 */
 	ResultCode<String> sendAbcWapPayFastSms(PartnerCommonReqVo reqVo);
 	ResultCode toAbcWapPayFast(PartnerCommonReqVo reqVo);

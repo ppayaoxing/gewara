@@ -13,28 +13,28 @@ import com.gewara.util.BeanUtil;
 public class CommentBaseVo extends BaseVo{
 
 	private static final long serialVersionUID = 4476980910614491968L;
-	public static final String POINT_MODERATOR = "moderator";	//������������ӻ���
-	public static final String SUSPECTED_AD_T = "T";//����תƱ�ȹ������
-	public static final String SUSPECTED_AD_F = "F";//������תƱ�ȹ������
-	public static final String TYPE_ADDREPLY = "add";//�ظ�����һ
-	public static final String TYPE_DOWNREPLY = "down";//�ظ�����һ
+	public static final String POINT_MODERATOR = "moderator";	//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷踊锟斤拷锟�
+	public static final String SUSPECTED_AD_T = "T";//锟斤拷锟斤拷转票锟饺癸拷锟斤拷锟斤拷锟�
+	public static final String SUSPECTED_AD_F = "F";//锟斤拷锟斤拷锟斤拷转票锟饺癸拷锟斤拷锟斤拷锟�
+	public static final String TYPE_ADDREPLY = "add";//锟截革拷锟斤拷锟斤拷一
+	public static final String TYPE_DOWNREPLY = "down";//锟截革拷锟斤拷锟斤拷一
 
 	protected Long id;
 	protected String body;
 	protected Timestamp addtime;
 	protected String tag;
 	protected Long relatedid;
-	protected Integer flowernum; //�ʻ���
+	protected Integer flowernum; //锟绞伙拷锟斤拷
 	protected String status;
 	protected Long memberid;
 	protected String nickname;
 	protected String flag;
-	protected Long transferid;//ת��id
-	protected String address;//������Դ
-	protected Integer replycount;//�ظ���
-	protected Integer transfercount;//ת����
+	protected Long transferid;//转锟斤拷id
+	protected String address;//锟斤拷锟斤拷锟斤拷源
+	protected Integer replycount;//锟截革拷锟斤拷
+	protected Integer transfercount;//转锟斤拷锟斤拷
 	protected Timestamp replytime;
-	protected String topic;	// WALA����
+	protected String topic;	// WALA锟斤拷锟斤拷
 	protected Integer generalmark;
 	protected String otherinfo;
 	protected String apptype;
@@ -42,37 +42,37 @@ public class CommentBaseVo extends BaseVo{
 	protected String pointx;
 	protected String pointy;
 	protected String ip;
-	protected Integer sumTRNum;//�ظ�+ ת������
-	protected Integer bodyLength;//�������������ݳ���
-	protected String suspectedAd;//�Ƿ����ƹ��wala�����������ų�������������
-	protected Timestamp orderTime;//���������ʱ�䣬���ݻظ���ת������Ȩ�ؼӳ�
-	protected Integer recommendTop;//�ö��Ƽ�����  1�����ö��Ƽ�
-	protected String flowernumMember;//��ͬ��ǰ10λ�û�
+	protected Integer sumTRNum;//锟截革拷+ 转锟斤拷锟斤拷锟斤拷
+	protected Integer bodyLength;//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟捷筹拷锟斤拷
+	protected String suspectedAd;//锟角凤拷锟斤拷锟狡癸拷锟絯ala锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟脚筹拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	protected Timestamp orderTime;//锟斤拷锟斤拷锟斤拷锟斤拷锟绞憋拷洌拷锟斤拷莼馗锟斤拷锟阶拷锟斤拷锟斤拷锟饺拷丶映锟�
+	protected Integer recommendTop;//锟矫讹拷锟狡硷拷锟斤拷锟斤拷  1锟斤拷锟斤拷锟矫讹拷锟狡硷拷
+	protected String flowernumMember;//锟斤拷同锟斤拷前10位锟矫伙拷
 	
-	protected String title;	//����
-	protected String videopath;	//��Ƶ·��
-	protected String mtids;		//��ǩIDS
-	protected Long moderatorid;//����id
-	protected Integer basicweight;	//����Ȩ��
-	protected Integer timeweight;		//ʱ��Ȩ��
+	protected String title;	//锟斤拷锟斤拷
+	protected String videopath;	//锟斤拷频路锟斤拷
+	protected String mtids;		//锟斤拷签IDS
+	protected Long moderatorid;//锟斤拷锟斤拷id
+	protected Integer basicweight;	//锟斤拷锟斤拷权锟斤拷
+	protected Integer timeweight;		//时锟斤拷权锟斤拷
 	
-	protected String picturename;	//ͼƬ·��
-	protected String type;		//��������  �ʴ�qa������debate
-	protected String htmltext;	//�Ƿ���body
+	protected String picturename;	//图片路锟斤拷
+	protected String type;		//锟斤拷锟斤拷锟斤拷锟斤拷  锟绞达拷qa锟斤拷锟斤拷锟斤拷debate
+	protected String htmltext;	//锟角凤拷锟斤拷body
 	
-	protected Double bodyweight;	//����Ȩ��ֵ
-	protected Double changeweight;//�����ɱ�Ȩ��
-	protected Double moviechangeweight;//��Ӱ�ɱ�Ȩ��
-	protected Double weightorder;	//����Ȩ�������ֶ�
-	protected Double movieweightorder;	//��ӰȨ�������ֶ�
-	protected Integer validflowernum;	//��Ч����
+	protected Double bodyweight;	//锟斤拷锟斤拷权锟斤拷值
+	protected Double changeweight;//锟斤拷锟斤拷锟缴憋拷权锟斤拷
+	protected Double moviechangeweight;//锟斤拷影锟缴憋拷权锟斤拷
+	protected Double weightorder;	//锟斤拷锟斤拷权锟斤拷锟斤拷锟斤拷锟街讹拷
+	protected Double movieweightorder;	//锟斤拷影权锟斤拷锟斤拷锟斤拷锟街讹拷
+	protected Integer validflowernum;	//锟斤拷效锟斤拷锟斤拷
 	
-	protected List<Long> biglabelidList;	//���ǩidList
+	protected List<Long> biglabelidList;	//锟斤拷锟角﹊dList
 	protected String biglabelids;
-	protected String redUrl;//���url
-	protected String redTag;//���tag
-	protected String redToken;//���Token
-	private Integer score;//���������ͻ���
+	protected String redUrl;//锟斤拷锟絬rl
+	protected String redTag;//锟斤拷锟絫ag
+	protected String redToken;//锟斤拷锟絋oken
+	private Integer score;//锟斤拷锟斤拷锟斤拷锟斤拷锟酵伙拷锟斤拷
 	
 	public Integer getValidflowernum() {
 		return validflowernum;

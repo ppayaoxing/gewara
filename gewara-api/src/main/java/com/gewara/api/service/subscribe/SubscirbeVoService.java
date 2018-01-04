@@ -7,7 +7,7 @@ import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.movie.SubscribeVo;
 
 /**
- * »ñÈ¡Ô¤Ô¼
+ * è·å–é¢„çº¦
  * @author pengdi
  *
  */
@@ -16,14 +16,14 @@ public interface SubscirbeVoService {
 	ResultCode<String>getSubscribeList(String startTime,String endTime,int from,int maxnum);
 
 	/**
-	 * ²éÑ¯ÓÃ»§ÓĞĞ§Ô¤Ô¼ÁĞ±í</br>
-	 * addtime´óÓÚµÈÓÚµ±Ç°ÈÕÆÚ£¬²¢°´addtimeÉıĞòÅÅĞò
-	 * @param memberId ÓÃ»§ID
+	 * æŸ¥è¯¢ç”¨æˆ·æœ‰æ•ˆé¢„çº¦åˆ—è¡¨</br>
+	 * addtimeå¤§äºç­‰äºå½“å‰æ—¥æœŸï¼Œå¹¶æŒ‰addtimeå‡åºæ’åº
+	 * @param memberId ç”¨æˆ·ID
 	 * @param from
 	 * @param maxnum
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê10ÔÂ14ÈÕÉÏÎç11:31:31
+	 * @addTime 2016å¹´10æœˆ14æ—¥ä¸Šåˆ11:31:31
 	 */
 	ResultCode<List<SubscribeVo>> getSubscribeList(Long memberId, int from, int maxnum);
 	

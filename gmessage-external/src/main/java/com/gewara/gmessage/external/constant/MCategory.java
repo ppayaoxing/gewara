@@ -1,19 +1,19 @@
 package com.gewara.gmessage.external.constant;
 
 public enum MCategory{
-	/**系统*/
+	/**绯荤粺*/
 	SYS(1),
 	
-	/**互动*/
+	/**浜掑姩*/
 	INTERACT(2),
 	
-	/**即时*/
+	/**鍗虫椂*/
 	INSTANT(3),
 	
-	/**推荐*/
+	/**鎺ㄨ崘*/
 	RECOMMEND(4),
 	
-	/**评论*/
+	/**璇勮*/
 	COMMENT(5);
 	
 	private int value=0;

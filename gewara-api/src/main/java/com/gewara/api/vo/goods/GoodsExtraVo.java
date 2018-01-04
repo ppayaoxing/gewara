@@ -10,23 +10,23 @@ public class GoodsExtraVo extends BaseVo {
 	private static final long serialVersionUID = 8621222313371273059L;
 
 	private Long goodsid;
-	private String msgbefore;				//»î¶¯¿ªÊ¼Ç°¶ÌÐÅÌáÐÑÄÚÈÝ
-	private String msgpro;					//Æ´ÍÅ»î¶¯Éý¼¶¶ÌÐÅÌáÐÑÄÚÈÝ
-	private String msgafter;				//Æ´ÍÅ»î¶¯ÂúÍÅ¶ÌÐÅÌáÐÑÄÚÈÝ
-	private String msgover;					//Æ´ÍÅ»î¶¯½áÊø¶ÌÐÅÌáÐÑÄÚÈÝ
-	private String restriction;			//»î¶¯ÏÞÖÆ
-	private String timeexp;					//Ê±¼äËµÃ÷
-	private String rule;						//»î¶¯¹æÔò
-	private String otherexp;				//ÆäËüËµÃ÷
-	private String department;				//ÐèÇó²¿ÃÅ
-	private String appPresaleName;		//APP°´Å¥µÄÃû³Æ
-	private String subsidyUnit;			//²¹Ìùµ¥Î»£ºorder, quantity
-	private Integer subsidyMoney;			//²¹Ìù½ð¶î
-	private String preType;					//À©Õ¹ÀàÐÍ£¬TÑÝ³öÍÅÏú
-	private Integer hintnum;				//Êµ¼ÊÔ¤Ô¼ÌáÐÑ¶ÌÐÅÊýÁ¿
-	private Integer defnum;					//ÐéÄâÒÑÊÛ³öÊýÁ¿ --->wantedBuyNum
-	private Integer defSalesnum;			//ÐéÄâÒÑÊÛ³õÊ¼ÖµinventedHaveSalesInitNum
-	private Integer defTotalnum;			//ÐéÄâ×ÜÊýÁ¿--->inventedTotalNum
+	private String msgbefore;				//æ´»åŠ¨å¼€å§‹å‰çŸ­ä¿¡æé†’å†…å®¹
+	private String msgpro;					//æ‹¼å›¢æ´»åŠ¨å‡çº§çŸ­ä¿¡æé†’å†…å®¹
+	private String msgafter;				//æ‹¼å›¢æ´»åŠ¨æ»¡å›¢çŸ­ä¿¡æé†’å†…å®¹
+	private String msgover;					//æ‹¼å›¢æ´»åŠ¨ç»“æŸçŸ­ä¿¡æé†’å†…å®¹
+	private String restriction;			//æ´»åŠ¨é™åˆ¶
+	private String timeexp;					//æ—¶é—´è¯´æ˜Ž
+	private String rule;						//æ´»åŠ¨è§„åˆ™
+	private String otherexp;				//å…¶å®ƒè¯´æ˜Ž
+	private String department;				//éœ€æ±‚éƒ¨é—¨
+	private String appPresaleName;		//APPæŒ‰é’®çš„åç§°
+	private String subsidyUnit;			//è¡¥è´´å•ä½ï¼šorder, quantity
+	private Integer subsidyMoney;			//è¡¥è´´é‡‘é¢
+	private String preType;					//æ‰©å±•ç±»åž‹ï¼ŒTæ¼”å‡ºå›¢é”€
+	private Integer hintnum;				//å®žé™…é¢„çº¦æé†’çŸ­ä¿¡æ•°é‡
+	private Integer defnum;					//è™šæ‹Ÿå·²å”®å‡ºæ•°é‡ --->wantedBuyNum
+	private Integer defSalesnum;			//è™šæ‹Ÿå·²å”®åˆå§‹å€¼inventedHaveSalesInitNum
+	private Integer defTotalnum;			//è™šæ‹Ÿæ€»æ•°é‡--->inventedTotalNum
 	private String otherinfo;		
 	
 	private Timestamp addtime;

@@ -10,19 +10,19 @@ public class DuiBaOrderInfoVo extends BaseVo{
 	private static final long serialVersionUID = 5077150442927561935L;
 	private String id;
 	private String memberId;
-	private String credits;		//±¾´Î¶Ò»»ÓÃ»§ËùÏûºÄµÄ»ı·ÖÊı
-	private String description;	//±¾´Î»ı·ÖÏûºÄµÄÃèÊö
-	private String orderNum;	//¶Ò°É¶©µ¥ºÅ(Çë¼ÇÂ¼µ½Êı¾İ¿âÖĞ)
-	private String type;		//¶Ò»»ÀàĞÍ:Alipay(Ö§¸¶±¦),QB(Q±Ò),Coupon(ÓÅ»İÈ¯),Object(ÊµÎï),Phonebill(»°·Ñ),PhoneFlow(Á÷Á¿),Virtual(ĞéÄâÉÌÆ·),Turntable(´ó×ªÅÌ),SingleLottery(µ¥Æ·³é½±) ËùÓĞÀàĞÍ²»Çø·Ö´óĞ¡Ğ´
-	private String facePrice;	//¶Ò»»ÉÌÆ·µÄÊĞ³¡¼ÛÖµ£¬µ¥Î»ÊÇ·Ö
-	private String actualPrice;	//´Ë´Î¶Ò»»Êµ¼Ê¿Û³ı¿ª·¢ÕßÕË»§·ÑÓÃ£¬µ¥Î»Îª·Ö
-	private String ip;			//ÓÃ»§ip
-	private String waitAudit;	//ÊÇ·ñĞèÒªÉóºË
-	private String params;		//¶îÍâ²ÎÊı£¬²»Í¬µÄÀàĞÍ£¬·µ»Ø²»Í¬µÄÄÚÈİ£¬ÖĞ¼äÓÃÓ¢ÎÄÃ°ºÅ·Ö¸ô¡£(Ö§¸¶±¦ÀàĞÍ´øÖĞÎÄ£¬ÇëÓÃutf-8½øĞĞ½âÂë)ÊµÎïÉÌÆ·£º·µ»ØÊÕ»õĞÅÏ¢(ĞÕÃû:ÊÖ»úºÅ:Ê¡·İ:³ÇÊĞ:ÇøÓò:ÏêÏ¸µØÖ·)Ö§¸¶±¦£º·µ»ØÕËºÅĞÅÏ¢(Ö§¸¶±¦ÕËºÅ:ÊµÃû)»°·Ñ£º·µ»ØÊÖ»úºÅQB£º·µ»ØQQºÅ
+	private String credits;		//æœ¬æ¬¡å…‘æ¢ç”¨æˆ·æ‰€æ¶ˆè€—çš„ç§¯åˆ†æ•°
+	private String description;	//æœ¬æ¬¡ç§¯åˆ†æ¶ˆè€—çš„æè¿°
+	private String orderNum;	//å…‘å§è®¢å•å·(è¯·è®°å½•åˆ°æ•°æ®åº“ä¸­)
+	private String type;		//å…‘æ¢ç±»å‹:Alipay(æ”¯ä»˜å®),QB(Qå¸),Coupon(ä¼˜æƒ åˆ¸),Object(å®ç‰©),Phonebill(è¯è´¹),PhoneFlow(æµé‡),Virtual(è™šæ‹Ÿå•†å“),Turntable(å¤§è½¬ç›˜),SingleLottery(å•å“æŠ½å¥–) æ‰€æœ‰ç±»å‹ä¸åŒºåˆ†å¤§å°å†™
+	private String facePrice;	//å…‘æ¢å•†å“çš„å¸‚åœºä»·å€¼ï¼Œå•ä½æ˜¯åˆ†
+	private String actualPrice;	//æ­¤æ¬¡å…‘æ¢å®é™…æ‰£é™¤å¼€å‘è€…è´¦æˆ·è´¹ç”¨ï¼Œå•ä½ä¸ºåˆ†
+	private String ip;			//ç”¨æˆ·ip
+	private String waitAudit;	//æ˜¯å¦éœ€è¦å®¡æ ¸
+	private String params;		//é¢å¤–å‚æ•°ï¼Œä¸åŒçš„ç±»å‹ï¼Œè¿”å›ä¸åŒçš„å†…å®¹ï¼Œä¸­é—´ç”¨è‹±æ–‡å†’å·åˆ†éš”ã€‚(æ”¯ä»˜å®ç±»å‹å¸¦ä¸­æ–‡ï¼Œè¯·ç”¨utf-8è¿›è¡Œè§£ç )å®ç‰©å•†å“ï¼šè¿”å›æ”¶è´§ä¿¡æ¯(å§“å:æ‰‹æœºå·:çœä»½:åŸå¸‚:åŒºåŸŸ:è¯¦ç»†åœ°å€)æ”¯ä»˜å®ï¼šè¿”å›è´¦å·ä¿¡æ¯(æ”¯ä»˜å®è´¦å·:å®å)è¯è´¹ï¼šè¿”å›æ‰‹æœºå·QBï¼šè¿”å›QQå·
 	private String pointId;
-	private String result;		//´Ë´Î¶Ò»»ÊÇ·ñ³É¹¦£ºfail£ºÊ§°Ü£»success£º³É¹¦£»processing£º´¦ÀíÖĞ£»
-	private Integer notifyCount;//Í¨Öª´ÎÊı
-	private Timestamp addtime;	//Ìí¼ÓÊ±¼ä
+	private String result;		//æ­¤æ¬¡å…‘æ¢æ˜¯å¦æˆåŠŸï¼šfailï¼šå¤±è´¥ï¼›successï¼šæˆåŠŸï¼›processingï¼šå¤„ç†ä¸­ï¼›
+	private Integer notifyCount;//é€šçŸ¥æ¬¡æ•°
+	private Timestamp addtime;	//æ·»åŠ æ—¶é—´
 	@Override
 	public Serializable realId() {		
 		return id;

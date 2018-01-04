@@ -6,14 +6,14 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 
 	private static final long serialVersionUID = 7814516839886229493L;
 
-	private String cardno;// ���׿���
-	private String cardexp;// ����Ч��
+	private String cardno;// 锟斤拷锟阶匡拷锟斤拷
+	private String cardexp;// 锟斤拷锟斤拷效锟斤拷
 	private String adddata;// CVD2
-	private Integer amount;// ���׽��
-	private Integer point;// ����
-	private Integer totalAmount;//�����ܽ��
-	private String checkcode;// ��֤��
-	private String pointflag;// ���ֱ�ʶ  0: ��ʹ�û��� 1:ʹ�û���
+	private Integer amount;// 锟斤拷锟阶斤拷锟�
+	private Integer point;// 锟斤拷锟斤拷
+	private Integer totalAmount;//锟斤拷锟斤拷锟杰斤拷锟�
+	private String checkcode;// 锟斤拷证锟斤拷
+	private String pointflag;// 锟斤拷锟街憋拷识  0: 锟斤拷使锟矫伙拷锟斤拷 1:使锟矫伙拷锟斤拷
 
 	public MoneyAndPointPayRequest() {
 	}
@@ -68,7 +68,7 @@ public class MoneyAndPointPayRequest extends AbcRequest {
         }
 		if (pointflag == null) {
 			return false;
-		} else {// 0: ��ʹ�û��� 1:ʹ�û���
+		} else {// 0: 锟斤拷使锟矫伙拷锟斤拷 1:使锟矫伙拷锟斤拷
 			if ("1".equals(pointflag)) {
 				if (point == null || point <= 0) {
 					return false;

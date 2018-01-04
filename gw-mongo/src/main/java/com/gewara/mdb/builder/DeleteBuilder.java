@@ -6,9 +6,9 @@ import org.bson.conversions.Bson;
 import com.gewara.mdb.operation.Expression;
 
 /**
- * ɾ��
- * @author ����
- * @createDate 2015��8��25��
+ * 删锟斤拷
+ * @author 锟斤拷锟斤拷
+ * @createDate 2015锟斤拷8锟斤拷25锟斤拷
  */
 public class DeleteBuilder {
 	
@@ -24,7 +24,7 @@ public class DeleteBuilder {
 	}
 	
 	/**
-	 * ������������������Ḳ����֮ǰ�����õ�������
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷岣诧拷锟斤拷锟街帮拷锟斤拷锟斤拷玫锟斤拷锟斤拷锟斤拷锟�
 	 * @param condition
 	 * @return
 	 */
@@ -34,8 +34,8 @@ public class DeleteBuilder {
 	}
 	
 	/**
-	 * �Ƿ�ֻɾ��һ���� 
-	 * Ĭ����ɾ�����з��������ļ�¼��
+	 * 锟角凤拷只删锟斤拷一锟斤拷锟斤拷 
+	 * 默锟斤拷锟斤拷删锟斤拷锟斤拷锟叫凤拷锟斤拷锟斤拷锟斤拷锟侥硷拷录锟斤拷
 	 * @param removeFirst
 	 * @return
 	 */

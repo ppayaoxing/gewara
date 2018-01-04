@@ -6,12 +6,12 @@ import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.common.GewaCityVo;
 
 /**
- * ¸ñÍßÀ­³ÇÊĞService
+ * æ ¼ç“¦æ‹‰åŸå¸‚Service
  *
  */
 public interface GewaCityVoService {
 	/**
-	 * ¸ù¾İCityCodeÊı×é»ñÈ¡GewaCityÁĞ±í
+	 * æ ¹æ®CityCodeæ•°ç»„è·å–GewaCityåˆ—è¡¨
 	 * @param cityCodes
 	 * @return
 	 */
@@ -19,13 +19,13 @@ public interface GewaCityVoService {
 	
 	
 	/**
-	 * »ñÈ¡ËùÓĞ³ÇÊĞ±àÂë
+	 * è·å–æ‰€æœ‰åŸå¸‚ç¼–ç 
 	 * @return
 	 */
 	ResultCode<List<String>> getCityCodes();
 	
 	/**
-	 * »ñÈ¡³ÇÊĞ×ÜÊı
+	 * è·å–åŸå¸‚æ€»æ•°
 	 * @return
 	 */
 	ResultCode<Integer> getGewaCityCount();

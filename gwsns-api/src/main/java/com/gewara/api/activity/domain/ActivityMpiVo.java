@@ -12,8 +12,8 @@ public class ActivityMpiVo extends ApiObject{
 	 */
 	private static final long serialVersionUID = 2611222926161020343L;
 	private Long id;
-	private Long activityid;	//活动id
-	private Long mpid;			//场次id
+	private Long activityid;	//娲诲姩id
+	private Long mpid;			//鍦烘id
 	private Timestamp addtime;
 	private String otherinfo;
 	

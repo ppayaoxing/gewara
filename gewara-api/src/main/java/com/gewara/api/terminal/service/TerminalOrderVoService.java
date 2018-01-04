@@ -18,26 +18,26 @@ import com.gewara.api.vo.order.TicketOrderVo;
 
 public interface TerminalOrderVoService {
 	/**
-	 * ²éÑ¯µçÓ°¶©µ¥
+	 * æŸ¥è¯¢ç”µå½±è®¢å•
 	 * @param tradeno
 	 * @return
 	 */
 	ResultCode<? extends GewaOrderVo> getTicketOrderByTradeno(String tradeno);
 	/**
-	 * ²éÑ¯µçÓ°ÎïÆ·¶©µ¥
+	 * æŸ¥è¯¢ç”µå½±ç‰©å“è®¢å•
 	 * @param tradeno
 	 * @return
 	 */
 	ResultCode<? extends GewaOrderVo> getGoodsOrderByTradeno(String tradeno);
 	/**
-	 * ²éÑ¯Ñİ³ö¶©µ¥,ÓÉÓÚ¿ÉÒÔÑ¡Ôñ¶à¸ö³¡´Î£¬ËùÒÔ·µ»ØÒ»¸ö¶ÔÏó¼¯ºÏ
+	 * æŸ¥è¯¢æ¼”å‡ºè®¢å•,ç”±äºå¯ä»¥é€‰æ‹©å¤šä¸ªåœºæ¬¡ï¼Œæ‰€ä»¥è¿”å›ä¸€ä¸ªå¯¹è±¡é›†åˆ
 	 * @param tradeno
 	 * @return
 	 */
 //	ResultCode<List<? extends GewaOrderVo>> getDramaOrderByTradeno(String tradeno);
 	ResultCode<List<DramaOrderVo>> getDramaOrderByTradeno(String tradeno);
 	/**
-	 * »ñÈ¡ÒÑÍË¿îµÄ¶©µ¥ºÅ
+	 * è·å–å·²é€€æ¬¾çš„è®¢å•å·
 	 * @param goodsid
 	 * @param relatedid
 	 * @param addtime
@@ -45,7 +45,7 @@ public interface TerminalOrderVoService {
 	 */
 	ResultCode<List<String>> getRefundOrderList(Timestamp refundtime);
 	/**
-	 * ³öÆ±¸ß·åµÄ³¡´ÎÊ±¶Î °üÀ¨µçÓ°ºÍÑİ³ö
+	 * å‡ºç¥¨é«˜å³°çš„åœºæ¬¡æ—¶æ®µ åŒ…æ‹¬ç”µå½±å’Œæ¼”å‡º
 	 * @param placeid
 	 * @param starttime
 	 * @param endtime
@@ -54,7 +54,7 @@ public interface TerminalOrderVoService {
 	ResultCode<List<Map>> getPeakPeriodByTag(Long placeid, Timestamp starttime, Timestamp endtime, String tag);
 	
 	/**
-	 * ²éÑ¯Ñİ³ö³¡´ÎµÄ´òÓ¡²¼¾Ö
+	 * æŸ¥è¯¢æ¼”å‡ºåœºæ¬¡çš„æ‰“å°å¸ƒå±€
 	 * @param cinemaid
 	 * @param playtime
 	 * @param addtime
@@ -62,25 +62,25 @@ public interface TerminalOrderVoService {
 	 */
 	ResultCode<DpiLayoutVo> getDpiLayoutVo(Long dpid);
 	/**
-	 * Æ±ÃæÊµ¼ÊĞèÒª´òÓ¡µÄĞÅÏ¢
+	 * ç¥¨é¢å®é™…éœ€è¦æ‰“å°çš„ä¿¡æ¯
 	 * @param tradeno
 	 * @return
 	 */
 	ResultCode<String> getDramaOrderPrintInfo(String tradeno);
 	ResultCode<List<CustomPaperVo>> customPaperVoList(String tag, Date startdate, Date enddate);
 	/**
-	 * »ñÈ¡ËùÓĞ½»Ò×³É¹¦µÄ¶©µ¥ºÅ£¬²»ÔÚÇø·Ö¶©µ¥ÀàĞÍ£¬ºóÆÚÉ¾³ıÆäËûµÄ·½·¨
+	 * è·å–æ‰€æœ‰äº¤æ˜“æˆåŠŸçš„è®¢å•å·ï¼Œä¸åœ¨åŒºåˆ†è®¢å•ç±»å‹ï¼ŒåæœŸåˆ é™¤å…¶ä»–çš„æ–¹æ³•
 	 * @param addtime
 	 * @return
 	 */
 	ResultCode<List<String>> getSuccessTradenoList(Timestamp addtime);
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ£¬²éÑ¯×Ô¶¨ÒåÆ±Ö½
+	 * æ ¹æ®è®¢å•å·ï¼ŒæŸ¥è¯¢è‡ªå®šä¹‰ç¥¨çº¸
 	 * @return
 	 */
 	ResultCode<CustomPaperVo> getCustomPaperVoByTradeNo(String tradeno);
 	/**
-	 * ¸ù¾İÊ±¼ä¶ÎÀ­È¡ÏÖÓĞ¶©µ¥
+	 * æ ¹æ®æ—¶é—´æ®µæ‹‰å–ç°æœ‰è®¢å•
 	 * @param addtimeFrom
 	 * @param addtimeTo
 	 * @return

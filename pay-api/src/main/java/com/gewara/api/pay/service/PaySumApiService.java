@@ -6,17 +6,17 @@ import java.util.Map;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * Ö§¸¶½ğ¶î»ã×Ü
+ * æ”¯ä»˜é‡‘é¢æ±‡æ€»
  * @author songshi.wang
  *
  */
 public interface PaySumApiService {
 
 	/**
-	 * »ñµÃÖ¸¶¨ÉÌ»§ºÅÖ¸¶¨ÆÚ¼äµÄÖ§¸¶ĞÅÏ¢
-	 * @param merchantNo ÉÌ»§ºÅ
-	 * @param startDate	¿ªÊ¼ÈÕÆÚ yyyyMMdd °üº¬
-	 * @param endDate	½áÊøÈÕÆÚ yyyyMMdd ²»°üº¬
+	 * è·å¾—æŒ‡å®šå•†æˆ·å·æŒ‡å®šæœŸé—´çš„æ”¯ä»˜ä¿¡æ¯
+	 * @param merchantNo å•†æˆ·å·
+	 * @param startDate	å¼€å§‹æ—¥æœŸ yyyyMMdd åŒ…å«
+	 * @param endDate	ç»“æŸæ—¥æœŸ yyyyMMdd ä¸åŒ…å«
 	 * @return [{"merchantNo":"xxx","sumValue":9999,"sumDate":"yyyyMMdd"}]
 	 */
 	ResultCode<List<Map<String, Object>>> getSum(String merchantNo, String startDate, String endDate);

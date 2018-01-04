@@ -6,7 +6,7 @@ import com.gewara.gmessage.external.constant.UserType;
 
 /**
  * 
- * ��Ϣ�Ľ��ջ��߷����ߵľ�����Ϣ
+ * 锟斤拷息锟侥斤拷锟秸伙拷锟竭凤拷锟斤拷锟竭的撅拷锟斤拷锟斤拷息
  * @author user
  *
  */
@@ -33,7 +33,7 @@ public class MUser implements Serializable{
 		return userID;
 	}
 	
-	/**�û�ID*/
+	/**锟矫伙拷ID*/
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
@@ -42,7 +42,7 @@ public class MUser implements Serializable{
 		return mobile;
 	}
 	
-	/**�û��ֻ��š�*/
+	/**锟矫伙拷锟街伙拷锟脚★拷*/
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
@@ -51,7 +51,7 @@ public class MUser implements Serializable{
 		return name;
 	}
 	
-	/**�û�����*/
+	/**锟矫伙拷锟斤拷锟斤拷*/
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -60,7 +60,7 @@ public class MUser implements Serializable{
 		return userType;
 	}
 
-	/**�û�����*/
+	/**锟矫伙拷锟斤拷锟斤拷*/
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}

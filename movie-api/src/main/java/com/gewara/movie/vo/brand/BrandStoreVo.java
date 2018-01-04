@@ -6,25 +6,25 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * Æ·ÅÆÏÂµÄÃÅµê
+ * å“ç‰Œä¸‹çš„é—¨åº—
  * @author zhoufy
  */
 public class BrandStoreVo extends BaseVo{
 
 	private static final long serialVersionUID = 4010577028328154103L;
-	private static final double R = 6371229;              //µØÇòµÄ°ë¾¶ Ã×
+	private static final double R = 6371229;              //åœ°çƒçš„åŠå¾„ ç±³
 	private Long id;
-	private Long cinemaid;		//Ó°ÔºID
-	private Long brandid;		//Æ·ÅÆID
-	private String storename;	//ÃÅµêÃû³Æ
-	private String storeadd;	//ÃÅµêµØÖ·
-	private String tel;			//µç»°
+	private Long cinemaid;		//å½±é™¢ID
+	private Long brandid;		//å“ç‰ŒID
+	private String storename;	//é—¨åº—åç§°
+	private String storeadd;	//é—¨åº—åœ°å€
+	private String tel;			//ç”µè¯
 	private Byte status;
 	private String citycode;
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private String lat;			//Î³¶ÈÖµ
-	private String lng;			//¾­¶ÈÖµ
+	private String lat;			//çº¬åº¦å€¼
+	private String lng;			//ç»åº¦å€¼
 	
 	public String getLat() {
 		return lat;
@@ -112,7 +112,7 @@ public class BrandStoreVo extends BaseVo{
 			x=(x2-x1)* Math.PI*R*Math.cos( ((y1+y2)/2) * Math.PI/180)/180;
 			y=(y2-y1)*Math.PI*R/180;
 			distance=Math.hypot(x,y)/1000;
-			return Math.round(distance)+"¹«Àï";
+			return Math.round(distance)+"å…¬é‡Œ";
 		}catch(Exception e){
 			return "";
 		}

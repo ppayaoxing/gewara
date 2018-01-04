@@ -5,22 +5,22 @@ import java.util.List;
 public interface RedisShardingService {
 
 	/**
-	 * »ñÈ¡redisÖĞ»º´æµÄ¶ÔÏó
+	 * è·å–redisä¸­ç¼“å­˜çš„å¯¹è±¡
 	 * @param key not blank
 	 * @param clazz not null
-	 * @return null or obj,Èç¹û»º´æ²»´æÔÚ£¬Ôò·µ»ØµÄ¶ÔÏóÖĞÊôĞÔÖµÎªnull
+	 * @return null or obj,å¦‚æœç¼“å­˜ä¸å­˜åœ¨ï¼Œåˆ™è¿”å›çš„å¯¹è±¡ä¸­å±æ€§å€¼ä¸ºnull
 	 */
 	<T> T getHashMapCache(String key, Class<T> clazz);
 
 	/**
-	 * ½«¶ÔÏó´æÈëredisÖĞ
+	 * å°†å¯¹è±¡å­˜å…¥redisä¸­
 	 * @param key not blank
 	 * @param obj not null
 	 */
 	<T> void putHashMapCache4All(String key, T obj);
 
 	/**
-	 * ½«¶ÔÏóµÄÒ»¸öÊôĞÔ´æÈëredisÖĞ£¬ĞÂÔö»ò¸²¸ÇÖµ
+	 * å°†å¯¹è±¡çš„ä¸€ä¸ªå±æ€§å­˜å…¥redisä¸­ï¼Œæ–°å¢æˆ–è¦†ç›–å€¼
 	 * @param key not blank
 	 * @param fieldName not blank
 	 * @param fieldValue
@@ -28,48 +28,48 @@ public interface RedisShardingService {
 	void putHashMapCache(String key, String fieldName, Object fieldValue);
 
 	/**
-	 * ½«¶ÔÏó¼¯¼ÓÈëredis listÖĞ, ¶ÔÓ¦{@link #pollQueueData(String)}
+	 * å°†å¯¹è±¡é›†åŠ å…¥redis listä¸­, å¯¹åº”{@link #pollQueueData(String)}
 	 * @param key not null
 	 * @param objs null empty
 	 */
 	<T> void putQueueCache4All(String key, List<T> objs);
 
 	/**
-	 * »ñÈ¡redis listÖĞµÄ¶ÔÏó, ¶ÔÓ¦{@link #putQueueCache4All(String, List)}
+	 * è·å–redis listä¸­çš„å¯¹è±¡, å¯¹åº”{@link #putQueueCache4All(String, List)}
 	 * @param key
-	 * @return listÎª¿Õ£¬·µ»Ønull
+	 * @return listä¸ºç©ºï¼Œè¿”å›null
 	 */
 	<T> T pollQueueData(String key);
 
 	/**
-	 * ½«key value¶Ô´æÈë»º´æÖĞ, ¶ÔÓ¦{@link #getCache(String)}
+	 * å°†key valueå¯¹å­˜å…¥ç¼“å­˜ä¸­, å¯¹åº”{@link #getCache(String)}
 	 * @param key not blank
 	 * @param value not blank
 	 */
 	void putCache(String key, String value);
 
 	/**
-	 * ¸ù¾İkey»ñÈ¡»º´æÖµ, ¶ÔÓ¦{@link #putCache(String, String)}
+	 * æ ¹æ®keyè·å–ç¼“å­˜å€¼, å¯¹åº”{@link #putCache(String, String)}
 	 * @param key
-	 * @return keyÎª¿Õ»òÕßvalue²»´æÔÚÊ±·µ»Ønull
+	 * @return keyä¸ºç©ºæˆ–è€…valueä¸å­˜åœ¨æ—¶è¿”å›null
 	 */
 	String getCache(String key);
 	/**
-	 * ½«¶ÔÏó´æÈëredisÖĞ,µ±ÇÒ½öµ±key²»´æÔÚÊ±
+	 * å°†å¯¹è±¡å­˜å…¥redisä¸­,å½“ä¸”ä»…å½“keyä¸å­˜åœ¨æ—¶
 	 * @param key not blank
 	 * @param obj not null
-	 * @return Èç¹ûkey´æÔÚÔò·µ»Øfalse
+	 * @return å¦‚æœkeyå­˜åœ¨åˆ™è¿”å›false
 	 */
 	<T> Boolean putHashMapCache4AllNotExist(String key, T obj);
 	/**
-	 * ¸ù¾İkeyÉ¾³ı»º´æÖµ
+	 * æ ¹æ®keyåˆ é™¤ç¼“å­˜å€¼
 	 * @param key
 	 */
 	void delCache(String key);
 	/**
-	 * ÉèÖÃkey»º´æ¹ıÆÚÊ±¼ä
+	 * è®¾ç½®keyç¼“å­˜è¿‡æœŸæ—¶é—´
 	 * @param key
-	 * @param seconds Ãë
+	 * @param seconds ç§’
 	 */
 	void expireCache(String key,int seconds);
 }

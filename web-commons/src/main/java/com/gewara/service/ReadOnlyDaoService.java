@@ -11,7 +11,7 @@ public interface ReadOnlyDaoService {
 	List queryByRowsRange(final String hql, final int from, final int maxnum, final Object... params);
 	List queryByNameParams(final String hql, final int from, final int maxnum, final String paramnames, final Object... params);
 	/**
-	 * ¿ªÆô»ò¹Ø±ÕreadOnly
+	 * å¼€å¯æˆ–å…³é—­readOnly
 	 * @param readonly
 	 * @return
 	 */

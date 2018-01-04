@@ -61,7 +61,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 	}
 	protected SessidGenerator sessidGenerator = new DefaultSessidGenerator();
 	/**
-	 * 用户是否重复登录
+	 * 鐢ㄦ埛鏄惁閲嶅鐧诲綍
 	 */
 	protected boolean isRelogin = false;
 
@@ -88,7 +88,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 	}
 
 	/**
-	 * 认证成功后处理cookie、cache
+	 * 璁よ瘉鎴愬姛鍚庡鐞哻ookie銆乧ache
 	 * @param request
 	 * @param response
 	 * @param authentication
@@ -112,7 +112,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 	}
 
 	/**
-	 * 认证成功后处理cookie、cache
+	 * 璁よ瘉鎴愬姛鍚庡鐞哻ookie銆乧ache
 	 * @param request
 	 * @param response
 	 * @param authentication
@@ -145,7 +145,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 				Object sessidOld = cacheService.get(CacheService.REGION_LOGINAUTH, repeatKey);
 				if (sessidOld != null && !sessid.equals(sessidOld)) {
 					cacheService.remove(CacheService.REGION_LOGINAUTH, LoginUtils.getCacheUkey(sessidOld.toString()));
-					dbLogger.error("重复用户登录，剔除用户" + repeatKey + " " + user.getUsername());
+					dbLogger.error("閲嶅鐢ㄦ埛鐧诲綍锛屽墧闄ょ敤鎴�" + repeatKey + " " + user.getUsername());
 				}
 				cacheService.set(CacheService.REGION_LOGINAUTH, repeatKey, sessid);
 			}
@@ -156,7 +156,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 	}
 	
 	/**
-	 * 处理登录信息
+	 * 澶勭悊鐧诲綍淇℃伅
 	 * @param remoteIp
 	 * @param userAgent
 	 * @param port
@@ -193,7 +193,7 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 		successCallback(userAgent, port, user, ip, sessid);
 	}
 	protected void setLogonSessid(String sessid, HttpServletResponse response, int duration) {
-		// 设置前台登录Cookie
+		// 璁剧疆鍓嶅彴鐧诲綍Cookie
 		Cookie cookie = new Cookie(LoginUtils.SESS_COOKIE_NAME, sessid);
 		cookie.setMaxAge(duration);
 		cookie.setPath("/");

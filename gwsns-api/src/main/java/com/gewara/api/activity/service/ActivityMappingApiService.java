@@ -6,9 +6,9 @@ import com.gewara.api.vo.ResultCode;
 
 public interface ActivityMappingApiService {
 	/**
-	 * »ñÈ¡»î¶¯¹ØÁªµÄ¶ÔÏóÁĞ±í
-	 * @param activityid »î¶¯ID
-	 * @param tag »î¶¯¹ØÁªÀàĞÍ
+	 * è·å–æ´»åŠ¨å…³è”çš„å¯¹è±¡åˆ—è¡¨
+	 * @param activityid æ´»åŠ¨ID
+	 * @param tag æ´»åŠ¨å…³è”ç±»å‹
 	 */
 	public ResultCode<List<Long>> getRelatedIds(Long activityid, String tag);
 }

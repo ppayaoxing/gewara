@@ -6,24 +6,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ÓÊ¼ş¶ÔÏó
+ * é‚®ä»¶å¯¹è±¡
  * @author zhaorq
  *
  */
 public class EmailRecordVO implements Serializable {
 
 	private static final long serialVersionUID = -6346809268260336714L;
-	public static final String SENDER = "¸ñÍßÀ­Éú»îÍø";
+	public static final String SENDER = "æ ¼ç“¦æ‹‰ç”Ÿæ´»ç½‘";
 	
-	private String sender; // ·¢ËÍÕß
-	private String title; // ±êÌâ
-	private String content; // ÄÚÈİ
-	private String otherinfo;//ÆäËûĞÅÏ¢£ºÈç¸½¼şĞÅÏ¢AttachmentInfos:[{"fileName":"","filePath":""},...]
-	private List<Map<String, Object>> attachments;//¸½¼şÄÚÈİ
-	private String email; // µØÖ·   Ö§³Ö;·Ö¸î
-	private String mailtype="html"; // ÓÊ¼şÀàĞÍ Á½ÖÖ£ºhtml »òÕßtxt
-	private Timestamp sendtime; // ·¢ËÍÊ±¼ä
-	private Timestamp validtime; // ³¬Ê±Ê±¼ä
+	private String sender; // å‘é€è€…
+	private String title; // æ ‡é¢˜
+	private String content; // å†…å®¹
+	private String otherinfo;//å…¶ä»–ä¿¡æ¯ï¼šå¦‚é™„ä»¶ä¿¡æ¯AttachmentInfos:[{"fileName":"","filePath":""},...]
+	private List<Map<String, Object>> attachments;//é™„ä»¶å†…å®¹
+	private String email; // åœ°å€   æ”¯æŒ;åˆ†å‰²
+	private String mailtype="html"; // é‚®ä»¶ç±»å‹ ä¸¤ç§ï¼šhtml æˆ–è€…txt
+	private Timestamp sendtime; // å‘é€æ—¶é—´
+	private Timestamp validtime; // è¶…æ—¶æ—¶é—´
 	private Timestamp addtime = new Timestamp(System.currentTimeMillis());
 	
 	private String template;

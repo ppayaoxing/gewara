@@ -3,9 +3,9 @@ package com.gewara.mdb.operation;
 import org.bson.Document;
 
 /**
- * ÔİÎ´ÊµÏÖ
- * @author ¶­Ã÷
- * @createDate 2015Äê8ÔÂ21ÈÕ
+ * æš‚æœªå®ç°
+ * @author è‘£æ˜
+ * @createDate 2015å¹´8æœˆ21æ—¥
  */
 public class UpdateOperation {
 	
@@ -20,7 +20,7 @@ public class UpdateOperation {
 	}
 	
 	/**
-	 * ĞŞ¸Ä×Ö¶ÎÃû³Æ
+	 * ä¿®æ”¹å­—æ®µåç§°
 	 * @param field
 	 * @param newFieldName
 	 * @return
@@ -30,7 +30,7 @@ public class UpdateOperation {
 	}
 	
 	/**
-	 * É¾³ıÄ³¸ö×Ö¶Î
+	 * åˆ é™¤æŸä¸ªå­—æ®µ
 	 * @param field
 	 * @return
 	 */
@@ -39,7 +39,7 @@ public class UpdateOperation {
 	}
 	
 	/**
-	 * ÉèÖÃÔÚ¸üĞÂÊ±£¬Ö»ÓĞ²åÈë£¬²ÅÉèÖÃ¸Ä×Ö¶ÎµÄÖµ¡£
+	 * è®¾ç½®åœ¨æ›´æ–°æ—¶ï¼Œåªæœ‰æ’å…¥ï¼Œæ‰è®¾ç½®æ”¹å­—æ®µçš„å€¼ã€‚
 	 * @param field
 	 * @param value
 	 * @return
@@ -54,8 +54,8 @@ public class UpdateOperation {
 	
 	
 	/**
-	 * Èç¹ûÖ¸¶¨µÄvalueĞ¡ÓÚfieldµÄµ±Ç°Öµ£¬Ôò¸üĞÂfieldµÄÖµÎªvalue¡£
-	 * field²»´æÔÚ»òÎªnull£¬Ò²»á¸üĞÂfieldµÄÖµ
+	 * å¦‚æœæŒ‡å®šçš„valueå°äºfieldçš„å½“å‰å€¼ï¼Œåˆ™æ›´æ–°fieldçš„å€¼ä¸ºvalueã€‚
+	 * fieldä¸å­˜åœ¨æˆ–ä¸ºnullï¼Œä¹Ÿä¼šæ›´æ–°fieldçš„å€¼
 	 * @param field
 	 * @param value
 	 * @return
@@ -65,8 +65,8 @@ public class UpdateOperation {
 	}
 	
 	/**
-	 * Èç¹ûÖ¸¶¨µÄÖµ´óÓÚfieldµÄµ±Ç°Öµ,Ôò¸üĞÂfieldµÄÖµÎªvalue
-	 * field²»´æÔÚ»òÎªnull£¬Ò²»á¸üĞÂfieldµÄÖµ
+	 * å¦‚æœæŒ‡å®šçš„å€¼å¤§äºfieldçš„å½“å‰å€¼,åˆ™æ›´æ–°fieldçš„å€¼ä¸ºvalue
+	 * fieldä¸å­˜åœ¨æˆ–ä¸ºnullï¼Œä¹Ÿä¼šæ›´æ–°fieldçš„å€¼
 	 * @param field
 	 * @param value
 	 * @return
@@ -76,7 +76,7 @@ public class UpdateOperation {
 	}
 	
 	/**
-	 * ÉèÖÃµ±Ç°ÈÕÆÚ
+	 * è®¾ç½®å½“å‰æ—¥æœŸ
 	 * @return
 	 */
 	public UpdateOperation currentDate(String Field){

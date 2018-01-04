@@ -48,14 +48,14 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     @Qualifier("monitorService")
     protected MonitorService monitorService;
-    private int allowIpNum = 2;    //允许IP变更的次数
+    private int allowIpNum = 2;    //鍏佽IP鍙樻洿鐨勬鏁�
 
     public void setAllowIpNum(int allowIpNum) {
         this.allowIpNum = allowIpNum;
     }
 
     /**
-     * 根据用户名和密码登录
+     * 鏍规嵁鐢ㄦ埛鍚嶅拰瀵嗙爜鐧诲綍
      *
      * @param request
      * @param response
@@ -66,7 +66,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, String username, String password) {
         if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
-            return ErrorCode.getFailure("用户名密码必填！");
+            return ErrorCode.getFailure("鐢ㄦ埛鍚嶅瘑鐮佸繀濉紒");
         }
         Authentication auth = new UsernamePasswordAuthenticationToken(username, password);
         return autoLogin(request, response, auth);
@@ -86,7 +86,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
-     * 根据认证信息登录
+     * 鏍规嵁璁よ瘉淇℃伅鐧诲綍
      *
      * @param request
      * @param response
@@ -107,24 +107,24 @@ public class LoginServiceImpl implements LoginService {
                 }
                 return ErrorCode.getSuccessReturn(jsonMap);
             } else {
-                errorMap.put("j_username", "用户名或密码错误！");
+                errorMap.put("j_username", "鐢ㄦ埛鍚嶆垨瀵嗙爜閿欒锛�");
             }
         } catch (DisabledException e) {
-            errorMap.put("j_username", "你的用户被禁用，请联系客服！");
-        } catch (AuthenticationServiceException e) {//用户不存在.
-            errorMap.put("j_username", "你的账号不存在！");
-        } catch (BadCredentialsException e) {//密码错误
-            errorMap.put("j_password", "密码错误！");
+            errorMap.put("j_username", "浣犵殑鐢ㄦ埛琚鐢紝璇疯仈绯诲鏈嶏紒");
+        } catch (AuthenticationServiceException e) {//鐢ㄦ埛涓嶅瓨鍦�.
+            errorMap.put("j_username", "浣犵殑璐﹀彿涓嶅瓨鍦紒");
+        } catch (BadCredentialsException e) {//瀵嗙爜閿欒
+            errorMap.put("j_password", "瀵嗙爜閿欒锛�");
         } catch (Exception e) {
             dbLogger.warn("", e, 15);
-            errorMap.put("j_username", "用户名或密码错误！");
+            errorMap.put("j_username", "鐢ㄦ埛鍚嶆垨瀵嗙爜閿欒锛�");
         }
 
         return ErrorCode.getFailureReturn(errorMap);
     }
 
     /**
-     * 通过id和sessid获取user
+     * 閫氳繃id鍜宻essid鑾峰彇user
      *
      * @param ip
      * @param sessid
@@ -140,7 +140,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
-     * 加载并刷新更新时间
+     * 鍔犺浇骞跺埛鏂版洿鏂版椂闂�
      *
      * @param ip
      * @param sessid
@@ -154,7 +154,7 @@ public class LoginServiceImpl implements LoginService {
         String ukey = LoginUtils.getCacheUkey(sessid);
         CachedAuthentication ca = (CachedAuthentication) cacheService.get(CacheService.REGION_LOGINAUTH, ukey);
         if (ca != null) {
-            if (!StringUtils.contains(ca.getIp(), ip)) {//IP变更
+            if (!StringUtils.contains(ca.getIp(), ip)) {//IP鍙樻洿
                 Map entry = Maps.newHashMap();
                 entry.put("oldip", ca.getIp());
                 entry.put("newip", ip);
@@ -162,24 +162,24 @@ public class LoginServiceImpl implements LoginService {
                 entry.put("username", ca.getAuthentication().getName());
                 entry.put("usertype", ca.getAuthentication().getPrincipal().getClass().getName());
                 Long memberid = ((GewaraUser) ca.getAuthentication().getPrincipal()).getId();
-                // 保存到前台用户行为,
+                // 淇濆瓨鍒板墠鍙扮敤鎴疯涓�,
                 monitorService.saveMemberLogMap(memberid, "login", entry, ip);
 
-                dbLogger.warn("登录IP不匹配，" + ca.getAuthentication().getName() + ":" + ca.getIp() + "---->" + ip);
+                dbLogger.warn("鐧诲綍IP涓嶅尮閰嶏紝" + ca.getAuthentication().getName() + ":" + ca.getIp() + "---->" + ip);
                 //
                 if (cannotChangeIp(ca.getAuthentication().getPrincipal(), ip)) {
-                    return null;//不能更换ID
+                    return null;//涓嶈兘鏇存崲ID
                 }
-                //TODO:同网段的IP不算更改计数
-                if (StringUtils.split(ca.getIp(), ",").length >= allowIpNum) {//超过3个IP，直接forbidden，移出登录信息
+                //TODO:鍚岀綉娈电殑IP涓嶇畻鏇存敼璁℃暟
+                if (StringUtils.split(ca.getIp(), ",").length >= allowIpNum) {//瓒呰繃3涓狪P锛岀洿鎺orbidden锛岀Щ鍑虹櫥褰曚俊鎭�
                     cacheService.remove(CacheService.REGION_LOGINAUTH, ukey);
                     return null;
                 }
                 ca.setIp(ca.getIp() + "," + ip);
                 cacheService.set(CacheService.REGION_LOGINAUTH, ukey, ca);
             }
-            if (ca.getTimeout() != null && ca.getTimeout() < System.currentTimeMillis() + DateUtil.m_minute * 20) {//20分钟即将超时，重新设置
-                // 重置登录时间,刷新登录信息
+            if (ca.getTimeout() != null && ca.getTimeout() < System.currentTimeMillis() + DateUtil.m_minute * 20) {//20鍒嗛挓鍗冲皢瓒呮椂锛岄噸鏂拌缃�
+                // 閲嶇疆鐧诲綍鏃堕棿,鍒锋柊鐧诲綍淇℃伅
                 cacheService.set(CacheService.REGION_LOGINAUTH, ukey, ca);
             }
             return ca.getAuthentication();
@@ -192,7 +192,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
-     * 加载并刷新更新时间
+     * 鍔犺浇骞跺埛鏂版洿鏂版椂闂�
      *
      * @param
      * @param sessid

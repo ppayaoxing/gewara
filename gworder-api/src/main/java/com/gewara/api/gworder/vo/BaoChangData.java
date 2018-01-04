@@ -7,11 +7,11 @@ import com.gewara.api.vo.BaseVo;
 public class BaoChangData extends BaseVo {
 	private static final long serialVersionUID = -7264253187060423972L;
 	private Long id;
-	private Long cinemaid;//Ó°ÔºID
-	private Long roomid;//Ó°ÌüID
-	private Integer price;		//³É±¾¼Û
-	private Integer gewaprice;	//¸ñÍßÂô¼Û
-	private String citycode;//³ÇÊĞ´úÂë
+	private Long cinemaid;//å½±é™¢ID
+	private Long roomid;//å½±å…ID
+	private Integer price;		//æˆæœ¬ä»·
+	private Integer gewaprice;	//æ ¼ç“¦å–ä»·
+	private String citycode;//åŸå¸‚ä»£ç 
 
 	@Override
 	public Serializable realId() {

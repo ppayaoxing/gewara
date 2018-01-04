@@ -10,12 +10,12 @@ public class FlowerMemberVo extends BaseVo {
 	private static final long serialVersionUID = 1L;
 	private String ckey;			//memberid+type+relatedid
 	private Long memberid;
-	private String type;			//ÀàĞÍ  comment or moderatortag
-	private Long relatedid;			//¹ØÁªid
-	private Timestamp addtime;		//Ìí¼ÓÊ±¼ä
-	private String source;			//À´Ô´web,wap
-	private Long parentid;			//¸¸±êÇ©id
-	private String parenttype;		//¸¸±êÇ©ÀàĞÍ
+	private String type;			//ç±»å‹  comment or moderatortag
+	private Long relatedid;			//å…³è”id
+	private Timestamp addtime;		//æ·»åŠ æ—¶é—´
+	private String source;			//æ¥æºweb,wap
+	private Long parentid;			//çˆ¶æ ‡ç­¾id
+	private String parenttype;		//çˆ¶æ ‡ç­¾ç±»å‹
 
 	@Override
 	public Serializable realId() {

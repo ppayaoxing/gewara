@@ -8,15 +8,15 @@ import java.util.Date;
  */
 public class PartnerMpiReqVo extends PartnerPageReqVo {
 	private static final long serialVersionUID = -752034056399243324L;
-	// Ó°ÔºID
+	// å½±é™¢ID
 	private Long cinemaId;
-	// Ó°Æ¬ID
+	// å½±ç‰‡ID
 	private Long movieId;
-	// ÌØ¼Û»î¶¯ID
+	// ç‰¹ä»·æ´»åŠ¨ID
 	private Long discountId;
-	// ÈÕÆÚ
+	// æ—¥æœŸ
 	private Date playdate;
-	// ÌØÐ§Ìü£¬ÈçIMAXµÈ
+	// ç‰¹æ•ˆåŽ…ï¼Œå¦‚IMAXç­‰
 	private String characteristic;
 
 	public Long getCinemaId() {

@@ -11,7 +11,7 @@ public interface ApplyJoinApiService {
 
 
 	/**
-	 * »ñÈ¡»î¶¯µÄ²ÎÓëĞÅÏ¢
+	 * è·å–æ´»åŠ¨çš„å‚ä¸ä¿¡æ¯
 	@RequestMapping("/api/applyjoin/list/byActivityId.xhtml")
 	 * @param activityid
 	 * @param from
@@ -23,7 +23,7 @@ public interface ApplyJoinApiService {
 
 
 	/**
-	 * »ñÈ¡ÓÃ»§²Î¼ÓµÄ»î¶¯ĞÅÏ¢
+	 * è·å–ç”¨æˆ·å‚åŠ çš„æ´»åŠ¨ä¿¡æ¯
 	@RequestMapping("/api/applyjoin/getByMemberIdAndActivityId.xhtml")
 	 * @param memberid
 	 * @param activityid
@@ -32,32 +32,32 @@ public interface ApplyJoinApiService {
 	public ResultCode<ApplyJoinVo> getApplyJoin(Long memberid, Long activityid);
 
 	/**
-	 * ±£´æ»î¶¯µØÖ·ĞÅÏ¢
+	 * ä¿å­˜æ´»åŠ¨åœ°å€ä¿¡æ¯
 	 * @param applyJoinVo
 	 * @return
 	 */
 	public ResultCode saveApplyJoin(Long activityid,Long memberid, String mobile,String realName,String sex,String address,String birthData,Integer joinnum, String TradeNo,String jsonString);
 	
 	/**
-	 * Ìí¼Ó»î¶¯±¨Ãû»ù´¡ĞÅÏ¢
+	 * æ·»åŠ æ´»åŠ¨æŠ¥ååŸºç¡€ä¿¡æ¯
 	 * @param activityInfo
 	 * @return
 	 */
 	public void addActivityInfo(ActivityInfoVo activityInfo);
 	/**
-	 * ĞŞ¸Ä»î¶¯±¨Ãû»ù´¡ĞÅÏ¢
+	 * ä¿®æ”¹æ´»åŠ¨æŠ¥ååŸºç¡€ä¿¡æ¯
 	 * @param activityInfo
 	 * @return
 	 */
 	public void updateActivityInfo(ActivityInfoVo activityInfo);
 	/**
-	 * ¸ù¾İÓÃ»§±àºÅ»ñÈ¡ÓÃ»§»î¶¯»ù´¡ĞÅÏ¢
+	 * æ ¹æ®ç”¨æˆ·ç¼–å·è·å–ç”¨æˆ·æ´»åŠ¨åŸºç¡€ä¿¡æ¯
 	 * @param memberid
 	 * @return
 	 */
 	public ResultCode<ActivityInfoVo> getActivityInfoByMemberid(Long memberid);
 	/**
-	 * »ñÈ¡»î¶¯±¨ÃûĞÅÏ¢Ñ¡Ïî
+	 * è·å–æ´»åŠ¨æŠ¥åä¿¡æ¯é€‰é¡¹
 	 * @param activityid
 	 * @return
 	 */

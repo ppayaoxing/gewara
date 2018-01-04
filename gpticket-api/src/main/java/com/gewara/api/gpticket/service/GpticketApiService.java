@@ -17,7 +17,7 @@ import com.gewara.api.gpticket.vo.ticket.ShowSeatVo;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * ÑÝ³ö²âÊÔ
+ * æ¼”å‡ºæµ‹è¯•
  * @author zhaorq
  *
  */

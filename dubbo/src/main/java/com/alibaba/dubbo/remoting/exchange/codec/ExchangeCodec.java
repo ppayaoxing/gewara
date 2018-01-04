@@ -299,10 +299,10 @@ public class ExchangeCodec extends TelnetCodec {
             os.write(header); // write header.
             os.write(data); // write data.
         } catch (Throwable t) {
-            // ����ʧ����Ϣ��Consumer������Consumerֻ�ܵȳ�ʱ��
+            // 锟斤拷锟斤拷失锟斤拷锟斤拷息锟斤拷Consumer锟斤拷锟斤拷锟斤拷Consumer只锟杰等筹拷时锟斤拷
             if (! res.isEvent() && res.getStatus() != Response.BAD_RESPONSE) {
                 try {
-                    // FIXME ��Codec�д�ӡ������־����IoHanndler��caught��ͳһ����
+                    // FIXME 锟斤拷Codec锟叫达拷印锟斤拷锟斤拷锟斤拷志锟斤拷锟斤拷IoHanndler锟斤拷caught锟斤拷统一锟斤拷锟斤拷
                     logger.warn("Fail to encode response: " + res + ", send bad_response info instead, cause: " + t.getMessage(), t);
                     
                     Response r = new Response(res.getId(), res.getVersion());
@@ -316,7 +316,7 @@ public class ExchangeCodec extends TelnetCodec {
                 }
             }
             
-            // �����׳��յ����쳣
+            // 锟斤拷锟斤拷锟阶筹拷锟秸碉拷锟斤拷锟届常
             if (t instanceof IOException) {
                 throw (IOException) t;
             } else if (t instanceof RuntimeException) {

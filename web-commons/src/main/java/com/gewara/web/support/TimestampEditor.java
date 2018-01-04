@@ -10,7 +10,7 @@ import java.util.Date;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * 线程安全 
+ * 绾跨▼瀹夊叏 
  * @author wangjg
  */
 public class TimestampEditor extends PropertyEditorSupport {

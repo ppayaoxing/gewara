@@ -11,52 +11,52 @@ public abstract class AccountRefundConstant implements Serializable {
 	
 	private static final long serialVersionUID = 2425895630620383174L;
 	
-	public static final String STATUS_APPLY = "apply";			//ĞÂÉêÇë
-	//public static final String STATUS_ACCEPT = "accept"; 		//ÒÑ½ÓÊÕ
-	//public static final String STATUS_UNACCEPT = "reject"; 		//²»½ÓÊÕÍË¿î
-	public static final String STATUS_FAIL = "fail"; 			//ÍË¿îÊ§°Ü
-	public static final String STATUS_DEBIT = "debit";			//ÕË»§¿Û¿î
-	public static final String STATUS_REAPPLY = "reapply";		//ÖØĞÂ²¹È«ĞÅÏ¢
-	public static final String STATUS_SUCCESS = "success";		//·µ»ØµÚÈı·½Ö§¸¶³É¹¦
+	public static final String STATUS_APPLY = "apply";			//æ–°ç”³è¯·
+	//public static final String STATUS_ACCEPT = "accept"; 		//å·²æ¥æ”¶
+	//public static final String STATUS_UNACCEPT = "reject"; 		//ä¸æ¥æ”¶é€€æ¬¾
+	public static final String STATUS_FAIL = "fail"; 			//é€€æ¬¾å¤±è´¥
+	public static final String STATUS_DEBIT = "debit";			//è´¦æˆ·æ‰£æ¬¾
+	public static final String STATUS_REAPPLY = "reapply";		//é‡æ–°è¡¥å…¨ä¿¡æ¯
+	public static final String STATUS_SUCCESS = "success";		//è¿”å›ç¬¬ä¸‰æ–¹æ”¯ä»˜æˆåŠŸ
 	
-	public static final String ORIGIN_REFUND = "refund";		//¶©µ¥ÍË¿î
-	public static final String ORIGIN_APPLY = "apply";			//¿Í·ş¶ÀÁ¢ÉêÇëÍË¿î
-	public static final String ORIGIN_CHARGE = "charge";		//³äÖµÍË¿î
-	public static final String ORIGIN_INSURE = "insure";		//±£ÏÕÍË¿î
-	public static final String ORIGIN_COMPENSATE= "compensate"; //Åâ³¥±£ÏÕ
+	public static final String ORIGIN_REFUND = "refund";		//è®¢å•é€€æ¬¾
+	public static final String ORIGIN_APPLY = "apply";			//å®¢æœç‹¬ç«‹ç”³è¯·é€€æ¬¾
+	public static final String ORIGIN_CHARGE = "charge";		//å……å€¼é€€æ¬¾
+	public static final String ORIGIN_INSURE = "insure";		//ä¿é™©é€€æ¬¾
+	public static final String ORIGIN_COMPENSATE= "compensate"; //èµ”å¿ä¿é™©
 	
-	public static final String REFUND_ORIGIN_CUSTOMER= "customer"; //¿Í»§Ìá½»
-	public static final String REFUND_ORIGIN_SERVICE= "service";   //¿Í·şÌá½»
-	public static final String REFUND_ORIGIN_SYSTEM= "system";     //ÏµÍ³Ìá½»
+	public static final String REFUND_ORIGIN_CUSTOMER= "customer"; //å®¢æˆ·æäº¤
+	public static final String REFUND_ORIGIN_SERVICE= "service";   //å®¢æœæäº¤
+	public static final String REFUND_ORIGIN_SYSTEM= "system";     //ç³»ç»Ÿæäº¤
 	
 	public static final Map<String, String> statusTextMap;
 	public static final Map<String, String> originTextMap;
 	public static final Map<String, String> refundOriginTextMap;
 	static{
 		Map<String, String> textMap = new HashMap<String, String>();
-		textMap.put(STATUS_APPLY, "ĞÂÉêÇë");
-		//textMap.put(STATUS_ACCEPT, "ÒÑ½ÓÊÕ");
-		//textMap.put(STATUS_UNACCEPT, "²»½ÓÊÕÍË¿î");
-		textMap.put(STATUS_FAIL, "ÍË¿îÊ§°Ü");
-		textMap.put(STATUS_SUCCESS, "ÍË¿î³É¹¦");
+		textMap.put(STATUS_APPLY, "æ–°ç”³è¯·");
+		//textMap.put(STATUS_ACCEPT, "å·²æ¥æ”¶");
+		//textMap.put(STATUS_UNACCEPT, "ä¸æ¥æ”¶é€€æ¬¾");
+		textMap.put(STATUS_FAIL, "é€€æ¬¾å¤±è´¥");
+		textMap.put(STATUS_SUCCESS, "é€€æ¬¾æˆåŠŸ");
 		statusTextMap = UnmodifiableMap.decorate(textMap);
 		Map<String, String> tmp = new HashMap<String, String>();
-		tmp.put(ORIGIN_REFUND, "¶©µ¥ÍË¿î");
-		tmp.put(ORIGIN_APPLY, "¿Í·şÍË¿î");
-		tmp.put(ORIGIN_CHARGE, "³äÖµÍË¿î");
-		tmp.put(ORIGIN_INSURE, "±£ÏÕÍË¿î");
-		tmp.put(ORIGIN_COMPENSATE, "Åâ³¥±£ÏÕ");
+		tmp.put(ORIGIN_REFUND, "è®¢å•é€€æ¬¾");
+		tmp.put(ORIGIN_APPLY, "å®¢æœé€€æ¬¾");
+		tmp.put(ORIGIN_CHARGE, "å……å€¼é€€æ¬¾");
+		tmp.put(ORIGIN_INSURE, "ä¿é™©é€€æ¬¾");
+		tmp.put(ORIGIN_COMPENSATE, "èµ”å¿ä¿é™©");
 		tmp.putAll(OtherFeeRefundConstant.originTextMap);
 		originTextMap = UnmodifiableMap.decorate(tmp);
 		Map<String, String> refundOriginTmpMap = new HashMap<String, String>();
-		refundOriginTmpMap.put(REFUND_ORIGIN_CUSTOMER, "¿Í»§Ìá½»");
-		refundOriginTmpMap.put(REFUND_ORIGIN_SERVICE, "¿Í·şÌá½»");
-		refundOriginTmpMap.put(REFUND_ORIGIN_SYSTEM, "ÏµÍ³Ìá½»");
+		refundOriginTmpMap.put(REFUND_ORIGIN_CUSTOMER, "å®¢æˆ·æäº¤");
+		refundOriginTmpMap.put(REFUND_ORIGIN_SERVICE, "å®¢æœæäº¤");
+		refundOriginTmpMap.put(REFUND_ORIGIN_SYSTEM, "ç³»ç»Ÿæäº¤");
 		refundOriginTextMap = UnmodifiableMap.decorate(refundOriginTmpMap);
 	}
 	
 	public static String getStatusText(String status){
 		String text = statusTextMap.get(status);
-		return StringUtils.isNotBlank(text)? text : "Î´Öª";
+		return StringUtils.isNotBlank(text)? text : "æœªçŸ¥";
 	}
 }

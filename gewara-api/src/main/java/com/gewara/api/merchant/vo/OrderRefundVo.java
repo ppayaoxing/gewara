@@ -10,23 +10,23 @@ public class OrderRefundVo extends BaseVo{
 	 * 
 	 */
 	private static final long serialVersionUID = -2778346477632735962L;
-	private String tradeNo; //¶©µ¥ºÅ
-	private Long movieId; //Ó°Æ¬id
-	private Timestamp playTime;  //·ÅÓ³Ê±¼ä
+	private String tradeNo; //è®¢å•å·
+	private Long movieId; //å½±ç‰‡id
+	private Timestamp playTime;  //æ”¾æ˜ æ—¶é—´
 	private String cinemaName;
-	private Integer unitprice;		//µ¥¼Û
-	private Integer quantity;			//ÊıÁ¿
-	private Integer totalfee;			//¶©µ¥×Ü½ğ¶î
-	private Integer orderCost;//²¹²î½ğ¶î
-	private Long cinemaId;   //Ó°Ôºid
-	private String otherInfo;  //Ó°ÌüµÈĞÅÏ¢
-	private Long memberId; //ÓÃ»§id
-	private String nickName;   //ÓÃ»§êÇ³Æ
-	private String mobile;    //ÓÃ»§ÊÖ»úºÅ
-	private Timestamp addtime;			//Ôö¼ÓÈÕÆÚ
-	private Timestamp refundtime; 		//ÍË¿îÊ±¼ä¡¿
-	private String reason;				//Ô­Òò
-	private String applyinfo;			//±¸×¢ĞÅÏ¢
+	private Integer unitprice;		//å•ä»·
+	private Integer quantity;			//æ•°é‡
+	private Integer totalfee;			//è®¢å•æ€»é‡‘é¢
+	private Integer orderCost;//è¡¥å·®é‡‘é¢
+	private Long cinemaId;   //å½±é™¢id
+	private String otherInfo;  //å½±å…ç­‰ä¿¡æ¯
+	private Long memberId; //ç”¨æˆ·id
+	private String nickName;   //ç”¨æˆ·æ˜µç§°
+	private String mobile;    //ç”¨æˆ·æ‰‹æœºå·
+	private Timestamp addtime;			//å¢åŠ æ—¥æœŸ
+	private Timestamp refundtime; 		//é€€æ¬¾æ—¶é—´ã€‘
+	private String reason;				//åŸå› 
+	private String applyinfo;			//å¤‡æ³¨ä¿¡æ¯
 	public String getTradeNo() {
 		return tradeNo;
 	}

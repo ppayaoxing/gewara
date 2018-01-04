@@ -9,13 +9,13 @@ import com.gewara.movie.vo.brand.BSGoodsStoreVo;
 public interface BSGoodsStoreVoService {
 	
 	/**
-	 * ±£´æ¡°ÉÌÆ·-ÃÅµê¡±¹ØÁªÊı¾İ
+	 * ä¿å­˜â€œå•†å“-é—¨åº—â€å…³è”æ•°æ®
 	 * @return
 	 */
 	ResultCode save(List<BSGoodsStoreVo> list);
 	
 	/**
-	 * »ñÈ¡¡°ÉÌÆ·-ÃÅµê¡±¹ØÁªÊı¾İ
+	 * è·å–â€œå•†å“-é—¨åº—â€å…³è”æ•°æ®
 	 * @return
 	 */
 	ResultCode<List<BSGoodsStoreVo>> getBSGoodsStoreListByGoodsId(Long goodsId);

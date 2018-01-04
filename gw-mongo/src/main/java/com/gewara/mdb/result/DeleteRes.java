@@ -11,7 +11,7 @@ public class DeleteRes {
 	}
 	
 	/**
-	 * �Ƿ�ɹ�
+	 * 锟角凤拷晒锟�
 	 * @return
 	 */
 	public boolean success(){
@@ -22,7 +22,7 @@ public class DeleteRes {
 	}
 	
 	/**
-	 * ɾ��������
+	 * 删锟斤拷锟斤拷锟斤拷锟斤拷
 	 * @return
 	 */
 	public int deleteCount(){

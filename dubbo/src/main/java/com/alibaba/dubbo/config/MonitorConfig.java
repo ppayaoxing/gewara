@@ -41,10 +41,10 @@ public class MonitorConfig extends AbstractConfig {
 
     private String version;
 
-    // ×Ô¶¨Òå²ÎÊı
+    // è‡ªå®šä¹‰å‚æ•°
     private Map<String, String> parameters;
 
-    // ÊÇ·ñÎªÈ±Ê¡
+    // æ˜¯å¦ä¸ºç¼ºçœ
     private Boolean isDefault;
     
     public MonitorConfig() {

@@ -9,19 +9,19 @@ public class TakeInfoVo extends BaseVo{
 
 	private static final long serialVersionUID = -1177004058479369237L;
 	private Long id;				
-	private String tradeno;			//¶©µ¥ºÅ
+	private String tradeno;			//è®¢å•å·
 	private String serialno;		
 	private Timestamp playtime;
-	private String ordertype;		//¶©µ¥ÀàĞÍ
-	private Long placeid;			//³¡¹İid
-	private Timestamp synchtime;	//Í¬²½Ê±¼ä
-	private Timestamp callbacktime;	//ÏÂÔØ»Ø´«Ê±¼ä
-	private Timestamp taketime;		//È¡Æ±Ê±¼ä
-	private Timestamp updatetime;	//¸üĞÂÊ±¼ä
-	private String synchtype;		//Í¬²½ÀàĞÍ
-	private String callback;		//ÏÂÔØ»Ø´«
-	private String synch;			//ÊÇ·ñÍ¬²½
-	private Integer synchNum;		//Í¬²½´ÎÊı
+	private String ordertype;		//è®¢å•ç±»å‹
+	private Long placeid;			//åœºé¦†id
+	private Timestamp synchtime;	//åŒæ­¥æ—¶é—´
+	private Timestamp callbacktime;	//ä¸‹è½½å›ä¼ æ—¶é—´
+	private Timestamp taketime;		//å–ç¥¨æ—¶é—´
+	private Timestamp updatetime;	//æ›´æ–°æ—¶é—´
+	private String synchtype;		//åŒæ­¥ç±»å‹
+	private String callback;		//ä¸‹è½½å›ä¼ 
+	private String synch;			//æ˜¯å¦åŒæ­¥
+	private Integer synchNum;		//åŒæ­¥æ¬¡æ•°
 	@Override
 	public Serializable realId() {
 		return id;

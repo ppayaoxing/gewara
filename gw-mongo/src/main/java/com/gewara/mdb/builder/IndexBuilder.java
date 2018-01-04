@@ -37,7 +37,7 @@ public class IndexBuilder {
 	}
 	
 	/**
-	 * 是否后台运行
+	 * 鏄惁鍚庡彴杩愯
 	 * @param br
 	 * @return
 	 */

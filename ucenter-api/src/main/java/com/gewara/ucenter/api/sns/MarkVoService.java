@@ -14,7 +14,7 @@ import com.gewara.ucenter.vo.sns.MovieGeneralmarkDetailVo;
 public interface MarkVoService {
 
 	/**
-	 * Ä³ÀàÆÀ·Ö¾ÛºÏÊı¾İ:TODO£º×¢ÊÍMapÖĞµÄÄÚÈİ
+	 * æŸç±»è¯„åˆ†èšåˆæ•°æ®:TODOï¼šæ³¨é‡ŠMapä¸­çš„å†…å®¹
 	 * @param tag
 	 * @return
 	 */
@@ -22,7 +22,7 @@ public interface MarkVoService {
 	
 	ResultCode<MarkCountDataVo> getMarkCountByTagRelatedid(String tag, Long relatedid);
 	/**
-	 * ÓÃ»§ÆÀ·Ö
+	 * ç”¨æˆ·è¯„åˆ†
 	 * @param tag
 	 * @param relatedid
 	 * @param markname
@@ -32,7 +32,7 @@ public interface MarkVoService {
 	 */
 	ResultCode<MemberMarkVo> saveOrUpdateMemberMark(String tag, Long relatedid, String markname, Integer markvalue, Long memberid, String cityCode);
 	/**
-	 * ÓÃ»§×îºóÒ»´ÎÆÀ·Ö¼ÇÂ¼
+	 * ç”¨æˆ·æœ€åä¸€æ¬¡è¯„åˆ†è®°å½•
 	 * @param tag
 	 * @param relatedid
 	 * @param markname
@@ -41,7 +41,7 @@ public interface MarkVoService {
 	 */
 	ResultCode<MemberMarkVo> getLastMemberMark(String tag, Long relatedid, String markname, Long memberId);
 	/**
-	 * »ñµÃÆÀ·ÖÈËÊı
+	 * è·å¾—è¯„åˆ†äººæ•°
 	 * @param tag
 	 * @param relatedid
 	 * @param markname
@@ -52,7 +52,7 @@ public interface MarkVoService {
 	ResultCode<Integer> getMarkListByMarkValue(String tag, Long relatedid, String markname, int markValue);
 	ResultCode<Integer> getMarkRanking(String tag, Long relatedid, String markname, Long memberId);
 	/**
-	 * ¼ÆËãÆÀ·Ö
+	 * è®¡ç®—è¯„åˆ†
 	 * @param movieId
 	 * @param markname
 	 * @param markCountVo
@@ -61,35 +61,35 @@ public interface MarkVoService {
 	ResultCode<Integer> computeMarkValue(Long movieId, String markname, MarkCountVo markCountVo);
 	ResultCode<List<MarkChartsDataVo>> getMarkChartsData(Long movieId, Date statisticDate);
 	/**
-	 * ²éÑ¯µçÓ°ÆÀ·ÖÏêÏ¸ 
+	 * æŸ¥è¯¢ç”µå½±è¯„åˆ†è¯¦ç»† 
 	 * @param movieId
 	 * @return
 	 */
 	ResultCode<List<MovieGeneralmarkDetailVo>> getMovieGeneralmarkDetail(Long movieId);
 	/**
-	 * ²éÑ¯µçÓ°ÆÀ·ÖÏêÏ¸ 
+	 * æŸ¥è¯¢ç”µå½±è¯„åˆ†è¯¦ç»† 
 	 * @param movieId
 	 * @return
 	 */
 	ResultCode<List<Map>> getMovieGeneralmarkMap(Long movieId);
 	
 	/**
-	 * ÆÀ·ÖÍ³¼Æ
+	 * è¯„åˆ†ç»Ÿè®¡
 	 * @param tag
 	 * @param relatedid
 	 * @return
 	 */
 	ResultCode<Map> getGradeCount(String tag, Long relatedid);
 	/**
-	 * ÆÀ·Ö·Ö¼¶Í³¼Æ
-	 * ÀıÈç£º»­Ãæ£º5.6  ¡¢  ¾çÇé£º7.2¡¢ÒôĞ§¡¢3.1¡¢ÑİÔ±£º6.6
+	 * è¯„åˆ†åˆ†çº§ç»Ÿè®¡
+	 * ä¾‹å¦‚ï¼šç”»é¢ï¼š5.6  ã€  å‰§æƒ…ï¼š7.2ã€éŸ³æ•ˆã€3.1ã€æ¼”å‘˜ï¼š6.6
 	 * @param tag
 	 * @param relatedid
 	 * @return
 	 */
 	ResultCode<Map> getNewGradeDetail(String tag, Long relatedid);
 	/**
-	 * »ñÈ¡ĞÂ·ÅÓ³µÄµçÓ°ÊÇ·ñÓĞ¹ºÆ±ÓÃ»§ÆÀ·Ö
+	 * è·å–æ–°æ”¾æ˜ çš„ç”µå½±æ˜¯å¦æœ‰è´­ç¥¨ç”¨æˆ·è¯„åˆ†
 	 * @param idList
 	 * @return
 	 */

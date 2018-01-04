@@ -9,19 +9,19 @@ public class MerchantPushNotifyInfoVo implements Serializable {
 	 */
 	private static final long serialVersionUID = -2030166662871082665L;
 
-	private String msgKey; // ÏûÏ¢Î¨Ò»±êÊ¶
-	private String relatedId; // ¹ØÁªid£¨³¡¹İIDµÈ£©
-	private String links; // Á´½ÓµØÖ·
-	private String linksRelatedId; // Á´½ÓµØÖ·Ïà¹Øid
-	private String msgType; // ²ßÂÔ±ê¼Ç
-	private String title; // ±êÌâ
-	private String content; // ÍÆËÍÀàÈİ£¨Json±ê¼Ç£©
-	private String sendTime;// ·¢ËÍÊ±¼ä
-	private Integer validTime;// ÓĞĞ§ÆÚ£¬µ¥Î»Ê±¼äÃë
-	private String appName; // Ó¦ÓÃÃû³Æ(cinema£¬sports)
+	private String msgKey; // æ¶ˆæ¯å”¯ä¸€æ ‡è¯†
+	private String relatedId; // å…³è”idï¼ˆåœºé¦†IDç­‰ï¼‰
+	private String links; // é“¾æ¥åœ°å€
+	private String linksRelatedId; // é“¾æ¥åœ°å€ç›¸å…³id
+	private String msgType; // ç­–ç•¥æ ‡è®°
+	private String title; // æ ‡é¢˜
+	private String content; // æ¨é€ç±»å®¹ï¼ˆJsonæ ‡è®°ï¼‰
+	private String sendTime;// å‘é€æ—¶é—´
+	private Integer validTime;// æœ‰æ•ˆæœŸï¼Œå•ä½æ—¶é—´ç§’
+	private String appName; // åº”ç”¨åç§°(cinemaï¼Œsports)
 	private String version; // 2.0
 	private String appVersion;
-	private String otherInfo;	// (Json¸ñÊ½)
+	private String otherInfo;	// (Jsonæ ¼å¼)
 
 	public MerchantPushNotifyInfoVo() {
 	}

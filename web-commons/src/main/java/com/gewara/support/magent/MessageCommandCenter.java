@@ -28,7 +28,7 @@ public class MessageCommandCenter {
 	private String helper = null;
 
 	/**
-	 * TODO Ôİ¶¨
+	 * TODO æš‚å®š
 	 * 
 	 * @return
 	 */
@@ -37,12 +37,12 @@ public class MessageCommandCenter {
 		try {
 			messageCommandCenter = MessageCommandCenter.class.newInstance();
 		} catch (Exception e) {
-			dbLogger.error("³õÊ¼»¯³ö´í", e);
+			dbLogger.error("åˆå§‹åŒ–å‡ºé”™", e);
 		}
 		return messageCommandCenter;
 	}
 
-	// TODO Ôİ¶¨
+	// TODO æš‚å®š
 	public void registerGroup(MessageCommandGroup messageCommandGroup) {
 		List<MessageCommand> cmdList = messageCommandGroup.getCommandList();
 
@@ -77,11 +77,11 @@ public class MessageCommandCenter {
 	}
 
 	private void buildHelp() {
-		StringBuilder sb = new StringBuilder("\nplease type ¡°help¡± or ? for help!\n");
+		StringBuilder sb = new StringBuilder("\nplease type â€œhelpâ€ or ? for help!\n");
 		int i = 1;
 		for (String key : commandMap.keySet()) {
 			CommandProcessor cmd = commandMap.get(key);
-			sb.append(i + "¡¢").append(key).append(": ").append(cmd.getHelp()).append("\n");
+			sb.append(i + "ã€").append(key).append(": ").append(cmd.getHelp()).append("\n");
 			i++;
 		}
 		helper = sb.toString();

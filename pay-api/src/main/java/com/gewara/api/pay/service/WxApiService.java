@@ -5,26 +5,26 @@ import com.gewara.api.pay.response.wx.CheckfirstbindByTradeNoResponse;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * Î¢ĞÅ·şÎñ½Ó¿Ú
+ * å¾®ä¿¡æœåŠ¡æ¥å£
  * @author leo
  *
  */
 public interface WxApiService {
 
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ¼ì²éÊÇ·ñÊ×´Î°î¶¨£¬µ÷ÓÃ¸Ã½Ó¿Ú½«Á¢¼´·µ»Ø£¬½á¹ûÓÃjmsÒì²½Í¨Öª
+	 * æ ¹æ®è®¢å•å·æ£€æŸ¥æ˜¯å¦é¦–æ¬¡é‚¦å®šï¼Œè°ƒç”¨è¯¥æ¥å£å°†ç«‹å³è¿”å›ï¼Œç»“æœç”¨jmså¼‚æ­¥é€šçŸ¥
 	 * 
-	 * jmsÏûÏ¢¶ÓÁĞÃû£ºwxCheckfirstbindQueue
-	 * ·µ»Ø²ÎÊı£º
-	 * 	tradeNo : ¶©µ¥ºÅ
-	 * 	retcode £ºÖ´ĞĞ½á¹û£¬0£º³É¹¦£»·Ç0Ê±£¬¶ÔÓ¦´íÎóÂë
-	 * 	isFirstBind £ºÊÇ·ñ°î¶¨£¬0£ºÎªÊ×´Î°ó¶¨£¬1£º·ÇÊ×´Î°ó¶¨
-	 *  retmsg £ºretcode·Ç0Ê±µÄ´íÎóÌáÊ¾
+	 * jmsæ¶ˆæ¯é˜Ÿåˆ—åï¼šwxCheckfirstbindQueue
+	 * è¿”å›å‚æ•°ï¼š
+	 * 	tradeNo : è®¢å•å·
+	 * 	retcode ï¼šæ‰§è¡Œç»“æœï¼Œ0ï¼šæˆåŠŸï¼›é0æ—¶ï¼Œå¯¹åº”é”™è¯¯ç 
+	 * 	isFirstBind ï¼šæ˜¯å¦é‚¦å®šï¼Œ0ï¼šä¸ºé¦–æ¬¡ç»‘å®šï¼Œ1ï¼šéé¦–æ¬¡ç»‘å®š
+	 *  retmsg ï¼šretcodeé0æ—¶çš„é”™è¯¯æç¤º
 	 * 
 	 * @param request
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ4ÈÕÏÂÎç4:24:51
+	 * @addTime 2014å¹´6æœˆ4æ—¥ä¸‹åˆ4:24:51
 	 */
 	ResultCode<CheckfirstbindByTradeNoResponse> checkfirstbindByTradeNo(CheckfirstbindByTradeNoRequest request);
 	

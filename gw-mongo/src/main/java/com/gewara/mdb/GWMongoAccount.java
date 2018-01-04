@@ -12,9 +12,9 @@ public class GWMongoAccount {
 	}
 	
 	/**
-	 * ¸Ã¹¹Ôì·½Ê½Ö÷ÒªÊÇÎªÁË×Ö·û´®·½Ê½¹¹ÔìÊ¹ÓÃ¡£
+	 * è¯¥æ„é€ æ–¹å¼ä¸»è¦æ˜¯ä¸ºäº†å­—ç¬¦ä¸²æ–¹å¼æ„é€ ä½¿ç”¨ã€‚
 	 * 
-	 * @param accountInfo  ±ØĞë³¤¶ÈÎª3£¬²¢ÇÒÆäĞÅÏ¢ÒÀ´ÎÎª database,username,password.
+	 * @param accountInfo  å¿…é¡»é•¿åº¦ä¸º3ï¼Œå¹¶ä¸”å…¶ä¿¡æ¯ä¾æ¬¡ä¸º database,username,password.
 	 */
 	protected GWMongoAccount(String[] accountInfo){
 		assert(accountInfo==null||accountInfo.length!=3);
@@ -24,9 +24,9 @@ public class GWMongoAccount {
 	}
 	
 	/**
-	 * ¸Ã¹¹Ôì·½Ê½Ö÷ÒªÊÇÎªÁË×Ö·û´®·½Ê½¹¹ÔìÊ¹ÓÃ¡£
+	 * è¯¥æ„é€ æ–¹å¼ä¸»è¦æ˜¯ä¸ºäº†å­—ç¬¦ä¸²æ–¹å¼æ„é€ ä½¿ç”¨ã€‚
 	 * 
-	 * @param accountInfo  ±ØĞë³¤¶ÈÎª3£¬²¢ÇÒÆäĞÅÏ¢ÒÀ´ÎÎª database,username,password.
+	 * @param accountInfo  å¿…é¡»é•¿åº¦ä¸º3ï¼Œå¹¶ä¸”å…¶ä¿¡æ¯ä¾æ¬¡ä¸º database,username,password.
 	 */
 	protected GWMongoAccount(String accountInfo,String separator){
 		this(accountInfo.split(separator));

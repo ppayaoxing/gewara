@@ -7,13 +7,13 @@ import com.gewara.api.vo.BaseVo;
 
 public class GoodsOrderReportVo extends BaseVo {
 	private static final long serialVersionUID = -103046049017884416L;
-	private String tradeNo;    //¶©µ¥ºÅ
-	private String goodsname; //Ì×²ÍÃû³Æ
-	private Timestamp addtime;		//ÓÃ»§ÏÂµ¥Ê±¼ä
-	private Timestamp taketime;    //ÓÃ»§È¡Æ±Ê±¼ä
-	private int costprice;//µ¥¼Û
-	private int quantity; //Æ±Êı ¡¢·İÊı
-	private int totalcost;//½ğ¶î
+	private String tradeNo;    //è®¢å•å·
+	private String goodsname; //å¥—é¤åç§°
+	private Timestamp addtime;		//ç”¨æˆ·ä¸‹å•æ—¶é—´
+	private Timestamp taketime;    //ç”¨æˆ·å–ç¥¨æ—¶é—´
+	private int costprice;//å•ä»·
+	private int quantity; //ç¥¨æ•° ã€ä»½æ•°
+	private int totalcost;//é‡‘é¢
 	
 	public GoodsOrderReportVo(){}
 	

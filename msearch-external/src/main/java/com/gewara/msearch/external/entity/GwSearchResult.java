@@ -7,7 +7,7 @@ public class GwSearchResult implements Serializable {
 	private static final long serialVersionUID = 1915079466246282429L;
 	
 	private String name;
-	private String tag;//ÀàÐÍ±êÇ©
+	private String tag;//ç±»åž‹æ ‡ç­¾
 	private Long relatedid;
 	private String category;
 	private String skey;

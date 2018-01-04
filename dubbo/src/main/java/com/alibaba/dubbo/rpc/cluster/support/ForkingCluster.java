@@ -21,7 +21,7 @@ import com.alibaba.dubbo.rpc.cluster.Cluster;
 import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
- * ���е��ã�ֻҪһ���ɹ������أ�ͨ������ʵʱ��Ҫ��ϸߵĲ���������Ҫ�˷Ѹ��������Դ��
+ * 锟斤拷锟叫碉拷锟矫ｏ拷只要一锟斤拷锟缴癸拷锟斤拷锟斤拷锟截ｏ拷通锟斤拷锟斤拷锟斤拷实时锟斤拷要锟斤拷细叩牟锟斤拷锟斤拷锟斤拷锟斤拷锟揭拷朔迅锟斤拷锟斤拷锟斤拷锟斤拷源锟斤拷
  * 
  * <a href="http://en.wikipedia.org/wiki/Fork_(topology)">Fork</a>
  * 

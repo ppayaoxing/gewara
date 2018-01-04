@@ -21,18 +21,18 @@ public class GewaraProviderRequestFilter extends GenericFilter{
 	public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
 		RpcContext context = RpcContext.getContext();
 		String remoteIp = context.getRemoteHost();
-		//1)验证权限
+		//1)楠岃瘉鏉冮檺
 		if(!GewaIpConfig.isGewaInnerIp(remoteIp) && !GewaIpConfig.isLocalIp(remoteIp)) {
-			return new ResponseResult(ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "没有权限"));
+			return new ResponseResult(ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "娌℃湁鏉冮檺"));
 		}
 		Map<String,String> params = context.getAttachments();
 		
 		String systemid = params.get(AutherFilterConstant.SYSTEMID);
 		if(StringUtils.isBlank(systemid)) {
-			//FIXME:后期放开
-			//return new ResponseResult(ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "没有权限"));
+			//FIXME:鍚庢湡鏀惧紑
+			//return new ResponseResult(ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "娌℃湁鏉冮檺"));
 		}
-		//2)计时
+		//2)璁℃椂
 		long t = System.currentTimeMillis();
 		String method = invoker.getUrl().getPath() + "." + invocation.getMethodName();
 		LogCounter counter = ResourceStatsUtil.getApiMethodStats().beforeProcessAndReg(method, t);

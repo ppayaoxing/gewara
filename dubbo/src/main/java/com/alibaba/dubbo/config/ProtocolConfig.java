@@ -40,88 +40,88 @@ public class ProtocolConfig extends AbstractConfig {
 
     private static final long   serialVersionUID = 6913423882496634749L;
 
-    // ·şÎñĞ­Òé
+    // æœåŠ¡åè®®
     private String              name;
 
-    // ·şÎñIPµØÖ·(¶àÍø¿¨Ê±Ê¹ÓÃ)
+    // æœåŠ¡IPåœ°å€(å¤šç½‘å¡æ—¶ä½¿ç”¨)
     private String              host;
 
-    // ·şÎñ¶Ë¿Ú
+    // æœåŠ¡ç«¯å£
     private Integer             port;
 
-    // ÉÏÏÂÎÄÂ·¾¶
+    // ä¸Šä¸‹æ–‡è·¯å¾„
     private String              contextpath;
     
-    // Ïß³Ì³ØÀàĞÍ
+    // çº¿ç¨‹æ± ç±»å‹
     private String              threadpool;
     
-    // Ïß³Ì³Ø´óĞ¡(¹Ì¶¨´óĞ¡)
+    // çº¿ç¨‹æ± å¤§å°(å›ºå®šå¤§å°)
     private Integer             threads;
     
-    // IOÏß³Ì³Ø´óĞ¡(¹Ì¶¨´óĞ¡)
+    // IOçº¿ç¨‹æ± å¤§å°(å›ºå®šå¤§å°)
     private Integer             iothreads;
     
-    // Ïß³Ì³Ø¶ÓÁĞ´óĞ¡
+    // çº¿ç¨‹æ± é˜Ÿåˆ—å¤§å°
     private Integer             queues;
     
-    // ×î´ó½ÓÊÕÁ¬½ÓÊı
+    // æœ€å¤§æ¥æ”¶è¿æ¥æ•°
     private Integer             accepts;
     
-    // Ğ­Òé±àÂë
+    // åè®®ç¼–ç 
     private String              codec;
     
-    // ĞòÁĞ»¯·½Ê½
+    // åºåˆ—åŒ–æ–¹å¼
     private String              serialization;
     
-    // ×Ö·û¼¯
+    // å­—ç¬¦é›†
     private String              charset;
     
-    // ×î´óÇëÇóÊı¾İ³¤¶È
+    // æœ€å¤§è¯·æ±‚æ•°æ®é•¿åº¦
     private Integer             payload;
     
-    // »º´æÇø´óĞ¡
+    // ç¼“å­˜åŒºå¤§å°
     private Integer             buffer;
     
-    // ĞÄÌø¼ä¸ô
+    // å¿ƒè·³é—´éš”
     private Integer             heartbeat;
 
-    // ·ÃÎÊÈÕÖ¾
+    // è®¿é—®æ—¥å¿—
     private String              accesslog;
     
-    // ÍøÂç´«Êä·½Ê½
+    // ç½‘ç»œä¼ è¾“æ–¹å¼
     private String              transporter;
     
-    // ĞÅÏ¢½»»»·½Ê½
+    // ä¿¡æ¯äº¤æ¢æ–¹å¼
     private String              exchanger;
     
-    // ĞÅÏ¢Ïß³ÌÄ£ĞÍÅÉ·¢·½Ê½
+    // ä¿¡æ¯çº¿ç¨‹æ¨¡å‹æ´¾å‘æ–¹å¼
     private String              dispatcher;
 
-    // ¶Ô³ÆÍøÂç×éÍø·½Ê½
+    // å¯¹ç§°ç½‘ç»œç»„ç½‘æ–¹å¼
     private String              networker;
     
-    // ·şÎñÆ÷¶ËÊµÏÖ
+    // æœåŠ¡å™¨ç«¯å®ç°
     private String              server;
     
-    // ¿Í»§¶ËÊµÏÖ
+    // å®¢æˆ·ç«¯å®ç°
     private String              client;
     
-    // Ö§³ÖµÄtelnetÃüÁî£¬¶à¸öÃüÁîÓÃ¶ººÅ·Ö¸ô
+    // æ”¯æŒçš„telnetå‘½ä»¤ï¼Œå¤šä¸ªå‘½ä»¤ç”¨é€—å·åˆ†éš”
     private String              telnet;
     
-    // ÃüÁîĞĞÌáÊ¾·û
+    // å‘½ä»¤è¡Œæç¤ºç¬¦
     private String              prompt;
 
-    // status¼ì²é
+    // statusæ£€æŸ¥
     private String              status;
     
-    // ÊÇ·ñ×¢²á
+    // æ˜¯å¦æ³¨å†Œ
     private Boolean             register;
     
-    // ²ÎÊı
+    // å‚æ•°
     private Map<String, String> parameters;
 
-    // ÊÇ·ñÎªÈ±Ê¡
+    // æ˜¯å¦ä¸ºç¼ºçœ
     private Boolean isDefault;
     
     public ProtocolConfig() {
@@ -368,7 +368,7 @@ public class ProtocolConfig extends AbstractConfig {
     }
 
     /**
-     * µ¥´ÊÆ´Ğ´´íÎó£¬ÇëÊ¹ÓÃ{@link #getDispatcher()}
+     * å•è¯æ‹¼å†™é”™è¯¯ï¼Œè¯·ä½¿ç”¨{@link #getDispatcher()}
      * @deprecated {@link #getDispatcher()}
      */
     @Deprecated
@@ -378,7 +378,7 @@ public class ProtocolConfig extends AbstractConfig {
     }
 
     /**
-     * µ¥´ÊÆ´Ğ´´íÎó£¬ÇëÊ¹ÓÃ{@link #setDispatcher(String)
+     * å•è¯æ‹¼å†™é”™è¯¯ï¼Œè¯·ä½¿ç”¨{@link #setDispatcher(String)
      * @deprecated {@link #setDispatcher(String)}
      */
     @Deprecated

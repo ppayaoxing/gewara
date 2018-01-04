@@ -21,7 +21,7 @@ import java.io.IOException;
  */
 
 public class GewaHttpMessageConverter extends MappingJackson2HttpMessageConverter {
-    // ×öjsonpµÄÖ§³ÖµÄ±êÊ¶£¬ÔÚÇëÇó²ÎÊıÖĞ¼Ó¸Ã²ÎÊı
+    // åšjsonpçš„æ”¯æŒçš„æ ‡è¯†ï¼Œåœ¨è¯·æ±‚å‚æ•°ä¸­åŠ è¯¥å‚æ•°
     private String callbackName;
     @Override
     protected boolean supports(Class clazz) {
@@ -44,12 +44,12 @@ public class GewaHttpMessageConverter extends MappingJackson2HttpMessageConverte
     @Override
     protected void writeInternal(Object object, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
 
-        // ´ÓthreadLocalÖĞ»ñÈ¡µ±Ç°µÄRequest¶ÔÏó
+        // ä»threadLocalä¸­è·å–å½“å‰çš„Requestå¯¹è±¡
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
                 .currentRequestAttributes()).getRequest();
         String callbackParam = request.getParameter(callbackName);
         if (StringUtils.isEmpty(callbackParam)) {
-            // Ã»ÓĞÕÒµ½callback²ÎÊı£¬Ö±½Ó·µ»ØjsonÊı¾İ
+            // æ²¡æœ‰æ‰¾åˆ°callbackå‚æ•°ï¼Œç›´æ¥è¿”å›jsonæ•°æ®
             super.writeInternal(object, outputMessage);
         } else {
             JsonEncoding encoding = getJsonEncoding(outputMessage.getHeaders().getContentType());

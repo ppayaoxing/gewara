@@ -27,7 +27,7 @@ public class GewaLoginUrlAuthenticationEntryPoint  extends LoginUrlAuthenticatio
 	public void setSsoClientService(SSOClientService ssoClientService) {
 		this.ssoClientService = ssoClientService;
 	}
-	//url ��תӳ��
+	//url 锟斤拷转映锟斤拷
 	private Map<String, String> loginFormMap = new LinkedHashMap<String, String>();
 	public void setLoginFormMap(Map<String, String> loginFormMap) {
 		this.loginFormMap = loginFormMap;

@@ -5,14 +5,14 @@ import java.io.Serializable;
 import com.gewara.api.activity.ApiObject;
 
 public class ActivityJoinFormVo extends ApiObject{
-	private int realname;	//真实姓名 0,1
-	private int sex;		//性别0,1
-	private int joinnum;	//参加人数0,1
-	private int joindate;	//参加日期0,1
-	private int contactway;	//联系方式0,1
-	private int address;	//地址0,1
-	private int desp;		//备注0,1
-	private int birthday;	//生日0,1
+	private int realname;	//鐪熷疄濮撳悕 0,1
+	private int sex;		//鎬у埆0,1
+	private int joinnum;	//鍙傚姞浜烘暟0,1
+	private int joindate;	//鍙傚姞鏃ユ湡0,1
+	private int contactway;	//鑱旂郴鏂瑰紡0,1
+	private int address;	//鍦板潃0,1
+	private int desp;		//澶囨敞0,1
+	private int birthday;	//鐢熸棩0,1
 	
 	public int getRealname() {
 		return realname;

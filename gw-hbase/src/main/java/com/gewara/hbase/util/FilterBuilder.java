@@ -25,7 +25,7 @@ public class FilterBuilder implements Util4Script {
 
 	byte[] startRow;
 	byte[] stopRow;
-	//Ê±¼ä´Á·¶Î§
+	//æ—¶é—´æˆ³èŒƒå›´
 	Long minStamp;
 	Long maxStamp;
 
@@ -43,7 +43,7 @@ public class FilterBuilder implements Util4Script {
 	private boolean filterIfMissing = true;
 	private byte[] columnFamily = DEFAULT_COLUMN_FAMILY;
 	/**
-	 * Êı¾İµÄÊ±¼ä´Á£¬Á½¸öÊ±¼ä±ØĞëÍ¬Ê±ÉèÖÃ
+	 * æ•°æ®çš„æ—¶é—´æˆ³ï¼Œä¸¤ä¸ªæ—¶é—´å¿…é¡»åŒæ—¶è®¾ç½®
 	 * @param minTime
 	 * @param maxTime
 	 * @return
@@ -189,7 +189,7 @@ public class FilterBuilder implements Util4Script {
 	}
 	
 	/**
-	 * Êä³öÌõ¼ş
+	 * è¾“å‡ºæ¡ä»¶
 	 * @return
 	 */
 	public FilterList buildFilters(){
@@ -206,7 +206,7 @@ public class FilterBuilder implements Util4Script {
 	}
 
 	/**
-	 * Ã»ÓĞÈÎºÎÌõ¼ş
+	 * æ²¡æœ‰ä»»ä½•æ¡ä»¶
 	 * @return
 	 */
 	public boolean isEmptyCondition() {

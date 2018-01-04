@@ -4,8 +4,8 @@ import java.util.Map;
 
 
 /**
- * ÏûÏ¢·¢ËÍ×´Ì¬
- * ±¾ÆÚ²»ÊµÏÖ¡£Õ¼¿Ó
+ * æ¶ˆæ¯å‘é€çŠ¶æ€
+ * æœ¬æœŸä¸å®ç°ã€‚å å‘
  * @author user
  *
  */
@@ -13,16 +13,16 @@ public class MessageSendState implements Serializable{
 
 	private static final long serialVersionUID = -2838290126478956154L;
 
-	/**ÏûÏ¢ID*/
+	/**æ¶ˆæ¯ID*/
 	private Long messageID=null;
 	
-	/**ÓÃÀ´±íÊ¾smsÃ¿¸öÓÃ»§µÄ·¢ËÍ×´Ì¬*/
+	/**ç”¨æ¥è¡¨ç¤ºsmsæ¯ä¸ªç”¨æˆ·çš„å‘é€çŠ¶æ€*/
 	private Map<String,Boolean> sms=null;
 	
-	/**ÓÃÀ´±íÊ¾pushÃ¿¸öÓÃ»§µÄ·¢ËÍ×´Ì¬*/
+	/**ç”¨æ¥è¡¨ç¤ºpushæ¯ä¸ªç”¨æˆ·çš„å‘é€çŠ¶æ€*/
 	private Map<String,Boolean> push=null;
 	
-	/**ÓÃÀ´±íÊ¾Õ¾ÄÚĞÅµÄÃ¿¸öÓÃ»§µÄ·¢ËÍ×´Ì¬*/
+	/**ç”¨æ¥è¡¨ç¤ºç«™å†…ä¿¡çš„æ¯ä¸ªç”¨æˆ·çš„å‘é€çŠ¶æ€*/
 	private Map<String,Boolean> website=null;
 
 	public Long getMessageID() {

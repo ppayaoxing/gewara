@@ -7,11 +7,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ÓÃÀ´ÊÕ¼¯RequestµÄ²ÎÊıÃû³Æ£¬±ãÓÚºóÆÚ´¦Àí:¹æ·¶»¯²ÎÊıÃû³Æ
+ * ç”¨æ¥æ”¶é›†Requestçš„å‚æ•°åç§°ï¼Œä¾¿äºåæœŸå¤„ç†:è§„èŒƒåŒ–å‚æ•°åç§°
  */
 public class ParamCollectUtils {
-	private static boolean collectEnabled = false;	//¿ª·Å²ÎÊıÃû³ÆÊÕ¼¯
-	private static long enableTime = 0;				//¿ª·Åµ½Ê²Ã´Ê±¼äµã
+	private static boolean collectEnabled = false;	//å¼€æ”¾å‚æ•°åç§°æ”¶é›†
+	private static long enableTime = 0;				//å¼€æ”¾åˆ°ä»€ä¹ˆæ—¶é—´ç‚¹
 	private static Map<String/*uri*/, Map<String, AtomicInteger/*count*/>/*param names*/> namesMap = new ConcurrentHashMap<>();
 	public static void enableCollect(int seconds){
 		if(seconds<=0){
@@ -41,7 +41,7 @@ public class ParamCollectUtils {
 		}
 	}
 	/**
-	 * »ñÈ¡Í³¼ÆĞÅÏ¢
+	 * è·å–ç»Ÿè®¡ä¿¡æ¯
 	 * @return
 	 */
 	public static List<String> getStats(){

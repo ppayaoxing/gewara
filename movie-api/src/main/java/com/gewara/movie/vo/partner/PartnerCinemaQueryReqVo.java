@@ -3,7 +3,7 @@ package com.gewara.movie.vo.partner;
 import java.util.Date;
 
 /**
- * Ó°Ôº²éÑ¯
+ * å½±é™¢æŸ¥è¯¢
  * 
  */
 public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
@@ -13,21 +13,21 @@ public class PartnerCinemaQueryReqVo extends PartnerPageReqVo {
 	private static final long serialVersionUID = 6903767757594858880L;
 	//
 	private String quyuType;
-	// Ó°Ôº·şÎñ
+	// å½±é™¢æœåŠ¡
 	private String serviceType;
-	// µçÓ°ID
+	// ç”µå½±ID
 	private Long movieId;
-	// ÌØ¼Û»î¶¯ID
+	// ç‰¹ä»·æ´»åŠ¨ID
 	private Long discountId;
-	// ÇøÏØcode
+	// åŒºå¿code
 	private String countycode;
-	// ÅÅĞò×Ö¶Î
+	// æ’åºå­—æ®µ
 	private String orderField;
-	// µØÌúID
+	// åœ°é“ID
 	private Long subwayId;
-	// ÉÌÈ¦ID
+	// å•†åœˆID
 	private String indexareacode;
-	// ¿ª·ÅÈÕÆÚ
+	// å¼€æ”¾æ—¥æœŸ
 	private Date playDate;
 	// pointx
 	private Double pointx;

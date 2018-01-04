@@ -31,7 +31,7 @@ public enum TimerHelper {
 	}
 	
 	/**
-	 * 每次执行完成后，间隔多长时间执行下次。如果上次一直没执行完，下次无法执行
+	 * 姣忔鎵ц瀹屾垚鍚庯紝闂撮殧澶氶暱鏃堕棿鎵ц涓嬫銆傚鏋滀笂娆′竴鐩存病鎵ц瀹岋紝涓嬫鏃犳硶鎵ц
 	 * @param task
 	 * @param delay
 	 * @param period
@@ -41,7 +41,7 @@ public enum TimerHelper {
 	}
 	
 	/**
-	 * 每次执行完成后，间隔多长时间执行下次。如果上次一直没执行完，下次无法执行
+	 * 姣忔鎵ц瀹屾垚鍚庯紝闂撮殧澶氶暱鏃堕棿鎵ц涓嬫銆傚鏋滀笂娆′竴鐩存病鎵ц瀹岋紝涓嬫鏃犳硶鎵ц
 	 * @param task
 	 * @param firstTime
 	 * @param period
@@ -51,7 +51,7 @@ public enum TimerHelper {
 	}
 	
 	/**
-	 * 间隔多长时间执行一次（不管上次是否执行完）
+	 * 闂撮殧澶氶暱鏃堕棿鎵ц涓�娆★紙涓嶇涓婃鏄惁鎵ц瀹岋級
 	 * @param task
 	 * @param delay
 	 * @param period
@@ -61,7 +61,7 @@ public enum TimerHelper {
 	}
 	
 	/**
-	 * 间隔多长时间执行一次（不管上次是否执行完）
+	 * 闂撮殧澶氶暱鏃堕棿鎵ц涓�娆★紙涓嶇涓婃鏄惁鎵ц瀹岋級
 	 * @param task
 	 * @param firstTime
 	 * @param period

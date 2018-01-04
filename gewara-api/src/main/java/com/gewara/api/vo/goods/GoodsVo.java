@@ -16,87 +16,87 @@ public class GoodsVo extends BaseVo {
 	private static final long serialVersionUID = 4914995483381697551L;
 
 	private Long id; 						// ID
-	private Long describeid; 			// ��ƷID
-	private String itemtype; 			// ��Ŀ����(movie,drama)
-	private Long itemid; 				// ��ĿID
-	private String goodstype; 			// ��Ʒ����
-	private String tag; 					// �������ͣ�cinema,theatre)
-	private Long relatedid; 			// ����ID
-	private String goodsname; 			// ��Ʒ����
-	private String highlight;			//�Ƽ�˵��
+	private Long describeid; 			// 锟斤拷品ID
+	private String itemtype; 			// 锟斤拷目锟斤拷锟斤拷(movie,drama)
+	private Long itemid; 				// 锟斤拷目ID
+	private String goodstype; 			// 锟斤拷品锟斤拷锟斤拷
+	private String tag; 					// 锟斤拷锟斤拷锟斤拷锟酵ｏ拷cinema,theatre)
+	private Long relatedid; 			// 锟斤拷锟斤拷ID
+	private String goodsname; 			// 锟斤拷品锟斤拷锟斤拷
+	private String highlight;			//锟狡硷拷说锟斤拷
 
-	private Integer oriprice; 			// ԭ��
-	private Integer unitprice; 		// ����
-	private Integer costprice; 		// �ɱ���
+	private Integer oriprice; 			// 原锟斤拷
+	private Integer unitprice; 		// 锟斤拷锟斤拷
+	private Integer costprice; 		// 锟缴憋拷锟斤拷
 
-	private Integer maxprice; 			// ���۸�
-	private Integer minprice; 			// ��С�۸�
+	private Integer maxprice; 			// 锟斤拷锟桔革拷
+	private Integer minprice; 			// 锟斤拷小锟桔革拷
 
-	private Integer limitnum; 			// ֧���޹�����
-	private Integer allowaddnum; 		// �µ��������ƣ���ֹ��ͬ���µ��������࣬�����¿�治��
+	private Integer limitnum; 			// 支锟斤拷锟睫癸拷锟斤拷锟斤拷
+	private Integer allowaddnum; 		// 锟铰碉拷锟斤拷锟斤拷锟斤拷锟狡ｏ拷锟斤拷止锟斤拷同锟斤拷锟铰碉拷锟斤拷锟斤拷锟斤拷锟洁，锟斤拷锟斤拷锟铰匡拷娌伙拷锟�
 
-	private Integer quantity; 			// ԭʼ�Ŀ�����������涩�������Ӷ�����
-	private Integer maxbuy; 			// ÿ����๺�������
-	private Integer sales; 				// ��������
+	private Integer quantity; 			// 原始锟侥匡拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷娑╋拷锟斤拷锟斤拷锟斤拷佣锟斤拷锟斤拷锟�
+	private Integer maxbuy; 			// 每锟斤拷锟斤拷喙猴拷锟斤拷锟斤拷锟斤拷
+	private Integer sales; 				// 锟斤拷锟斤拷锟斤拷锟斤拷
 
-	private Integer minpoint; 			// ʹ�û�������
-	private Integer maxpoint; 			// ʹ�û�������
+	private Integer minpoint; 			// 使锟矫伙拷锟斤拷锟斤拷锟斤拷
+	private Integer maxpoint; 			// 使锟矫伙拷锟斤拷锟斤拷锟斤拷
 
-	private Integer goodssort; 		// ��Ʒ����
-	private String deliver; 			// �Ƿ���Ҫ��ַ//N,Y
-	private String spflag;				// �ؼۻ��ʶ
+	private Integer goodssort; 		// 锟斤拷品锟斤拷锟斤拷
+	private String deliver; 			// 锟角凤拷锟斤拷要锟斤拷址//N,Y
+	private String spflag;				// 锟截价活动锟斤拷识
 
-	private String partners; 			// ����Ʒ�����ں����̣������ǵ�android��ihphone��wap
+	private String partners; 			// 锟斤拷锟斤拷品锟斤拷锟斤拷锟节猴拷锟斤拷锟教ｏ拷锟斤拷锟斤拷锟角碉拷android锟斤拷ihphone锟斤拷wap
 
-	private Long clerkid; 				// ������
-	private String manager; 			// ���������
+	private Long clerkid; 				// 锟斤拷锟斤拷锟斤拷
+	private String manager; 			// 锟斤拷锟斤拷锟斤拷锟斤拷锟�
 
-	private String shortname; 			// ��Ʒ���[��Ʊʹ��]
-	private String printcontent; 		// Ʊֽ��ӡ����
-	private String ordermsg; 			// ��������
-	private String notifymsg; 			// 3Сʱ���Ѷ�Ϣ
+	private String shortname; 			// 锟斤拷品锟斤拷锟絒锟斤拷票使锟斤拷]
+	private String printcontent; 		// 票纸锟斤拷印锟斤拷锟斤拷
+	private String ordermsg; 			// 锟斤拷锟斤拷锟斤拷锟斤拷
+	private String notifymsg; 			// 3小时锟斤拷锟窖讹拷息
 
-	private String status; 				// ״̬
-	private String otherinfo; 			// �������� json��ʽ�� ���֧��������Ϣ��
-	private String citycode; 			// ���д���
-	private String summary; 			// ����ժҪ
-	private String description; 		// ��Ʒ����
-	private String logo; 				// ͼƬ
-	private String biglogo; 			// ��ͼ
-	private String banklogo; 			// ����logo
+	private String status; 				// 状态
+	private String otherinfo; 			// 锟斤拷锟斤拷锟斤拷锟斤拷 json锟斤拷式锟斤拷 锟斤拷锟街э拷锟斤拷锟斤拷锟斤拷锟较拷锟�
+	private String citycode; 			// 锟斤拷锟叫达拷锟斤拷
+	private String summary; 			// 锟斤拷锟斤拷摘要
+	private String description; 		// 锟斤拷品锟斤拷锟斤拷
+	private String logo; 				// 图片
+	private String biglogo; 			// 锟斤拷图
+	private String banklogo; 			// 锟斤拷锟斤拷logo
 
-	private Timestamp releasetime;	// չʾʱ��
-	private Timestamp fromtime;		// ����ʱ��
-	private Timestamp totime;			// ����ʱ��
-	private Timestamp addtime; 		// ����ʱ��
-	private Timestamp fromvalidtime; // ͨƱ�볡ʱ��
-	private Timestamp tovalidtime;	// ͨƱ�볡����ʱ��
+	private Timestamp releasetime;	// 展示时锟斤拷
+	private Timestamp fromtime;		// 锟斤拷锟斤拷时锟斤拷
+	private Timestamp totime;			// 锟斤拷锟斤拷时锟斤拷
+	private Timestamp addtime; 		// 锟斤拷锟斤拷时锟斤拷
+	private Timestamp fromvalidtime; // 通票锟诫场时锟斤拷
+	private Timestamp tovalidtime;	// 通票锟诫场锟斤拷锟斤拷时锟斤拷
 
 	private String elecard;
-	private String expressid;			// ���ͷ�ʽid
-	private String period;				// �Ƿ���ʱ��
-	private Integer msgMinute;			// ������ǰ����ʱ��(����)
+	private String expressid;			// 锟斤拷锟酵凤拷式id
+	private String period;				// 锟角凤拷锟斤拷时锟斤拷
+	private Integer msgMinute;			// 锟斤拷锟斤拷锟斤拷前锟斤拷锟斤拷时锟斤拷(锟斤拷锟斤拷)
 
-	private String barcode; 			// ������
-	private String feetype; 			// ҵ��ģʽ
-	private String servicetype; 		// ������
-	private String seotitle; 			// SEO�ؼ���
-	private String seodescription; 	// SEO����
+	private String barcode; 			// 锟斤拷锟斤拷锟斤拷
+	private String feetype; 			// 业锟斤拷模式
+	private String servicetype; 		// 锟斤拷锟斤拷锟斤拷
+	private String seotitle; 			// SEO锟截硷拷锟斤拷
+	private String seodescription; 	// SEO锟斤拷锟斤拷
 	private Integer clickedtimes;
-	private String preType; 			// Ԥ������
-	private String category; 			// ����Ʒ����
-	private String smalltype; 			// ����:�磺���׻���Ԥ�ۣ�����Ʒ,�
-	private Long smallid; 				// Ԥ�ۣ�ȯ���Σ������ID��
+	private String preType; 			// 预锟斤拷锟斤拷锟斤拷
+	private String category; 			// 锟斤拷锟斤拷品锟斤拷锟斤拷
+	private String smalltype; 			// 锟斤拷锟斤拷:锟界：锟斤拷锟阶伙拷锟斤拷预锟桔ｏ拷锟斤拷锟斤拷品,锟筋动
+	private Long smallid; 				// 预锟桔ｏ拷券锟斤拷锟轿ｏ拷锟斤拷锟筋动锟斤拷ID锟斤拷
 
-	private Long settleid; 				// ����ID
-	private String measurement; 		// ���࣬�磬��Ʒ�ߴ�
-	private String colour; 				// ���࣬�磬��ɫ
-	private String takemethod;			// ȡƱ��ʽ
+	private Long settleid; 				// 锟斤拷锟斤拷ID
+	private String measurement; 		// 锟斤拷锟洁，锟界，锟斤拷品锟竭达拷
+	private String colour; 				// 锟斤拷锟洁，锟界，锟斤拷色
+	private String takemethod;			// 取票锟斤拷式
 	
-	private String rateinfo;			// ǿ�ư󶨵ı���
+	private String rateinfo;			// 强锟狡绑定的憋拷锟斤拷
 	
-	private Long spcounterid;			//ʹ��������������ID
-	private String sellOutMark;			//�Ƿ�ȱ���Ǽ�
+	private Long spcounterid;			//使锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷ID
+	private String sellOutMark;			//锟角凤拷缺锟斤拷锟角硷拷
 
 	public String getCategory() {
 		return category;
@@ -670,7 +670,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	/**
-	 * ��Ԥ����
+	 * 锟斤拷预锟斤拷锟斤拷
 	 */
 	public boolean hasBooking() {
 		Timestamp cur = new Timestamp(System.currentTimeMillis());

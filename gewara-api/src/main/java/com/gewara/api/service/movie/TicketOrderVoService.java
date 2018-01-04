@@ -9,21 +9,21 @@ import com.gewara.api.vo.order.GewaOrderVo;
 
 public interface TicketOrderVoService {
 	/**
-	 * ¸ù¾İ³¡´Î²éÑ¯¶©µ¥
+	 * æ ¹æ®åœºæ¬¡æŸ¥è¯¢è®¢å•
 	 * 
 	 * @param mpid
 	 * @param timeType
-	 *            //ÖµÎªaddtimeÊ±±íÊ¾ÏÂµ¥Ê±¼ä
+	 *            //å€¼ä¸ºaddtimeæ—¶è¡¨ç¤ºä¸‹å•æ—¶é—´
 	 * @return
 	 */
 	<T extends GewaOrderVo> ResultCode<List<T>> getTicketOrderListByMpid(Long mpid, Timestamp startTime,
 			Timestamp endTime, String timeType, String openType);
 
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ»ñÈ¡µçÓ°Æ±¶©µ¥¹ØÁª±í
+	 * æ ¹æ®è®¢å•å·è·å–ç”µå½±ç¥¨è®¢å•å…³è”è¡¨
 	 * 
 	 * @param tradeno
-	 * @deprecated ¼ûgworder½Ó¿Ú
+	 * @deprecated è§gworderæ¥å£
 	 * @see com.gewara.api.gworder.service.GwOrderService.getOrderByTradeNo
 	 * @return
 	 */
@@ -31,7 +31,7 @@ public interface TicketOrderVoService {
 	<T extends GewaOrderVo> ResultCode<T> getTicketOrderByTradeno(String tradeno);
 
 	/**
-	 * ²éÑ¯×Ô¶¨ÒåÆ±Ö½ĞÅÏ¢
+	 * æŸ¥è¯¢è‡ªå®šä¹‰ç¥¨çº¸ä¿¡æ¯
 	 * 
 	 * @param tradeNo
 	 * @return

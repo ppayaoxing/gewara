@@ -9,7 +9,7 @@ import com.gewara.api.vo.VoMap;
 
 public interface BootRemaitApiService {
 	/**
-	 * ±£´æ
+	 * ä¿å­˜
 	 * @param memberid
 	 * @param movieid
 	 * @param status
@@ -17,7 +17,7 @@ public interface BootRemaitApiService {
 	 */
 	ResultCode saveOrUpdate(Long memberid, Long movieid);
 	/**
-	 * ¹ÛÓ°ºó·¢Áì»ı·ÖÏûÏ¢
+	 * è§‚å½±åå‘é¢†ç§¯åˆ†æ¶ˆæ¯
 	 * @param memberid
 	 * @param relatedid
 	 * @param tag
@@ -25,28 +25,28 @@ public interface BootRemaitApiService {
 	ResultCode sendMsgToUser(Long memberid, Long relatedid,Timestamp sendTime, String content);
 	ResultCode sendMsgToUser(Long memberid, Long relatedid,Timestamp sendTime, String content, String contentForWeibo);
 	/**
-	 * »ñÈ¡µçÓ°ÔùËÍ»ı·Ö
+	 * è·å–ç”µå½±èµ é€ç§¯åˆ†
 	 * @param memberid
 	 * @param movieid
-	 * @param addPointType  true£ºÁ¢¼´ÔùËÍ;false£º²»ÔùËÍ
-	 * @param afterSeen     true£º¹ÛÓ°ºó;false£º²»ÂÛÊÇ·ñ¹ÛÓ°
+	 * @param addPointType  trueï¼šç«‹å³èµ é€;falseï¼šä¸èµ é€
+	 * @param afterSeen     trueï¼šè§‚å½±å;falseï¼šä¸è®ºæ˜¯å¦è§‚å½±
 	 * @return
 	 */
 	ResultCode<Integer> getMovieScore(Long memberid, Long movieid, boolean addPointType, boolean afterSeen); 
 	/**
-	 * »ñÈ¡ÍÛÀ²Ö¸¶¨ÓÃ»§µÄ»Ø¸´µÄ»Ø¸´memberid
+	 * è·å–å“‡å•¦æŒ‡å®šç”¨æˆ·çš„å›å¤çš„å›å¤memberid
 	 * @return
 	 */
 	ResultCode<List<Long>> getRereMemberids();
 	/**
-	 * ±£´æÓÃ»§Ğ´ÍÛÀ²ÔùËÍµçÓ°»ı·Ö
+	 * ä¿å­˜ç”¨æˆ·å†™å“‡å•¦èµ é€ç”µå½±ç§¯åˆ†
 	 * @param memberid
 	 * @param relatedid
 	 * @return
 	 */
 	ResultCode saveUserWalaPresent(Long memberid, Long relatedid);
 	/**
-	 * ÅĞ¶Ï¸ÃÓÃ»§ÊÇ·ñµ¼Èë¹ıÍ¨Ñ¶Â¼
+	 * åˆ¤æ–­è¯¥ç”¨æˆ·æ˜¯å¦å¯¼å…¥è¿‡é€šè®¯å½•
 	 * @param memberid
 	 * @param movieid
 	 * @param addPointType
@@ -55,13 +55,13 @@ public interface BootRemaitApiService {
 	 */
 	ResultCode<Boolean> checkMember(Long memberid, Long movieid, boolean addPointType, boolean afterSeen);
 	/**
-	 * appÍÛÀ²½±ÀøÌáĞÑ
+	 * appå“‡å•¦å¥–åŠ±æé†’
 	 * @param memberid
 	 * @param score
 	 */
 	ResultCode saveAppScoreRemain(Long memberid, Integer score);
 	/**
-	 * ÅĞ¶ÏĞ´ÍÛÀ²ÊÇ·ñÔùËÍ¹ı»ı·Ö
+	 * åˆ¤æ–­å†™å“‡å•¦æ˜¯å¦èµ é€è¿‡ç§¯åˆ†
 	 * @param memberid
 	 * @param movieid
 	 * @return
@@ -69,26 +69,26 @@ public interface BootRemaitApiService {
 	ResultCode<Boolean> checkIsPresent(Long memberid,Long movieid);
 	
 	/**
-	 * »ñÈ¡ÓÃ»§¿ª»úÌáĞÑµçÓ°
+	 * è·å–ç”¨æˆ·å¼€æœºæé†’ç”µå½±
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<VoMap<String,Long>> getBootRemaitVoMapById(Long memberid);
 	/**
-	 * »ñÈ¡appÍÛÀ²½±ÀøÌáĞÑ
+	 * è·å–appå“‡å•¦å¥–åŠ±æé†’
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<VoMap<String,Integer>> getAppScoreRemainVoMap(Long memberid);
 	/**
-	 * »ñÈ¡·¢ËÍµÄÏûÏ¢ÄÚÈİ
+	 * è·å–å‘é€çš„æ¶ˆæ¯å†…å®¹
 	 * @param memberid
 	 * @param movieid
 	 * @return
 	 */
 	ResultCode<String> getUserMsgContent(Long memberid, Long movieid);
 	/**
-	 * »ñÈ¡µçÓ°È¦¹ã³¡VËµ¡¢ÂéÀ±ÍÛÀ²¡¢×ÊÑ¶ÍÛÀ²
+	 * è·å–ç”µå½±åœˆå¹¿åœºVè¯´ã€éº»è¾£å“‡å•¦ã€èµ„è®¯å“‡å•¦
 	 * @param table
 	 * @param type
 	 * @param from
@@ -97,12 +97,12 @@ public interface BootRemaitApiService {
 	 */
 	ResultCode<List<Long>> getRecommendWalaForSquare(String table,String type,int from, int maxnum);
 	/**
-	 * ³õÊ¼»¯ÓÃ»§app7.1.0¹ã³¡×¼±¸Êı¾İ
+	 * åˆå§‹åŒ–ç”¨æˆ·app7.1.0å¹¿åœºå‡†å¤‡æ•°æ®
 	 * @param memberid
 	 */
 	ResultCode readyMemberSquareData(Long memberid);
 	/**
-	 * ÓÃ»§µ÷È¡app7.1.0¹ã³¡Êı¾İ
+	 * ç”¨æˆ·è°ƒå–app7.1.0å¹¿åœºæ•°æ®
 	 * @param memberid
 	 * @param pageNo
 	 * @param maxnum
@@ -110,14 +110,14 @@ public interface BootRemaitApiService {
 	 */
 	ResultCode<List<CommentVo>> getMemberSquareCommentVoList(Long memberid, Integer pageNo, Integer maxnum);
 	/**
-	 * »ñÈ¡ÂéÀ±ÍÛÀ²
+	 * è·å–éº»è¾£å“‡å•¦
 	 * @param startime
 	 * @param endtime
 	 * @return
 	 */
 	ResultCode<VoMap<String, List<Long>>> getMalaCommentList(String startime, String endtime);
 	/**
-	 * »ñÈ¡ÂéÀ±ÍÛÀ²ÆğÊ¼ÍÆËÍÊ±¼ä
+	 * è·å–éº»è¾£å“‡å•¦èµ·å§‹æ¨é€æ—¶é—´
 	 * @return
 	 */
 	ResultCode<String> getMalaCommentFirstTime();

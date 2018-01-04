@@ -6,22 +6,22 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 /**
  * 
- * ÊÔÆ¬»î¶¯
+ * è¯•ç‰‡æ´»åŠ¨
  *
  */
 public class PlayActivityVo extends BaseVo{
 	private static final long serialVersionUID = 2677478173649308488L;
-	private String activityId; //»î¶¯id Ö÷¼ü
-	private Long playMovieId; //playMovie±íÖ÷¼ü
-	private Timestamp activityTime; //»î¶¯Ê±¼ä
-	private String cinemaAddress; //Ó°ÔºÃû³Æ+Ó°ÔºµØÖ·
-	private Integer limitPersonCount; //ÏŞÖÆÈËÊı
-	private Integer limitPonitValue; //ÊÔÆ¬Ô±»ı·ÖÏŞÖÆÊı
-	private Timestamp startTime; //»î¶¯ÓĞĞ§Ê±¼ä ¿ªÊ¼Ê±¼ä
-	private Timestamp endTime; //»î¶¯ÓĞĞ§Ê±¼ä ½áÊøÊ±¼ä
-	private Timestamp addTime;   //Ìí¼ÓÊ±¼ä
-	private Timestamp updateTime;//¸üĞÂÊ±¼ä
-	private Integer applyNum;//ÉêÇëÈËÊı
+	private String activityId; //æ´»åŠ¨id ä¸»é”®
+	private Long playMovieId; //playMovieè¡¨ä¸»é”®
+	private Timestamp activityTime; //æ´»åŠ¨æ—¶é—´
+	private String cinemaAddress; //å½±é™¢åç§°+å½±é™¢åœ°å€
+	private Integer limitPersonCount; //é™åˆ¶äººæ•°
+	private Integer limitPonitValue; //è¯•ç‰‡å‘˜ç§¯åˆ†é™åˆ¶æ•°
+	private Timestamp startTime; //æ´»åŠ¨æœ‰æ•ˆæ—¶é—´ å¼€å§‹æ—¶é—´
+	private Timestamp endTime; //æ´»åŠ¨æœ‰æ•ˆæ—¶é—´ ç»“æŸæ—¶é—´
+	private Timestamp addTime;   //æ·»åŠ æ—¶é—´
+	private Timestamp updateTime;//æ›´æ–°æ—¶é—´
+	private Integer applyNum;//ç”³è¯·äººæ•°
 	public PlayActivityVo(){}
 
 	public String getActivityId() {

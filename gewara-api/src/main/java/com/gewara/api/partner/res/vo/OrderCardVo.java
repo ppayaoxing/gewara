@@ -16,16 +16,16 @@ public class OrderCardVo extends BaseVo{
 	private String edition;
 	private Integer discountAmount;
 	private Integer due;
-	private Integer fullTotalfee;	//Âú¶àÉÙ²Å²ÎÓëÓÅ»İ£¨°üº¬£©
-	private Integer opiMinPrice;	//³¡´Î×îµÍ¼Û¸ñ
+	private Integer fullTotalfee;	//æ»¡å¤šå°‘æ‰å‚ä¸ä¼˜æƒ ï¼ˆåŒ…å«ï¼‰
+	private Integer opiMinPrice;	//åœºæ¬¡æœ€ä½ä»·æ ¼
 	private Timestamp timefrom;
 	private Timestamp timeto;
 	private String exchangetype;
 	private String shortname;
 	private String cardRemark;
 	private String bindmobile;
-	private Double cardUseAmount;		// ElecCardÒÑÊ¹ÓÃ½ğ¶î
-	private Integer orderTotalAmount;  //¶©µ¥×Ü½ğ¶î
+	private Double cardUseAmount;		// ElecCardå·²ä½¿ç”¨é‡‘é¢
+	private Integer orderTotalAmount;  //è®¢å•æ€»é‡‘é¢
 	public OrderCardVo(){
 		
 	}

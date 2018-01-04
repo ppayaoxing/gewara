@@ -33,7 +33,7 @@ public class MemoryStatusChecker implements StatusChecker {
         long freeMemory = runtime.freeMemory();
         long totalMemory = runtime.totalMemory();
         long maxMemory = runtime.maxMemory();
-        boolean ok = (maxMemory - (totalMemory - freeMemory) > 2048); // ʣ��ռ�С��2M����
+        boolean ok = (maxMemory - (totalMemory - freeMemory) > 2048); // 剩锟斤拷占锟叫★拷锟�2M锟斤拷锟斤拷
         String msg = "max:" + (maxMemory / 1024 / 1024) + "M,total:" 
         + (totalMemory / 1024 / 1024) + "M,used:" + ((totalMemory / 1024 / 1024) - (freeMemory / 1024 / 1024)) + "M,free:" + (freeMemory / 1024 / 1024) + "M";
         return new Status(ok ? Status.Level.OK : Status.Level.WARN, msg);

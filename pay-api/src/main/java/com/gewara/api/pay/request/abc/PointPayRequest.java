@@ -7,22 +7,22 @@ public class PointPayRequest extends AbcRequest{
 	private static final long serialVersionUID = -5760844299795175992L;
 
 	/**
-	 * ���׿���
+	 * 锟斤拷锟阶匡拷锟斤拷
 	 */
 	private String cardno;
 	
 	/**
-	 * ����Ч��
+	 * 锟斤拷锟斤拷效锟斤拷
 	 */
 	private String cardexp;
 	
 	/**
-	 * ����
+	 * 锟斤拷锟斤拷
 	 */
 	private Integer point;
 	
 	/**
-	 * �����ܽ��
+	 * 锟斤拷锟斤拷锟杰斤拷锟�
 	 */
 	private Integer totalAmount;
 	

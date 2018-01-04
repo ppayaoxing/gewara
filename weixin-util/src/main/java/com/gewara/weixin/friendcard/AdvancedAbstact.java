@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class AdvancedAbstact implements Serializable{
 	private static final long serialVersionUID = 3468254563155003748L;
-	private String abstract1;			//ÓÅ»İÏêÇéÕªÒª×Ö¶Î½á¹¹ÌåÃû³Æ 
-	private String[] icon_url_list;		//·âÃæÍ¼Æ¬ÁĞ±í£¬½öÖ§³ÖÌîÈëÒ»¸ö·âÃæÍ¼Æ¬Á´½Ó£¬ÉÏ´«Í¼Æ¬½Ó¿ÚÉÏ´«»ñÈ¡Í¼Æ¬»ñµÃÁ´½Ó£¬ÌîĞ´·ÇCDNÁ´½Ó»á±¨´í£¬²¢ÔÚ´ËÌîÈë¡£½¨ÒéÍ¼Æ¬³ß´çÏñËØ850*350 
+	private String abstract1;			//ä¼˜æƒ è¯¦æƒ…æ‘˜è¦å­—æ®µç»“æ„ä½“åç§° 
+	private String[] icon_url_list;		//å°é¢å›¾ç‰‡åˆ—è¡¨ï¼Œä»…æ”¯æŒå¡«å…¥ä¸€ä¸ªå°é¢å›¾ç‰‡é“¾æ¥ï¼Œä¸Šä¼ å›¾ç‰‡æ¥å£ä¸Šä¼ è·å–å›¾ç‰‡è·å¾—é“¾æ¥ï¼Œå¡«å†™éCDNé“¾æ¥ä¼šæŠ¥é”™ï¼Œå¹¶åœ¨æ­¤å¡«å…¥ã€‚å»ºè®®å›¾ç‰‡å°ºå¯¸åƒç´ 850*350 
 	public AdvancedAbstact(){
 		
 	}

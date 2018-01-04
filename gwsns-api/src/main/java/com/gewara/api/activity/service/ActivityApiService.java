@@ -27,7 +27,7 @@ public interface ActivityApiService {
 			Integer joinnum, Date joindate, String address, String otherinfo,
 			String walaaddress);
 	/**
-	 * È¡Ïû²ÎÓë»î¶¯
+	 * å–æ¶ˆå‚ä¸æ´»åŠ¨
 	 * @param activityid
 	 * @param memberid
 	 * @return
@@ -35,7 +35,7 @@ public interface ActivityApiService {
 	public  ResultCode<ActivityVo> quitActivity(Long activityid, Long memberid);
 
 	/**
-	 * ÊÕ²Ø»î¶¯
+	 * æ”¶è—æ´»åŠ¨
 	@RequestMapping("/api/activity/collect.xhtml")
 	 * 
 	 * @param model
@@ -46,7 +46,7 @@ public interface ActivityApiService {
 	public  ResultCode<String> collectActivity(Long activityid, Long memberid);
 
 	/**
-	 * È¡ÏûÊÕ²Ø
+	 * å–æ¶ˆæ”¶è—
 	@RequestMapping("/api/activity/cancelcollect.xhtml")
 	 * @param model
 	 * @param activityid
@@ -56,7 +56,7 @@ public interface ActivityApiService {
 	public  ResultCode<String> cancelCollectActivity(Long activityid, Long memberid);
 
 	/**
-	 * »ñÈ¡ÍÆ¼ö»òÖÃ¶¥»î¶¯ÁĞ±í
+	 * è·å–æ¨èæˆ–ç½®é¡¶æ´»åŠ¨åˆ—è¡¨
 	@RequestMapping("/api/activity/topList.xhtml")
 	 * 
 	 * @param model
@@ -64,14 +64,14 @@ public interface ActivityApiService {
 	 * @param type
 	 * @param tag
 	 * @param relatedid
-	 *            ¶ÔÓ¦tagµÄ¹ØÁªid
+	 *            å¯¹åº”tagçš„å…³è”id
 	 * @return
 	 */
 	public  ResultCode<List<ActivityVo>> getTopActivityList(String citycode, String type, String tag, Long relatedId);
 	/**
-	 * ¸ù¾İ»î¶¯id¼¯ºÏ»ñÈ¡»î¶¯ÁĞ±í
+	 * æ ¹æ®æ´»åŠ¨idé›†åˆè·å–æ´»åŠ¨åˆ—è¡¨
 	@RequestMapping("/api/activity/list/getByIds.xhtml")
-	 * @param ids ÒÔ¡°,¡±·Ö¸ôµÄids
+	 * @param ids ä»¥â€œ,â€åˆ†éš”çš„ids
 	 * @return
 	 */
 	public  ResultCode<List<ActivityVo>> getActivityListByIds(String ids);
@@ -81,7 +81,7 @@ public interface ActivityApiService {
 
 
 	/**
-	 * ²éÑ¯µ±Ç°»î¶¯ÊıÁ¿
+	 * æŸ¥è¯¢å½“å‰æ´»åŠ¨æ•°é‡
 	@RequestMapping("/api/activity/count/get.xhtml")
 	 * @param citycode
 	 * @param type
@@ -94,11 +94,11 @@ public interface ActivityApiService {
 			String type, int timetype, String tag, Long relatedId);
 
 	/**
-	 * ²éÑ¯»î¶¯µÄĞÅÏ¢
+	 * æŸ¥è¯¢æ´»åŠ¨çš„ä¿¡æ¯
 	@RequestMapping("/api/activity/list/get.xhtml")
 	 * @param citycode
 	 * @param type
-	 * @param timetype 1ËùÒÔ»î¶¯
+	 * @param timetype 1æ‰€ä»¥æ´»åŠ¨
 	 * @param tag
 	 * @param relatedid
 	 * @param order
@@ -111,7 +111,7 @@ public interface ActivityApiService {
 			Long relatedId, String order, int from, int maxnum);
 
 	/**
-	 * ÓÃ»§µÄ»î¶¯ÁĞ±í
+	 * ç”¨æˆ·çš„æ´»åŠ¨åˆ—è¡¨
 	@RequestMapping("/api/activity/list/member.xhtml")
 	 * @param memberid
 	 * @param citycode
@@ -125,27 +125,27 @@ public interface ActivityApiService {
 			Long relatedId, int from, int maxnum);
 
 	/**
-	 * »ñÈ¡»î¶¯ÁĞ±í±ØÉ±·½·¨
+	 * è·å–æ´»åŠ¨åˆ—è¡¨å¿…æ€æ–¹æ³•
 	@RequestMapping("/api/activity/list/allCondition.xhtml")
 	 * @param model
-	 * @param title 	»î¶¯±êÌâ£¬Ä£ºı²éÑ¯
-	 * @param cityCode 	³ÇÊĞ±àÂë
-	 * @param type 		»î¶¯ÀàĞÍ£º"common"£ºÆÕÍ¨»î¶¯"user"£ºÓÃ»§»î¶¯£¬ÈÏÖ¤ÓÃ»§"buss"£ºÉÌ¼Ò»î¶¯£¬Ö÷°ì·½"gewa"£ºgewa»î¶¯£¬¹Ù·½
-	 * @param status 	»î¶¯×´Ì¬
-	 * @param memberid 	»î¶¯·¢ÆğÈËid
-	 * @param timetype 	»î¶¯Ê±¼äÀàĞÍ 3£ºÎ´¹ıÆÚµÄ»î¶¯ 2£º¹ıÆÚ£¨½áÊø£©µÄ»î¶¯ 1£ºËùÓĞ»î¶¯
-	 * @param flag 		ÍÆ¼ö£¬ÖÃ¶¥
-	 * @param tag 		»î¶¯Àà±ğ£¬Èçcinema
-	 * @param relatedids tag¶ÔÓ¦µÄid
-	 * @param startTime ²éÑ¯·¶Î§µÄ¿ªÊ¼Ê±¼ä£¬»î¶¯±¨Ãû¿ªÊ¼Ê±¼ä´óÓÚµ±Ç°Öµ
-	 * @param endTime 	²éÑ¯·¶Î§½áÊøÊ±¼ä£¬»î¶¯±¨Ãû½áÊøÊ±¼äĞ¡ÓÚµ±Ç°Öµ
-	 * @param category 	»î¶¯×ÓÀà±ğ£¬Èçmovie
-	 * @param categoryids category¹ØÁªµÄid
-	 * @param activityids »î¶¯id¼¯ºÏ£¬ÓÃ¡°,¡±·Ö¸ô
-	 * @param sources 	»î¶¯À´Ô´£º 1ÍøÕ¾£¬2andrio£¬3iphone ÔİÊ±²»×ö´¦Àí
-	 * @param isFee 	ÊÇ·ñÊÕ·Ñ Y ÊÕ·Ñ
-	 * @param order 	ÅÅĞò×Ö¶Î
-	 * @param asc 		ÅÅĞò·½Ê½ YÉıĞò
+	 * @param title 	æ´»åŠ¨æ ‡é¢˜ï¼Œæ¨¡ç³ŠæŸ¥è¯¢
+	 * @param cityCode 	åŸå¸‚ç¼–ç 
+	 * @param type 		æ´»åŠ¨ç±»å‹ï¼š"common"ï¼šæ™®é€šæ´»åŠ¨"user"ï¼šç”¨æˆ·æ´»åŠ¨ï¼Œè®¤è¯ç”¨æˆ·"buss"ï¼šå•†å®¶æ´»åŠ¨ï¼Œä¸»åŠæ–¹"gewa"ï¼šgewaæ´»åŠ¨ï¼Œå®˜æ–¹
+	 * @param status 	æ´»åŠ¨çŠ¶æ€
+	 * @param memberid 	æ´»åŠ¨å‘èµ·äººid
+	 * @param timetype 	æ´»åŠ¨æ—¶é—´ç±»å‹ 3ï¼šæœªè¿‡æœŸçš„æ´»åŠ¨ 2ï¼šè¿‡æœŸï¼ˆç»“æŸï¼‰çš„æ´»åŠ¨ 1ï¼šæ‰€æœ‰æ´»åŠ¨
+	 * @param flag 		æ¨èï¼Œç½®é¡¶
+	 * @param tag 		æ´»åŠ¨ç±»åˆ«ï¼Œå¦‚cinema
+	 * @param relatedids tagå¯¹åº”çš„id
+	 * @param startTime æŸ¥è¯¢èŒƒå›´çš„å¼€å§‹æ—¶é—´ï¼Œæ´»åŠ¨æŠ¥åå¼€å§‹æ—¶é—´å¤§äºå½“å‰å€¼
+	 * @param endTime 	æŸ¥è¯¢èŒƒå›´ç»“æŸæ—¶é—´ï¼Œæ´»åŠ¨æŠ¥åç»“æŸæ—¶é—´å°äºå½“å‰å€¼
+	 * @param category 	æ´»åŠ¨å­ç±»åˆ«ï¼Œå¦‚movie
+	 * @param categoryids categoryå…³è”çš„id
+	 * @param activityids æ´»åŠ¨idé›†åˆï¼Œç”¨â€œ,â€åˆ†éš”
+	 * @param sources 	æ´»åŠ¨æ¥æºï¼š 1ç½‘ç«™ï¼Œ2andrioï¼Œ3iphone æš‚æ—¶ä¸åšå¤„ç†
+	 * @param isFee 	æ˜¯å¦æ”¶è´¹ Y æ”¶è´¹
+	 * @param order 	æ’åºå­—æ®µ
+	 * @param asc 		æ’åºæ–¹å¼ Yå‡åº
 	 * @param from 
 	 * @param maxnum
 	 * @return
@@ -159,26 +159,26 @@ public interface ActivityApiService {
 			String isfee, String order, String asc, int from, int maxnum);
 	
 	/**
-	 * »ñÈ¡»î¶¯ÁĞ±í±ØÉ±·½·¨(Ôö¼Ó¶à¸öÅÅĞò)
+	 * è·å–æ´»åŠ¨åˆ—è¡¨å¿…æ€æ–¹æ³•(å¢åŠ å¤šä¸ªæ’åº)
 	 * @param model
-	 * @param title 	»î¶¯±êÌâ£¬Ä£ºı²éÑ¯
-	 * @param cityCode 	³ÇÊĞ±àÂë
-	 * @param type 		»î¶¯ÀàĞÍ£º"common"£ºÆÕÍ¨»î¶¯"user"£ºÓÃ»§»î¶¯£¬ÈÏÖ¤ÓÃ»§"buss"£ºÉÌ¼Ò»î¶¯£¬Ö÷°ì·½"gewa"£ºgewa»î¶¯£¬¹Ù·½
-	 * @param status 	»î¶¯×´Ì¬
-	 * @param memberid 	»î¶¯·¢ÆğÈËid
-	 * @param timetype 	»î¶¯Ê±¼äÀàĞÍ 3£ºÎ´¹ıÆÚµÄ»î¶¯ 2£º¹ıÆÚ£¨½áÊø£©µÄ»î¶¯ 1£ºËùÓĞ»î¶¯
-	 * @param flag 		ÍÆ¼ö£¬ÖÃ¶¥
-	 * @param tag 		»î¶¯Àà±ğ£¬Èçcinema
-	 * @param relatedids tag¶ÔÓ¦µÄid
-	 * @param startTime ²éÑ¯·¶Î§µÄ¿ªÊ¼Ê±¼ä£¬»î¶¯±¨Ãû¿ªÊ¼Ê±¼ä´óÓÚµ±Ç°Öµ
-	 * @param endTime 	²éÑ¯·¶Î§½áÊøÊ±¼ä£¬»î¶¯±¨Ãû½áÊøÊ±¼äĞ¡ÓÚµ±Ç°Öµ
-	 * @param category 	»î¶¯×ÓÀà±ğ£¬Èçmovie
-	 * @param categoryids category¹ØÁªµÄid
-	 * @param activityids »î¶¯id¼¯ºÏ£¬ÓÃ¡°,¡±·Ö¸ô
-	 * @param sources 	»î¶¯À´Ô´£º 1ÍøÕ¾£¬2andrio£¬3iphone ÔİÊ±²»×ö´¦Àí
-	 * @param isFee 	ÊÇ·ñÊÕ·Ñ Y ÊÕ·Ñ
-	 * @param order 	ÅÅĞò×Ö¶Î
-	 * @param asc 		ÅÅĞò·½Ê½ YÉıĞò
+	 * @param title 	æ´»åŠ¨æ ‡é¢˜ï¼Œæ¨¡ç³ŠæŸ¥è¯¢
+	 * @param cityCode 	åŸå¸‚ç¼–ç 
+	 * @param type 		æ´»åŠ¨ç±»å‹ï¼š"common"ï¼šæ™®é€šæ´»åŠ¨"user"ï¼šç”¨æˆ·æ´»åŠ¨ï¼Œè®¤è¯ç”¨æˆ·"buss"ï¼šå•†å®¶æ´»åŠ¨ï¼Œä¸»åŠæ–¹"gewa"ï¼šgewaæ´»åŠ¨ï¼Œå®˜æ–¹
+	 * @param status 	æ´»åŠ¨çŠ¶æ€
+	 * @param memberid 	æ´»åŠ¨å‘èµ·äººid
+	 * @param timetype 	æ´»åŠ¨æ—¶é—´ç±»å‹ 3ï¼šæœªè¿‡æœŸçš„æ´»åŠ¨ 2ï¼šè¿‡æœŸï¼ˆç»“æŸï¼‰çš„æ´»åŠ¨ 1ï¼šæ‰€æœ‰æ´»åŠ¨
+	 * @param flag 		æ¨èï¼Œç½®é¡¶
+	 * @param tag 		æ´»åŠ¨ç±»åˆ«ï¼Œå¦‚cinema
+	 * @param relatedids tagå¯¹åº”çš„id
+	 * @param startTime æŸ¥è¯¢èŒƒå›´çš„å¼€å§‹æ—¶é—´ï¼Œæ´»åŠ¨æŠ¥åå¼€å§‹æ—¶é—´å¤§äºå½“å‰å€¼
+	 * @param endTime 	æŸ¥è¯¢èŒƒå›´ç»“æŸæ—¶é—´ï¼Œæ´»åŠ¨æŠ¥åç»“æŸæ—¶é—´å°äºå½“å‰å€¼
+	 * @param category 	æ´»åŠ¨å­ç±»åˆ«ï¼Œå¦‚movie
+	 * @param categoryids categoryå…³è”çš„id
+	 * @param activityids æ´»åŠ¨idé›†åˆï¼Œç”¨â€œ,â€åˆ†éš”
+	 * @param sources 	æ´»åŠ¨æ¥æºï¼š 1ç½‘ç«™ï¼Œ2andrioï¼Œ3iphone æš‚æ—¶ä¸åšå¤„ç†
+	 * @param isFee 	æ˜¯å¦æ”¶è´¹ Y æ”¶è´¹
+	 * @param order 	æ’åºå­—æ®µ
+	 * @param asc 		æ’åºæ–¹å¼ Yå‡åº
 	 * @param from 
 	 * @param maxnum
 	 * @return
@@ -214,7 +214,7 @@ public interface ActivityApiService {
 	 * @param isfee
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ25ÈÕÏÂÎç5:29:15
+	 * @addTime 2014å¹´6æœˆ25æ—¥ä¸‹åˆ5:29:15
 	 */
 	public  ResultCode<String> getActivityCount(String title,
 			String citycode, String countycode, String type, String datetype,
@@ -229,7 +229,7 @@ public interface ActivityApiService {
 	@RequestMapping("/api/activity/categoryMap.xhtml")
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ25ÈÕÏÂÎç5:29:46
+	 * @addTime 2014å¹´6æœˆ25æ—¥ä¸‹åˆ5:29:46
 	 */
 	public  ResultCode<List<CategoryCountVo>> getCategoryMap();
 
@@ -249,7 +249,7 @@ public interface ActivityApiService {
 	 * @param model
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ25ÈÕÏÂÎç5:30:24
+	 * @addTime 2014å¹´6æœˆ25æ—¥ä¸‹åˆ5:30:24
 	 */
 	public  ResultCode<List<ActivityVo>> getActivityList(
 			String citycode, String tag, String signname, String type,
@@ -266,7 +266,7 @@ public interface ActivityApiService {
 	 * @param model
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ25ÈÕÏÂÎç5:30:37
+	 * @addTime 2014å¹´6æœˆ25æ—¥ä¸‹åˆ5:30:37
 	 */
 	public  ResultCode<List<ActivityVo>> getRecommendActivityBySignNameList(
 			String signname, String citycode, int from, int maxnum);
@@ -278,9 +278,9 @@ public interface ActivityApiService {
 	 * @param model
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ25ÈÕÏÂÎç5:30:44
+	 * @addTime 2014å¹´6æœˆ25æ—¥ä¸‹åˆ5:30:44
 	 */
-	//¸ù¾İ»î¶¯ID²éÑ¯³¡´Î
+	//æ ¹æ®æ´»åŠ¨IDæŸ¥è¯¢åœºæ¬¡
 	public  ResultCode<String> getActivityMpi(Long activityid);
 
 
@@ -291,7 +291,7 @@ public interface ActivityApiService {
 	 * @param model
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ25ÈÕÏÂÎç5:30:55
+	 * @addTime 2014å¹´6æœˆ25æ—¥ä¸‹åˆ5:30:55
 	 */
 	public  ResultCode<String> getJoinInfo(Long memberid, Long relatedid);
 
@@ -301,7 +301,7 @@ public interface ActivityApiService {
 	 * @param model
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ25ÈÕÏÂÎç5:31:03
+	 * @addTime 2014å¹´6æœˆ25æ—¥ä¸‹åˆ5:31:03
 	 */
 	public  ResultCode<List<ActivityMpiVo>> getMpiGuest(Long activityid);
 
@@ -314,7 +314,7 @@ public interface ActivityApiService {
 	 * @param model
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ25ÈÕÏÂÎç5:31:19
+	 * @addTime 2014å¹´6æœˆ25æ—¥ä¸‹åˆ5:31:19
 	 */
 	public  ResultCode<String> getActivityRelatedidByTag(
 			String citycode, Integer timetype, String tag);
@@ -327,7 +327,7 @@ public interface ActivityApiService {
 	 * @param model
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ25ÈÕÏÂÎç5:31:24
+	 * @addTime 2014å¹´6æœˆ25æ—¥ä¸‹åˆ5:31:24
 	 */
 	public  ResultCode<List<MobileAdvertRecommendVo>> getMobileAdvert(
 			String citycode, int from, int maxnum);
@@ -337,43 +337,43 @@ public interface ActivityApiService {
 	public ResultCode<Long> applyActivityStatus(Long activityid, Long memberid);
 	
 	/**
-	 * »ñÈ¡ÍÆ¼öÊı¾İ
+	 * è·å–æ¨èæ•°æ®
 	 * @return
 	 */
 	public  ResultCode<List<RecommandData>> getRecommendData();
 	
 	
 	/**
-	 * Í¬²½×¨Ìâ»î¶¯Êı¾İ
-	 * @param   ztid   ×¨ÌâID
-	 * @param   title  ×¨Ìâ±êÌâ
-	 * @param   url    ×¨ÌâÁ´½ÓµØÖ·(ÍêÕûÂ·¾¶)
-	 * @param   logo    ×¨Ìâ·âÃæÍ¼Æ¬µØÖ·(ÍêÕûÂ·¾¶)
-	 * @param   support  ×¨ÌâÖ§³Ö·½Ê½£¨PC¡¢WAP¡¢ALL£©
-	 * @param   starttime ×¨Ìâ·¢²¼Ê±¼ä   
-	 * @param  	otherMap  ÆäËüĞÅÏ¢Map<String,String>
+	 * åŒæ­¥ä¸“é¢˜æ´»åŠ¨æ•°æ®
+	 * @param   ztid   ä¸“é¢˜ID
+	 * @param   title  ä¸“é¢˜æ ‡é¢˜
+	 * @param   url    ä¸“é¢˜é“¾æ¥åœ°å€(å®Œæ•´è·¯å¾„)
+	 * @param   logo    ä¸“é¢˜å°é¢å›¾ç‰‡åœ°å€(å®Œæ•´è·¯å¾„)
+	 * @param   support  ä¸“é¢˜æ”¯æŒæ–¹å¼ï¼ˆPCã€WAPã€ALLï¼‰
+	 * @param   starttime ä¸“é¢˜å‘å¸ƒæ—¶é—´   
+	 * @param  	otherMap  å…¶å®ƒä¿¡æ¯Map<String,String>
 	 */
 	public ResultCode synchronActivitySpecial(Long ztid,String title,String url,String logo,String support,Timestamp starttime,Map<String,String> otherMap);
 	
 	/**
-	 * »ñÈ¡»î¶¯ĞËÈ¤°å¿éÉèÖÃÊı¾İ
-	 * @param sign »î¶¯±êÊ¶  starmeet -->Ã÷ĞÇ¼ûÃæ»á ¡¢cinephiles -->Ó°Õ¹ ¡¢ filmreviews --->Ğ´Ó°ÆÀ¡¢cinema -->Ó°Ôº»î¶¯
+	 * è·å–æ´»åŠ¨å…´è¶£æ¿å—è®¾ç½®æ•°æ®
+	 * @param sign æ´»åŠ¨æ ‡è¯†  starmeet -->æ˜æ˜Ÿè§é¢ä¼š ã€cinephiles -->å½±å±• ã€ filmreviews --->å†™å½±è¯„ã€cinema -->å½±é™¢æ´»åŠ¨
 	 * @return
 	 */
 	public ResultCode<ActivityInterestVo> getActivityInterestBySign(String sign);
 	
 	
 	/**
-	 * »ñÈ¡×¨Ìâ»î¶¯Êı¾İ(´ø»º´æ10·ÖÖÓ)
-	 * @param starttime ·¢²¼¿ªÊ¼Ê±¼äÊ±¼ä·¶Î§
-	 * @param endtime ·¢²¼¿ªÊ¼Ê±¼äÊ±¼ä·¶Î§
+	 * è·å–ä¸“é¢˜æ´»åŠ¨æ•°æ®(å¸¦ç¼“å­˜10åˆ†é’Ÿ)
+	 * @param starttime å‘å¸ƒå¼€å§‹æ—¶é—´æ—¶é—´èŒƒå›´
+	 * @param endtime å‘å¸ƒå¼€å§‹æ—¶é—´æ—¶é—´èŒƒå›´
 	 * @param from
 	 * @param maxnum
 	 * @return
 	 */
 	public ResultCode<List<ActivitySpecialVo>> getActivitySpecialList(Timestamp starttime,Timestamp endtime,int from,int maxnum);
 	/**
-	 * »ñÈ¡Ö§¸¶³É¹¦µÄÈËÊı
+	 * è·å–æ”¯ä»˜æˆåŠŸçš„äººæ•°
 	 * @param activityid
 	 * @param virtualcount
 	 * @param quantity
@@ -382,7 +382,7 @@ public interface ActivityApiService {
 	public ResultCode<Integer> getOrderNumForSuccess(Long activityid);
 	
 	/**
-	 * ²éÑ¯mongoÖĞ±£´æµÄµçÓ°»î¶¯Ë³ĞòĞÅÏ¢
+	 * æŸ¥è¯¢mongoä¸­ä¿å­˜çš„ç”µå½±æ´»åŠ¨é¡ºåºä¿¡æ¯
 	 * @param category
 	 * @param categoryid
 	 * @param from

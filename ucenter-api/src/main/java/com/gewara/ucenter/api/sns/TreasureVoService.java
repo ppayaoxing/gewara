@@ -11,7 +11,7 @@ public interface TreasureVoService {
 	ResultCode<List<Long>> getTreasureIdList(Long memberId, String tag, String action, int from, int maxnum);
 	ResultCode addTreasure(Long memberid, String tag, Long relatedid, String action);
 	/**
-	 * ÅúÁ¿¹Ø×¢
+	 * æ‰¹é‡å…³æ³¨
 	 * @param memberid
 	 * @param tag
 	 * @param relatedid
@@ -24,21 +24,21 @@ public interface TreasureVoService {
 	ResultCode<List<Long>> getTreasureCinemaidList(/*String citycode, */Long memberid);
 	ResultCode<List<Long>> getTreasureIdListNoPage(Long memberId, String tag, String action);
 	/**
-	 * ¼ÇÂ¼µçÓ°¹Ø×¢Êı
+	 * è®°å½•ç”µå½±å…³æ³¨æ•°
 	 * @param memberId
 	 */
 	ResultCode addCollectedtimes(Long movieId);
 	/**
-	 * Ó°ÔºÓ°Æ¬³¡¹İµÄ¹Ø×¢Êı
+	 * å½±é™¢å½±ç‰‡åœºé¦†çš„å…³æ³¨æ•°
 	 * @param tag
 	 * @param relatedId
 	 */
 	ResultCode addRelatedClickedtimes(String tag, Long relatedId);
 	/**
-	 * ¸ù¾İmemberId¡¢movieid£¬ÅĞ¶ÏsongIdListÖĞÊÇ·ñÌí¼Ó¹Ø×¢
+	 * æ ¹æ®memberIdã€movieidï¼Œåˆ¤æ–­songIdListä¸­æ˜¯å¦æ·»åŠ å…³æ³¨
 	 * @param memberId
 	 * @param songIdList
-	 * @return ·µ»Ømap½á¹¹Êı¾İ£¬key=ÒôÀÖID£»value=ÊÇ·ñÏ²»¶£¨0£ºÎ´Ï²»¶£»1£ºÒÑÏ²»¶£©
+	 * @return è¿”å›mapç»“æ„æ•°æ®ï¼Œkey=éŸ³ä¹IDï¼›value=æ˜¯å¦å–œæ¬¢ï¼ˆ0ï¼šæœªå–œæ¬¢ï¼›1ï¼šå·²å–œæ¬¢ï¼‰
 	 */
 	ResultCode<Map<String, String>> getIsLikeMovieMusic(Long memberId, List<String> songIdList);
 }

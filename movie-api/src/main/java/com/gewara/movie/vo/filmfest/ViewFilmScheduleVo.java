@@ -24,7 +24,7 @@ public class ViewFilmScheduleVo extends BaseVo{
 	
 	private String playTime;
 	
-	private String type;// movie Æ¬µ¥  schedule ÈÕ³Ì 
+	private String type;// movie ç‰‡å•  schedule æ—¥ç¨‹ 
 	
 	private String source;
 	
@@ -34,9 +34,9 @@ public class ViewFilmScheduleVo extends BaseVo{
 	
 	private Long cinemaId;
 	private String buy;
-	private String filmTag; //²»Í¬µçÓ°½ÚµÄ±êÊ¾
+	private String filmTag; //ä¸åŒç”µå½±èŠ‚çš„æ ‡ç¤º
 	private Integer score;
-	private String like;	// ÔŞ
+	private String like;	// èµ
 	private String shareReason;	
 	public ViewFilmScheduleVo(){}
 	

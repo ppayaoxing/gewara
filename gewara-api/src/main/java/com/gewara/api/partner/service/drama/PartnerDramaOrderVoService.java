@@ -9,21 +9,21 @@ import com.gewara.api.vo.order.GewaOrderVo;
 public interface PartnerDramaOrderVoService {
 
 	/**
-	 * 选座下单
+	 * 閫夊骇涓嬪崟
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> addDramaOrderBySeat(PartnerDramaOrderSeatReqVo reqVo);
 	
 	/**
-	 * 选择单一价格下单
+	 * 閫夋嫨鍗曚竴浠锋牸涓嬪崟
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> addDramaOrderBySimplePrice(PartnerDramaOrderPriceReqVo reqVo);
 	
 	/**
-	 * 选择支持多个价格下单
+	 * 閫夋嫨鏀寔澶氫釜浠锋牸涓嬪崟
 	 * @param reqVo
 	 * @return
 	 */

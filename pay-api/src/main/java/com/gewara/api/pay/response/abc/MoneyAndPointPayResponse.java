@@ -5,19 +5,19 @@ public class MoneyAndPointPayResponse extends AbcResponse {
 
 	private static final long serialVersionUID = -1978543463407522584L;
 	
-	private String cardno			;//½»Ò×¿¨ºÅ
-	private String trandate			;//Ïû·Ñ½»Ò×ÈÕÆÚ
-	private String trantime			;//Ïû·Ñ½»Ò×Ê±¼ä
-	private String sysdef			;//Ïû·ÑÏµÍ³²Î¿¼ºÅ
-	private String settleno			;//Ïû·ÑÅ©ĞĞÅú´ÎºÅ
-	private String termserial		;//Ïû·ÑÖÕ¶ËÁ÷Ë®ºÅ
-	private String vouserial		;//Ïû·ÑÆ¾Ö¤ºÅ
-	private String ptrandate		;//»ı·Ö½»Ò×ÈÕÆÚ
-	private String ptrantime		;//»ı·Ö½»Ò×Ê±¼ä
-	private String psysdef			;//»ı·ÖÏµÍ³²Î¿¼ºÅ
-	private String psettleno		;//»ı·ÖÅ©ĞĞÅú´ÎºÅ
-	private String ptermserial		;//»ı·ÖÖÕ¶ËÁ÷Ë®ºÅ
-	private String pvouserial		;//»ı·ÖÆ¾Ö¤ºÅ
+	private String cardno			;//äº¤æ˜“å¡å·
+	private String trandate			;//æ¶ˆè´¹äº¤æ˜“æ—¥æœŸ
+	private String trantime			;//æ¶ˆè´¹äº¤æ˜“æ—¶é—´
+	private String sysdef			;//æ¶ˆè´¹ç³»ç»Ÿå‚è€ƒå·
+	private String settleno			;//æ¶ˆè´¹å†œè¡Œæ‰¹æ¬¡å·
+	private String termserial		;//æ¶ˆè´¹ç»ˆç«¯æµæ°´å·
+	private String vouserial		;//æ¶ˆè´¹å‡­è¯å·
+	private String ptrandate		;//ç§¯åˆ†äº¤æ˜“æ—¥æœŸ
+	private String ptrantime		;//ç§¯åˆ†äº¤æ˜“æ—¶é—´
+	private String psysdef			;//ç§¯åˆ†ç³»ç»Ÿå‚è€ƒå·
+	private String psettleno		;//ç§¯åˆ†å†œè¡Œæ‰¹æ¬¡å·
+	private String ptermserial		;//ç§¯åˆ†ç»ˆç«¯æµæ°´å·
+	private String pvouserial		;//ç§¯åˆ†å‡­è¯å·
 	
 	public String getCardno() {
 		return cardno;

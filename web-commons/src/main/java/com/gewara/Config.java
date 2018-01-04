@@ -58,7 +58,7 @@ public class Config implements InitializingBean {
 	}
 
 	/**
-	 * �Ƿ��ǲ��Ի���
+	 * 锟角凤拷锟角诧拷锟皆伙拷锟斤拷
 	 * 
 	 * @param
 	 * @return
@@ -68,7 +68,7 @@ public class Config implements InitializingBean {
 	}
 
 	/**
-	 * �Ƿ��ǻ���Ԥ������
+	 * 锟角凤拷锟角伙拷锟斤拷预锟斤拷锟斤拷锟斤拷
 	 * 
 	 * @param
 	 * @return
@@ -117,7 +117,7 @@ public class Config implements InitializingBean {
 			this.configMap = configMap;
 			this.initedConfig = true;
 		} else {
-			throw new IllegalStateException("�����ٴε���");
+			throw new IllegalStateException("锟斤拷锟斤拷锟劫次碉拷锟斤拷");
 		}
 	}
 
@@ -126,7 +126,7 @@ public class Config implements InitializingBean {
 			this.pageMap = pageMap;
 			this.initedPage = true;
 		} else {
-			throw new IllegalStateException("�����ٴε���");
+			throw new IllegalStateException("锟斤拷锟斤拷锟劫次碉拷锟斤拷");
 		}
 	}
 
@@ -159,10 +159,10 @@ public class Config implements InitializingBean {
 	public ErrorCode replacePageTool(String property, Object value) {
 		Object old = pageTools.get(property);
 		if (value == null || old == null) {
-            return ErrorCode.getFailure("��������:old �� new Ϊ��");
+            return ErrorCode.getFailure("锟斤拷锟斤拷锟斤拷锟斤拷:old 锟斤拷 new 为锟斤拷");
         }
 		if (!value.getClass().equals(old.getClass())) {
-            return ErrorCode.getFailure("�������Ͳ�����");
+            return ErrorCode.getFailure("锟斤拷锟斤拷锟斤拷锟酵诧拷锟斤拷锟斤拷");
         }
 		Map tmp = new HashMap(pageTools);
 		tmp.put(property, value);

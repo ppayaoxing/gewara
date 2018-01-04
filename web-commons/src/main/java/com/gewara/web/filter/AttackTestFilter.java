@@ -36,7 +36,7 @@ import com.gewara.web.util.ParamCollectUtils;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28����02:05:17
+ * @since 2007-9-28锟斤拷锟斤拷02:05:17
  */
 public class AttackTestFilter extends OncePerRequestFilter {
 	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
@@ -165,7 +165,7 @@ public class AttackTestFilter extends OncePerRequestFilter {
 		return remoteIp;
 	}
 	/**
-	 * ���˹ؼ�·������
+	 * 锟斤拷锟剿关硷拷路锟斤拷锟斤拷锟斤拷
 	 * @param req
 	 */
 	private void checkRegScript(HttpServletRequest req){

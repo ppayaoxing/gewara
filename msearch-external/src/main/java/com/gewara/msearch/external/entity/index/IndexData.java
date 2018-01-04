@@ -8,7 +8,7 @@ public abstract class IndexData implements Serializable{
 	protected Long order2 = 0L;
 	protected Long order3 = 0L;
 	/**
-	 * ±íÊ¾Ã¿ÖÖÊÂÎñµÄID
+	 * è¡¨ç¤ºæ¯ç§äº‹åŠ¡çš„ID
 	 * @return
 	 */
 	public String getDataID() {
@@ -20,7 +20,7 @@ public abstract class IndexData implements Serializable{
 	}
 
 	/**
-	 * ÅÅĞò×Ö¶Î1
+	 * æ’åºå­—æ®µ1
 	 * @return
 	 */
 	public Long getOrder1() {
@@ -28,7 +28,7 @@ public abstract class IndexData implements Serializable{
 	}
 
 	/**
-	 * ÅÅĞò×Ö¶Î1
+	 * æ’åºå­—æ®µ1
 	 * @param order1
 	 */
 	public void setOrder1(Long order1) {
@@ -36,7 +36,7 @@ public abstract class IndexData implements Serializable{
 	}
 
 	/**
-	 * ÅÅĞò×Ö¶Î3
+	 * æ’åºå­—æ®µ3
 	 * @return
 	 */
 	public Long getOrder2() {
@@ -44,7 +44,7 @@ public abstract class IndexData implements Serializable{
 	}
 
 	/**
-	 * ÅÅĞò×Ö¶Î2
+	 * æ’åºå­—æ®µ2
 	 * @param order2
 	 */
 	public void setOrder2(Long order2) {
@@ -52,7 +52,7 @@ public abstract class IndexData implements Serializable{
 	}
 
 	/**
-	 * ÅÅĞò×Ö¶Î3
+	 * æ’åºå­—æ®µ3
 	 * @return
 	 */
 	public Long getOrder3() {
@@ -60,7 +60,7 @@ public abstract class IndexData implements Serializable{
 	}
 
 	/**
-	 * ÅÅĞò×Ö¶Î3
+	 * æ’åºå­—æ®µ3
 	 * @param order3
 	 */
 	public void setOrder3(Long order3) {

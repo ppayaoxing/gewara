@@ -11,9 +11,9 @@ public class GoodsExtraPriceVo extends BaseVo {
 
 	private Long id;
 	private Long goodsid;
-	private Integer price;		//价格
-	private Integer num;			//数量
-	private Long priceid;		//价格id
+	private Integer price;		//浠锋牸
+	private Integer num;			//鏁伴噺
+	private Long priceid;		//浠锋牸id
 	private Timestamp addtime;
 	private Timestamp updatetime;
 	

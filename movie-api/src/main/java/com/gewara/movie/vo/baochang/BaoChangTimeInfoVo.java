@@ -8,10 +8,10 @@ public class BaoChangTimeInfoVo extends BaseVo{
 	private static final long serialVersionUID = -433054918303275837L;
 	
 	private Long id;
-	private Long roomid;//Ó°ÌüID
+	private Long roomid;//å½±å…ID
 	private String tag;
-	private String startTime;//°ü³¡Ê±¶Î¿ªÊ¼Ê±¼ä£¨HH:MM£©
-	private String endTime;//°ü³¡Ê±¶Î½áÊøÊ±¼ä£¨HH:MM£©
+	private String startTime;//åŒ…åœºæ—¶æ®µå¼€å§‹æ—¶é—´ï¼ˆHH:MMï¼‰
+	private String endTime;//åŒ…åœºæ—¶æ®µç»“æŸæ—¶é—´ï¼ˆHH:MMï¼‰
 	
 	public BaoChangTimeInfoVo(){}
 

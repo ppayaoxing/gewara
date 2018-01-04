@@ -16,7 +16,7 @@
 package com.alibaba.dubbo.rpc.service;
 
 /**
- * Í¨ÓÃ·şÎñ½Ó¿Ú
+ * é€šç”¨æœåŠ¡æ¥å£
  * 
  * @author william.liangf
  * @export
@@ -24,13 +24,13 @@ package com.alibaba.dubbo.rpc.service;
 public interface GenericService {
 
     /**
-     * ·º»¯µ÷ÓÃ
+     * æ³›åŒ–è°ƒç”¨
      * 
-     * @param method ·½·¨Ãû£¬Èç£ºfindPerson£¬Èç¹ûÓĞÖØÔØ·½·¨£¬Ğè´øÉÏ²ÎÊıÁĞ±í£¬Èç£ºfindPerson(java.lang.String)
-     * @param parameterTypes ²ÎÊıÀàĞÍ
-     * @param args ²ÎÊıÁĞ±í
-     * @return ·µ»ØÖµ
-     * @throws Throwable ·½·¨Å×³öµÄÒì³£
+     * @param method æ–¹æ³•åï¼Œå¦‚ï¼šfindPersonï¼Œå¦‚æœæœ‰é‡è½½æ–¹æ³•ï¼Œéœ€å¸¦ä¸Šå‚æ•°åˆ—è¡¨ï¼Œå¦‚ï¼šfindPerson(java.lang.String)
+     * @param parameterTypes å‚æ•°ç±»å‹
+     * @param args å‚æ•°åˆ—è¡¨
+     * @return è¿”å›å€¼
+     * @throws Throwable æ–¹æ³•æŠ›å‡ºçš„å¼‚å¸¸
      */
     Object $invoke(String method, String[] parameterTypes, Object[] args) throws GenericException;
 

@@ -9,7 +9,7 @@ import com.gewara.untrans.monitor.SysSelfCheckingJob;
 import com.gewara.untrans.monitor.SysSelfCheckingService;
 
 /**
- * ÏµÍ³¼ì²â·şÎñ
+ * ç³»ç»Ÿæ£€æµ‹æœåŠ¡
  * @author user
  *
  */
@@ -26,17 +26,17 @@ public class SysSelfCheckingServiceImpl implements  SysSelfCheckingService{
 		
 		Map<String,String> map=new LinkedHashMap<String,String>();
 		
-		//ÏµÍ³±êÊ¶
+		//ç³»ç»Ÿæ ‡è¯†
 		map.put("Server",  Config.SYSTEMID + "," + Config.getHostname());
 		
-		//±¾µØ»¹ÊÇÏßÉÏ
+		//æœ¬åœ°è¿˜æ˜¯çº¿ä¸Š
 		String gewaraconfig = System.getProperty("GEWACONFIG");
 		if (gewaraconfig == null) {
 			gewaraconfig = System.getProperty(Config.SYSTEMID + "-GEWACONFIG");
 		}
 		map.put("GEWACONFIG",  gewaraconfig);
 		
-		//×¢ÈëµÄ¼ì²éÈÎÎñ
+		//æ³¨å…¥çš„æ£€æŸ¥ä»»åŠ¡
 		for (SysSelfCheckingJob job : jobList) {
 			try{
 				map.put(job.getCheckName(),  job.getCheckStatus());

@@ -16,16 +16,16 @@ public class RequestStatsGroup implements CommandProcessorGroup{
 	@Override
 	public List<CommandProcessor> getCommandList() {
 		List<CommandProcessor> commandList = new ArrayList<CommandProcessor>();
-		commandList.add(new InnerCommand("aurl", "[minreq=10]����ʾ��Ŀ���е�URL����������"));
-		commandList.add(new InnerCommand("burl", "��ʾ��������ַ������"));
-		commandList.add(new InnerCommand("unused", "�ϴ����������ڴ�ĩ���ʹ���url"));
-		commandList.add(new InnerCommand("req", "δ�����������"));
-		commandList.add(new InnerCommand("dreq", "[max=100]�����ص�ǰδ����������"));
-		commandList.add(new InnerCommand("call", "�������еķ�����jms��job��"));
-		commandList.add(new InnerCommand("jms", "JMS������Ϣͳ��"));
-		commandList.add(new InnerCommand("pc", "PageCacheҳ�滺��"));
-		commandList.add(new InnerCommand("sc", "ServiceCache����"));
-		commandList.add(new InnerCommand("api","���ڴ����dubbo����"));
+		commandList.add(new InnerCommand("aurl", "[minreq=10]锟斤拷锟斤拷示锟斤拷目锟斤拷锟叫碉拷URL锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷"));
+		commandList.add(new InnerCommand("burl", "锟斤拷示锟斤拷锟斤拷锟斤拷锟斤拷址锟斤拷锟斤拷锟斤拷"));
+		commandList.add(new InnerCommand("unused", "锟较达拷锟斤拷锟斤拷锟斤拷锟斤拷锟节达拷末锟斤拷锟绞癸拷锟斤拷url"));
+		commandList.add(new InnerCommand("req", "未锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�"));
+		commandList.add(new InnerCommand("dreq", "[max=100]锟斤拷锟斤拷锟截碉拷前未锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷"));
+		commandList.add(new InnerCommand("call", "锟斤拷锟斤拷锟斤拷锟叫的凤拷锟斤拷锟斤拷jms锟斤拷job锟斤拷"));
+		commandList.add(new InnerCommand("jms", "JMS锟斤拷锟斤拷锟斤拷息统锟斤拷"));
+		commandList.add(new InnerCommand("pc", "PageCache页锟芥缓锟斤拷"));
+		commandList.add(new InnerCommand("sc", "ServiceCache锟斤拷锟斤拷"));
+		commandList.add(new InnerCommand("api","锟斤拷锟节达拷锟斤拷锟絛ubbo锟斤拷锟斤拷"));
 		return commandList;
 	}
 	private class InnerCommand extends AbstractCommandProcessor{

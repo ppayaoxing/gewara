@@ -6,19 +6,19 @@ import com.gewara.support.concurrent.AtomicCounter;
 
 public interface ConcurrentService {
 	/**
-	 * »ñÈ¡È«¾Ö¼ÆÊıÆ÷
+	 * è·å–å…¨å±€è®¡æ•°å™¨
 	 * @param key
 	 * @return
 	 */
 	AtomicCounter getAtomicCounter(String key);
 	/**
-	 * »ñÈ¡cluster¼ÆÊıÆ÷£¨Èç¹ûÖ§³Ö£©
+	 * è·å–clusterè®¡æ•°å™¨ï¼ˆå¦‚æœæ”¯æŒï¼‰
 	 * @param key
 	 * @return
 	 */
 	AtomicCounter getLocalAtomicCounter(String key);
 	/**
-	 * »ñÈ¡clusterQueue£¨Èç¹ûÖ§³Ö£©
+	 * è·å–clusterQueueï¼ˆå¦‚æœæ”¯æŒï¼‰
 	 * @param key
 	 * @return
 	 */

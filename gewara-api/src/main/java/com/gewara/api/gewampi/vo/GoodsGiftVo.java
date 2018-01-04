@@ -19,16 +19,16 @@ public class GoodsGiftVo extends BaseVo{
 	private Long cinemaid;
 	private Long movieid;
 	private Long mpid;			
-	private String rateinfo;	//����
+	private String rateinfo;	//锟斤拷锟斤拷
 	private String week;			
-	private String mpidlist;	//�����б�
+	private String mpidlist;	//锟斤拷锟斤拷锟叫憋拷
 	private Timestamp fromtime;
 	private Timestamp totime;
-	private Integer everydayLimit;//ÿ������
-	private String startTime;//�µ���ʼʱ��
-	private String endTime;//�µ�����ʱ��
-	private String timescope;	//����ʱ��
-	private String movieids;	// ӰƬ����б���Ӣ�Ķ��Ÿ���
+	private Integer everydayLimit;//每锟斤拷锟斤拷锟斤拷
+	private String startTime;//锟铰碉拷锟斤拷始时锟斤拷
+	private String endTime;//锟铰碉拷锟斤拷锟斤拷时锟斤拷
+	private String timescope;	//锟斤拷锟斤拷时锟斤拷
+	private String movieids;	// 影片锟斤拷锟斤拷斜锟斤拷锟接拷亩锟斤拷鸥锟斤拷锟�
 	private String opiTimeFlg;
 	
 	public GoodsGiftVo(){

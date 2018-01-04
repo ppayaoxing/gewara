@@ -32,9 +32,9 @@ import com.gewara.web.util.ReqLogUtil;
 import eu.bitwalker.useragentutils.UserAgent;
 
 /**
- * 1¡¢²ÎÊı³¬¹ı×î´ó³¤¶ÈµÄ¶¼½ØÈ¡
- * 2¡¢²ÎÊıÃû³ÆÔÚsensitiveListÖĞµÄ¶¼md5¼ÓÃÜ
- * 3¡¢ÔÚignoreUriListÖĞµÄuriºöÂÔµô
+ * 1ã€å‚æ•°è¶…è¿‡æœ€å¤§é•¿åº¦çš„éƒ½æˆªå–
+ * 2ã€å‚æ•°åç§°åœ¨sensitiveListä¸­çš„éƒ½md5åŠ å¯†
+ * 3ã€åœ¨ignoreUriListä¸­çš„uriå¿½ç•¥æ‰
  */
 public class RequestLogServiceImpl implements RequestLogService, InitializingBean{
 	public static final String REQ_LOG_ENTRY_KEY_PRE = "log_";
@@ -43,7 +43,7 @@ public class RequestLogServiceImpl implements RequestLogService, InitializingBea
 	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
 	private Set<String> sensitiveList = new HashSet<String>(Arrays.asList("mobile", "pass", "sign", "encode"));
 	private Set<String> ignoreUriList = new HashSet<String>();
-	private List<String> ignoreUriPreList = new ArrayList<String>();//Ç°×º
+	private List<String> ignoreUriPreList = new ArrayList<String>();//å‰ç¼€
 	private int valueMaxLength = 64;
 	
 	private String configFile = "requestLog.conf"; 
@@ -137,11 +137,11 @@ public class RequestLogServiceImpl implements RequestLogService, InitializingBea
 		return false;
 	}
 	
-	protected String normalReferer(String referer){//È¥³ı¹Ø¼ü×Ö
+	protected String normalReferer(String referer){//å»é™¤å…³é”®å­—
 		if(StringUtils.isBlank(referer)){
 			return "none";
 		}
-		if(StringUtils.contains(referer, "gewara")){//ÄÚ²¿ÒıÓÃ£¬È¥³ıquery_string£¬·ÀÖ¹Ãô¸ĞĞÅÏ¢Ğ¹Â¶
+		if(StringUtils.contains(referer, "gewara")){//å†…éƒ¨å¼•ç”¨ï¼Œå»é™¤query_stringï¼Œé˜²æ­¢æ•æ„Ÿä¿¡æ¯æ³„éœ²
 			int idx = referer.indexOf('?');
 			if(idx> 0){
 				return referer.substring(0, idx);
@@ -167,7 +167,7 @@ public class RequestLogServiceImpl implements RequestLogService, InitializingBea
 		for(Map.Entry<String, String> entry: params.entrySet()){
 			String pname = entry.getKey();
 			String pv = entry.getValue();
-			for(String key: sensitiveList){//Ãô¸Ğ
+			for(String key: sensitiveList){//æ•æ„Ÿ
 				if(StringUtils.containsIgnoreCase(pname, key) && StringUtils.isNotBlank(pv)){
 					pv = "MG" + StringUtil.md5("kcj3STidSC" + pv);
 					break;

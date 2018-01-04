@@ -8,15 +8,15 @@ public class BaoChangBasePriceInfoVo extends BaseVo{
 	private static final long serialVersionUID = 2341673502898415531L;
 	
 	protected Long id;
-	protected Long cinemaid;//Ó°ÔºID
-	protected String cinemaname;//Ó°ÔºÃû³Æ
-	protected Long roomid;//Ó°ÌüID
-	protected String roomname;//Ó°ÌüÃû³Æ
-	protected String settlementNo; //½áËã±àºÅ
-	protected Integer price;		//³É±¾¼Û
-	protected Integer gewaprice;	//¸ñÍßÂô¼Û
-	protected String citycode;//³ÇÊĞ´úÂë
-	protected Integer validFlag; //ÊÇ·ñÓĞĞ§
+	protected Long cinemaid;//å½±é™¢ID
+	protected String cinemaname;//å½±é™¢åç§°
+	protected Long roomid;//å½±å…ID
+	protected String roomname;//å½±å…åç§°
+	protected String settlementNo; //ç»“ç®—ç¼–å·
+	protected Integer price;		//æˆæœ¬ä»·
+	protected Integer gewaprice;	//æ ¼ç“¦å–ä»·
+	protected String citycode;//åŸå¸‚ä»£ç 
+	protected Integer validFlag; //æ˜¯å¦æœ‰æ•ˆ
 	
 	public BaoChangBasePriceInfoVo(){}
 

@@ -13,37 +13,37 @@ public class BaoChangOrderInfoVo extends BaseVo {
 	private static final long serialVersionUID = -5463299983756719416L;
 	
 	private Long id;
-	private Long cinemaid;//Ó°Ôº
+	private Long cinemaid;//å½±é™¢
 	private String cinemaname;
-	private Long roomid;//Ó°ÌüID
+	private Long roomid;//å½±å…ID
 	private String roomname;
-	private Long movieid;//Ó°Æ¬ID
+	private Long movieid;//å½±ç‰‡ID
 	private String moviename;
 	private String imgUrl;
-	private Long mpid;//³¡´ÎID
-	private Long memberid;//Ô¤Ô¼ÈËID
-	private String mobile;//Ô¤ÁôÊÖ»úºÅ
-	private String tradeNo;//¶©µ¥ºÅ
-	private Date appointmentDate;//Ô¤Ô¼ÈÕÆÚ
-	private String startTime;//Ô¤Ô¼Ê±¼ä¶Î£¨¿ªÊ¼Ê±¼ä£©
-	private String endTime;//Ô¤Ô¼Ê±¼ä¶Î£¨½áÊøÊ±¼ä£©
-	private Date playdate;		//·ÅÓ³ÈÕÆÚ
-	private String showtime;	//·ÅÓ³Ê±¼ä
-	private String status;//×´Ì¬
-	private String remark;//ËµÃ÷
-	private Timestamp createtime;//´´½¨Ê±¼ä
-	private Timestamp successtime;//³É¹¦Ê±¼ä
+	private Long mpid;//åœºæ¬¡ID
+	private Long memberid;//é¢„çº¦äººID
+	private String mobile;//é¢„ç•™æ‰‹æœºå·
+	private String tradeNo;//è®¢å•å·
+	private Date appointmentDate;//é¢„çº¦æ—¥æœŸ
+	private String startTime;//é¢„çº¦æ—¶é—´æ®µï¼ˆå¼€å§‹æ—¶é—´ï¼‰
+	private String endTime;//é¢„çº¦æ—¶é—´æ®µï¼ˆç»“æŸæ—¶é—´ï¼‰
+	private Date playdate;		//æ”¾æ˜ æ—¥æœŸ
+	private String showtime;	//æ”¾æ˜ æ—¶é—´
+	private String status;//çŠ¶æ€
+	private String remark;//è¯´æ˜
+	private Timestamp createtime;//åˆ›å»ºæ—¶é—´
+	private Timestamp successtime;//æˆåŠŸæ—¶é—´
 	private String citycode;
 	private Integer prTicketNum;
 	private Integer recTicketNum;
-	private String orderType;//¶©µ¥ÀàĞÍ£¨exist£ºÏÖÓĞ³¡´Î¶©µ¥£»appointment£ºÔ¤Ô¼³¡´Î¶©µ¥£©
-	private Timestamp validtime;		//ÓĞĞ§Ê±¼ä
-	private Integer price;		//³É±¾¼Û
-	private Integer gewaprice;	//¸ñÍßÂô¼Û
-	private Integer successPrice;//Êµ¼ÊÈ·ÈÏ¼Û¸ñ
-	private String userRemark;//°ü³¡ÈËËµÃ÷
-	private String username;//°ü³¡ÈËĞÕÃû
-	private String from;//ÏÂµ¥À´Ô´£¨orderInfo£º°²×¿£»ios£ºIOS£©
+	private String orderType;//è®¢å•ç±»å‹ï¼ˆexistï¼šç°æœ‰åœºæ¬¡è®¢å•ï¼›appointmentï¼šé¢„çº¦åœºæ¬¡è®¢å•ï¼‰
+	private Timestamp validtime;		//æœ‰æ•ˆæ—¶é—´
+	private Integer price;		//æˆæœ¬ä»·
+	private Integer gewaprice;	//æ ¼ç“¦å–ä»·
+	private Integer successPrice;//å®é™…ç¡®è®¤ä»·æ ¼
+	private String userRemark;//åŒ…åœºäººè¯´æ˜
+	private String username;//åŒ…åœºäººå§“å
+	private String from;//ä¸‹å•æ¥æºï¼ˆorderInfoï¼šå®‰å“ï¼›iosï¼šIOSï¼‰
 	
 	public BaoChangOrderInfoVo(){}
 
@@ -298,7 +298,7 @@ public class BaoChangOrderInfoVo extends BaseVo {
 		}
 		int month = DateUtil.getMonth(playdate);
 		int day = DateUtil.getDay(playdate);
-		return month + "ÔÂ" + day + "ÈÕ" + showtime;
+		return month + "æœˆ" + day + "æ—¥" + showtime;
 	}
 
 	public String getUserRemark() {

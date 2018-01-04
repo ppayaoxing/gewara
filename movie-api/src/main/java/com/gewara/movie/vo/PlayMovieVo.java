@@ -7,29 +7,29 @@ import com.gewara.api.vo.BaseVo;
 
 public class PlayMovieVo extends BaseVo {
 
-	private Long id; //Î¨Ò»±êÊ¾
-	private Long kindId; //ËùÔÚÀà±ğ,ÊôÓÚÄÄÒ»ÆÚ
-	private String kindName; //·ÅÓ³Àà±ğÃû³Æ
-	private String belongToKind;//ÊôÓÚÄÄ¸öÀà±ğ ĞÂÉÌÒµorĞÂ¾­µä ÏÖÔÚµÄÖµÓĞ newBusiness newClassics Ó°Õ¹Ä£Ê½(yingzhan)
-	private Long movieId; //Ó°Æ¬ID
-	private Timestamp playStartTime; //Ó°Æ¬µãÓ³¿ªÊ¼Ê±¼ä
-	private Timestamp playEndTime;  //Ó°Æ¬µãÓ³½áÊøÊ±¼ä
-	private Timestamp cinemaPlayTime; //Ó°Ôº·ÅÓ³Ê±¼ä
-	private Integer orderNumber;	//ÅÅĞòĞòºÅ
-	private Integer status;	//ÊÇ·ñÉ¾³ı 1=É¾³ı 0=Î´É¾³ı
-	private Timestamp addtime; //Ìí¼ÓÊ±¼ä
-	private Timestamp updatetime;//ĞŞ¸ÄÊ±¼ä
-	private String activityId; //ÊÔÆ¬»î¶¯id
-	private Timestamp startTime; //»î¶¯ÓĞĞ§Ê±¼ä ¿ªÊ¼Ê±¼ä
-	private Timestamp endTime; //»î¶¯ÓĞĞ§Ê±¼ä ½áÊøÊ±¼ä
-	private String impression; //Ó°Æ¬Ó¡Ïó ¶à¸öÓ¡ÏóÓÃ¶ººÅ·Ö¿ª
-	private String qualityReport; //ÖÊÁ¿±¨¸æ
-	private String videoLink; //ÊÓÆµÁ´½Ó
-	private String playCityCode;//·ÅÓ³³ÇÊĞ±àÂë
-	private String describe;//ÃèÊö
-	private String yingzhangurl;//Ó°Õ¹µÄurl£¬Èç¹ûÊÇÓ°Õ¹Ä£Ê½µÄ»°
-	private String yingzhanAddress;//Ó°Õ¹µØÖ·
-	private String relativeIds;//Ó°Õ¹¹ØÁªid
+	private Long id; //å”¯ä¸€æ ‡ç¤º
+	private Long kindId; //æ‰€åœ¨ç±»åˆ«,å±äºå“ªä¸€æœŸ
+	private String kindName; //æ”¾æ˜ ç±»åˆ«åç§°
+	private String belongToKind;//å±äºå“ªä¸ªç±»åˆ« æ–°å•†ä¸šoræ–°ç»å…¸ ç°åœ¨çš„å€¼æœ‰ newBusiness newClassics å½±å±•æ¨¡å¼(yingzhan)
+	private Long movieId; //å½±ç‰‡ID
+	private Timestamp playStartTime; //å½±ç‰‡ç‚¹æ˜ å¼€å§‹æ—¶é—´
+	private Timestamp playEndTime;  //å½±ç‰‡ç‚¹æ˜ ç»“æŸæ—¶é—´
+	private Timestamp cinemaPlayTime; //å½±é™¢æ”¾æ˜ æ—¶é—´
+	private Integer orderNumber;	//æ’åºåºå·
+	private Integer status;	//æ˜¯å¦åˆ é™¤ 1=åˆ é™¤ 0=æœªåˆ é™¤
+	private Timestamp addtime; //æ·»åŠ æ—¶é—´
+	private Timestamp updatetime;//ä¿®æ”¹æ—¶é—´
+	private String activityId; //è¯•ç‰‡æ´»åŠ¨id
+	private Timestamp startTime; //æ´»åŠ¨æœ‰æ•ˆæ—¶é—´ å¼€å§‹æ—¶é—´
+	private Timestamp endTime; //æ´»åŠ¨æœ‰æ•ˆæ—¶é—´ ç»“æŸæ—¶é—´
+	private String impression; //å½±ç‰‡å°è±¡ å¤šä¸ªå°è±¡ç”¨é€—å·åˆ†å¼€
+	private String qualityReport; //è´¨é‡æŠ¥å‘Š
+	private String videoLink; //è§†é¢‘é“¾æ¥
+	private String playCityCode;//æ”¾æ˜ åŸå¸‚ç¼–ç 
+	private String describe;//æè¿°
+	private String yingzhangurl;//å½±å±•çš„urlï¼Œå¦‚æœæ˜¯å½±å±•æ¨¡å¼çš„è¯
+	private String yingzhanAddress;//å½±å±•åœ°å€
+	private String relativeIds;//å½±å±•å…³è”id
 	private String imgUrl;
 	public String getRelativeIds() {
 		return relativeIds;

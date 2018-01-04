@@ -79,11 +79,11 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * AggregationClient����hbase��ʵ�ּ򵥾ۺϼ���,����{@link Configuration}����
+	 * AggregationClient锟斤拷锟斤拷hbase锟斤拷实锟街简单聚合硷拷锟斤拷,锟斤拷锟斤拷{@link Configuration}锟斤拷锟斤拷
 	 */
 	private AggregationClient aggregationClient;
 	/**
-	 * hbase ���õ��ڴ�ṹ��ʾ
+	 * hbase 锟斤拷锟矫碉拷锟节达拷峁癸拷锟绞�
 	 */
 	private Configuration cfg;
 
@@ -100,7 +100,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		cfg.set("hbase.zookeeper.quorum", zookeeperQuorum);
 		cfg.set("hbase.zookeeper.property.clientPort", "2181");
 		// cfg.set("hbase.client.connection.impl",
-		// HConnectionManager.HConnectionImplementation.class.getName());//Ĭ�ϻ�ȡ��ʵ����,��������
+		// HConnectionManager.HConnectionImplementation.class.getName());//默锟较伙拷取锟斤拷实锟斤拷锟斤拷,锟斤拷锟斤拷锟斤拷锟斤拷
 		//XXX no-block the spring container startup!!!
 		new Thread(new Runnable(){
 			@Override
@@ -113,7 +113,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 				}
 
 				/*
-				 * getHConnection�Ǹ���������,ֻҪ����ֵ����,�ʹ������Ѿ��������,����ʹ�ÿͻ��˵ȴ�һ����ʱ��
+				 * getHConnection锟角革拷锟斤拷锟斤拷锟斤拷锟斤拷,只要锟斤拷锟斤拷值锟斤拷锟斤拷,锟酵达拷锟斤拷锟斤拷锟窖撅拷锟斤拷锟斤拷锟斤拷锟�,锟斤拷锟斤拷使锟矫客伙拷锟剿等达拷一锟斤拷锟斤拷时锟斤拷
 				 */
 				if (/*isAvaliable()*/getConnection() != null) {
 					dbLogger.warn("setup HBase success!!!!");
@@ -125,7 +125,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * getHConnection�Ǹ���������,ֻҪ����ֵ����,�ʹ������Ѿ��������,����ʹ�ÿͻ��˵ȴ�һ����ʱ��
+	 * getHConnection锟角革拷锟斤拷锟斤拷锟斤拷锟斤拷,只要锟斤拷锟斤拷值锟斤拷锟斤拷,锟酵达拷锟斤拷锟斤拷锟窖撅拷锟斤拷锟斤拷锟斤拷锟�,锟斤拷锟斤拷使锟矫客伙拷锟剿等达拷一锟斤拷锟斤拷时锟斤拷
 	 */
 	private Connection getConnection() {
 		if(connection==null || connection.isClosed()){
@@ -180,7 +180,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * ��#Result�������ݵ�һ��(һ�� map ��ƽ�����е������ֶ�)
+	 * 锟斤拷#Result锟斤拷锟斤拷锟斤拷锟捷碉拷一锟斤拷(一锟斤拷 map 锟斤拷平锟斤拷锟斤拷锟叫碉拷锟斤拷锟斤拷锟街讹拷)
 	 * 
 	 * @param row
 	 * @return
@@ -191,7 +191,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		}
 		Map<String, String> rowdata = new LinkedHashMap<String, String>();
 		NavigableMap<byte[], NavigableMap<byte[], byte[]>> map = row.getNoVersionMap();
-		// XXX ��������עָ�����������, gewara ʹ�õ�����Ϊ DF
+		// XXX 锟斤拷锟斤拷锟斤拷锟斤拷注指锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�, gewara 使锟矫碉拷锟斤拷锟斤拷为 DF
 		NavigableMap<byte[], byte[]> data = map.get(columnFamily);
 		for (Entry<byte[], byte[]> entry : data.entrySet()) {
 			rowdata.put(Bytes.toString(entry.getKey()), Bytes.toString(entry.getValue()));
@@ -356,14 +356,14 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	@Override
 	public List<Row> getRowListByRange(String tableName, Map fb, Long starttime, Long endtime, RowFilter filter,
 			int maxnum) {
-		// TODO ����
+		// TODO 锟斤拷锟斤拷
 		return null;
 	}
 
 	@Override
 	public List<Row> getRowListByIdRange(String tableName, Map fb, byte[] startRowId, byte[] endRowId, RowFilter filter,
 			int maxnum) {
-		// TODO ����
+		// TODO 锟斤拷锟斤拷
 		return null;
 	}
 
@@ -378,7 +378,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		ScanBuilder scanBuilder = getScanBuilder(tableName, fb, starttime, endtime);
 		Scan scan = scanBuilder.buildScan();
 		if (StringUtils.isNotBlank(column) && scanBuilder.isEmptyCondition() && HbaseData.supportTimeRange(tableName)) {
-			scan.addColumn(columnFamily, column.getBytes());// not exists����Ҫ��������
+			scan.addColumn(columnFamily, column.getBytes());// not exists锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷锟斤拷
 		}
 
 		executeWithScan(tableName, scan, new RowCallback() {
@@ -396,7 +396,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		ScanBuilder scanBuilder = getScanBuilder(tableName, fb, starttime, endtime);
 		Scan scan = scanBuilder.buildScan();
 		if (StringUtils.isNotBlank(column) && scanBuilder.isEmptyCondition() && HbaseData.supportTimeRange(tableName)) {
-			scan.addColumn(columnFamily, column.getBytes());// not exists����Ҫ��������
+			scan.addColumn(columnFamily, column.getBytes());// not exists锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷锟斤拷
 		}
 		final AtomicInteger count = new AtomicInteger(0);
 		executeWithScan(tableName, scan, new RowCallback() {
@@ -410,7 +410,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 				}
 			}
 		}, 200000000);
-		// ���һ��
+		// 锟斤拷锟揭伙拷锟�
 		if (rowidList.size() > 0) {
 			removeRowList(tableName, rowidList);
 			count.addAndGet(rowidList.size());
@@ -508,12 +508,12 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * ����һ�����ܱȽ��������׳������ API, �ʶ�ʹ��ʱ,���עע��.
+	 * 锟斤拷锟斤拷一锟斤拷锟斤拷锟杰比斤拷锟斤拷锟斤拷锟斤拷锟阶筹拷锟斤拷锟斤拷锟� API, 锟绞讹拷使锟斤拷时,锟斤拷锟阶⒆拷锟�.
 	 * 
-	 * for query: Ĭ��������ȱȽ�,���operator����ֵ,��ֵΪ'<>',��������ȱȽ� for
-	 * likeQuery:ֻ����ȱȽ�,��operator����ֵ�޹�
+	 * for query: 默锟斤拷锟斤拷锟斤拷锟斤拷缺冉锟�,锟斤拷锟給perator锟斤拷锟斤拷值,锟斤拷值为'<>',锟斤拷锟斤拷锟斤拷锟斤拷缺冉锟� for
+	 * likeQuery:只锟斤拷锟斤拷缺冉锟�,锟斤拷operator锟斤拷锟斤拷值锟睫癸拷
 	 * 
-	 * ����Range,��������Ĳ�����'[...)',ǰ�պ�
+	 * 锟斤拷锟斤拷Range,锟斤拷锟斤拷锟斤拷锟斤拷牟锟斤拷锟斤拷锟�'[...)',前锟秸猴拷
 	 * 
 	 * @param tablename
 	 * @param query
@@ -543,7 +543,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * TODO ���� null ֵ�Ĵ���
+	 * TODO 锟斤拷锟斤拷 null 值锟侥达拷锟斤拷
 	 * 
 	 * @param timestamp
 	 * @return
@@ -558,7 +558,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * TODO ���� null ֵ�Ĵ���
+	 * TODO 锟斤拷锟斤拷 null 值锟侥达拷锟斤拷
 	 * 
 	 * @param timestamp
 	 * @return

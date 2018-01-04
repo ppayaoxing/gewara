@@ -43,7 +43,7 @@ public class ConcurrentUtils {
 	}
 
 	/**
-	 * �޷������ʱֱ�Ӻ���
+	 * 锟睫凤拷锟斤拷锟斤拷锟绞敝憋拷雍锟斤拷锟�
 	 * @param lockKey
 	 * @param lc
 	 */
@@ -53,7 +53,7 @@ public class ConcurrentUtils {
 	}
 
 	/**
-	 * ʹ�ñ���Lock
+	 * 使锟矫憋拷锟斤拷Lock
 	 * @param lockKey
 	 * @param lc
 	 */
@@ -63,7 +63,7 @@ public class ConcurrentUtils {
 	}
 
 	/**
-	 * 60 min ��ʱ
+	 * 60 min 锟斤拷时
 	 * @param lc
 	 * @param lock
 	 * @return
@@ -73,7 +73,7 @@ public class ConcurrentUtils {
 	}
 	/**
 	 * @param lc
-	 * @param waitSeconds ��ʱʱ��
+	 * @param waitSeconds 锟斤拷时时锟斤拷
 	 * @param lock
 	 * @return
 	 */

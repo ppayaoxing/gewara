@@ -9,7 +9,7 @@ public class AddressConstant {
 	public static final String ADDRESS_WEB="web";//web
 	public static final String ADDRESS_WAP="wap";//wap
 	public static final String ADDRESS_GEWAP="gewap";//wap
-	public static final String ADDRESS_MOBILE="mobile";//ÊÖ»ú¶ÌÐÅ
+	public static final String ADDRESS_MOBILE="mobile";//æ‰‹æœºçŸ­ä¿¡
 	public static final String ADDRESS_IPHONE="iphone";//iphone
 	public static final String ADDRESS_ANDROID="android";//android
 	public static final String ADDRESS_SYMBIAN="symbian";//symbian
@@ -19,15 +19,15 @@ public class AddressConstant {
 	public static Map<Long,String> partnerAddressMap;
 	static{
 		Map<String,String> map = new HashMap<String, String>();
-		map.put(ADDRESS_WEB,"ÍøÒ³°æ");
-		map.put(ADDRESS_WAP,"WAP°æ");
-		map.put(ADDRESS_GEWAP,"WAP°æ");
-		map.put(ADDRESS_IPHONE,"iPhone°æ");
-		map.put(ADDRESS_ANDROID,"Android°æ");
-		map.put(ADDRESS_SYMBIAN, "Symbian°æ");
-		map.put(ADDRESS_MOBILE, "ÊÖ»ú¶ÌÐÅ");
-		map.put(ADDRESS_DRAMAIPHONE,"iPhone°æ");
-		map.put(ADDRESS_DRAMAANDROID,"Android°æ");
+		map.put(ADDRESS_WEB,"ç½‘é¡µç‰ˆ");
+		map.put(ADDRESS_WAP,"WAPç‰ˆ");
+		map.put(ADDRESS_GEWAP,"WAPç‰ˆ");
+		map.put(ADDRESS_IPHONE,"iPhoneç‰ˆ");
+		map.put(ADDRESS_ANDROID,"Androidç‰ˆ");
+		map.put(ADDRESS_SYMBIAN, "Symbianç‰ˆ");
+		map.put(ADDRESS_MOBILE, "æ‰‹æœºçŸ­ä¿¡");
+		map.put(ADDRESS_DRAMAIPHONE,"iPhoneç‰ˆ");
+		map.put(ADDRESS_DRAMAANDROID,"Androidç‰ˆ");
 		addressMap = UnmodifiableMap.decorate(map);
 	}
 	public static final String ADDRESS_ALL = "all";

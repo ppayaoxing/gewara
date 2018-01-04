@@ -8,7 +8,7 @@ import com.gewara.api.terminal.vo.MachineVo;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * terminal Ìá¹©µÄdubbo·şÎñ
+ * terminal æä¾›çš„dubboæœåŠ¡
  *
  */
 public interface TerminalMachineVoSerice {
@@ -24,7 +24,7 @@ public interface TerminalMachineVoSerice {
 	ResultCode<MachineAdVo> saveMachine(MachineAdVo adVo, String realname);
 
 	/**
-	 * ¸ù¾İ²éÑ¯Ìõ¼ş£¬²éÑ¯ÒÑÓĞÖÕ¶Ë»úµÄÓ°ÔºĞÅÏ¢
+	 * æ ¹æ®æŸ¥è¯¢æ¡ä»¶ï¼ŒæŸ¥è¯¢å·²æœ‰ç»ˆç«¯æœºçš„å½±é™¢ä¿¡æ¯
 	 * @param params
 	 * @return
 	 */

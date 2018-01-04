@@ -8,10 +8,10 @@ import com.gewara.api.vo.BaseVo;
 
 public class PlayMovieGradeVo extends BaseVo {
 	private static final long serialVersionUID = 4067709411833539664L;
-	private Long movieId;	   //µçÓ°id Ö÷¼ü
-	private String gradeValue; //»ı·ÖÖµ
-	private String status;     //ÊÇ·ñÆôÓÃ
-	private Timestamp addTime; //Ìí¼ÓÊ±¼ä
+	private Long movieId;	   //ç”µå½±id ä¸»é”®
+	private String gradeValue; //ç§¯åˆ†å€¼
+	private String status;     //æ˜¯å¦å¯ç”¨
+	private Timestamp addTime; //æ·»åŠ æ—¶é—´
 	public Long getMovieId() {
 		return movieId;
 	}

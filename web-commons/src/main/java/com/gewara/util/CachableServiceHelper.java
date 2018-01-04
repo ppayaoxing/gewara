@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.gewara.untrans.CacheService;
 
 /**
- * TODO 待定
+ * TODO 寰呭畾
  * 
  * @author sunder
  * 
@@ -19,21 +19,21 @@ public class CachableServiceHelper {
 
 	@Autowired
 	private CacheService cacheService;
-	private String serviceName; // service 名称
-	private String dispatchServiceName; // 调度service名
+	private String serviceName; // service 鍚嶇О
+	private String dispatchServiceName; // 璋冨害service鍚�
 
 	/**
-	 * 清除缓存
+	 * 娓呴櫎缂撳瓨
 	 * 
 	 * @param key
 	 */
 	public void clearCache(String key) {
-		// TODO 待定
+		// TODO 寰呭畾
 		cacheService.remove(dispatchServiceName, key);
 	}
 
 	/**
-	 * 获取缓存
+	 * 鑾峰彇缂撳瓨
 	 * 
 	 * @param key
 	 * @param secondsTwentymin
@@ -41,7 +41,7 @@ public class CachableServiceHelper {
 	 * @return
 	 */
 	public <T> T cacheCall(String key, int secondsTwentymin, CachableCall<T> cachableCall) {
-		// TODO 待定
+		// TODO 寰呭畾
 		T t = cachableCall.call();
 		cacheService.add(serviceName, key, t, secondsTwentymin);
 		return t;

@@ -6,8 +6,8 @@ import org.apache.commons.lang.StringUtils;
 
 import com.gewara.util.JsonUtils;
 /**
- * µ÷ÓÃÁ´µÄÒ»¸ö½Úµã£¬Í¨¹ıtraceIdÈ·¶¨Êı¾İµÄµ÷ÓÃÁ´¹éÊô
- * <br>²ÎÏê£º<hr>http://wk.gewara.com/pages/viewpage.action?pageId=19147575</hr>
+ * è°ƒç”¨é“¾çš„ä¸€ä¸ªèŠ‚ç‚¹ï¼Œé€šè¿‡traceIdç¡®å®šæ•°æ®çš„è°ƒç”¨é“¾å½’å±
+ * <br>å‚è¯¦ï¼š<hr>http://wk.gewara.com/pages/viewpage.action?pageId=19147575</hr>
  * @author user
  *
  */
@@ -16,27 +16,27 @@ public class Span implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String id;		//=traceId + spanId
-	private String traceId;	//È«¾ÖÎ¨Ò»id
-	private Integer parentId;	//¸¸ID£¬Èç¹ûÎª0ÔòÎªroot span
-	private Integer spanId;		//µ±Ç°½Úµãid
-	private Long callTime;	//µ÷ÓÃÊ±¼ä´Á
-	private Long rvTime;	//·µ»ØÊ±¼ä´Á
-	private String systemId;//ÏµÍ³id
-	private String host;//½ÚµãÖ÷»úÃû
-	private String spanUri;	//½Úµãuri
+	private String traceId;	//å…¨å±€å”¯ä¸€id
+	private Integer parentId;	//çˆ¶IDï¼Œå¦‚æœä¸º0åˆ™ä¸ºroot span
+	private Integer spanId;		//å½“å‰èŠ‚ç‚¹id
+	private Long callTime;	//è°ƒç”¨æ—¶é—´æˆ³
+	private Long rvTime;	//è¿”å›æ—¶é—´æˆ³
+	private String systemId;//ç³»ç»Ÿid
+	private String host;//èŠ‚ç‚¹ä¸»æœºå
+	private String spanUri;	//èŠ‚ç‚¹uri
 	private Integer duration;
 	
 	public Span(){
 	}
 	/**
-	 * ¹¹Ôìº¯Êı
-	 * @param systemId ÏµÍ³id
-	 * @param hostname ½ÚµãÖ÷»úÃû
-	 * @param spanUri ½Úµãuri
-	 * @param traceId È«¾ÖÎ¨Ò»id
-	 * @param parentId ¸¸ID£¬Èç¹ûÎª0ÔòÎªroot span
-	 * @param spanId µ±Ç°½Úµãid
-	 * @param calltime µ÷ÓÃÊ±¼ä´Á
+	 * æ„é€ å‡½æ•°
+	 * @param systemId ç³»ç»Ÿid
+	 * @param hostname èŠ‚ç‚¹ä¸»æœºå
+	 * @param spanUri èŠ‚ç‚¹uri
+	 * @param traceId å…¨å±€å”¯ä¸€id
+	 * @param parentId çˆ¶IDï¼Œå¦‚æœä¸º0åˆ™ä¸ºroot span
+	 * @param spanId å½“å‰èŠ‚ç‚¹id
+	 * @param calltime è°ƒç”¨æ—¶é—´æˆ³
 	 */
 	public Span(String systemId, String host, String spanUri, String traceId, Integer parentId, Integer spanId,Long calltime){
 		this.id = traceId + "_" + spanId;
@@ -101,7 +101,7 @@ public class Span implements Serializable{
 		return id;
 	}
 	/**
-	 * ´æ´¢Ê±×÷ÎªesµÄidÊ¹ÓÃ
+	 * å­˜å‚¨æ—¶ä½œä¸ºesçš„idä½¿ç”¨
 	 * @param id
 	 */
 	public void setId(String id) {

@@ -11,42 +11,42 @@ public class OrderNoteVo extends BaseVo {
 
 	private static final long serialVersionUID = -135038508746485007L;
 	private Long id;
-	private Long orderid;				//����ID
-	private String tradeno;				//������
-	private String ordertype;			//��������
-	private String mobile;				//�ֻ���
-	private String placename;			//��������
-	private String placetype;			//��������
-	private Long placeid;				//����ID
-	private String itemname;			//��Ŀ����
-	private String itemtype;			//��Ŀ����
-	private Long itemid;				//��ĿID
-	private String checkpass;			//ȡƱ����
-	private Integer ticketnum;			//Ʊ����
-	private String smallitemtype;		//��������
-	private Long smallitemid;			//��������(���λ���Ʒ)
-	private Timestamp addtime;			//���ʱ��
-	private Timestamp updatetime;		//����ʱ��
-	private Timestamp validtime;		//��Чʱ��
-	private String message;				//��������
+	private Long orderid;				//锟斤拷锟斤拷ID
+	private String tradeno;				//锟斤拷锟斤拷锟斤拷
+	private String ordertype;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private String mobile;				//锟街伙拷锟斤拷
+	private String placename;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private String placetype;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private Long placeid;				//锟斤拷锟斤拷ID
+	private String itemname;			//锟斤拷目锟斤拷锟斤拷
+	private String itemtype;			//锟斤拷目锟斤拷锟斤拷
+	private Long itemid;				//锟斤拷目ID
+	private String checkpass;			//取票锟斤拷锟斤拷
+	private Integer ticketnum;			//票锟斤拷锟斤拷
+	private String smallitemtype;		//锟斤拷锟斤拷锟斤拷锟斤拷
+	private Long smallitemid;			//锟斤拷锟斤拷锟斤拷锟斤拷(锟斤拷锟轿伙拷锟斤拷品)
+	private Timestamp addtime;			//锟斤拷锟绞憋拷锟�
+	private Timestamp updatetime;		//锟斤拷锟斤拷时锟斤拷
+	private Timestamp validtime;		//锟斤拷效时锟斤拷
+	private String message;				//锟斤拷锟斤拷锟斤拷锟斤拷
 	
-	private Timestamp playtime;			//��ӳʱ��
-	private Timestamp taketime;			//ȡƱʱ��
+	private Timestamp playtime;			//锟斤拷映时锟斤拷
+	private Timestamp taketime;			//取票时锟斤拷
 	private String status;
-	private String serialno;			//��ˮ��
-	private Timestamp modifytime;		//һ���ͬ��
-	private String result;				//ͬ��״̬
-	private String description;			//˵��
+	private String serialno;			//锟斤拷水锟斤拷
+	private Timestamp modifytime;		//一锟斤拷锟酵拷锟�
+	private String result;				//同锟斤拷状态
+	private String description;			//说锟斤拷
 	
 	private String fromup;
 	private String express;
 	private String otherinfo;
-	private Integer convertnum;				//��Ʊ��
-	private String converttype;				//��������
-	private Integer totalfee;					//�ܷ���
-	private Integer totaldisfee;				//����Ʊ�Ż�
-	private Integer convertfee;				//�һ�����
-	private Integer convertdisfee;			//�һ���Ʊ�Żݷ���
+	private Integer convertnum;				//锟斤拷票锟斤拷
+	private String converttype;				//锟斤拷锟斤拷锟斤拷锟斤拷
+	private Integer totalfee;					//锟杰凤拷锟斤拷
+	private Integer totaldisfee;				//锟斤拷锟斤拷票锟脚伙拷
+	private Integer convertfee;				//锟揭伙拷锟斤拷锟斤拷
+	private Integer convertdisfee;			//锟揭伙拷锟斤拷票锟脚惠凤拷锟斤拷
 	public OrderNoteVo(){}
 	@Override
 	public Serializable realId() {

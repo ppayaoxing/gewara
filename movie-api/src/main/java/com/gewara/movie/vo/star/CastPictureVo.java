@@ -8,12 +8,12 @@ import com.gewara.api.vo.BaseVo;
 public class CastPictureVo extends BaseVo {
 	private static final long serialVersionUID = -100677988174265653L;
 	private Long id;
-	private Long castid; // ÈËÎïID
-	private String picname; // Í¼Æ¬Ãû
-	private String picurl; // Í¼Æ¬Â·¾¶
-	private String piccategory; // Í¼Æ¬·ÖÀà
-	private Timestamp addtime; // ĞÂÔöÊ±¼ä
-	private Timestamp updatetime; // ¸üĞÂÊ±¼ä
+	private Long castid; // äººç‰©ID
+	private String picname; // å›¾ç‰‡å
+	private String picurl; // å›¾ç‰‡è·¯å¾„
+	private String piccategory; // å›¾ç‰‡åˆ†ç±»
+	private Timestamp addtime; // æ–°å¢æ—¶é—´
+	private Timestamp updatetime; // æ›´æ–°æ—¶é—´
 	private Integer picwidth;
 	private Integer picheight;
 

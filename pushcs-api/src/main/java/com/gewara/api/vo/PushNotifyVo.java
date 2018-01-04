@@ -20,17 +20,17 @@ public class PushNotifyVo implements Serializable {
 	private String appVersion;
 
 	/**
-	 * ÏûÏ¢°æ±¾Ä¬ÈÏÎª1.0
+	 * æ¶ˆæ¯ç‰ˆæœ¬é»˜è®¤ä¸º1.0
 	 * {@link #PushNotifyVo(Long, String, String, String, String, String, String, Timestamp, Integer, String, String)}
 	 * @param userId
-	 * @param msgType ÏûÏ¢ÀàĞÍT1,T2...
+	 * @param msgType æ¶ˆæ¯ç±»å‹T1,T2...
 	 * @param product cinema,sport
-	 * @param title	¿ÉÒÔÎª¿Õ£¬Ä¿Ç°²»Ê¹ÓÃ
+	 * @param title	å¯ä»¥ä¸ºç©ºï¼Œç›®å‰ä¸ä½¿ç”¨
 	 * @param content
 	 * @param links
 	 * @param relatedId
-	 * @param sentTime ´ı·¢ËÍÊ±¼ä
-	 * @param validTime ÓĞĞ§Ê±³¤£¬µ¥Î»Ãë
+	 * @param sentTime å¾…å‘é€æ—¶é—´
+	 * @param validTime æœ‰æ•ˆæ—¶é•¿ï¼Œå•ä½ç§’
 	 */
 	public PushNotifyVo(Long userId, String msgType, String product,
 			String title, String content, String links, String relatedId,
@@ -51,15 +51,15 @@ public class PushNotifyVo implements Serializable {
 	/**
 	 * {@link #PushNotifyVo(Long, String, String, String, String, String, String, Timestamp, Integer, String)}
 	 * @param userId
-	 * @param msgType ÏûÏ¢ÀàĞÍT1,T2...
+	 * @param msgType æ¶ˆæ¯ç±»å‹T1,T2...
 	 * @param product cinema,sport
-	 * @param title	¿ÉÒÔÎª¿Õ£¬Ä¿Ç°²»Ê¹ÓÃ
+	 * @param title	å¯ä»¥ä¸ºç©ºï¼Œç›®å‰ä¸ä½¿ç”¨
 	 * @param content
 	 * @param links
 	 * @param relatedId
-	 * @param sentTime ´ı·¢ËÍÊ±¼ä
-	 * @param validTime ÓĞĞ§Ê±³¤£¬µ¥Î»Ãë
-	 * @param version °æ±¾
+	 * @param sentTime å¾…å‘é€æ—¶é—´
+	 * @param validTime æœ‰æ•ˆæ—¶é•¿ï¼Œå•ä½ç§’
+	 * @param version ç‰ˆæœ¬
 	 */
 	public PushNotifyVo(Long userId, String msgType, String product,
 			String title, String content, String links, String relatedId,

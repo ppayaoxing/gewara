@@ -3,16 +3,16 @@ package com.gewara.api.sns.constant;
 
 
 public abstract class Flag {
-	public static final String POINT_ADDED = "point";	//ÒÑÉóºËÇÒ¼Ó·Ö
-	public static final String POINT_IGNORE = "point2"; //ÒÑÉóºË²»¼Ó·ÖTODO: ÓĞÎÊÌâ
+	public static final String POINT_ADDED = "point";	//å·²å®¡æ ¸ä¸”åŠ åˆ†
+	public static final String POINT_IGNORE = "point2"; //å·²å®¡æ ¸ä¸åŠ åˆ†TODO: æœ‰é—®é¢˜
 	
-	public static final String TOP1 = "top1";// ×ÜÂÛÌ³ÖÃ¶¥
-	public static final String TOP2 = "top2";// ·ÖÂÛÌ³ÖÃ¶¥
-	public static final String RECOMMEND = "recommend";// ÍÆ¼ö
-	public static final String HOT = "hot";// ¾«»ª
-	public static final String TICKET = "ticket";//¹ºÆ±ÓÃ»§
-	public static final String VIDEL_WALA = "videoWala";//ÊÓÆµÍÛÀ²
-	public static final String RED_WALA = "redWala";//ºì°üÍÛÀ²
+	public static final String TOP1 = "top1";// æ€»è®ºå›ç½®é¡¶
+	public static final String TOP2 = "top2";// åˆ†è®ºå›ç½®é¡¶
+	public static final String RECOMMEND = "recommend";// æ¨è
+	public static final String HOT = "hot";// ç²¾å
+	public static final String TICKET = "ticket";//è´­ç¥¨ç”¨æˆ·
+	public static final String VIDEL_WALA = "videoWala";//è§†é¢‘å“‡å•¦
+	public static final String RED_WALA = "redWala";//çº¢åŒ…å“‡å•¦
 	
 	
 	public static final String FLAG_MEMBER = "member";
@@ -25,88 +25,88 @@ public abstract class Flag {
     public static final String ACTION_COLLECT="collect";
 
 	/***
-	 *  Í¼Æ¬ÉÏ´«Ä£¿é - TAG
+	 *  å›¾ç‰‡ä¸Šä¼ æ¨¡å— - TAG
 	 * */
 	public static final String FLAG_MICRO = "micro";
 	public static final String FLAG_COMMUBG = "commubg";
-	public static final String FLAG_HEAD = "head"; //Ì×Í·ĞÅÏ¢
+	public static final String FLAG_HEAD = "head"; //å¥—å¤´ä¿¡æ¯
 
 	
 	/**
-	 *  µçÓ°°æ¿é - ·ÇÖØÒªĞÅÏ¢(Í£³µ³¡/ÓÎÀÖ³¡/Ë¢¿¨..etc.)
+	 *  ç”µå½±ç‰ˆå— - éé‡è¦ä¿¡æ¯(åœè½¦åœº/æ¸¸ä¹åœº/åˆ·å¡..etc.)
 	 * 
 	 */
-	public static final String SERVICE_PARK = "park";					// Í£³µ³¡
-	public static final String SERVICE_OTHER_PARK = "otherPark";		// ÖÜ±ßÍ£³µ³¡
-	public static final String SERVICE_EARLY_END_MPI = "earlyOrEndMpi";	//ÔçÍí³¡É¢³¡Í¨µÀ
-	public static final String SERVICE_VISACARD = "visacard";			// Ë¢¿¨
-	public static final String SERVICE_PLAYGROUND = "playground";		// ÓÎÀÖ³¡
+	public static final String SERVICE_PARK = "park";					// åœè½¦åœº
+	public static final String SERVICE_OTHER_PARK = "otherPark";		// å‘¨è¾¹åœè½¦åœº
+	public static final String SERVICE_EARLY_END_MPI = "earlyOrEndMpi";	//æ—©æ™šåœºæ•£åœºé€šé“
+	public static final String SERVICE_VISACARD = "visacard";			// åˆ·å¡
+	public static final String SERVICE_PLAYGROUND = "playground";		// æ¸¸ä¹åœº
 	public static final String SERVICE_3D = "3D";						// 3D
-	public static final String SERVICE_SALE = "sale";					// ÂôÆ·
-	public static final String SERVICE_FOOD = "food";					// ²ÍÒû
-	public static final String SERVICE_RESTREGION = "restregion";	// ĞİÏ¢Çø
-	public static final String SERVICE_PAIRSEAT = "pairseat";		// ÇéÂÂ×ù
-	public static final String SERVICE_RECREATION = "recreation";		// ÓéÀÖ
-	public static final String SERVICE_SHOPPING = "shopping";		// ¹ºÎï
-	public static final String SERVICE_SHOPPING_TIME = "shoppingTime";		// ÉÌ³¡ÓªÒµÊ±¼ä
-	public static final String SERVICE_CHARACTERISTIC = "characteristic";	//ÌØÉ«Ó°Ìü
+	public static final String SERVICE_SALE = "sale";					// å–å“
+	public static final String SERVICE_FOOD = "food";					// é¤é¥®
+	public static final String SERVICE_RESTREGION = "restregion";	// ä¼‘æ¯åŒº
+	public static final String SERVICE_PAIRSEAT = "pairseat";		// æƒ…ä¾£åº§
+	public static final String SERVICE_RECREATION = "recreation";		// å¨±ä¹
+	public static final String SERVICE_SHOPPING = "shopping";		// è´­ç‰©
+	public static final String SERVICE_SHOPPING_TIME = "shoppingTime";		// å•†åœºè¥ä¸šæ—¶é—´
+	public static final String SERVICE_CHARACTERISTIC = "characteristic";	//ç‰¹è‰²å½±å…
 	public static final String SERVICE_IMAX = "imax";					//	IMAX
-	public static final String SERVICE_CHILD = "child";				//¶ùÍ¯Æ±ÓÅ»İ
-	public static final String SERVICE_POPCORN = "popcorn";			//Ì×²Í
-	public static final String SERVICE_WEBCOMMENT = "webcomment";	//ÍøÓÑµãÆÀ
-	public static final String SERVICE_CLOSESALEMSG = "closesalemsg";	//Í£Ö¹ÊÛÆ±ĞÅÏ¢
-	public static final String SERVICE_MEMBERCARD = "membercard";	//»áÔ±¿¨
+	public static final String SERVICE_CHILD = "child";				//å„¿ç«¥ç¥¨ä¼˜æƒ 
+	public static final String SERVICE_POPCORN = "popcorn";			//å¥—é¤
+	public static final String SERVICE_WEBCOMMENT = "webcomment";	//ç½‘å‹ç‚¹è¯„
+	public static final String SERVICE_CLOSESALEMSG = "closesalemsg";	//åœæ­¢å”®ç¥¨ä¿¡æ¯
+	public static final String SERVICE_MEMBERCARD = "membercard";	//ä¼šå‘˜å¡
 	
-	public static final String SERVICE_LINESEAT = "lineseat";		//ÔÚÏßÑ¡×ù
-	public static final String SERVICE_EXPRESS = "express";			//Ö§³Ö¿ìµİ
-	public static final String SERVICE_ETICKET = "eticket";			//Ö§³Öµç×ÓÆ±
-	public static final String SERVICE_POINTPAY = "pointpay";		//Ö§³Ö»ı·Ö
-	public static final String SERVICE_CARDPAY = "cardpay";			//Ö§³ÖÆ±È¯µÖÖµ
-	public static final String SERVICE_TICKETDESC = "ticketdesc";	//¹ºÆ±ËµÃ÷
+	public static final String SERVICE_LINESEAT = "lineseat";		//åœ¨çº¿é€‰åº§
+	public static final String SERVICE_EXPRESS = "express";			//æ”¯æŒå¿«é€’
+	public static final String SERVICE_ETICKET = "eticket";			//æ”¯æŒç”µå­ç¥¨
+	public static final String SERVICE_POINTPAY = "pointpay";		//æ”¯æŒç§¯åˆ†
+	public static final String SERVICE_CARDPAY = "cardpay";			//æ”¯æŒç¥¨åˆ¸æŠµå€¼
+	public static final String SERVICE_TICKETDESC = "ticketdesc";	//è´­ç¥¨è¯´æ˜
 	
-	public static final String SERVICE_PARK_RECOMMEND = "parkRecommend";					// Í£³µ³¡ÍÆ¼ö
-	public static final String SERVICE_PARK_RECOMMEND_REMARK = "parkRecommendRemark";		// Í£³µ³¡ÍÆ¼öÆäËüÍ£³µÎ»
-	public static final String SERVICE_VISACARD_RECOMMEND = "visacardRecommend";		// Ë¢¿¨ÍÆ¼ö
-	public static final String SERVICE_3D_RECOMMEND = "3DRecommend";						// 3DÍÆ¼ö
-	public static final String SERVICE_SALE_RECOMMEND = "saleRecommend";					// ÂôÆ·ÍÆ¼ö
-	public static final String SERVICE_FOOD_RECOMMEND = "foodRecommend";					// ²ÍÒûÍÆ¼ö
-	public static final String SERVICE_RESTREGION_RECOMMEND = "restregionRecommend";	// ĞİÏ¢ÇøÍÆ¼ö
-	public static final String SERVICE_PAIRSEAT_RECOMMEND = "pairseatRecommend";		// ÇéÂÂ×ùÍÆ¼ö
-	public static final String SERVICE_RECREATION_RECOMMEND = "recreationRecommend";		// ÓéÀÖ
-	public static final String SERVICE_SHOPPING_RECOMMEND = "shoppingRecommend";		// ¹ºÎï
-	public static final String SERVICE_SHOPPING_TIME_RECOMMEND = "shoppingTimeRecommend";		// ÉÌ³¡ÓªÒµÊ±¼ä
-	public static final String SERVICE_CHARACTERISTIC_RECOMMEND = "characteristicRecommend";	//ÌØÉ«Ó°ÌüÍÆ¼ö
-	public static final String SERVICE_IMAX_RECOMMEND = "imaxRecommend";					//	IMAXÍÆ¼ö
-	public static final String SERVICE_CHILD_RECOMMEND = "childRecommend";				//¶ùÍ¯Æ±ÓÅ»İÍÆ¼ö
-	public static final String SERVICE_COMMENTID = "commentID";								//Ó°Ôº²âÆÀ
-	//public static final String SERVICE_JOINT_CINEMA = "jointCinema";						//ËùÊôÔºÏß
+	public static final String SERVICE_PARK_RECOMMEND = "parkRecommend";					// åœè½¦åœºæ¨è
+	public static final String SERVICE_PARK_RECOMMEND_REMARK = "parkRecommendRemark";		// åœè½¦åœºæ¨èå…¶å®ƒåœè½¦ä½
+	public static final String SERVICE_VISACARD_RECOMMEND = "visacardRecommend";		// åˆ·å¡æ¨è
+	public static final String SERVICE_3D_RECOMMEND = "3DRecommend";						// 3Dæ¨è
+	public static final String SERVICE_SALE_RECOMMEND = "saleRecommend";					// å–å“æ¨è
+	public static final String SERVICE_FOOD_RECOMMEND = "foodRecommend";					// é¤é¥®æ¨è
+	public static final String SERVICE_RESTREGION_RECOMMEND = "restregionRecommend";	// ä¼‘æ¯åŒºæ¨è
+	public static final String SERVICE_PAIRSEAT_RECOMMEND = "pairseatRecommend";		// æƒ…ä¾£åº§æ¨è
+	public static final String SERVICE_RECREATION_RECOMMEND = "recreationRecommend";		// å¨±ä¹
+	public static final String SERVICE_SHOPPING_RECOMMEND = "shoppingRecommend";		// è´­ç‰©
+	public static final String SERVICE_SHOPPING_TIME_RECOMMEND = "shoppingTimeRecommend";		// å•†åœºè¥ä¸šæ—¶é—´
+	public static final String SERVICE_CHARACTERISTIC_RECOMMEND = "characteristicRecommend";	//ç‰¹è‰²å½±å…æ¨è
+	public static final String SERVICE_IMAX_RECOMMEND = "imaxRecommend";					//	IMAXæ¨è
+	public static final String SERVICE_CHILD_RECOMMEND = "childRecommend";				//å„¿ç«¥ç¥¨ä¼˜æƒ æ¨è
+	public static final String SERVICE_COMMENTID = "commentID";								//å½±é™¢æµ‹è¯„
+	//public static final String SERVICE_JOINT_CINEMA = "jointCinema";						//æ‰€å±é™¢çº¿
 	
-	public static final String SERVICE_CUPBOARD_RECOMMEND = "cupboardRecommend";		//¹ñ×Ó×âÆ¾ÍÆ¼ö
-	public static final String SERVICE_BATHE_RECOMMEND = "batheRecommend";				//Ï´ÔèÇøÍÆ¼ö
-	public static final String SERVICE_MEAL_RECOMMENDL = "mealRecommend";						//Ì×²ÍÍÆ¼ö
-	public static final String SERVICE_TRAIN_RECOMMENDL = "trainRecommend";					//×¨ÒµÅàÑµÍÆ¼ö
-	public static final String SERVICE_LEASE_RECOMMENDL ="leaseRecommend";					//Æ÷²Ä×â½èÍÆ¼ö
-	public static final String SERVICE_MAINTAIN_RECOMMENDL ="maintainRecommend";			//Æ÷²ÄÎ¬»¤ÍÆ¼ö
-	public static final String SERVICE_MEMBERCARD_RECOMMENDL = "membercardRecommend";	//»áÔ±¿¨
+	public static final String SERVICE_CUPBOARD_RECOMMEND = "cupboardRecommend";		//æŸœå­ç§Ÿå‡­æ¨è
+	public static final String SERVICE_BATHE_RECOMMEND = "batheRecommend";				//æ´—æ¾¡åŒºæ¨è
+	public static final String SERVICE_MEAL_RECOMMENDL = "mealRecommend";						//å¥—é¤æ¨è
+	public static final String SERVICE_TRAIN_RECOMMENDL = "trainRecommend";					//ä¸“ä¸šåŸ¹è®­æ¨è
+	public static final String SERVICE_LEASE_RECOMMENDL ="leaseRecommend";					//å™¨æç§Ÿå€Ÿæ¨è
+	public static final String SERVICE_MAINTAIN_RECOMMENDL ="maintainRecommend";			//å™¨æç»´æŠ¤æ¨è
+	public static final String SERVICE_MEMBERCARD_RECOMMENDL = "membercardRecommend";	//ä¼šå‘˜å¡
 	
-	public static final String SERVICE_CUPBOARD = "cupboard";		//¹ñ×Ó×âÆ¾
-	public static final String SERVICE_BATHE = "bathe";				//Ï´ÔèÇø
-	public static final String SERVICE_INDOOR = "indoor";			//ÊÒÄÚ
-	public static final String SERVICE_OUTDOOR = "outdoor";			//ÊÒÍâ
-	public static final String SERVICE_SITECOUNT = "sitecount";		//³¡µØÊıÁ¿
-	public static final String SERVICE_TRAIN="train";				//×¨ÒµÅàÑµ
-	public static final String SERVICE_MEAL="meal";					//Ì×²Í
-	public static final String SERVICE_HEIGHTVENUE ="heightvenue";	//³¡¹İ¸ß¶È
-	public static final String SERVICE_FLOORING ="flooring";		//µØ°å²ÄÁÏ
-	public static final String SERVICE_LEASE ="lease";				//Æ÷²Ä×â½è	
-	public static final String SERVICE_MAINTAIN ="maintain";		//Æ÷²ÄÎ¬»¤
-	public static final String SERVICE_EXPLOSIVE = "explosive";		//±¬·¢Á¦Ö¸Êı
-	public static final String SERVICE_CALORIE = "calorie";			//¿¨Â·ÀïÖ¸Êı
-	public static final String SERVICE_ENDURANCE = "endurance";		//ÄÍÁ¦Ö¸Êı
-	public static final String SERVICE_RATIO = "ratio";				//ÄĞÅ®±ÈÀı
+	public static final String SERVICE_CUPBOARD = "cupboard";		//æŸœå­ç§Ÿå‡­
+	public static final String SERVICE_BATHE = "bathe";				//æ´—æ¾¡åŒº
+	public static final String SERVICE_INDOOR = "indoor";			//å®¤å†…
+	public static final String SERVICE_OUTDOOR = "outdoor";			//å®¤å¤–
+	public static final String SERVICE_SITECOUNT = "sitecount";		//åœºåœ°æ•°é‡
+	public static final String SERVICE_TRAIN="train";				//ä¸“ä¸šåŸ¹è®­
+	public static final String SERVICE_MEAL="meal";					//å¥—é¤
+	public static final String SERVICE_HEIGHTVENUE ="heightvenue";	//åœºé¦†é«˜åº¦
+	public static final String SERVICE_FLOORING ="flooring";		//åœ°æ¿ææ–™
+	public static final String SERVICE_LEASE ="lease";				//å™¨æç§Ÿå€Ÿ	
+	public static final String SERVICE_MAINTAIN ="maintain";		//å™¨æç»´æŠ¤
+	public static final String SERVICE_EXPLOSIVE = "explosive";		//çˆ†å‘åŠ›æŒ‡æ•°
+	public static final String SERVICE_CALORIE = "calorie";			//å¡è·¯é‡ŒæŒ‡æ•°
+	public static final String SERVICE_ENDURANCE = "endurance";		//è€åŠ›æŒ‡æ•°
+	public static final String SERVICE_RATIO = "ratio";				//ç”·å¥³æ¯”ä¾‹
 	
-	public static final String SERVICE_QUALIFICATIONS = "qualifications";//½ÌÁ·×ÊÖÊ
-	public static final String SERVICE_UID = "uid";		//½ÌÁ·Éí·İ
+	public static final String SERVICE_QUALIFICATIONS = "qualifications";//æ•™ç»ƒèµ„è´¨
+	public static final String SERVICE_UID = "uid";		//æ•™ç»ƒèº«ä»½
 	
 	public static final String FLAG_HISTORY = "history";
 	

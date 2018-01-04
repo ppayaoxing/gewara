@@ -21,9 +21,9 @@ public class SysWarn implements Serializable{
 	private String role;
 	private String adddate;
 	private String addtime;
-	private String vuser;		//view�鿴������
-	private String auser;		//accept���ܴ��������
-	private String fuser;		//fixed��ɴ��������
+	private String vuser;		//view锟介看锟斤拷锟斤拷锟斤拷
+	private String auser;		//accept锟斤拷锟杰达拷锟斤拷锟斤拷锟斤拷锟�
+	private String fuser;		//fixed锟斤拷纱锟斤拷锟斤拷锟斤拷锟斤拷
 	private String otherinfo;
 	
 	public String getOtherinfo() {

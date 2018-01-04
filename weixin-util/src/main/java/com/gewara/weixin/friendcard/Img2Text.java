@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Img2Text implements Serializable{
 	private static final long serialVersionUID = -7882425815550750870L;
-	private String image_url;		//Í¼Æ¬Á´½Ó£¬±ØĞëµ÷ÓÃÉÏ´«Í¼Æ¬½Ó¿ÚÉÏ´«Í¼Æ¬»ñµÃÁ´½Ó£¬²¢ÔÚ´ËÌîÈë£¬·ñÔò±¨´í 
-	private String text;			//Í¼ÎÄÃèÊö£¬5000×ÖÒÔÄÚ 
+	private String image_url;		//å›¾ç‰‡é“¾æ¥ï¼Œå¿…é¡»è°ƒç”¨ä¸Šä¼ å›¾ç‰‡æ¥å£ä¸Šä¼ å›¾ç‰‡è·å¾—é“¾æ¥ï¼Œå¹¶åœ¨æ­¤å¡«å…¥ï¼Œå¦åˆ™æŠ¥é”™ 
+	private String text;			//å›¾æ–‡æè¿°ï¼Œ5000å­—ä»¥å†… 
 	public Img2Text(){
 		
 	}

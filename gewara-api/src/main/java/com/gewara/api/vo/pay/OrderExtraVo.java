@@ -14,22 +14,22 @@ public class OrderExtraVo extends BaseVo {
 	public static final String LEVEL_MAIN = "main";
 	public static final String LEVEL_FINISH = "finish";
 	
-	private Long id;					//¶©µ¥ID
-	private String tradeno;			//¶©µ¥ºÅ
-	private String status;			//¶©µ¥×´Ì¬gewOrder ---> status
-	private Timestamp addtime;		//ÏÂµ¥Ê±¼ä
-	private Timestamp updatetime;		//¸üĞÂÊ±¼ä
-	private String invoice;			//ÊÇ·ñ¿É¿ª·¢Æ±,YÒÑ¿ª,N¿É¿ª,F²»¿É¿ª
-	private String pretype;			//´úÊÛE¡¢Ö÷ÓªM
-	private Long memberid;			//ÓÃ»§ID
-	private Long partnerid;			//ºÏ×÷ÉÌID
-	private String ordertype;			//¶©µ¥ÀàĞÍ
-	private String expressnote;		//¿ìµİµ¥ºÅ
-	private String expresstype;		//¿ìµİÀàĞÍ
-	private String processLevel;		//ºóÆÚ´¦Àí½ø³Ì
-	private String expressStatus;		//¿ìµİ×´Ì¬
-	private String dealStatus;		//´¦Àí×´Ì¬
-	private Long dealUser;			//´¦ÀíÓÃ»§
+	private Long id;					//è®¢å•ID
+	private String tradeno;			//è®¢å•å·
+	private String status;			//è®¢å•çŠ¶æ€gewOrder ---> status
+	private Timestamp addtime;		//ä¸‹å•æ—¶é—´
+	private Timestamp updatetime;		//æ›´æ–°æ—¶é—´
+	private String invoice;			//æ˜¯å¦å¯å¼€å‘ç¥¨,Yå·²å¼€,Nå¯å¼€,Fä¸å¯å¼€
+	private String pretype;			//ä»£å”®Eã€ä¸»è¥M
+	private Long memberid;			//ç”¨æˆ·ID
+	private Long partnerid;			//åˆä½œå•†ID
+	private String ordertype;			//è®¢å•ç±»å‹
+	private String expressnote;		//å¿«é€’å•å·
+	private String expresstype;		//å¿«é€’ç±»å‹
+	private String processLevel;		//åæœŸå¤„ç†è¿›ç¨‹
+	private String expressStatus;		//å¿«é€’çŠ¶æ€
+	private String dealStatus;		//å¤„ç†çŠ¶æ€
+	private Long dealUser;			//å¤„ç†ç”¨æˆ·
 	public Long getId() {
 		return id;
 	}

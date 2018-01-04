@@ -39,10 +39,10 @@ public class FileRouterFactory implements RouterFactory {
     @Override
     public Router getRouter(URL url) {
         try {
-            // File URL ת���� ����Route URL��Ȼ��Load
+            // File URL 转锟斤拷锟斤拷 锟斤拷锟斤拷Route URL锟斤拷然锟斤拷Load
             // file:///d:/path/to/route.js?router=script ==> script:///d:/path/to/route.js?type=js&rule=<file-content>
-            String protocol = url.getParameter(Constants.ROUTER_KEY, ScriptRouterFactory.NAME); // ��ԭ����תΪЭ��
-            String type = null; // ʹ���ļ���׺��Ϊ����
+            String protocol = url.getParameter(Constants.ROUTER_KEY, ScriptRouterFactory.NAME); // 锟斤拷原锟斤拷锟斤拷转为协锟斤拷
+            String type = null; // 使锟斤拷锟侥硷拷锟斤拷缀锟斤拷为锟斤拷锟斤拷
             String path = url.getPath();
             if (path != null) {
                 int i = path.lastIndexOf('.');

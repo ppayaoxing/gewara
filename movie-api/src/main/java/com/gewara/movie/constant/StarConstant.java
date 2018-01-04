@@ -6,40 +6,40 @@ import java.util.Map;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
 public class StarConstant {
-	public static final String BASEINFO_TYPE_STARTYPE = "startype";		//Ã÷ĞÇÖ°ÒµÀàĞÍ
-	public static final String BASEINFO_TYPE_VOLK = "volk";				//Ãñ×å
-	public static final String BASEINFO_TYPE_SIGN = "sign";				//ĞÇ×ù
-	public static final String BASEINFO_TYPE_HOMETOWN = "hometown";		//³öÉúµØ
-	public static final String BASEINFO_MOVIE_TYPE = "movietype";			//µçÓ°ÀàĞÍ
-	public static final String BASEINFO_MOVIE_EDITION = "edition";			//µçÓ°°æ±¾
-	public static final String BASEINFO_STATE = "state";					//¹ú¼Ò/µØÇø
-	public static final String BASEINFO_AGELAYER = "ageLayer";			// ÄêÁä²ã
-	public static final String BASEINFO_FEATURE = "feature";	// ÓÃ»§ÌØÕ÷
+	public static final String BASEINFO_TYPE_STARTYPE = "startype";		//æ˜æ˜ŸèŒä¸šç±»å‹
+	public static final String BASEINFO_TYPE_VOLK = "volk";				//æ°‘æ—
+	public static final String BASEINFO_TYPE_SIGN = "sign";				//æ˜Ÿåº§
+	public static final String BASEINFO_TYPE_HOMETOWN = "hometown";		//å‡ºç”Ÿåœ°
+	public static final String BASEINFO_MOVIE_TYPE = "movietype";			//ç”µå½±ç±»å‹
+	public static final String BASEINFO_MOVIE_EDITION = "edition";			//ç”µå½±ç‰ˆæœ¬
+	public static final String BASEINFO_STATE = "state";					//å›½å®¶/åœ°åŒº
+	public static final String BASEINFO_AGELAYER = "ageLayer";			// å¹´é¾„å±‚
+	public static final String BASEINFO_FEATURE = "feature";	// ç”¨æˆ·ç‰¹å¾
 	/*
-	 * pengdi 2014Äê10ÔÂ20ÈÕ  µçÓ°»ù±¾×ÊÁÏ×Ö¶ÎÌí¼Ó
+	 * pengdi 2014å¹´10æœˆ20æ—¥  ç”µå½±åŸºæœ¬èµ„æ–™å­—æ®µæ·»åŠ 
 	 */
-	public static final String BASEINFO_FILMTYPE= "film";	                // Æ¬ÖÖ
-	public static final String BASEINFO_IMPORTMODE = "mode";	                // Òı½øÄ£Ê½
-	public static final String BASEINFO_PERIOD = "period";	                // Äê´ú
+	public static final String BASEINFO_FILMTYPE= "film";	                // ç‰‡ç§
+	public static final String BASEINFO_IMPORTMODE = "mode";	                // å¼•è¿›æ¨¡å¼
+	public static final String BASEINFO_PERIOD = "period";	                // å¹´ä»£
 	
-	public static final String ACHIEVEMENT_NO = "N";						//ÊÇ·ñ³É¾Í×÷Æ·:·ñ
-	public static final String ACHIEVEMENT_YES = "Y";						//ÊÇ·ñ³É¾Í×÷Æ·:ÊÇ
+	public static final String ACHIEVEMENT_NO = "N";						//æ˜¯å¦æˆå°±ä½œå“:å¦
+	public static final String ACHIEVEMENT_YES = "Y";						//æ˜¯å¦æˆå°±ä½œå“:æ˜¯
 	
 	public static final Map<String, String> baseinfoMap;
 	static{
 		Map<String, String> tmp = new LinkedHashMap<String, String>();
-		tmp.put(BASEINFO_TYPE_STARTYPE, "Ö°Òµ");
-		tmp.put(BASEINFO_TYPE_VOLK, "Ãñ×å");
-		tmp.put(BASEINFO_TYPE_SIGN, "ĞÇ×ù");
-		tmp.put(BASEINFO_TYPE_HOMETOWN, "³öÉúµØ");
-		tmp.put(BASEINFO_MOVIE_TYPE, "µçÓ°ÀàĞÍ");
-		tmp.put(BASEINFO_MOVIE_EDITION, "µçÓ°°æ±¾");
-		tmp.put(BASEINFO_STATE, "¹ú¼Ò/µØÇø");				
-		tmp.put(BASEINFO_FILMTYPE, "Æ¬ÖÖ");
-		tmp.put(BASEINFO_IMPORTMODE, "Òı½øÄ£Ê½");
-		tmp.put(BASEINFO_PERIOD, "Äê´ú");		
-		tmp.put(BASEINFO_AGELAYER, "ÄêÁä²ã");
-		tmp.put(BASEINFO_FEATURE, "ÓÃ»§ÌØÕ÷");
+		tmp.put(BASEINFO_TYPE_STARTYPE, "èŒä¸š");
+		tmp.put(BASEINFO_TYPE_VOLK, "æ°‘æ—");
+		tmp.put(BASEINFO_TYPE_SIGN, "æ˜Ÿåº§");
+		tmp.put(BASEINFO_TYPE_HOMETOWN, "å‡ºç”Ÿåœ°");
+		tmp.put(BASEINFO_MOVIE_TYPE, "ç”µå½±ç±»å‹");
+		tmp.put(BASEINFO_MOVIE_EDITION, "ç”µå½±ç‰ˆæœ¬");
+		tmp.put(BASEINFO_STATE, "å›½å®¶/åœ°åŒº");				
+		tmp.put(BASEINFO_FILMTYPE, "ç‰‡ç§");
+		tmp.put(BASEINFO_IMPORTMODE, "å¼•è¿›æ¨¡å¼");
+		tmp.put(BASEINFO_PERIOD, "å¹´ä»£");		
+		tmp.put(BASEINFO_AGELAYER, "å¹´é¾„å±‚");
+		tmp.put(BASEINFO_FEATURE, "ç”¨æˆ·ç‰¹å¾");
 		baseinfoMap = UnmodifiableMap.decorate(tmp);
 	}
 	

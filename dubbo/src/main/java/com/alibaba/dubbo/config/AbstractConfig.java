@@ -35,7 +35,7 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.support.Parameter;
 
 /**
- * ���ý����Ĺ��߷�������������
+ * 锟斤拷锟矫斤拷锟斤拷锟侥癸拷锟竭凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
  * 
  * @author william.liangf
  * @export
@@ -490,7 +490,7 @@ public abstract class AbstractConfig implements Serializable {
             }
             buf.append(" />");
             return buf.toString();
-        } catch (Throwable t) { // �������ݴ�
+        } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
             logger.warn(t.getMessage(), t);
             return super.toString();
         }

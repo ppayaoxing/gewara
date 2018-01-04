@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * ·ÖÏúÏµÍ³-ºÏ×÷ÉÌ
+ * åˆ†é”€ç³»ç»Ÿ-åˆä½œå•†
  * 
  * @author chunhui.wang
  *
@@ -14,31 +14,31 @@ import com.gewara.api.vo.BaseVo;
 public class DistributionPartnerVo extends BaseVo {
 	private static final long serialVersionUID = -2992423661776140813L;
 
-	private long id; // Ö÷¼ü
-	private long sellerid; // ÏúÊÛ¾­Àí±àºÅ
-	private long partnerid; // ºÏ×÷ÉÌID
-	private String partnername; // ºÏ×÷ÉÌÃû³Æ
-	private String partnerkey; // ºÏ×÷ÉÌkey
-	private String partnertype;//ºÏ×÷ÉÌÀàĞÍ
-	private String groupid; // ·Ö×é
-	private Timestamp contractstarttime; // ºÏÍ¬¿ªÊ¼Ê±¼ä
-	private Timestamp contractendtime; // ºÏÍ¬½áÊøÊ±¼ä
-	private long annualquota; // Äê±£¶î¶È
-	private String businessmobile; // ÉÌ¼Ò¶Ô½ÓÈËÊÖ»ú
-	private String businessname; // ÉÌ¼Ò¶Ô½ÓÈËÃû
-	private String sellermobile; // ÏúÊÛ¾­ÀíÊÖ»ú
-	private String sellername; // ÏúÊÛ¾­Àí
-	private long technologyfee; // ¼¼Êõ·şÎñ·Ñ
-	private long maintainfee; // Î¬»¤·Ñ
-	private String runsub; // ·ÖÈó
-	private String advanceCharge;//Ô¤¸¶¿î½ğ¶î
-	private String status; // ×´Ì¬ 0 ÓĞĞ§ 1Ô¤¾¯ 2Ëø¶¨ 3É¾³ı
-	private String accountid;// ×Ê½ğÕË»§
-	private String taxatfee; //Ë°·Ñ
-	private String cooperatstatus;//ºÏ×÷×´Ì¬
-	private String iscinemamanage;//ÊÇ·ñ¿ªÆô³¡´Î¹ÜÀí
-	private Timestamp addtime; // Ìí¼ÓÊ±¼ä
-	private Timestamp updatetime; // ¸üĞÂÊ±¼ä
+	private long id; // ä¸»é”®
+	private long sellerid; // é”€å”®ç»ç†ç¼–å·
+	private long partnerid; // åˆä½œå•†ID
+	private String partnername; // åˆä½œå•†åç§°
+	private String partnerkey; // åˆä½œå•†key
+	private String partnertype;//åˆä½œå•†ç±»å‹
+	private String groupid; // åˆ†ç»„
+	private Timestamp contractstarttime; // åˆåŒå¼€å§‹æ—¶é—´
+	private Timestamp contractendtime; // åˆåŒç»“æŸæ—¶é—´
+	private long annualquota; // å¹´ä¿é¢åº¦
+	private String businessmobile; // å•†å®¶å¯¹æ¥äººæ‰‹æœº
+	private String businessname; // å•†å®¶å¯¹æ¥äººå
+	private String sellermobile; // é”€å”®ç»ç†æ‰‹æœº
+	private String sellername; // é”€å”®ç»ç†
+	private long technologyfee; // æŠ€æœ¯æœåŠ¡è´¹
+	private long maintainfee; // ç»´æŠ¤è´¹
+	private String runsub; // åˆ†æ¶¦
+	private String advanceCharge;//é¢„ä»˜æ¬¾é‡‘é¢
+	private String status; // çŠ¶æ€ 0 æœ‰æ•ˆ 1é¢„è­¦ 2é”å®š 3åˆ é™¤
+	private String accountid;// èµ„é‡‘è´¦æˆ·
+	private String taxatfee; //ç¨è´¹
+	private String cooperatstatus;//åˆä½œçŠ¶æ€
+	private String iscinemamanage;//æ˜¯å¦å¼€å¯åœºæ¬¡ç®¡ç†
+	private Timestamp addtime; // æ·»åŠ æ—¶é—´
+	private Timestamp updatetime; // æ›´æ–°æ—¶é—´
 
 	public long getId() {
 		return id;

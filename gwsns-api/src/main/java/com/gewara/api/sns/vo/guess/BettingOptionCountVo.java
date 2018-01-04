@@ -6,16 +6,16 @@ import com.gewara.api.vo.BaseVo;
 
 /**
  * 
- * ²ÂÆ±·¿Í¶×¢Ñ¡ÏîÍ³¼Æ(MongoDB)  
+ * çŒœç¥¨æˆ¿æŠ•æ³¨é€‰é¡¹ç»Ÿè®¡(MongoDB)  
  *
  */
 public class BettingOptionCountVo extends BaseVo{
 	private static final long serialVersionUID = -9005024924759160315L;
-	private Long _id; //Ö÷¼üÍ¶×¢Ñ¡ÏîID
-	private Long stepid; //ÉèÖÃID
-	private Integer userCount;//Í¶×¢×ÜÈËÊı
-	private Integer point;//Í¶×¢×Ü»ı·Ö
-	private Integer numCount;//Í¶×¢×Ü±¶Êı
+	private Long _id; //ä¸»é”®æŠ•æ³¨é€‰é¡¹ID
+	private Long stepid; //è®¾ç½®ID
+	private Integer userCount;//æŠ•æ³¨æ€»äººæ•°
+	private Integer point;//æŠ•æ³¨æ€»ç§¯åˆ†
+	private Integer numCount;//æŠ•æ³¨æ€»å€æ•°
 	
 	public Integer getPoint() {
 		return point;

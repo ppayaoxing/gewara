@@ -7,59 +7,59 @@ import com.gewara.ucenter.vo.member.MemberVo;
 
 public interface MemberLogonVoService {
 	/**
-	 * ¸ù¾İsessidºÍipµÇÂ½
+	 * æ ¹æ®sessidå’Œipç™»é™†
 	 * @param sessid
 	 * @param ip
 	 * @return
 	 */
 	ResultCode<MemberVo> getLogonMemberBySessid(String sessid, String ip);
 	/**
-	 * TODO:ÓëÉÏÃæµÄºÏ²¢
+	 * TODO:ä¸ä¸Šé¢çš„åˆå¹¶
 	 * @param memberEncode
 	 * @param remoteIp
 	 * @return
 	 */
 	ResultCode<MemberVo> getLogonMemberByMemberEncodeAndIp(String memberEncode, String remoteIp); 
 	/**
-	 * ¸ù¾İmemberEncodeµÇÂ½
+	 * æ ¹æ®memberEncodeç™»é™†
 	 * @param memberEncode
 	 * @return
 	 */
 	ResultCode<Long> getMemberIdByMemberEncode(String memberEncode);
 	/**
-	 * Í¨¹ıÓÃ»§ÃûºÍÃÜÂëµÇÂ½
+	 * é€šè¿‡ç”¨æˆ·åå’Œå¯†ç ç™»é™†
 	 * @return
 	 */
 	ResultCode<MemberVo> loginByNameAndPwd(String appkey, String citycode, String username, String password, String remoteIp);
 	/**
-	 * ÊÖ»úºÅ×¢²á
+	 * æ‰‹æœºå·æ³¨å†Œ
 	 * @return
 	 */
 	ResultCode<MemberVo> mobileReg(String appkey, String citycode, String mobile, String password, String dynamicNumber, String remoteIp);
 	/**
-	 * »ñÈ¡×¢²áÊÖ»úºÅ¶¯Ì¬Âë
+	 * è·å–æ³¨å†Œæ‰‹æœºå·åŠ¨æ€ç 
 	 * @return
 	 */
 	ResultCode getRegDynamicNumber(String mobile, String remoteIp);
 	/**
-	 * »ñÈ¡ÕÒ»ØÖ§¸¶ÃÜÂë¶¯Ì¬Âë
+	 * è·å–æ‰¾å›æ”¯ä»˜å¯†ç åŠ¨æ€ç 
 	 * @return
 	 */
 	ResultCode getModifyPwdDynamicNumber(String mobile, String remoteIp);
 	/**
-	 * Í¨¹ıÊÖ»ú¶¯Ì¬ÂëĞŞ¸ÄÃÜÂë
+	 * é€šè¿‡æ‰‹æœºåŠ¨æ€ç ä¿®æ”¹å¯†ç 
 	 * @return
 	 */
 	ResultCode modifyPwdByDynamicNumber(String mobile, String password, String dynamicNumber, String remoteIp);
 	/**
-	 * ¶¯Ì¬ÂëµÇÂ¼
+	 * åŠ¨æ€ç ç™»å½•
 	 * @param mobile
 	 * @param ip
 	 * @return
 	 */
 	ResultCode<String> sendLoginDynamiccode(String mobile, String ip);
 	/**
-	 * ¸ù¾İ¶¯Ì¬ÂëµÇÂ¼
+	 * æ ¹æ®åŠ¨æ€ç ç™»å½•
 	 * @param mobile
 	 * @param checkpass
 	 * @param ip
@@ -68,36 +68,36 @@ public interface MemberLogonVoService {
 	 */
 	ResultCode<MemberVo> loginByDynamiccode(String mobile, String checkpass, String ip, String citycode);
 	/**
-	 * ĞÂÀËÎ¢²©ÁªÃûµÇÂ½
+	 * æ–°æµªå¾®åšè”åç™»é™†
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<MemberVo> openMemberLoginBySina(String userid, String accessToken, String remoteIp);
 	/**
-	 * ½»ĞĞÁªÃûµÇÂ½
-	 * @param userid(¼ÓÃÜµÄuserid£¬ĞèÒª¾­¹ı½âÃÜ)
+	 * äº¤è¡Œè”åç™»é™†
+	 * @param userid(åŠ å¯†çš„useridï¼Œéœ€è¦ç»è¿‡è§£å¯†)
 	 * @return
 	 */
 	ResultCode<MemberVo> openMemberLoginByBankcomm(String userid, String remoteIp);
 	
 	/**
-	 * ´´½¨ÁªÃûµÇÂ½ÓÃ»§Í¨¹ıjson
+	 * åˆ›å»ºè”åç™»é™†ç”¨æˆ·é€šè¿‡json
 	 * @param requestJson
 	 * @return
 	 */
 	ResultCode<MemberVo> openMemberLoginByJson(String source, String requestJson, String remoteIp);
 	/**
-	 * ´´½¨ÁªÃûµÇÂ½ÓÃ»§Í¨¹ı3des¼ÓÃÜ
+	 * åˆ›å»ºè”åç™»é™†ç”¨æˆ·é€šè¿‡3desåŠ å¯†
 	 * @param content_encrypt
 	 * @return
 	 */
 	ResultCode<MemberVo> openMemberLoginByEncrypt(String appkey, String content_encrypt, String remoteIp);
 	/**
-	 * ´¥±¦ÓÃ»§ÁªÃûµÇÂ¼
+	 * è§¦å®ç”¨æˆ·è”åç™»å½•
 	 */
 	ResultCode<MemberVo> chubaoMemberLogin(String userid, String remoteIp);
 	/**
-	 * ¸ù¾İMemberEncodeÖØĞÂµÇÂ¼
+	 * æ ¹æ®MemberEncodeé‡æ–°ç™»å½•
 	 * @param memberEncode
 	 * @param remoteIp
 	 * @return
@@ -112,7 +112,7 @@ public interface MemberLogonVoService {
 	 */
 	ResultCode<MemberVo> doLoginByMemberEncode(String memberEncode, String remoteIp, String systemSource);
 	/**
-	 * ÓÃ»§µÇÂ¼
+	 * ç”¨æˆ·ç™»å½•
 	 * @param username
 	 * @param password
 	 * @return
@@ -128,28 +128,28 @@ public interface MemberLogonVoService {
 	 */
 	ResultCode<MemberVo> doMemberLogin4Api(String username, String password, String remoteIp, String systemSource);
 	/**
-	 * TODO ºóÆÚ¹¦ÄÜÄÚ¾Û£¬²»Ìá¹©dubbo
-	 * ÓÃ»§µÇÂ¼  £¨¼òµ¥´¦Àí£©
-	 * @param omid openmemberid(Ö÷¼ü)
+	 * TODO åæœŸåŠŸèƒ½å†…èšï¼Œä¸æä¾›dubbo
+	 * ç”¨æˆ·ç™»å½•  ï¼ˆç®€å•å¤„ç†ï¼‰
+	 * @param omid openmemberid(ä¸»é”®)
 	 * @param remoteIp
 	 * @return
 	 */
 	ResultCode<MemberVo> doLoginByOpenMember(Long omid, String remoteIp);
 	/**
-	 * ĞŞ¸ÄÓÃ»§ĞÅÏ¢Ë¢ĞÂ
+	 * ä¿®æ”¹ç”¨æˆ·ä¿¡æ¯åˆ·æ–°
 	 * encodeOrSessid
 	 * memberid
 	 */
 	ResultCode updateMemberAuth(String encodeOrSessid, Long memberid);
 	/**
-	 * µÇ³ö
+	 * ç™»å‡º
 	 * @param memberEncode
 	 * @param remoteIp
 	 * @return
 	 */
 	ResultCode doLogout(String memberEncode, String remoteIp);
 	/**
-	 * ºÏ×÷ÉÌÁªÃûµÇÂ½MD5·½Ê½
+	 * åˆä½œå•†è”åç™»é™†MD5æ–¹å¼
 	 * @param appkey
 	 * @param pukey
 	 * @param timestamp

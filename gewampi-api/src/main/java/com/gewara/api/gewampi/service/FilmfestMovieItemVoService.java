@@ -9,135 +9,135 @@ import com.gewara.api.gewampi.vo.MovieItemVo;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * µçÓ°½Ú³¡´Î½Ó¿Ú
+ * ç”µå½±èŠ‚åœºæ¬¡æ¥å£
  * @author leo
- * @addTime 2015Äê9ÔÂ11ÈÕÏÂÎç2:58:21
+ * @addTime 2015å¹´9æœˆ11æ—¥ä¸‹åˆ2:58:21
  *
  */
 public interface FilmfestMovieItemVoService {
 	
 	/**
-	 * ²éÑ¯ÕıÔÚÉÏÓ³µÄÓ°Æ¬ÊıÁ¿</br>
-	 * ¸Ã·½·¨ÒÑ¼ÓÈë»º´æ£¬»º´æ5·ÖÖÓ</br>
-	 * <b>²ÎÊı²»¿ÉÒÔÈ«¿Õ<b>
-	 * @param citycode ¿ÉÒÔÎª¿Õ
-	 * @param movieId  ¿ÉÒÔÎª¿Õ
-	 * @param cinemaId ¿ÉÒÔÎª¿Õ
-	 * @param playdate ¿ÉÒÔÎª¿Õ
+	 * æŸ¥è¯¢æ­£åœ¨ä¸Šæ˜ çš„å½±ç‰‡æ•°é‡</br>
+	 * è¯¥æ–¹æ³•å·²åŠ å…¥ç¼“å­˜ï¼Œç¼“å­˜5åˆ†é’Ÿ</br>
+	 * <b>å‚æ•°ä¸å¯ä»¥å…¨ç©º<b>
+	 * @param citycode å¯ä»¥ä¸ºç©º
+	 * @param movieId  å¯ä»¥ä¸ºç©º
+	 * @param cinemaId å¯ä»¥ä¸ºç©º
+	 * @param playdate å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ11ÈÕÏÂÎç2:58:21
+	 * @addTime 2015å¹´9æœˆ11æ—¥ä¸‹åˆ2:58:21
 	 */
 	ResultCode<Integer> findMovieCountByCitycodeMovieIdCinemaIdPlaydate(String citycode, Long movieId, Long cinemaId, Date playdate);
 	
 	/**
-	 * ²éÑ¯Ó°Æ¬ID</br>
-	 * ¸Ã·½·¨ÒÑ¼ÓÈë»º´æ£¬»º´æ5·ÖÖÓ</br>
-	 * <b>²ÎÊı²»¿ÉÒÔÈ«¿Õ<b>
-	 * @param citycode ¿ÉÒÔÎª¿Õ
-	 * @param movieId  ¿ÉÒÔÎª¿Õ
-	 * @param cinemaId ¿ÉÒÔÎª¿Õ
-	 * @param playdate ¿ÉÒÔÎª¿Õ
+	 * æŸ¥è¯¢å½±ç‰‡ID</br>
+	 * è¯¥æ–¹æ³•å·²åŠ å…¥ç¼“å­˜ï¼Œç¼“å­˜5åˆ†é’Ÿ</br>
+	 * <b>å‚æ•°ä¸å¯ä»¥å…¨ç©º<b>
+	 * @param citycode å¯ä»¥ä¸ºç©º
+	 * @param movieId  å¯ä»¥ä¸ºç©º
+	 * @param cinemaId å¯ä»¥ä¸ºç©º
+	 * @param playdate å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ11ÈÕÏÂÎç3:16:05
+	 * @addTime 2015å¹´9æœˆ11æ—¥ä¸‹åˆ3:16:05
 	 */
 	ResultCode<List<Long>> findMovieIdByCitycodeMovieIdCinemaIdPlaydate(String citycode, Long movieId, Long cinemaId, Date playdate);
 
 	/**
-	 * ²éÑ¯Ó°ÔºID</br>
-	 * ¸Ã·½·¨ÒÑ¼ÓÈë»º´æ£¬»º´æ5·ÖÖÓ
-	 * @param countycode ²»¿ÉÒÔÎª¿Õ
+	 * æŸ¥è¯¢å½±é™¢ID</br>
+	 * è¯¥æ–¹æ³•å·²åŠ å…¥ç¼“å­˜ï¼Œç¼“å­˜5åˆ†é’Ÿ
+	 * @param countycode ä¸å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ11ÈÕÏÂÎç3:16:31
+	 * @addTime 2015å¹´9æœˆ11æ—¥ä¸‹åˆ3:16:31
 	 */
 	ResultCode<List<Long>> findCinemaIdByCountycode(String countycode);
 	
 	/**
-	 * ²éÑ¯Ó°ÔºID</br>
-	 * ¸Ã·½·¨ÒÑ¼ÓÈë»º´æ£¬»º´æ5·ÖÖÓ
-	 * @param citycode ²»¿ÉÒÔÎª¿Õ
+	 * æŸ¥è¯¢å½±é™¢ID</br>
+	 * è¯¥æ–¹æ³•å·²åŠ å…¥ç¼“å­˜ï¼Œç¼“å­˜5åˆ†é’Ÿ
+	 * @param citycode ä¸å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ11ÈÕÏÂÎç4:04:23
+	 * @addTime 2015å¹´9æœˆ11æ—¥ä¸‹åˆ4:04:23
 	 */
 	ResultCode<List<Long>> findCinemaIdByCitycode(String citycode);
 	
 	/**
-	 * ²éÑ¯Ó°ÌüID</br>
-	 * ¸Ã·½·¨ÒÑ¼ÓÈë»º´æ£¬»º´æ5·ÖÖÓ
-	 * @param citycode ²»¿ÉÒÔÎª¿Õ
+	 * æŸ¥è¯¢å½±å…ID</br>
+	 * è¯¥æ–¹æ³•å·²åŠ å…¥ç¼“å­˜ï¼Œç¼“å­˜5åˆ†é’Ÿ
+	 * @param citycode ä¸å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ11ÈÕÏÂÎç4:04:23
+	 * @addTime 2015å¹´9æœˆ11æ—¥ä¸‹åˆ4:04:23
 	 */
 	ResultCode<List<Long>> findRoomIdByCitycode(String citycode);
 	
 	/**
-	 * ²éÑ¯ÕıÔÚÉÏÓ³µÄ³¡´ÎÊıÁ¿</br>
-	 * ¸Ã·½·¨ÒÑ¼ÓÈë»º´æ£¬»º´æ5·ÖÖÓ</br>
-	 * <b>²ÎÊı²»¿ÉÒÔÈ«¿Õ<b>
-	 * @param citycode ¿ÉÒÔÎª¿Õ
-	 * @param movieId  ¿ÉÒÔÎª¿Õ
-	 * @param cinemaId ¿ÉÒÔÎª¿Õ
-	 * @param playdate ¿ÉÒÔÎª¿Õ
+	 * æŸ¥è¯¢æ­£åœ¨ä¸Šæ˜ çš„åœºæ¬¡æ•°é‡</br>
+	 * è¯¥æ–¹æ³•å·²åŠ å…¥ç¼“å­˜ï¼Œç¼“å­˜5åˆ†é’Ÿ</br>
+	 * <b>å‚æ•°ä¸å¯ä»¥å…¨ç©º<b>
+	 * @param citycode å¯ä»¥ä¸ºç©º
+	 * @param movieId  å¯ä»¥ä¸ºç©º
+	 * @param cinemaId å¯ä»¥ä¸ºç©º
+	 * @param playdate å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ11ÈÕÏÂÎç2:58:21
+	 * @addTime 2015å¹´9æœˆ11æ—¥ä¸‹åˆ2:58:21
 	 */
 	ResultCode<Integer> findCountByCitycodeMovieIdCinemaIdPlaydate(String citycode, Long movieId, Long cinemaId, Date playdate);
 	
 	/**
-	 * ²éÑ¯Ä³³ÇÊĞµçÓ°½ÚËùÓĞ³¡´Î</br>
-	 * ·µ»ØµÄ³¡´Î¼¯°´·ÅÓ³Ê±¼äÕıĞòÅÅÁĞ</br>
-	 * @param citycode ²»¿ÉÒÔÎª¿Õ
+	 * æŸ¥è¯¢æŸåŸå¸‚ç”µå½±èŠ‚æ‰€æœ‰åœºæ¬¡</br>
+	 * è¿”å›çš„åœºæ¬¡é›†æŒ‰æ”¾æ˜ æ—¶é—´æ­£åºæ’åˆ—</br>
+	 * @param citycode ä¸å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ11ÈÕÏÂÎç3:55:56
+	 * @addTime 2015å¹´9æœˆ11æ—¥ä¸‹åˆ3:55:56
 	 */
 	ResultCode<List<MovieItemVo>> findByCitycode(String citycode);
 	
 	/**
-	 * ²éÑ¯Ä³³ÇÊĞµçÓ°½Ú³¡´Î</br>
-	 * ·µ»ØµÄ³¡´Î¼¯°´·ÅÓ³Ê±¼äÕıĞòÅÅÁĞ</br>
-	 * @param citycode     ²»¿ÉÒÔÎª¿Õ
-	 * @param playtimeGte  ²»¿ÉÒÔÎª¿Õ ·ÅÓ³Ê±¼ä´óÓÚµÈÓÚ¸ÃÊ±¼ä
-	 * @param playtimeLt   ²»¿ÉÒÔÎª¿Õ ·ÅÓ³Ê±¼äĞ¡ÓÚ¸ÃÊ±¼ä	
+	 * æŸ¥è¯¢æŸåŸå¸‚ç”µå½±èŠ‚åœºæ¬¡</br>
+	 * è¿”å›çš„åœºæ¬¡é›†æŒ‰æ”¾æ˜ æ—¶é—´æ­£åºæ’åˆ—</br>
+	 * @param citycode     ä¸å¯ä»¥ä¸ºç©º
+	 * @param playtimeGte  ä¸å¯ä»¥ä¸ºç©º æ”¾æ˜ æ—¶é—´å¤§äºç­‰äºè¯¥æ—¶é—´
+	 * @param playtimeLt   ä¸å¯ä»¥ä¸ºç©º æ”¾æ˜ æ—¶é—´å°äºè¯¥æ—¶é—´	
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ11ÈÕÏÂÎç3:59:02
+	 * @addTime 2015å¹´9æœˆ11æ—¥ä¸‹åˆ3:59:02
 	 */
 	ResultCode<List<MovieItemVo>> findByCitycodePlaytime(String citycode, Timestamp playtimeGte, Timestamp playtimeLt);
 	
 	/**
-	 * ²éÑ¯Ä³µçÓ°½Ú³¡´Î</br>
-	 * ·µ»ØµÄ³¡´Î¼¯°´·ÅÓ³Ê±¼äÕıĞòÅÅÁĞ
-	 * @param citycode ²»¿ÉÒÔÎª¿Õ
-	 * @param movieid  ²»¿ÉÒÔÎª¿Õ
+	 * æŸ¥è¯¢æŸç”µå½±èŠ‚åœºæ¬¡</br>
+	 * è¿”å›çš„åœºæ¬¡é›†æŒ‰æ”¾æ˜ æ—¶é—´æ­£åºæ’åˆ—
+	 * @param citycode ä¸å¯ä»¥ä¸ºç©º
+	 * @param movieid  ä¸å¯ä»¥ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ15ÈÕÏÂÎç3:10:37
+	 * @addTime 2015å¹´9æœˆ15æ—¥ä¸‹åˆ3:10:37
 	 */
 	ResultCode<List<MovieItemVo>> findByCitycodeMovieid(String citycode, Long movieid);	
 	
 	/**
-	 * ²éÑ¯Ó°ÔºÊıÁ¿</br>
-	 * @param citycode citycode£¬movieid£¬playdate²»¿ÉÒÔÈ«Îª¿Õ
-	 * @param movieid  citycode£¬movieid£¬playdate²»¿ÉÒÔÈ«Îª¿Õ
-	 * @param playdate citycode£¬movieid£¬playdate²»¿ÉÒÔÈ«Îª¿Õ
+	 * æŸ¥è¯¢å½±é™¢æ•°é‡</br>
+	 * @param citycode citycodeï¼Œmovieidï¼Œplaydateä¸å¯ä»¥å…¨ä¸ºç©º
+	 * @param movieid  citycodeï¼Œmovieidï¼Œplaydateä¸å¯ä»¥å…¨ä¸ºç©º
+	 * @param playdate citycodeï¼Œmovieidï¼Œplaydateä¸å¯ä»¥å…¨ä¸ºç©º
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê3ÔÂ18ÈÕÏÂÎç2:38:09
+	 * @addTime 2016å¹´3æœˆ18æ—¥ä¸‹åˆ2:38:09
 	 */
 	ResultCode<Integer> findCinemaCount(String citycode, Long movieid, Date playdate);
 	
 	/**
-	 * ²éÕÒµçÓ°½ÚËùÓĞµçÓ°ID£¬ÒÔ¼°¶ÔÓ¦µÄ×îÔç¿ª·ÅµÄ³¡´Î</br>
-	 * @param citycode ²»¿ÉÒÔÎª¿Õ
+	 * æŸ¥æ‰¾ç”µå½±èŠ‚æ‰€æœ‰ç”µå½±IDï¼Œä»¥åŠå¯¹åº”çš„æœ€æ—©å¼€æ”¾çš„åœºæ¬¡</br>
+	 * @param citycode ä¸å¯ä»¥ä¸ºç©º
 	 * @return Mp<key, value> : "movieid" -> movieid; "earliestOpentime" -> opentime;
 	 * @author leo
-	 * @addTime 2016Äê3ÔÂ29ÈÕÏÂÎç2:51:58
+	 * @addTime 2016å¹´3æœˆ29æ—¥ä¸‹åˆ2:51:58
 	 */
 	ResultCode<List<Map<String, Object>>> findMoiveidAndOpentime(String citycode);
 }

@@ -6,7 +6,7 @@ import com.gewara.api.vo.BaseVo;
 
 public class MoviePlayTimeCinemaVo extends BaseVo {
 	private static final long serialVersionUID = -7485818227515627985L;
-	private Long movieid; //Ψһ��ʾ
+	private Long movieid; //唯一标示
 	private String playtime;
 	private String cinemaname;
 	private String isOpen;

@@ -10,7 +10,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	private Long relatedid;
 	private String titleIcon;
 	private String title;
-	private String extraType; // txt:ÎÄ×Ö icon:Í¼±ê url:Á´½Ó
+	private String extraType; // txt:æ–‡å­— icon:å›¾æ ‡ url:é“¾æ¥
 	private String contentIcon;
 	private String content;
 	private String link;
@@ -19,7 +19,7 @@ public class MovieIconVo extends BaseVo implements Serializable {
 	private Integer titleIconWidth;
 	private Integer contentIconHeight;
 	private Integer contentIconWidth;
-	// ÅÅĞò
+	// æ’åº
 	private Integer orderSort;
 
 	public Integer getTitleIconHeight() {

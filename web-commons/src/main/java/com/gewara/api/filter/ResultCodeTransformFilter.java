@@ -22,8 +22,8 @@ import com.gewara.web.support.ResourceStatsUtil;
 
 /**
  * @author ge.biao
- * ¿Í»§¶ËFilter£¬Í³Ò»°ü×°Òì³££¬·µ»ØResultCode
- * ÏŞÖÆÌõ¼ş£ºServiceÖĞËùÓĞ·½·¨¶¼±ØĞë·µ»ØResultCode<?>
+ * å®¢æˆ·ç«¯Filterï¼Œç»Ÿä¸€åŒ…è£…å¼‚å¸¸ï¼Œè¿”å›ResultCode
+ * é™åˆ¶æ¡ä»¶ï¼šServiceä¸­æ‰€æœ‰æ–¹æ³•éƒ½å¿…é¡»è¿”å›ResultCode<?>
  */
 @Activate(group = {Constants.CONSUMER})
 public class ResultCodeTransformFilter extends GenericFilter {
@@ -43,10 +43,10 @@ public class ResultCodeTransformFilter extends GenericFilter {
 			Result result = super.invoke(invoker, invocation);
 			if(result.hasException()){
 				dbLogger.error(invoker.getUrl().getPath()+ "." + invocation.getMethodName(), result.getException(), 10);
-				//TODO:Çø·Ötimeout,noprovider, ProviderReturnedException
-				ResultCode ret = ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "·şÎñ¶ÌÂ·");
+				//TODO:åŒºåˆ†timeout,noprovider, ProviderReturnedException
+				ResultCode ret = ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "æœåŠ¡çŸ­è·¯");
 				ret.setException(result.getException());
-				//´íÎóÍ³¼Æ
+				//é”™è¯¯ç»Ÿè®¡
 				String service = StringUtils.substringAfterLast(invoker.getUrl().getPath(), ".");
 				ResourceStatsUtil.getErrorStats().incrementCount("dubbo." + service);
 				return new RpcResult(ret);
@@ -54,7 +54,7 @@ public class ResultCodeTransformFilter extends GenericFilter {
 			return result;
 		}catch(Throwable e){
 			dbLogger.error(e, 10);
-			ResultCode ret = ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "·şÎñ¶ÌÂ·£¡");
+			ResultCode ret = ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "æœåŠ¡çŸ­è·¯ï¼");
 			ret.setException(e);
 			return new RpcResult(ret);
 		}finally{

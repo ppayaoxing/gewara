@@ -1,5 +1,5 @@
 /**
- * ¶¨Òå¶ÔÍâ½Ó¿Ú³£Á¿¡£
+ * å®šä¹‰å¯¹å¤–æ¥å£å¸¸é‡ã€‚
  * 
  * */
 package com.gewara.gmessage.external.constant;

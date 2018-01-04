@@ -32,8 +32,8 @@ public class FindRes<T> {
 	}
 
 	/**
-	 * ���ø÷�����ֱ�ӽ�������ע��� BeanUtilsBean�У�
-	 * �������ʹ��apache�е�BeanUtils����beanCopy�����ܴ�Ӱ�졣
+	 * 锟斤拷锟矫该凤拷锟斤拷锟斤拷直锟接斤拷锟斤拷锟斤拷锟斤拷注锟斤拷锟� BeanUtilsBean锟叫ｏ拷
+	 * 锟斤拷锟斤拷锟斤拷锟绞癸拷锟絘pache锟叫碉拷BeanUtils锟斤拷锟斤拷beanCopy锟斤拷锟斤拷锟杰达拷影锟届。
 	 * @param propertyClass
 	 * @return
 	 */
@@ -48,7 +48,7 @@ public class FindRes<T> {
 	}
 	
 	/**
-	 * ������ص�����������з�java�Ļ������ͻ����Ļ������ø÷�������ʧ�ܡ�
+	 * 锟斤拷锟斤拷锟斤拷氐锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫凤拷java锟侥伙拷锟斤拷锟斤拷锟酵伙拷锟斤拷锟侥伙拷锟斤拷锟斤拷锟矫该凤拷锟斤拷锟斤拷锟斤拷失锟杰★拷
 	 * @return
 	 */
 	public String toJsonStr(){

@@ -8,7 +8,7 @@ import com.gewara.api.vo.VoMap;
 public interface RelatedAccountApiService {
 
 	/**
-	 * 获取用户关联账户信息
+	 * 鑾峰彇鐢ㄦ埛鍏宠仈璐︽埛淇℃伅
 	 * @param memberid
 	 * @return
 	 */

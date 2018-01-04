@@ -19,87 +19,87 @@ public class PartnerVo extends BaseObject implements Serializable {
 	public static final String NAME_QIEKE = "qieke";
 	public static final String NAME_BAISHITONG = "baishitong";
 	public static final String NAME_SPD_BANK = "spd";
-	// ½»ĞĞ
+	// äº¤è¡Œ
 	public static final String NAME_BANK_COMM = "bankcomm";
-	// Æ½°²Ò»Ç®°ü
+	// å¹³å®‰ä¸€é’±åŒ…
 	public static final String NAME_PINGANFU = "pinganfu";
 	// 
 	public static final String NAME_CHUBAO = "chubao";
-	// ¸ßµÂµØÍ¼
+	// é«˜å¾·åœ°å›¾
 	public static final String NAME_AMAP = "amap";
-	// Æ½°²ÍòÀïÍ¨
+	// å¹³å®‰ä¸‡é‡Œé€š
 	public static final String NAME_PINGANWLT = "pinganwlt";
-	// ÓÅÄã¹º
+	// ä¼˜ä½ è´­
 	public static final String NAME_UNIONGO = "uniongo";
-	// ÓàÒ¦Éú»îÍø
+	// ä½™å§šç”Ÿæ´»ç½‘
 	public static final String NAME_EYUYAO = "eyuyao";
-	// ½¨ĞĞ
+	// å»ºè¡Œ
 	public static final String NAME_CCBANK = "ccbank";
-	// Î¢²©
+	// å¾®åš
 	public static final String NAME_WEIBOH5 = "weibo_h5";
 	public static final String NAME_CMB_BANK = "cmbchina";
 	public static final String NAME_BAIDU_MAP = "openapi_baidumap";
 	public static final String NAME_HANGZHOUAPP = "hangzhouapp";
-	public static final String NAME_139SZ = "139sz";//ÕÆÉÏËÕÖİ
+	public static final String NAME_139SZ = "139sz";//æŒä¸Šè‹å·
 	public static final String NAME_CM_PAY = "cmpay";
-	// ÉÏº£´ó¹âÃ÷
+	// ä¸Šæµ·å¤§å…‰æ˜
 	public static final String NAME_SHDGM = "shdgm";
-	// ¹ã·¢ÒøĞĞ
+	// å¹¿å‘é“¶è¡Œ
 	public static final String NAME_CGBCHINA = "cgbchina";
-	// Ì©Â¡ÒøĞĞ
+	// æ³°éš†é“¶è¡Œ
 	public static final String NAME_TAILONGBANK = "tailongbank";
 	
 	public static final String NAME_UNION = "unionClient";
-	// Ò»ºÅµê
+	// ä¸€å·åº—
 	public static final String NAME_YIHAODIAN = "yihaodian";
-	// Æ½°²ĞÅÓÃ¿¨
+	// å¹³å®‰ä¿¡ç”¨å¡
 	public static final String NAME_PINGANCREDITCARD = "pinganCreditcard";
 	
 	public static final String NAME_CCBAPP = "CCBAPP";
 	
 	public static final String NAME_UNIONPAYWALLET = "unionpayWallet";
 
-	// ²ËÃçÍø
+	// èœè‹—ç½‘
 	public static final String NAME_CAIMIAO = "caimiao";
 	
 	private Long id;
 	
-	/** ºÏ×÷ÉÌÃû³Æ  */
+	/** åˆä½œå•†åç§°  */
 	private String name;
-	/** ÃØÔ¿ */
+	/** ç§˜é’¥ */
 	private String privatekey;
-	/** ºÏ×÷ÉÌKEY(Î¨Ò»±êÊ¶) */
+	/** åˆä½œå•†KEY(å”¯ä¸€æ ‡è¯†) */
 	private String appkey;
 	
-	/** ºÏ×÷ÉÌÆäËû¶¨ÖÆĞÅÏ¢(json¸ñÊ½) */
+	/** åˆä½œå•†å…¶ä»–å®šåˆ¶ä¿¡æ¯(jsonæ ¼å¼) */
 	private String otherinfo;
 	private String defaultCityCode;
 	
-	/** °æ±¾ºÅ */
+	/** ç‰ˆæœ¬å· */
 	private String version;
 	
-	/** Ä¬ÈÏ³ÇÊĞCODE */
+	/** é»˜è®¤åŸå¸‚CODE */
 	private String citycode;
 	
-	/** Êı¾İ¸ñÊ½(xml/json)*/
+	/** æ•°æ®æ ¼å¼(xml/json)*/
 	private String format;
 	
-	/** ±¸×¢ */
+	/** å¤‡æ³¨ */
 	private String remark;
 	
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private Timestamp createtime;
 	
-	/** ¸üĞÂÊ±¼ä */
+	/** æ›´æ–°æ—¶é—´ */
 	private Timestamp updatetime;
 	
-	/** RSA½âÃÜË½Ô¿ */
+	/** RSAè§£å¯†ç§é’¥ */
 	private String rsaprivatekey;
 
-	/** RSA½âÃÜ¹«Ô¿ */
+	/** RSAè§£å¯†å…¬é’¥ */
 	private String rsapublickey;
 
-	/** Ìø×ªURL */
+	/** è·³è½¬URL */
 	private String redirecturl;
 	
 	public PartnerVo(){

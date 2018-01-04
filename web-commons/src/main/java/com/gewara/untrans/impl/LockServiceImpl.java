@@ -21,7 +21,7 @@ public class LockServiceImpl implements LockService {
 
     /**
      * @param lockKey
-     * @param waitSeconds �ȴ�ʱ�䣬С�� 0 ��ʾһֱ�ȴ�
+     * @param waitSeconds 等待时间，小于 0 表示一直等待
      * @param lc
      * @param <T>
      * @return

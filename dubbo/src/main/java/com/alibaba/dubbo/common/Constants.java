@@ -398,7 +398,7 @@ public class Constants {
     public static final String  MERGER_KEY                         = "merger";
 
     /**
-     * ¼¯ÈºÊ±ÊÇ·ñÅÅ³ı·ÇavailableµÄinvoker
+     * é›†ç¾¤æ—¶æ˜¯å¦æ’é™¤éavailableçš„invoker
      */
     public static final String  CLUSTER_AVAILABLE_CHECK_KEY        = "cluster.availablecheck";
 
@@ -407,47 +407,47 @@ public class Constants {
     public static final boolean DEFAULT_CLUSTER_AVAILABLE_CHECK    = true;
 
     /**
-     * ¼¯ÈºÊ±ÊÇ·ñÆôÓÃsticky²ßÂÔ
+     * é›†ç¾¤æ—¶æ˜¯å¦å¯ç”¨stickyç­–ç•¥
      */
     public static final String  CLUSTER_STICKY_KEY                 = "sticky";
 
     /**
-     * stickyÄ¬ÈÏÖµ.
+     * stickyé»˜è®¤å€¼.
      */
     public static final boolean DEFAULT_CLUSTER_STICKY             = false;
 
     /**
-     * ´´½¨clientÊ±£¬ÊÇ·ñÏÈÒª½¨Á¢Á¬½Ó¡£
+     * åˆ›å»ºclientæ—¶ï¼Œæ˜¯å¦å…ˆè¦å»ºç«‹è¿æ¥ã€‚
      */
     public static final String  LAZY_CONNECT_KEY                   = "lazy";
 
     /**
-     * lazyÁ¬½ÓµÄ³õÊ¼×´Ì¬ÊÇÁ¬½Ó×´Ì¬»¹ÊÇ·ÇÁ¬½Ó×´Ì¬£¿
+     * lazyè¿æ¥çš„åˆå§‹çŠ¶æ€æ˜¯è¿æ¥çŠ¶æ€è¿˜æ˜¯éè¿æ¥çŠ¶æ€ï¼Ÿ
      */
     public static final String  LAZY_CONNECT_INITIAL_STATE_KEY     = "connect.lazy.initial.state";
 
     /**
-     * lazyÁ¬½ÓµÄ³õÊ¼×´Ì¬Ä¬ÈÏÊÇÁ¬½Ó×´Ì¬.
+     * lazyè¿æ¥çš„åˆå§‹çŠ¶æ€é»˜è®¤æ˜¯è¿æ¥çŠ¶æ€.
      */
     public static final boolean DEFAULT_LAZY_CONNECT_INITIAL_STATE = true;
 
     /**
-     * ×¢²áÖĞĞÄÊÇ·ñÍ¬²½´æ´¢ÎÄ¼ş£¬Ä¬ÈÏÒì²½
+     * æ³¨å†Œä¸­å¿ƒæ˜¯å¦åŒæ­¥å­˜å‚¨æ–‡ä»¶ï¼Œé»˜è®¤å¼‚æ­¥
      */
     public static final String  REGISTRY_FILESAVE_SYNC_KEY         = "save.file";
 
     /**
-     * ×¢²áÖĞĞÄÊ§°ÜÊÂ¼şÖØÊÔÊÂ¼ş
+     * æ³¨å†Œä¸­å¿ƒå¤±è´¥äº‹ä»¶é‡è¯•äº‹ä»¶
      */
     public static final String  REGISTRY_RETRY_PERIOD_KEY          = "retry.period";
 
     /**
-     * ÖØÊÔÖÜÆÚ
+     * é‡è¯•å‘¨æœŸ
      */
     public static final int DEFAULT_REGISTRY_RETRY_PERIOD          =  5 * 1000;
     
     /**
-     * ×¢²áÖĞĞÄ×Ô¶¯ÖØÁ¬Ê±¼ä
+     * æ³¨å†Œä¸­å¿ƒè‡ªåŠ¨é‡è¿æ—¶é—´
      */
     public static final String  REGISTRY_RECONNECT_PERIOD_KEY      = "reconnect.period";
 
@@ -458,12 +458,12 @@ public class Constants {
     public static final int     DEFAULT_SESSION_TIMEOUT            = 60 * 1000;
 
     /**
-     * ×¢²áÖĞĞÄµ¼³öURL²ÎÊıµÄKEY
+     * æ³¨å†Œä¸­å¿ƒå¯¼å‡ºURLå‚æ•°çš„KEY
      */
     public static final String  EXPORT_KEY                         = "export";
 
     /**
-     * ×¢²áÖĞĞÄÒıÓÃURL²ÎÊıµÄKEY
+     * æ³¨å†Œä¸­å¿ƒå¼•ç”¨URLå‚æ•°çš„KEY
      */
     public static final String  REFER_KEY                          = "refer";
 
@@ -473,12 +473,12 @@ public class Constants {
     public static final String  CALLBACK_SERVICE_KEY               = "callback.service.instid";
 
     /**
-     * Ã¿¸ö¿Í»§¶ËÍ¬Ò»¸ö½Ó¿Ú callback·şÎñÊµÀıµÄÏŞÖÆ
+     * æ¯ä¸ªå®¢æˆ·ç«¯åŒä¸€ä¸ªæ¥å£ callbackæœåŠ¡å®ä¾‹çš„é™åˆ¶
      */
     public static final String  CALLBACK_INSTANCES_LIMIT_KEY       = "callbacks";
 
     /**
-     * Ã¿¸ö¿Í»§¶ËÍ¬Ò»¸ö½Ó¿Ú callback·şÎñÊµÀıµÄÏŞÖÆ
+     * æ¯ä¸ªå®¢æˆ·ç«¯åŒä¸€ä¸ªæ¥å£ callbackæœåŠ¡å®ä¾‹çš„é™åˆ¶
      */
     public static final int     DEFAULT_CALLBACK_INSTANCES         = 1;
 
@@ -487,7 +487,7 @@ public class Constants {
     public static final String  IS_CALLBACK_SERVICE                = "is_callback_service";
 
     /**
-     * channelÖĞcallbackµÄinvokers
+     * channelä¸­callbackçš„invokers
      */
     public static final String  CHANNEL_CALLBACK_KEY               = "channel.callback.invokers.key";
 
@@ -499,7 +499,7 @@ public class Constants {
     public static final String  IS_SERVER_KEY                      = "isserver";
 
     /**
-     * Ä¬ÈÏÖµºÁÃë£¬±ÜÃâÖØĞÂ¼ÆËã.
+     * é»˜è®¤å€¼æ¯«ç§’ï¼Œé¿å…é‡æ–°è®¡ç®—.
      */
     public static final int     DEFAULT_SERVER_SHUTDOWN_TIMEOUT    = 10000;
 
@@ -540,7 +540,7 @@ public class Constants {
 
     public static final String  STUB_EVENT_METHODS_KEY             = "dubbo.stub.event.methods";
 
-    //invocation attachmentÊôĞÔÖĞÈç¹ûÓĞ´ËÖµ£¬ÔòÑ¡Ôñmock invoker
+    //invocation attachmentå±æ€§ä¸­å¦‚æœæœ‰æ­¤å€¼ï¼Œåˆ™é€‰æ‹©mock invoker
     public static final String  INVOCATION_NEED_MOCK               = "invocation.need.mock";
 
     public static final String LOCAL_PROTOCOL                      = "injvm";

@@ -6,13 +6,13 @@ import com.gewara.api.vo.order.GewaOrderVo;
 
 public interface BaoChangOrderVoService {
 	/**
-	 * °ü³¡³¡´Î£¬ÍÁºÀÅóÓÑÑ¡×ùÏÂµ¥£¬ÏµÍ³Íê³ÉÖ§¸¶
+	 * åŒ…åœºåœºæ¬¡ï¼ŒåœŸè±ªæœ‹å‹é€‰åº§ä¸‹å•ï¼Œç³»ç»Ÿå®Œæˆæ”¯ä»˜
 	 * @param reqVo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> addBaoChangTicketOrder(PartnerAddOrderReqVo reqVo);
 	/**
-	 * °ü³¡³¡´Î£¬¿ª³¡Ç°35·ÖÖÓ£¬Î´Âô³öµÄ×ùÎ»ÏµÍ³×Ô¶¯ÏÂµ¥²¢Íê³ÉÈ·ÈÏ
+	 * åŒ…åœºåœºæ¬¡ï¼Œå¼€åœºå‰35åˆ†é’Ÿï¼Œæœªå–å‡ºçš„åº§ä½ç³»ç»Ÿè‡ªåŠ¨ä¸‹å•å¹¶å®Œæˆç¡®è®¤
 	 * @param mpid
 	 * @param secid
 	 * @param seatLabel

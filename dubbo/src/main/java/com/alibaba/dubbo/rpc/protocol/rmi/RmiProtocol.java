@@ -89,7 +89,7 @@ public class RmiProtocol extends AbstractProxyProtocol {
         }
         if (e != null && e.getCause() != null) {
             Class<?> cls = e.getCause().getClass();
-            // �Ǹ��ݲ���Case���ֵ����⣬��RpcException.setCode��������
+            // 锟角革拷锟捷诧拷锟斤拷Case锟斤拷锟街碉拷锟斤拷锟解，锟斤拷RpcException.setCode锟斤拷锟斤拷锟斤拷锟斤拷
             if (SocketTimeoutException.class.equals(cls)) {
                 return RpcException.TIMEOUT_EXCEPTION;
             } else if (IOException.class.isAssignableFrom(cls)) {

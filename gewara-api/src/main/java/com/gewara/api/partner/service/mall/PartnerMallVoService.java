@@ -5,7 +5,7 @@ import com.gewara.api.vo.order.GewaOrderVo;
 
 public interface PartnerMallVoService {
 	/**
-	 * 商城订单使用特价活动
+	 * 鍟嗗煄璁㈠崟浣跨敤鐗逛环娲诲姩
 	 * @param sessId
 	 * @param remoteIp
 	 * @param tradeNo

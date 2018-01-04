@@ -19,16 +19,16 @@ import com.gewara.util.LoggerUtils;
 public class ClassMetaInfo {
 	private static ConcurrentMap<Class, Map<String, Class>> writableListPropertyInfo = new ConcurrentHashMap<>();
 	private static transient GewaLogger dbLogger = LoggerUtils.getLogger(ClassMetaInfo.class);
-	public static Map<String, Class/* ·ºĞÍÊı¾İ */> getWritableListPropertyInfo(Class clazz) {
+	public static Map<String, Class/* æ³›å‹æ•°æ® */> getWritableListPropertyInfo(Class clazz) {
 		Map<String, Class> result = writableListPropertyInfo.get(clazz);
 		if (result == null) {
 			result = new HashMap<>();
 			List<String> pnList = BeanUtil.getWriteListPropertyNames(clazz);
-			if (!pnList.isEmpty()) {// ÅĞ¶ÏÊÇ·ñÓĞ·ºĞÍ
+			if (!pnList.isEmpty()) {// åˆ¤æ–­æ˜¯å¦æœ‰æ³›å‹
 				for (String pn : pnList) {
 					Class genericClass = getListGenericClass(clazz, pn);
 					if(genericClass!=null && !BeanUtil.isSimpleProperty(genericClass)){
-						//List<String>ÕâÖÖ¼òµ¥ÀàĞÍ²»Ëã
+						//List<String>è¿™ç§ç®€å•ç±»å‹ä¸ç®—
 						result.put(pn, genericClass);
 					}
 				}
@@ -48,7 +48,7 @@ public class ClassMetaInfo {
 				if(fieldArgTypes!=null){
 					if(fieldArgTypes.length==1 && fieldArgTypes[0] instanceof Class){
 						Class cl =  (Class)fieldArgTypes[0];
-						if(ClassUtil.isConcrete(cl)){//·Çinterface¡¢abstract
+						if(ClassUtil.isConcrete(cl)){//éinterfaceã€abstract
 							return cl;
 						}
 					}

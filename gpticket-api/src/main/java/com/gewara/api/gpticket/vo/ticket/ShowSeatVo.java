@@ -9,17 +9,17 @@ public class ShowSeatVo extends BaseVo {
 	private static final long serialVersionUID = -2879362811381467253L;
 	
 	private Long id;
-	private String siseqno;			//³¡´Î±àºÅ(ShowItem-->siseq)
-	private String arseqno;			//³¡Çø±àºÅ(ShowArea-->saseqNo)
-	private String priceseq;		//³¡Çø¼Û¸ñ±àºÅ(ShowPrice-->sispseq)
+	private String siseqno;			//åœºæ¬¡ç¼–å·(ShowItem-->siseq)
+	private String arseqno;			//åœºåŒºç¼–å·(ShowArea-->saseqNo)
+	private String priceseq;		//åœºåŒºä»·æ ¼ç¼–å·(ShowPrice-->sispseq)
 	
-	private Integer lineno;			//ÎïÀí×ø±êX
-	private Integer rankno;			//ÎïÀí×ø±êY
-	private String seatline;		//ÅÅ
-	private String seatrank;		//×ù(ÁĞ)
-	private String status;			//×´Ì¬
-	private String ticketid;		//¼Û¸ñID
-	private Integer price;			//¼Û¸ñ
+	private Integer lineno;			//ç‰©ç†åæ ‡X
+	private Integer rankno;			//ç‰©ç†åæ ‡Y
+	private String seatline;		//æ’
+	private String seatrank;		//åº§(åˆ—)
+	private String status;			//çŠ¶æ€
+	private String ticketid;		//ä»·æ ¼ID
+	private Integer price;			//ä»·æ ¼
 	private String loveInd;			//
 	private String seatno;			//
 	
@@ -153,6 +153,6 @@ public class ShowSeatVo extends BaseVo {
 	}
 
 	public String getSeatLabel(){
-		return seatline+"ÅÅ"+seatrank+"×ù";
+		return seatline+"æ’"+seatrank+"åº§";
 	}
 }

@@ -8,22 +8,22 @@ import com.gewara.api.vo.BaseVo;
 public class PayGatewayVo extends BaseVo {
 	private static final long serialVersionUID = 5328656468568314767L;
 	
-	/**ÊÇ·ñÖ§³ÖAPIÍË¿î*/
+	/**æ˜¯å¦æ”¯æŒAPIé€€æ¬¾*/
 	public static final String IS_SUPPORT_Y = "Y";
 	public static final String IS_SUPPORT_N = "N";
 	
 	private Long id ;
-	private String gatewayCode;	//Ö§¸¶Íø¹Ø
-	private String gatewayName;	//Ö§¸¶Íø¹ØÃû³Æ
-	private String supportBank;	//ÊÇ·ñÖ§³ÖÒøĞĞ
-	private String gatewayType;	//ÀàĞÍ£ºPLATFORM£ºÖ§¸¶Æ½Ì¨£»BANK£ºÒøĞĞÖ±Á¬£»CARD£º¿¨Ö§¸¶
-	private String status;		//×´Ì¬£ºNO_USE£ºÎ´ÆôÓÃ£»IN_USE£ºÊ¹ÓÃÖĞ£»DESUETUDE£º·ÏÆú£»
-	private String bankTypeKey;	//ÒøĞĞÀàĞÍkey£¬ÕâÀïÖ»·ÅÌØÊâµÄ£¬ĞÎÈç{"C":"ĞÅÓÃ¿¨","KJ":"¿ì½İĞÅÓÃ¿¨Ö§¸¶"}
-	private Timestamp updateTime;	//Í¬²½Ê±¼ä
-	private String routeStatus; //ÉÌ»§ºÅÂ·ÓÉ×´Ì¬£ºOPEN£º¿ªÆô£»CLOSE£º¹Ø±Õ£»Ä¬ÈÏ£ºCLOSE
-	private Timestamp modifyTime;	//ĞŞ¸ÄÊ±¼ä
-	private String modifyUser;	//×îºóĞŞ¸ÄÈË
-	private String supportRefund;//ÊÇ·ñÖ§³ÖAPIÍË¿î£¨N£º²»Ö§³Ö£»Y£ºÖ§³Ö£©
+	private String gatewayCode;	//æ”¯ä»˜ç½‘å…³
+	private String gatewayName;	//æ”¯ä»˜ç½‘å…³åç§°
+	private String supportBank;	//æ˜¯å¦æ”¯æŒé“¶è¡Œ
+	private String gatewayType;	//ç±»å‹ï¼šPLATFORMï¼šæ”¯ä»˜å¹³å°ï¼›BANKï¼šé“¶è¡Œç›´è¿ï¼›CARDï¼šå¡æ”¯ä»˜
+	private String status;		//çŠ¶æ€ï¼šNO_USEï¼šæœªå¯ç”¨ï¼›IN_USEï¼šä½¿ç”¨ä¸­ï¼›DESUETUDEï¼šåºŸå¼ƒï¼›
+	private String bankTypeKey;	//é“¶è¡Œç±»å‹keyï¼Œè¿™é‡Œåªæ”¾ç‰¹æ®Šçš„ï¼Œå½¢å¦‚{"C":"ä¿¡ç”¨å¡","KJ":"å¿«æ·ä¿¡ç”¨å¡æ”¯ä»˜"}
+	private Timestamp updateTime;	//åŒæ­¥æ—¶é—´
+	private String routeStatus; //å•†æˆ·å·è·¯ç”±çŠ¶æ€ï¼šOPENï¼šå¼€å¯ï¼›CLOSEï¼šå…³é—­ï¼›é»˜è®¤ï¼šCLOSE
+	private Timestamp modifyTime;	//ä¿®æ”¹æ—¶é—´
+	private String modifyUser;	//æœ€åä¿®æ”¹äºº
+	private String supportRefund;//æ˜¯å¦æ”¯æŒAPIé€€æ¬¾ï¼ˆNï¼šä¸æ”¯æŒï¼›Yï¼šæ”¯æŒï¼‰
 
 	@Override
 	public Serializable realId() {

@@ -7,30 +7,30 @@ import org.apache.commons.lang.StringUtils;
 public class OrderCommandVo implements Serializable {
 
 	private static final long serialVersionUID = -3829651039853670498L;
-	private String takemethod; // ȡƱ��ʽ
+	private String takemethod; // 取票锟斤拷式
 	private String citycode;
-	private String realname; // �û���ʵ����
+	private String realname; // 锟矫伙拷锟斤拷实锟斤拷锟斤拷
 	private String telphone;
-	private String address; // ��ݵ�ַ
-	private String seqno; // ���α��
-	private String mobile; // �ֻ���
-	private Long orderid; // ������
-	private String areaseqno; // ������
-	private String opentype; // �������ͣ�ѡ�����۸�
-	private String greetings; // �������ָ��Ի�
-	private String seatLabel; // old interface: ��λ���� areasq:1:2,areasq:1:3 �۸�����: areasq:priceid:quantity areaseq:234:5,areaseq:235:2
-	// new interface: {"type":seat or price,"seatIds": "��λ����areasq:1:2,areasq:1:3�۸�����areasq:priceid:quantity areaseq:234:5,areaseq:235:2",
-	// "packTicketId":"��Ʊ���","discountInfo":"�ۿ���Ϣ","discountTotal":""}
+	private String address; // 锟斤拷莸锟街�
+	private String seqno; // 锟斤拷锟轿憋拷锟�
+	private String mobile; // 锟街伙拷锟斤拷
+	private Long orderid; // 锟斤拷锟斤拷锟斤拷
+	private String areaseqno; // 锟斤拷锟斤拷锟斤拷
+	private String opentype; // 锟斤拷锟斤拷锟斤拷锟酵ｏ拷选锟斤拷锟斤拷锟桔革拷
+	private String greetings; // 锟斤拷锟斤拷锟斤拷锟街革拷锟皆伙拷
+	private String seatLabel; // old interface: 锟斤拷位锟斤拷锟斤拷 areasq:1:2,areasq:1:3 锟桔革拷锟斤拷锟斤拷: areasq:priceid:quantity areaseq:234:5,areaseq:235:2
+	// new interface: {"type":seat or price,"seatIds": "锟斤拷位锟斤拷锟斤拷areasq:1:2,areasq:1:3锟桔革拷锟斤拷锟斤拷areasq:priceid:quantity areaseq:234:5,areaseq:235:2",
+	// "packTicketId":"锟斤拷票锟斤拷锟�","discountInfo":"锟桔匡拷锟斤拷息","discountTotal":""}
 	private String usertype;
 	private String bindMobile;
 	
-	private Integer ticketnum;		//����Ʊ��
-	private Double totalfee;		//�����ܽ��
-	private Double payfee;			//����֧�����
+	private Integer ticketnum;		//锟斤拷锟斤拷票锟斤拷
+	private Double totalfee;		//锟斤拷锟斤拷锟杰斤拷锟�
+	private Double payfee;			//锟斤拷锟斤拷支锟斤拷锟斤拷锟�
 	private String checkpass;
-	private String idnumber;		//���֤��Ϣ
-	private Long configid;			//����������
-	private String clientIp;		//�ͻ���IP
+	private String idnumber;		//锟斤拷锟街わ拷锟较�
+	private Long configid;			//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	private String clientIp;		//锟酵伙拷锟斤拷IP
 
 	public OrderCommandVo(String seqno, Long orderid, String mobile, String areaseqno, String opentype, String seatLabel) {
 		this.seqno = seqno;

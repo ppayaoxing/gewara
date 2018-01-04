@@ -27,7 +27,7 @@ import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.dubbo.common.utils.StringUtils;
 
 /**
- * ����2.0.5֮ǰ�汾
+ * 锟斤拷锟斤拷2.0.5之前锟芥本
  * @deprecated
  * @author tony.chenl
  */

@@ -48,7 +48,7 @@ public class NettyClient extends AbstractClient {
     
     private static final Logger logger = LoggerFactory.getLogger(NettyClient.class);
 
-    // ��ChannelFactory�Ĺر���DirectMemoryй¶�����þ�̬�����
+    // 锟斤拷ChannelFactory锟侥关憋拷锟斤拷DirectMemory泄露锟斤拷锟斤拷锟矫撅拷态锟斤拷锟斤拷锟�
     // https://issues.jboss.org/browse/NETTY-424
     private static final ChannelFactory channelFactory = new NioClientSocketChannelFactory(Executors.newCachedThreadPool(new NamedThreadFactory("NettyClientBoss", true)), 
                                                                                            Executors.newCachedThreadPool(new NamedThreadFactory("NettyClientWorker", true)), 
@@ -94,7 +94,7 @@ public class NettyClient extends AbstractClient {
                 Channel newChannel = future.getChannel();
                 newChannel.setInterestOps(Channel.OP_READ_WRITE);
                 try {
-                    // �رվɵ�����
+                    // 锟截闭旧碉拷锟斤拷锟斤拷
                     Channel oldChannel = NettyClient.this.channel; // copy reference
                     if (oldChannel != null) {
                         try {

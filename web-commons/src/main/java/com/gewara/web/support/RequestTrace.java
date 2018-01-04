@@ -11,7 +11,7 @@ import com.gewara.util.LogTraceUtil.LogTrace;
 
 public class RequestTrace implements LogTrace{
 	/**
-	 * @return »ñÈ¡ÇëÇóÂ·¾¶ºÍÇëÇó²ÎÊı×é³É trace¸ú×ÙĞÅÏ¢
+	 * @return è·å–è¯·æ±‚è·¯å¾„å’Œè¯·æ±‚å‚æ•°ç»„æˆ traceè·Ÿè¸ªä¿¡æ¯
 	 */
 	@Override
 	public String getTrace() {

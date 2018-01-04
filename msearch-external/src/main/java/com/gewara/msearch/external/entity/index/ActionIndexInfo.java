@@ -1,9 +1,9 @@
 package com.gewara.msearch.external.entity.index;
 
 /**
- * »î¶¯Ë÷ÒıĞÅÏ¢,
- * @author ¶­Ã÷
- * @createDate 2015Äê6ÔÂ3ÈÕ
+ * æ´»åŠ¨ç´¢å¼•ä¿¡æ¯,
+ * @author è‘£æ˜
+ * @createDate 2015å¹´6æœˆ3æ—¥
  */
 public class ActionIndexInfo extends IndexData{
 	
@@ -16,21 +16,21 @@ public class ActionIndexInfo extends IndexData{
 	
 	
 	/**
-	 * »î¶¯Ãû³Æ
+	 * æ´»åŠ¨åç§°
 	 * @return
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
-	 * »î¶¯ÄÚÈİ
+	 * æ´»åŠ¨å†…å®¹
 	 * @return
 	 */
 	public String getContent() {
 		return content;
 	}
 	/**
-	 * »î¶¯¹ØÁªµÄµçÓ°ID
+	 * æ´»åŠ¨å…³è”çš„ç”µå½±ID
 	 * @return
 	 */
 	public String getMovieID() {
@@ -38,7 +38,7 @@ public class ActionIndexInfo extends IndexData{
 	}
 	
 	/**
-	 * »î¶¯·¢ÆğµÄ³ÇÊĞID£¬²»²Î¼ÓÄ£ºıËÑË÷£¬Ö»ÓÃÀ´½øĞĞ¾«È·ËÑË÷
+	 * æ´»åŠ¨å‘èµ·çš„åŸå¸‚IDï¼Œä¸å‚åŠ æ¨¡ç³Šæœç´¢ï¼Œåªç”¨æ¥è¿›è¡Œç²¾ç¡®æœç´¢
 	 * @return
 	 */
 	public String getCityID() {

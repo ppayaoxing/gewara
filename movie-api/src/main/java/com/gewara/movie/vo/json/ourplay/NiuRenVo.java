@@ -14,7 +14,7 @@ public class NiuRenVo extends BaseVo {
 	 * 
 	 */
 	private static final long serialVersionUID = -9098534988895469460L;
-	private String id;//Ö÷¼ü movieid+memberid
+	private String id;//ä¸»é”® movieid+memberid
 	private Long movieid;
 	private Long memberid;
 	private String nickname;

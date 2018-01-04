@@ -5,9 +5,9 @@ import java.util.List;
 
 public class CashAdvancedInfo implements Serializable{
 	private static final long serialVersionUID = 8502018749523012364L;
-	//private Integer consume_share_self_num;			//ºËÏúºóËÍÈ¯µÄÊýÁ¿£¬¿ÉÉèÖÃºËÏúºóËÍ±¾¿¨È¯µÄÊýÁ¿£¬ÏÞÖÆ´«Èë1ÕÅ£¬Óëconsume_share_card_list×Ö¶Î»¥³â 
-    private Boolean share_friends;					//ÊÇ·ñÖ§³Ö·ÖÏí¸øÅóÓÑÊ¹ÓÃ£¬ÌîÐ´trueÓÅ»ÝÈ¯²Å¿É±»¹²Ïí 
-    private UseCondition use_condition;	//¿ÉÓÃ·¶Î§
+	//private Integer consume_share_self_num;			//æ ¸é”€åŽé€åˆ¸çš„æ•°é‡ï¼Œå¯è®¾ç½®æ ¸é”€åŽé€æœ¬å¡åˆ¸çš„æ•°é‡ï¼Œé™åˆ¶ä¼ å…¥1å¼ ï¼Œä¸Žconsume_share_card_listå­—æ®µäº’æ–¥ 
+    private Boolean share_friends;					//æ˜¯å¦æ”¯æŒåˆ†äº«ç»™æœ‹å‹ä½¿ç”¨ï¼Œå¡«å†™trueä¼˜æƒ åˆ¸æ‰å¯è¢«å…±äº« 
+    private UseCondition use_condition;	//å¯ç”¨èŒƒå›´
     private AdvancedAbstact abstract1;		
     private List<Img2Text> text_image_list;
     public CashAdvancedInfo(){

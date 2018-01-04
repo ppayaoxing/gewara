@@ -14,13 +14,13 @@ public class OrderOtherVo extends BaseVo{
 	public static final String PAY_CARD = "ABD";
 	public static final String PAY_DISCOUNT = "M";
 	private  Long id;
-	private String takemethod;		//(A ����Ʊ  ��E ���  ��I ���֤����Ʊ�� A,E,I ����Ʊ+���+���֤����Ʊ)
-	private String expressid;		//��ݷ�ʽ
+	private String takemethod;		//(A 锟斤拷锟斤拷票  锟斤拷E 锟斤拷锟�  锟斤拷I 锟斤拷锟街わ拷锟斤拷锟狡憋拷锟� A,E,I 锟斤拷锟斤拷票+锟斤拷锟�+锟斤拷锟街わ拷锟斤拷锟狡�)
+	private String expressid;		//锟斤拷莘锟绞�
 	private String elecard;
 	private boolean openPointPay;
 	private int minpoint;
 	private int maxpoint;
-	private boolean ewarning;		//�Ƿ��������Ʊ
+	private boolean ewarning;		//锟角凤拷锟斤拷锟斤拷锟斤拷锟狡�
 	private boolean greetings;
 	
 	public OrderOtherVo(){}

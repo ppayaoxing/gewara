@@ -18,13 +18,13 @@ import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
 
 /**
- * »ùÓÚCuratorFrameworkµÄ·şÎñ×¢²á
- * <p>Ê¹ÓÃ:<br>
+ * åŸºäºCuratorFrameworkçš„æœåŠ¡æ³¨å†Œ
+ * <p>ä½¿ç”¨:<br>
  * {@code <bean id="serviceRegister" class="com.gewara.untrans.impl.ServiceRegisterImpl">} <br>
  * {@code     <property name="basePath" value="/service/discovery"/>}<br>
  * {@code     <property name="factory" ref="curatorConnectionFactroy"/>}<br>
  * {@code </bean> }<br>
- * Èç¹û"basePathÊôĞÔ²»ÅäÖÃ£¬Ä¬ÈÏÊ¹ÓÃ{@link ServiceDiscoverConstant#DEFALT_BASE_PATH}
+ * å¦‚æœ"basePathå±æ€§ä¸é…ç½®ï¼Œé»˜è®¤ä½¿ç”¨{@link ServiceDiscoverConstant#DEFALT_BASE_PATH}
  * 
  * @author quzhuping
  *

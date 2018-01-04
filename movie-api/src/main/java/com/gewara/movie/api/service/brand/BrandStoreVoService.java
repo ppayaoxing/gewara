@@ -8,7 +8,7 @@ import com.gewara.movie.vo.brand.BrandStoreVo;
 public interface BrandStoreVoService {
 	
 	/**
-	 * ²éÑ¯ÃÅµêÁĞ±í
+	 * æŸ¥è¯¢é—¨åº—åˆ—è¡¨
 	 * @param from
 	 * @param to
 	 * @param citycode
@@ -19,50 +19,50 @@ public interface BrandStoreVoService {
 	ResultCode<List<BrandStoreVo>> getBrandStoreInfoByBrandId(int from, int to,String citycode,Long brandId,Byte status);
 	
 	/**
-	 * »ñÈ¡ÃÅµêµÄÊıÁ¿ 
-	 * @param brandid	Æ·ÅÆid
-	 * @param citycode	³ÇÊĞcode
+	 * è·å–é—¨åº—çš„æ•°é‡ 
+	 * @param brandid	å“ç‰Œid
+	 * @param citycode	åŸå¸‚code
 	 * @return
 	 */
 	ResultCode<Integer> getBrandStoreCount(Long brandid,String citycode);
 	
 	/**
-	 * ¸ù¾İid»ñÈ¡ÃÅµêµÄÊı¾İ
+	 * æ ¹æ®idè·å–é—¨åº—çš„æ•°æ®
 	 * @param id
 	 * @return
 	 */
 	ResultCode<BrandStoreVo> getBrandStore(Long id);
 	/**
-	 * ¸ù¾İÃû³Æ»ñÈ¡ÃÅµêµÄÊı¾İ
+	 * æ ¹æ®åç§°è·å–é—¨åº—çš„æ•°æ®
 	 * @param id
 	 * @return
 	 */
 	ResultCode<BrandStoreVo> getBrandStoreByName(String name);
 	/**
-	 * Ä£ºıËÑË÷
-	 * @param storeName ÃÅµêÃû³Æ»òµØÖ·
+	 * æ¨¡ç³Šæœç´¢
+	 * @param storeName é—¨åº—åç§°æˆ–åœ°å€
 	 * @return
 	 */
 	ResultCode<List<BrandStoreVo>> search(String storeNameOrAddress);
 	/**
-	 * ±£´æÃÅµêÊı¾İ
+	 * ä¿å­˜é—¨åº—æ•°æ®
 	 * @return
 	 */
 	ResultCode save(BrandStoreVo bs);
 	/**
-	 * ±£´æÃÅµêÊı¾İ
+	 * ä¿å­˜é—¨åº—æ•°æ®
 	 * @return
 	 */
 	ResultCode saveObjectList(List<BrandStoreVo> list);
 	/**
-	 * É¾³ıÃÅµê
+	 * åˆ é™¤é—¨åº—
 	 * @param id
 	 * @return
 	 */
 	ResultCode removeById(Long id);
 
 	/**
-	 * ²éÑ¯ÃÅµêÁĞ±í
+	 * æŸ¥è¯¢é—¨åº—åˆ—è¡¨
 	 * @param from
 	 * @param to
 	 * @param citycode
@@ -72,10 +72,10 @@ public interface BrandStoreVoService {
 	 */
 	ResultCode<List<BrandStoreVo>> getBrandStoreListByIdList(List<Long> idList);
 	/**
-	 * ²éÑ¯ÃÅµêÁĞ±í
-	 * @param goodsid ÎïÆ·ID
-	 * @param pointx µ±Ç°¾­¶È
-	 * @param pointy µ±Ç°Î¬¶È
+	 * æŸ¥è¯¢é—¨åº—åˆ—è¡¨
+	 * @param goodsid ç‰©å“ID
+	 * @param pointx å½“å‰ç»åº¦
+	 * @param pointy å½“å‰ç»´åº¦
 	 * @return
 	 */
 	ResultCode<List<BrandStoreVo>> getBrandStoreListByGoodsId(Long goodsid, String pointx, String pointy, int from, int maxnum);

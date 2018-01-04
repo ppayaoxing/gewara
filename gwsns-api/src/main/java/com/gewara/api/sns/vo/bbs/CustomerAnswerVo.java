@@ -7,14 +7,14 @@ import com.gewara.api.sns.constant.Status;
 import com.gewara.api.vo.BaseVo;
 
 /**
- *  @function 针对用户提问,建议,bug, 进行回复
+ *  @function 閽堝鐢ㄦ埛鎻愰棶,寤鸿,bug, 杩涜鍥炲
  * 	@author bob.hu
  *	@date	2011-03-11 12:02:52
  */
 public class CustomerAnswerVo extends BaseVo {
 	
-	public static final int IS_ADMIN = 1; //是管理员
-	public static final int NO_ADMIN = 0; //注册用户
+	public static final int IS_ADMIN = 1; //鏄鐞嗗憳
+	public static final int NO_ADMIN = 0; //娉ㄥ唽鐢ㄦ埛
 	
 	private Long id;
 	private Long memberid;

@@ -23,13 +23,13 @@ public class ResourceStatsUtil {
 	private static DynamicStats jmsStats = new DynamicStats("jms");
 	private static DynamicStats pageCacheStats = new DynamicStats("pageCache");
 	private static DynamicStats apiMethodStats = new DynamicStats("apiMethod");
-	//�������ͳ��
+	//锟斤拷锟斤拷锟斤拷锟酵筹拷锟�
 	private static DynamicStats errorStats = new DynamicStats("errorStats");
 	private static List<ServiceCacheHelper> schList = new ArrayList<ServiceCacheHelper>();
-	//�첽�����Url��Spring��DefferedResult
+	//锟届步锟斤拷锟斤拷锟経rl锟斤拷Spring锟斤拷DefferedResult
 	
 	
-	//��¼��ǰ����
+	//锟斤拷录锟斤拷前锟斤拷锟斤拷
 	private static Map<Integer, HttpServletRequest> requestMap = new ConcurrentHashMap<Integer, HttpServletRequest>(4096, 0.75f, 32);
 	private static AtomicInteger curreqLoc = new AtomicInteger(0);
 	public static DynamicStats getErrorStats() {
@@ -62,7 +62,7 @@ public class ResourceStatsUtil {
 	}
 
 	/**
-	 * ��¼��������
+	 * 锟斤拷录锟斤拷锟斤拷锟斤拷锟斤拷
 	 * @param request
 	 * @param multiPart
 	 * @return
@@ -76,7 +76,7 @@ public class ResourceStatsUtil {
 		return loc;
 	}
 	/**
-	 * �������ڴ�����������
+	 * 锟斤拷锟斤拷锟斤拷锟节达拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 * @param max
 	 * @return
 	 */
@@ -96,7 +96,7 @@ public class ResourceStatsUtil {
 	}
 
 	/**
-	 * �����������
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
 	 * @param loc
 	 */
 	public static void clearRequest(Integer loc) {
@@ -106,7 +106,7 @@ public class ResourceStatsUtil {
 	}
 	
 	/**
-	 * �����ڵ�URI
+	 * 锟斤拷锟斤拷锟节碉拷URI
 	 * @param uri
 	 */
 	public static void addUrlNoHandler(String uri){
@@ -118,7 +118,7 @@ public class ResourceStatsUtil {
 	}
 	
 	/**
-	 * ע�����б�
+	 * 注锟斤拷锟斤拷锟叫憋拷
 	 * @return
 	 */
 	public static void registerUri(Set<String> uriList, String contextPath){

@@ -1,19 +1,19 @@
 package com.gewara.msearch.external.entity.index;
 
 /**
- * »áÔ±Ë÷ÒıĞÅÏ¢
- * @author ¶­Ã÷
- * @createDate 2015Äê6ÔÂ3ÈÕ
+ * ä¼šå‘˜ç´¢å¼•ä¿¡æ¯
+ * @author è‘£æ˜
+ * @createDate 2015å¹´6æœˆ3æ—¥
  */
 public class MemberIndexInfo extends IndexData{
 	
 	private static final long serialVersionUID = -3071643178306274317L;
 	private String nick=null;
-	private String field1 = "";//Ô¤ÁôÀ©Õ¹×Ö¶Î
-	private String field2 = "";//Ô¤ÁôÀ©Õ¹×Ö¶Î
+	private String field1 = "";//é¢„ç•™æ‰©å±•å­—æ®µ
+	private String field2 = "";//é¢„ç•™æ‰©å±•å­—æ®µ
 	
 	/**
-	 * »áÔ±êÇ³Æ
+	 * ä¼šå‘˜æ˜µç§°
 	 * @return
 	 */
 	public String getNick() {

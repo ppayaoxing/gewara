@@ -66,26 +66,26 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
     
     private static final ProxyFactory proxyFactory = ExtensionLoader.getExtensionLoader(ProxyFactory.class).getAdaptiveExtension();
 
-    // �ӿ�����
+    // 锟接匡拷锟斤拷锟斤拷
     private String               interfaceName;
 
     private Class<?>             interfaceClass;
 
-    // �ͻ�������
+    // 锟酵伙拷锟斤拷锟斤拷锟斤拷
     private String               client;
 
-    // ��Ե�ֱ�������ṩ��ַ
+    // 锟斤拷缘锟街憋拷锟斤拷锟斤拷锟斤拷峁╋拷锟街�
     private String               url;
 
-    // ��������
+    // 锟斤拷锟斤拷锟斤拷锟斤拷
     private List<MethodConfig>   methods;
 
-    // ȱʡ����
+    // 缺省锟斤拷锟斤拷
     private ConsumerConfig       consumer;
     
     private String				 protocol;
 
-    // �ӿڴ���������
+    // 锟接口达拷锟斤拷锟斤拷锟斤拷锟斤拷
     private transient volatile T ref;
 
     private transient volatile Invoker<?> invoker;
@@ -105,7 +105,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
             if(! ReferenceConfig.this.destroyed) {
                 logger.warn("ReferenceConfig(" + url + ") is not DESTROYED when FINALIZE");
 
-                /* �Ȳ���Destroy����
+                /* 锟饺诧拷锟斤拷Destroy锟斤拷锟斤拷
                 try {
                     ReferenceConfig.this.destroy();
                 } catch (Throwable t) {
@@ -165,7 +165,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
     	if (interfaceName == null || interfaceName.length() == 0) {
     	    throw new IllegalStateException("<dubbo:reference interface=\"\" /> interface not allow null!");
     	}
-    	// ��ȡ������ȫ������
+    	// 锟斤拷取锟斤拷锟斤拷锟斤拷全锟斤拷锟斤拷锟斤拷
     	checkDefault();
         appendProperties(this);
         if (getGeneric() == null && getConsumer() != null) {
@@ -318,7 +318,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
                 checkAndConvertImplicitConfig(method, map, attributes);
             }
         }
-        //attributesͨ��ϵͳcontext���д洢.
+        //attributes通锟斤拷系统context锟斤拷锟叫存储.
         StaticContext.getSystemContext().putAll(attributes);
         ref = createProxy(map);
     }
@@ -361,10 +361,10 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
 		URL tmpUrl = new URL("temp", "localhost", 0, map);
 		final boolean isJvmRefer;
         if (isInjvm() == null) {
-            if (url != null && url.length() > 0) { //ָ��URL������£�������������
+            if (url != null && url.length() > 0) { //指锟斤拷URL锟斤拷锟斤拷锟斤拷拢锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
                 isJvmRefer = false;
             } else if (InjvmProtocol.getInjvmProtocol().isInjvmRefer(tmpUrl)) {
-                //Ĭ���������������з���¶�������ñ��ط���.
+                //默锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫凤拷锟斤拷露锟斤拷锟斤拷锟斤拷锟矫憋拷锟截凤拷锟斤拷.
                 isJvmRefer = true;
             } else {
                 isJvmRefer = false;
@@ -380,7 +380,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
                 logger.info("Using injvm service " + interfaceClass.getName());
             }
 		} else {
-            if (url != null && url.length() > 0) { // �û�ָ��URL��ָ����URL�����ǶԵ��ֱ����ַ��Ҳ������ע������URL
+            if (url != null && url.length() > 0) { // 锟矫伙拷指锟斤拷URL锟斤拷指锟斤拷锟斤拷URL锟斤拷锟斤拷锟角对碉拷锟街憋拷锟斤拷锟街凤拷锟揭诧拷锟斤拷锟斤拷锟阶拷锟斤拷锟斤拷锟経RL
                 String[] us = Constants.SEMICOLON_SPLIT_PATTERN.split(url);
                 if (us != null && us.length > 0) {
                     for (String u : us) {
@@ -395,7 +395,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
                         }
                     }
                 }
-            } else { // ͨ��ע����������ƴװURL
+            } else { // 通锟斤拷注锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷拼装URL
             	List<URL> us = loadRegistries(false);
             	if (us != null && us.size() > 0) {
                 	for (URL u : us) {
@@ -419,14 +419,14 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
                 for (URL url : urls) {
                     invokers.add(refprotocol.refer(interfaceClass, url));
                     if (Constants.REGISTRY_PROTOCOL.equals(url.getProtocol())) {
-                        registryURL = url; // �������һ��registry url
+                        registryURL = url; // 锟斤拷锟斤拷锟斤拷锟揭伙拷锟絩egistry url
                     }
                 }
-                if (registryURL != null) { // �� ע������Э���URL
-                    // ����ע�����ĵ�Cluster ֻ�� AvailableCluster
+                if (registryURL != null) { // 锟斤拷 注锟斤拷锟斤拷锟斤拷协锟斤拷锟経RL
+                    // 锟斤拷锟斤拷注锟斤拷锟斤拷锟侥碉拷Cluster 只锟斤拷 AvailableCluster
                     URL u = registryURL.addParameter(Constants.CLUSTER_KEY, AvailableCluster.NAME); 
                     invoker = cluster.join(new StaticDirectory(u, invokers));
-                }  else { // ���� ע�����ĵ�URL
+                }  else { // 锟斤拷锟斤拷 注锟斤拷锟斤拷锟侥碉拷URL
                     invoker = cluster.join(new StaticDirectory(invokers));
                 }
             }
@@ -445,7 +445,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
         if (logger.isInfoEnabled()) {
             logger.info("Refer dubbo service " + interfaceClass.getName() + " from url " + invoker.getUrl());
         }
-        // �����������
+        // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
         return (T) proxyFactory.getProxy(invoker);
     }
 

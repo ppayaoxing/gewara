@@ -26,7 +26,7 @@ import com.alibaba.dubbo.rpc.RpcException;
 import com.alibaba.dubbo.rpc.cluster.Router;
 
 /**
- * mock invokerѡ����
+ * mock invoker选锟斤拷锟斤拷
  * @author chao.liuc
  *
  */

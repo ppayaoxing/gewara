@@ -7,11 +7,11 @@ import com.gewara.api.vo.BaseVo;
 public class GoodsStockDataVo extends BaseVo {
 	private static final long serialVersionUID = -5396346712368888868L;
 	
-	private Long goodsId;					//ÎïÆ·ID
-	private int sellRatio;					//ÎïÆ·-ÒÑÊÛ±ÈÂÊ  
-	private int allGoodsStock;				//ÎïÆ·-×Ü¿â´æ (ÕâÀïµÄ¿â´æÓĞ¿ÉÄÜÊÇĞéÄâµÄÊı¾İ)
-	private int remainderGoodsStock;		//ÎïÆ·-Ê£Óà¿â´æ
-	private int sellCount; 					//ÒÑÊÛ¶àÉÙ
+	private Long goodsId;					//ç‰©å“ID
+	private int sellRatio;					//ç‰©å“-å·²å”®æ¯”ç‡  
+	private int allGoodsStock;				//ç‰©å“-æ€»åº“å­˜ (è¿™é‡Œçš„åº“å­˜æœ‰å¯èƒ½æ˜¯è™šæ‹Ÿçš„æ•°æ®)
+	private int remainderGoodsStock;		//ç‰©å“-å‰©ä½™åº“å­˜
+	private int sellCount; 					//å·²å”®å¤šå°‘
 	
 	public GoodsStockDataVo(){}
 

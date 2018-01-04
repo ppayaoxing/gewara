@@ -9,7 +9,7 @@ import com.gewara.api.sms.response.MTResponse;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * ¶ÌĞÅ½Ó¿Ú·şÎñ
+ * çŸ­ä¿¡æ¥å£æœåŠ¡
  * 
  * @author leo.li
  * Modify Time Jan 4, 2013 6:07:31 PM
@@ -17,8 +17,8 @@ import com.gewara.api.vo.ResultCode;
 public interface SmsService {
 	
 	/**
-	 * ¶ÌĞÅ·¢ËÍÍ³Ò»½Ó¿Ú¡£
-	 * Ö§³Ö±ÜÃâÖØ¸´·¢ËÍ¹¦ÄÜ£»Ö§³Ö¶¨Ê±·¢ËÍ¡£
+	 * çŸ­ä¿¡å‘é€ç»Ÿä¸€æ¥å£ã€‚
+	 * æ”¯æŒé¿å…é‡å¤å‘é€åŠŸèƒ½ï¼›æ”¯æŒå®šæ—¶å‘é€ã€‚
 	 * 
 	 * @param request
 	 * @return
@@ -31,8 +31,8 @@ public interface SmsService {
 	public MTResponse sendSMS(MTRequest request);
 	
 	/**
-	 * ¶ÌĞÅ·¢ËÍÍ³Ò»½Ó¿Ú¡£
-	 * Ö§³Ö±ÜÃâÖØ¸´·¢ËÍ¹¦ÄÜ£»Ö§³Ö¶¨Ê±·¢ËÍ¡£
+	 * çŸ­ä¿¡å‘é€ç»Ÿä¸€æ¥å£ã€‚
+	 * æ”¯æŒé¿å…é‡å¤å‘é€åŠŸèƒ½ï¼›æ”¯æŒå®šæ—¶å‘é€ã€‚
 	 * 
 	 * @param request
 	 * @return
@@ -43,8 +43,8 @@ public interface SmsService {
 	public ResultCode sendSMS2(MTRequest request);
 	
 	/**
-	 * ²éÑ¯mongoÊÖ»úºÅÅú´Î¶ÌĞÅ·¢ËÍ×´Ì¬
-	 * @param batchId mongoÊÖ»úºÅÅú´ÎID
+	 * æŸ¥è¯¢mongoæ‰‹æœºå·æ‰¹æ¬¡çŸ­ä¿¡å‘é€çŠ¶æ€
+	 * @param batchId mongoæ‰‹æœºå·æ‰¹æ¬¡ID
 	 * @return
      * @see #queryBatchSmsStatus2
 	 */
@@ -52,18 +52,18 @@ public interface SmsService {
 	public BatchSmsStatusResponse queryBatchSmsStatus(String batchId);
 	
 	/**
-	 * ²éÑ¯mongoÊÖ»úºÅÅú´Î¶ÌĞÅ·¢ËÍ×´Ì¬
-	 * @param batchId mongoÊÖ»úºÅÅú´ÎID
+	 * æŸ¥è¯¢mongoæ‰‹æœºå·æ‰¹æ¬¡çŸ­ä¿¡å‘é€çŠ¶æ€
+	 * @param batchId mongoæ‰‹æœºå·æ‰¹æ¬¡ID
 	 * @return
 	 */
 	public ResultCode<BatchSmsStatusResponse> queryBatchSmsStatus2(String batchId);
 	
 	/**
-	 * ²éÕÒÉÏº£ÏµÍ³×òÌì·¢ËÍµÄ¶ÌĞÅ¼ÇÂ¼µÄ×´Ì¬
-	 * @param smsIdList ¶ÌĞÅID£¬¸öÊı²»ÄÜ³¤ÓÚ100; ¶ÌĞÅ·¢ËÍ½Ó¿Ú´«µÄÖµ£»
-	 * @return  Map£¬ key :  smsId, value: ×´Ì¬
+	 * æŸ¥æ‰¾ä¸Šæµ·ç³»ç»Ÿæ˜¨å¤©å‘é€çš„çŸ­ä¿¡è®°å½•çš„çŠ¶æ€
+	 * @param smsIdList çŸ­ä¿¡IDï¼Œä¸ªæ•°ä¸èƒ½é•¿äº100; çŸ­ä¿¡å‘é€æ¥å£ä¼ çš„å€¼ï¼›
+	 * @return  Mapï¼Œ key :  smsId, value: çŠ¶æ€
 	 * @author leo
-	 * @addTime 2015Äê11ÔÂ27ÈÕÏÂÎç6:14:30
+	 * @addTime 2015å¹´11æœˆ27æ—¥ä¸‹åˆ6:14:30
 	 */
 	public ResultCode<Map<String, String>> findYesterdayStatus4Shanghai(List<String> smsIdList);
 }

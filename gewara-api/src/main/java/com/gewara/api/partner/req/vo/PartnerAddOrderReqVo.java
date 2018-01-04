@@ -6,33 +6,33 @@ import org.apache.commons.codec.binary.StringUtils;
 
 
 /**
- * ´´½¨¶©µ¥
+ * åˆ›å»ºè®¢å•
  */
 public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 	private static final long serialVersionUID = -9010424348846855963L;
-	// Â¥ÉÏÂ¥ÏÂ±êÊ¶
+	// æ¥¼ä¸Šæ¥¼ä¸‹æ ‡è¯†
 	private String secid;
-	// ÓÃ»§ID
+	// ç”¨æˆ·ID
 	private String memberEncode;
-	// ºÏ×÷ÉÌÓÃ»§±êÊ¶
+	// åˆä½œå•†ç”¨æˆ·æ ‡è¯†
 	private String ukey;
-	// ³¡´ÎID
+	// åœºæ¬¡ID
 	private Long mpid;
-	// ÊÖ»úºÅ
+	// æ‰‹æœºå·
 	private String mobile;
-	// ×ùÎ»ĞÅÏ¢
+	// åº§ä½ä¿¡æ¯
 	private String seatLable;
-	// ÎïÆ·ID
+	// ç‰©å“ID
 	private Long goodsId;
-	// ¹ºÂòÎïÆ·ÊıÁ¿
+	// è´­ä¹°ç‰©å“æ•°é‡
 	private Integer quantity;
-	// ÌØ¼Û»î¶¯ID
+	// ç‰¹ä»·æ´»åŠ¨ID
 	private Long discountId;
-	// À´Ô´½ÓÈë
+	// æ¥æºæ¥å…¥
 	private String origin;
 	private String paybank;
 	private String paymethod;
-	private String ignoreSeatPosValid = "N";//ºöÂÔ¹Â×ùÑéÖ¤
+	private String ignoreSeatPosValid = "N";//å¿½ç•¥å­¤åº§éªŒè¯
 	private Map<String, String> otherinfoMap;
 
 	
@@ -162,7 +162,7 @@ public class PartnerAddOrderReqVo extends PartnerBaseReqVo {
 		this.ignoreSeatPosValid = ignoreSeatPosValid;
 	}
 	/**
-	 * ºöÂÔ¹Â×ùÑéÖ¤
+	 * å¿½ç•¥å­¤åº§éªŒè¯
 	 * @return
 	 */
 	public boolean ignoreSeatPos(){

@@ -33,12 +33,12 @@ public class GewaJobTrigger extends CronTriggerImpl implements BeanNameAware, In
 	private JobService jobService;
 	private String targetMethod;
 	private String uniqueName;
-	private String hostname;			//Ö»ÔÚÄ³Ì¨»úÆ÷ÉÏÖ´ĞĞ
-	private boolean uniqueByHost;		//¼ÆËãuniqueName¼ÓÉÏhost
+	private String hostname;			//åªåœ¨æŸå°æœºå™¨ä¸Šæ‰§è¡Œ
+	private boolean uniqueByHost;		//è®¡ç®—uniqueNameåŠ ä¸Šhost
 	private long startDelay;
 	private JobDetail jobDetail;
 	
-	private boolean electionEnabled = false; //ÊÇ·ñ¿ÉÒÔÍ¨¹ıÊ¹ÓÃÑ¡¾ÙÀ´¾ö¶¨ÄÄÌ¨»úÆ÷Ö´ĞĞ, Ä¬ÈÏ²»ÔÊĞí
+	private boolean electionEnabled = false; //æ˜¯å¦å¯ä»¥é€šè¿‡ä½¿ç”¨é€‰ä¸¾æ¥å†³å®šå“ªå°æœºå™¨æ‰§è¡Œ, é»˜è®¤ä¸å…è®¸
 	
 	public void setJobDetail(JobDetail jobDetail) {
 		this.getJobDataMap().put("jobDetail", jobDetail);

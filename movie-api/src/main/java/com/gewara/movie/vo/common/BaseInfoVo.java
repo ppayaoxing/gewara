@@ -21,18 +21,18 @@ public class BaseInfoVo extends BaseEntityVo{
 	protected String transport;
 	protected Long stationid;
 	protected String stationname;
-	protected String exitnumber;//����
+	protected String exitnumber;//锟斤拷锟斤拷
 	protected String googlemap;
-	protected String opentime;//Ӫҵʱ��
+	protected String opentime;//营业时锟斤拷
 	protected String feature;
 	protected String remark;
-	protected String discount; //�Ż���Ϣ
-	protected String coupon; //�Ż�ȯ
+	protected String discount; //锟脚伙拷锟斤拷息
+	protected String coupon; //锟脚伙拷券
 	protected String pointx;
 	protected String pointy;
 	protected String bpointx;
 	protected String bpointy;
-	protected String briefaddress;//���Ƽ��
+	protected String briefaddress;//锟斤拷锟狡硷拷锟�
 	protected String lineidlist;
 	protected String otherinfo;
 	

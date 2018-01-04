@@ -13,13 +13,13 @@ public class ValidateOpenApiPayVo extends BaseVo{
 	private String tradeNo;
 	
 	/**
-	 * ·µ»Øsuccess,±íÊ¾³É¹¦£¬·ñÔòÊÇ´íÎóĞÅÏ¢
+	 * è¿”å›success,è¡¨ç¤ºæˆåŠŸï¼Œå¦åˆ™æ˜¯é”™è¯¯ä¿¡æ¯
 	 */
 	private String result;
 
-	private String briefname;		//¼ò³Æ
-	private String partnerip;		//ºÏ×÷»ï°éIP
-	private String partnerkey;		//ÑéÖ¤Éí·İkey
+	private String briefname;		//ç®€ç§°
+	private String partnerip;		//åˆä½œä¼™ä¼´IP
+	private String partnerkey;		//éªŒè¯èº«ä»½key
 	private String timeoutReturn;
 
 	@Override

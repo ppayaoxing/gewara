@@ -11,12 +11,12 @@ public class ApiUserExtraVo extends BaseVo {
 	 */
 	private static final long serialVersionUID = -411948352145748060L;
 	
-	private Long id;				//ºÍApiUser¹«ÓÃÒ»¸öid
-	private String openDiscount;	//ÓÅ»İ×´Ì¬
-	private String paymethod;		//Ö§³ÖµÄÖ§¸¶·½Ê½
-	private String chargemethod;	//Ä¬ÈÏµÄ³äÖµ·½Ê½
-	private String specialmethod;	//ÌØÊâµÄÖ§¸¶·½Ê½£¬Ä¬ÈÏ²»ÏÔÊ¾£¬ÌØ¼Û»î¶¯µÄÊ±ºòÏÔÊ¾
-	private String proxyqry;		//´úÀí²éÑ¯µÄurl
+	private Long id;				//å’ŒApiUserå…¬ç”¨ä¸€ä¸ªid
+	private String openDiscount;	//ä¼˜æƒ çŠ¶æ€
+	private String paymethod;		//æ”¯æŒçš„æ”¯ä»˜æ–¹å¼
+	private String chargemethod;	//é»˜è®¤çš„å……å€¼æ–¹å¼
+	private String specialmethod;	//ç‰¹æ®Šçš„æ”¯ä»˜æ–¹å¼ï¼Œé»˜è®¤ä¸æ˜¾ç¤ºï¼Œç‰¹ä»·æ´»åŠ¨çš„æ—¶å€™æ˜¾ç¤º
+	private String proxyqry;		//ä»£ç†æŸ¥è¯¢çš„url
 	private String authFields;		//
 	private String sourcemethod;
 	private String otherinfo;

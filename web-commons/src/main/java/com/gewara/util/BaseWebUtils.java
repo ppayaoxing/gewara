@@ -41,7 +41,7 @@ public abstract class BaseWebUtils {
 		return "";
 	}
 
-	/** 根据request获取ip地址
+	/** 鏍规嵁request鑾峰彇ip鍦板潃
 	 * @param request
 	 * @return
 	 */
@@ -109,7 +109,7 @@ public abstract class BaseWebUtils {
 		return paramsStr;
 	}
 
-	/**根据request封装请求消息头信息到 Map,并且禁止cookie日志打印
+	/**鏍规嵁request灏佽璇锋眰娑堟伅澶翠俊鎭埌 Map,骞朵笖绂佹cookie鏃ュ織鎵撳嵃
 	 * @param request
 	 * @return
 	 */
@@ -117,7 +117,7 @@ public abstract class BaseWebUtils {
 		return "" + getHeaderMap(request);
 	}
 
-	/** 根据request封装请求参数到 Map
+	/** 鏍规嵁request灏佽璇锋眰鍙傛暟鍒� Map
 	 * @param request
 	 * @return
 	 */
@@ -132,7 +132,7 @@ public abstract class BaseWebUtils {
 		return result;
 	}
 
-	/** 根据request封装请求消息头信息到 Map,并且禁止cookie日志打印
+	/** 鏍规嵁request灏佽璇锋眰娑堟伅澶翠俊鎭埌 Map,骞朵笖绂佹cookie鏃ュ織鎵撳嵃
 	 * @param request
 	 * @return
 	 */
@@ -143,7 +143,7 @@ public abstract class BaseWebUtils {
 		while (it.hasMoreElements()) {
 			key = it.nextElement();
 			String value = request.getHeader(key);
-			// 禁止cookie日志打印
+			// 绂佹cookie鏃ュ織鎵撳嵃
 			if (StringUtils.containsIgnoreCase(key, "cookie")) {
 				value = "*******";
 			}
@@ -153,7 +153,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * 返回Map，但key=“head4”+originalKey
+	 * 杩斿洖Map锛屼絾key=鈥渉ead4鈥�+originalKey
 	 * 
 	 * @param request
 	 * @return
@@ -165,7 +165,7 @@ public abstract class BaseWebUtils {
 		while (it.hasMoreElements()) {
 			key = it.nextElement();
 			String value = request.getHeader(key);
-			// 禁止cookie日志打印
+			// 绂佹cookie鏃ュ織鎵撳嵃
 			if (StringUtils.containsIgnoreCase(key, "cookie")) {
 				value = "*******";
 			}
@@ -176,7 +176,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * 获取html中图片的url
+	 * 鑾峰彇html涓浘鐗囩殑url
 	 * 
 	 * @param html
 	 * @return
@@ -190,7 +190,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * 获取html中视频的url
+	 * 鑾峰彇html涓棰戠殑url
 	 * 
 	 * @param html
 	 * @return
@@ -268,10 +268,10 @@ public abstract class BaseWebUtils {
             return false;
         }
 		if (StringUtils.contains(StringUtils.lowerCase(str), "<script")) {
-            return true;// 验证JS
+            return true;// 楠岃瘉JS
         }
 		if (StringUtils.contains(StringUtils.lowerCase(str), "<iframe")) {
-            return true;// 验证iframe
+            return true;// 楠岃瘉iframe
         }
 		return false;
 	}
@@ -305,7 +305,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * 判断用户浏览器信息
+	 * 鍒ゆ柇鐢ㄦ埛娴忚鍣ㄤ俊鎭�
 	 */
 	public static final String getBrowerInfo(String userAgent) {
 		String browserInfo = "UNKNOWN";
@@ -334,7 +334,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * 查询串提取
+	 * 鏌ヨ涓叉彁鍙�
 	 * 
 	 * @param queryStr
 	 * @param encode
@@ -399,7 +399,7 @@ public abstract class BaseWebUtils {
 	}
 
 	/**
-	 * 多值用“,”号隔开
+	 * 澶氬�肩敤鈥�,鈥濆彿闅斿紑
 	 * 
 	 * @param requestMap
 	 * @param encode
@@ -443,7 +443,7 @@ public abstract class BaseWebUtils {
 		return contextPath;
 	}
 
-	/** 获取请求参数,并且根据要求对敏感信息进行加密
+	/** 鑾峰彇璇锋眰鍙傛暟,骞朵笖鏍规嵁瑕佹眰瀵规晱鎰熶俊鎭繘琛屽姞瀵�
 	 * @param request
 	 * @param removeSensitive
 	 * @param sensitiveKeys
@@ -462,7 +462,7 @@ public abstract class BaseWebUtils {
 			"check", "card");
 	private static final List<String> IGNORE_KEYS = Arrays.asList("mobileType");
 
-	/** 移除敏感信息
+	/** 绉婚櫎鏁忔劅淇℃伅
 	 * @param params
 	 * @param keys
 	 */
@@ -483,7 +483,7 @@ public abstract class BaseWebUtils {
 			if (!IGNORE_KEYS.contains(pname)) {
 				for (String key : keyList) {
 					if (StringUtils.containsIgnoreCase(pname, key) && StringUtils.isNotBlank(params.get(pname))) {
-						//对敏感信息进行加密
+						//瀵规晱鎰熶俊鎭繘琛屽姞瀵�
 						params.put(pname, "MG" + StringUtil.md5("kcj3STidSC" + params.get(pname)));
 					}
 				}
@@ -491,7 +491,7 @@ public abstract class BaseWebUtils {
 		}
 	}
 
-	public static final String getRemotePort(HttpServletRequest request) {// 获取请求端口号
+	public static final String getRemotePort(HttpServletRequest request) {// 鑾峰彇璇锋眰绔彛鍙�
 		String port = request.getHeader("x-client-port");
 		if (StringUtils.isBlank(port)) {
 			return "" + request.getRemotePort();

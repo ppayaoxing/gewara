@@ -32,7 +32,7 @@ import com.gewara.util.JsonUtils;
 
 public class GewaraSsoClient {
 	/**
-	 * ��sso��ȡmenu��Դ
+	 * 锟斤拷sso锟斤拷取menu锟斤拷源
 	 * 
 	 * @param url
 	 * @param serviceName
@@ -44,7 +44,7 @@ public class GewaraSsoClient {
 		params.put("SYSTEMID", "");
 		HttpResult result = HttpUtils.getUrlAsString(url, params);
 		int i=0;
-		while(!result.isSuccess() && i<10){//����10��
+		while(!result.isSuccess() && i<10){//锟斤拷锟斤拷10锟斤拷
 			result = HttpUtils.getUrlAsString(url, params);
 			i ++;
 		}
@@ -59,7 +59,7 @@ public class GewaraSsoClient {
 		params.put("SYSTEMID", "");
 		HttpResult result = HttpUtils.getUrlAsString(url, params);
 		int i=0;
-		while(!result.isSuccess() && i<10){//����10��
+		while(!result.isSuccess() && i<10){//锟斤拷锟斤拷10锟斤拷
 			result = HttpUtils.getUrlAsString(url, params);
 			i ++;
 		}
@@ -68,7 +68,7 @@ public class GewaraSsoClient {
 	}
 
 	/**
-	 * ��¼�������û���Ϣ
+	 * 锟斤拷录锟斤拷锟斤拷锟斤拷锟矫伙拷锟斤拷息
 	 * 
 	 * @param servletRequest
 	 * @param servletResponse
@@ -78,9 +78,9 @@ public class GewaraSsoClient {
 	 */
 	public final Assertion loginValidationSso(final ServletRequest servletRequest, final ServletResponse servletResponse)
 			throws IOException, ServletException {
-		// �ж��Ƿ��û���¼�������û�е�¼��ת��sso
+		// 锟叫讹拷锟角凤拷锟矫伙拷锟斤拷录锟斤拷锟斤拷锟斤拷锟矫伙拷械锟铰硷拷锟阶拷锟絪so
 		loginSso(servletRequest, servletResponse);
-		// ��֤��¼�ɹ����û���Ϣ���������û���Ϣ��Ȩ��
+		// 锟斤拷证锟斤拷录锟缴癸拷锟斤拷锟矫伙拷锟斤拷息锟斤拷锟斤拷锟斤拷锟斤拷锟矫伙拷锟斤拷息锟斤拷权锟斤拷
 		return validationSso(servletRequest, servletResponse);
 	}
 
@@ -229,9 +229,9 @@ public class GewaraSsoClient {
 	/** Instance of commons logging for logging purposes. */
 	protected final Log log = LogFactory.getLog(GewaraSsoClient.class);
 
-	/** ����tk������. */
+	/** 锟斤拷锟斤拷tk锟斤拷锟斤拷锟斤拷. */
 	private String artifactParameterName = "ticket";
-	/** ���󱾵�service������ */
+	/** 锟斤拷锟襟本碉拷service锟斤拷锟斤拷锟斤拷 */
 	private String serviceParameterName = "service";
 	/**
 	 * Represents the constant for where the assertion will be located in
@@ -269,11 +269,11 @@ public class GewaraSsoClient {
 	private boolean redirectAfterValidation = false;
 
 	/**
-	 * CAS�����¼Login
+	 * CAS锟斤拷锟斤拷锟铰糒ogin
 	 */
 	private String casServerLoginUrl;
 	/**
-	 * ����serverName The name of the server. Should be in the following format:
+	 * 锟斤拷锟斤拷serverName The name of the server. Should be in the following format:
 	 * {protocol}:{hostName}:{port}. Standard ports can be excluded.
 	 */
 	private String serverName;
@@ -347,7 +347,7 @@ public class GewaraSsoClient {
 	}
 
 	/**
-	 * ����casserver��url
+	 * 锟斤拷锟斤拷casserver锟斤拷url
 	 * 
 	 * @param request
 	 * @param response

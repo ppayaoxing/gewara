@@ -14,12 +14,12 @@ public class ActivationQueryResponse extends ApiResponse {
 	}
 	
 	/**
-	 * ¿ªÍ¨×´Ì¬
+	 * å¼€é€šçŠ¶æ€
 	 */
 	private String activateStatus;
 	
 	/**
-	 * ÒÑ¿ªÍ¨Ê±·µ»ØÊÖ»úºÅ£¬Î´¿ªÍ¨Ê±·µ»Ø¿Õ
+	 * å·²å¼€é€šæ—¶è¿”å›æ‰‹æœºå·ï¼Œæœªå¼€é€šæ—¶è¿”å›ç©º
 	 */
 	private String phoneNumber;
 	
@@ -30,7 +30,7 @@ public class ActivationQueryResponse extends ApiResponse {
 	private String expiry;
 	
 	/**
-	 * ÒøÁªÏµÍ³±£ÁôÓò
+	 * é“¶è”ç³»ç»Ÿä¿ç•™åŸŸ
 	 */
 	private String cupReserved;
 

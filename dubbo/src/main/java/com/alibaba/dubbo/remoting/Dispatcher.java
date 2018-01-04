@@ -36,7 +36,7 @@ public interface Dispatcher {
      * @param url
      * @return channel handler
      */
-    @Adaptive({Constants.DISPATCHER_KEY, "dispather", "channel.handler"}) // ºóÁ½¸ö²ÎÊıÎª¼æÈİ¾ÉÅäÖÃ
+    @Adaptive({Constants.DISPATCHER_KEY, "dispather", "channel.handler"}) // åä¸¤ä¸ªå‚æ•°ä¸ºå…¼å®¹æ—§é…ç½®
     ChannelHandler dispatch(ChannelHandler handler, URL url);
 
 }

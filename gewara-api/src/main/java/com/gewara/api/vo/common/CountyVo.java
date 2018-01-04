@@ -6,10 +6,10 @@ import com.gewara.api.vo.BaseVo;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public class CountyVo  extends BaseVo{
-	//1=ÖŞ£¬2=¹ú¼Ò£¬3=Ê¡£¬7=ÊĞ£¬8=ÇøÏØ£¬10=ÉÌÈ¦
+	//1=æ´²ï¼Œ2=å›½å®¶ï¼Œ3=çœï¼Œ7=å¸‚ï¼Œ8=åŒºå¿ï¼Œ10=å•†åœˆ
 	private static final long serialVersionUID = -886944461240705718L;
 	private String countycode;
 	private String briefname;

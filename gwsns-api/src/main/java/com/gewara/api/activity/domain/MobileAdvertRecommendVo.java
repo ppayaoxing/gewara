@@ -12,32 +12,32 @@ public class MobileAdvertRecommendVo extends ApiObject {
 	private Long id;
 	
 	/**
-	 * »î¶¯id
+	 * æ´»åŠ¨id
 	 */
 	private Long relatedid;
 	
 	/**
-	 * ±êÌâ
+	 * æ ‡é¢˜
 	 */
 	private String title;
 	
 	/**
-	 * Á´½Ó
+	 * é“¾æ¥
 	 */
 	private String link;
 
 	/**
-	 * logoµØÖ·
+	 * logoåœ°å€
 	 */
 	private String logo;
 	
 	/**
-	 * ÅÅĞòÖµ
+	 * æ’åºå€¼
 	 */
 	private Integer ordernum;
 	
 	/**
-	 * µØÇø´úÂë(¶à¸öÖµÒÔ¶ººÅ¸ô¿ª)
+	 * åœ°åŒºä»£ç (å¤šä¸ªå€¼ä»¥é€—å·éš”å¼€)
 	 */
 	private String citycode;
 	

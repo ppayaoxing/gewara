@@ -1,9 +1,9 @@
 package com.gewara.ucenter.api.member;
 import com.gewara.support.ErrorCode;
 /*
- * ¸ù¾İÊÖ»úºÅ¡¢tagĞ£ÑéÑéÖ¤ÂëÓÃdubboÊµÏÖ¶¨ÒåµÄ½Ó¿Ú
- * ÅíµÏ
- * 2014Äê10ÔÂ28ÈÕ
+ * æ ¹æ®æ‰‹æœºå·ã€tagæ ¡éªŒéªŒè¯ç ç”¨dubboå®ç°å®šä¹‰çš„æ¥å£
+ * å½­è¿ª
+ * 2014å¹´10æœˆ28æ—¥
  */
 public interface MobilVosByDubboService {
 	public ErrorCode<String> validateMobileCheckByTag(String mobile, String tag, String checkpass);

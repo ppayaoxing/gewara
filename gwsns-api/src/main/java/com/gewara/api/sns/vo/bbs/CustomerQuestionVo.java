@@ -13,29 +13,29 @@ import com.gewara.api.vo.BaseVo;
 import com.gewara.model.BaseObject;
 
 /**
- *  @function �û�����,����,bug
+ *  @function 锟矫伙拷锟斤拷锟斤拷,锟斤拷锟斤拷,bug
  * 	@author bob.hu
  *	@date	2011-03-11 11:00:46
  */
 public class CustomerQuestionVo extends BaseVo {
 	/***
-	 * Ȩ��
+	 * 权锟斤拷
 	 */
 	public static final String CustomerPermission = "customer";
 
 	/**
-	 *	�û����ʵ����� ��������/�Ľ�����/����
+	 *	锟矫伙拷锟斤拷锟绞碉拷锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷锟斤拷/锟侥斤拷锟斤拷锟斤拷/锟斤拷锟斤拷
 	 * 
 	 */
-	public static final String TAG_EVALUATE = "evaluate"; //��������
-	public static final String TAG_ADVISE = "advise"; //�Ľ�����
-	public static final String TAG_ADVISE_DRAMA = "adviseDrama"; //�ݳ�����
-	public static final String TAG_MOBILE = "mobile";	//�ֻ��ͻ���
-	public static final String TAG_OTHER = "other"; //����
+	public static final String TAG_EVALUATE = "evaluate"; //锟斤拷锟斤拷锟斤拷锟斤拷
+	public static final String TAG_ADVISE = "advise"; //锟侥斤拷锟斤拷锟斤拷
+	public static final String TAG_ADVISE_DRAMA = "adviseDrama"; //锟捷筹拷锟斤拷锟斤拷
+	public static final String TAG_MOBILE = "mobile";	//锟街伙拷锟酵伙拷锟斤拷
+	public static final String TAG_OTHER = "other"; //锟斤拷锟斤拷
 	public static final List<String> TAG_LIST = Arrays.asList(new String[]{ "evaluate", "advise", "mobile", "other","adviseDrama"});
 	
 	/**
-	 *  ����״̬ �����/ �ѻظ�/ �ѹر�
+	 *  锟斤拷锟斤拷状态 锟斤拷锟斤拷锟�/ 锟窖回革拷/ 锟窖关憋拷
 	 * */
 	public static final String Y_NEW = "Y_NEW";
 	public static final String Y_TREAT = "Y_TREAT";	
@@ -56,7 +56,7 @@ public class CustomerQuestionVo extends BaseVo {
 	private Timestamp updatetime;
 	private String citycode;
 	private BaseObject member;
-	private String feedbackType;//������������
+	private String feedbackType;//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	
 	private static final long serialVersionUID = 1365933982357637583L;
 
@@ -172,15 +172,15 @@ public class CustomerQuestionVo extends BaseVo {
 	
 	public String getStatusText(){
 		if(StringUtils.equals(status, Y_NEW)) {
-            return "���ظ�";
+            return "锟斤拷锟截革拷";
         }
 		if(StringUtils.equals(status, Y_TREAT)) {
-            return "�ѻظ�";
+            return "锟窖回革拷";
         }
 		if(StringUtils.equals(status, Y_STOP)) {
-            return "�ѹر�";
+            return "锟窖关憋拷";
         }
-		return "���ظ�";
+		return "锟斤拷锟截革拷";
 	}
 	
 	public String getFromFlag(){
@@ -188,7 +188,7 @@ public class CustomerQuestionVo extends BaseVo {
 		return AddressConstant.addressMap.get(stype);
 	}
 	
-	public boolean getPic() {// ����ͼƬ
+	public boolean getPic() {// 锟斤拷锟斤拷图片
 		return StringUtils.contains(this.body, "<img");
 	}
 	public String getFeedbackType() {

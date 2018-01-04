@@ -126,7 +126,7 @@ public class JmsServiceImpl extends JmsTemplate implements JmsService, Initializ
 				@Override
 				public Message createMessage(Session session) throws JMSException {
 					Message message = session.createTextMessage(msg);
-					if(delay!=null){//�ӳٷ���
+					if(delay!=null){//锟接迟凤拷锟斤拷
 						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
 					}
 					message.setStringProperty("msgtag", msgtag);
@@ -149,7 +149,7 @@ public class JmsServiceImpl extends JmsTemplate implements JmsService, Initializ
 				@Override
 				public Message createMessage(Session session) throws JMSException {
 					MapMessage message = session.createMapMessage();
-					if(delay!=null){//�ӳٷ���
+					if(delay!=null){//锟接迟凤拷锟斤拷
 						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
 					}
 					message.setStringProperty("msgtag", msgtag);
@@ -199,7 +199,7 @@ public class JmsServiceImpl extends JmsTemplate implements JmsService, Initializ
 			ResourceStatsUtil.getJmsStats().register(name, cur);
 			dbLogger.warn("regester jms stats:" + name);
 		}
-		//����
+		//锟斤拷锟斤拷
 		this.setMessageIdEnabled(false);
 		this.setMessageTimestampEnabled(false);
 	}

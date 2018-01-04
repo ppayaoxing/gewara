@@ -14,19 +14,19 @@ import com.gewara.partner2.vo.ShareBenefitVo;
 import com.gewara.partner2.vo.WpConfigVo;
 
 /**
- * (wapÕ¾ Ô¶³Ì·şÎñ)
+ * (wapç«™ è¿œç¨‹æœåŠ¡)
  * @author chunhui.wang
  */
 public interface WpVoService {
 	/**
-	 * (»ñÈ¡ËùÓĞÖ§¸¶·½Ê½¼°Í¼±ê)
+	 * (è·å–æ‰€æœ‰æ”¯ä»˜æ–¹å¼åŠå›¾æ ‡)
 	 * @return
 	 */
 	ResultCode<List<PaymethodIconVo>> getPaymethodIconsVoList();
 	
 	/**
-	 * (¸ù¾İÖ§¸¶·½Ê½»ñÈ¡Ö§¸¶Í¼±ê)
-	 * @param params	ÇëÇó²ÎÊı
+	 * (æ ¹æ®æ”¯ä»˜æ–¹å¼è·å–æ”¯ä»˜å›¾æ ‡)
+	 * @param params	è¯·æ±‚å‚æ•°
 	 * @return
 	 */
 	ResultCode<String> getPayIconByPayMethod(Map<String, Object> params);
@@ -38,29 +38,29 @@ public interface WpVoService {
 	ResultCode<List<AdvertCommendVo>> getAdvertCommendList(String appkey, String citycode);
 	
 	/**
-	 * »ñÈ¡·ÖÏúÏµÍ³ºÏ×÷ÉÌ (ÈôpartnerIdÎª0 Ôò¸ù¾İpartnerKey²éÑ¯,·ñÔò¸ù¾İpartnerID²éÑ¯)
-	 * @param partnerid	ºÏ×÷ÉÌID[±Ø²Î Ä¬ÈÏÖµ£º0]
-	 * @param partnerKey	ºÏ×÷ÉÌkey[¿ÉÑ¡ ÔÊĞí¿Õ]
+	 * è·å–åˆ†é”€ç³»ç»Ÿåˆä½œå•† (è‹¥partnerIdä¸º0 åˆ™æ ¹æ®partnerKeyæŸ¥è¯¢,å¦åˆ™æ ¹æ®partnerIDæŸ¥è¯¢)
+	 * @param partnerid	åˆä½œå•†ID[å¿…å‚ é»˜è®¤å€¼ï¼š0]
+	 * @param partnerKey	åˆä½œå•†key[å¯é€‰ å…è®¸ç©º]
 	 * @return
 	 */
 	ResultCode<DistributionPartnerVo> getPartnerByIdOrKey(long partnerId,String partnerKey);
 	
 	/**
-	 * »ñÈ¡ËùÓĞºÏ×÷ÉÌ
+	 * è·å–æ‰€æœ‰åˆä½œå•†
 	 * @return
 	 */
 	ResultCode<List<DistributionPartnerVo>> gainDistributionPartnerList();
 	
 	/**
-	 * »ñÈ¡Òş²ØÔ¼Êø
-	 * @param partnerKey	ºÏ×÷ÉÌkey
-	 * @param hidetype		Òş²ØÀàĞÍ¡¾Èô¿Õ£¬½ö¸ù¾İpartnerkey²éÑ¯¡¿	1 Ó°Ôº  2 ¸ß¼Û 3 Ê±¼ä
+	 * è·å–éšè—çº¦æŸ
+	 * @param partnerKey	åˆä½œå•†key
+	 * @param hidetype		éšè—ç±»å‹ã€è‹¥ç©ºï¼Œä»…æ ¹æ®partnerkeyæŸ¥è¯¢ã€‘	1 å½±é™¢  2 é«˜ä»· 3 æ—¶é—´
 	 * @return
 	 */
 	ResultCode<List<CinemaConstraintVo>> getCinemaConstraintList(String partnerKey, String hidetype);
 	
 	/**
-	 * ·ÖÈó¼ÇÂ¼
+	 * åˆ†æ¶¦è®°å½•
 	 * @param shareBenefitVo
 	 * @return
 	 */

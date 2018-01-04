@@ -1,7 +1,7 @@
 package org.nlpcn.es4sql.domain;
 
 /**
- * 排序规则
+ * 鎺掑簭瑙勫垯
  * @author ansj
  *
  */

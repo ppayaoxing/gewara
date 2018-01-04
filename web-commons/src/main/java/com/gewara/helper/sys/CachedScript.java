@@ -56,7 +56,7 @@ public class CachedScript implements Serializable {
 
 	private static void put(ScriptContext ctx, Map<String, Object> context) {
 		for (Map.Entry<String, Object> entry : context.entrySet()) {
-			//²ÎÊı·½·¨Ö»¶Á£¬²»¿É¸ü¸Ä
+			//å‚æ•°æ–¹æ³•åªè¯»ï¼Œä¸å¯æ›´æ”¹
 			Object value = entry.getValue();
 			if(value!=null && !BeanUtil.isSimpleProperty(value.getClass())){
 				if(value instanceof Collection){

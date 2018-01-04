@@ -9,15 +9,15 @@ import com.gewara.api.vo.BaseVo;
 import com.gewara.cons.Status;
 
 /**
- * ���û���Ϣ
+ * 锟斤拷锟矫伙拷锟斤拷息
  * @author Administrator
  */
 public class WinnerInfoVo extends BaseVo {
 	private static final long serialVersionUID = -7691160993786955260L;
 	public static final String TAG_SYSTEM = "system";
 	public static final String TAG_USER = "user";
-	public final static String SUM_PRIZECOUNT = "sumprizecount";//��Ʒ����
-	public final static String PROBABILTY_STATUS = "probabiltystatus";//�жϼ������Ƿ��ǵ�һ������
+	public final static String SUM_PRIZECOUNT = "sumprizecount";//锟斤拷品锟斤拷锟斤拷
+	public final static String PROBABILTY_STATUS = "probabiltystatus";//锟叫断硷拷锟斤拷锟斤拷锟角凤拷锟角碉拷一锟斤拷锟斤拷锟斤拷
 	private Long id;
 	private Long activityid;
 	private Long memberid;
@@ -25,10 +25,10 @@ public class WinnerInfoVo extends BaseVo {
 	private Long prizeid;
 	private String mobile;
 	private Timestamp addtime;
-	private String status;//��Ʒ�Ƿ��Ѿ��ͳ�Y:���ͳ���N��δ�ͳ�
-	private String tag;//Ĭ��system,����Ա��̨���user
-	private Long relatedid; 	//��Ʒ����ID���翨ID
-	private String remark;		//��Ʒ˵�����翨�ŵ�
+	private String status;//锟斤拷品锟角凤拷锟窖撅拷锟酵筹拷Y:锟斤拷锟酵筹拷锟斤拷N锟斤拷未锟酵筹拷
+	private String tag;//默锟斤拷system,锟斤拷锟斤拷员锟斤拷台锟斤拷锟絬ser
+	private Long relatedid; 	//锟斤拷品锟斤拷锟斤拷ID锟斤拷锟界卡ID
+	private String remark;		//锟斤拷品说锟斤拷锟斤拷锟界卡锟脚碉拷
 	private String ip;
 	public WinnerInfoVo(){
 	}

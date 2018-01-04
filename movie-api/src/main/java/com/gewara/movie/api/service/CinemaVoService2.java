@@ -15,68 +15,68 @@ import com.gewara.movie.vo.partner.SearchCinemaCommandVo;
 
 public interface CinemaVoService2 {
 	/**
-	 * »ñÈ¡Ó°ÔºĞÅÏ¢
+	 * è·å–å½±é™¢ä¿¡æ¯
 	 * @param cinemaids
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByIdList(List<Long> idList);
 	
 	/**
-	 * ¸ù¾İ³ÇÊĞ´úÂë»ñÈ¡Ó°ÔºÁĞ±í 
+	 * æ ¹æ®åŸå¸‚ä»£ç è·å–å½±é™¢åˆ—è¡¨ 
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCitycode(String citycode);
 	
 	/**
-	 * ¸ù¾İid²éÑ¯Ó°Ôº
-	 * ×¢Òâ£º¸Ã·½·¨Ö»ÓÃÓëavatar jmsÍ¬²½CinemaÊı¾İÓÃ¡£·½·¨Ö±½Ó²éÑ¯MysqlÊı¾İ¿â£¬²»×ß»º´æ£¬É÷ÖØÊ¹ÓÃ¡£
+	 * æ ¹æ®idæŸ¥è¯¢å½±é™¢
+	 * æ³¨æ„ï¼šè¯¥æ–¹æ³•åªç”¨ä¸avatar jmsåŒæ­¥Cinemaæ•°æ®ç”¨ã€‚æ–¹æ³•ç›´æ¥æŸ¥è¯¢Mysqlæ•°æ®åº“ï¼Œä¸èµ°ç¼“å­˜ï¼Œæ…é‡ä½¿ç”¨ã€‚
 	 * @param cinemaId
 	 * @return
 	 */
 	ResultCode<CinemaVo> getCinemaByIdWithOutCache(Long cinemaId);
 	
 	/**
-	 * ¸ù¾İid²éÑ¯Ó°Ôº¸Å¿ö
-	 * ×¢Òâ£º¸Ã·½·¨Ö»ÓÃÓëavatar jmsÍ¬²½CinemaProfileÊı¾İÓÃ¡£·½·¨Ö±½Ó²éÑ¯MysqlÊı¾İ¿â£¬²»×ß»º´æ£¬É÷ÖØÊ¹ÓÃ¡£
+	 * æ ¹æ®idæŸ¥è¯¢å½±é™¢æ¦‚å†µ
+	 * æ³¨æ„ï¼šè¯¥æ–¹æ³•åªç”¨ä¸avatar jmsåŒæ­¥CinemaProfileæ•°æ®ç”¨ã€‚æ–¹æ³•ç›´æ¥æŸ¥è¯¢Mysqlæ•°æ®åº“ï¼Œä¸èµ°ç¼“å­˜ï¼Œæ…é‡ä½¿ç”¨ã€‚
 	 * @param cinemaId
 	 * @return
 	 */
 	ResultCode<CinemaProfileVo> getCinemaProfileByIdWithOutCache(Long cinemaId);
 	
 	/**
-	 * »ñÈ¡Ó°Ôº¸Å¿ö
+	 * è·å–å½±é™¢æ¦‚å†µ
 	 * @param cinemaid
 	 * @return
 	 */
 	ResultCode<CinemaProfileVo> getCinemaProfileById(Long cinemaid);
 	
 	/**
-	 * ²éÑ¯Ó°ÔºÏêÏ¸
+	 * æŸ¥è¯¢å½±é™¢è¯¦ç»†
 	 * @param cinemaid
 	 * @return
 	 */
 	ResultCode<CinemaVo> getCinemaById(Long cinemaid);
 	
 	/**
-	 * ²éÑ¯Ó°ÔºÃèÊö
+	 * æŸ¥è¯¢å½±é™¢æè¿°
 	 * @param cinemaid
 	 * @return
 	 */
 	ResultCode<EntityClobVo> getCinemaEntityClob(Long cinemaId);
 	
 	/**
-	 * ±£´æÓ°ÔºÃèÊö
+	 * ä¿å­˜å½±é™¢æè¿°
 	 * @param cinemaId
 	 * @param content
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê9ÔÂ22ÈÕÏÂÎç2:49:44
+	 * @addTime 2016å¹´9æœˆ22æ—¥ä¸‹åˆ2:49:44
 	 */
 	ResultCode saveCinemaEntityClob(Long cinemaId, String content);
 	
 	/**
-	 * ²éÑ¯Ó°ÌüID¼¯ºÏ
+	 * æŸ¥è¯¢å½±å…IDé›†åˆ
 	 * @param cinemaid
 	 * @param ctype
 	 * @return
@@ -84,218 +84,218 @@ public interface CinemaVoService2 {
 	ResultCode<List<Long>> getRoomIdListByCinemaAndCtype(long cinemaId,String ctype);
 	
 	/**
-	 * ¸ù¾İÓ°ÌüID²éÑ¯Ó°ÌüÏêÏ¸
+	 * æ ¹æ®å½±å…IDæŸ¥è¯¢å½±å…è¯¦ç»†
 	 * @param cinemaRoomId
 	 * @return
 	 */
 	ResultCode<CinemaRoomVo> getCinemaRoomById(long cinemaRoomId);
 	/**
-	 * ¸ù¾İÓ°Ìü±àºÅ²éÑ¯Ó°Ìü
+	 * æ ¹æ®å½±å…ç¼–å·æŸ¥è¯¢å½±å…
 	 * @param cinemaId
 	 * @param roomnum
 	 * @return
 	 */
 	ResultCode<CinemaRoomVo> getRoomByRoomnum(Long cinemaId, String roomnum);
 	/**
-	 * ¸ù¾İÓ°ÌüÃû³Æ²éÑ¯
+	 * æ ¹æ®å½±å…åç§°æŸ¥è¯¢
 	 * @param cinemaId
 	 * @param roomname
 	 * @return
 	 */
 	ResultCode<CinemaRoomVo> getRoomByRoomname(Long cinemaId, String roomname);
 	/**
-	 * »ñÈ¡°üº¬¼ûÃæ»áµÄµçÓ°
-	 * @param citycode	³ÇÊĞ
-	 * @param movieIds	µçÓ°ID¼¯ºÏ
-	 * @return ¼¯ºÏÖĞ°üº¬¼ûÃæ»áµÄmap£¬Key:µçÓ°ID£¬value:jianmianhui
+	 * è·å–åŒ…å«è§é¢ä¼šçš„ç”µå½±
+	 * @param citycode	åŸå¸‚
+	 * @param movieIds	ç”µå½±IDé›†åˆ
+	 * @return é›†åˆä¸­åŒ…å«è§é¢ä¼šçš„mapï¼ŒKey:ç”µå½±IDï¼Œvalue:jianmianhui
 	 */
 	ResultCode<Map<Long,String>> getMovieInfoByIds(String citycode, List<Long> movieIds);
 	/**
-	 * »ñÈ¡Ó°ÔºÊÇ·ñ¿ÉÍËÆ±¡¢×Ô¶¨ÒåÆ±Ö½¡¢È¡ÏûÏÕ¡¢¼ûÃæ»áµÈĞÅÏ¢
-	 * @param cinemas	Ó°Ôº¼¯ºÏ
-	 * @param citycode	³ÇÊĞ´úÂë
-	 * @param movieid	µçÓ°ID
-	 * @return Ó°Ôº¸÷Ó°Ôº°üº¬µÄ·şÎñMAP£¬key:Ó°ÔºID£¬value:·şÎñÁĞ±í
+	 * è·å–å½±é™¢æ˜¯å¦å¯é€€ç¥¨ã€è‡ªå®šä¹‰ç¥¨çº¸ã€å–æ¶ˆé™©ã€è§é¢ä¼šç­‰ä¿¡æ¯
+	 * @param cinemas	å½±é™¢é›†åˆ
+	 * @param citycode	åŸå¸‚ä»£ç 
+	 * @param movieid	ç”µå½±ID
+	 * @return å½±é™¢å„å½±é™¢åŒ…å«çš„æœåŠ¡MAPï¼Œkey:å½±é™¢IDï¼Œvalue:æœåŠ¡åˆ—è¡¨
 	 */
 	ResultCode<Map<Long,List<String>>> getCinemaOtherInfo(List<CinemaVo> cinemas,String citycode, Long movieid);
 	
 	/**
-	 * ¸ù¾İCITYCODE,MOVIEID,PLAYDATE²éÑ¯Ó°ÔºµÄcharacter
+	 * æ ¹æ®CITYCODE,MOVIEID,PLAYDATEæŸ¥è¯¢å½±é™¢çš„character
 	 * @param cinemaId
 	 * @return
 	 */
 	ResultCode<Map<Long,List<String>>> getCinemaRoomCharacter(String citycode, Long movieid, Date playdate);
 	
 	/**
-	 * @Description: ²éÑ¯Ó°ÔºµÄCharacter
-	* @param cinemaIds Ó°ÔºÁĞ±í
+	 * @Description: æŸ¥è¯¢å½±é™¢çš„Character
+	* @param cinemaIds å½±é™¢åˆ—è¡¨
 	* @param citycode
 	* @param movieid
 	* @param playdate
 	* @return ResultCode<Map<Long,List<String>>>  
 	*
-	* @date 2016Äê9ÔÂ22ÈÕ ÉÏÎç10:55:00
+	* @date 2016å¹´9æœˆ22æ—¥ ä¸Šåˆ10:55:00
 	 */
 	ResultCode<Map<Long,List<String>>> getCinemaRoomCharacter(List<Long> cinemaIds,String citycode, Long movieid, Date playdate);
 	
 	/**
-	 * »ñÈ¡Ó°Ôº½üÆÚ·ÅÓ³×Ö¶Î
-	 * @param cinemaIds	Ó°ÔºÁĞ±í
-	 * @param mid	µçÓ°ID
-	 * @param playDate	ÈÕÆÚ
+	 * è·å–å½±é™¢è¿‘æœŸæ”¾æ˜ å­—æ®µ
+	 * @param cinemaIds	å½±é™¢åˆ—è¡¨
+	 * @param mid	ç”µå½±ID
+	 * @param playDate	æ—¥æœŸ
 	 * @return
 	 */
 	ResultCode<Map<Long,String>> getCinemaPlayText(List<Long> cinemaIds,Long mid,Date playDate);
 	/**
-	 * »ñÈ¡Ó°ÌüÁĞ±í
+	 * è·å–å½±å…åˆ—è¡¨
 	 * @param roomIds
 	 * @return
 	 */
 	ResultCode<Map<Long,CinemaRoomVo>> getCinemaRoomByRoomIds(List<Long> roomIds);
 	/**
-	 * ¸ù¾İÓ°ÔºID²éÑ¯ÊÇ·ñÖ§³ÖÍËÆ±
+	 * æ ¹æ®å½±é™¢IDæŸ¥è¯¢æ˜¯å¦æ”¯æŒé€€ç¥¨
 	 * @param cinemaId
 	 * @return
 	 */
 	ResultCode cinemaCanRefund(Long cinemaId);
 	/**
-	 * »ñÈ¡ÌØĞ§Ó°Ôº
+	 * è·å–ç‰¹æ•ˆå½±é™¢
 	 * 
 	 * @param citycode
 	 * @return
 	 * @author leo
-	 * @addTime 2014Äê6ÔÂ24ÈÕÏÂÎç1:39:16
+	 * @addTime 2014å¹´6æœˆ24æ—¥ä¸‹åˆ1:39:16
 	 */
 	ResultCode<Map<String,List<CinemaVo>>> getCharacteristicCinemaRoom(String citycode);
 	ResultCode<Map<String, List<Map>>> getCinemaMapListByCitycode(String citycodes, String hasOpiCount, int from, int maxnum);
 	
 	/**
-	 * ¸ù¾İfiledname£¬filedvalue²éÑ¯Ó°ÔºĞÅÏ¢
+	 * æ ¹æ®filednameï¼ŒfiledvalueæŸ¥è¯¢å½±é™¢ä¿¡æ¯
 	 * @param fieldname
 	 * @param fieldvalue
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByFiled(String fieldname, Serializable fieldvalue);
 	/**
-	 * ¸ù¾İÃû³ÆÄ£ºıÆ¥Åä£¬²éÑ¯Ó°ÔºĞÅÏ¢
+	 * æ ¹æ®åç§°æ¨¡ç³ŠåŒ¹é…ï¼ŒæŸ¥è¯¢å½±é™¢ä¿¡æ¯
 	 * @param name
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListLikeName(String name);
 	/**
-	 * ²éÑ¯Ó°ÌüĞÅÏ¢
+	 * æŸ¥è¯¢å½±å…ä¿¡æ¯
 	 * @param roomIdList
 	 * @return
 	 */
 	ResultCode<List<CinemaRoomVo>> getCinemaRoomListByIdList(List<Long> roomIdList);
 	/**
-	 * ¹«¿ª¶©Æ±Ó°ÔºÁĞ±í£¨ºóÌ¨£©
+	 * å…¬å¼€è®¢ç¥¨å½±é™¢åˆ—è¡¨ï¼ˆåå°ï¼‰
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getBookingCinemaListByCitycodeNoCache(String citycode);
 	/**
-	 * ¸ù¾İÓ°Ôºid£¬²éÑ¯Ó°ÌüĞÅÏ¢
+	 * æ ¹æ®å½±é™¢idï¼ŒæŸ¥è¯¢å½±å…ä¿¡æ¯
 	 * @param cinemaid
 	 * @return
 	 */
 	ResultCode<List<CinemaRoomVo>> getCinemaRoomListByCinemaId(Long cinemaid);
 	/**
-	 * ¸ù¾İfiledname£¬filedvalue²éÑ¯Ó°ÌüĞÅÏ¢
+	 * æ ¹æ®filednameï¼ŒfiledvalueæŸ¥è¯¢å½±å…ä¿¡æ¯
 	 * @param fieldname
 	 * @param fieldvalue
 	 * @return
 	 */
 	ResultCode<List<CinemaRoomVo>> getCinemaRoomListByFiled(String fieldname, Serializable fieldvalue);
 	/**
-	 * ¸ù¾İfiledname£¬filedvalue²éÑ¯Ó°ÔºĞÅÏ¢
+	 * æ ¹æ®filednameï¼ŒfiledvalueæŸ¥è¯¢å½±é™¢ä¿¡æ¯
 	 * @param fieldname
 	 * @param fieldvalue
 	 * @return
 	 */
 	ResultCode<List<CinemaProfileVo>> getCinemaProfileListByFiled(String fieldname, Serializable fieldvalue);
 	/**
-	 * ¸ù¾İidList£¬²éÑ¯CinemaProfile
+	 * æ ¹æ®idListï¼ŒæŸ¥è¯¢CinemaProfile
 	 * @param idList
 	 * @return
 	 */
 	ResultCode<List<CinemaProfileVo>> getCinemaProfileListByIdList(List<Long> idList);
 	/**
-	 * ²éÑ¯¹Ø±ÕµÄÓ°ÌüĞÅÏ¢
+	 * æŸ¥è¯¢å…³é—­çš„å½±å…ä¿¡æ¯
 	 * @param from
 	 * @param maxnum
 	 * @return
 	 */
 	ResultCode<List<CinemaRoomVo>> getCloseCinemaRoomListForPage(int from, int maxnum);
 	/**
-	 * ¸ù¾İ³ÇÊĞ´úÂë»ñµÃÓ°Ôºid¡¢Ó°ÔºÃû³Æ
+	 * æ ¹æ®åŸå¸‚ä»£ç è·å¾—å½±é™¢idã€å½±é™¢åç§°
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<List<Map>> getCinemaidAndNameDataListMapByCityData(String citycode);
 	/**
-	 * »ñµÃËùÓĞÓ°Ôºid¡¢Ó°ÔºÃû³Æ
+	 * è·å¾—æ‰€æœ‰å½±é™¢idã€å½±é™¢åç§°
 	 * @return
 	 */
 	ResultCode<List<Map>> getAllCinemaidAndNameDataListMap();
 	/**
-	 * ¸ù¾İcinemaProfileµÄstatus²éÑ¯CinemaList
+	 * æ ¹æ®cinemaProfileçš„statusæŸ¥è¯¢CinemaList
 	 * @param status
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCPStatus(String status);
 	/**
-	 * ¸ù¾İcinemaProfileµÄopentype²éÑ¯CinemaList
+	 * æ ¹æ®cinemaProfileçš„opentypeæŸ¥è¯¢CinemaList
 	 * @param opentype
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCPOpenType(String opentype);
 	/**
-	 * »ñµÃÓ°ÔºÌØĞ§ºÍ³ÇÊĞ
+	 * è·å¾—å½±é™¢ç‰¹æ•ˆå’ŒåŸå¸‚
 	 * @return
 	 */
 	ResultCode<List<Map>> getCinemaCharacteristicAndcitycodeDataMap();
 	/**
-	 * ¸ù¾İÓ°ÔºÃû³Æ£¬²éÑ¯Ó°Ôºid
+	 * æ ¹æ®å½±é™¢åç§°ï¼ŒæŸ¥è¯¢å½±é™¢id
 	 * @param cinemaname
 	 * @return
 	 */
 	ResultCode<List<Long>> getCinemaIdListLikeName(String cinemaname);
 	/**
-	 * »ñµÃÓ°Ôºid
+	 * è·å¾—å½±é™¢id
 	 * @param openPriority
 	 * @return
 	 */
 	ResultCode<List<Long>> getCinemaIdListByOpenPriority(String openPriority);
 	/**
-	 * »ñµÃÓ°Ôºid
+	 * è·å¾—å½±é™¢id
 	 * @param openPriority
 	 * @param citycodeList
 	 * @return
 	 */
 	ResultCode<List<Long>> getCinemaIdListByOpenPriorityAndCityCodeList(String openPriority, List<String> citycodeList);
 	/**
-	 * »ñµÃÓ°Ôºid
+	 * è·å¾—å½±é™¢id
 	 * @param bookingStatus
-	 * @param cidList ¿ÉÒÔÎª¿Õ
+	 * @param cidList å¯ä»¥ä¸ºç©º
 	 * @return
 	 */
 	ResultCode<List<Long>> getCinemaIdListByBooking(String bookingStatus, List<Long> cidList);
 	/**
-	 * ¸ù¾İ³ÇÊĞcode£¬²éÑ¯cinema
+	 * æ ¹æ®åŸå¸‚codeï¼ŒæŸ¥è¯¢cinema
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCityCodeListProfileNotNull(List<String> citycodeList);
 	/**
-	 * ²éÑ¯Ó°ÔºidList
+	 * æŸ¥è¯¢å½±é™¢idList
 	 * @param bookingStatus
 	 * @param citycodeList
 	 * @return
 	 */
 	ResultCode<List<Long>> getCinemaIdListByCitycodeAndBookingStatus(String bookingStatus, List<String> citycodeList);
 	/**
-	 * »ñµÃprofileIdList
+	 * è·å¾—profileIdList
 	 * @param openProiorityList
 	 * @return
 	 */
@@ -303,27 +303,27 @@ public interface CinemaVoService2 {
 	
 	ResultCode<CinemaVo> getCinemaByUkey(String ukeyName, Serializable ukeyValue);
 	/**
-	 * ¸ù¾İÊÇ·ñ¿ª·Å²éÑ¯Ó°ÔºÁĞ±í£¬°´ÕÕmarkÅÅĞò
+	 * æ ¹æ®æ˜¯å¦å¼€æ”¾æŸ¥è¯¢å½±é™¢åˆ—è¡¨ï¼ŒæŒ‰ç…§markæ’åº
 	 * @param booking
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByBookingOrderMark(String booking);
 	/**
-	 * ¸ù¾İÇøÓòcountycode ºÍÊÇ·ñ¿ª·Å¹ºÆ±²éÑ¯ÁĞ±í
+	 * æ ¹æ®åŒºåŸŸcountycode å’Œæ˜¯å¦å¼€æ”¾è´­ç¥¨æŸ¥è¯¢åˆ—è¡¨
 	 * @param booking
 	 * @param countycode
 	 * @return
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCountycode(String countycode);
 	/**
-	 * ¸ù¾İÌØÉ«Ó°ÌüÀàĞÍ²éÑ¯ÌØÉ«Ó°ÌüÓ°ÔºidÁĞ±í
+	 * æ ¹æ®ç‰¹è‰²å½±å…ç±»å‹æŸ¥è¯¢ç‰¹è‰²å½±å…å½±é™¢idåˆ—è¡¨
 	 * @param cType
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<List<Long>> getCinemaIdListByRoomCharacteristic(String cType,String citycode);
 	/**
-	 * ²éÑ¯¿É¶©Æ±Ó°ÔºÊıÁ¿
+	 * æŸ¥è¯¢å¯è®¢ç¥¨å½±é™¢æ•°é‡
 	 * @param citycode
 	 * @param countycode
 	 * @param indexareacode
@@ -332,27 +332,27 @@ public interface CinemaVoService2 {
 	 */
 	ResultCode<Integer> getTicketCinemaCount(String citycode, String countycode,String indexareacode, String cname);
 	/**
-	 * ¸ù¾İ³ÇÊĞºÍÇøÓò²éÑ¯¿ª·ÅÓ°Ôº
+	 * æ ¹æ®åŸå¸‚å’ŒåŒºåŸŸæŸ¥è¯¢å¼€æ”¾å½±é™¢
 	 * @param citycode
 	 * @param countycode
 	 * @return
 	 */
 	ResultCode<List<Long>> getBookingCinemaIdList(String citycode, String countycode);
 	/**
-	 * ÌØÉ«Ó°ÌüµÄÓ°ÔºÍ³¼Æ
-	 * IMAX£¬10¼Ò   4D 11¼Ò ¡£¡£¡£
+	 * ç‰¹è‰²å½±å…çš„å½±é™¢ç»Ÿè®¡
+	 * IMAXï¼Œ10å®¶   4D 11å®¶ ã€‚ã€‚ã€‚
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<Map<String,Integer>> getRoomFeatureCinema(String citycode);
 	/**
-	 * ²éÑ¯ËùÓĞÓ°ÔºÊıÁ¿
+	 * æŸ¥è¯¢æ‰€æœ‰å½±é™¢æ•°é‡
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<Integer> getCinemaCountByCitycode(String citycode);
 	/**
-	 * ¸ù¾İÇøÏØ ±êÊ¶»ñÈ¡Ó°ÔºÁĞ±í
+	 * æ ¹æ®åŒºå¿ æ ‡è¯†è·å–å½±é™¢åˆ—è¡¨
 	 * @param citycode
 	 * @param countycode
 	 * @param filmtag
@@ -360,25 +360,25 @@ public interface CinemaVoService2 {
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCitycodeAndCitycodeForFilm(String citycode, String countycode, String filmtag);
 	/**
-	 * »ñÈ¡ËùÓĞÓ°ÌüµÄÌØĞ§Ìü¶ÔÓ¦
+	 * è·å–æ‰€æœ‰å½±å…çš„ç‰¹æ•ˆå…å¯¹åº”
 	 * @param ridList
 	 * @return
 	 */
 	ResultCode<Map<Long, String>> getCtypeMapByRoomIdList(List<Long> ridList);
 	ResultCode<List<Long>> getCinemaIdListBySearchCmd(SearchCinemaCommandVo cmdVo, String citycode);
 	/**
-	 * Ä³¸öÓ°ÔºµÄÌØÉ«Ó°ÌüÀàĞÍ
+	 * æŸä¸ªå½±é™¢çš„ç‰¹è‰²å½±å…ç±»å‹
 	 * @param cinemaId
 	 * @return
 	 */
 	ResultCode<Map<Long, String>> getCharacteristicCinemaRoomByCinema(Long cinemaId);
 	/**
-	 * ¿ÉÒÔ¹ºÂò±£ÏÕµÄÓ°ÔºID
+	 * å¯ä»¥è´­ä¹°ä¿é™©çš„å½±é™¢ID
 	 * @return
 	 */
 	ResultCode<List<Long>> getBuyInsureCinemaIdList();
 	/**
-	 * ¸ù¾İ¸üĞÂÊ±¼ä²éÑ¯Ó°Ôº
+	 * æ ¹æ®æ›´æ–°æ—¶é—´æŸ¥è¯¢å½±é™¢
 	 * @param updatetime
 	 * @param from
 	 * @param maxnum
@@ -386,7 +386,7 @@ public interface CinemaVoService2 {
 	 */
 	ResultCode<List<Long>> getCinemaListByUpdatetime(Timestamp updatetime, int from, int maxnum);
 	/**
-	 * ¸ù¾İÈÈ¶È²éÑ¯Ó°Ôº
+	 * æ ¹æ®çƒ­åº¦æŸ¥è¯¢å½±é™¢
 	 * @param citycode
 	 * @param from
 	 * @param maxnum
@@ -394,7 +394,7 @@ public interface CinemaVoService2 {
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByHotvalue(String citycode, int from, int maxnum);
 	/**
-	 * ¸ù¾İÇøÓò²éÑ¯Ó°ÔºÁĞ±í£¬°´ÕÕµã»÷´ÎÊıÅÅĞò
+	 * æ ¹æ®åŒºåŸŸæŸ¥è¯¢å½±é™¢åˆ—è¡¨ï¼ŒæŒ‰ç…§ç‚¹å‡»æ¬¡æ•°æ’åº
 	 * @param countycode
 	 * @param orderField
 	 * @param asc
@@ -402,7 +402,7 @@ public interface CinemaVoService2 {
 	 */
 	ResultCode<List<CinemaVo>> getCinemaListByCountyCodeOrderClick(String countycode,String orderField, boolean asc);
 	/**
-	 * ¸ù¾İ¸üĞÂÊ±¼ä»ñÈ¡ĞèÒª×Ö¶ÎµÄListMap
+	 * æ ¹æ®æ›´æ–°æ—¶é—´è·å–éœ€è¦å­—æ®µçš„ListMap
 	 * @param fields
 	 * @param updatetime
 	 * @param from
@@ -411,7 +411,7 @@ public interface CinemaVoService2 {
 	 */
 	ResultCode<List<Map>> getFieldsMapByUpdate(String fields, Timestamp updatetime, int from, int maxnum);
 	/**
-	 * ¸ù¾İ³ÇÊĞ´úÂë²éÑ¯Ó°ÔºĞÅÏ¢£¨·ÖÒ³£©
+	 * æ ¹æ®åŸå¸‚ä»£ç æŸ¥è¯¢å½±é™¢ä¿¡æ¯ï¼ˆåˆ†é¡µï¼‰
 	 * @param citycode
 	 * @param from
 	 * @param maxnum
@@ -420,31 +420,31 @@ public interface CinemaVoService2 {
 	ResultCode<List<CinemaVo>> getCinemaListByCitycodeForPage(String citycode, int from, int maxnum);
 	ResultCode<CinemaVo> updateCinemaProperties(Long cinemaId, String[] properties, Serializable[] values);
 	/**
-	 * »ñÈ¡Ó°ÔºÌØĞ§
+	 * è·å–å½±é™¢ç‰¹æ•ˆ
 	 * @param cinemaId
 	 * @return
 	 */
 	ResultCode<String> getCinemaCharacteristicByCinemaId(Long cinemaId);
 	/**
-	 * ¸ù¾İ³ÇÊĞ»ñÈ¡¿ÉËÑË÷µÄÓ°Ôº
+	 * æ ¹æ®åŸå¸‚è·å–å¯æœç´¢çš„å½±é™¢
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<String> getSearchCinemaByCitycode(String citycode);
 	/**
-	 * ¸ù¾İÇøÓò²éÑ¯Ó°ÔºÁĞ±í
+	 * æ ¹æ®åŒºåŸŸæŸ¥è¯¢å½±é™¢åˆ—è¡¨
 	 * @param countycode
 	 * @return
 	 */
 	ResultCode<List<Long>> getCinemaIdListByCountycode(String countycode);
 	/**
-	 * ¸ù¾İÉÌÈ¦²éÑ¯Ó°ÔºÁĞ±í
+	 * æ ¹æ®å•†åœˆæŸ¥è¯¢å½±é™¢åˆ—è¡¨
 	 * @param indexareacode
 	 * @return
 	 */
 	ResultCode<List<Long>> getCinemaIdListByIndexareacode(String indexareacode);
 	/**
-	 * ¸ù¾İµØÌúÏßÂ·²éÑ¯Ó°ÔºÁĞ±í
+	 * æ ¹æ®åœ°é“çº¿è·¯æŸ¥è¯¢å½±é™¢åˆ—è¡¨
 	 * @param citycode
 	 * @param lineId
 	 * @return
@@ -452,36 +452,36 @@ public interface CinemaVoService2 {
 	ResultCode<List<Long>> getCinemaIdListByLineId(String citycode, String lineId);
 		
 	/**
-	 * »ñÈ¡ĞèÒª¸üĞÂ×ùÎ»Í¼µÄÓ°Ìü</br>
-	 * updateEmpty,from£¬Ğë´«Ò»¸öÖµ£¬·ñÔò·µ»Ø¿Õ
+	 * è·å–éœ€è¦æ›´æ–°åº§ä½å›¾çš„å½±å…</br>
+	 * updateEmpty,fromï¼Œé¡»ä¼ ä¸€ä¸ªå€¼ï¼Œå¦åˆ™è¿”å›ç©º
 	 * @param updateEmpty
 	 * @param from
 	 * @param citycode
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê9ÔÂ19ÈÕÉÏÎç11:46:15
+	 * @addTime 2016å¹´9æœˆ19æ—¥ä¸Šåˆ11:46:15
 	 */
 	public ResultCode<List<CinemaRoomVo>> getBatchUpdateRoomList(String updateEmpty, Date from, String citycode);
 		
 	/**
-	 * Ë¢ĞÂÓ°Ìü»º´æ</br>
+	 * åˆ·æ–°å½±å…ç¼“å­˜</br>
 	 * only refreshRoomList
 	 * @param cinemaId
 	 * @param updateTime
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê9ÔÂ18ÈÕÏÂÎç6:55:39
+	 * @addTime 2016å¹´9æœˆ18æ—¥ä¸‹åˆ6:55:39
 	 */
 	ResultCode refreshRoomList(Long cinemaId);
 	
 	/**
-	 * ²éÑ¯ËùÓĞÓ°ÔºÊıÁ¿
+	 * æŸ¥è¯¢æ‰€æœ‰å½±é™¢æ•°é‡
 	 * @return
 	 */
 	ResultCode<Integer> getCinemaCount();
 	
 	/**
-	 * @param userid 0LÎªÏµÍ³µ÷ÓÃ
+	 * @param userid 0Lä¸ºç³»ç»Ÿè°ƒç”¨
 	 * @param roomid
 	 * @param properties
 	 * @param values
@@ -490,7 +490,7 @@ public interface CinemaVoService2 {
 	public ResultCode<CinemaRoomVo> updateCinemaRoomProperties(Long userid, Long roomid, String[] properties, Serializable[] values);
 	
 	/**
-	 * ¸ù¾İÖ¸¶¨Ê±¼ä»ñÈ¡IDÁĞ±í
+	 * æ ¹æ®æŒ‡å®šæ—¶é—´è·å–IDåˆ—è¡¨
 	 * @param updatetime
 	 * @param from
 	 * @param maxnum
@@ -499,7 +499,7 @@ public interface CinemaVoService2 {
 	ResultCode<List<Long>> getCinemaProfileIdListByUpdatetime(Timestamp updatetime, int from, int maxnum);
 	
 	/**
-	 * ²éÑ¯ËùÓĞCinemaProfileÊıÁ¿
+	 * æŸ¥è¯¢æ‰€æœ‰CinemaProfileæ•°é‡
 	 * @return
 	 */
 	ResultCode<Integer> getCinemaProfileCount();

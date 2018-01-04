@@ -10,14 +10,14 @@ public class RefundOrderTotalVo implements Serializable{
 	private static final long serialVersionUID = -3805516323721144629L;
 	private List<RefundOrderReportVo> refundOrderReportList;
 	private List<OrderRefundVo> orderRefundVoList;
-	private int cinemaCount;//Ó°ÔºÊı
-	private int movieCount;//Ó°Æ¬Êı
-	private int mpiCount;//³¡´ÎÊı
-	private int totalOrder;//×Ü¶©µ¥Êı
-	private int refundOrder;//×ÜÍËÆ±¶©µ¥Êı
-	private int refundQuantity;//×ÜÍËÆ± Æ±Êı
-	private int refundAmount;//×ÜÍËÆ± ½ğ¶î
-	private int totalCount;//×ÜÒ³Êı
+	private int cinemaCount;//å½±é™¢æ•°
+	private int movieCount;//å½±ç‰‡æ•°
+	private int mpiCount;//åœºæ¬¡æ•°
+	private int totalOrder;//æ€»è®¢å•æ•°
+	private int refundOrder;//æ€»é€€ç¥¨è®¢å•æ•°
+	private int refundQuantity;//æ€»é€€ç¥¨ ç¥¨æ•°
+	private int refundAmount;//æ€»é€€ç¥¨ é‡‘é¢
+	private int totalCount;//æ€»é¡µæ•°
 	
 	public int getCinemaCount() {
 		return cinemaCount;

@@ -51,12 +51,12 @@ public class JobLockService implements InitializingBean, JobStatsService {
 			if(rows >0) {
                 return ErrorCode.SUCCESS;
             }
-			return ErrorCode.getFailure("����������!");
+			return ErrorCode.getFailure("锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷!");
 		}catch(DuplicateKeyException e){
-			return ErrorCode.getFailure("����������!");
+			return ErrorCode.getFailure("锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷!");
 		}catch(Throwable e){
 			log.warn("", e, 200);
-			return ErrorCode.getFailure("�������!");
+			return ErrorCode.getFailure("锟斤拷锟斤拷锟斤拷锟�!");
 		}
 	}
 	public void updateStatus(String status, String jobName, Date nextFireTime, String ip){

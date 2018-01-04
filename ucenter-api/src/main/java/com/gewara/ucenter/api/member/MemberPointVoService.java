@@ -8,8 +8,8 @@ import com.gewara.api.vo.ResultCode;
 import com.gewara.ucenter.vo.member.MemberPointVo;
 /*
  * pengdi 
- * 2014Äê10ÔÂ29ÈÕ
- * »ñÈ¡»ı·ÖµÄ¶¨ÒåµÄ½Ó¿Ú
+ * 2014å¹´10æœˆ29æ—¥
+ * è·å–ç§¯åˆ†çš„å®šä¹‰çš„æ¥å£
  */
 public interface MemberPointVoService {
 	ResultCode<MemberPointVo> getWapPointType(String encodeOrSessid, String remoteIp);
@@ -25,22 +25,22 @@ public interface MemberPointVoService {
 	ResultCode<Integer> getOrderPointByMemberIdAndTradeNo(Long memberId,String tradeNo);
 
 	ResultCode getPointGiftByDay(Long memberid, Timestamp cur);
-	//ĞÂÃ¿ÈÕµÇÂ¼»ı·Ö
+	//æ–°æ¯æ—¥ç™»å½•ç§¯åˆ†
 	ResultCode<Integer> addLoginPointNew(Long memberid);
 	/**
-	 * Ã¿ÈÕ´ğÌâ»ı·Ö
+	 * æ¯æ—¥ç­”é¢˜ç§¯åˆ†
 	 */
 	ResultCode<Integer> getAnswerPoint(Long memberid, Timestamp cur);
 	/**
-	 * ¸øÓÃ»§¼õÉÙ»ı·Ö
+	 * ç»™ç”¨æˆ·å‡å°‘ç§¯åˆ†
 	 * @param memberid
-	 * @param pointvalue  Ò»¶¨ÊÇ¸ºÊı
+	 * @param pointvalue  ä¸€å®šæ˜¯è´Ÿæ•°
 	 * @param reason
 	 * @return
 	 */
 	ResultCode<String> reducePoint(Long memberid, Integer pointvalue, String tag, String reason);
 	/**
-	 * Ìí¼Ó»ı·Ö
+	 * æ·»åŠ ç§¯åˆ†
 	 * 
 	 * @param memberid
 	 * @param pointvalue

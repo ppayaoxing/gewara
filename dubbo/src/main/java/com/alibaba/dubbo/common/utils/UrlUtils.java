@@ -401,19 +401,19 @@ public class UrlUtils {
         }
         
         int i = pattern.lastIndexOf('*');
-        // û���ҵ��Ǻ�
+        // 没锟斤拷锟揭碉拷锟角猴拷
         if(i == -1) {
             return value.equals(pattern);
         }
-        // �Ǻ���ĩβ
+        // 锟角猴拷锟斤拷末尾
         else if (i == pattern.length() - 1) {
             return value.startsWith(pattern.substring(0, i));
         }
-        // �ǺŵĿ�ͷ
+        // 锟角号的匡拷头
         else if (i == 0) {
             return value.endsWith(pattern.substring(i + 1));
         }
-        // �Ǻŵ��ַ������м�
+        // 锟角号碉拷锟街凤拷锟斤拷锟斤拷锟叫硷拷
         else {
             String prefix = pattern.substring(0, i);
             String suffix = pattern.substring(i + 1);
@@ -431,7 +431,7 @@ public class UrlUtils {
     }
 
     /**
-     * �ж� value �Ƿ�ƥ�� pattern��pattern ֧�� * ͨ���.
+     * 锟叫讹拷 value 锟角凤拷匹锟斤拷 pattern锟斤拷pattern 支锟斤拷 * 通锟斤拷锟�.
      *
      * @param pattern pattern
      * @param value   value

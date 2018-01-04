@@ -8,17 +8,17 @@ import com.gewara.api.vo.ResultCode;
 
 public interface GewaMpiVoService {
 	/**
-	 * »ñÈ¡ÆÁ±Î³¡´ÎµÄ¹æÔò
+	 * è·å–å±è”½åœºæ¬¡çš„è§„åˆ™
 	 * @return
 	 */
 	ResultCode<PartnerCloseRuleVo> getPartnerCloseRuleVoById(Long id);
 	/**
-	 * »ñÈ¡°ó¶¨µÄÌ×²ÍÁĞ±í
+	 * è·å–ç»‘å®šçš„å¥—é¤åˆ—è¡¨
 	 * @return
 	 */
 	ResultCode<List<GoodsGiftVo>> getGoodsGiftList();
 	/**
-	 * »ñÈ¡°ó¶¨µÄÌ×²Í
+	 * è·å–ç»‘å®šçš„å¥—é¤
 	 * @param id
 	 * @return
 	 */

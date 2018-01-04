@@ -8,18 +8,18 @@ import com.gewara.api.vo.BaseVo;
 public class ModeratorTagVo  extends BaseVo{
 	private static final long serialVersionUID = -2409632797041244599L;
 	private Long id;					
-	private Long memberid;		//Ìí¼ÓµÄÓÃ»§ID
-	private String title;			//±êÇ©
-	private String summary;			//½éÉÜ
-	private Timestamp addtime;		//Ìí¼ÓÊ±¼ä
-	private Integer ordernum;		//ÅÅĞò
-	private String status;			//×´Ì¬
-	private String tag;				//¹ØÁªÀàĞÍ ÍÛÀ² »°Ìâ
-	private Long relatedid;			//¹ØÁª»°Ìâid
-	private Integer flowernum;		//µãÔŞÊı
-	private Integer commentcount;	//ÍÛÀ²Êı
-	private Long parentid;			//±êÇ©ÀàĞÍ
-	private String correct;			//ÕıÈ·´ğ°¸
+	private Long memberid;		//æ·»åŠ çš„ç”¨æˆ·ID
+	private String title;			//æ ‡ç­¾
+	private String summary;			//ä»‹ç»
+	private Timestamp addtime;		//æ·»åŠ æ—¶é—´
+	private Integer ordernum;		//æ’åº
+	private String status;			//çŠ¶æ€
+	private String tag;				//å…³è”ç±»å‹ å“‡å•¦ è¯é¢˜
+	private Long relatedid;			//å…³è”è¯é¢˜id
+	private Integer flowernum;		//ç‚¹èµæ•°
+	private Integer commentcount;	//å“‡å•¦æ•°
+	private Long parentid;			//æ ‡ç­¾ç±»å‹
+	private String correct;			//æ­£ç¡®ç­”æ¡ˆ
 	
 	public String getCorrect() {
 		return correct;

@@ -26,7 +26,7 @@ import com.gewara.util.WebLogger;
 
 public class SmackMonitorAgentClient {
 	private static final transient GewaLogger dbLogger = WebLogger.getLogger(SmackMonitorAgentClient.class);
-	private String hostname;	//»úÆ÷Ãû£¬²»ÒªÓÃlocalhost
+	private String hostname;	//æœºå™¨åï¼Œä¸è¦ç”¨localhost
 	private String username;
 	private String password;
 	private boolean available = false;
@@ -158,7 +158,7 @@ public class SmackMonitorAgentClient {
 											reply = "reply:" + reply;
 										}
 										if(StringUtils.isNotBlank(reply) && !StringUtils.equals(CommandProcessor.SUCCESS, reply)){
-											//³É¹¦µÄºöÂÔ»Ø´«ÏûÏ¢
+											//æˆåŠŸçš„å¿½ç•¥å›ä¼ æ¶ˆæ¯
 											chat.sendMessage(reply);
 										}
 									} catch (XMPPException e) {

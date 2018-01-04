@@ -12,8 +12,8 @@ import com.gewara.util.DateUtil;
 
 /**
  * @author gebiao
- * Map 的值必须是 简单类型或Map
- * 可以嵌套查询，如：getLong("member.id") 获取Map中member的id 
+ * Map 鐨勫�煎繀椤绘槸 绠�鍗曠被鍨嬫垨Map
+ * 鍙互宓屽鏌ヨ锛屽锛歡etLong("member.id") 鑾峰彇Map涓璵ember鐨刬d 
  */
 public abstract class ConfigData implements ConfigTrigger{
 	private Object data;

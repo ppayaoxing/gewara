@@ -20,7 +20,7 @@ import com.alibaba.dubbo.remoting.ChannelHandler;
 import com.alibaba.dubbo.remoting.Dispatcher;
 
 /**
- * ֻ��message receiveʹ���̳߳�.
+ * 只锟斤拷message receive使锟斤拷锟竭程筹拷.
  * 
  * @author chao.liuc
  */

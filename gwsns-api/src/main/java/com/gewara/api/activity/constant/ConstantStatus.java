@@ -2,7 +2,7 @@ package com.gewara.api.activity.constant;
 
 public class ConstantStatus {
 	/**
-	 * ÍÛÀ²Áìºì°üÁ´½Ó
+	 * å“‡å•¦é¢†çº¢åŒ…é“¾æ¥
 	 */
 	public static final String WALA_REDURL = "/wz/special/redEnvelopeDrawTag/walaindex.xhtml?";
 

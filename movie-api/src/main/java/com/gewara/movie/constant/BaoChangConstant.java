@@ -12,41 +12,41 @@ public class BaoChangConstant {
 	public static final String MSG_URL_PARTNER = "gewara://com.gewara.movie?pageid=23";
 	public static final String MSG_URL_REDIRECT = "gewara://com.gewara.movie?pageid=5";
 	
-	public static final Integer DATA_VALID = 1;   //ÓĞĞ§Êı¾İ
-	public static final Integer DATA_INVALID = 0; //ÎŞĞ§Êı¾İ
+	public static final Integer DATA_VALID = 1;   //æœ‰æ•ˆæ•°æ®
+	public static final Integer DATA_INVALID = 0; //æ— æ•ˆæ•°æ®
 	
-	public static final String SEND_MSG_CHANNEL_APPOINTMENT = "channel_appointment";   //°ü³¡Ô¤Ô¼½»Ò×³É¹¦£¨Ô¤Ô¼Ó°Ôº°ü³¡£©
-	public static final String SEND_MSG_CHANNEL_PAID = "channel_paid";   //°ü³¡½»Ò×³É¹¦£¨°üÀ¨Ô¤Ô¼³É¹¦ºó£¬ÉèÖÃ³¡´Î³É¹¦£©
-	public static final String SEND_MSG_CHANNEL_FAIL = "channel_fail";   //°ü³¡Ê§°Ü
-	public static final String SEND_MSG_CHANNEL_RECEIPTOR = "channel_receiptor";   //ÁìÆ±ÈË¶ÌĞÅ
+	public static final String SEND_MSG_CHANNEL_APPOINTMENT = "channel_appointment";   //åŒ…åœºé¢„çº¦äº¤æ˜“æˆåŠŸï¼ˆé¢„çº¦å½±é™¢åŒ…åœºï¼‰
+	public static final String SEND_MSG_CHANNEL_PAID = "channel_paid";   //åŒ…åœºäº¤æ˜“æˆåŠŸï¼ˆåŒ…æ‹¬é¢„çº¦æˆåŠŸåï¼Œè®¾ç½®åœºæ¬¡æˆåŠŸï¼‰
+	public static final String SEND_MSG_CHANNEL_FAIL = "channel_fail";   //åŒ…åœºå¤±è´¥
+	public static final String SEND_MSG_CHANNEL_RECEIPTOR = "channel_receiptor";   //é¢†ç¥¨äººçŸ­ä¿¡
 	
-	public static final String BAOCHANG_FROM_ANDROID = "android";   //°²×¿
+	public static final String BAOCHANG_FROM_ANDROID = "android";   //å®‰å“
 	public static final String BAOCHANG_FROM_IOS = "ios";   //IOS
 	
-	public static final Integer PURCHASER_TICKET_NUM = 1000; //°ü³¡ÈË×î¶àÑ¡×ù¸öÊı
-	public static final Integer RECEIPTOR_TICKET_NUM = 5; //ÁìÆ±ÈË×î¶àÑ¡×ù¸öÊı
+	public static final Integer PURCHASER_TICKET_NUM = 1000; //åŒ…åœºäººæœ€å¤šé€‰åº§ä¸ªæ•°
+	public static final Integer RECEIPTOR_TICKET_NUM = 5; //é¢†ç¥¨äººæœ€å¤šé€‰åº§ä¸ªæ•°
 	
-	public static final String ORDER_TYPE_EXIST = "exist";//ÏÖÓĞ³¡´Î¶©µ¥
-	public static final String ORDER_TYPE_APPOINTMENT = "appointment";//Ô¤Ô¼³¡´Î¶©µ¥
+	public static final String ORDER_TYPE_EXIST = "exist";//ç°æœ‰åœºæ¬¡è®¢å•
+	public static final String ORDER_TYPE_APPOINTMENT = "appointment";//é¢„çº¦åœºæ¬¡è®¢å•
 	
-	public static final String CACHE_TAG_ADD_UPDATE = "add_update";//Ôö¼Ó/ĞŞ¸Ä¶ÔÏó
-	public static final String CACHE_TAG_REMOVE = "remove";//É¾³ı
+	public static final String CACHE_TAG_ADD_UPDATE = "add_update";//å¢åŠ /ä¿®æ”¹å¯¹è±¡
+	public static final String CACHE_TAG_REMOVE = "remove";//åˆ é™¤
 	
-	public static final String MPI_STATUS_LOCK = "lock";//Ëø¶¨³¡´Î
-	public static final String MPI_STATUS_SUCCESS = "success";//°ü³¡³É¹¦
-	public static final String MPI_STATUS_UNLOCK = "unlock";//Î´Ëø¶¨
+	public static final String MPI_STATUS_LOCK = "lock";//é”å®šåœºæ¬¡
+	public static final String MPI_STATUS_SUCCESS = "success";//åŒ…åœºæˆåŠŸ
+	public static final String MPI_STATUS_UNLOCK = "unlock";//æœªé”å®š
 	
-	public static final String TIME_TAG_MORNING = "morning";//ÉÏÎç
-	public static final String TIME_TAG_AFTERNOON = "afternoon";//ÏÂÎç
-	public static final String TIME_TAG_NIGHT = "night";//ÍíÉÏ
+	public static final String TIME_TAG_MORNING = "morning";//ä¸Šåˆ
+	public static final String TIME_TAG_AFTERNOON = "afternoon";//ä¸‹åˆ
+	public static final String TIME_TAG_NIGHT = "night";//æ™šä¸Š
 	
-	public static final String ORDER_STATUS_ORDER_SUCCESS = "order_success"; //ÏÂµ¥³É¹¦Î´Ö§¸¶
-	public static final String ORDER_STATUS_PROCESSING = "processing"; //³¡´Î°²ÅÅÖĞ
-	public static final String ORDER_STATUS_SECCUSS = "seccuss"; //³¡´ÎÒÑ¿ª·Å
-	public static final String ORDER_STATUS_FAIL = "fail"; //°²ÅÅÊ§°Ü
-	public static final String ORDER_STATUS_REFUND_SECCUSS = "refund_seccuss"; //ÍË¿î³É¹¦
-	public static final String ORDER_STATUS_REFUND_FAIL = "refund_fail"; //ÍË¿îÊ§°Ü
-	public static final String ORDER_STATUS_CANCEL = "cancel"; //¶©µ¥È¡Ïû
+	public static final String ORDER_STATUS_ORDER_SUCCESS = "order_success"; //ä¸‹å•æˆåŠŸæœªæ”¯ä»˜
+	public static final String ORDER_STATUS_PROCESSING = "processing"; //åœºæ¬¡å®‰æ’ä¸­
+	public static final String ORDER_STATUS_SECCUSS = "seccuss"; //åœºæ¬¡å·²å¼€æ”¾
+	public static final String ORDER_STATUS_FAIL = "fail"; //å®‰æ’å¤±è´¥
+	public static final String ORDER_STATUS_REFUND_SECCUSS = "refund_seccuss"; //é€€æ¬¾æˆåŠŸ
+	public static final String ORDER_STATUS_REFUND_FAIL = "refund_fail"; //é€€æ¬¾å¤±è´¥
+	public static final String ORDER_STATUS_CANCEL = "cancel"; //è®¢å•å–æ¶ˆ
 	public static final List<String> baoChangOrderStatusList = Arrays.asList(ORDER_STATUS_PROCESSING,
 			ORDER_STATUS_SECCUSS, ORDER_STATUS_FAIL);
 	public static final String[] baoChangMsgAppointmentIos = new String[]{"%username", "%appointmentDate", "%appointmentTime", 
@@ -75,29 +75,29 @@ public class BaoChangConstant {
 	static{
 		Map<String, String> tmp = new LinkedHashMap<String, String>();
 		
-		tmp.put(ORDER_STATUS_ORDER_SUCCESS, "ÏÂµ¥³É¹¦Î´Ö§¸¶");
-		tmp.put(ORDER_STATUS_PROCESSING, "³¡´Î°²ÅÅÖĞ");
-		tmp.put(ORDER_STATUS_SECCUSS, "°ü³¡³É¹¦");
-		tmp.put(ORDER_STATUS_FAIL, "°²ÅÅÊ§°Ü");
-		tmp.put(ORDER_STATUS_REFUND_SECCUSS, "ÍË¿î³É¹¦");
-		tmp.put(ORDER_STATUS_REFUND_FAIL, "ÍË¿îÊ§°Ü");
+		tmp.put(ORDER_STATUS_ORDER_SUCCESS, "ä¸‹å•æˆåŠŸæœªæ”¯ä»˜");
+		tmp.put(ORDER_STATUS_PROCESSING, "åœºæ¬¡å®‰æ’ä¸­");
+		tmp.put(ORDER_STATUS_SECCUSS, "åŒ…åœºæˆåŠŸ");
+		tmp.put(ORDER_STATUS_FAIL, "å®‰æ’å¤±è´¥");
+		tmp.put(ORDER_STATUS_REFUND_SECCUSS, "é€€æ¬¾æˆåŠŸ");
+		tmp.put(ORDER_STATUS_REFUND_FAIL, "é€€æ¬¾å¤±è´¥");
 		baoChangOrderStatusMap = UnmodifiableMap.decorate(tmp);
 		
 		tmp = new LinkedHashMap<String, String>();
-		tmp.put(ORDER_TYPE_EXIST, "ÏÖÓĞ³¡´Î¶©µ¥");
-		tmp.put(ORDER_TYPE_APPOINTMENT, "Ô¤Ô¼³¡´Î¶©µ¥");
+		tmp.put(ORDER_TYPE_EXIST, "ç°æœ‰åœºæ¬¡è®¢å•");
+		tmp.put(ORDER_TYPE_APPOINTMENT, "é¢„çº¦åœºæ¬¡è®¢å•");
 		baoChangOrderTypeMap = UnmodifiableMap.decorate(tmp);
 		
 		tmp = new LinkedHashMap<String, String>();
-		tmp.put(MPI_STATUS_LOCK, "³¡´ÎÒÑ±»Ëø¶¨");
-		tmp.put(MPI_STATUS_SUCCESS, "°ü³¡³É¹¦");
-		tmp.put(MPI_STATUS_UNLOCK, "¿ª·ÅÖĞ");
+		tmp.put(MPI_STATUS_LOCK, "åœºæ¬¡å·²è¢«é”å®š");
+		tmp.put(MPI_STATUS_SUCCESS, "åŒ…åœºæˆåŠŸ");
+		tmp.put(MPI_STATUS_UNLOCK, "å¼€æ”¾ä¸­");
 		baoChangMpiStatusMap = UnmodifiableMap.decorate(tmp);
 		
 		tmp = new LinkedHashMap<String, String>();
-		tmp.put(TIME_TAG_MORNING, "ÉÏÎç");
-		tmp.put(TIME_TAG_AFTERNOON, "ÏÂÎç");
-		tmp.put(TIME_TAG_NIGHT, "ÍíÉÏ");
+		tmp.put(TIME_TAG_MORNING, "ä¸Šåˆ");
+		tmp.put(TIME_TAG_AFTERNOON, "ä¸‹åˆ");
+		tmp.put(TIME_TAG_NIGHT, "æ™šä¸Š");
 		baoChangTimeTagMap = UnmodifiableMap.decorate(tmp);
 		
 		tmp = new LinkedHashMap<String, String>();

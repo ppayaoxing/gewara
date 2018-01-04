@@ -116,7 +116,7 @@ public class CuratorZookeeperClient extends AbstractZookeeperClient<CuratorWatch
 		@Override
         public void process(WatchedEvent event) throws Exception {
 			if (listener != null) {
-				//������־������Ϣ
+				//锟斤拷锟斤拷锟斤拷志锟斤拷锟斤拷锟斤拷息
 				try{
 					GetChildrenBuilder chb = client.getChildren();
 					listener.childChanged(event.getPath(), chb.usingWatcher(this).forPath(event.getPath()));

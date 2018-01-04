@@ -6,14 +6,14 @@ import com.gewara.ucenter.vo.member.OpenResultVo;
 public interface BaiduAuthorizeVoService {
 	
 	/**
-	 * 百度联名登陆获取授权URL
+	 * 鐧惧害鑱斿悕鐧婚檰鑾峰彇鎺堟潈URL
 	 * @param partnerName 
 	 * @param callback
 	 * @return
 	 */
 	ResultCode<String> getRedirectUrl(String callback);
 	/**
-	 * 百度Web联名登陆回调
+	 * 鐧惧害Web鑱斿悕鐧婚檰鍥炶皟
 	 * @param code
 	 * @param callback
 	 * @param remoteIp

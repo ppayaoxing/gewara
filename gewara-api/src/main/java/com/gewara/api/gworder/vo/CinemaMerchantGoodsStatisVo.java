@@ -6,13 +6,13 @@ import com.gewara.api.vo.BaseVo;
 
 public class CinemaMerchantGoodsStatisVo extends BaseVo {
 	private static final long serialVersionUID = -8567796112326795892L;
-	private Long cinemaid;//Ó°ÔºID
-	private String dateStr;//²éÑ¯¹Ø¼ü×Ö
-	private Integer totalfee;//¶©µ¥½ğ¶î
-	private Integer quantity;//ÎïÆ·ÊıÁ¿
-	private Integer orderNum;//¶©µ¥ÊıÁ¿
-	private Long createTime;//´´½¨Ê±¼ä
-	private Long updateTime;//×îºó¸üĞÂÊ±¼ä
+	private Long cinemaid;//å½±é™¢ID
+	private String dateStr;//æŸ¥è¯¢å…³é”®å­—
+	private Integer totalfee;//è®¢å•é‡‘é¢
+	private Integer quantity;//ç‰©å“æ•°é‡
+	private Integer orderNum;//è®¢å•æ•°é‡
+	private Long createTime;//åˆ›å»ºæ—¶é—´
+	private Long updateTime;//æœ€åæ›´æ–°æ—¶é—´
 	public CinemaMerchantGoodsStatisVo() {
 		super();
 	}

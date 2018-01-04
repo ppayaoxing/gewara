@@ -7,10 +7,10 @@ public class MovieSellerVo implements Serializable{
 	private Long cinemaid;
 	private String cinemaName;
 	private String citycode;
-	private Long totalquantity;//Ó°Æ±Êı
-	private Long totalcost;//×Ü½ğ¶î
-	private Long mpicount;//×Ü³¡´ÎÊı 
-	private Long totalcount;//×Ü¶©µ¥Êı
+	private Long totalquantity;//å½±ç¥¨æ•°
+	private Long totalcost;//æ€»é‡‘é¢
+	private Long mpicount;//æ€»åœºæ¬¡æ•° 
+	private Long totalcount;//æ€»è®¢å•æ•°
 	
 	public Long getCinemaid() {
 		return cinemaid;

@@ -45,7 +45,7 @@ public class ConnectionOrderedChannelHandler extends WrappedChannelHandler {
                                      new LinkedBlockingQueue<Runnable>(url.getPositiveParameter(Constants.CONNECT_QUEUE_CAPACITY, Integer.MAX_VALUE)),
                                      new NamedThreadFactory(threadName, true),
                                      new AbortPolicyWithReport(threadName, url)
-            );  // FIXME û�еط��ͷ�connectionExecutor��
+            );  // FIXME 没锟叫地凤拷锟酵凤拷connectionExecutor锟斤拷
         queuewarninglimit = url.getParameter(Constants.CONNECT_QUEUE_WARNING_SIZE, Constants.DEFAULT_CONNECT_QUEUE_WARNING_SIZE);
     }
 

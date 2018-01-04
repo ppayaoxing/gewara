@@ -11,7 +11,7 @@ import org.nlpcn.es4sql.exception.SqlParseException;
 public interface EsSearchOperations {
 	
 	/**
-	 * Ö§³ÖsqlÓï¾äµÄ²éÑ¯£¬callback»Øµ÷½á¹û
+	 * æ”¯æŒsqlè¯­å¥çš„æŸ¥è¯¢ï¼Œcallbackå›è°ƒç»“æœ
 	 * @param sql
 	 * @param callback
 	 * @throws SqlParseException
@@ -20,7 +20,7 @@ public interface EsSearchOperations {
 	void query(String sql, RowCallbackHandler callback) throws SqlParseException,SQLFeatureNotSupportedException;
 	
 	/**
-	 * Ö§³ÖsqlÓï¾äµÄ²éÑ¯£¬·µ»Ø½á¹û¼¯
+	 * æ”¯æŒsqlè¯­å¥çš„æŸ¥è¯¢ï¼Œè¿”å›ç»“æœé›†
 	 * @param sql
 	 * @param clazz
 	 * @return
@@ -32,7 +32,7 @@ public interface EsSearchOperations {
 	<T> List<T> queryForList(String sql, Class<T> clazz) throws SQLFeatureNotSupportedException, SqlParseException, InstantiationException, IllegalAccessException;
 	
 	/**
-	 * Ö§³ÖsqlÓï¾äµÄ²éÑ¯£¬·µ»Ø½á¹û¶ÔÏó
+	 * æ”¯æŒsqlè¯­å¥çš„æŸ¥è¯¢ï¼Œè¿”å›ç»“æœå¯¹è±¡
 	 * @param sql
 	 * @param clazz
 	 * @return
@@ -45,7 +45,7 @@ public interface EsSearchOperations {
 	<T> T queryForObject(String sql, Class<T> clazz) throws SQLFeatureNotSupportedException, SqlParseException, IllegalArgumentException, IllegalAccessException, InstantiationException;
 	
 	/**
-	 * Ö§³ÖsqlÓï¾äµÄ²éÑ¯£¬·µ»Ø½á¹ûÁĞ±í
+	 * æ”¯æŒsqlè¯­å¥çš„æŸ¥è¯¢ï¼Œè¿”å›ç»“æœåˆ—è¡¨
 	 * @param sql
 	 * @return
 	 * @throws SqlParseException
@@ -54,8 +54,8 @@ public interface EsSearchOperations {
 	List<ResultSet> query(String sql) throws SqlParseException,SQLFeatureNotSupportedException;
 	
 	/**
-	 * Ö§³ÖsqlÓï¾äµÄÉ¾³ı
-	 * v2.0ÒÔÉÏ°æ±¾Ôİ²»Ö§³Ö
+	 * æ”¯æŒsqlè¯­å¥çš„åˆ é™¤
+	 * v2.0ä»¥ä¸Šç‰ˆæœ¬æš‚ä¸æ”¯æŒ
 	 * @param sql
 	 * @throws SQLFeatureNotSupportedException
 	 * @throws SqlParseException
@@ -64,7 +64,7 @@ public interface EsSearchOperations {
 	void delete(String sql) throws SQLFeatureNotSupportedException, SqlParseException;
 	
 	/**
-	 * ÒÀ¾İidÉ¾³ıÎÄµµ
+	 * ä¾æ®idåˆ é™¤æ–‡æ¡£
 	 * @param index
 	 * @param type
 	 * @param id
@@ -76,7 +76,7 @@ public interface EsSearchOperations {
 	boolean deleteById(String index,String type,String id) throws InterruptedException, ExecutionException;
 	
 	/**
-	 * É¾³ıÎÄµµ¼¯
+	 * åˆ é™¤æ–‡æ¡£é›†
 	 * @param index
 	 * @param type
 	 * @param idList
@@ -86,7 +86,7 @@ public interface EsSearchOperations {
 	void deleteById(String index,String type,List<String> idList) throws InterruptedException, ExecutionException;
 	
 	/**
-	 * É¾³ıÎÄµµ¼¯£¬ÒÀ¾İ²ÎÊıÁĞ±í£¨param:±ØĞë°üº¬key£ºindex,type,id£©
+	 * åˆ é™¤æ–‡æ¡£é›†ï¼Œä¾æ®å‚æ•°åˆ—è¡¨ï¼ˆparam:å¿…é¡»åŒ…å«keyï¼šindex,type,idï¼‰
 	 * @param paramsList
 	 * @throws SqlParseException
 	 * @throws InterruptedException
@@ -95,7 +95,7 @@ public interface EsSearchOperations {
 	void delete(List<Map<String,String>> paramsList) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * É¾³ıË÷Òı
+	 * åˆ é™¤ç´¢å¼•
 	 * @param index
 	 * @return
 	 * @throws InterruptedException
@@ -104,7 +104,7 @@ public interface EsSearchOperations {
 	boolean deleteIndex(String index) throws InterruptedException, ExecutionException;
 	
 	/**
-	 * É¾³ıË÷Òı¼¯
+	 * åˆ é™¤ç´¢å¼•é›†
 	 * @param indexList
 	 * @return
 	 * @throws InterruptedException
@@ -113,7 +113,7 @@ public interface EsSearchOperations {
 	boolean deleteIndex(List<String> indexList) throws InterruptedException, ExecutionException;
 	
 	/**
-	 * Ö§³ÖsqlµÄ¸üĞÂÎÄµµ
+	 * æ”¯æŒsqlçš„æ›´æ–°æ–‡æ¡£
 	 * @param sql
 	 * @return
 	 * @throws SQLFeatureNotSupportedException
@@ -124,10 +124,10 @@ public interface EsSearchOperations {
 	boolean update(String sql) throws SQLFeatureNotSupportedException, SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ¸üĞÂÎÄµµ¶ÔÏó£¬entryĞè°üº¬ÎÄµµid×Ö¶Î
+	 * æ›´æ–°æ–‡æ¡£å¯¹è±¡ï¼Œentryéœ€åŒ…å«æ–‡æ¡£idå­—æ®µ
 	 * @param index
 	 * @param type
-	 * @param entry:±ØĞë°üº¬id×Ö¶Î
+	 * @param entry:å¿…é¡»åŒ…å«idå­—æ®µ
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException
 	 * @throws InterruptedException
@@ -137,10 +137,10 @@ public interface EsSearchOperations {
 	<T> void update(String index,String type,T entry) throws InstantiationException, IllegalAccessException, InterruptedException, ExecutionException, SqlParseException;
 	
 	/**
-	 * ¸üĞÂÎÄµµ¼¯£¬entryĞè°üº¬ÎÄµµid×Ö¶Î
+	 * æ›´æ–°æ–‡æ¡£é›†ï¼Œentryéœ€åŒ…å«æ–‡æ¡£idå­—æ®µ
 	 * @param index
 	 * @param type
-	 * @param entryList£ºentry±ØĞë°üº¬id×Ö¶Î
+	 * @param entryListï¼šentryå¿…é¡»åŒ…å«idå­—æ®µ
 	 * @throws SqlParseException
 	 * @throws InterruptedException
 	 * @throws ExecutionException
@@ -148,8 +148,8 @@ public interface EsSearchOperations {
 	<T> void update(String index,String type,List<T> entryList) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ¸üĞÂÎÄµµ¼¯£¬ÒÀ¾İsourceMapÁĞ±í
-	 * @param dataList£º±ØĞë°üº¬key£ºindex,type,id
+	 * æ›´æ–°æ–‡æ¡£é›†ï¼Œä¾æ®sourceMapåˆ—è¡¨
+	 * @param dataListï¼šå¿…é¡»åŒ…å«keyï¼šindex,type,id
 	 * @throws SqlParseException 
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
@@ -157,8 +157,8 @@ public interface EsSearchOperations {
 	void updatSource(List<Map<String,Object>> dataList) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ¸üĞÂÎÄµµ£¬ÒÀ¾İsourceMap
-	 * @param datas£º±ØĞë°üº¬key£ºindex,type,id
+	 * æ›´æ–°æ–‡æ¡£ï¼Œä¾æ®sourceMap
+	 * @param datasï¼šå¿…é¡»åŒ…å«keyï¼šindex,type,id
 	 * @throws SqlParseException 
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
@@ -166,7 +166,7 @@ public interface EsSearchOperations {
 	void updatSource(Map<String,Object> data) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ¸üĞÂÎÄµµ£¬ÒÀ¾İsourceMap
+	 * æ›´æ–°æ–‡æ¡£ï¼Œä¾æ®sourceMap
 	 * @param index
 	 * @param type
 	 * @param fields
@@ -177,7 +177,7 @@ public interface EsSearchOperations {
 	void updatSource(String index,String type,Map<String,Object> fields) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ¸üĞÂÎÄµµ¼¯£¬ÒÀ¾İsourceMap
+	 * æ›´æ–°æ–‡æ¡£é›†ï¼Œä¾æ®sourceMap
 	 * @param index
 	 * @param type
 	 * @param dataList
@@ -188,10 +188,10 @@ public interface EsSearchOperations {
 	void updatSource(String index,String type,List<Map<String,Object>> dataList) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ²åÈëÎÄµµ£¬entryĞè°üº¬id
+	 * æ’å…¥æ–‡æ¡£ï¼Œentryéœ€åŒ…å«id
 	 * @param index
 	 * @param type
-	 * @param entry:±ØĞë°üº¬id×Ö¶Î
+	 * @param entry:å¿…é¡»åŒ…å«idå­—æ®µ
 	 * @throws SqlParseException
 	 * @throws InterruptedException
 	 * @throws ExecutionException
@@ -199,10 +199,10 @@ public interface EsSearchOperations {
 	<T> void insert(String index,String type,T entry) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ²åÈëÎÄµµ¼¯£¬entryĞè°üº¬id
+	 * æ’å…¥æ–‡æ¡£é›†ï¼Œentryéœ€åŒ…å«id
 	 * @param index
 	 * @param type
-	 * @param entryList£¬ entry:±ØĞë°üº¬id×Ö¶Î
+	 * @param entryListï¼Œ entry:å¿…é¡»åŒ…å«idå­—æ®µ
 	 * @throws SqlParseException
 	 * @throws InterruptedException
 	 * @throws ExecutionException
@@ -210,7 +210,7 @@ public interface EsSearchOperations {
 	<T> void insert(String index,String type,List<T> entryList) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ²åÈëÎÄµµ
+	 * æ’å…¥æ–‡æ¡£
 	 * @param index
 	 * @param type
 	 * @param fields
@@ -221,7 +221,7 @@ public interface EsSearchOperations {
 	void insertSource(String index,String type,Map<String,Object> fields) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ²åÈëÎÄµµ¼¯
+	 * æ’å…¥æ–‡æ¡£é›†
 	 * @param index
 	 * @param type
 	 * @param fieldsList
@@ -232,8 +232,8 @@ public interface EsSearchOperations {
 	void insertSource(String index,String type,List<Map<String,Object>> fieldsList) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ²åÈëÎÄµµ,ÒÀ¾İdataSource
-	 * @param data£º±ØĞë°üº¬key£ºindex,type,id
+	 * æ’å…¥æ–‡æ¡£,ä¾æ®dataSource
+	 * @param dataï¼šå¿…é¡»åŒ…å«keyï¼šindex,type,id
 	 * @throws SqlParseException 
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
@@ -241,8 +241,8 @@ public interface EsSearchOperations {
 	void insertSource(Map<String,Object> data) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * ²åÈëÎÄµµ¼¯,ÒÀ¾İdataSourceÁĞ±í
-	 * @param dataList£º±ØĞë°üº¬key£ºindex,type,id
+	 * æ’å…¥æ–‡æ¡£é›†,ä¾æ®dataSourceåˆ—è¡¨
+	 * @param dataListï¼šå¿…é¡»åŒ…å«keyï¼šindex,type,id
 	 * @throws SqlParseException 
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
@@ -250,13 +250,13 @@ public interface EsSearchOperations {
 	void insertSource(List<Map<String,Object>> dataList) throws SqlParseException, InterruptedException, ExecutionException;
 	
 	/**
-	 * »ñÈ¡esµÄË÷ÒıÃû³ÆÁĞ±í
+	 * è·å–esçš„ç´¢å¼•åç§°åˆ—è¡¨
 	 * @return
 	 */
 	List<String> getIndex();
 	
 	/**
-	 * »ñÈ¡Ö¸¶¨Ë÷ÒıµÄtypeÀàĞÍ£¬¼°Æä×Ö¶ÎÃû³ÆºÍÀàĞÍ
+	 * è·å–æŒ‡å®šç´¢å¼•çš„typeç±»å‹ï¼ŒåŠå…¶å­—æ®µåç§°å’Œç±»å‹
 	 * @param index
 	 * @return
 	 * @throws IOException
@@ -264,7 +264,7 @@ public interface EsSearchOperations {
 	Map<String,Map<String,String>> getType(String index) throws IOException;
 	
 	/**
-	 * ´´½¨Ë÷Òı,´´½¨mapping
+	 * åˆ›å»ºç´¢å¼•,åˆ›å»ºmapping
 	 * @param index
 	 * @param typeList[field,type,index,store]
 	 * @return
@@ -272,25 +272,25 @@ public interface EsSearchOperations {
 	boolean createIndex(String index,String type,List<Map<String,String>> fieldList) throws IOException ;
 	
 	/**
-	 * ´´½¨¿ÕË÷Òı
+	 * åˆ›å»ºç©ºç´¢å¼•
 	 * @param index
 	 * @return
 	 */
 	boolean createIndex(String index);
 	
 	/**
-	 * ÅĞ¶ÏË÷ÒıÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­ç´¢å¼•æ˜¯å¦å­˜åœ¨
 	 * @param index
 	 * @return
 	 */
 	boolean exists(String index);
 
 	/**
-	 * ¸üĞÂÎÄµµ£¬ÒÀ¾İsourceMap
+	 * æ›´æ–°æ–‡æ¡£ï¼Œä¾æ®sourceMap
 	 * @param index
 	 * @param type
 	 * @param fields
-	 * @param retryOnConflict °æ±¾³åÍ»ÖØÊÔ´ÎÊı>=0
+	 * @param retryOnConflict ç‰ˆæœ¬å†²çªé‡è¯•æ¬¡æ•°>=0
 	 * @throws SqlParseException
 	 * @throws InterruptedException
 	 * @throws ExecutionException

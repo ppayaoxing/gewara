@@ -41,10 +41,10 @@ import com.alibaba.dubbo.registry.NotifyListener;
  */
 public abstract class FailbackRegistry extends AbstractRegistry {
 
-    // ��ʱ����ִ����
+    // 锟斤拷时锟斤拷锟斤拷执锟斤拷锟斤拷
     private final ScheduledExecutorService retryExecutor = Executors.newScheduledThreadPool(1, new NamedThreadFactory("DubboRegistryFailedRetryTimer", true));
 
-    // ʧ�����Զ�ʱ������ʱ����Ƿ�������ʧ�ܣ����У����޴�����
+    // 失锟斤拷锟斤拷锟皆讹拷时锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷欠锟斤拷锟斤拷锟斤拷锟绞э拷埽锟斤拷锟斤拷校锟斤拷锟斤拷薮锟斤拷锟斤拷锟�
     private final ScheduledFuture<?> retryFuture;
 
     private final Set<URL> failedRegistered = new ConcurrentHashSet<URL>();
@@ -63,10 +63,10 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         this.retryFuture = retryExecutor.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                // ��Ⲣ����ע������
+                // 锟斤拷獠拷锟斤拷锟阶拷锟斤拷锟斤拷锟�
                 try {
                     retry();
-                } catch (Throwable t) { // �������ݴ�
+                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
                     logger.error("Unexpected error occur at failed retry, cause: " + t.getMessage(), t);
                 }
             }
@@ -127,12 +127,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         failedRegistered.remove(url);
         failedUnregistered.remove(url);
         try {
-            // ��������˷���ע������
+            // 锟斤拷锟斤拷锟斤拷锟斤拷朔锟斤拷锟阶拷锟斤拷锟斤拷锟�
             doRegister(url);
         } catch (Exception e) {
             Throwable t = e;
 
-            // �������������ʱ��⣬��ֱ���׳��쳣
+            // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟绞憋拷锟解，锟斤拷直锟斤拷锟阶筹拷锟届常
             boolean check = getUrl().getParameter(Constants.CHECK_KEY, true)
                     && url.getParameter(Constants.CHECK_KEY, true)
                     && ! Constants.CONSUMER_PROTOCOL.equals(url.getProtocol());
@@ -146,7 +146,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                 logger.error("Failed to register " + url + ", waiting for retry, cause: " + t.getMessage(), t);
             }
 
-            // ��ʧ�ܵ�ע�������¼��ʧ���б���ʱ����
+            // 锟斤拷失锟杰碉拷注锟斤拷锟斤拷锟斤拷锟铰硷拷锟绞э拷锟斤拷斜锟斤拷锟绞憋拷锟斤拷锟�
             failedRegistered.add(url);
         }
     }
@@ -157,12 +157,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         failedRegistered.remove(url);
         failedUnregistered.remove(url);
         try {
-            // ��������˷���ȡ��ע������
+            // 锟斤拷锟斤拷锟斤拷锟斤拷朔锟斤拷锟饺★拷锟阶拷锟斤拷锟斤拷锟�
             doUnregister(url);
         } catch (Exception e) {
             Throwable t = e;
 
-            // �������������ʱ��⣬��ֱ���׳��쳣
+            // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟绞憋拷锟解，锟斤拷直锟斤拷锟阶筹拷锟届常
             boolean check = getUrl().getParameter(Constants.CHECK_KEY, true)
                     && url.getParameter(Constants.CHECK_KEY, true)
                     && ! Constants.CONSUMER_PROTOCOL.equals(url.getProtocol());
@@ -176,7 +176,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                 logger.error("Failed to uregister " + url + ", waiting for retry, cause: " + t.getMessage(), t);
             }
 
-            // ��ʧ�ܵ�ȡ��ע�������¼��ʧ���б���ʱ����
+            // 锟斤拷失锟杰碉拷取锟斤拷注锟斤拷锟斤拷锟斤拷锟铰硷拷锟绞э拷锟斤拷斜锟斤拷锟绞憋拷锟斤拷锟�
             failedUnregistered.add(url);
         }
     }
@@ -186,7 +186,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         super.subscribe(url, listener);
         removeFailedSubscribed(url, listener);
         try {
-            // ��������˷��Ͷ�������
+            // 锟斤拷锟斤拷锟斤拷锟斤拷朔锟斤拷投锟斤拷锟斤拷锟斤拷锟�
             doSubscribe(url, listener);
         } catch (Exception e) {
             Throwable t = e;
@@ -196,7 +196,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                 notify(url, listener, urls);
                 logger.error("Failed to subscribe " + url + ", Using cached list: " + urls + " from cache file: " + getUrl().getParameter(Constants.FILE_KEY, System.getProperty("user.home") + "/dubbo-registry-" + url.getHost() + ".cache") + ", cause: " + t.getMessage(), t);
             } else {
-                // �������������ʱ��⣬��ֱ���׳��쳣
+                // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟绞憋拷锟解，锟斤拷直锟斤拷锟阶筹拷锟届常
                 boolean check = getUrl().getParameter(Constants.CHECK_KEY, true)
                         && url.getParameter(Constants.CHECK_KEY, true);
                 boolean skipFailback = t instanceof SkipFailbackWrapperException;
@@ -210,7 +210,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                 }
             }
 
-            // ��ʧ�ܵĶ��������¼��ʧ���б���ʱ����
+            // 锟斤拷失锟杰的讹拷锟斤拷锟斤拷锟斤拷锟铰硷拷锟绞э拷锟斤拷斜锟斤拷锟绞憋拷锟斤拷锟�
             addFailedSubscribed(url, listener);
         }
     }
@@ -220,12 +220,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         super.unsubscribe(url, listener);
         removeFailedSubscribed(url, listener);
         try {
-            // ��������˷���ȡ����������
+            // 锟斤拷锟斤拷锟斤拷锟斤拷朔锟斤拷锟饺★拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
             doUnsubscribe(url, listener);
         } catch (Exception e) {
             Throwable t = e;
 
-            // �������������ʱ��⣬��ֱ���׳��쳣
+            // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟绞憋拷锟解，锟斤拷直锟斤拷锟阶筹拷锟届常
             boolean check = getUrl().getParameter(Constants.CHECK_KEY, true)
                     && url.getParameter(Constants.CHECK_KEY, true);
             boolean skipFailback = t instanceof SkipFailbackWrapperException;
@@ -238,7 +238,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                 logger.error("Failed to unsubscribe " + url + ", waiting for retry, cause: " + t.getMessage(), t);
             }
 
-            // ��ʧ�ܵ�ȡ�����������¼��ʧ���б���ʱ����
+            // 锟斤拷失锟杰碉拷取锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟铰硷拷锟绞э拷锟斤拷斜锟斤拷锟绞憋拷锟斤拷锟�
             Set<NotifyListener> listeners = failedUnsubscribed.get(url);
             if (listeners == null) {
                 failedUnsubscribed.putIfAbsent(url, new ConcurrentHashSet<NotifyListener>());
@@ -259,7 +259,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         try {
         	doNotify(url, listener, urls);
         } catch (Exception t) {
-            // ��ʧ�ܵ�֪ͨ�����¼��ʧ���б���ʱ����
+            // 锟斤拷失锟杰碉拷通知锟斤拷锟斤拷锟铰硷拷锟绞э拷锟斤拷斜锟斤拷锟绞憋拷锟斤拷锟�
             Map<NotifyListener, List<URL>> listeners = failedNotified.get(url);
             if (listeners == null) {
                 failedNotified.putIfAbsent(url, new ConcurrentHashMap<NotifyListener, List<URL>>());
@@ -301,7 +301,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         }
     }
 
-    // ����ʧ�ܵĶ���
+    // 锟斤拷锟斤拷失锟杰的讹拷锟斤拷
     protected void retry() {
         if (! failedRegistered.isEmpty()) {
             Set<URL> failed = new HashSet<URL>(failedRegistered);
@@ -314,11 +314,11 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                         try {
                             doRegister(url);
                             failedRegistered.remove(url);
-                        } catch (Throwable t) { // ���������쳣���ȴ��´�����
+                        } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
                             logger.warn("Failed to retry register " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                         }
                     }
-                } catch (Throwable t) { // ���������쳣���ȴ��´�����
+                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
                     logger.warn("Failed to retry register " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                 }
             }
@@ -334,11 +334,11 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                         try {
                             doUnregister(url);
                             failedUnregistered.remove(url);
-                        } catch (Throwable t) { // ���������쳣���ȴ��´�����
+                        } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
                             logger.warn("Failed to retry unregister  " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                         }
                     }
-                } catch (Throwable t) { // ���������쳣���ȴ��´�����
+                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
                     logger.warn("Failed to retry unregister  " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                 }
             }
@@ -362,12 +362,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                             try {
                                 doSubscribe(url, listener);
                                 listeners.remove(listener);
-                            } catch (Throwable t) { // ���������쳣���ȴ��´�����
+                            } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
                                 logger.warn("Failed to retry subscribe " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                             }
                         }
                     }
-                } catch (Throwable t) { // ���������쳣���ȴ��´�����
+                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
                     logger.warn("Failed to retry subscribe " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                 }
             }
@@ -391,12 +391,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                             try {
                                 doUnsubscribe(url, listener);
                                 listeners.remove(listener);
-                            } catch (Throwable t) { // ���������쳣���ȴ��´�����
+                            } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
                                 logger.warn("Failed to retry unsubscribe " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                             }
                         }
                     }
-                } catch (Throwable t) { // ���������쳣���ȴ��´�����
+                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
                     logger.warn("Failed to retry unsubscribe " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                 }
             }
@@ -420,12 +420,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                                 List<URL> urls = entry.getValue();
                                 listener.notify(urls);
                                 values.remove(listener);
-                            } catch (Throwable t) { // ���������쳣���ȴ��´�����
+                            } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
                                 logger.warn("Failed to retry notify " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                             }
                         }
                     }
-                } catch (Throwable t) { // ���������쳣���ȴ��´�����
+                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
                     logger.warn("Failed to retry notify " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                 }
             }
@@ -442,7 +442,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         }
     }
 
-    // ==== ģ�巽�� ====
+    // ==== 模锟藉方锟斤拷 ====
 
     protected abstract void doRegister(URL url);
 

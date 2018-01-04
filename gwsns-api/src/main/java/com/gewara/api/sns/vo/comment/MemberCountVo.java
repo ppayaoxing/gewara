@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * com.gewara.service.impl.CommentServiceImpl.getHotMicroMemberList(String tag, Long memberid, int maxnum)·½·¨ÖÐÊ¹ÓÃ
+ * com.gewara.service.impl.CommentServiceImpl.getHotMicroMemberList(String tag, Long memberid, int maxnum)æ–¹æ³•ä¸­ä½¿ç”¨
  * @author quzhuping
  *
  */

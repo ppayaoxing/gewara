@@ -134,19 +134,19 @@ public class MockClusterInvoker<T> implements Invoker<T>{
 	}
 
 	/**
-     * ����MockInvoker
-     * ��Լ��
-     * directory����invocation���Ƿ���Constants.INVOCATION_NEED_MOCK�����жϻ�ȡ����һ��normal invoker ����һ�� mock invoker
-     * ���directorylist ���ض��mock invoker��ֻʹ�õ�һ��invoker.
+     * 锟斤拷锟斤拷MockInvoker
+     * 锟斤拷约锟斤拷
+     * directory锟斤拷锟斤拷invocation锟斤拷锟角凤拷锟斤拷Constants.INVOCATION_NEED_MOCK锟斤拷锟斤拷锟叫断伙拷取锟斤拷锟斤拷一锟斤拷normal invoker 锟斤拷锟斤拷一锟斤拷 mock invoker
+     * 锟斤拷锟絛irectorylist 锟斤拷锟截讹拷锟絤ock invoker锟斤拷只使锟矫碉拷一锟斤拷invoker.
      * @param invocation
      * @return 
      */
     private List<Invoker<T>> selectMockInvoker(Invocation invocation){
-    	//TODO generic invoker��
+    	//TODO generic invoker锟斤拷
         if (invocation instanceof RpcInvocation){
-            //����������Լ(��Ȼ�ڽӿ���������������������չ�Ի��������.ͬʱ����attachement�е�������Ҫ�Ľ�
+            //锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷约(锟斤拷然锟节接匡拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷展锟皆伙拷锟斤拷锟斤拷锟斤拷锟�.同时锟斤拷锟斤拷attachement锟叫碉拷锟斤拷锟斤拷锟斤拷要锟侥斤拷
         	((RpcInvocation)invocation).setAttachment(Constants.INVOCATION_NEED_MOCK, Boolean.TRUE.toString());
-            //directory����invocation��attachment�Ƿ���Constants.INVOCATION_NEED_MOCK�����жϻ�ȡ����normal invokers or mock invokers
+            //directory锟斤拷锟斤拷invocation锟斤拷attachment锟角凤拷锟斤拷Constants.INVOCATION_NEED_MOCK锟斤拷锟斤拷锟叫断伙拷取锟斤拷锟斤拷normal invokers or mock invokers
         	List<Invoker<T>> invokers = directory.list(invocation);
             return invokers;
         } else {

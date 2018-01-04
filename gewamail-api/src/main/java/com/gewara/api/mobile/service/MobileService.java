@@ -6,14 +6,14 @@ import com.gewara.api.Response;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * ÊÖ»úºÅ·şÎñ
+ * æ‰‹æœºå·æœåŠ¡
  * @author quzhuping
  *
  */
 public interface MobileService {
 
 	/**
-	 * ±£´æ´«µİ¹ıÀ´µÄÊÖ»úºÅÁĞ±í
+	 * ä¿å­˜ä¼ é€’è¿‡æ¥çš„æ‰‹æœºå·åˆ—è¡¨
 	 * @param mobileList
 	 * @return
      * @see #saveMobiles2
@@ -22,15 +22,15 @@ public interface MobileService {
 	public Response saveMobiles(List<String> mobileList);
 
 	/**
-	 * ±£´æ´«µİ¹ıÀ´µÄÊÖ»úºÅÁĞ±í
+	 * ä¿å­˜ä¼ é€’è¿‡æ¥çš„æ‰‹æœºå·åˆ—è¡¨
 	 * @param mobileList
 	 * @return
 	 */
 	public ResultCode saveMobiles2(List<String> mobileList);
 	
 	/**
-	 * ´ÓmongoÅúÁ¿µ¼ÈëÊÖ»úºÅ
-	 * @param batchId mongoÅú´ÎºÅ
+	 * ä»mongoæ‰¹é‡å¯¼å…¥æ‰‹æœºå·
+	 * @param batchId mongoæ‰¹æ¬¡å·
 	 * @return
      * @see #batchImportMobiles2
 	 */
@@ -38,8 +38,8 @@ public interface MobileService {
 	public Response batchImportMobiles(String batchId);
 	
 	/**
-	 * ´ÓmongoÅúÁ¿µ¼ÈëÊÖ»úºÅ
-	 * @param batchId mongoÅú´ÎºÅ
+	 * ä»mongoæ‰¹é‡å¯¼å…¥æ‰‹æœºå·
+	 * @param batchId mongoæ‰¹æ¬¡å·
 	 * @return
 	 */
 	public ResultCode batchImportMobiles2(String batchId);

@@ -9,14 +9,14 @@ public class PayRepeatTrade extends ApiObject{
 	private static final long serialVersionUID = 7652210940331647300L;
 	
 	private String id;				//ID
-	private String tradeNo;			//¶©µ¥ºÅ
-	private String merTradeNo;		//¶©µ¥ºÅ
-	private String payseqno;		//µÚÈı·½Ö§¸¶ĞòºÅ
-	private String gatewayCode;		//Ö§¸¶Íø¹Ø´úÂë	
-	private String merchantCode;	//ÉÌ»§ºÅ±êÊ¶
-	private Integer paidAmount;		//Ö§¸¶½ğ¶î£¬µ¥Î»£º·Ö
-	private Timestamp notifyTime;	//Ö§¸¶Ê±¼ä
-	private String abcOtherinfo;	//Å©ĞĞPOSÆäËûĞÅÏ¢£º»ı·Ö¡¢½ğ¶î
+	private String tradeNo;			//è®¢å•å·
+	private String merTradeNo;		//è®¢å•å·
+	private String payseqno;		//ç¬¬ä¸‰æ–¹æ”¯ä»˜åºå·
+	private String gatewayCode;		//æ”¯ä»˜ç½‘å…³ä»£ç 	
+	private String merchantCode;	//å•†æˆ·å·æ ‡è¯†
+	private Integer paidAmount;		//æ”¯ä»˜é‡‘é¢ï¼Œå•ä½ï¼šåˆ†
+	private Timestamp notifyTime;	//æ”¯ä»˜æ—¶é—´
+	private String abcOtherinfo;	//å†œè¡ŒPOSå…¶ä»–ä¿¡æ¯ï¼šç§¯åˆ†ã€é‡‘é¢
 	
 	public String getId() {
 		return id;

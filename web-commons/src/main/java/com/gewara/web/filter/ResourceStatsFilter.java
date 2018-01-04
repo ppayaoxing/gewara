@@ -23,7 +23,7 @@ import com.gewara.web.support.ResourceStatsUtil;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public class ResourceStatsFilter extends GenericFilterBean {
 	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
@@ -47,7 +47,7 @@ public class ResourceStatsFilter extends GenericFilterBean {
 				// Proceed without invoking this filter...
 				filterChain.doFilter(request, response);
 			}finally{
-				//µÚ¶ş´Î½øÈëfilter£¬¼ÇÂ¼Òì²½´¦ÀíÊ±¼ä 
+				//ç¬¬äºŒæ¬¡è¿›å…¥filterï¼Œè®°å½•å¼‚æ­¥å¤„ç†æ—¶é—´ 
 				ResourceStatsContainer container = (ResourceStatsContainer) httpRequest.getAttribute(ResourceStatsContainer.RESOURCE_STATS);
 				if(container != null){
 					container.processStats();
@@ -117,7 +117,7 @@ public class ResourceStatsFilter extends GenericFilterBean {
 		LogCounter counter = ResourceStatsUtil.getUriStats().beforeProcess(uri, t);
 		Integer loc = ResourceStatsUtil.recordRequest(req, multiPart);
 		
-		//----- Òì²½Âß¼­´¦ÀíĞèÒª, µÚÒ»´Î½øÈëfilter±£´æµ½requestÖĞ--------------------------------------------------------
+		//----- å¼‚æ­¥é€»è¾‘å¤„ç†éœ€è¦, ç¬¬ä¸€æ¬¡è¿›å…¥filterä¿å­˜åˆ°requestä¸­--------------------------------------------------------
 		ResourceStatsContainer container = new ResourceStatsContainer(counter, t, loc);
 		req.setAttribute(ResourceStatsContainer.RESOURCE_STATS, container);
 		//-----------------------------------------------------------------------------

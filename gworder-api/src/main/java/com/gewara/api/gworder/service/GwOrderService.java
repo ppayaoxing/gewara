@@ -15,150 +15,150 @@ import com.gewara.api.vo.pay.PubSaleVo;
 public interface GwOrderService extends ContextManagerService{
 
 	/**
-	 * ¿ìËÙ½«CreateOrderReq·ÅÈë´¦Àí¶ÓÁĞÖĞ,Ö±½Ó·µ»Ø
-	 * <br>ºóÌ¨Òì²½´¦Àí´´½¨Á÷³Ì£¬´´½¨³É¹¦ºóÍ¨¹ıJMSÏûÏ¢Òì²½Í¨Öª
-	 * <br>¹¤×÷¶ÓÁĞÎ´Âú£¬·ÅÈë³É¹¦£¬·µ»ØResultCode.SUCCESS
-	 * <br>Èç¹ûÊ§°Ü£¬·µ»ØResultCode.Failure
+	 * å¿«é€Ÿå°†CreateOrderReqæ”¾å…¥å¤„ç†é˜Ÿåˆ—ä¸­,ç›´æ¥è¿”å›
+	 * <br>åå°å¼‚æ­¥å¤„ç†åˆ›å»ºæµç¨‹ï¼Œåˆ›å»ºæˆåŠŸåé€šè¿‡JMSæ¶ˆæ¯å¼‚æ­¥é€šçŸ¥
+	 * <br>å·¥ä½œé˜Ÿåˆ—æœªæ»¡ï¼Œæ”¾å…¥æˆåŠŸï¼Œè¿”å›ResultCode.SUCCESS
+	 * <br>å¦‚æœå¤±è´¥ï¼Œè¿”å›ResultCode.Failure
 	 * @param createOrderReq
 	 * @return ResultCode 
 	 */
 	ResultCode asynCreateOrder(CreateOrderReq createOrderReq);
 	
 	/**
-	 * ¿ìËÙ½«CreateMovieOrderReq·ÅÈë´¦Àí¶ÓÁĞÖĞ,Ö±½Ó·µ»Ø
-	 * <br>ºóÌ¨Òì²½´¦Àí´´½¨Á÷³Ì£¬´´½¨³É¹¦ºóÍ¨¹ıJMSÏûÏ¢Òì²½Í¨Öª
-	 * <br>¹¤×÷¶ÓÁĞÎ´Âú£¬·ÅÈë³É¹¦£¬·µ»ØResultCode.SUCCESS
-	 * <br>Èç¹ûÊ§°Ü£¬·µ»ØResultCode.Failure
+	 * å¿«é€Ÿå°†CreateMovieOrderReqæ”¾å…¥å¤„ç†é˜Ÿåˆ—ä¸­,ç›´æ¥è¿”å›
+	 * <br>åå°å¼‚æ­¥å¤„ç†åˆ›å»ºæµç¨‹ï¼Œåˆ›å»ºæˆåŠŸåé€šè¿‡JMSæ¶ˆæ¯å¼‚æ­¥é€šçŸ¥
+	 * <br>å·¥ä½œé˜Ÿåˆ—æœªæ»¡ï¼Œæ”¾å…¥æˆåŠŸï¼Œè¿”å›ResultCode.SUCCESS
+	 * <br>å¦‚æœå¤±è´¥ï¼Œè¿”å›ResultCode.Failure
 	 * @param createOrderReq
 	 * @return ResultCode 
 	 */
 	ResultCode asynCreateMovieOrder(CreateMovieOrderReq createOrderReq);
 	
 	/**
-	 * Í¬²½´´½¨µçÓ°¶©µ¥
-	 * <br>Ê¹ÓÃ³¡¾°£ºÏÂµ¥Á¿Ğ¡£¬Ô­À´µ÷ÓÃdubbo½Ó¿Ú£¬Òì²½¸ÄÔìÄÑ¶È´ó,Èç£ºpartner¡¢wapµ÷ÓÃ
+	 * åŒæ­¥åˆ›å»ºç”µå½±è®¢å•
+	 * <br>ä½¿ç”¨åœºæ™¯ï¼šä¸‹å•é‡å°ï¼ŒåŸæ¥è°ƒç”¨dubboæ¥å£ï¼Œå¼‚æ­¥æ”¹é€ éš¾åº¦å¤§,å¦‚ï¼špartnerã€wapè°ƒç”¨
 	 * @param createOrderReq
-	 * @return ResultCode£¬³É¹¦·µ»ØGewaOrderVo¶ÔÏó
+	 * @return ResultCodeï¼ŒæˆåŠŸè¿”å›GewaOrderVoå¯¹è±¡
 	 */
 	ResultCode<GewaOrderVo> synCreateMovieOrder(CreateMovieOrderReq createOrderReq);
 	/**
-	 * ´´½¨ÉÌ³Ç¶©µ¥
+	 * åˆ›å»ºå•†åŸè®¢å•
 	 * @param createOrderReq
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> createMallOrder(CreateMallOrderReq createOrderReq);
 	
 	/**
-	 * ¿ìËÙ½«CreateDramaOrderReq·ÅÈë´¦Àí¶ÓÁĞÖĞ,Ö±½Ó·µ»Ø
-	 * <br>ºóÌ¨Òì²½´¦Àí´´½¨Á÷³Ì£¬´´½¨³É¹¦ºóÍ¨¹ıJMSÏûÏ¢Òì²½Í¨Öª
-	 * <br>¹¤×÷¶ÓÁĞÎ´Âú£¬·ÅÈë³É¹¦£¬·µ»ØResultCode.SUCCESS
-	 * <br>Èç¹ûÊ§°Ü£¬·µ»ØResultCode.Failure
+	 * å¿«é€Ÿå°†CreateDramaOrderReqæ”¾å…¥å¤„ç†é˜Ÿåˆ—ä¸­,ç›´æ¥è¿”å›
+	 * <br>åå°å¼‚æ­¥å¤„ç†åˆ›å»ºæµç¨‹ï¼Œåˆ›å»ºæˆåŠŸåé€šè¿‡JMSæ¶ˆæ¯å¼‚æ­¥é€šçŸ¥
+	 * <br>å·¥ä½œé˜Ÿåˆ—æœªæ»¡ï¼Œæ”¾å…¥æˆåŠŸï¼Œè¿”å›ResultCode.SUCCESS
+	 * <br>å¦‚æœå¤±è´¥ï¼Œè¿”å›ResultCode.Failure
 	 * @param createOrderReq
 	 * @return ResultCode 
 	 */
 	ResultCode asynCreateDramaOrder(CreateDramaOrderReq createOrderReq);
 	/**
-	 * Í¬²½´´½¨Ñİ³ö¶©µ¥
-	 * <br>Ê¹ÓÃ³¡¾°£ºÏÂµ¥Á¿Ğ¡£¬Ô­À´µ÷ÓÃdubbo½Ó¿Ú£¬Òì²½¸ÄÔìÄÑ¶È´ó,Èç£ºpartner¡¢wapµ÷ÓÃ
+	 * åŒæ­¥åˆ›å»ºæ¼”å‡ºè®¢å•
+	 * <br>ä½¿ç”¨åœºæ™¯ï¼šä¸‹å•é‡å°ï¼ŒåŸæ¥è°ƒç”¨dubboæ¥å£ï¼Œå¼‚æ­¥æ”¹é€ éš¾åº¦å¤§,å¦‚ï¼špartnerã€wapè°ƒç”¨
 	 * @param createOrderReq
-	 * @return ResultCode£¬³É¹¦·µ»ØGewaOrderVo¶ÔÏó
+	 * @return ResultCodeï¼ŒæˆåŠŸè¿”å›GewaOrderVoå¯¹è±¡
 	 */
 	ResultCode<GewaOrderVo> synCreateDramaOrder(CreateDramaOrderReq createOrderReq);
 		
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢(ÓÃ»§ÕıÔÚ½øĞĞ²Ù×÷µÄ¶©µ¥£¨ÏÂµ¥Íê³É¡¢È¥Ö§¸¶µÈ£©)
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯(ç”¨æˆ·æ­£åœ¨è¿›è¡Œæ“ä½œçš„è®¢å•ï¼ˆä¸‹å•å®Œæˆã€å»æ”¯ä»˜ç­‰ï¼‰)
 	 * @param id
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> getCurOrderById(Long id);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢(²»°üº¬ÀúÊ·¶©µ¥¼°ÒÑÒÆ³ıµ½Î´Ö§¸¶±íÀïµÄ¶©µ¥)
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯(ä¸åŒ…å«å†å²è®¢å•åŠå·²ç§»é™¤åˆ°æœªæ”¯ä»˜è¡¨é‡Œçš„è®¢å•)
 	 * @param id
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> getOrderById(Long id);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢(µ±Ç°¶©µ¥ÒÔ¼°³É¹¦¶©µ¥±í£¬²»°üº¬ÀúÊ·¶©µ¥¼°ÒÑÒÆ³ıµ½Î´Ö§¸¶±íÀïµÄ¶©µ¥)
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯(å½“å‰è®¢å•ä»¥åŠæˆåŠŸè®¢å•è¡¨ï¼Œä¸åŒ…å«å†å²è®¢å•åŠå·²ç§»é™¤åˆ°æœªæ”¯ä»˜è¡¨é‡Œçš„è®¢å•)
 	 * @param idList
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê7ÔÂ28ÈÕÏÂÎç2:35:15
+	 * @addTime 2016å¹´7æœˆ28æ—¥ä¸‹åˆ2:35:15
 	 */
 	ResultCode<List<GewaOrderVo>> getOrderByIdList(List<Long> idList);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢(°üº¬ÀúÊ·¶©µ¥£¬µ«²»°üº¬ÒÑÒÆ³ıµ½Î´Ö§¸¶±íÀïµÄ¶©µ¥)
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯(åŒ…å«å†å²è®¢å•ï¼Œä½†ä¸åŒ…å«å·²ç§»é™¤åˆ°æœªæ”¯ä»˜è¡¨é‡Œçš„è®¢å•)
 	 * @param id
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê6ÔÂ28ÈÕÏÂÎç4:45:46
+	 * @addTime 2016å¹´6æœˆ28æ—¥ä¸‹åˆ4:45:46
 	 */
 	ResultCode<GewaOrderVo> getGewaOrderAndHis(Long id);
 
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢(È«²¿¶©µ¥)
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯(å…¨éƒ¨è®¢å•)
 	 * @param id
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> getAllOrderById(Long id);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢(ÓÃ»§ÕıÔÚ½øĞĞ²Ù×÷µÄ¶©µ¥£¨ÏÂµ¥Íê³É¡¢È¥Ö§¸¶µÈ£©)
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯(ç”¨æˆ·æ­£åœ¨è¿›è¡Œæ“ä½œçš„è®¢å•ï¼ˆä¸‹å•å®Œæˆã€å»æ”¯ä»˜ç­‰ï¼‰)
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> getCurOrderByTradeNo(String tradeNo);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢(²»°üº¬ÀúÊ·¶©µ¥¼°ÒÑÒÆ³ıµ½Î´Ö§¸¶±íÀïµÄ¶©µ¥)
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯(ä¸åŒ…å«å†å²è®¢å•åŠå·²ç§»é™¤åˆ°æœªæ”¯ä»˜è¡¨é‡Œçš„è®¢å•)
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> getOrderByTradeNo(String tradeNo);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢(²»°üº¬ÒÑÒÆ³ıµ½Î´Ö§¸¶±íÀïµÄ¶©µ¥)
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯(ä¸åŒ…å«å·²ç§»é™¤åˆ°æœªæ”¯ä»˜è¡¨é‡Œçš„è®¢å•)
 	 * @param tradeNo
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê8ÔÂ4ÈÕÏÂÎç5:58:01
+	 * @addTime 2016å¹´8æœˆ4æ—¥ä¸‹åˆ5:58:01
 	 */
 	ResultCode<GewaOrderVo> getGewaOrderAndHis(String tradeNo);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ĞÅÏ¢(È«²¿¶©µ¥)
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•ä¿¡æ¯(å…¨éƒ¨è®¢å•)
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> getAllOrderByTradeNo(String tradeNo);
 	/**
-	 * Ë¢ĞÂ»º´æÖĞËø¶¨µÄ×ùÎ»
+	 * åˆ·æ–°ç¼“å­˜ä¸­é”å®šçš„åº§ä½
 	 * @param mpid
 	 * @param secid
 	 */
 	ResultCode refreshLockSeatList(Long mpid, String secid);
 
 	/**
-	 * ´¦Àípaid_failure¶©µ¥
+	 * å¤„ç†paid_failureè®¢å•
 	 * @param tradeNo
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê8ÔÂ27ÈÕÏÂÎç5:32:58
+	 * @addTime 2015å¹´8æœˆ27æ—¥ä¸‹åˆ5:32:58
 	 */
 	ResultCode processPaidFailureOrder(String tradeNo);
 	
 	/**
-	 * È·ÈÏ¶©µ¥³É¹¦£¬½«¶©µ¥×´Ì¬´Ópaid_failure£¬paid_failure_unfixÖÃÎªpaid_success
+	 * ç¡®è®¤è®¢å•æˆåŠŸï¼Œå°†è®¢å•çŠ¶æ€ä»paid_failureï¼Œpaid_failure_unfixç½®ä¸ºpaid_success
 	 * @param tradeNo
 	 * @return
 	 * @author leo
-	 * @addTime 2015Äê9ÔÂ1ÈÕÏÂÎç2:20:13
+	 * @addTime 2015å¹´9æœˆ1æ—¥ä¸‹åˆ2:20:13
 	 */
 	ResultCode confirmSuccess(String tradeNo);
 	/**
-	 * È¡Ïû¶©µ¥
+	 * å–æ¶ˆè®¢å•
 	 * @param tradeNo
 	 * @param memberId
 	 * @return
@@ -168,13 +168,13 @@ public interface GwOrderService extends ContextManagerService{
 	ResultCode cancelOrder(String tradeNo, String ukey, String reason);
 	
 	/**
-	 * ´´½¨°ü³¡¶©µ¥
+	 * åˆ›å»ºåŒ…åœºè®¢å•
 	 * @param req
 	 * @return
 	 */
 	ResultCode<GewaOrderVo> createBaoChangOrder(CreateBaoChangOrderReq req);
 	/**
-	 * ¸üĞÂÉÌ³Ç¶©µ¥µÄ³É±¾¼Û
+	 * æ›´æ–°å•†åŸè®¢å•çš„æˆæœ¬ä»·
 	 * @param tradeNo
 	 * @param totalcost
 	 * @return
@@ -182,50 +182,50 @@ public interface GwOrderService extends ContextManagerService{
 	ResultCode updateMallOrderTotalcost(String tradeNo, Integer totalcost);
 	
 	/**
-	 * ¸üĞÂ¶©µ¥£¨Ö»°üÀ¨£ºGewaOrder£©µÄÒ»¸ö»ò¶à¸ö×Ö¶ÎµÄÖµ</br>
-	 * ·µ»Ø±»ĞŞ¸ÄµÄ×Ö¶Î¸öÊı
-	 * @param orderId		¶©µ¥ID
-	 * @param properties	×Ö¶Î£¬¶à¸öÓÃ¡°,¡±¸ô¿ª£¬Ö»Ö§³ÖÒÔÏÂ¼¸¸öÊôĞÔ£ºotherinfo,mobile,taketime,restatus
-	 * @param values		Öµ
+	 * æ›´æ–°è®¢å•ï¼ˆåªåŒ…æ‹¬ï¼šGewaOrderï¼‰çš„ä¸€ä¸ªæˆ–å¤šä¸ªå­—æ®µçš„å€¼</br>
+	 * è¿”å›è¢«ä¿®æ”¹çš„å­—æ®µä¸ªæ•°
+	 * @param orderId		è®¢å•ID
+	 * @param properties	å­—æ®µï¼Œå¤šä¸ªç”¨â€œ,â€éš”å¼€ï¼Œåªæ”¯æŒä»¥ä¸‹å‡ ä¸ªå±æ€§ï¼šotherinfo,mobile,taketime,restatus
+	 * @param values		å€¼
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê6ÔÂ7ÈÕÉÏÎç11:26:29
+	 * @addTime 2016å¹´6æœˆ7æ—¥ä¸Šåˆ11:26:29
 	 */
 	ResultCode<Integer> updateCurOrder(Long orderId, String properties, Serializable... values);
 	
 	/**
-	 * ¸üĞÂ¶©µ¥£¨Ö»°üÀ¨£ºGewaOrder,PostOrder£©µÄÒ»¸ö»ò¶à¸ö×Ö¶ÎµÄÖµ</br>
-	 * ·µ»Ø±»ĞŞ¸ÄµÄ×Ö¶Î¸öÊı
-	 * @param orderId		¶©µ¥ID
-	 * @param properties	×Ö¶Î£¬¶à¸öÓÃ¡°,¡±¸ô¿ª£¬Ö»Ö§³ÖÒÔÏÂ¼¸¸öÊôĞÔ£ºotherinfo,mobile,taketime,restatus
-	 * @param values		Öµ
+	 * æ›´æ–°è®¢å•ï¼ˆåªåŒ…æ‹¬ï¼šGewaOrder,PostOrderï¼‰çš„ä¸€ä¸ªæˆ–å¤šä¸ªå­—æ®µçš„å€¼</br>
+	 * è¿”å›è¢«ä¿®æ”¹çš„å­—æ®µä¸ªæ•°
+	 * @param orderId		è®¢å•ID
+	 * @param properties	å­—æ®µï¼Œå¤šä¸ªç”¨â€œ,â€éš”å¼€ï¼Œåªæ”¯æŒä»¥ä¸‹å‡ ä¸ªå±æ€§ï¼šotherinfo,mobile,taketime,restatus
+	 * @param values		å€¼
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê6ÔÂ7ÈÕÉÏÎç11:26:29
+	 * @addTime 2016å¹´6æœˆ7æ—¥ä¸Šåˆ11:26:29
 	 */
 	ResultCode<Integer> updateGewaOrder(Long orderId, String properties, Serializable... values);
 	
 	/**
-	 * ¸üĞÂ¶©µ¥£¨Ö»°üÀ¨£ºGewaOrder,PostOrder,HisOrder£©µÄÒ»¸ö»ò¶à¸ö×Ö¶ÎµÄÖµ</br>
-	 * ·µ»Ø±»ĞŞ¸ÄµÄ×Ö¶Î¸öÊı
-	 * @param orderId		¶©µ¥ID
-	 * @param properties	×Ö¶Î£¬¶à¸öÓÃ¡°,¡±¸ô¿ª£¬Ö»Ö§³ÖÒÔÏÂ¼¸¸öÊôĞÔ£ºotherinfo,mobile,taketime,restatus
-	 * @param values		Öµ
+	 * æ›´æ–°è®¢å•ï¼ˆåªåŒ…æ‹¬ï¼šGewaOrder,PostOrder,HisOrderï¼‰çš„ä¸€ä¸ªæˆ–å¤šä¸ªå­—æ®µçš„å€¼</br>
+	 * è¿”å›è¢«ä¿®æ”¹çš„å­—æ®µä¸ªæ•°
+	 * @param orderId		è®¢å•ID
+	 * @param properties	å­—æ®µï¼Œå¤šä¸ªç”¨â€œ,â€éš”å¼€ï¼Œåªæ”¯æŒä»¥ä¸‹å‡ ä¸ªå±æ€§ï¼šotherinfo,mobile,taketime,restatus
+	 * @param values		å€¼
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê6ÔÂ7ÈÕÉÏÎç11:26:29
+	 * @addTime 2016å¹´6æœˆ7æ—¥ä¸Šåˆ11:26:29
 	 */
 	ResultCode<Integer> updateGewaOrderAndHis(Long orderId, String properties, Serializable... values);
 	
 	/**
-	 * ¸üĞÂ¶©µ¥£¨Ö»°üÀ¨£ºGewaOrder,PostOrder,HisOrder,CurFailureOrder£©µÄÒ»¸ö»ò¶à¸ö×Ö¶ÎµÄÖµ</br>
-	 * ·µ»Ø±»ĞŞ¸ÄµÄ×Ö¶Î¸öÊı
-	 * @param orderId		¶©µ¥ID
-	 * @param properties	×Ö¶Î£¬¶à¸öÓÃ¡°,¡±¸ô¿ª£¬Ö»Ö§³ÖÒÔÏÂ¼¸¸öÊôĞÔ£ºotherinfo,mobile,taketime,restatus
-	 * @param values		Öµ
+	 * æ›´æ–°è®¢å•ï¼ˆåªåŒ…æ‹¬ï¼šGewaOrder,PostOrder,HisOrder,CurFailureOrderï¼‰çš„ä¸€ä¸ªæˆ–å¤šä¸ªå­—æ®µçš„å€¼</br>
+	 * è¿”å›è¢«ä¿®æ”¹çš„å­—æ®µä¸ªæ•°
+	 * @param orderId		è®¢å•ID
+	 * @param properties	å­—æ®µï¼Œå¤šä¸ªç”¨â€œ,â€éš”å¼€ï¼Œåªæ”¯æŒä»¥ä¸‹å‡ ä¸ªå±æ€§ï¼šotherinfo,mobile,taketime,restatus
+	 * @param values		å€¼
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê6ÔÂ7ÈÕÉÏÎç11:26:29
+	 * @addTime 2016å¹´6æœˆ7æ—¥ä¸Šåˆ11:26:29
 	 */
 	ResultCode<Integer> updateAllOrder(Long orderId, String properties, Serializable... values);
 	

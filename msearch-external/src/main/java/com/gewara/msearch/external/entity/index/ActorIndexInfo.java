@@ -3,9 +3,9 @@ package com.gewara.msearch.external.entity.index;
 import java.util.List;
 
 /**
- * Ó°ÈËË÷ÒıĞÅÏ¢
- * @author ¶­Ã÷
- * @createDate 2015Äê6ÔÂ3ÈÕ
+ * å½±äººç´¢å¼•ä¿¡æ¯
+ * @author è‘£æ˜
+ * @createDate 2015å¹´6æœˆ3æ—¥
  */
 public class ActorIndexInfo extends IndexData{
 	
@@ -19,7 +19,7 @@ public class ActorIndexInfo extends IndexData{
 	
 	
 	/**
-	 * ÔøÓÃÃû£¬±ğÃû£¬ÒÕÃûµÈµÈ
+	 * æ›¾ç”¨åï¼Œåˆ«åï¼Œè‰ºåç­‰ç­‰
 	 * @return
 	 */
 	public List<String> getAliases() {
@@ -27,35 +27,35 @@ public class ActorIndexInfo extends IndexData{
 	}
 	
 	/**
-	 * Ó°ÈËÖĞÎÄÃû³Æ
+	 * å½±äººä¸­æ–‡åç§°
 	 * @return
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
-	 * Ó°ÈËÓ¢ÎÄÃû³Æ
+	 * å½±äººè‹±æ–‡åç§°
 	 * @return
 	 */
 	public String getEname() {
 		return ename;
 	}
 	/**
-	 * ²Î¼ÓÑİ³ö¹ıµÄµçÓ°Ãû³ÆÁĞ±í
+	 * å‚åŠ æ¼”å‡ºè¿‡çš„ç”µå½±åç§°åˆ—è¡¨
 	 * @return
 	 */
 	public List<String> getShows() {
 		return shows;
 	}
 	/**
-	 * µ¼Ñİ¹ıµÄµçÓ°Ãû³ÆÁĞ±í
+	 * å¯¼æ¼”è¿‡çš„ç”µå½±åç§°åˆ—è¡¨
 	 * @return
 	 */
 	public List<String> getDirectors() {
 		return directors;
 	}
 	/**
-	 * Ó°ÈËµÄ¼ò½é
+	 * å½±äººçš„ç®€ä»‹
 	 * @return
 	 */
 	public String getDesc() {

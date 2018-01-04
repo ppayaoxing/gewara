@@ -8,8 +8,8 @@ import com.gewara.api.vo.BaseVo;
 import com.gewara.movie.constant.Status;
 
 public class GewaCityVo extends BaseVo {
-	public static String SINGLE_SERVICE_TYPE = "single";//µ¥ÒµÎñÄ£Ê½
-	public static String MORE_SERVICE_TYPE = "more";//¶àÒµÎñÄ£Ê½
+	public static String SINGLE_SERVICE_TYPE = "single";//å•ä¸šåŠ¡æ¨¡å¼
+	public static String MORE_SERVICE_TYPE = "more";//å¤šä¸šåŠ¡æ¨¡å¼
 	
 	private static final long serialVersionUID = 8710609514593838526L;
 	private String citycode;
@@ -25,9 +25,9 @@ public class GewaCityVo extends BaseVo {
 	private String pinyin;
 	private String py;
 	private String manmethod; //auto, manual
-	private String bpointx;		//°Ù¶È×ø±êx.yÖá
+	private String bpointx;		//ç™¾åº¦åæ ‡x.yè½´
 	private String bpointy;
-	private String serviceType; //single µ¥ÒµÎñÄ£Ê½  more ¶àÒµÎñÄ£Ê½
+	private String serviceType; //single å•ä¸šåŠ¡æ¨¡å¼  more å¤šä¸šåŠ¡æ¨¡å¼
 	
 	@Override
 	public Serializable realId() {

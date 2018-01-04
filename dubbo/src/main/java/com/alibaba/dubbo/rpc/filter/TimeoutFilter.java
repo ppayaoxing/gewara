@@ -28,7 +28,7 @@ import com.alibaba.dubbo.rpc.Result;
 import com.alibaba.dubbo.rpc.RpcException;
 
 /**
- * ���ִ��timeout����log��¼�£���������������
+ * 锟斤拷锟街达拷锟絫imeout锟斤拷锟斤拷log锟斤拷录锟铰ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
  * 
  * @author chao.liuc
  */

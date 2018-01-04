@@ -5,15 +5,15 @@ import java.io.Serializable;
 import com.gewara.api.vo.BaseVo;
 
 public class AnswerCheckVo extends BaseVo{
-	private Long id; //ÍÛÀ²id
-	private String title;//ÍÛÀ²±êÌâ
-	private String content;//ÎÄ×Ö
-	private String link;//Á´½Ó
-	private String subject;//ÌâÄ¿°´¶ººÅ·Ö¸ô
-	private String updateTime;//Ê±¼ä
-	private Integer totalNum;//Ìâ¿âÊı
-	private Integer enable;//0-¹Ø±Õ£º1-Æô¶¯
-	private String endTime;//½áÊøÊ±¼ä
+	private Long id; //å“‡å•¦id
+	private String title;//å“‡å•¦æ ‡é¢˜
+	private String content;//æ–‡å­—
+	private String link;//é“¾æ¥
+	private String subject;//é¢˜ç›®æŒ‰é€—å·åˆ†éš”
+	private String updateTime;//æ—¶é—´
+	private Integer totalNum;//é¢˜åº“æ•°
+	private Integer enable;//0-å…³é—­ï¼š1-å¯åŠ¨
+	private String endTime;//ç»“æŸæ—¶é—´
 	public Long getId() {
 		return id;
 	}

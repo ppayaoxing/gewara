@@ -10,21 +10,21 @@ public class SetTicketVo extends BaseVo {
 	 * 
 	 */
 	private static final long serialVersionUID = 8313840001633377715L;
-	private String id;			//Ö÷¼ü
-	private String filmTag;		//µçÓ°½Ú±ê¼Ç
-	private String title; 		//Ì×Æ±±êÌâ
-	private String subtitle;	//Ì×Æ±¸±±êÌâ
-	private String amount;		//Ì×Æ±×Ü¼Û
-	private String movieInfo;	//Ì×Æ±µçÓ°,JsonĞÎÊ½´æ´¢
-	private Long mallGoodsId;	//ÉÌ³ÇÎïÆ·Id
-	private String topImg;		//Ì×Æ±Í¼Æ¬
-	private String otherInfo;	//ÆäËûĞÅÏ¢
-	private Timestamp addtime;	//Ìí¼ÓÊ±¼ä
-	private Long clicktimes;	//µã»÷´ÎÊı
-	private Integer orderSort;	//ÅÅĞò
-	private String content;		//¹æÔò
-	private String original_price;//Ì×Æ±Ô­¼Û
-	private String presell;//ÊÇ·ñÔ¤ÊÛ:0:·ñ£»1£ºÊÇ
+	private String id;			//ä¸»é”®
+	private String filmTag;		//ç”µå½±èŠ‚æ ‡è®°
+	private String title; 		//å¥—ç¥¨æ ‡é¢˜
+	private String subtitle;	//å¥—ç¥¨å‰¯æ ‡é¢˜
+	private String amount;		//å¥—ç¥¨æ€»ä»·
+	private String movieInfo;	//å¥—ç¥¨ç”µå½±,Jsonå½¢å¼å­˜å‚¨
+	private Long mallGoodsId;	//å•†åŸç‰©å“Id
+	private String topImg;		//å¥—ç¥¨å›¾ç‰‡
+	private String otherInfo;	//å…¶ä»–ä¿¡æ¯
+	private Timestamp addtime;	//æ·»åŠ æ—¶é—´
+	private Long clicktimes;	//ç‚¹å‡»æ¬¡æ•°
+	private Integer orderSort;	//æ’åº
+	private String content;		//è§„åˆ™
+	private String original_price;//å¥—ç¥¨åŸä»·
+	private String presell;//æ˜¯å¦é¢„å”®:0:å¦ï¼›1ï¼šæ˜¯
 	public String getId() {
 		return id;
 	}

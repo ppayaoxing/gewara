@@ -9,7 +9,7 @@ import com.gewara.api.vo.pay.OrderRefundVo;
 public interface OrderRefundVoService {
 	
 	/**
-	 * ²éÑ¯¶©µ¥ÍË¿îÁĞ±í
+	 * æŸ¥è¯¢è®¢å•é€€æ¬¾åˆ—è¡¨
 	 * @param command
 	 * @param order
 	 * @param from
@@ -19,14 +19,14 @@ public interface OrderRefundVoService {
 	ResultCode<List<OrderRefundVo>> getOrderRefundList(SearchRefundCommandVo command, String order, int from, int maxnum);
 	
 	/**
-	 * ²éÑ¯¶©µ¥ÍË¿îÊıÁ¿
+	 * æŸ¥è¯¢è®¢å•é€€æ¬¾æ•°é‡
 	 * @param command
 	 * @return
 	 */
 	ResultCode<Integer> getOrderRefundCount(SearchRefundCommandVo command);
 	
 	/**
-	 * ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ÍË¿î
+	 * æ ¹æ®è®¢å•å·æŸ¥è¯¢è®¢å•é€€æ¬¾
 	 * @param tradeNo
 	 * @return
 	 */

@@ -22,29 +22,29 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * ��չ��ӿڵı�ʶ��
+ * 扩展点接口的标识。
  * <p />
- * ��չ�����������ļ�����ʽ�޸ġ�<br />
- * ��Protocolʾ���������ļ�META-INF/dubbo/com.xxx.Protocol���ݣ�<br />
- * ��<br/>
+ * 扩展点声明配置文件，格式修改。<br />
+ * 以Protocol示例，配置文件META-INF/dubbo/com.xxx.Protocol内容：<br />
+ * 由<br/>
  * <pre><code>com.foo.XxxProtocol
  com.foo.YyyProtocol</code></pre><br/>
- * �ĳ�ʹ��KV��ʽ<br/>
+ * 改成使用KV格式<br/>
  * <pre><code>xxx=com.foo.XxxProtocol
  yyy=com.foo.YyyProtocol
  * </code></pre>
  * <br/>
- * ԭ��<br/>
- * ����չ���static�ֶλ򷽷�ǩ���������������⣬
- * ��������ⲻ���ڣ��ᵼ�����ʼ��ʧ�ܣ�
- * Extension��ʶDubbo���ò����ˣ��쳣��Ϣ�ͺ����ö�Ӧ��������
+ * 原因：<br/>
+ * 当扩展点的static字段或方法签名上引用了三方库，
+ * 如果三方库不存在，会导致类初始化失败，
+ * Extension标识Dubbo就拿不到了，异常信息就和配置对应不起来。
  * <br/>
- * ����:
- * Extension("mina")����ʧ�ܣ�
- * ���û�����ʹ��minaʱ���ͻᱨ�Ҳ�����չ�㣬
- * �����Ǳ�������չ��ʧ�ܣ��Լ�ʧ��ԭ��
+ * 比如:
+ * Extension("mina")加载失败，
+ * 当用户配置使用mina时，就会报找不到扩展点，
+ * 而不是报加载扩展点失败，以及失败原因。
  * 
- * @deprecated ��Ϊ����㷺���������ù� {@link com.alibaba.dubbo.common.extension.SPI}
+ * @deprecated 因为含义广泛废弃，改用功 {@link com.alibaba.dubbo.common.extension.SPI}
  * @author william.liangf
  * @author ding.lid
  * @export

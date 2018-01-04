@@ -14,44 +14,44 @@ import com.gewara.api.vo.ResultCode;
 
 
 /**
- * Å©ÒµÒøĞĞÈÏÖ¤Ö§¸¶£¬·şÎñ½Ó¿Ú
+ * å†œä¸šé“¶è¡Œè®¤è¯æ”¯ä»˜ï¼ŒæœåŠ¡æ¥å£
  * @author dengyz
  *
  */
 public interface AbcPayFastApiService {
 
 	/**
-	 * »ı·Ö²éÑ¯
+	 * ç§¯åˆ†æŸ¥è¯¢
 	 * @param request
 	 * @return
 	 */
 	ResultCode<QueryPointResponse> queryPoint(QueryPointRequest request);
 	
 	/**
-	 * »ı·ÖÏû·Ñ
+	 * ç§¯åˆ†æ¶ˆè´¹
 	 * @param request
 	 * @return
 	 */
 	ResultCode<PointPayResponse> pointPay(PointPayRequest request);
 	
 	/**
-	 * Ö§¸¶·¢¶ÌĞÅ
+	 * æ”¯ä»˜å‘çŸ­ä¿¡
 	 * @param request
 	 * @return
 	 */
 	ResultCode<SendSmsResponse> sendSms(SendSmsRequest request);
 	
 	/**
-	 * ¿ì½İÏû·Ñ
+	 * å¿«æ·æ¶ˆè´¹
 	 * @param request
 	 * @return
 	 */
 	ResultCode<MoneyPayResponse> moneyPay(MoneyPayRequest request);
 	
 	/**
-	 * »ı·Ö¿ì½İÖ§¸¶
-	 * ´Ë½Ó¿ÚÊÇ°Ñ»ı·ÖÖ§¸¶+¿ì½İÖ§¸¶Á½¸ö½Ó¿ÚºÏ²¢ÎªÒ»
-	 * Èç¹û²»ĞèÒªÍ¬Ê±µ÷Á½¸ö½Ó¿ÚµÄ£¬Çëµ÷ÓÃpointPay»òÕßmoneyPay½Ó¿Ú¡£
+	 * ç§¯åˆ†å¿«æ·æ”¯ä»˜
+	 * æ­¤æ¥å£æ˜¯æŠŠç§¯åˆ†æ”¯ä»˜+å¿«æ·æ”¯ä»˜ä¸¤ä¸ªæ¥å£åˆå¹¶ä¸ºä¸€
+	 * å¦‚æœä¸éœ€è¦åŒæ—¶è°ƒä¸¤ä¸ªæ¥å£çš„ï¼Œè¯·è°ƒç”¨pointPayæˆ–è€…moneyPayæ¥å£ã€‚
 	 * @param params
 	 * @return
 	 */

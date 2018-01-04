@@ -12,10 +12,10 @@ import com.gewara.util.BeanUtil;
 
 
 /**
- * ������Ҫ��װ��һЩ��������Ĳ���������
- * ������ķ����������ظ����á�
- * @author ����
- * @createDate 2015��8��21��
+ * 锟斤拷锟斤拷锟斤拷要锟斤拷装锟斤拷一些锟斤拷锟斤拷锟斤拷锟斤拷牟锟斤拷锟斤拷锟斤拷锟斤拷锟�
+ * 锟斤拷锟斤拷锟斤拷姆锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷馗锟斤拷锟斤拷谩锟�
+ * @author 锟斤拷锟斤拷
+ * @createDate 2015锟斤拷8锟斤拷21锟斤拷
  */
 public class ArrayOperation {
 	
@@ -27,8 +27,8 @@ public class ArrayOperation {
 		return this;
 	}
 	/**
-	 * ��ÿ��ֵ���������ĩβ,�����Ѿ����ڵ�ֵ��������ԡ�
-	 * �����set����ʾ�������ݽṹSet
+	 * 锟斤拷每锟斤拷值锟斤拷锟斤拷锟斤拷锟斤拷锟侥┪�,锟斤拷锟斤拷锟窖撅拷锟斤拷锟节碉拷值锟斤拷锟斤拷锟斤拷锟斤拷浴锟�
+	 * 锟斤拷锟斤拷锟絪et锟斤拷锟斤拷示锟斤拷锟斤拷锟斤拷锟捷结构Set
 	 * @param field
 	 * @param value
 	 * @return
@@ -67,8 +67,8 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * �����ݷ��������ĩβ
-	 * @param field ��ʾ������ֶ�����
+	 * 锟斤拷锟斤拷锟捷凤拷锟斤拷锟斤拷锟斤拷锟侥┪�
+	 * @param field 锟斤拷示锟斤拷锟斤拷锟斤拷侄锟斤拷锟斤拷锟�
 	 * @param values
 	 * @return
 	 */
@@ -104,8 +104,8 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ���·��ϲ�ѯ�����������е�Ԫ�ص�ֵ��
-	 * �ڲ�ѯ������
+	 * 锟斤拷锟铰凤拷锟较诧拷询锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫碉拷元锟截碉拷值锟斤拷
+	 * 锟节诧拷询锟斤拷锟斤拷锟斤拷
 	 * example
 	 * <pre>
 	 * 
@@ -132,9 +132,9 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ��ָ��λ�ò���ָ����ֵ
-	 * @param field �����ֶ�����
-	 * @param position λ��
+	 * 锟斤拷指锟斤拷位锟矫诧拷锟斤拷指锟斤拷锟斤拷值
+	 * @param field 锟斤拷锟斤拷锟街讹拷锟斤拷锟斤拷
+	 * @param position 位锟斤拷
 	 * @param values
 	 * @return
 	 */
@@ -153,7 +153,7 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ������ͷ���Ƴ�һ��Ԫ�ء�
+	 * 锟斤拷锟斤拷锟斤拷头锟斤拷锟狡筹拷一锟斤拷元锟截★拷
 	 * @param fields
 	 * @return
 	 */
@@ -175,7 +175,7 @@ public class ArrayOperation {
 	
 	
 	/**
-	 * ������β���Ƴ�һ��Ԫ��
+	 * 锟斤拷锟斤拷锟斤拷尾锟斤拷锟狡筹拷一锟斤拷元锟斤拷
 	 * @param fields
 	 * @return
 	 */
@@ -197,7 +197,7 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ���������Ƴ�ָ��ֵ��Ԫ�ء�
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟狡筹拷指锟斤拷值锟斤拷元锟截★拷
 	 * @param field
 	 * @param values
 	 * @return
@@ -214,7 +214,7 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ���������Ƴ�����ָ��������Ԫ��
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟狡筹拷锟斤拷锟斤拷指锟斤拷锟斤拷锟斤拷锟斤拷元锟斤拷
 	 * @param field
 	 * @param expression
 	 * @return

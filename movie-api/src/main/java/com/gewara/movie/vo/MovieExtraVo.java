@@ -6,7 +6,7 @@ import com.gewara.api.vo.BaseVo;
 import com.gewara.util.DateUtil;
 
 /**
- * µçÓ°Ó¢ÎÄ×Ö¶Î            
+ * ç”µå½±è‹±æ–‡å­—æ®µ            
  * @author john
  *
  */
@@ -15,11 +15,11 @@ public class MovieExtraVo extends BaseVo implements Serializable {
 	private static final long serialVersionUID = 4965993143973574947L;
 	
 	private Long id;
-	private String language;		//ÓïÑÔ
-	private String state;			//µØÇø
-	private String director;		//µ¼ÑÝ
-	private String actors;			//Ö÷ÑÝ
-	private String content;			//¾çÇé
+	private String language;		//è¯­è¨€
+	private String state;			//åœ°åŒº
+	private String director;		//å¯¼æ¼”
+	private String actors;			//ä¸»æ¼”
+	private String content;			//å‰§æƒ…
 	private String addtime;
 	private String updatetime;
 	

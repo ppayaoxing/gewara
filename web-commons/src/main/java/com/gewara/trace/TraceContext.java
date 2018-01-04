@@ -3,8 +3,8 @@ package com.gewara.trace;
 import java.io.Serializable;
 
 /**
- * µ÷ÓÃÁ´ÉÏÏÂÎÄ
- * <br>²ÎÏê£º<hr>http://wk.gewara.com/pages/viewpage.action?pageId=19147575</hr>
+ * è°ƒç”¨é“¾ä¸Šä¸‹æ–‡
+ * <br>å‚è¯¦ï¼š<hr>http://wk.gewara.com/pages/viewpage.action?pageId=19147575</hr>
  * @author user
  */
 public class TraceContext implements Serializable{
@@ -14,9 +14,9 @@ public class TraceContext implements Serializable{
 	public static String DT_PARENTID = "DT_PARENTID";
 	public static String DT_SPANSEQ = "DT_SPANSEQ";
 
-	private String traceId; //µ÷ÓÃÁ´È«¾Öid
+	private String traceId; //è°ƒç”¨é“¾å…¨å±€id
 	private int parentId;
-	private int spanSeq;	//µ±Ç°spanµÄĞòºÅ£¬×Ó½ÚµãÔÚ´Ë»ù´¡ÉÏ¼Ó1£¬Éú³É×Ô¼ºµÄspanid
+	private int spanSeq;	//å½“å‰spançš„åºå·ï¼Œå­èŠ‚ç‚¹åœ¨æ­¤åŸºç¡€ä¸ŠåŠ 1ï¼Œç”Ÿæˆè‡ªå·±çš„spanid
 	
 	public TraceContext(String traceId, int parentId, int spanSeq){
 		this.traceId = traceId;

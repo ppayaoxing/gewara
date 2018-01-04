@@ -9,7 +9,7 @@ import org.apache.commons.betwixt.XMLBeanInfo;
 import org.apache.commons.betwixt.XMLIntrospector;
 
 /**
- * 针对配置文件做缓存,测试中
+ * 閽堝閰嶇疆鏂囦欢鍋氱紦瀛�,娴嬭瘯涓�
  * @author gebiao(ge.biao@gewara.com)
  * @since Jul 18, 2013 10:58:41 PM
  */

@@ -77,7 +77,7 @@ public class MemcachedCacheServiceImpl extends AbstractCacheService {
 		try {
 			Map<String, Object> result = memcachedClient.getBulk(keyMap.keySet());
 			Map<String, Object> returnMap = new HashMap<String, Object>();
-			for (String newkey : result.keySet()) {// ����ʹ���ϵ�key
+			for (String newkey : result.keySet()) {// 锟斤拷锟斤拷使锟斤拷锟较碉拷key
 				returnMap.put(keyMap.get(newkey), result.get(newkey));
 			}
 			return returnMap;

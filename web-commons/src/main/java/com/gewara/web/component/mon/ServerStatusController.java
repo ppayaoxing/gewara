@@ -51,7 +51,7 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 	private MemcachedClient memcachedClient;
 
 	/**
-	 * ��������״̬
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷状态
 	 * 
 	 * @param request
 	 * @return
@@ -133,13 +133,13 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 		String ip = BaseWebUtils.getRemoteIp(req);
 		GewaIpConfig.filterOfficeIp(ip);
 		StringBuilder sb = new StringBuilder();
-		sb.append("��ǰϵͳ : " + Config.SYSTEMID + "," + Config.getHostname());
-		sb.append("@@�������Ƿ��� : " + (attackTestService.isDisabled() ? "�ر�" : "����"));
-		sb.append("@@����������: " + attackTestService.getBlackMap().size());
-		sb.append("@@����������: " + attackTestService.getWhiteList().size());
-		sb.append("@@��ǰϵͳ���ڹ��˵ĺ����� : @@" + turnBlackMap(attackTestService.getBlackMap()));
-		sb.append("@@��ǰϵͳ���ڹ��˵İ�����: @@" + parseWhiteList(new ArrayList<String>(attackTestService.getWhiteList())));
-		sb.append("@@��ǰϵͳ���ڹ��˵ĺ�����2 : @@" + turnBlackMap(attackTestService.getBlackMap2()));
+		sb.append("锟斤拷前系统 : " + Config.SYSTEMID + "," + Config.getHostname());
+		sb.append("@@锟斤拷锟斤拷锟斤拷锟角凤拷锟斤拷 : " + (attackTestService.isDisabled() ? "锟截憋拷" : "锟斤拷锟斤拷"));
+		sb.append("@@锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷: " + attackTestService.getBlackMap().size());
+		sb.append("@@锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷: " + attackTestService.getWhiteList().size());
+		sb.append("@@锟斤拷前系统锟斤拷锟节癸拷锟剿的猴拷锟斤拷锟斤拷 : @@" + turnBlackMap(attackTestService.getBlackMap()));
+		sb.append("@@锟斤拷前系统锟斤拷锟节癸拷锟剿的帮拷锟斤拷锟斤拷: @@" + parseWhiteList(new ArrayList<String>(attackTestService.getWhiteList())));
+		sb.append("@@锟斤拷前系统锟斤拷锟节癸拷锟剿的猴拷锟斤拷锟斤拷2 : @@" + turnBlackMap(attackTestService.getBlackMap2()));
 
 		return forwardMessage(model, sb.toString());
 	}
@@ -263,7 +263,7 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 	}
 
 	private void registerMongo() {
-		// 1��mongo
+		// 1锟斤拷mongo
 		Class mongo = null;
 		try {
 			mongo = Class.forName("com.gewara.mongo.MongoService3");

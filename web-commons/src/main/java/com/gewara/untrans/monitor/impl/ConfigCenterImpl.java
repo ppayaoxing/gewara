@@ -24,7 +24,7 @@ public class ConfigCenterImpl implements ConfigCenter {
 	private Map<String, ConfigTrigger> triggerMap = new ConcurrentHashMap<String, ConfigTrigger>();
 	
 	private Map<String, Integer> partitionMap = new ConcurrentHashMap<String, Integer>();
-	//¼ÇÂ¼µ±Ç°Ğ´µÄÊÇÄÄ¸öpartition
+	//è®°å½•å½“å‰å†™çš„æ˜¯å“ªä¸ªpartition
 	//private Map<String, AtomicInteger> curPartMap = new ConcurrentHashMap<String, AtomicInteger>();
 	private Set<String/*systemid,tag*/> delayList = new HashSet<String>();
 	@Autowired
@@ -35,7 +35,7 @@ public class ConfigCenterImpl implements ConfigCenter {
 		triggerMap.put(systemid + "," + tag, trigger);
 		keeperService.addMonitor(new ConfigWatcher(path, trigger));
 		
-		//ÓĞĞÂ×¢²á£¬É¨ÃèÖ®Ç°Î´´¦ÀíµôµÄdelayÏî
+		//æœ‰æ–°æ³¨å†Œï¼Œæ‰«æä¹‹å‰æœªå¤„ç†æ‰çš„delayé¡¹
 		processDelay();
 	}
 	@Override
@@ -45,7 +45,7 @@ public class ConfigCenterImpl implements ConfigCenter {
 
 	@Override
 	public void register(String systemid, String tag, ConfigTrigger trigger, int partition) {
-		//1)×¢²áÄ¬ÈÏÏî
+		//1)æ³¨å†Œé»˜è®¤é¡¹
 		register(systemid, tag, trigger);
 		
 		partition = Math.min(128, partition);

@@ -16,11 +16,11 @@ public class GewaOrderMapVo extends BaseVo implements Serializable {
 	private String ordertype;
 	private GewaOrderVo order;
 	private List<BuyItemVo> buyItemList = new ArrayList<BuyItemVo>();
-	private BaseVo place;											//³¡¹İ
-	private BaseVo profile;											//³¡¹İÀ©Õ¹
-	private BaseVo item;											//ÏîÄ¿
-	private BaseVo schedule;										//³¡´Î£¬ÎïÆ·£¬¿¨
-	private BaseVo relate;											//¹ØÁª»î¶¯
+	private BaseVo place;											//åœºé¦†
+	private BaseVo profile;											//åœºé¦†æ‰©å±•
+	private BaseVo item;											//é¡¹ç›®
+	private BaseVo schedule;										//åœºæ¬¡ï¼Œç‰©å“ï¼Œå¡
+	private BaseVo relate;											//å…³è”æ´»åŠ¨
 	
 	public GewaOrderMapVo(){}
 	

@@ -4,42 +4,42 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HbaseData {
-	//Êı¾İ±í
-	public static final String TABLE_LOGENTRY = "exceptionlog";		//Ò³Ãæ´íÎóÈÕÖ¾£¨Exception£©
-	public static final String TABLE_MONITOR = "monitor";				//¼à¿ØÊı¾İ
-	public static final String TABLE_APILOG = "apilog";				//apiÈÕÖ¾
-	public static final String TABLE_APILOG2 = "apilog2";				//apiÈÕÖ¾2£¬ºÍapilog×öÇĞ»»£¬±ãÓÚÇå³ı
-	public static final String TABLE_HFHLOG = "hfhlog";				//µÚÈı·½apiÍ³¼Æ£¬Ä¿Ç°Ö»ÓĞ»ğ·ï»Ë¡¢ÂúÌìĞÇÈÕÖ¾
-	public static final String TABLE_SYSWARN = "syswarn";				//ÏµÍ³¾¯¸æ
-	public static final String TABLE_SYSLOG = "syslog";				//ÏµÍ³ÈÕÖ¾
-	public static final String TABLE_GEWAORDER = "gewaorder";		//ĞÂ¶©µ¥ÈÕÖ¾
-	public static final String TABLE_CHANGEHIS = "changehis";		//ĞÂ¶ÔÏó¸ü¸ÄÈÕÖ¾
-	public static final String TABLE_MEMBERLOG = "memberlog";		//Ç°Ì¨ÓÃ»§²Ù×÷
-	public static final String TABLE_MEMBERLOG2 = "memberlog2";		//Ç°Ì¨ÓÃ»§²Ù×÷:membernameÎªÖ÷¼ü
-	public static final String TABLE_DOMAINLOG = "domainlog";		//ºóÌ¨ÈÕÖ¾
-	public static final String TABLE_APICALL = "apicall";				//µ÷ÓÃAPIÈÕÖ¾£¨µ÷ÓÃÕß¼ÇÂ¼£©
-	public static final String TABLE_IPSTATS = "ipstats";				//IP·ÃÎÊÍ³¼Æ
-	public static final String TABLE_COUNTRECORD = "countrecord";	//¼ÇÊı¸üĞÂ
-	public static final String TABLE_VIOLATION = "violation";		//·Ç·¨·ÃÎÊ
-	public static final String TABLE_DATASTORE = "datastore";		//·ÃÎÊÈÕÖ¾
-	public static final String TABLE_CCSREQ = "ccsreq";				//·ÃÎÊÈÕÖ¾
-	public static final String TABLE_OPISTATS = "opistats";			//³¡´ÎÍ³¼ÆÊı¾İ
-	public static final String TABLE_BEANDATA = "beandata";			//³¡´ÎÍ³¼ÆÊı¾İ
-	public static final String TABLE_APPREPORT = "appreport";		//APPÊı¾İÉÏ±¨
-	public static final String TABLE_DAUDATA = "daudata";				//ÈÕ»îÓÃ»§Êı¾İ
-	public static final String TABLE_MEMACTCONVERGE = "memactconverge";	//ÓÃ»§ĞĞÎª¾ÛºÏÊı¾İ
-	public static final String TABLE_EVENT = "event";					//¼à¿ØÊÂ¼ş£ºÒ»°ãÎª¸üĞÂ¡¢±¸·İµÈÊı¾İÉÏ±¨ĞÍ
-	public static final String TABLE_ERRORLOG = "errorlog";			//´íÎóÈÕÖ¾
-	public static final String TABLE_OPISTATS_TRIGGER = "opistats_trigger";//³¡´ÎÍ³¼Æ´¥·¢¼ÇÂ¼
+	//æ•°æ®è¡¨
+	public static final String TABLE_LOGENTRY = "exceptionlog";		//é¡µé¢é”™è¯¯æ—¥å¿—ï¼ˆExceptionï¼‰
+	public static final String TABLE_MONITOR = "monitor";				//ç›‘æ§æ•°æ®
+	public static final String TABLE_APILOG = "apilog";				//apiæ—¥å¿—
+	public static final String TABLE_APILOG2 = "apilog2";				//apiæ—¥å¿—2ï¼Œå’Œapilogåšåˆ‡æ¢ï¼Œä¾¿äºæ¸…é™¤
+	public static final String TABLE_HFHLOG = "hfhlog";				//ç¬¬ä¸‰æ–¹apiç»Ÿè®¡ï¼Œç›®å‰åªæœ‰ç«å‡¤å‡°ã€æ»¡å¤©æ˜Ÿæ—¥å¿—
+	public static final String TABLE_SYSWARN = "syswarn";				//ç³»ç»Ÿè­¦å‘Š
+	public static final String TABLE_SYSLOG = "syslog";				//ç³»ç»Ÿæ—¥å¿—
+	public static final String TABLE_GEWAORDER = "gewaorder";		//æ–°è®¢å•æ—¥å¿—
+	public static final String TABLE_CHANGEHIS = "changehis";		//æ–°å¯¹è±¡æ›´æ”¹æ—¥å¿—
+	public static final String TABLE_MEMBERLOG = "memberlog";		//å‰å°ç”¨æˆ·æ“ä½œ
+	public static final String TABLE_MEMBERLOG2 = "memberlog2";		//å‰å°ç”¨æˆ·æ“ä½œ:membernameä¸ºä¸»é”®
+	public static final String TABLE_DOMAINLOG = "domainlog";		//åå°æ—¥å¿—
+	public static final String TABLE_APICALL = "apicall";				//è°ƒç”¨APIæ—¥å¿—ï¼ˆè°ƒç”¨è€…è®°å½•ï¼‰
+	public static final String TABLE_IPSTATS = "ipstats";				//IPè®¿é—®ç»Ÿè®¡
+	public static final String TABLE_COUNTRECORD = "countrecord";	//è®°æ•°æ›´æ–°
+	public static final String TABLE_VIOLATION = "violation";		//éæ³•è®¿é—®
+	public static final String TABLE_DATASTORE = "datastore";		//è®¿é—®æ—¥å¿—
+	public static final String TABLE_CCSREQ = "ccsreq";				//è®¿é—®æ—¥å¿—
+	public static final String TABLE_OPISTATS = "opistats";			//åœºæ¬¡ç»Ÿè®¡æ•°æ®
+	public static final String TABLE_BEANDATA = "beandata";			//åœºæ¬¡ç»Ÿè®¡æ•°æ®
+	public static final String TABLE_APPREPORT = "appreport";		//APPæ•°æ®ä¸ŠæŠ¥
+	public static final String TABLE_DAUDATA = "daudata";				//æ—¥æ´»ç”¨æˆ·æ•°æ®
+	public static final String TABLE_MEMACTCONVERGE = "memactconverge";	//ç”¨æˆ·è¡Œä¸ºèšåˆæ•°æ®
+	public static final String TABLE_EVENT = "event";					//ç›‘æ§äº‹ä»¶ï¼šä¸€èˆ¬ä¸ºæ›´æ–°ã€å¤‡ä»½ç­‰æ•°æ®ä¸ŠæŠ¥å‹
+	public static final String TABLE_ERRORLOG = "errorlog";			//é”™è¯¯æ—¥å¿—
+	public static final String TABLE_OPISTATS_TRIGGER = "opistats_trigger";//åœºæ¬¡ç»Ÿè®¡è§¦å‘è®°å½•
 	public static final String TABLE_ACCESSLOG = "accesslog";		//access.log
-	//public static final String TABLE_DAUCOUNT = "daucount";		//ÈÕ»îÓÃ»§¾ÛºÏ
+	//public static final String TABLE_DAUCOUNT = "daucount";		//æ—¥æ´»ç”¨æˆ·èšåˆ
 	
 	
 
-	//×Ô¶¨Òårowid£¬²»Ö§³ÖÖ±½ÓrowidÊ±¼ä·¶Î§
+	//è‡ªå®šä¹‰rowidï¼Œä¸æ”¯æŒç›´æ¥rowidæ—¶é—´èŒƒå›´
 	private static final List<String> SELF_GENROWID_TABLES = Arrays.asList(TABLE_CHANGEHIS, TABLE_GEWAORDER);
 	/**
-	 * ÅĞ¶ÏÒ»¸ö±íÊÇ·ñÖ§³ÖÖ±½ÓrowidÊ±¼ä·¶Î§²éÑ¯,Ä¬ÈÏ hbase Ö§³ÖTimeRange»¹ÊÇĞèÒªÉèÖÃ???
+	 * åˆ¤æ–­ä¸€ä¸ªè¡¨æ˜¯å¦æ”¯æŒç›´æ¥rowidæ—¶é—´èŒƒå›´æŸ¥è¯¢,é»˜è®¤ hbase æ”¯æŒTimeRangeè¿˜æ˜¯éœ€è¦è®¾ç½®???
 	 * @param table
 	 * @return
 	 */

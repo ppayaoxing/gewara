@@ -32,18 +32,18 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
 
     private static final long serialVersionUID = -2786526984373031126L;
 
-    // ======== ����ȱʡֵ������������δ����ʱʹ�ø�ȱʡֵ���  ========
+    // ======== 锟斤拷锟斤拷缺省值锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷未锟斤拷锟斤拷时使锟矫革拷缺省值锟斤拷锟�  ========
     
-    // �������ṩ���Ƿ����
+    // 锟斤拷锟斤拷锟斤拷锟结供锟斤拷锟角凤拷锟斤拷锟�
     protected Boolean             check;
 
-    // �Ƿ����ʱ���̳�ʼ��
+    // 锟角凤拷锟斤拷锟绞憋拷锟斤拷坛锟绞硷拷锟�
     protected Boolean             init;
 
-    // �Ƿ�ʹ�÷��ӿ�
+    // 锟角凤拷使锟矫凤拷锟接匡拷
     protected String             generic;
 
-    // ���ȴ�JVM�ڻ�ȡ����ʵ��
+    // 锟斤拷锟饺达拷JVM锟节伙拷取锟斤拷锟斤拷实锟斤拷
     protected Boolean             injvm;
     
     // lazy create connection
@@ -53,13 +53,13 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
     
     protected Boolean             sticky;
     
-    //stub�Ƿ�֧��event�¼�. //TODO slove merge problem 
+    //stub锟角凤拷支锟斤拷event锟铰硷拷. //TODO slove merge problem 
     protected Boolean             stubevent ;//= Constants.DEFAULT_STUB_EVENT;
 
-    // �汾
+    // 锟芥本
     protected String               version;
 
-    // �������
+    // 锟斤拷锟斤拷锟斤拷锟�
     protected String               group;
 
     public Boolean isCheck() {
@@ -99,7 +99,7 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
 
     /**
      * @return
-     * @deprecated ͨ��scope�����жϣ�scope=local
+     * @deprecated 通锟斤拷scope锟斤拷锟斤拷锟叫断ｏ拷scope=local
      */
     @Deprecated
     public Boolean isInjvm() {
@@ -108,7 +108,7 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
     
     /**
      * @param injvm
-     * @deprecated ͨ��scope���ã�scope=local��ʾʹ��injvmЭ��.
+     * @deprecated 通锟斤拷scope锟斤拷锟矫ｏ拷scope=local锟斤拷示使锟斤拷injvm协锟斤拷.
      */
     @Deprecated 
     public void setInjvm(Boolean injvm) {

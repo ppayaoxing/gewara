@@ -3,7 +3,7 @@ package com.gewara.weixin.friendcard;
 import java.sql.Timestamp;
 
 public class CreateFriendCardCmd {
-	//»ù´¡µÄ
+	//åŸºç¡€çš„
 	private Timestamp starttime;
 	private Timestamp endtime;
 	private String title;
@@ -13,7 +13,7 @@ public class CreateFriendCardCmd {
 	private String center_title;
 	private String center_sub_title;
 	private String center_url;
-	//¸ß¼¶µÄ
+	//é«˜çº§çš„
 	private String accept_category;
 	private String reject_category;
 	private String abstractText;

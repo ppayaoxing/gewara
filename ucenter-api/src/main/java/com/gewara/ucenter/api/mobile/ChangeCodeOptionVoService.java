@@ -4,23 +4,23 @@ import com.gewara.api.vo.ResultCode;
 
 public interface ChangeCodeOptionVoService {
 	/**
-	 * ÇĞ»»¶¯Ì¬Âë·¢ËÍÑ¡Ïî   ÓïÒô»ò¶ÌĞÅ
+	 * åˆ‡æ¢åŠ¨æ€ç å‘é€é€‰é¡¹   è¯­éŸ³æˆ–çŸ­ä¿¡
 	 * @param option
 	 */
 	@Deprecated
 	void updateSendOptionsMessage(String option);
 	ResultCode updateSendOptionsMessage2(String option);
 	/**
-	 * ºóÌ¨¹ÜÀíÖØ·¢ÓÃ»§ÊÖ»ú¶¯Ì¬Âë
-	 * @param memberid ÓÃ»§id
-	 * @param sendtype ·¢ËÍÀàĞÍ ÓïÒô»ò¶ÌĞÅ
+	 * åå°ç®¡ç†é‡å‘ç”¨æˆ·æ‰‹æœºåŠ¨æ€ç 
+	 * @param memberid ç”¨æˆ·id
+	 * @param sendtype å‘é€ç±»å‹ è¯­éŸ³æˆ–çŸ­ä¿¡
 	 * @return
 	 */
 	ResultCode resendMessageByAdmin(String mobile, String sendtype);
 	/**
-	 * ÖØÖÃ·¢ËÍ´ÎÊı
-	 * @param mobile ÊÖ»úºÅÂë
-	 * @param adminid ºóÌ¨¹ÜÀíÔ±id
+	 * é‡ç½®å‘é€æ¬¡æ•°
+	 * @param mobile æ‰‹æœºå·ç 
+	 * @param adminid åå°ç®¡ç†å‘˜id
 	 * @return
 	 */
 	ResultCode resetSendCount(String mobile, Long adminid, boolean clearAll);

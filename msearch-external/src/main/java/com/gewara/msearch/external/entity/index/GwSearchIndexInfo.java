@@ -6,16 +6,16 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * Ô­Ö÷Õ¾Ë÷ÒıĞÅÏ¢
+ * åŸä¸»ç«™ç´¢å¼•ä¿¡æ¯
  * @author quzhuping
- * @createDate 2015Äê11ÔÂ4ÈÕ
+ * @createDate 2015å¹´11æœˆ4æ—¥
  */
 public class GwSearchIndexInfo extends IndexData{
 	
 	private static final long serialVersionUID = -3071643178306274317L;
 	
 	private String name;
-	private String tag;//ÀàĞÍ±êÇ©
+	private String tag;//ç±»å‹æ ‡ç­¾
 	private Long relatedid;
 	private String category;
 	private String skey;

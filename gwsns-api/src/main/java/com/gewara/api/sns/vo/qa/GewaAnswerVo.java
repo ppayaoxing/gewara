@@ -8,18 +8,18 @@ import com.gewara.api.vo.BaseVo;
 
 public class GewaAnswerVo extends BaseVo {
 	private static final long serialVersionUID = 5578727148166770087L;
-	public static final Integer SEND_QUESTION_POINT = 10; //·¢²¼ÎÊÌâÔö¼Ó¾­ÑéÖµ
+	public static final Integer SEND_QUESTION_POINT = 10; //å‘å¸ƒé—®é¢˜å¢åŠ ç»éªŒå€¼
 	public static final String AS_STATUS_N = "N";
 	public static final String AS_STATUS_Y = "Y";
 	private Long id;
-	private Long questionid; //¶ÔÓ¦µÄÎÊÌâ
+	private Long questionid; //å¯¹åº”çš„é—®é¢˜
 	private Long memberid;
-	private String content; // ÄÚÈİ
+	private String content; // å†…å®¹
 	private Integer hotvalue;
-	private String answerstatus; // ÊÇ·ñÊÇÎÊÌâµÄ´ğ°¸ ²»ÊÇ:N ÊÇ£ºY
-	private String status;// ×´Ì¬
+	private String answerstatus; // æ˜¯å¦æ˜¯é—®é¢˜çš„ç­”æ¡ˆ ä¸æ˜¯:N æ˜¯ï¼šY
+	private String status;// çŠ¶æ€
 	private Timestamp addtime;
-	private String ip; //ÓÃ»§IP
+	private String ip; //ç”¨æˆ·IP
 	
 	public GewaAnswerVo(){}
 	

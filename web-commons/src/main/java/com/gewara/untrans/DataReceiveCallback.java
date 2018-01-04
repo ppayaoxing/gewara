@@ -3,17 +3,17 @@ package com.gewara.untrans;
 import com.gewara.web.component.mon.DataReceiveController;
 
 /**
- * 数据接收callback服务，由各个系统自己实现服务逻辑<br>
- * 服务地址入口:<br>http://ip:{port}/data/receive.xhtml<br>
+ * 鏁版嵁鎺ユ敹callback鏈嶅姟锛岀敱鍚勪釜绯荤粺鑷繁瀹炵幇鏈嶅姟閫昏緫<br>
+ * 鏈嶅姟鍦板潃鍏ュ彛:<br>http://ip:{port}/data/receive.xhtml<br>
  * <p>
- * 代码见：<p>{@link DataReceiveController#dataReceive(String, javax.servlet.http.HttpServletRequest)})}
+ * 浠ｇ爜瑙侊細<p>{@link DataReceiveController#dataReceive(String, javax.servlet.http.HttpServletRequest)})}
  * @author quzhuping
  *
  */
 public interface DataReceiveCallback {
 	/**
-	 * 接收数据
-	 * <p>各系统接收到数据后需要通过异步处理后续逻辑
+	 * 鎺ユ敹鏁版嵁
+	 * <p>鍚勭郴缁熸帴鏀跺埌鏁版嵁鍚庨渶瑕侀�氳繃寮傛澶勭悊鍚庣画閫昏緫
 	 * @param jsonData
 	 */
 	void receiveData(String jsonData);

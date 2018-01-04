@@ -12,10 +12,10 @@ public class GetBindParamsRequest extends ApiRequest {
 	 */
 	private static final long serialVersionUID = -2215365064030730408L;
 
-	/**商户标识*/
+	/**鍟嗘埛鏍囪瘑*/
 	private String merchantCode;
 	
-	/**银行卡号*/
+	/**閾惰鍗″彿*/
 	private String cardNumber;
 	
 	public GetBindParamsRequest(){

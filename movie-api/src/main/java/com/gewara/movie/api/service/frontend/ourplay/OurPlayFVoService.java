@@ -8,7 +8,7 @@ import com.gewara.movie.vo.json.ourplay.MemberPraiseVo;
 
 public interface OurPlayFVoService {
 	/**
-	 * ÉêÇë³ÉÎªÊÔÆ¬Ô±£¬ÓĞ»ı·ÖÏŞÖÆ
+	 * ç”³è¯·æˆä¸ºè¯•ç‰‡å‘˜ï¼Œæœ‰ç§¯åˆ†é™åˆ¶
 	 * @param applyVo
 	 * @return
 	 */

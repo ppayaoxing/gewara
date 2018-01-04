@@ -5,17 +5,17 @@ import java.io.Serializable;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * µçÓ°ÔÚ¾ßÌå³ÇÊĞµÄ¹ºÆ±ÈËÊı
+ * ç”µå½±åœ¨å…·ä½“åŸå¸‚çš„è´­ç¥¨äººæ•°
  * @author user
  *
  */
 public class MovieCityBoughtReportVo extends BaseVo{
 	
-	private Long movieId;//µçÓ°id
+	private Long movieId;//ç”µå½±id
 	
-	private String citycode;//ËùÔÚ³ÇÊĞ
+	private String citycode;//æ‰€åœ¨åŸå¸‚
 	
-	private Integer boughtCount;//¹ºÆ±ÈËÊı
+	private Integer boughtCount;//è´­ç¥¨äººæ•°
 	
 	
 	/**

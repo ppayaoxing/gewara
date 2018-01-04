@@ -6,7 +6,7 @@ import java.util.Map;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * ÓÃÀ´½ÓÊÕÀ´×Ô¶¨Ê±ÈÎÎñµÄÊı¾İ
+ * ç”¨æ¥æ¥æ”¶æ¥è‡ªå®šæ—¶ä»»åŠ¡çš„æ•°æ®
  */
 public interface JobUpdateVoService {
 	ResultCode<Integer> updateCityprice(List<Map> result, String tag);

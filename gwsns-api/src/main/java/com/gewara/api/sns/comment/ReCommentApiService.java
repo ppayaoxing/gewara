@@ -13,7 +13,7 @@ public interface ReCommentApiService {
 	ResultCode<List<ReCommentVo>> getReplyMeReCommentList(Long memberid, int from, int maxnum);
 	
 	ResultCode<Integer> getReCommentCountByMemberid(Long memberid, String status);
-	//¸Ã·½·¨ÒªÉ¾³ı
+	//è¯¥æ–¹æ³•è¦åˆ é™¤
 	ResultCode<List<ReCommentVo>> getReCommentByRelatedidAndTomemberid(Long relatedid, Long tomemberid, Long memberid, int from, int maxnum);
 	
 	ResultCode<List<ReCommentVo>> getReCommentByRelatedidAndTomemberid(Long relatedid, Long tomemberid, Long memberid, Long mtid, int from, int maxnum);
@@ -29,7 +29,7 @@ public interface ReCommentApiService {
 	ResultCode<Integer> getReCommentByRelatedidAndTomemberidCount(Long relatedid, Long tomemberid, Long memberid) ;
 	ResultCode<List<CommentVo>> getReCommentListByMemberid(Long memberid, String status, int from, int maxnum);
 	
-	//¸ù¾İÍÛÀ²idList»ñÈ¡»Ø¸´ÁĞ±í
+	//æ ¹æ®å“‡å•¦idListè·å–å›å¤åˆ—è¡¨
 	/**
 	 * @param commentIdList
 	 * @param maxnum
@@ -38,7 +38,7 @@ public interface ReCommentApiService {
 	ResultCode<VoMap<Long, List<ReCommentVo>>> getReCommentVoMap(List<Long> commentIdList, int maxnum);
 	
 	/**
-	 * ²éÑ¯ÈÈÃÅÍÛÀ²ÆÀÂÛ v6.3
+	 * æŸ¥è¯¢çƒ­é—¨å“‡å•¦è¯„è®º v6.3
 	 * @param relatedid
 	 * @param tomemberid
 	 * @param memberid
@@ -54,7 +54,7 @@ public interface ReCommentApiService {
 	public ResultCode<List<ReCommentVo>> getHotReCommentByRelatedidAndTomemberid(Long relatedid, Long tomemberid, Long memberid, Long mtid, String status,
 			Integer flowernum, boolean isTopThree, boolean isAsc, int from, int maxnum);
 	/**
-	 * ²éÑ¯ÈÈÃÅÍÛÀ²Êı
+	 * æŸ¥è¯¢çƒ­é—¨å“‡å•¦æ•°
 	 * @param relatedid
 	 * @param tomemberid
 	 * @param memberid
@@ -67,7 +67,7 @@ public interface ReCommentApiService {
 			Integer flowernum);
 	
 	/**
-	 * ²éÑ¯ÍÛÀ²»Ø¸´,ÅÅ³ıÈÈÃÅ»Ø¸´
+	 * æŸ¥è¯¢å“‡å•¦å›å¤,æ’é™¤çƒ­é—¨å›å¤
 	 * @param relatedid
 	 * @param isAsc
 	 * @param hotids
@@ -77,14 +77,14 @@ public interface ReCommentApiService {
 	 */
 	ResultCode<List<ReCommentVo>> getReCommentWithOutHot(Long relatedid, boolean isAsc, List<Long> hotids, int from, int maxnum);
 	/**
-	 * »ñÈ¡»Ø¸´µÄ»Ø¸´
+	 * è·å–å›å¤çš„å›å¤
 	 * @param memberid
 	 * @param ids
 	 * @return
 	 */
 	ResultCode<VoMap<Long, List<ReCommentVo>>> getReCommenReInfoVoMap(List<Long> memberid, List<Long> ids,Long commentid);
 	/**
-	 * ²éÑ¯ÍÛÀ²»Ø¸´,ÅÅ³ıÈÈÃÅ»Ø¸´
+	 * æŸ¥è¯¢å“‡å•¦å›å¤,æ’é™¤çƒ­é—¨å›å¤
 	 * @param paramet
 	 * @param from
 	 * @param maxnum

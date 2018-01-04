@@ -6,12 +6,12 @@ import com.gewara.ucenter.vo.sns.QQUserVo;
 
 public interface QQVoService {
 	/**
-	 * QQ公众号手动绑定格瓦拉账号
+	 * QQ鍏紬鍙锋墜鍔ㄧ粦瀹氭牸鐡︽媺璐﹀彿
 	 */
 	ResultCode<MemberVo> bindQQGewa(String appkey, String userid, String unionid, String username, String password, String remoteIp);
 	
 	/**
-	 * 根据code获取QQ用户信息
+	 * 鏍规嵁code鑾峰彇QQ鐢ㄦ埛淇℃伅
 	 */
 	ResultCode<MemberVo> getUserByCode(String appkey, String code, String remoteIp);
 	
@@ -20,12 +20,12 @@ public interface QQVoService {
 	ResultCode<QQUserVo> getQQUserByUserid(String appkey, String userid, String unionid);
 	
 	/**
-	 * 取消绑定
+	 * 鍙栨秷缁戝畾
 	 */
 	ResultCode cancelQQUser(String appkey, String userid);
 	
 	/**
-	 * 获取QQ公众号会话token
+	 * 鑾峰彇QQ鍏紬鍙蜂細璇漷oken
 	 */
 	ResultCode<String> getAccessToken(String appkey);
 

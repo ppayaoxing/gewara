@@ -28,7 +28,7 @@ import com.google.common.collect.Lists;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28����02:05:17
+ * @since 2007-9-28锟斤拷锟斤拷02:05:17
  */
 public final class DaoServiceImpl implements DaoService {
 	@Autowired
@@ -211,7 +211,7 @@ public final class DaoServiceImpl implements DaoService {
 
 	@Override
 	public <T extends BaseObject> void addPropertyNum(T entity, String property, Integer num) {
-		hibernateTemplate.refresh(entity); // ���ڶ�̬���£���Ը���һ��ҲҪ����update�е��ֶ�����
+		hibernateTemplate.refresh(entity); // 锟斤拷锟节讹拷态锟斤拷锟铰ｏ拷锟斤拷愿锟斤拷锟揭伙拷锟揭惨拷锟斤拷锟絬pdate锟叫碉拷锟街讹拷锟斤拷锟斤拷
 		if (entity != null) {
 			try {
 				PropertyUtils.setProperty(entity, property,
@@ -236,7 +236,7 @@ public final class DaoServiceImpl implements DaoService {
 	@Override
 	public <T extends BaseObject> void addPropertiesNum(T entity, String properties, Integer... nums) {
 		if (entity != null) {
-			hibernateTemplate.refresh(entity); // ���ڶ�̬���£���Ը���һ��ҲҪ����update�е��ֶ�����
+			hibernateTemplate.refresh(entity); // 锟斤拷锟节讹拷态锟斤拷锟铰ｏ拷锟斤拷愿锟斤拷锟揭伙拷锟揭惨拷锟斤拷锟絬pdate锟叫碉拷锟街讹拷锟斤拷锟斤拷
 			String[] propertyList = StringUtils.split(properties, ",");
 			addPropertiesNum(entity, propertyList, nums);
 		}

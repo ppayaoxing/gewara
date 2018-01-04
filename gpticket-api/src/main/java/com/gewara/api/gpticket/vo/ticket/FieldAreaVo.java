@@ -11,21 +11,21 @@ public class FieldAreaVo extends BaseVo{
 	private static final long serialVersionUID = 1589781612588775506L;
 	
 	private Long id;					// 
-	private String name;				//��������
-	private Long theatreid;				//����ID
-	private String fieldnum;			//�������(TheareField-->fieldnum)
-	private String fieldserial;			//����������ID
-	private String areanum;				//������(TheatreRoom-->num)
-	private String areaserial;			//�������
-	private Integer firstline;			//��ʼ������
-	private Integer firstrank;			//��ʼ������
-	private Integer linenum;			//��λ����
-	private Integer ranknum;			//��λ����
-	private Integer seatnum;			//��λ����
-	private String areatype;			//���ͣ�gptbs
+	private String name;				//锟斤拷锟斤拷锟斤拷锟斤拷
+	private Long theatreid;				//锟斤拷锟斤拷ID
+	private String fieldnum;			//锟斤拷锟斤拷锟斤拷锟�(TheareField-->fieldnum)
+	private String fieldserial;			//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷ID
+	private String areanum;				//锟斤拷锟斤拷锟斤拷(TheatreRoom-->num)
+	private String areaserial;			//锟斤拷锟斤拷锟斤拷锟�
+	private Integer firstline;			//锟斤拷始锟斤拷锟斤拷锟斤拷
+	private Integer firstrank;			//锟斤拷始锟斤拷锟斤拷锟斤拷
+	private Integer linenum;			//锟斤拷位锟斤拷锟斤拷
+	private Integer ranknum;			//锟斤拷位锟斤拷锟斤拷
+	private Integer seatnum;			//锟斤拷位锟斤拷锟斤拷
+	private String areatype;			//锟斤拷锟酵ｏ拷gptbs
 	private String status;				//
-	private String hotzone;				//����
-	private Timestamp updatetime;		//����ʱ��
+	private String hotzone;				//锟斤拷锟斤拷
+	private Timestamp updatetime;		//锟斤拷锟斤拷时锟斤拷
 	
 	public FieldAreaVo(){}
 

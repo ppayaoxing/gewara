@@ -21,7 +21,7 @@ import com.alibaba.dubbo.rpc.cluster.Cluster;
 import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
- * ʧ���Զ��ָ�����̨��¼ʧ�����󣬶�ʱ�ط���ͨ��������Ϣ֪ͨ������
+ * 失锟斤拷锟皆讹拷锟街革拷锟斤拷锟斤拷台锟斤拷录失锟斤拷锟斤拷锟襟，讹拷时锟截凤拷锟斤拷通锟斤拷锟斤拷锟斤拷锟斤拷息通知锟斤拷锟斤拷锟斤拷
  * 
  * <a href="http://en.wikipedia.org/wiki/Failback">Failback</a>
  * 

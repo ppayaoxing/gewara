@@ -1,10 +1,10 @@
 package com.gewara.gmessage.external.constant;
 
 public enum NoticeType {
-	/**Õ¾ÄÚÐÅ*/
+	/**ç«™å†…ä¿¡*/
 	WEBSITE(1),
 	
-	/**¶ÌÐÅ*/
+	/**çŸ­ä¿¡*/
 	SMS(2),
 	
 	/**push*/

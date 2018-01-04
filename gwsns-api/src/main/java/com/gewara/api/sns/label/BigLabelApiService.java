@@ -12,107 +12,107 @@ import com.gewara.api.vo.VoMap;
 
 public interface BigLabelApiService {
 	/**
-	 * ¸ù¾İ±êÇ©IDÁĞ±í»ñÈ¡±êÇ©Êı¾İ
-	 * @param   ids  ±êÇ©IDÁĞ±í  
+	 * æ ¹æ®æ ‡ç­¾IDåˆ—è¡¨è·å–æ ‡ç­¾æ•°æ®
+	 * @param   ids  æ ‡ç­¾IDåˆ—è¡¨  
 	 */
 	ResultCode<List<BigLabelVo>> getBigLabelListByIds(List<Long> ids);
 	/**
-	 * ¸ù¾İ±êÇ©Ãû³Æ»ñÈ¡Êı¾İ
-	 * @param   name  ±êÇ©Ãû³Æ
+	 * æ ¹æ®æ ‡ç­¾åç§°è·å–æ•°æ®
+	 * @param   name  æ ‡ç­¾åç§°
 	 */
 	ResultCode<BigLabelVo> getBigLabelByName(String name);
 	/**
-	 * ¸ù¾İ±êÇ©Ãû³ÆÄ£ºıÆ¥Åä»ñÈ¡Êı¾İ
-	 * @param   name  Ä£ºıÆ¥Åä±êÇ©Ãû³Æ
+	 * æ ¹æ®æ ‡ç­¾åç§°æ¨¡ç³ŠåŒ¹é…è·å–æ•°æ®
+	 * @param   name  æ¨¡ç³ŠåŒ¹é…æ ‡ç­¾åç§°
 	 */
 	ResultCode<List<BigLabelVo>> getBigLabelListByMatchName(String name);
 	
 	/**
-     * ¸ù¾İ²éÑ¯Ìõ¼ş»ñÈ¡±êÇ©Êı¾İ
-     * @param   memberid  Ìí¼Ó±êÇ©µÄÓÃ»§
-     * @param   name  ±êÇ©Ãû³Æ
-     * @param   starttime ²éÑ¯´´½¨Ê±¼ä·¶Î§
-     * @param   endtime   ²éÑ¯´´½¨Ê±¼ä·¶Î§
-     * @param   orders   ÅÅĞò×Ö¶ÎÊı×é
-     * @param   isAsc    ÅÅĞòÀàĞÍ(ASC?)
-     * @param   from     ·ÖÒ³²ÎÊı
-     * @param   maxnum   ·ÖÒ³²ÎÊı
+     * æ ¹æ®æŸ¥è¯¢æ¡ä»¶è·å–æ ‡ç­¾æ•°æ®
+     * @param   memberid  æ·»åŠ æ ‡ç­¾çš„ç”¨æˆ·
+     * @param   name  æ ‡ç­¾åç§°
+     * @param   starttime æŸ¥è¯¢åˆ›å»ºæ—¶é—´èŒƒå›´
+     * @param   endtime   æŸ¥è¯¢åˆ›å»ºæ—¶é—´èŒƒå›´
+     * @param   orders   æ’åºå­—æ®µæ•°ç»„
+     * @param   isAsc    æ’åºç±»å‹(ASC?)
+     * @param   from     åˆ†é¡µå‚æ•°
+     * @param   maxnum   åˆ†é¡µå‚æ•°
      */
 	ResultCode<List<BigLabelVo>> getBigLabelList(Long memberid,String name,Timestamp starttime, Timestamp endtime,String [] orders, boolean isAsc, int from, int maxnum);
     /**
-     * Ìí¼Ó±êÇ©ĞÅÏ¢
-     * @param   memberid  Ìí¼Ó±êÇ©µÄÓÃ»§
-     * @param   name  ±êÇ©Ãû³Æ
+     * æ·»åŠ æ ‡ç­¾ä¿¡æ¯
+     * @param   memberid  æ·»åŠ æ ‡ç­¾çš„ç”¨æˆ·
+     * @param   name  æ ‡ç­¾åç§°
      */
 	ResultCode<BigLabelVo> addBigLabel(Long memberid, String name);
     /**
-     * Ìí¼Ó±êÇ©¹ØÁª¹ØÏµ
-     * @param   id    ±êÇ©ID
-     * @param   tag  ¹ØÁª¶ÔÏóÀàĞÍ
-     * @param   relatedid  ¹ØÁª¶ÔÏóID
+     * æ·»åŠ æ ‡ç­¾å…³è”å…³ç³»
+     * @param   id    æ ‡ç­¾ID
+     * @param   tag  å…³è”å¯¹è±¡ç±»å‹
+     * @param   relatedid  å…³è”å¯¹è±¡ID
      */
 	ResultCode addRelatedBigLabel(Long id,String tag,Long relatedid);
     /**
-     * ÒÆ³ı±êÇ©¹ØÁª¹ØÏµ
-     * @param   id    ±êÇ©ID
-     * @param   tag  ¹ØÁª¶ÔÏóÀàĞÍ
-     * @param   relatedid  ¹ØÁª¶ÔÏóID
+     * ç§»é™¤æ ‡ç­¾å…³è”å…³ç³»
+     * @param   id    æ ‡ç­¾ID
+     * @param   tag  å…³è”å¯¹è±¡ç±»å‹
+     * @param   relatedid  å…³è”å¯¹è±¡ID
      */
 	ResultCode cancelRelatedBigLabel(Long id,String tag,Long relatedid);
     /**
-     * »ñÈ¡±êÇ©¹ØÁªµÄ¶ÔÏó
-     * @param   id    ±êÇ©ID (²»ÄÜÎª¿Õ)
-     * @param   tag  ¹ØÁª¶ÔÏóÀàĞÍ (¿ÉºöÂÔ)
-     * @param   relatedid  ¹ØÁª¶ÔÏóID (¿ÉºöÂÔ)
-     * @param   from  ·ÖÒ³²ÎÊı
-     * @param   maxnum  ·ÖÒ³²ÎÊı
+     * è·å–æ ‡ç­¾å…³è”çš„å¯¹è±¡
+     * @param   id    æ ‡ç­¾ID (ä¸èƒ½ä¸ºç©º)
+     * @param   tag  å…³è”å¯¹è±¡ç±»å‹ (å¯å¿½ç•¥)
+     * @param   relatedid  å…³è”å¯¹è±¡ID (å¯å¿½ç•¥)
+     * @param   from  åˆ†é¡µå‚æ•°
+     * @param   maxnum  åˆ†é¡µå‚æ•°
      */
 	ResultCode<List<LabelRelatedVo>> getRelatedBigLabelList(Long id,String tag, Long relatedid, int from, int maxnum);
 	/**
-     * »ñÈ¡±êÇ©¹ØÁªµÄ¶ÔÏó×ÜÌõÊı
-     * @param   id    ±êÇ©ID
-     * @param   tag  ¹ØÁª¶ÔÏóÀàĞÍ
+     * è·å–æ ‡ç­¾å…³è”çš„å¯¹è±¡æ€»æ¡æ•°
+     * @param   id    æ ‡ç­¾ID
+     * @param   tag  å…³è”å¯¹è±¡ç±»å‹
      */
 	ResultCode<Integer> getRelatedBigLabelCount(Long id, String tag);
     /**
-     * »ñÈ¡¶ÔÏó¹ØÁªµÄ±êÇ©IDÁĞ±í
-     * @param   relatedid    ¹ØÁª¶ÔÏóID
-     * @param   tag  ¹ØÁª¶ÔÏóÀàĞÍ
-     * @param   from  ·ÖÒ³²ÎÊı
-     * @param   maxnum  ·ÖÒ³²ÎÊı
+     * è·å–å¯¹è±¡å…³è”çš„æ ‡ç­¾IDåˆ—è¡¨
+     * @param   relatedid    å…³è”å¯¹è±¡ID
+     * @param   tag  å…³è”å¯¹è±¡ç±»å‹
+     * @param   from  åˆ†é¡µå‚æ•°
+     * @param   maxnum  åˆ†é¡µå‚æ•°
      */
 	ResultCode<List<Long>> getRelatedBeBigLabelList(String tag,Long relatedid, int from, int maxnum);
 	/**
-	 * ¹Ø×¢±êÇ©
-	 * @param labelid ±êÇ©id
-	 * @param memberid ÓÃ»§id
+	 * å…³æ³¨æ ‡ç­¾
+	 * @param labelid æ ‡ç­¾id
+	 * @param memberid ç”¨æˆ·id
 	 * @return
 	 */
 	ResultCode<String> collectBigLabel(Long labelid, Long memberid);
 	/**
-	 * ÅúÁ¿¹Ø×¢±êÇ©
+	 * æ‰¹é‡å…³æ³¨æ ‡ç­¾
 	 * @param labelids
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<String> collectBigLabel(List<Long> labelids, Long memberid);
 	/**
-	 * È¡Ïû¹Ø×¢±êÇ©
-	 * @param labelid ±êÇ©id
-	 * @param memberid ÓÃ»§id
+	 * å–æ¶ˆå…³æ³¨æ ‡ç­¾
+	 * @param labelid æ ‡ç­¾id
+	 * @param memberid ç”¨æˆ·id
 	 * @return
 	 */
 	ResultCode<String> cancelCollectBigLabel(Long labelid, Long memberid);
 	/**
-	 * µÃµ½¹Ø×¢±êÇ©
-	 * @param labelid ±êÇ©id
-	 * @param memberid ÓÃ»§id
+	 * å¾—åˆ°å…³æ³¨æ ‡ç­¾
+	 * @param labelid æ ‡ç­¾id
+	 * @param memberid ç”¨æˆ·id
 	 * @return
 	 */
 	ResultCode<TreasureVo> getCollectBigLabel(Long labelid, Long memberid);
 	
 	/**
-	 * µÃµ½¹Ø×¢±êÇ©ÁĞ±í
+	 * å¾—åˆ°å…³æ³¨æ ‡ç­¾åˆ—è¡¨
 	 * @param memberid
 	 * @param from
 	 * @param maxnum
@@ -120,17 +120,17 @@ public interface BigLabelApiService {
 	 */
 	ResultCode<List<Long>> getCollectBigLabel(Long memberid, int from, int maxnum);
 	/**
-	 * µÃµ½¹Ø×¢±êÇ©µÄ·ÛË¿
-	 * @param labelid ±êÇ©id
+	 * å¾—åˆ°å…³æ³¨æ ‡ç­¾çš„ç²‰ä¸
+	 * @param labelid æ ‡ç­¾id
 	 * @param from
 	 * @param maxnum
 	 * @return
 	 */
 	ResultCode<List<TreasureVo>> getBigLabelTreasureList(Long labelid, int from, int maxnum);
 	/**
-	 * ¸ù¾İ±êÇ©idµÃµ½wala
-	 * @param labelid ±êÇ©id
-	 * @param order  ÅÅĞò×Ö¶Î  movieweightorder µçÓ°È¨ÖØ
+	 * æ ¹æ®æ ‡ç­¾idå¾—åˆ°wala
+	 * @param labelid æ ‡ç­¾id
+	 * @param order  æ’åºå­—æ®µ  movieweightorder ç”µå½±æƒé‡
 	 * @param from
 	 * @param maxnum
 	 * @return
@@ -138,7 +138,7 @@ public interface BigLabelApiService {
 	ResultCode<List<CommentVo>> getLabelCommentList(Long labelid, String order, int from, int maxnum);
 	
 	/**
-	 * »ñÈ¡±êÇ©¹±Ï×ÓÃ»§ÁĞ±í
+	 * è·å–æ ‡ç­¾è´¡çŒ®ç”¨æˆ·åˆ—è¡¨
 	 * @param labelid
 	 * @param startTime
 	 * @param endTime
@@ -149,7 +149,7 @@ public interface BigLabelApiService {
 	ResultCode<List> getContributeFansList(Long labelid,Timestamp startTime, Timestamp endTime, int from, int maxnum);
 	
 	/**
-	 * »ñÈ¡ÍÆ¼ö±êÇ©
+	 * è·å–æ¨èæ ‡ç­¾
 	 * @param memberid 
 	 * @param relatedid 
 	 * @param tag 
@@ -160,14 +160,14 @@ public interface BigLabelApiService {
 	ResultCode<List<BigLabelVo>> getRecommendBigLabelList(String tag, Long relatedid, Long memberid, int from, int maxnum);
 	
 	/**
-	 * »ñÈ¡ÓÃ»§¹Ø×¢µÄ±êÇ©Î´¶ÁÊıÁ¿
+	 * è·å–ç”¨æˆ·å…³æ³¨çš„æ ‡ç­¾æœªè¯»æ•°é‡
 	 * @param ids
 	 * @return
 	 */
 	ResultCode<VoMap<String,Integer>> getUnreadBigLabelNumVoMap(List<String> ids);
 	
 	/**
-	 * ½«ÓÃ»§¹Ø×¢µÄ±êÇ©Î´¶ÁÊıÁ¿Çå¿Õ
+	 * å°†ç”¨æˆ·å…³æ³¨çš„æ ‡ç­¾æœªè¯»æ•°é‡æ¸…ç©º
 	 * @param id
 	 * @param num
 	 * @return
@@ -175,20 +175,20 @@ public interface BigLabelApiService {
 	ResultCode cleanUnReadBigLabelNum(String id, Integer num);
 	
 	/**
-	 * Ìí¼ÓµçÓ°±êÇ©
+	 * æ·»åŠ ç”µå½±æ ‡ç­¾
 	 * @param movieids
 	 * @return
 	 */
 	ResultCode<Integer> addLabelByMovie(List<Long> movieids);
 	
 	/**
-	 * »ñÈ¡ÍÛÀ²Êı
+	 * è·å–å“‡å•¦æ•°
 	 * @param id
 	 * @return
 	 */
 	ResultCode<Integer> getRelatedCommentCount(Long id);
 	/**
-	 * µÃµ½¹Ø×¢µÄ±êÇ©¶ÔÓ¦µÄÎ´¶ÁÊıÁ¿
+	 * å¾—åˆ°å…³æ³¨çš„æ ‡ç­¾å¯¹åº”çš„æœªè¯»æ•°é‡
 	 * @param memberid
 	 * @param from
 	 * @param maxnum
@@ -196,7 +196,7 @@ public interface BigLabelApiService {
 	 */
 	ResultCode<VoMap<Long,Integer>> getCollectBigLabelVoMapByMemberid(Long memberid, int from, int maxnum);
 	/**
-	 * ĞŞ¸ÄÓÃ»§ÊÕ²Ø±êÇ©Î´¶ÁÊıÁ¿
+	 * ä¿®æ”¹ç”¨æˆ·æ”¶è—æ ‡ç­¾æœªè¯»æ•°é‡
 	 * @param memberid
 	 * @param relatedid
 	 * @param num

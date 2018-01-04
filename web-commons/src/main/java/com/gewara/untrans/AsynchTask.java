@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AsynchTask {
-	private long addtime;		//Èë¶ÓÊ±¼ä
-	private long validtime;		//¶ÓÁĞÓĞĞ§Ê±¼ä£¬³¬³öÖ±½ÓºöÂÔ
+	private long addtime;		//å…¥é˜Ÿæ—¶é—´
+	private long validtime;		//é˜Ÿåˆ—æœ‰æ•ˆæ—¶é—´ï¼Œè¶…å‡ºç›´æ¥å¿½ç•¥
 	private boolean requireLock;
 	public void setRequireLock(boolean requireLock) {
 		this.requireLock = requireLock;
@@ -19,9 +19,9 @@ public class AsynchTask {
 	public void setValidtime(long validtime) {
 		this.validtime = validtime;
 	}
-	private String tasktype;	//ÈÎÎñÀàĞÍ
-	private String taskUkey;	//ÈÎÎñÎ¨Ò»±êÊ¶£¬Î¨Ò»±êÊ¶ÏàÍ¬µÄÈÎÎñ¿ÉÒÔÊ¹ÓÃÏàÍ¬µÄ·µ»ØÊı¾İ£¨Èç¹ûÊı¾İÎ´¹ıÊ±µÄ»°£©
-	private Map otherinfo = new HashMap();		//ÆäËûĞÅÏ¢
+	private String tasktype;	//ä»»åŠ¡ç±»å‹
+	private String taskUkey;	//ä»»åŠ¡å”¯ä¸€æ ‡è¯†ï¼Œå”¯ä¸€æ ‡è¯†ç›¸åŒçš„ä»»åŠ¡å¯ä»¥ä½¿ç”¨ç›¸åŒçš„è¿”å›æ•°æ®ï¼ˆå¦‚æœæ•°æ®æœªè¿‡æ—¶çš„è¯ï¼‰
+	private Map otherinfo = new HashMap();		//å…¶ä»–ä¿¡æ¯
 	public AsynchTask(String tasktype, String taskUkey, int maxWaitSeconds, boolean requireLock){
 		this.tasktype = tasktype;
 		this.taskUkey = taskUkey;
@@ -36,7 +36,7 @@ public class AsynchTask {
 		return taskUkey;
 	}
 	/**
-	 * ÈÎÎñµÄÎ¨Ò»±êÊ¶£¬¶ÔÓÚÏàÍ¬µÄtask£¬·µ»ØÏàÍ¬µÄÊı¾İ
+	 * ä»»åŠ¡çš„å”¯ä¸€æ ‡è¯†ï¼Œå¯¹äºç›¸åŒçš„taskï¼Œè¿”å›ç›¸åŒçš„æ•°æ®
 	 * @return
 	 */
 	public String getTasktype() {

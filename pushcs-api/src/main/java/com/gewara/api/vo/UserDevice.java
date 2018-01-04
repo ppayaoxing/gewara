@@ -5,30 +5,30 @@ import java.io.Serializable;
 public class UserDevice implements Serializable{
 	private static final long serialVersionUID = -2486453578172419891L;
 	
-	private Long userId;		//ÓÃ»§id
-	private String deviceId;	//ÍÆËÍ±êÊ¶
+	private Long userId;		//ç”¨æˆ·id
+	private String deviceId;	//æ¨é€æ ‡è¯†
 	@Deprecated
-	private String appToken;	//Ó¦ÓÃtoken
-	private String deviceTag; 	//Éè±¸±ê¼Ç£ºandroid¡¢ios
-	private String appName;		//Ó¦ÓÃÃû³Æ
-	private String appVersion;	//Ó¦ÓÃ°æ±¾
-	private String acceptPush;	//Ó¦ÓÃÊÇ·ñ½ÓÊÜpushÏûÏ¢
-	private String cityCode; //³ÇÊĞ±àÂë
-	private String cityName; //³ÇÊĞÃû³Æ
+	private String appToken;	//åº”ç”¨token
+	private String deviceTag; 	//è®¾å¤‡æ ‡è®°ï¼šandroidã€ios
+	private String appName;		//åº”ç”¨åç§°
+	private String appVersion;	//åº”ç”¨ç‰ˆæœ¬
+	private String acceptPush;	//åº”ç”¨æ˜¯å¦æ¥å—pushæ¶ˆæ¯
+	private String cityCode; //åŸå¸‚ç¼–ç 
+	private String cityName; //åŸå¸‚åç§°
 	private String pointx;
 	private String pointy;
-	private String uuid; //Éè±¸Î¨Ò»±êÊ¶
+	private String uuid; //è®¾å¤‡å”¯ä¸€æ ‡è¯†
 	/**
 	 * 
-	 * @param uuidÉè±¸Î¨Ò»±êÊ¶
-	 * @param userId ÓÃ»§id
-	 * @param deviceId  ÍÆËÍ±êÊ¶
-	 * @param deviceTag Éè±¸±ê¼Ç£ºandroid¡¢ios
-	 * @param appName Ó¦ÓÃÃû³Æ
-	 * @param appVersion Ó¦ÓÃ°æ±¾
-	 * @param acceptPush Ó¦ÓÃÊÇ·ñ½ÓÊÜpushÏûÏ¢
-	 * @param cityCode ³ÇÊĞ±àÂë
-	 * @param cityName ³ÇÊĞÃû³Æ
+	 * @param uuidè®¾å¤‡å”¯ä¸€æ ‡è¯†
+	 * @param userId ç”¨æˆ·id
+	 * @param deviceId  æ¨é€æ ‡è¯†
+	 * @param deviceTag è®¾å¤‡æ ‡è®°ï¼šandroidã€ios
+	 * @param appName åº”ç”¨åç§°
+	 * @param appVersion åº”ç”¨ç‰ˆæœ¬
+	 * @param acceptPush åº”ç”¨æ˜¯å¦æ¥å—pushæ¶ˆæ¯
+	 * @param cityCode åŸå¸‚ç¼–ç 
+	 * @param cityName åŸå¸‚åç§°
 	 * @param pointx
 	 * @param pointy
 	 */
@@ -48,14 +48,14 @@ public class UserDevice implements Serializable{
 	
 	/**
 	 * 
-	 * @param userId ÓÃ»§id
-	 * @param deviceId Éè±¸id
-	 * @param appToken Ó¦ÓÃtoken
-	 * @param deviceTag Éè±¸±ê¼Ç£ºandroid¡¢ios
-	 * @param appName Ó¦ÓÃÃû³Æ
-	 * @param appVersion Ó¦ÓÃ°æ±¾
-	 * @param acceptPush Ó¦ÓÃÊÇ·ñ½ÓÊÜpushÏûÏ¢
-	 * @param cityCode ÓÃ»§³ÇÊĞ±àÂë  ÓÃ»§Ê¹ÓÃÉè±¸ËùÔÚµÄ³ÇÊĞ
+	 * @param userId ç”¨æˆ·id
+	 * @param deviceId è®¾å¤‡id
+	 * @param appToken åº”ç”¨token
+	 * @param deviceTag è®¾å¤‡æ ‡è®°ï¼šandroidã€ios
+	 * @param appName åº”ç”¨åç§°
+	 * @param appVersion åº”ç”¨ç‰ˆæœ¬
+	 * @param acceptPush åº”ç”¨æ˜¯å¦æ¥å—pushæ¶ˆæ¯
+	 * @param cityCode ç”¨æˆ·åŸå¸‚ç¼–ç   ç”¨æˆ·ä½¿ç”¨è®¾å¤‡æ‰€åœ¨çš„åŸå¸‚
 	 * @param cityName
 	 * @param pointx
 	 * @param pointy

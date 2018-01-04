@@ -3,28 +3,28 @@ package com.gewara.msearch.external.entity.index;
 import java.util.List;
 
 /**
- * µçÓ°µÄĞÅÏ¢
+ * ç”µå½±çš„ä¿¡æ¯
  * 
- * @author ¶­Ã÷
- * @createDate 2015Äê6ÔÂ3ÈÕ
+ * @author è‘£æ˜
+ * @createDate 2015å¹´6æœˆ3æ—¥
  */
 public class MovieIndexInfo  extends IndexData {
 
 	private static final long serialVersionUID = 7074469411495043856L;
 	
-	private String name = null;//ÖĞÎÄÃû³Æ
-	private String ename = null;//Ó¢ÎÄÃû³Æ
-	private List<String> aliases=null;//µçÓ°±ğÃû
+	private String name = null;//ä¸­æ–‡åç§°
+	private String ename = null;//è‹±æ–‡åç§°
+	private List<String> aliases=null;//ç”µå½±åˆ«å
 	
 
-	private List<String> directors = null; //µ¼ÑİÁĞ±í
-	private List<String> protagonists = null;//ÑİÔ±ÁĞ±í
-	private List<String> actors = null;//½ÇÉ«ÁĞ±í
-	private String desc = null;//µçÓ°¼ò½é
+	private List<String> directors = null; //å¯¼æ¼”åˆ—è¡¨
+	private List<String> protagonists = null;//æ¼”å‘˜åˆ—è¡¨
+	private List<String> actors = null;//è§’è‰²åˆ—è¡¨
+	private String desc = null;//ç”µå½±ç®€ä»‹
 	
 	
 	/**
-	 * Ó°Æ¬µÄ±ğÃû
+	 * å½±ç‰‡çš„åˆ«å
 	 * @return
 	 */
 	public List<String> getAliases() {
@@ -34,7 +34,7 @@ public class MovieIndexInfo  extends IndexData {
 	
 	
 	/**
-	 * Ó°Æ¬ÖĞÎÄÃû³Æ
+	 * å½±ç‰‡ä¸­æ–‡åç§°
 	 * @return
 	 */
 	public String getName() {
@@ -42,7 +42,7 @@ public class MovieIndexInfo  extends IndexData {
 	}
 
 	/**
-	 * Ó°Æ¬Ó¢ÎÄÃû³Æ
+	 * å½±ç‰‡è‹±æ–‡åç§°
 	 * @return
 	 */
 	public String getEname() {
@@ -50,7 +50,7 @@ public class MovieIndexInfo  extends IndexData {
 	}
 
 	/**
-	 * Ó°Æ¬µÄµ¼ÑİÁĞ±í
+	 * å½±ç‰‡çš„å¯¼æ¼”åˆ—è¡¨
 	 * @return
 	 */
 	public List<String> getDirectors() {
@@ -58,7 +58,7 @@ public class MovieIndexInfo  extends IndexData {
 	}
 
 	/**
-	 * Ó°Æ¬µÄÑİÔ±ÁĞ±í
+	 * å½±ç‰‡çš„æ¼”å‘˜åˆ—è¡¨
 	 * @return
 	 */
 	public List<String> getProtagonists() {
@@ -66,7 +66,7 @@ public class MovieIndexInfo  extends IndexData {
 	}
 
 	/**
-	 * Ó°Æ¬µÄ½ÇÉ«ÁĞ±í
+	 * å½±ç‰‡çš„è§’è‰²åˆ—è¡¨
 	 * @return
 	 */
 	public List<String> getActors() {
@@ -74,7 +74,7 @@ public class MovieIndexInfo  extends IndexData {
 	}
 
 	/**
-	 * Ó°Æ¬µÄ¼ò½é
+	 * å½±ç‰‡çš„ç®€ä»‹
 	 * @return
 	 */
 	public String getDesc() {

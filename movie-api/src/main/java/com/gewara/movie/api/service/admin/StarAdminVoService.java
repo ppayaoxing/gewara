@@ -19,73 +19,73 @@ public interface StarAdminVoService {
 	ResultCode<CastProfileVo> saveCastProfileVoAndRelated(RequestParamVo paramVo);
 	ResultCode<CastProfileVo> removeCastProfileById(Long castid);
 	/**
-	 * ¸ù¾İ×÷Æ·ÀàĞÍºÍ×÷Æ·id»ñÈ¡WorksStaffVoÁĞ±í
-	 * @param workstype ×÷Æ·ÀàĞÍ
-	 * @param worksid ÏîÄ¿ID
-	 * @param castid ÈËÎïID
-	 * @param stafllrole ÈËÎïÔÚ×÷Æ·ÖĞµÄ½ÇÉ«
-	 * @param sortbyAsc ÊÇ·ñ°´ÕÕsortbyÅÅĞò
+	 * æ ¹æ®ä½œå“ç±»å‹å’Œä½œå“idè·å–WorksStaffVoåˆ—è¡¨
+	 * @param workstype ä½œå“ç±»å‹
+	 * @param worksid é¡¹ç›®ID
+	 * @param castid äººç‰©ID
+	 * @param stafllrole äººç‰©åœ¨ä½œå“ä¸­çš„è§’è‰²
+	 * @param sortbyAsc æ˜¯å¦æŒ‰ç…§sortbyæ’åº
 	 * @return
 	 */
 	ResultCode<List<WorksStaffVo>> getWorksStaffList(String workstype,Long worksid,Long castid,Long stafllrole,Boolean sortbyAsc);
 	
 	/**
-	 * ¸ù¾İ×÷Æ·ÀàĞÍºÍ×÷Æ·id»ñÈ¡WorksStaffVoÁĞ±í
-	 * @param workstype ×÷Æ·ÀàĞÍ
-	 * @param worksid ÏîÄ¿ID
-	 * @param castid ÈËÎïID
-	 * @param stafllrole ÈËÎïÔÚ×÷Æ·ÖĞµÄ½ÇÉ«
-	 * @param sortbyAsc ÊÇ·ñ°´ÕÕsortbyÅÅĞò
+	 * æ ¹æ®ä½œå“ç±»å‹å’Œä½œå“idè·å–WorksStaffVoåˆ—è¡¨
+	 * @param workstype ä½œå“ç±»å‹
+	 * @param worksid é¡¹ç›®ID
+	 * @param castid äººç‰©ID
+	 * @param stafllrole äººç‰©åœ¨ä½œå“ä¸­çš„è§’è‰²
+	 * @param sortbyAsc æ˜¯å¦æŒ‰ç…§sortbyæ’åº
 	 * @return
 	 */
 	ResultCode<List<Long>> getWorksStaffIdList(String workstype,Long worksid,Long castid,Long stafllrole,Boolean sortbyAsc);
 	/** 
-	 * ±£´æ
+	 * ä¿å­˜
 	 */
 	ResultCode saveWorksStaff(RequestParamVo paramVo);
 	/**
-	 * ¸ù¾İÈËÎïidÁĞ±íÉ¾³ıÈËÎïĞÅÏ¢¹ØÁªÊı¾İ
+	 * æ ¹æ®äººç‰©idåˆ—è¡¨åˆ é™¤äººç‰©ä¿¡æ¯å…³è”æ•°æ®
 	 * @return
 	 */
 	ResultCode removeProfileAffiliated(List<Long> castidList);
 	/**
-	 * ¸ù¾İ×÷Æ·ÀàĞÍºÍ×÷Æ·id»ñÈ¡WorksStaffVoÁĞ±í
-	 * @param castidList ÈËÎïIDÁĞ±í
+	 * æ ¹æ®ä½œå“ç±»å‹å’Œä½œå“idè·å–WorksStaffVoåˆ—è¡¨
+	 * @param castidList äººç‰©IDåˆ—è¡¨
 	 * @return
 	 */
 	ResultCode<List<CastProfileVo>> getCastProfileListByIdList(List<Long> castidList);
 	/**
-	 * Ê±¹âÈËÎï»ã×Ü
+	 * æ—¶å…‰äººç‰©æ±‡æ€»
 	 */
 	ResultCode<List<CastProfileVo>> getCastProfileListFromMtime();
 	
 	/**
-	 * ¸ù¾İÊ±¹âid
+	 * æ ¹æ®æ—¶å…‰id
 	 * @param mtimeid
 	 */
 	ResultCode<List<CastProfileVo>> getCastProfileListByMtimeID(String mtimeid);
 	/**
-	 * ²éÑ¯castWorks ÁĞ±í
-	 * @param workstype ×÷Æ·ÀàĞÍ
-	 * @param worksid ÏîÄ¿ID
-	 * @param castid ÈËÎïID
-	 * @param achievement ÊÇ·ñ³É¾Í×÷Æ· 
+	 * æŸ¥è¯¢castWorks åˆ—è¡¨
+	 * @param workstype ä½œå“ç±»å‹
+	 * @param worksid é¡¹ç›®ID
+	 * @param castid äººç‰©ID
+	 * @param achievement æ˜¯å¦æˆå°±ä½œå“ 
 	 * @return
 	 */
 	ResultCode<List<CastWorksVo>> getCastWorksVoList(Long castid,Long worksid,String workstype,String achievement);
 	/**
-	 * ĞÂÔöCastBaseRelation
-	 * @param castid ÈËÎïID
-	 * @param baseinfoid »ù±¾ĞÅÏ¢ID
-	 * @param infotype ĞÅÏ¢ÀàĞÍ
+	 * æ–°å¢CastBaseRelation
+	 * @param castid äººç‰©ID
+	 * @param baseinfoid åŸºæœ¬ä¿¡æ¯ID
+	 * @param infotype ä¿¡æ¯ç±»å‹
 	 * @return
 	 */
 	ResultCode saveCastBaseRelation(Long castid,Long baseinfoid,String infotype);
 	/**
-	 * ²éÑ¯CastBaseRelation
-	 * @param castid ÈËÎïID
-	 * @param baseinfoid »ù±¾ĞÅÏ¢ID
-	 * @param infotype ĞÅÏ¢ÀàĞÍ
+	 * æŸ¥è¯¢CastBaseRelation
+	 * @param castid äººç‰©ID
+	 * @param baseinfoid åŸºæœ¬ä¿¡æ¯ID
+	 * @param infotype ä¿¡æ¯ç±»å‹
 	 * @return
 	 */
 	ResultCode<List<CastBaseRelationVo>> getBaseRelationList(Long castid,Long baseinfoid,String infotype);
@@ -93,32 +93,32 @@ public interface StarAdminVoService {
 	//avatar starService 
 	
 	/**
-	 * ²éÑ¯»ù´¡ĞÅÏ¢ÁĞ±í
+	 * æŸ¥è¯¢åŸºç¡€ä¿¡æ¯åˆ—è¡¨
 	 * @param infotype
 	 * @return
 	 */
 	ResultCode<List<GlossaryBaseInfoVo>> getGlossaryBaseInfoList(String infoname, String infotype);
 	
 	/**
-	 * ¸ù¾İÓÃ»§ÀàĞÍ²éÑ¯»ù´¡ĞÅÏ¢ÁĞ±í
+	 * æ ¹æ®ç”¨æˆ·ç±»å‹æŸ¥è¯¢åŸºç¡€ä¿¡æ¯åˆ—è¡¨
 	 * @param starid
 	 * @param infotype
 	 * @return
 	 */
 	ResultCode<List<GlossaryBaseInfoVo>> getGlossaryBaseInfoListByStarId(Long castid, String infotype);
 	/**
-	 * Ìí¼ÓÈËÎï/ÀàĞÍ¹ØÏµ±í
+	 * æ·»åŠ äººç‰©/ç±»å‹å…³ç³»è¡¨
 	 * @param starTypes
 	 * @param starid
 	 */
 	ResultCode batchAddCastBaseRelation(String starTypes, Long starid, String infotype);
 	/**
-	 * ²éÑ¯ÈËÎïÁĞ±í(ÊıÁ¿) Ä£ºı²éÑ¯
+	 * æŸ¥è¯¢äººç‰©åˆ—è¡¨(æ•°é‡) æ¨¡ç³ŠæŸ¥è¯¢
 	 * @param starname
 	 */
 	ResultCode<Integer> getCastProfileCount(String starname);
 	/**
-	 * Ä£ºı²éÑ¯ÈËÎïÁĞ±í(·ÖÒ³)
+	 * æ¨¡ç³ŠæŸ¥è¯¢äººç‰©åˆ—è¡¨(åˆ†é¡µ)
 	 * @param starname
 	 * @param from
 	 * @param maxnum
@@ -126,38 +126,38 @@ public interface StarAdminVoService {
 	 */
 	ResultCode<List<CastProfileVo>> getCastProfileList(String starname,int from, int maxnum);
 	/**
-	 * ¸ù¾İÀàĞÍºÍÃû³Æ²éÑ¯ÑİÔ±»ù±¾ĞÅÏ¢
+	 * æ ¹æ®ç±»å‹å’Œåç§°æŸ¥è¯¢æ¼”å‘˜åŸºæœ¬ä¿¡æ¯
 	 * @param infoname
 	 * @param infotype
 	 * @return
 	 */
 	ResultCode<Long> getGlossaryBaseInfoByTypeAndName(String infoname, String infotype);
 	/**
-	 * ²éÑ¯»ù±¾ĞÅÏ¢ÊıÁ¿
+	 * æŸ¥è¯¢åŸºæœ¬ä¿¡æ¯æ•°é‡
 	 * @param infotype
 	 * @return
 	 */
 	ResultCode<Integer> getGlossaryBaseInfoCount(String infotype);
 	/**
-	 * ²éÑ¯»ù±¾ĞÅÏ¢·­Ò³
+	 * æŸ¥è¯¢åŸºæœ¬ä¿¡æ¯ç¿»é¡µ
 	 * @param infotype
 	 * @return
 	 */
 	ResultCode<List<GlossaryBaseInfoVo>> getGlossaryBaseInfoListByPage(String infotype, int from, int maxnum);
 	/**
-	 * É¾³ı»ù±¾ĞÅÏ¢
+	 * åˆ é™¤åŸºæœ¬ä¿¡æ¯
 	 * @param id
 	 */
 	ResultCode deleteGlossaryBaseInfo(Long id);
 	/**
-	 * ²éÑ¯µçÓ°»ù±¾ĞÅÏ¢
+	 * æŸ¥è¯¢ç”µå½±åŸºæœ¬ä¿¡æ¯
 	 * @param movieid
 	 * @param infotype
 	 * @return
 	 */
 	ResultCode<List<MovieBaseRelationVo>> getMovieBaseRelation(Long movieid,String infotype);
 	/**
-	 * ²éÑ¯µçÓ°°æ±¾µÄMap={id:value,name:value}
+	 * æŸ¥è¯¢ç”µå½±ç‰ˆæœ¬çš„Map={id:value,name:value}
 	 * @param movieid
 	 * @param infotype
 	 * @return
@@ -168,53 +168,53 @@ public interface StarAdminVoService {
 	ResultCode associateMovie(String batchid);
 	ResultCode associateMovieBatch(String batchid, String recordIds);
 	/**
-	 * ½«ÈËÎïĞÅÏ¢´ÓÁÙÊ±±íÍ¬²½µ½ÕıÊ½±í
-	 * @param profileTmpJson ÁÙÊ±±íĞÅÏ¢json
+	 * å°†äººç‰©ä¿¡æ¯ä»ä¸´æ—¶è¡¨åŒæ­¥åˆ°æ­£å¼è¡¨
+	 * @param profileTmpJson ä¸´æ—¶è¡¨ä¿¡æ¯json
 	 */
 	ResultCode<CastProfileVo> syncProfile(String profileTmpJson, String batchId) throws Exception;
 	/**
-	 * ½«ÈËÎïÍ¼Æ¬´ÓÁÙÊ±±íÍ¬²½µ½ÕıÊ½±í
-	 * @param castId	ÁÙÊ±±í¶ÔÓ¦µÄÈËÎï±êÊ¶
-	 * @param castIdPerm	ÕıÊ½±íµÄÈËÎï±êÊ¶
+	 * å°†äººç‰©å›¾ç‰‡ä»ä¸´æ—¶è¡¨åŒæ­¥åˆ°æ­£å¼è¡¨
+	 * @param castId	ä¸´æ—¶è¡¨å¯¹åº”çš„äººç‰©æ ‡è¯†
+	 * @param castIdPerm	æ­£å¼è¡¨çš„äººç‰©æ ‡è¯†
 	 */	
 	ResultCode syncPicture(Long castId, Long castIdPerm);
 	/**
-	 * ¸ù¾İ castProfileId»ñÈ¡Ã÷ĞÇinfoname£¬¶à¸öÒÔ¶ººÅ£¬·Ö¸ô
+	 * æ ¹æ® castProfileIdè·å–æ˜æ˜Ÿinfonameï¼Œå¤šä¸ªä»¥é€—å·ï¼Œåˆ†éš”
 	 * @param castId
 	 */
 	ResultCode<String> getStarInfonameByCastId(Long castId);
 	/**
-	 * ÌŞ³ıÈßÓàµÄÈËÎïĞÅÏ¢¡¢¹ØÁªÊı¾İ
-	 * @return msgList ÏûÏ¢ĞÅÏ¢
+	 * å‰”é™¤å†—ä½™çš„äººç‰©ä¿¡æ¯ã€å…³è”æ•°æ®
+	 * @return msgList æ¶ˆæ¯ä¿¡æ¯
 	 */
 	ResultCode<List<String>> removeRedutantProfiles();
 	/**
-	 * »ñÈ¡picwidth is nullÓ°ÈËÍ¼Æ¬ÁĞ±í
+	 * è·å–picwidth is nullå½±äººå›¾ç‰‡åˆ—è¡¨
 	 * @param from
 	 * @param maxnum
 	 * @return
 	 */
 	ResultCode<List<CastPictureVo>> getCastPictureList(int from, int maxnum);
 	/**
-	 * ±£´æ»òÓ°ÈËÍ¼Æ¬
+	 * ä¿å­˜æˆ–å½±äººå›¾ç‰‡
 	 * @param paramVo
 	 */
 	ResultCode saveOrUpdateCastPicture(RequestParamVo paramVo);
 	/**
-	 * É¾³ıÓ°ÈËÍ¼Æ¬ĞÅÏ¢
+	 * åˆ é™¤å½±äººå›¾ç‰‡ä¿¡æ¯
 	 * @param picid
 	 */
 	ResultCode removeCastPictureById(Long picid);
 	/**
-	 * ¸ù¾İÓ°ÈËid»ñÈ¡Ó°ÈËÍ¼Æ¬ÁĞ±í
+	 * æ ¹æ®å½±äººidè·å–å½±äººå›¾ç‰‡åˆ—è¡¨
 	 * @param castid
 	 */
 	ResultCode<List<CastPictureVo>> getCastPictureListByCastid(Long castid);
 	/**
-	 * ÅúÁ¿²Ù×÷batchInsertBaseInfo
-	 * @param state µØÇø
-	 * @param nation Ãñ×å
-	 * @param sign ĞÇ×ù
+	 * æ‰¹é‡æ“ä½œbatchInsertBaseInfo
+	 * @param state åœ°åŒº
+	 * @param nation æ°‘æ—
+	 * @param sign æ˜Ÿåº§
 	 * @return
 	 */
 	ResultCode batchInsertBaseInfo(String[] state,String[] nation,String[] sign);

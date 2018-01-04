@@ -18,7 +18,7 @@ import com.gewara.weixin.callback.QryCode;
 import com.gewara.weixin.callback.WxBack;
 
 public class FriendcardUtil {
-	public static final String FCCN = "wxfriendcard"; //cookieµÄÃû³Æ
+	public static final String FCCN = "wxfriendcard"; //cookieçš„åç§°
 	private static final transient GewaLogger dbLogger = LoggerUtils.getLogger(WeixinUtil.class);
 	private static ResultCode<String> getAccessToken(){
 		String url = "http://www.gewara.com/weixin/getAccessToken.xhtml";
@@ -34,7 +34,7 @@ public class FriendcardUtil {
 			return ResultCode.getFailure(result.getMsg());
 		}
 	}
-	//²éÑ¯Âë
+	//æŸ¥è¯¢ç 
 	public static ResultCode<QryCode> qryCode(String code, String card_id) {
 		ResultCode<String> res = getAccessToken();
 		if(!res.isSuccess()){
@@ -58,7 +58,7 @@ public class FriendcardUtil {
 		}
 		return ResultCode.getSuccessReturn(qryCode);
 	}
-	//²éÑ¯Âë×´Ì¬
+	//æŸ¥è¯¢ç çŠ¶æ€
 	public static ResultCode<QryCode> qryCodeStatus(String code, String card_id) {
 		ResultCode<String> res = getAccessToken();
 		if(!res.isSuccess()){
@@ -82,7 +82,7 @@ public class FriendcardUtil {
 		}
 		return ResultCode.getSuccessReturn(qryCode);
 	}
-	//½âÃÜÂë
+	//è§£å¯†ç 
 	public static ResultCode<String> decryptCode(String encrypt_code) {
 		ResultCode<String> res = getAccessToken();
 		if(!res.isSuccess()){
@@ -105,7 +105,7 @@ public class FriendcardUtil {
 		}
 		return ResultCode.getSuccessReturn(resMap.get("code")+"");
 	}
-	//Õ¼ÓÃ£¬½â³ıÕ¼ÓÃ
+	//å ç”¨ï¼Œè§£é™¤å ç”¨
 	public static ResultCode<String> mark(String code, String open_id, String card_id, boolean ismark) {
 		ResultCode<String> res = getAccessToken();
 		if(!res.isSuccess()){
@@ -130,7 +130,7 @@ public class FriendcardUtil {
 		}
 		return ResultCode.getSuccessReturn(code);
 	}
-	//ºËÏú
+	//æ ¸é”€
 	public static ResultCode<String> consume(String code, String open_id) {
 		ResultCode<String> res = getAccessToken();
 		if(!res.isSuccess()){
@@ -169,7 +169,7 @@ public class FriendcardUtil {
 		CashAdvancedInfo advancedInfo = new CashAdvancedInfo(condition, abstract1, text_image_list);
 		return advancedInfo;
 	}
-	//createÅóÓÑµÄÈ¯
+	//createæœ‹å‹çš„åˆ¸
 	public static ResultCode<String> createFriendCard(Integer amount, CreateFriendCardCmd cmd) {
 		ResultCode<String> res = getAccessToken();
 		if(!res.isSuccess()){
@@ -196,7 +196,7 @@ public class FriendcardUtil {
 		}
 		return ResultCode.getSuccessReturn(resMap.get("card_id")+"");
 	}
-	//updateÅóÓÑµÄÈ¯
+	//updateæœ‹å‹çš„åˆ¸
 	public static ResultCode<String> updateFriendCard(String cardid, CreateFriendCardCmd cmd) {
 		ResultCode<String> res = getAccessToken();
 		if(!res.isSuccess()){

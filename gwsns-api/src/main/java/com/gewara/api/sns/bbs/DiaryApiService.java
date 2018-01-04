@@ -14,18 +14,18 @@ import com.gewara.api.vo.ResultCode;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public interface DiaryApiService {
 	/**
-	 * ²éÑ¯Ìû×Ó
+	 * æŸ¥è¯¢å¸–å­
 	 * @param id
 	 * @return
 	 */
 	ResultCode<DiaryVo> getDiary(Long id);
 	ResultCode<List<VoteChooseVo>> getVoteChooseList(Long diaryId);
 	/**
-	 * ²éÑ¯Ìû×Ó»Ø¸´
+	 * æŸ¥è¯¢å¸–å­å›å¤
 	 * @param id
 	 * @return
 	 */
@@ -36,29 +36,29 @@ public interface DiaryApiService {
 	ResultCode<Integer> getDiaryCountByKey(String citycode, String type, String tag, Long relatedid, String key, Timestamp startTime, Timestamp endTime);
 	ResultCode<List<DiaryVo>> getDiaryList(String citycode, String type, String tag, Long relatedid, int start, int maxnum);
 	/**
-	 * ÓĞÅÅĞò×Ö¶Î
+	 * æœ‰æ’åºå­—æ®µ
 	 */
 	ResultCode<List<DiaryVo>> getDiaryList(String citycode, String type, String tag, Long relatedid, int start, int maxnum, String order);
 	/**
-	 * ²éÑ¯Ò»¶ÎÊ±¼äÄÚµÄÌû×ÓĞÅÏ¢
+	 * æŸ¥è¯¢ä¸€æ®µæ—¶é—´å†…çš„å¸–å­ä¿¡æ¯
 	 */
 	ResultCode<List<DiaryVo>> getDiaryListByOrder(String citycode, String type, String tag, Long relatedid, Timestamp startTime,Timestamp endTime, String order, boolean asc, int start, int maxnum);
 	/**
-	 * ÓĞËÑË÷×Ö¶Î
+	 * æœ‰æœç´¢å­—æ®µ
 	 */
 	ResultCode<List<DiaryVo>> getDiaryListByKey(String citycode, String type, String tag, Long relatedid, int start, int maxnum, String key, Timestamp startTime,Timestamp endTime);
 	/**
-	 * ÓĞFlag×Ö¶Î 
+	 * æœ‰Flagå­—æ®µ 
 	 */
 	ResultCode<List<DiaryVo>> getDiaryListByFlag(String citycode, String type, String tag, String flag, int from, int maxnum);
 	/**
 	 * @param type
 	 * @param tag
-	 * @return ÖÃ¶¥µÄDiary
+	 * @return ç½®é¡¶çš„Diary
 	 */
 	ResultCode<List<DiaryVo>> getTopDiaryList(String citycode, String type, String tag, boolean isCache);
 	/**
-	 * »ñÈ¡24Ğ¡Ê±ÅÅĞĞÌû×Ó£¨¸ù¾İ24Ğ¡Ê±ÄÚ»Ø¸´¸öÊı£©
+	 * è·å–24å°æ—¶æ’è¡Œå¸–å­ï¼ˆæ ¹æ®24å°æ—¶å†…å›å¤ä¸ªæ•°ï¼‰
 	 * @param tag
 	 * @return
 	 */
@@ -73,7 +73,7 @@ public interface DiaryApiService {
 	 */
 	ResultCode<List<DiaryVo>> getDiaryListByMemberid(String type, String tag, Long memberid, int from, int maxnum);
 	/**
-	 * Ä³¸öÓÃ»§µÄÆÀÂÛÊıÁ¿
+	 * æŸä¸ªç”¨æˆ·çš„è¯„è®ºæ•°é‡
 	 * @param type
 	 * @param tag
 	 * @param mid
@@ -83,53 +83,53 @@ public interface DiaryApiService {
 	
 	
 	/**
-	 * µÃµ½Ä³¸öDiaryµÄ»Ø¸´
+	 * å¾—åˆ°æŸä¸ªDiaryçš„å›å¤
 	 * @param diaryId
 	 * @return
 	 */
 	ResultCode<List<DiaryCommentVo>> getDiaryCommentList(Long diaryId, int from, int maxnum); 
 	ResultCode<List<DiaryCommentVo>> getDiaryCommentList(Long diaryId); 
 	/**
-	 * ¸ù¾İÍ¶Æ±µÄid£¬ËüµÄÑ¡Ïî
+	 * æ ¹æ®æŠ•ç¥¨çš„idï¼Œå®ƒçš„é€‰é¡¹
 	 * @param vid
 	 * @return
 	 */
 	ResultCode<List<VoteOptionVo>> getVoteOptionByVoteid(Long vid);
 	/**
-	 * Í¶Æ±µÄÊıÁ¿
+	 * æŠ•ç¥¨çš„æ•°é‡
 	 * @param did
 	 * @return
 	 */
 	ResultCode<Integer> getVotecount(Long did);
 	/**
-	 * ÎÒ¶ÔÄ³¸öÌû×ÓµÄÍ¶Æ±ÏêÇé
+	 * æˆ‘å¯¹æŸä¸ªå¸–å­çš„æŠ•ç¥¨è¯¦æƒ…
 	 * @return
 	 */
 	ResultCode<List<VoteChooseVo>> getVoteChooseByDiaryidAndMemberid(Long did,Long mid);
 	ResultCode<Integer> getDiaryCommentCount(String tag, Long diaryId);
 	/**
-	 * ÊÇ·ñÒÑ¾­Í¶Æ±(×¼¶Ô¶ÅÀ­À­»î¶¯)
+	 * æ˜¯å¦å·²ç»æŠ•ç¥¨(å‡†å¯¹æœæ‹‰æ‹‰æ´»åŠ¨)
 	 * @param memberid
 	 * @return
 	 */
 	ResultCode<Boolean> isMemberVoted(Long memberid, Long diaryid);
 	
-	//×î½üÒ»ÖÜ×îÈÈÓ°ÆÀ
+	//æœ€è¿‘ä¸€å‘¨æœ€çƒ­å½±è¯„
 	ResultCode<List<DiaryVo>> getHotCommentDiary(String citycode, String type, String tag, Long relateid, int from,int maxnum);
 	/**
-	 * ²éÑ¯È¦ÄÚÈÈÃÅ»°Ìâ
+	 * æŸ¥è¯¢åœˆå†…çƒ­é—¨è¯é¢˜
 	 */
 	ResultCode<List<DiaryVo>> getHotCommuDiary(String citycode, boolean isCommu,String type,int from,int maxnum);
 	
 	/**
-	 * ¸ù¾İstatus²éÑ¯Ìû×Ó
+	 * æ ¹æ®statusæŸ¥è¯¢å¸–å­
 	 * @param status
 	 * @return
 	 */
 	ResultCode<List<DiaryVo>> getDiaryListByStatus(String keyname, String status, Date fromDate, Date endDate, int from, int maxnum);
 	ResultCode<Integer> getDiaryCountByStatus(String keyname, String status, Date fromDate, Date endDate);
 	/**
-	 * ¸ù¾İstatus²éÑ¯Ìû×ÓÁôÑÔ
+	 * æ ¹æ®statusæŸ¥è¯¢å¸–å­ç•™è¨€
 	 * @param status
 	 * @return
 	 */
@@ -139,7 +139,7 @@ public interface DiaryApiService {
 	ResultCode<Integer> getRepliedDiaryCount(Long memberid);
 
 	/**
-	 * ²éÑ¯µçÓ°¡¢»°¾ç¡¢µÄµãÆÀÁĞ±í
+	 * æŸ¥è¯¢ç”µå½±ã€è¯å‰§ã€çš„ç‚¹è¯„åˆ—è¡¨
 	 * @param keyname
 	 * @param from
 	 * @param maxnum
@@ -148,7 +148,7 @@ public interface DiaryApiService {
 	ResultCode<List<Map>> getMDSDiaryListByKeyname(String citycode, String keyname, String tag, String name, int from, int maxnum);
 	ResultCode<Integer> getMDSDiaryCountByKeyname(String citycode, String keyname, String tag, String name);
 	/**
-	 * ·ÖÒ³²éÑ¯Ñİ³öÆÀÂÛÁĞ±íÊı¾İ
+	 * åˆ†é¡µæŸ¥è¯¢æ¼”å‡ºè¯„è®ºåˆ—è¡¨æ•°æ®
 	 * @param citycode
 	 * @param key
 	 * @param starttime
@@ -161,12 +161,12 @@ public interface DiaryApiService {
 	ResultCode<List<DiaryVo>> getDiaryBySearchkeyAndOrder(String citycode,String key,Timestamp starttime, Timestamp endtime, String order,int from,int maxnum);
 	
 	/**
-	 * ¸ù¾İÈ¦×Óid²éÑ¯È¦×ÓÌû×ÓĞÅÏ¢(ÕâÊÇ´ÓcommuApiServiceÒÆ¶¯µ½ÕâÀïµÄ)
+	 * æ ¹æ®åœˆå­idæŸ¥è¯¢åœˆå­å¸–å­ä¿¡æ¯(è¿™æ˜¯ä»commuApiServiceç§»åŠ¨åˆ°è¿™é‡Œçš„)
 	 */
 	ResultCode<List<DiaryVo>> getCommuDiaryListById(Long id, String[] type,Long commuTopicId, int from, int maxnum);
 	
 	/**
-	 * ¸ù¾İËÑË÷Ìõ¼ş²éÑ¯Ìû×Ó(ÕâÊÇ´ÓcommuApiServiceÒÆ¶¯µ½ÕâÀïµÄ)
+	 * æ ¹æ®æœç´¢æ¡ä»¶æŸ¥è¯¢å¸–å­(è¿™æ˜¯ä»commuApiServiceç§»åŠ¨åˆ°è¿™é‡Œçš„)
 	 */
 	ResultCode<List<DiaryVo>> getCommuDiaryListBySearch(Long id, String type, Long
 			commuTopicId, Date fromDate, Integer flag, String text, int from, int maxnum);
@@ -174,27 +174,27 @@ public interface DiaryApiService {
 			commuTopicId, Date fromDate, Integer flag, String text);
 	
 	/**
-	 * ¸ù¾İÈ¦×Óid²éÑ¯È¦×ÓÌû×ÓĞÅÏ¢ÊıÁ¿(ÕâÊÇ´ÓcommuApiServiceÒÆ¶¯µ½ÕâÀïµÄ)
+	 * æ ¹æ®åœˆå­idæŸ¥è¯¢åœˆå­å¸–å­ä¿¡æ¯æ•°é‡(è¿™æ˜¯ä»commuApiServiceç§»åŠ¨åˆ°è¿™é‡Œçš„)
 	 */
 	ResultCode<Integer> getCommuDiaryCount(Long id,String[] type,Long commuTopicId);
 	
 	
 	
 	/**
-	 * ¸ù¾İÈ¦×ÓµÄidÁĞ±í²éÑ¯ËùÓĞÈ¦×ÓµÄ»°ÌâĞÅÏ¢(ÕâÊÇ´ÓcommuApiServiceÒÆ¶¯µ½ÕâÀïµÄ)
+	 * æ ¹æ®åœˆå­çš„idåˆ—è¡¨æŸ¥è¯¢æ‰€æœ‰åœˆå­çš„è¯é¢˜ä¿¡æ¯(è¿™æ˜¯ä»commuApiServiceç§»åŠ¨åˆ°è¿™é‡Œçš„)
 	 * @param commuIds TODO
 	 */
 	ResultCode<List<DiaryVo>> getAllCommuDiaryByCommuIds(List<Long> commuIds, int from, int maxnum);
 	
 	
 	/**
-	 * ¸ù¾İµ±Ç°ÓÃ»§id²éÑ¯Ëû¼ÓÈëµÄËùÓĞÈ¦×ÓµÄ»°ÌâĞÅÏ¢ÊıÁ¿
+	 * æ ¹æ®å½“å‰ç”¨æˆ·idæŸ¥è¯¢ä»–åŠ å…¥çš„æ‰€æœ‰åœˆå­çš„è¯é¢˜ä¿¡æ¯æ•°é‡
 	 * @param commuIds TODO
 	 */
 	ResultCode<Integer> getAllCommuDiaryCountByCommuIds(List<Long> commuIds);
 
 	/**
-	 * ¸ù¾İÈÕÆÚ·¶Î§²éÑ¯±¨±íÊı¾İ
+	 * æ ¹æ®æ—¥æœŸèŒƒå›´æŸ¥è¯¢æŠ¥è¡¨æ•°æ®
 	 * @param datefrom
 	 * @param dateto
 	 * @return
@@ -202,15 +202,15 @@ public interface DiaryApiService {
 	ResultCode<Map<String, Integer>> getDiaryReportList(Date datefrom, Date dateto);
 
 	/**
-	 * ¸ù¾İÌõ¼ş²éÑ¯Diary
-	 * @param memberid »áÔ±id
-	 * @param starttime ¿ªÊ¼Ê±¼ä
-	 * @param endtime ½éÉÜÊ±¼ä
-	 * @param tag ÒµÎñÄ£¿é£¨±ÈÈçµçÓ°£©
-	 * @param status ×´Ì¬
-	 * @param keyname ¹Ø¼ü×Ö
-	 * @param firstRow ¿ªÊ¼¼ÇÂ¼ĞĞ
-	 * @param rowsPerpage ½áÊø¼ÇÂ¼ĞĞ
+	 * æ ¹æ®æ¡ä»¶æŸ¥è¯¢Diary
+	 * @param memberid ä¼šå‘˜id
+	 * @param starttime å¼€å§‹æ—¶é—´
+	 * @param endtime ä»‹ç»æ—¶é—´
+	 * @param tag ä¸šåŠ¡æ¨¡å—ï¼ˆæ¯”å¦‚ç”µå½±ï¼‰
+	 * @param status çŠ¶æ€
+	 * @param keyname å…³é”®å­—
+	 * @param firstRow å¼€å§‹è®°å½•è¡Œ
+	 * @param rowsPerpage ç»“æŸè®°å½•è¡Œ
 	 * @return
 	 */
 	ResultCode<List<DiaryVo>> queryDiary(Long memberid, Timestamp starttime, Timestamp endtime, String tag, String status,
@@ -219,15 +219,15 @@ public interface DiaryApiService {
 	ResultCode<Integer> queryDiaryCount(Long memberid, Timestamp starttime, Timestamp endtime, String tag, String status,
 			String keyname);
 	/**
-	 * ¸ù¾İÌõ¼ş²éÑ¯DiaryComment
+	 * æ ¹æ®æ¡ä»¶æŸ¥è¯¢DiaryComment
 	 * @param did Diary
-	 * @param memberid »áÔ±id
-	 * @param starttime ¿ªÊ¼Ê±¼ä
-	 * @param endtime ½éÉÜÊ±¼ä
-	 * @param status ×´Ì¬
-	 * @param keyname ¹Ø¼ü×Ö
-	 * @param firstRow ¿ªÊ¼¼ÇÂ¼ĞĞ
-	 * @param rowsPerpage ½áÊø¼ÇÂ¼ĞĞ
+	 * @param memberid ä¼šå‘˜id
+	 * @param starttime å¼€å§‹æ—¶é—´
+	 * @param endtime ä»‹ç»æ—¶é—´
+	 * @param status çŠ¶æ€
+	 * @param keyname å…³é”®å­—
+	 * @param firstRow å¼€å§‹è®°å½•è¡Œ
+	 * @param rowsPerpage ç»“æŸè®°å½•è¡Œ
 	 * @return
 	 */
 	ResultCode<List<DiaryCommentVo>> queryDiaryComment(Long did, Long memberid, Timestamp starttime, Timestamp endtime,
@@ -251,14 +251,14 @@ public interface DiaryApiService {
 	ResultCode<List<Map>> getDiaryCountMapList();
 
 	/**
-	 * Ìû×Ó×ÜÊı
+	 * å¸–å­æ€»æ•°
 	 * @param queryTime
 	 * @return
 	 */
 	ResultCode<Integer> getDiaryCount(Date queryTime);
 	
 	/**
-	 * Ó°ÆÀÊı
+	 * å½±è¯„æ•°
 	 * @param queryTime
 	 * @return
 	 */
@@ -266,14 +266,14 @@ public interface DiaryApiService {
 	
 	
 	/**
-	 * ±£´æÌû×Ó,TODO: ·ÖÀë³É¶à¸öService·½·¨
+	 * ä¿å­˜å¸–å­,TODO: åˆ†ç¦»æˆå¤šä¸ªServiceæ–¹æ³•
 	 * @param diary
 	 * @return
 	 */
 	ResultCode<DiaryVo> saveDiary(DiaryVo diary);
 	
 	/**
-	 * ±£´æÌû×Ó»Ø¸´
+	 * ä¿å­˜å¸–å­å›å¤
 	 * @param dc
 	 * @return
 	 */
@@ -281,7 +281,7 @@ public interface DiaryApiService {
 
 
 	/**
-	 * ¸ù¾İidÁĞ±í²éÑ¯Ìû×Ó
+	 * æ ¹æ®idåˆ—è¡¨æŸ¥è¯¢å¸–å­
 	 * @param idList
 	 * @return
 	 */
@@ -289,7 +289,7 @@ public interface DiaryApiService {
 
 
 	/**
-	 * ĞŞ¸ÄÌû×Ó
+	 * ä¿®æ”¹å¸–å­
 	 * @param diary
 	 * @return
 	 */
@@ -297,7 +297,7 @@ public interface DiaryApiService {
 
 
 	/**
-	 * »ñÈ¡VoteOption
+	 * è·å–VoteOption
 	 * @param id
 	 * @return
 	 */
@@ -305,21 +305,21 @@ public interface DiaryApiService {
 
 
 	/**
-	 * ±£´æVoteChooseList
+	 * ä¿å­˜VoteChooseList
 	 * @param vcList
 	 */
 	ResultCode saveVoteChooseList(List<VoteChooseVo> vcList);
 
 
 	/**
-	 * ±£´æVoteOptionList
+	 * ä¿å­˜VoteOptionList
 	 * @param voList
 	 */
 	ResultCode saveVoteOptionList(List<VoteOptionVo> voList);
 
 
 	/**
-	 * ±£´ævoteChoose
+	 * ä¿å­˜voteChoose
 	 * @param voteChoose
 	 * @return
 	 */

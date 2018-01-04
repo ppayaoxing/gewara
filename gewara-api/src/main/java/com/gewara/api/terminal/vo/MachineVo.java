@@ -10,21 +10,21 @@ import com.gewara.api.vo.BaseVo;
 public class MachineVo extends BaseVo {
 	private static final long serialVersionUID = -5104357767286680035L;
 	private Long id;				
-	private String macno;				//»úÆ÷±àºÅ
-	private String macname;				//»úÆ÷Ãû³Æ
-	private String openfireName;		//opfireµÇÂ¼Ãû
-	private String openfirepwd;			//opfireÃÜÂë
-	private Long placeid;				//³¡¹İid
-	private String placeName;			//³¡¹İÃû³Æ
-	private String placeAddress;		//³¡¹İÃû³Æ
-	private String citycode;			//³ÇÊĞ´úÂë
-	private String cityname;			//³ÇÊĞÃû³Æ
-	private String tag;					//³¡¹İÀàĞÍ
+	private String macno;				//æœºå™¨ç¼–å·
+	private String macname;				//æœºå™¨åç§°
+	private String openfireName;		//opfireç™»å½•å
+	private String openfirepwd;			//opfireå¯†ç 
+	private Long placeid;				//åœºé¦†id
+	private String placeName;			//åœºé¦†åç§°
+	private String placeAddress;		//åœºé¦†åç§°
+	private String citycode;			//åŸå¸‚ä»£ç 
+	private String cityname;			//åŸå¸‚åç§°
+	private String tag;					//åœºé¦†ç±»å‹
 	
-	private String privatekey;			//Ğ£ÑéÂë
+	private String privatekey;			//æ ¡éªŒç 
 	
-	private String ticketNum;			//µ±Ç°Ê£ÓàÆ±Ö½ÊıÁ¿
-	private Timestamp chgTickettime;	//»»Æ±Ê±¼ä
+	private String ticketNum;			//å½“å‰å‰©ä½™ç¥¨çº¸æ•°é‡
+	private Timestamp chgTickettime;	//æ¢ç¥¨æ—¶é—´
 	
 	private Timestamp lastSynchtime;
 	private Timestamp synchtime;
@@ -36,50 +36,50 @@ public class MachineVo extends BaseVo {
 	private String mainMac;
 	
 	private String description;
-	private Timestamp addtime;			//Ìí¼ÓÊ±¼ä
+	private Timestamp addtime;			//æ·»åŠ æ—¶é—´
 	
-	private Integer unitTime;			//µ¥Î»Ê±¼ä
-	private String defClosetime;		//¹Ø»úÊ±¼ä
+	private Integer unitTime;			//å•ä½æ—¶é—´
+	private String defClosetime;		//å…³æœºæ—¶é—´
 	
-	private String monitor;				//ÊÇ·ñ¼à¿Ø
+	private String monitor;				//æ˜¯å¦ç›‘æ§
 	private String ip;
 	
 	private Long selfcityid;
 	private String systag;
-	private String filmtag;				//µçÓ°½Ú»úÆ÷£¨×¨ÃÅÈ¡µçÓ°½ÚµÄÆ±£¬ÆÕÍ¨»úÆ÷²»È¡  film,film_vip£©
-	private String orderType;	// È¡Æ±ÀàĞÍYËùÓĞ£¬Y_M£ºµçÓ°£¬Y_G:ÎïÆ·,N£ºÊ²Ã´¶¼²»È¡
+	private String filmtag;				//ç”µå½±èŠ‚æœºå™¨ï¼ˆä¸“é—¨å–ç”µå½±èŠ‚çš„ç¥¨ï¼Œæ™®é€šæœºå™¨ä¸å–  film,film_vipï¼‰
+	private String orderType;	// å–ç¥¨ç±»å‹Yæ‰€æœ‰ï¼ŒY_Mï¼šç”µå½±ï¼ŒY_G:ç‰©å“,Nï¼šä»€ä¹ˆéƒ½ä¸å–
 	/**
-	 * Ê£ÓàÆ±Ö½ÊıÁ¿(µ¥Ì¨»úÆ÷)
+	 * å‰©ä½™ç¥¨çº¸æ•°é‡(å•å°æœºå™¨)
 	 */
 	private Integer remainTicketNum;
-	// ¿ÉÒÔ×°µÄ×ÜÆ±Ö½Êı
+	// å¯ä»¥è£…çš„æ€»ç¥¨çº¸æ•°
 	private Integer totalTicketNum;
 	private String synTicketNumFlg;
 	/**
-	 * ÊÖ¹¤Ìí¼ÓÆ±Ö½µÄÊ±¼ä
+	 * æ‰‹å·¥æ·»åŠ ç¥¨çº¸çš„æ—¶é—´
 	 */
 	private Timestamp  manualTicketnumTime;
 	
 	/**
-	 * »úÆ÷×´Ì¬
+	 * æœºå™¨çŠ¶æ€
 	 */
 	private String macStatus;
 	
 	/**
-	 * ÆÁ±£°æ±¾
+	 * å±ä¿ç‰ˆæœ¬
 	 */
 	private String screenVersion;
 	
 	/**
-	 * µ±Ç°ÏµÍ³°æ±¾ºÅ
+	 * å½“å‰ç³»ç»Ÿç‰ˆæœ¬å·
 	 */
 	private String systemVersion;
 	private Timestamp barcodeTime;
-	// Î¬»¤ÀàĞÍ(Ó°ÔºÈ«ÍøÈ¡Æ±¡¢¸ñÍßÀ­Î¬»¤¡¢Ó°ÔºĞ­ÖúÎ¬»¤)
+	// ç»´æŠ¤ç±»å‹(å½±é™¢å…¨ç½‘å–ç¥¨ã€æ ¼ç“¦æ‹‰ç»´æŠ¤ã€å½±é™¢ååŠ©ç»´æŠ¤)
 	private String maintain_type;
-	// È¡Æ±»úÀàĞÍ(1´ú»ú¡¢1.5´ú»ú¡¢2´ú»ú¡¢3´ú»ú¡¢3.5´ú»ú¡¢4´ú»ú¡¢5´ú»ú)
+	// å–ç¥¨æœºç±»å‹(1ä»£æœºã€1.5ä»£æœºã€2ä»£æœºã€3ä»£æœºã€3.5ä»£æœºã€4ä»£æœºã€5ä»£æœº)
 	private String machine_type;
-	// ÊÇ·ñ¼à¿Ø(Õı³£¼à¿Ø¡¢µÈ´ı»ØÊÕ¡¢ÔİÍ£¼à¿Ø)
+	// æ˜¯å¦ç›‘æ§(æ­£å¸¸ç›‘æ§ã€ç­‰å¾…å›æ”¶ã€æš‚åœç›‘æ§)
 	private String monitor_type;
 
 	public MachineVo(){}

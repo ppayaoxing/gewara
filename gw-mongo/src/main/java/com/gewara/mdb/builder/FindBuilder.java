@@ -11,9 +11,9 @@ import com.gewara.mongo.MongoDataException;
 import com.gewara.util.Util4Script;
 
 /**
- * @author ����
- * @createDate 2015��7��29��
- * @param <T> ��ʹ�ö���ӳ��ʱ�����T��������ʾӳ�����
+ * @author 锟斤拷锟斤拷
+ * @createDate 2015锟斤拷7锟斤拷29锟斤拷
+ * @param <T> 锟斤拷使锟矫讹拷锟斤拷映锟斤拷时锟斤拷锟斤拷锟絋锟斤拷锟斤拷锟斤拷锟斤拷示映锟斤拷锟斤拷锟�
  */
 public class FindBuilder<T> implements Util4Script {
 	private Class<T> mapping;
@@ -48,7 +48,7 @@ public class FindBuilder<T> implements Util4Script {
 	}
 	
 	/**
-	 * ������������������Ḳ����֮ǰ�����õ�������
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷岣诧拷锟斤拷锟街帮拷锟斤拷锟斤拷玫锟斤拷锟斤拷锟斤拷锟�
 	 * @param condition
 	 * @return
 	 */
@@ -96,7 +96,7 @@ public class FindBuilder<T> implements Util4Script {
 	}
 	
 	/**
-	 * Ĭ��ֵΪ100.
+	 * 默锟斤拷值为100.
 	 * 
 	 * @param limit
 	 * @return

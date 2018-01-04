@@ -8,45 +8,45 @@ import com.gewara.movie.vo.brand.BrandVo;
 public interface BrandVoService {
 	
 	/**
-	 * ¸ù¾İÆ·ÅÆÃû³Æ²éÑ¯Æ·ÅÆÊı¾İ
-	 * @param brandName	Æ·ÅÆÃû³Æ
+	 * æ ¹æ®å“ç‰Œåç§°æŸ¥è¯¢å“ç‰Œæ•°æ®
+	 * @param brandName	å“ç‰Œåç§°
 	 * @return
 	 */
 	ResultCode<BrandVo> getBrandByName(String brandName);
 	
 	/**
-	 * ¸ù¾İÆ·ÅÆid²éÑ¯Æ·ÅÆÊı¾İ
-	 * @param id Æ·ÅÆid
+	 * æ ¹æ®å“ç‰ŒidæŸ¥è¯¢å“ç‰Œæ•°æ®
+	 * @param id å“ç‰Œid
 	 * @return
 	 */
 	ResultCode<BrandVo> getBrandById(Long id);
 	
 	/**
-	 * ²éÑ¯Æ·ÅÆÁĞ±í
+	 * æŸ¥è¯¢å“ç‰Œåˆ—è¡¨
 	 * @return
 	 */
 	ResultCode<List<BrandVo>> getBrandList(int from,int to);
 	
 	/**
-	 * ËÑË÷Æ·ÅÆÁĞ±í
+	 * æœç´¢å“ç‰Œåˆ—è¡¨
 	 * @param brandName
 	 * @return
 	 */
 	ResultCode<List<BrandVo>> searchBrandListByName(String brandName);
 	
 	/**
-	 * ²éÑ¯Æ·ÅÆÊı¾İÁ¿
+	 * æŸ¥è¯¢å“ç‰Œæ•°æ®é‡
 	 * @return
 	 */
 	ResultCode<Integer> getBrandCount();
 	
 	/**
-	 * ±£´æÆ·ÅÆÊı¾İ
+	 * ä¿å­˜å“ç‰Œæ•°æ®
 	 * @return
 	 */
 	ResultCode save(BrandVo brand);
 	/**
-	 * ²éÑ¯Æ·ÅÆÁĞ±í¸ù¾İIDLIST
+	 * æŸ¥è¯¢å“ç‰Œåˆ—è¡¨æ ¹æ®IDLIST
 	 * @return
 	 */
 	ResultCode<List<BrandVo>> getBrandListByIdList(List<Long> idList);

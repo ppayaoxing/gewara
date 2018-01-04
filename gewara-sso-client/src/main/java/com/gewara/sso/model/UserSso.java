@@ -1,19 +1,19 @@
 package com.gewara.sso.model;
 
 public class UserSso {
-	private Long id;//ÓÃ»§ID
-	private String username;//µÇÂ¼Ãû
-	private String password;//²»»áÊ¹ÓÃ
-	private String nickname;//ÓÃ»§ĞÕÃû
-	private String accountEnabled;//²»»áÊ¹ÓÃ		
-	private String citycode="";//³ÇÊĞÃû³Æ			
-	private String mobile;//ÊÖ»úºÅÂë				
-	private String rolenames;//²»»áÊ¹ÓÃ	
-	private String usertype;//²»»áÊ¹ÓÃ	
-	private Long deptid;//²¿ÃÅid
-	private String mail;//ÓÊÏä
-	private String district;//ÇøÓò
-	private String station;//¸ÚÎ»
+	private Long id;//ç”¨æˆ·ID
+	private String username;//ç™»å½•å
+	private String password;//ä¸ä¼šä½¿ç”¨
+	private String nickname;//ç”¨æˆ·å§“å
+	private String accountEnabled;//ä¸ä¼šä½¿ç”¨		
+	private String citycode="";//åŸå¸‚åç§°			
+	private String mobile;//æ‰‹æœºå·ç 				
+	private String rolenames;//ä¸ä¼šä½¿ç”¨	
+	private String usertype;//ä¸ä¼šä½¿ç”¨	
+	private Long deptid;//éƒ¨é—¨id
+	private String mail;//é‚®ç®±
+	private String district;//åŒºåŸŸ
+	private String station;//å²—ä½
 	public UserSso() {
 	}
 	public Long getId() {

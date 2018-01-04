@@ -6,23 +6,23 @@ import java.util.Map;
 import com.gewara.api.vo.goods.GoodsVo;
 
 public class CreateGoodsOrderReq extends CreateOrderReq{
-	//Ò»Ìå»ú¹ºÂòÌ×²Í
+	//ä¸€ä½“æœºè´­ä¹°å¥—é¤
 	public static String SOURCE_GOODS_MEAL4PARTNER = "meal4Partner";
-	//ÊÖ»úapp¹ºÂòÌ×²Í
+	//æ‰‹æœºappè´­ä¹°å¥—é¤
 	public static String SOURCE_GOODS_MEAL4MOBILE = "meal4Mobile";
-	//pc¶Ë¹ºÂòÌ×²Í
+	//pcç«¯è´­ä¹°å¥—é¤
 	public static String SOURCE_GOODS_MEAL4PC = "meal4PC";
-	//ÊÖ»ú¶ËÆ´ÍÅ
+	//æ‰‹æœºç«¯æ‹¼å›¢
 	public static String SOURCE_GOODS_TEAM4MOBILE = "team4Mobile";
-	//pc¶Ë»ı·Ö¶Ò»»
+	//pcç«¯ç§¯åˆ†å…‘æ¢
 	public static String SOURCE_GOODS_POINTCHANGE4PC = "pointChange4PC";
-	//pc¶ËÔ¤ÊÛ
+	//pcç«¯é¢„å”®
 	public static String SOURCE_GOODS_PRE4PC = "pre4PC";
 		
-	//´´½¨Ì×²Í¶©µ¥£ººÏ×÷ÉÌ
+	//åˆ›å»ºå¥—é¤è®¢å•ï¼šåˆä½œå•†
 	public static String SOURCE_GOODS_PARTNER = "partner";
 	
-	//´´½¨Ì×²Í¶©µ¥£ºÊÖ»ú¶Ë
+	//åˆ›å»ºå¥—é¤è®¢å•ï¼šæ‰‹æœºç«¯
 	public static String SOURCE_GOODS_MOBILE = "mobile";
 	
 	//CardDelay
@@ -39,8 +39,8 @@ public class CreateGoodsOrderReq extends CreateOrderReq{
 	private GoodsVo goods;
 	private String mobile;
 	private Integer quantity;
-	private Long placeid;		//ÉèÖÃ³¡¹İID
-	private Long itemid;				//ÉèÖÃÏîÄ¿ID
+	private Long placeid;		//è®¾ç½®åœºé¦†ID
+	private Long itemid;				//è®¾ç½®é¡¹ç›®ID
 	private Long partnerid;
 	private String category;
 	private String pricategory;

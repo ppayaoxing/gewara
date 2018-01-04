@@ -7,9 +7,9 @@ import org.apache.commons.logging.Log;
 import com.alibaba.dubbo.common.logger.Logger;
 
 /**
- * ����CommonsLogging��������commons-logging.jar
+ * 锟斤拷锟斤拷CommonsLogging锟斤拷锟斤拷锟斤拷锟斤拷commons-logging.jar
  * <br/>
- * �й�CommonsLogging��ϸ��Ϣ����ģ�<a target="_blank" href="http://www.apache.org/">http://www.apache.org/</a>
+ * 锟叫癸拷CommonsLogging锟斤拷细锟斤拷息锟斤拷锟斤拷模锟�<a target="_blank" href="http://www.apache.org/">http://www.apache.org/</a>
  *
  * @author liangfei0201@163.com
  *

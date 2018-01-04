@@ -12,7 +12,7 @@ import com.gewara.model.BaseObject;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public interface Dao {
 	<T extends BaseObject> List<T> getAllObjects(Class<T> clazz);
@@ -60,20 +60,20 @@ public interface Dao {
 	<T extends BaseObject> void saveObjectList(T... entityList);
 
 	/**
-	 * ¸ù¾İÊı¾İÖĞµÄukey(Êı¾İ¿âÖĞÓĞÎ¨Ò»Ë÷Òı)»ñÈ¡¶ÔÏó£¨¿É»º´æ´Ë¶ÔÏó£©
+	 * æ ¹æ®æ•°æ®ä¸­çš„ukey(æ•°æ®åº“ä¸­æœ‰å”¯ä¸€ç´¢å¼•)è·å–å¯¹è±¡ï¼ˆå¯ç¼“å­˜æ­¤å¯¹è±¡ï¼‰
 	 * 
 	 * @param clazz
-	 *            ²éÑ¯¶ÔÏó£¬Èç:TicketOrder.class
+	 *            æŸ¥è¯¢å¯¹è±¡ï¼Œå¦‚:TicketOrder.class
 	 * @param ukeyName
-	 *            ×Ö¶ÎÃû£¬Èç£ºtradeNo
+	 *            å­—æ®µåï¼Œå¦‚ï¼štradeNo
 	 * @param ukeyvalue
-	 *            ×Ö¶ÎÖµ£¬Èç£º1091023141727057
+	 *            å­—æ®µå€¼ï¼Œå¦‚ï¼š1091023141727057
 	 * @return
 	 */
 	<T extends BaseObject> T getObjectByUkey(Class<T> clazz, String ukeyName, Serializable ukeyValue);
 
 	/**
-	 * ÅúÁ¿²éÑ¯¶ÔÏó£¨select * from xxxx where yyy in (....)
+	 * æ‰¹é‡æŸ¥è¯¢å¯¹è±¡ï¼ˆselect * from xxxx where yyy in (....)
 	 * 
 	 * @param clazz
 	 * @param propertyName
@@ -84,7 +84,7 @@ public interface Dao {
 			Collection<S> valueList);
 
 	/**
-	 * ÖØĞÂ¶ÁÈ¡¶ÔÏó£¬ÉèÖÃÊôĞÔÖµ
+	 * é‡æ–°è¯»å–å¯¹è±¡ï¼Œè®¾ç½®å±æ€§å€¼
 	 * 
 	 * @param entity
 	 * @param property

@@ -12,47 +12,47 @@ import com.gewara.util.DateUtil;
 
 public class ActivityVo extends BaseVo{
 	private static final long serialVersionUID = -2350551869062213327L;
-	public static final int TIME_CURRENT = 3; // δ���ڵĻ
-	public static final int TIME_OVER = 2; // ���ڣ��������Ļ
-	public static final int TIME_ALL = 1; // ���л
+	public static final int TIME_CURRENT = 3; // 未锟斤拷锟节的活动
+	public static final int TIME_OVER = 2; // 锟斤拷锟节ｏ拷锟斤拷锟斤拷锟斤拷锟侥活动
+	public static final int TIME_ALL = 1; // 锟斤拷锟叫活动
 	public static final int TIME_RECORD = 10; // 
-	public static final String FLAG_TOP_HEAD = "tophead";// ����̳�ö�
-	public static final String FLAG_TOP_RELATED = "toprelated";// ����̳�ö�
-	public static final String FLAG_TOP_CATEGORY = "topcategory";// ����̳����Ŀ�ö�
-	public static final String FLAG_RECOMMEND = "recommend";// �Ƽ�
-	public static final String FLAG_RECOMMEND_WAP = "redwap";// �Ƽ��ֻ�
-	public static final String FLAG_HOME = "home";// ��ҳ
-	public static final String FLAG_HOT = "hot";// ����
-	public static final String FLAG_APP_HEAD = "apphead";// app�Ƽ�
-	public static final String ATYPE_NOMARL = "common"; //��ͨ�
-	public static final String ATYPE_USER = "user"; // �û������֤�û�
-	public static final String ATYPE_BUSS = "buss"; // �̼һ�����췽
-	public static final String ATYPE_GEWA = "gewa"; // gewa����ٷ�
-	public static final Integer MAX_DAYS = 31; //���ʼʱ��������ڣ������ʱ��-���ʼʱ��
-	public static final String SIGN_PRICE5 = "price5"; // 5Ԫ��Ʊ
-	public static final String SIGN_PUBSALE = "pubsale";	// ����
-	public static final String SIGN_STARMEET = "starmeet";// ���Ǽ����
-	public static final String SIGN_TROUPE = "troupe";// ׷����
-	public static final String SIGN_CLASS = "class";// ������
-	public static final String SIGN_ONLINE = "online";// ���ϻ
-	public static final String SIGN_RESERVE = "reserve";//Լս
-	public static final String SIGN_DISCOUNT = "discount";//�Ż�
+	public static final String FLAG_TOP_HEAD = "tophead";// 锟斤拷锟斤拷坛锟矫讹拷
+	public static final String FLAG_TOP_RELATED = "toprelated";// 锟斤拷锟斤拷坛锟矫讹拷
+	public static final String FLAG_TOP_CATEGORY = "topcategory";// 锟斤拷锟斤拷坛锟斤拷锟斤拷目锟矫讹拷
+	public static final String FLAG_RECOMMEND = "recommend";// 锟狡硷拷
+	public static final String FLAG_RECOMMEND_WAP = "redwap";// 锟狡硷拷锟街伙拷
+	public static final String FLAG_HOME = "home";// 锟斤拷页
+	public static final String FLAG_HOT = "hot";// 锟斤拷锟斤拷
+	public static final String FLAG_APP_HEAD = "apphead";// app锟狡硷拷
+	public static final String ATYPE_NOMARL = "common"; //锟斤拷通锟筋动
+	public static final String ATYPE_USER = "user"; // 锟矫伙拷锟筋动锟斤拷锟斤拷证锟矫伙拷
+	public static final String ATYPE_BUSS = "buss"; // 锟教家活动锟斤拷锟斤拷锟届方
+	public static final String ATYPE_GEWA = "gewa"; // gewa锟筋动锟斤拷锟劫凤拷
+	public static final Integer MAX_DAYS = 31; //锟筋动锟斤拷始时锟斤拷锟斤拷锟斤拷锟斤拷冢锟斤拷疃拷锟斤拷锟绞憋拷锟�-锟筋动锟斤拷始时锟斤拷
+	public static final String SIGN_PRICE5 = "price5"; // 5元锟斤拷票
+	public static final String SIGN_PUBSALE = "pubsale";	// 锟斤拷锟斤拷
+	public static final String SIGN_STARMEET = "starmeet";// 锟斤拷锟角硷拷锟斤拷锟�
+	public static final String SIGN_TROUPE = "troupe";// 追锟斤拷锟斤拷
+	public static final String SIGN_CLASS = "class";// 锟斤拷锟斤拷锟斤拷
+	public static final String SIGN_ONLINE = "online";// 锟斤拷锟较活动
+	public static final String SIGN_RESERVE = "reserve";//约战
+	public static final String SIGN_DISCOUNT = "discount";//锟脚伙拷
 	public static final String SIGN_IMAX = "imax";//IMAX
-	public static final String SIGN_CINEPHILES = "cinephiles";//һȺӰ�ԣ���Ӱ�ţ�
-	public static final String SIGN_CINEMA = "cinema";// ӰԺ�
-	public static final String SIGN_FILMREVIEWS = "filmreviews";// дӰ���
-	public static final String SIGN_SPECIAL_NEW = "specialnew";// ר��
+	public static final String SIGN_CINEPHILES = "cinephiles";//一群影锟皆ｏ拷锟斤拷影锟脚ｏ拷
+	public static final String SIGN_CINEMA = "cinema";// 影院锟筋动
+	public static final String SIGN_FILMREVIEWS = "filmreviews";// 写影锟斤拷锟筋动
+	public static final String SIGN_SPECIAL_NEW = "specialnew";// 专锟斤拷疃�
 	public static final String TAG_ACTIVITY = "activity";
-	public static final String OTHER_BINDMOBILE = "bindMobile";	//�û��μӻ����ֻ�
-	public static final String OTHER_BINDEMAIL = "bindEmail";	//�û��μӻ�������
-	public static final String OTHER_HASHEADURL = "hasHeadUrl";	//�û��μӻ���ϴ�ͷ��
-	public static final String OTHER_HASADDRESS = "hasAddress";	//�û��μӻ����д��ַ
-	public static final String OTHER_WALA = "wala";				//�û��μӻ����ܷ�WALA
-	public static final String OTHER_NEWMEMBER = "newMember";	//���û����ܲμӻ
-	public static final String OTHER_USEPOINT = "usePoint";		//�û��μӻ�����Ļ���
-	public static final String OTHER_TICKET = "ticket";			//�����ض���Ӱ�û����ܲμ�
-	public static final String OTHER_LONGWALA = "longWala";		//��¥���������
-	public static final String OTHER_EASYJOIN = "easyJoin";		//�򵥲μӻ��������д������Ϣ
+	public static final String OTHER_BINDMOBILE = "bindMobile";	//锟矫伙拷锟轿加活动锟斤拷锟斤拷只锟�
+	public static final String OTHER_BINDEMAIL = "bindEmail";	//锟矫伙拷锟轿加活动锟斤拷锟斤拷锟斤拷锟�
+	public static final String OTHER_HASHEADURL = "hasHeadUrl";	//锟矫伙拷锟轿加活动锟斤拷锟较达拷头锟斤拷
+	public static final String OTHER_HASADDRESS = "hasAddress";	//锟矫伙拷锟轿加活动锟斤拷锟斤拷写锟斤拷址
+	public static final String OTHER_WALA = "wala";				//锟矫伙拷锟轿加活动锟斤拷锟斤拷芊锟絎ALA
+	public static final String OTHER_NEWMEMBER = "newMember";	//锟斤拷锟矫伙拷锟斤拷锟杰参加活动
+	public static final String OTHER_USEPOINT = "usePoint";		//锟矫伙拷锟轿加活动锟斤拷锟斤拷锟侥伙拷锟斤拷
+	public static final String OTHER_TICKET = "ticket";			//锟斤拷锟斤拷锟截讹拷锟斤拷影锟矫伙拷锟斤拷锟杰参硷拷
+	public static final String OTHER_LONGWALA = "longWala";		//锟斤拷楼锟筋动锟斤拷锟斤拷锟斤拷锟斤拷
+	public static final String OTHER_EASYJOIN = "easyJoin";		//锟津单参加活动锟斤拷锟斤拷锟斤拷锟斤拷写锟斤拷锟斤拷锟斤拷息
 	
 	public static final String CLIENT_TYPE_PC = "PC";
 	
@@ -62,26 +62,26 @@ public class ActivityVo extends BaseVo{
 	
 	public static final String CLIENT_TYPE_ANDROID = "ANDROID";
 	
-	/** ��PC�PC��-(����) */
+	/** 锟斤拷PC锟筋动PC锟斤拷-(锟斤拷锟斤拷) */
 	public static final String PC_SHOW_TYPE_DOWNLOAD = "DOWNLOAD";
 	
-	/** ��PC�PC��-(����ʾ) */
+	/** 锟斤拷PC锟筋动PC锟斤拷-(锟斤拷锟斤拷示) */
 	public static final String PC_SHOW_TYPE_HIDDEN   = "HIDDEN";
 	
-	private Integer version;			//���°汾
+	private Integer version;			//锟斤拷锟铰版本
 	private Long id;
-	private String title;// ����
-	private String contentdetail;// ����
-	private String atype;// ����,ֵΪ���� ATYPE_*�е�һ��
+	private String title;// 锟斤拷锟斤拷
+	private String contentdetail;// 锟斤拷锟斤拷
+	private String atype;// 锟斤拷锟斤拷,值为锟斤拷锟斤拷 ATYPE_*锟叫碉拷一锟斤拷
 	private Date startdate;
 	private String starttime;
 	private Date enddate;
 	private String endtime;
 	private String address;
-	private String contactway;// ��ϵ��ʽ
-	private String summary;// �Ƽ�˵��
+	private String contactway;// 锟斤拷系锟斤拷式
+	private String summary;// 锟狡硷拷说锟斤拷
 	private Integer capacity;
-	private Long memberid;// ������
+	private Long memberid;// 锟斤拷锟斤拷锟斤拷
 	private Integer clickedtimes;
 	private String citycode; //310000,330100,330200
 	private String countycode;
@@ -91,79 +91,79 @@ public class ActivityVo extends BaseVo{
 	private String tag;
 	private String category;
 	private Long categoryid;
-	private Integer membercount;//�Ѳμӻ����
-	private String status;//N_DELETE��ɾ��,N_AUDIT���δͨ��,Y_STOPֹͣ����,Y_PROCESS���������Ա���,Y_TREAT������,Y_CREATED����
+	private Integer membercount;//锟窖参加活动锟斤拷锟斤拷
+	private String status;//N_DELETE锟斤拷删锟斤拷,N_AUDIT锟斤拷锟轿赐拷锟�,Y_STOP停止锟斤拷锟斤拷,Y_PROCESS锟斤拷锟斤拷锟斤拷锟斤拷锟皆憋拷锟斤拷,Y_TREAT锟斤拷锟斤拷锟斤拷,Y_CREATED锟斤拷锟斤拷
 	private Timestamp replytime;
 	private Integer replycount;
-	private Long replyid;// �ظ���
-	private Long communityid;// Ȧ��
+	private Long replyid;// 锟截革拷锟斤拷
+	private Long communityid;// 圈锟斤拷
 	private Timestamp updatetime;
-	private String flag;	//recommend�Ƽ���վ,redwap�Ƽ�wap,hot��Ʒ,tophead�ö�,renzheng��֤����������","�ָ�
+	private String flag;	//recommend锟狡硷拷锟斤拷站,redwap锟狡硷拷wap,hot锟斤拷品,tophead锟矫讹拷,renzheng锟斤拷证锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷","锟街革拷
 	private String logo;
-	private String priceinfo;//������Ϣ
-	//������
+	private String priceinfo;//锟斤拷锟斤拷锟斤拷息
+	//锟斤拷锟斤拷锟斤拷
 	private String searchkey;
 	private String seotitle;
 	private String seodescription;
 	private String repeat;
 	private String membername;
 	private String replyname;
-	private String sign; //���ʶ ,ֵΪ����SIGN_*�е�һ��
-	private Timestamp duetime; // ������ֹʱ��
-	private String activityurl;// ���ϻ������ַ
-	private String mobilemsg;//��ֻ�����
-	private String qq;//��ϵqq��
+	private String sign; //锟筋动锟斤拷识 ,值为锟斤拷锟斤拷SIGN_*锟叫碉拷一锟斤拷
+	private Timestamp duetime; // 锟斤拷锟斤拷锟斤拷止时锟斤拷
+	private String activityurl;// 锟斤拷锟较活动锟斤拷锟斤拷锟斤拷址
+	private String mobilemsg;//锟筋动锟街伙拷锟斤拷锟斤拷
+	private String qq;//锟斤拷系qq锟斤拷
 	
-	// 20101111 hubo ��ӻԤ����
-	private String needprepay;		// �Ƿ�Ԥ����
+	// 20101111 hubo 锟斤拷踊疃わ拷锟斤拷锟�
+	private String needprepay;		// 锟角凤拷预锟斤拷锟斤拷
 	
-	private Integer totalFee;	// ��ʱ����, ����û�ܵ��շ�
-	private String joinLimit;	//�û��μӻʱ�ļ�����������
+	private Integer totalFee;	// 锟斤拷时锟斤拷锟斤拷, 锟斤拷锟斤拷没疃拷艿锟斤拷辗锟�
+	private String joinLimit;	//锟矫伙拷锟轿加活动时锟侥硷拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	
 	//20110829
-	private Timestamp fromtime; //�������ʼʱ��
+	private Timestamp fromtime; //锟筋动锟斤拷锟斤拷锟斤拷始时锟斤拷
 	//20120420
-	private Long signid;//sign�������id��5Ԫ��Ʊ��1Ԫ����ʱʹ��
+	private Long signid;//sign锟斤拷锟斤拷锟斤拷锟絠d锟斤拷5元锟斤拷票锟斤拷1元锟斤拷锟斤拷时使锟斤拷
 	private String otherinfo;//{"bindMobile":"Y","bindEmail":"Y","hasHeadUrl":"Y","hasAddress":"Y","wala":"Y","newMember":"Y","usePoint":"12","ticket":"123","longWala":"Y","easyJoin":"Y"}
-							 //���ֻ�                              ��email        �ϴ�ͷ��                         �û���ַ                         �μӲ��ܻظ�����                                 �û�����                      �ض���Ӱid      ��¥                            �򵥲μ�
-	private Integer collectedtimes;//����Ȥ
-	private String linkman;//��ϵ��
-	private Integer memberLimit=0;//�������
+							 //锟斤拷锟街伙拷                              锟斤拷email        锟较达拷头锟斤拷                         锟矫伙拷锟斤拷址                         锟轿加诧拷锟杰回革拷锟斤拷锟斤拷                                 锟矫伙拷锟斤拷锟斤拷                      锟截讹拷锟斤拷影id      锟斤拷楼                            锟津单参硷拷
+	private Integer collectedtimes;//锟斤拷锟斤拷趣
+	private String linkman;//锟斤拷系锟斤拷
+	private Integer memberLimit=0;//锟筋动锟斤拷锟斤拷锟斤拷
 	private String ip;
 	
-	private String lotterytag;	//�齱��ʶ
+	private String lotterytag;	//锟介奖锟斤拷识
 	
 	private Integer hotvalue=0;
 	
-	private Integer focusvalue=0;//��߹�ע���Ƽ�
-	private String getCash;//��������
-	private String containMPI;				//�Ƿ��г���
-	private String containGoods;			//�Ƿ����շ���Ʒ
-	private String operated;			//������Ƿ񱻲����� (Y ������)
-	private String getway;		//���׷�ʽ
+	private Integer focusvalue=0;//锟斤拷吖锟阶拷锟斤拷萍锟�
+	private String getCash;//锟斤拷锟斤拷锟斤拷锟斤拷
+	private String containMPI;				//锟角凤拷锟叫筹拷锟斤拷
+	private String containGoods;			//锟角凤拷锟斤拷锟秸凤拷锟斤拷品
+	private String operated;			//锟筋动锟斤拷锟斤拷锟角否被诧拷锟斤拷锟斤拷 (Y 锟斤拷锟斤拷锟斤拷)
+	private String getway;		//锟斤拷锟阶凤拷式
 	private String feetype;
 	private String isOfficial;
 	private String relateMobileUrl;
 	
 	/**
-	 * ���һ��ͼ
+	 * 锟筋动锟斤拷一锟斤拷图
 	 */
 	private String firstLogo;
 	
 	/**
-	 * �ͻ�����ʾ����(PC,WAP,IOS,ANDROID)
+	 * 锟酵伙拷锟斤拷锟斤拷示锟斤拷锟斤拷(PC,WAP,IOS,ANDROID)
 	 */
 	private String clientType;
 	
 	/**
-	 * ��PC���PC����ʾ��ʽ(����ʾ/����)
+	 * 锟斤拷PC锟筋动锟斤拷PC锟斤拷锟斤拷示锟斤拷式(锟斤拷锟斤拷示/锟斤拷锟斤拷)
 	 * @return
 	 */
 	private String showType;
 	
 	private String usePoint;
 	private String joinForm;
-	private String onlinePay;		//����֧��
+	private String onlinePay;		//锟斤拷锟斤拷支锟斤拷
 	
 	public Integer getVersion() {
 		return version;
@@ -490,7 +490,7 @@ public class ActivityVo extends BaseVo{
 	}
 	public void setContentdetail(String contentdetail) {
 		//this.contentdetail = contentdetail;
-		char char8 = 8;//���ݰ������ַ�""ʱ���ӿڽ����������
+		char char8 = 8;//锟斤拷锟捷帮拷锟斤拷锟斤拷锟街凤拷""时锟斤拷锟接口斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
 		this.contentdetail = StringUtils.replaceChars(contentdetail, char8, ' ');
 	}
 	public String getName(){
@@ -562,7 +562,7 @@ public class ActivityVo extends BaseVo{
 	public void setMemberLimit(Integer memberLimit) {
 		this.memberLimit = memberLimit;
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~��������~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~锟斤拷锟斤拷锟斤拷锟斤拷~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public String[] joinLimit(){
 		if(StringUtils.isNotBlank(joinLimit)){
 			String[] strs = StringUtils.split(joinLimit, ",");
@@ -579,7 +579,7 @@ public class ActivityVo extends BaseVo{
 	}
 	
 	/**
-	 * ���ٲμ�����
+	 * 锟斤拷锟劫参硷拷锟斤拷锟斤拷
 	 * @param cutNum
 	 */
 	public void cutJoinnum(Integer cutNum){
@@ -591,7 +591,7 @@ public class ActivityVo extends BaseVo{
 	
 
 	/**
-	 * �ظ���+1
+	 * 锟截革拷锟斤拷+1
 	 */
 	public void addReplycount(){
 		this.replycount += 1;
@@ -612,8 +612,8 @@ public class ActivityVo extends BaseVo{
 		return this.title;
 	}
 	public String getDateRange(String splitor){
-		String str1 = DateUtil.format(startdate, "M��d��");
-		String str2 = (enddate==null ? "": DateUtil.format(enddate, "M��d��"));
+		String str1 = DateUtil.format(startdate, "M锟斤拷d锟斤拷");
+		String str2 = (enddate==null ? "": DateUtil.format(enddate, "M锟斤拷d锟斤拷"));
 		if(StringUtils.isBlank(str2) || StringUtils.equals(str1, str2)) {
             return str1;
         }
@@ -630,7 +630,7 @@ public class ActivityVo extends BaseVo{
 	}
 	
 	/**
-	 * ��ȡ���ʼʱ��
+	 * 锟斤拷取锟筋动锟斤拷始时锟斤拷
 	 * @return
 	 */
 	public Timestamp getActivityStartTime(){
@@ -646,7 +646,7 @@ public class ActivityVo extends BaseVo{
 	}
 	
 	/**
-	 * ��ȡ�����ʱ��
+	 * 锟斤拷取锟筋动锟斤拷锟斤拷时锟斤拷
 	 * @return
 	 */
 	public Timestamp getActivityEndTime(){
@@ -664,7 +664,7 @@ public class ActivityVo extends BaseVo{
 		StringBuilder sb = new StringBuilder();
 		sb.append("<span>" + DateUtil.format(startdate, "MM-dd"));
 		if(enddate != null) {
-            sb.append("��" + DateUtil.format(enddate, "MM-dd"));
+            sb.append("锟斤拷" + DateUtil.format(enddate, "MM-dd"));
         }
 		sb.append("</span>");
 		if(StringUtils.isNotBlank(starttime)){
@@ -683,8 +683,8 @@ public class ActivityVo extends BaseVo{
 		return this.title;
 	}
 	/**
-	 * �������ʼ
-	 * @return true������ʼ
+	 * 锟筋动锟斤拷锟斤拷锟斤拷始
+	 * @return true锟斤拷锟斤拷锟斤拷始
 	 */
 	public boolean isPreStart(){
 		if (this.getActivityStartTime() == null || this.duetime == null) {
@@ -694,8 +694,8 @@ public class ActivityVo extends BaseVo{
 		return this.duetime.before(cur) && this.getActivityStartTime().after(cur);
 	}
 	/**
-	 * ����ڽ�����
-	 * @return true ���ڽ�����
+	 * 锟筋动锟斤拷锟节斤拷锟斤拷锟斤拷
+	 * @return true 锟斤拷锟节斤拷锟斤拷锟斤拷
 	 */
 	public boolean isProcessing(){
 		if (this.getActivityStartTime() == null || this.getActivityEndTime() == null) {
@@ -705,8 +705,8 @@ public class ActivityVo extends BaseVo{
 		return this.getActivityEndTime().after(cur) && this.getActivityStartTime().before(cur);
 	}
 	/**
-	 * ��Ƿ���Ա���
-	 * @return true���Ա���
+	 * 锟筋动锟角凤拷锟斤拷员锟斤拷锟�
+	 * @return true锟斤拷锟皆憋拷锟斤拷
 	 */
 	public boolean isJoining(){
 		if (fromtime == null || duetime == null) {
@@ -717,15 +717,15 @@ public class ActivityVo extends BaseVo{
 	}
 
 	/**
-	 * �״̬�Ƿ���Ч
-	 * @return ture��Ч
+	 * 锟筋动状态锟角凤拷锟斤拷效
+	 * @return ture锟斤拷效
 	 */
 	public boolean isValid(){
 		return (Status.Y_NEW.equals(this.status) || Status.Y_PROCESS.equals(this.status)); 
 	}
 
 	/**
-	 * ��Ƿ�ֹͣ
+	 * 锟筋动锟角凤拷停止
 	 * @return
 	 */
 	public boolean isStop(){
@@ -733,7 +733,7 @@ public class ActivityVo extends BaseVo{
 	}
 	
 	/**
-	 * ��Ƿ����
+	 * 锟筋动锟角凤拷锟斤拷锟�
 	 * @return true
 	 */
 	public boolean isEnd(){
@@ -744,8 +744,8 @@ public class ActivityVo extends BaseVo{
 		return false;
 	}
 	/**
-	 * ��Ƿ�ʼ
-	 * @return true��δ��ʼ
+	 * 锟筋动锟角凤拷始
+	 * @return true锟斤拷未锟斤拷始
 	 */
 	public boolean isStart() {
 		if(null == fromtime) {
@@ -758,14 +758,14 @@ public class ActivityVo extends BaseVo{
 		this.searchkey = this.title;
 	}
 	/**
-	 * �ղ���+1
+	 * 锟秸诧拷锟斤拷+1
 	 */
 	public void addCollectedtimes(){
 		this.collectedtimes+=1;
 	}
 	
 	/**
-	 * �����ղ���
+	 * 锟斤拷锟斤拷锟秸诧拷锟斤拷
 	 * @param cutNum
 	 */
 	public void cutCollectedtimes(Integer cutNum){

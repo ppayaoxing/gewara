@@ -1,19 +1,19 @@
 package com.gewara.movie.constant;
 
 public class BsActivityConstant {
-	public static final String ENABLE = "Y";			// ¿ÉÓÃ
-	public static final String DISABLE = "N";			// ²»¿ÉÓÃ
+	public static final String ENABLE = "Y";			// å¯ç”¨
+	public static final String DISABLE = "N";			// ä¸å¯ç”¨
 	
-	public static final String ACTTYPE_BS="bs";			// ÉÌ»§ÁªÃË
-	public static final String ACTTYPE_SMS="sms";		// ÓªÏú¶ÌĞÅ
+	public static final String ACTTYPE_BS="bs";			// å•†æˆ·è”ç›Ÿ
+	public static final String ACTTYPE_SMS="sms";		// è¥é”€çŸ­ä¿¡
 	
-	public static final String PRINTPAPER_Y = "Y";		// ĞèÒª´òÓ¡Æ±Ö½
-	public static final String PRINTPAPER_N = "N";		// ²»ĞèÒª´òÓ¡Æ±Ö½
+	public static final String PRINTPAPER_Y = "Y";		// éœ€è¦æ‰“å°ç¥¨çº¸
+	public static final String PRINTPAPER_N = "N";		// ä¸éœ€è¦æ‰“å°ç¥¨çº¸
 	
-	public static final String TAG_BSCARD_SMS = "sms";	// ÓªÏú¶ÌĞÅÈ¯Âë
-	public static final String TAG_BSCARD_BS = "bs";	// ÓªÏú¶ÌĞÅÈ¯Âë
+	public static final String TAG_BSCARD_SMS = "sms";	// è¥é”€çŸ­ä¿¡åˆ¸ç 
+	public static final String TAG_BSCARD_BS = "bs";	// è¥é”€çŸ­ä¿¡åˆ¸ç 
 	
-	public static final String BS_ACTIVITYID = "bsActivityid";	// ÉÌ»§ÁªÃË¶©µ¥otherinfo key
+	public static final String BS_ACTIVITYID = "bsActivityid";	// å•†æˆ·è”ç›Ÿè®¢å•otherinfo key
 	
 	public static final String getBsCounterKey(Long bsid){
 		return "BSACTIVITYSMSSOUNTER"+bsid;

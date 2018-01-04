@@ -50,59 +50,59 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
 
     private static final long      serialVersionUID = -1559314110797223229L;
 
-    // ·şÎñ½Ó¿ÚµÄ±¾µØÊµÏÖÀàÃû
+    // æœåŠ¡æ¥å£çš„æœ¬åœ°å®ç°ç±»å
     protected String               local;
 
-    // ·şÎñ½Ó¿ÚµÄ±¾µØÊµÏÖÀàÃû
+    // æœåŠ¡æ¥å£çš„æœ¬åœ°å®ç°ç±»å
     protected String               stub;
 
-    // ·şÎñ¼à¿Ø
+    // æœåŠ¡ç›‘æ§
     protected MonitorConfig        monitor;
     
-    // ´úÀíÀàĞÍ
+    // ä»£ç†ç±»å‹
     protected String               proxy;
     
-    // ¼¯Èº·½Ê½
+    // é›†ç¾¤æ–¹å¼
     protected String               cluster;
 
-    // ¹ıÂËÆ÷
+    // è¿‡æ»¤å™¨
     protected String               filter;
     
-    // ¼àÌıÆ÷
+    // ç›‘å¬å™¨
     protected String               listener;
 
-    // ¸ºÔğÈË
+    // è´Ÿè´£äºº
     protected String               owner;
 
-    // Á¬½ÓÊıÏŞÖÆ,0±íÊ¾¹²ÏíÁ¬½Ó£¬·ñÔòÎª¸Ã·şÎñ¶ÀÏíÁ¬½ÓÊı
+    // è¿æ¥æ•°é™åˆ¶,0è¡¨ç¤ºå…±äº«è¿æ¥ï¼Œå¦åˆ™ä¸ºè¯¥æœåŠ¡ç‹¬äº«è¿æ¥æ•°
     protected Integer              connections;
     
-    // Á¬½ÓÊıÏŞÖÆ
+    // è¿æ¥æ•°é™åˆ¶
     protected String               layer;
     
-    // Ó¦ÓÃĞÅÏ¢
+    // åº”ç”¨ä¿¡æ¯
     protected ApplicationConfig    application;
     
-    // Ä£¿éĞÅÏ¢
+    // æ¨¡å—ä¿¡æ¯
     protected ModuleConfig         module;
 
-    // ×¢²áÖĞĞÄ
+    // æ³¨å†Œä¸­å¿ƒ
     protected List<RegistryConfig> registries;
     
-    // callbackÊµÀı¸öÊıÏŞÖÆ
+    // callbackå®ä¾‹ä¸ªæ•°é™åˆ¶
     private Integer                callbacks;
     
-    // Á¬½ÓÊÂ¼ş
+    // è¿æ¥äº‹ä»¶
     protected String              onconnect;
     
-    // ¶Ï¿ªÊÂ¼ş
+    // æ–­å¼€äº‹ä»¶
     protected String              ondisconnect;
 
-    // ·şÎñ±©Â¶»òÒıÓÃµÄscope,Èç¹ûÎªlocal£¬Ôò±íÊ¾Ö»ÔÚµ±Ç°JVMÄÚ²éÕÒ.
+    // æœåŠ¡æš´éœ²æˆ–å¼•ç”¨çš„scope,å¦‚æœä¸ºlocalï¼Œåˆ™è¡¨ç¤ºåªåœ¨å½“å‰JVMå†…æŸ¥æ‰¾.
 	private String scope;
 
     protected void checkRegistry() {
-        // ¼æÈİ¾É°æ±¾
+        // å…¼å®¹æ—§ç‰ˆæœ¬
         if (registries == null || registries.size() == 0) {
             String address = ConfigUtils.getProperty("dubbo.registry.address");
             if (address != null && address.length() > 0) {
@@ -131,7 +131,7 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
 
     @SuppressWarnings("deprecation")
     protected void checkApplication() {
-        // ¼æÈİ¾É°æ±¾
+        // å…¼å®¹æ—§ç‰ˆæœ¬
         if (application == null) {
             String applicationName = ConfigUtils.getProperty("dubbo.application.name");
             if (applicationName != null && applicationName.length() > 0) {
@@ -242,15 +242,15 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
     }
     
     protected void checkInterfaceAndMethods(Class<?> interfaceClass, List<MethodConfig> methods) {
-        // ½Ó¿Ú²»ÄÜÎª¿Õ
+        // æ¥å£ä¸èƒ½ä¸ºç©º
         if (interfaceClass == null) {
             throw new IllegalStateException("interface not allow null!");
         }
-        // ¼ì²é½Ó¿ÚÀàĞÍ±ØĞèÎª½Ó¿Ú
+        // æ£€æŸ¥æ¥å£ç±»å‹å¿…éœ€ä¸ºæ¥å£
         if(! interfaceClass.isInterface()) { 
             throw new IllegalStateException("The interface class " + interfaceClass + " is not a interface!");
         }
-        // ¼ì²é·½·¨ÊÇ·ñÔÚ½Ó¿ÚÖĞ´æÔÚ
+        // æ£€æŸ¥æ–¹æ³•æ˜¯å¦åœ¨æ¥å£ä¸­å­˜åœ¨
         if (methods != null && methods.size() > 0) {
             for (MethodConfig methodBean : methods) {
                 String methodName = methodBean.getName();

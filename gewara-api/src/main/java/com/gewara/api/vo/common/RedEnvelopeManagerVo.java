@@ -13,27 +13,27 @@ public class RedEnvelopeManagerVo extends BaseVo {
 	public Serializable realId() {
 		return url;
 	}
-	//ºì°ü¿ªÊ¼Ê±¼ä
+	//çº¢åŒ…å¼€å§‹æ—¶é—´
 	private String starttime;
-	//ºì°ü½áÊøÊ±¼ä
+	//çº¢åŒ…ç»“æŸæ—¶é—´
 	private String endtime;
-	//ºì°üÍ¼Æ¬
+	//çº¢åŒ…å›¾ç‰‡
 	private String logo;
-	//ºì°ü±êÌâ
+	//çº¢åŒ…æ ‡é¢˜
 	private String title;
-	//ºì°üurl
+	//çº¢åŒ…url
 	private String url;
-	//ÊÇ·ñÄÜÉú³Éºì°ü Y:¿ÉÒÔÉú³Éºì°ü N:±íÊ¾²»ÄÜÉú³Éºì°ü 
+	//æ˜¯å¦èƒ½ç”Ÿæˆçº¢åŒ… Y:å¯ä»¥ç”Ÿæˆçº¢åŒ… N:è¡¨ç¤ºä¸èƒ½ç”Ÿæˆçº¢åŒ… 
 	private String valid;
-	//·ÖÏí±êÌâ
+	//åˆ†äº«æ ‡é¢˜
 	private String shareTitle;
-	//·ÖÏíÄÚÈİ
+	//åˆ†äº«å†…å®¹
 	private String shareContent;
-	//·ÖÏíÍ¼Æ¬
+	//åˆ†äº«å›¾ç‰‡
 	private String sharePic;
-	//µ¯´°±êÌâ
+	//å¼¹çª—æ ‡é¢˜
 	private String dialogTitle;
-	//µ¯´°ÄÚÈİ
+	//å¼¹çª—å†…å®¹
 	private String dialogContent;
 	
 	public String getStarttime() {

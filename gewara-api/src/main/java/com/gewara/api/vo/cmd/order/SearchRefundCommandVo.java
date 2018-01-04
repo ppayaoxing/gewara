@@ -17,7 +17,7 @@ public class SearchRefundCommandVo implements Serializable{
 	private Timestamp addtimeto;
 	private Timestamp refundtimefrom;
 	private Timestamp refundtimeto;
-	private String origin;		// ÍË¿îÀ´Ô´
+	private String origin;		// é€€æ¬¾æ¥æº
 	private boolean excludeGewaRefund;
 	
 	public String getTradeno() {

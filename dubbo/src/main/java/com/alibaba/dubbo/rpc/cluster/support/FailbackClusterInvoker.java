@@ -37,7 +37,7 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 import com.alibaba.dubbo.rpc.cluster.LoadBalance;
 
 /**
- * ʧ���Զ��ָ�����̨��¼ʧ�����󣬶�ʱ�ط���ͨ��������Ϣ֪ͨ������
+ * 失锟斤拷锟皆讹拷锟街革拷锟斤拷锟斤拷台锟斤拷录失锟斤拷锟斤拷锟襟，讹拷时锟截凤拷锟斤拷通锟斤拷锟斤拷锟斤拷锟斤拷息通知锟斤拷锟斤拷锟斤拷
  * 
  * @author tony.chenl
  */
@@ -65,10 +65,10 @@ public class FailbackClusterInvoker<T> extends AbstractClusterInvoker<T> {
 
                         @Override
                         public void run() {
-                            // �ռ�ͳ����Ϣ
+                            // 锟秸硷拷统锟斤拷锟斤拷息
                             try {
                                 retryFailed();
-                            } catch (Throwable t) { // �������ݴ�
+                            } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
                                 logger.error("Unexpected error occur at collect statistic", t);
                             }
                         }

@@ -10,7 +10,7 @@ public class Response implements Serializable {
 	private String msg;
 
 	/**
-	 * ¡°0000¡±£º±íÊ¾³É¹¦£»¡°9999¡±£º±íÊ¾´íÎó
+	 * â€œ0000â€ï¼šè¡¨ç¤ºæˆåŠŸï¼›â€œ9999â€ï¼šè¡¨ç¤ºé”™è¯¯
 	 */
 	public String getCode() {
 		return code;
@@ -34,7 +34,7 @@ public class Response implements Serializable {
 	}
 
 	/**
-	 * »ñÈ¡Ïà¹ØĞÅÏ¢
+	 * è·å–ç›¸å…³ä¿¡æ¯
 	 */
 	public String getMsg() {
 		return msg;

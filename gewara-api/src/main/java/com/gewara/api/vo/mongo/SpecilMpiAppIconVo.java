@@ -7,7 +7,7 @@ import java.util.Map;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * 电影APP特殊场次打标
+ * 鐢靛奖APP鐗规畩鍦烘鎵撴爣
  */
 public class SpecilMpiAppIconVo extends BaseVo{
 	

@@ -25,44 +25,44 @@ public class WeixinUtil {
 	public final static String ACCESSTOKEN_URL = "https://api.weixin.qq.com/sns/oauth2/access_token";
 	public final static String SEND_CUSTMSG_URL = "https://api.weixin.qq.com/cgi-bin/message/custom/send";
 	public final static String CREATE_QCODE_URL = "https://api.weixin.qq.com/cgi-bin/qrcode/create";
-	// ΢�Ŵ�����ȯ
+	// 微锟脚达拷锟斤拷锟斤拷券
 	public final static String CARD_CREATE = "https://api.weixin.qq.com/card/create?access_token=";
 	public final static String LOCATION_BATCHADD = "https://api.weixin.qq.com/card/location/batchadd?access_token=";
 	public final static String UPDATE_MOVIETICKET = "https://api.weixin.qq.com/card/movieticket/updateuser?access_token=";
 	
-	// ������ȯ�ӿ�
+	// 锟斤拷锟斤拷锟斤拷券锟接匡拷
 	public final static String CONSUME_CODE = "https://api.weixin.qq.com/card/code/consume?access_token=";
-	// ��ȯʧЧ�ӿ�
+	// 锟斤拷券失效锟接匡拷
 	public final static String UNAVAILABLE_CODE = "https://api.weixin.qq.com/card/code/unavailable";
 	
 	public final static String USERINFO_URL_APP = "https://api.weixin.qq.com/sns/userinfo";
-	//Ʊ��
+	//票锟斤拷
 	public static final String TICKET_URL = "https://api.weixin.qq.com/cgi-bin/ticket/getticket";
 	
-	// ��������΢��ʹ�õĿ�ȯ��������
+	// 锟斤拷锟斤拷锟斤拷锟斤拷微锟斤拷使锟矫的匡拷券锟斤拷锟斤拷锟斤拷锟斤拷
 	public final static String KEY_ORDER_CARDPASS = "wx_cardpass";
 	public final static String KEY_ORDER_CARDID = "wx_cardid";
-	// ʹ��΢�ſ�ȯ
+	// 使锟斤拷微锟脚匡拷券
 	public final static String KEY_USE_WEIXIN_CARD = "use_wxcard";
 	public final static String KEY_REMOTEIP = "remoteIp";
 	public final static String VALUE_USE_WEIXIN_CARD = "Y";
 	
-	public final static String CARD_ORANGE = "pwG3Ejg41PtsFHOIDzkQGlUzbr3g"; // ��ȯ��ȯcardid
-	public final static String CARD_18 = "pwG3EjvDgeYUhjnByGmydG9XheGw";	 // 18Ԫ��ȯcardid
-	public final static String CARD_ORANGE_TEXT = "��ȯ��ȯ";
-	public final static String CARD_18_TEXT = "18Ԫ��ȯ";
+	public final static String CARD_ORANGE = "pwG3Ejg41PtsFHOIDzkQGlUzbr3g"; // 锟斤拷券锟斤拷券cardid
+	public final static String CARD_18 = "pwG3EjvDgeYUhjnByGmydG9XheGw";	 // 18元锟斤拷券cardid
+	public final static String CARD_ORANGE_TEXT = "锟斤拷券锟斤拷券";
+	public final static String CARD_18_TEXT = "18元锟斤拷券";
 
-	public final static String CARD_TEST = "pwG3EjoMoAVIeG79lgfeWBTJUvo8";	// ���Կ�ȯ
-	public final static String CARD_18_TEST = "pwG3EjjjX_J2d8BA4i6YCCMg8zjw"; // �����ʸ��� 
+	public final static String CARD_TEST = "pwG3EjoMoAVIeG79lgfeWBTJUvo8";	// 锟斤拷锟皆匡拷券
+	public final static String CARD_18_TEST = "pwG3EjjjX_J2d8BA4i6YCCMg8zjw"; // 锟斤拷锟斤拷锟绞革拷锟斤拷 
 
-	public final static String CARD_BY_PUFA = "pwG3EjnAp_UwANeEdPH5oUJ7Nisk"; // �ַ�΢�Ż�ͨ��ȯ
-	public final static String CARD_BY_ZSY = "pwG3EjpFQOLZNRyY88A6FpN8B8hY";  // ��ʯ��΢�Ż�ͨ��ȯ
+	public final static String CARD_BY_PUFA = "pwG3EjnAp_UwANeEdPH5oUJ7Nisk"; // 锟街凤拷微锟脚伙拷通锟斤拷券
+	public final static String CARD_BY_ZSY = "pwG3EjpFQOLZNRyY88A6FpN8B8hY";  // 锟斤拷石锟斤拷微锟脚伙拷通锟斤拷券
 
 	public static boolean isValidText(String content) {
 		return StringUtil.regMatch(content, "^[\\w-\u4e00-\u9fa5]+$", true);
 	}
 
-	// ȫ��ת��Ϊ���
+	// 全锟斤拷转锟斤拷为锟斤拷锟�
 	public static String toHalf(String input) {
 		if(StringUtils.isBlank(input)) {
             return "";
@@ -108,7 +108,7 @@ public class WeixinUtil {
 		}
 		return ErrorCode.getFailure(result.getMsg());
 	}
-	//���Ϳͷ���Ϣ
+	//锟斤拷锟酵客凤拷锟斤拷息
 	public static ErrorCode<String> sendCustomerMsg(String token, String touser, String content){
 		Map map = new HashMap<>();
 		map.put("touser", touser);
@@ -131,7 +131,7 @@ public class WeixinUtil {
 		return ErrorCode.SUCCESS;
 	}
 	
-	//������ά��ticket
+	//锟斤拷锟斤拷锟斤拷维锟斤拷ticket
 	//return {"ticket":"XXX","expire_seconds":86400,"url":"XXX"}
 	public static ErrorCode<Map> createQCodeTicket(String token, String sceneid, Long exsecond){
 		Map map = new HashMap<>();

@@ -9,28 +9,28 @@ import com.gewara.api.vo.ResultCode;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public interface BlogApiService{
 	
 	/**
-	 * »ñÈ¡ºÚÃûµ¥ÁĞ±í
-	 * @param memberId Îª¿ÕÔò·µ»ØËùÓĞºÚÃûµ¥
+	 * è·å–é»‘åå•åˆ—è¡¨
+	 * @param memberId ä¸ºç©ºåˆ™è¿”å›æ‰€æœ‰é»‘åå•
 	 * @return
 	 */
 	ResultCode<List<BlackMemberVo>> getBlackMemberList(Long memberId, int from, int maxnum);
 	/**
-	 * ÓÃ»§ÊÇ·ñÔÚºÚÃûµ¥ÖĞ
+	 * ç”¨æˆ·æ˜¯å¦åœ¨é»‘åå•ä¸­
 	 * @param memberId
 	 * @return
 	 */
 	ResultCode<Boolean> isBlackMember(Long memberId);
 	/**
-	 * ºÚÃûµ¥ÖĞµÄÈËÊı
+	 * é»‘åå•ä¸­çš„äººæ•°
 	 */
 	ResultCode<Integer> getBlackMemberCount();
 	/**
-	 * ¾Ù±¨ÊıÁ¿
+	 * ä¸¾æŠ¥æ•°é‡
 	 * @return
 	 */
 	ResultCode<Integer> getAccusationCount();
@@ -39,39 +39,39 @@ public interface BlogApiService{
 	
 
 	/**
-	 * ¸ù¾İ¹ØÁªmemberid£¬²éÑ¯ºÚÃûµ¥ÊıÁ¿
+	 * æ ¹æ®å…³è”memberidï¼ŒæŸ¥è¯¢é»‘åå•æ•°é‡
 	 */
 	ResultCode<Integer> getBlackMemberCount(Long memberId);
 	
 	/**
-	 * ±£´æºÚÃûµ¥
+	 * ä¿å­˜é»‘åå•
 	 * @param bm
 	 * @return
 	 */
 	ResultCode<BlackMemberVo> saveBlackMember(BlackMemberVo bm);
 	
 	/**
-	 * É¾³ıºÚÃûµ¥
+	 * åˆ é™¤é»‘åå•
 	 * @param blackMemberId
 	 */
 	ResultCode removeBlackMember(Long blackMemberId);
 	
 	/**
-	 * ±£´æÍ¶Ëß
+	 * ä¿å­˜æŠ•è¯‰
 	 * @param acc
 	 * @return
 	 */
 	ResultCode<AccusationVo> saveAccusation(AccusationVo acc);
 	
 	/**
-	 * ²éÑ¯Í¶Ëß
+	 * æŸ¥è¯¢æŠ•è¯‰
 	 * @param accid
 	 * @return
 	 */
 	ResultCode<AccusationVo> getAccusation(Long accid);
 	
 	/**
-	 * É¾³ıÍ¶Ëß
+	 * åˆ é™¤æŠ•è¯‰
 	 * @param accid
 	 */
 	ResultCode removeAccusation(Long accid);	

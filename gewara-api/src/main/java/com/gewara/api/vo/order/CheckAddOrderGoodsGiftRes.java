@@ -11,11 +11,11 @@ public class CheckAddOrderGoodsGiftRes implements Serializable{
 	 */
 	private static final long serialVersionUID = -1237001182538322948L;
 
-	private Integer quantity;//ÔùÆ·ÊıÁ¿
+	private Integer quantity;//èµ å“æ•°é‡
 	
-	private boolean isGiftExist;//ÀñÆ·ÊÇ·ñ´æÔÚ£ºtrue:´æÔÚ£»false:²»´æÔÚ
+	private boolean isGiftExist;//ç¤¼å“æ˜¯å¦å­˜åœ¨ï¼štrue:å­˜åœ¨ï¼›false:ä¸å­˜åœ¨
 	
-	private GoodsVo goods;//ÎïÆ·
+	private GoodsVo goods;//ç‰©å“
 	
 	public CheckAddOrderGoodsGiftRes(){}
 	

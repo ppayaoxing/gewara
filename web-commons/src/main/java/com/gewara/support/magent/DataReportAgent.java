@@ -28,9 +28,9 @@ import com.gewara.web.support.ResourceStatsUtil;
 
 public class DataReportAgent implements InitializingBean{
 	private GewaLogger dbLogger = WebLogger.getLogger(getClass());
-	private int sendThreshold = 5;		//ÇëÇóÊýÉÏ±¨·§Öµ
+	private int sendThreshold = 5;		//è¯·æ±‚æ•°ä¸ŠæŠ¥é˜€å€¼
 
-	private int dumpThreshold = 100;	//dumpÏß³ÌÇëÇóÊý·§Öµ
+	private int dumpThreshold = 100;	//dumpçº¿ç¨‹è¯·æ±‚æ•°é˜€å€¼
 	private int cacheThreshold = 2000;	//
 	private int exceptionThreshold = 20;//
 	private String threadDumpDir;
@@ -55,7 +55,7 @@ public class DataReportAgent implements InitializingBean{
 	public void setThreadDumpDir(String threadDumpDir) {
 		this.threadDumpDir = threadDumpDir;
 	}
-	private Long lastreport = System.currentTimeMillis();// ÉÏ´ÎÆ¿¾±ÉÏ±¨Êý¾Ý
+	private Long lastreport = System.currentTimeMillis();// ä¸Šæ¬¡ç“¶é¢ˆä¸ŠæŠ¥æ•°æ®
 
 	private int processCount = 0;
 
@@ -122,7 +122,7 @@ public class DataReportAgent implements InitializingBean{
 			if (reqnum >= dumpThreshold && lastreport < System.currentTimeMillis() - DateUtil.m_minute * 5) {
 				lastreport = System.currentTimeMillis();
 
-				// dumpÊý¾Ý²¢ÉÏ±¨
+				// dumpæ•°æ®å¹¶ä¸ŠæŠ¥
 				String fileName = Config.getHostname() + "_" + Config.SYSTEMID.toLowerCase() + "_" + DateUtil.format(new Date(), "yyyyMMddHHmmss") + ".tdump";
 				Map<String, String> data = JVMHelper.exportThreadToFile(threadDumpDir, fileName);
 				reportData(data, ReportType.jvmdump);
@@ -200,7 +200,7 @@ public class DataReportAgent implements InitializingBean{
 	private void processException() {
 		try {
 			int critical = LoggerUtils.getCriticalExceptionCount();
-			if (critical > exceptionThreshold || LoggerUtils.getSingleMax() > 2 && processCount % 20 == 0/* 10·ÖÖÓÉÏ±¨Ò»´Î */) {
+			if (critical > exceptionThreshold || LoggerUtils.getSingleMax() > 2 && processCount % 20 == 0/* 10åˆ†é’Ÿä¸ŠæŠ¥ä¸€æ¬¡ */) {
 				long lasttime = LoggerUtils.getExceptionTimefrom();
 				Map<String, Integer> countMap = LoggerUtils.resetExceptionCount();
 				Map<String, String> data = new HashMap<String, String>();

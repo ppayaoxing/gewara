@@ -3,7 +3,7 @@ package com.gewara.gmessage.external.entity;
 
 import java.io.Serializable;
 /**
- * δ����Ϣͳ��
+ * 未锟斤拷锟斤拷息统锟斤拷
  *
  */
 public class UnReadCountResult implements Serializable {
@@ -107,7 +107,7 @@ public class UnReadCountResult implements Serializable {
 		this.system = system;
 	}
 	
-	/**������Ϣ*/
+	/**锟斤拷锟斤拷锟斤拷息*/
 	public long getInteraction() {
 		return interaction;
 	}
@@ -116,7 +116,7 @@ public class UnReadCountResult implements Serializable {
 		this.interaction = interaction;
 	}
 	
-	/**��ʱ��Ϣ*/
+	/**锟斤拷时锟斤拷息*/
 	public long getInstant() {
 		return instant;
 	}
@@ -124,7 +124,7 @@ public class UnReadCountResult implements Serializable {
 		this.instant = instant;
 	}
 	
-	/**�û�ID*/
+	/**锟矫伙拷ID*/
 	public String getUserID() {
 		return userID;
 	}

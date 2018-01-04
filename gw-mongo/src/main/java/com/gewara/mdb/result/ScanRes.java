@@ -55,7 +55,7 @@ public class ScanRes<T> {
 	}
 	
 	/**
-	 * ͬ������
+	 * 同锟斤拷锟斤拷锟斤拷
 	 */
 	public void startSyncProcess(){
 		while(docs.hasNext()){
@@ -64,7 +64,7 @@ public class ScanRes<T> {
 	}
 	
 	/**
-	 * ��һ���̣߳������첽����
+	 * 锟斤拷一锟斤拷锟竭程ｏ拷锟斤拷锟斤拷锟届步锟斤拷锟斤拷
 	 */
 	public void startAsyncProcess(){
 		new Thread(new Runnable() {

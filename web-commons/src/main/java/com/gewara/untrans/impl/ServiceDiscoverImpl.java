@@ -20,13 +20,13 @@ import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
 
 /**
- * »ùÓÚCuratorFrameworkµÄ·şÎñ·¢ÏÖ
- * <p>Ê¹ÓÃ:<br>
+ * åŸºäºCuratorFrameworkçš„æœåŠ¡å‘ç°
+ * <p>ä½¿ç”¨:<br>
  * {@code <bean id="serviceDiscover" class="com.gewara.untrans.impl.ServiceDiscoverImpl">} <br>
  * {@code     <property name="basePath" value="/service/discovery"/>}<br>
  * {@code     <property name="factory" ref="curatorConnectionFactroy"/>}<br>
  * {@code </bean> }<br>
- * Èç¹û"basePathÊôĞÔ²»ÅäÖÃ£¬Ä¬ÈÏÊ¹ÓÃ{@link ServiceDiscoverConstant#DEFALT_BASE_PATH}
+ * å¦‚æœ"basePathå±æ€§ä¸é…ç½®ï¼Œé»˜è®¤ä½¿ç”¨{@link ServiceDiscoverConstant#DEFALT_BASE_PATH}
  * 
  * @author quzhuping
  *

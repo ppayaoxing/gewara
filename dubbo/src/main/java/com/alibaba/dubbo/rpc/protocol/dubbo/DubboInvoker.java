@@ -118,11 +118,11 @@ public class DubboInvoker<T> extends AbstractInvoker<T> {
 
     @Override
     public void destroy() {
-        //��ֹclient���رն��.��connect per jvm������£�client.close��������ü�����-1����������С�ڵ���0������£��������ر�
+        //锟斤拷止client锟斤拷锟截闭讹拷锟�.锟斤拷connect per jvm锟斤拷锟斤拷锟斤拷拢锟絚lient.close锟斤拷锟斤拷锟斤拷锟斤拷眉锟斤拷锟斤拷锟�-1锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷小锟节碉拷锟斤拷0锟斤拷锟斤拷锟斤拷拢锟斤拷锟斤拷锟斤拷锟斤拷乇锟�
         if (super.isDestroyed()){
             return ;
         } else {
-            //dubbo check ,�����ιر�
+            //dubbo check ,锟斤拷锟斤拷锟轿关憋拷
             destroyLock.lock();
             try{
                 if (super.isDestroyed()){

@@ -11,7 +11,7 @@ import com.gewara.api.vo.ResultCode;
 public interface GatewayApiService {
 
 	/**
-	 * »ñÈ¡ËùÓĞÖ§¸¶Íø¹ØĞÅÏ¢
+	 * è·å–æ‰€æœ‰æ”¯ä»˜ç½‘å…³ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @return
@@ -22,7 +22,7 @@ public interface GatewayApiService {
 	ResultCode<GatewayGetAllResponse> getAll(GatewayGetAllRequest request);
 	
 	/**
-	 * ¸ù¾İÍø¹Øid»ñÈ¡Ö§¸¶Íø¹ØĞÅÏ¢
+	 * æ ¹æ®ç½‘å…³idè·å–æ”¯ä»˜ç½‘å…³ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @return
@@ -33,7 +33,7 @@ public interface GatewayApiService {
 	ResultCode<GatewayGetResponse> get(GatewayGetRequest request);
 	
 	/**
-	 * »ñÈ¡ËùÓĞÉÌ»§ĞÅÏ¢
+	 * è·å–æ‰€æœ‰å•†æˆ·ä¿¡æ¯
 	 * 
 	 * @param request
 	 * @return

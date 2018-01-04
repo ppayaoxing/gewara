@@ -6,20 +6,20 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * ·ÖÈó
+ * åˆ†æ¶¦
  * @author user_2
  */
 public class ShareBenefitVo extends BaseVo {
 
 	private static final long serialVersionUID = -4880540467784464050L;
 
-	private String accountid; 		// ×Ê½ğºÅ
-	private long partnerid; 		// ºÏ×÷ÉÌID
-	private long amount; 			// ½ğ¶î[µ¥Î»£º·Ö]
-	private long shareMonth;		//·ÖÈóÔÂ·İ[yyyymm]
-	private String refsn;			//½»Ò×Á÷Ë®
-	private String type;			//³äÖµÀàĞÍ["CHARGE"Ô¤¸¶¿î    "SHARE"·ÖÈó   "SERVICE"¼¼Êõ·şÎñ·Ñ "MAINTAIN" Î¬»¤·Ñ]
-	private Timestamp transactionTime; // ½»Ò×Ê±¼ä
+	private String accountid; 		// èµ„é‡‘å·
+	private long partnerid; 		// åˆä½œå•†ID
+	private long amount; 			// é‡‘é¢[å•ä½ï¼šåˆ†]
+	private long shareMonth;		//åˆ†æ¶¦æœˆä»½[yyyymm]
+	private String refsn;			//äº¤æ˜“æµæ°´
+	private String type;			//å……å€¼ç±»å‹["CHARGE"é¢„ä»˜æ¬¾    "SHARE"åˆ†æ¶¦   "SERVICE"æŠ€æœ¯æœåŠ¡è´¹ "MAINTAIN" ç»´æŠ¤è´¹]
+	private Timestamp transactionTime; // äº¤æ˜“æ—¶é—´
 
 	public String getAccountid() {
 		return accountid;

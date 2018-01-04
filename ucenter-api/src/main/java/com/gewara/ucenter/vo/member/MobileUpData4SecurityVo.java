@@ -7,14 +7,14 @@ import com.gewara.api.vo.BaseVo;
 
 public class MobileUpData4SecurityVo extends BaseVo {
 	private String _id;				//key
-	private Long memberid;			//ÓÃ»§id
-	private String deviceId;		//Éè±¸id
-	private String yys;				//ÔËÓªÉÌ¡¾ÁªÍ¨¡¢ÒÆ¶¯¡¢µçĞÅ¡¿
-	private String mobile;			//ÊÖ»úºÅ
-	private String checkpass;		//Ğ£ÑéÂë
-	private Timestamp addtime;		//Ìí¼ÓÊ±¼ä
-	private String status;			//×´Ì¬
-	private Timestamp replytime;	//»Ø¸´Ê±¼ä
+	private Long memberid;			//ç”¨æˆ·id
+	private String deviceId;		//è®¾å¤‡id
+	private String yys;				//è¿è¥å•†ã€è”é€šã€ç§»åŠ¨ã€ç”µä¿¡ã€‘
+	private String mobile;			//æ‰‹æœºå·
+	private String checkpass;		//æ ¡éªŒç 
+	private Timestamp addtime;		//æ·»åŠ æ—¶é—´
+	private String status;			//çŠ¶æ€
+	private Timestamp replytime;	//å›å¤æ—¶é—´
 	
 	public Long getMemberid() {
 		return memberid;

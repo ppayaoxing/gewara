@@ -4,7 +4,7 @@ import com.gewara.api.vo.ResultCode;
 
 public interface ShoacApiService {
 	/**
-	 * 获取东艺场次票面信息
+	 * 鑾峰彇涓滆壓鍦烘绁ㄩ潰淇℃伅
 	 * @param sceneid
 	 * @return
 	 */

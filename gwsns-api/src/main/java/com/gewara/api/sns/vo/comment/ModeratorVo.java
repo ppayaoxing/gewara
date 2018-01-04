@@ -15,14 +15,14 @@ public class ModeratorVo extends BaseVo {
 	private Integer ordernum;
 	private Timestamp addtime;
 	private String type;
-	private Integer showfloor;//ÊÇ·ñÏÔÊ¾Â¥²ã
-	private Integer showaddress;//ÏÔÊ¾µØÖ·
-	private String mstatus;//×´Ì¬
+	private Integer showfloor;//æ˜¯å¦æ˜¾ç¤ºæ¥¼å±‚
+	private Integer showaddress;//æ˜¾ç¤ºåœ°å€
+	private String mstatus;//çŠ¶æ€
 	private Integer commentcount;
-	private Long parentid;			//¸¸»°Ìâid
-	private String tag;				//¹ØÁª°å¿é
-	private Long relatedid;			//¹ØÁªid
-	private String ispk;				//ÊÇ·ñÎªpk»°Ìâ
+	private Long parentid;			//çˆ¶è¯é¢˜id
+	private String tag;				//å…³è”æ¿å—
+	private Long relatedid;			//å…³è”id
+	private String ispk;				//æ˜¯å¦ä¸ºpkè¯é¢˜
 	public Long getId() {
 		return id;
 	}

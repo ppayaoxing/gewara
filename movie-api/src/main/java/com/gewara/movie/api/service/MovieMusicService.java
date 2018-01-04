@@ -8,39 +8,39 @@ import com.gewara.movie.vo.MusicAlbumVo;
 
 public interface MovieMusicService {
 	/**
-	 * ÒôÀÖºóÌ¨²éÑ¯µçÓ°Ïà¹ØµÄÒôÀÖ×¨¼­
+	 * éŸ³ä¹åå°æŸ¥è¯¢ç”µå½±ç›¸å…³çš„éŸ³ä¹ä¸“è¾‘
 	 * @param movieid
 	 * @return
 	 */
 	ResultCode<MusicAlbumVo> getMusicAlbumByMovieid(Long movieid);
 	/**
-	 * ĞŞ¸Ä×¨¼­ID
+	 * ä¿®æ”¹ä¸“è¾‘ID
 	 * @param albumVo
 	 * @param movieid
 	 * @return
 	 */
 	ResultCode updateMusicAlbum(MusicAlbumVo albumVo,Long movieid);
 	/**
-	 * É¾³ı×¨¼­
+	 * åˆ é™¤ä¸“è¾‘
 	 * @param list_id
 	 * @param movieid
 	 * @return
 	 */
 	ResultCode delMusicAlbum(String list_id,Long movieid);
 	/**
-	 * Ìí¼ÓÏ²»¶
+	 * æ·»åŠ å–œæ¬¢
 	 * @param song_id
-	 * @return ·µ»ØÏ²»¶ºóµÄ×ÜÏ²»¶Êı
+	 * @return è¿”å›å–œæ¬¢åçš„æ€»å–œæ¬¢æ•°
 	 */
 	ResultCode<Integer> addMusicCollection(String song_id, Long memberid);
 	/**
-	 * È¡ÏûÏ²»¶
+	 * å–æ¶ˆå–œæ¬¢
 	 * @param song_id
-	 * @return ·µ»ØÈ¡ÏûÏ²»¶ºóµÄ×ÜÏ²»¶Êı
+	 * @return è¿”å›å–æ¶ˆå–œæ¬¢åçš„æ€»å–œæ¬¢æ•°
 	 */
 	ResultCode<Integer> cancelMusicCollection(String song_id, Long memberid);
 	/**
-	 * ĞŞ¸ÄmoviemusicÊôĞÔ
+	 * ä¿®æ”¹moviemusicå±æ€§
 	 * @param songId
 	 * @param propertiesMap
 	 * @return

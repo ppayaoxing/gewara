@@ -6,12 +6,12 @@ public class MoneyPayRequest extends AbcRequest {
 
 	private static final long serialVersionUID = -5582901218651779910L;
 	
-	private String cardno		;//���׿���
-	private String cardexp		;//����Ч��
+	private String cardno		;//锟斤拷锟阶匡拷锟斤拷
+	private String cardexp		;//锟斤拷锟斤拷效锟斤拷
 	private String adddata		;//CVD2
-	private Integer amount		;//���׽��
-	private Integer totalAmount	;//�����ܽ��
-	private String checkcode	;//��֤��
+	private Integer amount		;//锟斤拷锟阶斤拷锟�
+	private Integer totalAmount	;//锟斤拷锟斤拷锟杰斤拷锟�
+	private String checkcode	;//锟斤拷证锟斤拷
 	
 	public MoneyPayRequest(){}
 	

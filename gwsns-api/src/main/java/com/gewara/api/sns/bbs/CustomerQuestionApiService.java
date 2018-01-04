@@ -7,7 +7,7 @@ import com.gewara.api.sns.vo.bbs.CustomerQuestionVo;
 import com.gewara.api.vo.ResultCode;
 
 /**
- *    @function 用户建议收集Service
+ *    @function 鐢ㄦ埛寤鸿鏀堕泦Service
  * 	@author bob.hu
  *		@date	2011-03-11 14:32:11
  */
@@ -17,7 +17,7 @@ public interface CustomerQuestionApiService {
 	ResultCode<Integer> getQuestionCountBykey(String citycode, String tag, String searchkey, String status);
 	
 	/**
-	 *  根据 qid, 查询某用户建议对应的回复
+	 *  鏍规嵁 qid, 鏌ヨ鏌愮敤鎴峰缓璁搴旂殑鍥炲
 	 * */
 	ResultCode<List<CustomerAnswerVo>> getAnswersByQid(Long qid, int from, int maxnum);
 	ResultCode<Integer> getAnswerCountByQid(Long qid);
@@ -27,33 +27,33 @@ public interface CustomerQuestionApiService {
 	ResultCode<CustomerQuestionVo> addCustomerQuestion(String citycode, Long memberid, String email, String tag, String body, String type);
 	
 	/**
-	 * 修改customerQuestion status
+	 * 淇敼customerQuestion status
 	 * @param qid 
 	 * @param status
 	 */
 	ResultCode updateQuestionStatus(Long qid, String status);
 	
 	/**
-	 * 获取CustomerQuestion
+	 * 鑾峰彇CustomerQuestion
 	 * @param qid
 	 * @return
 	 */
 	ResultCode<CustomerQuestionVo> getCustomerQuestion(Long qid);
 	
 	/**
-	 * 获取CustomerAnswer
+	 * 鑾峰彇CustomerAnswer
 	 * @param aid
 	 * @return
 	 */
 	ResultCode<CustomerAnswerVo> getCustomerAnswer(Long aid);
 	/**
-	 * 保存CustomerAnswer
+	 * 淇濆瓨CustomerAnswer
 	 * @param answer
 	 * @return
 	 */
 	ResultCode<CustomerAnswerVo> saveCustomerAnswer(CustomerAnswerVo answer);
 	/**
-	 * 修改CustomerQuestion
+	 * 淇敼CustomerQuestion
 	 * @param customerQuestion
 	 * @return
 	 */

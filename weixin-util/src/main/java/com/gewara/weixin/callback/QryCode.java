@@ -2,7 +2,7 @@ package com.gewara.weixin.callback;
 
 public class QryCode extends WxBack{
 	/**
-	 * 根据code，openid查询卡的详情返回
+	 * 鏍规嵁code锛宱penid鏌ヨ鍗＄殑璇︽儏杩斿洖
 	 */
 	private static final long serialVersionUID = 4995725043605140159L;
 	private String openid;

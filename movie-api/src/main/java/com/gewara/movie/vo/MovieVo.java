@@ -8,7 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import com.gewara.movie.vo.common.BaseEntityVo;
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28����02:05:17
+ * @since 2007-9-28锟斤拷锟斤拷02:05:17
  */
 public class MovieVo extends BaseEntityVo implements Comparable<MovieVo>{
 	private static final long serialVersionUID = 7175746260709239571L;
@@ -24,31 +24,31 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo>{
 	private String type;
 	private String honor;
 	private String website;
-	private Integer videolen;	//ӰƬʱ�����Է���Ϊ��λ
+	private Integer videolen;	//影片时锟斤拷锟斤拷锟皆凤拷锟斤拷为锟斤拷位
 	private String remark;
 	private String state;
 	private String prevideo;
-	private String highlight; //����һ�仰
+	private String highlight; //锟斤拷锟斤拷一锟戒话
 	private String playdate;
 	private Integer avgprice;
 	private Integer minprice;
 	private Integer maxprice;
 	private String imdbid;
 	private String flag;
-	private Integer boughtcount;	// ��Ʊ�˴�
+	private Integer boughtcount;	// 锟斤拷票锟剿达拷
 	private String otherinfo;	
-	private String edition;   //��Ӱ�汾
-	private String colorEggs; //��Ӱ�ʵ�
-	private String hlogo;//����logo
-	private String offlineDate; //��Ӱ��������
-	private String filmType;		//Ƭ�֣�����Ƭ����¼Ƭ������Ƭ����ѧ����Ƭ
-	private String importModel;		//����ģʽ�����������ġ���ϡ�����
-	private String period;			//������ִ����������Ŵ�
-	private String ageLayer;		//����㣺80,90,00
-	private String characteristic;	// �û�����:ѧ����
+	private String edition;   //锟斤拷影锟芥本
+	private String colorEggs; //锟斤拷影锟绞碉拷
+	private String hlogo;//锟斤拷锟斤拷logo
+	private String offlineDate; //锟斤拷影锟斤拷锟斤拷锟斤拷锟斤拷
+	private String filmType;		//片锟街ｏ拷锟斤拷锟斤拷片锟斤拷锟斤拷录片锟斤拷锟斤拷锟斤拷片锟斤拷锟斤拷学锟斤拷锟斤拷片
+	private String importModel;		//锟斤拷锟斤拷模式锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟侥★拷锟斤拷稀锟斤拷锟斤拷锟�
+	private String period;			//锟斤拷锟斤拷锟斤拷执锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷糯锟�
+	private String ageLayer;		//锟斤拷锟斤拷悖�80,90,00
+	private String characteristic;	// 锟矫伙拷锟斤拷锟斤拷:学锟斤拷锟斤拷
 	private String filmmark;
-	private String countryRelease;	// ������ӳ���ڣ��ԡ�,���ָ�
-	private String sameMovie;		// ����ӰƬID���ԡ�,���ָ�
+	private String countryRelease;	// 锟斤拷锟斤拷锟斤拷映锟斤拷锟节ｏ拷锟皆★拷,锟斤拷锟街革拷
+	private String sameMovie;		// 锟斤拷锟斤拷影片ID锟斤拷锟皆★拷,锟斤拷锟街革拷
 	
 	public String getHlogo() {
 		return hlogo;
@@ -186,7 +186,7 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo>{
 		if(videolen==null) {
             return "";
         }
-		return this.videolen + "����";
+		return this.videolen + "锟斤拷锟斤拷";
 	}
 
 	public String getRemark() {

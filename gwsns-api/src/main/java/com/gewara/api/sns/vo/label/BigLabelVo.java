@@ -7,23 +7,23 @@ import com.gewara.api.vo.BaseVo;
 
 public class BigLabelVo extends BaseVo {
 	private static final long serialVersionUID = -573268711254641818L;
-	private Long id; // Ö÷¼ü
-	private String name; // ±êÇ©Ãû³Æ
-	private String pinyin; // ±êÇ©Æ´Òô
-	private String remark; // ¼ò½é
-	private String logo; // Ğ¡Í¼±ê£¨Â·¾¶£©
-	private String cover; // ·âÃæÍ¼Æ¬£¨Â·¾¶£©
-	private Integer fanscount; // ·ÛË¿ÊıÁ¿
-	private Integer clickedtimes; // ·ÃÎÊÊıÁ¿
-	private Integer commentcount; // ÍÛÀ²ÊıÁ¿
-	private Integer relatedcount; // ¹ØÁªµÄÊıÁ¿
-	private String status; // ÓĞĞ§×´Ì¬ Y--ÓĞĞ§£¬N---ÎŞĞ§
-	private Long memberid; // Ìí¼Ó±êÇ©ÓÃ»§
-	private Timestamp addTime; // ´´½¨±êÇ©Ê±¼ä
-	private Timestamp updateTime; // ×î½ü¸üĞÂ±êÇ©Ê±¼ä
-	private Integer attStatus = 0;//¹Ø×¢×´Ì¬   0-Î´¹Ø×¢(Ä¬ÈÏ)£»1ÒÑ¹Ø×¢
+	private Long id; // ä¸»é”®
+	private String name; // æ ‡ç­¾åç§°
+	private String pinyin; // æ ‡ç­¾æ‹¼éŸ³
+	private String remark; // ç®€ä»‹
+	private String logo; // å°å›¾æ ‡ï¼ˆè·¯å¾„ï¼‰
+	private String cover; // å°é¢å›¾ç‰‡ï¼ˆè·¯å¾„ï¼‰
+	private Integer fanscount; // ç²‰ä¸æ•°é‡
+	private Integer clickedtimes; // è®¿é—®æ•°é‡
+	private Integer commentcount; // å“‡å•¦æ•°é‡
+	private Integer relatedcount; // å…³è”çš„æ•°é‡
+	private String status; // æœ‰æ•ˆçŠ¶æ€ Y--æœ‰æ•ˆï¼ŒN---æ— æ•ˆ
+	private Long memberid; // æ·»åŠ æ ‡ç­¾ç”¨æˆ·
+	private Timestamp addTime; // åˆ›å»ºæ ‡ç­¾æ—¶é—´
+	private Timestamp updateTime; // æœ€è¿‘æ›´æ–°æ ‡ç­¾æ—¶é—´
+	private Integer attStatus = 0;//å…³æ³¨çŠ¶æ€   0-æœªå…³æ³¨(é»˜è®¤)ï¼›1å·²å…³æ³¨
 	
-	private String showRelated; // ÏÔÊ¾¹ØÁª Y--ÏÔÊ¾£¬N---²»ÏÔÊ¾
+	private String showRelated; // æ˜¾ç¤ºå…³è” Y--æ˜¾ç¤ºï¼ŒN---ä¸æ˜¾ç¤º
 	
 	@Override
 	public Serializable realId() {

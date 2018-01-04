@@ -10,9 +10,9 @@ public interface MongoAdminService {
 	//Map<String, Object> serverStatusMap();
 	List<Map> getSlowestQuery(String op, Integer mills);
 	/**
-	 * 获取几分钟内的慢查询
+	 * 鑾峰彇鍑犲垎閽熷唴鐨勬參鏌ヨ
 	 * @param ms
-	 * @param multiple 倍数比值：scan/return
+	 * @param multiple 鍊嶆暟姣斿�硷細scan/return
 	 * @param min
 	 * @return
 	 */

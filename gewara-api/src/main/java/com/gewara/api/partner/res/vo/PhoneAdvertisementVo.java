@@ -13,11 +13,11 @@ public class PhoneAdvertisementVo extends BaseVo{
 	private String advlink;
 	private String link;
 	private String title;
-	private String apptype;//Ó¦ÓÃÀàĞÍ(cinema)
-	private String osType;//ÏµÍ³ÀàĞÍ(ANDROID,IPHONE)
+	private String apptype;//åº”ç”¨ç±»å‹(cinema)
+	private String osType;//ç³»ç»Ÿç±»å‹(ANDROID,IPHONE)
 	private String citycode;
 	private Timestamp addtime;
-	private String isshow;//ÊÇ·ñÏÔÊ¾
+	private String isshow;//æ˜¯å¦æ˜¾ç¤º
 	private String status;
 	private Timestamp starttime;
 	private Timestamp endtime;
@@ -27,20 +27,20 @@ public class PhoneAdvertisementVo extends BaseVo{
 	private String relatedids;
 	private String summary;
 	
-	private Integer rank;//ÅÅĞò
-	private String advertType;//»î¶¯ÀàĞÍ 
+	private Integer rank;//æ’åº
+	private String advertType;//æ´»åŠ¨ç±»å‹ 
 	private String sharefriend;
 	private String appSource;
 	private Long discountid;
 	private String sdlogo;
-	private String sharepic; //·ÖÏíÍ¼Æ¬µØÖ·
-	private String tips;	// ÌáÊ¾Óï
-	private String advdesc;	// ËµÃ÷
+	private String sharepic; //åˆ†äº«å›¾ç‰‡åœ°å€
+	private String tips;	// æç¤ºè¯­
+	private String advdesc;	// è¯´æ˜
 	private String sharetitle;
-	private String linkedid;	//¹ØÁªÆäËü»î¶¯ID	(for wap)
-	private String tabname;		//tab±êÇ©ÏÔÊ¾µÄÃû³Æ	(for wap)
-	private String otherinfo;	//ÆäËûÉèÖÃ json¸ñÊ½£¬ ´æ·ÅÅäÖÃĞÅÏ¢µÈ
-	private String batchid;		//Åú´ÎID£¬±êÊ¶Í¬Ò»Åú»î¶¯
+	private String linkedid;	//å…³è”å…¶å®ƒæ´»åŠ¨ID	(for wap)
+	private String tabname;		//tabæ ‡ç­¾æ˜¾ç¤ºçš„åç§°	(for wap)
+	private String otherinfo;	//å…¶ä»–è®¾ç½® jsonæ ¼å¼ï¼Œ å­˜æ”¾é…ç½®ä¿¡æ¯ç­‰
+	private String batchid;		//æ‰¹æ¬¡IDï¼Œæ ‡è¯†åŒä¸€æ‰¹æ´»åŠ¨
 	public PhoneAdvertisementVo() {}
 	
 	public PhoneAdvertisementVo(Timestamp addtime){

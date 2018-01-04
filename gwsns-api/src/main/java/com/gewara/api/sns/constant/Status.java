@@ -3,46 +3,46 @@ package com.gewara.api.sns.constant;
 import org.apache.commons.lang.StringUtils;
 
 public abstract class Status {
-	public static final String Y = "Y";							//¶ÔÍâÏÔÊ¾
-	public static final String Y_NEW = "Y_NEW";				//ĞÂÌû×Ó¡¢ÎÊ´ğ¡¢»Ø¸´...
-	public static final String Y_LOCK = "Y_LOCK";			//Ëø
-	public static final String Y_DOWN = "Y_DOWN";			//ÏÂ³ÁÌû×Ó
+	public static final String Y = "Y";							//å¯¹å¤–æ˜¾ç¤º
+	public static final String Y_NEW = "Y_NEW";				//æ–°å¸–å­ã€é—®ç­”ã€å›å¤...
+	public static final String Y_LOCK = "Y_LOCK";			//é”
+	public static final String Y_DOWN = "Y_DOWN";			//ä¸‹æ²‰å¸–å­
 	public static final String Y_LOCK_DOWN = "Y_LD";
 
-	public static final String N = "N";							//¶ÔÍâ²»ÏÔÊ¾
-	public static final String N_DELETE = "N_DELETE";		//±»É¾³ı
-	public static final String N_FILTER = "N_FILTER";		//±»¹Ø¼ü×Ö¹ıÂË
-	public static final String N_ACCUSE = "N_ACCUSE";		//¾Ù±¨ÊôÊµ
-	public static final String N_NIGHT = "N_NIGHT";			//Ò¹¼ä·¢Ìû
+	public static final String N = "N";							//å¯¹å¤–ä¸æ˜¾ç¤º
+	public static final String N_DELETE = "N_DELETE";		//è¢«åˆ é™¤
+	public static final String N_FILTER = "N_FILTER";		//è¢«å…³é”®å­—è¿‡æ»¤
+	public static final String N_ACCUSE = "N_ACCUSE";		//ä¸¾æŠ¥å±å®
+	public static final String N_NIGHT = "N_NIGHT";			//å¤œé—´å‘å¸–
 	
-	public static final String N_ERROR = "N_ERR";			//³öÏÖ´íÎó
+	public static final String N_ERROR = "N_ERR";			//å‡ºç°é”™è¯¯
 	
-	public static final String Y_STOP = "Y_STOP";			//»î¶¯Í£Ö¹±¨Ãû
-	public static final String Y_PROCESS = "Y_PROCESS";	//»î¶¯¿ÉÒÔ±¨Ãû
-	public static final String Y_TREAT = "Y_TREAT";			//»î¶¯ÕıÔÚ´¦Àí
+	public static final String Y_STOP = "Y_STOP";			//æ´»åŠ¨åœæ­¢æŠ¥å
+	public static final String Y_PROCESS = "Y_PROCESS";	//æ´»åŠ¨å¯ä»¥æŠ¥å
+	public static final String Y_TREAT = "Y_TREAT";			//æ´»åŠ¨æ­£åœ¨å¤„ç†
 	
-	public static final String STATUS_OPEN = "Y"; //ÒÑ¿ª
-	public static final String STATUS_UNOPEN = "N"; //Î´¿ª
+	public static final String STATUS_OPEN = "Y"; //å·²å¼€
+	public static final String STATUS_UNOPEN = "N"; //æœªå¼€
 	
-	public static final String Y_END = "Y_END"; //²ÂÆ±·¿ÒÑ¿ª½±
+	public static final String Y_END = "Y_END"; //çŒœç¥¨æˆ¿å·²å¼€å¥–
 	
-	public static final String STATUS_OPENED = "Y_OPEN"; //ÒÑ¿ª
-	public static final String STATUS_UNPOST = "Y_NOTPOST";//Î´ÓÊ¼Ä
-	public static final String STATUS_POST_EXPRESS = "Y_EXP"; //¿ìµİ
-	public static final String STATUS_POST_COMMON = "Y_POST";//Æ½ÓÊ 
-	public static final String STATUS_UNOPENED = "N_NOTOPEN";//Î´¿ª
-	public static final String STATUS_APPLY = "N_APPLY";//ÉêÇë
+	public static final String STATUS_OPENED = "Y_OPEN"; //å·²å¼€
+	public static final String STATUS_UNPOST = "Y_NOTPOST";//æœªé‚®å¯„
+	public static final String STATUS_POST_EXPRESS = "Y_EXP"; //å¿«é€’
+	public static final String STATUS_POST_COMMON = "Y_POST";//å¹³é‚® 
+	public static final String STATUS_UNOPENED = "N_NOTOPEN";//æœªå¼€
+	public static final String STATUS_APPLY = "N_APPLY";//ç”³è¯·
 	//20110822
-	public static final String STATUS_TRASH="N_TRASH";//·¢Æ±·ÏÆú£¬ÖØĞÂÉêÇë
-	public static final String STATUS_APPLY_AGAIN="N_APPLYAGAIN";//ÉêÇë²¹¿ª
-	public static final String STATUS_OPEN_AGAIN="Y_AGAIN";//ÒÑ²¹¿ª
+	public static final String STATUS_TRASH="N_TRASH";//å‘ç¥¨åºŸå¼ƒï¼Œé‡æ–°ç”³è¯·
+	public static final String STATUS_APPLY_AGAIN="N_APPLYAGAIN";//ç”³è¯·è¡¥å¼€
+	public static final String STATUS_OPEN_AGAIN="Y_AGAIN";//å·²è¡¥å¼€
 	public static boolean isHidden(String status){
 		return StringUtils.isNotBlank(status) && status.startsWith(N);
 	}
 	
 	public static final String STATUS_N = "n";
 	public static final String STATUS_Y = "y";
-	public static final String TAG_BINDMOBILE = "bindMobile"; //ÊÖ»ú½â°ó
-	public static final String TAG_USERLOGIN ="userLogin"; //¹ÜÀíÔ±µÇÂ¼
+	public static final String TAG_BINDMOBILE = "bindMobile"; //æ‰‹æœºè§£ç»‘
+	public static final String TAG_USERLOGIN ="userLogin"; //ç®¡ç†å‘˜ç™»å½•
 	public static final Integer VALDMIN = 30;
 }

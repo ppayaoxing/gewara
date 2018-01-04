@@ -1,11 +1,11 @@
 package com.gewara.api.filter;
 
 public class DubboApiAuth {
-	private String reqUri;		//请求URI
-	private String systemid;	//系统ID
-	private Long userid;	//登录用户ID
-	private String username;		//登录用户名称
-	private String sessionid;	//登录用户sessionid
+	private String reqUri;		//璇锋眰URI
+	private String systemid;	//绯荤粺ID
+	private Long userid;	//鐧诲綍鐢ㄦ埛ID
+	private String username;		//鐧诲綍鐢ㄦ埛鍚嶇О
+	private String sessionid;	//鐧诲綍鐢ㄦ埛sessionid
 	private String remoteIp;
 	
 	public DubboApiAuth(String reqUri, String systemid, Long userid, String username, String sessionid, String remoteIp){

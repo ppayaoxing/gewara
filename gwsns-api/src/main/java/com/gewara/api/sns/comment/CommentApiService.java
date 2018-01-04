@@ -15,7 +15,7 @@ import com.gewara.command.CommentVoCommand;
 public interface CommentApiService {
 
 	/**
-	 * ¸ù¾İID»ñÈ¡µ¥¸öÍÛÀ²
+	 * æ ¹æ®IDè·å–å•ä¸ªå“‡å•¦
 	 * 
 	 * @param commentId
 	 * @param model
@@ -25,26 +25,26 @@ public interface CommentApiService {
 	ResultCode<CommentVo> getCommentId(Long commentId);
 
 	/**
-	 * »ñÈ¡commentÁĞ±í
+	 * è·å–commentåˆ—è¡¨
 	 * 
-	 * @return xml×Ö·û´®
+	 * @return xmlå­—ç¬¦ä¸²
 	 */
 	
 	ResultCode<List<CommentVo>>  getCommentList(String tag, Long relatedid, String status, Long memberid, Long transferid, String key, String flag, String order, String isAsc,
 			String startTime, String endTime, Long mincommentid, int from, int maxnum);
 	
 	/**
-	 * »ñÈ¡ÈÈÃÅcommentÁĞ±í
+	 * è·å–çƒ­é—¨commentåˆ—è¡¨
 	 * 
-	 * @return xml×Ö·û´®
+	 * @return xmlå­—ç¬¦ä¸²
 	 */
 	
 	ResultCode<List<CommentVo>> getHotCommentList(String tag, Long relatedid, String status, Long memberid, Long transferid, String key, String flag,
 			String startTime, String endTime, String bodyLength, String topic, String order, int from, int maxnum);
 	/**
-	 * »ñÈ¡·ÇÈÈÃÅcommentÁĞ±í
+	 * è·å–éçƒ­é—¨commentåˆ—è¡¨
 	 * 
-	 * @return xml×Ö·û´®
+	 * @return xmlå­—ç¬¦ä¸²
 	 */
 	
 	ResultCode<List<CommentVo>> getNotHotCommentList(String tag, Long relatedid, String status, Long memberid, Long transferid, String key, String flag,
@@ -106,7 +106,7 @@ public interface CommentApiService {
 	
 	ResultCode<Integer> getCommentCountByTransfer(Long commentId);
 	/**
-	 * ·¢±íÍÛÀ²×î¶àµÄÓÃ»§id¼¯ºÏ
+	 * å‘è¡¨å“‡å•¦æœ€å¤šçš„ç”¨æˆ·idé›†åˆ
 	 * 
 	 * @param model
 	 * @param maxnum
@@ -116,7 +116,7 @@ public interface CommentApiService {
 	
 	ResultCode<String> getCreatedCommentMaxMemberIds(Integer maxnum, String tag);
 	
-	//ÉÏÃæµÄÒÔºó¶¼ÒªÉ¾³ı,Í³Ò»ÓÃÏÂÃæ²éÑ¯
+	//ä¸Šé¢çš„ä»¥åéƒ½è¦åˆ é™¤,ç»Ÿä¸€ç”¨ä¸‹é¢æŸ¥è¯¢
 	ResultCode<List<CommentVo>> getCommentList(CommentVoCommand command);
 	
 	ResultCode<Integer> getCommentCount(CommentVoCommand command);
@@ -124,35 +124,35 @@ public interface CommentApiService {
 	ResultCode<String> getCommentBody(Long commentid);
 	
 	/**
-	 * »ñÈ¡ÍÆ¼öÍÛÀ²
+	 * è·å–æ¨èå“‡å•¦
 	 */
 	ResultCode<List<CommentVo>> getCommentVoListByRecomment(String signname, Long relatedid, String citycode, String order, boolean isAsc, int from, int maxnum);
 	/**
-	 * »ñÈ¡ÍÆ¼öÍÛÀ²
+	 * è·å–æ¨èå“‡å•¦
 	 */
 	ResultCode<List<CommentVo>> getCommentVoListByRecomment(String signname, Long relatedid, String citycode, String order,HashMap<String,Object> paramet,boolean isAsc, int from, int maxnum);
 	/**
-	 * °´ÕÕÈ¨ÖØÀ´»ñÈ¡ÍÛÀ²
+	 * æŒ‰ç…§æƒé‡æ¥è·å–å“‡å•¦
 	 */
 	ResultCode<List<CommentVo>> getWeightCommentList(Long moderatorid, Long mtid, String tag, Long relatedid, boolean isQa, Boolean isRead, int from, int maxnum);
 	/**
-	 * ÓÃ»§³é½±
+	 * ç”¨æˆ·æŠ½å¥–
 	 */
 	ResultCode<String> getLottery(Long commentid, Long memberid, String source, String citycode, String ip);
 	/**
-	 * »ñÈ¡ÍÛÀ²ÍÆ¼ö
+	 * è·å–å“‡å•¦æ¨è
 	 */
 	ResultCode<List<RecommendVo>> getRecommentList(String signname, Long relatedid, String citycode, String order, boolean isAsc, int from, int maxnum);
 	
 	/**
-	 * °ó¶¨ÓÃ»§ÍÛÀ²
-	 * ½«bindMemberIdÉÏµÄÍÛÀ²°ó¶¨µ½memberIdÖĞ
+	 * ç»‘å®šç”¨æˆ·å“‡å•¦
+	 * å°†bindMemberIdä¸Šçš„å“‡å•¦ç»‘å®šåˆ°memberIdä¸­
 	 * @param 
 	 * @return
 	 */
 	ResultCode bindMemberComment(Long memberId,Long bindMemberId);
 	/**
-	 * ¸ù¾İÌõ¼ş»ñÈ¡ÍÛÀ²
+	 * æ ¹æ®æ¡ä»¶è·å–å“‡å•¦
 	 * @param tags
 	 * @param paramet
 	 * @param from
@@ -161,7 +161,7 @@ public interface CommentApiService {
 	 */
 	ResultCode<List<CommentVo>> getCommentListByParamet(String[] tags,Timestamp startTime, Timestamp endTime,HashMap<String, Object> paramet,int from, int maxnum);
 	/**
-	 * ¸ù¾İÌõ¼ş»ñÈ¡ÍÛÀ²ÊıÁ¿
+	 * æ ¹æ®æ¡ä»¶è·å–å“‡å•¦æ•°é‡
 	 * @param tags
 	 * @param paramet
 	 * @param from
@@ -170,20 +170,20 @@ public interface CommentApiService {
 	 */
 	ResultCode<Integer> getCommentListByParametCoun(String[] tags,Timestamp startTime, Timestamp endTime,HashMap<String, Object> paramet);
 	/**
-	 * ¸ù¾İID»ñÈ¡ÍÆ¼öÊı¾İ
+	 * æ ¹æ®IDè·å–æ¨èæ•°æ®
 	 * @param recommendId
 	 * @return
 	 */
 	ResultCode<RecommendVo> getRecommendVoById(Long recommendId);
 	/**
-	 * ¸ù¾İIDÉ¾³ıÍÛÀ²
+	 * æ ¹æ®IDåˆ é™¤å“‡å•¦
 	 * @param commentid
 	 * @return
 	 */
 	ResultCode<String> deleteComment(Long commentid,Long memberid);
 
 	/**
-	 * ²éÑ¯¹Ø×¢µÄµçÓ°/Ó°ÈË/»î¶¯/Ó°ÔºÍÛÀ²
+	 * æŸ¥è¯¢å…³æ³¨çš„ç”µå½±/å½±äºº/æ´»åŠ¨/å½±é™¢å“‡å•¦
 	 * @param params key = tag,value = relatedid list 
 	 * @param startTime
 	 * @param endTime
@@ -192,7 +192,7 @@ public interface CommentApiService {
 	ResultCode<Integer> getCommentListCountByTags(Map<String, List<Long>> params, Timestamp startTime, Timestamp endTime,List<Long> memberids);
 
 	/**
-	 * ²éÑ¯¹Ø×¢µÄµçÓ°/Ó°ÈË/»î¶¯/Ó°ÔºÍÛÀ²
+	 * æŸ¥è¯¢å…³æ³¨çš„ç”µå½±/å½±äºº/æ´»åŠ¨/å½±é™¢å“‡å•¦
 	 * @param params key = tag,value = relatedid list 
 	 * @param startTime
 	 * @param endTime
@@ -201,7 +201,7 @@ public interface CommentApiService {
 	ResultCode<List<Long>> getCommentListByTags(Map<String, List<Long>> params, Timestamp startTime, Timestamp endTime, int from, int maxnum);
 	
 	/**
-	 * ¸ù¾İÌõ¼ş»ñÈ¡Ó°ÈËÍÛÀ²
+	 * æ ¹æ®æ¡ä»¶è·å–å½±äººå“‡å•¦
 	 * @param tags
 	 * @param relatedid
 	 * @param from
@@ -211,7 +211,7 @@ public interface CommentApiService {
 	ResultCode<List<CommentVo>> getStarCommentList(String tag,Timestamp startTime, Timestamp endTime,Long relatedid,int from, int maxnum);
 	
 	/**
-	 * ±£´æµçÓ°È¦ÍÆ¼öÍÛÀ²
+	 * ä¿å­˜ç”µå½±åœˆæ¨èå“‡å•¦
 	 * @param memberid
 	 * @param friendCids
 	 * @param attentionCids
@@ -220,7 +220,7 @@ public interface CommentApiService {
 	ResultCode saveFriendRecommendComment(Long memberid,List<Long> friendCids,List<Long> attentionCids,List<Long> allids);
 	
 	/**
-	 * ²éÑ¯ÓÃ»§¿´¹ıµÄµçÓ°È¦ÍÛÀ²
+	 * æŸ¥è¯¢ç”¨æˆ·çœ‹è¿‡çš„ç”µå½±åœˆå“‡å•¦
 	 * @param memberid
 	 * @param fieldName
 	 * @param from
@@ -230,7 +230,7 @@ public interface CommentApiService {
 	ResultCode<List<Long>> getRecommendCommentIds(Long memberid, String fieldName, int from, int maxnum);
 	
 	/**
-	 * ²éÑ¯ÍÆ¼öµÄÍ¶Æ±
+	 * æŸ¥è¯¢æ¨èçš„æŠ•ç¥¨
 	 * @param startTime
 	 * @param endTime
 	 * @param from
@@ -239,20 +239,20 @@ public interface CommentApiService {
 	 */
 	ResultCode<List<CommentVo>> queryDebateRecommendComment(Timestamp startTime, Timestamp endTime, Integer from, Integer maxnum);
 	/**
-	 * ±£´æÍÛÀ²ºì°üurl
+	 * ä¿å­˜å“‡å•¦çº¢åŒ…url
 	 * @param id
 	 * @param redUrl
 	 * @return
 	 */
 	ResultCode saveWalaRedUrl(Long id, String redUrl);
 	/**
-	 * »ñÈ¡ÍÛÀ²¶ÔÓ¦µÄºì°üurl
+	 * è·å–å“‡å•¦å¯¹åº”çš„çº¢åŒ…url
 	 * @param ids
 	 * @return
 	 */
 	ResultCode<VoMap<Long, String>> getWalaRedUrlVoMapByIds(List<Long> ids);
 	/**
-	 * »ñÈ¡µ¥ÌõÍÛÀ²µÄºì°üurl
+	 * è·å–å•æ¡å“‡å•¦çš„çº¢åŒ…url
 	 * @param id
 	 * @return
 	 */
@@ -263,13 +263,13 @@ public interface CommentApiService {
 	
 	ResultCode<CommentVo> updateOtherInfo(Long commentid , Map otherInfoMap);
 	/**
-	 * ÊÇ·ñºóÌ¨±êÊ¶µÄÊÓÆµÍÛÀ²
+	 * æ˜¯å¦åå°æ ‡è¯†çš„è§†é¢‘å“‡å•¦
 	 * @param commentid
 	 * @return
 	 */
 	ResultCode<Boolean> isVideoComment(Long commentid);
 	/**
-	 * »ñÈ¡ÊÓÆµĞÅÏ¢
+	 * è·å–è§†é¢‘ä¿¡æ¯
 	 * 
 	 * @param commentid
 	 * @return
@@ -277,7 +277,7 @@ public interface CommentApiService {
 	ResultCode<VoMap<String,Object>> getCommenthVideoInfoVoMap(Long commentid);
 	
 	/**
-	 * ¸ù¾İÌõ¼şË¢Ñ¡Ó°ÈËÍÛÀ²
+	 * æ ¹æ®æ¡ä»¶åˆ·é€‰å½±äººå“‡å•¦
 	 * @param tags
 	 * @param relatedid
 	 * @param from
@@ -286,13 +286,13 @@ public interface CommentApiService {
 	 */
 	ResultCode<List<CommentVo>> getStarCommentByScreenTypeList(String tag,Timestamp startTime, Timestamp endTime, Long relatedid,Integer screenType, int from,int maxnum);
 	/**
-	 * ¸ù¾İid»ñÈ¡ÍÛÀ²ĞÅÏ¢£¨°üº¬ºì°ü£©
+	 * æ ¹æ®idè·å–å“‡å•¦ä¿¡æ¯ï¼ˆåŒ…å«çº¢åŒ…ï¼‰
 	 * @param commentId
 	 * @return
 	 */
 	ResultCode<CommentVo> getCommentAndRedById(Long commentId);
 	/**
-	 * Ó°ÈËË¢Ñ¡ÍÛÀ²¸öÊı
+	 * å½±äººåˆ·é€‰å“‡å•¦ä¸ªæ•°
 	 * @param tag
 	 * @param startTime
 	 * @param endTime
@@ -310,13 +310,13 @@ public interface CommentApiService {
 	ResultCode<VoMap<String,String>> getWalaRedVoMapById(Long id);  
 	
 	/**
-	 * ¸ù¾İID»ñÈ¡ÍÆ¼öÊı¾İ
+	 * æ ¹æ®IDè·å–æ¨èæ•°æ®
 	 * @param recommendId
 	 * @return
 	 */
 	ResultCode<List<RecommendVo>> getRecommendVoByIds(List<Long> recommendIds);
 	/**
-	 * VËµ/ÂéÀ±ÍÛÀ²/×ÊÑ¶ÍÛÀ²ÁĞ±í
+	 * Vè¯´/éº»è¾£å“‡å•¦/èµ„è®¯å“‡å•¦åˆ—è¡¨
 	 * @return
 	 */
 	ResultCode<List<CommentVo>> getCommentListForType(String type,int from, int maxnum);

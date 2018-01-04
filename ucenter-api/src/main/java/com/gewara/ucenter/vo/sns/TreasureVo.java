@@ -10,12 +10,12 @@ public class TreasureVo extends BaseVo{
 	public static final String ACTION_COLLECT = "collect";
 	public static final String TAG_MEMBER = "member";
 	private Long id;
-	private Long memberid; 		//¶¯×÷·¢³öÕß
-	private String tag; 		//Ä£¿é
-	private String action;		//·ÖÀà
-	private Long relatedid;		//¹ØÁªµÄ¶ÔÏó
+	private Long memberid; 		//åŠ¨ä½œå‘å‡ºè€…
+	private String tag; 		//æ¨¡å—
+	private String action;		//åˆ†ç±»
+	private Long relatedid;		//å…³è”çš„å¯¹è±¡
 	private Timestamp addtime; 
-	private String actionlabel; //±êÇ©
+	private String actionlabel; //æ ‡ç­¾
 	public TreasureVo(){
 		
 	}

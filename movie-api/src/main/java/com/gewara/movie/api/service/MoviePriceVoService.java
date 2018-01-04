@@ -10,44 +10,44 @@ import com.gewara.movie.vo.MovieVo;
 
 public interface MoviePriceVoService {
 	/**
-	 * ¸ù¾İmovieIdList£¬²éÑ¯movieprice
+	 * æ ¹æ®movieIdListï¼ŒæŸ¥è¯¢movieprice
 	 * @param midList
 	 * @return
 	 */
 	ResultCode<List<MoviePriceVo>> getMoviePriceListByMovieIdList(List<Long> midList);
 	/**
-	 * ¸ù¾İcinemaid¡¢movieIdList£¬²éÑ¯movieprice
+	 * æ ¹æ®cinemaidã€movieIdListï¼ŒæŸ¥è¯¢movieprice
 	 * @param cinemaid
 	 * @param midList
 	 * @return
 	 */
 	ResultCode<List<MoviePriceVo>> getMoviePriceListByCinemaIdAndMovieIdList(Long cinemaid, List<Long> midList);
 	/**
-	 * ¸ù¾İmovieidList£¬²éÑ¯MovieTierPrice
+	 * æ ¹æ®movieidListï¼ŒæŸ¥è¯¢MovieTierPrice
 	 * @param movieidList
 	 * @return
 	 */
 	ResultCode<List<MovieVo>> getMovieListAndCheckMovieTierPriceIsNotNull(List<Long> movieidList);
 	/**
-	 * ¸ù¾İmovieidList£¬²éÑ¯MovieTierPrice
+	 * æ ¹æ®movieidListï¼ŒæŸ¥è¯¢MovieTierPrice
 	 * @param movieidList
 	 * @return
 	 */
 	ResultCode<Map> getMovieTierPriceTypeMapByMovieidList(List<Long> movieidList);
 	/**
-	 *	¸ù¾İ³ÇÊĞ»ñÈ¡µ±Ç°¼Û¸ñ²»Í¬µÄµçÓ°×îµÍ¼Û¸ñ
-	 *	@param ³ÇÊĞ´úÂë
-	 * @return µçÓ°×îµÍ¼Û¸ñ
+	 *	æ ¹æ®åŸå¸‚è·å–å½“å‰ä»·æ ¼ä¸åŒçš„ç”µå½±æœ€ä½ä»·æ ¼
+	 *	@param åŸå¸‚ä»£ç 
+	 * @return ç”µå½±æœ€ä½ä»·æ ¼
 	 */
 	ResultCode<List<MoviePriceVo>> getDiffMoviePriceList(String citycode);
 	/**
-	 * ¸ù¾İmovieidList£¬²éÑ¯MovieTierPrice
+	 * æ ¹æ®movieidListï¼ŒæŸ¥è¯¢MovieTierPrice
 	 * @param movieidList
 	 * @return
 	 */
 	ResultCode<Map<Long, MovieTierPriceVo>> getMovieTierPriceMapByCitycode(String citycode);
 	/**
-	 * ¸ù¾İmovieid¡¢cinemaid£¬²éÑ¯movieprice
+	 * æ ¹æ®movieidã€cinemaidï¼ŒæŸ¥è¯¢movieprice
 	 * @param movieid
 	 * @param cinemaid
 	 * @return
@@ -62,7 +62,7 @@ public interface MoviePriceVoService {
 	
 	
 	/**
-	 * ¸ù¾İmovieid ºÍcitycode²éÑ¯MoviePriceVo
+	 * æ ¹æ®movieid å’ŒcitycodeæŸ¥è¯¢MoviePriceVo
 	 * @param movieid
 	 * @param citycode
 	 * @return
@@ -76,27 +76,27 @@ public interface MoviePriceVoService {
 	ResultCode<List<MovieTierPriceVo>> getMovieTierPriceList(Long movieid);
 	
 	/**
-	 * Í¨¹ıµçÓ°IDÓëÀà±ğ²éÑ¯¼Û¸ñ
-	 * @param movieid	µçÓ°ID
-	 * @param type	¼Û¸ñÀà±ğ
-	 * @return	µçÓ°Àà±ğµÄ¼Û¸ñ
+	 * é€šè¿‡ç”µå½±IDä¸ç±»åˆ«æŸ¥è¯¢ä»·æ ¼
+	 * @param movieid	ç”µå½±ID
+	 * @param type	ä»·æ ¼ç±»åˆ«
+	 * @return	ç”µå½±ç±»åˆ«çš„ä»·æ ¼
 	 */
 	ResultCode<MovieTierPriceVo> getMovieTierPriceByMovieIdAndType(Long movieid, String type);
 	
 	/**
-	 * ±£´æµçÓ°movieTierPrice
+	 * ä¿å­˜ç”µå½±movieTierPrice
 	 * @param movieTierPrice
 	 */
 	ResultCode saveMovieTierPrice(MovieTierPriceVo movieTierPrice);
 	
 	/**
-	 * ±£´æµçÓ°movieTierPriceList
+	 * ä¿å­˜ç”µå½±movieTierPriceList
 	 * @param movieTierPriceList
 	 */
 	ResultCode saveMovieTierPriceList(List<MovieTierPriceVo> movieTierPriceList);
 	
 	/**
-	 * ±£´æµçÓ°MoviePrice
+	 * ä¿å­˜ç”µå½±MoviePrice
 	 */
 	ResultCode saveMoviePrice(MoviePriceVo moviePrice);
 

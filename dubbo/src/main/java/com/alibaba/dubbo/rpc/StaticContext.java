@@ -23,7 +23,7 @@ import com.alibaba.dubbo.common.URL;
 import com.alibaba.dubbo.common.utils.StringUtils;
 
 /**
- * 系统存储，内部类.
+ * 绯荤粺瀛樺偍锛屽唴閮ㄧ被.
  */
 public class StaticContext extends ConcurrentHashMap<Object, Object>{
     private static final long serialVersionUID = 1L;

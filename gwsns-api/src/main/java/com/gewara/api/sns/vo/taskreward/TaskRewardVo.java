@@ -19,16 +19,16 @@ public class TaskRewardVo extends BaseVo {
 	public static final String ISUSED_YES = "1";
 
 	private static final long serialVersionUID = -2462991574596383962L;
-	private Long id; // 主键
-	private String type;// 类型 headpic,nickname,introduction,other
+	private Long id; // 涓婚敭
+	private String type;// 绫诲瀷 headpic,nickname,introduction,other
 	private String name;//
-	private String linkeUrl;// 链接
-	private Integer score; // 分数
-	private String status; // Y_NEW、N_DELETE
-	private Integer sortNum;// 排序
-	private Long memberid; // 添加用户
+	private String linkeUrl;// 閾炬帴
+	private Integer score; // 鍒嗘暟
+	private String status; // Y_NEW銆丯_DELETE
+	private Integer sortNum;// 鎺掑簭
+	private Long memberid; // 娣诲姞鐢ㄦ埛
 	private String nickname;
-	private Timestamp addtime; // 创建时间
+	private Timestamp addtime; // 鍒涘缓鏃堕棿
 
 	@Override
 	public Serializable realId() {

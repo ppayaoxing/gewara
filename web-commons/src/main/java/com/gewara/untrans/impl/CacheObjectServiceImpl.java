@@ -29,7 +29,7 @@ import com.gewara.util.WebLogger;
 public final class CacheObjectServiceImpl implements CacheObjectService, InitializingBean {
 	protected final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
 	private ConcurrentHashMap<String/*entityClass.getCanonicalName*/, Gcache<String, Serializable>> cachedUkeyMap = new ConcurrentHashMap<String, Gcache<String, Serializable>>();
-	private Map<Class<?>/*entityClass*/, Class<?>/*id field type*/> idTypeMap = new HashMap<>();//ID�ֶε�����
+	private Map<Class<?>/*entityClass*/, Class<?>/*id field type*/> idTypeMap = new HashMap<>();//ID锟街段碉拷锟斤拷锟斤拷
 
 	private DaoService daoService;
 	public void setDaoService(DaoService daoService) {
@@ -80,12 +80,12 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
 			T result = null;
 			if(id != null) {
 				result = getObject(clazz, id);
-				if(result == null){//�����ڣ�������ID�仯�ز�һ��
+				if(result == null){//锟斤拷锟斤拷锟节ｏ拷锟斤拷锟斤拷锟斤拷ID锟戒化锟截诧拷一锟斤拷
 					id = getIdByUkeyFromDB(clazz, ukeyName, ukeyValue);
-					if(id!=null){//����id����ˣ��������û���
+					if(id!=null){//锟斤拷锟斤拷id锟斤拷锟斤拷耍锟斤拷锟斤拷锟斤拷锟斤拷没锟斤拷锟�
 						result = getObject(clazz, id);
 						setUkey(clazz, ukeyName, ukeyValue, id);
-					}else{//���󲻴��ڣ����
+					}else{//锟斤拷锟襟不达拷锟节ｏ拷锟斤拷锟�
 						setUkey(clazz, ukeyName, ukeyValue, null);
 					}
 				}
@@ -102,7 +102,7 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
 		if(meta == null){
 			List result = daoService.findByCriteria(query);
 			return result;
-		}else{//��������Ȳ�ѯID
+		}else{//锟斤拷锟斤拷锟斤拷锟斤拷炔锟窖疘D
 			query.setProjection(Projections.id());
 			List idList = daoService.findByCriteria(query);
 			return getObjectListUsingCache(clazz, idList);
@@ -125,7 +125,7 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
 			}
 			count ++;
 			if(System.currentTimeMillis() - t > DateUtil.m_minute*2 && count<200){
-				//100�����ڣ�����2min�����������⣬ֱ�����쳣
+				//100锟斤拷锟斤拷锟节ｏ拷锟斤拷锟斤拷2min锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟解，直锟斤拷锟斤拷锟届常
 				throw new TraceErrorException("cache too slow!!");
 			}
 		}
@@ -140,7 +140,7 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
             return null;
         }
 		if(result.size() > 1) {
-            throw new IllegalStateException("��ѯ�������¼��" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+            throw new IllegalStateException("锟斤拷询锟斤拷锟斤拷锟斤拷锟铰硷拷锟�" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
         }
 		return (T)result.get(0);
 	}
@@ -154,7 +154,7 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
             return null;
         }
 		if(result.size() > 1) {
-            throw new IllegalStateException("��ѯ�������¼��" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+            throw new IllegalStateException("锟斤拷询锟斤拷锟斤拷锟斤拷锟铰硷拷锟�" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
         }
 		return (S)result.get(0);
 	}

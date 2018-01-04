@@ -6,7 +6,7 @@ import com.gewara.ucenter.vo.member.OpenResultVo;
 
 public interface QQAuthorizeVoService {
 	/**
-	 * 联名登陆获取授权URL
+	 * 鑱斿悕鐧婚檰鑾峰彇鎺堟潈URL
 	 * @param partnerName 
 	 * @param callback
 	 * @return
@@ -14,7 +14,7 @@ public interface QQAuthorizeVoService {
 	ResultCode<String> getRedirectUrl(String partnerName, String callback);
 	
 	/**
-	 * WAP联名登陆回调
+	 * WAP鑱斿悕鐧婚檰鍥炶皟
 	 * @param code
 	 * @param callback
 	 * @param remoteIp
@@ -23,7 +23,7 @@ public interface QQAuthorizeVoService {
 	ResultCode<MemberVo> callBackLogin(String code,String callback, String remoteIp);
 	
 	/**
-	 * PC联名登陆回调
+	 * PC鑱斿悕鐧婚檰鍥炶皟
 	 * @param code
 	 * @param callback
 	 * @param remoteIp

@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class RoleUrlMatchHelper {
 	private Map<RequestMatcher, String/*roles*/> compiledUrlMap = Maps.newLinkedHashMap();
-	//TODO:¶Ô´æÔÚµÄµØÖ·Æ¥Åä×ö»º´æ
+	//TODO:å¯¹å­˜åœ¨çš„åœ°å€åŒ¹é…åšç¼“å­˜
 	private Map<String/*url*/, String/*roles*/> cacheMatcher = Maps.newConcurrentMap();
 	public RoleUrlMatchHelper(List<WebModule> moduleList){
 		for(WebModule module: moduleList) {
@@ -45,7 +45,7 @@ public class RoleUrlMatchHelper {
 				}
 			}
 		}
-		//Î´Æ¥Åä½ÇÉ«ÎŞÈ¨ÏŞ
+		//æœªåŒ¹é…è§’è‰²æ— æƒé™
 		return false;
 	}
 }

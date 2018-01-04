@@ -11,11 +11,11 @@ public class GoodsSummaryReportTotalVo implements Serializable{
 	private List<GoodsSummaryReportVo> goodsSummaryReportVoList;
 	private List<GoodsOrderReportVo> goodsOrderReportVoList;
 	private Integer cinemaCount;
-	private Integer totalGoods; //Ì×²ÍÊı
-	private Integer quantity; //Æ±Êı
-	private Integer totalAmount; //×Ü½ğ¶î
-	private Integer orderCount; //×Ü¶©µ¥Êı
-	private Integer totalCount; //×ÜÌõÊı
+	private Integer totalGoods; //å¥—é¤æ•°
+	private Integer quantity; //ç¥¨æ•°
+	private Integer totalAmount; //æ€»é‡‘é¢
+	private Integer orderCount; //æ€»è®¢å•æ•°
+	private Integer totalCount; //æ€»æ¡æ•°
 	public List<GoodsSummaryReportVo> getGoodsSummaryReportVoList() {
 		return goodsSummaryReportVoList;
 	}

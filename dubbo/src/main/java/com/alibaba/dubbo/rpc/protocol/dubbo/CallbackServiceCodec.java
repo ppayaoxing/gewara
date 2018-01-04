@@ -37,7 +37,7 @@ import com.alibaba.dubbo.rpc.ProxyFactory;
 import com.alibaba.dubbo.rpc.RpcInvocation;
 
 /**
- * callback ���������.
+ * callback 锟斤拷锟斤拷锟斤拷锟斤拷锟�.
  * @author chao.liuc
  *
  */
@@ -52,7 +52,7 @@ class CallbackServiceCodec {
     private static final String INV_ATT_CALLBACK_KEY  = "sys_callback_arg-";
     
     private static byte isCallBack(URL url, String methodName ,int argIndex){
-        //����callback�Ĺ����� ��������.����index(0��ʼ).callback
+        //锟斤拷锟斤拷callback锟侥癸拷锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷锟斤拷.锟斤拷锟斤拷index(0锟斤拷始).callback
         byte isCallback = CALLBACK_NONE;
         if (url != null ) {
             String callback = url.getParameter(methodName+"."+argIndex+".callback");
@@ -68,7 +68,7 @@ class CallbackServiceCodec {
     }
     
     /**
-     * client ��export callback service
+     * client 锟斤拷export callback service
      * @param channel
      * @param clazz
      * @param inst
@@ -81,34 +81,34 @@ class CallbackServiceCodec {
         int instid = System.identityHashCode(inst);
         
         Map<String,String> params = new HashMap<String,String>(3);
-        //����Ҫ������new client
+        //锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷new client
         params.put(Constants.IS_SERVER_KEY, Boolean.FALSE.toString());
-        //��ʶcallback �����Ų�����
+        //锟斤拷识callback 锟斤拷锟斤拷锟脚诧拷锟斤拷锟斤拷
         params.put(Constants.IS_CALLBACK_SERVICE, Boolean.TRUE.toString());
         String group = url.getParameter(Constants.GROUP_KEY);
         if (group != null && group.length() > 0){
             params.put(Constants.GROUP_KEY,group);
         }
-        //���ӷ��������ڷ�����飬�Զ�����(��dubbo protocol)
+        //锟斤拷锟接凤拷锟斤拷锟斤拷锟斤拷锟节凤拷锟斤拷锟斤拷椋拷远锟斤拷锟斤拷锟�(锟斤拷dubbo protocol)
         params.put(Constants.METHODS_KEY, StringUtils.join(Wrapper.getWrapper(clazz).getDeclaredMethodNames(), ","));
         
         Map<String, String> tmpmap = new HashMap<String, String>(url.getParameters());
         tmpmap.putAll(params);
-        tmpmap.remove(Constants.VERSION_KEY);//callback����Ҫ����version
+        tmpmap.remove(Constants.VERSION_KEY);//callback锟斤拷锟斤拷要锟斤拷锟斤拷version
         tmpmap.put(Constants.INTERFACE_KEY, clazz.getName());
         URL exporturl = new URL(DubboProtocol.NAME, channel.getLocalAddress().getAddress().getHostAddress(), channel.getLocalAddress().getPort(), clazz.getName()+"."+instid, tmpmap);
         
-        //ͬһ��jvm����Ҫ�Բ�ͬ��channel�������exporter cache key������ײ 
+        //同一锟斤拷jvm锟斤拷锟斤拷要锟皆诧拷同锟斤拷channel锟斤拷锟斤拷锟斤拷锟絜xporter cache key锟斤拷锟斤拷锟斤拷撞 
         String cacheKey = getClientSideCallbackServiceCacheKey(instid);
         String countkey = getClientSideCountKey(clazz.getName());
         if(export){
-            //ͬһ��channel �����ж��callback instance. ��ͬ��instance������export
+            //同一锟斤拷channel 锟斤拷锟斤拷锟叫讹拷锟絚allback instance. 锟斤拷同锟斤拷instance锟斤拷锟斤拷锟斤拷export
             if( ! channel.hasAttribute(cacheKey)){
                 if (!isInstancesOverLimit(channel, url, clazz.getName(), instid, false)) {
                     Invoker<?> invoker = proxyFactory.getInvoker(inst, clazz, exporturl);
-                    //��Դ���٣�
+                    //锟斤拷源锟斤拷锟劫ｏ拷
                     Exporter<?> exporter = protocol.export(invoker);
-                    //���������¼instid�Ƿ񷢲�������
+                    //锟斤拷锟斤拷锟斤拷锟斤拷锟铰糹nstid锟角否发诧拷锟斤拷锟斤拷锟斤拷
                     channel.setAttribute(cacheKey, exporter);
                     logger.info("export a callback service :"+exporturl +", on "+channel + ", url is: " + url);
                     increaseInstanceCount(channel, countkey);
@@ -126,7 +126,7 @@ class CallbackServiceCodec {
     }
     
     /**
-     * server�� Ӧ��һ��callbackservice
+     * server锟斤拷 应锟斤拷一锟斤拷callbackservice
      * @param url 
      */
     @SuppressWarnings("unchecked")
@@ -171,7 +171,7 @@ class CallbackServiceCodec {
                 }catch (Exception e) {
                     logger.error(e.getMessage(), e);
                 }
-                //ȡ��refer ֱ����map��ȥ����
+                //取锟斤拷refer 直锟斤拷锟斤拷map锟斤拷去锟斤拷锟斤拷
                 channel.removeAttribute(proxyCacheKey);
                 channel.removeAttribute(invokerCacheKey);
                 decreaseInstanceCount(channel,countkey);
@@ -236,7 +236,7 @@ class CallbackServiceCodec {
     }
     
     public static Object encodeInvocationArgument(Channel channel, RpcInvocation inv, int paraIndex) throws IOException{
-        //encodeʱ��ֱ�ӻ�ȡurl
+        //encode时锟斤拷直锟接伙拷取url
         URL url = inv.getInvoker() == null ? null : inv.getInvoker().getUrl();
         byte callbackstatus = isCallBack(url, inv.getMethodName(), paraIndex);
         Object[] args = inv.getArguments();
@@ -255,8 +255,8 @@ class CallbackServiceCodec {
         }
     }
     public static Object decodeInvocationArgument(Channel channel, RpcInvocation inv, Class<?>[] pts, int paraIndex, Object inObject) throws IOException{
-        //�����callback���򴴽�proxy���ͻ��ˣ�������ִ�п�ͨ��channel���õ�client�˵�callback�ӿ�
-        //decodeʱ��Ҫ����channel��env��ȡurl
+        //锟斤拷锟斤拷锟絚allback锟斤拷锟津创斤拷proxy锟斤拷锟酵伙拷锟剿ｏ拷锟斤拷锟斤拷锟斤拷执锟叫匡拷通锟斤拷channel锟斤拷锟矫碉拷client锟剿碉拷callback锟接匡拷
+        //decode时锟斤拷要锟斤拷锟斤拷channel锟斤拷env锟斤拷取url
         URL url = null ;
         try {
             url = DubboProtocol.getDubboProtocol().getInvoker(channel, inv).getUrl();

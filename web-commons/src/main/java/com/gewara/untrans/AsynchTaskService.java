@@ -3,7 +3,7 @@ package com.gewara.untrans;
 import java.util.Map;
 
 /**
- * Òì²½Ö´ĞĞÇëÇó
+ * å¼‚æ­¥æ‰§è¡Œè¯·æ±‚
  * 
  * @author gebiao(ge.biao@gewara.com)
  * @since Jul 4, 2012 11:00:25 AM
@@ -11,7 +11,7 @@ import java.util.Map;
 public interface AsynchTaskService {
 	void addTask(AsynchTask task);
 	/**
-	 * µÈ´ıwaitTimeSecondÃë»ò´ÕÆëminCount²ÅÒ»ÆğÖ´ĞĞ
+	 * ç­‰å¾…waitTimeSecondç§’æˆ–å‡‘é½minCountæ‰ä¸€èµ·æ‰§è¡Œ
 	 * @param task
 	 * @param waitTimeSecond
 	 * @param minCount

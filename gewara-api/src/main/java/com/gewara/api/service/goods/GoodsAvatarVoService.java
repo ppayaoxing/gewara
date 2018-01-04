@@ -7,7 +7,7 @@ import com.gewara.api.vo.goods.GoodsVo;
 
 public interface GoodsAvatarVoService {
 	/**
-	 * ±£´æ»òĞŞ¸ÄÎïÆ·
+	 * ä¿å­˜æˆ–ä¿®æ”¹ç‰©å“
 	 * @param userid
 	 * @param gid
 	 * @param dataMap

@@ -10,8 +10,8 @@ public interface MovieEffectVoService {
 	ResultCode<List<EffectInfoVo>> getEffectInfoListByMovieId(Long movieid);
 	ResultCode<Long> getWatchMovieCountByMidEffect(Long movieid,String effect);
 	/**
-	 * ²éÑ¯ÓÃ»§¹Û¿´¹ıµÄÌØĞ§µÄ¼¯ºÏ
-	 * ×¢ÒâÌØĞ§¼¯ºÏÊÇÃ¿¸öÌØĞ§µÄÍ³Ò»±êÊ¾£¬ÀıÈçIMAX2D,IMAX3DµÄÍ³Ò»±êÊ¾¶¼ÊÇIMAX
+	 * æŸ¥è¯¢ç”¨æˆ·è§‚çœ‹è¿‡çš„ç‰¹æ•ˆçš„é›†åˆ
+	 * æ³¨æ„ç‰¹æ•ˆé›†åˆæ˜¯æ¯ä¸ªç‰¹æ•ˆçš„ç»Ÿä¸€æ ‡ç¤ºï¼Œä¾‹å¦‚IMAX2D,IMAX3Dçš„ç»Ÿä¸€æ ‡ç¤ºéƒ½æ˜¯IMAX
 	 * @param memberid
 	 * @return
 	 */
@@ -20,7 +20,7 @@ public interface MovieEffectVoService {
 	ResultCode<Map<String,Map<String,String>>> getMovieEffectMap();
 	
 	/**
-	 * »ñÈ¡µçÓ°ÌØĞ§Í¼Æ¬
+	 * è·å–ç”µå½±ç‰¹æ•ˆå›¾ç‰‡
 	 * @param mobilePath
 	 * @param citycode
 	 * @param movieid

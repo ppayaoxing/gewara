@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class FriendCash implements Serializable{
 	private static final long serialVersionUID = 4058243259590388342L;
-	private Integer least_cost;						//¹Ì¶¨Öµ0
-	private Integer reduce_cost;					//´ú½ğÈ¯×¨ÓÃ£¬±íÊ¾¼õÃâ½ğ¶î
+	private Integer least_cost;						//å›ºå®šå€¼0
+	private Integer reduce_cost;					//ä»£é‡‘åˆ¸ä¸“ç”¨ï¼Œè¡¨ç¤ºå‡å…é‡‘é¢
 	private CashBaseInfo base_info;			
 	private CashAdvancedInfo advanced_info;
 	public FriendCash(){

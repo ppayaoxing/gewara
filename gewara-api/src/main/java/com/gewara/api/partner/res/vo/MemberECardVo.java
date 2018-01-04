@@ -15,8 +15,8 @@ public class MemberECardVo extends BaseVo{
 	private String status;
 	private String edition;
 	private Integer amount;
-	private Integer fullTotalfee;	//Âú¶àÉÙ²Å²ÎÓëÓÅ»İ£¨°üº¬£©
-	private Integer opiMinPrice;	//³¡´Î×îµÍ¼Û¸ñ
+	private Integer fullTotalfee;	//æ»¡å¤šå°‘æ‰å‚ä¸ä¼˜æƒ ï¼ˆåŒ…å«ï¼‰
+	private Integer opiMinPrice;	//åœºæ¬¡æœ€ä½ä»·æ ¼
 	private String cardtag;
 	private String channelinfo;
 	private String exchangetype;

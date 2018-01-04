@@ -43,16 +43,16 @@ public class DubboRegistry extends FailbackRegistry {
 
     private final static Logger logger = LoggerFactory.getLogger(DubboRegistry.class); 
 
-    // �����������3��(��λ����)
+    // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�3锟斤拷(锟斤拷位锟斤拷锟斤拷)
     private static final int RECONNECT_PERIOD_DEFAULT = 3 * 1000;
     
-    // ��ʱ����ִ����
+    // 锟斤拷时锟斤拷锟斤拷执锟斤拷锟斤拷
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1, new NamedThreadFactory("DubboRegistryReconnectTimer", true));
 
-    // ������ʱ������ʱ��������Ƿ���ã�������ʱ�����޴�����
+    // 锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷锟斤拷欠锟斤拷锟矫ｏ拷锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟睫达拷锟斤拷锟斤拷
     private final ScheduledFuture<?> reconnectFuture;
 
-    // �ͻ��˻�ȡ�������������ͻ���ʵ���Ĵ������̣���ֹ�ظ��Ŀͻ���
+    // 锟酵伙拷锟剿伙拷取锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟酵伙拷锟斤拷实锟斤拷锟侥达拷锟斤拷锟斤拷锟教ｏ拷锟斤拷止锟截革拷锟侥客伙拷锟斤拷
     private final ReentrantLock clientLock = new ReentrantLock();
     
     private final Invoker<RegistryService> registryInvoker;
@@ -63,15 +63,15 @@ public class DubboRegistry extends FailbackRegistry {
         super(registryInvoker.getUrl());
         this.registryInvoker = registryInvoker;
         this.registryService = registryService;
-        // ����������ʱ��
+        // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷
         int reconnectPeriod = registryInvoker.getUrl().getParameter(Constants.REGISTRY_RECONNECT_PERIOD_KEY, RECONNECT_PERIOD_DEFAULT);
         reconnectFuture = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                // ��Ⲣ����ע������
+                // 锟斤拷獠拷锟斤拷锟阶拷锟斤拷锟斤拷锟�
                 try {
                     connect();
-                } catch (Throwable t) { // �������ݴ�
+                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
                     logger.error("Unexpected error occur at reconnect, cause: " + t.getMessage(), t);
                 }
             }
@@ -80,7 +80,7 @@ public class DubboRegistry extends FailbackRegistry {
 
     protected final void connect() {
         try {
-            // ����Ƿ�������
+            // 锟斤拷锟斤拷欠锟斤拷锟斤拷锟斤拷锟�
             if (isAvailable()) {
                 return;
             }
@@ -89,7 +89,7 @@ public class DubboRegistry extends FailbackRegistry {
             }
             clientLock.lock();
             try {
-                // ˫�ؼ���Ƿ�������
+                // 双锟截硷拷锟斤拷欠锟斤拷锟斤拷锟斤拷锟�
                 if (isAvailable()) {
                     return;
                 }
@@ -97,7 +97,7 @@ public class DubboRegistry extends FailbackRegistry {
             } finally {
                 clientLock.unlock();
             }
-        } catch (Throwable t) { // ���������쳣���ȴ��´�����
+        } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
              if (getUrl().getParameter(Constants.CHECK_KEY, true)) {
                  if (t instanceof RuntimeException) {
                      throw (RuntimeException) t;
@@ -120,7 +120,7 @@ public class DubboRegistry extends FailbackRegistry {
     public void destroy() {
         super.destroy();
         try {
-            // ȡ��������ʱ��
+            // 取锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷
             if (! reconnectFuture.isCancelled()) {
                 reconnectFuture.cancel(true);
             }

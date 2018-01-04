@@ -7,16 +7,16 @@ import com.gewara.api.vo.BaseVo;
 
 public class CompensateLogVo extends BaseVo{
 	private static final long serialVersionUID = 2195904002958496947L;
-	private String compensateLogId;//CompensateLogµÄÖ÷¼ü =memberid+"_"+playMovieId
-	private Long memberid;//ÓÃ»§ID
-	private String nickname;//ÓÃ»§±ğÃû
-	private Long commentid;//ÍÛÀ²ID
-	private Long playMovieId;//PlayMovieµÄÖ÷¼üID
-	private String kind;//´òÉÍ(reward)/²¹³¥(compensate)
-	private Integer generalmark;//ÆÀ·Ö
-	private Integer isCompensated;//ÊÇ·ñ²¹³¥¹ı
-	private Timestamp createtime;//Ìí¼ÓÊ±¼ä
-	private Timestamp updatetime;//ĞŞ¸ÄÊ±¼ä
+	private String compensateLogId;//CompensateLogçš„ä¸»é”® =memberid+"_"+playMovieId
+	private Long memberid;//ç”¨æˆ·ID
+	private String nickname;//ç”¨æˆ·åˆ«å
+	private Long commentid;//å“‡å•¦ID
+	private Long playMovieId;//PlayMovieçš„ä¸»é”®ID
+	private String kind;//æ‰“èµ(reward)/è¡¥å¿(compensate)
+	private Integer generalmark;//è¯„åˆ†
+	private Integer isCompensated;//æ˜¯å¦è¡¥å¿è¿‡
+	private Timestamp createtime;//æ·»åŠ æ—¶é—´
+	private Timestamp updatetime;//ä¿®æ”¹æ—¶é—´
 	public Long getMemberid() {
 		return memberid;
 	}

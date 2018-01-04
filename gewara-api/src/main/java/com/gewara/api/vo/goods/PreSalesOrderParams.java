@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 /**
- * Ô¤ÊÛÏÂµ¥ ²ÎÊıBean£¬·â×°¶à¸ö²ÎÊı
+ * é¢„å”®ä¸‹å• å‚æ•°Beanï¼Œå°è£…å¤šä¸ªå‚æ•°
  * @author zhoufy
  */
 public class PreSalesOrderParams implements Serializable{
@@ -13,8 +13,8 @@ public class PreSalesOrderParams implements Serializable{
 	
 	private Long goodsid;
 	private Long memberid;
-	private Long addressId;   //µØÖ·id£¬member_usefuladdressÖĞµÄÖ÷¼üid
-	private String category;  //Ô¤ÊÛÎïÆ··ÖÀà£¬ÈçÑÜÉúÆ·ÓĞ¶à¸öÀà±ğ
+	private Long addressId;   //åœ°å€idï¼Œmember_usefuladdressä¸­çš„ä¸»é”®id
+	private String category;  //é¢„å”®ç‰©å“åˆ†ç±»ï¼Œå¦‚è¡ç”Ÿå“æœ‰å¤šä¸ªç±»åˆ«
 	private String partnerkey;
 	private String realname;
 	private String address;
@@ -23,8 +23,8 @@ public class PreSalesOrderParams implements Serializable{
 	private String origin;
 	private Integer quantity;
 	private String citycode;
-	private String sharecode;		//ÓÃ»§·ÖÏíÂë£¬Æ´ÍÅ·ÖÏíÓÃ
-	private String takemethod;		//£¨Ñİ³ö-µç×ÓÆ±N  Ö½ÖÊÆ±Y CÊÖ»úµç×ÓÆ±£©
+	private String sharecode;		//ç”¨æˆ·åˆ†äº«ç ï¼Œæ‹¼å›¢åˆ†äº«ç”¨
+	private String takemethod;		//ï¼ˆæ¼”å‡º-ç”µå­ç¥¨N  çº¸è´¨ç¥¨Y Cæ‰‹æœºç”µå­ç¥¨ï¼‰
 	
 	public Long getGoodsid() {
 		return goodsid;

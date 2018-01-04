@@ -24,10 +24,10 @@ public class ErrorMultipartRequest extends AbstractMultipartHttpServletRequest i
 	}
 	@Override
 	public HttpHeaders getMultipartHeaders(String paramOrFileName) {
-		return null;//ÏÈ²»×ö´¦Àí
+		return null;//å…ˆä¸åšå¤„ç†
 	}
 	@Override
 	public String getMultipartContentType(String paramOrFileName) {
-		return null;//ÏÈ²»×ö´¦Àí
+		return null;//å…ˆä¸åšå¤„ç†
 	}
 }

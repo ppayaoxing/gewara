@@ -1,25 +1,25 @@
 package com.gewara.gmessage.external.entity;
 
 /**
- * ÏûÏ¢½ÓÊÕÕßËùÄÜ²é¿´µÄÏûÏ¢ÄÚÈİ¡£
- * @author ¶­Ã÷
+ * æ¶ˆæ¯æ¥æ”¶è€…æ‰€èƒ½æŸ¥çœ‹çš„æ¶ˆæ¯å†…å®¹ã€‚
+ * @author è‘£æ˜
  * 
  */
 public class ReceiverMessage extends MessageBaseInfo{
 	private static final long serialVersionUID = 6239060865973734192L;
 
-	/**ÓÃ»§ÏûÏ¢ID*/
+	/**ç”¨æˆ·æ¶ˆæ¯ID*/
 	private long messageID=-1;
 	
-	/**ÏûÏ¢·¢ËÍÕß*/
+	/**æ¶ˆæ¯å‘é€è€…*/
 	private MUser sender=null;
 	
-	/**·¢ËÍÊ±¼ä*/
+	/**å‘é€æ—¶é—´*/
 	private long sendTimes=-1;
 	
 	private Long expiryTimes=null;
 
-	/** ÏûÏ¢µÄ×´Ì¬£¬ÒÑ¶Á»òÎ´¶Á */
+	/** æ¶ˆæ¯çš„çŠ¶æ€ï¼Œå·²è¯»æˆ–æœªè¯» */
 	private boolean read=false;
 
 	public long getMessageID() {

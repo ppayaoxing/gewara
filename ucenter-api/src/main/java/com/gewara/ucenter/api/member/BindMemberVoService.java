@@ -6,26 +6,26 @@ import com.gewara.ucenter.vo.member.MemberMergerHisVo;
 
 public interface BindMemberVoService {
 	/**
-	 * ¸ù¾İÓÃ»§ID²éÕÒ¸ÃÕË»§ÊÇ·ñÓĞºÏ²¢ÕËºÅÉêÇë¼ÇÂ¼
+	 * æ ¹æ®ç”¨æˆ·IDæŸ¥æ‰¾è¯¥è´¦æˆ·æ˜¯å¦æœ‰åˆå¹¶è´¦å·ç”³è¯·è®°å½•
 	 * @param memberId
 	 * @return
 	 */
 	ResultCode<MemberMergerHisVo> checkMemberApply(Long memberId);
 	/**
-	 * ºÏ²¢ÕË»§
-	 * @param masterMemberId Ö÷ÕËºÅ
-	 * @param branchMemberId ·ÖÖ§ÕËºÅ
+	 * åˆå¹¶è´¦æˆ·
+	 * @param masterMemberId ä¸»è´¦å·
+	 * @param branchMemberId åˆ†æ”¯è´¦å·
 	 * @return
 	 */
 	ResultCode mergerMember(Long masterMemberId, Long branchMemberId);
 	/**
-	 * ²éÑ¯ºÏ²¢¼ÇÂ¼
+	 * æŸ¥è¯¢åˆå¹¶è®°å½•
 	 * @param id
 	 * @return
 	 */
 	ResultCode<MemberMergerHisVo> getMemberMergerHisVo(Long id);
 	/**
-	 * ±£´æºÏ²¢²½×à
+	 * ä¿å­˜åˆå¹¶æ­¥å¥
 	 * @param id
 	 * @param bindStep
 	 * @param otherinfo

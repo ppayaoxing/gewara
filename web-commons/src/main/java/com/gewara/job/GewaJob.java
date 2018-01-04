@@ -23,7 +23,7 @@ import com.gewara.web.support.ResourceStatsUtil;
 
 public class GewaJob implements Job{
 	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
-	public static final String LOG_TYPE_JOB = "job";					// ¶¨Ê±ÈÎÎñ
+	public static final String LOG_TYPE_JOB = "job";					// å®šæ—¶ä»»åŠ¡
 	private static boolean init = false;
 	private static JobLockService jobLockService;
 	private static MonitorService monitorService;
@@ -48,13 +48,13 @@ public class GewaJob implements Job{
 			}
 			if(StringUtils.isNotBlank(trigger.getHostname()) && 
 					!StringUtils.contains(trigger.getHostname(), Config.getHostname())){
-				//ÓĞÖ÷»úÏŞÖÆ£¬²»Ö´ĞĞ
+				//æœ‰ä¸»æœºé™åˆ¶ï¼Œä¸æ‰§è¡Œ
 				dbLogger.warn("host not allowed:" + trigger.getHostname() + ":" + Config.getHostname());
 				return;
 			}
 			Date nextFireTime = trigger.getNextFireTime();
 			try {
-				//Ëæ¼´sleep£¬±ãÓÚÆäËû»úÆ÷ÓĞ»ú»áÖ´ĞĞ
+				//éšå³sleepï¼Œä¾¿äºå…¶ä»–æœºå™¨æœ‰æœºä¼šæ‰§è¡Œ
 				Thread.sleep(RandomUtils.nextInt(2000));
 			} catch (InterruptedException e1) {
 			}
@@ -84,7 +84,7 @@ public class GewaJob implements Job{
 				dbLogger.error("jobError:" + fullname, e, 200);
 				result = "N_ERROR";
 				if(monitorService != null){
-					monitorService.logException(MonitorService.EXCEPTION_TAG.JOB, fullname, Config.getServerIp() + "@" + fullname + "Ö´ĞĞ³ö´í:" + DateUtil.getCurFullTimestampStr(), e, null);
+					monitorService.logException(MonitorService.EXCEPTION_TAG.JOB, fullname, Config.getServerIp() + "@" + fullname + "æ‰§è¡Œå‡ºé”™:" + DateUtil.getCurFullTimestampStr(), e, null);
 				}
 			} finally{
 				if(lc!=null){
@@ -92,7 +92,7 @@ public class GewaJob implements Job{
 				}
 				JobService service = trigger.getJobService();
 				String info = service.getExecuteInfo();
-				//TODO:info´æÈëÊı¾İ¿â
+				//TODO:infoå­˜å…¥æ•°æ®åº“
 				if(StringUtils.isNotBlank(info)) {
 					dbLogger.warn("jobExecuteInfo:" + fullname + "," + info);
 				}

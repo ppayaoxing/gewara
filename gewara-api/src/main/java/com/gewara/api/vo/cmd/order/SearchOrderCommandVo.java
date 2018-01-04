@@ -8,12 +8,12 @@ import com.gewara.cons.OrderConstant;
 import com.gewara.util.DateUtil;
 
 /**
- * ��������Bean
+ * 锟斤拷锟斤拷锟斤拷锟斤拷Bean
  * @author acerge(acerge@163.com)
  * @since 12:13:41 PM Oct 17, 2009
  */
 public class SearchOrderCommandVo {
-	private String ordertype;	//��������
+	private String ordertype;	//锟斤拷锟斤拷锟斤拷锟斤拷
 	private String pricategory;
 	private String category;
 	private String placetype;
@@ -23,13 +23,13 @@ public class SearchOrderCommandVo {
 	private Long cid;				//CinemaID
 	private Long movieid;		//MOVIEID
 	private Long orderid;		//orderID
-	private Long mpid;			//����ID
-	private Long memberid;		//�û�ID
-	private Integer minute;		//��ѯ����
-	private String mobile;		//�ֻ���
-	private String tradeNo;		//���׺�
+	private Long mpid;			//锟斤拷锟斤拷ID
+	private Long memberid;		//锟矫伙拷ID
+	private Integer minute;		//锟斤拷询锟斤拷锟斤拷
+	private String mobile;		//锟街伙拷锟斤拷
+	private String tradeNo;		//锟斤拷锟阶猴拷
 	private String status = OrderConstant.STATUS_PAID;
-	private Timestamp timeFrom;//�µ�ʱ�䷶Χ
+	private Timestamp timeFrom;//锟铰碉拷时锟戒范围
 	private Timestamp timeTo;
 	private Long goodsid;
 	private Long dramaid;

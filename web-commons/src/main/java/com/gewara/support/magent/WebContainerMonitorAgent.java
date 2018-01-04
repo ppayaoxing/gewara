@@ -29,7 +29,7 @@ public class WebContainerMonitorAgent implements InitializingBean, DisposableBea
 		mcc = MCCHelper.getDefaultInstance();
 		mcc.registerGroup(new RequestStatsGroup());
 		client = new SmackMonitorAgentClient(host, username, Config.SYSTEMID + "pass", mcc);
-		//ÑÓ³Ù¼ÓÔØ£¬¼ÓËÙÆô¶¯
+		//å»¶è¿ŸåŠ è½½ï¼ŒåŠ é€Ÿå¯åŠ¨
 		TimerHelper.TIMER.schedule(new TimerTask(){
 			@Override
 			public void run() {

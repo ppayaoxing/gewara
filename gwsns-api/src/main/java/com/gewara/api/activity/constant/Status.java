@@ -6,52 +6,52 @@ import org.apache.commons.lang.StringUtils;
 
 public abstract class Status {
 
-	public static final String Y = "Y";							//¶ÔÍâÏÔÊ¾
-	public static final String Y_NEW = "Y_NEW";				//ĞÂÌû×Ó¡¢ÎÊ´ğ¡¢»Ø¸´...
-	public static final String Y_LOCK = "Y_LOCK";			//Ëø
-	public static final String Y_DOWN = "Y_DOWN";			//ÏÂ³ÁÌû×Ó
+	public static final String Y = "Y";							//å¯¹å¤–æ˜¾ç¤º
+	public static final String Y_NEW = "Y_NEW";				//æ–°å¸–å­ã€é—®ç­”ã€å›å¤...
+	public static final String Y_LOCK = "Y_LOCK";			//é”
+	public static final String Y_DOWN = "Y_DOWN";			//ä¸‹æ²‰å¸–å­
 	public static final String Y_LOCK_DOWN = "Y_LD";
 	
 	public static final String Y_ANS_AUDIT = "ANS_AUDIT";//
 	
-	public static final String DEL = "D";						//É¾³ı
-	public static final String N = "N";							//¶ÔÍâ²»ÏÔÊ¾
-	public static final String N_LOTTERY = "N_LOTTERY";	//³é½±ÍÛÀ²
-	public static final String N_DELETE = "N_DELETE";		//±»É¾³ı
-	public static final String N_FILTER = "N_FILTER";		//±»¹Ø¼ü×Ö¹ıÂË
-	public static final String N_DELETE_M = "N_DELETE_M";	//ÓÃ»§ÊÖ¶¯É¾³ı
-	public static final String N_NIGHT = "N_NIGHT";		//Ò¹¼ä·¢±í
+	public static final String DEL = "D";						//åˆ é™¤
+	public static final String N = "N";							//å¯¹å¤–ä¸æ˜¾ç¤º
+	public static final String N_LOTTERY = "N_LOTTERY";	//æŠ½å¥–å“‡å•¦
+	public static final String N_DELETE = "N_DELETE";		//è¢«åˆ é™¤
+	public static final String N_FILTER = "N_FILTER";		//è¢«å…³é”®å­—è¿‡æ»¤
+	public static final String N_DELETE_M = "N_DELETE_M";	//ç”¨æˆ·æ‰‹åŠ¨åˆ é™¤
+	public static final String N_NIGHT = "N_NIGHT";		//å¤œé—´å‘è¡¨
 	
-	public static final String N_ACCUSE = "N_ACCUSE";		//¾Ù±¨ÊôÊµ
+	public static final String N_ACCUSE = "N_ACCUSE";		//ä¸¾æŠ¥å±å®
 	
-	public static final String N_ERROR = "N_ERR";			//³öÏÖ´íÎó
-	public static final String N_AUDIT = "N_AUDIT";			//ÉóºËÎ´Í¨¹ı(ÊÕ·Ñ»î¶¯)
+	public static final String N_ERROR = "N_ERR";			//å‡ºç°é”™è¯¯
+	public static final String N_AUDIT = "N_AUDIT";			//å®¡æ ¸æœªé€šè¿‡(æ”¶è´¹æ´»åŠ¨)
 	
-	public static final String Y_STOP = "Y_STOP";			//»î¶¯Í£Ö¹±¨Ãû
-	public static final String Y_PROCESS = "Y_PROCESS";	//»î¶¯¿ÉÒÔ±¨Ãû
-	public static final String Y_TREAT = "Y_TREAT";			//»î¶¯ÕıÔÚ´¦Àí(ÊÕ·Ñ»î¶¯)
-	public static final String Y_CREATE = "Y_CREATED";	//»î¶¯´´½¨£¬²»ÄÜ¶ÔÍâ·¢²¼
+	public static final String Y_STOP = "Y_STOP";			//æ´»åŠ¨åœæ­¢æŠ¥å
+	public static final String Y_PROCESS = "Y_PROCESS";	//æ´»åŠ¨å¯ä»¥æŠ¥å
+	public static final String Y_TREAT = "Y_TREAT";			//æ´»åŠ¨æ­£åœ¨å¤„ç†(æ”¶è´¹æ´»åŠ¨)
+	public static final String Y_CREATE = "Y_CREATED";	//æ´»åŠ¨åˆ›å»ºï¼Œä¸èƒ½å¯¹å¤–å‘å¸ƒ
 	
-	public static final String STATUS_OPEN = "Y"; //ÒÑ¿ª
-	public static final String STATUS_UNOPEN = "N"; //Î´¿ª
+	public static final String STATUS_OPEN = "Y"; //å·²å¼€
+	public static final String STATUS_UNOPEN = "N"; //æœªå¼€
 	
-	public static final String STATUS_OPENED = "Y_OPEN"; //ÒÑ¿ª
-	public static final String STATUS_UNPOST = "Y_NOTPOST";//Î´ÓÊ¼Ä
-	public static final String STATUS_POST_EXPRESS = "Y_EXP"; //¿ìµİ
-	public static final String STATUS_POST_COMMON = "Y_POST";//Æ½ÓÊ 
-	public static final String STATUS_UNOPENED = "N_NOTOPEN";//Î´¿ª
-	public static final String STATUS_APPLY = "N_APPLY";//ÉêÇë
+	public static final String STATUS_OPENED = "Y_OPEN"; //å·²å¼€
+	public static final String STATUS_UNPOST = "Y_NOTPOST";//æœªé‚®å¯„
+	public static final String STATUS_POST_EXPRESS = "Y_EXP"; //å¿«é€’
+	public static final String STATUS_POST_COMMON = "Y_POST";//å¹³é‚® 
+	public static final String STATUS_UNOPENED = "N_NOTOPEN";//æœªå¼€
+	public static final String STATUS_APPLY = "N_APPLY";//ç”³è¯·
 	//20110822
-	public static final String STATUS_TRASH="N_TRASH";//·¢Æ±·ÏÆú£¬ÖØĞÂÉêÇë
-	public static final String STATUS_APPLY_AGAIN="N_APPLYAGAIN";//ÉêÇë²¹¿ª
-	public static final String STATUS_OPEN_AGAIN="Y_AGAIN";//ÒÑ²¹¿ª
+	public static final String STATUS_TRASH="N_TRASH";//å‘ç¥¨åºŸå¼ƒï¼Œé‡æ–°ç”³è¯·
+	public static final String STATUS_APPLY_AGAIN="N_APPLYAGAIN";//ç”³è¯·è¡¥å¼€
+	public static final String STATUS_OPEN_AGAIN="Y_AGAIN";//å·²è¡¥å¼€
 	
-	public static final String NO_ATTENTION = "0";//ÎŞ¹ØÏµ
-	public static final String ONLY_ATTENTION = "1";//½öÎÒ¹Ø×¢µÄ
-	public static final String ONLY_BEATTENTION = "2";//½ö¹Ø×¢ÎÒµÄ
-	public static final String EACH_ATTENTION = "3";//Ïà»¥¹Ø×¢
-	public static final String MOBILE_PHONE = "mobile";//Í¨Ñ¶Â¼
-	public static final String SINA = "sina";//ĞÂÀËÎ¢²©
+	public static final String NO_ATTENTION = "0";//æ— å…³ç³»
+	public static final String ONLY_ATTENTION = "1";//ä»…æˆ‘å…³æ³¨çš„
+	public static final String ONLY_BEATTENTION = "2";//ä»…å…³æ³¨æˆ‘çš„
+	public static final String EACH_ATTENTION = "3";//ç›¸äº’å…³æ³¨
+	public static final String MOBILE_PHONE = "mobile";//é€šè®¯å½•
+	public static final String SINA = "sina";//æ–°æµªå¾®åš
 	public static final String MOBILE_MD5_CODE = "!*@#$d";
 	
 	public static boolean isHidden(String status){

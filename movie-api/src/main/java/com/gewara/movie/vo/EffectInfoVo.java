@@ -7,12 +7,12 @@ import com.gewara.api.vo.BaseVo;
 
 public class EffectInfoVo extends BaseVo{
 	private static final long serialVersionUID = -8456969167272896454L;
-	private String key; //Àà±ğµÄkey OR Í¼Æ¬Â·¾¶picPath
-	private Integer value; //ÅÅĞòĞòºÅ
-	private String description; //Ò»¾ä»°ÃèÊö
-	private String picPathListJson; //[{key:picPath,value:picOrderNumber},{key:picPath,value:picOrderNumber}] key=Í¼Æ¬Â·¾¶ value=ÅÅĞòºÅ
+	private String key; //ç±»åˆ«çš„key OR å›¾ç‰‡è·¯å¾„picPath
+	private Integer value; //æ’åºåºå·
+	private String description; //ä¸€å¥è¯æè¿°
+	private String picPathListJson; //[{key:picPath,value:picOrderNumber},{key:picPath,value:picOrderNumber}] key=å›¾ç‰‡è·¯å¾„ value=æ’åºå·
 	private String walaids;
-	private Integer showNumber; //ÏÔÊ¾µ½½çÃæÉÏµÄĞòºÅ
+	private Integer showNumber; //æ˜¾ç¤ºåˆ°ç•Œé¢ä¸Šçš„åºå·
 	public String getKey() {
 		return key;
 	}

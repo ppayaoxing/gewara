@@ -6,38 +6,38 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * ÈËÎïÏêÏ¸ĞÅÏ¢±í
+ * äººç‰©è¯¦ç»†ä¿¡æ¯è¡¨
  */
 public class CastProfileVo extends BaseVo {
 
 	private static final long serialVersionUID = -9102933891913403605L;
 	
 	private Long id;
-	private String mtimeid;				//Ê±¹âÍøÓÃ»§ID
-	private String chinesename;			//ÖĞÎÄÃû
-	private String engname;				//Ó¢ÎÄÃû
-	private Long volk;					//Ãñ×å
-	private String headPicUrl;			//Í·ÏñÍ¼Æ¬Â·¾¶
-	private String birthday;			//ÉúÈÕ
-	private String birthplace;			//³öÉúµØ
-	private String dateOfDeath;			//È¥ÊÀÈÕÆÚ
-	private Integer height;				//Éí¸ß
-	private Integer weight;				//ÌåÖØ
-	private Long sign;					//ĞÇ×ù
-	private Long hometown;				//³öÉúµØ
-	private String intro;				//¸öÈË¼ò½é
-	private String bloodtype;			//ÑªĞÍ
-	private String education;			//½ÌÓı±³¾°
-	private String imdbid;				//µÚÈı·½³¬Á´½Ó
-	private String isshow;				//ÊÇ·ñÔÚÇ°Ì¨ÏÔÊ¾ÏêÏ¸×ÊÁÏ
-	private Timestamp addtime;			//ĞÂÔöÊ±¼ä
-	private Timestamp updatetime;		//¸üĞÂÊ±¼ä
-    private String familyMember;		//¼ÒÍ¥³ÉÔ±
-    private String weiboAccount;		//Î¢²©ÕËºÅ
-    private String weiboUrl;			//Î¢²©µØÖ·
-    private String hlogo;				//ºá°æº£±¨
+	private String mtimeid;				//æ—¶å…‰ç½‘ç”¨æˆ·ID
+	private String chinesename;			//ä¸­æ–‡å
+	private String engname;				//è‹±æ–‡å
+	private Long volk;					//æ°‘æ—
+	private String headPicUrl;			//å¤´åƒå›¾ç‰‡è·¯å¾„
+	private String birthday;			//ç”Ÿæ—¥
+	private String birthplace;			//å‡ºç”Ÿåœ°
+	private String dateOfDeath;			//å»ä¸–æ—¥æœŸ
+	private Integer height;				//èº«é«˜
+	private Integer weight;				//ä½“é‡
+	private Long sign;					//æ˜Ÿåº§
+	private Long hometown;				//å‡ºç”Ÿåœ°
+	private String intro;				//ä¸ªäººç®€ä»‹
+	private String bloodtype;			//è¡€å‹
+	private String education;			//æ•™è‚²èƒŒæ™¯
+	private String imdbid;				//ç¬¬ä¸‰æ–¹è¶…é“¾æ¥
+	private String isshow;				//æ˜¯å¦åœ¨å‰å°æ˜¾ç¤ºè¯¦ç»†èµ„æ–™
+	private Timestamp addtime;			//æ–°å¢æ—¶é—´
+	private Timestamp updatetime;		//æ›´æ–°æ—¶é—´
+    private String familyMember;		//å®¶åº­æˆå‘˜
+    private String weiboAccount;		//å¾®åšè´¦å·
+    private String weiboUrl;			//å¾®åšåœ°å€
+    private String hlogo;				//æ¨ªç‰ˆæµ·æŠ¥
     
-    private Long collectimes;//µãÔŞÊı
+    private Long collectimes;//ç‚¹èµæ•°
     public Long getCollectimes() {
 		return collectimes;
 	}

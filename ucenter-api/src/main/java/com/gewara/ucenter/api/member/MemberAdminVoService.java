@@ -8,7 +8,7 @@ import com.gewara.ucenter.vo.member.MemberVo;
 
 public interface MemberAdminVoService {
 	/**
-	 * »ñÈ¡ÓÃ»§ĞÅÏ¢ÉóºË¼ÇÂ¼
+	 * è·å–ç”¨æˆ·ä¿¡æ¯å®¡æ ¸è®°å½•
 	 * @param memberid
 	 * @return
 	 */
@@ -17,7 +17,7 @@ public interface MemberAdminVoService {
 	ResultCode<String> getManualKeywords();
 	ResultCode<String> getMemberKeywords();
 	/**
-	 * ´ıÉóºË¼ÇÂ¼ÌõÊı
+	 * å¾…å®¡æ ¸è®°å½•æ¡æ•°
 	 * @param queryVo
 	 * @return
 	 */

@@ -33,7 +33,7 @@ public class InsertQueryAction extends QueryAction{
 	public IndexRequestBuilder explain(String index, String type, Map<String, Object> fields) throws SqlParseException {
 		IndexRequestBuilder indexRequest= new IndexRequestBuilder(client,IndexAction.INSTANCE);
 		if(!fields.containsKey("id") || fields.get("id") == null){
-			throw new SqlParseException("id is not exist£°");
+			throw new SqlParseException("id is not existÔºÅ");
 		}
 		indexRequest.setId(fields.get("id").toString());
 		indexRequest.setIndex(index);
@@ -48,7 +48,7 @@ public class InsertQueryAction extends QueryAction{
 		for(T entry : entryList){
 			Map<String,Object> fields = Util.explainObj(entry);
 			if(!fields.containsKey("id") || fields.get("id") == null){
-				throw new SqlParseException("id is not exist£°");
+				throw new SqlParseException("id is not existÔºÅ");
 			}
 			IndexRequestBuilder indexRequest= new IndexRequestBuilder(client,IndexAction.INSTANCE).setId(fields.get("id").toString()).setIndex(index).setType(type);
 			fields.remove("id");
@@ -62,7 +62,7 @@ public class InsertQueryAction extends QueryAction{
 		BulkRequestBuilder bulkRequest = client.prepareBulk();
 		for(Map<String, Object> fields : fieldsList){
 			if(!fields.containsKey("id") || fields.get("id") == null){
-				throw new SqlParseException("id is not exist£°");
+				throw new SqlParseException("id is not existÔºÅ");
 			}
 			IndexRequestBuilder indexRequest= new IndexRequestBuilder(client,IndexAction.INSTANCE).setId(fields.get("id").toString()).setIndex(index).setType(type);
 			fields.remove("id");

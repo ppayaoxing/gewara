@@ -107,7 +107,7 @@ public class Request {
     }
 
     private static long newId() {
-        // getAndIncrement()增长到MAX_VALUE时，再增长会变为MIN_VALUE，负数也可以做为ID
+        // getAndIncrement()澧為暱鍒癕AX_VALUE鏃讹紝鍐嶅闀夸細鍙樹负MIN_VALUE锛岃礋鏁颁篃鍙互鍋氫负ID
         return INVOKE_ID.getAndIncrement();
     }
 

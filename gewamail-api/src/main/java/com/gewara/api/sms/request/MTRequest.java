@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import com.gewara.api.MsgRequest;
 
 /**
- * ¶ÌĞÅ·¢ËÍ½Ó¿Ú£¬ÇëÇóĞÅÏ¢
+ * çŸ­ä¿¡å‘é€æ¥å£ï¼Œè¯·æ±‚ä¿¡æ¯
  * 
  * @author leo.li
  * Modify Time Jan 15, 2013 11:22:08 AM
@@ -14,22 +14,22 @@ public class MTRequest extends MsgRequest{
 	
 	private static final long serialVersionUID = -7958685800960343234L;
 	
-	/**¿Í»§¶Ë¶ÌĞÅID£¬±ØĞë */
+	/**å®¢æˆ·ç«¯çŸ­ä¿¡IDï¼Œå¿…é¡» */
 	private String smsId; 
-	/**¹ú¼Ò±àÂë£¬·Ç±ØĞë*/
+	/**å›½å®¶ç¼–ç ï¼Œéå¿…é¡»*/
 	private String countryCode;
-	/**ÊÖ»úºÅ£¬±ØĞë */
+	/**æ‰‹æœºå·ï¼Œå¿…é¡» */
 	private String mobile; 
-	/**¶ÌĞÅÄÚÈİ£¬±ØĞë */
+	/**çŸ­ä¿¡å†…å®¹ï¼Œå¿…é¡» */
 	private String content; 
-	/**ÒµÎñÀàĞÍ£¬¼´ÔÚ¶ÌĞÅ·¢ËÍÅäÖÃÒ³ÅäÖÃµÄÖµ£¬±ØĞë */
+	/**ä¸šåŠ¡ç±»å‹ï¼Œå³åœ¨çŸ­ä¿¡å‘é€é…ç½®é¡µé…ç½®çš„å€¼ï¼Œå¿…é¡» */
 	private String busType;
-	/**¶ÌĞÅÎ¨Ò»±êÊ¶£¬ÈôĞë±ÜÃâ¶ÌĞÅÖØ¸´·¢ËÍ£¬¿ÉÌá¹©ÕâÒ»²ÎÊı£¬¿ÉÑ¡ */
+	/**çŸ­ä¿¡å”¯ä¸€æ ‡è¯†ï¼Œè‹¥é¡»é¿å…çŸ­ä¿¡é‡å¤å‘é€ï¼Œå¯æä¾›è¿™ä¸€å‚æ•°ï¼Œå¯é€‰ */
 	private String smsUkey;
-	/**¶¨Ê±·¢ËÍÊ±¼ä£¬ÈôÖ¸¶¨¸ÃÖµ£¬ÏµÍ³½«ÔÚ¸ÃÊ±¼ä·¢ËÍ¶ÌĞÅ£¬¿ÉÑ¡ */
+	/**å®šæ—¶å‘é€æ—¶é—´ï¼Œè‹¥æŒ‡å®šè¯¥å€¼ï¼Œç³»ç»Ÿå°†åœ¨è¯¥æ—¶é—´å‘é€çŸ­ä¿¡ï¼Œå¯é€‰ */
 	private Timestamp attime;
 	
-	/**¿ÉÑ¡£¬Ìá¹©6¸öÈßÓà×Ö¶Î£¬³¤¶ÈÓ¢ÎÄ×Ö·û150£¬ºº×Ö50 */
+	/**å¯é€‰ï¼Œæä¾›6ä¸ªå†—ä½™å­—æ®µï¼Œé•¿åº¦è‹±æ–‡å­—ç¬¦150ï¼Œæ±‰å­—50 */
 	private String field01;
 	private String field02;
 	private String field03;
@@ -44,12 +44,12 @@ public class MTRequest extends MsgRequest{
 	public MTRequest(){}
 	
 	/**
-	 * ¹¹ÔìMTÇëÇó
+	 * æ„é€ MTè¯·æ±‚
 	 * 
-	 * @param smsId   ¿Í»§¶Ë¶ÌĞÅID£¬±ØĞë
-	 * @param mobile  ÊÖ»úºÅ£¬±ØĞë
-	 * @param content ¶ÌĞÅÄÚÈİ£¬±ØĞë 
-	 * @param busType ÒµÎñÀàĞÍ£¬¼´ÔÚ¶ÌĞÅ·¢ËÍÅäÖÃÒ³ÅäÖÃµÄÖµ£¬±ØĞë
+	 * @param smsId   å®¢æˆ·ç«¯çŸ­ä¿¡IDï¼Œå¿…é¡»
+	 * @param mobile  æ‰‹æœºå·ï¼Œå¿…é¡»
+	 * @param content çŸ­ä¿¡å†…å®¹ï¼Œå¿…é¡» 
+	 * @param busType ä¸šåŠ¡ç±»å‹ï¼Œå³åœ¨çŸ­ä¿¡å‘é€é…ç½®é¡µé…ç½®çš„å€¼ï¼Œå¿…é¡»
 	 *
 	 * @author leo.li
 	 * Modify Time Jan 15, 2013 11:25:52 AM
@@ -62,7 +62,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * »ñÈ¡¿Í»§¶Ë¶ÌĞÅID
+	 * è·å–å®¢æˆ·ç«¯çŸ­ä¿¡ID
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -72,7 +72,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * ÉèÖÃ¿Í»§¶Ë¶ÌĞÅID£¬¸ÃÖµ±ØĞë
+	 * è®¾ç½®å®¢æˆ·ç«¯çŸ­ä¿¡IDï¼Œè¯¥å€¼å¿…é¡»
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -82,7 +82,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * »ñÈ¡¹ú¼Ò±àÂë
+	 * è·å–å›½å®¶ç¼–ç 
 	 * 
 	 * @return String
 	 */
@@ -95,7 +95,7 @@ public class MTRequest extends MsgRequest{
 	}
 
 	/**
-	 * »ñÈ¡ÊÖ»úºÅ
+	 * è·å–æ‰‹æœºå·
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -105,7 +105,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * ÉèÖÃÊÖ»úºÅ£¬¸ÃÖµ±ØĞë
+	 * è®¾ç½®æ‰‹æœºå·ï¼Œè¯¥å€¼å¿…é¡»
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -115,7 +115,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * »ñÈ¡¶ÌĞÅÄÚÈİ
+	 * è·å–çŸ­ä¿¡å†…å®¹
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -125,7 +125,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * ÉèÖÃ¶ÌĞÅÄÚÈİ£¬¸ÃÖµ±ØĞë
+	 * è®¾ç½®çŸ­ä¿¡å†…å®¹ï¼Œè¯¥å€¼å¿…é¡»
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -135,7 +135,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * »ñÈ¡ÒµÎñÀàĞÍ£¬¼´ÔÚ¶ÌĞÅ·¢ËÍÅäÖÃÒ³ÅäÖÃµÄÖµ
+	 * è·å–ä¸šåŠ¡ç±»å‹ï¼Œå³åœ¨çŸ­ä¿¡å‘é€é…ç½®é¡µé…ç½®çš„å€¼
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -145,7 +145,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * ÉèÖÃÒµÎñÀàĞÍ£¬¼´ÔÚ¶ÌĞÅ·¢ËÍÅäÖÃÒ³ÅäÖÃµÄÖµ£¬¸ÃÖµ±ØĞë
+	 * è®¾ç½®ä¸šåŠ¡ç±»å‹ï¼Œå³åœ¨çŸ­ä¿¡å‘é€é…ç½®é¡µé…ç½®çš„å€¼ï¼Œè¯¥å€¼å¿…é¡»
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -155,7 +155,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * »ñÈ¡¶ÌĞÅÎ¨Ò»±êÊ¶£¬ÈôĞë±ÜÃâ¶ÌĞÅÖØ¸´·¢ËÍ£¬¿ÉÌá¹©ÕâÒ»²ÎÊı
+	 * è·å–çŸ­ä¿¡å”¯ä¸€æ ‡è¯†ï¼Œè‹¥é¡»é¿å…çŸ­ä¿¡é‡å¤å‘é€ï¼Œå¯æä¾›è¿™ä¸€å‚æ•°
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -165,7 +165,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * ÉèÖÃ¶ÌĞÅÎ¨Ò»±êÊ¶£¬ÈôĞë±ÜÃâ¶ÌĞÅÖØ¸´·¢ËÍ£¬¿ÉÌá¹©ÕâÒ»²ÎÊı
+	 * è®¾ç½®çŸ­ä¿¡å”¯ä¸€æ ‡è¯†ï¼Œè‹¥é¡»é¿å…çŸ­ä¿¡é‡å¤å‘é€ï¼Œå¯æä¾›è¿™ä¸€å‚æ•°
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -175,7 +175,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * »ñÈ¡¶¨Ê±·¢ËÍÊ±¼ä£¬ÈôÖ¸¶¨¸ÃÖµ£¬ÏµÍ³½«ÔÚ¸ÃÊ±¼ä·¢ËÍ¶ÌĞÅ
+	 * è·å–å®šæ—¶å‘é€æ—¶é—´ï¼Œè‹¥æŒ‡å®šè¯¥å€¼ï¼Œç³»ç»Ÿå°†åœ¨è¯¥æ—¶é—´å‘é€çŸ­ä¿¡
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM
@@ -185,7 +185,7 @@ public class MTRequest extends MsgRequest{
 	}
 	
 	/**
-	 * ÉèÖÃ¶¨Ê±·¢ËÍÊ±¼ä£¬ÈôÖ¸¶¨¸ÃÖµ£¬ÏµÍ³½«ÔÚ¸ÃÊ±¼ä·¢ËÍ¶ÌĞÅ£¬¸ÃÖµ¿ÉÑ¡
+	 * è®¾ç½®å®šæ—¶å‘é€æ—¶é—´ï¼Œè‹¥æŒ‡å®šè¯¥å€¼ï¼Œç³»ç»Ÿå°†åœ¨è¯¥æ—¶é—´å‘é€çŸ­ä¿¡ï¼Œè¯¥å€¼å¯é€‰
 	 * 
 	 * @return String
 	 * Modify Time Jan 15, 2013 11:23:22 AM

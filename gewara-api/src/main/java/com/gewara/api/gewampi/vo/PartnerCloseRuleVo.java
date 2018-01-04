@@ -11,29 +11,29 @@ import com.gewara.util.BeanUtil;
 
 public class PartnerCloseRuleVo extends BaseVo{
 	private static final long serialVersionUID = 471572038954159817L;
-	public static final String RULETYPE_OPI = "opi";			//����
-	public static final String RULETYPE_MOVIE = "movie";		//ӰԺ
-	public static final String RULETYPE_CINEMA = "cinema";	//ӰƬ
-	public static final String MATCH_INCLUDE = "include";		//����
-	public static final String MATCH_EXCLUDE = "exclude";		//�ų�
+	public static final String RULETYPE_OPI = "opi";			//锟斤拷锟斤拷
+	public static final String RULETYPE_MOVIE = "movie";		//影院
+	public static final String RULETYPE_CINEMA = "cinema";	//影片
+	public static final String MATCH_INCLUDE = "include";		//锟斤拷锟斤拷
+	public static final String MATCH_EXCLUDE = "exclude";		//锟脚筹拷
 	private Long id;
-	private String ruletype;			//�������ͣ�ֻ��ӰƬ��ֻ��ӰԺ��������Ƭ
-	private String partnerids;			//�̼�ID			
-	private String pmatch;				//partner match model ���������ų��̼� 
-	private Timestamp opentime1;		//����ʱ��1
-	private Timestamp opentime2;		//����ʱ��2
-	private String time1;				//����ʱ��1
-	private String time2;				//����ʱ��2
-	private String movieids;			//ӰƬID��������
-	private String cinemaids;			//ӰԺID��������
-	private String cmatch;				//cinema match model ���������ų�ӰԺ
-	private String mpids;				//����ID�������ų���
-	private Integer price1;				//�۸�Χ1��С�ڴ˼۸�Ĳ�����
-	private Integer price2;				//�۸�Χ2�����ڴ˼۸�Ĳ�����
-	private Integer pricegap;			//����pricegap�Ĳ�����
-	private String weektype;			//�ܼ��Ĳ�����
-	private String description;			//��������
-	private Timestamp updatetime;		//����ʱ��
+	private String ruletype;			//锟斤拷锟斤拷锟斤拷锟酵ｏ拷只锟斤拷影片锟斤拷只锟斤拷影院锟斤拷锟斤拷锟斤拷锟斤拷片
+	private String partnerids;			//锟教硷拷ID			
+	private String pmatch;				//partner match model 锟斤拷锟斤拷锟斤拷锟斤拷锟脚筹拷锟教硷拷 
+	private Timestamp opentime1;		//锟斤拷锟斤拷时锟斤拷1
+	private Timestamp opentime2;		//锟斤拷锟斤拷时锟斤拷2
+	private String time1;				//锟斤拷锟斤拷时锟斤拷1
+	private String time2;				//锟斤拷锟斤拷时锟斤拷2
+	private String movieids;			//影片ID锟斤拷锟斤拷锟斤拷锟斤拷
+	private String cinemaids;			//影院ID锟斤拷锟斤拷锟斤拷锟斤拷
+	private String cmatch;				//cinema match model 锟斤拷锟斤拷锟斤拷锟斤拷锟脚筹拷影院
+	private String mpids;				//锟斤拷锟斤拷ID锟斤拷锟斤拷锟斤拷锟脚筹拷锟斤拷
+	private Integer price1;				//锟桔革拷围1锟斤拷小锟节此价革拷牟锟斤拷锟斤拷锟�
+	private Integer price2;				//锟桔革拷围2锟斤拷锟斤拷锟节此价革拷牟锟斤拷锟斤拷锟�
+	private Integer pricegap;			//锟斤拷锟斤拷pricegap锟侥诧拷锟斤拷锟斤拷
+	private String weektype;			//锟杰硷拷锟侥诧拷锟斤拷锟斤拷
+	private String description;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private Timestamp updatetime;		//锟斤拷锟斤拷时锟斤拷
 	@Override
 	public Serializable realId() {
 		return id;

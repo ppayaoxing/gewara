@@ -10,18 +10,18 @@ import com.gewara.bean.BlackMatcher;
 
 public interface AttackTestService {
 	/**
-	 * ÔÚ±¾ÏµÍ³ÖĞÔö¼ÓºÚÃûµ¥
+	 * åœ¨æœ¬ç³»ç»Ÿä¸­å¢åŠ é»‘åå•
 	 * @param ip
 	 * @param disableMin
 	 * @return
 	 */
 	void addRealBlack(String ip, String uri, int disableMin);
 	/**
-	 * ÖØÖÃºÚÃûµ¥
+	 * é‡ç½®é»‘åå•
 	 */
 	void resetBlack();
 	/**
-	 * ÖØÖÃ°×Ãûµ¥
+	 * é‡ç½®ç™½åå•
 	 */
 	void resetWhite();
 	void setDisabled(boolean disabled);
@@ -30,7 +30,7 @@ public interface AttackTestService {
 	public boolean isDisabled();
 	public List<String> getWhiteList();
 	/**
-	 * ¸ù¾İurl»ñÈ¡¹æÔò½Å±¾£¬ÔÚmonitorÏµÍ³ÖĞÅäÖÃ
+	 * æ ¹æ®urlè·å–è§„åˆ™è„šæœ¬ï¼Œåœ¨monitorç³»ç»Ÿä¸­é…ç½®
 	 * @param urlKey
 	 * @return
 	 */
@@ -42,11 +42,11 @@ public interface AttackTestService {
 	 */
 	Map<String, BlackMatcher> getBlackMap2();
 	/**
-	 * ¸üĞÂºÚÃûµ¥
+	 * æ›´æ–°é»‘åå•
 	 */
 	void refreshBlack();
 	/**
-	 * ¸üĞÂ°×Ãûµ¥
+	 * æ›´æ–°ç™½åå•
 	 * @param ips
 	 * @param action
 	 */

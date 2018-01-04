@@ -67,11 +67,11 @@ public class GewaAuthenticationFailureHandler implements AuthenticationFailureHa
 			if(exception instanceof InvalidCookieException){
 				errortype = "captcha";
 			}else if(exception instanceof DisabledException){
-				//msg = "����û��������ã�����ϵ�ͷ���";
+				//msg = "锟斤拷锟斤拷没锟斤拷锟斤拷锟斤拷锟斤拷茫锟斤拷锟斤拷锟较碉拷头锟斤拷锟�";
 				errortype = LoginUtils.ERROR_REJECTED;
-			}else if(exception instanceof BadCredentialsException){//�������
+			}else if(exception instanceof BadCredentialsException){//锟斤拷锟斤拷锟斤拷锟�
 				errortype = LoginUtils.ERROR_PASSWORD;
-			}else if(exception instanceof AuthenticationServiceException){//�û�������.
+			}else if(exception instanceof AuthenticationServiceException){//锟矫伙拷锟斤拷锟斤拷锟斤拷.
 				errortype = LoginUtils.ERROR_USERNAME;
 			}	
 			if(StringUtils.isNotBlank(errortype)) {
@@ -86,7 +86,7 @@ public class GewaAuthenticationFailureHandler implements AuthenticationFailureHa
 				}catch(Exception e){
 				}
 			}
-			//��¼��־
+			//锟斤拷录锟斤拷志
 			Map<String, String> result = new HashMap();
 			String ip = BaseWebUtils.getRemoteIp(request);
 			String userAgent = request.getHeader("user-agent");

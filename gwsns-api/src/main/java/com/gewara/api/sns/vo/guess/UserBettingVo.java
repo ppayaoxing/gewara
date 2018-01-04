@@ -7,19 +7,19 @@ import com.gewara.api.vo.BaseVo;
 
 /**
  * 
- * ²ÂÆ±·¿ÓÃ»§Í¶×¢(MongoDB)  
+ * çŒœç¥¨æˆ¿ç”¨æˆ·æŠ•æ³¨(MongoDB)  
  *
  */
 public class UserBettingVo extends BaseVo{
 	private static final long serialVersionUID = 6888798581179944197L;
-	private Long memberid; //ÓÃ»§ID
-	private Long stepid; //ÉèÖÃID
-	private Long optionid; //Í¶×¢Ñ¡ÏîID
-	private Integer num;//Í¶×¢·İÊı
-	private Integer point;//Í¶×¢×Ü»ı·Ö
-	private Timestamp addtime;//Í¶×¢Ê±¼ä
-	private Timestamp rewardtime;//·¢·Å½±ÀøÊ±¼ä
-	private Integer reward; //×Ü½±Àø»ı·Ö
+	private Long memberid; //ç”¨æˆ·ID
+	private Long stepid; //è®¾ç½®ID
+	private Long optionid; //æŠ•æ³¨é€‰é¡¹ID
+	private Integer num;//æŠ•æ³¨ä»½æ•°
+	private Integer point;//æŠ•æ³¨æ€»ç§¯åˆ†
+	private Timestamp addtime;//æŠ•æ³¨æ—¶é—´
+	private Timestamp rewardtime;//å‘æ”¾å¥–åŠ±æ—¶é—´
+	private Integer reward; //æ€»å¥–åŠ±ç§¯åˆ†
 
 	public Long getMemberid() {
 		return memberid;

@@ -4,22 +4,22 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 @JsonRootName("details")
 public class ServiceDetails {
-	private String systemId;	//·şÎñÌá¹©·½ÏµÍ³Id
-	private String name; 		//·şÎñÃû³Æ
-	private String address;		//IPµØÖ·
-	private int port;			//·şÎñ¶Ë¿Ú
-	private String uri;			//·şÎñuri {scheme}://foo.com:{port}
+	private String systemId;	//æœåŠ¡æä¾›æ–¹ç³»ç»ŸId
+	private String name; 		//æœåŠ¡åç§°
+	private String address;		//IPåœ°å€
+	private int port;			//æœåŠ¡ç«¯å£
+	private String uri;			//æœåŠ¡uri {scheme}://foo.com:{port}
 	
 	public ServiceDetails(){
 	}
 	
 	/**
-	 * ¹¹Ôìº¯Êı
-	 * @param systemId ·şÎñÌá¹©·½ÏµÍ³Id
-	 * @param name ·şÎñÃû³Æ
-	 * @param address IPµØÖ·
-	 * @param port ·şÎñ¶Ë¿Ú
-	 * @param uri ·şÎñuri {scheme}://foo.com:{port}
+	 * æ„é€ å‡½æ•°
+	 * @param systemId æœåŠ¡æä¾›æ–¹ç³»ç»ŸId
+	 * @param name æœåŠ¡åç§°
+	 * @param address IPåœ°å€
+	 * @param port æœåŠ¡ç«¯å£
+	 * @param uri æœåŠ¡uri {scheme}://foo.com:{port}
 	 */
 	public ServiceDetails(String systemId, String name, String address, int port, String uri){
 		this.systemId = systemId;
@@ -30,7 +30,7 @@ public class ServiceDetails {
 	}
 	
 	/**
-	 * Éú³ÉservicenName
+	 * ç”ŸæˆservicenName
 	 * @param systemId
 	 * @param name
 	 * @return systemId + "|" + name;

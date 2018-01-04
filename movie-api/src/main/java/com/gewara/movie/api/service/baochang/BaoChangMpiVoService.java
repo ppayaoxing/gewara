@@ -9,7 +9,7 @@ import com.gewara.movie.vo.baochang.BaoChangOrderInfoVo;
 
 public interface BaoChangMpiVoService {
 	/**
-	 * 根据场次id，查询场次座位的微信图片
+	 * 鏍规嵁鍦烘id锛屾煡璇㈠満娆″骇浣嶇殑寰俊鍥剧墖
 	 * @param mpid
 	 * @return
 	 */

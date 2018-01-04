@@ -7,7 +7,7 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * 标识类的创建者，mongo class 最适用
+ * 鏍囪瘑绫荤殑鍒涘缓鑰咃紝mongo class 鏈�閫傜敤
  */
 @Documented
 @Target(TYPE)

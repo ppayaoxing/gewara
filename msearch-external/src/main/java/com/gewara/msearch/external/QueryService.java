@@ -9,7 +9,7 @@ import com.gewara.msearch.external.entity.QueryResult;
 
 public interface QueryService {
 	/**
-	 * ²éÑ¯Ö¸¶¨µÄÊı¾İÀàĞÍ
+	 * æŸ¥è¯¢æŒ‡å®šçš„æ•°æ®ç±»å‹
 	 * @param <T>
 	 * @param condition
 	 * @return
@@ -17,7 +17,7 @@ public interface QueryService {
 	public <T> ResultCode<Collection<QueryResult<T>>> query(QueryCondition condition);
 	
 	/**
-	 * Ô­Ö÷Õ¾²éÑ¯
+	 * åŸä¸»ç«™æŸ¥è¯¢
 	 * @param citycode
 	 * @param skey
 	 * @param channel
@@ -29,7 +29,7 @@ public interface QueryService {
 	 */
 	public ResultCode<QueryResult<GwSearchResult>> queryGwSearch(String citycode, String skey, String channel, String tag, String category, int from, int limit);
 	/**
-	 * È«ÎÄ¼ìË÷£¬ºöÂÔÊı¾İÀàĞÍ¡£
+	 * å…¨æ–‡æ£€ç´¢ï¼Œå¿½ç•¥æ•°æ®ç±»å‹ã€‚
 	 * 
 	 * @param condition
 	 * @return

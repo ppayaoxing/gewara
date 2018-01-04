@@ -14,7 +14,7 @@ public interface MemberCountVoService {
 	ResultCode<List<Long>> getMemberOrderMovieIdList(Long memberid,int maxnum);
 	
 	/**
-	 * »ñÈ¡ÓÃ»§¹ºÆ±µÄÌØĞ§
+	 * è·å–ç”¨æˆ·è´­ç¥¨çš„ç‰¹æ•ˆ
 	 * @param memberid
 	 * @param movieid
 	 * @param maxnum
@@ -23,7 +23,7 @@ public interface MemberCountVoService {
 	ResultCode<List<String>> getMemberOrderMovieEffectList(Long memberid, Long movieid, int maxnum);
 	
 	/**
-	 * »ñÈ¡ÓÃ»§¹ºÆ±µÄĞÅÏ¢
+	 * è·å–ç”¨æˆ·è´­ç¥¨çš„ä¿¡æ¯
 	 * @param memberid
 	 * @param movieid
 	 * @param maxnum
@@ -31,7 +31,7 @@ public interface MemberCountVoService {
 	 */
 	ResultCode<List<Map>> getMemberOrderMovieMapList(Long memberid, Long movieid, int maxnum);
 	/**
-	 * »ñÈ¡ÓÃ»§¹ºÆ±ĞÅÏ¢
+	 * è·å–ç”¨æˆ·è´­ç¥¨ä¿¡æ¯
 	 * @param memberid
 	 * @param num
 	 * @return

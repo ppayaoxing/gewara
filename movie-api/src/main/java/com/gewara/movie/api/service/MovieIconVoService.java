@@ -7,25 +7,25 @@ import com.gewara.movie.vo.MovieIconVo;
 
 public interface MovieIconVoService {
 	/**
-	 * 根据movieId获取IconList
+	 * 鏍规嵁movieId鑾峰彇IconList
 	 * @param movieid
 	 * @return
 	 */
 	ResultCode<List<MovieIconVo>> getMovieIconListByMovieId(Long movieId);
 	/**
-	 *根据ID获取MovieIcon
+	 *鏍规嵁ID鑾峰彇MovieIcon
 	 * @param id
 	 * @return
 	 */
 	ResultCode<MovieIconVo> getMovieIconById(String id);
 	/**
-	 * 根据ID删除MovieIcon
+	 * 鏍规嵁ID鍒犻櫎MovieIcon
 	 * @param id
 	 * @return
 	 */
 	ResultCode removieMovieIconById(String id);
 	/**
-	 * 增加或者删除MovieIcon
+	 * 澧炲姞鎴栬�呭垹闄ovieIcon
 	 * @param movieIconVo
 	 * @return
 	 */

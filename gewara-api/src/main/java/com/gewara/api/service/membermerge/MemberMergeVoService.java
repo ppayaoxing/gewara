@@ -10,7 +10,7 @@ public interface MemberMergeVoService {
 	ResultCode<Map<String, Object>> getBindMemberInfo(Long bindMemberId);
 	
 	/**
-	 * °ó¶¨ÓÃ»§µÄÓÅ»İ»î¶¯
+	 * ç»‘å®šç”¨æˆ·çš„ä¼˜æƒ æ´»åŠ¨
 	 * @param fromMemberid
 	 * @param toMemberid
 	 * @param memberMergerHisid
@@ -18,7 +18,7 @@ public interface MemberMergeVoService {
 	 */
 	ResultCode<String> bindSpCode(Long fromMemberid, Long toMemberid, Long memberMergerHisid);
 	/**
-	 * °ó¶¨ÓÃ»§µÄÓÅ»İÈ¯
+	 * ç»‘å®šç”¨æˆ·çš„ä¼˜æƒ åˆ¸
 	 * @param fromMemberid
 	 * @param toMemberid
 	 * @param memberMergerHisid
@@ -26,7 +26,7 @@ public interface MemberMergeVoService {
 	 */
 	ResultCode<String> bindElecard(Long fromMemberId, Long toMemberId, Long memberMergerHisid);
 	/**
-	 * ÓÃ»§Ôø¾­Ï²»¶
+	 * ç”¨æˆ·æ›¾ç»å–œæ¬¢
 	 * @param fromMemberid
 	 * @param toMemberid
 	 * @param memberMergerHisid
@@ -34,7 +34,7 @@ public interface MemberMergeVoService {
 	 */
 	ResultCode<String> bindTreasure(Long fromMemberId, Long toMemberId, Long memberMergerHisid);
 	/**
-	 * Í¬²½ÓÃ»§È¥¹ı
+	 * åŒæ­¥ç”¨æˆ·å»è¿‡
 	 * @param fromMemberid
 	 * @param toMemberid
 	 * @param memberMergerHisid
@@ -42,7 +42,7 @@ public interface MemberMergeVoService {
 	 */
 	ResultCode<String> bindMemberCount(Long fromMemberId, Long toMemberId, Long memberMergerHisid);
 	/**
-	 * ´´½¨Î¢ĞÅ¿¨°ü
+	 * åˆ›å»ºå¾®ä¿¡å¡åŒ…
 	 * @param tradeNo
 	 * @param memberEncode
 	 * @param remoteIp

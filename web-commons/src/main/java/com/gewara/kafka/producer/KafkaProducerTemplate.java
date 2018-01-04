@@ -16,7 +16,7 @@ import com.gewara.util.WebLogger;
 
 /**
  * <h3>
- * ×¢Òâ£º±ØĞëÅäÖÃvalidTopicsºÍbrokersÊôĞÔ
+ * æ³¨æ„ï¼šå¿…é¡»é…ç½®validTopicså’Œbrokerså±æ€§
  * </h3>
  * <pre>
  * &ltbean id="kafkaProducerTemplate" class="com.gewara.kafka.producer.KafkaProducerTemplate">
@@ -28,8 +28,8 @@ import com.gewara.util.WebLogger;
  *      &lt/property>
  * &lt/bean>
  * </pre>
- * <li/>Ê¾ÀıÖĞµÄ <i>${kafka.brokers}</i> Îªkafka·şÎñµØÖ·ip:port,ip:port
- * <li/>Ê¾ÀıÖĞµÄ topic <i>agentReportone</i> <B>±ØĞëÌáÇ°´´½¨£¬²¢ÇÒpartitionÊıÁ¿>0</B>
+ * <li/>ç¤ºä¾‹ä¸­çš„ <i>${kafka.brokers}</i> ä¸ºkafkaæœåŠ¡åœ°å€ip:port,ip:port
+ * <li/>ç¤ºä¾‹ä¸­çš„ topic <i>agentReportone</i> <B>å¿…é¡»æå‰åˆ›å»ºï¼Œå¹¶ä¸”partitionæ•°é‡>0</B>
  */
 public class KafkaProducerTemplate implements InitializingBean, DisposableBean {
 	protected GewaLogger dbLogger = WebLogger.getLogger(getClass());

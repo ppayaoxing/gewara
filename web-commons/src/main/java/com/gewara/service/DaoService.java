@@ -30,10 +30,10 @@ public interface DaoService {
 	<T extends BaseObject> T updateObject(T entity);
 	<T extends BaseObject> T addObject(T entity);
 	/**
-	 * ¸ù¾İÊı¾İÖĞµÄukey»ñÈ¡¶ÔÏó£¨¿É»º´æ´Ë¶ÔÏó£©,Ö÷¼ü±ØĞëÊÇid
-	 * @param clazz ²éÑ¯¶ÔÏó£¬Èç:TicketOrder.class
-	 * @param ukeyName ×Ö¶ÎÃû£¬Èç£ºtradeNo
-	 * @param ukeyvalue ×Ö¶ÎÖµ£¬Èç£º1091023141727057
+	 * æ ¹æ®æ•°æ®ä¸­çš„ukeyè·å–å¯¹è±¡ï¼ˆå¯ç¼“å­˜æ­¤å¯¹è±¡ï¼‰,ä¸»é”®å¿…é¡»æ˜¯id
+	 * @param clazz æŸ¥è¯¢å¯¹è±¡ï¼Œå¦‚:TicketOrder.class
+	 * @param ukeyName å­—æ®µåï¼Œå¦‚ï¼štradeNo
+	 * @param ukeyvalue å­—æ®µå€¼ï¼Œå¦‚ï¼š1091023141727057
 	 * @return
 	 * TODO:cache
 	 */
@@ -50,19 +50,19 @@ public interface DaoService {
 	<T extends BaseObject> T updateProperties(Class<T> clazz, Serializable id, String properties, Serializable... values);
 	<T extends BaseObject> void updateProperties(T entity, String properties, Serializable... values);
 	/**
-	 * ¸üĞÂ×Ö¶Î£¬·µ»Ø±»ĞŞ¸ÄµÄ×Ö¶Î¸öÊı
+	 * æ›´æ–°å­—æ®µï¼Œè¿”å›è¢«ä¿®æ”¹çš„å­—æ®µä¸ªæ•°
 	 * @param entity
 	 * @param properties
 	 * @param values
 	 * @return
 	 * @author leo
-	 * @addTime 2016Äê9ÔÂ20ÈÕÏÂÎç6:28:48
+	 * @addTime 2016å¹´9æœˆ20æ—¥ä¸‹åˆ6:28:48
 	 */
 	<T extends BaseObject> int updateProperties2(T entity, String properties, Serializable... values);
 	<T extends BaseObject, S extends Serializable> S getObjectPropertyByUkey(Class<T> clazz, String ukeyname, Serializable ukeyvalue, String propertyname);
 	<T extends BaseObject> Object getObjectProperty(Class<T> clazz, Serializable id, String propertyname);
 	/**
-	 * ÅúÁ¿²éÑ¯¶ÔÏó£¨select * from xxxx where yyy in (....)
+	 * æ‰¹é‡æŸ¥è¯¢å¯¹è±¡ï¼ˆselect * from xxxx where yyy in (....)
 	 * @param clazz
 	 * @param propertyName
 	 * @param valueList
@@ -74,7 +74,7 @@ public interface DaoService {
 	List findByCriteria(DetachedCriteria query, int from, int maxnum);
 	List findByHql(String hql, Object... values);
 	/**
-	 * ÖØĞÂ¶ÁÈ¡¶ÔÏó£¬ÉèÖÃÊôĞÔÖµ
+	 * é‡æ–°è¯»å–å¯¹è±¡ï¼Œè®¾ç½®å±æ€§å€¼
 	 * @param entity
 	 * @param property
 	 * @param value

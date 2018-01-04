@@ -7,7 +7,7 @@ import com.gewara.api.sns.vo.recommend.RecommendBatchVo;
 import com.gewara.api.vo.ResultCode;
 
 /**
- * ÍÆ¼öapi
+ * æ¨èapi
  * 
  * @author zxl
  * 
@@ -15,14 +15,14 @@ import com.gewara.api.vo.ResultCode;
 public interface RecommendApiService {
 
 	/**
-	 * »ñÈ¡×îĞÂµÄÍÆ¼ö
+	 * è·å–æœ€æ–°çš„æ¨è
 	 * @param type
 	 * @return
 	 */
 	ResultCode<RecommendBatchVo> getLatestRecommendBatch(String type);
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÍÆ¼ö
+	 * åˆ¤æ–­æ˜¯å¦æ¨è
 	 * @param condition
 	 * @param memberid
 	 * @return
@@ -30,7 +30,7 @@ public interface RecommendApiService {
 	ResultCode<Boolean> checkRecommendCondition(String condition, Long memberid);
 
 	/**
-	 * »ñÈ¡ÍÆ¼öµÄÏêÏ¸ÄÚÈİ
+	 * è·å–æ¨èçš„è¯¦ç»†å†…å®¹
 	 * @param batchId
 	 * @param tag
 	 * @return
@@ -38,7 +38,7 @@ public interface RecommendApiService {
 	ResultCode<List<RecommendBatchDetailVo>> getRecommendBatchDetails(Long batchId,String[] tag);
 
 	/**
-	 * ·ÖÒ³»ñÈ¡
+	 * åˆ†é¡µè·å–
 	 * @param batchId
 	 * @param tag
 	 * @param from

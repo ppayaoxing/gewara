@@ -5,7 +5,7 @@ import com.gewara.api.vo.BaseVo;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28œ¬ŒÁ02:05:17
+ * @since 2007-9-28‰∏ãÂçà02:05:17
  */
 public class SubwaystationVo  extends BaseVo {
 	private static final long serialVersionUID = -1449397931879372657L;

@@ -26,7 +26,7 @@ import com.gewara.util.TimerHelper;
 import com.gewara.util.WebLogger;
 
 /**
- * ʹ�÷���:
+ * 使锟矫凤拷锟斤拷:
  * 
  * <pre>
  * &lt;bean id=&quot;kafkaConsumerGroupFactory&quot; class=&quot;com.gewara.kafka.consumer.KafkaConsumerGroupFactory&quot;>
@@ -53,7 +53,7 @@ import com.gewara.util.WebLogger;
  * 
  * </pre>
  * 
- * ע�⣺KafkaConsumerCallback������topic����Ϣʱ��ʵ���첽����
+ * 注锟解：KafkaConsumerCallback锟斤拷锟斤拷锟斤拷topic锟斤拷锟斤拷息时锟斤拷实锟斤拷锟届步锟斤拷锟斤拷
  * 
  * @author quzhuping
  * 

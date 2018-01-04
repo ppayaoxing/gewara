@@ -10,9 +10,9 @@ public class ProcessOrderPayVo extends BaseVo{
 
 	private String tradeNo;
 	
-	private String checkpass;//È¡²ÄÃÜÂë
+	private String checkpass;//å–æå¯†ç 
 
-	protected String orderFlagStatus;	//¶©µ¥±êÊ¶×´Ì¬
+	protected String orderFlagStatus;	//è®¢å•æ ‡è¯†çŠ¶æ€
 			
 	@Override
 	public Serializable realId() {

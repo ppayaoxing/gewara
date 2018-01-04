@@ -8,11 +8,11 @@ import com.gewara.api.vo.BaseVo;
 public class CastBaseRelationVo extends BaseVo {
 	private static final long serialVersionUID = -3007170459229696038L;
 	private Long id;
-	private Long castid;						//人物ID
-	private Long baseinfoid;				//基本信息ID
-	private String infotype;				//信息类型
-	private Timestamp addtime;			//新增时间
-	private Timestamp updatetime;	//更新时间
+	private Long castid;						//浜虹墿ID
+	private Long baseinfoid;				//鍩烘湰淇℃伅ID
+	private String infotype;				//淇℃伅绫诲瀷
+	private Timestamp addtime;			//鏂板鏃堕棿
+	private Timestamp updatetime;	//鏇存柊鏃堕棿
 	
 	public Long getId() {
 		return id;

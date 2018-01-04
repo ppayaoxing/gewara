@@ -97,7 +97,7 @@ public class RegistryProtocol implements Protocol {
 		return overrideListeners;
 	}
 
-	//���ڽ��rmi�ظ���¶�˿ڳ�ͻ�����⣬�Ѿ���¶���ķ��������±�¶
+	//锟斤拷锟节斤拷锟絩mi锟截革拷锟斤拷露锟剿口筹拷突锟斤拷锟斤拷锟解，锟窖撅拷锟斤拷露锟斤拷锟侥凤拷锟斤拷锟斤拷锟斤拷锟铰憋拷露
     //providerurl <--> exporter
     private final Map<String, ExporterChangeableWrapper<?>> bounds = new ConcurrentHashMap<String, ExporterChangeableWrapper<?>>();
     
@@ -111,13 +111,13 @@ public class RegistryProtocol implements Protocol {
         final Registry registry = getRegistry(originInvoker);
         final URL registedProviderUrl = getRegistedProviderUrl(originInvoker);
         registry.register(registedProviderUrl);
-        // ����override����
-        // FIXME �ṩ�߶���ʱ����Ӱ��ͬһJVM����¶����������ͬһ����ĵĳ�������Ϊsubscribed�Է�����Ϊ�����key�����¶�����Ϣ���ǡ�
+        // 锟斤拷锟斤拷override锟斤拷锟斤拷
+        // FIXME 锟结供锟竭讹拷锟斤拷时锟斤拷锟斤拷影锟斤拷同一JVM锟斤拷锟斤拷露锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷同一锟斤拷锟斤拷牡某锟斤拷锟斤拷锟斤拷锟轿猻ubscribed锟皆凤拷锟斤拷锟斤拷为锟斤拷锟斤拷锟絢ey锟斤拷锟斤拷锟铰讹拷锟斤拷锟斤拷息锟斤拷锟角★拷
         final URL overrideSubscribeUrl = getSubscribedOverrideUrl(registedProviderUrl);
         final OverrideListener overrideSubscribeListener = new OverrideListener(overrideSubscribeUrl);
         overrideListeners.put(overrideSubscribeUrl, overrideSubscribeListener);
         registry.subscribe(overrideSubscribeUrl, overrideSubscribeListener);
-        //��֤ÿ��export������һ���µ�exporterʵ��
+        //锟斤拷证每锟斤拷export锟斤拷锟斤拷锟斤拷一锟斤拷锟铰碉拷exporter实锟斤拷
         return new Exporter<T>() {
             @Override
             public Invoker<T> getInvoker() {
@@ -163,7 +163,7 @@ public class RegistryProtocol implements Protocol {
     }
     
     /**
-     * ���޸���url��invoker����export
+     * 锟斤拷锟睫革拷锟斤拷url锟斤拷invoker锟斤拷锟斤拷export
      * @param originInvoker
      * @param newInvokerUrl
      */
@@ -173,7 +173,7 @@ public class RegistryProtocol implements Protocol {
         final ExporterChangeableWrapper<T> exporter = (ExporterChangeableWrapper<T>) bounds.get(key);
         if (exporter == null){
             logger.warn(new IllegalStateException("error state, exporter should not be null"));
-            return ;//���������쳣���� ֱ�ӷ��� 
+            return ;//锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟斤拷 直锟接凤拷锟斤拷 
         } else {
             final Invoker<T> invokerDelegete = new InvokerDelegete<T>(originInvoker, newInvokerUrl);
             exporter.setExporter(protocol.export(invokerDelegete));
@@ -181,7 +181,7 @@ public class RegistryProtocol implements Protocol {
     }
 
     /**
-     * ����invoker�ĵ�ַ��ȡregistryʵ��
+     * 锟斤拷锟斤拷invoker锟侥碉拷址锟斤拷取registry实锟斤拷
      * @param originInvoker
      * @return
      */
@@ -195,13 +195,13 @@ public class RegistryProtocol implements Protocol {
     }
 
     /**
-     * ����ע�ᵽע�����ĵ�URL����URL��������һ�ι���
+     * 锟斤拷锟斤拷注锟结到注锟斤拷锟斤拷锟侥碉拷URL锟斤拷锟斤拷URL锟斤拷锟斤拷锟斤拷锟斤拷一锟轿癸拷锟斤拷
      * @param originInvoker
      * @return
      */
     private URL getRegistedProviderUrl(final Invoker<?> originInvoker){
         URL providerUrl = getProviderUrl(originInvoker);
-        //ע�����Ŀ����ĵ�ַ
+        //注锟斤拷锟斤拷锟侥匡拷锟斤拷锟侥碉拷址
         final URL registedProviderUrl = providerUrl.removeParameters(getFilteredKeys(providerUrl)).removeParameter(Constants.MONITOR_KEY);
         return registedProviderUrl;
     }
@@ -213,7 +213,7 @@ public class RegistryProtocol implements Protocol {
     }
 
     /**
-     * ͨ��invoker��url ��ȡ providerUrl�ĵ�ַ
+     * 通锟斤拷invoker锟斤拷url 锟斤拷取 providerUrl锟侥碉拷址
      * @param origininvoker
      * @return
      */
@@ -228,7 +228,7 @@ public class RegistryProtocol implements Protocol {
     }
 
     /**
-     * ��ȡinvoker��bounds�л����key
+     * 锟斤拷取invoker锟斤拷bounds锟叫伙拷锟斤拷锟絢ey
      * @param originInvoker
      * @return
      */
@@ -280,7 +280,7 @@ public class RegistryProtocol implements Protocol {
         return cluster.join(directory);
     }
 
-    //����URL�в���Ҫ����Ĳ���(�Ե�ſ�ͷ��)
+    //锟斤拷锟斤拷URL锟叫诧拷锟斤拷要锟斤拷锟斤拷牟锟斤拷锟�(锟皆碉拷趴锟酵凤拷锟�)
     private static String[] getFilteredKeys(URL url) {
         Map<String, String> params = url.getParameters();
         if (params != null && !params.isEmpty()) {
@@ -306,10 +306,10 @@ public class RegistryProtocol implements Protocol {
     }
     
     
-    /*����export 1.protocol�е�exporter destory���� 
-     *1.Ҫ��registryprotocol���ص�exporter��������destroy
-     *2.notify����Ҫ������ע������ע�� 
-     *3.export ���������invoker�����һֱ��Ϊexporter��invoker.
+    /*锟斤拷锟斤拷export 1.protocol锟叫碉拷exporter destory锟斤拷锟斤拷 
+     *1.要锟斤拷registryprotocol锟斤拷锟截碉拷exporter锟斤拷锟斤拷锟斤拷锟斤拷destroy
+     *2.notify锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷注锟斤拷锟斤拷锟斤拷注锟斤拷 
+     *3.export 锟斤拷锟斤拷锟斤拷锟斤拷锟絠nvoker锟斤拷锟斤拷锟揭恢憋拷锟轿猠xporter锟斤拷invoker.
      */
     private class OverrideListener implements NotifyListener {
     	
@@ -322,7 +322,7 @@ public class RegistryProtocol implements Protocol {
 		}
 
 		/*
-         *  provider �˿�ʶ���override urlֻ��������.
+         *  provider 锟剿匡拷识锟斤拷锟給verride url只锟斤拷锟斤拷锟斤拷锟斤拷.
          *  override://0.0.0.0/serviceName?timeout=10
          *  override://0.0.0.0/?timeout=10
          */
@@ -333,7 +333,7 @@ public class RegistryProtocol implements Protocol {
         		URL overrideUrl = url;
         		if (url.getParameter(Constants.CATEGORY_KEY) == null
         				&& Constants.OVERRIDE_PROTOCOL.equals(url.getProtocol())) {
-        			// ���ݾɰ汾
+        			// 锟斤拷锟捷旧版本
         			overrideUrl = url.addParameter(Constants.CATEGORY_KEY, Constants.CONFIGURATORS_CATEGORY);
         		}
         		if (! UrlUtils.isMatch(subscribeUrl, overrideUrl)) {
@@ -369,7 +369,7 @@ public class RegistryProtocol implements Protocol {
         
         private URL getNewInvokerUrl(URL url, List<URL> urls){
         	List<Configurator> localConfigurators = this.configurators; // local reference
-            // �ϲ�override����
+            // 锟较诧拷override锟斤拷锟斤拷
             if (localConfigurators != null && localConfigurators.size() > 0) {
                 for (Configurator configurator : localConfigurators) {
                     url = configurator.configure(url);
@@ -383,7 +383,7 @@ public class RegistryProtocol implements Protocol {
         private final Invoker<T> invoker;
         /**
          * @param invoker 
-         * @param url invoker.getUrl���ش�ֵ
+         * @param url invoker.getUrl锟斤拷锟截达拷值
          */
         public InvokerDelegete(Invoker<T> invoker, URL url){
             super(invoker, url);
@@ -399,7 +399,7 @@ public class RegistryProtocol implements Protocol {
     }
     
     /**
-     * exporter����,�������ص�exporter��protocol export����exporter�Ķ�Ӧ��ϵ����overrideʱ���Խ��й�ϵ�޸�.
+     * exporter锟斤拷锟斤拷,锟斤拷锟斤拷锟斤拷锟截碉拷exporter锟斤拷protocol export锟斤拷锟斤拷exporter锟侥讹拷应锟斤拷系锟斤拷锟斤拷override时锟斤拷锟皆斤拷锟叫癸拷系锟睫革拷.
      * 
      * @author chao.liuc
      *

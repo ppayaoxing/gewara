@@ -2,20 +2,20 @@ package com.gewara.push.api.service;
 import com.gewara.api.vo.ResultCode;
 import com.gewara.push.api.req.vo.PushNotifyNewVo;
 /**
- * (ÍÆËÍ·şÎñ½Ó¿Ú)
+ * (æ¨é€æœåŠ¡æ¥å£)
  * @author chunhui.wang
  */
 public interface PushVoService {
 	
 	/**
-	 * (µ¥Éè±¸-ÏûÏ¢ÍÆËÍ)
-	 * @param pushNotifyVo	ÍÆËÍ¶ÔÏó
+	 * (å•è®¾å¤‡-æ¶ˆæ¯æ¨é€)
+	 * @param pushNotifyVo	æ¨é€å¯¹è±¡
 	 * @return
 	 */
 	ResultCode<String> sendPushNotify(PushNotifyNewVo pushNotifyVo);
 	
 	/**
-	 * ÍÆËÍÏûÏ¢È¡Ïû
+	 * æ¨é€æ¶ˆæ¯å–æ¶ˆ
 	 * @param msgkey
 	 * @return
 	 */

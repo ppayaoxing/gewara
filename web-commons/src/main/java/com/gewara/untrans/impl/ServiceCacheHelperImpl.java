@@ -25,7 +25,7 @@ import com.gewara.util.WebLogger;
 import com.gewara.web.support.ResourceStatsUtil;
 
 /**
- * Service�������棬ÿ��Serviceһ��
+ * Service锟斤拷锟斤拷锟斤拷锟芥，每锟斤拷Service一锟斤拷
  * @author gebiao(ge.biao@gewara.com)
  * @since Nov 5, 2013 10:25:21 PM
  */
@@ -35,11 +35,11 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 	private String serviceName;
 	private int maxKeyCount = 131072;//2^18,128k
 	private String keyPre;
-	private long validtime = System.currentTimeMillis() - DateUtil.m_day;//��Чʱ�䣬��������������
+	private long validtime = System.currentTimeMillis() - DateUtil.m_day;//锟斤拷效时锟戒，锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	private WriteLock[] lockList = new WriteLock[maxKeyCount];
-	//��������pre
+	//锟斤拷锟斤拷锟斤拷锟斤拷pre
 	//private Map<String, String> ukeyMap = new ConcurrentHashMap<String, String>();
-	private ThreadPoolExecutor executor/*�첽�����߳�*/;
+	private ThreadPoolExecutor executor/*锟届步锟斤拷锟斤拷锟竭筹拷*/;
 	private Long starttime = System.currentTimeMillis();
 	private AtomicInteger hit = new AtomicInteger(0);
 	private AtomicInteger miss = new AtomicInteger(0);
@@ -125,21 +125,21 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 	}
 	
 	/**
-	 * ����Ҫͬ��
+	 * 锟斤拷锟斤拷要同锟斤拷
 	 * @param key
 	 * @param call
-	 * @param cacheSeconds:����ʱ��
+	 * @param cacheSeconds:锟斤拷锟斤拷时锟斤拷
 	 * @return
 	 */
 	@Override
     public <T> T cacheCall(Integer cacheSeconds, CachableCall<T> call, String ukey, Object...params) {
 		String key = buildKey(ukey, params);
 		CacheElement<T> result = (CacheElement<T>) cacheTools.get(CacheService.REGION_SERVICE, getCacheKey(key));
-		if(result==null){//�ǿս��
+		if(result==null){//锟角空斤拷锟�
 			result = sychCall(key, call, cacheSeconds, false);
 		}else{
 			if(result.getValidtime() < System.currentTimeMillis() || result.getUpdatetime() < validtime){
-				//�����첽���£����Ƿ����ϵ�ֵ
+				//锟斤拷锟斤拷锟届步锟斤拷锟铰ｏ拷锟斤拷锟角凤拷锟斤拷锟较碉拷值
 				executor.execute(new AsynchCallTask(key, cacheSeconds, call, false) );
 				updateExpireHit();
 			}else{
@@ -152,11 +152,11 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
     public <T> T cacheCallRefresh(Integer cacheSeconds, CachableCall<T> call, String ukey, boolean forceRefresh, Object...params) {
 		String key = buildKey(ukey, params);
 		CacheElement<T> result = (CacheElement<T>) cacheTools.get(CacheService.REGION_SERVICE, getCacheKey(key));
-		if(result==null){//�ǿս��
+		if(result==null){//锟角空斤拷锟�
 			result = sychCall(key, call, cacheSeconds, false);
 		}else{
 			if(result.getValidtime() < System.currentTimeMillis() || forceRefresh || result.getUpdatetime()==null || result.getUpdatetime() < validtime){
-				//�����첽���£����Ƿ����ϵ�ֵ
+				//锟斤拷锟斤拷锟届步锟斤拷锟铰ｏ拷锟斤拷锟角凤拷锟斤拷锟较碉拷值
 				executor.execute(new AsynchCallTask(key, cacheSeconds, call, forceRefresh) );
 				updateExpireHit();
 			}else{
@@ -170,10 +170,10 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 		CacheElement<T> result = null;
 		boolean locked = false;
 		try{
-			//�����Ƿ�������������ִ�У��˴�ֻ���ô�����������̵ȴ�һ���
+			//锟斤拷锟斤拷锟角凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷执锟叫ｏ拷锟剿达拷只锟斤拷锟矫达拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷痰却锟揭伙拷锟斤拷
 			locked = lock.tryLock(15, TimeUnit.SECONDS);
 			if(!forceRefresh){
-				//�ٴμ��
+				//锟劫次硷拷锟�
 				result = (CacheElement<T>) cacheTools.get(CacheService.REGION_SERVICE, getCacheKey(key));
 				if(result!=null){
 					if(result.getValidtime() > System.currentTimeMillis() && result.getUpdatetime() > validtime){
@@ -271,7 +271,7 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 	}
 
 	/**
-	 * �������ĸ���ʱ��С�ڴ�ʱ�䣬�����¸���
+	 * 锟斤拷锟斤拷锟斤拷锟侥革拷锟斤拷时锟斤拷小锟节达拷时锟戒，锟斤拷锟斤拷锟铰革拷锟斤拷
 	 * @param validtime
 	 */
 	public void startClear() {

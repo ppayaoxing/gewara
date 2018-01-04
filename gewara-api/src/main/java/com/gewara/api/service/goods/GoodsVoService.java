@@ -12,21 +12,21 @@ public interface GoodsVoService {
 	
 	ResultCode<List<GoodsVo>> getGoodsByTagAndRelatedid(String tag, Long relatedid);
 	/**
-	 * ¸ù¾İgoodsId»ñÈ¡GoodsÏêÏ¸Êı¾İ
+	 * æ ¹æ®goodsIdè·å–Goodsè¯¦ç»†æ•°æ®
 	 * @param goodId
 	 * @return
 	 */
 	ResultCode<GoodsVo> getBaseGoodsById(Long goodId);
 	
 	/**
-	 * »ñÈ¡ÎïÆ·¿ÉÏÂµ¥ÊıÁ¿
+	 * è·å–ç‰©å“å¯ä¸‹å•æ•°é‡
 	 * @param goodids
 	 * @return
 	 */
 	ResultCode<Map<Long, Integer>> getGoodsMapAllownum(Long ... goodids);
 
 	/**
-	 * Ô¤ÊÛÇ°ÌáĞÑ<b>memberid</b>
+	 * é¢„å”®å‰æé†’<b>memberid</b>
 	 * @param memberid
 	 * @param goodsid
 	 * @return
@@ -34,17 +34,17 @@ public interface GoodsVoService {
 	ResultCode<Boolean> addRemindMe(Long memberid, String mobile, Long goodsid);
 	
 	/**
-	 * <b>goodsid</b>ÖĞÌáĞÑÈË×ÜÊı
+	 * <b>goodsid</b>ä¸­æé†’äººæ€»æ•°
 	 * @param goodsid
 	 * @return
 	 */
 	ResultCode<Integer> getRemindCount(Long goodsid);
 	
 	/**
-	 * ÅĞ¶Ï<b>memberid</b>ÊÇ·ñÒÑ¾­Ìí¼Óµ½ÌáĞÑÃûµ¥.<br/>
-	 * ·ÖÁ½²½ÅĞ¶Ï£º
-	 * 1: goodsid + memberid ÁªºÏ²éÑ¯£¬Èç¹ûÓĞ½á¹û£¬ÔòËµÃ÷Õâ¸ömemberidÒÑ¾­ÔÚÌáĞÑÁĞ±íÀïÁË£¬·µ»Ø<br/>
-	 * 2: goodsid + mobile ÁªºÏ²éÑ¯£¬Èç¹ûÓĞ½á¹û£¬ÔòËµÃ÷Õâ¸ömobileÒÑ¾­ÔÚÌáĞÑÁĞ±íÀïÁË£¬·µ»Ø
+	 * åˆ¤æ–­<b>memberid</b>æ˜¯å¦å·²ç»æ·»åŠ åˆ°æé†’åå•.<br/>
+	 * åˆ†ä¸¤æ­¥åˆ¤æ–­ï¼š
+	 * 1: goodsid + memberid è”åˆæŸ¥è¯¢ï¼Œå¦‚æœæœ‰ç»“æœï¼Œåˆ™è¯´æ˜è¿™ä¸ªmemberidå·²ç»åœ¨æé†’åˆ—è¡¨é‡Œäº†ï¼Œè¿”å›<br/>
+	 * 2: goodsid + mobile è”åˆæŸ¥è¯¢ï¼Œå¦‚æœæœ‰ç»“æœï¼Œåˆ™è¯´æ˜è¿™ä¸ªmobileå·²ç»åœ¨æé†’åˆ—è¡¨é‡Œäº†ï¼Œè¿”å›
 	 * @param memberid
 	 * @param goodsid
 	 * @return
@@ -52,16 +52,16 @@ public interface GoodsVoService {
 	ResultCode<Boolean> isMeInRemindList(Long memberid, Long goodsid, String mobile);
 	
 	/**
-	 * ¾ÛºÏÒ³Ãæ½Ó¿Ú
-	 * @param memberid µÇÂ¼ÓÃ»§µÄ±êÊ¶
-	 * @param mobile   ÊÖ»úºÅÂë
+	 * èšåˆé¡µé¢æ¥å£
+	 * @param memberid ç™»å½•ç”¨æˆ·çš„æ ‡è¯†
+	 * @param mobile   æ‰‹æœºå·ç 
 	 * @return
 	 */
 	ResultCode<List<GoodsVo>> getGoodsList(Long memberid,String mobile);
 	
 	
 	/**
-	 * »ñÈ¡Í¬¼¶µÄGoodsÊı¾İ(¼´describeIdÏàµÈµÄÊı¾İ)
+	 * è·å–åŒçº§çš„Goodsæ•°æ®(å³describeIdç›¸ç­‰çš„æ•°æ®)
 	 * @param describeId
 	 * @return
 	 */
@@ -71,30 +71,30 @@ public interface GoodsVoService {
 	ResultCode<List<GoodsVo>>getGoodsListByTagOrItemtypeFixedsmalltype(final String tag, final Long relatedid, String order, boolean asc, int from, int maxnum);
 	ResultCode<GoodsVo> getBindGoodsVo(Long mpid, String appkey);
 	/**
-	 * ²éGoodsÏêÇéÊı¾İ
+	 * æŸ¥Goodsè¯¦æƒ…æ•°æ®
 	 * @return
 	 */
 	ResultCode<GoodsVo> getGoods(Long goodsid);
 	/**
-	 * ÓĞÏßÉÏÂôÆ·µÄÓ°ÔºIDÁĞ±í£¬¸ù¾İÊıÁ¿ÅÅĞò
+	 * æœ‰çº¿ä¸Šå–å“çš„å½±é™¢IDåˆ—è¡¨ï¼Œæ ¹æ®æ•°é‡æ’åº
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<List<Long>> getCinemaIdListByGoods(String citycode);
 	/**
-	 * ¸ù¾İtagºÍ×´Ì¬»ñÈ¡Ó°ÔºÁĞ±í
+	 * æ ¹æ®tagå’ŒçŠ¶æ€è·å–å½±é™¢åˆ—è¡¨
 	 * @param tag
 	 * @param status
 	 * @return
 	 */
 	ResultCode<List<Long>> getCinemaVoByTag(String tag, String status);
 	/**
-	 * ²éGoodsExtraVoÊı¾İ
+	 * æŸ¥GoodsExtraVoæ•°æ®
 	 * @return
 	 */
 	ResultCode<List<GoodsExtraVo>> getGoodsExtraList(Long... goodsids);
 	/**
-	 * ²éÑ¯Ó°ÔºÌ×²Í
+	 * æŸ¥è¯¢å½±é™¢å¥—é¤
 	 * @param relatedid
 	 * @param isGift
 	 * @param order
@@ -106,7 +106,7 @@ public interface GoodsVoService {
 	ResultCode<List<GoodsVo>> getGoodsListByBmhAndGift(Long relatedid, boolean isGift, String order, boolean asc, int from, int maxnum);
 	/**
 	 * 
-	 * ¸ù¾İ³¡¹İ»òÏîÄ¿²éÑ¯ÎïÆ·ĞÅÏ¢
+	 * æ ¹æ®åœºé¦†æˆ–é¡¹ç›®æŸ¥è¯¢ç‰©å“ä¿¡æ¯
 	 * @param tag
 	 * @param relatedid
 	 * @param smalltype
@@ -118,7 +118,7 @@ public interface GoodsVoService {
 	 */
 	ResultCode<List<GoodsVo>> getGoodsListByTagOrItemtype(String tag, Long relatedid, String smalltype, String order, boolean asc, int from, int maxnum);
 	/**
-	 * ¸ù¾İIDÈ¡µÃgoosextra 
+	 * æ ¹æ®IDå–å¾—goosextra 
 	 * @param id
 	 * @return
 	 */
@@ -126,33 +126,33 @@ public interface GoodsVoService {
 	
 	/**
 	 * 
-	 * ¸ù¾İÏîÄ¿²éÑ¯ÎïÆ·ĞÅÏ¢
+	 * æ ¹æ®é¡¹ç›®æŸ¥è¯¢ç‰©å“ä¿¡æ¯
 	 * @param itemid
 	 * @return
 	 */
 	ResultCode<List<GoodsVo>> getGoodsListByItemid(Long itemid);
 	/**
 	 * 
-	 * ¸ù¾İIDList²éÑ¯goods
-	 * @param idList  ID¼¯ºÏ
+	 * æ ¹æ®IDListæŸ¥è¯¢goods
+	 * @param idList  IDé›†åˆ
 	 * @return
 	 */
 	ResultCode<List<GoodsVo>> getGoodsListByIdList(List<Long> idList);
 	/**
 	 * 
-	 * ¸ù¾İsmailid²éÑ¯»î¶¯ÎïÆ·ĞÅÏ¢
+	 * æ ¹æ®smailidæŸ¥è¯¢æ´»åŠ¨ç‰©å“ä¿¡æ¯
 	 * @param itemid
 	 * @return
 	 */
 	ResultCode<List<GoodsVo>> getGoodsListBySmalId(Long smalid);
 	/**
-	 * ÔÚÏÂµ¥Ö®Ç°Ğ£Ñé¼ÆÊıÆ÷
+	 * åœ¨ä¸‹å•ä¹‹å‰æ ¡éªŒè®¡æ•°å™¨
 	 * @param goodsid
 	 * @return
 	 */
 	ResultCode<Map<String, Integer>> checkSpcounterBeforeAddOrder(Long goodsid);
 	/**
-	 * »ñÈ¡ÎïÆ·¼ÆÊıÆ÷ĞÅÏ¢
+	 * è·å–ç‰©å“è®¡æ•°å™¨ä¿¡æ¯
 	 * @param goodsid
 	 * @return
 	 */

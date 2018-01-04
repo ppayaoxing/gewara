@@ -10,73 +10,73 @@ import com.gewara.api.vo.ResultCode;
 import com.gewara.api.vo.VoMap;
 
 /**
- * ²ÂÆ±·¿½Ó¿Ú
+ * çŒœç¥¨æˆ¿æ¥å£
  *
  */
 public interface GuessApiService {
 	
 	/**
-	 * »ñÈ¡²ÂÆ±·¿
-	 * @param   id  Æ±·¿ÉèÖÃID
+	 * è·å–çŒœç¥¨æˆ¿
+	 * @param   id  ç¥¨æˆ¿è®¾ç½®ID
 	 */
 	ResultCode<GuessSetupVo> getGuessById(Long id);
 	 /**
-     * ¸ù¾İÆ±·¿ÉèÖÃID»ñÈ¡Í¶×¢Ñ¡Ïî
-     * @param   relatedid  Æ±·¿ÉèÖÃID
+     * æ ¹æ®ç¥¨æˆ¿è®¾ç½®IDè·å–æŠ•æ³¨é€‰é¡¹
+     * @param   relatedid  ç¥¨æˆ¿è®¾ç½®ID
      */
 	ResultCode<List<BettingOptionVo>> getBettingOptionsByRelatedId(Long relatedid);
 	/**
-	 * Í¶×¢Ñ¡ÏîID»ñÈ¡Êı¾İ
-	 * @param   id    Ö÷¼üID
+	 * æŠ•æ³¨é€‰é¡¹IDè·å–æ•°æ®
+	 * @param   id    ä¸»é”®ID
 	 */
 	ResultCode<BettingOptionVo> getBettingOptionById(Long id);
 	
 	/**
-     * »ñÈ¡ÓÃ»§Í¶×¢µÄ²ÂÆ±·¿ĞÅÏ¢
-     * @param   memberid  ÓÃ»§ID  
-     * @param   stepid ÉèÖÃ²ÂÆ±·¿ID
+     * è·å–ç”¨æˆ·æŠ•æ³¨çš„çŒœç¥¨æˆ¿ä¿¡æ¯
+     * @param   memberid  ç”¨æˆ·ID  
+     * @param   stepid è®¾ç½®çŒœç¥¨æˆ¿ID
      */
 	ResultCode<UserBettingVo> getUserBetting(Long memberid,Long stepid);
 	
 	/**
-     * »ñÈ¡²ÂÆ±·¿Í¶×¢×ÜÈËÊı
-     * @param   stepid ÉèÖÃ²ÂÆ±·¿ID
+     * è·å–çŒœç¥¨æˆ¿æŠ•æ³¨æ€»äººæ•°
+     * @param   stepid è®¾ç½®çŒœç¥¨æˆ¿ID
      */
 	ResultCode<Integer> getBettingCount(Long stepid);
 	
 	/**
-     * »ñÈ¡²ÂÆ±·¿Í¶×¢ÓÃ»§ID
-     * @param   stepid ÉèÖÃ²ÂÆ±·¿ID
+     * è·å–çŒœç¥¨æˆ¿æŠ•æ³¨ç”¨æˆ·ID
+     * @param   stepid è®¾ç½®çŒœç¥¨æˆ¿ID
      */
 	ResultCode<List<Long>> getUserIdBetting(Long stepid,int from, int maxnum);
 	/**
-	 * »ñÈ¡Í¶×¢Ñ¡ÏîĞÅÏ¢
-	 * @param   optionid Í¶×¢Ñ¡ÏîID
+	 * è·å–æŠ•æ³¨é€‰é¡¹ä¿¡æ¯
+	 * @param   optionid æŠ•æ³¨é€‰é¡¹ID
 	 */
 	ResultCode<BettingOptionCountVo> getBettingOptionCount(Long optionid);
 	/**
-	 * »ñÈ¡¸÷Í¶×¢Ñ¡Ïî×ÜÈËÊı 
-	 * key --Ñ¡ÏîID value--×ÜÈËÊı
-	 * @param   stepid ÉèÖÃ²ÂÆ±·¿ID
+	 * è·å–å„æŠ•æ³¨é€‰é¡¹æ€»äººæ•° 
+	 * key --é€‰é¡¹ID value--æ€»äººæ•°
+	 * @param   stepid è®¾ç½®çŒœç¥¨æˆ¿ID
 	 */
 	ResultCode<VoMap<Long,Integer>> getVoMapCount(Long stepid);
 	/**
-	 * ±£´æÓÃ»§Í¶×¢Ñ¡ÏîĞÅÏ¢
-	 * @param   memberid ÓÃ»§ID
-	 * @param   stepid ÉèÖÃ²ÂÆ±·¿ID
-	 * @param   optionid Í¶×¢Ñ¡ÏîID 
-	 * @param   num  Í¶×¢±¶Êı
-	 * @param   point Í¶×¢×Ü»ı·Ö
+	 * ä¿å­˜ç”¨æˆ·æŠ•æ³¨é€‰é¡¹ä¿¡æ¯
+	 * @param   memberid ç”¨æˆ·ID
+	 * @param   stepid è®¾ç½®çŒœç¥¨æˆ¿ID
+	 * @param   optionid æŠ•æ³¨é€‰é¡¹ID 
+	 * @param   num  æŠ•æ³¨å€æ•°
+	 * @param   point æŠ•æ³¨æ€»ç§¯åˆ†
 	 */
 	ResultCode saveUserBetting(Long memberid,Long stepid,Long optionid,Integer num,Integer point);
 	
 	/**
-	 * »Ø¹öÓÃ»§Í¶×¢Ñ¡ÏîĞÅÏ¢
-	 * @param   memberid ÓÃ»§ID
-	 * @param   stepid ÉèÖÃ²ÂÆ±·¿ID
-	 * @param   optionid Í¶×¢Ñ¡ÏîID 
-	 * @param   num  Í¶×¢±¶Êı
-	 * @param   point Í¶×¢×Ü»ı·Ö
+	 * å›æ»šç”¨æˆ·æŠ•æ³¨é€‰é¡¹ä¿¡æ¯
+	 * @param   memberid ç”¨æˆ·ID
+	 * @param   stepid è®¾ç½®çŒœç¥¨æˆ¿ID
+	 * @param   optionid æŠ•æ³¨é€‰é¡¹ID 
+	 * @param   num  æŠ•æ³¨å€æ•°
+	 * @param   point æŠ•æ³¨æ€»ç§¯åˆ†
 	 */
 	ResultCode rollBackUserBetting(Long memberid, Long stepid,Long optionid, Integer num, Integer point);
 	

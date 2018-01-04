@@ -17,8 +17,8 @@ import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.result.UpdateResult;
 
 /**
- * @author ����
- * @createDate 2015��7��30��
+ * @author 锟斤拷锟斤拷
+ * @createDate 2015锟斤拷7锟斤拷30锟斤拷
  * @param <T>
  */
 public class UpdateBuilder<T> {
@@ -26,8 +26,8 @@ public class UpdateBuilder<T> {
 	private Class<T> sourceType=null;
 	
 	private Bson condition=null;
-	private Document source=new Document();//�����Ԫ�ض�����Ҫ $set�������ġ�
-	private Document otherSource=new Document();//������õĶ��Ǻ�$set������ͬһ���ġ�
+	private Document source=new Document();//锟斤拷锟斤拷锟皆拷囟锟斤拷锟斤拷锟揭� $set锟斤拷锟斤拷锟斤拷锟侥★拷
+	private Document otherSource=new Document();//锟斤拷锟斤拷锟斤拷玫亩锟斤拷呛锟�$set锟斤拷锟斤拷锟斤拷同一锟斤拷锟侥★拷
 	
 	private UpdateOptions updateOptions=new UpdateOptions().upsert(false);
 	private boolean updateMany=true;
@@ -44,7 +44,7 @@ public class UpdateBuilder<T> {
 	
 	
 	/**
-	 * �����е���������ӽ�����condition���һ��And�Ĺ�ϵ��
+	 * 锟斤拷锟斤拷锟叫碉拷锟斤拷锟斤拷锟斤拷锟斤拷咏锟斤拷锟斤拷锟絚ondition锟斤拷锟揭伙拷锟紸nd锟侥癸拷系锟斤拷
 	 * @param condition
 	 * @return
 	 */
@@ -58,7 +58,7 @@ public class UpdateBuilder<T> {
 	}
 	
 	/**
-	 * �����е���������ӽ�����condition���һ��OR�Ĺ�ϵ��
+	 * 锟斤拷锟斤拷锟叫碉拷锟斤拷锟斤拷锟斤拷锟斤拷咏锟斤拷锟斤拷锟絚ondition锟斤拷锟揭伙拷锟絆R锟侥癸拷系锟斤拷
 	 * @param condition
 	 * @return
 	 */
@@ -74,7 +74,7 @@ public class UpdateBuilder<T> {
 	
 	
 	/**
-	 * ������������������Ḳ����֮ǰ�����õ�������
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷岣诧拷锟斤拷锟街帮拷锟斤拷锟斤拷玫锟斤拷锟斤拷锟斤拷锟�
 	 * @param condition
 	 * @return
 	 */
@@ -84,7 +84,7 @@ public class UpdateBuilder<T> {
 	}
 	
 	/**
-	 * �����Ҫ���µ��ֶ��Լ���ֵ
+	 * 锟斤拷锟斤拷锟揭拷锟斤拷碌锟斤拷侄锟斤拷约锟斤拷锟街�
 	 * @param field
 	 * @param value
 	 * @return
@@ -134,7 +134,7 @@ public class UpdateBuilder<T> {
 	}
 	
 	/**
-	 * Ĭ���Ǹ��¶�����¼������Ϊtrue�󣬽�ֻ����һ����¼
+	 * 默锟斤拷锟角革拷锟铰讹拷锟斤拷锟斤拷录锟斤拷锟斤拷锟斤拷为true锟襟，斤拷只锟斤拷锟斤拷一锟斤拷锟斤拷录
 	 * 
 	 * @param updateMany
 	 * @return
@@ -145,7 +145,7 @@ public class UpdateBuilder<T> {
 	}
 	
 	/**
-	 * ��û�з��������ļ�¼ʱ����Ӹü�¼��
+	 * 锟斤拷没锟叫凤拷锟斤拷锟斤拷锟斤拷锟侥硷拷录时锟斤拷锟斤拷痈眉锟铰硷拷锟�
 	 * @param insert
 	 * @return
 	 */

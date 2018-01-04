@@ -7,23 +7,23 @@ import com.gewara.api.vo.BaseVo;
 public class FanliMemberVo extends BaseVo {
 	private static final long serialVersionUID = -7934071223394226183L;
 	private Long _id;
-	private String uid ;//·µÀûÍø»áÔ±±àºÅ
-	private String channel_id;//ÇşµÀ±àÂë
-	private String tracking_code;//Ğ§¹û×·×ÙÊ¶±ğÂë
-	private String username;//ÁªºÏµÇÂ½µÄÓÃ»§Ãû
-	private String usersafekey;//ÁªºÏµÇÂ¼ÑéÖ¤Âë
-	private String email;//ÓÃ»§email
-	private String show_name;//ÓÃ»§êÇ³Æ
-	private String province;//Ê¡
-	private String city;//ÊĞ
-	private String area;//Çø
-	private String zip;//ÓÊ±à
-	private String phone;//µç»°
-	private String mobile;//ÊÖ»ú
+	private String uid ;//è¿”åˆ©ç½‘ä¼šå‘˜ç¼–å·
+	private String channel_id;//æ¸ é“ç¼–ç 
+	private String tracking_code;//æ•ˆæœè¿½è¸ªè¯†åˆ«ç 
+	private String username;//è”åˆç™»é™†çš„ç”¨æˆ·å
+	private String usersafekey;//è”åˆç™»å½•éªŒè¯ç 
+	private String email;//ç”¨æˆ·email
+	private String show_name;//ç”¨æˆ·æ˜µç§°
+	private String province;//çœ
+	private String city;//å¸‚
+	private String area;//åŒº
+	private String zip;//é‚®ç¼–
+	private String phone;//ç”µè¯
+	private String mobile;//æ‰‹æœº
 	private String name;
 	private String address;
-	private Long createTime;//´´½¨Ê±¼ä
-	private Long updateTIme;//×îºó¸üĞÂÊ±¼ä
+	private Long createTime;//åˆ›å»ºæ—¶é—´
+	private Long updateTIme;//æœ€åæ›´æ–°æ—¶é—´
 	
 	public FanliMemberVo() {
 		super();

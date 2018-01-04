@@ -11,14 +11,14 @@ import com.gewara.mdb.operation.Projection;
 import com.gewara.util.Assert;
 
 /**
- * �ۺϡ�
+ * 锟桔合★拷
  * <br/>
- * @author ����
- * @createDate 2015��8��10��
+ * @author 锟斤拷锟斤拷
+ * @createDate 2015锟斤拷8锟斤拷10锟斤拷
  */
 public class AggregationBuilder {
-	private String collectionName=null;			//��������
-	private Expression query;						//��ѯ����		
+	private String collectionName=null;			//锟斤拷锟斤拷锟斤拷锟斤拷
+	private Expression query;						//锟斤拷询锟斤拷锟斤拷		
 	private Document group = new Document();	//group
 	private Projection projection;				//projection
 	private List<Document> sortList = new ArrayList<Document>();
@@ -128,7 +128,7 @@ public class AggregationBuilder {
 		if(limit !=null){
 			pipeLine.add(limit);
 		}
-/*		private Expression query;						//��ѯ����		
+/*		private Expression query;						//锟斤拷询锟斤拷锟斤拷		
 		private Document group = new Document();	//group
 		private Projection projection;				//projection
 		private List<Document> sortList = new ArrayList<Document>();

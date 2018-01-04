@@ -21,9 +21,9 @@ public class FilmfestKindVo extends BaseVo {
 	private String kindCode;
 	private Long belongToId;
 	private String icon;
-	private String iconName; //Ğ¡Í¼±êÃû³Æ
-	private String kindType; //Æ¬µ¥ÀàĞÍ£¬G£º¸ñÍßÆ¬µ¥£¬U£ºÓÃ»§Æ¬µ¥£¬Ö»Õë¶ÔÆ¬µ¥Ä£¿éÓĞĞ§
-	private Long memberid; //µ±ÊÇÓÃ»§Æ¬µ¥Ê±£¬ÓÃ»§ID
+	private String iconName; //å°å›¾æ ‡åç§°
+	private String kindType; //ç‰‡å•ç±»å‹ï¼ŒGï¼šæ ¼ç“¦ç‰‡å•ï¼ŒUï¼šç”¨æˆ·ç‰‡å•ï¼Œåªé’ˆå¯¹ç‰‡å•æ¨¡å—æœ‰æ•ˆ
+	private Long memberid; //å½“æ˜¯ç”¨æˆ·ç‰‡å•æ—¶ï¼Œç”¨æˆ·ID
 	@Override
 	public Serializable realId() {
 		return id;

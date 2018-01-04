@@ -7,57 +7,57 @@ import java.util.Map;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
 public class RefundConstant {
-	//public static final String STATUS_PREPAIR1 = "prepare"; 	//Ô¤´¦Àí
-	public static final String STATUS_APPLY = "apply"; 		//ÉêÇë
-	public static final String STATUS_ACCEPT = "accept"; 	//½ÓÊÜ
-	public static final String STATUS_REJECT = "reject"; 	//¾Ü¾øÍË¿î
-	public static final String STATUS_SUCCESS = "success";	//ÍË¿î³É¹¦
-	public static final String STATUS_FINISHED = "finish";	//´¦Àí½áÊø
-	public static final String STATUS_USER_APPLY = "user_apply";			// ÓÃ»§ÉêÇëÍËÆ±
-	public static final String STATUS_USER_REJECT = "user_reject"; 			// ÓÃ»§È¡Æ±¾Ü¾øÍË¿î
-	//public static final String STATUS_CANCEL = "cancel";	//È¡ÏûÍË¿î(prepair-->cancel)
+	//public static final String STATUS_PREPAIR1 = "prepare"; 	//é¢„å¤„ç†
+	public static final String STATUS_APPLY = "apply"; 		//ç”³è¯·
+	public static final String STATUS_ACCEPT = "accept"; 	//æ¥å—
+	public static final String STATUS_REJECT = "reject"; 	//æ‹’ç»é€€æ¬¾
+	public static final String STATUS_SUCCESS = "success";	//é€€æ¬¾æˆåŠŸ
+	public static final String STATUS_FINISHED = "finish";	//å¤„ç†ç»“æŸ
+	public static final String STATUS_USER_APPLY = "user_apply";			// ç”¨æˆ·ç”³è¯·é€€ç¥¨
+	public static final String STATUS_USER_REJECT = "user_reject"; 			// ç”¨æˆ·å–ç¥¨æ‹’ç»é€€æ¬¾
+	//public static final String STATUS_CANCEL = "cancel";	//å–æ¶ˆé€€æ¬¾(prepair-->cancel)
 	
-	//ĞèÒªÖ´ĞĞµÄ²Ù×÷
-	public static final String OP_CANCEL_TICKET = "cancelTicket";	//ÍËÆ±
-	public static final String OP_ADJUST_SETTLE = "adjustSettle";	//½áËãµ÷Õû
-	public static final String OP_COMPENSATE = "compensate";		//²¹³¥ÓÃ»§²Ù×÷
-	public static final String OP_RET2PARTNER = "ret2Partner";		//ºÏ×÷ÉÌ¼ÒÍË¿î
-	public static final String OP_LOCK_TICKET = "lockTicket";		//Ëø¶¨¶©µ¥
+	//éœ€è¦æ‰§è¡Œçš„æ“ä½œ
+	public static final String OP_CANCEL_TICKET = "cancelTicket";	//é€€ç¥¨
+	public static final String OP_ADJUST_SETTLE = "adjustSettle";	//ç»“ç®—è°ƒæ•´
+	public static final String OP_COMPENSATE = "compensate";		//è¡¥å¿ç”¨æˆ·æ“ä½œ
+	public static final String OP_RET2PARTNER = "ret2Partner";		//åˆä½œå•†å®¶é€€æ¬¾
+	public static final String OP_LOCK_TICKET = "lockTicket";		//é”å®šè®¢å•
 	
-	public static final String OP_RESULT_CANCEL_SUCCESS = "cancelSuccess"; //ÍËÆ±³É¹¦
-	public static final String OP_RESULT_CANCEL_FAILURE = "cancelFailure"; //ÍËÆ±Ê§°Ü
+	public static final String OP_RESULT_CANCEL_SUCCESS = "cancelSuccess"; //é€€ç¥¨æˆåŠŸ
+	public static final String OP_RESULT_CANCEL_FAILURE = "cancelFailure"; //é€€ç¥¨å¤±è´¥
 	
-	//ÍË¿îÀàĞÍ all È«¶îÍË¿î£ºpart ²¿·ÖÍË¿î£ºsupplement Ôö²¹
-	public static final String REFUNDTYPE_FULL = "full";			//È«¶îÍË¿î
-	public static final String REFUNDTYPE_PART = "part";			//²¿·ÖÍË¿î
-	public static final String REFUNDTYPE_SUPPLEMENT = "supplement";//µ÷¼ÛÍË¿î
-	public static final String REFUNDTYPE_GEWARA = "gewara";		//¸ñÍßÀ­ÍË¿î
+	//é€€æ¬¾ç±»å‹ all å…¨é¢é€€æ¬¾ï¼špart éƒ¨åˆ†é€€æ¬¾ï¼šsupplement å¢è¡¥
+	public static final String REFUNDTYPE_FULL = "full";			//å…¨é¢é€€æ¬¾
+	public static final String REFUNDTYPE_PART = "part";			//éƒ¨åˆ†é€€æ¬¾
+	public static final String REFUNDTYPE_SUPPLEMENT = "supplement";//è°ƒä»·é€€æ¬¾
+	public static final String REFUNDTYPE_GEWARA = "gewara";		//æ ¼ç“¦æ‹‰é€€æ¬¾
 	
-	// ¶©µ¥Ëø¶¨×´Ì¬ 
-	public static final String LOCK_SUCCESS = "lock_success";		// Ëø¶¨³É¹¦
-	public static final String LOCK_TAKE = "lock_take";				// ÒÑÈ¡Æ±
-	public static final String LOCK_FAILURE = "lock_failure";		// Ëø¶¨Ê§°Ü
-	// ½âËø¶©µ¥×´Ì¬
-	public static final String UN_LOCK_Y = "Y";		// ½âËø³É¹¦
-	public static final String UN_LOCK_N = "N";		// ½âËøÊ§°Ü
+	// è®¢å•é”å®šçŠ¶æ€ 
+	public static final String LOCK_SUCCESS = "lock_success";		// é”å®šæˆåŠŸ
+	public static final String LOCK_TAKE = "lock_take";				// å·²å–ç¥¨
+	public static final String LOCK_FAILURE = "lock_failure";		// é”å®šå¤±è´¥
+	// è§£é”è®¢å•çŠ¶æ€
+	public static final String UN_LOCK_Y = "Y";		// è§£é”æˆåŠŸ
+	public static final String UN_LOCK_N = "N";		// è§£é”å¤±è´¥
 	
-	//ÍË¿îÔ­Òò
-	public static final String REASON_UNKNOWN = "unknown";				//Î´Öª
-	public static final String REASON_USER = "user";					//ÓÃ»§ÍË¿î
-	public static final String REASON_GEWA = "gewa";					//GewaÍË¿î
-	public static final String REASON_GEWA_SYS = "gewa_sys";			//GewaÏµÍ³´íÎó
-	public static final String REASON_MERCHANT = "merchant";			//ÉÌ¼Ò£¨Ó°Ôº£©ÍË¿î
-	public static final String REASON_MERCHANT_OPI = "merchant_opi";	//ÉÌ¼Ò£¨Ó°Ôº£©³¡´Î(¸ü¸Ä»òÈ¡Ïû)ÍË¿î
-	public static final String REASON_PRICE = "price";					//¼Û¸ñµ÷Õû
-	public static final String REASON_CANCELTICKET = "cancelTicket";	//¿ÉÍËÆ±³¡¹İÕı³£ÍËÆ±
-	public static final String REASON_BAOCHANG = "baochang_fail";	//°ü³¡Ê§°ÜÍË¿î
+	//é€€æ¬¾åŸå› 
+	public static final String REASON_UNKNOWN = "unknown";				//æœªçŸ¥
+	public static final String REASON_USER = "user";					//ç”¨æˆ·é€€æ¬¾
+	public static final String REASON_GEWA = "gewa";					//Gewaé€€æ¬¾
+	public static final String REASON_GEWA_SYS = "gewa_sys";			//Gewaç³»ç»Ÿé”™è¯¯
+	public static final String REASON_MERCHANT = "merchant";			//å•†å®¶ï¼ˆå½±é™¢ï¼‰é€€æ¬¾
+	public static final String REASON_MERCHANT_OPI = "merchant_opi";	//å•†å®¶ï¼ˆå½±é™¢ï¼‰åœºæ¬¡(æ›´æ”¹æˆ–å–æ¶ˆ)é€€æ¬¾
+	public static final String REASON_PRICE = "price";					//ä»·æ ¼è°ƒæ•´
+	public static final String REASON_CANCELTICKET = "cancelTicket";	//å¯é€€ç¥¨åœºé¦†æ­£å¸¸é€€ç¥¨
+	public static final String REASON_BAOCHANG = "baochang_fail";	//åŒ…åœºå¤±è´¥é€€æ¬¾
 	
-	public static final int COUNT_MONTH_MEMBER = 3;			// ÓÃ»§ÔÂÍËÆ±´ÎÊı
-	public static final int COUNT_WEEK_MEMBER = 2;			// ÓÃ»§ÖÜÍËÆ±´ÎÊı
-	public static final int COUNT_MONTH_CINEMA = 400;		// Ó°ÔºÔÂÍËÆ±´ÎÊı
-	public static final int COUNT_DAY_CINEMA = 30;			// Ó°ÔºÈÕÍËÆ±´ÎÊı
+	public static final int COUNT_MONTH_MEMBER = 3;			// ç”¨æˆ·æœˆé€€ç¥¨æ¬¡æ•°
+	public static final int COUNT_WEEK_MEMBER = 2;			// ç”¨æˆ·å‘¨é€€ç¥¨æ¬¡æ•°
+	public static final int COUNT_MONTH_CINEMA = 400;		// å½±é™¢æœˆé€€ç¥¨æ¬¡æ•°
+	public static final int COUNT_DAY_CINEMA = 30;			// å½±é™¢æ—¥é€€ç¥¨æ¬¡æ•°
 	
-	//ÕË»§ÍË¿î Y£ºĞèÒª£¬N£º²»ĞèÒª£¬O£ºÎ´Öª, ²Î¼ûÃèÊö(Other)£¬S: ÒÑÌá½»ÕËÎñ(Submit) R£º²ÆÎñÒÑ¾­·µ»¹(Refund)£¬F£º²ÆÎñ·µ»¹³ö´í(Failure)
+	//è´¦æˆ·é€€æ¬¾ Yï¼šéœ€è¦ï¼ŒNï¼šä¸éœ€è¦ï¼ŒOï¼šæœªçŸ¥, å‚è§æè¿°(Other)ï¼ŒS: å·²æäº¤è´¦åŠ¡(Submit) Rï¼šè´¢åŠ¡å·²ç»è¿”è¿˜(Refund)ï¼ŒFï¼šè´¢åŠ¡è¿”è¿˜å‡ºé”™(Failure)
 	public static final String RETBACK_Y = "Y";
 	public static final String RETBACK_N = "N";
 	public static final String RETBACK_OTHER = "O";
@@ -65,37 +65,37 @@ public class RefundConstant {
 	public static final String RETBACK_REFUND = "R";
 	public static final String RETBACK_FAILURE = "F";
 	
-	//´¦ÀíÈË
+	//å¤„ç†äºº
 	public static final String REFUND_MANAGE_DEAL = "manageDeal";
 	public static final String REFUND_FINANCE_DEAL = "financeDeal";
 	public static final String REFUND_FINANCE_STATUS = "status";
 	public static final String REFUND_FINANCE_RESON = "reson";
 	
-	public static final String TR_NORMAL_REFUND = "Y_NORMAL_R";			//Õı³£ÍËÆ±²»½áËã
-	public static final String TR_MERCHANT_REFUND = "Y_MERCHANT_R";		//³¡¹İÒÑÍËÆ±²»½áËã
-	public static final String TR_MERCHANT_NO = "Y_MERCHANT_N";			//³¡¹İÎ´ÍËÆ±²»½áËã
-	public static final String TR_SETTLE_MERCHANT_NO = "S_MERCHANT_N";	//³¡¹İÎ´ÍËÆ±Ğè½áËã
-	public static final String TR_SETTLE_GEWA_REFUND = "S_GEWA_R";		//¸ñÍßÀ­µ¥·½ÍË¿î
+	public static final String TR_NORMAL_REFUND = "Y_NORMAL_R";			//æ­£å¸¸é€€ç¥¨ä¸ç»“ç®—
+	public static final String TR_MERCHANT_REFUND = "Y_MERCHANT_R";		//åœºé¦†å·²é€€ç¥¨ä¸ç»“ç®—
+	public static final String TR_MERCHANT_NO = "Y_MERCHANT_N";			//åœºé¦†æœªé€€ç¥¨ä¸ç»“ç®—
+	public static final String TR_SETTLE_MERCHANT_NO = "S_MERCHANT_N";	//åœºé¦†æœªé€€ç¥¨éœ€ç»“ç®—
+	public static final String TR_SETTLE_GEWA_REFUND = "S_GEWA_R";		//æ ¼ç“¦æ‹‰å•æ–¹é€€æ¬¾
 	
-	// ÍË¿î¶©µ¥À´Ô´
-	public static final String ORIGIN_USER ="USER";			// ÓÃ»§Ö÷¶¯ÉêÇë
-	public static final String ORIGIN_KF = "KF";			// ¿Í·şÉêÇë
+	// é€€æ¬¾è®¢å•æ¥æº
+	public static final String ORIGIN_USER ="USER";			// ç”¨æˆ·ä¸»åŠ¨ç”³è¯·
+	public static final String ORIGIN_KF = "KF";			// å®¢æœç”³è¯·
 	
-	// ¿Í»§¶ËÀàĞÍ
+	// å®¢æˆ·ç«¯ç±»å‹
 	public static final String CLIENTTYPE_PC = "pc";		// pc
 	public static final String CLIENTTYPE_WAP = "wap";		// wap
 	public static final String CLIENTTYPE_APP = "app";		// app
 	public static final String ClIENTTYPE_API = "api";      // api
 	
-	// Ö§³ÖAPIÍË¿îµÄÍø¹Ø´úÂë
-	public static final String REFUND_API_METHOD_ALISCANPAY ="aliScanPay";			     // Ö§¸¶±¦É¨ÂëÖ§¸¶
-	public static final String REFUND_API_METHOD_ALISMARTMOBILEPAY ="aliSmartMobilePay"; // Ö§¸¶±¦ÊÖ»ú¶Ë-°²È«Ö§¸¶
-	public static final String REFUND_API_METHOD_ALIWAPPAY ="aliwapPay";			     // Ö§¸¶±¦ÊÖ»ú¶Ë-WAPÖ§¸¶
-	public static final String REFUND_API_METHOD_DIRECTPAY ="directPay";			     // Ö§¸¶±¦PC¶Ë
+	// æ”¯æŒAPIé€€æ¬¾çš„ç½‘å…³ä»£ç 
+	public static final String REFUND_API_METHOD_ALISCANPAY ="aliScanPay";			     // æ”¯ä»˜å®æ‰«ç æ”¯ä»˜
+	public static final String REFUND_API_METHOD_ALISMARTMOBILEPAY ="aliSmartMobilePay"; // æ”¯ä»˜å®æ‰‹æœºç«¯-å®‰å…¨æ”¯ä»˜
+	public static final String REFUND_API_METHOD_ALIWAPPAY ="aliwapPay";			     // æ”¯ä»˜å®æ‰‹æœºç«¯-WAPæ”¯ä»˜
+	public static final String REFUND_API_METHOD_DIRECTPAY ="directPay";			     // æ”¯ä»˜å®PCç«¯
 
-	// Å©ĞĞÍË¿î±êÊ¶
-	public static final String ABC_OTHERINFO_AMOUNT ="amount";			     // ½ğ¶î
-	public static final String ABC_OTHERINFO_POINT ="point";			     // »ı·Ö
+	// å†œè¡Œé€€æ¬¾æ ‡è¯†
+	public static final String ABC_OTHERINFO_AMOUNT ="amount";			     // é‡‘é¢
+	public static final String ABC_OTHERINFO_POINT ="point";			     // ç§¯åˆ†
 	
 	public static final Map<String, String> textMap;
 	public static final Map<String, String> refundTypeMap;
@@ -106,57 +106,57 @@ public class RefundConstant {
 	public static final Map<String, String> refundApiPayMethodMap;
 	static{
 		Map<String, String> tmp = new HashMap<String, String>();
-		tmp.put(STATUS_APPLY, "ĞÂÉêÇë");
-		tmp.put(STATUS_REJECT, "²»½ÓÊÕÍË¿î");
-		tmp.put(STATUS_SUCCESS, "ÍË¿î³É¹¦");
+		tmp.put(STATUS_APPLY, "æ–°ç”³è¯·");
+		tmp.put(STATUS_REJECT, "ä¸æ¥æ”¶é€€æ¬¾");
+		tmp.put(STATUS_SUCCESS, "é€€æ¬¾æˆåŠŸ");
 		textMap = UnmodifiableMap.decorate(tmp);
 		
 		Map<String, String> tmpRefund = new HashMap<String, String>();
-		tmpRefund.put(REFUNDTYPE_FULL, "È«¶îÍË¿î");
-		tmpRefund.put(REFUNDTYPE_PART, "²¿·ÖÍË¿î");
-		tmpRefund.put(REFUNDTYPE_SUPPLEMENT, "µ÷¼ÛÍË¿î");
-		tmpRefund.put(REFUNDTYPE_GEWARA, "¸ñÍßÀ­ÍË¿î");
+		tmpRefund.put(REFUNDTYPE_FULL, "å…¨é¢é€€æ¬¾");
+		tmpRefund.put(REFUNDTYPE_PART, "éƒ¨åˆ†é€€æ¬¾");
+		tmpRefund.put(REFUNDTYPE_SUPPLEMENT, "è°ƒä»·é€€æ¬¾");
+		tmpRefund.put(REFUNDTYPE_GEWARA, "æ ¼ç“¦æ‹‰é€€æ¬¾");
 		refundTypeMap = UnmodifiableMap.decorate(tmpRefund);
 		
 		Map<String, String> tmpReason = new LinkedHashMap<String, String>();
-		tmpReason.put(REASON_CANCELTICKET, "¿ÉÍËÆ±³¡¹İÕı³£ÍËÆ±");
-		tmpReason.put(REASON_USER, "ÓÃ»§Ô­ÒòÒªÇóÍË¿î");
-		tmpReason.put(REASON_MERCHANT, "³¡¹İ·ÅÓ³ÖĞ¹ÊÕÏÍËÆ±");
-		tmpReason.put(REASON_MERCHANT_OPI, "³¡¹İÍ¨Öª³¡´Î¸ü¸Ä»òÈ¡Æ±ÍËÆ±");
-		tmpReason.put(REASON_PRICE, "³¡¹İÍ¨Öª¼Û¸ñµ÷Õû");
-		tmpReason.put(REASON_GEWA, "Gewa³¡´ÎÉèÖÃ´íÎó");
-		tmpReason.put(REASON_GEWA_SYS, "GewaÏµÍ³´íÎó");
-		tmpReason.put(REASON_BAOCHANG, "°ü³¡Ê§°ÜÍË¿î");
-		tmpReason.put(REASON_UNKNOWN, "ÆäËüÔ­Òò");
+		tmpReason.put(REASON_CANCELTICKET, "å¯é€€ç¥¨åœºé¦†æ­£å¸¸é€€ç¥¨");
+		tmpReason.put(REASON_USER, "ç”¨æˆ·åŸå› è¦æ±‚é€€æ¬¾");
+		tmpReason.put(REASON_MERCHANT, "åœºé¦†æ”¾æ˜ ä¸­æ•…éšœé€€ç¥¨");
+		tmpReason.put(REASON_MERCHANT_OPI, "åœºé¦†é€šçŸ¥åœºæ¬¡æ›´æ”¹æˆ–å–ç¥¨é€€ç¥¨");
+		tmpReason.put(REASON_PRICE, "åœºé¦†é€šçŸ¥ä»·æ ¼è°ƒæ•´");
+		tmpReason.put(REASON_GEWA, "Gewaåœºæ¬¡è®¾ç½®é”™è¯¯");
+		tmpReason.put(REASON_GEWA_SYS, "Gewaç³»ç»Ÿé”™è¯¯");
+		tmpReason.put(REASON_BAOCHANG, "åŒ…åœºå¤±è´¥é€€æ¬¾");
+		tmpReason.put(REASON_UNKNOWN, "å…¶å®ƒåŸå› ");
 		reasonTypeMap = UnmodifiableMap.decorate(tmpReason);
 		
 		Map<String, String> tmpSupplementMap = new LinkedHashMap<String, String>();
-		tmpSupplementMap.put(REASON_PRICE, "³¡¹İÍ¨Öª¼Û¸ñµ÷Õû");
-		tmpSupplementMap.put(REASON_GEWA, "Gewa³¡´ÎÉèÖÃ´íÎó");
+		tmpSupplementMap.put(REASON_PRICE, "åœºé¦†é€šçŸ¥ä»·æ ¼è°ƒæ•´");
+		tmpSupplementMap.put(REASON_GEWA, "Gewaåœºæ¬¡è®¾ç½®é”™è¯¯");
 		supplementReasonMap = UnmodifiableMap.decorate(tmpSupplementMap);
 		
 		Map<String, String> tmpRetack = new LinkedHashMap<String, String>();
-		tmpRetack.put(RETBACK_Y, "ĞèÒª");
-		tmpRetack.put(RETBACK_N, "²»ĞèÒª");
-		tmpRetack.put(RETBACK_OTHER, "²Î¼ûÃèÊö");
-		tmpRetack.put(RETBACK_SUBMIT, "ÒÑÌá½»²ÆÎñ");
-		tmpRetack.put(RETBACK_REFUND, "²ÆÎñ³É¹¦");
-		tmpRetack.put(RETBACK_FAILURE, "²ÆÎñÊ§°Ü");
+		tmpRetack.put(RETBACK_Y, "éœ€è¦");
+		tmpRetack.put(RETBACK_N, "ä¸éœ€è¦");
+		tmpRetack.put(RETBACK_OTHER, "å‚è§æè¿°");
+		tmpRetack.put(RETBACK_SUBMIT, "å·²æäº¤è´¢åŠ¡");
+		tmpRetack.put(RETBACK_REFUND, "è´¢åŠ¡æˆåŠŸ");
+		tmpRetack.put(RETBACK_FAILURE, "è´¢åŠ¡å¤±è´¥");
 		retbackMap = UnmodifiableMap.decorate(tmpRetack);
 		
 		Map<String, String> settleTmpMap = new LinkedHashMap<String, String>();
-		settleTmpMap.put(TR_NORMAL_REFUND, "Õı³£ÍËÆ±²»½áËã");
-		settleTmpMap.put(TR_MERCHANT_REFUND, "Ó°ÔºÒÑÍËÆ±²»½áËã");
-		settleTmpMap.put(TR_MERCHANT_NO, "Ó°ÔºÎ´ÍËÆ±²»½áËã");
-		settleTmpMap.put(TR_SETTLE_MERCHANT_NO, "Ó°ÔºÎ´ÍËÆ±Ğè½áËã");
-		settleTmpMap.put(TR_SETTLE_GEWA_REFUND, "¸ñÍßÀ­µ¥·½ÍËÆ±");
+		settleTmpMap.put(TR_NORMAL_REFUND, "æ­£å¸¸é€€ç¥¨ä¸ç»“ç®—");
+		settleTmpMap.put(TR_MERCHANT_REFUND, "å½±é™¢å·²é€€ç¥¨ä¸ç»“ç®—");
+		settleTmpMap.put(TR_MERCHANT_NO, "å½±é™¢æœªé€€ç¥¨ä¸ç»“ç®—");
+		settleTmpMap.put(TR_SETTLE_MERCHANT_NO, "å½±é™¢æœªé€€ç¥¨éœ€ç»“ç®—");
+		settleTmpMap.put(TR_SETTLE_GEWA_REFUND, "æ ¼ç“¦æ‹‰å•æ–¹é€€ç¥¨");
 		ticketRefundTextMap = UnmodifiableMap.decorate(settleTmpMap);
 		
 		Map<String, String> payMethodMap = new HashMap<String, String>();
-		payMethodMap.put(REFUND_API_METHOD_ALISCANPAY, "Ö§¸¶±¦É¨ÂëÖ§¸¶");
-		payMethodMap.put(REFUND_API_METHOD_ALISMARTMOBILEPAY, "Ö§¸¶±¦ÊÖ»ú¶Ë-°²È«Ö§¸¶");
-		payMethodMap.put(REFUND_API_METHOD_ALIWAPPAY, "Ö§¸¶±¦ÊÖ»ú¶Ë-WAPÖ§¸¶");
-		payMethodMap.put(REFUND_API_METHOD_DIRECTPAY, "Ö§¸¶±¦PC¶Ë");
+		payMethodMap.put(REFUND_API_METHOD_ALISCANPAY, "æ”¯ä»˜å®æ‰«ç æ”¯ä»˜");
+		payMethodMap.put(REFUND_API_METHOD_ALISMARTMOBILEPAY, "æ”¯ä»˜å®æ‰‹æœºç«¯-å®‰å…¨æ”¯ä»˜");
+		payMethodMap.put(REFUND_API_METHOD_ALIWAPPAY, "æ”¯ä»˜å®æ‰‹æœºç«¯-WAPæ”¯ä»˜");
+		payMethodMap.put(REFUND_API_METHOD_DIRECTPAY, "æ”¯ä»˜å®PCç«¯");
 		refundApiPayMethodMap = UnmodifiableMap.decorate(payMethodMap);
 	}
 }

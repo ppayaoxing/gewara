@@ -7,19 +7,19 @@ import com.gewara.api.vo.ResultCode;
 
 public interface AnswerCheckApiService {
 	/**
-	 * »ñÈ¡Ö÷ÌâĞÅÏ¢
+	 * è·å–ä¸»é¢˜ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
 	ResultCode<AnswerCheckVo> getAnswerCheckList(Long id);
 	/**
-	 * »ñÈ¡Ö÷ÌâÌâ¿âÊı
+	 * è·å–ä¸»é¢˜é¢˜åº“æ•°
 	 * @param id
 	 * @return
 	 */
 	ResultCode<Integer> getAnswerQuestionNum(Long id);
 	/**
-	 * »ñÈ¡Ìâ¿â
+	 * è·å–é¢˜åº“
 	 * @param relatedid
 	 * @param from
 	 * @param maxnum
@@ -27,14 +27,14 @@ public interface AnswerCheckApiService {
 	 */
 	ResultCode<AnswerQuestionVo> getAnswerQuestionList(Long relatedid,Integer from, Integer maxnum);
 	/**
-	 * »ñÈ¡ÓÃ»§´ğÌâÊı¾İ
+	 * è·å–ç”¨æˆ·ç­”é¢˜æ•°æ®
 	 * @param memberid
 	 * @param id
 	 * @return
 	 */
 	ResultCode<UserAnswerVo> getUserAnswer(Long memberid,Long id);
 	/**
-	 * ±£´æÓÃ»§´ğÌâĞÅÏ¢
+	 * ä¿å­˜ç”¨æˆ·ç­”é¢˜ä¿¡æ¯
 	 * @param memberid
 	 * @param id
 	 * @param Index
@@ -44,7 +44,7 @@ public interface AnswerCheckApiService {
 	 */
 	ResultCode saveUserAnswer(Long memberid,Long relatedid,Integer index,Integer num,String content,Integer total, boolean flag, Long id,Integer answer);
 	/**
-	 * ¸ù¾İid»ñÈ¡Ìâ¿âĞÅÏ¢
+	 * æ ¹æ®idè·å–é¢˜åº“ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */

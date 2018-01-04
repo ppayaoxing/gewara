@@ -9,7 +9,7 @@ import com.gewara.web.support.SecurityModule;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28下午02:05:17
+ * @since 2007-9-28涓嬪崍02:05:17
  */
 public class WebModule extends BaseObject implements SecurityModule{
 	public static final String TAG_GEWA = "G";
@@ -19,12 +19,12 @@ public class WebModule extends BaseObject implements SecurityModule{
 	
 	private Long id;
 	private String moduleurl;
-	private Integer matchorder; //在权限分配时的匹配顺序
+	private Integer matchorder; //鍦ㄦ潈闄愬垎閰嶆椂鐨勫尮閰嶉『搴�
 	private String menucode;
 	private String menutitle;
 	private String target;
-	private String display; //是否
-	private String tag;		//分类：gewa，partner
+	private String display; //鏄惁
+	private String tag;		//鍒嗙被锛歡ewa锛宲artner
 	private String rolenames;
 	
 	private boolean top;

@@ -8,21 +8,21 @@ import com.gewara.api.vo.BaseVo;
 
 public class ApplyVo extends BaseVo{
 	private static final long serialVersionUID = -5401784424476256109L;
-	private String id; //Ö÷¼ü memberid+"_"+activityId
-	private Long memberId; //ÓÃ»§id
-	private Long movieId; //µçÓ°id
-	private String activityId; //»î¶¯id
-	private String userName; //ĞÕÃû
-	private Integer age;	//ÄêÁä
-	private String constellation; //ĞÇ×ù
-	private String phone; //ÊÖ»úºÅ
-	private String reason; //ÀíÓÉ
-	private String gender;//ĞÔ±ğ
-	private String isOk;//ÉêÇëÊÇ·ñÍ¨¹ı£¬
-	private Timestamp addtime; //Ìí¼ÓÊ±¼ä
-	private Timestamp updatetime;//ĞŞ¸ÄÊ±¼ä
-	private String friendname;//±íÊ¾ÓÉÄÄÎ»ºÃÓÑÍÆ¼ö½øÀ´µÄ
-	private String isReturnPoint;//ÊÇ·ñ·µ»Ø»ı·Ö
+	private String id; //ä¸»é”® memberid+"_"+activityId
+	private Long memberId; //ç”¨æˆ·id
+	private Long movieId; //ç”µå½±id
+	private String activityId; //æ´»åŠ¨id
+	private String userName; //å§“å
+	private Integer age;	//å¹´é¾„
+	private String constellation; //æ˜Ÿåº§
+	private String phone; //æ‰‹æœºå·
+	private String reason; //ç†ç”±
+	private String gender;//æ€§åˆ«
+	private String isOk;//ç”³è¯·æ˜¯å¦é€šè¿‡ï¼Œ
+	private Timestamp addtime; //æ·»åŠ æ—¶é—´
+	private Timestamp updatetime;//ä¿®æ”¹æ—¶é—´
+	private String friendname;//è¡¨ç¤ºç”±å“ªä½å¥½å‹æ¨èè¿›æ¥çš„
+	private String isReturnPoint;//æ˜¯å¦è¿”å›ç§¯åˆ†
 	
 	public String getIsReturnPoint() {
 		return isReturnPoint;
@@ -40,7 +40,7 @@ public class ApplyVo extends BaseVo{
 		this.friendname = friendname;
 	}
 
-	// ²éÑ¯´ËÈËĞ´¹ıĞ´¸öÍÛÀ²£¬memberid movieid starttime endtime µãÓ³¿ªÊ¼Ê±¼ä ½áÊøÊ±¼ä£¬»î¶¯¿ªÊ¼Ê±¼ä£¬½áÊøÊ±¼ä£¬Ó°ÔºÉÏÓ³Ê±¼ä
+	// æŸ¥è¯¢æ­¤äººå†™è¿‡å†™ä¸ªå“‡å•¦ï¼Œmemberid movieid starttime endtime ç‚¹æ˜ å¼€å§‹æ—¶é—´ ç»“æŸæ—¶é—´ï¼Œæ´»åŠ¨å¼€å§‹æ—¶é—´ï¼Œç»“æŸæ—¶é—´ï¼Œå½±é™¢ä¸Šæ˜ æ—¶é—´
 	public ApplyVo(){}
 	
 	public String getReason() {

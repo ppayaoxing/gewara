@@ -80,7 +80,7 @@ public class ActivateComparator implements Comparator<Object> {
         }
         int n1 = a1 == null ? 0 : a1.order();
         int n2 = a2 == null ? 0 : a2.order();
-        return n1 > n2 ? 1 : -1; // ����n1 == n2Ҳ���ܷ���0��������HashSet�ȼ����У��ᱻ��Ϊ��ͬһֵ������
+        return n1 > n2 ? 1 : -1; // 锟斤拷锟斤拷n1 == n2也锟斤拷锟杰凤拷锟斤拷0锟斤拷锟斤拷锟斤拷锟斤拷HashSet锟饺硷拷锟斤拷锟叫ｏ拷锟结被锟斤拷为锟斤拷同一值锟斤拷锟斤拷锟斤拷
     }
 
 }

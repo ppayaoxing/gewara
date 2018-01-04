@@ -2,11 +2,11 @@ package com.gewara.support.magent;
 
 
 public abstract class AbstractCommandProcessor implements CommandProcessor{
-	protected String group;//分类
+	protected String group;//鍒嗙被
 	protected String name;
 	protected String help;
 	/**
-	 * 命令名称
+	 * 鍛戒护鍚嶇О
 	 * @return
 	 */
 	@Override
@@ -14,7 +14,7 @@ public abstract class AbstractCommandProcessor implements CommandProcessor{
 		return name;
 	}
 	/**
-	 * 帮助信息
+	 * 甯姪淇℃伅
 	 * @return
 	 */
 	@Override

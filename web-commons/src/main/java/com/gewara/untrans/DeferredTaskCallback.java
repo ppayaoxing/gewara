@@ -3,10 +3,10 @@ package com.gewara.untrans;
 import com.gewara.support.ErrorCode;
 
 /**
- * spring mvc Deferred»Øµ÷
+ * spring mvc Deferredå›è°ƒ
  * @author quzhuping
  *
- * @param <R> ºÍDeferredResultÉèÖÃÒ»ÖÂ
+ * @param <R> å’ŒDeferredResultè®¾ç½®ä¸€è‡´
  */
 public interface DeferredTaskCallback<R> {
 

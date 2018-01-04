@@ -8,14 +8,14 @@ import com.gewara.api.vo.BaseVo;
 public class ActivitySpecialVo extends BaseVo{
 
 	private static final long serialVersionUID = 4637206764118261534L;
-	private Long ztid;//专题ID
-	private String title;//专题标题
-	private String url;//专题链接
-	private String logo;//专题封面图片
-	private String support;//专题支持类型 pc/wap/all
-	private Timestamp addtime;//创建时间
-	private Timestamp starttime;//发布时间
-	private Integer orderNum;//排序序号
+	private Long ztid;//涓撻ID
+	private String title;//涓撻鏍囬
+	private String url;//涓撻閾炬帴
+	private String logo;//涓撻灏侀潰鍥剧墖
+	private String support;//涓撻鏀寔绫诲瀷 pc/wap/all
+	private Timestamp addtime;//鍒涘缓鏃堕棿
+	private Timestamp starttime;//鍙戝竷鏃堕棿
+	private Integer orderNum;//鎺掑簭搴忓彿
 	private String otherinfo;
 	
 	@Override

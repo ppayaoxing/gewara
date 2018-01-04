@@ -1,14 +1,14 @@
 package com.gewara.kafka.consumer;
 
 /**
- * kafka消费回调
+ * kafka娑堣垂鍥炶皟
  * @author quzhuping
  *
  */
 public interface KafkaConsumerCallback {
 	/**
-	 * 回调处理数据方法<br>
-	 * 需要实现异步逻辑处理
+	 * 鍥炶皟澶勭悊鏁版嵁鏂规硶<br>
+	 * 闇�瑕佸疄鐜板紓姝ラ�昏緫澶勭悊
 	 * @param topic
 	 * @param value
 	 */

@@ -56,9 +56,9 @@ public class MongoAdminServiceImpl implements MongoAdminService{
 		Map<String, Integer> result = new HashMap<String, Integer>();
 		for (Map map : queryResult) {
 			String ns = String.valueOf(map.get("ns"));
-			ns = StringUtils.substring(ns, StringUtils.indexOf(ns, '.')+1);//��ȡdbname
+			ns = StringUtils.substring(ns, StringUtils.indexOf(ns, '.')+1);//锟斤拷取dbname
 			if (map.get("nreturned")==null || map.get("keysExamined")==null && map.get("docsExamined")==null) {
-				return result; //������resultHelper(result, ns);
+				return result; //锟斤拷锟斤拷锟斤拷resultHelper(result, ns);
 			} else{
 				int nreturned = map.get("nreturned")==null?0:Integer.parseInt(""+map.get("nreturned"));
 				int keysExamined =  map.get("keysExamined")==null?0:Integer.parseInt(""+map.get("keysExamined"));//index entries scanned 
@@ -69,7 +69,7 @@ public class MongoAdminServiceImpl implements MongoAdminService{
 					nreturned +=1;
 					keysExamined +=1;
 					boolean multi = keysExamined/nreturned > multiple;
-					if(multi){//�ж��Ƿ���ȫ��ɨ
+					if(multi){//锟叫讹拷锟角凤拷锟斤拷全锟斤拷扫
 						MaintainInfo mi = getMaintainInfoByName(ns);
 						if(mi==null || mi.getRowcount()==null || mi.getRowcount()/keysExamined < 4){
 							resultHelper(result, ns);

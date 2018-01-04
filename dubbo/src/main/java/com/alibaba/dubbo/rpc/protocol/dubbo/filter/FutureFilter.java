@@ -50,7 +50,7 @@ public class FutureFilter implements Filter {
     	final boolean isAsync = RpcUtils.isAsync(invoker.getUrl(), invocation);
         
     	fireInvokeCallback(invoker, invocation);
-        //��Ҫ�ڵ���ǰ���ú��Ƿ��з���ֵ���ѹ�invoker�ж��Ƿ���Ҫ����future.
+        //锟斤拷要锟节碉拷锟斤拷前锟斤拷锟矫猴拷锟角凤拷锟叫凤拷锟斤拷值锟斤拷锟窖癸拷invoker锟叫讹拷锟角凤拷锟斤拷要锟斤拷锟斤拷future.
         Result result = invoker.invoke(invocation);
         if (isAsync) {
             asyncCallback(invoker, invocation);
@@ -168,7 +168,7 @@ public class FutureFilter implements Filter {
         final Method onthrowMethod = (Method)StaticContext.getSystemContext().get(StaticContext.getKey(invoker.getUrl(), invocation.getMethodName(), Constants.ON_THROW_METHOD_KEY));
         final Object onthrowInst = StaticContext.getSystemContext().get(StaticContext.getKey(invoker.getUrl(), invocation.getMethodName(), Constants.ON_THROW_INSTANCE_KEY));
 
-        //û������onthrow callback.
+        //没锟斤拷锟斤拷锟斤拷onthrow callback.
         if (onthrowMethod == null  &&  onthrowInst == null ){
             return ;
         }

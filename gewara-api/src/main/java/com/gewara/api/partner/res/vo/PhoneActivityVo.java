@@ -23,7 +23,7 @@ public class PhoneActivityVo extends BaseVo{
 	private String citycode;
 	private String status;
 	private String contentLogo;
-	private Integer rank;//ÅÅĞò
+	private Integer rank;//æ’åº
 	
 	@Override
 	public Serializable realId() {

@@ -5,7 +5,7 @@ import java.util.List;
 public class BaoChangCinemaRoomInfoVo extends BaoChangBasePriceInfoVo {
 	private static final long serialVersionUID = 6153941174564232485L;
 	
-	private String roomName;//Ó°ÌüÃû³Æ
+	private String roomName;//å½±å…åç§°
 	private String remark;
 	private List<BaoChangTimeInfoVo> timeInfoList;
 	

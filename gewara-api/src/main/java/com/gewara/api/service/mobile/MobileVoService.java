@@ -10,7 +10,7 @@ public interface MobileVoService {
 	ResultCode<List<CommendActivityVo>> getCommendActivityList(int from, int maxnum);
 	
 	/**
-	 * pc wap ºì°üµ÷ÓÃ
+	 * pc wap çº¢åŒ…è°ƒç”¨
 	 */
 	
 	ResultCode<Map<String, String>> hasRedEnvelope(Long movieid,Long memberid);

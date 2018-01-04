@@ -8,24 +8,24 @@ import com.gewara.util.JsonUtils;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public class CinemaVo extends BaseInfoVo {
 	private static final long serialVersionUID = 5226491557222831911L;
-	private static final double R = 6371229;              //µØÇòµÄ°ë¾¶ Ã×
+	private static final double R = 6371229;              //åœ°çƒçš„åŠå¾„ ç±³
 	public static final String BOOKING_OPEN = "open";
 	public static final String BOOKING_CLOSE = "close";
 
 	private String flag;
 	private String booking;
 	private String popcorn;
-	private String contactTelephone;//¸ñÊ½json [{"areaCode":"021","phone":"1234567","phoneRemark":"Ôº³¤°ì¹«ÊÒ"}{"areaCode":"021","phone":"1234567","phoneRemark":"Ôº³¤°ì¹«ÊÒ"}]
+	private String contactTelephone;//æ ¼å¼json [{"areaCode":"021","phone":"1234567","phoneRemark":"é™¢é•¿åŠå…¬å®¤"}{"areaCode":"021","phone":"1234567","phoneRemark":"é™¢é•¿åŠå…¬å®¤"}]
 	private String mobilePhone;
 	private String englishaddress;
 	private String manageCompany;
-	private String showGawara;		//Y:ÏÔÊ¾  N:²»ÏÔÊ¾
-	private String pcid;			//Ó°Ôº8Î»±àÂë
-	private String generalmarksort;//Ó°ÔºÆÀ·ÖµÄÅÅĞò×Ö¶Î
+	private String showGawara;		//Y:æ˜¾ç¤º  N:ä¸æ˜¾ç¤º
+	private String pcid;			//å½±é™¢8ä½ç¼–ç 
+	private String generalmarksort;//å½±é™¢è¯„åˆ†çš„æ’åºå­—æ®µ
 	
 	public String getGeneralmarksort() {
 		return generalmarksort;
@@ -34,8 +34,8 @@ public class CinemaVo extends BaseInfoVo {
 		this.generalmarksort = generalmarksort;
 	}
 	/**
-	 * µØÌú½»Í¨ÃèÊö{µØÌúÕ¾id:[{"ÏêÏ¸ÃèÊö":"ÓÒ×ª50Ã×","³ö¿Ú":"2ºÅ¿Ú","ÏßÂ·","1,2,8ºÅÏß"}]}
-	 * ÀıÈç£º {"170170":[{"detail":"s","exitnumber":"5","lines":"9"}],"7702811":[{"detail":"123","exitnumber":"2","lines":"1"},{"detail":"43","exitnumber":"3","lines":"2"}]}
+	 * åœ°é“äº¤é€šæè¿°{åœ°é“ç«™id:[{"è¯¦ç»†æè¿°":"å³è½¬50ç±³","å‡ºå£":"2å·å£","çº¿è·¯","1,2,8å·çº¿"}]}
+	 * ä¾‹å¦‚ï¼š {"170170":[{"detail":"s","exitnumber":"5","lines":"9"}],"7702811":[{"detail":"123","exitnumber":"2","lines":"1"},{"detail":"43","exitnumber":"3","lines":"2"}]}
 	 */
 	private String subwayTransport; 
 	
@@ -107,7 +107,7 @@ public class CinemaVo extends BaseInfoVo {
 			x=(x2-x1)* Math.PI*R*Math.cos( ((y1+y2)/2) * Math.PI/180)/180;
 			y=(y2-y1)*Math.PI*R/180;
 			distance=Math.hypot(x,y)/1000;
-			return Math.round(distance)+"¹«Àï";
+			return Math.round(distance)+"å…¬é‡Œ";
 		}catch(Exception e){
 			return "";
 		}

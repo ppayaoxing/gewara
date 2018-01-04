@@ -11,16 +11,16 @@ public class MachineAdVo extends BaseVo {
 	
 	private static final long serialVersionUID = 8091397268335515143L;
 	private Long id;			
-	private String placeid;		//³¡¹İid
-	private String adversion;	//°æ±¾
-	private String zipurl;		//Ñ¹Ëõ°üµØÖ·
-	private String remark;		//ÃèÊö
+	private String placeid;		//åœºé¦†id
+	private String adversion;	//ç‰ˆæœ¬
+	private String zipurl;		//å‹ç¼©åŒ…åœ°å€
+	private String remark;		//æè¿°
 	private Timestamp addtime;
-	private Timestamp startTime; //¹ã¸æÓĞĞ§¿ªÊ¼Ê±¼ä
-	private Timestamp endTime; //¹ã¸æÓĞĞ§½áÊøÊ±¼ä
-	private String type;//³¡¹İÀàĞÍ
-	private String nickName;//Ìí¼ÓÈËid
-	private String filetype;	// ±ÚÖ½orÆÁ±£
+	private Timestamp startTime; //å¹¿å‘Šæœ‰æ•ˆå¼€å§‹æ—¶é—´
+	private Timestamp endTime; //å¹¿å‘Šæœ‰æ•ˆç»“æŸæ—¶é—´
+	private String type;//åœºé¦†ç±»å‹
+	private String nickName;//æ·»åŠ äººid
+	private String filetype;	// å£çº¸orå±ä¿
 	@Override
 	public Serializable realId() {
 		return id;

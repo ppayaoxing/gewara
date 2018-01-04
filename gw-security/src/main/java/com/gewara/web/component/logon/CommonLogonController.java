@@ -53,7 +53,7 @@ public class CommonLogonController implements ApplicationContextAware {
 		if (auth == null) {
             return null;
         }
-		if (auth.isAuthenticated() && !"anonymous".equals(auth.getName())) {// 登录
+		if (auth.isAuthenticated() && !"anonymous".equals(auth.getName())) {// 鐧诲綍
 			GewaraUser user = (GewaraUser) auth.getPrincipal();
 			// refresh(user);
 			if (user instanceof User) {
@@ -133,11 +133,11 @@ public class CommonLogonController implements ApplicationContextAware {
 		((DBFilterInvocationSecurityMetadataSource) securityMetadataSource).init();
 		MenuRepository repository = new MenuRepository(aclService.getMenuList(WebModule.TAG_GEWA));
 		applicationContext.getServletContext().setAttribute(MenuRepository.GEWA_MENU_REPOSITORY_KEY, repository);
-		return forwardMessage(model, "重新载入菜单权限成功！");
+		return forwardMessage(model, "閲嶆柊杞藉叆鑿滃崟鏉冮檺鎴愬姛锛�");
 	}
 
 	/**
-	 * 注销本应用的cookie
+	 * 娉ㄩ攢鏈簲鐢ㄧ殑cookie
 	 * 
 	 * @param request
 	 * @return
@@ -149,11 +149,11 @@ public class CommonLogonController implements ApplicationContextAware {
 			loginService.removeInvalidSessid(ukey);
 		}
 		LoginUtils.removeLogonUkey(response);
-		return forwardMessage(model, "清除用户缓存成功！");
+		return forwardMessage(model, "娓呴櫎鐢ㄦ埛缂撳瓨鎴愬姛锛�");
 	}
 
 	/**
-	 * 注销本应用的cookie
+	 * 娉ㄩ攢鏈簲鐢ㄧ殑cookie
 	 * 
 	 * @param request
 	 * @return

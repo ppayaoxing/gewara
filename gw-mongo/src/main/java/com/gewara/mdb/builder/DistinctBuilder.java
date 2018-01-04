@@ -7,9 +7,9 @@ import com.gewara.mdb.operation.Expression;
 import com.mongodb.client.model.Filters;
 
 /**
- * ��ȡĳһ���ֶβ��ظ���ֵ��
- * @author ����
- * @createDate 2015��8��10��
+ * 锟斤拷取某一锟斤拷锟街段诧拷锟截革拷锟斤拷值锟斤拷
+ * @author 锟斤拷锟斤拷
+ * @createDate 2015锟斤拷8锟斤拷10锟斤拷
  * @see AggregationBuilder
  */
 public class DistinctBuilder {
@@ -23,7 +23,7 @@ public class DistinctBuilder {
 	}
 	
 	/**
-	 * ������������������Ḳ����֮ǰ�����õ�������
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷岣诧拷锟斤拷锟街帮拷锟斤拷锟斤拷玫锟斤拷锟斤拷锟斤拷锟�
 	 * @param condition
 	 * @return
 	 */
@@ -33,7 +33,7 @@ public class DistinctBuilder {
 	}
 	
 	/**
-	 * ����ָ��ID���ĵ��ġ��ò��������û�ʹCondition���õ�����ʧЧ��
+	 * 锟斤拷锟斤拷指锟斤拷ID锟斤拷锟侥碉拷锟侥★拷锟矫诧拷锟斤拷锟斤拷锟斤拷锟矫伙拷使Condition锟斤拷锟矫碉拷锟斤拷锟斤拷失效锟斤拷
 	 * @param ids
 	 * @return
 	 */

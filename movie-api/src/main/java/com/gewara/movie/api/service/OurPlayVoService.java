@@ -18,7 +18,7 @@ import com.gewara.movie.vo.json.ourplay.PlayMovieGradeVo;
 
 public interface OurPlayVoService {
 	/**
-	 * ÎªÉ¾³ı×´Ì¬µÄPlayKindÌõÊı
+	 * ä¸ºåˆ é™¤çŠ¶æ€çš„PlayKindæ¡æ•°
 	 * @return
 	 */
 	ResultCode<Integer> getPlayKindVoCount();
@@ -30,7 +30,7 @@ public interface OurPlayVoService {
 	ResultCode<Integer> getPlayKindVoCountByIsRecommend(String isRecommend);
 	ResultCode<Integer> getPlayMovieVoCountByKindIdMovieId(Long kindId,Long movieId);
 	/**
-	 * ·µ»ØÎ´É¾³ı×´Ì¬µÄPlayKindVoÊı¾İ
+	 * è¿”å›æœªåˆ é™¤çŠ¶æ€çš„PlayKindVoæ•°æ®
 	 * @param fromIndex
 	 * @param toIndex
 	 * @return
@@ -78,33 +78,33 @@ public interface OurPlayVoService {
 	ResultCode<PlayMovieGradeVo> getPlayMovieGradeVoByMovieid(Long movieid);
 	ResultCode<Boolean> isOurPlayApply(Long memberId,Long movieId);
 	ResultCode<Boolean> isOurPlayMovie(Long movieId);
-	ResultCode<Boolean> isOurPlayMovie2(Long movieId);//´øÓ°Õ¹µÄÅĞ¶Ï
+	ResultCode<Boolean> isOurPlayMovie2(Long movieId);//å¸¦å½±å±•çš„åˆ¤æ–­
 	/** 
-	 * ĞÂ·ÅÓ³ÖĞÍ¬²½Î´°ó¶¨µÄÕËºÅºÍºì°ü
-	 * @author ÅíµÏ
-	 * @param activityId ÊÔÆ¬»î¶¯µÄid
-	 * @param playMovieId ÊÔÆ¬»î¶¯µÄµçÓ°
-	 * @return SUCCESS±íÊ¾³É¹¦ 
+	 * æ–°æ”¾æ˜ ä¸­åŒæ­¥æœªç»‘å®šçš„è´¦å·å’Œçº¢åŒ…
+	 * @author å½­è¿ª
+	 * @param activityId è¯•ç‰‡æ´»åŠ¨çš„id
+	 * @param playMovieId è¯•ç‰‡æ´»åŠ¨çš„ç”µå½±
+	 * @return SUCCESSè¡¨ç¤ºæˆåŠŸ 
 	 */
 	ResultCode<String> setMemberidByPlayActivity(String activityId,Long playMovieId);
 	/**
-	 * ÊÇ·ñÓĞºì°ü
+	 * æ˜¯å¦æœ‰çº¢åŒ…
 	 */
 	ResultCode<String> hasRedEnvelope(String movieid,Long memberid);
 	ResultCode<ApplyVo> setIsReturnPoint(RequestParamVo createRequestParamVo);
 	
-	//ĞÂ·ÅÓ³ĞÂÔö°æ±¾
+	//æ–°æ”¾æ˜ æ–°å¢ç‰ˆæœ¬
 	ResultCode<List<PlayMovieVo>> getPlayMovieVoListByCityCode(String cityCode, Integer fromIndex, Integer maxnum);
 	ResultCode<List<PlayMovieVo>> getPlayMovieVoListForPage(String cityCode, Integer fromIndex, Integer maxnum);
 	ResultCode<Integer> getApplyCount(Long movieid,String tag);	
-	ResultCode<List<NiuRenVo>> getNiuRenVoList(Long movieid);//°´ÕÕµçÓ°id²éÕÒÅ£ÈË	
-	ResultCode<List<NiuRenVo>> getNiuRenVoList(String activityId);//°´ÕÕ»î¶¯²éÕÒÅ£ÈË	
-	ResultCode<Map<Long,Integer>> getNiuRenVoCountMap(List<Long>memberids);//°´ÕÕ»î¶¯²éÕÒÅ£ÈË	
-	ResultCode<Map<Long,Long>> getWalaIdMap(Long movieid,List<Long>memberids);//²éÕÒÊÔÆ¬Ô±Ğ´µÄÍÛÀ²
+	ResultCode<List<NiuRenVo>> getNiuRenVoList(Long movieid);//æŒ‰ç…§ç”µå½±idæŸ¥æ‰¾ç‰›äºº	
+	ResultCode<List<NiuRenVo>> getNiuRenVoList(String activityId);//æŒ‰ç…§æ´»åŠ¨æŸ¥æ‰¾ç‰›äºº	
+	ResultCode<Map<Long,Integer>> getNiuRenVoCountMap(List<Long>memberids);//æŒ‰ç…§æ´»åŠ¨æŸ¥æ‰¾ç‰›äºº	
+	ResultCode<Map<Long,Long>> getWalaIdMap(Long movieid,List<Long>memberids);//æŸ¥æ‰¾è¯•ç‰‡å‘˜å†™çš„å“‡å•¦
 	ResultCode<Boolean>saveNiuRen(NiuRenVo vo);	
 	ResultCode<Integer> getWalaByPlayMovie(Long movieid,Long	 playMovieId);
-	ResultCode<Map<String,Integer>>getNiuRenByCity(Long movieid);//°´³ÇÊĞ²éÑ¯Å£ÈË·Ö²¼	
-	ResultCode<Map<Long,Integer>> getNiuRenRanking(List<Long>memberids);//²éÕÒÅ£ÈËÅÅÃû
+	ResultCode<Map<String,Integer>>getNiuRenByCity(Long movieid);//æŒ‰åŸå¸‚æŸ¥è¯¢ç‰›äººåˆ†å¸ƒ	
+	ResultCode<Map<Long,Integer>> getNiuRenRanking(List<Long>memberids);//æŸ¥æ‰¾ç‰›äººæ’å
 	ResultCode<List<ApplyVo>> getApplyVoList(Long movieid);
 	ResultCode<Map<Long,String>>getJoinTime(List<Long>memberids);
 	ResultCode<Map<Long,Integer>>getWalaCountByMemberids(List<Long>memberids);
@@ -112,7 +112,7 @@ public interface OurPlayVoService {
 	ResultCode<Boolean>updateNiuRenRanking(Long movieid,Long memberid,Integer ranking);	
 
 	
-	//Å£ÈË
+	//ç‰›äºº
 	ResultCode<List<NiuRenVo>> getAllNiuRenList();
 	ResultCode<List<NiuRenVo>> getNiuRenListByMovieId(Long movieId, Integer from, Integer maxNum);
 	

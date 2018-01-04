@@ -1,7 +1,7 @@
 package com.gewara.api.partner.req.vo;
 
 /**
- * ·ÖÒ³ÓÃ
+ * åˆ†é¡µç”¨
  */
 public class PartnerPageReqVo extends PartnerBaseReqVo {
 

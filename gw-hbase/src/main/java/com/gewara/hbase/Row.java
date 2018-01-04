@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.commons.codec.binary.Hex;
 /**
- * ÃèÊöÊı¾İµÄÒ»ĞĞ
+ * æè¿°æ•°æ®çš„ä¸€è¡Œ
  *
  */
 public class Row {

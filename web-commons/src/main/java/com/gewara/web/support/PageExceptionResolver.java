@@ -44,7 +44,7 @@ public class PageExceptionResolver extends SimpleMappingExceptionResolver implem
 		result.put("reqHeader", BaseWebUtils.getHeaderStr(request));
 		result.put("reqUri", uri);
 		if(monitorService!=null){
-			//±£´æ´íÎóĞÅÏ¢µ½hbaseÖĞ.
+			//ä¿å­˜é”™è¯¯ä¿¡æ¯åˆ°hbaseä¸­.
 			String excTrace = monitorService.logException(MonitorService.EXCEPTION_TAG.PAGE, uri, title, ex, result);
 			dbLogger.error(result+excTrace);
 		}else{

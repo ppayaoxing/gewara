@@ -28,7 +28,7 @@ import com.alibaba.dubbo.common.threadpool.support.AbortPolicyWithReport;
 import com.alibaba.dubbo.common.utils.NamedThreadFactory;
 
 /**
- * ���̳߳�����ʱ�������̶���С���߳����������κ���������Դ�ڣ�<code>Executors.newFixedThreadPool()</code>
+ * 锟斤拷锟竭程筹拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷锟教讹拷锟斤拷小锟斤拷锟竭筹拷锟斤拷锟斤拷锟斤拷锟斤拷锟轿猴拷锟斤拷锟斤拷锟斤拷锟斤拷源锟节ｏ拷<code>Executors.newFixedThreadPool()</code>
  * 
  * @see java.util.concurrent.Executors#newFixedThreadPool(int)
  * @author william.liangf

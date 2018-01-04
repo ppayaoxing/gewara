@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import com.gewara.api.vo.BaseVo;
 
 /**
- * ÍÆ¼öµÄÅú´ÎĞÅÏ¢
+ * æ¨èçš„æ‰¹æ¬¡ä¿¡æ¯
  * @author zxl
  *
  */
@@ -14,14 +14,14 @@ public class RecommendBatchVo extends BaseVo {
 
 	private static final long serialVersionUID = 8336932693361209138L;
 
-	private Long id; // Ö÷¼ü
-	private String type;// ÀàĞÍ square,friends
-	private String status; // Y_NEW¡¢N_DELETE
-	private String condition;// ÍÆËÍÌõ¼ş
-	private String remark;// ÍÆËÍËµÃ÷
-	private Long memberid; // Ìí¼Ó±êÇ©ÓÃ»§
+	private Long id; // ä¸»é”®
+	private String type;// ç±»å‹ square,friends
+	private String status; // Y_NEWã€N_DELETE
+	private String condition;// æ¨é€æ¡ä»¶
+	private String remark;// æ¨é€è¯´æ˜
+	private Long memberid; // æ·»åŠ æ ‡ç­¾ç”¨æˆ·
 	private String nickname;
-	private Timestamp addtime; // ´´½¨±êÇ©Ê±¼ä
+	private Timestamp addtime; // åˆ›å»ºæ ‡ç­¾æ—¶é—´
 
 	public RecommendBatchVo() {
 	}

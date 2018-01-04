@@ -9,7 +9,7 @@ import com.gewara.movie.vo.baochang.BaoChangOrderInfoVo;
 
 public interface BaoChangAdminVoService {
 	/**
-	 * ±£´æ°ü³¡ĞÅÏ¢
+	 * ä¿å­˜åŒ…åœºä¿¡æ¯
 	 * @param cinemaid
 	 * @param roomid
 	 * @param params
@@ -18,20 +18,20 @@ public interface BaoChangAdminVoService {
 	ResultCode saveOrUpdateBaoChangCinemaInfo(Long cinemaid, Long roomid, 
 			Map<String, String> cinemaRoomParams, List<Map<String, String>> baoChangTimeList);
 	/**
-	 * É¾³ı°ü³¡Ó°ÌüĞÅÏ¢
+	 * åˆ é™¤åŒ…åœºå½±å…ä¿¡æ¯
 	 * @param cinemaid
 	 * @param roomid
 	 * @return
 	 */
 	ResultCode deleteBaoChangCinemaRoom(Long cinemaid, Long roomid);
 	/**
-	 * É¾³ı°ü³¡Ó°ÔºĞÅÏ¢
+	 * åˆ é™¤åŒ…åœºå½±é™¢ä¿¡æ¯
 	 * @param cinemaid
 	 * @return
 	 */
 	ResultCode<List<Long>> deleteBaoChangCinema(Long cinemaid);
 	/**
-	 * ±£´æ°ü³¡³¡´ÎIDºÍ×´Ì¬
+	 * ä¿å­˜åŒ…åœºåœºæ¬¡IDå’ŒçŠ¶æ€
 	 * @param id
 	 * @param mpid
 	 * @param status
@@ -39,33 +39,33 @@ public interface BaoChangAdminVoService {
 	 */
 	ResultCode<BaoChangOrderInfoVo> saveMpidToBaoChangOrder(Long id, Long mpid, String status, String remark, Integer successPrice);
 	/**
-	 * ±£´æ°ü³¡¶ÌĞÅÄ£°æ
+	 * ä¿å­˜åŒ…åœºçŸ­ä¿¡æ¨¡ç‰ˆ
 	 * @param tag
 	 * @param content
 	 * @return
 	 */
 	ResultCode saveBaoChangMsgContent(String mobileType, String tag, String content);
 	/**
-	 * Ë¢ĞÂ°ü³¡ĞÅÏ¢»º´æ
+	 * åˆ·æ–°åŒ…åœºä¿¡æ¯ç¼“å­˜
 	 * @param cinemaid
 	 * @return
 	 */
 	ResultCode refreshBaoChangInfoCacheByCinemaid(Long cinemaid);
 	/**
-	 * Ë¢ĞÂ°ü³¡ĞÅÏ¢»º´æ
+	 * åˆ·æ–°åŒ…åœºä¿¡æ¯ç¼“å­˜
 	 * @param cinemaid
 	 * @param roomid
 	 * @return
 	 */
 	ResultCode refreshBaoChangInfoCacheByCinemaidAndRoomid(Long cinemaid, Long roomid);
 	/**
-	 * ±£´æ°ü³¡³¡´ÎĞÅÏ¢
+	 * ä¿å­˜åŒ…åœºåœºæ¬¡ä¿¡æ¯
 	 * @param mpid
 	 * @return
 	 */
 	ResultCode saveOrUpdateBaoChangMpiInfo(Long mpid);
 	/**
-	 * É¾³ı°ü³¡³¡´ÎĞÅÏ¢
+	 * åˆ é™¤åŒ…åœºåœºæ¬¡ä¿¡æ¯
 	 * @param cinemaid
 	 * @param mpid
 	 * @return

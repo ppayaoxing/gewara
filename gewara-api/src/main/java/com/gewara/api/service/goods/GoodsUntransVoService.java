@@ -7,14 +7,14 @@ import com.gewara.api.vo.goods.GoodsStockDataVo;
 
 public interface GoodsUntransVoService {
 	/**
-	 * 根据项目类型与物品类型查询项目ID集合
+	 * 鏍规嵁椤圭洰绫诲瀷涓庣墿鍝佺被鍨嬫煡璇㈤」鐩甀D闆嗗悎
 	 * @param itemtype
 	 * @param smalltype
 	 * @return
 	 */
 	ResultCode<List<Long>> getItemIdListByItemtype(String itemtype, String smalltype);
 	/**
-	 * 根据物品ID获得物品库存信息
+	 * 鏍规嵁鐗╁搧ID鑾峰緱鐗╁搧搴撳瓨淇℃伅
 	 * @param goodsId
 	 * @return
 	 */

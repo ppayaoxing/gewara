@@ -58,10 +58,10 @@ public class GewaWebApplicationContext extends XmlWebApplicationContext{
 		public void run() {
 			String url = event.getRequestUrl();
 			Map<String, Integer> info = ResourceStatsUtil.clearUriIfMaxClick(200);
-			if(info!=null){//�����ڴ�������
+			if(info!=null){//锟斤拷锟斤拷锟节达拷锟斤拷锟斤拷锟斤拷
 				init();
 				if(monitorService != null){
-					monitorService.logException(EXCEPTION_TAG.PAGE, "GewaDispatcherServlet.noHandlerFound", "�����ڵ�Acition", null, BeanUtil.toSimpleStringMap(info));
+					monitorService.logException(EXCEPTION_TAG.PAGE, "GewaDispatcherServlet.noHandlerFound", "锟斤拷锟斤拷锟节碉拷Acition", null, BeanUtil.toSimpleStringMap(info));
 				}
 			}
 			if(!event.wasFailure()){

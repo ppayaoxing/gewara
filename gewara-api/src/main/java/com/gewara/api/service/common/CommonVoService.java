@@ -11,26 +11,26 @@ public interface CommonVoService {
 	ResultCode<List<GewaCityVo>> getAllGewaCityList();
 
 	/**
-	 * »ñÈ¡ÇøÓòĞÅÏ¢
+	 * è·å–åŒºåŸŸä¿¡æ¯
 	 * @param citycode
 	 * @return
 	 */
 	ResultCode<List<CountyVo>> getCountyListByCitycode(String citycode);
 	/**
-	 * µÃµ½·Ç·¨¹Ø¼ü×Ö
+	 * å¾—åˆ°éæ³•å…³é”®å­—
 	 * @param content
 	 * @return
 	 */
 	ResultCode<String> filterContentKey(String content);
 	
 	/**
-	 * ¸ù¾İid»ñÈ¡ÇĞÍ¼Ä£°å
+	 * æ ¹æ®idè·å–åˆ‡å›¾æ¨¡æ¿
 	 * @param id
 	 * @return
 	 */
 	ResultCode<Map> getDataById(String id);
 	/**
-	 * ¸ù¾İid»ñÈ¡·­ÆÁÄ£°å
+	 * æ ¹æ®idè·å–ç¿»å±æ¨¡æ¿
 	 * @param id
 	 * @return
 	 */

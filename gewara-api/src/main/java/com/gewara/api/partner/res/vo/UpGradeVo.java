@@ -12,14 +12,14 @@ public class UpGradeVo extends BaseVo{
 	private Integer versionCode;
 	private String versionName;
 	private String upgradeUrl;
-	private Integer upgradeStatus;	//1£¬´ú±íÉı¼¶£¬0£¬²»Éı¼¶
+	private Integer upgradeStatus;	//1ï¼Œä»£è¡¨å‡çº§ï¼Œ0ï¼Œä¸å‡çº§
 	private Date addTime;
 	private String apptype;
 	private String appsource;
-	private String foceversion;		//Ç¿ÖÆÉı¼¶°æ±¾ºÅ
-	private String specificversion;	//ÌØÊâ°æ±¾ºÅ
+	private String foceversion;		//å¼ºåˆ¶å‡çº§ç‰ˆæœ¬å·
+	private String specificversion;	//ç‰¹æ®Šç‰ˆæœ¬å·
 	private String remark;
-	private String downloadName;//ÏÂÔØÎÄ¼şÃû
+	private String downloadName;//ä¸‹è½½æ–‡ä»¶å
 	private Long modifytime;
 	private String osVersion;
 	@Override
