@@ -5,10 +5,10 @@ package org.elasticsearch.plugin.nlpcn.executors;
  */
 public class ActionRequestRestExecuterFactory {
     public static RestExecutor createExecutor(String format) {
-        if(format == null || format.equals("")){
+        if(format == null || "".equals(format)){
             return new ElasticDefaultRestExecutor();
         }
-        if(format.equalsIgnoreCase("csv")){
+        if("csv".equalsIgnoreCase(format)){
             return new CSVResultRestExecutor();
         }
         return null;

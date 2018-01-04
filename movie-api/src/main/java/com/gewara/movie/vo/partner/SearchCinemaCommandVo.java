@@ -13,24 +13,24 @@ public class SearchCinemaCommandVo implements Serializable  {
 	private String park;
 	private String playground;
 	private String visacard;
-	private String pairseat;		//ÇéÂÂ×ù
-	private String coupon;			//ÓÅ»ÝÈ¯
+	private String pairseat;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String coupon;			//ï¿½Å»ï¿½È¯
 	private String booking;
 	public Long stationid;
-	public String popcorn;			//±¬Ã×»¨
+	public String popcorn;			//ï¿½ï¿½ï¿½×»ï¿½
 	public int pageNo=0;
 	public int rowsPerpage=10;
 	private String imax;
 	private String child;
-	private String cinemaids;		//ÎÒ³£È¥IDs
-	private String acthas;			//ÊÇ·ñÓÐ»î¶¯
-	private String refund;			//ÊÇ·ñ¿ÉÍËÆ±
-	private String characteristic;//ÌØÐ§Ìü
-	private String hotcinema;		//ÈÈÃÅÓ°Ôº
-	private String ctype;			//ÌØÐ§ÌüÀàÐÍ
-	private String lineall;			//ËùÓÐµØÌúÏßÂ·
-	private String buyInsure;  //ÊÇ·ñÖ§³Ö¹ºÆ±¹ºÆ±È¡ÏûÏÕ
-	private String showGawara; //ÊÇ·ñ¸ñÍßÀ­ÏÔÊ¾£¨Y£º¸ñÍßÀ­ÏÔÊ¾£»N£º¸ñÍßÀ­²»ÏÔÊ¾£©
+	private String cinemaids;		//ï¿½Ò³ï¿½È¥IDs
+	private String acthas;			//ï¿½Ç·ï¿½ï¿½Ð»î¶¯
+	private String refund;			//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Æ±
+	private String characteristic;//ï¿½ï¿½Ð§ï¿½ï¿½
+	private String hotcinema;		//ï¿½ï¿½ï¿½ï¿½Ó°Ôº
+	private String ctype;			//ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String lineall;			//ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Â·
+	private String buyInsure;  //ï¿½Ç·ï¿½Ö§ï¿½Ö¹ï¿½Æ±ï¿½ï¿½Æ±È¡ï¿½ï¿½ï¿½ï¿½
+	private String showGawara; //ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½
 	
 	public String getImax() {
 		return imax;
@@ -78,8 +78,11 @@ public class SearchCinemaCommandVo implements Serializable  {
 		return cinemaname;
 	}
 	public void setCinemaname(String cinemaname) {
-		if(cinemaname!=null && cinemaname.contains("ÊäÈë")) this.cinemaname=null;
-		else this.cinemaname = cinemaname;
+		if(cinemaname!=null && cinemaname.contains("ï¿½ï¿½ï¿½ï¿½")) {
+            this.cinemaname = null;
+        } else {
+            this.cinemaname = cinemaname;
+        }
 	}
 	public Long getLineId() {
 		return lineId;

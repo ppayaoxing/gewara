@@ -55,7 +55,8 @@ public class DispatcherServlet extends HttpServlet {
     	DispatcherServlet.INSTANCE = this;
     }
 
-    protected void service(HttpServletRequest request, HttpServletResponse response) 
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
         HttpHandler handler = handlers.get(request.getLocalPort());
         if( handler == null ) {// service not found.

@@ -48,7 +48,7 @@ public class NettyClient extends AbstractClient {
     
     private static final Logger logger = LoggerFactory.getLogger(NettyClient.class);
 
-    // ÒòChannelFactoryµÄ¹Ø±ÕÓÐDirectMemoryÐ¹Â¶£¬²ÉÓÃ¾²Ì¬»¯¹æ±Ü
+    // ï¿½ï¿½ChannelFactoryï¿½Ä¹Ø±ï¿½ï¿½ï¿½DirectMemoryÐ¹Â¶ï¿½ï¿½ï¿½ï¿½ï¿½Ã¾ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½
     // https://issues.jboss.org/browse/NETTY-424
     private static final ChannelFactory channelFactory = new NioClientSocketChannelFactory(Executors.newCachedThreadPool(new NamedThreadFactory("NettyClientBoss", true)), 
                                                                                            Executors.newCachedThreadPool(new NamedThreadFactory("NettyClientWorker", true)), 
@@ -71,6 +71,7 @@ public class NettyClient extends AbstractClient {
         bootstrap.setOption("connectTimeoutMillis", getTimeout());
         final NettyHandler nettyHandler = new NettyHandler(getUrl(), this);
         bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
+            @Override
             public ChannelPipeline getPipeline() {
                 NettyCodecAdapter adapter = new NettyCodecAdapter(getCodec(), getUrl(), NettyClient.this);
                 ChannelPipeline pipeline = Channels.pipeline();
@@ -82,6 +83,7 @@ public class NettyClient extends AbstractClient {
         });
     }
 
+    @Override
     protected void doConnect() throws Throwable {
         long start = System.currentTimeMillis();
         ChannelFuture future = bootstrap.connect(getConnectAddress());
@@ -92,7 +94,7 @@ public class NettyClient extends AbstractClient {
                 Channel newChannel = future.getChannel();
                 newChannel.setInterestOps(Channel.OP_READ_WRITE);
                 try {
-                    // ¹Ø±Õ¾ÉµÄÁ¬½Ó
+                    // ï¿½Ø±Õ¾Éµï¿½ï¿½ï¿½ï¿½ï¿½
                     Channel oldChannel = NettyClient.this.channel; // copy reference
                     if (oldChannel != null) {
                         try {
@@ -156,8 +158,9 @@ public class NettyClient extends AbstractClient {
     @Override
     protected com.alibaba.dubbo.remoting.Channel getChannel() {
         Channel c = channel;
-        if (c == null || ! c.isConnected())
+        if (c == null || ! c.isConnected()) {
             return null;
+        }
         return NettyChannel.getOrAddChannel(c, getUrl(), this);
     }
 

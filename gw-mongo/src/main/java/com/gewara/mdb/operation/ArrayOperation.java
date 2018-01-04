@@ -12,10 +12,10 @@ import com.gewara.util.BeanUtil;
 
 
 /**
- * ÕâÀïÖ÷Òª·â×°ÁËÒ»Ð©¹ØÓÚÊý×éµÄ²Ù×÷·½·¨¡£
- * ÕâÀïÃæµÄ·½·¨¶¼¿ÉÒÔÖØ¸´µ÷ÓÃ¡£
- * @author ¶­Ã÷
- * @createDate 2015Äê8ÔÂ21ÈÕ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½×°ï¿½ï¿½Ò»Ð©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½
+ * @author ï¿½ï¿½ï¿½ï¿½
+ * @createDate 2015ï¿½ï¿½8ï¿½ï¿½21ï¿½ï¿½
  */
 public class ArrayOperation {
 	
@@ -27,8 +27,8 @@ public class ArrayOperation {
 		return this;
 	}
 	/**
-	 * ½«Ã¿¸öÖµ·ÅÈëÊý×éµÄÄ©Î²,¶ÔÓÚÒÑ¾­´æÔÚµÄÖµ£¬½«»áºöÂÔ¡£
-	 * ÕâÀïµÄset£¬±íÊ¾µÄÊÇÊý¾Ý½á¹¹Set
+	 * ï¿½ï¿½Ã¿ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä©Î²,ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Úµï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½setï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹Set
 	 * @param field
 	 * @param value
 	 * @return
@@ -37,15 +37,17 @@ public class ArrayOperation {
 		assert(values!=null);
 		Document hd=(Document)doc.get("$addToSet");
 		if(values.length==1){
-			if(null==hd)
-				doc.append("$addToSet",new Document(field,toTrans(values[0])));
-			else
-				hd.append(field, values[0]);
+			if(null==hd) {
+                doc.append("$addToSet", new Document(field, toTrans(values[0])));
+            } else {
+                hd.append(field, values[0]);
+            }
 		}else{
-			if(null==hd)
-				doc.append("$addToSet",new Document(field,new Document("$each",toList(values))));
-			else
-				hd.append(field, new Document("$each",toList(values)));
+			if(null==hd) {
+                doc.append("$addToSet", new Document(field, new Document("$each", toList(values))));
+            } else {
+                hd.append(field, new Document("$each", toList(values)));
+            }
 		}
 		return this;
 	}
@@ -65,8 +67,8 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ½«Êý¾Ý·ÅÈëÊý×éµÄÄ©Î²
-	 * @param field ±íÊ¾Êý×éµÄ×Ö¶ÎÃû³Æ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä©Î²
+	 * @param field ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param values
 	 * @return
 	 */
@@ -74,10 +76,11 @@ public class ArrayOperation {
 		assert(values!=null);
 		Document hd=(Document)doc.get("$push");
 		if(values.length==1){
-			if(null==hd)
-				doc.append("$push",new Document(field,toTrans(values[0])));
-			else
-				hd.append(field, toTrans(values[0]));
+			if(null==hd) {
+                doc.append("$push", new Document(field, toTrans(values[0])));
+            } else {
+                hd.append(field, toTrans(values[0]));
+            }
 		}else{
 			if(null==hd){
 				doc.append("$push",new Document(field,new Document("$each",toList(values))));
@@ -101,8 +104,8 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ¸üÐÂ·ûºÏ²éÑ¯Ìõ¼þµÄÊý×éÖÐµÄÔªËØµÄÖµ¡£
-	 * ÔÚ²éÑ¯Ìõ¼þ¡£
+	 * ï¿½ï¿½ï¿½Â·ï¿½ï¿½Ï²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½Ôªï¿½Øµï¿½Öµï¿½ï¿½
+	 * ï¿½Ú²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * example
 	 * <pre>
 	 * 
@@ -129,9 +132,9 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ´ÓÖ¸¶¨Î»ÖÃ²åÈëÖ¸¶¨µÄÖµ
-	 * @param field Êý×é×Ö¶ÎÃû³Æ
-	 * @param position Î»ÖÃ
+	 * ï¿½ï¿½Ö¸ï¿½ï¿½Î»ï¿½Ã²ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Öµ
+	 * @param field ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param position Î»ï¿½ï¿½
 	 * @param values
 	 * @return
 	 */
@@ -150,7 +153,7 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ´ÓÊý×éÍ·²¿ÒÆ³ýÒ»¸öÔªËØ¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½Æ³ï¿½Ò»ï¿½ï¿½Ôªï¿½Ø¡ï¿½
 	 * @param fields
 	 * @return
 	 */
@@ -172,7 +175,7 @@ public class ArrayOperation {
 	
 	
 	/**
-	 * ´ÓÊý×éÎ²²¿ÒÆ³ýÒ»¸öÔªËØ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½Æ³ï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½
 	 * @param fields
 	 * @return
 	 */
@@ -194,7 +197,7 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ´ÓÊý×éÖÐÒÆ³ýÖ¸¶¨ÖµµÄÔªËØ¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ³ï¿½Ö¸ï¿½ï¿½Öµï¿½ï¿½Ôªï¿½Ø¡ï¿½
 	 * @param field
 	 * @param values
 	 * @return
@@ -211,7 +214,7 @@ public class ArrayOperation {
 	}
 	
 	/**
-	 * ´ÓÊý×éÖÐÒÆ³ý·ûºÏÖ¸¶¨Ìõ¼þµÄÔªËØ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
 	 * @param field
 	 * @param expression
 	 * @return

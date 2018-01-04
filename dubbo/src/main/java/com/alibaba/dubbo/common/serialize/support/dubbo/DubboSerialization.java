@@ -29,18 +29,22 @@ import com.alibaba.dubbo.common.serialize.Serialization;
  */
 public class DubboSerialization implements Serialization {
 
+    @Override
     public byte getContentTypeId() {
         return 1;
     }
 
+    @Override
     public String getContentType() {
         return "x-application/dubbo";
     }
 
+    @Override
     public ObjectOutput serialize(URL url, OutputStream out) throws IOException {
         return new GenericObjectOutput(out);
     }
 
+    @Override
     public ObjectInput deserialize(URL url, InputStream is) throws IOException {
         return new GenericObjectInput(is);
     }

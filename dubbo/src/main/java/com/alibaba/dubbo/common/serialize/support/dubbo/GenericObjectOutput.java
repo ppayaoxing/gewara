@@ -66,7 +66,8 @@ public class GenericObjectOutput extends GenericDataOutput implements ObjectOutp
 	    this.isAllowNonSerializable = isAllowNonSerializable;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	public void writeObject(Object obj) throws IOException
 	{
 		if( obj == null )
@@ -107,8 +108,9 @@ public class GenericObjectOutput extends GenericDataOutput implements ObjectOutp
 	public int getRef(Object obj)
 	{
 		Integer ref = mRefs.get(obj);
-		if( ref == null )
-			return -1;
+		if( ref == null ) {
+            return -1;
+        }
 		return ref.intValue();
 	}
 }

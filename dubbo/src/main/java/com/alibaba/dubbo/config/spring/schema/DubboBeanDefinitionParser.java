@@ -73,6 +73,7 @@ public class DubboBeanDefinitionParser implements BeanDefinitionParser {
         this.required = required;
     }
 
+    @Override
     public BeanDefinition parse(Element element, ParserContext parserContext) {
         return parse(element, parserContext, beanClass, required);
     }
@@ -187,7 +188,7 @@ public class DubboBeanDefinitionParser implements BeanDefinitionParser {
                                             || "version".equals(property) && "0.0.0".equals(value)
                                             || "stat".equals(property) && "-1".equals(value)
                                             || "reliable".equals(property) && "false".equals(value)) {
-                                        // ¼æÈÝ¾É°æ±¾xsdÖÐµÄdefaultÖµ
+                                        // ï¿½ï¿½ï¿½Ý¾É°æ±¾xsdï¿½Ðµï¿½defaultÖµ
                                         value = null;
                                     }
                                     reference = value;
@@ -198,14 +199,14 @@ public class DubboBeanDefinitionParser implements BeanDefinitionParser {
                                     if ("dubbo:provider".equals(element.getTagName())) {
                                         logger.warn("Recommended replace <dubbo:provider protocol=\"" + value + "\" ... /> to <dubbo:protocol name=\"" + value + "\" ... />");
                                     }
-                                    // ¼æÈÝ¾É°æ±¾ÅäÖÃ
+                                    // ï¿½ï¿½ï¿½Ý¾É°æ±¾ï¿½ï¿½ï¿½ï¿½
                                     ProtocolConfig protocol = new ProtocolConfig();
                                     protocol.setName(value);
                                     reference = protocol;
                                 } else if ("monitor".equals(property) 
                                         && (! parserContext.getRegistry().containsBeanDefinition(value)
                                                 || ! MonitorConfig.class.getName().equals(parserContext.getRegistry().getBeanDefinition(value).getBeanClassName()))) {
-                                    // ¼æÈÝ¾É°æ±¾ÅäÖÃ
+                                    // ï¿½ï¿½ï¿½Ý¾É°æ±¾ï¿½ï¿½ï¿½ï¿½
                                     reference = convertMonitor(value);
                                 } else if ("onreturn".equals(property)) {
                                     int index = value.lastIndexOf(".");

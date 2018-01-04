@@ -54,7 +54,8 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 		mBuffer = new byte[buffSize];
 	}
 
-	public boolean readBool() throws IOException
+	@Override
+    public boolean readBool() throws IOException
 	{
 		byte b = read0();
 
@@ -67,7 +68,8 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 		}
 	}
 
-	public byte readByte() throws IOException
+	@Override
+    public byte readByte() throws IOException
 	{
 		byte b = read0();
 
@@ -88,32 +90,38 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 		}
 	}
 
-	public short readShort() throws IOException
+	@Override
+    public short readShort() throws IOException
 	{
 		return (short)readVarint32();
 	}
 
-	public int readInt() throws IOException
+	@Override
+    public int readInt() throws IOException
 	{
 		return readVarint32();
 	}
 
-	public long readLong() throws IOException
+	@Override
+    public long readLong() throws IOException
 	{
 		return readVarint64();
 	}
 
-	public float readFloat() throws IOException
+	@Override
+    public float readFloat() throws IOException
 	{
 		return Float.intBitsToFloat(readVarint32());
 	}
 
-	public double readDouble() throws IOException
+	@Override
+    public double readDouble() throws IOException
 	{
 		return Double.longBitsToDouble(readVarint64());
 	}
 
-	public String readUTF() throws IOException
+	@Override
+    public String readUTF() throws IOException
 	{
 		byte b = read0();
 
@@ -140,8 +148,9 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 						byte b2 = read0(), b3 = read0();
 						sb.append((char)(((b1 & 0x0F) << 12) | ((b2 & 0x3F) << 6) | (b3 & 0x3F)));
 					}
-					else
-						throw new UTFDataFormatException("Bad utf-8 encoding at " + b1);
+					else {
+                        throw new UTFDataFormatException("Bad utf-8 encoding at " + b1);
+                    }
 				}
 				return sb.toString();
 			case OBJECT_NULL: return null;
@@ -151,7 +160,8 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 		}
 	}
 
-	public byte[] readBytes() throws IOException
+	@Override
+    public byte[] readBytes() throws IOException
 	{
 		byte b = read0();
 
@@ -168,8 +178,9 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 	public int readUInt() throws IOException
 	{
 		byte tmp = read0();
-		if( tmp < 0 )
-			return tmp & 0x7f;
+		if( tmp < 0 ) {
+            return tmp & 0x7f;
+        }
 
 		int ret = tmp & 0x7f;
 		if( ( tmp = read0() ) < 0 )
@@ -202,8 +213,9 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 
 	protected byte read0() throws IOException
 	{
-		if( mPosition == mRead )
-			fillBuffer();
+		if( mPosition == mRead ) {
+            fillBuffer();
+        }
 
 		return mBuffer[mPosition++];
 	}
@@ -228,8 +240,9 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 			while( len > 0 )
 			{
 				read = mInput.read(ret, pos, len);
-				if( read == -1 )
-					throw new EOFException();
+				if( read == -1 ) {
+                    throw new EOFException();
+                }
 				pos += read;
 				len -= read;
 			}
@@ -254,8 +267,9 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 			{
 				byte b1 = read0(), b2 = read0(), b3 = read0();
 				int ret = ( b1 & 0xff ) | ( ( b2 & 0xff ) << 8 ) | ( ( b3 & 0xff ) << 16 );
-				if( b3 < 0 )
-					return ret | 0xff000000;
+				if( b3 < 0 ) {
+                    return ret | 0xff000000;
+                }
 				return ret;
 			}
 			case VARINT32:
@@ -300,8 +314,9 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 			{
 				byte b1 = read0(), b2 = read0(), b3 = read0();
 				int ret = ( b1 & 0xff ) | ( ( b2 & 0xff ) << 8 ) | ( ( b3 & 0xff ) << 16 );
-				if( b3 < 0 )
-					return ret | 0xff000000;
+				if( b3 < 0 ) {
+                    return ret | 0xff000000;
+                }
 				return ret;
 			}
 			case VARINT32:
@@ -320,8 +335,9 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 					( ( (long)b3 & 0xff ) << 16 ) |
 					( ( (long)b4 & 0xff ) << 24 ) |
 					( ( (long)b5 & 0xff ) << 32 );
-				if( b5 < 0 )
-					return ret | 0xffffff0000000000l;
+				if( b5 < 0 ) {
+                    return ret | 0xffffff0000000000L;
+                }
 				return ret;
 			}
 			case VARINT48:
@@ -333,8 +349,9 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 					( ( (long)b4 & 0xff ) << 24 ) |
 					( ( (long)b5 & 0xff ) << 32 ) |
 					( ( (long)b6 & 0xff ) << 40 );
-				if( b6 < 0 )
-					return ret | 0xffff000000000000l;
+				if( b6 < 0 ) {
+                    return ret | 0xffff000000000000L;
+                }
 				return ret;
 			}
 			case VARINT56:
@@ -347,8 +364,9 @@ public class GenericDataInput implements DataInput, GenericDataFlags
 					( ( (long)b5 & 0xff ) << 32 ) |
 					( ( (long)b6 & 0xff ) << 40 ) |
 					( ( (long)b7 & 0xff ) << 48 );
-				if( b7 < 0 )
-					return ret | 0xff00000000000000l;
+				if( b7 < 0 ) {
+                    return ret | 0xff00000000000000L;
+                }
 				return ret;
 			}
 			case VARINT64:

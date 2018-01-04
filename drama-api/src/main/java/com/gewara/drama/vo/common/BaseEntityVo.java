@@ -9,9 +9,9 @@ import com.gewara.api.vo.BaseVo;
 
 
 public class BaseEntityVo extends BaseVo implements Serializable{
-	public static final int HOTVALUE_HOT = 30000; //ÈÈÃÅ
-	public static final int HOTVALUE_RECOMMEND = 50000; //ÍÆ¼ö
-	public static final int HOTVALUE_SEARCH = 70000;//ËÑË÷ÏÂÃæµÄÍÆ¼ö
+	public static final int HOTVALUE_HOT = 30000; //ï¿½ï¿½ï¿½ï¿½
+	public static final int HOTVALUE_RECOMMEND = 50000; //ï¿½Æ¼ï¿½
+	public static final int HOTVALUE_SEARCH = 70000;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½
 	private static final long serialVersionUID = 6326252378179481450L;
 	protected Long id;
 	protected String name;
@@ -21,20 +21,20 @@ public class BaseEntityVo extends BaseVo implements Serializable{
 	protected String logo;
 	protected String fullLogo;
 	protected String firstpic;
-	protected Integer generalmark;//ÆÀ·Ö
+	protected Integer generalmark;//ï¿½ï¿½ï¿½ï¿½
 	protected Integer generalmarkedtimes;
 	protected Integer avggeneral;
-	protected Integer collectedtimes;// ÊÕ²Ø ¸ÐÐËÈ¤
-	protected Integer clickedtimes;//¹Ø×¢
-	protected String briefname;//Ãû³Æ¼ò³Æ
+	protected Integer collectedtimes;// ï¿½Õ²ï¿½ ï¿½ï¿½ï¿½ï¿½È¤
+	protected Integer clickedtimes;//ï¿½ï¿½×¢
+	protected String briefname;//ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½
 	
 	protected Timestamp addtime;
-	protected Timestamp updatetime;	//ÐÞ¸ÄÊ±¼ä
-	protected String seotitle; //SEO¹Ø¼ü×Ö
-	protected String seodescription; //SEOÃèÊö
+	protected Timestamp updatetime;	//ï¿½Þ¸ï¿½Ê±ï¿½ï¿½
+	protected String seotitle; //SEOï¿½Ø¼ï¿½ï¿½ï¿½
+	protected String seodescription; //SEOï¿½ï¿½ï¿½ï¿½
 	protected Integer hotvalue=0; 
 	protected Integer quguo;
-	protected Integer xiangqu;	// »°¾çÃ÷ÐÇ°æ¿é: Ïë³ÉÎª·ÛË¿
+	protected Integer xiangqu;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½: ï¿½ï¿½ï¿½Îªï¿½ï¿½Ë¿
 	
 	public Long getId() {
 		return id;
@@ -74,7 +74,9 @@ public class BaseEntityVo extends BaseVo implements Serializable{
 	}
 	
 	public String getLimg(){
-		if(StringUtils.isBlank(logo)) return "img/default_logo.png";
+		if(StringUtils.isBlank(logo)) {
+            return "img/default_logo.png";
+        }
 		return logo;
 	}
 	

@@ -23,7 +23,7 @@ import org.jasig.cas.client.validation.Assertion;
 public class AuthenticationFilter  {
 
 	/**
-	 * CAS·þÎñµÇÂ¼Login
+	 * CASï¿½ï¿½ï¿½ï¿½ï¿½Â¼Login
 	 */
 	private String casServerLoginUrl;
 
@@ -38,10 +38,10 @@ public class AuthenticationFilter  {
 	private boolean gateway = false;
 	
 	
-	/** ·µ»ØtkµÄÃû³Æ. */
+	/** ï¿½ï¿½ï¿½ï¿½tkï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. */
     private String artifactParameterName = "ticket";
 
-    /** ÇëÇó±¾µØserviceµÄÃû³Æ */
+    /** ï¿½ï¿½ï¿½ó±¾µï¿½serviceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
     private String serviceParameterName = "service";
     
     /** Sets where response.encodeUrl should be called on service urls when constructed. */
@@ -99,7 +99,7 @@ public class AuthenticationFilter  {
 	}
 
 	/**
-	 * ³õÊ¼»¯
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½
 	 * 
 	 */
 	public void init() {
@@ -150,7 +150,7 @@ public class AuthenticationFilter  {
 	}
 
 	/**
-	 * »òÕßcasserverµÄurl
+	 * ï¿½ï¿½ï¿½ï¿½casserverï¿½ï¿½url
 	 * @param request
 	 * @param response
 	 * @return
@@ -274,7 +274,7 @@ public class AuthenticationFilter  {
     }
     
     protected final boolean parseBoolean(final String value) {
-    	return ((value != null) && value.equalsIgnoreCase("true"));
+    	return ((value != null) && "true".equalsIgnoreCase(value));
     }
     
     private boolean ignoreInitConfiguration = false;

@@ -42,46 +42,56 @@ public class JavaObjectInput extends NativeJavaObjectInput
 		super(compacted ? new CompactedObjectInputStream(is) : new ObjectInputStream(is));
 	}
 
-	public byte[] readBytes() throws IOException
+	@Override
+    public byte[] readBytes() throws IOException
 	{
 		int len = getObjectInputStream().readInt();
-		if( len < 0 )
-			return null;
-		if( len == 0 )
-			return new byte[0];
-		if( len > MAX_BYTE_ARRAY_LENGTH )
-			throw new IOException("Byte array length too large. " + len);
+		if( len < 0 ) {
+            return null;
+        }
+		if( len == 0 ) {
+            return new byte[0];
+        }
+		if( len > MAX_BYTE_ARRAY_LENGTH ) {
+            throw new IOException("Byte array length too large. " + len);
+        }
 
 		byte[] b = new byte[len];
 		getObjectInputStream().readFully(b);
 		return b;
 	}
 
-	public String readUTF() throws IOException
+	@Override
+    public String readUTF() throws IOException
 	{
 		int len = getObjectInputStream().readInt();
-		if( len < 0 )
-			return null;
+		if( len < 0 ) {
+            return null;
+        }
 
 		return getObjectInputStream().readUTF();
 	}
 
-	public Object readObject() throws IOException, ClassNotFoundException
+	@Override
+    public Object readObject() throws IOException, ClassNotFoundException
 	{
 		byte b = getObjectInputStream().readByte();
-		if( b == 0 )
-			return null;
+		if( b == 0 ) {
+            return null;
+        }
 
 		return getObjectInputStream().readObject();
 	}
 
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public <T> T readObject(Class<T> cls) throws IOException,
 			ClassNotFoundException {
 		return (T) readObject();
 	}
 
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
     public <T> T readObject(Class<T> cls, Type type) throws IOException,ClassNotFoundException
     {
         return (T) readObject();

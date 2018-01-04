@@ -77,6 +77,7 @@ public final class MultiMessage implements Iterable {
         return result;
     }
 
+    @Override
     public Iterator iterator() {
         return messages.iterator();
     }

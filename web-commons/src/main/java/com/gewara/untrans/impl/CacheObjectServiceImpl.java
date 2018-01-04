@@ -29,7 +29,7 @@ import com.gewara.util.WebLogger;
 public final class CacheObjectServiceImpl implements CacheObjectService, InitializingBean {
 	protected final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
 	private ConcurrentHashMap<String/*entityClass.getCanonicalName*/, Gcache<String, Serializable>> cachedUkeyMap = new ConcurrentHashMap<String, Gcache<String, Serializable>>();
-	private Map<Class<?>/*entityClass*/, Class<?>/*id field type*/> idTypeMap = new HashMap<>();//ID×Ö¶ÎµÄÀàÐÍ
+	private Map<Class<?>/*entityClass*/, Class<?>/*id field type*/> idTypeMap = new HashMap<>();//IDï¿½Ö¶Îµï¿½ï¿½ï¿½ï¿½ï¿½
 
 	private DaoService daoService;
 	public void setDaoService(DaoService daoService) {
@@ -80,12 +80,12 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
 			T result = null;
 			if(id != null) {
 				result = getObject(clazz, id);
-				if(result == null){//²»´æÔÚ£¬¿ÉÄÜÊÇID±ä»¯ÖØ²éÒ»´Î
+				if(result == null){//ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½ä»¯ï¿½Ø²ï¿½Ò»ï¿½ï¿½
 					id = getIdByUkeyFromDB(clazz, ukeyName, ukeyValue);
-					if(id!=null){//¶ÔÏóid±ä¸üÁË£¬ÖØÐÂÉèÖÃ»º´æ
+					if(id!=null){//ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 						result = getObject(clazz, id);
 						setUkey(clazz, ukeyName, ukeyValue, id);
-					}else{//¶ÔÏó²»´æÔÚ£¬Çå³ý
+					}else{//ï¿½ï¿½ï¿½ó²»´ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½
 						setUkey(clazz, ukeyName, ukeyValue, null);
 					}
 				}
@@ -102,7 +102,7 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
 		if(meta == null){
 			List result = daoService.findByCriteria(query);
 			return result;
-		}else{//»º´æ¶ÔÏó£¬ÏÈ²éÑ¯ID
+		}else{//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È²ï¿½Ñ¯ID
 			query.setProjection(Projections.id());
 			List idList = daoService.findByCriteria(query);
 			return getObjectListUsingCache(clazz, idList);
@@ -125,7 +125,7 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
 			}
 			count ++;
 			if(System.currentTimeMillis() - t > DateUtil.m_minute*2 && count<200){
-				//100¸öÒÔÄÚ£¬³¬¹ý2min£¬»º´æÓÐÎÊÌâ£¬Ö±½ÓÅ×Òì³£
+				//100ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½2minï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â£¬Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ì³£
 				throw new TraceErrorException("cache too slow!!");
 			}
 		}
@@ -136,8 +136,12 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);
 		query.add(Restrictions.eq(ukeyName, ukeyValue));
 		List result = daoService.findByCriteria(query);
-		if(result.isEmpty()) return null;
-		if(result.size() > 1) throw new IllegalStateException("²éÑ¯³ö¶à¸ö¼ÇÂ¼£º" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+		if(result.isEmpty()) {
+            return null;
+        }
+		if(result.size() > 1) {
+            throw new IllegalStateException("ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+        }
 		return (T)result.get(0);
 	}
 	
@@ -146,8 +150,12 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
 		query.add(Restrictions.eq(ukeyName, ukeyValue));
 		query.setProjection(Projections.id());
 		List result = daoService.findByCriteria(query);
-		if(result.isEmpty()) return null;
-		if(result.size() > 1) throw new IllegalStateException("²éÑ¯³ö¶à¸ö¼ÇÂ¼£º" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+		if(result.isEmpty()) {
+            return null;
+        }
+		if(result.size() > 1) {
+            throw new IllegalStateException("ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+        }
 		return (S)result.get(0);
 	}
 
@@ -205,8 +213,11 @@ public final class CacheObjectServiceImpl implements CacheObjectService, Initial
 	@Override
 	public <T extends BaseObject, S extends Serializable> List<T> getObjectList(Class<T> clazz, String sortField, boolean asc, int from, int maxnum) {
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);
-		if(asc) query.addOrder(Order.asc(sortField));
-		else query.addOrder(Order.desc(sortField));
+		if(asc) {
+            query.addOrder(Order.asc(sortField));
+        } else {
+            query.addOrder(Order.desc(sortField));
+        }
 		query.setProjection(Projections.id());
 		List<Serializable> idList = daoService.findByCriteria(query, from, maxnum);
 		return getObjectListUsingCache(clazz, idList);

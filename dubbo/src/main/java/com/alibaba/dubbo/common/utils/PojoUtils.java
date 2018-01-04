@@ -72,8 +72,9 @@ public class PojoUtils {
     }
 
     public static Object[] realize(Object[] objs, Class<?>[] types) {
-        if (objs.length != types.length)
+        if (objs.length != types.length) {
             throw new IllegalArgumentException("args.length != types.length");
+        }
         Object[] dests = new Object[objs.length];
         for (int i = 0; i < objs.length; i ++) {
             dests[i] = realize(objs[i], types[i]);
@@ -83,8 +84,9 @@ public class PojoUtils {
 
     public static Object[] realize(Object[] objs, Class<?>[] types, Type[] gtypes) {
         if (objs.length != types.length
-                || objs.length != gtypes.length)
+                || objs.length != gtypes.length) {
             throw new IllegalArgumentException("args.length != types.length");
+        }
         Object[] dests = new Object[objs.length];
         for (int i = 0; i < objs.length; i ++) {
             dests[i] = realize(objs[i], types[i], gtypes[i]);
@@ -177,7 +179,7 @@ public class PojoUtils {
             if (ReflectUtils.isPublicInstanceField(field)) {
                 try {
                     Object fieldValue = field.get(pojo);
-                    // public filedÍ¬Ê±Ò²ÓÐget/set·½·¨£¬Èç¹ûget/set´æÈ¡µÄ²»ÊÇÇ°ÃæÄÇ¸ö public field ¸ÃÈçºÎ´¦Àí
+                    // public filedÍ¬Ê±Ò²ï¿½ï¿½get/setï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½get/setï¿½ï¿½È¡ï¿½Ä²ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ç¸ï¿½ public field ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½
                     if (history.containsKey(pojo)) {
                         Object pojoGenerilizedValue = history.get(pojo);
                         if (pojoGenerilizedValue instanceof Map
@@ -212,6 +214,7 @@ public class PojoUtils {
             this.map = map;
         }
 
+        @Override
         @SuppressWarnings("unchecked")
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             if (method.getDeclaringClass() == Object.class) {
@@ -386,7 +389,7 @@ public class PojoUtils {
                 }
             }
             Map<Object, Object> map ;
-            // ·µ»ØÖµÀàÐÍ²»ÊÇ·½·¨Ç©ÃûÀàÐÍµÄ×Ó¼¯ ²¢ÇÒ ²»ÊÇ½Ó¿ÚÀàÐÍ
+            // ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Í²ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½Ó¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½
             if (! type.isInterface()
                     && ! type.isAssignableFrom(pojo.getClass())){
                 try {
@@ -439,8 +442,9 @@ public class PojoUtils {
 	                        Method method = getSetterMethod(dest.getClass(), name, value.getClass());
                             Field field = getField(dest.getClass(), name);
 	                        if (method != null) {
-	                            if (! method.isAccessible())
-	                                method.setAccessible(true);
+	                            if (! method.isAccessible()) {
+                                    method.setAccessible(true);
+                                }
 	                            Type ptype = method.getGenericParameterTypes()[0];
 	                            value = realize0(value, method.getParameterTypes()[0], ptype, history);
 	                            try {
@@ -489,14 +493,14 @@ public class PojoUtils {
     }
     
     /**
-     * »ñÈ¡·¶ÐÍµÄÀàÐÍ 
+     * ï¿½ï¿½È¡ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ 
      * @param genericType
      * @param index
-     * @return List<Person>  ·µ»ØPerson.class ,Map<String,Person> index=0 ·µ»ØString.class index=1 ·µ»ØPerson.class
+     * @return List<Person>  ï¿½ï¿½ï¿½ï¿½Person.class ,Map<String,Person> index=0 ï¿½ï¿½ï¿½ï¿½String.class index=1 ï¿½ï¿½ï¿½ï¿½Person.class
      */
     private static Type getGenericClassByIndex(Type genericType, int index){
         Type clazz = null ;
-        //·¶ÐÍ²ÎÊý×ª»» 
+        //ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½×ªï¿½ï¿½ 
         if (genericType instanceof ParameterizedType){
             ParameterizedType t = (ParameterizedType)genericType;
             Type[] types = t.getActualTypeArguments();

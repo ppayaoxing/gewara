@@ -104,8 +104,9 @@ public class DubboInvoker<T> extends AbstractInvoker<T> {
     
     @Override
     public boolean isAvailable() {
-        if (!super.isAvailable())
+        if (!super.isAvailable()) {
             return false;
+        }
         for (ExchangeClient client : clients){
             if (client.isConnected() && !client.hasAttribute(Constants.CHANNEL_ATTRIBUTE_READONLY_KEY)){
                 //cannot write == not Available ?
@@ -115,12 +116,13 @@ public class DubboInvoker<T> extends AbstractInvoker<T> {
         return false;
     }
 
+    @Override
     public void destroy() {
-        //·ÀÖ¹client±»¹Ø±Õ¶à´Î.ÔÚconnect per jvmµÄÇé¿öÏÂ£¬client.close·½·¨»áµ÷ÓÃ¼ÆÊýÆ÷-1£¬µ±¼ÆÊýÆ÷Ð¡ÓÚµÈÓÚ0µÄÇé¿öÏÂ£¬²ÅÕæÕý¹Ø±Õ
+        //ï¿½ï¿½Ö¹clientï¿½ï¿½ï¿½Ø±Õ¶ï¿½ï¿½.ï¿½ï¿½connect per jvmï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½client.closeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½-1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½Úµï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½
         if (super.isDestroyed()){
             return ;
         } else {
-            //dubbo check ,±ÜÃâ¶à´Î¹Ø±Õ
+            //dubbo check ,ï¿½ï¿½ï¿½ï¿½ï¿½Î¹Ø±ï¿½
             destroyLock.lock();
             try{
                 if (super.isDestroyed()){

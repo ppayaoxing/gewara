@@ -45,10 +45,15 @@ public class NullPropertyOrder extends Order implements Serializable{
       		 fragment.append(factory.getDialect().getLowercaseFunction()).append('(');
       	 } 
       	 fragment.append(columns[i]);
-      	 if (lower) fragment.append(')');
+      	 if (lower) {
+             fragment.append(')');
+         }
       	 fragment.append((this.ascending) ? " asc" : " desc");
       	 fragment.append(" nulls "+((this.nulls)? "first":"last") );
-      	 if (i >= columns.length - 1) continue; fragment.append(", ");
+      	 if (i >= columns.length - 1) {
+             continue;
+         }
+           fragment.append(", ");
        }
        return fragment.toString();  
    } 

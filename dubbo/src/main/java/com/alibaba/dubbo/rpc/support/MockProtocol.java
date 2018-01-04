@@ -22,21 +22,24 @@ import com.alibaba.dubbo.rpc.RpcException;
 import com.alibaba.dubbo.rpc.protocol.AbstractProtocol;
 
 /**
- * MockProtocol ÓÃÓÚÔÚconsumer side Í¨¹ýurl¼°ÀàÐÍÉú³ÉÒ»¸ömockInvoker
+ * MockProtocol ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½consumer side Í¨ï¿½ï¿½urlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½mockInvoker
  * @author chao.liuc
  *
  */
 final public class MockProtocol extends AbstractProtocol {
 
-	public int getDefaultPort() {
+	@Override
+    public int getDefaultPort() {
 		return 0;
 	}
 
-	public <T> Exporter<T> export(Invoker<T> invoker) throws RpcException {
+	@Override
+    public <T> Exporter<T> export(Invoker<T> invoker) throws RpcException {
 		throw new UnsupportedOperationException();
 	}
 
-	public <T> Invoker<T> refer(Class<T> type, URL url) throws RpcException {
+	@Override
+    public <T> Invoker<T> refer(Class<T> type, URL url) throws RpcException {
 		return new MockInvoker<T>(url);
 	}
 }

@@ -91,8 +91,9 @@ abstract public class AbstractHessianOutput {
   {
     SerializerFactory factory = _serializerFactory;
 
-    if (factory == null)
-      _serializerFactory = factory = new SerializerFactory();
+    if (factory == null) {
+        _serializerFactory = factory = new SerializerFactory();
+    }
 
     return factory;
   }
@@ -114,8 +115,9 @@ abstract public class AbstractHessianOutput {
     
     startCall(method, length);
     
-    for (int i = 0; i < length; i++)
-      writeObject(args[i]);
+    for (int i = 0; i < length; i++) {
+        writeObject(args[i]);
+    }
     
     completeCall();
   }

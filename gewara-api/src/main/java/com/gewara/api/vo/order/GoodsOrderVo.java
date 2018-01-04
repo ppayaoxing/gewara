@@ -49,11 +49,13 @@ public class GoodsOrderVo extends GewaOrderVo {
 		this.price = price;
 	}
 
-	public Long getPlaceid() {
+	@Override
+    public Long getPlaceid() {
 		return placeid;
 	}
 
-	public void setPlaceid(Long placeid) {
+	@Override
+    public void setPlaceid(Long placeid) {
 		this.placeid = placeid;
 	}
 

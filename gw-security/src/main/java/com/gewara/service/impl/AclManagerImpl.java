@@ -31,13 +31,17 @@ public class AclManagerImpl implements AclManager {
 	@Override
 	public Role getRole(String rolename) {
 		List roles = baseDao.findByHql("from Role where name=?", rolename);
-		if (roles.isEmpty()) return null;
+		if (roles.isEmpty()) {
+            return null;
+        }
 		return (Role) roles.get(0);
 	}
 	@Override
 	public void removeRole(String rolename) {
 		Role role = getRole(rolename);
-		if(role!=null) baseDao.removeObject(role);
+		if(role!=null) {
+            baseDao.removeObject(role);
+        }
 	}
 	@Override
 	public Role addRole(String rolename, String description, String tag){
@@ -69,7 +73,9 @@ public class AclManagerImpl implements AclManager {
 		query.add(Restrictions.like("menucode", mainmenucode, MatchMode.START));
 		query.setProjection(Projections.property("menucode"));
 		List codeList = baseDao.findByCriteria(query);
-		if(codeList.isEmpty()) return mainmenucode + "01";
+		if(codeList.isEmpty()) {
+            return mainmenucode + "01";
+        }
 		List<Integer> codenumList = new ArrayList<Integer>();
 		for(Object code : codeList){
 			codenumList.add(Integer.valueOf(((String)code).substring(2, 4)));
@@ -78,7 +84,9 @@ public class AclManagerImpl implements AclManager {
 		Integer num = codenumList.get(codenumList.size()-1);
 		num++;
 		String strnum = mainmenucode+num;
-		if(num<10) strnum = mainmenucode+"0"+num;
+		if(num<10) {
+            strnum = mainmenucode + "0" + num;
+        }
 		return String.valueOf(strnum);
 	}
 	@Override
@@ -86,7 +94,9 @@ public class AclManagerImpl implements AclManager {
 		String query = "select w.menucode from WebModule w where w.menucode is not null and w.tag = ? and " +
 				"length(w.menucode)=2 order by menucode";
 		List codeList = baseDao.findByHql(query, tag);
-		if(codeList.isEmpty()) return "01";
+		if(codeList.isEmpty()) {
+            return "01";
+        }
 		List<Integer> codenumList = new ArrayList<Integer>();
 		for(Object code : codeList){
 			codenumList.add(Integer.valueOf((String)code));
@@ -95,7 +105,9 @@ public class AclManagerImpl implements AclManager {
 		Integer num = codenumList.get(codenumList.size()-1);
 		num++;
 		String strnum = "" + num;
-		if(num<10) strnum = "0" + num;
+		if(num<10) {
+            strnum = "0" + num;
+        }
 		return String.valueOf(strnum);
 	}
 	@Override

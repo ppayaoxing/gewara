@@ -16,27 +16,27 @@ public class MemberInfoVo extends BaseVo {
 	private static final long serialVersionUID = -3838425704891306595L;
 
 	private Long id;
-	//´ÓMemberÖÐÒÆ¶¯µ½´Ë´¦
-	private String nickname;		//ÓëMemberÖÐÏàÍ¬
-	private String sex; // ÐÔ±ð
-	private String tag; // ¸ÐÐËÈ¤µÄ°æ¿é
+	//ï¿½ï¿½Memberï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½Ë´ï¿½
+	private String nickname;		//ï¿½ï¿½Memberï¿½ï¿½ï¿½ï¿½Í¬
+	private String sex; // ï¿½Ô±ï¿½
+	private String tag; // ï¿½ï¿½ï¿½ï¿½È¤ï¿½Ä°ï¿½ï¿½
 	
 	private String fromcity;
 	private String realname;
-	private String invitetype;//×¢²áÀàÐÍ£¬±ÈÈç£º³é½±ÑûÇë
-	private String source; //×¢²áÀ´Ô´
+	private String invitetype;//×¢ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ç£ºï¿½é½±ï¿½ï¿½ï¿½ï¿½
+	private String source; //×¢ï¿½ï¿½ï¿½ï¿½Ô´
 	
-	//ÏµÍ³ÐÅÏ¢
+	//ÏµÍ³ï¿½ï¿½Ï¢
 	private String regfrom;
-	private String headpic; 		//Í·Ïñ
+	private String headpic; 		//Í·ï¿½ï¿½
 	private Timestamp addtime;
 	private Timestamp updatetime;
 	private Integer expvalue;
-	private String newtask;//ÐÂÊÖÈÎÎñ
-	private String otherinfo;	//ÆäËûÐÅÏ¢£¬Èç£º usecard=xxxxx;changehis=2222
-	private Integer pointvalue;//»ý·Ö×ÜÖµ
-	private Long inviteid; //ÑûÇëÈËID
-	private String ip; //×¢²áIP
+	private String newtask;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String otherinfo;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ç£º usecard=xxxxx;changehis=2222
+	private Integer pointvalue;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	private Long inviteid; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
+	private String ip; //×¢ï¿½ï¿½IP
 
 	public String getNickname() {
 		return nickname;
@@ -64,7 +64,9 @@ public class MemberInfoVo extends BaseVo {
 		this.updatetime = updatetime;
 	}
 	public String getHeadpicUrl(){
-		if(StringUtils.isNotBlank(headpic)) return headpic;
+		if(StringUtils.isNotBlank(headpic)) {
+            return headpic;
+        }
 		return "img/default_head.png";
 	}
 	public String getLogo(){
@@ -158,7 +160,9 @@ public class MemberInfoVo extends BaseVo {
 	}
 
 	public List<String> getFinishedTaskList() {
-		if(StringUtils.isBlank(newtask)) return new ArrayList<String>();
+		if(StringUtils.isBlank(newtask)) {
+            return new ArrayList<String>();
+        }
 		return Arrays.asList(newtask.split(","));
 	}
 	public String getOtherinfo() {
@@ -182,7 +186,9 @@ public class MemberInfoVo extends BaseVo {
 	}
 
 	public List<String> getNewTaskList(){
-		if(StringUtils.isBlank(this.newtask)) return new ArrayList<String>();
+		if(StringUtils.isBlank(this.newtask)) {
+            return new ArrayList<String>();
+        }
 		return Arrays.asList(StringUtils.split(this.newtask, ","));
 	}
 	public String getSource() {
@@ -193,28 +199,34 @@ public class MemberInfoVo extends BaseVo {
 	}
 
 	public boolean isRegisterSource(String rsource){
-		if(StringUtils.isBlank(rsource)) return false;
+		if(StringUtils.isBlank(rsource)) {
+            return false;
+        }
 		return StringUtils.equals(this.source, rsource);
 	}
 	
 	public boolean isBindSuccess(){
 		String value = JsonUtils.getJsonValueByKey(this.otherinfo, MemberConstant.TAG_SOURCE);
-		if(StringUtils.isBlank(value)) return true;
+		if(StringUtils.isBlank(value)) {
+            return true;
+        }
 		return StringUtils.equals(value, "success");
 	}
 	
-	public int getBuyticket(){ //·µ»Ø1±êÊ¶¹ºÆ±ÓÃ»§
+	public int getBuyticket(){ //ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê¶ï¿½ï¿½Æ±ï¿½Ã»ï¿½
 		List<String> taskList = new ArrayList<String>();
 		if(StringUtils.isNotBlank(getNewtask()))  {
 			taskList = new ArrayList(Arrays.asList(StringUtils.split(getNewtask(), ",")));
 		}
-		if(taskList.contains(MemberConstant.TASK_BUYED_TICKET)) return 1;
+		if(taskList.contains(MemberConstant.TASK_BUYED_TICKET)) {
+            return 1;
+        }
 		return 0;
 	}
 	
 	public boolean isFinishedTask(String task) {
 		if(StringUtils.isNotBlank(this.getNewtask())){
-			return ! MemberConstant.TASK_LIST.contains(task) /**²»´æÔÚµÄÈÎÎñ*/
+			return ! MemberConstant.TASK_LIST.contains(task) /**ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½*/
 				||getNewtask().contains(task);
 		}else {
 			return false;

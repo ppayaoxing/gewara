@@ -43,7 +43,7 @@ public final class Version {
     private static final boolean COMPATIBLE = hasResource("com/taobao/remoting/impl/ConnectionRequest.class");
 
     static {
-        // ¼ì²éÊÇ·ñ´æÔÚÖØ¸´µÄjar°ü
+        // æ£€æŸ¥æ˜¯å¦å­˜åœ¨é‡å¤çš„jaråŒ…
     	Version.checkDuplicate(Version.class);
 	}
 
@@ -69,13 +69,13 @@ public final class Version {
     
     public static String getVersion(Class<?> cls, String defaultVersion) {
         try {
-            // Ê×ÏÈ²éÕÒMANIFEST.MF¹æ·¶ÖĞµÄ°æ±¾ºÅ
+            // é¦–å…ˆæŸ¥æ‰¾MANIFEST.MFè§„èŒƒä¸­çš„ç‰ˆæœ¬å·
             String version = cls.getPackage().getImplementationVersion();
             if (version == null || version.length() == 0) {
                 version = cls.getPackage().getSpecificationVersion();
             }
             if (version == null || version.length() == 0) {
-                // Èç¹û¹æ·¶ÖĞÃ»ÓĞ°æ±¾ºÅ£¬»ùÓÚjar°üÃû»ñÈ¡°æ±¾ºÅ
+                // å¦‚æœè§„èŒƒä¸­æ²¡æœ‰ç‰ˆæœ¬å·ï¼ŒåŸºäºjaråŒ…åè·å–ç‰ˆæœ¬å·
                 CodeSource codeSource = cls.getProtectionDomain().getCodeSource();
                 if(codeSource == null) {
                     logger.info("No codeSource for class " + cls.getName() + " when getVersion, use default version " + defaultVersion);
@@ -104,10 +104,10 @@ public final class Version {
                     }
                 }
             }
-            // ·µ»Ø°æ±¾ºÅ£¬Èç¹ûÎª¿Õ·µ»ØÈ±Ê¡°æ±¾ºÅ
+            // è¿”å›ç‰ˆæœ¬å·ï¼Œå¦‚æœä¸ºç©ºè¿”å›ç¼ºçœç‰ˆæœ¬å·
             return version == null || version.length() == 0 ? defaultVersion : version;
-        } catch (Throwable e) { // ·ÀÓùĞÔÈİ´í
-            // ºöÂÔÒì³££¬·µ»ØÈ±Ê¡°æ±¾ºÅ
+        } catch (Throwable e) { // é˜²å¾¡æ€§å®¹é”™
+            // å¿½ç•¥å¼‚å¸¸ï¼Œè¿”å›ç¼ºçœç‰ˆæœ¬å·
             logger.error("return default version, ignore exception " + e.getMessage(), e);
             return defaultVersion;
         }
@@ -123,7 +123,7 @@ public final class Version {
 
 	public static void checkDuplicate(String path, boolean failOnError) {
 		try {
-			// ÔÚClassPathËÑÎÄ¼ş
+			// åœ¨ClassPathæœæ–‡ä»¶
 			Enumeration<URL> urls = ClassHelper.getCallerClassLoader(Version.class).getResources(path);
 			Set<String> files = new HashSet<String>();
 			while (urls.hasMoreElements()) {
@@ -135,7 +135,7 @@ public final class Version {
 					}
 				}
 			}
-			// Èç¹ûÓĞ¶à¸ö£¬¾Í±íÊ¾ÖØ¸´
+			// å¦‚æœæœ‰å¤šä¸ªï¼Œå°±è¡¨ç¤ºé‡å¤
 			if (files.size() > 1) {
                 String error = "Duplicate class " + path + " in " + files.size() + " jar " + files;
                 if (failOnError) {
@@ -144,7 +144,7 @@ public final class Version {
 				    logger.error(error);
                 }
 			}
-		} catch (Throwable e) { // ·ÀÓùĞÔÈİ´í
+		} catch (Throwable e) { // é˜²å¾¡æ€§å®¹é”™
 			logger.error(e.getMessage(), e);
 		}
 	}

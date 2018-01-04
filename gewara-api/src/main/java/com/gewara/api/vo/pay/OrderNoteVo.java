@@ -11,42 +11,42 @@ public class OrderNoteVo extends BaseVo {
 
 	private static final long serialVersionUID = -135038508746485007L;
 	private Long id;
-	private Long orderid;				//¶©µ¥ID
-	private String tradeno;				//¶©µ¥ºÅ
-	private String ordertype;			//¶©µ¥ÀàÐÍ
-	private String mobile;				//ÊÖ»úºÅ
-	private String placename;			//³¡¹ÝÃû³Æ
-	private String placetype;			//³¡¹ÝÀàÐÍ
-	private Long placeid;				//³¡¹ÝID
-	private String itemname;			//ÏîÄ¿Ãû³Æ
-	private String itemtype;			//ÏîÄ¿ÀàÐÍ
-	private Long itemid;				//ÏîÄ¿ID
-	private String checkpass;			//È¡Æ±ÃÜÂë
-	private Integer ticketnum;			//Æ±ÊýÁ¿
-	private String smallitemtype;		//¹ØÁªÀàÐÍ
-	private Long smallitemid;			//¹ØÁª¶ÔÏó(³¡´Î»òÎïÆ·)
-	private Timestamp addtime;			//Ìí¼ÓÊ±¼ä
-	private Timestamp updatetime;		//¸üÐÂÊ±¼ä
-	private Timestamp validtime;		//ÓÐÐ§Ê±¼ä
-	private String message;				//¶ÌÐÅÄÚÈÝ
+	private Long orderid;				//ï¿½ï¿½ï¿½ï¿½ID
+	private String tradeno;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String ordertype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String mobile;				//ï¿½Ö»ï¿½ï¿½ï¿½
+	private String placename;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String placetype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Long placeid;				//ï¿½ï¿½ï¿½ï¿½ID
+	private String itemname;			//ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½
+	private String itemtype;			//ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½
+	private Long itemid;				//ï¿½ï¿½Ä¿ID
+	private String checkpass;			//È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private Integer ticketnum;			//Æ±ï¿½ï¿½ï¿½ï¿½
+	private String smallitemtype;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Long smallitemid;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Æ·)
+	private Timestamp addtime;			//ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp updatetime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp validtime;		//ï¿½ï¿½Ð§Ê±ï¿½ï¿½
+	private String message;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	private Timestamp playtime;			//·ÅÓ³Ê±¼ä
-	private Timestamp taketime;			//È¡Æ±Ê±¼ä
+	private Timestamp playtime;			//ï¿½ï¿½Ó³Ê±ï¿½ï¿½
+	private Timestamp taketime;			//È¡Æ±Ê±ï¿½ï¿½
 	private String status;
-	private String serialno;			//Á÷Ë®ºÅ
-	private Timestamp modifytime;		//Ò»Ìå»úÍ¬²½
-	private String result;				//Í¬²½×´Ì¬
-	private String description;			//ËµÃ÷
+	private String serialno;			//ï¿½ï¿½Ë®ï¿½ï¿½
+	private Timestamp modifytime;		//Ò»ï¿½ï¿½ï¿½Í¬ï¿½ï¿½
+	private String result;				//Í¬ï¿½ï¿½×´Ì¬
+	private String description;			//Ëµï¿½ï¿½
 	
 	private String fromup;
 	private String express;
 	private String otherinfo;
-	private Integer convertnum;				//»»Æ±Êý
-	private String converttype;				//²Ù×÷ÀàÐÍ
-	private Integer totalfee;					//×Ü·ÑÓÃ
-	private Integer totaldisfee;				//×ÜÌ×Æ±ÓÅ»Ý
-	private Integer convertfee;				//¶Ò»»·ÑÓÃ
-	private Integer convertdisfee;			//¶Ò»»Ì×Æ±ÓÅ»Ý·ÑÓÃ
+	private Integer convertnum;				//ï¿½ï¿½Æ±ï¿½ï¿½
+	private String converttype;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer totalfee;					//ï¿½Ü·ï¿½ï¿½ï¿½
+	private Integer totaldisfee;				//ï¿½ï¿½ï¿½ï¿½Æ±ï¿½Å»ï¿½
+	private Integer convertfee;				//ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer convertdisfee;			//ï¿½Ò»ï¿½ï¿½ï¿½Æ±ï¿½Å»Ý·ï¿½ï¿½ï¿½
 	public OrderNoteVo(){}
 	@Override
 	public Serializable realId() {
@@ -211,8 +211,12 @@ public class OrderNoteVo extends BaseVo {
 		this.message = message;
 	}
 	public String gainSynchtype(){
-		if(StringUtils.equals(result, "U")) return "1";
-		if(StringUtils.equals(result, "D")) return "2";
+		if(StringUtils.equals(result, "U")) {
+            return "1";
+        }
+		if(StringUtils.equals(result, "D")) {
+            return "2";
+        }
 		return "0";
 	}
 	

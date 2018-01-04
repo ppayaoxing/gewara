@@ -34,19 +34,26 @@ public class Projection {
     }
     
     public Projection addFields(Map<String,Integer> fields){
-    	if(fields==null||fields.isEmpty()) return this;
+    	if(fields==null||fields.isEmpty()) {
+            return this;
+        }
     	List<String> exclude=new ArrayList<>();
     	List<String> include=new ArrayList<>();
     	for(Map.Entry<String, Integer> entry:fields.entrySet()){
-    		if(entry.getValue()<0) 
-    			exclude.add(entry.getKey());
-    		else{
-    			if(entry.getValue()>0)
-    				include.add(entry.getKey());
+    		if(entry.getValue()<0) {
+                exclude.add(entry.getKey());
+            } else{
+    			if(entry.getValue()>0) {
+                    include.add(entry.getKey());
+                }
     		}
     	}
-    	if(!exclude.isEmpty()) addExcludeField(exclude);
-    	if(!include.isEmpty()) addIncludeField(include);
+    	if(!exclude.isEmpty()) {
+            addExcludeField(exclude);
+        }
+    	if(!include.isEmpty()) {
+            addIncludeField(include);
+        }
     	return this;
     }
    
@@ -63,7 +70,7 @@ public class Projection {
 
    
     /**
-     * Ö¸¶¨arrayÖÐÄÄÐ©ÔªËØ±»·µ»Ø¡£
+     * Ö¸ï¿½ï¿½arrayï¿½ï¿½ï¿½ï¿½Ð©Ôªï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ø¡ï¿½
      * @param fieldName
      * @param condition
      * @return
@@ -75,7 +82,7 @@ public class Projection {
 
    
     /**
-     * ·µ»ØÎÄ±¾ÆÀ·Ö
+     * ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½
      * @param fieldName
      * @return
      */

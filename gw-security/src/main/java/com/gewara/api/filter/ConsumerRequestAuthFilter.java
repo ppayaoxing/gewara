@@ -28,11 +28,11 @@ public class ConsumerRequestAuthFilter extends GenericFilter {
 	public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
 		HttpServletRequest request = getRequest();
 		if(request == null){
-			return new RpcResult(ResultCode.getFailure("·Ç·¨µ÷ÓÃ£¡£¡£¡"));
+			return new RpcResult(ResultCode.getFailure("ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½"));
 		}
 		User user = getLogonUser();
 		if(user == null){
-			return new RpcResult(ResultCode.getFailure("ÇëÏÈµÇÂ¼£¡"));
+			return new RpcResult(ResultCode.getFailure("ï¿½ï¿½ï¿½Èµï¿½Â¼ï¿½ï¿½"));
 		}
 		RpcContext context = RpcContext.getContext();
 		String pageUrl = request.getServletPath();
@@ -63,10 +63,12 @@ public class ConsumerRequestAuthFilter extends GenericFilter {
 		if(auth == null){
 			return null;
 		}
-		if(auth.isAuthenticated() && !auth.getName().equals("anonymous")){//µÇÂ¼
+		if(auth.isAuthenticated() && !"anonymous".equals(auth.getName())){//ï¿½ï¿½Â¼
 			GewaraUser user = (GewaraUser) auth.getPrincipal();
 			//refresh(user);
-			if(user instanceof User) return (User)user;
+			if(user instanceof User) {
+                return (User) user;
+            }
 		}
 		return null;
 	}

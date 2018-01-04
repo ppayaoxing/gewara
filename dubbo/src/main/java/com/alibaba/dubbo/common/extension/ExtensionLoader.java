@@ -43,14 +43,14 @@ import com.alibaba.dubbo.common.utils.Holder;
 import com.alibaba.dubbo.common.utils.StringUtils;
 
 /**
- * DubboÊ¹ÓÃµÄÀ©Õ¹µã»ñÈ¡¡£<p>
+ * DubboÊ¹ï¿½Ãµï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½È¡ï¿½ï¿½<p>
  * <ul>
- * <li>×Ô¶¯×¢Èë¹ØÁªÀ©Õ¹µã¡£</li>
- * <li>×Ô¶¯WrapÉÏÀ©Õ¹µãµÄWrapÀà¡£</li>
- * <li>È±Ê¡»ñµÃµÄµÄÀ©Õ¹µãÊÇÒ»¸öAdaptive Instance¡£
+ * <li>ï¿½Ô¶ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ã¡£</li>
+ * <li>ï¿½Ô¶ï¿½Wrapï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½Wrapï¿½à¡£</li>
+ * <li>È±Ê¡ï¿½ï¿½ÃµÄµï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Adaptive Instanceï¿½ï¿½
  * </ul>
  * 
- * @see <a href="http://java.sun.com/j2se/1.5.0/docs/guide/jar/jar.html#Service%20Provider">JDK5.0µÄ×Ô¶¯·¢ÏÖ»úÖÆÊµÏÖ</a>
+ * @see <a href="http://java.sun.com/j2se/1.5.0/docs/guide/jar/jar.html#Service%20Provider">JDK5.0ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Êµï¿½ï¿½</a>
  * 
  * @author william.liangf
  * @author ding.lid
@@ -106,8 +106,9 @@ public class ExtensionLoader<T> {
     
     @SuppressWarnings("unchecked")
     public static <T> ExtensionLoader<T> getExtensionLoader(Class<T> type) {
-        if (type == null)
+        if (type == null) {
             throw new IllegalArgumentException("Extension type == null");
+        }
         if(!type.isInterface()) {
             throw new IllegalArgumentException("Extension type(" + type + ") is not interface!");
         }
@@ -264,16 +265,17 @@ public class ExtensionLoader<T> {
     }
 
     /**
-     * ·µ»ØÀ©Õ¹µãÊµÀý£¬Èç¹ûÃ»ÓÐÖ¸¶¨µÄÀ©Õ¹µã»òÊÇ»¹Ã»¼ÓÔØ£¨¼´ÊµÀý»¯£©Ôò·µ»Ø<code>null</code>¡£×¢Òâ£º´Ë·½·¨²»»á´¥·¢À©Õ¹µãµÄ¼ÓÔØ¡£
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½Ç»ï¿½Ã»ï¿½ï¿½ï¿½Ø£ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½<code>null</code>ï¿½ï¿½×¢ï¿½â£ºï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á´¥ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½Ä¼ï¿½ï¿½Ø¡ï¿½
      * <p />
-     * Ò»°ãÓ¦¸Ãµ÷ÓÃ{@link #getExtension(String)}·½·¨»ñµÃÀ©Õ¹£¬Õâ¸ö·½·¨»á´¥·¢À©Õ¹µã¼ÓÔØ¡£
+     * Ò»ï¿½ï¿½Ó¦ï¿½Ãµï¿½ï¿½ï¿½{@link #getExtension(String)}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á´¥ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½Ø¡ï¿½
      *
      * @see #getExtension(String)
      */
     @SuppressWarnings("unchecked")
     public T getLoadedExtension(String name) {
-        if (name == null || name.length() == 0)
+        if (name == null || name.length() == 0) {
             throw new IllegalArgumentException("Extension name == null");
+        }
         Holder<Object> holder = cachedInstances.get(name);
         if (holder == null) {
             cachedInstances.putIfAbsent(name, new Holder<Object>());
@@ -283,9 +285,9 @@ public class ExtensionLoader<T> {
     }
 
     /**
-     * ·µ»ØÒÑ¾­¼ÓÔØµÄÀ©Õ¹µãµÄÃû×Ö¡£
+     * ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½
      * <p />
-     * Ò»°ãÓ¦¸Ãµ÷ÓÃ{@link #getSupportedExtensions()}·½·¨»ñµÃÀ©Õ¹£¬Õâ¸ö·½·¨»á·µ»ØËùÓÐµÄÀ©Õ¹µã¡£
+     * Ò»ï¿½ï¿½Ó¦ï¿½Ãµï¿½ï¿½ï¿½{@link #getSupportedExtensions()}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á·µï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Õ¹ï¿½ã¡£
      *
      * @see #getSupportedExtensions()
      */
@@ -294,15 +296,16 @@ public class ExtensionLoader<T> {
     }
 
     /**
-     * ·µ»ØÖ¸¶¨Ãû×ÖµÄÀ©Õ¹¡£Èç¹ûÖ¸¶¨Ãû×ÖµÄÀ©Õ¹²»´æÔÚ£¬ÔòÅ×Òì³£ {@link IllegalStateException}.
+     * ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ {@link IllegalStateException}.
      *
      * @param name
      * @return
      */
 	@SuppressWarnings("unchecked")
 	public T getExtension(String name) {
-		if (name == null || name.length() == 0)
-		    throw new IllegalArgumentException("Extension name == null");
+		if (name == null || name.length() == 0) {
+            throw new IllegalArgumentException("Extension name == null");
+        }
 		if ("true".equals(name)) {
 		    return getDefaultExtension();
 		}
@@ -325,7 +328,7 @@ public class ExtensionLoader<T> {
 	}
 	
 	/**
-	 * ·µ»ØÈ±Ê¡µÄÀ©Õ¹£¬Èç¹ûÃ»ÓÐÉèÖÃÔò·µ»Ø<code>null</code>¡£ 
+	 * ï¿½ï¿½ï¿½ï¿½È±Ê¡ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½<code>null</code>ï¿½ï¿½ 
 	 */
 	public T getDefaultExtension() {
 	    getExtensionClasses();
@@ -337,8 +340,9 @@ public class ExtensionLoader<T> {
 	}
 
 	public boolean hasExtension(String name) {
-	    if (name == null || name.length() == 0)
-	        throw new IllegalArgumentException("Extension name == null");
+	    if (name == null || name.length() == 0) {
+            throw new IllegalArgumentException("Extension name == null");
+        }
 	    try {
 	        return getExtensionClass(name) != null;
 	    } catch (Throwable t) {
@@ -352,7 +356,7 @@ public class ExtensionLoader<T> {
     }
     
 	/**
-	 * ·µ»ØÈ±Ê¡µÄÀ©Õ¹µãÃû£¬Èç¹ûÃ»ÓÐÉèÖÃÈ±Ê¡Ôò·µ»Ø<code>null</code>¡£ 
+	 * ï¿½ï¿½ï¿½ï¿½È±Ê¡ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±Ê¡ï¿½ò·µ»ï¿½<code>null</code>ï¿½ï¿½ 
 	 */
 	public String getDefaultExtensionName() {
 	    getExtensionClasses();
@@ -360,11 +364,11 @@ public class ExtensionLoader<T> {
 	}
 
     /**
-     * ±à³Ì·½Ê½Ìí¼ÓÐÂÀ©Õ¹µã¡£
+     * ï¿½ï¿½Ì·ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ã¡£
      *
-     * @param name À©Õ¹µãÃû
-     * @param clazz À©Õ¹µãÀà
-     * @throws IllegalStateException ÒªÌí¼ÓÀ©Õ¹µãÃûÒÑ¾­´æÔÚ¡£
+     * @param name ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½
+     * @param clazz ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½
+     * @throws IllegalStateException Òªï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ú¡ï¿½
      */
     public void addExtension(String name, Class<?> clazz) {
         getExtensionClasses(); // load classes
@@ -400,12 +404,12 @@ public class ExtensionLoader<T> {
     }
 
     /**
-     * ±à³Ì·½Ê½Ìí¼ÓÌæ»»ÒÑÓÐÀ©Õ¹µã¡£
+     * ï¿½ï¿½Ì·ï¿½Ê½ï¿½ï¿½ï¿½ï¿½æ»»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ã¡£
      *
-     * @param name À©Õ¹µãÃû
-     * @param clazz À©Õ¹µãÀà
-     * @throws IllegalStateException ÒªÌí¼ÓÀ©Õ¹µãÃûÒÑ¾­´æÔÚ¡£
-     * @deprecated ²»ÍÆ¼öÓ¦ÓÃÊ¹ÓÃ£¬Ò»°ãÖ»ÔÚ²âÊÔÊ±¿ÉÒÔÊ¹ÓÃ
+     * @param name ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½
+     * @param clazz ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½
+     * @throws IllegalStateException Òªï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ú¡ï¿½
+     * @deprecated ï¿½ï¿½ï¿½Æ¼ï¿½Ó¦ï¿½ï¿½Ê¹ï¿½Ã£ï¿½Ò»ï¿½ï¿½Ö»ï¿½Ú²ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
      */
     @Deprecated
     public void replaceExtension(String name, Class<?> clazz) {
@@ -548,13 +552,16 @@ public class ExtensionLoader<T> {
     }
     
 	private Class<?> getExtensionClass(String name) {
-	    if (type == null)
-	        throw new IllegalArgumentException("Extension type == null");
-	    if (name == null)
-	        throw new IllegalArgumentException("Extension name == null");
+	    if (type == null) {
+            throw new IllegalArgumentException("Extension type == null");
+        }
+	    if (name == null) {
+            throw new IllegalArgumentException("Extension name == null");
+        }
 	    Class<?> clazz = getExtensionClasses().get(name);
-	    if (clazz == null)
-	        throw new IllegalStateException("No such extension \"" + name + "\" for " + type.getName() + "!");
+	    if (clazz == null) {
+            throw new IllegalStateException("No such extension \"" + name + "\" for " + type.getName() + "!");
+        }
 	    return clazz;
 	}
 	
@@ -572,7 +579,7 @@ public class ExtensionLoader<T> {
         return classes;
 	}
 
-    // ´Ë·½·¨ÒÑ¾­getExtensionClasses·½·¨Í¬²½¹ý¡£
+    // ï¿½Ë·ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½getExtensionClassesï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private Map<String, Class<?>> loadExtensionClasses() {
         final SPI defaultAnnotation = type.getAnnotation(SPI.class);
         if(defaultAnnotation != null) {
@@ -583,7 +590,9 @@ public class ExtensionLoader<T> {
                     throw new IllegalStateException("more than 1 default extension name on extension " + type.getName()
                             + ": " + Arrays.toString(names));
                 }
-                if(names.length == 1) cachedDefaultName = names[0];
+                if(names.length == 1) {
+                    cachedDefaultName = names[0];
+                }
             }
         }
         
@@ -613,7 +622,9 @@ public class ExtensionLoader<T> {
                             String line = null;
                             while ((line = reader.readLine()) != null) {
                                 final int ci = line.indexOf('#');
-                                if (ci >= 0) line = line.substring(0, ci);
+                                if (ci >= 0) {
+                                    line = line.substring(0, ci);
+                                }
                                 line = line.trim();
                                 if (line.length() > 0) {
                                     try {
@@ -749,9 +760,10 @@ public class ExtensionLoader<T> {
                 break;
             }
         }
-        // ÍêÈ«Ã»ÓÐAdaptive·½·¨£¬Ôò²»ÐèÒªÉú³ÉAdaptiveÀà
-        if(! hasAdaptiveAnnotation)
+        // ï¿½ï¿½È«Ã»ï¿½ï¿½Adaptiveï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Adaptiveï¿½ï¿½
+        if(! hasAdaptiveAnnotation) {
             throw new IllegalStateException("No adaptive method on extension " + type.getName() + ", refuse to create the adaptive class!");
+        }
         
         codeBuidler.append("package " + type.getPackage().getName() + ";");
         codeBuidler.append("\nimport " + ExtensionLoader.class.getName() + ";");
@@ -776,7 +788,7 @@ public class ExtensionLoader<T> {
                         break;
                     }
                 }
-                // ÓÐÀàÐÍÎªURLµÄ²ÎÊý
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªURLï¿½Ä²ï¿½ï¿½ï¿½
                 if (urlTypeIndex != -1) {
                     // Null Point check
                     String s = String.format("\nif (arg%d == null) throw new IllegalArgumentException(\"url == null\");",
@@ -786,11 +798,11 @@ public class ExtensionLoader<T> {
                     s = String.format("\n%s url = arg%d;", URL.class.getName(), urlTypeIndex); 
                     code.append(s);
                 }
-                // ²ÎÊýÃ»ÓÐURLÀàÐÍ
+                // ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½
                 else {
                     String attribMethod = null;
                     
-                    // ÕÒµ½²ÎÊýµÄURLÊôÐÔ
+                    // ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½
                     LBL_PTS:
                     for (int i = 0; i < pts.length; ++i) {
                         Method[] ms = pts[i].getMethods();
@@ -825,7 +837,7 @@ public class ExtensionLoader<T> {
                 }
                 
                 String[] value = adaptiveAnnotation.value();
-                // Ã»ÓÐÉèÖÃKey£¬ÔòÊ¹ÓÃ¡°À©Õ¹µã½Ó¿ÚÃûµÄµã·Ö¸ô ×÷ÎªKey
+                // Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Keyï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¡ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö¸ï¿½ ï¿½ï¿½ÎªKey
                 if(value.length == 0) {
                     char[] charArray = type.getSimpleName().toCharArray();
                     StringBuilder sb = new StringBuilder(128);
@@ -845,7 +857,7 @@ public class ExtensionLoader<T> {
                 
                 boolean hasInvocation = false;
                 for (int i = 0; i < pts.length; ++i) {
-                    if (pts[i].getName().equals("com.alibaba.dubbo.rpc.Invocation")) {
+                    if ("com.alibaba.dubbo.rpc.Invocation".equals(pts[i].getName())) {
                         // Null Point check
                         String s = String.format("\nif (arg%d == null) throw new IllegalArgumentException(\"invocation == null\");", i);
                         code.append(s);
@@ -861,32 +873,38 @@ public class ExtensionLoader<T> {
                 for (int i = value.length - 1; i >= 0; --i) {
                     if(i == value.length - 1) {
                         if(null != defaultExtName) {
-                            if(!"protocol".equals(value[i]))
-                                if (hasInvocation) 
+                            if(!"protocol".equals(value[i])) {
+                                if (hasInvocation) {
                                     getNameCode = String.format("url.getMethodParameter(methodName, \"%s\", \"%s\")", value[i], defaultExtName);
-                                else
+                                } else {
                                     getNameCode = String.format("url.getParameter(\"%s\", \"%s\")", value[i], defaultExtName);
-                            else
+                                }
+                            } else {
                                 getNameCode = String.format("( url.getProtocol() == null ? \"%s\" : url.getProtocol() )", defaultExtName);
+                            }
                         }
                         else {
-                            if(!"protocol".equals(value[i]))
-                                if (hasInvocation) 
+                            if(!"protocol".equals(value[i])) {
+                                if (hasInvocation) {
                                     getNameCode = String.format("url.getMethodParameter(methodName, \"%s\", \"%s\")", value[i], defaultExtName);
-                                else
+                                } else {
                                     getNameCode = String.format("url.getParameter(\"%s\")", value[i]);
-                            else
+                                }
+                            } else {
                                 getNameCode = "url.getProtocol()";
+                            }
                         }
                     }
                     else {
-                        if(!"protocol".equals(value[i]))
-                            if (hasInvocation) 
+                        if(!"protocol".equals(value[i])) {
+                            if (hasInvocation) {
                                 getNameCode = String.format("url.getMethodParameter(methodName, \"%s\", \"%s\")", value[i], defaultExtName);
-                            else
+                            } else {
                                 getNameCode = String.format("url.getParameter(\"%s\", %s)", value[i], getNameCode);
-                        else
+                            }
+                        } else {
                             getNameCode = String.format("url.getProtocol() == null ? (%s) : url.getProtocol()", getNameCode);
+                        }
                     }
                 }
                 code.append("\nString extName = ").append(getNameCode).append(";");
@@ -908,8 +926,9 @@ public class ExtensionLoader<T> {
                 s = String.format("extension.%s(", method.getName());
                 code.append(s);
                 for (int i = 0; i < pts.length; i++) {
-                    if (i != 0)
+                    if (i != 0) {
                         code.append(", ");
+                    }
                     code.append("arg").append(i);
                 }
                 code.append(");");

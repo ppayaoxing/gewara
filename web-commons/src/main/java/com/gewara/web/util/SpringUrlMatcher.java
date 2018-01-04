@@ -43,7 +43,7 @@ public final class SpringUrlMatcher implements UrlMatcher {
 	public SpringUrlMatcher(String pattern) {
 		Assert.hasText(pattern, "Pattern cannot be null or empty");
 
-		if (pattern.equals(MATCH_ALL) || pattern.equals("**")) {
+		if (pattern.equals(MATCH_ALL) || "**".equals(pattern)) {
 			pattern = MATCH_ALL;
 			matcher = null;
 		} else {

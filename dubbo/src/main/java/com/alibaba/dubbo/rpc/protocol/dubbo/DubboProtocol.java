@@ -80,11 +80,12 @@ public class DubboProtocol extends AbstractProtocol {
 
     private ExchangeHandler requestHandler = new ExchangeHandlerAdapter() {
         
+        @Override
         public Object reply(ExchangeChannel channel, Object message) throws RemotingException {
             if (message instanceof Invocation) {
                 Invocation inv = (Invocation) message;
                 Invoker<?> invoker = getInvoker(channel, inv);
-                //Èç¹ûÊÇcallback ÐèÒª´¦Àí¸ß°æ±¾µ÷ÓÃµÍ°æ±¾µÄÎÊÌâ
+                //ï¿½ï¿½ï¿½ï¿½ï¿½callback ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ß°æ±¾ï¿½ï¿½ï¿½ÃµÍ°æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (Boolean.TRUE.toString().equals(inv.getAttachments().get(IS_CALLBACK_SERVICE_INVOKE))){
                     String methodsStr = invoker.getUrl().getParameters().get("methods");
                     boolean hasMethod = false;
@@ -198,7 +199,7 @@ public class DubboProtocol extends AbstractProtocol {
         boolean isStubServiceInvoke = false;
         int port = channel.getLocalAddress().getPort();
         String path = inv.getAttachments().get(Constants.PATH_KEY);
-        //Èç¹ûÊÇ¿Í»§¶ËµÄ»Øµ÷·þÎñ.
+        //ï¿½ï¿½ï¿½ï¿½Ç¿Í»ï¿½ï¿½ËµÄ»Øµï¿½ï¿½ï¿½ï¿½ï¿½.
         isStubServiceInvoke = Boolean.TRUE.toString().equals(inv.getAttachments().get(Constants.STUB_EVENT_KEY));
         if (isStubServiceInvoke){
             port = channel.getRemoteAddress().getPort();
@@ -213,8 +214,9 @@ public class DubboProtocol extends AbstractProtocol {
 
         DubboExporter<?> exporter = (DubboExporter<?>) exporterMap.get(serviceKey);
         
-        if (exporter == null)
+        if (exporter == null) {
             throw new RemotingException(channel, "Not found exported service: " + serviceKey + " in " + exporterMap.keySet() + ", may be version or group mismatch " + ", channel: consumer: " + channel.getRemoteAddress() + " --> provider: " + channel.getLocalAddress() + ", message:" + inv);
+        }
 
         return exporter.getInvoker();
     }
@@ -223,10 +225,12 @@ public class DubboProtocol extends AbstractProtocol {
         return Collections.unmodifiableCollection(invokers);
     }
 
+    @Override
     public int getDefaultPort() {
         return DEFAULT_PORT;
     }
 
+    @Override
     public <T> Exporter<T> export(Invoker<T> invoker) throws RpcException {
         URL url = invoker.getUrl();
         
@@ -258,28 +262,29 @@ public class DubboProtocol extends AbstractProtocol {
     private void openServer(URL url) {
         // find server.
         String key = url.getAddress();
-        //client Ò²¿ÉÒÔ±©Â¶Ò»¸öÖ»ÓÐserver¿ÉÒÔµ÷ÓÃµÄ·þÎñ¡£
+        //client Ò²ï¿½ï¿½ï¿½Ô±ï¿½Â¶Ò»ï¿½ï¿½Ö»ï¿½ï¿½serverï¿½ï¿½ï¿½Ôµï¿½ï¿½ÃµÄ·ï¿½ï¿½ï¿½
         boolean isServer = url.getParameter(Constants.IS_SERVER_KEY,true);
         if (isServer) {
         	ExchangeServer server = serverMap.get(key);
         	if (server == null) {
         		serverMap.put(key, createServer(url));
         	} else {
-        		//serverÖ§³Öreset,ÅäºÏoverride¹¦ÄÜÊ¹ÓÃ
+        		//serverÖ§ï¿½ï¿½reset,ï¿½ï¿½ï¿½overrideï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
         		server.reset(url);
         	}
         }
     }
     
     private ExchangeServer createServer(URL url) {
-        //Ä¬ÈÏ¿ªÆôserver¹Ø±ÕÊ±·¢ËÍreadonlyÊÂ¼þ
+        //Ä¬ï¿½Ï¿ï¿½ï¿½ï¿½serverï¿½Ø±ï¿½Ê±ï¿½ï¿½ï¿½ï¿½readonlyï¿½Â¼ï¿½
         url = url.addParameterIfAbsent(Constants.CHANNEL_READONLYEVENT_SENT_KEY, Boolean.TRUE.toString());
-        //Ä¬ÈÏ¿ªÆôheartbeat
+        //Ä¬ï¿½Ï¿ï¿½ï¿½ï¿½heartbeat
         url = url.addParameterIfAbsent(Constants.HEARTBEAT_KEY, String.valueOf(Constants.DEFAULT_HEARTBEAT));
         String str = url.getParameter(Constants.SERVER_KEY, Constants.DEFAULT_REMOTING_SERVER);
 
-        if (str != null && str.length() > 0 && ! ExtensionLoader.getExtensionLoader(Transporter.class).hasExtension(str))
+        if (str != null && str.length() > 0 && ! ExtensionLoader.getExtensionLoader(Transporter.class).hasExtension(str)) {
             throw new RpcException("Unsupported server type: " + str + ", url: " + url);
+        }
 
         url = url.addParameter(Constants.CODEC_KEY, Version.isCompatibleVersion() ? COMPATIBLE_CODEC_NAME : DubboCodec.NAME);
         ExchangeServer server;
@@ -298,6 +303,7 @@ public class DubboProtocol extends AbstractProtocol {
         return server;
     }
 
+    @Override
     public <T> Invoker<T> refer(Class<T> serviceType, URL url) throws RpcException {
         // create rpc invoker.
         DubboInvoker<T> invoker = new DubboInvoker<T>(serviceType, url, getClients(url), invokers);
@@ -306,10 +312,10 @@ public class DubboProtocol extends AbstractProtocol {
     }
     
     private ExchangeClient[] getClients(URL url){
-        //ÊÇ·ñ¹²ÏíÁ¬½Ó
+        //ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         boolean service_share_connect = false;
         int connections = url.getParameter(Constants.CONNECTIONS_KEY, 0);
-        //Èç¹ûconnections²»ÅäÖÃ£¬Ôò¹²ÏíÁ¬½Ó£¬·ñÔòÃ¿·þÎñÃ¿Á¬½Ó
+        //ï¿½ï¿½ï¿½connectionsï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½
         if (connections == 0){
             service_share_connect = true;
             connections = 1;
@@ -327,7 +333,7 @@ public class DubboProtocol extends AbstractProtocol {
     }
     
     /**
-     *»ñÈ¡¹²ÏíÁ¬½Ó 
+     *ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
      */
     private ExchangeClient getSharedClient(URL url){
         String key = url.getAddress();
@@ -350,7 +356,7 @@ public class DubboProtocol extends AbstractProtocol {
     }
 
     /**
-     * ´´½¨ÐÂÁ¬½Ó.
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
      */
     private ExchangeClient initClient(URL url) {
         
@@ -360,10 +366,10 @@ public class DubboProtocol extends AbstractProtocol {
         String version = url.getParameter(Constants.DUBBO_VERSION_KEY);
         boolean compatible = (version != null && version.startsWith("1.0."));
         url = url.addParameter(Constants.CODEC_KEY, Version.isCompatibleVersion() && compatible ? COMPATIBLE_CODEC_NAME : DubboCodec.NAME);
-        //Ä¬ÈÏ¿ªÆôheartbeat
+        //Ä¬ï¿½Ï¿ï¿½ï¿½ï¿½heartbeat
         url = url.addParameterIfAbsent(Constants.HEARTBEAT_KEY, String.valueOf(Constants.DEFAULT_HEARTBEAT));
         
-        // BIO´æÔÚÑÏÖØÐÔÄÜÎÊÌâ£¬ÔÝÊ±²»ÔÊÐíÊ¹ÓÃ
+        // BIOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â£¬ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
         if (str != null && str.length() > 0 && ! ExtensionLoader.getExtensionLoader(Transporter.class).hasExtension(str)) {
             throw new RpcException("Unsupported client type: " + str + "," +
                     " supported client type is " + StringUtils.join(ExtensionLoader.getExtensionLoader(Transporter.class).getSupportedExtensions(), " "));
@@ -371,7 +377,7 @@ public class DubboProtocol extends AbstractProtocol {
         
         ExchangeClient client ;
         try {
-            //ÉèÖÃÁ¬½ÓÓ¦¸ÃÊÇlazyµÄ 
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½lazyï¿½ï¿½ 
             if (url.getParameter(Constants.LAZY_CONNECT_KEY, false)){
                 client = new LazyConnectExchangeClient(url ,requestHandler);
             } else {
@@ -384,6 +390,7 @@ public class DubboProtocol extends AbstractProtocol {
         return client;
     }
 
+    @Override
     public void destroy() {
         for (String key : new ArrayList<String>(serverMap.keySet())) {
             ExchangeServer server = serverMap.remove(key);

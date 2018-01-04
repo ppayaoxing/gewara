@@ -6,9 +6,9 @@ import org.bson.conversions.Bson;
 import com.gewara.mdb.operation.Expression;
 
 /**
- * É¾³ý
- * @author ¶­Ã÷
- * @createDate 2015Äê8ÔÂ25ÈÕ
+ * É¾ï¿½ï¿½
+ * @author ï¿½ï¿½ï¿½ï¿½
+ * @createDate 2015ï¿½ï¿½8ï¿½ï¿½25ï¿½ï¿½
  */
 public class DeleteBuilder {
 	
@@ -24,7 +24,7 @@ public class DeleteBuilder {
 	}
 	
 	/**
-	 * ÉèÖÃÌõ¼þ£¬Õâ¸ö·½·¨»á¸²¸ÇÕâÖ®Ç°ËùÉèÖÃµÄÌõ¼þ¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¸²ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param condition
 	 * @return
 	 */
@@ -34,8 +34,8 @@ public class DeleteBuilder {
 	}
 	
 	/**
-	 * ÊÇ·ñÖ»É¾³ýÒ»Ìõ¡£ 
-	 * Ä¬ÈÏÊÇÉ¾³ýËùÓÐ·ûºÏÌõ¼þµÄ¼ÇÂ¼¡£
+	 * ï¿½Ç·ï¿½Ö»É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ 
+	 * Ä¬ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â¼ï¿½ï¿½
 	 * @param removeFirst
 	 * @return
 	 */
@@ -45,8 +45,12 @@ public class DeleteBuilder {
 	}
 
 	public Bson getQueryCondition(){
-		if(ids!=null) return ids;
-		if(condition!=null) return condition;
+		if(ids!=null) {
+            return ids;
+        }
+		if(condition!=null) {
+            return condition;
+        }
 		return new BsonDocument();
 	}
 	

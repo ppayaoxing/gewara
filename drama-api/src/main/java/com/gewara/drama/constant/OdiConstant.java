@@ -15,17 +15,17 @@ import com.gewara.util.DateUtil;
 
 public abstract class OdiConstant {
 	
-	public static final String PREPAY_Y = "Y";		//Ô¤ÊÛ¶©µ¥
-	public static final String PREPAY_N = "N";		//·ÇÔ¤ÊÛ¶©µ¥
-	public static final String PREPAY_S = "S";		//À´±ö¶©µ¥
-	public static final String PREPAY_G = "G";		//ÑÝ³öÇÀÆ±
-	public static final String PREPAY_T = "T";		//ÑÝ³öÍÅÏú
-	public static final String PREPAY_P = "P";		//ÑÝ³öÌØ»ÝÆ±
-	public static final String PREPAY_C = "C";		//CRMÉÌ»§
+	public static final String PREPAY_Y = "Y";		//Ô¤ï¿½Û¶ï¿½ï¿½ï¿½
+	public static final String PREPAY_N = "N";		//ï¿½ï¿½Ô¤ï¿½Û¶ï¿½ï¿½ï¿½
+	public static final String PREPAY_S = "S";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PREPAY_G = "G";		//ï¿½Ý³ï¿½ï¿½ï¿½Æ±
+	public static final String PREPAY_T = "T";		//ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PREPAY_P = "P";		//ï¿½Ý³ï¿½ï¿½Ø»ï¿½Æ±
+	public static final String PREPAY_C = "C";		//CRMï¿½Ì»ï¿½
 
-	public static final String STATUS_BOOK = "Y"; // ½ÓÊÜÔ¤¶©
-	public static final String STATUS_NOBOOK = "N"; // ²»½ÓÊÜÔ¤¶©
-	public static final String STATUS_DISCARD = "D"; // ·ÏÆú
+	public static final String STATUS_BOOK = "Y"; // ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½
+	public static final String STATUS_NOBOOK = "N"; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½
+	public static final String STATUS_DISCARD = "D"; // ï¿½ï¿½ï¿½ï¿½
 	
 	public static final String ORDER_NEW = "orderNew";
 	
@@ -34,14 +34,14 @@ public abstract class OdiConstant {
 	
 	public static final List<String> STATUS_LIST = Arrays.asList(STATUS_BOOK, STATUS_NOBOOK, STATUS_DISCARD);
 	
-	public static final int CLOSE_MIN = 60; // ÌáÇ°¹Ø±ÕÊ±¼ä
+	public static final int CLOSE_MIN = 60; // ï¿½ï¿½Ç°ï¿½Ø±ï¿½Ê±ï¿½ï¿½
 	public static final String OPEN_TYPE_SEAT = "seat";
 	public static final String OPEN_TYPE_PRICE = "price";
 	
-	public static final String TAKEMETHOD_ID = "I";			//Éí·ÝÖ¤µç×ÓÆ±
-	public static final String TAKEMETHOD_QUPIAOJI = "A";	//µç×ÓÆ±
-	public static final String TAKEMETHOD_KUAIDI = "E";		//¿ìµÝ
-	public static final String TAKEMETHOD_NUMCODE = "C";		//Êý×Ö¶þÎ¬Âë
+	public static final String TAKEMETHOD_ID = "I";			//ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Æ±
+	public static final String TAKEMETHOD_QUPIAOJI = "A";	//ï¿½ï¿½ï¿½ï¿½Æ±
+	public static final String TAKEMETHOD_KUAIDI = "E";		//ï¿½ï¿½ï¿½
+	public static final String TAKEMETHOD_NUMCODE = "C";		//ï¿½ï¿½ï¿½Ö¶ï¿½Î¬ï¿½ï¿½
 	
 	public static final String ADDORDERQUEUE_LOG_FROM_PC = "PC";
 	public static final String ADDORDERQUEUE_LOG_FROM_API = "API";
@@ -50,15 +50,15 @@ public abstract class OdiConstant {
 	
 	public static final List<String> TAKEMETHOD_LIST = Arrays.asList(TAKEMETHOD_QUPIAOJI, TAKEMETHOD_ID, TAKEMETHOD_KUAIDI, TAKEMETHOD_NUMCODE);
 	
-	public static final String UNOPENGEWA = "unopengewa";					//³¡´Î²»¶Ô¸ñÍßÀ­¿ª·Å
-	public static final String UNSHOWGEWA = "unshowgewa";					//³¡´Î²»¶Ô¸ñÍßÀ­ÏÔÊ¾
-	public static final String UNOPENSPECIAL = "unopenspecial";			//³¡´Î²»¶ÔÌØ»ÝÓÃ»§¿ª·Å
+	public static final String UNOPENGEWA = "unopengewa";					//ï¿½ï¿½ï¿½Î²ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String UNSHOWGEWA = "unshowgewa";					//ï¿½ï¿½ï¿½Î²ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
+	public static final String UNOPENSPECIAL = "unopenspecial";			//ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½ï¿½Ø»ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	public static final String ODIOPTION = "odioption";					//³¡´Î¹ºÆ±ÏÞÖÆ
-	public static final String OPENTOAPP = "app";							//¶Ôapp¿ª·Å
-	public static final String OPENTOWAP = "wap";							//¶Ôwap¿ª·Å
-	public static final String OPENTOPC	= "pc";								//¶Ôpc¿ª·Å
-	public static final String OPENTOALL	= "all";							//¶ÔËùÓÐ¿ª·Å
+	public static final String ODIOPTION = "odioption";					//ï¿½ï¿½ï¿½Î¹ï¿½Æ±ï¿½ï¿½ï¿½ï¿½
+	public static final String OPENTOAPP = "app";							//ï¿½ï¿½appï¿½ï¿½ï¿½ï¿½
+	public static final String OPENTOWAP = "wap";							//ï¿½ï¿½wapï¿½ï¿½ï¿½ï¿½
+	public static final String OPENTOPC	= "pc";								//ï¿½ï¿½pcï¿½ï¿½ï¿½ï¿½
+	public static final String OPENTOALL	= "all";							//ï¿½ï¿½ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½ï¿½
 	
 	public static final String DPI_OPENSTATUS_INIT = "init";
 	public static final String DPI_OPENSTATUS_OPEN = "open";
@@ -76,54 +76,54 @@ public abstract class OdiConstant {
 	
 	public static final int MAX_MINUTS_TICKETS = 15;
 	
-	public static final int MAX_BUY = 6;					//Ã¿µ¥×î¶à¹ºÆ±ÊýÁ¿
-	public static final int ODI_MAX_BUY = 30;				//³¡´ÎÃ¿µ¥×î¶à¹ºÆ±ÊýÁ¿
-	public static final int SEND_MSG_3H = 180;				//ÌáÐÑ¶ÌÐÅÊ±¼ä(·ÖÖÓ)
+	public static final int MAX_BUY = 6;					//Ã¿ï¿½ï¿½ï¿½ï¿½à¹ºÆ±ï¿½ï¿½ï¿½ï¿½
+	public static final int ODI_MAX_BUY = 30;				//ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½à¹ºÆ±ï¿½ï¿½ï¿½ï¿½
+	public static final int SEND_MSG_3H = 180;				//ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½Ê±ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 	
-	//×ùÎ»Í¼Ë¢ÐÂÆµÂÊ
-	public static final int SECONDS_SHOW_SEAT = 900;		//ÏÔÊ¾×ùÎ»Í¼£¬20·ÖÖÓ
-	public static final int SECONDS_ADDORDER = 300;		//ÏÂµ¥£¬5·ÖÖÓ
-	public static final int SECONDS_UPDATE_SEAT = 60;		//¸üÐÂ£¬1·ÖÖÓ
-	public static final int SECONDS_FORCEUPDATE_SEAT = 10;		//¸üÐÂ£¬10Ãë
+	//ï¿½ï¿½Î»Í¼Ë¢ï¿½ï¿½Æµï¿½ï¿½
+	public static final int SECONDS_SHOW_SEAT = 900;		//ï¿½ï¿½Ê¾ï¿½ï¿½Î»Í¼ï¿½ï¿½20ï¿½ï¿½ï¿½ï¿½
+	public static final int SECONDS_ADDORDER = 300;		//ï¿½Âµï¿½ï¿½ï¿½5ï¿½ï¿½ï¿½ï¿½
+	public static final int SECONDS_UPDATE_SEAT = 60;		//ï¿½ï¿½ï¿½Â£ï¿½1ï¿½ï¿½ï¿½ï¿½
+	public static final int SECONDS_FORCEUPDATE_SEAT = 10;		//ï¿½ï¿½ï¿½Â£ï¿½10ï¿½ï¿½
 	
-	public static final String PAUSE_ALL = "ALL";				//¹Ø±ÕËùÓÐºÏ×÷ÉÌ
+	public static final String PAUSE_ALL = "ALL";				//ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ðºï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final String PARTNER_GEWA = "GEWA";		
-	public static final String PARTNER_GPTBS = "GPTBS";		//¿ª·ÅÀàÐÍ£ºÓëÆ±ÎñÏµÍ³¶Ô½Ó
-	public static final String PARTNER_YONGLE = "YONGLE";		//¿ª·ÅÀàÐÍ£ºÓëÓÀÀÖÆ±ÎñÏµÍ³¶Ô½Ó
-	public static final String PARTNER_WP = "WP";			//¿ª·ÅÀàÐÍ£ºÓëÎ¢Æ±ÏµÍ³¶Ô½Ó
-	public static final String PARTNER_DY = "SHOAC";		//¿ª·ÅÀàÐÍ£ºÓë¶«ÒÕÏµÍ³¶Ô½Ó
-	public static final String PARTNER_KXMH = "KXMH";		//¿ª·ÅÀàÐÍ£ºÓë¿ªÐÄÂé»¨¶Ô½Ó
+	public static final String PARTNER_GPTBS = "GPTBS";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ÏµÍ³ï¿½Ô½ï¿½
+	public static final String PARTNER_YONGLE = "YONGLE";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ÏµÍ³ï¿½Ô½ï¿½
+	public static final String PARTNER_WP = "WP";			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Î¢Æ±ÏµÍ³ï¿½Ô½ï¿½
+	public static final String PARTNER_DY = "SHOAC";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ë¶«ï¿½ï¿½ÏµÍ³ï¿½Ô½ï¿½
+	public static final String PARTNER_KXMH = "KXMH";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ë¿ªï¿½ï¿½ï¿½é»¨ï¿½Ô½ï¿½
 	
-	public static final String DISQUANTITY_DITYPE_G = "G";	//ÓÅ»ÝÀàÐÍ G(¸ñÍßÀ­µÄÓÅ»Ý)
-	public static final String DISQUANTITY_DITYPE_P = "P";  //ÓÅ»ÝÀàÐÍ P(Ö÷°ì·½ÓÅ»Ý)
+	public static final String DISQUANTITY_DITYPE_G = "G";	//ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½ G(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½)
+	public static final String DISQUANTITY_DITYPE_P = "P";  //ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½ P(ï¿½ï¿½ï¿½ì·½ï¿½Å»ï¿½)
 	
 	public static final String PTYPE_P = "P";
 	public static final String PTYPE_Q = "Q";
 	
-	public static final String PRICE_FLAG_ORDINARY = "O";		//ÆÕÍ¨Æ±
-	public static final String PRICE_FLAG_CHARITY = "C";		//¹«ÒæÆ±
-	public static final String PRICE_FLAG_MEITI = "M";			//Ã½ÌåÆ±
+	public static final String PRICE_FLAG_ORDINARY = "O";		//ï¿½ï¿½Í¨Æ±
+	public static final String PRICE_FLAG_CHARITY = "C";		//ï¿½ï¿½ï¿½ï¿½Æ±
+	public static final String PRICE_FLAG_MEITI = "M";			//Ã½ï¿½ï¿½Æ±
 	
-	public static final String PRICE_ORIGN_INVENTED = "invented";	//ÐéÄâ
-	public static final String PRICE_ORIGN_ENTITY = "entity";		//ÊµÎï
+	public static final String PRICE_ORIGN_INVENTED = "invented";	//ï¿½ï¿½ï¿½ï¿½
+	public static final String PRICE_ORIGN_ENTITY = "entity";		//Êµï¿½ï¿½
 	
-	public static final String PRICE_OTHERINFO_KEY_SHOWREMARK = "showremark";		//Ñ¡×ùÊÇ·ñÕ¹Ê¾remarkÐÅÏ¢
+	public static final String PRICE_OTHERINFO_KEY_SHOWREMARK = "showremark";		//Ñ¡ï¿½ï¿½ï¿½Ç·ï¿½Õ¹Ê¾remarkï¿½ï¿½Ï¢
 	
 	public static final String CORRECT_ADD = "add";					
-	public static final String CORRECT_ADD_SYS = "add_sys";			//¹ÜÀíÔ±²Ù×÷
-	public static final String CORRECT_ADD_REFUND = "add_refund";	//ÍË¿îÔö¼Ó
+	public static final String CORRECT_ADD_SYS = "add_sys";			//ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
+	public static final String CORRECT_ADD_REFUND = "add_refund";	//ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final String CORRECT_SUB = "sub";
-	public static final String CORRECT_SUB_ORDER = "sub_order";		//¶©µ¥¼õÉÙ
-	public static final String CORRECT_SUB_SYS = "sub_sys";			//¹ÜÀíÔ±¼õÉÙ
+	public static final String CORRECT_SUB_ORDER = "sub_order";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String CORRECT_SUB_SYS = "sub_sys";			//ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
 	
 	public static final Map<String, String> partnerTextMap;
 	public static final Map<String, String>	opentypeTextMap;
 	public static final Map<String, String> correctTextMap;
 	public static final Map<String, String> showtypeTextMap;
 	
-	public static final String IDCARD_N = "N";	//ÏÂµ¥ÊÇ·ñÊ¹ÓÃÉí·ÝÖ¤:ÎÞ
-	public static final String IDCARD_W = "W";	//ÏÂµ¥ÊÇ·ñÊ¹ÓÃÉí·ÝÖ¤:Éí·ÝÖ¤ÑéÖ¤	
-	public static final String IDCARD_F = "F";	//ÏÂµ¥ÊÇ·ñÊ¹ÓÃÉí·ÝÖ¤:ÊµÃûÖÆÑéÖ¤
+	public static final String IDCARD_N = "N";	//ï¿½Âµï¿½ï¿½Ç·ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤:ï¿½ï¿½
+	public static final String IDCARD_W = "W";	//ï¿½Âµï¿½ï¿½Ç·ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤:ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Ö¤	
+	public static final String IDCARD_F = "F";	//ï¿½Âµï¿½ï¿½Ç·ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤:Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤
 	
 	static{
 		SEATTYPE_LIST = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
@@ -131,32 +131,34 @@ public abstract class OdiConstant {
 		CollectionUtils.unmodifiableCollection(SEATTYPE_LIST);
 		
 		Map<String, String> tmp = new HashMap<String, String>();
-		tmp.put(PARTNER_GPTBS, "Æ±ÎñÏµÍ³");
-		tmp.put(PARTNER_GEWA, "¸ñÍßÀ­");
-		tmp.put(PARTNER_YONGLE, "ÓÀÀÖÆ±Îñ");
-		tmp.put(PARTNER_WP, "Î¢Æ±Æ±Îñ");
-		tmp.put(PARTNER_DY, "¶«ÒÕÆ±Îñ");
-		tmp.put(PARTNER_KXMH, "¿ªÐÄÂé»¨");
+		tmp.put(PARTNER_GPTBS, "Æ±ï¿½ï¿½ÏµÍ³");
+		tmp.put(PARTNER_GEWA, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PARTNER_YONGLE, "ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½");
+		tmp.put(PARTNER_WP, "Î¢Æ±Æ±ï¿½ï¿½");
+		tmp.put(PARTNER_DY, "ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½");
+		tmp.put(PARTNER_KXMH, "ï¿½ï¿½ï¿½ï¿½ï¿½é»¨");
 		partnerTextMap = MapUtils.unmodifiableMap(tmp);
 		Map<String, String> openTextTmp = new HashMap<String, String>();
-		openTextTmp.put(OPEN_TYPE_SEAT, "Ñ¡×ù");
-		openTextTmp.put(OPEN_TYPE_PRICE, "¼Û¸ñ");
+		openTextTmp.put(OPEN_TYPE_SEAT, "Ñ¡ï¿½ï¿½");
+		openTextTmp.put(OPEN_TYPE_PRICE, "ï¿½Û¸ï¿½");
 		opentypeTextMap = MapUtils.unmodifiableMap(openTextTmp);
 		Map<String, String> correctTmp = new HashMap<String, String>();
-		correctTmp.put(CORRECT_ADD_SYS, "¹ÜÀíÔ±Èë¿â");
-		correctTmp.put(CORRECT_ADD_REFUND, "ÍË¿îÈë¿â");
-		correctTmp.put(CORRECT_SUB_ORDER, "¶©µ¥³ö¿â");
-		correctTmp.put(CORRECT_SUB_SYS, "¹ÜÀíÔ±³ö¿â");
+		correctTmp.put(CORRECT_ADD_SYS, "ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½");
+		correctTmp.put(CORRECT_ADD_REFUND, "ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½");
+		correctTmp.put(CORRECT_SUB_ORDER, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		correctTmp.put(CORRECT_SUB_SYS, "ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½");
 		correctTextMap = MapUtils.unmodifiableMap(correctTmp);
 		Map<String, String> showtypeTmp = new HashMap<String, String>();
-		showtypeTmp.put(SHOWTYPE_NORMAL, "ÆÕÍ¨");
-		showtypeTmp.put(SHOWTYPE_SPECIAL, "ÌØ»Ý");
+		showtypeTmp.put(SHOWTYPE_NORMAL, "ï¿½ï¿½Í¨");
+		showtypeTmp.put(SHOWTYPE_SPECIAL, "ï¿½Ø»ï¿½");
 		showtypeTextMap = MapUtils.unmodifiableMap(showtypeTmp);
 	}
 	
 	
 	public static Timestamp getFullPlaytime(Date playdate, String playtime){
-		if(playdate == null || StringUtils.isBlank(playtime)) return null;
+		if(playdate == null || StringUtils.isBlank(playtime)) {
+            return null;
+        }
 		String playdatestr = DateUtil.formatDate(playdate);
 		String playtimestr = playdatestr + " " + playtime + ":00";
 		return DateUtil.parseTimestamp(playtimestr);

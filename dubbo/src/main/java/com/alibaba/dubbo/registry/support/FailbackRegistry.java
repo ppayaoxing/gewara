@@ -41,10 +41,10 @@ import com.alibaba.dubbo.registry.NotifyListener;
  */
 public abstract class FailbackRegistry extends AbstractRegistry {
 
-    // ¶¨Ê±ÈÎÎñÖ´ÐÐÆ÷
+    // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½
     private final ScheduledExecutorService retryExecutor = Executors.newScheduledThreadPool(1, new NamedThreadFactory("DubboRegistryFailedRetryTimer", true));
 
-    // Ê§°ÜÖØÊÔ¶¨Ê±Æ÷£¬¶¨Ê±¼ì²éÊÇ·ñÓÐÇëÇóÊ§°Ü£¬ÈçÓÐ£¬ÎÞÏÞ´ÎÖØÊÔ
+    // Ê§ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½
     private final ScheduledFuture<?> retryFuture;
 
     private final Set<URL> failedRegistered = new ConcurrentHashSet<URL>();
@@ -61,11 +61,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         super(url);
         int retryPeriod = url.getParameter(Constants.REGISTRY_RETRY_PERIOD_KEY, Constants.DEFAULT_REGISTRY_RETRY_PERIOD);
         this.retryFuture = retryExecutor.scheduleWithFixedDelay(new Runnable() {
+            @Override
             public void run() {
-                // ¼ì²â²¢Á¬½Ó×¢²áÖÐÐÄ
+                // ï¿½ï¿½â²¢ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 try {
                     retry();
-                } catch (Throwable t) { // ·ÀÓùÐÔÈÝ´í
+                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½
                     logger.error("Unexpected error occur at failed retry, cause: " + t.getMessage(), t);
                 }
             }
@@ -126,12 +127,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         failedRegistered.remove(url);
         failedUnregistered.remove(url);
         try {
-            // Ïò·þÎñÆ÷¶Ë·¢ËÍ×¢²áÇëÇó
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             doRegister(url);
         } catch (Exception e) {
             Throwable t = e;
 
-            // Èç¹û¿ªÆôÁËÆô¶¯Ê±¼ì²â£¬ÔòÖ±½ÓÅ×³öÒì³£
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½â£¬ï¿½ï¿½Ö±ï¿½ï¿½ï¿½×³ï¿½ï¿½ì³£
             boolean check = getUrl().getParameter(Constants.CHECK_KEY, true)
                     && url.getParameter(Constants.CHECK_KEY, true)
                     && ! Constants.CONSUMER_PROTOCOL.equals(url.getProtocol());
@@ -145,7 +146,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                 logger.error("Failed to register " + url + ", waiting for retry, cause: " + t.getMessage(), t);
             }
 
-            // ½«Ê§°ÜµÄ×¢²áÇëÇó¼ÇÂ¼µ½Ê§°ÜÁÐ±í£¬¶¨Ê±ÖØÊÔ
+            // ï¿½ï¿½Ê§ï¿½Üµï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ê§ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
             failedRegistered.add(url);
         }
     }
@@ -156,12 +157,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         failedRegistered.remove(url);
         failedUnregistered.remove(url);
         try {
-            // Ïò·þÎñÆ÷¶Ë·¢ËÍÈ¡Ïû×¢²áÇëÇó
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½È¡ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             doUnregister(url);
         } catch (Exception e) {
             Throwable t = e;
 
-            // Èç¹û¿ªÆôÁËÆô¶¯Ê±¼ì²â£¬ÔòÖ±½ÓÅ×³öÒì³£
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½â£¬ï¿½ï¿½Ö±ï¿½ï¿½ï¿½×³ï¿½ï¿½ì³£
             boolean check = getUrl().getParameter(Constants.CHECK_KEY, true)
                     && url.getParameter(Constants.CHECK_KEY, true)
                     && ! Constants.CONSUMER_PROTOCOL.equals(url.getProtocol());
@@ -175,7 +176,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                 logger.error("Failed to uregister " + url + ", waiting for retry, cause: " + t.getMessage(), t);
             }
 
-            // ½«Ê§°ÜµÄÈ¡Ïû×¢²áÇëÇó¼ÇÂ¼µ½Ê§°ÜÁÐ±í£¬¶¨Ê±ÖØÊÔ
+            // ï¿½ï¿½Ê§ï¿½Üµï¿½È¡ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ê§ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
             failedUnregistered.add(url);
         }
     }
@@ -185,7 +186,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         super.subscribe(url, listener);
         removeFailedSubscribed(url, listener);
         try {
-            // Ïò·þÎñÆ÷¶Ë·¢ËÍ¶©ÔÄÇëÇó
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             doSubscribe(url, listener);
         } catch (Exception e) {
             Throwable t = e;
@@ -195,7 +196,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                 notify(url, listener, urls);
                 logger.error("Failed to subscribe " + url + ", Using cached list: " + urls + " from cache file: " + getUrl().getParameter(Constants.FILE_KEY, System.getProperty("user.home") + "/dubbo-registry-" + url.getHost() + ".cache") + ", cause: " + t.getMessage(), t);
             } else {
-                // Èç¹û¿ªÆôÁËÆô¶¯Ê±¼ì²â£¬ÔòÖ±½ÓÅ×³öÒì³£
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½â£¬ï¿½ï¿½Ö±ï¿½ï¿½ï¿½×³ï¿½ï¿½ì³£
                 boolean check = getUrl().getParameter(Constants.CHECK_KEY, true)
                         && url.getParameter(Constants.CHECK_KEY, true);
                 boolean skipFailback = t instanceof SkipFailbackWrapperException;
@@ -209,7 +210,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                 }
             }
 
-            // ½«Ê§°ÜµÄ¶©ÔÄÇëÇó¼ÇÂ¼µ½Ê§°ÜÁÐ±í£¬¶¨Ê±ÖØÊÔ
+            // ï¿½ï¿½Ê§ï¿½ÜµÄ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ê§ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
             addFailedSubscribed(url, listener);
         }
     }
@@ -219,12 +220,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         super.unsubscribe(url, listener);
         removeFailedSubscribed(url, listener);
         try {
-            // Ïò·þÎñÆ÷¶Ë·¢ËÍÈ¡Ïû¶©ÔÄÇëÇó
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             doUnsubscribe(url, listener);
         } catch (Exception e) {
             Throwable t = e;
 
-            // Èç¹û¿ªÆôÁËÆô¶¯Ê±¼ì²â£¬ÔòÖ±½ÓÅ×³öÒì³£
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½â£¬ï¿½ï¿½Ö±ï¿½ï¿½ï¿½×³ï¿½ï¿½ì³£
             boolean check = getUrl().getParameter(Constants.CHECK_KEY, true)
                     && url.getParameter(Constants.CHECK_KEY, true);
             boolean skipFailback = t instanceof SkipFailbackWrapperException;
@@ -237,7 +238,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                 logger.error("Failed to unsubscribe " + url + ", waiting for retry, cause: " + t.getMessage(), t);
             }
 
-            // ½«Ê§°ÜµÄÈ¡Ïû¶©ÔÄÇëÇó¼ÇÂ¼µ½Ê§°ÜÁÐ±í£¬¶¨Ê±ÖØÊÔ
+            // ï¿½ï¿½Ê§ï¿½Üµï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ê§ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
             Set<NotifyListener> listeners = failedUnsubscribed.get(url);
             if (listeners == null) {
                 failedUnsubscribed.putIfAbsent(url, new ConcurrentHashSet<NotifyListener>());
@@ -258,7 +259,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         try {
         	doNotify(url, listener, urls);
         } catch (Exception t) {
-            // ½«Ê§°ÜµÄÍ¨ÖªÇëÇó¼ÇÂ¼µ½Ê§°ÜÁÐ±í£¬¶¨Ê±ÖØÊÔ
+            // ï¿½ï¿½Ê§ï¿½Üµï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ê§ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
             Map<NotifyListener, List<URL>> listeners = failedNotified.get(url);
             if (listeners == null) {
                 failedNotified.putIfAbsent(url, new ConcurrentHashMap<NotifyListener, List<URL>>());
@@ -300,7 +301,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         }
     }
 
-    // ÖØÊÔÊ§°ÜµÄ¶¯×÷
+    // ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ÜµÄ¶ï¿½ï¿½ï¿½
     protected void retry() {
         if (! failedRegistered.isEmpty()) {
             Set<URL> failed = new HashSet<URL>(failedRegistered);
@@ -313,11 +314,11 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                         try {
                             doRegister(url);
                             failedRegistered.remove(url);
-                        } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+                        } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
                             logger.warn("Failed to retry register " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                         }
                     }
-                } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
                     logger.warn("Failed to retry register " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                 }
             }
@@ -333,11 +334,11 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                         try {
                             doUnregister(url);
                             failedUnregistered.remove(url);
-                        } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+                        } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
                             logger.warn("Failed to retry unregister  " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                         }
                     }
-                } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
                     logger.warn("Failed to retry unregister  " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                 }
             }
@@ -361,12 +362,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                             try {
                                 doSubscribe(url, listener);
                                 listeners.remove(listener);
-                            } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+                            } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
                                 logger.warn("Failed to retry subscribe " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                             }
                         }
                     }
-                } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
                     logger.warn("Failed to retry subscribe " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                 }
             }
@@ -390,12 +391,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                             try {
                                 doUnsubscribe(url, listener);
                                 listeners.remove(listener);
-                            } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+                            } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
                                 logger.warn("Failed to retry unsubscribe " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                             }
                         }
                     }
-                } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
                     logger.warn("Failed to retry unsubscribe " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                 }
             }
@@ -419,12 +420,12 @@ public abstract class FailbackRegistry extends AbstractRegistry {
                                 List<URL> urls = entry.getValue();
                                 listener.notify(urls);
                                 values.remove(listener);
-                            } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+                            } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
                                 logger.warn("Failed to retry notify " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                             }
                         }
                     }
-                } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
                     logger.warn("Failed to retry notify " + failed + ", waiting for again, cause: " + t.getMessage(), t);
                 }
             }
@@ -441,7 +442,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
         }
     }
 
-    // ==== Ä£°å·½·¨ ====
+    // ==== Ä£ï¿½å·½ï¿½ï¿½ ====
 
     protected abstract void doRegister(URL url);
 

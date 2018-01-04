@@ -115,7 +115,9 @@ public class CasSSOClientService extends AbstractSSOClientService implements Ini
 
     private String getPath() {
         String path = config.getString("houtaiPath");
-        if (StringUtils.isBlank(path)) path = config.getAbsPath();
+        if (StringUtils.isBlank(path)) {
+            path = config.getAbsPath();
+        }
         return path;
     }
 

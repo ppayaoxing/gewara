@@ -29,7 +29,9 @@ public abstract class UploadUtil {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
-		if(StringUtils.isBlank(msg)) msg = "";
+		if(StringUtils.isBlank(msg)) {
+            msg = "";
+        }
 		String imgUrl = "";
 		if(StringUtils.isNotBlank(successFile)){
 			imgUrl = uploadPath + dstPath + successFile;
@@ -61,7 +63,7 @@ public abstract class UploadUtil {
 		}
 		String url = uploadPath + "/common/moveTempFilesTo.xhtml";
 		HttpResult result = HttpUtils.getUrlAsString(url, params);
-		if(result.isSuccess() && StringUtils.contains(result.getResponse(), "SUCCESS")){//³É¹¦
+		if(result.isSuccess() && StringUtils.contains(result.getResponse(), "SUCCESS")){//ï¿½É¹ï¿½
 			return true;
 		}else{
 			return false;

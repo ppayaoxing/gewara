@@ -12,47 +12,47 @@ import com.gewara.util.DateUtil;
 
 public class ActivityVo extends BaseVo{
 	private static final long serialVersionUID = -2350551869062213327L;
-	public static final int TIME_CURRENT = 3; // Î´¹ýÆÚµÄ»î¶¯
-	public static final int TIME_OVER = 2; // ¹ýÆÚ£¨½áÊø£©µÄ»î¶¯
-	public static final int TIME_ALL = 1; // ËùÓÐ»î¶¯
+	public static final int TIME_CURRENT = 3; // Î´ï¿½ï¿½ï¿½ÚµÄ»î¶¯
+	public static final int TIME_OVER = 2; // ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»î¶¯
+	public static final int TIME_ALL = 1; // ï¿½ï¿½ï¿½Ð»î¶¯
 	public static final int TIME_RECORD = 10; // 
-	public static final String FLAG_TOP_HEAD = "tophead";// ×ÜÂÛÌ³ÖÃ¶¥
-	public static final String FLAG_TOP_RELATED = "toprelated";// ·ÖÂÛÌ³ÖÃ¶¥
-	public static final String FLAG_TOP_CATEGORY = "topcategory";// ·ÖÂÛÌ³ÖÐÏîÄ¿ÖÃ¶¥
-	public static final String FLAG_RECOMMEND = "recommend";// ÍÆ¼ö
-	public static final String FLAG_RECOMMEND_WAP = "redwap";// ÍÆ¼öÊÖ»ú
-	public static final String FLAG_HOME = "home";// Ê×Ò³
-	public static final String FLAG_HOT = "hot";// ¾«»ª
-	public static final String FLAG_APP_HEAD = "apphead";// appÍÆ¼ö
-	public static final String ATYPE_NOMARL = "common"; //ÆÕÍ¨»î¶¯
-	public static final String ATYPE_USER = "user"; // ÓÃ»§»î¶¯£¬ÈÏÖ¤ÓÃ»§
-	public static final String ATYPE_BUSS = "buss"; // ÉÌ¼Ò»î¶¯£¬Ö÷°ì·½
-	public static final String ATYPE_GEWA = "gewa"; // gewa»î¶¯£¬¹Ù·½
-	public static final Integer MAX_DAYS = 31; //»î¶¯¿ªÊ¼Ê±¼ä¾àÀëÏÖÔÚ£¬»î¶¯½áÊøÊ±¼ä-»î¶¯¿ªÊ¼Ê±¼ä
-	public static final String SIGN_PRICE5 = "price5"; // 5ÔªÇÀÆ±
-	public static final String SIGN_PUBSALE = "pubsale";	// ¾ºÅÄ
-	public static final String SIGN_STARMEET = "starmeet";// Ã÷ÐÇ¼ûÃæ»á
-	public static final String SIGN_TROUPE = "troupe";// ×·¾çÍÅ
-	public static final String SIGN_CLASS = "class";// ¹«¿ª¿Î
-	public static final String SIGN_ONLINE = "online";// ÏßÉÏ»î¶¯
+	public static final String FLAG_TOP_HEAD = "tophead";// ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ã¶ï¿½
+	public static final String FLAG_TOP_RELATED = "toprelated";// ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ã¶ï¿½
+	public static final String FLAG_TOP_CATEGORY = "topcategory";// ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ã¶ï¿½
+	public static final String FLAG_RECOMMEND = "recommend";// ï¿½Æ¼ï¿½
+	public static final String FLAG_RECOMMEND_WAP = "redwap";// ï¿½Æ¼ï¿½ï¿½Ö»ï¿½
+	public static final String FLAG_HOME = "home";// ï¿½ï¿½Ò³
+	public static final String FLAG_HOT = "hot";// ï¿½ï¿½ï¿½ï¿½
+	public static final String FLAG_APP_HEAD = "apphead";// appï¿½Æ¼ï¿½
+	public static final String ATYPE_NOMARL = "common"; //ï¿½ï¿½Í¨ï¿½î¶¯
+	public static final String ATYPE_USER = "user"; // ï¿½Ã»ï¿½ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½Ã»ï¿½
+	public static final String ATYPE_BUSS = "buss"; // ï¿½Ì¼Ò»î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ì·½
+	public static final String ATYPE_GEWA = "gewa"; // gewaï¿½î¶¯ï¿½ï¿½ï¿½Ù·ï¿½
+	public static final Integer MAX_DAYS = 31; //ï¿½î¶¯ï¿½ï¿½Ê¼Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½-ï¿½î¶¯ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	public static final String SIGN_PRICE5 = "price5"; // 5Ôªï¿½ï¿½Æ±
+	public static final String SIGN_PUBSALE = "pubsale";	// ï¿½ï¿½ï¿½ï¿½
+	public static final String SIGN_STARMEET = "starmeet";// ï¿½ï¿½ï¿½Ç¼ï¿½ï¿½ï¿½ï¿½
+	public static final String SIGN_TROUPE = "troupe";// ×·ï¿½ï¿½ï¿½ï¿½
+	public static final String SIGN_CLASS = "class";// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String SIGN_ONLINE = "online";// ï¿½ï¿½ï¿½Ï»î¶¯
 	public static final String SIGN_RESERVE = "reserve";//Ô¼Õ½
-	public static final String SIGN_DISCOUNT = "discount";//ÓÅ»Ý
+	public static final String SIGN_DISCOUNT = "discount";//ï¿½Å»ï¿½
 	public static final String SIGN_IMAX = "imax";//IMAX
-	public static final String SIGN_CINEPHILES = "cinephiles";//Ò»ÈºÓ°ÃÔ£¨¹ÛÓ°ÍÅ£©
-	public static final String SIGN_CINEMA = "cinema";// Ó°Ôº»î¶¯
-	public static final String SIGN_FILMREVIEWS = "filmreviews";// Ð´Ó°ÆÀ»î¶¯
-	public static final String SIGN_SPECIAL_NEW = "specialnew";// ×¨Ìâ»î¶¯
+	public static final String SIGN_CINEPHILES = "cinephiles";//Ò»ÈºÓ°ï¿½Ô£ï¿½ï¿½ï¿½Ó°ï¿½Å£ï¿½
+	public static final String SIGN_CINEMA = "cinema";// Ó°Ôºï¿½î¶¯
+	public static final String SIGN_FILMREVIEWS = "filmreviews";// Ð´Ó°ï¿½ï¿½ï¿½î¶¯
+	public static final String SIGN_SPECIAL_NEW = "specialnew";// ×¨ï¿½ï¿½î¶¯
 	public static final String TAG_ACTIVITY = "activity";
-	public static final String OTHER_BINDMOBILE = "bindMobile";	//ÓÃ»§²Î¼Ó»î¶¯Ðè°ó¶¨ÊÖ»ú
-	public static final String OTHER_BINDEMAIL = "bindEmail";	//ÓÃ»§²Î¼Ó»î¶¯Ðè°ó¶¨ÓÊÏä
-	public static final String OTHER_HASHEADURL = "hasHeadUrl";	//ÓÃ»§²Î¼Ó»î¶¯ÐèÉÏ´«Í·Ïñ
-	public static final String OTHER_HASADDRESS = "hasAddress";	//ÓÃ»§²Î¼Ó»î¶¯ÐèÌîÐ´µØÖ·
-	public static final String OTHER_WALA = "wala";				//ÓÃ»§²Î¼Ó»î¶¯ºó²ÅÄÜ·¢WALA
-	public static final String OTHER_NEWMEMBER = "newMember";	//ÐÂÓÃ»§²ÅÄÜ²Î¼Ó»î¶¯
-	public static final String OTHER_USEPOINT = "usePoint";		//ÓÃ»§²Î¼Ó»î¶¯ÐèÏûºÄ»ý·Ö
-	public static final String OTHER_TICKET = "ticket";			//¹ºÂòÌØ¶¨µçÓ°ÓÃ»§²ÅÄÜ²Î¼Ó
-	public static final String OTHER_LONGWALA = "longWala";		//µþÂ¥»î¶¯ÌØÊâÍÛÀ²
-	public static final String OTHER_EASYJOIN = "easyJoin";		//¼òµ¥²Î¼Ó»î¶¯£¬ÎÞÐèÌîÐ´¸ü¶àÐÅÏ¢
+	public static final String OTHER_BINDMOBILE = "bindMobile";	//ï¿½Ã»ï¿½ï¿½Î¼Ó»î¶¯ï¿½ï¿½ï¿½ï¿½Ö»ï¿½
+	public static final String OTHER_BINDEMAIL = "bindEmail";	//ï¿½Ã»ï¿½ï¿½Î¼Ó»î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String OTHER_HASHEADURL = "hasHeadUrl";	//ï¿½Ã»ï¿½ï¿½Î¼Ó»î¶¯ï¿½ï¿½ï¿½Ï´ï¿½Í·ï¿½ï¿½
+	public static final String OTHER_HASADDRESS = "hasAddress";	//ï¿½Ã»ï¿½ï¿½Î¼Ó»î¶¯ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ö·
+	public static final String OTHER_WALA = "wala";				//ï¿½Ã»ï¿½ï¿½Î¼Ó»î¶¯ï¿½ï¿½ï¿½ï¿½Ü·ï¿½WALA
+	public static final String OTHER_NEWMEMBER = "newMember";	//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ü²Î¼Ó»î¶¯
+	public static final String OTHER_USEPOINT = "usePoint";		//ï¿½Ã»ï¿½ï¿½Î¼Ó»î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½
+	public static final String OTHER_TICKET = "ticket";			//ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½Ó°ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ü²Î¼ï¿½
+	public static final String OTHER_LONGWALA = "longWala";		//ï¿½ï¿½Â¥ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String OTHER_EASYJOIN = "easyJoin";		//ï¿½òµ¥²Î¼Ó»î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	
 	public static final String CLIENT_TYPE_PC = "PC";
 	
@@ -62,26 +62,26 @@ public class ActivityVo extends BaseVo{
 	
 	public static final String CLIENT_TYPE_ANDROID = "ANDROID";
 	
-	/** ·ÇPC»î¶¯PC¶Ë-(ÏÂÔØ) */
+	/** ï¿½ï¿½PCï¿½î¶¯PCï¿½ï¿½-(ï¿½ï¿½ï¿½ï¿½) */
 	public static final String PC_SHOW_TYPE_DOWNLOAD = "DOWNLOAD";
 	
-	/** ·ÇPC»î¶¯PC¶Ë-(²»ÏÔÊ¾) */
+	/** ï¿½ï¿½PCï¿½î¶¯PCï¿½ï¿½-(ï¿½ï¿½ï¿½ï¿½Ê¾) */
 	public static final String PC_SHOW_TYPE_HIDDEN   = "HIDDEN";
 	
-	private Integer version;			//¸üÐÂ°æ±¾
+	private Integer version;			//ï¿½ï¿½ï¿½Â°æ±¾
 	private Long id;
-	private String title;// ±êÌâ
-	private String contentdetail;// ÄÚÈÝ
-	private String atype;// ÀàÐÍ,ÖµÎª³£Á¿ ATYPE_*ÖÐµÄÒ»¸ö
+	private String title;// ï¿½ï¿½ï¿½ï¿½
+	private String contentdetail;// ï¿½ï¿½ï¿½ï¿½
+	private String atype;// ï¿½ï¿½ï¿½ï¿½,ÖµÎªï¿½ï¿½ï¿½ï¿½ ATYPE_*ï¿½Ðµï¿½Ò»ï¿½ï¿½
 	private Date startdate;
 	private String starttime;
 	private Date enddate;
 	private String endtime;
 	private String address;
-	private String contactway;// ÁªÏµ·½Ê½
-	private String summary;// ÍÆ¼öËµÃ÷
+	private String contactway;// ï¿½ï¿½Ïµï¿½ï¿½Ê½
+	private String summary;// ï¿½Æ¼ï¿½Ëµï¿½ï¿½
 	private Integer capacity;
-	private Long memberid;// ·¢ÆðÕß
+	private Long memberid;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private Integer clickedtimes;
 	private String citycode; //310000,330100,330200
 	private String countycode;
@@ -91,79 +91,79 @@ public class ActivityVo extends BaseVo{
 	private String tag;
 	private String category;
 	private Long categoryid;
-	private Integer membercount;//ÒÑ²Î¼Ó»î¶¯ÈËÊý
-	private String status;//N_DELETE±»É¾³ý,N_AUDITÉóºËÎ´Í¨¹ý,Y_STOPÍ£Ö¹±¨Ãû,Y_PROCESSÕý³££¬¿ÉÒÔ±¨Ãû,Y_TREAT´¦ÀíÖÐ,Y_CREATED´´½¨
+	private Integer membercount;//ï¿½Ñ²Î¼Ó»î¶¯ï¿½ï¿½ï¿½ï¿½
+	private String status;//N_DELETEï¿½ï¿½É¾ï¿½ï¿½,N_AUDITï¿½ï¿½ï¿½Î´Í¨ï¿½ï¿½,Y_STOPÍ£Ö¹ï¿½ï¿½ï¿½ï¿½,Y_PROCESSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½,Y_TREATï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Y_CREATEDï¿½ï¿½ï¿½ï¿½
 	private Timestamp replytime;
 	private Integer replycount;
-	private Long replyid;// »Ø¸´Õß
-	private Long communityid;// È¦×Ó
+	private Long replyid;// ï¿½Ø¸ï¿½ï¿½ï¿½
+	private Long communityid;// È¦ï¿½ï¿½
 	private Timestamp updatetime;
-	private String flag;	//recommendÍÆ¼öÍøÕ¾,redwapÍÆ¼öwap,hot¾«Æ·,topheadÖÃ¶¥,renzhengÈÏÖ¤£¬Èç¹û¶à¸öÒÔ","·Ö¸î
+	private String flag;	//recommendï¿½Æ¼ï¿½ï¿½ï¿½Õ¾,redwapï¿½Æ¼ï¿½wap,hotï¿½ï¿½Æ·,topheadï¿½Ã¶ï¿½,renzhengï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½Ö¸ï¿½
 	private String logo;
-	private String priceinfo;//·ÑÓÃÐÅÏ¢
-	//ÐÂÔö¼Ó
+	private String priceinfo;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String searchkey;
 	private String seotitle;
 	private String seodescription;
 	private String repeat;
 	private String membername;
 	private String replyname;
-	private String sign; //»î¶¯±êÊ¶ ,ÖµÎª³£Á¿SIGN_*ÖÐµÄÒ»¸ö
-	private Timestamp duetime; // ±¨Ãû½ØÖ¹Ê±¼ä
-	private String activityurl;// ÏßÉÏ»î¶¯¹ØÁªÍøÖ·
-	private String mobilemsg;//»î¶¯ÊÖ»ú¶ÌÐÅ
-	private String qq;//ÁªÏµqqºÅ
+	private String sign; //ï¿½î¶¯ï¿½ï¿½Ê¶ ,ÖµÎªï¿½ï¿½ï¿½ï¿½SIGN_*ï¿½Ðµï¿½Ò»ï¿½ï¿½
+	private Timestamp duetime; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹Ê±ï¿½ï¿½
+	private String activityurl;// ï¿½ï¿½ï¿½Ï»î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
+	private String mobilemsg;//ï¿½î¶¯ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String qq;//ï¿½ï¿½Ïµqqï¿½ï¿½
 	
-	// 20101111 hubo Ìí¼Ó»î¶¯Ô¤¸¶·Ñ
-	private String needprepay;		// ÊÇ·ñÔ¤¸¶·Ñ
+	// 20101111 hubo ï¿½ï¿½Ó»î¶¯Ô¤ï¿½ï¿½ï¿½ï¿½
+	private String needprepay;		// ï¿½Ç·ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
 	
-	private Integer totalFee;	// ÁÙÊ±±äÁ¿, ±£´æ¸Ã»î¶¯×ÜµÄÊÕ·Ñ
-	private String joinLimit;	//ÓÃ»§²Î¼Ó»î¶¯Ê±µÄ¼ÓÈëÈËÊýÏÞÖÆ
+	private Integer totalFee;	// ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Ã»î¶¯ï¿½Üµï¿½ï¿½Õ·ï¿½
+	private String joinLimit;	//ï¿½Ã»ï¿½ï¿½Î¼Ó»î¶¯Ê±ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	//20110829
-	private Timestamp fromtime; //»î¶¯±¨Ãû¿ªÊ¼Ê±¼ä
+	private Timestamp fromtime; //ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 	//20120420
-	private Long signid;//signÏà¹ØÁªµÄid£¬5ÔªÇÀÆ±£¬1Ôª¾ºÅÄÊ±Ê¹ÓÃ
+	private Long signid;//signï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½5Ôªï¿½ï¿½Æ±ï¿½ï¿½1Ôªï¿½ï¿½ï¿½ï¿½Ê±Ê¹ï¿½ï¿½
 	private String otherinfo;//{"bindMobile":"Y","bindEmail":"Y","hasHeadUrl":"Y","hasAddress":"Y","wala":"Y","newMember":"Y","usePoint":"12","ticket":"123","longWala":"Y","easyJoin":"Y"}
-							 //°ó¶¨ÊÖ»ú                              °ó¶¨email        ÉÏ´«Í·Ïñ                         ÓÃ»§µØÖ·                         ²Î¼Ó²ÅÄÜ»Ø¸´ÍÛÀ²                                 ÓÃ»§»ý·Ö                      ÌØ¶¨µçÓ°id      µþÂ¥                            ¼òµ¥²Î¼Ó
-	private Integer collectedtimes;//¸ÐÐËÈ¤
-	private String linkman;//ÁªÏµÈË
-	private Integer memberLimit=0;//»î¶¯×ÜÈËÊý
+							 //ï¿½ï¿½ï¿½Ö»ï¿½                              ï¿½ï¿½email        ï¿½Ï´ï¿½Í·ï¿½ï¿½                         ï¿½Ã»ï¿½ï¿½ï¿½Ö·                         ï¿½Î¼Ó²ï¿½ï¿½Ü»Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½                                 ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½                      ï¿½Ø¶ï¿½ï¿½ï¿½Ó°id      ï¿½ï¿½Â¥                            ï¿½òµ¥²Î¼ï¿½
+	private Integer collectedtimes;//ï¿½ï¿½ï¿½ï¿½È¤
+	private String linkman;//ï¿½ï¿½Ïµï¿½ï¿½
+	private Integer memberLimit=0;//ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String ip;
 	
-	private String lotterytag;	//³é½±±êÊ¶
+	private String lotterytag;	//ï¿½é½±ï¿½ï¿½Ê¶
 	
 	private Integer hotvalue=0;
 	
-	private Integer focusvalue=0;//×î¾ß¹Ø×¢µÄÍÆ¼ö
-	private String getCash;//ÉêÇëÌáÏÖ
-	private String containMPI;				//ÊÇ·ñÓÐ³¡´Î
-	private String containGoods;			//ÊÇ·ñÓÐÊÕ·ÑÎïÆ·
-	private String operated;			//»î¶¯ÍÛÀ²ÊÇ·ñ±»²Ù×÷¹ý (Y ²Ù×÷¹ý)
-	private String getway;		//½»Ò×·½Ê½
+	private Integer focusvalue=0;//ï¿½ï¿½ß¹ï¿½×¢ï¿½ï¿½ï¿½Æ¼ï¿½
+	private String getCash;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String containMPI;				//ï¿½Ç·ï¿½ï¿½Ð³ï¿½ï¿½ï¿½
+	private String containGoods;			//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Õ·ï¿½ï¿½ï¿½Æ·
+	private String operated;			//ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ñ±»²ï¿½ï¿½ï¿½ï¿½ï¿½ (Y ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	private String getway;		//ï¿½ï¿½ï¿½×·ï¿½Ê½
 	private String feetype;
 	private String isOfficial;
 	private String relateMobileUrl;
 	
 	/**
-	 * »î¶¯µÚÒ»ÕÅÍ¼
+	 * ï¿½î¶¯ï¿½ï¿½Ò»ï¿½ï¿½Í¼
 	 */
 	private String firstLogo;
 	
 	/**
-	 * ¿Í»§¶ËÏÔÊ¾ÀàÐÍ(PC,WAP,IOS,ANDROID)
+	 * ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½(PC,WAP,IOS,ANDROID)
 	 */
 	private String clientType;
 	
 	/**
-	 * ·ÇPC»î¶¯ÔÚPC¶ËÏÔÊ¾·½Ê½(²»ÏÔÊ¾/ÏÂÔØ)
+	 * ï¿½ï¿½PCï¿½î¶¯ï¿½ï¿½PCï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ê½(ï¿½ï¿½ï¿½ï¿½Ê¾/ï¿½ï¿½ï¿½ï¿½)
 	 * @return
 	 */
 	private String showType;
 	
 	private String usePoint;
 	private String joinForm;
-	private String onlinePay;		//ÏßÉÏÖ§¸¶
+	private String onlinePay;		//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
 	
 	public Integer getVersion() {
 		return version;
@@ -242,7 +242,9 @@ public class ActivityVo extends BaseVo{
 		return logo;
 	}
 	public String getLimg() {
-		if(StringUtils.isBlank(logo)) return "img/default_activity.png";
+		if(StringUtils.isBlank(logo)) {
+            return "img/default_activity.png";
+        }
 		return logo;
 	}
 	public void setLogo(String logo) {
@@ -430,11 +432,15 @@ public class ActivityVo extends BaseVo{
 		this.indexareacode = indexareacode;
 	}
 	public String getDtag(){
-		if(this.categoryid != null) return category;
+		if(this.categoryid != null) {
+            return category;
+        }
 		return tag;
 	}
 	public Long getDrelatedid(){
-		if(this.categoryid != null) return categoryid;
+		if(this.categoryid != null) {
+            return categoryid;
+        }
 		return relatedid;
 	}
 	public String getStatus() {
@@ -484,7 +490,7 @@ public class ActivityVo extends BaseVo{
 	}
 	public void setContentdetail(String contentdetail) {
 		//this.contentdetail = contentdetail;
-		char char8 = 8;//ÄÚÈÝ°üº¬¸Ã×Ö·û""Ê±£¬½Ó¿Ú½âÎö»á³öÎÊÌâ
+		char char8 = 8;//ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½""Ê±ï¿½ï¿½ï¿½Ó¿Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		this.contentdetail = StringUtils.replaceChars(contentdetail, char8, ' ');
 	}
 	public String getName(){
@@ -556,7 +562,7 @@ public class ActivityVo extends BaseVo{
 	public void setMemberLimit(Integer memberLimit) {
 		this.memberLimit = memberLimit;
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~ÆäËû·½·¨~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public String[] joinLimit(){
 		if(StringUtils.isNotBlank(joinLimit)){
 			String[] strs = StringUtils.split(joinLimit, ",");
@@ -567,21 +573,25 @@ public class ActivityVo extends BaseVo{
 	}
 	public void addJoinnum(Integer joinnum) {
 		this.membercount += joinnum;
-		if(this.membercount<0) this.membercount = 0;
+		if(this.membercount<0) {
+            this.membercount = 0;
+        }
 	}
 	
 	/**
-	 * ¼õÉÙ²Î¼ÓÈËÊý
+	 * ï¿½ï¿½ï¿½Ù²Î¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param cutNum
 	 */
 	public void cutJoinnum(Integer cutNum){
 		this.membercount -= cutNum;
-		if(this.membercount<0) this.membercount = 0;
+		if(this.membercount<0) {
+            this.membercount = 0;
+        }
 	}
 	
 
 	/**
-	 * »Ø¸´Êý+1
+	 * ï¿½Ø¸ï¿½ï¿½ï¿½+1
 	 */
 	public void addReplycount(){
 		this.replycount += 1;
@@ -602,19 +612,25 @@ public class ActivityVo extends BaseVo{
 		return this.title;
 	}
 	public String getDateRange(String splitor){
-		String str1 = DateUtil.format(startdate, "MÔÂdÈÕ");
-		String str2 = (enddate==null ? "": DateUtil.format(enddate, "MÔÂdÈÕ"));
-		if(StringUtils.isBlank(str2) || StringUtils.equals(str1, str2)) return str1;
+		String str1 = DateUtil.format(startdate, "Mï¿½ï¿½dï¿½ï¿½");
+		String str2 = (enddate==null ? "": DateUtil.format(enddate, "Mï¿½ï¿½dï¿½ï¿½"));
+		if(StringUtils.isBlank(str2) || StringUtils.equals(str1, str2)) {
+            return str1;
+        }
 		return str1+splitor+str2;
 	}
 	public String getTimeRange(String splitor){
-		if(StringUtils.isBlank(starttime)) return "";
-		if(StringUtils.isBlank(endtime)) return starttime;
+		if(StringUtils.isBlank(starttime)) {
+            return "";
+        }
+		if(StringUtils.isBlank(endtime)) {
+            return starttime;
+        }
 		return starttime + splitor + endtime;
 	}
 	
 	/**
-	 * »ñÈ¡»î¶¯¿ªÊ¼Ê±¼ä
+	 * ï¿½ï¿½È¡ï¿½î¶¯ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 	 * @return
 	 */
 	public Timestamp getActivityStartTime(){
@@ -630,7 +646,7 @@ public class ActivityVo extends BaseVo{
 	}
 	
 	/**
-	 * »ñÈ¡»î¶¯½áÊøÊ±¼ä
+	 * ï¿½ï¿½È¡ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 * @return
 	 */
 	public Timestamp getActivityEndTime(){
@@ -647,11 +663,15 @@ public class ActivityVo extends BaseVo{
 	public String getHeadHtml(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("<span>" + DateUtil.format(startdate, "MM-dd"));
-		if(enddate != null) sb.append("ÖÁ" + DateUtil.format(enddate, "MM-dd"));
+		if(enddate != null) {
+            sb.append("ï¿½ï¿½" + DateUtil.format(enddate, "MM-dd"));
+        }
 		sb.append("</span>");
 		if(StringUtils.isNotBlank(starttime)){
 			sb.append("<span class='ml5'>" + starttime);
-			if(StringUtils.isNotBlank(endtime)) sb.append("-" + endtime);
+			if(StringUtils.isNotBlank(endtime)) {
+                sb.append("-" + endtime);
+            }
 			sb.append("</span>");
 		}
 		return sb.toString();
@@ -663,8 +683,8 @@ public class ActivityVo extends BaseVo{
 		return this.title;
 	}
 	/**
-	 * »î¶¯¼´½«¿ªÊ¼
-	 * @return true¼´½«¿ªÊ¼
+	 * ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼
+	 * @return trueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼
 	 */
 	public boolean isPreStart(){
 		if (this.getActivityStartTime() == null || this.duetime == null) {
@@ -674,8 +694,8 @@ public class ActivityVo extends BaseVo{
 		return this.duetime.before(cur) && this.getActivityStartTime().after(cur);
 	}
 	/**
-	 * »î¶¯ÕýÔÚ½øÐÐÖÐ
-	 * @return true ÕýÔÚ½øÐÐÖÐ
+	 * ï¿½î¶¯ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @return true ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public boolean isProcessing(){
 		if (this.getActivityStartTime() == null || this.getActivityEndTime() == null) {
@@ -685,8 +705,8 @@ public class ActivityVo extends BaseVo{
 		return this.getActivityEndTime().after(cur) && this.getActivityStartTime().before(cur);
 	}
 	/**
-	 * »î¶¯ÊÇ·ñ¿ÉÒÔ±¨Ãû
-	 * @return true¿ÉÒÔ±¨Ãû
+	 * ï¿½î¶¯ï¿½Ç·ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½
+	 * @return trueï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½
 	 */
 	public boolean isJoining(){
 		if (fromtime == null || duetime == null) {
@@ -697,15 +717,15 @@ public class ActivityVo extends BaseVo{
 	}
 
 	/**
-	 * »î¶¯×´Ì¬ÊÇ·ñÓÐÐ§
-	 * @return tureÓÐÐ§
+	 * ï¿½î¶¯×´Ì¬ï¿½Ç·ï¿½ï¿½ï¿½Ð§
+	 * @return tureï¿½ï¿½Ð§
 	 */
 	public boolean isValid(){
 		return (Status.Y_NEW.equals(this.status) || Status.Y_PROCESS.equals(this.status)); 
 	}
 
 	/**
-	 * »î¶¯ÊÇ·ñÍ£Ö¹
+	 * ï¿½î¶¯ï¿½Ç·ï¿½Í£Ö¹
 	 * @return
 	 */
 	public boolean isStop(){
@@ -713,7 +733,7 @@ public class ActivityVo extends BaseVo{
 	}
 	
 	/**
-	 * »î¶¯ÊÇ·ñ½áÊø
+	 * ï¿½î¶¯ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 	 * @return true
 	 */
 	public boolean isEnd(){
@@ -724,11 +744,13 @@ public class ActivityVo extends BaseVo{
 		return false;
 	}
 	/**
-	 * »î¶¯ÊÇ·ñ¿ªÊ¼
-	 * @return true»¹Î´¿ªÊ¼
+	 * ï¿½î¶¯ï¿½Ç·ï¿½Ê¼
+	 * @return trueï¿½ï¿½Î´ï¿½ï¿½Ê¼
 	 */
 	public boolean isStart() {
-		if(null == fromtime) return false;
+		if(null == fromtime) {
+            return false;
+        }
 		Timestamp cur=new Timestamp(System.currentTimeMillis());
 		return this.fromtime.after(cur);
 	}
@@ -736,23 +758,27 @@ public class ActivityVo extends BaseVo{
 		this.searchkey = this.title;
 	}
 	/**
-	 * ÊÕ²ØÊý+1
+	 * ï¿½Õ²ï¿½ï¿½ï¿½+1
 	 */
 	public void addCollectedtimes(){
 		this.collectedtimes+=1;
 	}
 	
 	/**
-	 * ¼õÉÙÊÕ²ØÊý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Õ²ï¿½ï¿½ï¿½
 	 * @param cutNum
 	 */
 	public void cutCollectedtimes(Integer cutNum){
 		this.collectedtimes -= cutNum;
-		if(this.collectedtimes<0) this.collectedtimes = 0;
+		if(this.collectedtimes<0) {
+            this.collectedtimes = 0;
+        }
 	}
 	
 	public boolean isApply(){
-		if(this.fromtime == null) return false;
+		if(this.fromtime == null) {
+            return false;
+        }
 		Timestamp cur=new Timestamp(System.currentTimeMillis());
 		Timestamp applyTime = DateUtil.addMinute(this.fromtime, -30);
 		return applyTime.after(cur);
@@ -871,7 +897,9 @@ public class ActivityVo extends BaseVo{
 		if(enddate != null){
 			return DateUtil.addDay(new Date(), -1).after(enddate);
 		}else{
-			if(startdate==null) return true;
+			if(startdate==null) {
+                return true;
+            }
 			return DateUtil.addDay(new Date(), -1).after(startdate);
 		}
 	}
@@ -885,7 +913,9 @@ public class ActivityVo extends BaseVo{
 	}
 	public boolean isPlaying(){
 		Timestamp cur=new Timestamp(System.currentTimeMillis());
-		if(duetime==null || fromtime==null) return false;
+		if(duetime==null || fromtime==null) {
+            return false;
+        }
 		return duetime.after(cur) && this.fromtime.before(cur);
 	}
 	public String getRelateMobileUrl() {

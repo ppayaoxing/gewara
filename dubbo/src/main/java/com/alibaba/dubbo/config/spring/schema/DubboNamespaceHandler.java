@@ -41,7 +41,8 @@ public class DubboNamespaceHandler extends NamespaceHandlerSupport {
 		Version.checkDuplicate(DubboNamespaceHandler.class);
 	}
 
-	public void init() {
+	@Override
+    public void init() {
 	    registerBeanDefinitionParser("application", new DubboBeanDefinitionParser(ApplicationConfig.class, true));
         registerBeanDefinitionParser("module", new DubboBeanDefinitionParser(ModuleConfig.class, true));
         registerBeanDefinitionParser("registry", new DubboBeanDefinitionParser(RegistryConfig.class, true));

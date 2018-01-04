@@ -67,7 +67,7 @@ public abstract class BaseWebUtils {
 				ip = StringUtils.trim(ip);
 				if (GewaIpConfig.isGewaServerIp(ip)) {
 					gewaip = ip;
-				} else if (!ip.equals("127.0.0.1") && !ip.equals("localhost")) {
+				} else if (!"127.0.0.1".equals(ip) && !"localhost".equals(ip)) {
 					return ip;
 				}
 			}
@@ -227,9 +227,10 @@ public abstract class BaseWebUtils {
 	}
 
 	public static final Cookie getCookie(HttpServletRequest request, String cookiename) {
-		Cookie cookies[] = request.getCookies();
-		if (cookies == null)
-			return null;
+        Cookie[] cookies = request.getCookies();
+		if (cookies == null) {
+            return null;
+        }
 		for (Cookie cookie : cookies) {
 			if (cookiename.equals(cookie.getName())) {
 				return cookie;
@@ -240,8 +241,9 @@ public abstract class BaseWebUtils {
 
 	public static final String getCookieValue(HttpServletRequest request, String cookiename) {
 		Cookie cookie = getCookie(request, cookiename);
-		if (cookie == null)
-			return null;
+		if (cookie == null) {
+            return null;
+        }
 		return cookie.getValue();
 	}
 
@@ -251,21 +253,26 @@ public abstract class BaseWebUtils {
 		Collections.sort(keys);
 		for (String key : keys) {
 			Object value = params.get(key);
-			if (!ignoreBlank || value != null && StringUtils.isNotBlank("" + value))
-				content.append(key + "=" + value + "&");
+			if (!ignoreBlank || value != null && StringUtils.isNotBlank("" + value)) {
+                content.append(key + "=" + value + "&");
+            }
 		}
-		if (content.length() > 0)
-			content.deleteCharAt(content.length() - 1);
+		if (content.length() > 0) {
+            content.deleteCharAt(content.length() - 1);
+        }
 		return content.toString();
 	}
 
 	public static final boolean checkString(String str) {
-		if (StringUtils.isBlank(str))
-			return false;
-		if (StringUtils.contains(StringUtils.lowerCase(str), "<script"))
-			return true;// 验证JS
-		if (StringUtils.contains(StringUtils.lowerCase(str), "<iframe"))
-			return true;// 验证iframe
+		if (StringUtils.isBlank(str)) {
+            return false;
+        }
+		if (StringUtils.contains(StringUtils.lowerCase(str), "<script")) {
+            return true;// 验证JS
+        }
+		if (StringUtils.contains(StringUtils.lowerCase(str), "<iframe")) {
+            return true;// 验证iframe
+        }
 		return false;
 	}
 
@@ -274,8 +281,9 @@ public abstract class BaseWebUtils {
 			Map result = PropertyUtils.describe(entity);
 			for (Object key : result.keySet()) {
 				if (result.get(key) instanceof String) {
-					if (checkString(result.get(key) + ""))
-						return true;
+					if (checkString(result.get(key) + "")) {
+                        return true;
+                    }
 				}
 			}
 		} catch (Exception ex) {
@@ -288,8 +296,9 @@ public abstract class BaseWebUtils {
 		if (pnames != null) {
 			for (String pn : pnames) {
 				String pv = request.getParameter(pn);
-				if (StringUtils.isNotBlank(pv))
-					result.put(pn, pv);
+				if (StringUtils.isNotBlank(pv)) {
+                    result.put(pn, pv);
+                }
 			}
 		}
 		return result;
@@ -342,8 +351,9 @@ public abstract class BaseWebUtils {
 	 */
 	public static final Map<String, String> parseQueryStr(String queryString, String encode) {
 		Map<String, String> map = new LinkedHashMap<String, String>();
-		if (StringUtils.isBlank(queryString))
-			return map;
+		if (StringUtils.isBlank(queryString)) {
+            return map;
+        }
 		Matcher matcher = QUERY_MAP_PATTERN.matcher(queryString);
 		String key = null, value;
 		int end = 0;
@@ -396,8 +406,9 @@ public abstract class BaseWebUtils {
 	 * @return
 	 */
 	public static final String getQueryStr(Map<String, String> requestMap, String encode) {
-		if (requestMap == null || requestMap.isEmpty())
-			return "";
+		if (requestMap == null || requestMap.isEmpty()) {
+            return "";
+        }
 		String result = "";
 		for (String name : requestMap.keySet()) {
 			try {
@@ -418,15 +429,17 @@ public abstract class BaseWebUtils {
 				e.printStackTrace();
 			}
 		}
-		if (StringUtils.isNotBlank(result))
-			return result.substring(1);
+		if (StringUtils.isNotBlank(result)) {
+            return result.substring(1);
+        }
 		return "";
 	}
 
 	public static final String getContextPath(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
-		if (!StringUtils.endsWith(contextPath, "/"))
-			contextPath += "/";
+		if (!StringUtils.endsWith(contextPath, "/")) {
+            contextPath += "/";
+        }
 		return contextPath;
 	}
 

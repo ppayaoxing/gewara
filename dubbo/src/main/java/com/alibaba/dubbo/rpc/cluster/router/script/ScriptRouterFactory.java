@@ -22,14 +22,14 @@ import com.alibaba.dubbo.rpc.cluster.RouterFactory;
 /**
  * ScriptRouterFactory
  * 
- * Script Router FactoryÓÃµ½µÄURLÐÎÈç£º
+ * Script Router Factoryï¿½Ãµï¿½ï¿½ï¿½URLï¿½ï¿½ï¿½ç£º
  * <ol>
  * <li> script://registyAddress?type=js&rule=xxxx
  * <li> script:///path/to/routerfile.js?type=js&rule=xxxx
  * <li> script://D:\path\to\routerfile.js?type=js&rule=xxxx
  * <li> script://C:/path/to/routerfile.js?type=js&rule=xxxx
  * </ol>
- * URLµÄHostÒ»¶Î°üº¬µÄÊÇScript RouterÄÚÈÝµÄÀ´Ô´£¬Registry¡¢File etc
+ * URLï¿½ï¿½HostÒ»ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Script Routerï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½Ô´ï¿½ï¿½Registryï¿½ï¿½File etc
  * 
  * @author william.liangf
  */
@@ -37,6 +37,7 @@ public class ScriptRouterFactory implements RouterFactory {
     
     public static final String NAME = "script";
 
+    @Override
     public Router getRouter(URL url) {
         return new ScriptRouter(url);
     }

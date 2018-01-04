@@ -32,8 +32,8 @@ public class FindRes<T> {
 	}
 
 	/**
-	 * µôÓÃ¸Ã·½·¨»áÖ±½Ó½«¸ÃÀàÐÍ×¢²á½ø BeanUtilsBeanÖÐ£¬
-	 * Òò´ËËùÓÐÊ¹ÓÃapacheÖÐµÄBeanUtils½øÐÐbeanCopy¶¼»áÊÜ´ËÓ°Ïì¡£
+	 * ï¿½ï¿½ï¿½Ã¸Ã·ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ BeanUtilsBeanï¿½Ð£ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½apacheï¿½Ðµï¿½BeanUtilsï¿½ï¿½ï¿½ï¿½beanCopyï¿½ï¿½ï¿½ï¿½ï¿½Ü´ï¿½Ó°ï¿½ì¡£
 	 * @param propertyClass
 	 * @return
 	 */
@@ -48,11 +48,13 @@ public class FindRes<T> {
 	}
 	
 	/**
-	 * Èç¹û·µ»ØµÄÊý¾ÝÖÐÈç¹ûÓÐ·ÇjavaµÄ»ù±¾ÀàÐÍ»ò¶ÔÏóµÄ»¯£¬µ÷ÓÃ¸Ã·½·¨½«»áÊ§°Ü¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½javaï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¸Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü¡ï¿½
 	 * @return
 	 */
 	public String toJsonStr(){
-		if(result.size()==1) return this.result.get(0).toJson();
+		if(result.size()==1) {
+            return this.result.get(0).toJson();
+        }
 		StringBuilder sb=new StringBuilder("[");
 		for(Document doc:result){
 			sb.append(doc.toJson()).append(",");
@@ -74,13 +76,17 @@ public class FindRes<T> {
 		List<Map> resultList = new ArrayList<Map>();
 		for(Document doc:this.result){
 			Map b=ResultUtil.toMap(doc);
-			if(b!=null) resultList.add(b);
+			if(b!=null) {
+                resultList.add(b);
+            }
 		}
 		return resultList;
 	}
 	
 	public T toBean(){
-		if(result==null || result.isEmpty()) return null;
+		if(result==null || result.isEmpty()) {
+            return null;
+        }
 		return ResultUtil.toBean(mapping, result.get(0));
 	}
 	

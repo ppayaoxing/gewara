@@ -34,7 +34,7 @@ public class ScriptFilter {
     }
 
     public boolean tryParseFromMethodExpr(SQLMethodInvokeExpr expr) throws SqlParseException {
-        if (!expr.getMethodName().toLowerCase().equals("script")) {
+        if (!"script".equals(expr.getMethodName().toLowerCase())) {
             return false;
         }
         List<SQLExpr> methodParameters = expr.getParameters();
@@ -55,14 +55,14 @@ public class ScriptFilter {
                 return false;
             }
             SQLBinaryOpExpr binaryOpExpr = (SQLBinaryOpExpr) innerExpr;
-            if (!binaryOpExpr.getOperator().getName().equals("=")) {
+            if (!"=".equals(binaryOpExpr.getOperator().getName())) {
                 return false;
             }
 
             SQLExpr right = binaryOpExpr.getRight();
             Object value = Util.expr2Object(right);
             String key = Util.extendedToString(binaryOpExpr.getLeft());
-            if(key.equals("script_type")){
+            if("script_type".equals(key)){
                 parseAndUpdateScriptType(value.toString());
             }
             else {

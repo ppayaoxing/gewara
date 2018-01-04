@@ -33,7 +33,9 @@ public class ScanRes<T> {
 	}
 	
 	private  T toBean(Document doc){
-		if(this.mapping==null) throw new MongoDataException("please set the mapping bean type");
+		if(this.mapping==null) {
+            throw new MongoDataException("please set the mapping bean type");
+        }
 		if(this.mapping.equals(Map.class)){
 			return (T)doc;
 		}else{
@@ -53,7 +55,7 @@ public class ScanRes<T> {
 	}
 	
 	/**
-	 * Í¬²½´¦Àí
+	 * Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void startSyncProcess(){
 		while(docs.hasNext()){
@@ -62,7 +64,7 @@ public class ScanRes<T> {
 	}
 	
 	/**
-	 * ¿ªÒ»¸öÏß³Ì£¬½øÐÐÒì²½´¦Àí
+	 * ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß³Ì£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì²½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void startAsyncProcess(){
 		new Thread(new Runnable() {

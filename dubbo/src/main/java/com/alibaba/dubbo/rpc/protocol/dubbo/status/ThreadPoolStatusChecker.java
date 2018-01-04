@@ -34,6 +34,7 @@ import com.alibaba.dubbo.common.store.DataStore;
 @Activate
 public class ThreadPoolStatusChecker implements StatusChecker {
 
+    @Override
     public Status check() {
         DataStore dataStore = ExtensionLoader.getExtensionLoader(DataStore.class).getDefaultExtension();
         Map<String, Object> executors = dataStore.get(Constants.EXECUTOR_SERVICE_COMPONENT_KEY);

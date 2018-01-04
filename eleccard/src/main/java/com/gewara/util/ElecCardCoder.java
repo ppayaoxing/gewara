@@ -13,9 +13,11 @@ public class ElecCardCoder {
 
 	static {
 		Map<String,String> hostMap = getServerAddrMap();
-		for (String addr : hostMap.keySet())
-			if (addr.startsWith("192.168"))
-				enabled = true;
+		for (String addr : hostMap.keySet()) {
+            if (addr.startsWith("192.168")) {
+                enabled = true;
+            }
+        }
 	}
 
 	public static String encode(String str) {
@@ -23,8 +25,9 @@ public class ElecCardCoder {
 	}
 
 	public static String getEncodePk() {
-		if (!(enabled))
-			throw new IllegalArgumentException("only for test!");
+		if (!(enabled)) {
+            throw new IllegalArgumentException("only for test!");
+        }
 		return StringUtil.getRandomString(12, true, false, true);
 	}
 
@@ -33,8 +36,9 @@ public class ElecCardCoder {
 	}
 
 	public static boolean isValidPass(String pass, Long time) {
-		if (time.longValue() <= newtime)
-			return true;
+		if (time.longValue() <= newtime) {
+            return true;
+        }
 		return (pass.length() == 12);
 	}
 
@@ -51,8 +55,9 @@ public class ElecCardCoder {
 				Enumeration addrList = ni.getInetAddresses();
 				while (addrList.hasMoreElements()) {
 					InetAddress addr = (InetAddress) addrList.nextElement();
-					if (addr instanceof Inet4Address)
-						hostMap.put(addr.getHostAddress(), addr.getHostName());
+					if (addr instanceof Inet4Address) {
+                        hostMap.put(addr.getHostAddress(), addr.getHostName());
+                    }
 				}
 			}
 		} catch (Exception localException) {

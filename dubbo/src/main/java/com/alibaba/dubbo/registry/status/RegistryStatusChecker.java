@@ -31,6 +31,7 @@ import com.alibaba.dubbo.registry.support.AbstractRegistryFactory;
 @Activate
 public class RegistryStatusChecker implements StatusChecker {
 
+    @Override
     public Status check() {
         Collection<Registry> regsitries = AbstractRegistryFactory.getRegistries();
         if (regsitries == null || regsitries.size() == 0) {

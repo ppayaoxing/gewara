@@ -32,7 +32,7 @@ import com.gewara.util.JsonUtils;
 
 public class GewaraSsoClient {
 	/**
-	 * ´Ósso»ñÈ¡menu×ÊÔ´
+	 * ï¿½ï¿½ssoï¿½ï¿½È¡menuï¿½ï¿½Ô´
 	 * 
 	 * @param url
 	 * @param serviceName
@@ -44,7 +44,7 @@ public class GewaraSsoClient {
 		params.put("SYSTEMID", "");
 		HttpResult result = HttpUtils.getUrlAsString(url, params);
 		int i=0;
-		while(!result.isSuccess() && i<10){//ÖØÊÔ10´Î
+		while(!result.isSuccess() && i<10){//ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½
 			result = HttpUtils.getUrlAsString(url, params);
 			i ++;
 		}
@@ -59,7 +59,7 @@ public class GewaraSsoClient {
 		params.put("SYSTEMID", "");
 		HttpResult result = HttpUtils.getUrlAsString(url, params);
 		int i=0;
-		while(!result.isSuccess() && i<10){//ÖØÊÔ10´Î
+		while(!result.isSuccess() && i<10){//ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½
 			result = HttpUtils.getUrlAsString(url, params);
 			i ++;
 		}
@@ -68,7 +68,7 @@ public class GewaraSsoClient {
 	}
 
 	/**
-	 * µÇÂ¼²¢·µ»ØÓÃ»§ÐÅÏ¢
+	 * ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
 	 * 
 	 * @param servletRequest
 	 * @param servletResponse
@@ -78,9 +78,9 @@ public class GewaraSsoClient {
 	 */
 	public final Assertion loginValidationSso(final ServletRequest servletRequest, final ServletResponse servletResponse)
 			throws IOException, ServletException {
-		// ÅÐ¶ÏÊÇ·ñÓÃ»§µÇÂ¼¹ý£¬Èç¹ûÃ»ÓÐµÇÂ¼Ìø×ªµ½sso
+		// ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ðµï¿½Â¼ï¿½ï¿½×ªï¿½ï¿½sso
 		loginSso(servletRequest, servletResponse);
-		// ÑéÖ¤µÇÂ¼³É¹¦µÄÓÃ»§ÐÅÏ¢£¬²¢·µ»ØÓÃ»§ÐÅÏ¢ºÍÈ¨ÏÞ
+		// ï¿½ï¿½Ö¤ï¿½ï¿½Â¼ï¿½É¹ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½È¨ï¿½ï¿½
 		return validationSso(servletRequest, servletResponse);
 	}
 
@@ -229,9 +229,9 @@ public class GewaraSsoClient {
 	/** Instance of commons logging for logging purposes. */
 	protected final Log log = LogFactory.getLog(GewaraSsoClient.class);
 
-	/** ·µ»ØtkµÄÃû³Æ. */
+	/** ï¿½ï¿½ï¿½ï¿½tkï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. */
 	private String artifactParameterName = "ticket";
-	/** ÇëÇó±¾µØserviceµÄÃû³Æ */
+	/** ï¿½ï¿½ï¿½ó±¾µï¿½serviceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private String serviceParameterName = "service";
 	/**
 	 * Represents the constant for where the assertion will be located in
@@ -269,11 +269,11 @@ public class GewaraSsoClient {
 	private boolean redirectAfterValidation = false;
 
 	/**
-	 * CAS·þÎñµÇÂ¼Login
+	 * CASï¿½ï¿½ï¿½ï¿½ï¿½Â¼Login
 	 */
 	private String casServerLoginUrl;
 	/**
-	 * ±¾µØserverName The name of the server. Should be in the following format:
+	 * ï¿½ï¿½ï¿½ï¿½serverName The name of the server. Should be in the following format:
 	 * {protocol}:{hostName}:{port}. Standard ports can be excluded.
 	 */
 	private String serverName;
@@ -347,7 +347,7 @@ public class GewaraSsoClient {
 	}
 
 	/**
-	 * »òÕßcasserverµÄurl
+	 * ï¿½ï¿½ï¿½ï¿½casserverï¿½ï¿½url
 	 * 
 	 * @param request
 	 * @param response
@@ -363,8 +363,9 @@ public class GewaraSsoClient {
 		if (StringUtils.isNotBlank(xfwd)) {
 			String[] ips = xfwd.split(",");
 			for (String ip : ips) {
-				if (!StringUtils.trim(ip).equals("127.0.0.1") && !StringUtils.trim(ip).equals("localhost"))
-					return ip;
+				if (!"127.0.0.1".equals(StringUtils.trim(ip)) && !"localhost".equals(StringUtils.trim(ip))) {
+                    return ip;
+                }
 			}
 		}
 		return request.getRemoteAddr();

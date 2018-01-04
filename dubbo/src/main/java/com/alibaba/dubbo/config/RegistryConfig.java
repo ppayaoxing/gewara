@@ -33,22 +33,22 @@ public class RegistryConfig extends AbstractConfig {
 	
 	public static final String NO_AVAILABLE = "N/A";
 
-    // ×¢²áÖÐÐÄµØÖ·
+    // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·
     private String            address;
     
-	// ×¢²áÖÐÐÄµÇÂ¼ÓÃ»§Ãû
+	// ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Â¼ï¿½Ã»ï¿½ï¿½ï¿½
     private String            username;
 
-    // ×¢²áÖÐÐÄµÇÂ¼ÃÜÂë
+    // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Â¼ï¿½ï¿½ï¿½ï¿½
     private String            password;
 
-    // ×¢²áÖÐÐÄÈ±Ê¡¶Ë¿Ú
+    // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±Ê¡ï¿½Ë¿ï¿½
     private Integer           port;
     
-    // ×¢²áÖÐÐÄÐ­Òé
+    // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½
     private String            protocol;
 
-    // ¿Í»§¶ËÊµÏÖ
+    // ï¿½Í»ï¿½ï¿½ï¿½Êµï¿½ï¿½
     private String            transporter;
     
     private String            server;
@@ -61,34 +61,34 @@ public class RegistryConfig extends AbstractConfig {
 
 	private String            version;
 
-    // ×¢²áÖÐÐÄÇëÇó³¬Ê±Ê±¼ä(ºÁÃë)
+    // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Ê±ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
     private Integer           timeout;
 
-    // ×¢²áÖÐÐÄ»á»°³¬Ê±Ê±¼ä(ºÁÃë)
+    // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä»á»°ï¿½ï¿½Ê±Ê±ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
     private Integer           session;
     
-    // ¶¯Ì¬×¢²áÖÐÐÄÁÐ±í´æ´¢ÎÄ¼þ
+    // ï¿½ï¿½Ì¬×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½æ´¢ï¿½Ä¼ï¿½
     private String            file;
     
-    // Í£Ö¹Ê±µÈºòÍê³ÉÍ¨ÖªÊ±¼ä
+    // Í£Ö¹Ê±ï¿½Èºï¿½ï¿½ï¿½ï¿½Í¨ÖªÊ±ï¿½ï¿½
     private Integer           wait;
     
-    // Æô¶¯Ê±¼ì²é×¢²áÖÐÐÄÊÇ·ñ´æÔÚ
+    // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
     private Boolean           check;
 
-    // ÔÚ¸Ã×¢²áÖÐÐÄÉÏ×¢²áÊÇ¶¯Ì¬µÄ»¹ÊÇ¾²Ì¬µÄ·þÎñ
+    // ï¿½Ú¸ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½Ç¶ï¿½Ì¬ï¿½Ä»ï¿½ï¿½Ç¾ï¿½Ì¬ï¿½Ä·ï¿½ï¿½ï¿½
     private Boolean           dynamic;
     
-    // ÔÚ¸Ã×¢²áÖÐÐÄÉÏ·þÎñÊÇ·ñ±©Â¶
+    // ï¿½Ú¸ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Â¶
     private Boolean           register;
     
-    // ÔÚ¸Ã×¢²áÖÐÐÄÉÏ·þÎñÊÇ·ñÒýÓÃ
+    // ï¿½Ú¸ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½
     private Boolean           subscribe;
 
-    // ×Ô¶¨Òå²ÎÊý
+    // ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private Map<String, String> parameters;
 
-    // ÊÇ·ñÎªÈ±Ê¡
+    // ï¿½Ç·ï¿½ÎªÈ±Ê¡
     private Boolean             isDefault;
     
     public RegistryConfig() {
@@ -160,8 +160,9 @@ public class RegistryConfig extends AbstractConfig {
     @Deprecated
     public void setWait(Integer wait) {
         this.wait = wait;
-        if( wait!=null && wait>0)
+        if( wait!=null && wait>0) {
             System.setProperty(Constants.SHUTDOWN_WAIT_KEY, String.valueOf(wait));
+        }
     }
     
     public Boolean isCheck() {

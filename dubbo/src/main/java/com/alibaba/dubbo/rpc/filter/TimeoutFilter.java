@@ -28,7 +28,7 @@ import com.alibaba.dubbo.rpc.Result;
 import com.alibaba.dubbo.rpc.RpcException;
 
 /**
- * Èç¹ûÖ´ÐÐtimeout£¬Ôòlog¼ÇÂ¼ÏÂ£¬²»¸ÉÉæ·þÎñµÄÔËÐÐ
+ * ï¿½ï¿½ï¿½Ö´ï¿½ï¿½timeoutï¿½ï¿½ï¿½ï¿½logï¿½ï¿½Â¼ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author chao.liuc
  */
@@ -37,6 +37,7 @@ public class TimeoutFilter implements Filter {
 
     private static final Logger logger = LoggerFactory.getLogger(TimeoutFilter.class);
 
+    @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         long start = System.currentTimeMillis();
         Result result = invoker.invoke(invocation);

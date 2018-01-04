@@ -25,7 +25,7 @@ import com.gewara.util.WebLogger;
 import com.gewara.web.support.ResourceStatsUtil;
 
 /**
- * Service·½·¨»º´æ£¬Ã¿¸öServiceÒ»¸ö
+ * Serviceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ£¬Ã¿ï¿½ï¿½ServiceÒ»ï¿½ï¿½
  * @author gebiao(ge.biao@gewara.com)
  * @since Nov 5, 2013 10:25:21 PM
  */
@@ -35,11 +35,11 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 	private String serviceName;
 	private int maxKeyCount = 131072;//2^18,128k
 	private String keyPre;
-	private long validtime = System.currentTimeMillis() - DateUtil.m_day;//ÓÐÐ§Ê±¼ä£¬ÓÃÀ´¿ØÖÆÇåÀí»º´æ
+	private long validtime = System.currentTimeMillis() - DateUtil.m_day;//ï¿½ï¿½Ð§Ê±ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private WriteLock[] lockList = new WriteLock[maxKeyCount];
-	//·½·¨»º´æpre
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pre
 	//private Map<String, String> ukeyMap = new ConcurrentHashMap<String, String>();
-	private ThreadPoolExecutor executor/*Òì²½µ÷ÓÃÏß³Ì*/;
+	private ThreadPoolExecutor executor/*ï¿½ì²½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½*/;
 	private Long starttime = System.currentTimeMillis();
 	private AtomicInteger hit = new AtomicInteger(0);
 	private AtomicInteger miss = new AtomicInteger(0);
@@ -78,7 +78,8 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 	private void updateExpireHit(){
 		expireHit.incrementAndGet();
 	}
-	public Map getStats(){
+	@Override
+    public Map getStats(){
 		int h = hit.get();
 		int m = miss.get();
 		int e = expireHit.get();
@@ -98,7 +99,8 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 		}
 		return null;
 	}
-	public Map getAndResetStats(){
+	@Override
+    public Map getAndResetStats(){
 		int h = hit.get();
 		int m = miss.get();
 		int e = expireHit.get();
@@ -123,20 +125,21 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 	}
 	
 	/**
-	 * ²»ÐèÒªÍ¬²½
+	 * ï¿½ï¿½ï¿½ï¿½ÒªÍ¬ï¿½ï¿½
 	 * @param key
 	 * @param call
-	 * @param cacheSeconds:»º´æÊ±¼ä
+	 * @param cacheSeconds:ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 * @return
 	 */
-	public <T> T cacheCall(Integer cacheSeconds, CachableCall<T> call, String ukey, Object...params) {
+	@Override
+    public <T> T cacheCall(Integer cacheSeconds, CachableCall<T> call, String ukey, Object...params) {
 		String key = buildKey(ukey, params);
 		CacheElement<T> result = (CacheElement<T>) cacheTools.get(CacheService.REGION_SERVICE, getCacheKey(key));
-		if(result==null){//·Ç¿Õ½á¹û
+		if(result==null){//ï¿½Ç¿Õ½ï¿½ï¿½
 			result = sychCall(key, call, cacheSeconds, false);
 		}else{
 			if(result.getValidtime() < System.currentTimeMillis() || result.getUpdatetime() < validtime){
-				//µ÷ÓÃÒì²½¸üÐÂ£¬»¹ÊÇ·µ»ØÀÏµÄÖµ
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ì²½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ïµï¿½Öµ
 				executor.execute(new AsynchCallTask(key, cacheSeconds, call, false) );
 				updateExpireHit();
 			}else{
@@ -145,14 +148,15 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 		}
 		return result==null ? null:result.getValue();
 	}
-	public <T> T cacheCallRefresh(Integer cacheSeconds, CachableCall<T> call, String ukey, boolean forceRefresh, Object...params) {
+	@Override
+    public <T> T cacheCallRefresh(Integer cacheSeconds, CachableCall<T> call, String ukey, boolean forceRefresh, Object...params) {
 		String key = buildKey(ukey, params);
 		CacheElement<T> result = (CacheElement<T>) cacheTools.get(CacheService.REGION_SERVICE, getCacheKey(key));
-		if(result==null){//·Ç¿Õ½á¹û
+		if(result==null){//ï¿½Ç¿Õ½ï¿½ï¿½
 			result = sychCall(key, call, cacheSeconds, false);
 		}else{
 			if(result.getValidtime() < System.currentTimeMillis() || forceRefresh || result.getUpdatetime()==null || result.getUpdatetime() < validtime){
-				//µ÷ÓÃÒì²½¸üÐÂ£¬»¹ÊÇ·µ»ØÀÏµÄÖµ
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ì²½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ïµï¿½Öµ
 				executor.execute(new AsynchCallTask(key, cacheSeconds, call, forceRefresh) );
 				updateExpireHit();
 			}else{
@@ -166,10 +170,10 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 		CacheElement<T> result = null;
 		boolean locked = false;
 		try{
-			//²»¹ÜÊÇ·ñËø¶¨£¬¶¼¼ÌÐøÖ´ÐÐ£¬´Ë´¦Ö»ÊÇÈÃ´ó¶àÊý²¢·¢½ø³ÌµÈ´ýÒ»»á¶ù
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð£ï¿½ï¿½Ë´ï¿½Ö»ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌµÈ´ï¿½Ò»ï¿½ï¿½ï¿½
 			locked = lock.tryLock(15, TimeUnit.SECONDS);
 			if(!forceRefresh){
-				//ÔÙ´Î¼ì²â
+				//ï¿½Ù´Î¼ï¿½ï¿½
 				result = (CacheElement<T>) cacheTools.get(CacheService.REGION_SERVICE, getCacheKey(key));
 				if(result!=null){
 					if(result.getValidtime() > System.currentTimeMillis() && result.getUpdatetime() > validtime){
@@ -199,15 +203,20 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 		for(Object p:params){
 			String v = null;
 			if(p!=null){
-				if(p instanceof Timestamp) v = DateUtil.format((Timestamp)p, "yyyyMMddHHmmss");
-				else if(p instanceof Date) v = DateUtil.format((Date)p, "yyyyMMdd");
-				else v = "" + p;
+				if(p instanceof Timestamp) {
+                    v = DateUtil.format((Timestamp) p, "yyyyMMddHHmmss");
+                } else if(p instanceof Date) {
+                    v = DateUtil.format((Date) p, "yyyyMMdd");
+                } else {
+                    v = "" + p;
+                }
 			}
 			key += v + "|" ;
 		}
 		return key;
 	}
-	public void updateCache(Object value, Integer cacheSeconds, String ukey, Object...params){
+	@Override
+    public void updateCache(Object value, Integer cacheSeconds, String ukey, Object...params){
 		String key = buildKey(ukey, params);
 		CacheElement result =  new CacheElement(value, cacheSeconds);
 		cacheTools.set(CacheService.REGION_SERVICE, getCacheKey(key), result);
@@ -262,7 +271,7 @@ public class ServiceCacheHelperImpl implements ServiceCacheHelper {
 	}
 
 	/**
-	 * Èç¹û»º´æµÄ¸üÐÂÊ±¼äÐ¡ÓÚ´ËÊ±¼ä£¬ÔòÖØÐÂ¸üÐÂ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ð¡ï¿½Ú´ï¿½Ê±ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½
 	 * @param validtime
 	 */
 	public void startClear() {

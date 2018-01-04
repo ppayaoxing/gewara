@@ -44,10 +44,10 @@ import com.alibaba.dubbo.rpc.RpcContext;
 import com.alibaba.dubbo.rpc.RpcException;
 
 /**
- * ¼ÇÂ¼ServiceµÄAccess Log¡£
+ * ï¿½ï¿½Â¼Serviceï¿½ï¿½Access Logï¿½ï¿½
  * <p>
- * Ê¹ÓÃµÄLogger keyÊÇ<code><b>dubbo.accesslog</b></code>¡£
- * Èç¹ûÏëÒªÅäÖÃAccess LogÖ»³öÏÖÔÚÖ¸¶¨µÄAppenderÖĞ£¬¿ÉÒÔÔÚLog4jÖĞ×¢ÒâÅäÖÃÉÏadditivity¡£ÅäÖÃÊ¾Àı:
+ * Ê¹ï¿½Ãµï¿½Logger keyï¿½ï¿½<code><b>dubbo.accesslog</b></code>ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Access LogÖ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Appenderï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Log4jï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½additivityï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½:
  * <code>
  * <pre>
  * &lt;logger name="<b>dubbo.accesslog</b>" <font color="red">additivity="false"</font>&gt;
@@ -80,6 +80,7 @@ public class AccessLogFilter implements Filter {
     private volatile ScheduledFuture<?> logFuture = null;
 
     private class LogTask implements Runnable {
+        @Override
         public void run() {
             try {
                 if (logQueue != null && logQueue.size() > 0) {
@@ -147,6 +148,7 @@ public class AccessLogFilter implements Filter {
         }
     }
 
+    @Override
     public Result invoke(Invoker<?> invoker, Invocation inv) throws RpcException {
         try {
             String accesslog = invoker.getUrl().getParameter(Constants.ACCESS_LOG_KEY);

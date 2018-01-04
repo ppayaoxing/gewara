@@ -16,7 +16,9 @@ import org.springframework.util.ObjectUtils;
 
 public abstract class RedirectUrlBuilder {
 	public static final String getRedirectUrl(String path, Map model){
-		if(StringUtils.startsWith(path, "/")) path = path.substring(1);
+		if(StringUtils.startsWith(path, "/")) {
+            path = path.substring(1);
+        }
 		StringBuilder targetUrl = new StringBuilder(path);
 		appendQueryProperties(targetUrl, model, "utf-8");
 		return targetUrl.toString();
@@ -61,8 +63,12 @@ public abstract class RedirectUrlBuilder {
 		return result;
 	}
 	private static boolean isEligibleProperty(Object value) {
-		if (value == null) return false;
-		if (isEligibleValue(value)) return true;
+		if (value == null) {
+            return false;
+        }
+		if (isEligibleValue(value)) {
+            return true;
+        }
 
 		if (value.getClass().isArray()) {
 			int length = Array.getLength(value);

@@ -47,7 +47,7 @@ public class AggMaker {
 		if (field instanceof MethodField) {
 
             MethodField methodField = (MethodField) field;
-            if(methodField.getName().equals("filter")){
+            if("filter".equals(methodField.getName())){
                 Map<String, Object> paramsAsMap = methodField.getParamsAsMap();
                 Where where = (Where) paramsAsMap.get("where");
                 return AggregationBuilders.filter(paramsAsMap.get("alias").toString()).
@@ -114,10 +114,10 @@ public class AggMaker {
 
     private AbstractAggregationBuilder addFieldToAgg(MethodField field, ValuesSourceMetricsAggregationBuilder builder) {
         KVValue kvValue = field.getParams().get(0);
-        if (kvValue.key != null && kvValue.key.equals("script")){
+        if (kvValue.key != null && "script".equals(kvValue.key)){
             return builder.script(new Script(((MethodField) kvValue.value).getParams().get(1).toString()));
         }
-        else  if (kvValue.key!=null && ( kvValue.key.equals("nested") || kvValue.key.equals("reverse_nested")) ) {
+        else  if (kvValue.key!=null && ("nested".equals(kvValue.key) || "reverse_nested".equals(kvValue.key)) ) {
             NestedType nestedType = (NestedType) kvValue.value;
             builder.field(nestedType.field);
             AggregationBuilder nestedBuilder;
@@ -209,7 +209,9 @@ public class AggMaker {
                 }
                continue;
             }
-            if(reduceScriptAdditionalParams.size() == 0) reduceScriptAdditionalParams = null;
+            if(reduceScriptAdditionalParams.size() == 0) {
+                reduceScriptAdditionalParams = null;
+            }
 
             switch (param.getKey().toLowerCase()) {
                 case "map_script":
@@ -371,8 +373,9 @@ public class AggMaker {
     private String gettAggNameFromParamsOrAlias(MethodField field) {
         String alias = field.getAlias();
         for (KVValue kv : field.getParams()) {
-            if(kv.key != null &&kv.key.equals("alias"))
+            if(kv.key != null && "alias".equals(kv.key)) {
                 alias = kv.value.toString();
+            }
         }
         return alias;
     }
@@ -395,8 +398,9 @@ public class AggMaker {
 					break;
 				case "extended_bounds":
 					String[] bounds = value.split(":");
-					if (bounds.length == 2)
-						histogram.extendedBounds(Long.valueOf(bounds[0]), Long.valueOf(bounds[1]));
+					if (bounds.length == 2) {
+                        histogram.extendedBounds(Long.valueOf(bounds[0]), Long.valueOf(bounds[1]));
+                    }
 					break;
                 case "alias":
                 case "nested":

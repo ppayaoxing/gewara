@@ -36,16 +36,20 @@ public class GewaAuthenticationFilter extends UsernamePasswordAuthenticationFilt
 	public void afterPropertiesSet() {
 		super.afterPropertiesSet();
 		aclService = applicationContext.getBean(AclService.class);
-		Assert.notNull(aclService, "必须提供aclService实现！");
+		Assert.notNull(aclService, "锟斤拷锟斤拷锟结供aclService实锟街ｏ拷");
 	}
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 		if(enableCaptcha){
 			boolean validCaptcha = validateCaptcha(request.getParameter("captchaId"), request.getParameter("captcha"), BaseWebUtils.getRemoteIp(request));
-			if(!validCaptcha) throw new InvalidCookieException("验证码不正确！");
+			if(!validCaptcha) {
+                throw new InvalidCookieException("锟斤拷证锟诫不锟斤拷确锟斤拷");
+            }
 		}
 		String ptn = request.getParameter(logonTypeParamName);
-		if (StringUtils.isBlank(ptn)) ptn = "member";
+		if (StringUtils.isBlank(ptn)) {
+            ptn = "member";
+        }
 		aclService.setLogonType(ptn);
 		return super.attemptAuthentication(request, response);
 	}

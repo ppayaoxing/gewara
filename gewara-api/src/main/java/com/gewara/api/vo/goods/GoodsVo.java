@@ -16,87 +16,87 @@ public class GoodsVo extends BaseVo {
 	private static final long serialVersionUID = 4914995483381697551L;
 
 	private Long id; 						// ID
-	private Long describeid; 			// ÎïÆ·ID
-	private String itemtype; 			// ÏîÄ¿·ÖÀà(movie,drama)
-	private Long itemid; 				// ÏîÄ¿ID
-	private String goodstype; 			// ÎïÆ·ÀàÐÍ
-	private String tag; 					// ³¡¹ÝÀàÐÍ£¨cinema,theatre)
-	private Long relatedid; 			// ³¡¹ÝID
-	private String goodsname; 			// ÉÌÆ·Ãû³Æ
-	private String highlight;			//ÍÆ¼öËµÃ÷
+	private Long describeid; 			// ï¿½ï¿½Æ·ID
+	private String itemtype; 			// ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½(movie,drama)
+	private Long itemid; 				// ï¿½ï¿½Ä¿ID
+	private String goodstype; 			// ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+	private String tag; 					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½cinema,theatre)
+	private Long relatedid; 			// ï¿½ï¿½ï¿½ï¿½ID
+	private String goodsname; 			// ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+	private String highlight;			//ï¿½Æ¼ï¿½Ëµï¿½ï¿½
 
-	private Integer oriprice; 			// Ô­¼Û
-	private Integer unitprice; 		// µ¥¼Û
-	private Integer costprice; 		// ³É±¾¼Û
+	private Integer oriprice; 			// Ô­ï¿½ï¿½
+	private Integer unitprice; 		// ï¿½ï¿½ï¿½ï¿½
+	private Integer costprice; 		// ï¿½É±ï¿½ï¿½ï¿½
 
-	private Integer maxprice; 			// ×î´ó¼Û¸ñ
-	private Integer minprice; 			// ×îÐ¡¼Û¸ñ
+	private Integer maxprice; 			// ï¿½ï¿½ï¿½Û¸ï¿½
+	private Integer minprice; 			// ï¿½ï¿½Ð¡ï¿½Û¸ï¿½
 
-	private Integer limitnum; 			// Ö§¸¶ÏÞ¹ºÊýÁ¿
-	private Integer allowaddnum; 		// ÏÂµ¥ÊýÁ¿ÏÞÖÆ£¬·ÀÖ¹ÒòÍ¬ÊÂÏÂµ¥ÈËÊý¹ý¶à£¬¶øµ¼ÖÂ¿â´æ²»×ã
+	private Integer limitnum; 			// Ö§ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer allowaddnum; 		// ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à£¬ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½æ²»ï¿½ï¿½
 
-	private Integer quantity; 			// Ô­Ê¼µÄ¿â´æÊýÁ¿£¬²»Ëæ¶©µ¥µÄÔö¼Ó¶ø¼õÉÙ
-	private Integer maxbuy; 			// Ã¿´Î×î¶à¹ºÂòµÄÊýÁ¿
-	private Integer sales; 				// Âô³öÊýÁ¿
+	private Integer quantity; 			// Ô­Ê¼ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ¶©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer maxbuy; 			// Ã¿ï¿½ï¿½ï¿½ï¿½à¹ºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer sales; 				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	private Integer minpoint; 			// Ê¹ÓÃ»ý·ÖÏÂÏÞ
-	private Integer maxpoint; 			// Ê¹ÓÃ»ý·ÖÉÏÏÞ
+	private Integer minpoint; 			// Ê¹ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer maxpoint; 			// Ê¹ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	private Integer goodssort; 		// ÉÌÆ·ÅÅÐò
-	private String deliver; 			// ÊÇ·ñÐèÒªµØÖ·//N,Y
-	private String spflag;				// ÌØ¼Û»î¶¯±êÊ¶
+	private Integer goodssort; 		// ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+	private String deliver; 			// ï¿½Ç·ï¿½ï¿½ï¿½Òªï¿½ï¿½Ö·//N,Y
+	private String spflag;				// ï¿½Ø¼Û»î¶¯ï¿½ï¿½Ê¶
 
-	private String partners; 			// ¸ÃÎïÆ·ÊÊÓÃÓÚºÏ×÷ÉÌ£¬ÈçÎÒÃÇµÄandroid£¬ihphone£¬wap
+	private String partners; 			// ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½Ì£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½androidï¿½ï¿½ihphoneï¿½ï¿½wap
 
-	private Long clerkid; 				// ¼ÓÈëÈË
-	private String manager; 			// ´´½¨ÈËÀà±ð
+	private Long clerkid; 				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String manager; 			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	private String shortname; 			// ÉÌÆ·¼ò³Æ[´òÆ±Ê¹ÓÃ]
-	private String printcontent; 		// Æ±Ö½´òÓ¡ÄÚÈÝ
-	private String ordermsg; 			// ¶©µ¥¶ÌÐÅ
-	private String notifymsg; 			// 3Ð¡Ê±ÌáÐÑ¶ÌÏ¢
+	private String shortname; 			// ï¿½ï¿½Æ·ï¿½ï¿½ï¿½[ï¿½ï¿½Æ±Ê¹ï¿½ï¿½]
+	private String printcontent; 		// Æ±Ö½ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½
+	private String ordermsg; 			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String notifymsg; 			// 3Ð¡Ê±ï¿½ï¿½ï¿½Ñ¶ï¿½Ï¢
 
 	private String status; 				// ×´Ì¬
-	private String otherinfo; 			// ÆäËûÉèÖÃ json¸ñÊ½£¬ ´æ·ÅÖ§¸¶ÅäÖÃÐÅÏ¢µÈ
-	private String citycode; 			// ³ÇÊÐ´úÂë
-	private String summary; 			// ÃèÊöÕªÒª
-	private String description; 		// ÉÌÆ·ÃèÊö
+	private String otherinfo; 			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ jsonï¿½ï¿½Ê½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
+	private String citycode; 			// ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½
+	private String summary; 			// ï¿½ï¿½ï¿½ï¿½ÕªÒª
+	private String description; 		// ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 	private String logo; 				// Í¼Æ¬
-	private String biglogo; 			// ´óÍ¼
-	private String banklogo; 			// ÒøÐÐlogo
+	private String biglogo; 			// ï¿½ï¿½Í¼
+	private String banklogo; 			// ï¿½ï¿½ï¿½ï¿½logo
 
-	private Timestamp releasetime;	// Õ¹Ê¾Ê±¼ä
-	private Timestamp fromtime;		// ¿ªÂôÊ±¼ä
-	private Timestamp totime;			// ½áÊøÊ±¼ä
-	private Timestamp addtime; 		// ¼ÓÈëÊ±¼ä
-	private Timestamp fromvalidtime; // Í¨Æ±Èë³¡Ê±¼ä
-	private Timestamp tovalidtime;	// Í¨Æ±Èë³¡½áÊøÊ±¼ä
+	private Timestamp releasetime;	// Õ¹Ê¾Ê±ï¿½ï¿½
+	private Timestamp fromtime;		// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp totime;			// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp addtime; 		// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp fromvalidtime; // Í¨Æ±ï¿½ë³¡Ê±ï¿½ï¿½
+	private Timestamp tovalidtime;	// Í¨Æ±ï¿½ë³¡ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 
 	private String elecard;
-	private String expressid;			// ÅäËÍ·½Ê½id
-	private String period;				// ÊÇ·ñÓÐÊ±¶Î
-	private Integer msgMinute;			// ¶ÌÐÅÌáÇ°·¢ËÍÊ±¼ä(·ÖÖÓ)
+	private String expressid;			// ï¿½ï¿½ï¿½Í·ï¿½Ê½id
+	private String period;				// ï¿½Ç·ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Integer msgMinute;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 
-	private String barcode; 			// ÌõÐÎÂë
-	private String feetype; 			// ÒµÎñÄ£Ê½
-	private String servicetype; 		// ·þÎñ°å¿é
-	private String seotitle; 			// SEO¹Ø¼ü×Ö
-	private String seodescription; 	// SEOÃèÊö
+	private String barcode; 			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String feetype; 			// Òµï¿½ï¿½Ä£Ê½
+	private String servicetype; 		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String seotitle; 			// SEOï¿½Ø¼ï¿½ï¿½ï¿½
+	private String seodescription; 	// SEOï¿½ï¿½ï¿½ï¿½
 	private Integer clickedtimes;
-	private String preType; 			// Ô¤ÊÛÀàÐÍ
-	private String category; 			// ÑÜÉúÆ··ÖÀà
-	private String smalltype; 			// ·ÖÀà:Èç£º±¬Ã×»¨£¬Ô¤ÊÛ£¬ÑÜÉúÆ·,»î¶¯
-	private Long smallid; 				// Ô¤ÊÛ£¨È¯Åú´Î£©£¬»î¶¯£¨ID£©
+	private String preType; 			// Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String category; 			// ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+	private String smalltype; 			// ï¿½ï¿½ï¿½ï¿½:ï¿½ç£ºï¿½ï¿½ï¿½×»ï¿½ï¿½ï¿½Ô¤ï¿½Û£ï¿½ï¿½ï¿½ï¿½ï¿½Æ·,ï¿½î¶¯
+	private Long smallid; 				// Ô¤ï¿½Û£ï¿½È¯ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½IDï¿½ï¿½
 
-	private Long settleid; 				// ½áËãID
-	private String measurement; 		// ·ÖÀà£¬Èç£¬ÎïÆ·³ß´ç
-	private String colour; 				// ·ÖÀà£¬Èç£¬ÑÕÉ«
-	private String takemethod;			// È¡Æ±·½Ê½
+	private Long settleid; 				// ï¿½ï¿½ï¿½ï¿½ID
+	private String measurement; 		// ï¿½ï¿½ï¿½à£¬ï¿½ç£¬ï¿½ï¿½Æ·ï¿½ß´ï¿½
+	private String colour; 				// ï¿½ï¿½ï¿½à£¬ï¿½ç£¬ï¿½ï¿½É«
+	private String takemethod;			// È¡Æ±ï¿½ï¿½Ê½
 	
-	private String rateinfo;			// Ç¿ÖÆ°ó¶¨µÄ±ÈÀý
+	private String rateinfo;			// Ç¿ï¿½Æ°ó¶¨µÄ±ï¿½ï¿½ï¿½
 	
-	private Long spcounterid;			//Ê¹ÓÃÊýÁ¿¿ØÖÆÆ÷µÄID
-	private String sellOutMark;			//ÊÇ·ñÈ±»õµÇ¼Ç
+	private Long spcounterid;			//Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
+	private String sellOutMark;			//ï¿½Ç·ï¿½È±ï¿½ï¿½ï¿½Ç¼ï¿½
 
 	public String getCategory() {
 		return category;
@@ -300,8 +300,9 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getLimg() {
-		if (StringUtils.isBlank(logo))
-			return "img/default_head.png";
+		if (StringUtils.isBlank(logo)) {
+            return "img/default_head.png";
+        }
 		return logo;
 	}
 
@@ -384,8 +385,9 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public String getReallogo() {
-		if (StringUtils.isBlank(logo))
-			return "img/default_head.png";
+		if (StringUtils.isBlank(logo)) {
+            return "img/default_head.png";
+        }
 		return logo;
 	}
 
@@ -513,8 +515,9 @@ public class GoodsVo extends BaseVo {
 	}
 
 	public boolean hasPeriod() {
-		if (StringUtils.isBlank(this.period))
-			return false;
+		if (StringUtils.isBlank(this.period)) {
+            return false;
+        }
 		return StringUtils.equals(this.period, GoodsConstant.PERIOD_Y);
 	}
 
@@ -667,7 +670,7 @@ public class GoodsVo extends BaseVo {
 	}
 
 	/**
-	 * ÔÚÔ¤ÊÛÆÚ
+	 * ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
 	 */
 	public boolean hasBooking() {
 		Timestamp cur = new Timestamp(System.currentTimeMillis());

@@ -44,10 +44,10 @@ public class DubboMonitor implements Monitor {
     
     private static final int LENGTH = 10;
     
-    // ¶¨Ê±ÈÎÎñÖ´ÐÐÆ÷
+    // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3, new NamedThreadFactory("DubboMonitorSendTimer", true));
 
-    // Í³¼ÆÐÅÏ¢ÊÕ¼¯¶¨Ê±Æ÷
+    // Í³ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Õ¼ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     private final ScheduledFuture<?> sendFuture;
     
     private final Invoker<MonitorService> monitorInvoker;
@@ -62,13 +62,14 @@ public class DubboMonitor implements Monitor {
         this.monitorInvoker = monitorInvoker;
         this.monitorService = monitorService;
         this.monitorInterval = monitorInvoker.getUrl().getPositiveParameter("interval", 60000);
-        // Æô¶¯Í³¼ÆÐÅÏ¢ÊÕ¼¯¶¨Ê±Æ÷
+        // ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Õ¼ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
         sendFuture = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
+            @Override
             public void run() {
-                // ÊÕ¼¯Í³¼ÆÐÅÏ¢
+                // ï¿½Õ¼ï¿½Í³ï¿½ï¿½ï¿½ï¿½Ï¢
                 try {
                     send();
-                } catch (Throwable t) { // ·ÀÓùÐÔÈÝ´í
+                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½
                     logger.error("Unexpected error occur at send statistic, cause: " + t.getMessage(), t);
                 }
             }
@@ -81,7 +82,7 @@ public class DubboMonitor implements Monitor {
         }
         String timestamp = String.valueOf(System.currentTimeMillis());
         for (Map.Entry<Statistics, AtomicReference<long[]>> entry : statisticsMap.entrySet()) {
-            // »ñÈ¡ÒÑÍ³¼ÆÊý¾Ý
+            // ï¿½ï¿½È¡ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Statistics statistics = entry.getKey();
             AtomicReference<long[]> reference = entry.getValue();
             long[] numbers = reference.get();
@@ -96,7 +97,7 @@ public class DubboMonitor implements Monitor {
             long maxElapsed = numbers[8];
             long maxConcurrent = numbers[9];
              
-            // ·¢ËÍ»ã×ÜÐÅÏ¢
+            // ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
             URL url = statistics.getUrl()
                     .addParameters(MonitorService.TIMESTAMP, timestamp,
                             MonitorService.SUCCESS, String.valueOf(success),
@@ -112,7 +113,7 @@ public class DubboMonitor implements Monitor {
                             );
             monitorService.collect(url);
             
-            // ¼õµôÒÑÍ³¼ÆÊý¾Ý
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             long[] current;
             long[] update = new long[LENGTH];
             do {
@@ -136,22 +137,23 @@ public class DubboMonitor implements Monitor {
         }
     }
     
+    @Override
     public void collect(URL url) {
-        // ¶ÁÐ´Í³¼Æ±äÁ¿
+        // ï¿½ï¿½Ð´Í³ï¿½Æ±ï¿½ï¿½ï¿½
         int success = url.getParameter(MonitorService.SUCCESS, 0);
         int failure = url.getParameter(MonitorService.FAILURE, 0);
         int input = url.getParameter(MonitorService.INPUT, 0);
         int output = url.getParameter(MonitorService.OUTPUT, 0);
         int elapsed = url.getParameter(MonitorService.ELAPSED, 0);
         int concurrent = url.getParameter(MonitorService.CONCURRENT, 0);
-        // ³õÊ¼»¯Ô­×ÓÒýÓÃ
+        // ï¿½ï¿½Ê¼ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Statistics statistics = new Statistics(url);
         AtomicReference<long[]> reference = statisticsMap.get(statistics);
         if (reference == null) {
             statisticsMap.putIfAbsent(statistics, new AtomicReference<long[]>());
             reference = statisticsMap.get(statistics);
         }
-        // CompareAndSet²¢·¢¼ÓÈëÍ³¼ÆÊý¾Ý
+        // CompareAndSetï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         long[] current;
         long[] update = new long[LENGTH];
         do {
@@ -182,18 +184,22 @@ public class DubboMonitor implements Monitor {
         } while (! reference.compareAndSet(current, update));
     }
 
-	public List<URL> lookup(URL query) {
+	@Override
+    public List<URL> lookup(URL query) {
 		return monitorService.lookup(query);
 	}
 
+    @Override
     public URL getUrl() {
         return monitorInvoker.getUrl();
     }
 
+    @Override
     public boolean isAvailable() {
         return monitorInvoker.isAvailable();
     }
 
+    @Override
     public void destroy() {
         try {
             sendFuture.cancel(true);

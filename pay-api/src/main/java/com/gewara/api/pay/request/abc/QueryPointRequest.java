@@ -7,17 +7,17 @@ public class QueryPointRequest extends AbcRequest{
 	private static final long serialVersionUID = 556251408350901842L;
 
 	/**
-	 * ¿¨ºÅ
+	 * ï¿½ï¿½ï¿½ï¿½
 	 */
 	private String cardno;
 	
 	/**
-	 * ¿¨ÓĞĞ§ÆÚ
+	 * ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½
 	 */
 	private String cardexp;
 	
 	/**
-	 * Ğ£ÑéÂë
+	 * Ğ£ï¿½ï¿½ï¿½ï¿½
 	 */
 	private String adddata;
 
@@ -41,15 +41,19 @@ public class QueryPointRequest extends AbcRequest{
 
 	@Override
 	public boolean checkParams() {
-		if(!super.checkParams())
-			return false;
+		if(!super.checkParams()) {
+            return false;
+        }
 		
-		if(cardno==null || cardno.length()>=20)
-			return false;
-		if(cardexp==null || cardexp.length()!=4)
-			return false;
-		if(adddata==null || adddata.length()!=3)
-			return false;
+		if(cardno==null || cardno.length()>=20) {
+            return false;
+        }
+		if(cardexp==null || cardexp.length()!=4) {
+            return false;
+        }
+		if(adddata==null || adddata.length()!=3) {
+            return false;
+        }
 		return true;
 	}
 

@@ -20,7 +20,7 @@ import com.alibaba.dubbo.remoting.ChannelHandler;
 import com.alibaba.dubbo.remoting.Dispatcher;
 
 /**
- * connect disconnect ±£Ö¤Ë³Ðò.
+ * connect disconnect ï¿½ï¿½Ö¤Ë³ï¿½ï¿½.
  * 
  * @author chao.liuc
  */
@@ -28,6 +28,7 @@ public class ConnectionOrderedDispatcher implements Dispatcher {
 
     public static final String NAME = "connection";
 
+    @Override
     public ChannelHandler dispatch(ChannelHandler handler, URL url) {
         return new ConnectionOrderedChannelHandler(handler, url);
     }

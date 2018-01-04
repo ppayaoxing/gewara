@@ -60,8 +60,11 @@ public class PageUtil {
 		this.pageCount = (rowsCount-1)/rowsPerPage + 1;
 		this.startNum = Math.max(0, currentPage - 3);
 		this.endNum = Math.min(startNum + 6 , pageCount);
-		if(StringUtils.isBlank(url)) this.baseUrl="";
-		else this.baseUrl = url;
+		if(StringUtils.isBlank(url)) {
+            this.baseUrl = "";
+        } else {
+            this.baseUrl = url;
+        }
 	}
 	public PageUtil(int rowsCount, int rowsPerPage, int currentPage, String url, boolean isShowFirst, boolean isShowLast){
 		this.rowsCount = rowsCount;
@@ -70,8 +73,11 @@ public class PageUtil {
 		this.pageCount = (rowsCount-1)/rowsPerPage + 1;
 		this.startNum = Math.max(0, currentPage - 3);
 		this.endNum = Math.min(startNum + 6, pageCount);
-		if(StringUtils.isBlank(url)) this.baseUrl="";
-		else this.baseUrl = url;
+		if(StringUtils.isBlank(url)) {
+            this.baseUrl = "";
+        } else {
+            this.baseUrl = url;
+        }
 		this.isShowFirst = isShowFirst;
 		this.isShowLast = isShowLast;
 	}
@@ -87,14 +93,23 @@ public class PageUtil {
 		String commonParam = "";
 		String scriptParam = "{";
 		if(params != null){
-			if(paramNames==null) paramNames = new ArrayList(params.keySet());
+			if(paramNames==null) {
+                paramNames = new ArrayList(params.keySet());
+            }
 			for(Object paramName: paramNames){
-				if(paramName.equals("pageNo")) continue;
+				if("pageNo".equals(paramName)) {
+                    continue;
+                }
 				Object values = params.get(paramName);
-				if(values==null) continue;
+				if(values==null) {
+                    continue;
+                }
 				String[] tmp = null;
-				if(values instanceof String[]) tmp = (String[])values;
-				else tmp = new String[]{"" + values};
+				if(values instanceof String[]) {
+                    tmp = (String[]) values;
+                } else {
+                    tmp = new String[]{"" + values};
+                }
 				for(String value:tmp){
 					if(StringUtils.isNotBlank(value)){
 						try {
@@ -107,38 +122,55 @@ public class PageUtil {
 			}
 		}
 		//2、整理出页码链接
-		if(scriptParam.length() > 1) this.scriptParams = scriptParam.substring(0, scriptParam.length()-1) + "}";
+		if(scriptParam.length() > 1) {
+            this.scriptParams = scriptParam.substring(0, scriptParam.length() - 1) + "}";
+        }
 		this.commonParams = commonParam;
 		if(isPrePage()){//有上一页
 			String tmpUrl = baseUrl;
 			int pn = currentPage-1;
 			if(pn == 0){
-				if(StringUtils.isNotBlank(commonParam))
-					tmpUrl += "?" + StringUtils.substring(commonParam,1);
-			}else tmpUrl += "?pageNo=" + pn + commonParam;
+				if(StringUtils.isNotBlank(commonParam)) {
+                    tmpUrl += "?" + StringUtils.substring(commonParam, 1);
+                }
+			}else {
+                tmpUrl += "?pageNo=" + pn + commonParam;
+            }
 			this.preurl = tmpUrl;
 		}
 		for(int pn=startNum; pn<endNum; pn++){
 			PageInfo pageInfo = new PageInfo();
 			String tmpUrl = baseUrl;
 			if(pn == 0){
-				if(StringUtils.isNotBlank(commonParam))
-					tmpUrl += "?" + StringUtils.substring(commonParam,1);
-			}else tmpUrl += "?pageNo=" + pn + commonParam;
+				if(StringUtils.isNotBlank(commonParam)) {
+                    tmpUrl += "?" + StringUtils.substring(commonParam, 1);
+                }
+			}else {
+                tmpUrl += "?pageNo=" + pn + commonParam;
+            }
 			pageInfo.setUrl(tmpUrl);
 			pageInfo.setPageNo(""+(pn+1));//显示的页码
 			pageInfo.setRealPageNo(pn);
-			if(pn == currentPage) pageInfo.setCurrentPage(true);
+			if(pn == currentPage) {
+                pageInfo.setCurrentPage(true);
+            }
 			if(isLastPage()) {
-				if((pn+1)!=pageCount)pageInfoList.add(pageInfo);
-			}else pageInfoList.add(pageInfo);
+				if((pn+1)!=pageCount) {
+                    pageInfoList.add(pageInfo);
+                }
+			}else {
+                pageInfoList.add(pageInfo);
+            }
 		}
 		if(isNextPage()){//有下一页
 			this.nexturl = baseUrl + "?pageNo=" + (currentPage + 1) + commonParam;
 		}
 		if(isFirstPage()){
-			if(StringUtils.isNotBlank(commonParam))	this.firsturl = baseUrl +"?" + StringUtils.substring(commonParam, 1);
-			else this.firsturl = baseUrl;
+			if(StringUtils.isNotBlank(commonParam)) {
+                this.firsturl = baseUrl + "?" + StringUtils.substring(commonParam, 1);
+            } else {
+                this.firsturl = baseUrl;
+            }
 		}
 		if(isLastPage()){
 			this.lasturl = baseUrl + "?pageNo=" + (pageCount-1) + commonParam;
@@ -200,27 +232,39 @@ public class PageUtil {
 	}
 	
 	public boolean isFirstPage(){
-		if(this.isShowFirst && currentPage>5) return true;
+		if(this.isShowFirst && currentPage>5) {
+            return true;
+        }
 		return false;
 	}
 	
 	public boolean isPrePage(){
-		if(this.currentPage>0) return true;
+		if(this.currentPage>0) {
+            return true;
+        }
 		return false;
 	}
 	
 	public boolean isNextPage(){
-		if(this.currentPage+1 < this.pageCount)	return true;
+		if(this.currentPage+1 < this.pageCount) {
+            return true;
+        }
 		return false;
 	}
 	
 	public boolean isLastPage(){
-		if(this.isShowLast && pageCount>5) return true;
+		if(this.isShowLast && pageCount>5) {
+            return true;
+        }
 		return false;
 	}
 	public boolean isOnLast(String pageNo ){
-		if(StringUtils.isBlank(pageNo)) pageNo="0";
-		if(isLastPage() && StringUtils.equals((Integer.valueOf(pageNo)+1)+"", pageCount+"")) return true;
+		if(StringUtils.isBlank(pageNo)) {
+            pageNo = "0";
+        }
+		if(isLastPage() && StringUtils.equals((Integer.valueOf(pageNo)+1)+"", pageCount+"")) {
+            return true;
+        }
 		return false;
 	}
 }

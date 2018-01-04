@@ -11,16 +11,18 @@ public class DeleteRes {
 	}
 	
 	/**
-	 * ÊÇ·ñ³É¹¦
+	 * ï¿½Ç·ï¿½É¹ï¿½
 	 * @return
 	 */
 	public boolean success(){
-		if(d1) return this.result.getDeletedCount()==1;
+		if(d1) {
+            return this.result.getDeletedCount() == 1;
+        }
 		return this.result.getDeletedCount()>0&&this.result.wasAcknowledged();
 	}
 	
 	/**
-	 * É¾³ýµÄÊýÁ¿
+	 * É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public int deleteCount(){

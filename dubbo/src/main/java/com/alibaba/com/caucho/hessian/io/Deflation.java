@@ -59,6 +59,7 @@ public class Deflation extends HessianEnvelope {
   {
   }
 
+  @Override
   public Hessian2Output wrap(Hessian2Output out)
     throws IOException
   {
@@ -71,6 +72,7 @@ public class Deflation extends HessianEnvelope {
     return filterOut;
   }
 
+  @Override
   public Hessian2Input unwrap(Hessian2Input in)
     throws IOException
   {
@@ -78,13 +80,15 @@ public class Deflation extends HessianEnvelope {
 
     String method = in.readMethod();
 
-    if (! method.equals(getClass().getName()))
-      throw new IOException("expected hessian Envelope method '" +
-			    getClass().getName() + "' at '" + method + "'");
+    if (! method.equals(getClass().getName())) {
+        throw new IOException("expected hessian Envelope method '" +
+                getClass().getName() + "' at '" + method + "'");
+    }
 
     return unwrapHeaders(in);
   }
 
+  @Override
   public Hessian2Input unwrapHeaders(Hessian2Input in)
     throws IOException
   {
@@ -116,18 +120,21 @@ public class Deflation extends HessianEnvelope {
       _deflateOut = new DeflaterOutputStream(_bodyOut);
     }
     
+    @Override
     public void write(int ch)
       throws IOException
     {
       _deflateOut.write(ch);
     }
     
+    @Override
     public void write(byte []buffer, int offset, int length)
       throws IOException
     {
       _deflateOut.write(buffer, offset, length);
     }
 
+    @Override
     public void close()
       throws IOException
     {
@@ -160,26 +167,30 @@ public class Deflation extends HessianEnvelope {
 
       int len = in.readInt();
 
-      if (len != 0)
-        throw new IOException("expected no headers");
+      if (len != 0) {
+          throw new IOException("expected no headers");
+      }
       
       _bodyIn = _in.readInputStream();
 
       _inflateIn = new InflaterInputStream(_bodyIn);
     }
     
+    @Override
     public int read()
       throws IOException
     {
       return _inflateIn.read();
     }
     
+    @Override
     public int read(byte []buffer, int offset, int length)
       throws IOException
     {
       return _inflateIn.read(buffer, offset, length);
     }
 
+    @Override
     public void close()
       throws IOException
     {
@@ -192,8 +203,9 @@ public class Deflation extends HessianEnvelope {
 
 	int len = in.readInt();
 
-	if (len != 0)
-	  throw new IOException("Unexpected footer");
+	if (len != 0) {
+        throw new IOException("Unexpected footer");
+    }
 
         in.completeEnvelope();
 

@@ -45,11 +45,13 @@ public abstract class Proxy
 	private static final String PACKAGE_NAME = Proxy.class.getPackage().getName();
 
 	public static final InvocationHandler RETURN_NULL_INVOKER = new InvocationHandler(){
-		public Object invoke(Object proxy, Method method, Object[] args){ return null; }
+		@Override
+        public Object invoke(Object proxy, Method method, Object[] args){ return null; }
 	};
 
 	public static final InvocationHandler THROW_UNSUPPORTED_INVOKER = new InvocationHandler(){
-		public Object invoke(Object proxy, Method method, Object[] args){ throw new UnsupportedOperationException("Method [" + ReflectUtils.getName(method) + "] unimplemented."); }
+		@Override
+        public Object invoke(Object proxy, Method method, Object[] args){ throw new UnsupportedOperationException("Method [" + ReflectUtils.getName(method) + "] unimplemented."); }
 	};
 
 	private static final Map<ClassLoader, Map<String, Object>> ProxyCacheMap = new WeakHashMap<ClassLoader, Map<String, Object>>();
@@ -76,15 +78,17 @@ public abstract class Proxy
 	 */
 	public static Proxy getProxy(ClassLoader cl, Class<?>... ics)
 	{
-		if( ics.length > 65535 )
-			throw new IllegalArgumentException("interface limit exceeded");
+		if( ics.length > 65535 ) {
+            throw new IllegalArgumentException("interface limit exceeded");
+        }
 		
 		StringBuilder sb = new StringBuilder();
 		for(int i=0;i<ics.length;i++)
 		{
 			String itf = ics[i].getName();
-			if( !ics[i].isInterface() )
-				throw new RuntimeException(itf + " is not a interface.");
+			if( !ics[i].isInterface() ) {
+                throw new RuntimeException(itf + " is not a interface.");
+            }
 
 			Class<?> tmp = null;
 			try
@@ -94,8 +98,9 @@ public abstract class Proxy
 			catch(ClassNotFoundException e)
 			{}
 
-			if( tmp != ics[i] )
-				throw new IllegalArgumentException(ics[i] + " is not visible from class loader");
+			if( tmp != ics[i] ) {
+                throw new IllegalArgumentException(ics[i] + " is not visible from class loader");
+            }
 
 		    sb.append(itf).append(';');
 		}
@@ -124,8 +129,9 @@ public abstract class Proxy
 				if( value instanceof Reference<?> )
 				{
 					proxy = (Proxy)((Reference<?>)value).get();
-					if( proxy != null )
-						return proxy;
+					if( proxy != null ) {
+                        return proxy;
+                    }
 				}
 
 				if( value == PendingGenerationMarker )
@@ -162,8 +168,9 @@ public abstract class Proxy
 					}
 					else
 					{
-						if( !pkg.equals(npkg)  )
-							throw new IllegalArgumentException("non-public interfaces from different packages");
+						if( !pkg.equals(npkg)  ) {
+                            throw new IllegalArgumentException("non-public interfaces from different packages");
+                        }
 					}
 				}
 				ccp.addInterface(ics[i]);
@@ -171,8 +178,9 @@ public abstract class Proxy
 				for( Method method : ics[i].getMethods() )
 				{
 					String desc = ReflectUtils.getDesc(method);
-					if( worked.contains(desc) )
-						continue;
+					if( worked.contains(desc) ) {
+                        continue;
+                    }
 					worked.add(desc);
 
 					int ix = methods.size();
@@ -180,19 +188,22 @@ public abstract class Proxy
 					Class<?>[] pts = method.getParameterTypes();
 
 					StringBuilder code = new StringBuilder("Object[] args = new Object[").append(pts.length).append("];");
-					for(int j=0;j<pts.length;j++)
-						code.append(" args[").append(j).append("] = ($w)$").append(j+1).append(";");
+					for(int j=0;j<pts.length;j++) {
+                        code.append(" args[").append(j).append("] = ($w)$").append(j + 1).append(";");
+                    }
 					code.append(" Object ret = handler.invoke(this, methods[" + ix + "], args);");
-					if( !Void.TYPE.equals(rt) )
-						code.append(" return ").append(asArgument(rt, "ret")).append(";");
+					if( !Void.TYPE.equals(rt) ) {
+                        code.append(" return ").append(asArgument(rt, "ret")).append(";");
+                    }
 
 					methods.add(method);
 					ccp.addMethod(method.getName(), method.getModifiers(), rt, pts, method.getExceptionTypes(), code.toString());
 				}
 			}
 
-			if( pkg == null )
-				pkg = PACKAGE_NAME;
+			if( pkg == null ) {
+                pkg = PACKAGE_NAME;
+            }
 
 			// create ProxyInstance class.
 			String pcn = pkg + ".proxy" + id;
@@ -225,16 +236,19 @@ public abstract class Proxy
 		finally
 		{
 			// release ClassGenerator
-			if( ccp != null )
-				ccp.release();
-			if( ccm != null )
-				ccm.release();
+			if( ccp != null ) {
+                ccp.release();
+            }
+			if( ccm != null ) {
+                ccm.release();
+            }
 			synchronized( cache )
 			{
-				if( proxy == null )
-					cache.remove(key);
-				else
-					cache.put(key, new WeakReference<Proxy>(proxy));
+				if( proxy == null ) {
+                    cache.remove(key);
+                } else {
+                    cache.put(key, new WeakReference<Proxy>(proxy));
+                }
 				cache.notifyAll();
 			}
 		}
@@ -264,22 +278,30 @@ public abstract class Proxy
 	{
 		if( cl.isPrimitive() )
 		{
-			if( Boolean.TYPE == cl )
-				return name + "==null?false:((Boolean)" + name + ").booleanValue()";
-			if( Byte.TYPE == cl )
-				return name + "==null?(byte)0:((Byte)" + name + ").byteValue()";
-			if( Character.TYPE == cl )
-				return name + "==null?(char)0:((Character)" + name + ").charValue()";
-			if( Double.TYPE == cl )
-				return name + "==null?(double)0:((Double)" + name + ").doubleValue()";
-			if( Float.TYPE == cl )
-				return name + "==null?(float)0:((Float)" + name + ").floatValue()";
-			if( Integer.TYPE == cl )
-				return name + "==null?(int)0:((Integer)" + name + ").intValue()";
-			if( Long.TYPE == cl )
-				return name + "==null?(long)0:((Long)" + name + ").longValue()";
-			if( Short.TYPE == cl )
-				return name + "==null?(short)0:((Short)" + name + ").shortValue()";
+			if( Boolean.TYPE == cl ) {
+                return name + "==null?false:((Boolean)" + name + ").booleanValue()";
+            }
+			if( Byte.TYPE == cl ) {
+                return name + "==null?(byte)0:((Byte)" + name + ").byteValue()";
+            }
+			if( Character.TYPE == cl ) {
+                return name + "==null?(char)0:((Character)" + name + ").charValue()";
+            }
+			if( Double.TYPE == cl ) {
+                return name + "==null?(double)0:((Double)" + name + ").doubleValue()";
+            }
+			if( Float.TYPE == cl ) {
+                return name + "==null?(float)0:((Float)" + name + ").floatValue()";
+            }
+			if( Integer.TYPE == cl ) {
+                return name + "==null?(int)0:((Integer)" + name + ").intValue()";
+            }
+			if( Long.TYPE == cl ) {
+                return name + "==null?(long)0:((Long)" + name + ").longValue()";
+            }
+			if( Short.TYPE == cl ) {
+                return name + "==null?(short)0:((Short)" + name + ").shortValue()";
+            }
 			throw new RuntimeException(name+" is unknown primitive type."); 
 		}
 		return "(" + ReflectUtils.getName(cl) + ")"+name;

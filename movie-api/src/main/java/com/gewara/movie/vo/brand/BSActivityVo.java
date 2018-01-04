@@ -19,51 +19,51 @@ public class BSActivityVo  extends BaseVo{
 	private static final long serialVersionUID = -763330768091727133L;
 	
 	private Long id;			//ID
-	private String name;		//»î¶¯Ãû³Æ
-	private Timestamp fromtime;	//¿ªÂôÊ±¼ä
-	private Timestamp totime;	//½áÊøÊ±¼ä
-	private Timestamp addtime;	//´´½¨Ê±¼ä
-	private Integer allnum;		//»î¶¯ÏÔÊ¾×ÜÁ¿
-	private String shopid;		//ÉÌÆ·ID
-	private String citycode;	//³ÇÊĞÁĞ±í
+	private String name;		//ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½
+	private Timestamp fromtime;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp totime;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp addtime;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Integer allnum;		//ï¿½î¶¯ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+	private String shopid;		//ï¿½ï¿½Æ·ID
+	private String citycode;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½
 	
-	private String relatedMovieId;	//¹ØÁªÓ°Æ¬ID
-	private String movieIdEnable;	// Y£º¿ÉÓÃ  £»N£º²»¿ÉÓÃ  MOVIEIDENABLE
-	private String relatedCinemaId;	//¹ØÁªÓ°ÔºID
-	private String cinemaIdEnable;	// Y£º¿ÉÓÃ  £»N£º²»¿ÉÓÃ CINEMAIDENABLE
-	private String relatedMpId;		//¹ØÁª³¡´Î
-	private String mpIdEnable;		// Y£º¿ÉÓÃ  £»N£º²»¿ÉÓÃ MPIDENABLE
-	private String edition;			// °æ±¾
+	private String relatedMovieId;	//ï¿½ï¿½ï¿½ï¿½Ó°Æ¬ID
+	private String movieIdEnable;	// Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  MOVIEIDENABLE
+	private String relatedCinemaId;	//ï¿½ï¿½ï¿½ï¿½Ó°ÔºID
+	private String cinemaIdEnable;	// Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ CINEMAIDENABLE
+	private String relatedMpId;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String mpIdEnable;		// Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MPIDENABLE
+	private String edition;			// ï¿½æ±¾
 	
-	private String mpiTimePeriod;	//³¡´ÎÊ±¼ä¶Î
-	private String time1;			// ³¡´ÎÊ±¶Î
-	private String time2;			// ³¡´ÎÊ±¶Î
-	private String week;			//³¡´ÎĞÇÆÚ
-	private String addtime1;		// ÏÂµ¥Ê±¶Î
-	private String addtime2;		// ÏÂµ¥Ê±¶Î
-	private String addweek;			// ÏÂµ¥ĞÇÆÚ
+	private String mpiTimePeriod;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½
+	private String time1;			// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String time2;			// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String week;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String addtime1;		// ï¿½Âµï¿½Ê±ï¿½ï¿½
+	private String addtime2;		// ï¿½Âµï¿½Ê±ï¿½ï¿½
+	private String addweek;			// ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	private Integer price1;			// Âô¼Û
-	private Integer price2;			// Âô¼Û
-	private Integer costprice1;		// ³É±¾¼Û
-	private Integer costprice2;		// ³É±¾¼Û
-	private Integer payUnitPrice1;	// Ö§¸¶µ¥¼Û
-	private Integer payUnitPrice2;	// Ö§¸¶µ¥¼Û
+	private Integer price1;			// ï¿½ï¿½ï¿½ï¿½
+	private Integer price2;			// ï¿½ï¿½ï¿½ï¿½
+	private Integer costprice1;		// ï¿½É±ï¿½ï¿½ï¿½
+	private Integer costprice2;		// ï¿½É±ï¿½ï¿½ï¿½
+	private Integer payUnitPrice1;	// Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer payUnitPrice2;	// Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	private Integer mustBuyNum;		//±Ø¹ºÆ±ÕÅÊı
-	private String exchangeWay;		//¶Ò»»·½Ê½
-	private String remark;			//»î¶¯±¸×¢
-	private String otherinfo;		//ÆäËûÉèÖÃ json¸ñÊ½£¬ ´æ·ÅÖ§¸¶ÅäÖÃĞÅÏ¢µÈ
-	private Integer sortnum;		//ÅÅĞò
+	private Integer mustBuyNum;		//ï¿½Ø¹ï¿½Æ±ï¿½ï¿½ï¿½ï¿½
+	private String exchangeWay;		//ï¿½Ò»ï¿½ï¿½ï¿½Ê½
+	private String remark;			//ï¿½î¶¯ï¿½ï¿½×¢
+	private String otherinfo;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ jsonï¿½ï¿½Ê½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
+	private Integer sortnum;		//ï¿½ï¿½ï¿½ï¿½
 	private String logo;			//Í¼Æ¬
-	private String animationImg;	//¶¯»­Í¼Æ¬
-	private String actType;			// »î¶¯ÀàĞÍ
-	private String smsContent;		// ÓªÏú¶ÌĞÅ
-	private String printPaper;		// ÊÇ·ñ´òÓ¡Æ±Ö½£¬ Y£ºÊÇ£» N£º·ñ
-	private String rateinfo;		// ±ÈÂÊ
+	private String animationImg;	//ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
+	private String actType;			// ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½
+	private String smsContent;		// Óªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String printPaper;		// ï¿½Ç·ï¿½ï¿½Ó¡Æ±Ö½ï¿½ï¿½ Yï¿½ï¿½ï¿½Ç£ï¿½ Nï¿½ï¿½ï¿½ï¿½
+	private String rateinfo;		// ï¿½ï¿½ï¿½ï¿½
 	
 	
-	/**¹¹Ôì×Óº¯Êı**/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½Óºï¿½ï¿½ï¿½**/
 	public BSActivityVo() {}
 
 	public String getShopid() {
@@ -350,7 +350,9 @@ public class BSActivityVo  extends BaseVo{
 			if(args!=null && args.length>0){
 				for(String arg : args){
 					String[] tmp = arg.split(":");
-					if(tmp!=null && tmp.length>1) m.put(tmp[0], Integer.valueOf(tmp[1]));
+					if(tmp!=null && tmp.length>1) {
+                        m.put(tmp[0], Integer.valueOf(tmp[1]));
+                    }
 				}
 			}
 		}
@@ -359,7 +361,9 @@ public class BSActivityVo  extends BaseVo{
 	public Integer getRatenum(Integer q){
 		String key = q+"";
 		Integer num = getRateMap().get(key);
-		if(num!=null) return num;
+		if(num!=null) {
+            return num;
+        }
 		return 0;
 	}
 	public boolean isGainCard(Integer q){

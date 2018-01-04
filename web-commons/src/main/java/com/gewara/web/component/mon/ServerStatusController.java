@@ -51,7 +51,7 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 	private MemcachedClient memcachedClient;
 
 	/**
-	 * ¼ì²â·þÎñÆ÷×´Ì¬
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 	 * 
 	 * @param request
 	 * @return
@@ -87,7 +87,7 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 			Map<String, String> map = sysSelfCheckingService.checkSysStatus();
 			StringBuilder sb = new StringBuilder(100);
 			for (java.util.Map.Entry<String, String> entry : map.entrySet()) {
-				if (entry.getKey().equals("TASK") && !"false".equals(entry.getValue())) {
+				if ("TASK".equals(entry.getKey()) && !"false".equals(entry.getValue())) {
 					sb.append(entry.getKey() + "=<span title='" + entry.getValue() + "'>" + "true</span><br/>");
 				} else {
 					sb.append(entry.getKey() + "=" + entry.getValue() + "<br/>");
@@ -133,13 +133,13 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 		String ip = BaseWebUtils.getRemoteIp(req);
 		GewaIpConfig.filterOfficeIp(ip);
 		StringBuilder sb = new StringBuilder();
-		sb.append("µ±Ç°ÏµÍ³ : " + Config.SYSTEMID + "," + Config.getHostname());
-		sb.append("@@·À¹¦»÷ÊÇ·ñ¿ªÆô : " + (attackTestService.isDisabled() ? "¹Ø±Õ" : "¿ªÆô"));
-		sb.append("@@ºÚÃûµ¥ÊýÁ¿: " + attackTestService.getBlackMap().size());
-		sb.append("@@°×Ãûµ¥ÊýÁ¿: " + attackTestService.getWhiteList().size());
-		sb.append("@@µ±Ç°ÏµÍ³ÓÃÓÚ¹ýÂËµÄºÚÃûµ¥ : @@" + turnBlackMap(attackTestService.getBlackMap()));
-		sb.append("@@µ±Ç°ÏµÍ³ÓÃÓÚ¹ýÂËµÄ°×Ãûµ¥: @@" + parseWhiteList(new ArrayList<String>(attackTestService.getWhiteList())));
-		sb.append("@@µ±Ç°ÏµÍ³ÓÃÓÚ¹ýÂËµÄºÚÃûµ¥2 : @@" + turnBlackMap(attackTestService.getBlackMap2()));
+		sb.append("ï¿½ï¿½Ç°ÏµÍ³ : " + Config.SYSTEMID + "," + Config.getHostname());
+		sb.append("@@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ : " + (attackTestService.isDisabled() ? "ï¿½Ø±ï¿½" : "ï¿½ï¿½ï¿½ï¿½"));
+		sb.append("@@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " + attackTestService.getBlackMap().size());
+		sb.append("@@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " + attackTestService.getWhiteList().size());
+		sb.append("@@ï¿½ï¿½Ç°ÏµÍ³ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ËµÄºï¿½ï¿½ï¿½ï¿½ï¿½ : @@" + turnBlackMap(attackTestService.getBlackMap()));
+		sb.append("@@ï¿½ï¿½Ç°ÏµÍ³ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ËµÄ°ï¿½ï¿½ï¿½ï¿½ï¿½: @@" + parseWhiteList(new ArrayList<String>(attackTestService.getWhiteList())));
+		sb.append("@@ï¿½ï¿½Ç°ÏµÍ³ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ËµÄºï¿½ï¿½ï¿½ï¿½ï¿½2 : @@" + turnBlackMap(attackTestService.getBlackMap2()));
 
 		return forwardMessage(model, sb.toString());
 	}
@@ -211,8 +211,9 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 		Collections.sort(whiteList);
 		StringBuffer whitesb = new StringBuffer();
 		for (int i = 0; i < whiteList.size(); i++) {
-			if (i % 12 == 0)
-				whitesb.append("@@");
+			if (i % 12 == 0) {
+                whitesb.append("@@");
+            }
 			String ip = whiteList.get(i);
 			whitesb.append(ip + StringUtils.rightPad("", (15 - ip.length()) * 6, " ") + " , ");
 		}
@@ -262,7 +263,7 @@ public class ServerStatusController implements ApplicationContextAware, Initiali
 	}
 
 	private void registerMongo() {
-		// 1¡¢mongo
+		// 1ï¿½ï¿½mongo
 		Class mongo = null;
 		try {
 			mongo = Class.forName("com.gewara.mongo.MongoService3");

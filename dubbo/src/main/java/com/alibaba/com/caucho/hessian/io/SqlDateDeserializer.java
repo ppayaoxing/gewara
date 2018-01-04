@@ -65,11 +65,13 @@ public class SqlDateDeserializer extends AbstractDeserializer {
     _constructor = cl.getConstructor(new Class[] { long.class });
   }
   
+  @Override
   public Class getType()
   {
     return _cl;
   }
   
+  @Override
   public Object readMap(AbstractHessianInput in)
     throws IOException
   {
@@ -80,10 +82,11 @@ public class SqlDateDeserializer extends AbstractDeserializer {
     while (! in.isEnd()) {
       String key = in.readString();
 
-      if (key.equals("value"))
-	initValue = in.readUTCDate();
-      else
-	in.readString();
+      if ("value".equals(key)) {
+          initValue = in.readUTCDate();
+      } else {
+          in.readString();
+      }
     }
 
     in.readMapEnd();
@@ -95,6 +98,7 @@ public class SqlDateDeserializer extends AbstractDeserializer {
     return value;
   }
   
+  @Override
   public Object readObject(AbstractHessianInput in, String []fieldNames)
     throws IOException
   {
@@ -105,10 +109,11 @@ public class SqlDateDeserializer extends AbstractDeserializer {
     for (int i = 0; i < fieldNames.length; i++) {
       String key = fieldNames[i];
 
-      if (key.equals("value"))
-	initValue = in.readUTCDate();
-      else
-	in.readObject();
+      if ("value".equals(key)) {
+          initValue = in.readUTCDate();
+      } else {
+          in.readObject();
+      }
     }
 
     Object value = create(initValue);
@@ -121,8 +126,9 @@ public class SqlDateDeserializer extends AbstractDeserializer {
   private Object create(long initValue)
     throws IOException
   {
-    if (initValue == Long.MIN_VALUE)
-      throw new IOException(_cl.getName() + " expects name.");
+    if (initValue == Long.MIN_VALUE) {
+        throw new IOException(_cl.getName() + " expects name.");
+    }
 
     try {
       return _constructor.newInstance(new Object[] { new Long(initValue) });

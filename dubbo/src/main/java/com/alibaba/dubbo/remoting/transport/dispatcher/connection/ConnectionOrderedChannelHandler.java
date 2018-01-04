@@ -45,10 +45,11 @@ public class ConnectionOrderedChannelHandler extends WrappedChannelHandler {
                                      new LinkedBlockingQueue<Runnable>(url.getPositiveParameter(Constants.CONNECT_QUEUE_CAPACITY, Integer.MAX_VALUE)),
                                      new NamedThreadFactory(threadName, true),
                                      new AbortPolicyWithReport(threadName, url)
-            );  // FIXME Ã»ÓÐµØ·½ÊÍ·ÅconnectionExecutor£¡
+            );  // FIXME Ã»ï¿½ÐµØ·ï¿½ï¿½Í·ï¿½connectionExecutorï¿½ï¿½
         queuewarninglimit = url.getParameter(Constants.CONNECT_QUEUE_WARNING_SIZE, Constants.DEFAULT_CONNECT_QUEUE_WARNING_SIZE);
     }
 
+    @Override
     public void connected(Channel channel) throws RemotingException {
         try{
             checkQueueLength();
@@ -58,6 +59,7 @@ public class ConnectionOrderedChannelHandler extends WrappedChannelHandler {
         }
     }
 
+    @Override
     public void disconnected(Channel channel) throws RemotingException {
         try{
             checkQueueLength();
@@ -67,6 +69,7 @@ public class ConnectionOrderedChannelHandler extends WrappedChannelHandler {
         }
     }
 
+    @Override
     public void received(Channel channel, Object message) throws RemotingException {
         ExecutorService cexecutor = executor;
         if (cexecutor == null || cexecutor.isShutdown()) {
@@ -79,6 +82,7 @@ public class ConnectionOrderedChannelHandler extends WrappedChannelHandler {
         }
     }
 
+    @Override
     public void caught(Channel channel, Throwable exception) throws RemotingException {
         ExecutorService cexecutor = executor;
         if (cexecutor == null || cexecutor.isShutdown()) { 

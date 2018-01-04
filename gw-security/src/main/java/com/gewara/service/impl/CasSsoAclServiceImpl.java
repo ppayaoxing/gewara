@@ -31,7 +31,9 @@ public class CasSsoAclServiceImpl extends AbstractAclService implements AclServi
 	public List<WebModule> getMenuList(String tag){
 		List<WebModule> menuList = new LinkedList<WebModule>();
 		for(WebModule module: remoteModuleList){
-			if(module.getTag().equals(tag) && module.getDisplay().equals("1")) menuList.add(module);
+			if(module.getTag().equals(tag) && "1".equals(module.getDisplay())) {
+                menuList.add(module);
+            }
 		}
 		return menuList;
 	}
@@ -55,7 +57,9 @@ public class CasSsoAclServiceImpl extends AbstractAclService implements AclServi
 	}
 	@Override
 	public List<String> getRolenameList() {
-		if(remoteModuleList.isEmpty()) getSecurityModuleList();
+		if(remoteModuleList.isEmpty()) {
+            getSecurityModuleList();
+        }
 		return Arrays.asList(StringUtils.join(BeanUtil.getBeanPropertyList(remoteModuleList, Long.class, "id", true), ",").split(","));
 	}
 	

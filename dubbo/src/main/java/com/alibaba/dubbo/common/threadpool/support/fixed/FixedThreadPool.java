@@ -28,13 +28,14 @@ import com.alibaba.dubbo.common.threadpool.support.AbortPolicyWithReport;
 import com.alibaba.dubbo.common.utils.NamedThreadFactory;
 
 /**
- * ´ËÏß³Ì³ØÆô¶¯Ê±¼´´´½¨¹Ì¶¨´óÐ¡µÄÏß³ÌÊý£¬²»×öÈÎºÎÉìËõ£¬À´Ô´ÓÚ£º<code>Executors.newFixedThreadPool()</code>
+ * ï¿½ï¿½ï¿½ß³Ì³ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ú£ï¿½<code>Executors.newFixedThreadPool()</code>
  * 
  * @see java.util.concurrent.Executors#newFixedThreadPool(int)
  * @author william.liangf
  */
 public class FixedThreadPool implements ThreadPool {
 
+    @Override
     public Executor getExecutor(URL url) {
         String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);
         int threads = url.getParameter(Constants.THREADS_KEY, Constants.DEFAULT_THREADS);

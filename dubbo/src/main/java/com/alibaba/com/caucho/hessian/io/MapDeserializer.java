@@ -64,15 +64,17 @@ public class MapDeserializer extends AbstractMapDeserializer {
   
   public MapDeserializer(Class type)
   {
-    if (type == null)
-      type = HashMap.class;
+    if (type == null) {
+        type = HashMap.class;
+    }
     
     _type = type;
 
     Constructor []ctors = type.getConstructors();
     for (int i = 0; i < ctors.length; i++) {
-      if (ctors[i].getParameterTypes().length == 0)
-	_ctor = ctors[i];
+      if (ctors[i].getParameterTypes().length == 0) {
+          _ctor = ctors[i];
+      }
     }
 
     if (_ctor == null) {
@@ -84,26 +86,29 @@ public class MapDeserializer extends AbstractMapDeserializer {
     }
   }
   
+  @Override
   public Class getType()
   {
-    if (_type != null)
-      return _type;
-    else
-      return HashMap.class;
+    if (_type != null) {
+        return _type;
+    } else {
+        return HashMap.class;
+    }
   }
 
+  @Override
   public Object readMap(AbstractHessianInput in)
     throws IOException
   {
     Map map;
     
-    if (_type == null)
-      map = new HashMap();
-    else if (_type.equals(Map.class))
-      map = new HashMap();
-    else if (_type.equals(SortedMap.class))
-      map = new TreeMap();
-    else {
+    if (_type == null) {
+        map = new HashMap();
+    } else if (_type.equals(Map.class)) {
+        map = new HashMap();
+    } else if (_type.equals(SortedMap.class)) {
+        map = new TreeMap();
+    } else {
       try {
         map = (Map) _ctor.newInstance();
       } catch (Exception e) {
@@ -144,13 +149,13 @@ public class MapDeserializer extends AbstractMapDeserializer {
     throws IOException
   {
     
-    if (_type == null)
-      return new HashMap();
-    else if (_type.equals(Map.class))
-      return new HashMap();
-    else if (_type.equals(SortedMap.class))
-      return new TreeMap();
-    else {
+    if (_type == null) {
+        return new HashMap();
+    } else if (_type.equals(Map.class)) {
+        return new HashMap();
+    } else if (_type.equals(SortedMap.class)) {
+        return new TreeMap();
+    } else {
       try {
         return (Map) _ctor.newInstance();
       } catch (Exception e) {

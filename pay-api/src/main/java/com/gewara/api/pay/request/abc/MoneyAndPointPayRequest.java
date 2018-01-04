@@ -6,14 +6,14 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 
 	private static final long serialVersionUID = 7814516839886229493L;
 
-	private String cardno;// ½»Ò×¿¨ºÅ
-	private String cardexp;// ¿¨ÓÐÐ§ÆÚ
+	private String cardno;// ï¿½ï¿½ï¿½×¿ï¿½ï¿½ï¿½
+	private String cardexp;// ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 	private String adddata;// CVD2
-	private Integer amount;// ½»Ò×½ð¶î
-	private Integer point;// »ý·Ö
-	private Integer totalAmount;//¶©µ¥×Ü½ð¶î
-	private String checkcode;// ÑéÖ¤Âë
-	private String pointflag;// »ý·Ö±êÊ¶  0: ²»Ê¹ÓÃ»ý·Ö 1:Ê¹ÓÃ»ý·Ö
+	private Integer amount;// ï¿½ï¿½ï¿½×½ï¿½ï¿½
+	private Integer point;// ï¿½ï¿½ï¿½ï¿½
+	private Integer totalAmount;//ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
+	private String checkcode;// ï¿½ï¿½Ö¤ï¿½ï¿½
+	private String pointflag;// ï¿½ï¿½ï¿½Ö±ï¿½Ê¶  0: ï¿½ï¿½Ê¹ï¿½Ã»ï¿½ï¿½ï¿½ 1:Ê¹ï¿½Ã»ï¿½ï¿½ï¿½
 
 	public MoneyAndPointPayRequest() {
 	}
@@ -47,22 +47,28 @@ public class MoneyAndPointPayRequest extends AbcRequest {
 
 	@Override
 	public boolean checkParams() {
-		if (!super.checkParams())
-			return false;
+		if (!super.checkParams()) {
+            return false;
+        }
 
-		if (cardno == null || cardno.length() >= 20)
-			return false;
-		if (cardexp == null || cardno.length() == 4)
-			return false;
-		if (adddata == null || adddata.length() != 3)
-			return false;
-		if (checkcode == null || checkcode.length() != 6)
-			return false;
-		if (totalAmount == null || totalAmount <= 0)
-			return false;
+		if (cardno == null || cardno.length() >= 20) {
+            return false;
+        }
+		if (cardexp == null || cardno.length() == 4) {
+            return false;
+        }
+		if (adddata == null || adddata.length() != 3) {
+            return false;
+        }
+		if (checkcode == null || checkcode.length() != 6) {
+            return false;
+        }
+		if (totalAmount == null || totalAmount <= 0) {
+            return false;
+        }
 		if (pointflag == null) {
 			return false;
-		} else {// 0: ²»Ê¹ÓÃ»ý·Ö 1:Ê¹ÓÃ»ý·Ö
+		} else {// 0: ï¿½ï¿½Ê¹ï¿½Ã»ï¿½ï¿½ï¿½ 1:Ê¹ï¿½Ã»ï¿½ï¿½ï¿½
 			if ("1".equals(pointflag)) {
 				if (point == null || point <= 0) {
 					return false;

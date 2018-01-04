@@ -17,16 +17,18 @@ public class GewaMultipartResolver extends CommonsMultipartResolver{
 	@Override
 	public MultipartHttpServletRequest resolveMultipart(final HttpServletRequest request) throws MultipartException {
 		Assert.notNull(request, "Request must not be null");
-		if(!isMultipart(request)) return new ErrorMultipartRequest(request, "ÇëÖØÐÂÑ¡ÔñÎÄ¼þÉÏ´«£¡");
+		if(!isMultipart(request)) {
+            return new ErrorMultipartRequest(request, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ï´ï¿½ï¿½ï¿½");
+        }
 		try{
 			MultipartParsingResult parsingResult = parseRequest(request);
 			return new DefaultMultipartHttpServletRequest(request, parsingResult.getMultipartFiles(), 
 					parsingResult.getMultipartParameters(), parsingResult.getMultipartParameterContentTypes());
 		}catch(MaxUploadSizeExceededException e){
-			return new ErrorMultipartRequest(request, "ÎÄ¼þ´óÐ¡³¬³ö·¶Î§£¡");
+			return new ErrorMultipartRequest(request, "ï¿½Ä¼ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½ï¿½");
 		}catch(Exception e){
 			dbLogger.warn("", e);
-			return new ErrorMultipartRequest(request, "ÉÏ´«³öÏÖ´íÎó£¡");
+			return new ErrorMultipartRequest(request, "ï¿½Ï´ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½");
 		}
 	}
 }

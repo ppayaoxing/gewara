@@ -18,17 +18,17 @@ public class BaseEntityVo extends BaseVo implements Serializable{
 	protected String logo;
 	protected String fullLogo;
 	protected String firstpic;
-	protected Integer generalmark;//ÆÀ·Ö
+	protected Integer generalmark;//ï¿½ï¿½ï¿½ï¿½
 	protected Integer generalmarkedtimes;
 	protected Integer avggeneral;
-	protected Integer collectedtimes;// ÊÕ²Ø ¸ÐÐËÈ¤
-	protected Integer clickedtimes;//¹Ø×¢
-	protected String briefname;//Ãû³Æ¼ò³Æ
-	protected Integer xiangqu;	// »°¾çÃ÷ÐÇ°æ¿é: Ïë³ÉÎª·ÛË¿
-	protected String seotitle; //SEO¹Ø¼ü×Ö
-	protected String seodescription; //SEOÃèÊö
+	protected Integer collectedtimes;// ï¿½Õ²ï¿½ ï¿½ï¿½ï¿½ï¿½È¤
+	protected Integer clickedtimes;//ï¿½ï¿½×¢
+	protected String briefname;//ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½
+	protected Integer xiangqu;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½: ï¿½ï¿½ï¿½Îªï¿½ï¿½Ë¿
+	protected String seotitle; //SEOï¿½Ø¼ï¿½ï¿½ï¿½
+	protected String seodescription; //SEOï¿½ï¿½ï¿½ï¿½
 	protected Timestamp addtime;
-	protected Timestamp updatetime;	//ÐÞ¸ÄÊ±¼ä
+	protected Timestamp updatetime;	//ï¿½Þ¸ï¿½Ê±ï¿½ï¿½
 	protected Integer hotvalue=0; 
 	protected Integer quguo;
 	
@@ -169,7 +169,9 @@ public class BaseEntityVo extends BaseVo implements Serializable{
 		return this.name;
 	}
 	public String getLimg(){
-		if(StringUtils.isBlank(logo)) return "img/default_logo.png";
+		if(StringUtils.isBlank(logo)) {
+            return "img/default_logo.png";
+        }
 		return logo;
 	}
 	public void addQuguo(){

@@ -49,6 +49,7 @@ public class ResourceFilter implements Filter {
 
     private final List<String> resources = new ArrayList<String>();
 
+    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         String config = filterConfig.getInitParameter("resources");
         if (config != null && config.length() > 0) {
@@ -65,9 +66,11 @@ public class ResourceFilter implements Filter {
         }
     }
 
+    @Override
     public void destroy() {
     }
     
+    @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;

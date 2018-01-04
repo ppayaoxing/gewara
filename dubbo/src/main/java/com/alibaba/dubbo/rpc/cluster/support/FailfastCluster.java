@@ -21,7 +21,7 @@ import com.alibaba.dubbo.rpc.cluster.Cluster;
 import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
- * ¿ìËÙÊ§°Ü£¬Ö»·¢ÆðÒ»´Îµ÷ÓÃ£¬Ê§°ÜÁ¢¼´±¨´í£¬Í¨³£ÓÃÓÚ·ÇÃÝµÈÐÔµÄÐ´²Ù×÷¡£
+ * ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Îµï¿½ï¿½Ã£ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½Ýµï¿½ï¿½Ôµï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *  
  * <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail-fast</a>
  * 
@@ -31,6 +31,7 @@ public class FailfastCluster implements Cluster {
 
     public final static String NAME = "failfast";
 
+    @Override
     public <T> Invoker<T> join(Directory<T> directory) throws RpcException {
         return new FailfastClusterInvoker<T>(directory);
     }

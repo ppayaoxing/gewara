@@ -34,67 +34,83 @@ public class ReadOnlyHibernateTemplate extends HibernateTemplate {
 		afterPropertiesSet();
 	}
 
-	public boolean isAllowCreate() {
+	@Override
+    public boolean isAllowCreate() {
 		return allowCreate;
 	}
 
-	public boolean isAlwaysUseNewSession() {
+	@Override
+    public boolean isAlwaysUseNewSession() {
 		return alwaysUseNewSession;
 	}
 
-	public boolean isExposeNativeSession() {
+	@Override
+    public boolean isExposeNativeSession() {
 		return exposeNativeSession;
 	}
 
-	public boolean isCheckWriteOperations() {
+	@Override
+    public boolean isCheckWriteOperations() {
 		return checkWriteOperations;
 	}
 
-	public boolean isCacheQueries() {
+	@Override
+    public boolean isCacheQueries() {
 		return cacheQueries;
 	}
 
-	public String getQueryCacheRegion() {
+	@Override
+    public String getQueryCacheRegion() {
 		return queryCacheRegion;
 	}
 
-	public int getFetchSize() {
+	@Override
+    public int getFetchSize() {
 		return fetchSize;
 	}
 
-	public int getMaxResults() {
+	@Override
+    public int getMaxResults() {
 		return maxResults;
 	}
 
-	public void setAllowCreate(boolean allowCreate) {
+	@Override
+    public void setAllowCreate(boolean allowCreate) {
 		this.allowCreate = allowCreate;
 	}
 
-	public void setAlwaysUseNewSession(boolean alwaysUseNewSession) {
+	@Override
+    public void setAlwaysUseNewSession(boolean alwaysUseNewSession) {
 		this.alwaysUseNewSession = alwaysUseNewSession;
 	}
 
-	public void setExposeNativeSession(boolean exposeNativeSession) {
+	@Override
+    public void setExposeNativeSession(boolean exposeNativeSession) {
 		this.exposeNativeSession = exposeNativeSession;
 	}
 
-	public void setCheckWriteOperations(boolean checkWriteOperations) {
+	@Override
+    public void setCheckWriteOperations(boolean checkWriteOperations) {
 		this.checkWriteOperations = checkWriteOperations;
 	}
 
-	public void setCacheQueries(boolean cacheQueries) {
+	@Override
+    public void setCacheQueries(boolean cacheQueries) {
 		this.cacheQueries = cacheQueries;
 	}
 
-	public void setQueryCacheRegion(String queryCacheRegion) {
+	@Override
+    public void setQueryCacheRegion(String queryCacheRegion) {
 		this.queryCacheRegion = queryCacheRegion;
 	}
 
-	public void setFetchSize(int fetchSize) {
+	@Override
+    public void setFetchSize(int fetchSize) {
 		this.fetchSize = fetchSize;
 	}
 
-	public void setMaxResults(int maxResults) {
+	@Override
+    public void setMaxResults(int maxResults) {
 		this.maxResults = maxResults;
 	}
 

@@ -47,18 +47,22 @@ public abstract class AbstractPeer implements Endpoint, ChannelHandler {
         this.handler = handler;
     }
 
+    @Override
     public void send(Object message) throws RemotingException {
         send(message, url.getParameter(Constants.SENT_KEY, false));
     }
 
+    @Override
     public void close() {
         closed = true;
     }
 
+    @Override
     public void close(int timeout) {
         close();
     }
 
+    @Override
     public URL getUrl() {
         return url;
     }
@@ -70,6 +74,7 @@ public abstract class AbstractPeer implements Endpoint, ChannelHandler {
         this.url = url;
     }
 
+    @Override
     public ChannelHandler getChannelHandler() {
         if (handler instanceof ChannelHandlerDelegate) {
             return ((ChannelHandlerDelegate) handler).getHandler();
@@ -87,17 +92,19 @@ public abstract class AbstractPeer implements Endpoint, ChannelHandler {
     }
     
     /**
-     * ·µ»Ø×îÖÕµÄhandler£¬¿ÉÄÜÒÑ±»wrap,ÐèÒªÇø±ðÓÚgetChannelHandler
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½handlerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½wrap,ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½getChannelHandler
      * @return ChannelHandler
      */
     public ChannelHandler getDelegateHandler() {
         return handler;
     }
     
+    @Override
     public boolean isClosed() {
         return closed;
     }
 
+    @Override
     public void connected(Channel ch) throws RemotingException {
         if (closed) {
             return;
@@ -105,10 +112,12 @@ public abstract class AbstractPeer implements Endpoint, ChannelHandler {
         handler.connected(ch);
     }
 
+    @Override
     public void disconnected(Channel ch) throws RemotingException {
         handler.disconnected(ch);
     }
 
+    @Override
     public void sent(Channel ch, Object msg) throws RemotingException {
         if (closed) {
             return;
@@ -116,6 +125,7 @@ public abstract class AbstractPeer implements Endpoint, ChannelHandler {
         handler.sent(ch, msg);
     }
 
+    @Override
     public void received(Channel ch, Object msg) throws RemotingException {
         if (closed) {
             return;
@@ -123,6 +133,7 @@ public abstract class AbstractPeer implements Endpoint, ChannelHandler {
         handler.received(ch, msg);
     }
 
+    @Override
     public void caught(Channel ch, Throwable ex) throws RemotingException {
         handler.caught(ch, ex);
     }

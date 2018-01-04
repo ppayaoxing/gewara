@@ -41,6 +41,7 @@ public class DataSourceStatusChecker implements StatusChecker {
 
     private static final Logger logger = LoggerFactory.getLogger(DataSourceStatusChecker.class);
 
+    @Override
     @SuppressWarnings("unchecked")
     public Status check() {
         ApplicationContext context = ServiceBean.getSpringContext();

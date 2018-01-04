@@ -19,16 +19,16 @@ public class GoodsGiftVo extends BaseVo{
 	private Long cinemaid;
 	private Long movieid;
 	private Long mpid;			
-	private String rateinfo;	//±ÈÂÊ
+	private String rateinfo;	//ï¿½ï¿½ï¿½ï¿½
 	private String week;			
-	private String mpidlist;	//³¡´ÎÁÐ±í
+	private String mpidlist;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	private Timestamp fromtime;
 	private Timestamp totime;
-	private Integer everydayLimit;//Ã¿ÌìÏÞÁ¿
-	private String startTime;//ÏÂµ¥¿ªÊ¼Ê±¶Î
-	private String endTime;//ÏÂµ¥½áÊøÊ±¶Î
-	private String timescope;	//³¡´ÎÊ±¶Î
-	private String movieids;	// Ó°Æ¬±àºÅÁÐ±í£¬ÓÃÓ¢ÎÄ¶ººÅ¸ô¿ª
+	private Integer everydayLimit;//Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String startTime;//ï¿½Âµï¿½ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	private String endTime;//ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String timescope;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String movieids;	// Ó°Æ¬ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ó¢ï¿½Ä¶ï¿½ï¿½Å¸ï¿½ï¿½ï¿½
 	private String opiTimeFlg;
 	
 	public GoodsGiftVo(){
@@ -97,7 +97,9 @@ public class GoodsGiftVo extends BaseVo{
 			if(args!=null && args.length>0){
 				for(String arg : args){
 					String[] tmp = arg.split(":");
-					if(tmp!=null && tmp.length>1) m.put(tmp[0], Integer.valueOf(tmp[1]));
+					if(tmp!=null && tmp.length>1) {
+                        m.put(tmp[0], Integer.valueOf(tmp[1]));
+                    }
 				}
 			}
 		}
@@ -106,7 +108,9 @@ public class GoodsGiftVo extends BaseVo{
 	public Integer gainRatenum(Integer q){
 		String key = q+"";
 		Integer num = gainRateMap().get(key);
-		if(num!=null) return num;
+		if(num!=null) {
+            return num;
+        }
 		return 0;
 	}
 	public boolean isGainGift(Integer q){

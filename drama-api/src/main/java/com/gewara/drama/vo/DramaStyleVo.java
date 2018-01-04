@@ -15,8 +15,8 @@ public class DramaStyleVo extends BaseEntityVo {
 	private Long recordid;
 	private Long commentid;
 	private Long dramaid;
-	private Long starid;// ¾çÆÀÈËid
-	private Long memberid;// ÓÃ»§id
+	private Long starid;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id
+	private Long memberid;// ï¿½Ã»ï¿½id
 	private String type;
 	private String state;
 	private Integer sortnum;
@@ -159,13 +159,16 @@ public class DramaStyleVo extends BaseEntityVo {
 		this.isfind = isfind;
 	}
 
-	public String getLogo() {
-		if (StringUtils.isBlank(logo))
-			return "img/default_head.png";
+	@Override
+    public String getLogo() {
+		if (StringUtils.isBlank(logo)) {
+            return "img/default_head.png";
+        }
 		return logo;
 	}
 
-	public void setLogo(String logo) {
+	@Override
+    public void setLogo(String logo) {
 		this.logo = logo;
 	}
 

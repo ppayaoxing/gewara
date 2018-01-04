@@ -11,14 +11,14 @@ import com.gewara.mdb.operation.Projection;
 import com.gewara.util.Assert;
 
 /**
- * ¾ÛºÏ¡£
+ * ï¿½ÛºÏ¡ï¿½
  * <br/>
- * @author ¶­Ã÷
- * @createDate 2015Äê8ÔÂ10ÈÕ
+ * @author ï¿½ï¿½ï¿½ï¿½
+ * @createDate 2015ï¿½ï¿½8ï¿½ï¿½10ï¿½ï¿½
  */
 public class AggregationBuilder {
-	private String collectionName=null;			//¼¯ºÏÌõ¼þ
-	private Expression query;						//²éÑ¯Ìõ¼þ		
+	private String collectionName=null;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Expression query;						//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½		
 	private Document group = new Document();	//group
 	private Projection projection;				//projection
 	private List<Document> sortList = new ArrayList<Document>();
@@ -33,9 +33,9 @@ public class AggregationBuilder {
 	public AggregationBuilder setGroupFields(String... groupBy){
 		Assert.isTrue(groupBy!=null && groupBy.length >0);
 		
-		if(groupBy.length==1)
-			group.append("_id", "$"+groupBy[0]);
-		else{
+		if(groupBy.length==1) {
+            group.append("_id", "$" + groupBy[0]);
+        } else{
 			Document gr=new Document();
 			for(String gf:groupBy){
 				gr.append(gf, "$"+gf);
@@ -128,7 +128,7 @@ public class AggregationBuilder {
 		if(limit !=null){
 			pipeLine.add(limit);
 		}
-/*		private Expression query;						//²éÑ¯Ìõ¼þ		
+/*		private Expression query;						//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½		
 		private Document group = new Document();	//group
 		private Projection projection;				//projection
 		private List<Document> sortList = new ArrayList<Document>();

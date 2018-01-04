@@ -18,7 +18,9 @@ public class GewaEngineContext extends VelocityContext {
 	}
 
 	public String getUnUsedProperty(){
-		if(gvd==null) return null;
+		if(gvd==null) {
+            return null;
+        }
 		return gvd.getUnUsedProperty();
 	}
 

@@ -65,11 +65,13 @@ public class ClassDeserializer extends AbstractMapDeserializer {
     _loader = loader;
   }
   
+  @Override
   public Class getType()
   {
     return Class.class;
   }
   
+  @Override
   public Object readMap(AbstractHessianInput in)
     throws IOException
   {
@@ -80,10 +82,11 @@ public class ClassDeserializer extends AbstractMapDeserializer {
     while (! in.isEnd()) {
       String key = in.readString();
 
-      if (key.equals("name"))
-	name = in.readString();
-      else
-	in.readObject();
+      if ("name".equals(key)) {
+          name = in.readString();
+      } else {
+          in.readObject();
+      }
     }
       
     in.readMapEnd();
@@ -95,6 +98,7 @@ public class ClassDeserializer extends AbstractMapDeserializer {
     return value;
   }
   
+  @Override
   public Object readObject(AbstractHessianInput in, String []fieldNames)
     throws IOException
   {
@@ -103,10 +107,11 @@ public class ClassDeserializer extends AbstractMapDeserializer {
     String name = null;
     
     for (int i = 0; i < fieldNames.length; i++) {
-      if ("name".equals(fieldNames[i]))
-        name = in.readString();
-      else
-	in.readObject();
+      if ("name".equals(fieldNames[i])) {
+          name = in.readString();
+      } else {
+          in.readObject();
+      }
     }
 
     Object value = create(name);
@@ -119,19 +124,22 @@ public class ClassDeserializer extends AbstractMapDeserializer {
   Object create(String name)
     throws IOException
   {
-    if (name == null)
-      throw new IOException("Serialized Class expects name.");
+    if (name == null) {
+        throw new IOException("Serialized Class expects name.");
+    }
 
     Class cl = _primClasses.get(name);
 
-    if (cl != null)
-      return cl;
+    if (cl != null) {
+        return cl;
+    }
 
     try {
-      if (_loader != null)
-        return Class.forName(name, false, _loader);
-      else
-        return Class.forName(name);
+      if (_loader != null) {
+          return Class.forName(name, false, _loader);
+      } else {
+          return Class.forName(name);
+      }
     } catch (Exception e) {
       throw new IOExceptionWrapper(e);
     }

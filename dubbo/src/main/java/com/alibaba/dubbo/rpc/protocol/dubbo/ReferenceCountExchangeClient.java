@@ -57,80 +57,99 @@ final class ReferenceCountExchangeClient implements ExchangeClient {
         this.ghostClientMap = ghostClientMap;
     }
 
+    @Override
     public void reset(URL url) {
         client.reset(url);
     }
 
+    @Override
     public ResponseFuture request(Object request) throws RemotingException {
         return client.request(request);
     }
 
+    @Override
     public URL getUrl() {
         return client.getUrl();
     }
 
+    @Override
     public InetSocketAddress getRemoteAddress() {
         return client.getRemoteAddress();
     }
 
+    @Override
     public ChannelHandler getChannelHandler() {
         return client.getChannelHandler();
     }
 
+    @Override
     public ResponseFuture request(Object request, int timeout) throws RemotingException {
         return client.request(request, timeout);
     }
 
+    @Override
     public boolean isConnected() {
         return client.isConnected();
     }
 
+    @Override
     public void reconnect() throws RemotingException {
         client.reconnect();
     }
 
+    @Override
     public InetSocketAddress getLocalAddress() {
         return client.getLocalAddress();
     }
 
+    @Override
     public boolean hasAttribute(String key) {
         return client.hasAttribute(key);
     }
 
+    @Override
     public void reset(Parameters parameters) {
         client.reset(parameters);
     }
 
+    @Override
     public void send(Object message) throws RemotingException {
         client.send(message);
     }
 
+    @Override
     public ExchangeHandler getExchangeHandler() {
         return client.getExchangeHandler();
     }
 
+    @Override
     public Object getAttribute(String key) {
         return client.getAttribute(key);
     }
 
+    @Override
     public void send(Object message, boolean sent) throws RemotingException {
         client.send(message, sent);
     }
 
+    @Override
     public void setAttribute(String key, Object value) {
         client.setAttribute(key, value);
     }
 
+    @Override
     public void removeAttribute(String key) {
         client.removeAttribute(key);
     }
     /* 
-     * close·½·¨½«²»ÔÙÃÝµÈ,µ÷ÓÃÐèÒª×¢Òâ.
+     * closeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òª×¢ï¿½ï¿½.
      */
+    @Override
     public void close() {
         close(0);
     }
 
+    @Override
     public void close(int timeout) {
         if (refenceCount.decrementAndGet() <= 0){
             if (timeout == 0){
@@ -142,9 +161,9 @@ final class ReferenceCountExchangeClient implements ExchangeClient {
         }
     }
     
-    //ÓÄÁéclient,
+    //ï¿½ï¿½ï¿½ï¿½client,
     private LazyConnectExchangeClient replaceWithLazyClient(){
-        //Õâ¸ö²Ù×÷Ö»ÎªÁË·ÀÖ¹³ÌÐòbug´íÎó¹Ø±Õclient×öµÄ·ÀÓù´ëÊ©£¬³õÊ¼client±ØÐëÎªfalse×´Ì¬
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»Îªï¿½Ë·ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½bugï¿½ï¿½ï¿½ï¿½Ø±ï¿½clientï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½Ê©ï¿½ï¿½ï¿½ï¿½Ê¼clientï¿½ï¿½ï¿½ï¿½Îªfalse×´Ì¬
         URL lazyUrl = url.addParameter(Constants.LAZY_CONNECT_INITIAL_STATE_KEY, Boolean.FALSE)
                 .addParameter(Constants.RECONNECT_KEY, Boolean.FALSE)
                 .addParameter(Constants.SEND_RECONNECT_KEY, Boolean.TRUE.toString())
@@ -153,7 +172,7 @@ final class ReferenceCountExchangeClient implements ExchangeClient {
                 .addParameter("_client_memo", "referencecounthandler.replacewithlazyclient");
         
         String key = url.getAddress();
-        //×î²îÇé¿öÏÂÖ»ÓÐÒ»¸öÓÄÁéÁ¬½Ó
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         LazyConnectExchangeClient gclient = ghostClientMap.get(key);
         if (gclient == null || gclient.isClosed()){
             gclient = new LazyConnectExchangeClient(lazyUrl, client.getExchangeHandler());
@@ -162,6 +181,7 @@ final class ReferenceCountExchangeClient implements ExchangeClient {
         return gclient;
     }
 
+    @Override
     public boolean isClosed() {
         return client.isClosed();
     }

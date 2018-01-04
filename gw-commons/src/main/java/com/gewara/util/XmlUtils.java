@@ -90,10 +90,14 @@ public class XmlUtils {
 	 * @return
 	 */
 	public static String getNodeText(Document document, String xpath){
-		if(document == null) return null;
+		if(document == null) {
+            return null;
+        }
 		try{
 			List<Node> nodeList = document.selectNodes(xpath);
-			if(nodeList.isEmpty()) return null;
+			if(nodeList.isEmpty()) {
+                return null;
+            }
 			return getText(nodeList.get(0));
 		}catch(Exception e){
 			dbLogger.error(document.getText() + LoggerUtils.getExceptionTrace(e, 100));
@@ -105,12 +109,16 @@ public class XmlUtils {
 	}
 	public static List<String> getNodeTextList(Document document, String xpath, boolean ignoreEmpty){
 		List<String> result = new ArrayList<String>();
-		if(document == null) return result;
+		if(document == null) {
+            return result;
+        }
 		try{
 			List<Node> nodeList = document.selectNodes(xpath);
 			for(Node node: nodeList){
 				String s = getText(node);
-				if(StringUtils.isNotBlank(s) || !ignoreEmpty) result.add(s);
+				if(StringUtils.isNotBlank(s) || !ignoreEmpty) {
+                    result.add(s);
+                }
 			}
 		}catch(Exception e){
 			dbLogger.error(document.getText() + LoggerUtils.getExceptionTrace(e, 100));

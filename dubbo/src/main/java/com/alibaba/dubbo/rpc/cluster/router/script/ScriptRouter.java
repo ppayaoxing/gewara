@@ -57,6 +57,7 @@ public class ScriptRouter implements Router {
 
     private final URL url;
 
+    @Override
     public URL getUrl() {
         return url;
     }
@@ -84,6 +85,7 @@ public class ScriptRouter implements Router {
         this.rule = rule;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public <T> List<Invoker<T>> route(List<Invoker<T>> invokers, URL url, Invocation invocation) throws RpcException {
         try {
@@ -113,6 +115,7 @@ public class ScriptRouter implements Router {
         }
     }
 
+    @Override
     public int compareTo(Router o) {
         if (o == null || o.getClass() != ScriptRouter.class) {
             return 1;

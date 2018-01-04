@@ -22,20 +22,20 @@ public class DisQuantityVo extends BaseVo {
 	private Integer costprice;
 	private Integer theatreprice;
 	private Integer version;
-	private Integer maxbuy;				//µ¥´Î¹ºÆ±ÊýÁ¿
-	private Integer tickettotal;		//¿â´æÆ±Êý
-	private Integer allownum;			//Ê£Óà¿â´æÆ±Êý
-	private Integer sellordernum;		//ÒÑÂô³öµÄÆ±Êý
+	private Integer maxbuy;				//ï¿½ï¿½ï¿½Î¹ï¿½Æ±ï¿½ï¿½ï¿½ï¿½
+	private Integer tickettotal;		//ï¿½ï¿½ï¿½Æ±ï¿½ï¿½
+	private Integer allownum;			//Ê£ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½
+	private Integer sellordernum;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private String distype;				//ÓÅ»ÝÀàÐÍ G(¸ñÍßÀ­µÄÓÅ»Ý) P(Ö÷°ì·½ÓÅ»Ý)
-	private Long settleid;				//½áËã±ÈÂÊ
+	private String distype;				//ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½ G(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½) P(ï¿½ï¿½ï¿½ì·½ï¿½Å»ï¿½)
+	private Long settleid;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	private String name;
-	private Timestamp starttime;		//Ì×Æ±¿ªÊ¼Ê±¼ä
-	private Timestamp endtime;			//Ì×Æ±½áÊøÊ±¼ä
-	private String retail;				//ÊÇ·ñÁãÊÛ
-	private String status;				//ÊÇ·ñ¿ÉÂô
+	private Timestamp starttime;		//ï¿½ï¿½Æ±ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	private Timestamp endtime;			//ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String retail;				//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String status;				//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 	private String seller;				//
 	private String sispseq;		
 
@@ -247,7 +247,9 @@ public class DisQuantityVo extends BaseVo {
 	}
 	
 	public boolean hasStatus(String stats){
-		if(StringUtils.isBlank(stats)) return false;
+		if(StringUtils.isBlank(stats)) {
+            return false;
+        }
 		return StringUtils.equals(this.status, stats);
 	}
 	
@@ -256,7 +258,9 @@ public class DisQuantityVo extends BaseVo {
 	}
 	
 	public boolean hasSeller(String sell){
-		if(StringUtils.isBlank(sell)) return false;
+		if(StringUtils.isBlank(sell)) {
+            return false;
+        }
 		return StringUtils.equals(this.seller, sell);
 	}
 

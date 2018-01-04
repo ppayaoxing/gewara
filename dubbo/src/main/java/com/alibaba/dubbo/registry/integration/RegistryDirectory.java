@@ -68,17 +68,17 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
 
     private static final ConfiguratorFactory configuratorFactory = ExtensionLoader.getExtensionLoader(ConfiguratorFactory.class).getAdaptiveExtension();
 
-    private Protocol protocol; // ×¢ÈëÊ±³õÊ¼»¯£¬¶ÏÑÔ²»Îªnull
+    private Protocol protocol; // ×¢ï¿½ï¿½Ê±ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Îªnull
 
-    private Registry registry; // ×¢ÈëÊ±³õÊ¼»¯£¬¶ÏÑÔ²»Îªnull
+    private Registry registry; // ×¢ï¿½ï¿½Ê±ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Îªnull
 
-    private final String serviceKey; // ¹¹ÔìÊ±³õÊ¼»¯£¬¶ÏÑÔ²»Îªnull
+    private final String serviceKey; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Îªnull
 
-    private final Class<T> serviceType; // ¹¹ÔìÊ±³õÊ¼»¯£¬¶ÏÑÔ²»Îªnull
+    private final Class<T> serviceType; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Îªnull
     
-    private final Map<String, String> queryMap; // ¹¹ÔìÊ±³õÊ¼»¯£¬¶ÏÑÔ²»Îªnull
+    private final Map<String, String> queryMap; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Îªnull
 
-    private final URL directoryUrl; // ¹¹ÔìÊ±³õÊ¼»¯£¬¶ÏÑÔ²»Îªnull£¬²¢ÇÒ×ÜÊÇ¸³·ÇnullÖµ
+    private final URL directoryUrl; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Îªnullï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½nullÖµ
     
     private final String[] serviceMethods;
 
@@ -86,30 +86,32 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
 
     private volatile boolean forbidden = false;
     
-    private volatile URL overrideDirectoryUrl; // ¹¹ÔìÊ±³õÊ¼»¯£¬¶ÏÑÔ²»Îªnull£¬²¢ÇÒ×ÜÊÇ¸³·ÇnullÖµ
+    private volatile URL overrideDirectoryUrl; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Îªnullï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½nullÖµ
 
-    /*override¹æÔò 
-     * ÓÅÏÈ¼¶£ºoverride>-D>consumer>provider
-     * µÚÒ»ÖÖ¹æÔò£ºÕë¶ÔÄ³¸öprovider <ip:port,timeout=100>
-     * µÚ¶þÖÖ¹æÔò£ºÕë¶ÔËùÓÐprovider <* ,timeout=5000>
+    /*overrideï¿½ï¿½ï¿½ï¿½ 
+     * ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½override>-D>consumer>provider
+     * ï¿½ï¿½Ò»ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½provider <ip:port,timeout=100>
+     * ï¿½Ú¶ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½provider <* ,timeout=5000>
      */
-    private volatile List<Configurator> configurators; // ³õÊ¼ÎªnullÒÔ¼°ÖÐÍ¾¿ÉÄÜ±»¸³Îªnull£¬ÇëÊ¹ÓÃ¾Ö²¿±äÁ¿ÒýÓÃ
+    private volatile List<Configurator> configurators; // ï¿½ï¿½Ê¼Îªnullï¿½Ô¼ï¿½ï¿½ï¿½Í¾ï¿½ï¿½ï¿½Ü±ï¿½ï¿½ï¿½Îªnullï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¾Ö²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     
     // Map<url, Invoker> cache service url to invoker mapping.
-    private volatile Map<String, Invoker<T>> urlInvokerMap; // ³õÊ¼ÎªnullÒÔ¼°ÖÐÍ¾¿ÉÄÜ±»¸³Îªnull£¬ÇëÊ¹ÓÃ¾Ö²¿±äÁ¿ÒýÓÃ
+    private volatile Map<String, Invoker<T>> urlInvokerMap; // ï¿½ï¿½Ê¼Îªnullï¿½Ô¼ï¿½ï¿½ï¿½Í¾ï¿½ï¿½ï¿½Ü±ï¿½ï¿½ï¿½Îªnullï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¾Ö²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     
     // Map<methodName, Invoker> cache service method to invokers mapping.
-    private volatile Map<String, List<Invoker<T>>> methodInvokerMap; // ³õÊ¼ÎªnullÒÔ¼°ÖÐÍ¾¿ÉÄÜ±»¸³Îªnull£¬ÇëÊ¹ÓÃ¾Ö²¿±äÁ¿ÒýÓÃ
+    private volatile Map<String, List<Invoker<T>>> methodInvokerMap; // ï¿½ï¿½Ê¼Îªnullï¿½Ô¼ï¿½ï¿½ï¿½Í¾ï¿½ï¿½ï¿½Ü±ï¿½ï¿½ï¿½Îªnullï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¾Ö²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     
     // Set<invokerUrls> cache invokeUrls to invokers mapping.
-    private volatile Set<URL> cachedInvokerUrls; // ³õÊ¼ÎªnullÒÔ¼°ÖÐÍ¾¿ÉÄÜ±»¸³Îªnull£¬ÇëÊ¹ÓÃ¾Ö²¿±äÁ¿ÒýÓÃ
+    private volatile Set<URL> cachedInvokerUrls; // ï¿½ï¿½Ê¼Îªnullï¿½Ô¼ï¿½ï¿½ï¿½Í¾ï¿½ï¿½ï¿½Ü±ï¿½ï¿½ï¿½Îªnullï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¾Ö²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     public RegistryDirectory(Class<T> serviceType, URL url) {
         super(url);
-        if(serviceType == null )
+        if(serviceType == null ) {
             throw new IllegalArgumentException("service type is null.");
-        if(url.getServiceKey() == null || url.getServiceKey().length() == 0)
+        }
+        if(url.getServiceKey() == null || url.getServiceKey().length() == 0) {
             throw new IllegalArgumentException("registry serviceKey is null.");
+        }
         this.serviceType = serviceType;
         this.serviceKey = url.getServiceKey();
         this.queryMap = StringUtils.parseQueryString(url.getParameterAndDecoded(Constants.REFER_KEY));
@@ -133,6 +135,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         registry.subscribe(url, this);
     }
 
+    @Override
     public void destroy() {
         if(isDestroyed()) {
             return;
@@ -145,7 +148,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         } catch (Throwable t) {
             logger.warn("unexpeced error when unsubscribe service " + serviceKey + "from registry" + registry.getUrl(), t);
         }
-        super.destroy(); // ±ØÐëÔÚunsubscribeÖ®ºóÖ´ÐÐ
+        super.destroy(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½unsubscribeÖ®ï¿½ï¿½Ö´ï¿½ï¿½
         try {
             destroyAllInvokers();
         } catch (Throwable t) {
@@ -153,6 +156,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         }
     }
 
+    @Override
     public synchronized void notify(List<URL> urls) {
         List<URL> invokerUrls = new ArrayList<URL>();
         List<URL> routerUrls = new ArrayList<URL>();
@@ -184,7 +188,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
             }
         }
         List<Configurator> localConfigurators = this.configurators; // local reference
-        // ºÏ²¢override²ÎÊý
+        // ï¿½Ï²ï¿½overrideï¿½ï¿½ï¿½ï¿½
         this.overrideDirectoryUrl = directoryUrl;
         if (localConfigurators != null && localConfigurators.size() > 0) {
             for (Configurator configurator : localConfigurators) {
@@ -197,34 +201,34 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     
     
     /**
-     * ¸ù¾ÝinvokerURLÁÐ±í×ª»»ÎªinvokerÁÐ±í¡£×ª»»¹æÔòÈçÏÂ£º
-     * 1.Èç¹ûurlÒÑ¾­±»×ª»»Îªinvoker£¬Ôò²»ÔÚÖØÐÂÒýÓÃ£¬Ö±½Ó´Ó»º´æÖÐ»ñÈ¡£¬×¢ÒâÈç¹ûurlÖÐÈÎºÎÒ»¸ö²ÎÊý±ä¸üÒ²»áÖØÐÂÒýÓÃ
-     * 2.Èç¹û´«ÈëµÄinvokerÁÐ±í²»Îª¿Õ£¬Ôò±íÊ¾×îÐÂµÄinvokerÁÐ±í
-     * 3.Èç¹û´«ÈëµÄinvokerUrlÁÐ±íÊÇ¿Õ£¬Ôò±íÊ¾Ö»ÊÇÏÂ·¢µÄoverride¹æÔò»òroute¹æÔò£¬ÐèÒªÖØÐÂ½»²æ¶Ô±È£¬¾ö¶¨ÊÇ·ñÐèÒªÖØÐÂÒýÓÃ¡£
-     * @param invokerUrls ´«ÈëµÄ²ÎÊý²»ÄÜÎªnull
+     * ï¿½ï¿½ï¿½ï¿½invokerURLï¿½Ð±ï¿½×ªï¿½ï¿½Îªinvokerï¿½Ð±ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½
+     * 1.ï¿½ï¿½ï¿½urlï¿½Ñ¾ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªinvokerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½Ö±ï¿½Ó´Ó»ï¿½ï¿½ï¿½ï¿½Ð»ï¿½È¡ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½urlï¿½ï¿½ï¿½Îºï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     * 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½invokerï¿½Ð±ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Âµï¿½invokerï¿½Ð±ï¿½
+     * 3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½invokerUrlï¿½Ð±ï¿½ï¿½Ç¿Õ£ï¿½ï¿½ï¿½ï¿½Ê¾Ö»ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½overrideï¿½ï¿½ï¿½ï¿½ï¿½routeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½Ô±È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½
+     * @param invokerUrls ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªnull
      */
     private void refreshInvoker(List<URL> invokerUrls){
         if (invokerUrls != null && invokerUrls.size() == 1 && invokerUrls.get(0) != null
                 && Constants.EMPTY_PROTOCOL.equals(invokerUrls.get(0).getProtocol())) {
-            this.forbidden = true; // ½ûÖ¹·ÃÎÊ
-            this.methodInvokerMap = null; // ÖÃ¿ÕÁÐ±í
-            destroyAllInvokers(); // ¹Ø±ÕËùÓÐInvoker
+            this.forbidden = true; // ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½
+            this.methodInvokerMap = null; // ï¿½Ã¿ï¿½ï¿½Ð±ï¿½
+            destroyAllInvokers(); // ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½Invoker
         } else {
-            this.forbidden = false; // ÔÊÐí·ÃÎÊ
+            this.forbidden = false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Map<String, Invoker<T>> oldUrlInvokerMap = this.urlInvokerMap; // local reference
             if (invokerUrls.size() == 0 && this.cachedInvokerUrls != null){
                 invokerUrls.addAll(this.cachedInvokerUrls);
             } else {
                 this.cachedInvokerUrls = new HashSet<URL>();
-                this.cachedInvokerUrls.addAll(invokerUrls);//»º´æinvokerUrlsÁÐ±í£¬±ãÓÚ½»²æ¶Ô±È
+                this.cachedInvokerUrls.addAll(invokerUrls);//ï¿½ï¿½ï¿½ï¿½invokerUrlsï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½Ô±ï¿½
             }
             if (invokerUrls.size() ==0 ){
             	return;
             }
-            Map<String, Invoker<T>> newUrlInvokerMap = toInvokers(invokerUrls) ;// ½«URLÁÐ±í×ª³ÉInvokerÁÐ±í
-            Map<String, List<Invoker<T>>> newMethodInvokerMap = toMethodInvokers(newUrlInvokerMap); // »»·½·¨ÃûÓ³ÉäInvokerÁÐ±í
+            Map<String, Invoker<T>> newUrlInvokerMap = toInvokers(invokerUrls) ;// ï¿½ï¿½URLï¿½Ð±ï¿½×ªï¿½ï¿½Invokerï¿½Ð±ï¿½
+            Map<String, List<Invoker<T>>> newMethodInvokerMap = toMethodInvokers(newUrlInvokerMap); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½Invokerï¿½Ð±ï¿½
             // state change
-            //Èç¹û¼ÆËã´íÎó£¬Ôò²»½øÐÐ´¦Àí.
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò²»½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½.
             if (newUrlInvokerMap == null || newUrlInvokerMap.size() == 0 ){
                 logger.error(new IllegalStateException("urls to invokers error .invokerUrls.size :"+invokerUrls.size() + ", invoker.size :0. urls :"+invokerUrls.toString()));
                 return ;
@@ -232,7 +236,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
             this.methodInvokerMap = multiGroup ? toMergeMethodInvokerMap(newMethodInvokerMap) : newMethodInvokerMap;
             this.urlInvokerMap = newUrlInvokerMap;
             try{
-                destroyUnusedInvokers(oldUrlInvokerMap,newUrlInvokerMap); // ¹Ø±ÕÎ´Ê¹ÓÃµÄInvoker
+                destroyUnusedInvokers(oldUrlInvokerMap,newUrlInvokerMap); // ï¿½Ø±ï¿½Î´Ê¹ï¿½Ãµï¿½Invoker
             }catch (Exception e) {
                 logger.warn("destroyUnusedInvokers error. ", e);
             }
@@ -270,14 +274,14 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
     
     /**
-     * ½«overrideURL×ª»»Îªmap£¬¹©ÖØÐÂreferÊ±Ê¹ÓÃ.
-     * Ã¿´ÎÏÂ·¢È«²¿¹æÔò£¬È«²¿ÖØÐÂ×é×°¼ÆËã
+     * ï¿½ï¿½overrideURL×ªï¿½ï¿½Îªmapï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½referÊ±Ê¹ï¿½ï¿½.
+     * Ã¿ï¿½ï¿½ï¿½Â·ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½
      * @param urls
-     * ÆõÔ¼£º
-     * </br>1.override://0.0.0.0/...(»òoverride://ip:port...?anyhost=true)&para1=value1...±íÊ¾È«¾Ö¹æÔò(¶ÔËùÓÐµÄÌá¹©ÕßÈ«²¿ÉúÐ§)
-     * </br>2.override://ip:port...?anyhost=false ÌØÀý¹æÔò£¨Ö»Õë¶ÔÄ³¸öÌá¹©ÕßÉúÐ§£©
-     * </br>3.²»Ö§³Öoverride://¹æÔò... ÐèÒª×¢²áÖÐÐÄ×ÔÐÐ¼ÆËã.
-     * </br>4.²»´ø²ÎÊýµÄoverride://0.0.0.0/ ±íÊ¾Çå³ýoverride 
+     * ï¿½ï¿½Ô¼ï¿½ï¿½
+     * </br>1.override://0.0.0.0/...(ï¿½ï¿½override://ip:port...?anyhost=true)&para1=value1...ï¿½ï¿½Ê¾È«ï¿½Ö¹ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½á¹©ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½Ð§)
+     * </br>2.override://ip:port...?anyhost=false ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
+     * </br>3.ï¿½ï¿½Ö§ï¿½ï¿½override://ï¿½ï¿½ï¿½ï¿½... ï¿½ï¿½Òª×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½.
+     * </br>4.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½override://0.0.0.0/ ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½override 
      * @return
      */
     public static List<Configurator> toConfigurators(List<URL> urls){
@@ -291,7 +295,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
                 break;
             }
             Map<String,String> override = new HashMap<String, String>(url.getParameters());
-            //override ÉÏµÄanyhost¿ÉÄÜÊÇ×Ô¶¯Ìí¼ÓµÄ£¬²»ÄÜÓ°Ïì¸Ä±äurlÅÐ¶Ï
+            //override ï¿½Ïµï¿½anyhostï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ÓµÄ£ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½Ä±ï¿½urlï¿½Ð¶ï¿½
             override.remove(Constants.ANYHOST_KEY);
             if (override.size() == 0){
                 configurators.clear();
@@ -325,8 +329,9 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
                 }
                 try{
                     Router router = routerFactory.getRouter(url);
-                    if (!routers.contains(router))
+                    if (!routers.contains(router)) {
                         routers.add(router);
+                    }
                 } catch (Throwable t) {
                     logger.error("convert router url to router error, url: "+ url, t);
                 }
@@ -336,7 +341,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
     
     /**
-     * ½«urls×ª³Éinvokers,Èç¹ûurlÒÑ¾­±»refer¹ý£¬²»ÔÙÖØÐÂÒýÓÃ¡£
+     * ï¿½ï¿½urls×ªï¿½ï¿½invokers,ï¿½ï¿½ï¿½urlï¿½Ñ¾ï¿½ï¿½ï¿½referï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½
      * 
      * @param urls
      * @param overrides
@@ -351,7 +356,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         Set<String> keys = new HashSet<String>();
         String queryProtocols = this.queryMap.get(Constants.PROTOCOL_KEY);
         for (URL providerUrl : urls) {
-        	//Èç¹ûreference¶ËÅäÖÃÁËprotocol£¬ÔòÖ»Ñ¡ÔñÆ¥ÅäµÄprotocol
+        	//ï¿½ï¿½ï¿½referenceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½protocolï¿½ï¿½ï¿½ï¿½Ö»Ñ¡ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½protocol
         	if (queryProtocols != null && queryProtocols.length() >0) {
         		boolean accept = false;
         		String[] acceptProtocols = queryProtocols.split(",");
@@ -375,15 +380,15 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
             }
             URL url = mergeUrl(providerUrl);
             
-            String key = url.toFullString(); // URL²ÎÊýÊÇÅÅÐòµÄ
-            if (keys.contains(key)) { // ÖØ¸´URL
+            String key = url.toFullString(); // URLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (keys.contains(key)) { // ï¿½Ø¸ï¿½URL
                 continue;
             }
             keys.add(key);
-            // »º´ækeyÎªÃ»ÓÐºÏ²¢Ïû·Ñ¶Ë²ÎÊýµÄURL£¬²»¹ÜÏû·Ñ¶ËÈçºÎºÏ²¢²ÎÊý£¬Èç¹û·þÎñ¶ËURL·¢Éú±ä»¯£¬ÔòÖØÐÂrefer
+            // ï¿½ï¿½ï¿½ï¿½keyÎªÃ»ï¿½ÐºÏ²ï¿½ï¿½ï¿½ï¿½Ñ¶Ë²ï¿½ï¿½ï¿½ï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½ÎºÏ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½ï¿½ä»¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½refer
             Map<String, Invoker<T>> localUrlInvokerMap = this.urlInvokerMap; // local reference
             Invoker<T> invoker = localUrlInvokerMap == null ? null : localUrlInvokerMap.get(key);
-            if (invoker == null) { // »º´æÖÐÃ»ÓÐ£¬ÖØÐÂrefer
+            if (invoker == null) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½refer
                 try {
                 	boolean enabled = true;
                 	if (url.hasParameter(Constants.DISABLED_KEY)) {
@@ -397,7 +402,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
                 } catch (Throwable t) {
                     logger.error("Failed to refer invoker for interface:"+serviceType+",url:("+url+")" + t.getMessage(), t);
                 }
-                if (invoker != null) { // ½«ÐÂµÄÒýÓÃ·ÅÈë»º´æ
+                if (invoker != null) { // ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ë»ºï¿½ï¿½
                     newUrlInvokerMap.put(key, invoker);
                 }
             }else {
@@ -409,13 +414,13 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
     
     /**
-     * ºÏ²¢url²ÎÊý Ë³ÐòÎªoverride > -D >Consumer > Provider
+     * ï¿½Ï²ï¿½urlï¿½ï¿½ï¿½ï¿½ Ë³ï¿½ï¿½Îªoverride > -D >Consumer > Provider
      * @param providerUrl
      * @param overrides
      * @return
      */
     private URL mergeUrl(URL providerUrl){
-        providerUrl = ClusterUtils.mergeUrl(providerUrl, queryMap); // ºÏ²¢Ïû·Ñ¶Ë²ÎÊý
+        providerUrl = ClusterUtils.mergeUrl(providerUrl, queryMap); // ï¿½Ï²ï¿½ï¿½ï¿½ï¿½Ñ¶Ë²ï¿½ï¿½ï¿½
         
         List<Configurator> localConfigurators = this.configurators; // local reference
         if (localConfigurators != null && localConfigurators.size() > 0) {
@@ -424,13 +429,13 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
             }
         }
         
-        providerUrl = providerUrl.addParameter(Constants.CHECK_KEY, String.valueOf(false)); // ²»¼ì²éÁ¬½ÓÊÇ·ñ³É¹¦£¬×ÜÊÇ´´½¨Invoker£¡
+        providerUrl = providerUrl.addParameter(Constants.CHECK_KEY, String.valueOf(false)); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ï¿½Invokerï¿½ï¿½
         
-        //directoryUrl Óë override ºÏ²¢ÊÇÔÚnotifyµÄ×îºó£¬ÕâÀï²»ÄÜ¹»´¦Àí
-        this.overrideDirectoryUrl = this.overrideDirectoryUrl.addParametersIfAbsent(providerUrl.getParameters()); // ºÏ²¢Ìá¹©Õß²ÎÊý        
+        //directoryUrl ï¿½ï¿½ override ï¿½Ï²ï¿½ï¿½ï¿½ï¿½ï¿½notifyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï²»ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½
+        this.overrideDirectoryUrl = this.overrideDirectoryUrl.addParametersIfAbsent(providerUrl.getParameters()); // ï¿½Ï²ï¿½ï¿½á¹©ï¿½ß²ï¿½ï¿½ï¿½        
         
         if ((providerUrl.getPath() == null || providerUrl.getPath().length() == 0)
-                && "dubbo".equals(providerUrl.getProtocol())) { // ¼æÈÝ1.0
+                && "dubbo".equals(providerUrl.getProtocol())) { // ï¿½ï¿½ï¿½ï¿½1.0
             //fix by tony.chenl DUBBO-44
             String path = directoryUrl.getParameter(Constants.INTERFACE_KEY);
             if (path != null) {
@@ -462,14 +467,14 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
 
     /**
-     * ½«invokersÁÐ±í×ª³ÉÓë·½·¨µÄÓ³Éä¹ØÏµ
+     * ï¿½ï¿½invokersï¿½Ð±ï¿½×ªï¿½ï¿½ï¿½ë·½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ïµ
      * 
-     * @param invokersMap InvokerÁÐ±í
-     * @return InvokerÓë·½·¨µÄÓ³Éä¹ØÏµ
+     * @param invokersMap Invokerï¿½Ð±ï¿½
+     * @return Invokerï¿½ë·½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ïµ
      */
     private Map<String, List<Invoker<T>>> toMethodInvokers(Map<String, Invoker<T>> invokersMap) {
         Map<String, List<Invoker<T>>> newMethodInvokerMap = new HashMap<String, List<Invoker<T>>>();
-        // °´Ìá¹©ÕßURLËùÉùÃ÷µÄmethods·ÖÀà£¬¼æÈÝ×¢²áÖÐÐÄÖ´ÐÐÂ·ÓÉ¹ýÂËµôµÄmethods
+        // ï¿½ï¿½ï¿½á¹©ï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½methodsï¿½ï¿½ï¿½à£¬ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½Â·ï¿½É¹ï¿½ï¿½Ëµï¿½ï¿½ï¿½methods
         List<Invoker<T>> invokersList = new ArrayList<Invoker<T>>();
         if (invokersMap != null && invokersMap.size() > 0) {
             for (Invoker<T> invoker : invokersMap.values()) {
@@ -513,7 +518,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
 
     /**
-     * ¹Ø±ÕËùÓÐInvoker
+     * ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½Invoker
      */
     private void destroyAllInvokers() {
         Map<String, Invoker<T>> localUrlInvokerMap = this.urlInvokerMap; // local reference
@@ -531,8 +536,8 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
     
     /**
-     * ¼ì²é»º´æÖÐµÄinvokerÊÇ·ñÐèÒª±»destroy
-     * Èç¹ûurlÖÐÖ¸¶¨refer.autodestroy=false£¬ÔòÖ»Ôö¼Ó²»¼õÉÙ£¬¿ÉÄÜ»áÓÐreferÐ¹Â©£¬
+     * ï¿½ï¿½é»ºï¿½ï¿½ï¿½Ðµï¿½invokerï¿½Ç·ï¿½ï¿½ï¿½Òªï¿½ï¿½destroy
+     * ï¿½ï¿½ï¿½urlï¿½ï¿½Ö¸ï¿½ï¿½refer.autodestroy=falseï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½ï¿½Ù£ï¿½ï¿½ï¿½ï¿½Ü»ï¿½ï¿½ï¿½referÐ¹Â©ï¿½ï¿½
      * 
      * @param invokers
      */
@@ -574,6 +579,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         }
     }
 
+    @Override
     public List<Invoker<T>> doList(Invocation invocation) {
         if (forbidden) {
             throw new RpcException(RpcException.FORBIDDEN_EXCEPTION, "Forbid consumer " +  NetUtils.getLocalHost() + " access service " + getInterface().getName() + " from registry " + getUrl().getAddress() + " use dubbo version " + Version.getVersion() + ", Please check registry access list (whitelist/blacklist).");
@@ -585,7 +591,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
             Object[] args = RpcUtils.getArguments(invocation);
             if(args != null && args.length > 0 && args[0] != null
                     && (args[0] instanceof String || args[0].getClass().isEnum())) {
-                invokers = localMethodInvokerMap.get(methodName + "." + args[0]); // ¿É¸ù¾ÝµÚÒ»¸ö²ÎÊýÃ¶¾ÙÂ·ÓÉ
+                invokers = localMethodInvokerMap.get(methodName + "." + args[0]); // ï¿½É¸ï¿½ï¿½Ýµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½Â·ï¿½ï¿½
             }
             if(invokers == null) {
                 invokers = localMethodInvokerMap.get(methodName);
@@ -603,14 +609,17 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         return invokers == null ? new ArrayList<Invoker<T>>(0) : invokers;
     }
     
+    @Override
     public Class<T> getInterface() {
         return serviceType;
     }
 
+    @Override
     public URL getUrl() {
     	return this.overrideDirectoryUrl;
     }
 
+    @Override
     public boolean isAvailable() {
         if (isDestroyed()) {
             return false;
@@ -650,6 +659,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         
         private InvokerComparator() {}
 
+        @Override
         public int compare(Invoker<?> o1, Invoker<?> o2) {
             return o1.getUrl().toString().compareTo(o2.getUrl().toString());
         }
@@ -657,7 +667,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
     }
     
     /**
-     * ´úÀíÀà£¬Ö÷ÒªÓÃÓÚ´æ´¢×¢²áÖÐÐÄÏÂ·¢µÄurlµØÖ·£¬ÓÃÓÚÖØÐÂÖØÐÂreferÊ±ÄÜ¹»¸ù¾ÝproviderURL queryMap overrideMapÖØÐÂ×é×°
+     * ï¿½ï¿½ï¿½ï¿½ï¿½à£¬ï¿½ï¿½Òªï¿½ï¿½ï¿½Ú´æ´¢×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½urlï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½referÊ±ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½providerURL queryMap overrideMapï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°
      * 
      * @author chao.liuc
      *

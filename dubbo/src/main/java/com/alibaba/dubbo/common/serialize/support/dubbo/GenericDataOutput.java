@@ -53,12 +53,14 @@ public class GenericDataOutput implements DataOutput, GenericDataFlags
 		mBuffer = new byte[buffSize];
 	}
 
-	public void writeBool(boolean v) throws IOException
+	@Override
+    public void writeBool(boolean v) throws IOException
 	{
 		write0( v ? VARINT_1 : VARINT_0 );
 	}
 
-	public void writeByte(byte v) throws IOException
+	@Override
+    public void writeByte(byte v) throws IOException
 	{
 		switch( v )
 		{
@@ -76,32 +78,38 @@ public class GenericDataOutput implements DataOutput, GenericDataFlags
 		}
 	}
 
-	public void writeShort(short v) throws IOException
+	@Override
+    public void writeShort(short v) throws IOException
 	{
 		writeVarint32(v);
 	}
 
-	public void writeInt(int v) throws IOException
+	@Override
+    public void writeInt(int v) throws IOException
 	{
 		writeVarint32(v);
 	}
 
-	public void writeLong(long v) throws IOException
+	@Override
+    public void writeLong(long v) throws IOException
 	{
 		writeVarint64(v);
 	}
 
-	public void writeFloat(float v) throws IOException
+	@Override
+    public void writeFloat(float v) throws IOException
 	{
 		writeVarint32(Float.floatToRawIntBits(v));
 	}
 
-	public void writeDouble(double v) throws IOException
+	@Override
+    public void writeDouble(double v) throws IOException
 	{
 		writeVarint64(Double.doubleToRawLongBits(v));
 	}
 
-	public void writeUTF(String v) throws IOException
+	@Override
+    public void writeUTF(String v) throws IOException
 	{
 		if( v == null )
 		{
@@ -173,15 +181,18 @@ public class GenericDataOutput implements DataOutput, GenericDataFlags
 		}
 	}
 
-	public void writeBytes(byte[] b) throws IOException
+	@Override
+    public void writeBytes(byte[] b) throws IOException
 	{
-		if( b == null )
-			write0(OBJECT_NULL);
-		else
-			writeBytes(b, 0, b.length);
+		if( b == null ) {
+            write0(OBJECT_NULL);
+        } else {
+            writeBytes(b, 0, b.length);
+        }
 	}
 
-	public void writeBytes(byte[] b, int off, int len) throws IOException
+	@Override
+    public void writeBytes(byte[] b, int off, int len) throws IOException
 	{
 		if( len == 0 )
 		{
@@ -195,7 +206,8 @@ public class GenericDataOutput implements DataOutput, GenericDataFlags
 		}
 	}
 
-	public void flushBuffer() throws IOException
+	@Override
+    public void flushBuffer() throws IOException
 	{
 		if( mPosition > 0 )
 		{
@@ -224,8 +236,9 @@ public class GenericDataOutput implements DataOutput, GenericDataFlags
 
 	protected void write0(byte b) throws IOException
 	{
-		if( mPosition == mLimit )
-			flushBuffer();
+		if( mPosition == mLimit ) {
+            flushBuffer();
+        }
 
 		mBuffer[mPosition++] = b;
 	}
@@ -282,21 +295,24 @@ public class GenericDataOutput implements DataOutput, GenericDataFlags
 				while( true )
 				{
 					b[++ix] = (byte)( v & 0xff );
-					if( ( v >>>= 8 ) == 0 )
-						break;
+					if( ( v >>>= 8 ) == 0 ) {
+                        break;
+                    }
 				}
 
 				if( t > 0 )
 				{
 					// [ 0a e2 => 0a e2 00 ] [ 92 => 92 00 ]
-					if( b[ix] < 0 )
-						b[++ix] = 0;
+					if( b[ix] < 0 ) {
+                        b[++ix] = 0;
+                    }
 				}
 				else
 				{
 					// [ 01 ff ff ff => 01 ff ] [ e0 ff ff ff => e0 ]
-					while( b[ix] == (byte)0xff && b[ix-1] < 0 )
-						ix--;
+					while( b[ix] == (byte)0xff && b[ix-1] < 0 ) {
+                        ix--;
+                    }
 				}
 
 				b[0] = (byte)( VARINT + ix - 1 );
@@ -320,21 +336,24 @@ public class GenericDataOutput implements DataOutput, GenericDataFlags
 			while( true )
 			{
 				b[++ix] = (byte)( v & 0xff );
-				if( ( v >>>= 8 ) == 0 )
-					break;
+				if( ( v >>>= 8 ) == 0 ) {
+                    break;
+                }
 			}
 
 			if( t > 0 )
 			{
 				// [ 0a e2 => 0a e2 00 ] [ 92 => 92 00 ]
-				if( b[ix] < 0 )
-					b[++ix] = 0;
+				if( b[ix] < 0 ) {
+                    b[++ix] = 0;
+                }
 			}
 			else
 			{
 				// [ 01 ff ff ff => 01 ff ] [ e0 ff ff ff => e0 ]
-				while( b[ix] == (byte)0xff && b[ix-1] < 0 )
-					ix--;
+				while( b[ix] == (byte)0xff && b[ix-1] < 0 ) {
+                    ix--;
+                }
 			}
 
 			b[0] = (byte)( VARINT + ix - 1 );

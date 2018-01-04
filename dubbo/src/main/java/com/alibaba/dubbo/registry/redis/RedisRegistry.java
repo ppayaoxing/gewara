@@ -89,20 +89,27 @@ public class RedisRegistry extends FailbackRegistry {
         config.testOnBorrow = url.getParameter("test.on.borrow", true);
         config.testOnReturn = url.getParameter("test.on.return", false);
         config.testWhileIdle = url.getParameter("test.while.idle", false);
-        if (url.getParameter("max.idle", 0) > 0)
+        if (url.getParameter("max.idle", 0) > 0) {
             config.maxIdle = url.getParameter("max.idle", 0);
-        if (url.getParameter("min.idle", 0) > 0)
+        }
+        if (url.getParameter("min.idle", 0) > 0) {
             config.minIdle = url.getParameter("min.idle", 0);
-        if (url.getParameter("max.active", 0) > 0)
+        }
+        if (url.getParameter("max.active", 0) > 0) {
             config.maxActive = url.getParameter("max.active", 0);
-        if (url.getParameter("max.wait", url.getParameter("timeout", 0)) > 0)
+        }
+        if (url.getParameter("max.wait", url.getParameter("timeout", 0)) > 0) {
             config.maxWait = url.getParameter("max.wait", url.getParameter("timeout", 0));
-        if (url.getParameter("num.tests.per.eviction.run", 0) > 0)
+        }
+        if (url.getParameter("num.tests.per.eviction.run", 0) > 0) {
             config.numTestsPerEvictionRun = url.getParameter("num.tests.per.eviction.run", 0);
-        if (url.getParameter("time.between.eviction.runs.millis", 0) > 0)
+        }
+        if (url.getParameter("time.between.eviction.runs.millis", 0) > 0) {
             config.timeBetweenEvictionRunsMillis = url.getParameter("time.between.eviction.runs.millis", 0);
-        if (url.getParameter("min.evictable.idle.time.millis", 0) > 0)
+        }
+        if (url.getParameter("min.evictable.idle.time.millis", 0) > 0) {
             config.minEvictableIdleTimeMillis = url.getParameter("min.evictable.idle.time.millis", 0);
+        }
         
         String cluster = url.getParameter("cluster", "failover");
         if (! "failover".equals(cluster) && ! "replicate".equals(cluster)) {
@@ -143,10 +150,11 @@ public class RedisRegistry extends FailbackRegistry {
         
         this.expirePeriod = url.getParameter(Constants.SESSION_TIMEOUT_KEY, Constants.DEFAULT_SESSION_TIMEOUT);
         this.expireFuture = expireExecutor.scheduleWithFixedDelay(new Runnable() {
+            @Override
             public void run() {
                 try {
-                    deferExpired(); // ÑÓ³¤¹ýÆÚÊ±¼ä
-                } catch (Throwable t) { // ·ÀÓùÐÔÈÝ´í
+                    deferExpired(); // ï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½
                     logger.error("Unexpected exception occur at defer expire time, cause: " + t.getMessage(), t);
                 }
             }
@@ -171,7 +179,7 @@ public class RedisRegistry extends FailbackRegistry {
                         clean(jedis);
                     }
                     if (! replicate) {
-                    	break;// ?Èç¹û·þÎñÆ÷¶ËÒÑÍ¬²½Êý¾Ý£¬Ö»ÐèÐ´Èëµ¥Ì¨»úÆ÷
+                    	break;// ?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½Ö»ï¿½ï¿½Ð´ï¿½ëµ¥Ì¨ï¿½ï¿½ï¿½ï¿½
                     }
                 } finally {
                     jedisPool.returnResource(jedis);
@@ -182,7 +190,7 @@ public class RedisRegistry extends FailbackRegistry {
         }
     }
     
-    // ¼à¿ØÖÐÐÄ¸ºÔðÉ¾³ý¹ýÆÚÔàÊý¾Ý
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private void clean(Jedis jedis) {
         Set<String> keys = jedis.keys(root + Constants.ANY_VALUE);
         if (keys != null && keys.size() > 0) {
@@ -212,13 +220,14 @@ public class RedisRegistry extends FailbackRegistry {
         }
     }
 
+    @Override
     public boolean isAvailable() {
         for (JedisPool jedisPool : jedisPools.values()) {
             try {
                 Jedis jedis = jedisPool.getResource();
                 try {
                 	if (jedis.isConnected()) {
-                        return true; // ÖÁÉÙÐèµ¥Ì¨»úÆ÷¿ÉÓÃ
+                        return true; // ï¿½ï¿½ï¿½ï¿½ï¿½èµ¥Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     }
                 } finally {
                     jedisPool.returnResource(jedis);
@@ -270,7 +279,7 @@ public class RedisRegistry extends FailbackRegistry {
                     jedis.publish(key, Constants.REGISTER);
                     success = true;
                     if (! replicate) {
-                    	break; // ?Èç¹û·þÎñÆ÷¶ËÒÑÍ¬²½Êý¾Ý£¬Ö»ÐèÐ´Èëµ¥Ì¨»úÆ÷
+                    	break; // ?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½Ö»ï¿½ï¿½Ð´ï¿½ëµ¥Ì¨ï¿½ï¿½ï¿½ï¿½
                     }
                 } finally {
                     jedisPool.returnResource(jedis);
@@ -303,7 +312,7 @@ public class RedisRegistry extends FailbackRegistry {
                     jedis.publish(key, Constants.UNREGISTER);
                     success = true;
                     if (! replicate) {
-                    	break; // ?Èç¹û·þÎñÆ÷¶ËÒÑÍ¬²½Êý¾Ý£¬Ö»ÐèÐ´Èëµ¥Ì¨»úÆ÷
+                    	break; // ?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½Ö»ï¿½ï¿½Ð´ï¿½ëµ¥Ì¨ï¿½ï¿½ï¿½ï¿½
                     }
                 } finally {
                     jedisPool.returnResource(jedis);
@@ -362,11 +371,11 @@ public class RedisRegistry extends FailbackRegistry {
                         doNotify(jedis, jedis.keys(service + Constants.PATH_SEPARATOR + Constants.ANY_VALUE), url, Arrays.asList(listener));
                     }
                     success = true;
-                    break; // Ö»Ðè¶ÁÒ»¸ö·þÎñÆ÷µÄÊý¾Ý
+                    break; // Ö»ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 } finally {
                     jedisPool.returnResource(jedis);
                 }
-            } catch(Throwable t) { // ³¢ÊÔÏÂÒ»¸ö·þÎñÆ÷
+            } catch(Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 exception = new RpcException("Failed to subscribe service from redis registry. registry: " + entry.getKey() + ", service: " + url + ", cause: " + t.getMessage(), t);
             }
         }
@@ -491,7 +500,7 @@ public class RedisRegistry extends FailbackRegistry {
                     } finally {
                         jedisPool.returnResource(jedis);
                     }
-                } catch (Throwable t) { // TODO Í¨ÖªÊ§°ÜÃ»ÓÐ»Ö¸´»úÖÆ±£ÕÏ
+                } catch (Throwable t) { // TODO Í¨ÖªÊ§ï¿½ï¿½Ã»ï¿½Ð»Ö¸ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ï¿½
                     logger.error(t.getMessage(), t);
                 }
             }
@@ -545,14 +554,14 @@ public class RedisRegistry extends FailbackRegistry {
         }
         
         private boolean isSkip() {
-            int skip = connectSkip.get(); // Ìø¹ý´ÎÊýÔö³¤
-            if (skip >= 10) { // Èç¹ûÌø¹ý´ÎÊýÔö³¤³¬¹ý10£¬È¡Ëæ»úÊý
+            int skip = connectSkip.get(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (skip >= 10) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (connectRandom == 0) {
                     connectRandom = random.nextInt(10);
                 }
                 skip = 10 + connectRandom;
             }
-            if (connectSkiped.getAndIncrement() < skip) { // ¼ì²éÌø¹ý´ÎÊý
+            if (connectSkiped.getAndIncrement() < skip) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 return true;
             }
             connectSkip.incrementAndGet();
@@ -589,20 +598,20 @@ public class RedisRegistry extends FailbackRegistry {
                                                 }
                                                 resetSkip();
                                             }
-                                            jedis.psubscribe(new NotifySub(jedisPool), service); // ×èÈû
+                                            jedis.psubscribe(new NotifySub(jedisPool), service); // ï¿½ï¿½ï¿½ï¿½
                                         } else {
                                             if (! first) {
                                                 first = false;
                                                 doNotify(jedis, service);
                                                 resetSkip();
                                             }
-                                            jedis.psubscribe(new NotifySub(jedisPool), service + Constants.PATH_SEPARATOR + Constants.ANY_VALUE); // ×èÈû
+                                            jedis.psubscribe(new NotifySub(jedisPool), service + Constants.PATH_SEPARATOR + Constants.ANY_VALUE); // ï¿½ï¿½ï¿½ï¿½
                                         }
                                         break;
                                     } finally {
                                         jedisPool.returnBrokenResource(jedis);
                                     }
-                                } catch (Throwable t) { // ÖØÊÔÁíÒ»Ì¨
+                                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ì¨
                                     logger.warn("Failed to subscribe service from redis registry. registry: " + entry.getKey() + ", cause: " + t.getMessage(), t);
                                 }
                             }

@@ -36,7 +36,9 @@ public abstract class QueryAction {
         }
         if(ignore)
             //saving the defaults from TransportClient search
+        {
             request.setIndicesOptions(IndicesOptions.fromOptions(true, false, true, false, IndicesOptions.strictExpandOpenAndForbidClosed()));
+        }
     }
 
 

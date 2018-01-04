@@ -79,11 +79,11 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * AggregationClientÓÃÓÚhbaseÖÐÊµÏÖ¼òµ¥¾ÛºÏ¼ÆËã,»ùÓÚ{@link Configuration}½¨Á¢
+	 * AggregationClientï¿½ï¿½ï¿½ï¿½hbaseï¿½ï¿½Êµï¿½Ö¼òµ¥¾ÛºÏ¼ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½{@link Configuration}ï¿½ï¿½ï¿½ï¿½
 	 */
 	private AggregationClient aggregationClient;
 	/**
-	 * hbase ÅäÖÃµÄÄÚ´æ½á¹¹±íÊ¾
+	 * hbase ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ú´ï¿½á¹¹ï¿½ï¿½Ê¾
 	 */
 	private Configuration cfg;
 
@@ -100,7 +100,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		cfg.set("hbase.zookeeper.quorum", zookeeperQuorum);
 		cfg.set("hbase.zookeeper.property.clientPort", "2181");
 		// cfg.set("hbase.client.connection.impl",
-		// HConnectionManager.HConnectionImplementation.class.getName());//Ä¬ÈÏ»ñÈ¡µÄÊµÏÖÀà,ÎÞÐèÅäÖÃ
+		// HConnectionManager.HConnectionImplementation.class.getName());//Ä¬ï¿½Ï»ï¿½È¡ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		//XXX no-block the spring container startup!!!
 		new Thread(new Runnable(){
 			@Override
@@ -113,7 +113,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 				}
 
 				/*
-				 * getHConnectionÊÇ¸ö×èÈû·½·¨,Ö»Òª·µ»ØÖµ·µ»Ø,¾Í´ú±í»·¾³ÒÑ¾­½¨Á¢Íê±Ï,ÎÞÐèÊ¹ÓÃ¿Í»§¶ËµÈ´ýÒ»¶¨µÄÊ±¼ä
+				 * getHConnectionï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Ö»Òªï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½,ï¿½Í´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¿Í»ï¿½ï¿½ËµÈ´ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 				 */
 				if (/*isAvaliable()*/getConnection() != null) {
 					dbLogger.warn("setup HBase success!!!!");
@@ -125,7 +125,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * getHConnectionÊÇ¸ö×èÈû·½·¨,Ö»Òª·µ»ØÖµ·µ»Ø,¾Í´ú±í»·¾³ÒÑ¾­½¨Á¢Íê±Ï,ÎÞÐèÊ¹ÓÃ¿Í»§¶ËµÈ´ýÒ»¶¨µÄÊ±¼ä
+	 * getHConnectionï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Ö»Òªï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½,ï¿½Í´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¿Í»ï¿½ï¿½ËµÈ´ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 */
 	private Connection getConnection() {
 		if(connection==null || connection.isClosed()){
@@ -163,12 +163,13 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {
-			if (hTable != null)
-				try {
-					hTable.close();
-				} catch (Exception e) {
-					dbLogger.warn(e, 30);
-				}
+			if (hTable != null) {
+                try {
+                    hTable.close();
+                } catch (Exception e) {
+                    dbLogger.warn(e, 30);
+                }
+            }
 		}
 	}
 
@@ -179,7 +180,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * ×Ô#Result½âÎöÊý¾Ýµ½Ò»ÐÐ(Ò»¸ö map ±âÆ½»¯¸÷ÐÐµÄÊý¾Ý×Ö¶Î)
+	 * ï¿½ï¿½#Resultï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½Ò»ï¿½ï¿½(Ò»ï¿½ï¿½ map ï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½)
 	 * 
 	 * @param row
 	 * @return
@@ -190,7 +191,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		}
 		Map<String, String> rowdata = new LinkedHashMap<String, String>();
 		NavigableMap<byte[], NavigableMap<byte[], byte[]>> map = row.getNoVersionMap();
-		// XXX ½ö½âÎö¹Ø×¢Ö¸¶¨ÁÐ×åµÄÊý¾Ý, gewara Ê¹ÓÃµÄÁÐ×åÎª DF
+		// XXX ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, gewara Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Îª DF
 		NavigableMap<byte[], byte[]> data = map.get(columnFamily);
 		for (Entry<byte[], byte[]> entry : data.entrySet()) {
 			rowdata.put(Bytes.toString(entry.getKey()), Bytes.toString(entry.getValue()));
@@ -237,10 +238,11 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 			this.action = action;
 			this.maxnum = maxnum;
 			if (scan.getCaching() <= 1) {// not set cache
-				if (maxnum <= 0)
-					scan.setCaching(CACHE_SIZE);
-				else
-					scan.setCaching(Math.min(CACHE_SIZE, maxnum));
+				if (maxnum <= 0) {
+                    scan.setCaching(CACHE_SIZE);
+                } else {
+                    scan.setCaching(Math.min(CACHE_SIZE, maxnum));
+                }
 			}
 		}
 
@@ -315,8 +317,9 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 
 	@Override
 	public void saveRow(final String tablename, final byte[] rowid, final Map<String, String> rowdata) {
-		if (rowdata.isEmpty())
-			return;
+		if (rowdata.isEmpty()) {
+            return;
+        }
 		execute(tablename, new TableCallback() {
 			@Override
 			public Object doWithTable(Table htable) throws Exception {
@@ -353,14 +356,14 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	@Override
 	public List<Row> getRowListByRange(String tableName, Map fb, Long starttime, Long endtime, RowFilter filter,
 			int maxnum) {
-		// TODO ´ý¶¨
+		// TODO ï¿½ï¿½ï¿½ï¿½
 		return null;
 	}
 
 	@Override
 	public List<Row> getRowListByIdRange(String tableName, Map fb, byte[] startRowId, byte[] endRowId, RowFilter filter,
 			int maxnum) {
-		// TODO ´ý¶¨
+		// TODO ï¿½ï¿½ï¿½ï¿½
 		return null;
 	}
 
@@ -375,7 +378,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		ScanBuilder scanBuilder = getScanBuilder(tableName, fb, starttime, endtime);
 		Scan scan = scanBuilder.buildScan();
 		if (StringUtils.isNotBlank(column) && scanBuilder.isEmptyCondition() && HbaseData.supportTimeRange(tableName)) {
-			scan.addColumn(columnFamily, column.getBytes());// not exists²»ÐèÒªÆäËûÊý¾Ý
+			scan.addColumn(columnFamily, column.getBytes());// not existsï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 
 		executeWithScan(tableName, scan, new RowCallback() {
@@ -393,7 +396,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 		ScanBuilder scanBuilder = getScanBuilder(tableName, fb, starttime, endtime);
 		Scan scan = scanBuilder.buildScan();
 		if (StringUtils.isNotBlank(column) && scanBuilder.isEmptyCondition() && HbaseData.supportTimeRange(tableName)) {
-			scan.addColumn(columnFamily, column.getBytes());// not exists²»ÐèÒªÆäËûÊý¾Ý
+			scan.addColumn(columnFamily, column.getBytes());// not existsï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		final AtomicInteger count = new AtomicInteger(0);
 		executeWithScan(tableName, scan, new RowCallback() {
@@ -407,7 +410,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 				}
 			}
 		}, 200000000);
-		// ×îºóÒ»´Î
+		// ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 		if (rowidList.size() > 0) {
 			removeRowList(tableName, rowidList);
 			count.addAndGet(rowidList.size());
@@ -505,12 +508,12 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * ÕâÊÇÒ»¸ö¹¦ÄÜ±È½ÏÈõÇÒÈÝÒ×³öÎÊÌâµÄ API, ¹Ê¶øÊ¹ÓÃÊ±,Çë¹Ø×¢×¢ÊÍ.
+	 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ü±È½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ API, ï¿½Ê¶ï¿½Ê¹ï¿½ï¿½Ê±,ï¿½ï¿½ï¿½×¢×¢ï¿½ï¿½.
 	 * 
-	 * for query: Ä¬ÈÏÊÇ×öÏàµÈ±È½Ï,Èç¹ûoperator´«ÈëÖµ,ÇÒÖµÎª'<>',Ôò×ö²»ÏàµÈ±È½Ï for
-	 * likeQuery:Ö»×öÏàµÈ±È½Ï,Óëoperator´«ÈëÖµÎÞ¹Ø
+	 * for query: Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±È½ï¿½,ï¿½ï¿½ï¿½operatorï¿½ï¿½ï¿½ï¿½Öµ,ï¿½ï¿½ÖµÎª'<>',ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±È½ï¿½ for
+	 * likeQuery:Ö»ï¿½ï¿½ï¿½ï¿½È±È½ï¿½,ï¿½ï¿½operatorï¿½ï¿½ï¿½ï¿½Öµï¿½Þ¹ï¿½
 	 * 
-	 * ¹ØÓÚRange,´¦ÀíÇø¼äµÄ²ßÂÔÊÇ'[...)',Ç°±Õºó¿ª
+	 * ï¿½ï¿½ï¿½ï¿½Range,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½'[...)',Ç°ï¿½Õºï¿½
 	 * 
 	 * @param tablename
 	 * @param query
@@ -540,7 +543,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * TODO ¿¼ÂÇ null ÖµµÄ´¦Àí
+	 * TODO ï¿½ï¿½ï¿½ï¿½ null Öµï¿½Ä´ï¿½ï¿½ï¿½
 	 * 
 	 * @param timestamp
 	 * @return
@@ -555,7 +558,7 @@ public class HBaseServiceImpl implements HBaseService, InitializingBean {
 	}
 
 	/**
-	 * TODO ¿¼ÂÇ null ÖµµÄ´¦Àí
+	 * TODO ï¿½ï¿½ï¿½ï¿½ null Öµï¿½Ä´ï¿½ï¿½ï¿½
 	 * 
 	 * @param timestamp
 	 * @return

@@ -54,49 +54,50 @@ public class MonitorFilter implements Filter {
         this.monitorFactory = monitorFactory;
     }
     
-    // µ÷ÓÃ¹ý³ÌÀ¹½Ø
+    // ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         if (invoker.getUrl().hasParameter(Constants.MONITOR_KEY)) {
-            RpcContext context = RpcContext.getContext(); // Ìá¹©·½±ØÐëÔÚinvoke()Ö®Ç°»ñÈ¡contextÐÅÏ¢
-            long start = System.currentTimeMillis(); // ¼ÇÂ¼ÆðÊ¼Ê±¼äÂ¾
-            getConcurrent(invoker, invocation).incrementAndGet(); // ²¢·¢¼ÆÊý
+            RpcContext context = RpcContext.getContext(); // ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½invoke()Ö®Ç°ï¿½ï¿½È¡contextï¿½ï¿½Ï¢
+            long start = System.currentTimeMillis(); // ï¿½ï¿½Â¼ï¿½ï¿½Ê¼Ê±ï¿½ï¿½Â¾
+            getConcurrent(invoker, invocation).incrementAndGet(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             try {
-                Result result = invoker.invoke(invocation); // ÈÃµ÷ÓÃÁ´ÍùÏÂÖ´ÐÐ
+                Result result = invoker.invoke(invocation); // ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½
                 collect(invoker, invocation, result, context, start, false);
                 return result;
             } catch (RpcException e) {
                 collect(invoker, invocation, null, context, start, true);
                 throw e;
             } finally {
-                getConcurrent(invoker, invocation).decrementAndGet(); // ²¢·¢¼ÆÊý
+                getConcurrent(invoker, invocation).decrementAndGet(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             }
         } else {
             return invoker.invoke(invocation);
         }
     }
     
-    // ÐÅÏ¢²É¼¯
+    // ï¿½ï¿½Ï¢ï¿½É¼ï¿½
     private void collect(Invoker<?> invoker, Invocation invocation, Result result, RpcContext context, long start, boolean error) {
         try {
-            // ---- ·þÎñÐÅÏ¢»ñÈ¡ ----
-            long elapsed = System.currentTimeMillis() - start; // ¼ÆËãµ÷ÓÃºÄÊ±
-            int concurrent = getConcurrent(invoker, invocation).get(); // µ±Ç°²¢·¢Êý
+            // ---- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½È¡ ----
+            long elapsed = System.currentTimeMillis() - start; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãºï¿½Ê±
+            int concurrent = getConcurrent(invoker, invocation).get(); // ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             String application = invoker.getUrl().getParameter(Constants.APPLICATION_KEY);
-            String service = invoker.getInterface().getName(); // »ñÈ¡·þÎñÃû³Æ
-            String method = RpcUtils.getMethodName(invocation); // »ñÈ¡·½·¨Ãû
+            String service = invoker.getInterface().getName(); // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            String method = RpcUtils.getMethodName(invocation); // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             URL url = invoker.getUrl().getUrlParameter(Constants.MONITOR_KEY);
             Monitor monitor = monitorFactory.getMonitor(url);
             int localPort;
             String remoteKey;
             String remoteValue;
             if (Constants.CONSUMER_SIDE.equals(invoker.getUrl().getParameter(Constants.SIDE_KEY))) {
-                // ---- ·þÎñÏû·Ñ·½¼à¿Ø ----
-                context = RpcContext.getContext(); // Ïû·Ñ·½±ØÐëÔÚinvoke()Ö®ºó»ñÈ¡contextÐÅÏ¢
+                // ---- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ ----
+                context = RpcContext.getContext(); // ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½invoke()Ö®ï¿½ï¿½ï¿½È¡contextï¿½ï¿½Ï¢
                 localPort = 0;
                 remoteKey = MonitorService.PROVIDER;
                 remoteValue = invoker.getUrl().getAddress();
             } else {
-                // ---- ·þÎñÌá¹©·½¼à¿Ø ----
+                // ---- ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½ ----
                 localPort = invoker.getUrl().getPort();
                 remoteKey = MonitorService.CONSUMER;
                 remoteValue = context.getRemoteHost();
@@ -125,7 +126,7 @@ public class MonitorFilter implements Filter {
         }
     }
     
-    // »ñÈ¡²¢·¢¼ÆÊýÆ÷
+    // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private AtomicInteger getConcurrent(Invoker<?> invoker, Invocation invocation) {
         String key = invoker.getInterface().getName() + "." + invocation.getMethodName();
         AtomicInteger concurrent = concurrents.get(key);

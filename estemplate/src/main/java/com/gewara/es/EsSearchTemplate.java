@@ -50,7 +50,7 @@ public class EsSearchTemplate implements EsSearchOperations {
 	private SearchDao searchDao;
 
 	/**
-	 * ³õÊ¼»¯
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½
 	 * 
 	 * @param Cluster
 	 * @param hosts
@@ -96,8 +96,7 @@ public class EsSearchTemplate implements EsSearchOperations {
 			for (Field field : clazz.getDeclaredFields()) {
 				field.setAccessible(true);
 				if (row.get(field.getName().toUpperCase()) == null
-						|| row.get(field.getName().toUpperCase())
-								.equals("null")) {
+						|| "null".equals(row.get(field.getName().toUpperCase()))) {
 					continue;
 				} else if (String.class.equals(field.getType())) {
 					field.set(result, row.get(field.getName().toUpperCase()));
@@ -142,7 +141,7 @@ public class EsSearchTemplate implements EsSearchOperations {
 		for (Field field : clazz.getDeclaredFields()) {
 			field.setAccessible(true);
 			if (row.get(field.getName().toUpperCase()) == null
-					|| row.get(field.getName().toUpperCase()).equals("null")) {
+					|| "null".equals(row.get(field.getName().toUpperCase()))) {
 				continue;
 			} else if (String.class.equals(field.getType())) {
 				field.set(result, row.get(field.getName().toUpperCase()));

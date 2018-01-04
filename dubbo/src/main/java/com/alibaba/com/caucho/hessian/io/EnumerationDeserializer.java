@@ -59,12 +59,14 @@ public class EnumerationDeserializer extends AbstractListDeserializer {
 
   public static EnumerationDeserializer create()
   {
-    if (_deserializer == null)
-      _deserializer = new EnumerationDeserializer();
+    if (_deserializer == null) {
+        _deserializer = new EnumerationDeserializer();
+    }
 
     return _deserializer;
   }
   
+  @Override
   public Object readList(AbstractHessianInput in, int length)
     throws IOException
   {
@@ -72,8 +74,9 @@ public class EnumerationDeserializer extends AbstractListDeserializer {
 
     in.addRef(list);
 
-    while (! in.isEnd())
-      list.add(in.readObject());
+    while (! in.isEnd()) {
+        list.add(in.readObject());
+    }
 
     in.readEnd();
 

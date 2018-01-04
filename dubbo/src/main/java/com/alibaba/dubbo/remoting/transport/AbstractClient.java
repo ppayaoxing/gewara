@@ -68,10 +68,10 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
     
     private final AtomicInteger reconnect_count = new AtomicInteger(0);
     
-    //ÖØÁ¬µÄerrorÈÕÖ¾ÊÇ·ñÒÑ¾­±»µ÷ÓÃ¹ý.
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½errorï¿½ï¿½Ö¾ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¹ï¿½.
     private final AtomicBoolean reconnect_error_log_flag = new AtomicBoolean(false) ;
     
-    //ÖØÁ¬warningµÄ¼ä¸ô.(waring¶àÉÙ´ÎÖ®ºó£¬warningÒ»´Î) //for test
+    //ï¿½ï¿½ï¿½ï¿½warningï¿½Ä¼ï¿½ï¿½.(waringï¿½ï¿½ï¿½Ù´ï¿½Ö®ï¿½ï¿½warningÒ»ï¿½ï¿½) //for test
     private final int reconnect_warning_period ;
     
     //the last successed connected time
@@ -87,7 +87,7 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
         
         shutdown_timeout = url.getParameter(Constants.SHUTDOWN_TIMEOUT_KEY, Constants.DEFAULT_SHUTDOWN_TIMEOUT);
         
-        //Ä¬ÈÏÖØÁ¬¼ä¸ô2s£¬1800±íÊ¾1Ð¡Ê±warningÒ»´Î.
+        //Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2sï¿½ï¿½1800ï¿½ï¿½Ê¾1Ð¡Ê±warningÒ»ï¿½ï¿½.
         reconnect_warning_period = url.getParameter("reconnect.waring.period", 1800);
         
         try {
@@ -139,6 +139,7 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
         int reconnect = getReconnectParam(getUrl());
         if(reconnect > 0 && (reconnectExecutorFuture == null || reconnectExecutorFuture.isCancelled())){
             Runnable connectStatusCheckCommand =  new Runnable() {
+                @Override
                 public void run() {
                     try {
                         if (! isConnected()) {
@@ -209,61 +210,76 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
         return new InetSocketAddress(NetUtils.filterLocalHost(getUrl().getHost()), getUrl().getPort());
     }
 
+    @Override
     public InetSocketAddress getRemoteAddress() {
         Channel channel = getChannel();
-        if (channel == null)
+        if (channel == null) {
             return getUrl().toInetSocketAddress();
+        }
         return channel.getRemoteAddress();
     }
 
+    @Override
     public InetSocketAddress getLocalAddress() {
         Channel channel = getChannel();
-        if (channel == null)
+        if (channel == null) {
             return InetSocketAddress.createUnresolved(NetUtils.getLocalHost(), 0);
+        }
         return channel.getLocalAddress();
     }
 
+    @Override
     public boolean isConnected() {
         Channel channel = getChannel();
-        if (channel == null)
+        if (channel == null) {
             return false;
+        }
         return channel.isConnected();
     }
 
+    @Override
     public Object getAttribute(String key) {
         Channel channel = getChannel();
-        if (channel == null)
+        if (channel == null) {
             return null;
+        }
         return channel.getAttribute(key);
     }
 
+    @Override
     public void setAttribute(String key, Object value) {
         Channel channel = getChannel();
-        if (channel == null)
+        if (channel == null) {
             return;
+        }
         channel.setAttribute(key, value);
     }
 
+    @Override
     public void removeAttribute(String key) {
         Channel channel = getChannel();
-        if (channel == null)
+        if (channel == null) {
             return;
+        }
         channel.removeAttribute(key);
     }
 
+    @Override
     public boolean hasAttribute(String key) {
         Channel channel = getChannel();
-        if (channel == null)
+        if (channel == null) {
             return false;
+        }
         return channel.hasAttribute(key);
     }
     
+    @Override
     public void send(Object message, boolean sent) throws RemotingException {
         if (send_reconnect && !isConnected()){
             connect();
         }
         Channel channel = getChannel();
-        //TODO getChannel·µ»ØµÄ×´Ì¬ÊÇ·ñ°üº¬nullÐèÒª¸Ä½ø
+        //TODO getChannelï¿½ï¿½ï¿½Øµï¿½×´Ì¬ï¿½Ç·ï¿½ï¿½ï¿½ï¿½nullï¿½ï¿½Òªï¿½Ä½ï¿½
         if (channel == null || ! channel.isConnected()) {
           throw new RemotingException(this, "message can not send, because channel is closed . url:" + getUrl());
         }
@@ -324,11 +340,13 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
         }
     }
     
+    @Override
     public void reconnect() throws RemotingException {
         disconnect();
         connect();
     }
 
+    @Override
     public void close() {
     	try {
     		if (executor != null) {
@@ -354,6 +372,7 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
         }
     }
 
+    @Override
     public void close(int timeout) {
         ExecutorUtil.gracefulShutdown(executor ,timeout);
         close();

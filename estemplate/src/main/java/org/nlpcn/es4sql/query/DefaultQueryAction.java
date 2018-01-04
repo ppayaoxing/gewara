@@ -65,7 +65,9 @@ public class
         if(scrollHint!=null) {
             int scrollSize = (Integer) scrollHint.getParams()[0];
             int timeoutInMilli = (Integer) scrollHint.getParams()[1];
-            if(!existsOrderBy) request.setSearchType(SearchType.SCAN);
+            if(!existsOrderBy) {
+                request.setSearchType(SearchType.SCAN);
+            }
             request.setScroll(new TimeValue(timeoutInMilli))
                     .setSize(scrollSize);
         }
@@ -108,7 +110,7 @@ public class
 
     private void handleMethodField(MethodField field) throws SqlParseException {
         MethodField method = (MethodField) field;
-        if(method.getName().toLowerCase().equals("script")){
+        if("script".equals(method.getName().toLowerCase())){
             handleScriptField(method);
         }
     }

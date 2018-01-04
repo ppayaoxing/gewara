@@ -11,29 +11,29 @@ import com.gewara.util.BeanUtil;
 
 public class PartnerCloseRuleVo extends BaseVo{
 	private static final long serialVersionUID = 471572038954159817L;
-	public static final String RULETYPE_OPI = "opi";			//³¡´Î
+	public static final String RULETYPE_OPI = "opi";			//ï¿½ï¿½ï¿½ï¿½
 	public static final String RULETYPE_MOVIE = "movie";		//Ó°Ôº
 	public static final String RULETYPE_CINEMA = "cinema";	//Ó°Æ¬
-	public static final String MATCH_INCLUDE = "include";		//°üº¬
-	public static final String MATCH_EXCLUDE = "exclude";		//ÅÅ³ý
+	public static final String MATCH_INCLUDE = "include";		//ï¿½ï¿½ï¿½ï¿½
+	public static final String MATCH_EXCLUDE = "exclude";		//ï¿½Å³ï¿½
 	private Long id;
-	private String ruletype;			//¹æÔòÀàÐÍ£ºÖ»ÏÞÓ°Æ¬£¬Ö»ÏÞÓ°Ôº£¬ÏÞÖÆÅÅÆ¬
-	private String partnerids;			//ÉÌ¼ÒID			
-	private String pmatch;				//partner match model °üº¬»¹ÊÇÅÅ³ýÉÌ¼Ò 
-	private Timestamp opentime1;		//³¡´ÎÊ±¼ä1
-	private Timestamp opentime2;		//³¡´ÎÊ±¼ä2
-	private String time1;				//³¡´ÎÊ±¶Î1
-	private String time2;				//³¡´ÎÊ±¶Î2
-	private String movieids;			//Ó°Æ¬ID£º²»¿ª·Å
-	private String cinemaids;			//Ó°ÔºID£º²»¿ª·Å
-	private String cmatch;				//cinema match model °üº¬»¹ÊÇÅÅ³ýÓ°Ôº
-	private String mpids;				//³¡´ÎID£º²»¿ª·Å³¡´Î
-	private Integer price1;				//¼Û¸ñ·¶Î§1£ºÐ¡ÓÚ´Ë¼Û¸ñµÄ²»¿ª·Å
-	private Integer price2;				//¼Û¸ñ·¶Î§2£º´óÓÚ´Ë¼Û¸ñµÄ²»¿ª·Å
-	private Integer pricegap;			//ÉÙÓÚpricegapµÄ²»¿ª·Å
-	private String weektype;			//ÖÜ¼¸µÄ²»¿ª·Å
-	private String description;			//ÆÁ±ÎÃèÊö
-	private Timestamp updatetime;		//¸üÐÂÊ±¼ä
+	private String ruletype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Ö»ï¿½ï¿½Ó°Æ¬ï¿½ï¿½Ö»ï¿½ï¿½Ó°Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
+	private String partnerids;			//ï¿½Ì¼ï¿½ID			
+	private String pmatch;				//partner match model ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½Ì¼ï¿½ 
+	private Timestamp opentime1;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½1
+	private Timestamp opentime2;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½2
+	private String time1;				//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½1
+	private String time2;				//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½2
+	private String movieids;			//Ó°Æ¬IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String cinemaids;			//Ó°ÔºIDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String cmatch;				//cinema match model ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½Ó°Ôº
+	private String mpids;				//ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½
+	private Integer price1;				//ï¿½Û¸ï¿½Î§1ï¿½ï¿½Ð¡ï¿½Ú´Ë¼Û¸ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer price2;				//ï¿½Û¸ï¿½Î§2ï¿½ï¿½ï¿½ï¿½ï¿½Ú´Ë¼Û¸ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer pricegap;			//ï¿½ï¿½ï¿½ï¿½pricegapï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String weektype;			//ï¿½Ü¼ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String description;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Timestamp updatetime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	@Override
 	public Serializable realId() {
 		return id;
@@ -155,13 +155,17 @@ public class PartnerCloseRuleVo extends BaseVo{
 		return StringUtils.equals(pmatch, MATCH_EXCLUDE)?!matchPartner:matchPartner;
 	}
 	public boolean matchCinema(Long cinemaid) {
-		if(StringUtils.isBlank(cinemaids)) return true;
+		if(StringUtils.isBlank(cinemaids)) {
+            return true;
+        }
 		List<Long> cinemaidList = BeanUtil.getIdList(cinemaids, ",");
 		boolean match = cinemaidList.contains(cinemaid);
 		return StringUtils.equals(cmatch, MATCH_EXCLUDE)?!match:match;
 	}
 	public boolean matchMovie(Long movieid) {
-		if(StringUtils.isBlank(movieids)) return true;
+		if(StringUtils.isBlank(movieids)) {
+            return true;
+        }
 		List<Long> movieidList = BeanUtil.getIdList(movieids, ",");
 		return movieidList.contains(movieid);
 	}

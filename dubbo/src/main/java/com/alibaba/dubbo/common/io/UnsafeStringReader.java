@@ -41,8 +41,9 @@ public class UnsafeStringReader extends Reader
 	public int read() throws IOException
 	{
 		ensureOpen();
-		if( mPosition >= mLimit )
-			return -1;
+		if( mPosition >= mLimit ) {
+            return -1;
+        }
 
 		return mString.charAt(mPosition++);
 	}
@@ -52,14 +53,17 @@ public class UnsafeStringReader extends Reader
 	{
 		ensureOpen();
 		if( (off < 0) || (off > cs.length) || (len < 0) ||
-				((off + len) > cs.length) || ((off + len) < 0) )
-			throw new IndexOutOfBoundsException();
+				((off + len) > cs.length) || ((off + len) < 0) ) {
+            throw new IndexOutOfBoundsException();
+        }
 
-		if( len == 0 )
-			return 0;
+		if( len == 0 ) {
+            return 0;
+        }
 
-		if( mPosition >= mLimit )
-			return -1;
+		if( mPosition >= mLimit ) {
+            return -1;
+        }
 
 		int n = Math.min(mLimit - mPosition, len);
 		mString.getChars(mPosition, mPosition + n, cs, off);
@@ -67,11 +71,13 @@ public class UnsafeStringReader extends Reader
 		return n;
 	}
 
-	public long skip(long ns) throws IOException
+	@Override
+    public long skip(long ns) throws IOException
 	{
 		ensureOpen();
-		if( mPosition >= mLimit )
-			return 0;
+		if( mPosition >= mLimit ) {
+            return 0;
+        }
 
 		long n = Math.min(mLimit - mPosition, ns);
 		n = Math.max(-mPosition, n);
@@ -79,7 +85,8 @@ public class UnsafeStringReader extends Reader
 		return n;
 	}
 
-	public boolean ready() throws IOException
+	@Override
+    public boolean ready() throws IOException
 	{
 		ensureOpen();
 		return true;
@@ -91,16 +98,19 @@ public class UnsafeStringReader extends Reader
 		return true;
 	}
 
-	public void mark(int readAheadLimit) throws IOException
+	@Override
+    public void mark(int readAheadLimit) throws IOException
 	{
-		if( readAheadLimit < 0 )
-			throw new IllegalArgumentException("Read-ahead limit < 0");
+		if( readAheadLimit < 0 ) {
+            throw new IllegalArgumentException("Read-ahead limit < 0");
+        }
 
 		ensureOpen();
 		mMark = mPosition;
 	}
 
-	public void reset() throws IOException
+	@Override
+    public void reset() throws IOException
 	{
 		ensureOpen();
 		mPosition = mMark;
@@ -114,7 +124,8 @@ public class UnsafeStringReader extends Reader
 
     private void ensureOpen() throws IOException
     {
-    	if( mString == null )
-    		throw new IOException("Stream closed");
+    	if( mString == null ) {
+            throw new IOException("Stream closed");
+        }
 	}
 }

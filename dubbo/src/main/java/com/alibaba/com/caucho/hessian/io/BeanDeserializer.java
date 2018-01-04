@@ -91,11 +91,13 @@ public class BeanDeserializer extends AbstractMapDeserializer {
     }
   }
 
+  @Override
   public Class getType()
   {
     return _type;
   }
     
+  @Override
   public Object readMap(AbstractHessianInput in)
     throws IOException
   {
@@ -135,8 +137,9 @@ public class BeanDeserializer extends AbstractMapDeserializer {
 
       Object resolve = resolve(obj);
 
-      if (obj != resolve)
-	in.setRef(ref, resolve);
+      if (obj != resolve) {
+          in.setRef(ref, resolve);
+      }
 
       return resolve;
     } catch (IOException e) {
@@ -150,8 +153,9 @@ public class BeanDeserializer extends AbstractMapDeserializer {
   {
     // if there's a readResolve method, call it
     try {
-      if (_readResolve != null)
-        return _readResolve.invoke(obj, new Object[0]);
+      if (_readResolve != null) {
+          return _readResolve.invoke(obj, new Object[0]);
+      }
     } catch (Exception e) {
     }
 
@@ -175,9 +179,10 @@ public class BeanDeserializer extends AbstractMapDeserializer {
       for (int i = 0; i < methods.length; i++) {
 	Method method = methods[i];
 
-	if (method.getName().equals("readResolve") &&
-	    method.getParameterTypes().length == 0)
-	  return method;
+	if ("readResolve".equals(method.getName()) &&
+	    method.getParameterTypes().length == 0) {
+        return method;
+    }
       }
     }
 
@@ -197,23 +202,28 @@ public class BeanDeserializer extends AbstractMapDeserializer {
       for (int i = 0; i < methods.length; i++) {
 	Method method = methods[i];
 
-	if (Modifier.isStatic(method.getModifiers()))
-	  continue;
+	if (Modifier.isStatic(method.getModifiers())) {
+        continue;
+    }
 
 	String name = method.getName();
 
-	if (! name.startsWith("set"))
-	  continue;
+	if (! name.startsWith("set")) {
+        continue;
+    }
 
 	Class []paramTypes = method.getParameterTypes();
-	if (paramTypes.length != 1)
-	  continue;
+	if (paramTypes.length != 1) {
+        continue;
+    }
 
-	if (! method.getReturnType().equals(void.class))
-	  continue;
+	if (! method.getReturnType().equals(void.class)) {
+        continue;
+    }
 
-	if (findGetter(methods, name, paramTypes[0]) == null)
-	  continue;
+	if (findGetter(methods, name, paramTypes[0]) == null) {
+        continue;
+    }
 
 	// XXX: could parameterize the handler to only deal with public
 	try {
@@ -228,10 +238,11 @@ public class BeanDeserializer extends AbstractMapDeserializer {
 	for (; j < name.length() && Character.isUpperCase(name.charAt(j)); j++) {
 	}
 
-	if (j == 1)
-	  name = name.substring(0, j).toLowerCase() + name.substring(j);
-	else if (j > 1)
-	  name = name.substring(0, j - 1).toLowerCase() + name.substring(j - 1);
+	if (j == 1) {
+        name = name.substring(0, j).toLowerCase() + name.substring(j);
+    } else if (j > 1) {
+        name = name.substring(0, j - 1).toLowerCase() + name.substring(j - 1);
+    }
 
 
 	methodMap.put(name, method);
@@ -251,16 +262,19 @@ public class BeanDeserializer extends AbstractMapDeserializer {
     for (int i = 0; i < methods.length; i++) {
       Method method = methods[i];
 
-      if (! method.getName().equals(getterName))
-	continue;
+      if (! method.getName().equals(getterName)) {
+          continue;
+      }
       
-      if (! method.getReturnType().equals(arg))
-	continue;
+      if (! method.getReturnType().equals(arg)) {
+          continue;
+      }
 
       Class []params = method.getParameterTypes();
 
-      if (params.length == 0)
-	return method;
+      if (params.length == 0) {
+          return method;
+      }
     }
 
     return null;
@@ -271,25 +285,26 @@ public class BeanDeserializer extends AbstractMapDeserializer {
    */
   protected static Object getParamArg(Class cl)
   {
-    if (! cl.isPrimitive())
-      return null;
-    else if (boolean.class.equals(cl))
-      return Boolean.FALSE;
-    else if (byte.class.equals(cl))
-      return Byte.valueOf((byte) 0);
-    else if (short.class.equals(cl))
-      return Short.valueOf((short) 0);
-    else if (char.class.equals(cl))
-      return Character.valueOf((char) 0);
-    else if (int.class.equals(cl))
-      return Integer.valueOf(0);
-    else if (long.class.equals(cl))
-      return Long.valueOf(0);
-    else if (float.class.equals(cl))
-      return Double.valueOf(0);
-    else if (double.class.equals(cl))
-      return Double.valueOf(0);
-    else
-      throw new UnsupportedOperationException();
+    if (! cl.isPrimitive()) {
+        return null;
+    } else if (boolean.class.equals(cl)) {
+        return Boolean.FALSE;
+    } else if (byte.class.equals(cl)) {
+        return Byte.valueOf((byte) 0);
+    } else if (short.class.equals(cl)) {
+        return Short.valueOf((short) 0);
+    } else if (char.class.equals(cl)) {
+        return Character.valueOf((char) 0);
+    } else if (int.class.equals(cl)) {
+        return Integer.valueOf(0);
+    } else if (long.class.equals(cl)) {
+        return Long.valueOf(0);
+    } else if (float.class.equals(cl)) {
+        return Double.valueOf(0);
+    } else if (double.class.equals(cl)) {
+        return Double.valueOf(0);
+    } else {
+        throw new UnsupportedOperationException();
+    }
   }
 }

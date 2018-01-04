@@ -40,14 +40,18 @@ public class QueryActionElasticExecutor {
     }
 
     public static Object executeAnyAction(Client client , QueryAction queryAction) throws SqlParseException, IOException {
-        if(queryAction instanceof DefaultQueryAction)
+        if(queryAction instanceof DefaultQueryAction) {
             return executeSearchAction((DefaultQueryAction) queryAction);
-        if(queryAction instanceof AggregationQueryAction)
+        }
+        if(queryAction instanceof AggregationQueryAction) {
             return executeAggregationAction((AggregationQueryAction) queryAction);
-        if(queryAction instanceof ESJoinQueryAction)
+        }
+        if(queryAction instanceof ESJoinQueryAction) {
             return executeJoinSearchAction(client, (ESJoinQueryAction) queryAction);
-        if(queryAction instanceof DeleteQueryAction )
+        }
+        if(queryAction instanceof DeleteQueryAction ) {
             return executeDeleteAction((DeleteQueryAction) queryAction);
+        }
         return null;
     }
 

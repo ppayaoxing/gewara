@@ -12,14 +12,15 @@ public class HintFactory {
         if(hintAsString.startsWith("! USE_NESTED_LOOPS") || hintAsString.startsWith("! USE_NL")){
             return new Hint(HintType.USE_NESTED_LOOPS,null);
         }
-        if(hintAsString.equals("! HASH_WITH_TERMS_FILTER"))
-            return new Hint(HintType.HASH_WITH_TERMS_FILTER,null);
+        if("! HASH_WITH_TERMS_FILTER".equals(hintAsString)) {
+            return new Hint(HintType.HASH_WITH_TERMS_FILTER, null);
+        }
         if(hintAsString.startsWith("! JOIN_TABLES_LIMIT")){
             String[] numbers =  getParamsFromHint(hintAsString, "! JOIN_TABLES_LIMIT");
             //todo: check if numbers etc..
             List<Object> params = new ArrayList<>();
             for (String number : numbers){
-                if(number.equals("null") || number.equals("infinity")){
+                if("null".equals(number) || "infinity".equals(number)){
                     params.add(null);
                 }
                 else {
@@ -63,7 +64,9 @@ public class HintFactory {
 
 
     private static String[] getParamsFromHint(String hint, String prefix) {
-        if(!hint.contains("(")) return null;
+        if(!hint.contains("(")) {
+            return null;
+        }
         String onlyParams = hint.replace(prefix, "").replaceAll("\\s*\\(\\s*","").replaceAll("\\s*\\,\\s*", ",").replaceAll("\\s*\\)\\s*", "");
         return onlyParams.split(",");
     }

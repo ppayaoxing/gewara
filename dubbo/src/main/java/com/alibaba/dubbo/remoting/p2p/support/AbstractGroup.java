@@ -38,7 +38,7 @@ import com.alibaba.dubbo.remoting.transport.ChannelHandlerDispatcher;
  */
 public abstract class AbstractGroup implements Group {
 
-    // ÈÕÖ¾Êä³ö
+    // ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½
     protected static final Logger logger = LoggerFactory.getLogger(AbstractGroup.class);
     
     protected final URL url;
@@ -56,10 +56,12 @@ public abstract class AbstractGroup implements Group {
         this.url = url;
     }
     
+    @Override
     public URL getUrl() {
         return url;
     }
 
+    @Override
     public void close() {
         for (URL url : new ArrayList<URL>(servers.keySet())) {
             try {
@@ -77,9 +79,10 @@ public abstract class AbstractGroup implements Group {
         }
     }
     
+    @Override
     public Peer join(URL url, ChannelHandler handler) throws RemotingException {
         Server server = servers.get(url);
-        if (server == null) { // TODO ÓÐ²¢·¢¼äÏ¶
+        if (server == null) { // TODO ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶
             server = Transporters.bind(url, handler);
             servers.put(url, server);
             dispatcher.addChannelHandler(handler);
@@ -87,6 +90,7 @@ public abstract class AbstractGroup implements Group {
         return new ServerPeer(server, clients, this);
     }
 
+    @Override
     public void leave(URL url) throws RemotingException {
         Server server = servers.remove(url);
         if (server != null) {
@@ -99,7 +103,7 @@ public abstract class AbstractGroup implements Group {
             return null;
         }
         Client client = clients.get(url);
-        if (client == null) { // TODO ÓÐ²¢·¢¼äÏ¶
+        if (client == null) { // TODO ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶
             client = Transporters.connect(url, dispatcher);
             clients.put(url, client);
         }

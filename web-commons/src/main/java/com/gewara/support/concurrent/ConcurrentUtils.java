@@ -43,7 +43,7 @@ public class ConcurrentUtils {
 	}
 
 	/**
-	 * ÎÞ·¨»ñµÃËøÊ±Ö±½ÓºöÂÔ
+	 * ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Ö±ï¿½Óºï¿½ï¿½ï¿½
 	 * @param lockKey
 	 * @param lc
 	 */
@@ -53,7 +53,7 @@ public class ConcurrentUtils {
 	}
 
 	/**
-	 * Ê¹ÓÃ±¾µØLock
+	 * Ê¹ï¿½Ã±ï¿½ï¿½ï¿½Lock
 	 * @param lockKey
 	 * @param lc
 	 */
@@ -63,7 +63,7 @@ public class ConcurrentUtils {
 	}
 
 	/**
-	 * 60 min ³¬Ê±
+	 * 60 min ï¿½ï¿½Ê±
 	 * @param lc
 	 * @param lock
 	 * @return
@@ -73,7 +73,7 @@ public class ConcurrentUtils {
 	}
 	/**
 	 * @param lc
-	 * @param waitSeconds ³¬Ê±Ê±¼ä
+	 * @param waitSeconds ï¿½ï¿½Ê±Ê±ï¿½ï¿½
 	 * @param lock
 	 * @return
 	 */
@@ -98,7 +98,9 @@ public class ConcurrentUtils {
 				dbLogger.warn("", e);
 			}
 		}
-		if(locked) return ErrorCode.getSuccessReturn(retval);
+		if(locked) {
+            return ErrorCode.getSuccessReturn(retval);
+        }
 		return ErrorCode.getFailure("lockFailure, locked:" + locked);
 	}
 	
@@ -123,7 +125,9 @@ public class ConcurrentUtils {
 				dbLogger.warn("", e);
 			}
 		}
-		if(locked) return ErrorCode.getSuccessReturn(retval);
+		if(locked) {
+            return ErrorCode.getSuccessReturn(retval);
+        }
 		return ErrorCode.getFailure("lockFailure");
 	}
 

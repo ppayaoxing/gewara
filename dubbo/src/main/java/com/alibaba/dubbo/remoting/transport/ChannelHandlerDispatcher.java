@@ -62,6 +62,7 @@ public class ChannelHandlerDispatcher implements ChannelHandler {
         return this;
     }
 
+    @Override
     public void connected(Channel channel) {
         for (ChannelHandler listener : channelHandlers) {
             try {
@@ -72,6 +73,7 @@ public class ChannelHandlerDispatcher implements ChannelHandler {
         }
     }
 
+    @Override
     public void disconnected(Channel channel) {
         for (ChannelHandler listener : channelHandlers) {
             try {
@@ -82,6 +84,7 @@ public class ChannelHandlerDispatcher implements ChannelHandler {
         }
     }
 
+    @Override
     public void sent(Channel channel, Object message) {
         for (ChannelHandler listener : channelHandlers) {
             try {
@@ -92,6 +95,7 @@ public class ChannelHandlerDispatcher implements ChannelHandler {
         }
     }
 
+    @Override
     public void received(Channel channel, Object message) {
         for (ChannelHandler listener : channelHandlers) {
             try {
@@ -102,6 +106,7 @@ public class ChannelHandlerDispatcher implements ChannelHandler {
         }
     }
 
+    @Override
     public void caught(Channel channel, Throwable exception) {
         for (ChannelHandler listener : channelHandlers) {
             try {

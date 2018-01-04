@@ -17,11 +17,11 @@ public class OrderParamsVo implements Serializable {
 	private String paymethod;
 	private String category;
 	private String citycode;
-	private Long placeid;				//³¡¹ÝID
-	private Long itemid;				//ÏîÄ¿ID
-	private Long relatedid;				//³¡´ÎID
+	private Long placeid;				//ï¿½ï¿½ï¿½ï¿½ID
+	private Long itemid;				//ï¿½ï¿½Ä¿ID
+	private Long relatedid;				//ï¿½ï¿½ï¿½ï¿½ID
 	private String express;
-	private String expressstatus;		//¿ìµÝ×´Ì¬
+	private String expressstatus;		//ï¿½ï¿½ï¿½×´Ì¬
 	private String sourcetype;
 	private Long partnerid;
 	
@@ -75,7 +75,9 @@ public class OrderParamsVo implements Serializable {
 		this.ordertype = ordertype;
 	}
 	public Integer getPageNo() {
-		if(pageNo == null || pageNo < 0) pageNo = 0;
+		if(pageNo == null || pageNo < 0) {
+            pageNo = 0;
+        }
 		return pageNo;
 	}
 	public void setPageNo(Integer pageNo) {
@@ -103,7 +105,9 @@ public class OrderParamsVo implements Serializable {
 	}
 
 	public Boolean getAsc() {
-		if(asc == null) asc = false;
+		if(asc == null) {
+            asc = false;
+        }
 		return asc;
 	}
 

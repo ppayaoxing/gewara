@@ -56,16 +56,18 @@ import java.util.Date;
  */
 public class SqlDateSerializer extends AbstractSerializer
 {
+  @Override
   public void writeObject(Object obj, AbstractHessianOutput out)
     throws IOException
   {
-    if (obj == null)
-      out.writeNull();
-    else {
+    if (obj == null) {
+        out.writeNull();
+    } else {
       Class cl = obj.getClass();
 
-      if (out.addRef(obj))
-	return;
+      if (out.addRef(obj)) {
+          return;
+      }
       
       int ref = out.writeObjectBegin(cl.getName());
 

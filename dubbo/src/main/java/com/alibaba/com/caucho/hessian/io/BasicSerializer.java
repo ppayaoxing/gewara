@@ -88,6 +88,7 @@ public class BasicSerializer extends AbstractSerializer {
     this.code = code;
   }
   
+  @Override
   public void writeObject(Object obj, AbstractHessianOutput out)
     throws IOException
   {
@@ -126,16 +127,19 @@ public class BasicSerializer extends AbstractSerializer {
       
     case BOOLEAN_ARRAY:
     {
-      if (out.addRef(obj))
-        return;
+      if (out.addRef(obj)) {
+          return;
+      }
       
       boolean []data = (boolean []) obj;
       boolean hasEnd = out.writeListBegin(data.length, "[boolean");
-      for (int i = 0; i < data.length; i++)
-        out.writeBoolean(data[i]);
+      for (int i = 0; i < data.length; i++) {
+          out.writeBoolean(data[i]);
+      }
 
-      if (hasEnd)
-	out.writeListEnd();
+      if (hasEnd) {
+          out.writeListEnd();
+      }
       
       break;
     }
@@ -149,92 +153,108 @@ public class BasicSerializer extends AbstractSerializer {
 
     case SHORT_ARRAY:
     {
-      if (out.addRef(obj))
-        return;
+      if (out.addRef(obj)) {
+          return;
+      }
       
       short []data = (short []) obj;
       boolean hasEnd = out.writeListBegin(data.length, "[short");
       
-      for (int i = 0; i < data.length; i++)
-        out.writeInt(data[i]);
+      for (int i = 0; i < data.length; i++) {
+          out.writeInt(data[i]);
+      }
 
-      if (hasEnd)
-	out.writeListEnd();
+      if (hasEnd) {
+          out.writeListEnd();
+      }
       break;
     }
 
     case INTEGER_ARRAY:
     {
-      if (out.addRef(obj))
-        return;
+      if (out.addRef(obj)) {
+          return;
+      }
       
       int []data = (int []) obj;
       
       boolean hasEnd = out.writeListBegin(data.length, "[int");
       
-      for (int i = 0; i < data.length; i++)
-        out.writeInt(data[i]);
+      for (int i = 0; i < data.length; i++) {
+          out.writeInt(data[i]);
+      }
 
-      if (hasEnd)
-	out.writeListEnd();
+      if (hasEnd) {
+          out.writeListEnd();
+      }
       
       break;
     }
 
     case LONG_ARRAY:
     {
-      if (out.addRef(obj))
-        return;
+      if (out.addRef(obj)) {
+          return;
+      }
       
       long []data = (long []) obj;
       
       boolean hasEnd = out.writeListBegin(data.length, "[long");
       
-      for (int i = 0; i < data.length; i++)
-        out.writeLong(data[i]);
+      for (int i = 0; i < data.length; i++) {
+          out.writeLong(data[i]);
+      }
 
-      if (hasEnd)
-	out.writeListEnd();
+      if (hasEnd) {
+          out.writeListEnd();
+      }
       break;
     }
 
     case FLOAT_ARRAY:
     {
-      if (out.addRef(obj))
-        return;
+      if (out.addRef(obj)) {
+          return;
+      }
       
       float []data = (float []) obj;
       
       boolean hasEnd = out.writeListBegin(data.length, "[float");
       
-      for (int i = 0; i < data.length; i++)
-        out.writeDouble(data[i]);
+      for (int i = 0; i < data.length; i++) {
+          out.writeDouble(data[i]);
+      }
 
-      if (hasEnd)
-	out.writeListEnd();
+      if (hasEnd) {
+          out.writeListEnd();
+      }
       break;
     }
 
     case DOUBLE_ARRAY:
     {
-      if (out.addRef(obj))
-        return;
+      if (out.addRef(obj)) {
+          return;
+      }
       
       double []data = (double []) obj;
       boolean hasEnd = out.writeListBegin(data.length, "[double");
       
-      for (int i = 0; i < data.length; i++)
-        out.writeDouble(data[i]);
+      for (int i = 0; i < data.length; i++) {
+          out.writeDouble(data[i]);
+      }
 
-      if (hasEnd)
-	out.writeListEnd();
+      if (hasEnd) {
+          out.writeListEnd();
+      }
       break;
     }
 
     case STRING_ARRAY:
     {
-      if (out.addRef(obj))
-        return;
+      if (out.addRef(obj)) {
+          return;
+      }
       
       String []data = (String []) obj;
       
@@ -244,8 +264,9 @@ public class BasicSerializer extends AbstractSerializer {
         out.writeString(data[i]);
       }
 
-      if (hasEnd)
-	out.writeListEnd();
+      if (hasEnd) {
+          out.writeListEnd();
+      }
       break;
     }
 
@@ -258,8 +279,9 @@ public class BasicSerializer extends AbstractSerializer {
 
     case OBJECT_ARRAY:
     {
-      if (out.addRef(obj))
-        return;
+      if (out.addRef(obj)) {
+          return;
+      }
       
       Object []data = (Object []) obj;
       
@@ -269,8 +291,9 @@ public class BasicSerializer extends AbstractSerializer {
         out.writeObject(data[i]);
       }
 
-      if (hasEnd)
-	out.writeListEnd();
+      if (hasEnd) {
+          out.writeListEnd();
+      }
       break;
     }
     

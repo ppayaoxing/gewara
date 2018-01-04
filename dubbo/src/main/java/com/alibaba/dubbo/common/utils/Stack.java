@@ -40,10 +40,11 @@ public class Stack<E>
 	 */
 	public void push(E ele)
 	{
-		if( mElements.size() > mSize )
-			mElements.set(mSize, ele);
-		else
-			mElements.add(ele);
+		if( mElements.size() > mSize ) {
+            mElements.set(mSize, ele);
+        } else {
+            mElements.add(ele);
+        }
 		mSize++;
 	}
 
@@ -54,8 +55,9 @@ public class Stack<E>
 	 */
 	public E pop()
 	{
-		if( mSize == 0 )
-			throw new EmptyStackException();
+		if( mSize == 0 ) {
+            throw new EmptyStackException();
+        }
 		return mElements.set(--mSize, null);
 	}
 
@@ -66,8 +68,9 @@ public class Stack<E>
 	 */
 	public E peek()
 	{
-		if( mSize == 0 )
-			throw new EmptyStackException();
+		if( mSize == 0 ) {
+            throw new EmptyStackException();
+        }
 		return mElements.get(mSize-1);
 	}
 
@@ -79,8 +82,9 @@ public class Stack<E>
 	 */
 	public E get(int index)
 	{
-		if( index >= mSize )
-			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + mSize);
+		if( index >= mSize ) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + mSize);
+        }
 
 		return index < 0 ? mElements.get(index+mSize) : mElements.get(index);
 	}
@@ -94,8 +98,9 @@ public class Stack<E>
 	 */
 	public E set(int index, E value)
 	{
-		if( index >= mSize )
-			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + mSize);
+		if( index >= mSize ) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + mSize);
+        }
 
 		return mElements.set(index < 0 ? index + mSize : index, value);
 	}
@@ -108,8 +113,9 @@ public class Stack<E>
 	 */
 	public E remove(int index)
 	{
-		if( index >= mSize )
-			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + mSize);
+		if( index >= mSize ) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + mSize);
+        }
 
 		E ret = mElements.remove(index < 0 ? index + mSize : index);
 		mSize--;

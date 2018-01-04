@@ -14,7 +14,7 @@ import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
 
 /**
- * Òì²½ServletÇëÇó´¦Àí
+ * ï¿½ì²½Servletï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author gebiao(ge.biao@gewara.com)
  * @since Apr 9, 2013 2:34:31 PM
  */
@@ -26,7 +26,7 @@ public abstract class AsynchRequestTaskProcessor implements AsynchTaskProcessor<
 		HttpServletResponse res = (HttpServletResponse) actx.getResponse();
 		boolean dispatch = false;		
 		try {
-			if(task.isTimeout()){//³¬Ê±
+			if(task.isTimeout()){//ï¿½ï¿½Ê±
 				processTimeout(task);
 			}else{
 				ErrorCode code = processRequest(task);
@@ -48,9 +48,11 @@ public abstract class AsynchRequestTaskProcessor implements AsynchTaskProcessor<
 			}
 		} catch (Exception e) {
 			dbLogger.warn("", e);
-			BaseWebUtils.writeJsonResponse(res, false, "ÇëÇóÊý¾ÝÒì³££¡");
+			BaseWebUtils.writeJsonResponse(res, false, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½");
 		} finally{
-			if(!dispatch) actx.complete();
+			if(!dispatch) {
+                actx.complete();
+            }
 		}
 	}
 
@@ -59,7 +61,7 @@ public abstract class AsynchRequestTaskProcessor implements AsynchTaskProcessor<
 	private void processTimeout(AsynchTask task) {
 		AsyncContext actx = ((RequestAsynchTask)task).getCtx();
 		try{
-			BaseWebUtils.writeJsonResponse((HttpServletResponse) actx.getResponse(), false, "ÇëÇó³¬Ê±£¡");
+			BaseWebUtils.writeJsonResponse((HttpServletResponse) actx.getResponse(), false, "ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½");
 		}catch (Exception e) {
 		}finally{
 			try{actx.complete();}catch(Exception e){

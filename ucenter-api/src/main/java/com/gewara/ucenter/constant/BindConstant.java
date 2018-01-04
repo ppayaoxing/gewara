@@ -8,37 +8,37 @@ import java.util.Map;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
 public class BindConstant {
-	public static final String KEY_BINDTIME = "bindTime";	//°ó¶¨ÊÖ»úÊ±¼ä£¬ÊÖ»ú×¢²áÖ±½ÓÊÇ×¢²áÊ±¼ä
+	public static final String KEY_BINDTIME = "bindTime";	//ï¿½ï¿½ï¿½Ö»ï¿½Ê±ï¿½ä£¬ï¿½Ö»ï¿½×¢ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½Ê±ï¿½ï¿½
 
-	public static final String TAG_REGISTERCODE = "registercode"; 	//»ñÈ¡ÊÖ»ú×¢²á¡¢¿ìËÙµÇÂ¼¶¯Ì¬Âë
-	public static final String TAG_DYNAMICCODE = "dynamiccode"; 	//ÓëTAG_REGISTERCODEºÏ²¢
+	public static final String TAG_REGISTERCODE = "registercode"; 	//ï¿½ï¿½È¡ï¿½Ö»ï¿½×¢ï¿½á¡¢ï¿½ï¿½ï¿½Ùµï¿½Â¼ï¿½ï¿½Ì¬ï¿½ï¿½
+	public static final String TAG_DYNAMICCODE = "dynamiccode"; 	//ï¿½ï¿½TAG_REGISTERCODEï¿½Ï²ï¿½
 	
-	public static final String TAG_BINDMOBILE = "bindMobile"; 		//ÊÖ»ú°ó¶¨
-	public static final String TAG_CHGBINDMOBILE = "chgbindMobile"; //ÐÞ¸ÄÊÖ»ú°ó¶¨£¬ÀÏÊÖ»ú
-	public static final String TAG_CHGBINDMOBILE2 = "chgbindN"; //ÐÞ¸ÄÊÖ»ú°ó¶¨£¬ÐÂÊÖ»ú
+	public static final String TAG_BINDMOBILE = "bindMobile"; 		//ï¿½Ö»ï¿½ï¿½ï¿½
+	public static final String TAG_CHGBINDMOBILE = "chgbindMobile"; //ï¿½Þ¸ï¿½ï¿½Ö»ï¿½ï¿½ó¶¨£ï¿½ï¿½ï¿½ï¿½Ö»ï¿½
+	public static final String TAG_CHGBINDMOBILE2 = "chgbindN"; //ï¿½Þ¸ï¿½ï¿½Ö»ï¿½ï¿½ó¶¨£ï¿½ï¿½ï¿½ï¿½Ö»ï¿½
 	
-	public static final String TAG_ACCOUNT_BACKPASS = "account_backpass"; //ÊÖ»úÕÒ»ØÖ§¸¶ÃÜÂë
-	public static final String TAG_DYNAMICCODE_CARD = "dynamiccode_card"; //¼¤»îÆ±È¯µÄÊÖ»ú¶¯Ì¬Âë
-	public static final String TAG_BACKPASS = "backpass"; 		//ÊÖ»úÕÒ»ØÃÜÂë
-	public static final String TAG_MODIFYPASS = "modifypass"; 	//ÐÞ¸ÄÃÜÂë
+	public static final String TAG_ACCOUNT_BACKPASS = "account_backpass"; //ï¿½Ö»ï¿½ï¿½Ò»ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAG_DYNAMICCODE_CARD = "dynamiccode_card"; //ï¿½ï¿½ï¿½ï¿½Æ±È¯ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ì¬ï¿½ï¿½
+	public static final String TAG_BACKPASS = "backpass"; 		//ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAG_MODIFYPASS = "modifypass"; 	//ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	public static final String TAG_SETPAYPASS = "setpaypass"; 	//ÉèÖÃÖ§¸¶ÃÜÂë
-	public static final String TAG_MDYPAYPASS = "mdypaypass"; 	//ÐÞ¸ÄÖ§¸¶ÃÜÂë
-	public static final String TAG_DRAWMOBILE = "drawMobile"; 	//³é½±ÊÖ»úÑéÖ¤
-	public static final String TAG_GETPAYPASS = "getpaypass"; 	//ÕÒ»ØÖ§¸¶ÃÜÂë
-	public static final String TAG_CCBANKCODE = "ccbankcode";	//½¨ÉèÒøÐÐ¶¯Ì¬Âë
-	public static final String TAG_SECURITYVERIFY = "securityVerify"; 	//ÓÃ»§°²È«ÈÏÖ¤
+	public static final String TAG_SETPAYPASS = "setpaypass"; 	//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAG_MDYPAYPASS = "mdypaypass"; 	//ï¿½Þ¸ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAG_DRAWMOBILE = "drawMobile"; 	//ï¿½é½±ï¿½Ö»ï¿½ï¿½ï¿½Ö¤
+	public static final String TAG_GETPAYPASS = "getpaypass"; 	//ï¿½Ò»ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAG_CCBANKCODE = "ccbankcode";	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½Ì¬ï¿½ï¿½
+	public static final String TAG_SECURITYVERIFY = "securityVerify"; 	//ï¿½Ã»ï¿½ï¿½ï¿½È«ï¿½ï¿½Ö¤
 
-	public static final String TAG_VDEMAIL_BY_UPDATEPWD = "vdemailbyuppwd"; //ÐÞ¸ÄÃÜÂëÇ°ÖÃÓÊÏä°²È«ÑéÖ¤
-	public static final String TAG_UNICOM_REGISTERCODE = "unicom_registercode"; 	//ÁªÍ¨ÓÃ»§×¢²á¶¯Ì¬Âð
-	public static final String TAG_UNICOM_BACKPASS = "unicom_backpass"; 	//ÁªÍ¨ÓÃ»§×¢²á¶¯Ì¬Âð
-	public static final String TAG_MESSAGE_CHECK = "message_check";			// ×¨Ìâ»î¶¯µÄ¶ÌÐÅÑéÖ¤
-	public static final String TAG_PRE_MES = "pre_mes";		// Ô¤ÊÛ»î¶¯¶ÌÐÅÌáÐÑ
-	public static final String TAG_SMSVALID = "smsvalid"; 	//¶ÌÐÅ»Ø¸´ÑéÖ¤
-	//public static final String PREFIX_SMSVALID = "yz";	//ÑéÖ¤¶ÌÐÅ
+	public static final String TAG_VDEMAIL_BY_UPDATEPWD = "vdemailbyuppwd"; //ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ä°²È«ï¿½ï¿½Ö¤
+	public static final String TAG_UNICOM_REGISTERCODE = "unicom_registercode"; 	//ï¿½ï¿½Í¨ï¿½Ã»ï¿½×¢ï¿½á¶¯Ì¬ï¿½ï¿½
+	public static final String TAG_UNICOM_BACKPASS = "unicom_backpass"; 	//ï¿½ï¿½Í¨ï¿½Ã»ï¿½×¢ï¿½á¶¯Ì¬ï¿½ï¿½
+	public static final String TAG_MESSAGE_CHECK = "message_check";			// ×¨ï¿½ï¿½î¶¯ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤
+	public static final String TAG_PRE_MES = "pre_mes";		// Ô¤ï¿½Û»î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAG_SMSVALID = "smsvalid"; 	//ï¿½ï¿½ï¿½Å»Ø¸ï¿½ï¿½ï¿½Ö¤
+	//public static final String PREFIX_SMSVALID = "yz";	//ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
 
 	
-	//ÓÐÐ§±êÇ©list£¬ÓÃÓÚÑéÖ¤¸Ã±êÇ©ÊÇ·ñÓÐÐ§¡£²»´æÔÚÔò·µ»ØÀàÐÍ´íÎó¡£ÎÞ·¨½øÐÐrefreshBindMobile²Ù×÷
+	//ï¿½ï¿½Ð§ï¿½ï¿½Ç©listï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½Ã±ï¿½Ç©ï¿½Ç·ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½refreshBindMobileï¿½ï¿½ï¿½ï¿½
 	public static final List<String> VALID_TAG_LIST = Arrays.asList(
 			TAG_REGISTERCODE,
 			TAG_DYNAMICCODE,
@@ -63,39 +63,39 @@ public class BindConstant {
 			TAG_SECURITYVERIFY
 		);
 
-	//Ä¬ÈÏ¶ÌÐÅ
-	public static final String DEFAULT_TEMPLATE = "checkpass(¸ñÍßÀ­¶¯Ì¬ÑéÖ¤Âë£¬ÇëÎðÐ¹Â©)£¬30·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068";
-	public static final String ADMIN_MOBILE_TEMPLATE = "checkpass(¸ñÍßÀ­µç»°¹ºÆ±Ð£ÑéÂë£¬ÇëÎðÐ¹Â©)£¬30·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068";
-	public static final int VALID_MIN = 30;			//ÓÐÐ§Ê±³¤(MINUTE)
+	//Ä¬ï¿½Ï¶ï¿½ï¿½ï¿½
+	public static final String DEFAULT_TEMPLATE = "checkpass(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¬ï¿½ï¿½Ö¤ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ð¹Â©)ï¿½ï¿½30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068";
+	public static final String ADMIN_MOBILE_TEMPLATE = "checkpass(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç»°ï¿½ï¿½Æ±Ð£ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ð¹Â©)ï¿½ï¿½30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068";
+	public static final int VALID_MIN = 30;			//ï¿½ï¿½Ð§Ê±ï¿½ï¿½(MINUTE)
 	public static final int MAX_CHECKNUM = 5;
 	public static final int MAX_SENDNUM = 99999;
 	
 	private static final Map<String, Integer> SENDNUM_MAP;
 	private static final Map<String, Integer> MAXCHECK_MAP;
 	private static final Map<String, String> TEMPLATE_MAP;
-	//Ä¬ÈÏ×î´ó·¢ËÍÊýÁ¿
+	//Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	
 	static{
 		Map<String, String> tmp = new HashMap<String, String>();
-		tmp.put(TAG_REGISTERCODE, "checkpass(¸ñÍßÀ­×¢²á¶¯Ì¬Âë£¬ÇëÎðÐ¹Â©)£¬30·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068");
-		tmp.put(TAG_CCBANKCODE, "checkpass(¸ñÍßÀ­Ö§¸¶¶¯Ì¬Âë£¬ÇëÎðÐ¹Â©)£¬30·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068");
+		tmp.put(TAG_REGISTERCODE, "checkpass(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½á¶¯Ì¬ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ð¹Â©)ï¿½ï¿½30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068");
+		tmp.put(TAG_CCBANKCODE, "checkpass(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Ì¬ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ð¹Â©)ï¿½ï¿½30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068");
 		
-		tmp.put(TAG_UNICOM_BACKPASS, "checkpass(µçÓ°Ðã¶¯Ì¬ÑéÖ¤Âë£¬ÇëÎðÐ¹Â©)£¬30·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068");
-		tmp.put(TAG_UNICOM_REGISTERCODE, "ÄúÔÚµçÓ°Ðã×¢²áµÄ¶¯Ì¬ÂëÊÇ£ºcheckpass£¬ 30·ÖÖÓÄÚÓÐÐ§£¬Ê¹ÓÃºóÊ§Ð§¡£");
+		tmp.put(TAG_UNICOM_BACKPASS, "checkpass(ï¿½ï¿½Ó°ï¿½ã¶¯Ì¬ï¿½ï¿½Ö¤ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ð¹Â©)ï¿½ï¿½30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068");
+		tmp.put(TAG_UNICOM_REGISTERCODE, "ï¿½ï¿½ï¿½Úµï¿½Ó°ï¿½ï¿½×¢ï¿½ï¿½Ä¶ï¿½Ì¬ï¿½ï¿½ï¿½Ç£ï¿½checkpassï¿½ï¿½ 30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½Ê¹ï¿½Ãºï¿½Ê§Ð§ï¿½ï¿½");
 		
-		tmp.put(TAG_BINDMOBILE, "checkpass(¸ñÍßÀ­°ó¶¨¶¯Ì¬Âë£¬ÇëÎðÐ¹Â©)£¬30·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068");
-		tmp.put(TAG_CHGBINDMOBILE, "checkpass(¸ñÍßÀ­¸ü¸Ä¶¯Ì¬Âë£¬ÇëÎðÐ¹Â©)£¬30·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068");
-		tmp.put(TAG_CHGBINDMOBILE2, "checkpass(¸ñÍßÀ­¸ü¸Ä¶¯Ì¬Âë£¬ÇëÎðÐ¹Â©)£¬30·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068");
-		tmp.put(TAG_PRE_MES, "checkpass(¸ñÍßÀ­¶¯Ì¬Âë£¬ÇëÎðÐ¹Â©),30·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068");
-		tmp.put(TAG_SMSVALID, "Îª±£»¤ÄúµÄÕËºÅ°²È«£¬Çë»Ø¸´checkpassÑéÖ¤ÄúµÄÕËºÅ,15·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068");
+		tmp.put(TAG_BINDMOBILE, "checkpass(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó¶¨¶ï¿½Ì¬ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ð¹Â©)ï¿½ï¿½30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068");
+		tmp.put(TAG_CHGBINDMOBILE, "checkpass(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½Ì¬ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ð¹Â©)ï¿½ï¿½30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068");
+		tmp.put(TAG_CHGBINDMOBILE2, "checkpass(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½Ì¬ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ð¹Â©)ï¿½ï¿½30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068");
+		tmp.put(TAG_PRE_MES, "checkpass(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¬ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ð¹Â©),30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068");
+		tmp.put(TAG_SMSVALID, "Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ËºÅ°ï¿½È«ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½checkpassï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½,15ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068");
 		
-		tmp.put(TAG_SECURITYVERIFY, "checkpass(¸ñÍßÀ­°²È«¶¯Ì¬Âë£¬ÇëÎðÐ¹Â©)£¬30·ÖÖÓÄÚÓÐÐ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÇëÖÂµç1010-1068");
+		tmp.put(TAG_SECURITYVERIFY, "checkpass(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½Ì¬ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ð¹Â©)ï¿½ï¿½30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½1010-1068");
 		
 		TEMPLATE_MAP = UnmodifiableMap.decorate(tmp);
 		
 		Map<String, Integer> tmp2 = new HashMap<String, Integer>();
-		tmp2.put(TAG_REGISTERCODE, 20);		//×¢²áÂëÒ»ÊÖ»úÖ»ÔÊÐí·¢20´Î
+		tmp2.put(TAG_REGISTERCODE, 20);		//×¢ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö»ï¿½Ö»ï¿½ï¿½ï¿½ï¿½20ï¿½ï¿½
 		tmp2.put(TAG_UNICOM_REGISTERCODE, 20);
 		tmp2.put(TAG_MODIFYPASS, 20);
 		tmp2.put(TAG_BINDMOBILE, 20);
@@ -108,15 +108,21 @@ public class BindConstant {
 	}
 
 	public static String getMsgTemplate(String tag) {
-		if(TEMPLATE_MAP.containsKey(tag)) return TEMPLATE_MAP.get(tag);
+		if(TEMPLATE_MAP.containsKey(tag)) {
+            return TEMPLATE_MAP.get(tag);
+        }
 		return DEFAULT_TEMPLATE;
 	}
 	public static int getMaxSendnum(String tag){
-		if(SENDNUM_MAP.containsKey(tag)) return SENDNUM_MAP.get(tag);
+		if(SENDNUM_MAP.containsKey(tag)) {
+            return SENDNUM_MAP.get(tag);
+        }
 		return MAX_SENDNUM;
 	}
 	public static int getMaxCheck(String tag){
-		if(MAXCHECK_MAP.containsKey(tag)) return MAXCHECK_MAP.get(tag);
+		if(MAXCHECK_MAP.containsKey(tag)) {
+            return MAXCHECK_MAP.get(tag);
+        }
 		return MAX_CHECKNUM;
 	}
 	public static String getChangeBindOldKey(Long memberid) {

@@ -43,16 +43,16 @@ public class DubboRegistry extends FailbackRegistry {
 
     private final static Logger logger = LoggerFactory.getLogger(DubboRegistry.class); 
 
-    // ÖØÁ¬¼ì²âÖÜÆÚ3Ãë(µ¥Î»ºÁÃë)
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½(ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½)
     private static final int RECONNECT_PERIOD_DEFAULT = 3 * 1000;
     
-    // ¶¨Ê±ÈÎÎñÖ´ÐÐÆ÷
+    // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1, new NamedThreadFactory("DubboRegistryReconnectTimer", true));
 
-    // ÖØÁ¬¶¨Ê±Æ÷£¬¶¨Ê±¼ì²éÁ¬½ÓÊÇ·ñ¿ÉÓÃ£¬²»¿ÉÓÃÊ±£¬ÎÞÏÞ´ÎÖØÁ¬
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½
     private final ScheduledFuture<?> reconnectFuture;
 
-    // ¿Í»§¶Ë»ñÈ¡¹ý³ÌËø£¬Ëø¶¨¿Í»§¶ËÊµÀýµÄ´´½¨¹ý³Ì£¬·ÀÖ¹ÖØ¸´µÄ¿Í»§¶Ë
+    // ï¿½Í»ï¿½ï¿½Ë»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì£ï¿½ï¿½ï¿½Ö¹ï¿½Ø¸ï¿½ï¿½Ä¿Í»ï¿½ï¿½ï¿½
     private final ReentrantLock clientLock = new ReentrantLock();
     
     private final Invoker<RegistryService> registryInvoker;
@@ -63,14 +63,15 @@ public class DubboRegistry extends FailbackRegistry {
         super(registryInvoker.getUrl());
         this.registryInvoker = registryInvoker;
         this.registryService = registryService;
-        // Æô¶¯ÖØÁ¬¶¨Ê±Æ÷
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
         int reconnectPeriod = registryInvoker.getUrl().getParameter(Constants.REGISTRY_RECONNECT_PERIOD_KEY, RECONNECT_PERIOD_DEFAULT);
         reconnectFuture = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
+            @Override
             public void run() {
-                // ¼ì²â²¢Á¬½Ó×¢²áÖÐÐÄ
+                // ï¿½ï¿½â²¢ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 try {
                     connect();
-                } catch (Throwable t) { // ·ÀÓùÐÔÈÝ´í
+                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½
                     logger.error("Unexpected error occur at reconnect, cause: " + t.getMessage(), t);
                 }
             }
@@ -79,7 +80,7 @@ public class DubboRegistry extends FailbackRegistry {
 
     protected final void connect() {
         try {
-            // ¼ì²éÊÇ·ñÒÑÁ¬½Ó
+            // ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (isAvailable()) {
                 return;
             }
@@ -88,7 +89,7 @@ public class DubboRegistry extends FailbackRegistry {
             }
             clientLock.lock();
             try {
-                // Ë«ÖØ¼ì²éÊÇ·ñÒÑÁ¬½Ó
+                // Ë«ï¿½Ø¼ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (isAvailable()) {
                     return;
                 }
@@ -96,7 +97,7 @@ public class DubboRegistry extends FailbackRegistry {
             } finally {
                 clientLock.unlock();
             }
-        } catch (Throwable t) { // ºöÂÔËùÓÐÒì³££¬µÈ´ýÏÂ´ÎÖØÊÔ
+        } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½È´ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½
              if (getUrl().getParameter(Constants.CHECK_KEY, true)) {
                  if (t instanceof RuntimeException) {
                      throw (RuntimeException) t;
@@ -107,16 +108,19 @@ public class DubboRegistry extends FailbackRegistry {
         }
     }
     
+    @Override
     public boolean isAvailable() {
-        if (registryInvoker == null)
+        if (registryInvoker == null) {
             return false;
+        }
         return registryInvoker.isAvailable();
     }
     
+    @Override
     public void destroy() {
         super.destroy();
         try {
-            // È¡ÏûÖØÁ¬¶¨Ê±Æ÷
+            // È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
             if (! reconnectFuture.isCancelled()) {
                 reconnectFuture.cancel(true);
             }
@@ -126,22 +130,27 @@ public class DubboRegistry extends FailbackRegistry {
         registryInvoker.destroy();
     }
     
+    @Override
     protected void doRegister(URL url) {
         registryService.register(url);
     }
     
+    @Override
     protected void doUnregister(URL url) {
         registryService.unregister(url);
     }
 
+    @Override
     protected void doSubscribe(URL url, NotifyListener listener) {
         registryService.subscribe(url, listener);
     }
     
+    @Override
     protected void doUnsubscribe(URL url, NotifyListener listener) {
         registryService.unsubscribe(url, listener);
     }
 
+    @Override
     public List<URL> lookup(URL url) {
         return registryService.lookup(url);
     }

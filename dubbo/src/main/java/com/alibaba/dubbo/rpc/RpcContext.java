@@ -35,8 +35,8 @@ import com.alibaba.dubbo.common.utils.NetUtils;
 /**
  * Thread local context. (API, ThreadLocal, ThreadSafe)
  * 
- * ×¢Òâ£ºRpcContextÊÇÒ»¸öÁÙÊ±×´Ì¬¼ÇÂ¼Æ÷£¬µ±½ÓÊÕµ½RPCÇëÇó£¬»ò·¢ÆðRPCÇëÇóÊ±£¬RpcContextµÄ×´Ì¬¶¼»á±ä»¯¡£
- * ±ÈÈç£ºAµ÷B£¬BÔÙµ÷C£¬ÔòB»úÆ÷ÉÏ£¬ÔÚBµ÷CÖ®Ç°£¬RpcContext¼ÇÂ¼µÄÊÇAµ÷BµÄÐÅÏ¢£¬ÔÚBµ÷CÖ®ºó£¬RpcContext¼ÇÂ¼µÄÊÇBµ÷CµÄÐÅÏ¢¡£
+ * ×¢ï¿½â£ºRpcContextï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê±×´Ì¬ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½RPCï¿½ï¿½ï¿½ó£¬»ï¿½ï¿½ï¿½RPCï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½RpcContextï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½ä»¯ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ç£ºAï¿½ï¿½Bï¿½ï¿½Bï¿½Ùµï¿½Cï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½ï¿½Bï¿½ï¿½CÖ®Ç°ï¿½ï¿½RpcContextï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½CÖ®ï¿½ï¿½RpcContextï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
  * 
  * @see com.alibaba.dubbo.rpc.filter.ContextFilter
  * @author qian.lei
@@ -556,9 +556,9 @@ public class RpcContext {
     }
     
     /**
-     * Òì²½µ÷ÓÃ £¬ÐèÒª·µ»ØÖµ£¬¼´Ê¹²½µ÷ÓÃFuture.get·½·¨£¬Ò²»á´¦Àíµ÷ÓÃ³¬Ê±ÎÊÌâ.
+     * ï¿½ì²½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Future.getï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½á´¦ï¿½ï¿½ï¿½ï¿½Ã³ï¿½Ê±ï¿½ï¿½ï¿½ï¿½.
      * @param callable
-     * @return Í¨¹ýfuture.get()»ñÈ¡·µ»Ø½á¹û.
+     * @return Í¨ï¿½ï¿½future.get()ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ø½ï¿½ï¿½.
      */
     @SuppressWarnings("unchecked")
 	public <T> Future<T> asyncCall(Callable<T> callable) {
@@ -566,10 +566,11 @@ public class RpcContext {
 	    	try {
 	    		setAttachment(Constants.ASYNC_KEY, Boolean.TRUE.toString());
 				final T o = callable.call();
-				//localµ÷ÓÃ»áÖ±½Ó·µ»Ø½á¹û.
+				//localï¿½ï¿½ï¿½Ã»ï¿½Ö±ï¿½Ó·ï¿½ï¿½Ø½ï¿½ï¿½.
 				if (o != null) {
 					FutureTask<T> f = new FutureTask<T>(new Callable<T>() {
-						public T call() throws Exception {
+						@Override
+                        public T call() throws Exception {
 							return o;
 						}
 					});
@@ -585,19 +586,24 @@ public class RpcContext {
 			}
     	} catch (final RpcException e) {
 			return new Future<T>() {
-				public boolean cancel(boolean mayInterruptIfRunning) {
+				@Override
+                public boolean cancel(boolean mayInterruptIfRunning) {
 					return false;
 				}
-				public boolean isCancelled() {
+				@Override
+                public boolean isCancelled() {
 					return false;
 				}
-				public boolean isDone() {
+				@Override
+                public boolean isDone() {
 					return true;
 				}
-				public T get() throws InterruptedException, ExecutionException {
+				@Override
+                public T get() throws InterruptedException, ExecutionException {
 					throw new ExecutionException(e.getCause());
 				}
-				public T get(long timeout, TimeUnit unit)
+				@Override
+                public T get(long timeout, TimeUnit unit)
 						throws InterruptedException, ExecutionException,
 						TimeoutException {
 					return get();
@@ -608,7 +614,7 @@ public class RpcContext {
     }
     
 	/**
-	 * onewayµ÷ÓÃ£¬Ö»·¢ËÍÇëÇó£¬²»½ÓÊÕ·µ»Ø½á¹û.
+	 * onewayï¿½ï¿½ï¿½Ã£ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬²ï¿½ï¿½ï¿½ï¿½Õ·ï¿½ï¿½Ø½ï¿½ï¿½.
 	 * @param callable
 	 */
 	public void asyncCall(Runnable runable) {
@@ -616,7 +622,7 @@ public class RpcContext {
     		setAttachment(Constants.RETURN_KEY, Boolean.FALSE.toString());
     		runable.run();
 		} catch (Throwable e) {
-			//FIXME Òì³£ÊÇ·ñÓ¦¸Ã·ÅÔÚfutureÖÐ£¿
+			//FIXME ï¿½ì³£ï¿½Ç·ï¿½Ó¦ï¿½Ã·ï¿½ï¿½ï¿½futureï¿½Ð£ï¿½
 			throw new RpcException("oneway call error ." + e.getMessage(), e);
 		} finally {
 			removeAttachment(Constants.RETURN_KEY);

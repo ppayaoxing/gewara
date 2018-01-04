@@ -23,7 +23,8 @@ public class SingleColorBackgroundFactory implements BackgroundFactory {
 		this.colorFactory = colorFactory;
 	}
 
-	public void fillBackground(BufferedImage dest) {
+	@Override
+    public void fillBackground(BufferedImage dest) {
 		Graphics2D g = dest.createGraphics();
 		g.setBackground(this.colorFactory.getColor(0));
 		// 填充背景色

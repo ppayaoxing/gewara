@@ -47,27 +47,32 @@ public class MockClusterInvoker<T> implements Invoker<T>{
        	this.invoker = invoker;
     }
 
-	public URL getUrl() {
+	@Override
+    public URL getUrl() {
 		return directory.getUrl();
 	}
 
-	public boolean isAvailable() {
+	@Override
+    public boolean isAvailable() {
 		return directory.isAvailable();
 	}
 
-	public void destroy() {
+	@Override
+    public void destroy() {
 		this.invoker.destroy();
 	}
 
-	public Class<T> getInterface() {
+	@Override
+    public Class<T> getInterface() {
 		return directory.getInterface();
 	}
 
-	public Result invoke(Invocation invocation) throws RpcException {
+	@Override
+    public Result invoke(Invocation invocation) throws RpcException {
 		Result result = null;
         
         String value = directory.getUrl().getMethodParameter(invocation.getMethodName(), Constants.MOCK_KEY, Boolean.FALSE.toString()).trim(); 
-        if (value.length() == 0 || value.equalsIgnoreCase("false")){
+        if (value.length() == 0 || "false".equalsIgnoreCase(value)){
         	//no mock
         	result = this.invoker.invoke(invocation);
         } else if (value.startsWith("force")) {
@@ -129,19 +134,19 @@ public class MockClusterInvoker<T> implements Invoker<T>{
 	}
 
 	/**
-     * ·µ»ØMockInvoker
-     * ÆõÔ¼£º
-     * directory¸ù¾ÝinvocationÖÐÊÇ·ñÓÐConstants.INVOCATION_NEED_MOCK£¬À´ÅÐ¶Ï»ñÈ¡µÄÊÇÒ»¸önormal invoker »¹ÊÇÒ»¸ö mock invoker
-     * Èç¹ûdirectorylist ·µ»Ø¶à¸ömock invoker£¬Ö»Ê¹ÓÃµÚÒ»¸öinvoker.
+     * ï¿½ï¿½ï¿½ï¿½MockInvoker
+     * ï¿½ï¿½Ô¼ï¿½ï¿½
+     * directoryï¿½ï¿½ï¿½ï¿½invocationï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Constants.INVOCATION_NEED_MOCKï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï»ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½normal invoker ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ mock invoker
+     * ï¿½ï¿½ï¿½directorylist ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½mock invokerï¿½ï¿½Ö»Ê¹ï¿½Ãµï¿½Ò»ï¿½ï¿½invoker.
      * @param invocation
      * @return 
      */
     private List<Invoker<T>> selectMockInvoker(Invocation invocation){
-    	//TODO generic invoker£¿
+    	//TODO generic invokerï¿½ï¿½
         if (invocation instanceof RpcInvocation){
-            //´æÔÚÒþº¬ÆõÔ¼(ËäÈ»ÔÚ½Ó¿ÚÉùÃ÷ÖÐÔö¼ÓÃèÊö£¬µ«À©Õ¹ÐÔ»á´æÔÚÎÊÌâ.Í¬Ê±·ÅÔÚattachementÖÐµÄ×ö·¨ÐèÒª¸Ä½ø
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼(ï¿½ï¿½È»ï¿½Ú½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.Í¬Ê±ï¿½ï¿½ï¿½ï¿½attachementï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ä½ï¿½
         	((RpcInvocation)invocation).setAttachment(Constants.INVOCATION_NEED_MOCK, Boolean.TRUE.toString());
-            //directory¸ù¾ÝinvocationÖÐattachmentÊÇ·ñÓÐConstants.INVOCATION_NEED_MOCK£¬À´ÅÐ¶Ï»ñÈ¡µÄÊÇnormal invokers or mock invokers
+            //directoryï¿½ï¿½ï¿½ï¿½invocationï¿½ï¿½attachmentï¿½Ç·ï¿½ï¿½ï¿½Constants.INVOCATION_NEED_MOCKï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï»ï¿½È¡ï¿½ï¿½ï¿½ï¿½normal invokers or mock invokers
         	List<Invoker<T>> invokers = directory.list(invocation);
             return invokers;
         } else {

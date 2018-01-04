@@ -9,45 +9,45 @@ import org.apache.commons.lang.StringUtils;
 import com.gewara.api.vo.BaseVo;
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ï¿½ï¿½ï¿½ï¿½02:05:17
  */
 public class CinemaRoomVo extends BaseVo implements Comparable<CinemaRoomVo>{
-	public static final String OPEN_GEWARA = "GEWA";		//¿ª·ÅÀàÐÍ£º²»Óë»ð·ï»Ë¶Ô½Ó
+	public static final String OPEN_GEWARA = "GEWA";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¶Ô½ï¿½
 	private static final long serialVersionUID = -1894201195221566397L;
 	private Long id;
-	private String roomname;			//Ãû³Æ
-	private String content;			//ÏêÏ¸ÃèÊö
-	private Integer linenum;			//×ùÎ»ÐÐÊý
-	private Integer ranknum;			//×ùÎ»ÁÐÊý
-	private Integer seatnum;			//×ùÎ»ÊýÁ¿
-	private String num;				//ÅÅÐò
-	private String sections;			//¶à¸ö³¡Çø£¬ÓÃ¶ººÅ¸ô¿ª
+	private String roomname;			//ï¿½ï¿½ï¿½ï¿½
+	private String content;			//ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½
+	private Integer linenum;			//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	private Integer ranknum;			//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	private Integer seatnum;			//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	private String num;				//ï¿½ï¿½ï¿½ï¿½
+	private String sections;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½Å¸ï¿½ï¿½ï¿½
 	private String roomtype;
-	private Timestamp updatetime;		//×ùÎ»¸üÐÂÊ±¼ä
+	private Timestamp updatetime;		//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	private Integer firstline;
 	private Integer firstrank;		
 	private String logo;				//LOGO
 	private Long cinemaid;
-	private Integer screenheight; 		//ÒøÄ»¸ß
-	private Integer screenwidth; 		//ÒøÄ»¿í
-	private Integer allowsellnum;		//ÔÊÐíÂô³öÊý
-	private String vipflag;				//ÊÇ·ñÎªVIP
-	private String seatmap;				//×ùÎ»Í¼£¨Î»Í¼£©
-	private String loveflag;			//ÊÇ·ñÓÐÇéÂÂ×ù
-	private Date effectivedate;			//×ùÎ»ÉúÐ§ÈÕÆÚ
-	private String playtype;			//²¥·ÅÀàÐÍ£º·ÅÓ³3D¡¢2D¡¢IMAX
-	private String roomDoor;         //Ó°ÌüµÄÃÅ
+	private Integer screenheight; 		//ï¿½ï¿½Ä»ï¿½ï¿½
+	private Integer screenwidth; 		//ï¿½ï¿½Ä»ï¿½ï¿½
+	private Integer allowsellnum;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String vipflag;				//ï¿½Ç·ï¿½ÎªVIP
+	private String seatmap;				//ï¿½ï¿½Î»Í¼ï¿½ï¿½Î»Í¼ï¿½ï¿½
+	private String loveflag;			//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Date effectivedate;			//ï¿½ï¿½Î»ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½
+	private String playtype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ó³3Dï¿½ï¿½2Dï¿½ï¿½IMAX
+	private String roomDoor;         //Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String otherinfo;
-	private String characteristic;	//ÌØÉ«ÌüÀàÐÍ
-	private String defaultEdition; //Ä¬ÈÏ°æ±¾£¬¶à¸öÓ¢ÎÄ¶ººÅ,·Ö¸î¿ª 
-	protected String roomnum;			//ÅÅÐò
-	protected String buylimit;		//¹ºÂòÕÅÊýÏÞÖÆ£¬1,2,3,4,5
-	private String newCharacteristic;	//ÐÂ°æÌØÉ«ÌüÀàÐÍ Ö§³Ö¶àÖÖÌØÐ§ÓÃ¶ººÅ·Ö¿ª  ×¢Òâ£ººóÌ¨Êý¾ÝÎ¬»¤£¬4DºÍ4DX²»»áÍ¬Ê±´æÔÚ£¬ËùÒÔ²éÑ¯4DµÄÊ±ºò²»ÓÃµ£ÐÄ4DX»á³öÏÖ
-	private String status; 				// Ó°Ìü×´Ì¬£ºopen/close
-	private String secid;				//µÚ¶þÇøÓòÀàÐÍ
-	private Integer lovstExtraFee;		//ÇéÂÂ×ù¼Ó¼Û½ð¶î
-	private String secretKey;			//·ÅÓ³»úÃÜÔ¿
-	private String isLoveSeatRoom;          //ÊÇ·ñÇéÂÂ×ùÓ°Ìü¡¢ÊÇ£º"1"£»·ñ£º"0"
+	private String characteristic;	//ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String defaultEdition; //Ä¬ï¿½Ï°æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½Ó¢ï¿½Ä¶ï¿½ï¿½ï¿½,ï¿½Ö¸î¿ª 
+	protected String roomnum;			//ï¿½ï¿½ï¿½ï¿½
+	protected String buylimit;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½1,2,3,4,5
+	private String newCharacteristic;	//ï¿½Â°ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ö§ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½Ã¶ï¿½ï¿½Å·Ö¿ï¿½  ×¢ï¿½â£ºï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½ï¿½ï¿½4Dï¿½ï¿½4DXï¿½ï¿½ï¿½ï¿½Í¬Ê±ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Ñ¯4Dï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½4DXï¿½ï¿½ï¿½ï¿½ï¿½
+	private String status; 				// Ó°ï¿½ï¿½×´Ì¬ï¿½ï¿½open/close
+	private String secid;				//ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer lovstExtraFee;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼Û½ï¿½ï¿½
+	private String secretKey;			//ï¿½ï¿½Ó³ï¿½ï¿½ï¿½ï¿½Ô¿
+	private String isLoveSeatRoom;          //ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"1"ï¿½ï¿½ï¿½ï¿½"0"
 	
 	public CinemaRoomVo(){}
 	public CinemaRoomVo(Long cinemaId, String roomtype){
@@ -60,7 +60,7 @@ public class CinemaRoomVo extends BaseVo implements Comparable<CinemaRoomVo>{
 		this.vipflag = "N";
 		this.loveflag = "Y";
 		this.allowsellnum = 9999;
-		this.status = "open";	// Ó°ÌüÄ¬ÈÏ¿ª·Å
+		this.status = "open";	// Ó°ï¿½ï¿½Ä¬ï¿½Ï¿ï¿½ï¿½ï¿½
 		this.lovstExtraFee = 0; 
 	}
 	
@@ -138,7 +138,9 @@ public class CinemaRoomVo extends BaseVo implements Comparable<CinemaRoomVo>{
 	}
 	
 	public String getLimg() {
-		if(StringUtils.isBlank(logo)) return "img/default_head.png";
+		if(StringUtils.isBlank(logo)) {
+            return "img/default_head.png";
+        }
 		return logo;
 	}
 	
@@ -304,7 +306,7 @@ public class CinemaRoomVo extends BaseVo implements Comparable<CinemaRoomVo>{
 	}
 	
 	public boolean isClosed() {
-		return (this.status != null) && (this.status.equals("close")); 
+		return (this.status != null) && ("close".equals(this.status));
 	}
 
 	public String getSecid() {

@@ -7,22 +7,22 @@ public class PointPayRequest extends AbcRequest{
 	private static final long serialVersionUID = -5760844299795175992L;
 
 	/**
-	 * ½»Ò×¿¨ºÅ
+	 * ï¿½ï¿½ï¿½×¿ï¿½ï¿½ï¿½
 	 */
 	private String cardno;
 	
 	/**
-	 * ¿¨ÓÐÐ§ÆÚ
+	 * ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 	 */
 	private String cardexp;
 	
 	/**
-	 * »ý·Ö
+	 * ï¿½ï¿½ï¿½ï¿½
 	 */
 	private Integer point;
 	
 	/**
-	 * ¶©µ¥×Ü½ð¶î
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
 	 */
 	private Integer totalAmount;
 	
@@ -61,19 +61,25 @@ public class PointPayRequest extends AbcRequest{
 
 	@Override
 	public boolean checkParams() {
-		if(!super.checkParams())
-			return false;
+		if(!super.checkParams()) {
+            return false;
+        }
 		
-		if(cardno==null || cardno.length()>=20)
-			return false;
-		if(cardexp==null || cardno.length()==4)
-			return false;
-		if(point==null || point<=0)
-			return false;
-		if(totalAmount==null || totalAmount<=0)
-			return false;
-		if(adddata==null || adddata.length()!=3)
-			return false;
+		if(cardno==null || cardno.length()>=20) {
+            return false;
+        }
+		if(cardexp==null || cardno.length()==4) {
+            return false;
+        }
+		if(point==null || point<=0) {
+            return false;
+        }
+		if(totalAmount==null || totalAmount<=0) {
+            return false;
+        }
+		if(adddata==null || adddata.length()!=3) {
+            return false;
+        }
 		return true;
 	}
 

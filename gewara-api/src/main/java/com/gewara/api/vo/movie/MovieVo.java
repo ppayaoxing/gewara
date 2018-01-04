@@ -23,23 +23,23 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 	private String type;
 	private String honor;
 	private String website;
-	private Integer videolen; // Ó°Æ¬Ê±³¤£ºÒÔ·ÖÖÓÎªµ¥Î»
-	private Integer mcpCount; // Ó°Æ¬Ê±³¤£ºÒÔ·ÖÖÓÎªµ¥Î»
+	private Integer videolen; // Ó°Æ¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½Îªï¿½ï¿½Î»
+	private Integer mcpCount; // Ó°Æ¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½Îªï¿½ï¿½Î»
 
 	private String remark;
 	private String state;
 	private String prevideo;
-	private String highlight; // ¾­µäÒ»¾ä»°
+	private String highlight; // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ä»°
 	private String playdate;
 	private Integer avgprice;
 	private Integer minprice;
 	private Integer maxprice;
 	private String imdbid;
 	private String flag;
-	private Integer boughtcount; // ¹ºÆ±ÈË´Î
+	private Integer boughtcount; // ï¿½ï¿½Æ±ï¿½Ë´ï¿½
 	private String otherinfo;
-	private String edition; // µçÓ°°æ±¾
-	private String colorEggs; // µçÓ°²Êµ°
+	private String edition; // ï¿½ï¿½Ó°ï¿½æ±¾
+	private String colorEggs; // ï¿½ï¿½Ó°ï¿½Êµï¿½
 	private static Map<String, Integer[]> priceMap = new HashMap();
 	static {
 		priceMap.put("1", new Integer[] { 0, 30 });
@@ -62,7 +62,7 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 		this.avgprice = 0;
 		this.minprice = 0;
 		this.maxprice = 0;
-		this.boughtcount = 0; // Ä¬ÈÏ0
+		this.boughtcount = 0; // Ä¬ï¿½ï¿½0
 		this.moviename = moviename;
 	}
 
@@ -106,7 +106,8 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 		this.moviename = StringUtils.trimToNull(name);
 	}
 
-	public String getName() {
+	@Override
+    public String getName() {
 		return moviename;
 	}
 
@@ -183,15 +184,17 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 	}
 
 	public void setWebsite(String website) {
-		if (StringUtils.isNotBlank(website) && !StringUtils.startsWith(website, "http://"))
-			website = "http://" + website;
+		if (StringUtils.isNotBlank(website) && !StringUtils.startsWith(website, "http://")) {
+            website = "http://" + website;
+        }
 		this.website = website;
 	}
 
 	public String getLength() {
-		if (videolen == null)
-			return "";
-		return this.videolen + "·ÖÖÓ";
+		if (videolen == null) {
+            return "";
+        }
+		return this.videolen + "ï¿½ï¿½ï¿½ï¿½";
 	}
 
 	public String getRemark() {
@@ -210,9 +213,11 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 		this.moviealias = moviealias;
 	}
 
-	public int compareTo(MovieVo another) {
-		if (another.equals(this))
-			return 0;
+	@Override
+    public int compareTo(MovieVo another) {
+		if (another.equals(this)) {
+            return 0;
+        }
 		int result = (this.getHotvalue() - another.getHotvalue())
 				+ (this.getClickedtimes() - another.getClickedtimes());
 		return -result;
@@ -222,8 +227,9 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 		try {
 			int price = Integer.parseInt(priceStr);
 			for (String key : priceMap.keySet()) {
-				if (price >= priceMap.get(key)[0] && price < priceMap.get(key)[1])
-					return key;
+				if (price >= priceMap.get(key)[0] && price < priceMap.get(key)[1]) {
+                    return key;
+                }
 			}
 		} catch (Exception e) {
 		}
@@ -234,13 +240,16 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 		return "movie/" + this.id;
 	}
 
-	public String getLogo() {
+	@Override
+    public String getLogo() {
 		return logo;
 	}
 
-	public String getLimg() {
-		if (StringUtils.isBlank(logo))
-			return "img/default_movie.png";
+	@Override
+    public String getLimg() {
+		if (StringUtils.isBlank(logo)) {
+            return "img/default_movie.png";
+        }
 		return logo;
 	}
 
@@ -305,8 +314,8 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo> {
 	}
 
 	/***
-	 * ±¾´Î1=(±¾´Î*2µ½3Ö®¼äµÄËæ»úÊý)£» 1¡¢ ¹ºÆ±ÈË´Î= ÉÏ´Î¹ºÆ±+±¾´Î1 2¡¢ Ïë¿´ÈË´Î= Êµ¼ÊÏë¿´ÈËÊý£» 3¡¢ ¿´¹ýÈË´Î= Êµ¼Ê¿´¹ýÈËÊý+±¾´Î1£»
-	 * 4¡¢ ¸ÐÐËÈ¤ÈË´Î= Êµ¼Êµã»÷¸ÐÐËÈ¤ÈË´Î+Ïë¿´ÈË´Î£» 5¡¢ ä¯ÀÀÊý= ÉÏ´Îä¯ÀÀ´ÎÊý+±¾´Î1£» 6¡¢ ²ÎÓëÆÀ·ÖÈË= (Êµ¼Ê²ÎÓëÆÀ·ÖÈË´Î+¹ºÆ±ÈË´Î)/2£»
+	 * ï¿½ï¿½ï¿½ï¿½1=(ï¿½ï¿½ï¿½ï¿½*2ï¿½ï¿½3Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½Æ±ï¿½Ë´ï¿½= ï¿½Ï´Î¹ï¿½Æ±+ï¿½ï¿½ï¿½ï¿½1 2ï¿½ï¿½ ï¿½ë¿´ï¿½Ë´ï¿½= Êµï¿½ï¿½ï¿½ë¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ë´ï¿½= Êµï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½+ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½
+	 * 4ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¤ï¿½Ë´ï¿½= Êµï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¤ï¿½Ë´ï¿½+ï¿½ë¿´ï¿½Ë´Î£ï¿½ 5ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½= ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½+ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ 6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½= (Êµï¿½Ê²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë´ï¿½+ï¿½ï¿½Æ±ï¿½Ë´ï¿½)/2ï¿½ï¿½
 	 * 
 	 **/
 	public Integer getRxiangqu() {

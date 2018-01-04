@@ -36,6 +36,7 @@ import com.alibaba.dubbo.rpc.protocol.dubbo.filter.TraceFilter;
 @Help(parameter = "[service] [method] [times]", summary = "Trace the service.", detail = "Trace the service.")
 public class TraceTelnetHandler implements TelnetHandler {
 
+    @Override
     public String telnet(Channel channel, String message) {
         String service = (String) channel.getAttribute(ChangeTelnetHandler.SERVICE_KEY);
         if ((service == null || service.length() == 0)

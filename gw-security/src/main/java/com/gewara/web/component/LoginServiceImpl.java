@@ -65,7 +65,9 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public ErrorCode<Map> autoLogin(HttpServletRequest request, HttpServletResponse response, String username, String password) {
-        if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) return ErrorCode.getFailure("用户名密码必填！");
+        if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
+            return ErrorCode.getFailure("用户名密码必填！");
+        }
         Authentication auth = new UsernamePasswordAuthenticationToken(username, password);
         return autoLogin(request, response, auth);
     }
@@ -100,7 +102,9 @@ public class LoginServiceImpl implements LoginService {
                 Map jsonMap = BeanUtil.getBeanMapWithKey(auth.getPrincipal(), "realname", "id", "mobile");
                 if (StringUtils.isNotBlank((String) jsonMap.get("mobile"))) {
                     jsonMap.put("isMobile", true);
-                } else jsonMap.put("isMobile", false);
+                } else {
+                    jsonMap.put("isMobile", false);
+                }
                 return ErrorCode.getSuccessReturn(jsonMap);
             } else {
                 errorMap.put("j_username", "用户名或密码错误！");
@@ -129,7 +133,9 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public GewaraUser getLogonGewaraUserBySessid(String ip, String sessid) {
         Authentication auth = loadAuthentication(ip, sessid);
-        if (auth != null) return (GewaraUser) auth.getPrincipal();
+        if (auth != null) {
+            return (GewaraUser) auth.getPrincipal();
+        }
         return null;
     }
 
@@ -142,7 +148,9 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public Authentication loadAuthentication(String ip, String sessid) {
-        if (!LoginUtils.isValidSessid(sessid)) return null;
+        if (!LoginUtils.isValidSessid(sessid)) {
+            return null;
+        }
         String ukey = LoginUtils.getCacheUkey(sessid);
         CachedAuthentication ca = (CachedAuthentication) cacheService.get(CacheService.REGION_LOGINAUTH, ukey);
         if (ca != null) {

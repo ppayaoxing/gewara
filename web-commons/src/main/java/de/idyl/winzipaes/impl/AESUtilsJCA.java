@@ -48,8 +48,9 @@ public class AESUtilsJCA {
 	private int next = BLOCK_SIZE;
 
 	public AESUtilsJCA(String password, int keySize, byte[] salt) {
-		if (keySize != 128 && keySize != 192 && keySize != 256)
-			throw new IllegalArgumentException("Illegal keysize: " + keySize);
+		if (keySize != 128 && keySize != 192 && keySize != 256) {
+            throw new IllegalArgumentException("Illegal keysize: " + keySize);
+        }
 
 		try {
 			SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
@@ -102,9 +103,11 @@ public class AESUtilsJCA {
 				 * increment the iv and generate another one.
 				 */
 				if (next == BLOCK_SIZE) {
-					for (int j = 0; j < BLOCK_SIZE; ++j)
-						if (++iv[j] != 0)
-							break;
+					for (int j = 0; j < BLOCK_SIZE; ++j) {
+                        if (++iv[j] != 0) {
+                            break;
+                        }
+                    }
 					cipher.update(iv, 0, BLOCK_SIZE, keystream);
 					next = 0;
 				}

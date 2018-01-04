@@ -122,7 +122,7 @@ public abstract class Maker {
 		case N:
 		case EQ:
 			if (value == null || value instanceof SQLIdentifierExpr) {
-				if(value == null || ((SQLIdentifierExpr) value).getName().equalsIgnoreCase("missing")) {
+				if(value == null || "missing".equalsIgnoreCase(((SQLIdentifierExpr) value).getName())) {
                     x = QueryBuilders.missingQuery(name);
 				}
 				else {
@@ -205,8 +205,9 @@ public abstract class Maker {
         case GEO_POLYGON:
             PolygonFilterParams polygonFilterParams = (PolygonFilterParams) cond.getValue();
             GeoPolygonQueryBuilder polygonFilterBuilder = QueryBuilders.geoPolygonQuery(cond.getName());
-            for(Point p : polygonFilterParams.getPolygon())
-                polygonFilterBuilder.addPoint(p.getLat(),p.getLon());
+            for(Point p : polygonFilterParams.getPolygon()) {
+                polygonFilterBuilder.addPoint(p.getLat(), p.getLon());
+            }
             x = polygonFilterBuilder;
             break;
         case GEO_CELL:
@@ -216,8 +217,9 @@ public abstract class Maker {
             break;
         case IN_TERMS:
             Object[] termValues = (Object[]) value;
-            if(termValues.length == 1 && termValues[0] instanceof SubQueryExpression)
+            if(termValues.length == 1 && termValues[0] instanceof SubQueryExpression) {
                 termValues = ((SubQueryExpression) termValues[0]).getValues();
+            }
             x = QueryBuilders.termsQuery(name,termValues);
         break;
         case TERM:
@@ -238,8 +240,9 @@ public abstract class Maker {
             x = QueryBuilders.idsQuery(type).addIds(ids);
         break;
         case NESTED_COMPLEX:
-            if(value == null || ! (value instanceof Where) )
+            if(value == null || ! (value instanceof Where) ) {
                 throw new SqlParseException("unsupported nested condition");
+            }
             Where where = (Where) value;
             BoolQueryBuilder nestedFilter = QueryMaker.explan(where);
 
@@ -274,8 +277,11 @@ public abstract class Maker {
 
     private ShapeBuilder getShapeBuilderFromString(String str) throws IOException {
         String json;
-        if(str.contains("{")) json  = fixJsonFromElastic(str);
-        else json = WktToGeoJsonConverter.toGeoJson(trimApostrophes(str));
+        if(str.contains("{")) {
+            json = fixJsonFromElastic(str);
+        } else {
+            json = WktToGeoJsonConverter.toGeoJson(trimApostrophes(str));
+        }
 
         return getShapeBuilderFromJson(json);
     }

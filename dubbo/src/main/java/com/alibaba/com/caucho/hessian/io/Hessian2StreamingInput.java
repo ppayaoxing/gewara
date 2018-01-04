@@ -96,6 +96,7 @@ public class Hessian2StreamingInput
       _is = is;
     }
 
+    @Override
     public int read()
       throws IOException
     {
@@ -104,17 +105,19 @@ public class Hessian2StreamingInput
       while (_length == 0) {
 	int code = is.read();
 
-	if (code < 0)
-	  return -1;
-	else if (code != 'p' && code != 'P')
-	  throw new HessianProtocolException("expected streaming packet at 0x"
-					     + Integer.toHexString(code & 0xff));
+	if (code < 0) {
+        return -1;
+    } else if (code != 'p' && code != 'P') {
+        throw new HessianProtocolException("expected streaming packet at 0x"
+                + Integer.toHexString(code & 0xff));
+    }
 
 	int d1 = is.read();
 	int d2 = is.read();
 
-	if (d2 < 0)
-	  return -1;
+	if (d2 < 0) {
+        return -1;
+    }
 	
 	_length = (d1 << 8) + d2;
       }
@@ -123,6 +126,7 @@ public class Hessian2StreamingInput
       return is.read();
     }
 
+    @Override
     public int read(byte []buffer, int offset, int length)
       throws IOException
     {
@@ -131,9 +135,9 @@ public class Hessian2StreamingInput
       while (_length == 0) {
 	int code = is.read();
 
-	if (code < 0)
-	  return -1;
-	else if (code != 'p' && code != 'P') {
+	if (code < 0) {
+        return -1;
+    } else if (code != 'p' && code != 'P') {
 	  throw new HessianProtocolException("expected streaming packet at 0x"
 					     + Integer.toHexString(code & 0xff)
 					     + " (" + (char) code + ")");
@@ -142,20 +146,23 @@ public class Hessian2StreamingInput
 	int d1 = is.read();
 	int d2 = is.read();
 
-	if (d2 < 0)
-	  return -1;
+	if (d2 < 0) {
+        return -1;
+    }
 	
 	_length = (d1 << 8) + d2;
       }
 
       int sublen = _length;
-      if (length < sublen)
-	sublen = length;
+      if (length < sublen) {
+          sublen = length;
+      }
 
       sublen = is.read(buffer, offset, sublen);
 
-      if (sublen < 0)
-	return -1;
+      if (sublen < 0) {
+          return -1;
+      }
 
       _length -= sublen;
 

@@ -64,37 +64,44 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		this.currentDB = mongoClient.prepareDatabase(databaseName);
 	}
 
-	public void enableStats(boolean enable) {
+	@Override
+    public void enableStats(boolean enable) {
 		MongoStats.setEnableStats(enable);
 	}
 
-	public void afterPropertiesSet() throws Exception {
+	@Override
+    public void afterPropertiesSet() throws Exception {
 		if (this.currentDB == null) {
 			throw new IllegalStateException("currentDB must be set!");
 		}
 	}
 
-	public <T extends MGObject> T getObjectById(Class<T> clazz, String idName, Serializable id) {
+	@Override
+    public <T extends MGObject> T getObjectById(Class<T> clazz, String idName, Serializable id) {
 		return this
 				.execQuery(BuilderUtils.prepareFind(clazz).setCondition((new Expression()).eq(idName, id)).setSize(1))
 				.toBean();
 	}
 
-	public <T extends MGObject> List<T> getObjectList(Class<T> clazz) {
+	@Override
+    public <T extends MGObject> List<T> getObjectList(Class<T> clazz) {
 		return this.execQuery(BuilderUtils.prepareFind(clazz)).toBeans();
 	}
 
-	public <T extends MGObject> List<T> getObjectList(Class<T> clazz, String orderField, boolean asc) {
+	@Override
+    public <T extends MGObject> List<T> getObjectList(Class<T> clazz, String orderField, boolean asc) {
 		return this.execQuery(BuilderUtils.prepareFind(clazz).addSort(orderField, asc)).toBeans();
 	}
 
-	public <T extends MGObject> List<T> getObjectList(Class<T> clazz, String orderField, boolean asc, int from,
-			int maxnum) {
+	@Override
+    public <T extends MGObject> List<T> getObjectList(Class<T> clazz, String orderField, boolean asc, int from,
+                                                      int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(clazz).addSort(orderField, asc).setFrom(from).setSize(maxnum))
 				.toBeans();
 	}
 
-	public <T extends MGObject> void saveOrUpdateObject(T bean, String idName) {
+	@Override
+    public <T extends MGObject> void saveOrUpdateObject(T bean, String idName) {
 		Map beanMap = this.getObjectMap(bean);
 		Object id = beanMap.get(idName);
 		if (id == null) {
@@ -105,7 +112,8 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		}
 	}
 
-	public <T extends MGObject> void addObject(T bean, String idName) {
+	@Override
+    public <T extends MGObject> void addObject(T bean, String idName) {
 		if (bean != null) {
 			Map beanMap = this.getObjectMap(bean);
 			Serializable id = (Serializable) beanMap.get(idName);
@@ -134,7 +142,8 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return beanMap;
 	}
 
-	public <T extends MGObject> boolean removeObject(T o, String idName) {
+	@Override
+    public <T extends MGObject> boolean removeObject(T o, String idName) {
 		Object id = BeanUtil.get(o, idName);
 		return id != null
 				? this.execDelete(BuilderUtils.prepareDelete(o.getClass())
@@ -142,18 +151,21 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 				: false;
 	}
 
-	public <T extends MGObject> boolean removeObjectById(Class<T> clazz, String idName, Serializable id) {
+	@Override
+    public <T extends MGObject> boolean removeObjectById(Class<T> clazz, String idName, Serializable id) {
 		return this.execDelete(
 				BuilderUtils.prepareDelete(clazz).setCondition((new Expression()).eq(idName, id)).setDeleteOne(true))
 				.success();
 	}
 
-	public boolean removeObjectById(String namespace, String idName, Serializable id) {
+	@Override
+    public boolean removeObjectById(String namespace, String idName, Serializable id) {
 		return this.execDelete(BuilderUtils.prepareDelete(namespace).setCondition((new Expression()).eq(idName, id))
 				.setDeleteOne(true)).success();
 	}
 
-	public <T extends MGObject> int removeObjectList(Collection<T> entityList, String idName) {
+	@Override
+    public <T extends MGObject> int removeObjectList(Collection<T> entityList, String idName) {
 		if (entityList.isEmpty()) {
 			return 0;
 		} else {
@@ -163,21 +175,25 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		}
 	}
 
-	public <T extends MGObject> int removeObjectList(Class<T> clazz, String idName,
-			List<? extends Serializable> idList) {
+	@Override
+    public <T extends MGObject> int removeObjectList(Class<T> clazz, String idName,
+                                                     List<? extends Serializable> idList) {
 		return this.execDelete(BuilderUtils.prepareDelete(clazz).setCondition((new Expression()).in(idName, idList)))
 				.deleteCount();
 	}
 
-	public <T extends MGObject> int removeObjectList(Class<T> clazz, Expression params) {
+	@Override
+    public <T extends MGObject> int removeObjectList(Class<T> clazz, Expression params) {
 		return this.execDelete(BuilderUtils.prepareDelete(clazz).setCondition(params)).deleteCount();
 	}
 
-	public int removeObjectList(String namespace, Expression params) {
+	@Override
+    public int removeObjectList(String namespace, Expression params) {
 		return this.execDelete(BuilderUtils.prepareDelete(namespace).setCondition(params)).deleteCount();
 	}
 
-	public void saveOrUpdateMap(Map map, String idName, String namespace) {
+	@Override
+    public void saveOrUpdateMap(Map map, String idName, String namespace) {
 		Object id = map.get(idName);
 		if (id == null) {
 			throw new MongoDataException("mongodb: id can\'t be null!");
@@ -187,15 +203,18 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		}
 	}
 
-	public void addMap(Map map, String idName, String namespace) {
+	@Override
+    public void addMap(Map map, String idName, String namespace) {
 		this.execInsert(BuilderUtils.prepareInsert(namespace).addData4Bean(new Object[] { map }));
 	}
 
-	public List<Map> find(String namespace) {
+	@Override
+    public List<Map> find(String namespace) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace)).toMapList();
 	}
 
-	public List<Map<String, String>> getAllTables() {
+	@Override
+    public List<Map<String, String>> getAllTables() {
 		ArrayList result = new ArrayList();
 		Set names = this.getCollections();
 		Iterator arg2 = names.iterator();
@@ -212,37 +231,44 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return result;
 	}
 
-	public List<Map> find(String namespace, Expression params, String orderField, boolean asc) {
+	@Override
+    public List<Map> find(String namespace, Expression params, String orderField, boolean asc) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace).setCondition(params).addSort(orderField, asc))
 				.toMapList();
 	}
 
-	public List<Map> find(String namespace, Expression params, String[] orderField, boolean[] asc, int from,
-			int maxnum) {
+	@Override
+    public List<Map> find(String namespace, Expression params, String[] orderField, boolean[] asc, int from,
+                          int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace).setCondition(params).addSort(orderField, asc)
 				.setFrom(from).setSize(maxnum)).toMapList();
 	}
 
-	public List<Map> find(String namespace, int from, int maxnum) {
+	@Override
+    public List<Map> find(String namespace, int from, int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace).setFrom(from).setSize(maxnum)).toMapList();
 	}
 
-	public List<Map> find(String namespace, Expression params, int from, int maxnum) {
+	@Override
+    public List<Map> find(String namespace, Expression params, int from, int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace).setCondition(params).addSort("_id", false)
 				.setFrom(from).setSize(maxnum)).toMapList();
 	}
 
-	public Map findOne(String namespace, Expression params) {
+	@Override
+    public Map findOne(String namespace, Expression params) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace).setCondition(params).setSize(1)).toMap();
 	}
 
-	public Map findById(String namespace, String idName, Serializable idValue) {
+	@Override
+    public Map findById(String namespace, String idName, Serializable idValue) {
 		return this.execQuery(
 				BuilderUtils.prepareFind(namespace).setCondition((new Expression()).eq(idName, idValue)).setSize(1))
 				.toMap();
 	}
 
-	public <T extends MGObject> void saveOrUpdateObjectList(List<T> beanList, String idName) {
+	@Override
+    public <T extends MGObject> void saveOrUpdateObjectList(List<T> beanList, String idName) {
 		if (!beanList.isEmpty()) {
 			Class clazz = ((MGObject) beanList.get(0)).getClass();
 			String namespace = clazz.getCanonicalName();
@@ -263,7 +289,8 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		}
 	}
 
-	public <T extends MGObject> void addObjectList(List<T> beanList, String idName) {
+	@Override
+    public <T extends MGObject> void addObjectList(List<T> beanList, String idName) {
 		if (beanList != null && !beanList.isEmpty()) {
 			Class c = ((MGObject) beanList.get(0)).getClass();
 			InsertBuilder insert = BuilderUtils.prepareInsert(c.getCanonicalName());
@@ -284,72 +311,86 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		}
 	}
 
-	public void addMapList(List<Map> mapList, String idName, String namespace) {
+	@Override
+    public void addMapList(List<Map> mapList, String idName, String namespace) {
 		this.execInsert(BuilderUtils.prepareInsert(namespace).setData4Bean(mapList));
 	}
 
-	public int getCount(String namespace) {
+	@Override
+    public int getCount(String namespace) {
 		return this.count(namespace);
 	}
 
-	public List<Map> find(String namespace, Expression params) {
+	@Override
+    public List<Map> find(String namespace, Expression params) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace).setCondition(params)).toMapList();
 	}
 
-	public List<Map> find(String namespace, Expression params, String orderField, boolean asc, int from, int maxnum) {
+	@Override
+    public List<Map> find(String namespace, Expression params, String orderField, boolean asc, int from, int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace).setCondition(params).addSort(orderField, asc)
 				.setFrom(from).setSize(maxnum)).toMapList();
 	}
 
-	public List<Map> find(String namespace, Expression params, Map<String, Integer> fields, String orderField,
-			boolean asc, int from, int maxnum) {
+	@Override
+    public List<Map> find(String namespace, Expression params, Map<String, Integer> fields, String orderField,
+                          boolean asc, int from, int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace).setCondition(params)
 				.setProjection((new Projection()).addFields(fields)).addSort(orderField, asc).setFrom(from)
 				.setSize(maxnum)).toMapList();
 	}
 
-	public List<Map> find(String namespace, Expression params, Map<String, Integer> fields, String[] orderField,
-			boolean[] asc, int from, int maxnum) {
+	@Override
+    public List<Map> find(String namespace, Expression params, Map<String, Integer> fields, String[] orderField,
+                          boolean[] asc, int from, int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace).setCondition(params)
 				.setProjection((new Projection()).addFields(fields)).addSort(orderField, asc).setFrom(from)
 				.setSize(maxnum)).toMapList();
 	}
 
-	public <T extends MGObject> List<T> getObjectList(Class<T> clazz, Expression params) {
+	@Override
+    public <T extends MGObject> List<T> getObjectList(Class<T> clazz, Expression params) {
 		return this.execQuery(BuilderUtils.prepareFind(clazz).setCondition(params)).toBeans();
 	}
 
-	public <T extends MGObject> List<T> getObjectList(Class<T> clazz, Expression params, String orderField, boolean asc,
-			int from, int maxnum) {
+	@Override
+    public <T extends MGObject> List<T> getObjectList(Class<T> clazz, Expression params, String orderField, boolean asc,
+                                                      int from, int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(clazz).setCondition(params).addSort(orderField, asc)
 				.setFrom(from).setSize(maxnum)).toBeans();
 	}
 
-	public <T extends MGObject> List<T> getObjectListByNs(String namespace, Class<T> clazz, Expression params) {
+	@Override
+    public <T extends MGObject> List<T> getObjectListByNs(String namespace, Class<T> clazz, Expression params) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace, clazz).setCondition(params)).toBeans();
 	}
 
-	public <T extends MGObject> List<T> getObjectListByNs(String namespace, Class<T> clazz, Expression params,
-			String orderField, boolean asc, int from, int maxnum) {
+	@Override
+    public <T extends MGObject> List<T> getObjectListByNs(String namespace, Class<T> clazz, Expression params,
+                                                          String orderField, boolean asc, int from, int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace, clazz).setCondition(params).addSort(orderField, asc)
 				.setFrom(from).setSize(maxnum)).toBeans();
 	}
 
-	public <T extends MGObject> int getObjectCount(Class<T> clazz, Expression params) {
+	@Override
+    public <T extends MGObject> int getObjectCount(Class<T> clazz, Expression params) {
 		return this.count(BuilderUtils.prepareFind(clazz).setCondition(params));
 	}
 
-	public int getCount(String namespace, Expression params) {
+	@Override
+    public int getCount(String namespace, Expression params) {
 		return this.count(BuilderUtils.prepareFind(namespace).setCondition(params));
 	}
 
-	public <T> List<T> getDistinctPropertyList(String namespace, Expression params, String propertyname,
-			Class<T> clazz) {
+	@Override
+    public <T> List<T> getDistinctPropertyList(String namespace, Expression params, String propertyname,
+                                               Class<T> clazz) {
 		return this.execDistinct(
 				BuilderUtils.prepareDistinct(namespace).setDistinctField(propertyname).setCondition(params), clazz);
 	}
 
-	public int copyCollection(String fromCollection, String toCollection) {
+	@Override
+    public int copyCollection(String fromCollection, String toCollection) {
 		int total = 0;
 		MongoCursor ite = this.currentDB.getCollection(fromCollection).find().iterator();
 		if (ite.hasNext()) {
@@ -361,24 +402,28 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return total;
 	}
 
-	public <T extends MGObject> List<T> getObjectList(Class<T> clazz, Expression params, String[] orderField,
-			boolean[] asc, int from, int maxnum) {
+	@Override
+    public <T extends MGObject> List<T> getObjectList(Class<T> clazz, Expression params, String[] orderField,
+                                                      boolean[] asc, int from, int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(clazz).setCondition(params).addSort(orderField, asc)
 				.setFrom(from).setSize(maxnum)).toBeans();
 	}
 
-	public <T extends MGObject> List<T> getObjectList(String namespace, Class<T> clazz, Expression params,
-			String[] orderField, boolean[] asc, int from, int maxnum) {
+	@Override
+    public <T extends MGObject> List<T> getObjectList(String namespace, Class<T> clazz, Expression params,
+                                                      String[] orderField, boolean[] asc, int from, int maxnum) {
 		return this.execQuery(BuilderUtils.prepareFind(namespace, clazz).setCondition(params).addSort(orderField, asc)
 				.setFrom(from).setSize(maxnum)).toBeans();
 	}
 
-	public ErrorCode<Integer> processData(String namespace, Expression params, MongoRowCallback callback,
-			boolean exitOnError) {
+	@Override
+    public ErrorCode<Integer> processData(String namespace, Expression params, MongoRowCallback callback,
+                                          boolean exitOnError) {
 		return this.process(BuilderUtils.prepareFind(namespace).setCondition(params), callback, exitOnError);
 	}
 
-	public Set<String> getCollections() {
+	@Override
+    public Set<String> getCollections() {
 		MongoCursor ite = this.currentDB.listCollectionNames().iterator();
 		HashSet r = new HashSet();
 
@@ -389,11 +434,13 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return r;
 	}
 
-	public List<Map> getIndexesByNamespace(String namespace) {
+	@Override
+    public List<Map> getIndexesByNamespace(String namespace) {
 		return this.listIndexes(namespace).toMapList();
 	}
 
-	public void createIndex(String namespace, String fields) {
+	@Override
+    public void createIndex(String namespace, String fields) {
 		if (StringUtils.isNotBlank(fields)) {
 			String indexname = StringUtils.replace(fields, ",", "_");
 			String[] arrs = StringUtils.split(fields, ",");
@@ -402,20 +449,24 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 
 	}
 
-	public void dropIndex(String namespace, String indexname) {
+	@Override
+    public void dropIndex(String namespace, String indexname) {
 		this.dropIndex(BuilderUtils.prepareIndex(namespace).setIndexName(indexname));
 	}
 
-	public <T extends MGObject> int getObjectCount(Class<T> clazz) {
+	@Override
+    public <T extends MGObject> int getObjectCount(Class<T> clazz) {
 		return this.count(clazz);
 	}
 
-	public Map getCollectionStat(String collectionName) {
+	@Override
+    public Map getCollectionStat(String collectionName) {
 		Document doc = this.currentDB.runCommand(new Document("collStats", collectionName));
 		return doc;
 	}
 
-	public UpdateRes execUpdate(UpdateBuilder ub) {
+	@Override
+    public UpdateRes execUpdate(UpdateBuilder ub) {
 		MongoCollection mc = this.currentDB.getCollection(ub.getCollectionName());
 		Bson filter = ub.getQueryCondition();
 		UpdateResult ur = null;
@@ -446,7 +497,8 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return new UpdateRes(ur);
 	}
 
-	public <T> FindRes<T> execQuery(FindBuilder<T> fb) {
+	@Override
+    public <T> FindRes<T> execQuery(FindBuilder<T> fb) {
 		MongoCollection mc = this.currentDB.getCollection(fb.getCollectionName());
 		Bson c = fb.getQueryCondition();
 		FindIterable fi = c == null ? mc.find() : mc.find(c);
@@ -470,7 +522,8 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return new FindRes(fi.iterator(), fb.getMapping());
 	}
 
-	public <T> List<T> execDistinct(DistinctBuilder dis, Class<T> fieldType) {
+	@Override
+    public <T> List<T> execDistinct(DistinctBuilder dis, Class<T> fieldType) {
 		DistinctIterable result = this.currentDB.getCollection(dis.getCollectionName()).distinct(dis.getDistincField(),
 				fieldType);
 		MongoCursor ite = result.filter(dis.getQueryCondition()).iterator();
@@ -483,7 +536,8 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return list;
 	}
 
-	public <T> ErrorCode<Integer> process(FindBuilder<T> fb, MongoRowCallback callback, boolean exitOnError) {
+	@Override
+    public <T> ErrorCode<Integer> process(FindBuilder<T> fb, MongoRowCallback callback, boolean exitOnError) {
 		MongoCollection mc = this.currentDB.getCollection(fb.getCollectionName());
 		FindIterable fi = null;
 		Bson c = fb.getQueryCondition();
@@ -524,7 +578,8 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return ErrorCode.getSuccessReturn(Integer.valueOf(count));
 	}
 
-	public DeleteRes execDelete(DeleteBuilder del) {
+	@Override
+    public DeleteRes execDelete(DeleteBuilder del) {
 		Bson c = del.getQueryCondition();
 		MongoCollection mc = this.currentDB.getCollection(del.getCollectionName());
 		DeleteResult result = null;
@@ -538,7 +593,8 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return new DeleteRes(result, del.isDeleteOne());
 	}
 
-	public void execInsert(InsertBuilder ib) {
+	@Override
+    public void execInsert(InsertBuilder ib) {
 		MongoCollection mc = this.currentDB.getCollection(ib.getCollectionName());
 		if (ib.getSources().size() == 1) {
 			Document doc = ib.getTop();
@@ -578,12 +634,13 @@ public class MongoServiceImpl implements MongoService, InitializingBean {
 		return new FindRes(ite);
 	}
 
-	public FindRes<Object> group(AggregationBuilder ab) {
+	@Override
+    public FindRes<Object> group(AggregationBuilder ab) {
 		MongoCursor result = this.currentDB.getCollection(ab.getCollectionName()).aggregate(ab.build()).iterator();
 		return new FindRes(result);
 	}
 
-	// ========================== TODO 新加的方法========================================
+	// ========================== TODO 锟铰加的凤拷锟斤拷========================================
 	@Override
 	public DBObject queryBasicDBObject(String string, String string2, Object o) {
 		// TODO Auto-generated method stub

@@ -37,6 +37,7 @@ import com.alibaba.dubbo.container.page.PageHandler;
 @Menu(name = "System", desc = "Show system environment information.", order = Integer.MAX_VALUE - 10000)
 public class SystemPageHandler implements PageHandler {
 
+    @Override
     public Page handle(URL url) {
         List<List<String>> rows = new ArrayList<List<String>>();
         List<String> row;

@@ -32,42 +32,42 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
 
     private static final long      serialVersionUID = 1L;
 
-    // ·þÎñ°æ±¾
+    // ï¿½ï¿½ï¿½ï¿½æ±¾
     protected String               version;
 
-    // ·þÎñ·Ö×é
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     protected String               group;
 
-    // ·þÎñÊÇ·ñÒÑ¾­deprecated
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½deprecated
     protected Boolean              deprecated;
 
-    // ÑÓ³Ù±©Â¶
+    // ï¿½Ó³Ù±ï¿½Â¶
     protected Integer              delay;
 
-    // ÊÇ·ñ±©Â¶
+    // ï¿½Ç·ï¿½Â¶
     protected Boolean              export;
 
-    // È¨ÖØ
+    // È¨ï¿½ï¿½
     protected Integer              weight;
 
-    // Ó¦ÓÃÎÄµµ
+    // Ó¦ï¿½ï¿½ï¿½Äµï¿½
     protected String               document;
 
-    // ÔÚ×¢²áÖÐÐÄÉÏ×¢²á³É¶¯Ì¬µÄ»¹ÊÇ¾²Ì¬µÄ·þÎñ
+    // ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½É¶ï¿½Ì¬ï¿½Ä»ï¿½ï¿½Ç¾ï¿½Ì¬ï¿½Ä·ï¿½ï¿½ï¿½
     protected Boolean              dynamic;
 
-    // ÊÇ·ñÊ¹ÓÃÁîÅÆ
+    // ï¿½Ç·ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     protected String               token;
 
-    // ·ÃÎÊÈÕÖ¾
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
     protected String               accesslog;
 
-    // ÔÊÐíÖ´ÐÐÇëÇóÊý
+    // ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private Integer                executes;
 
     protected List<ProtocolConfig> protocols;
 
-    // ÊÇ·ñ×¢²á
+    // ï¿½Ç·ï¿½×¢ï¿½ï¿½
     private Boolean                register;
 
     public String getVersion() {
@@ -195,11 +195,13 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
         this.executes = executes;
     }
 
+    @Override
     @Parameter(key = Constants.SERVICE_FILTER_KEY, append = true)
     public String getFilter() {
         return super.getFilter();
     }
 
+    @Override
     @Parameter(key = Constants.EXPORTER_LISTENER_KEY, append = true)
     public String getListener() {
         return super.getListener();

@@ -13,39 +13,39 @@ public class DramaProfileVo extends BaseVo {
 
 	private static final long serialVersionUID = 2713318692410184246L;
 	private Long dramaid;
-	private String limittype;			//ÏÞÖÆÀàÐÍ£¨Ã¿Ìì£¬Ã¿¸ö³¡´Î£¬ÏîÄ¿ÖÜÆÚ£©
-	private Integer limitnum;			//ÏÞÖÆÕÅÊý
-	private String limitsite;			//ÏÞÖÆÕ¾µã:Web, Wap
-	private String uniqueby;			//ÏÞÖÆÎ¨Ò»±êÊ¶
-	private String itemid;				//ÏÞÖÆ³¡´ÎID¼¯ºÏ
-	private String opustype;			//×÷Æ·ÀàÐÍ(YÒôÆµ)
+	private String limittype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Ã¿ï¿½ì£¬Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Ú£ï¿½
+	private Integer limitnum;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String limitsite;			//ï¿½ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½:Web, Wap
+	private String uniqueby;			//ï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½ï¿½Ê¶
+	private String itemid;				//ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½
+	private String opustype;			//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½(Yï¿½ï¿½Æµ)
 	private String opuslink;
-	private String reserve;				//ÊÇ·ñ¿ÉÔ¤Ô¼(Y,N)
-	private String validorder;			//Ô¤Ô¼ÑéÖ¤¶©µ¥(Y,N)
-	private Integer rmaxnum;			//µ¥´Î¿ÉÔ¤Ô¼×î´óÈËÊý
-	private Integer rlimitnum;			//×ÜÔ¤Ô¼´ÎÊý
-	private Integer delayedday;			//ÑÓ³ÙÌìÊý
-	private Timestamp rstarttime;		//Ô¤Ô¼¿ª·Å¿ªÊ¼Ê±¼ä
-	private Timestamp rendtime;			//Ô¤Ô¼¿ª·Å½áÊøÊ±¼ä
-	private Date rstartdate;			//Ô¤Ô¼¿ªÊ¼ÈÕÆÚ
+	private String reserve;				//ï¿½Ç·ï¿½ï¿½Ô¤Ô¼(Y,N)
+	private String validorder;			//Ô¤Ô¼ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½(Y,N)
+	private Integer rmaxnum;			//ï¿½ï¿½ï¿½Î¿ï¿½Ô¤Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer rlimitnum;			//ï¿½ï¿½Ô¤Ô¼ï¿½ï¿½ï¿½ï¿½
+	private Integer delayedday;			//ï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Timestamp rstarttime;		//Ô¤Ô¼ï¿½ï¿½ï¿½Å¿ï¿½Ê¼Ê±ï¿½ï¿½
+	private Timestamp rendtime;			//Ô¤Ô¼ï¿½ï¿½ï¿½Å½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Date rstartdate;			//Ô¤Ô¼ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 	private String reserveexp;
-	private String businessname;		//Ô¤Ô¼ºÏ×÷ÉÌ»§Ãû³Æ
-	private String businessurl;			//Ô¤Ô¼ºÏ×÷ÉÌ»§ÍøÖ·
-	private String remind;				//¿ªÆ±ÌáÐÑ
-	private String remindcontent;		//ÌáÐÑÄÚÈÝ
-	private String remindtext;			//ÌáÐÑÄÚÈÝ2
-	private Timestamp remindtime;		//¿ªÆ±ÌáÐÑÊ±¼ä
+	private String businessname;		//Ô¤Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½Ì»ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String businessurl;			//Ô¤Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½Ì»ï¿½ï¿½ï¿½Ö·
+	private String remind;				//ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½
+	private String remindcontent;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String remindtext;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2
+	private Timestamp remindtime;		//ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	private Timestamp addtime;
 	private Timestamp updatetime;
 
-	private String unlimituser; 		//²»ÊÜÏÞÖÆÓÃ»§
-	private String prioritize;			//ÓÅÏÈ¹º
+	private String unlimituser; 		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	private String prioritize;			//ï¿½ï¿½ï¿½È¹ï¿½
 	private Timestamp pstarttime;
 	private Timestamp pendtime;
-	private String checkprice;			//Ô¤Ô¼ÑéÖ¤¼Û¸ñ(Y,N)
-	private String reserverlogo;		//Ô¤Ô¼±³¾°Í¼
-	private String reservercolor;		//Ô¤Ô¼±³¾°É«
-	private String sharepic;  			//ÏîÄ¿·ÖÏíÍ¼Æ¬
+	private String checkprice;			//Ô¤Ô¼ï¿½ï¿½Ö¤ï¿½Û¸ï¿½(Y,N)
+	private String reserverlogo;		//Ô¤Ô¼ï¿½ï¿½ï¿½ï¿½Í¼
+	private String reservercolor;		//Ô¤Ô¼ï¿½ï¿½ï¿½ï¿½É«
+	private String sharepic;  			//ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
 	private String appTopPic;
 	private String pcToText;
 	private String pcToLink;
@@ -55,15 +55,15 @@ public class DramaProfileVo extends BaseVo {
 	private String appToLink;
 	private String sellOutMark;
 
-	private String wplogo;				//µÚÈý·½º£±¨logo
+	private String wplogo;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½logo
 	private String origin;
 	private String autoseat;			//Y/N
-	private String secondtype;			//µÚ¶þÀàÐÍ
+	private String secondtype;			//ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	private String domain;		//¶ÌÁ´½ÓÓòÃû
-	private String shortUrl;	//¶ÌÁ´½Ó·ÃÎÊµØÖ·
-	private Integer remnantnum;		//ÓàÆ±ÌáÐÑÏÞÖÆÊýÁ¿
-	private String remnantnotice;	//ÓàÆ±ÌáÐÑÎÄ°¸
+	private String domain;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String shortUrl;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½Êµï¿½Ö·
+	private Integer remnantnum;		//ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String remnantnotice;	//ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½Ä°ï¿½
 	
 	@Override
 	public Serializable realId() {
@@ -71,7 +71,9 @@ public class DramaProfileVo extends BaseVo {
 	}
 
 	public String getWpLimg(){
-		if(StringUtils.isBlank(wplogo)) return "img/default_logo.png";
+		if(StringUtils.isBlank(wplogo)) {
+            return "img/default_logo.png";
+        }
 		return wplogo;
 	}
 	public Long getDramaid() {

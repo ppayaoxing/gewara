@@ -24,9 +24,9 @@ import com.ning.http.client.Response;
 import com.ning.http.multipart.FilePart;
 
 /**
- * Òì²½httpclient
- * <br>Ê¹ÓÃnetty NIOÌØÐÔ
- * <br>ËùÓÐ·½·¨µ÷ÓÃhttpÇëÇóºóÖ±½Ó·µ»Ø
+ * ï¿½ì²½httpclient
+ * <br>Ê¹ï¿½ï¿½netty NIOï¿½ï¿½ï¿½ï¿½
+ * <br>ï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½httpï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó·ï¿½ï¿½ï¿½
  * @author quzhuping
  *
  */
@@ -65,7 +65,7 @@ public class AsyncHttpUtils {
 		return asyncHttpClient2;
 	}
 	/**
-	 * Í¨¹ýGET·½·¨ÇëÇóurl
+	 * Í¨ï¿½ï¿½GETï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½url
 	 * @param url
 	 * @param params
 	 */
@@ -84,7 +84,7 @@ public class AsyncHttpUtils {
 		}
 	}
 	/**
-	 * Í¨¹ýGET·½·¨ÇëÇóurl
+	 * Í¨ï¿½ï¿½GETï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½url
 	 * @param url
 	 * @param params
 	 */
@@ -103,7 +103,7 @@ public class AsyncHttpUtils {
 		}
 	}	
 	/**
-	 * Í¨¹ýPOST·½·¨ÇëÇóurl
+	 * Í¨ï¿½ï¿½POSTï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½url
 	 * @param url
 	 * @param params
 	 */
@@ -119,7 +119,7 @@ public class AsyncHttpUtils {
 		}
 	}
 	/**
-	 * Í¨¹ýPOST·½·¨ÇëÇóurl
+	 * Í¨ï¿½ï¿½POSTï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½url
 	 * @param url
 	 * @param params
 	 */
@@ -154,7 +154,7 @@ public class AsyncHttpUtils {
 	}
 	
 	/**
-	 * Í¨¹ýPOST·½·¨ÇëÇóurl
+	 * Í¨ï¿½ï¿½POSTï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½url
 	 * @param url
 	 * @param body
 	 */
@@ -213,14 +213,16 @@ public class AsyncHttpUtils {
 	
 	private static String getFullUrl(String url, Map<String, String> params, String encode) {
 		if (params != null) {
-			if (url.indexOf('?') == -1)
-				url += "?";
-			else
-				url += "&";
+			if (url.indexOf('?') == -1) {
+                url += "?";
+            } else {
+                url += "&";
+            }
 			for (String name : params.keySet()) {
 				try {
-					if (StringUtils.isNotBlank(params.get(name)))
-						url += name + "=" + URLEncoder.encode(params.get(name), encode) + "&";
+					if (StringUtils.isNotBlank(params.get(name))) {
+                        url += name + "=" + URLEncoder.encode(params.get(name), encode) + "&";
+                    }
 				} catch (UnsupportedEncodingException e) {
 				}
 			}

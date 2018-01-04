@@ -16,28 +16,28 @@ public class DiaryVo extends BaseVo implements Serializable {
 	private static final long serialVersionUID = 4909399739817173386L;
 
 	protected Long id;
-	protected Long memberid;		//ÓÃ»§id
-	protected String subject;		//±êÌâ
-	protected Integer flowernum;	// ÏÊ»¨Êý
-	protected Integer poohnum;		// ²îÆÀÊý
-	protected Integer sumnum;		//×ÜÆÀ
+	protected Long memberid;		//ï¿½Ã»ï¿½id
+	protected String subject;		//ï¿½ï¿½ï¿½ï¿½
+	protected Integer flowernum;	// ï¿½Ê»ï¿½ï¿½ï¿½
+	protected Integer poohnum;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected Integer sumnum;		//ï¿½ï¿½ï¿½ï¿½
 	protected Integer sumnumed;
-	protected Timestamp addtime;	//Ìí¼ÓÊ±¼ä
-	protected Integer clickedtimes;	//µã»÷´ÎÊý
+	protected Timestamp addtime;	//ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	protected Integer clickedtimes;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	protected String tag;			
 	protected String category;		
 	protected Long categoryid;		
 	protected Long relatedid;
-	protected String status; 		// ×´Ì¬£¬Èç£º±»É¾³ý
-	protected String summary; 		// ÕªÒª£¬¸ÅÒª
-	protected Timestamp replytime;	//×îºó»Ø¸´Ê±¼ä
-	protected Integer replycount;	//»Ø¸´ÊýÁ¿
+	protected String status; 		// ×´Ì¬ï¿½ï¿½ï¿½ç£ºï¿½ï¿½É¾ï¿½ï¿½
+	protected String summary; 		// ÕªÒªï¿½ï¿½ï¿½ï¿½Òª
+	protected Timestamp replytime;	//ï¿½ï¿½ï¿½Ø¸ï¿½Ê±ï¿½ï¿½
+	protected Integer replycount;	//ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	protected Long replyid;
-	protected String type; 			// Ò»°ãÌû¡¢Í¶Æ±Ìû×Ó¡¢Ó°ÆÀ£¿
-	protected Boolean viewed; 		// ²é¿´¹ý
+	protected String type; 			// Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¶Æ±ï¿½ï¿½ï¿½Ó¡ï¿½Ó°ï¿½ï¿½ï¿½ï¿½
+	protected Boolean viewed; 		// ï¿½é¿´ï¿½ï¿½
 	protected Timestamp updatetime;
-	protected Date overdate; 		// Í¶Æ±½áÊøÈÕÆÚ
-	protected Timestamp utime; 		// ÅÅÐò×Ö¶Îconcat(REPLYTIME, UPDATETIME)
+	protected Date overdate; 		// Í¶Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected Timestamp utime; 		// ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½concat(REPLYTIME, UPDATETIME)
 	protected Long communityid;
 	protected String flag;
 	protected String range;
@@ -49,7 +49,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 	protected String division;
 	protected String otherinfo;
 	protected String diaryImage;
-	protected String ip;			//·¢ÌûÓÃ»§IP
+	protected String ip;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½IP
 	
 	public String getDiaryImage() {
 		return diaryImage;
@@ -125,7 +125,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 		this.replycount = 0;
 		this.viewed = true;
 		this.status = Status.Y_NEW;
-		this.communityid = 0L;// Ä¬ÈÏÖµ
+		this.communityid = 0L;// Ä¬ï¿½ï¿½Öµ
 		this.division = DiaryConstant.DIVISION_N;
 		this.subject = subject;
 	}
@@ -306,7 +306,9 @@ public class DiaryVo extends BaseVo implements Serializable {
 		this.sumnumed = sumnumed;
 	}
 	public void setPoohnum(Integer poohnum) {
-		if(poohnum == null)  poohnum = 0; 
+		if(poohnum == null) {
+            poohnum = 0;
+        }
 		this.poohnum = poohnum;
 	}
 
@@ -319,14 +321,16 @@ public class DiaryVo extends BaseVo implements Serializable {
 	}
 
 	public String getDtag() {
-		if (this.categoryid != null)
-			return category;
+		if (this.categoryid != null) {
+            return category;
+        }
 		return tag;
 	}
 
 	public Long getDrelatedid() {
-		if (this.categoryid != null)
-			return categoryid;
+		if (this.categoryid != null) {
+            return categoryid;
+        }
 		return relatedid;
 	}
 
@@ -338,7 +342,7 @@ public class DiaryVo extends BaseVo implements Serializable {
 		this.status = status;
 	}
 
-	public boolean getPic() {// ÓÐÎÞÍ¼Æ¬
+	public boolean getPic() {// ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
 		return StringUtils.contains(flag, Flag.FLAG_USERFILES);
 	}
 
@@ -366,9 +370,12 @@ public class DiaryVo extends BaseVo implements Serializable {
 		this.flag = flag;
 	}
 	public void addFlag(String sflag){
-		if(StringUtils.isBlank(this.flag)) this.flag = sflag;
-		if(!StringUtils.contains(this.flag, sflag))
-		this.flag += "," + sflag;
+		if(StringUtils.isBlank(this.flag)) {
+            this.flag = sflag;
+        }
+		if(!StringUtils.contains(this.flag, sflag)) {
+            this.flag += "," + sflag;
+        }
 	}
 	public String getCname() {
 		return this.subject;

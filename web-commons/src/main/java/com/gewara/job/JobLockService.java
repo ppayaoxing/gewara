@@ -44,15 +44,19 @@ public class JobLockService implements InitializingBean, JobStatsService {
 		String firetime = DateUtil.format(new Date(), "yyyyMMddHHmmss");
 		try{
 			List<String> oldjob = jobJdbcTemplate.queryForList(queryOld, String.class, jobName, newnext);
-			if(oldjob.size() > 0) return ErrorCode.getFailure(oldjob.get(0));
+			if(oldjob.size() > 0) {
+                return ErrorCode.getFailure(oldjob.get(0));
+            }
 			int rows = jobJdbcTemplate.update(insertNew, jobName, firetime, newnext, ip, "N");
-			if(rows >0) return ErrorCode.SUCCESS;
-			return ErrorCode.getFailure("±»ÆäËûËø¶¨!");
+			if(rows >0) {
+                return ErrorCode.SUCCESS;
+            }
+			return ErrorCode.getFailure("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 		}catch(DuplicateKeyException e){
-			return ErrorCode.getFailure("±»ÆäËûËø¶¨!");
+			return ErrorCode.getFailure("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 		}catch(Throwable e){
 			log.warn("", e, 200);
-			return ErrorCode.getFailure("²åÈë´íÎó!");
+			return ErrorCode.getFailure("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 		}
 	}
 	public void updateStatus(String status, String jobName, Date nextFireTime, String ip){
@@ -66,7 +70,9 @@ public class JobLockService implements InitializingBean, JobStatsService {
 	}
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		if(StringUtils.isBlank(jobLockTable)) throw new TraceErrorException("jobLockTable cannot be null!");
+		if(StringUtils.isBlank(jobLockTable)) {
+            throw new TraceErrorException("jobLockTable cannot be null!");
+        }
 		if(!StringUtils.equals(jobLockTable, "JOBLOCK")){
 			queryOld = "select IP from " + jobLockTable + " where JOBNAME = ? and NEXTFIRE = ? ";
 			insertNew = "insert into " + jobLockTable + "(jobname, firetime, nextfire, ip, status) values (?, ?, ?, ?, ?)";

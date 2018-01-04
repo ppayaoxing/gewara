@@ -10,41 +10,41 @@ import com.gewara.api.vo.BaseVo;
 
 public class DramaRemoteOrderVo extends BaseVo {
 	private static final long serialVersionUID = -318165413477507019L;
-	private Long orderid;			//ÓëGewaOrder¹²ÓÃID
-	private String serial;			//µ±Ç°Á÷Ë®ºÅ
-	private String hisSerial;		//ÀúÊ·Á÷Ë®ºÅ:¶ººÅ·Ö¸ô
-	private Timestamp addtime;		//´´½¨¶©µ¥Ê±¼ä
-	private Timestamp locktime;		//¶©µ¥ÓÐÐ§Ê±¼ä
-	private String seqno;			//³¡´ÎID
-	private String areaseqno;		//ÇøÓòID ¶ººÅ·Ö¸ô
-	private String mobile;			//ÓÃ»§ÊÖ»úºÅ
-	private String bookingId;		//Ô¶³Ì¶©µ¥ID
-	private String confirmationId;	//Ô¶³Ì¶©µ¥ÃÜÂë
-	private String tickets;			//Ó°Æ±ºÅ£¬¶ººÅ·Ö¸ô
-	private String seatlabel;		//ÏÂµ¥Êý¾Ý£º{"1233":"01:22,01:23"} (areaseq:seatline:seatrank »ò  areaseq:priceseq:quantity)
-	private String seatno;			//×ùÎ»±àºÅ£º1233:01:22,01:23 »ò {"123_21":"32",}
-	private String status;			//¶©µ¥½á¹û£ºlock¡¢fixed¡¢cancel...
-	private String seatText;		//×ùÎ»ÎÄ±¾
+	private Long orderid;			//ï¿½ï¿½GewaOrderï¿½ï¿½ï¿½ï¿½ID
+	private String serial;			//ï¿½ï¿½Ç°ï¿½ï¿½Ë®ï¿½ï¿½
+	private String hisSerial;		//ï¿½ï¿½Ê·ï¿½ï¿½Ë®ï¿½ï¿½:ï¿½ï¿½ï¿½Å·Ö¸ï¿½
+	private Timestamp addtime;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp locktime;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§Ê±ï¿½ï¿½
+	private String seqno;			//ï¿½ï¿½ï¿½ï¿½ID
+	private String areaseqno;		//ï¿½ï¿½ï¿½ï¿½ID ï¿½ï¿½ï¿½Å·Ö¸ï¿½
+	private String mobile;			//ï¿½Ã»ï¿½ï¿½Ö»ï¿½ï¿½ï¿½
+	private String bookingId;		//Ô¶ï¿½Ì¶ï¿½ï¿½ï¿½ID
+	private String confirmationId;	//Ô¶ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String tickets;			//Ó°Æ±ï¿½Å£ï¿½ï¿½ï¿½ï¿½Å·Ö¸ï¿½
+	private String seatlabel;		//ï¿½Âµï¿½ï¿½ï¿½ï¿½Ý£ï¿½{"1233":"01:22,01:23"} (areaseq:seatline:seatrank ï¿½ï¿½  areaseq:priceseq:quantity)
+	private String seatno;			//ï¿½ï¿½Î»ï¿½ï¿½Å£ï¿½1233:01:22,01:23 ï¿½ï¿½ {"123_21":"32",}
+	private String status;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lockï¿½ï¿½fixedï¿½ï¿½cancel...
+	private String seatText;		//ï¿½ï¿½Î»ï¿½Ä±ï¿½
 	private String checkmark;		
-	private String opentype;		//Ñ¡×ù¡¢·ÇÑ¡×ù
-	private String message;			//×îºóÒ»´Î´íÎóÏûÏ¢
-	private String ordertype;		//¶©µ¥ÀàÐÍ£¬GPTBS
-	private Timestamp updatetime;	//¸üÐÂÊ±¼ä
-	private String otherinfo;		//Ô¶³Ì¶©µ¥ÏêÏ¸
-	private String manual;			//Y£ºÈË¹¤ÖÕ½á¶©µ¥
-	private String userkey;			//ÓÃ»§ID
+	private String opentype;		//Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½
+	private String message;			//ï¿½ï¿½ï¿½Ò»ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	private String ordertype;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½GPTBS
+	private Timestamp updatetime;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String otherinfo;		//Ô¶ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸
+	private String manual;			//Yï¿½ï¿½ï¿½Ë¹ï¿½ï¿½Õ½á¶©ï¿½ï¿½
+	private String userkey;			//ï¿½Ã»ï¿½ID
 	private String takemethod;
 	private String realname;
 	private String address;
 	private String telphone;
 	private String expressno;
 	private String expressname;
-	private String bindMobile;		//ÓÃ»§°ó¶¨ÊÖ»úºÅ
-	private String clientIp;		//¿Í»§¶ËIP
+	private String bindMobile;		//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½
+	private String clientIp;		//ï¿½Í»ï¿½ï¿½ï¿½IP
 	
-	private Integer ticketnum;		//¶©µ¥Æ±Êý
-	private Double totalfee;		//¶©µ¥×Ü½ð¶î
-	private Double payfee;			//¶©µ¥Ö§¸¶½ð¶î
+	private Integer ticketnum;		//ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½
+	private Double totalfee;		//ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
+	private Double payfee;			//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	@Override
 	public Serializable realId() {
@@ -248,7 +248,9 @@ public class DramaRemoteOrderVo extends BaseVo {
 	}
 	
 	public boolean hasOpentype(String type){
-		if(StringUtils.isBlank(type)) return false;
+		if(StringUtils.isBlank(type)) {
+            return false;
+        }
 		return StringUtils.equals(this.opentype, type);
 	}
 

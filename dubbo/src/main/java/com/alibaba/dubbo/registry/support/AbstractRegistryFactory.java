@@ -37,32 +37,32 @@ import com.alibaba.dubbo.registry.RegistryService;
  */
 public abstract class AbstractRegistryFactory implements RegistryFactory {
 
-    // ÈÕÖ¾Êä³ö
+    // ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractRegistryFactory.class);
 
-    // ×¢²áÖÐÐÄ»ñÈ¡¹ý³ÌËø
+    // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private static final ReentrantLock LOCK = new ReentrantLock();
 
-    // ×¢²áÖÐÐÄ¼¯ºÏ Map<RegistryAddress, Registry>
+    // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ Map<RegistryAddress, Registry>
     private static final Map<String, Registry> REGISTRIES = new ConcurrentHashMap<String, Registry>();
 
     /**
-     * »ñÈ¡ËùÓÐ×¢²áÖÐÐÄ
+     * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      * 
-     * @return ËùÓÐ×¢²áÖÐÐÄ
+     * @return ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     public static Collection<Registry> getRegistries() {
         return Collections.unmodifiableCollection(REGISTRIES.values());
     }
 
     /**
-     * ¹Ø±ÕËùÓÐÒÑ´´½¨×¢²áÖÐÐÄ
+     * ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     public static void destroyAll() {
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Close all registries " + getRegistries());
         }
-        // Ëø¶¨×¢²áÖÐÐÄ¹Ø±Õ¹ý³Ì
+        // ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä¹Ø±Õ¹ï¿½ï¿½ï¿½
         LOCK.lock();
         try {
             for (Registry registry : getRegistries()) {
@@ -74,17 +74,18 @@ public abstract class AbstractRegistryFactory implements RegistryFactory {
             }
             REGISTRIES.clear();
         } finally {
-            // ÊÍ·ÅËø
+            // ï¿½Í·ï¿½ï¿½ï¿½
             LOCK.unlock();
         }
     }
 
+    @Override
     public Registry getRegistry(URL url) {
     	url = url.setPath(RegistryService.class.getName())
     			.addParameter(Constants.INTERFACE_KEY, RegistryService.class.getName())
     			.removeParameters(Constants.EXPORT_KEY, Constants.REFER_KEY);
     	String key = url.toServiceString();
-        // Ëø¶¨×¢²áÖÐÐÄ»ñÈ¡¹ý³Ì£¬±£Ö¤×¢²áÖÐÐÄµ¥Ò»ÊµÀý
+        // ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½È¡ï¿½ï¿½ï¿½Ì£ï¿½ï¿½ï¿½Ö¤×¢ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ò»Êµï¿½ï¿½
         LOCK.lock();
         try {
             Registry registry = REGISTRIES.get(key);
@@ -98,7 +99,7 @@ public abstract class AbstractRegistryFactory implements RegistryFactory {
             REGISTRIES.put(key, registry);
             return registry;
         } finally {
-            // ÊÍ·ÅËø
+            // ï¿½Í·ï¿½ï¿½ï¿½
             LOCK.unlock();
         }
     }

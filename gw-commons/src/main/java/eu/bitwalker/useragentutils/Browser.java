@@ -323,18 +323,21 @@ public enum Browser {
 		this.browserType = browserType;
 		this.manufacturer = manufacturer;
 		this.renderingEngine = renderingEngine;
-		if (versionRegexString != null)
-			this.versionRegEx = Pattern.compile(versionRegexString, Pattern.CASE_INSENSITIVE);
-		if (this.parent == null)
-			addTopLevelBrowser(this);
-		else
-			this.parent.children.add(this);
+		if (versionRegexString != null) {
+            this.versionRegEx = Pattern.compile(versionRegexString, Pattern.CASE_INSENSITIVE);
+        }
+		if (this.parent == null) {
+            addTopLevelBrowser(this);
+        } else {
+            this.parent.children.add(this);
+        }
 	}
 
   // create collection of top level browsers during initialization
 	private static void addTopLevelBrowser(Browser browser) {
-		if(topLevelBrowsers == null)
-			topLevelBrowsers = new ArrayList<Browser>();
+		if(topLevelBrowsers == null) {
+            topLevelBrowsers = new ArrayList<Browser>();
+        }
 		topLevelBrowsers.add(browser);
 	}
 
@@ -348,10 +351,11 @@ public enum Browser {
 
 	private Pattern getVersionRegEx() {
 		if (this.versionRegEx == null) {
-			if (this.getGroup() != this)
-				return this.getGroup().getVersionRegEx();
-			else
-				return null;
+			if (this.getGroup() != this) {
+                return this.getGroup().getVersionRegEx();
+            } else {
+                return null;
+            }
 		}
 		return this.versionRegEx;
 	}
@@ -370,7 +374,9 @@ public enum Browser {
 				String majorVersion = matcher.group(2);
 				String minorVersion = "0";
 				if (matcher.groupCount() > 2) // usually but not always there is a minor version
-					minorVersion = matcher.group(3);
+                {
+                    minorVersion = matcher.group(3);
+                }
 				return new Version (fullVersionString,majorVersion,minorVersion);
 			}
 		}
@@ -414,8 +420,9 @@ public enum Browser {
      */
     public boolean isInUserAgentString(String agentString)
     {
-        if (agentString == null)
+        if (agentString == null) {
             return false;
+        }
 
         String agentStringLowerCase = agentString.toLowerCase();
         return isInUserAgentLowercaseString(agentStringLowerCase);
@@ -507,8 +514,9 @@ public enum Browser {
 	{
 		for (Browser browser : Browser.values())
 		{
-			if (browser.getId() == id)
-				return browser;
+			if (browser.getId() == id) {
+                return browser;
+            }
 		}
 
 		// same behavior as standard valueOf(string) method

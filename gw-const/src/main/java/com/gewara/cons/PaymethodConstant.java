@@ -11,201 +11,201 @@ import org.apache.commons.lang.StringUtils;
 
 public abstract class PaymethodConstant implements Serializable {
 	private static final long serialVersionUID = -8289964065497333210L;
-	public static final String PAYMETHOD_UNKNOWN = "unknown";						//Î´Öª£¨ÓÃ»§Î´Ñ¡Ôñ£©
-	//¸ñÍßÀ­
-	public static final String PAYMETHOD_GEWAPAY = "gewaPay";						//ÓÃ»§Óà¶î
-	public static final String PAYMETHOD_FCARDPAY = "fcardPay";						//µã¿¨Ö§¸¶
-	public static final String PAYMETHOD_SYSPAY = "sysPay";							//ÏµÍ³ÓÃ»§
-	public static final String PAYMETHOD_ELECARDPAY = "elecardPay";					//È«²¿Ê¹ÓÃÈ¯
-	public static final String PAYMETHOD_GEWARA_OFFLINEPAY = "offlinePay";			//ºóÌ¨ÏßÏÂÖ§¸¶
-	//³äÖµ
-	public static final String PAYMETHOD_CHARGECARD = "ccardPay";					//³äÖµ¿¨£¬Ö»ÓÃÀ´³äÖµ
-	public static final String PAYMETHOD_LAKALA = "lakalaPay";						//À­¿¨À­ £¬Ö»ÓÃÀ´³äÖµ
-	public static final String PAYMETHOD_ABCBANKPAY = "abcPay";						//Å©ÐÐºÏ×÷³äÖµ£¬Ö»ÓÃÀ´³äÖµ
-	public static final String PAYMETHOD_WCANPAY = "wcanPay";						//Î¢ÄÜ¿Æ¼¼ºÏ×÷³äÖµ£¬Ö»ÓÃÀ´³äÖµ
-	//Ö§¸¶----ºÏ×÷»ï°é
-	public static final String PAYMETHOD_PARTNERPAY = "partnerPay";					//ºÏ×÷»ï°é
-	public static final String PAYMETHOD_OKCARDPAY = "okcardPay";					//Áª»ªOK¿¨
-	public static final String PAYMETHOD_SPSDOPAY1 = "spsdoPay";					//Ê¢´ó¼´Ê±µ½ÕËÖ§¸¶
-	//Ö§¸¶----µÚÈý·½
-	public static final String PAYMETHOD_ALIPAY = "directPay";						//Ö§¸¶±¦PC¶Ë
-	public static final String PAYMETHOD_PNRPAY = "pnrPay";							//»ã¸¶ÌìÏÂPC¶Ë
-	public static final String PAYMETHOD_CMPAY = "cmPay";							//ÒÆ¶¯ÊÖ»úÖ§¸¶PC¶Ë
-	public static final String PAYMETHOD_TEMPUSPAY = "tempusPay";					//ÌÚ¸¶Í¨PC¶Ë
-	public static final String PAYMETHOD_SPSDOPAY2 = "spsdo2Pay";					//Ê¢¸¶Í¨PC¶Ë
-	public static final String PAYMETHOD_CHINAPAY1 = "chinaPay";					//ÒøÁª
-	public static final String PAYMETHOD_CHINAPAY2 = "china2Pay";					//ChinapayPC¶Ë
-	public static final String PAYMETHOD_CHINAPAYSRCB = "srcbPay";					//ChinapayÅ©ÉÌÐÐ--->50000547
+	public static final String PAYMETHOD_UNKNOWN = "unknown";						//Î´Öªï¿½ï¿½ï¿½Ã»ï¿½Î´Ñ¡ï¿½ï¿½
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_GEWAPAY = "gewaPay";						//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_FCARDPAY = "fcardPay";						//ï¿½ã¿¨Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_SYSPAY = "sysPay";							//ÏµÍ³ï¿½Ã»ï¿½
+	public static final String PAYMETHOD_ELECARDPAY = "elecardPay";					//È«ï¿½ï¿½Ê¹ï¿½ï¿½È¯
+	public static final String PAYMETHOD_GEWARA_OFFLINEPAY = "offlinePay";			//ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	//ï¿½ï¿½Öµ
+	public static final String PAYMETHOD_CHARGECARD = "ccardPay";					//ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	public static final String PAYMETHOD_LAKALA = "lakalaPay";						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	public static final String PAYMETHOD_ABCBANKPAY = "abcPay";						//Å©ï¿½Ðºï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	public static final String PAYMETHOD_WCANPAY = "wcanPay";						//Î¢ï¿½Ü¿Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	//Ö§ï¿½ï¿½----ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_PARTNERPAY = "partnerPay";					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_OKCARDPAY = "okcardPay";					//ï¿½ï¿½ï¿½ï¿½OKï¿½ï¿½
+	public static final String PAYMETHOD_SPSDOPAY1 = "spsdoPay";					//Ê¢ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	//Ö§ï¿½ï¿½----ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_ALIPAY = "directPay";						//Ö§ï¿½ï¿½ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_PNRPAY = "pnrPay";							//ï¿½ã¸¶ï¿½ï¿½ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_CMPAY = "cmPay";							//ï¿½Æ¶ï¿½ï¿½Ö»ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_TEMPUSPAY = "tempusPay";					//ï¿½Ú¸ï¿½Í¨PCï¿½ï¿½
+	public static final String PAYMETHOD_SPSDOPAY2 = "spsdo2Pay";					//Ê¢ï¿½ï¿½Í¨PCï¿½ï¿½
+	public static final String PAYMETHOD_CHINAPAY1 = "chinaPay";					//ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_CHINAPAY2 = "china2Pay";					//ChinapayPCï¿½ï¿½
+	public static final String PAYMETHOD_CHINAPAYSRCB = "srcbPay";					//ChinapayÅ©ï¿½ï¿½ï¿½ï¿½--->50000547
 	
 	public static final String PAYMETHOD_UNIONPAY = "unionPay";						//unionPay
 	
 
-	public static final String PAYMETHOD_UNIONPAY_JS = "unionPay_js";				//Unionpay½­ËÕPC¶Ë
-	public static final String PAYMETHOD_UNIONPAY_ACTIVITY = "unionPay_activity";	//unionPay»î¶¯
-	public static final String PAYMETHOD_UNIONPAY_ACTIVITY_JS = "unionPay_activity_js";//unionPay½­ËÕ»î¶¯
-	public static final String PAYMETHOD_UNIONPAY_ZJ = "unionPay_zj";		//Õã½­µØÇø×¨ÓÃ
-	public static final String PAYMETHOD_UNIONPAY_SZ = "unionPay_sz";		//ÉîÛÚµØÇø×¨ÓÃ
-	public static final String PAYMETHOD_UNIONPAY_BJ = "unionPay_bj";		//±±¾©µØÇø×¨ÓÃ
-	public static final String PAYMETHOD_UNIONPAY_GZ = "unionPay_gz";		//¹ãÖÝµØÇø×¨ÓÃ
+	public static final String PAYMETHOD_UNIONPAY_JS = "unionPay_js";				//Unionpayï¿½ï¿½ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_UNIONPAY_ACTIVITY = "unionPay_activity";	//unionPayï¿½î¶¯
+	public static final String PAYMETHOD_UNIONPAY_ACTIVITY_JS = "unionPay_activity_js";//unionPayï¿½ï¿½ï¿½Õ»î¶¯
+	public static final String PAYMETHOD_UNIONPAY_ZJ = "unionPay_zj";		//ï¿½ã½­ï¿½ï¿½ï¿½ï¿½×¨ï¿½ï¿½
+	public static final String PAYMETHOD_UNIONPAY_SZ = "unionPay_sz";		//ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½×¨ï¿½ï¿½
+	public static final String PAYMETHOD_UNIONPAY_BJ = "unionPay_bj";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¨ï¿½ï¿½
+	public static final String PAYMETHOD_UNIONPAY_GZ = "unionPay_gz";		//ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½×¨ï¿½ï¿½
 
 	
-	public static final String PAYMETHOD_UNIONPAYFAST = "unionPayFast";				//unionPay V2.0.0 °æ±¾Ö§¸¶
+	public static final String PAYMETHOD_UNIONPAYFAST = "unionPayFast";				//unionPay V2.0.0 ï¿½æ±¾Ö§ï¿½ï¿½
 	/**
-	public static final String PAYMETHOD_UNIONPAYFAST_ACTIVITY_JS = "unionPayFast_activity_js";//unionPay version 2.0.0°æ±¾ unionPay½­ËÕ»î¶¯
-	public static final String PAYMETHOD_UNIONPAYFAST_ACTIVITY_BJ = "unionPayFast_activity_bj";//unionPay version 2.0.0°æ±¾ unionPay±±¾©»î¶¯
-	public static final String PAYMETHOD_UNIONPAYFAST_ACTIVITY_SZ = "unionPayFast_activity_sz";//unionPay version 2.0.0°æ±¾ÉîÛÚµØÇø»î¶¯
-	public static final String PAYMETHOD_UNIONPAYFAST_ACTIVITY_GZ = "unionPayFast_activity_gz";//unionPay version 2.0.0°æ±¾¹ãÖÝµØÇø»î¶¯
-	public static final String PAYMETHOD_UNIONPAYFAST_ACTIVITY_ZJ = "unionPayFast_activity_zj";//unionPay version 2.0.0°æ±¾Õã½­µØÇø»î¶¯
+	public static final String PAYMETHOD_UNIONPAYFAST_ACTIVITY_JS = "unionPayFast_activity_js";//unionPay version 2.0.0ï¿½æ±¾ unionPayï¿½ï¿½ï¿½Õ»î¶¯
+	public static final String PAYMETHOD_UNIONPAYFAST_ACTIVITY_BJ = "unionPayFast_activity_bj";//unionPay version 2.0.0ï¿½æ±¾ unionPayï¿½ï¿½ï¿½ï¿½ï¿½î¶¯
+	public static final String PAYMETHOD_UNIONPAYFAST_ACTIVITY_SZ = "unionPayFast_activity_sz";//unionPay version 2.0.0ï¿½æ±¾ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½î¶¯
+	public static final String PAYMETHOD_UNIONPAYFAST_ACTIVITY_GZ = "unionPayFast_activity_gz";//unionPay version 2.0.0ï¿½æ±¾ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½ï¿½î¶¯
+	public static final String PAYMETHOD_UNIONPAYFAST_ACTIVITY_ZJ = "unionPayFast_activity_zj";//unionPay version 2.0.0ï¿½æ±¾ï¿½ã½­ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯
 	*/
 	
-	//Ö§¸¶----Ö±Á¬
-	public static final String PAYMETHOD_BCPAY = "bcPay";							//½»ÐÐÖ±Á¬PC¶Ë
-	public static final String PAYMETHOD_SPDPAY = "spdPay";							//ÆÖ·¢Ö±Á¬PC¶Ë
-	public static final String PAYMETHOD_CMBPAY = "cmbPay";							//ÕÐÐÐÖ±Á¬PC¶Ë
-	public static final String PAYMETHOD_GDBPAY = "gdbPay";							//¹ã·¢Ö±Á¬PC¶Ë
-	public static final String PAYMETHOD_GDB_UNION_PAY = "gdbUnionPay";  		    //¹ã·¢Ö±Á¬PC¶Ë(ÒøÁª)
-	public static final String PAYMETHOD_PSBCPAY = "psbcPay";						//ÓÊ´¢Ö±Á¬PC¶Ë
-	public static final String PAYMETHOD_HZBANKPAY = "hzbankPay";					//º¼ÖÝÒøÐÐÖ±Á¬
-	//public static final String PAYMETHOD_CCBPOSPAY = "ccbposPay";					//½¨ÐÐÖ±Á¬PC¶Ë-ÐÅÓÃ¿¨
-	public static final String PAYMETHOD_JSBCHINA = "jsbChina";						//½­ËÕÒøÐÐÖ±Á¬PC¶Ë-ÐÅÓÃ¿¨
-	public static final String PAYMETHOD_SPDPAY_ACTIVITY = "spdPay_activity";		//ÆÖ·¢Ö±Á¬PC¶Ë-»î¶¯
-	public static final String PAYMETHOD_BOCPAY = "bocPay";							//ÖÐ¹úÒøÐÐÖ±Á¬PC¶Ë
-	public static final String PAYMETHOD_BOCWAPPAY = "bocWapPay";					//ÖÐ¹úÒøÐÐÖ±Á¬WAP¶Ë
-	public static final String PAYMETHOD_BOCAGRMTPAY = "bocAgrmtPay";				//ÖÐ¹úÒøÐÐÐ­ÒéÖ§¸¶
-	//Ö§¸¶----»°·Ñ
-	public static final String PAYMETHOD_UMPAY = "umPay";							//ÒÆ¶¯»°·ÑÖ§¸¶(Áª¶¯ÓÅÊÆ)
-	public static final String PAYMETHOD_UMPAY_SH = "umPay_sh";						//ÒÆ¶¯»°·ÑÖ§¸¶(Áª¶¯ÓÅÊÆ) ÉÏº£µØÇø
-	public static final String PAYMETHOD_TELECOM= "telecomPay";						//µçÐÅ¹Ì»°»°·ÑÖ§¸¶£¬°üÀ¨³äÖµ
-	public static final String PAYMETHOD_MOBILE_TELECOM= "telecomMobilePay";		//µçÐÅÊÖ»ú»°·ÑÖ§¸¶
-	//Ö§¸¶----ÐÐÒµ¿¨
-	public static final String PAYMETHOD_YAGAO = "yagaoPay";						//ÑÅ¸ß
-	public static final String PAYMETHOD_ONETOWN = "onetownPay";					//Ò»³Ç¿¨Ö§¸¶(ÐÂ»ª´«Ã½)
-	//Ö§¸¶----ÊÖ»ú¶Ë£¨Ö±Á¬ + µÚÈý·½£©
-	public static final String PAYMETHOD_ALIWAPPAY = "aliwapPay";					//Ö§¸¶±¦ÊÖ»ú¶Ë-WAPÖ§¸¶
-	public static final String PAYMETHOD_CMWAPPAY = "cmwapPay";						//ÒÆ¶¯ÊÖ»úÖ§¸¶ÊÖ»ú¶Ë-WAPÖ§¸¶
-	public static final String PAYMETHOD_CMBWAPPAY = "cmbwapPay";					//ÕÐÐÐÖ±Á¬ÊÖ»ú¶Ë
-	public static final String PAYMETHOD_CMBWAPSTOREPAY = "cmbwapStorePay";			//ÕÐÐÐÖ±Á¬ÊÖ»ú¶ËCMSTORE
-	public static final String PAYMETHOD_SPDWAPPAY = "spdWapPay";					//ÆÖ·¢Ö±Á¬ÊÖ»ú¶Ë-WAP
-	public static final String PAYMETHOD_CMSMARTPAY = "cmSmartPay";					//ÒÆ¶¯ÊÖ»úÖ§¸¶°²×¿°æ
-	public static final String PAYMETHOD_SPDWAPPAY_ACTIVITY = "spdWapPay_activity";	//ÆÖ·¢Ö±Á¬ÊÖ»ú¶Ë-»î¶¯
-	public static final String PAYMETHOD_CHINASMARTMOBILEPAY = "chinaSmartMobilePay";//ÒøÁªÖÇÄÜÊÖ»úÖ§¸¶
-	public static final String PAYMETHOD_CHINASMARTJSPAY = "chinaSmartJsPay";		//ÒøÁªÖÇÄÜÊÖ»úÖ§¸¶-½­ËÕ
-	public static final String PAYMETHOD_ALISMARTMOBILEPAY = "aliSmartMobilePay";	//Ö§¸¶±¦ÊÖ»ú¶Ë-°²È«Ö§¸¶
-	public static final String PAYMETHOD_HZWAPPAY = "hzwapPay";						//º¼ÖÝÒøÐÐWAP
-	public static final String PAYMETHOD_YEEPAY = "yeePay";       					//Ò×±¦Ö§¸¶
-	public static final String PAYMETHOD_PAYECO_DNA = "payecoDNAPay";       		// Ò×ÁªDNAÖ§¸¶
-	public static final String PAYMETHOD_MEMBERCARDPAY = "memberCardPay";       	// »áÔ±¿¨Ö§¸¶
-	public static final String PAYMETHOD_ICBCPAY = "icbcPay";       // ¹¤ÉÌÒøÐÐÖ±Á¬Ö§¸¶PC¶Ë
-	public static final String PAYMETHOD_NJCBPAY = "njcbPay";       // ÄÏ¾©ÒøÐÐÖ±Á¬Ö§¸¶PC¶Ë
-	public static final String PAYMETHOD_ABCHINAPAY = "abchinaPay";       // Å©ÒµÒøÐÐÖ±Á¬Ö§¸¶PC¶Ë
+	//Ö§ï¿½ï¿½----Ö±ï¿½ï¿½
+	public static final String PAYMETHOD_BCPAY = "bcPay";							//ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_SPDPAY = "spdPay";							//ï¿½Ö·ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_CMBPAY = "cmbPay";							//ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_GDBPAY = "gdbPay";							//ï¿½ã·¢Ö±ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_GDB_UNION_PAY = "gdbUnionPay";  		    //ï¿½ã·¢Ö±ï¿½ï¿½PCï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
+	public static final String PAYMETHOD_PSBCPAY = "psbcPay";						//ï¿½Ê´ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_HZBANKPAY = "hzbankPay";					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½
+	//public static final String PAYMETHOD_CCBPOSPAY = "ccbposPay";					//ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½-ï¿½ï¿½ï¿½Ã¿ï¿½
+	public static final String PAYMETHOD_JSBCHINA = "jsbChina";						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½-ï¿½ï¿½ï¿½Ã¿ï¿½
+	public static final String PAYMETHOD_SPDPAY_ACTIVITY = "spdPay_activity";		//ï¿½Ö·ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½-ï¿½î¶¯
+	public static final String PAYMETHOD_BOCPAY = "bocPay";							//ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_BOCWAPPAY = "bocWapPay";					//ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½WAPï¿½ï¿½
+	public static final String PAYMETHOD_BOCAGRMTPAY = "bocAgrmtPay";				//ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½Ö§ï¿½ï¿½
+	//Ö§ï¿½ï¿½----ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_UMPAY = "umPay";							//ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	public static final String PAYMETHOD_UMPAY_SH = "umPay_sh";						//ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½Ïºï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_TELECOM= "telecomPay";						//ï¿½ï¿½ï¿½Å¹Ì»ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	public static final String PAYMETHOD_MOBILE_TELECOM= "telecomMobilePay";		//ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	//Ö§ï¿½ï¿½----ï¿½ï¿½Òµï¿½ï¿½
+	public static final String PAYMETHOD_YAGAO = "yagaoPay";						//ï¿½Å¸ï¿½
+	public static final String PAYMETHOD_ONETOWN = "onetownPay";					//Ò»ï¿½Ç¿ï¿½Ö§ï¿½ï¿½(ï¿½Â»ï¿½ï¿½ï¿½Ã½)
+	//Ö§ï¿½ï¿½----ï¿½Ö»ï¿½ï¿½Ë£ï¿½Ö±ï¿½ï¿½ + ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_ALIWAPPAY = "aliwapPay";					//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-WAPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_CMWAPPAY = "cmwapPay";						//ï¿½Æ¶ï¿½ï¿½Ö»ï¿½Ö§ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-WAPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_CMBWAPPAY = "cmbwapPay";					//ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_CMBWAPSTOREPAY = "cmbwapStorePay";			//ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½CMSTORE
+	public static final String PAYMETHOD_SPDWAPPAY = "spdWapPay";					//ï¿½Ö·ï¿½Ö±ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-WAP
+	public static final String PAYMETHOD_CMSMARTPAY = "cmSmartPay";					//ï¿½Æ¶ï¿½ï¿½Ö»ï¿½Ö§ï¿½ï¿½ï¿½ï¿½×¿ï¿½ï¿½
+	public static final String PAYMETHOD_SPDWAPPAY_ACTIVITY = "spdWapPay_activity";	//ï¿½Ö·ï¿½Ö±ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-ï¿½î¶¯
+	public static final String PAYMETHOD_CHINASMARTMOBILEPAY = "chinaSmartMobilePay";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_CHINASMARTJSPAY = "chinaSmartJsPay";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Ö§ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_ALISMARTMOBILEPAY = "aliSmartMobilePay";	//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-ï¿½ï¿½È«Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_HZWAPPAY = "hzwapPay";						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WAP
+	public static final String PAYMETHOD_YEEPAY = "yeePay";       					//ï¿½×±ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_PAYECO_DNA = "payecoDNAPay";       		// ï¿½ï¿½ï¿½ï¿½DNAÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_MEMBERCARDPAY = "memberCardPay";       	// ï¿½ï¿½Ô±ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_ICBCPAY = "icbcPay";       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_NJCBPAY = "njcbPay";       // ï¿½Ï¾ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_ABCHINAPAY = "abchinaPay";       // Å©Òµï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½
 	
-	public static final String PAYMETHOD_WXAPPTENPAY = "wxAppTenPay";       //²Æ¸¶Í¨Î¢ÐÅÖ§¸¶£¨App¼äÖ§¸¶£©
-	public static final String PAYMETHOD_WXAPPPAY = "wxAppPay";				//²Æ¸¶Í¨Î¢ÐÅÖ§¸¶£¨App¼äÖ§¸¶£©
-	public static final String PAYMETHOD_WXMPNOPAY = "wxMPNoPay";				//Î¢ÐÅ¹«ÖÚºÅÖ§¸¶
-	public static final String PAYMETHOD_WXSCANTENPAY = "wxScanTenPay";       //²Æ¸¶Í¨Î¢ÐÅÖ§¸¶£¨WEBÉ¨Âë£©
-	public static final String PAYMETHOD_WXWCPAY = "wxWCPay";				//Î¢ÐÅ¹«ÖÚºÅÖ§¸¶
-	public static final String PAYMETHOD_CCBWAPPAY = "ccbWapPay";	//½¨ÐÐÊÖ»úwapÖ§¸¶
-	public static final String PAYMETHOD_ONECLICKTENPAY = "oneClickTenPay";	//²Æ¸¶Í¨ÒÆ¶¯ÖÕ¶ËÒ»¼üÖ§¸¶
-	public static final String PAYMETHOD_BESTPAY = "bestPay";	//ÒíÖ§¸¶
-	public static final String PAYMETHOD_BFBWAPPAY = "bfbWapPay";	//°Ù¶ÈÇ®°üwapÖ§¸¶
-	public static final String PAYMETHOD_BFBPAY = "bfbPay";		//°Ù¶ÈÇ®°üÖ§¸¶
-	public static final String PAYMETHOD_ALISCANPAY = "aliScanPay";		//Ö§¸¶±¦É¨ÂëÖ§¸¶
-	public static final String PAYMETHOD_CCBMBCPAY = "ccbMBCPay";		//½¨ÐÐÊÖ»úÒøÐÐÖ§¸¶
-	public static final String PAYMETHOD_BCWAPPAY = "bcWapPay";//½»ÐÐWapÖ§¸¶	
+	public static final String PAYMETHOD_WXAPPTENPAY = "wxAppTenPay";       //ï¿½Æ¸ï¿½Í¨Î¢ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Appï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_WXAPPPAY = "wxAppPay";				//ï¿½Æ¸ï¿½Í¨Î¢ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Appï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_WXMPNOPAY = "wxMPNoPay";				//Î¢ï¿½Å¹ï¿½ï¿½Úºï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_WXSCANTENPAY = "wxScanTenPay";       //ï¿½Æ¸ï¿½Í¨Î¢ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½WEBÉ¨ï¿½ë£©
+	public static final String PAYMETHOD_WXWCPAY = "wxWCPay";				//Î¢ï¿½Å¹ï¿½ï¿½Úºï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_CCBWAPPAY = "ccbWapPay";	//ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½wapÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_ONECLICKTENPAY = "oneClickTenPay";	//ï¿½Æ¸ï¿½Í¨ï¿½Æ¶ï¿½ï¿½Õ¶ï¿½Ò»ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_BESTPAY = "bestPay";	//ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_BFBWAPPAY = "bfbWapPay";	//ï¿½Ù¶ï¿½Ç®ï¿½ï¿½wapÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_BFBPAY = "bfbPay";		//ï¿½Ù¶ï¿½Ç®ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_ALISCANPAY = "aliScanPay";		//Ö§ï¿½ï¿½ï¿½ï¿½É¨ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_CCBMBCPAY = "ccbMBCPay";		//ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_BCWAPPAY = "bcWapPay";//ï¿½ï¿½ï¿½ï¿½WapÖ§ï¿½ï¿½	
 
-	public static final String PAYMETHOD_BOCWAPV2PAY = "bocWapV2Pay";//ÖÐ¹úÒøÐÐÖ±Á¬WAPÖ§¸¶£¨V2£©
-	public static final String PAYMETHOD_UNIONWAPPAYFAST = "unionWapPayFast";//ÒøÁªÎÞ¿¨WAPÖ§¸¶
+	public static final String PAYMETHOD_BOCWAPV2PAY = "bocWapV2Pay";//ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½WAPÖ§ï¿½ï¿½ï¿½ï¿½V2ï¿½ï¿½
+	public static final String PAYMETHOD_UNIONWAPPAYFAST = "unionWapPayFast";//ï¿½ï¿½ï¿½ï¿½ï¿½Þ¿ï¿½WAPÖ§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_ICBCWAPPAY = "icbcWapPay";//¹¤ÉÌÒøÐÐÖ±Á¬WAPÖ§¸¶
+	public static final String PAYMETHOD_ICBCWAPPAY = "icbcWapPay";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½WAPÖ§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_ALITVPAY = "aliTvPay";//°¢ÀïtvÖ§¸¶
+	public static final String PAYMETHOD_ALITVPAY = "aliTvPay";//ï¿½ï¿½ï¿½ï¿½tvÖ§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_WEIBOPAY = "weiboPay";//Î¢²©Ö§¸¶
+	public static final String PAYMETHOD_WEIBOPAY = "weiboPay";//Î¢ï¿½ï¿½Ö§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_PINGAN1QBPAY = "pingan1qbPay";//Æ½°²Ò¼Ç®°üÖ§¸¶
+	public static final String PAYMETHOD_PINGAN1QBPAY = "pingan1qbPay";//Æ½ï¿½ï¿½Ò¼Ç®ï¿½ï¿½Ö§ï¿½ï¿½
 
-	public static final String PAYMETHOD_CHUBAOPAY = "chubaoPay";					//´¥±¦Ö§¸¶
-	public static final String PAYMETHOD_BJRCBPAY = "bjrcbPay";						//±±¾©Å©ÉÌÖ§¸¶
-	public static final String PAYMETHOD_ABCPAYFAST = "abcPayFast";					//Å©ÒµÒøÐÐ¿ì½ÝÖ§¸¶
-	public static final String PAYMETHOD_ABCWAPPAYFAST = "abcWapPayFast";			//Å©ÒµWAPÖ§¸¶
-	public static final String PAYMETHOD_ABCPOINTPAYFAST = "abcPointPayFast";		//Å©Òµ»ý·ÖÖ§¸¶
-	public static final String PAYMETHOD_HUAANPAY = "huaanPay";						//»ª°²PCÖ§¸¶
-	public static final String PAYMETHOD_HUAANWAPPAY = "huaanWapPay";				//»ª°²WAPÖ§¸¶
+	public static final String PAYMETHOD_CHUBAOPAY = "chubaoPay";					//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_BJRCBPAY = "bjrcbPay";						//ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_ABCPAYFAST = "abcPayFast";					//Å©Òµï¿½ï¿½ï¿½Ð¿ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_ABCWAPPAYFAST = "abcWapPayFast";			//Å©ÒµWAPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_ABCPOINTPAYFAST = "abcPointPayFast";		//Å©Òµï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_HUAANPAY = "huaanPay";						//ï¿½ï¿½ï¿½ï¿½PCÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_HUAANWAPPAY = "huaanWapPay";				//ï¿½ï¿½ï¿½ï¿½WAPÖ§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_ALIAPPPAY = "aliAppPay";				//Ö§¸¶±¦AppÖ§¸¶
-	public static final String PAYMETHOD_PAYECOEPAY = "payecoEPay";				//Ò×ÁªÊÖ»úwapÖ§¸¶
+	public static final String PAYMETHOD_ALIAPPPAY = "aliAppPay";				//Ö§ï¿½ï¿½ï¿½ï¿½AppÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_PAYECOEPAY = "payecoEPay";				//ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½wapÖ§ï¿½ï¿½
 
-	public static final String PAYMETHOD_UNIONAPPPAY = "unionAppPay";			//ÒøÁªÊÖ»úAPPÖ§¸¶
-	public static final String PAYMETHOD_APPLEPAY = "applePay";					//Æ»¹ûÖ§¸¶Ö§¸¶£¬ÆäÊµ¾ÍÊÇunionAppPayÖ§¸¶
-	public static final String PAYMETHOD_UNIONWAPPAY = "unionWapPay";			//ÒøÁªÊÖ»úWAPÖ§¸¶
-	public static final String PAYMETHOD_QQAPPPAY = "qqAppPay";					//QQÇ®°üÖ§¸¶
-	public static final String PAYMETHOD_QQTENSCANPAY = "qqTenScanPay";			//QQÉ¨ÂëÖ§¸¶
+	public static final String PAYMETHOD_UNIONAPPPAY = "unionAppPay";			//ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½APPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_APPLEPAY = "applePay";					//Æ»ï¿½ï¿½Ö§ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½unionAppPayÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_UNIONWAPPAY = "unionWapPay";			//ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½WAPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_QQAPPPAY = "qqAppPay";					//QQÇ®ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_QQTENSCANPAY = "qqTenScanPay";			//QQÉ¨ï¿½ï¿½Ö§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_SPDCCCPAY = "spdcccPay";				//ÆÖ·¢ÐÅÓÃ¿¨PCÖ§¸¶
-	public static final String PAYMETHOD_SPDCCCWAPPAY = "spdcccWapPay";			//ÆÖ·¢ÐÅÓÃ¿¨WAPÖ§¸¶
-	public static final String PAYMETHOD_CCBAPPPAY = "ccbAppPay";				//½¨ÉèÒøÐÐAPPÖ§¸¶
-	public static final String PAYMETHOD_CBHBPAY = "cbhbPay";					//²³º£Ö§¸¶
-	public static final String PAYMETHOD_CBHBWAPPAY = "cbhbWapPay";				//²³º£WAPÖ§¸¶
-	public static final String PAYMETHOD_SFAPPPAY = "sfAppPay";					//Ë³·áAPPÖ§¸¶
-	public static final String PAYMETHOD_WLTWAPPAY = "wltWapPay";				//ÍòÀïÍ¨WAPÖ§¸¶
-	public static final String PAYMETHOD_YLCFWAPPAY = "ylcfWapPay";				//Ò»Â·²Æ¸»WAPÖ§¸¶
-	public static final String PAYMETHOD_JDWAPPAY = "jdWapPay";					//¾©¶«WAPÖ§¸¶
-	public static final String PAYMETHOD_JDPAY = "jdPay";					//¾©¶«PCÖ§¸¶
-	public static final String PAYMETHOD_CCBWAPSECDPAY = "ccbWapSecdPay";		//½¨ÐÐÕËºÅÖ§¸¶
+	public static final String PAYMETHOD_SPDCCCPAY = "spdcccPay";				//ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½PCÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_SPDCCCWAPPAY = "spdcccWapPay";			//ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½WAPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_CCBAPPPAY = "ccbAppPay";				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½APPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_CBHBPAY = "cbhbPay";					//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_CBHBWAPPAY = "cbhbWapPay";				//ï¿½ï¿½ï¿½ï¿½WAPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_SFAPPPAY = "sfAppPay";					//Ë³ï¿½ï¿½APPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_WLTWAPPAY = "wltWapPay";				//ï¿½ï¿½ï¿½ï¿½Í¨WAPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_YLCFWAPPAY = "ylcfWapPay";				//Ò»Â·ï¿½Æ¸ï¿½WAPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_JDWAPPAY = "jdWapPay";					//ï¿½ï¿½ï¿½ï¿½WAPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_JDPAY = "jdPay";					//ï¿½ï¿½ï¿½ï¿½PCÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_CCBWAPSECDPAY = "ccbWapSecdPay";		//ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½Ö§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_BOCWAPPAYFAST = "bocWapPayFast";	   //ÖÐ¹úÒøÐÐwap¿ì½ÝÖ§¸¶
-	public static final String PAYMETHOD_FC99BILLPAY = "foreignCard99billPay";	//¿ìÇ®Íâ¿¨Ö§¸¶
-	public static final String PAYMETHOD_GZRCBPAY = "gzrcbPay";					//¹ãÖÝÅ©ÉÌÖ§¸¶
-	public static final String PAYMETHOD_GZRCBWAPPAY = "gzrcbWapPay";			//¹ãÖÝÅ©ÉÌWapÖ§¸¶
-	public static final String PAYMETHOD_CHINATELEAPPPAY = "chinaTeleAppPay";	//µçÐÅÒíÖ§¸¶
-	public static final String PAYMETHOD_CHINATELEWAPPAY = "chinaTeleWapPay";	//µçÐÅÒíÖ§¸¶
-	public static final String PAYMETHOD_SUNINGWAPPAY = "suningWapPay";			//ËÕÄþÒ×¸¶±¦Ö§¸¶
-	public static final String PAYMETHOD_INTELWAPPAY = "intelWapPay";			//Intel¼¯·Ö±¦Ö§¸¶
-	public static final String PAYMETHOD_SPDCCCB2CPAY = "spdcccB2cPay";			//ÆÖ·¢B2CÐÅÓÃ¿¨Ö§¸¶
-	public static final String PAYMETHOD_SPDCCCB2CWAPPAY = "spdcccB2cWapPay";	//ÆÖ·¢B2CÐÅÓÃ¿¨WAPÖ§¸¶
+	public static final String PAYMETHOD_BOCWAPPAYFAST = "bocWapPayFast";	   //ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½wapï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_FC99BILLPAY = "foreignCard99billPay";	//ï¿½ï¿½Ç®ï¿½â¿¨Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_GZRCBPAY = "gzrcbPay";					//ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_GZRCBWAPPAY = "gzrcbWapPay";			//ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½WapÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_CHINATELEAPPPAY = "chinaTeleAppPay";	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_CHINATELEWAPPAY = "chinaTeleWapPay";	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_SUNINGWAPPAY = "suningWapPay";			//ï¿½ï¿½ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_INTELWAPPAY = "intelWapPay";			//Intelï¿½ï¿½ï¿½Ö±ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_SPDCCCB2CPAY = "spdcccB2cPay";			//ï¿½Ö·ï¿½B2Cï¿½ï¿½ï¿½Ã¿ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_SPDCCCB2CWAPPAY = "spdcccB2cWapPay";	//ï¿½Ö·ï¿½B2Cï¿½ï¿½ï¿½Ã¿ï¿½WAPÖ§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_FQLPAY = "fqlPay";			//·ÖÆÚÀÖÖ§¸¶PC¶Ë
-	public static final String PAYMETHOD_FQLWAPPAY = "fqlWapPay";	//·ÖÆÚÀÖWapÖ§¸¶
+	public static final String PAYMETHOD_FQLPAY = "fqlPay";			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½
+	public static final String PAYMETHOD_FQLWAPPAY = "fqlWapPay";	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WapÖ§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_BOSPAY = "bosPay";//ÉÏº£ÒøÐÐB2CÖ§¸¶
+	public static final String PAYMETHOD_BOSPAY = "bosPay";//ï¿½Ïºï¿½ï¿½ï¿½ï¿½ï¿½B2CÖ§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_BOSWAPPAY = "bosWapPay";//ÉÏÒø¿ì¸¶
+	public static final String PAYMETHOD_BOSWAPPAY = "bosWapPay";//ï¿½ï¿½ï¿½ï¿½ï¿½ì¸¶
 	
-	public static final String PAYMETHOD_PINGANBANKPAY = "pinganBankPay";//Æ½°²ÒøÐÐ
-	public static final String PAYMETHOD_PINGANBANKWAPPAY = "pinganBankWapPay";//Æ½°²ÒøÐÐWAP
-	public static final String PAYMETHOD_PAYECOWAPPAY = "payecoWapPay";//Ò×ÁªWAPÖ§¸¶
-	public static final String PAYMETHOD_MSQMWAPPAY = "msqmWapPay";//ÃñÉúÆëÃîÖ§¸¶
+	public static final String PAYMETHOD_PINGANBANKPAY = "pinganBankPay";//Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_PINGANBANKWAPPAY = "pinganBankWapPay";//Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WAP
+	public static final String PAYMETHOD_PAYECOWAPPAY = "payecoWapPay";//ï¿½ï¿½ï¿½ï¿½WAPÖ§ï¿½ï¿½
+	public static final String PAYMETHOD_MSQMWAPPAY = "msqmWapPay";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
 	
-	public static final String PAYMETHOD_SPDCCCFASTPAYPAY = "spdcccFastPay";//ÆÖ·¢ÒøÐÐ¿ì½ÝÖ§¸¶
-	public static final String PAYMETHOD_BCOMCCFASTPAYPAY = "bcomccFastPay";	//½»Í¨ÒøÐÐ¿ì½ÝÖ§¸¶
-	public static final String PAYMENTOD_MASAWAPPAY = "masaWapPay";               //Íâ¿¨Ö§¸¶
+	public static final String PAYMETHOD_SPDCCCFASTPAYPAY = "spdcccFastPay";//ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMETHOD_BCOMCCFASTPAYPAY = "bcomccFastPay";	//ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMENTOD_MASAWAPPAY = "masaWapPay";               //ï¿½â¿¨Ö§ï¿½ï¿½
 	
-	//Ö§¸¶----ÒÔÏÂÖ§¸¶·½Ê½²»ÔÚÊ¹ÓÃ
-	public static final String PAYMETHOD_TENPAY = "tenPay";								//²Æ¸»Í¨
-	//public static final String PAYMETHOD_BCWAPPAY_OLD = "bcwapPay";					//½»Í¨WAPÒøÐÐ 
-	public static final String PAYMETHOD_ALIBANKPAY = "alibankPay";					//Ö§¸¶±¦ÊÖ»úÒøÐÐ
-	public static final String PAYMETHOD_HANDWAPPAY = "handwapPay";					//å«ÒøÊÖ»ú
-	public static final String PAYMETHOD_HANDWEBPAY = "handwebPay";					//å«ÒøÊÖ»ú
-	public static final String PAYMETHOD_PNRFASTPAY = "pnrfastPay";					//»ã¸¶¿ì½ÝÖ§¸¶ --»ªÏÄÒøÐÐÐÅÓÃ
-	public static final String PAYMETHOD_PNRFASTPAY2 = "pnrfastPay2";					//»ã¸¶¿ì½ÝÖ§¸¶2--½¨ÉèÒøÐÐÐÅÓÃ
-	public static final String PAYMETHOD_PNRFASTABCPAY = "pnrfastabcPay";			//»ã¸¶¿ì½ÝÖ§¸¶--Å©ÒµÒøÐÐÐÅÓÃ¿¨
+	//Ö§ï¿½ï¿½----ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
+	public static final String PAYMETHOD_TENPAY = "tenPay";								//ï¿½Æ¸ï¿½Í¨
+	//public static final String PAYMETHOD_BCWAPPAY_OLD = "bcwapPay";					//ï¿½ï¿½Í¨WAPï¿½ï¿½ï¿½ï¿½ 
+	public static final String PAYMETHOD_ALIBANKPAY = "alibankPay";					//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_HANDWAPPAY = "handwapPay";					//ï¿½ï¿½ï¿½ï¿½Ö»ï¿½
+	public static final String PAYMETHOD_HANDWEBPAY = "handwebPay";					//ï¿½ï¿½ï¿½ï¿½Ö»ï¿½
+	public static final String PAYMETHOD_PNRFASTPAY = "pnrfastPay";					//ï¿½ã¸¶ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_PNRFASTPAY2 = "pnrfastPay2";					//ï¿½ã¸¶ï¿½ï¿½ï¿½Ö§ï¿½ï¿½2--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PAYMETHOD_PNRFASTABCPAY = "pnrfastabcPay";			//ï¿½ã¸¶ï¿½ï¿½ï¿½Ö§ï¿½ï¿½--Å©Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½
 	
-	public static final String PAYMETHOD_YYPTPAY = "yyptPay";							//Ç®´óÕÆ¹ñ¿ì½ÝÖ§¸¶
+	public static final String PAYMETHOD_YYPTPAY = "yyptPay";							//Ç®ï¿½ï¿½ï¿½Æ¹ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
 	
-	public static final String PAYMENTOD_UNICOMWOPAY = "unicomWoPay";					//ÁªÍ¨ÎÖÖ§¸¶	
-	public static final String PAYMENTOD_MSFPAY = "msfPay";                             //ÃñÉú¸¶
+	public static final String PAYMENTOD_UNICOMWOPAY = "unicomWoPay";					//ï¿½ï¿½Í¨ï¿½ï¿½Ö§ï¿½ï¿½	
+	public static final String PAYMENTOD_MSFPAY = "msfPay";                             //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	/**ÉÌ»§Óà¶îÖ§¸¶£ºÏÖÖ»¶ÔºÏ×÷ÉÌ»§Ê¹ÓÃ£¬²»¿ÉÒÔ¹«²¼ÔÚÍâÃæ**/
-	public static final String PAYMETHOD_MERCHANTPAY = "merchantPay";//ÉÌ»§Óà¶îÖ§¸¶
-	public static final String PAYMENTOD_XIYINPAY="xiyinPay";							//Î÷°²ÒøÐÐ
+	/**ï¿½Ì»ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Ôºï¿½ï¿½ï¿½ï¿½Ì»ï¿½Ê¹ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½**/
+	public static final String PAYMETHOD_MERCHANTPAY = "merchantPay";//ï¿½Ì»ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	public static final String PAYMENTOD_XIYINPAY="xiyinPay";							//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	public static final String PAYMENTOD_CMBYWTPAY = "cmbywtPay"; //ÕÐÐÐÒ»ÍøÍ¨
-	public static final String PAYMENTOD_WCFWAPPAY = "wcfWapPay";  //Î¢²Æ¸»
-	//ÒÑ·ÏÆú
-	//public static final String PAYMETHOD_SDOPAY = "sdoPay";							//Ê¢´ó»ý·Ö+ÏÖ½ð
-	//public static final String PAYMETHOD_IPSPAY= "ipsPay";							//»·Ñ¶PC¶Ë-ÐÅÓÃ¿¨Ö§¸¶
-	//public static final String PAYMETHOD_HAOBAIPAY = "haobaiPay";					//ºÅ°ÙÊÖ»ú¶Ë-¿Í»§¶Ë
-	//public static final String PAYMETHOD_ALLINPAY = "allinPay";						//Í¨ÁªÖ§¸¶
+	public static final String PAYMENTOD_CMBYWTPAY = "cmbywtPay"; //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í¨
+	public static final String PAYMENTOD_WCFWAPPAY = "wcfWapPay";  //Î¢ï¿½Æ¸ï¿½
+	//ï¿½Ñ·ï¿½ï¿½ï¿½
+	//public static final String PAYMETHOD_SDOPAY = "sdoPay";							//Ê¢ï¿½ï¿½ï¿½ï¿½ï¿½+ï¿½Ö½ï¿½
+	//public static final String PAYMETHOD_IPSPAY= "ipsPay";							//ï¿½ï¿½Ñ¶PCï¿½ï¿½-ï¿½ï¿½ï¿½Ã¿ï¿½Ö§ï¿½ï¿½
+	//public static final String PAYMETHOD_HAOBAIPAY = "haobaiPay";					//ï¿½Å°ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-ï¿½Í»ï¿½ï¿½ï¿½
+	//public static final String PAYMETHOD_ALLINPAY = "allinPay";						//Í¨ï¿½ï¿½Ö§ï¿½ï¿½
 	
 	public static final List<String> PAYMETHOD_LIST = 
 			Arrays.asList(PAYMETHOD_GEWAPAY, PAYMETHOD_FCARDPAY, PAYMETHOD_CHARGECARD, PAYMETHOD_PNRPAY, 
@@ -229,7 +229,7 @@ public abstract class PaymethodConstant implements Serializable {
 					PAYMETHOD_GZRCBPAY,PAYMETHOD_GZRCBWAPPAY,PAYMETHOD_CHINATELEAPPPAY,PAYMETHOD_SUNINGWAPPAY,PAYMETHOD_INTELWAPPAY,PAYMETHOD_SPDCCCB2CPAY,PAYMETHOD_SPDCCCB2CWAPPAY,PAYMETHOD_FQLPAY,PAYMETHOD_FQLWAPPAY,PAYMETHOD_BOSPAY,PAYMETHOD_BOSWAPPAY,
 					PAYMETHOD_PINGANBANKPAY,PAYMETHOD_PINGANBANKWAPPAY,PAYMETHOD_PAYECOWAPPAY,PAYMETHOD_CHINATELEWAPPAY, PAYMETHOD_APPLEPAY, PAYMETHOD_MSQMWAPPAY,
 					PAYMETHOD_SPDCCCFASTPAYPAY,PAYMETHOD_BCOMCCFASTPAYPAY,PAYMETHOD_YYPTPAY,PAYMENTOD_UNICOMWOPAY,PAYMENTOD_MSFPAY,PAYMENTOD_XIYINPAY,PAYMENTOD_MASAWAPPAY,PAYMENTOD_CMBYWTPAY,PAYMENTOD_WCFWAPPAY);
-	/*·ÏÆú:PAYMETHOD_HAOBAIPAY, PAYMETHOD_IPSPAY, PAYMETHOD_SDOPAY, PAYMETHOD_ALLINPAY, PAYMETHOD_BCWAPPAY_OLD, */
+	/*ï¿½ï¿½ï¿½ï¿½:PAYMETHOD_HAOBAIPAY, PAYMETHOD_IPSPAY, PAYMETHOD_SDOPAY, PAYMETHOD_ALLINPAY, PAYMETHOD_BCWAPPAY_OLD, */
 		
 	public static final List<String> MOBILE_PAYMETHOD_LIST = Arrays.asList(PAYMETHOD_ALIWAPPAY, PAYMETHOD_CMWAPPAY, PAYMETHOD_CMBWAPPAY, PAYMETHOD_CMBWAPSTOREPAY, PAYMETHOD_SPDWAPPAY, 
 			PAYMETHOD_CMSMARTPAY, PAYMETHOD_SPDWAPPAY_ACTIVITY, PAYMETHOD_CHINASMARTMOBILEPAY, PAYMETHOD_CHINASMARTJSPAY, PAYMETHOD_BOCWAPPAY, PAYMETHOD_FCARDPAY,
@@ -239,193 +239,197 @@ public abstract class PaymethodConstant implements Serializable {
 			PAYMETHOD_SFAPPPAY,PAYMETHOD_WLTWAPPAY,PAYMETHOD_ABCHINAPAY,PAYMETHOD_JDWAPPAY,PAYMETHOD_CCBWAPSECDPAY,PAYMETHOD_BOCWAPPAYFAST,PAYMETHOD_GZRCBWAPPAY,PAYMETHOD_CHINATELEAPPPAY,PAYMETHOD_SUNINGWAPPAY,PAYMETHOD_INTELWAPPAY,PAYMETHOD_SPDCCCB2CWAPPAY,PAYMETHOD_FQLWAPPAY,PAYMETHOD_BOSWAPPAY,
 			PAYMETHOD_PINGANBANKWAPPAY,PAYMETHOD_PAYECOWAPPAY,PAYMETHOD_CHINATELEWAPPAY, PAYMETHOD_APPLEPAY, PAYMETHOD_MSQMWAPPAY,PAYMETHOD_SPDCCCFASTPAYPAY,PAYMETHOD_YYPTPAY,PAYMENTOD_UNICOMWOPAY,PAYMENTOD_MSFPAY,PAYMENTOD_XIYINPAY,PAYMENTOD_MASAWAPPAY,PAYMENTOD_CMBYWTPAY,PAYMENTOD_WCFWAPPAY);
 	
-	//ºÏ×÷ÉÌÖ§¸¶·½Ê½£¬ÅÐ¶ÏÍË¿îºó²»ÄÜ»»×ùÓÃ¡£
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ë¿ï¿½ï¿½ï¿½Ü»ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½
 	public static final List<String> PARTNER_PAYMETHOD_LIST = Arrays.asList(PAYMETHOD_PARTNERPAY, PAYMETHOD_OKCARDPAY, PAYMETHOD_SPSDOPAY1);
 	private static Map<String, String> payTextMap;	
 	static{
 		Map<String, String> tmp = new LinkedHashMap<String, String>();
 		tmp.put(PAYMETHOD_SYSPAY, "ÏµÍ³");
-		tmp.put(PAYMETHOD_GEWAPAY, "¸ñÍßÓà¶î");
-		tmp.put(PAYMETHOD_FCARDPAY, "µã¿¨Ö§¸¶");
-		tmp.put(PAYMETHOD_ELECARDPAY, "µç×ÓÈ¯");
-		tmp.put(PAYMETHOD_GEWARA_OFFLINEPAY, "ºóÌ¨ÏÂÏßÖ§¸¶");
-		tmp.put(PAYMETHOD_CHARGECARD, "¸ñÍß³äÖµ¿¨");
-		tmp.put(PAYMETHOD_LAKALA, "À­¿¨À­");
-		tmp.put(PAYMETHOD_ABCBANKPAY,"Å©ÐÐºÏ×÷");
-		tmp.put(PAYMETHOD_WCANPAY,"Î¢ÄÜ¿Æ¼¼»ý·Ö¶Ò»»");
+		tmp.put(PAYMETHOD_GEWAPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_FCARDPAY, "ï¿½ã¿¨Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_ELECARDPAY, "ï¿½ï¿½ï¿½ï¿½È¯");
+		tmp.put(PAYMETHOD_GEWARA_OFFLINEPAY, "ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CHARGECARD, "ï¿½ï¿½ï¿½ß³ï¿½Öµï¿½ï¿½");
+		tmp.put(PAYMETHOD_LAKALA, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_ABCBANKPAY,"Å©ï¿½Ðºï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_WCANPAY,"Î¢ï¿½Ü¿Æ¼ï¿½ï¿½ï¿½ï¿½Ö¶Ò»ï¿½");
 		
-		tmp.put(PAYMETHOD_PNRPAY, "»ã¸¶ÌìÏÂPC¶Ë");
-		tmp.put(PAYMETHOD_ALIPAY, "Ö§¸¶±¦PC¶Ë");
-		tmp.put(PAYMETHOD_CMPAY, "ÒÆ¶¯ÊÖ»úÖ§¸¶PC¶Ë");
-		tmp.put(PAYMETHOD_CHINAPAY1, "ÒøÁª±ãÃñ");
-		tmp.put(PAYMETHOD_CHINAPAY2, "ChinapayPC¶Ë");
-		tmp.put(PAYMETHOD_SPSDOPAY2, "Ê¢¸¶Í¨PC¶Ë");
-		tmp.put(PAYMETHOD_PAYECO_DNA, "Ò×ÁªDNAÖ§¸¶");
+		tmp.put(PAYMETHOD_PNRPAY, "ï¿½ã¸¶ï¿½ï¿½ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_ALIPAY, "Ö§ï¿½ï¿½ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_CMPAY, "ï¿½Æ¶ï¿½ï¿½Ö»ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_CHINAPAY1, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CHINAPAY2, "ChinapayPCï¿½ï¿½");
+		tmp.put(PAYMETHOD_SPSDOPAY2, "Ê¢ï¿½ï¿½Í¨PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_PAYECO_DNA, "ï¿½ï¿½ï¿½ï¿½DNAÖ§ï¿½ï¿½");
 		
-		tmp.put(PAYMETHOD_CMBPAY, "ÕÐÐÐÖ±Á¬PC¶Ë");
-		tmp.put(PAYMETHOD_CMBWAPPAY, "ÕÐÐÐÖ±Á¬ÊÖ»ú¶Ë");
-		tmp.put(PAYMETHOD_CMBWAPSTOREPAY, "ÕÐÐÐÊÖ»ú¶Ë-STORE");
-		tmp.put(PAYMETHOD_BCPAY, "½»ÐÐÖ±Á¬PC¶Ë");
-		tmp.put(PAYMETHOD_GDBPAY, "¹ã·¢Ö±Á¬PC¶Ë");
-		tmp.put(PAYMETHOD_GDB_UNION_PAY, "¹ã·¢ÒøÁªÖ±Á¬PC¶Ë");
-		tmp.put(PAYMETHOD_BOCPAY, "ÖÐ¹úÒøÐÐÖ±Á¬PC¶Ë");
-		tmp.put(PAYMETHOD_BOCAGRMTPAY, "ÖÐ¹úÒøÐÐÐ­ÒéÖ§¸¶");
-		tmp.put(PAYMETHOD_SPDPAY, "ÆÖ·¢Ö±Á¬PC¶Ë");
-		tmp.put(PAYMETHOD_SPDPAY_ACTIVITY, "ÆÖ·¢Ö±Á¬PC¶Ë-»î¶¯");
-		tmp.put(PAYMETHOD_SPDWAPPAY_ACTIVITY, "ÆÖ·¢Ö±Á¬ÊÖ»ú¶Ë-»î¶¯");
-		tmp.put(PAYMETHOD_PSBCPAY, "ÓÊ´¢Ö±Á¬PC¶Ë");
-		tmp.put(PAYMETHOD_HZBANKPAY, "º¼ÖÝÒøÐÐ");
-		tmp.put(PAYMETHOD_HZWAPPAY, "º¼ÖÝÒøÐÐWAP");
-		tmp.put(PAYMETHOD_JSBCHINA, "½­ËÕÒøÐÐÖ±Á¬PC¶Ë-ÐÅÓÃ¿¨");
-		tmp.put(PAYMETHOD_TEMPUSPAY, "ÌÚ¸¶Í¨PC¶Ë");
-		tmp.put(PAYMETHOD_YEEPAY, "Ò×±¦Ö§¸¶PC¶Ë");
-		tmp.put(PAYMETHOD_ICBCPAY, "¹¤ÉÌÒøÐÐÖ±Á¬Ö§¸¶PC¶Ë");	
-		tmp.put(PAYMETHOD_NJCBPAY, "ÄÏ¾©ÒøÐÐÖ±Á¬Ö§¸¶PC¶Ë");
-		tmp.put(PAYMETHOD_ABCHINAPAY, "Å©ÒµÒøÐÐÖ±Á¬Ö§¸¶PC¶Ë");	
+		tmp.put(PAYMETHOD_CMBPAY, "ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_CMBWAPPAY, "ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CMBWAPSTOREPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-STORE");
+		tmp.put(PAYMETHOD_BCPAY, "ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_GDBPAY, "ï¿½ã·¢Ö±ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_GDB_UNION_PAY, "ï¿½ã·¢ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_BOCPAY, "ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_BOCAGRMTPAY, "ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_SPDPAY, "ï¿½Ö·ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_SPDPAY_ACTIVITY, "ï¿½Ö·ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½-ï¿½î¶¯");
+		tmp.put(PAYMETHOD_SPDWAPPAY_ACTIVITY, "ï¿½Ö·ï¿½Ö±ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-ï¿½î¶¯");
+		tmp.put(PAYMETHOD_PSBCPAY, "ï¿½Ê´ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_HZBANKPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_HZWAPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WAP");
+		tmp.put(PAYMETHOD_JSBCHINA, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½PCï¿½ï¿½-ï¿½ï¿½ï¿½Ã¿ï¿½");
+		tmp.put(PAYMETHOD_TEMPUSPAY, "ï¿½Ú¸ï¿½Í¨PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_YEEPAY, "ï¿½×±ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_ICBCPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½");	
+		tmp.put(PAYMETHOD_NJCBPAY, "ï¿½Ï¾ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_ABCHINAPAY, "Å©Òµï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½");	
 		
-		tmp.put(PAYMETHOD_ALIWAPPAY, "Ö§¸¶±¦ÊÖ»ú¶Ë-WAPÖ§¸¶");
-		tmp.put(PAYMETHOD_BOCWAPPAY, "ÖÐ¹úÒøÐÐÖ±Á¬WAP¶Ë");
-		tmp.put(PAYMETHOD_CMWAPPAY, "ÒÆ¶¯ÊÖ»úÖ§¸¶ÊÖ»ú¶Ë-WAPÖ§¸¶");
-		tmp.put(PAYMETHOD_SPDWAPPAY, "ÆÖ·¢Ö±Á¬ÊÖ»ú¶Ë-WAP");
-		tmp.put(PAYMETHOD_CHINASMARTMOBILEPAY, "ÒøÁªÊÖ»úÔÚÏßÖ§¸¶");
-		tmp.put(PAYMETHOD_CHINASMARTJSPAY, "½­ËÕÒøÁªÊÖ»ú¶Ë-½­ËÕÒøÉÌÊÕµ¥");
-		tmp.put(PAYMETHOD_ALISMARTMOBILEPAY, "Ö§¸¶±¦ÊÖ»ú¶Ë-°²È«Ö§¸¶");
-		tmp.put(PAYMETHOD_CMSMARTPAY, "ÒÆ¶¯ÊÖ»úÖ§¸¶°²×¿°æ");
+		tmp.put(PAYMETHOD_ALIWAPPAY, "Ö§ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_BOCWAPPAY, "ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½WAPï¿½ï¿½");
+		tmp.put(PAYMETHOD_CMWAPPAY, "ï¿½Æ¶ï¿½ï¿½Ö»ï¿½Ö§ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_SPDWAPPAY, "ï¿½Ö·ï¿½Ö±ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-WAP");
+		tmp.put(PAYMETHOD_CHINASMARTMOBILEPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CHINASMARTJSPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½");
+		tmp.put(PAYMETHOD_ALISMARTMOBILEPAY, "Ö§ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-ï¿½ï¿½È«Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CMSMARTPAY, "ï¿½Æ¶ï¿½ï¿½Ö»ï¿½Ö§ï¿½ï¿½ï¿½ï¿½×¿ï¿½ï¿½");
 		
-		tmp.put(PAYMETHOD_UNIONPAY, "unionPayÒøÁªÖ§¸¶");
+		tmp.put(PAYMETHOD_UNIONPAY, "unionPayï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
 		
 
-		tmp.put(PAYMETHOD_UNIONPAY_JS, "unionPay½­ËÕ");
-		tmp.put(PAYMETHOD_UNIONPAY_ACTIVITY, "unionPay»î¶¯");
-		tmp.put(PAYMETHOD_UNIONPAY_ACTIVITY_JS, "unionPay½­ËÕ»î¶¯");
-		tmp.put(PAYMETHOD_UNIONPAY_ZJ, "unionPayÕã½­");
-		tmp.put(PAYMETHOD_UNIONPAY_SZ, "unionPayÉîÛÚ");
-		tmp.put(PAYMETHOD_UNIONPAY_BJ, "unionPay±±¾©");
-		tmp.put(PAYMETHOD_UNIONPAY_GZ, "unionPay¹ãÖÝ");
+		tmp.put(PAYMETHOD_UNIONPAY_JS, "unionPayï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_UNIONPAY_ACTIVITY, "unionPayï¿½î¶¯");
+		tmp.put(PAYMETHOD_UNIONPAY_ACTIVITY_JS, "unionPayï¿½ï¿½ï¿½Õ»î¶¯");
+		tmp.put(PAYMETHOD_UNIONPAY_ZJ, "unionPayï¿½ã½­");
+		tmp.put(PAYMETHOD_UNIONPAY_SZ, "unionPayï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_UNIONPAY_BJ, "unionPayï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_UNIONPAY_GZ, "unionPayï¿½ï¿½ï¿½ï¿½");
 
 		
-		tmp.put(PAYMETHOD_UNIONPAYFAST, "unionPayFastÒøÁª¿ì½ÝÖ§¸¶");
+		tmp.put(PAYMETHOD_UNIONPAYFAST, "unionPayFastï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
 		/**
-		tmp.put(PAYMETHOD_UNIONPAYFAST_ACTIVITY_JS, "unionPayFast½­ËÕ»î¶¯");	
-		tmp.put(PAYMETHOD_UNIONPAYFAST_ACTIVITY_BJ, "ÒøÁªÈÏÖ¤2.0±±¾©»î¶¯");
-		tmp.put(PAYMETHOD_UNIONPAYFAST_ACTIVITY_SZ, "ÒøÁªÈÏÖ¤2.0ÉîÛÚ»î¶¯");
-		tmp.put(PAYMETHOD_UNIONPAYFAST_ACTIVITY_GZ, "ÒøÁªÈÏÖ¤2.0¹ãÖÝ»î¶¯");
-		tmp.put(PAYMETHOD_UNIONPAYFAST_ACTIVITY_ZJ, "ÒøÁªÈÏÖ¤2.0Õã½­");
+		tmp.put(PAYMETHOD_UNIONPAYFAST_ACTIVITY_JS, "unionPayFastï¿½ï¿½ï¿½Õ»î¶¯");	
+		tmp.put(PAYMETHOD_UNIONPAYFAST_ACTIVITY_BJ, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤2.0ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯");
+		tmp.put(PAYMETHOD_UNIONPAYFAST_ACTIVITY_SZ, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤2.0ï¿½ï¿½ï¿½Ú»î¶¯");
+		tmp.put(PAYMETHOD_UNIONPAYFAST_ACTIVITY_GZ, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤2.0ï¿½ï¿½ï¿½Ý»î¶¯");
+		tmp.put(PAYMETHOD_UNIONPAYFAST_ACTIVITY_ZJ, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤2.0ï¿½ã½­");
 		*/
 		
 		
-		tmp.put(PAYMETHOD_PNRFASTPAY, "»ã¸¶¿ì½ÝÖ§¸¶--»ªÏÄÐÅÓÃ¿¨");
-		tmp.put(PAYMETHOD_PNRFASTPAY2, "»ã¸¶¿ì½ÝÖ§¸¶--½¨ÐÐÐÅÓÃ¿¨");
-		tmp.put(PAYMETHOD_PNRFASTABCPAY, "»ã¸¶¿ì½ÝÖ§¸¶--Å©ÐÐÐÅÓÃ¿¨");
+		tmp.put(PAYMETHOD_PNRFASTPAY, "ï¿½ã¸¶ï¿½ï¿½ï¿½Ö§ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½");
+		tmp.put(PAYMETHOD_PNRFASTPAY2, "ï¿½ã¸¶ï¿½ï¿½ï¿½Ö§ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½");
+		tmp.put(PAYMETHOD_PNRFASTABCPAY, "ï¿½ã¸¶ï¿½ï¿½ï¿½Ö§ï¿½ï¿½--Å©ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½");
 		
 		
-		tmp.put(PAYMETHOD_TELECOM, "µçÐÅ¹Ì»°»°·ÑÖ§¸¶");
-		tmp.put(PAYMETHOD_MOBILE_TELECOM, "µçÐÅÊÖ»ú»°·ÑÖ§¸¶");
-		tmp.put(PAYMETHOD_UMPAY, "ÒÆ¶¯»°·ÑÖ§¸¶(Áª¶¯ÓÅÊÆ)");
-		tmp.put(PAYMETHOD_UMPAY_SH, "ÒÆ¶¯»°·ÑÖ§¸¶(Áª¶¯ÓÅÊÆ)_ÉÏº£");
-		tmp.put(PAYMETHOD_YAGAO, "ÑÅ¸ß¿¨Ö§¸¶(°¬µÇÈðµÂ)");
-		tmp.put(PAYMETHOD_ONETOWN, "Ò»³Ç¿¨Ö§¸¶(ÐÂ»ª´«Ã½)");
+		tmp.put(PAYMETHOD_TELECOM, "ï¿½ï¿½ï¿½Å¹Ì»ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_MOBILE_TELECOM, "ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_UMPAY, "ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)");
+		tmp.put(PAYMETHOD_UMPAY_SH, "ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)_ï¿½Ïºï¿½");
+		tmp.put(PAYMETHOD_YAGAO, "ï¿½Å¸ß¿ï¿½Ö§ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)");
+		tmp.put(PAYMETHOD_ONETOWN, "Ò»ï¿½Ç¿ï¿½Ö§ï¿½ï¿½(ï¿½Â»ï¿½ï¿½ï¿½Ã½)");
 		
-		tmp.put(PAYMETHOD_PARTNERPAY, "ºÏ×÷ÉÌ");
-		tmp.put(PAYMETHOD_OKCARDPAY, "Áª»ªOK");
-		tmp.put(PAYMETHOD_SPSDOPAY1, "Ê¢´óºÏ×÷");
-		tmp.put(PAYMETHOD_CHINAPAYSRCB, "ChinapayÅ©ÉÌÐÐ");
-		tmp.put(PAYMETHOD_MEMBERCARDPAY, "»áÔ±¿¨Ö§¸¶");
+		tmp.put(PAYMETHOD_PARTNERPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_OKCARDPAY, "ï¿½ï¿½ï¿½ï¿½OK");
+		tmp.put(PAYMETHOD_SPSDOPAY1, "Ê¢ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CHINAPAYSRCB, "ChinapayÅ©ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_MEMBERCARDPAY, "ï¿½ï¿½Ô±ï¿½ï¿½Ö§ï¿½ï¿½");
 		
-		tmp.put(PAYMETHOD_WXAPPTENPAY, "²Æ¸¶Í¨Î¢ÐÅÖ§¸¶£¨App¼äÖ§¸¶£©");
-		tmp.put(PAYMETHOD_WXAPPPAY, "Î¢ÐÅ¿Í»§¶ËÖ§¸¶");
-		tmp.put(PAYMETHOD_WXSCANTENPAY, "²Æ¸¶Í¨Î¢ÐÅÖ§¸¶£¨WEBÉ¨Âë£©");
-		tmp.put(PAYMETHOD_WXWCPAY, "Î¢ÐÅ¹«ÖÚºÅÖ§¸¶");
-		tmp.put(PAYMETHOD_WXMPNOPAY, "Î¢ÐÅ¹«ÖÚºÅJSÖ§¸¶");
-		tmp.put(PAYMETHOD_CCBWAPPAY, "½¨ÐÐÊÖ»úwapÖ§¸¶");
-		tmp.put(PAYMETHOD_ONECLICKTENPAY, "²Æ¸¶Í¨ÒÆ¶¯ÖÕ¶ËÒ»¼üÖ§¸¶");
-		tmp.put(PAYMETHOD_BESTPAY, "ÒíÖ§¸¶");
-		tmp.put(PAYMETHOD_BFBWAPPAY, "°Ù¶ÈÇ®°üwapÖ§¸¶");
-		tmp.put(PAYMETHOD_BFBPAY, "°Ù¶ÈÇ®°üÖ§¸¶");
-		tmp.put(PAYMETHOD_ALISCANPAY, "Ö§¸¶±¦É¨ÂëÖ§¸¶");
-		tmp.put(PAYMETHOD_CCBMBCPAY, "½¨ÐÐÊÖ»úÒøÐÐÖ§¸¶");
-		tmp.put(PAYMETHOD_BCWAPPAY, "½»ÐÐWapÖ§¸¶");			
+		tmp.put(PAYMETHOD_WXAPPTENPAY, "ï¿½Æ¸ï¿½Í¨Î¢ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Appï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_WXAPPPAY, "Î¢ï¿½Å¿Í»ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_WXSCANTENPAY, "ï¿½Æ¸ï¿½Í¨Î¢ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½WEBÉ¨ï¿½ë£©");
+		tmp.put(PAYMETHOD_WXWCPAY, "Î¢ï¿½Å¹ï¿½ï¿½Úºï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_WXMPNOPAY, "Î¢ï¿½Å¹ï¿½ï¿½Úºï¿½JSÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CCBWAPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½wapÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_ONECLICKTENPAY, "ï¿½Æ¸ï¿½Í¨ï¿½Æ¶ï¿½ï¿½Õ¶ï¿½Ò»ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_BESTPAY, "ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_BFBWAPPAY, "ï¿½Ù¶ï¿½Ç®ï¿½ï¿½wapÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_BFBPAY, "ï¿½Ù¶ï¿½Ç®ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_ALISCANPAY, "Ö§ï¿½ï¿½ï¿½ï¿½É¨ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CCBMBCPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_BCWAPPAY, "ï¿½ï¿½ï¿½ï¿½WapÖ§ï¿½ï¿½");			
 
-		tmp.put(PAYMETHOD_BOCWAPV2PAY, "ÖÐ¹úÒøÐÐÖ±Á¬WAPÖ§¸¶£¨V2£©");	
-		tmp.put(PAYMETHOD_UNIONWAPPAYFAST, "ÒøÁªÎÞ¿¨WAPÖ§¸¶");	
+		tmp.put(PAYMETHOD_BOCWAPV2PAY, "ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½WAPÖ§ï¿½ï¿½ï¿½ï¿½V2ï¿½ï¿½");	
+		tmp.put(PAYMETHOD_UNIONWAPPAYFAST, "ï¿½ï¿½ï¿½ï¿½ï¿½Þ¿ï¿½WAPÖ§ï¿½ï¿½");	
 		
-		tmp.put(PAYMETHOD_ICBCWAPPAY, "¹¤ÒøeÖ§¸¶");	
-		tmp.put(PAYMETHOD_ALITVPAY, "°¢ÀïTVÖ§¸¶");
-		tmp.put(PAYMETHOD_WEIBOPAY, "Î¢²©Ö§¸¶");	
-		tmp.put(PAYMETHOD_PINGAN1QBPAY, "Æ½°²Ò¼Ç®°üÖ§¸¶");	
+		tmp.put(PAYMETHOD_ICBCWAPPAY, "ï¿½ï¿½ï¿½ï¿½eÖ§ï¿½ï¿½");	
+		tmp.put(PAYMETHOD_ALITVPAY, "ï¿½ï¿½ï¿½ï¿½TVÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_WEIBOPAY, "Î¢ï¿½ï¿½Ö§ï¿½ï¿½");	
+		tmp.put(PAYMETHOD_PINGAN1QBPAY, "Æ½ï¿½ï¿½Ò¼Ç®ï¿½ï¿½Ö§ï¿½ï¿½");	
 		
-		tmp.put(PAYMETHOD_CHUBAOPAY, "´¥±¦Ö§¸¶");
-		tmp.put(PAYMETHOD_BJRCBPAY, "±±¾©Å©ÉÌÒøÐÐÖ§¸¶");
-		tmp.put(PAYMETHOD_ABCPAYFAST, "Å©ÒµÒøÐÐ¿ì½ÝÖ§¸¶");
-		tmp.put(PAYMETHOD_ABCWAPPAYFAST, "Å©ÒµÒøÐÐ¿ì½ÝWAPÖ§¸¶");
-		tmp.put(PAYMETHOD_ABCPOINTPAYFAST, "Å©ÒµÒøÐÐ»ý·ÖÖ§¸¶");
-		tmp.put(PAYMETHOD_HUAANPAY, "»ª°²»ù½ðÖ§¸¶");
-		tmp.put(PAYMETHOD_HUAANWAPPAY, "»ª°²Î¢Ç®±¦ÊÖ»úÖ§¸¶");
-		tmp.put(PAYMETHOD_ALIAPPPAY, "Ö§¸¶±¦AppÖ§¸¶");
-		tmp.put(PAYMETHOD_PAYECOEPAY, "Ò×ÁªÊÖ»úWAPÖ§¸¶");
-		tmp.put(PAYMETHOD_SPDCCCPAY, "ÆÖ·¢ÐÅÓÃ¿¨Ö§¸¶");
-		tmp.put(PAYMETHOD_SPDCCCWAPPAY, "ÆÖ·¢ÐÅÓÃ¿¨WAPÖ§¸¶");
-		tmp.put(PAYMETHOD_GZRCBPAY, "¹ãÖÝÅ©ÉÌÒøÐÐ");
-		tmp.put(PAYMETHOD_GZRCBWAPPAY, "¹ãÖÝÅ©ÉÌÒøÐÐWAPÖ§¸¶");
-		tmp.put(PAYMENTOD_MASAWAPPAY, "Íâ¿¨Ö§¸¶");
+		tmp.put(PAYMETHOD_CHUBAOPAY, "ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_BJRCBPAY, "ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_ABCPAYFAST, "Å©Òµï¿½ï¿½ï¿½Ð¿ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_ABCWAPPAYFAST, "Å©Òµï¿½ï¿½ï¿½Ð¿ï¿½ï¿½WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_ABCPOINTPAYFAST, "Å©Òµï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_HUAANPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_HUAANWAPPAY, "ï¿½ï¿½ï¿½ï¿½Î¢Ç®ï¿½ï¿½ï¿½Ö»ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_ALIAPPPAY, "Ö§ï¿½ï¿½ï¿½ï¿½AppÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_PAYECOEPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_SPDCCCPAY, "ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_SPDCCCWAPPAY, "ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_GZRCBPAY, "ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMETHOD_GZRCBWAPPAY, "ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMENTOD_MASAWAPPAY, "ï¿½â¿¨Ö§ï¿½ï¿½");
 		
-		tmp.put(PAYMETHOD_UNIONAPPPAY, "ÒøÁªÊÖ»úAPPÖ§¸¶");
-		tmp.put(PAYMETHOD_APPLEPAY, "Æ»¹ûÖ§¸¶");
-		tmp.put(PAYMETHOD_MSQMWAPPAY, "ÃñÉúÆëÃîÖ§¸¶");
+		tmp.put(PAYMETHOD_UNIONAPPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½APPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_APPLEPAY, "Æ»ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_MSQMWAPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
 		
-		tmp.put(PAYMETHOD_UNIONWAPPAY, "ÒøÁªÊÖ»úWAPÖ§¸¶");//,,,
-		tmp.put(PAYMETHOD_QQAPPPAY, "QQÇ®°ü");
-		tmp.put(PAYMETHOD_QQTENSCANPAY, "QQÉ¨ÂëÖ§¸¶");
-		tmp.put(PAYMETHOD_CCBAPPPAY, "½¨ÐÐAPPÖ§¸¶");
-		tmp.put(PAYMETHOD_CBHBPAY, "²³º£ÒøÐÐÖ§¸¶");
-		tmp.put(PAYMETHOD_CBHBWAPPAY, "²³º£ÒøÐÐWAPÖ§¸¶");
-		tmp.put(PAYMETHOD_SFAPPPAY, "Ë³·áAPPÖ§¸¶");
-		tmp.put(PAYMETHOD_YLCFWAPPAY, "Ò»Â·²Æ¸»WAPÖ§¸¶");
-		tmp.put(PAYMETHOD_JDWAPPAY, "¾©¶«ÆìÏÂ¿ì½ÝÖ§¸¶");
-		tmp.put(PAYMETHOD_JDPAY, "¾©¶«Ö§¸¶");
-		tmp.put(PAYMETHOD_CCBWAPSECDPAY, "½¨ÐÐÕËºÅÖ§¸¶");
-		tmp.put(PAYMETHOD_BOCWAPPAYFAST, "ÖÐ¹úÒøÐÐ¿ì½ÝÖ§¸¶");
-		tmp.put(PAYMETHOD_FC99BILLPAY, "¿ìÇ®Íâ¿¨Ö§¸¶");
-		tmp.put(PAYMETHOD_YYPTPAY, "Ç®´óÕÆ¹ñÖ§¸¶");
-		tmp.put(PAYMENTOD_UNICOMWOPAY, "ÁªÍ¨ÎÖÖ§¸¶");
-		tmp.put(PAYMENTOD_MSFPAY, "ÃñÉú¸¶");
-		tmp.put(PAYMENTOD_XIYINPAY, "Î÷ÒøÔÚÏß£¨Î÷°²ÒøÐÐÖ§¸¶Æ½Ì¨£©");
-		tmp.put(PAYMENTOD_CMBYWTPAY, "ÕÐÐÐÒ»ÍøÍ¨");
-		tmp.put(PAYMENTOD_WCFWAPPAY, "Î¢²Æ¸»");
+		tmp.put(PAYMETHOD_UNIONWAPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½WAPÖ§ï¿½ï¿½");//,,,
+		tmp.put(PAYMETHOD_QQAPPPAY, "QQÇ®ï¿½ï¿½");
+		tmp.put(PAYMETHOD_QQTENSCANPAY, "QQÉ¨ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CCBAPPPAY, "ï¿½ï¿½ï¿½ï¿½APPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CBHBPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CBHBWAPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_SFAPPPAY, "Ë³ï¿½ï¿½APPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_YLCFWAPPAY, "Ò»Â·ï¿½Æ¸ï¿½WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_JDWAPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_JDPAY, "ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CCBWAPSECDPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_BOCWAPPAYFAST, "ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_FC99BILLPAY, "ï¿½ï¿½Ç®ï¿½â¿¨Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_YYPTPAY, "Ç®ï¿½ï¿½ï¿½Æ¹ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMENTOD_UNICOMWOPAY, "ï¿½ï¿½Í¨ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMENTOD_MSFPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(PAYMENTOD_XIYINPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½Æ½Ì¨ï¿½ï¿½");
+		tmp.put(PAYMENTOD_CMBYWTPAY, "ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í¨");
+		tmp.put(PAYMENTOD_WCFWAPPAY, "Î¢ï¿½Æ¸ï¿½");
 		
-		tmp.put(PAYMETHOD_CHINATELEAPPPAY, "µçÐÅÒíÖ§¸¶");
-		tmp.put(PAYMETHOD_CHINATELEWAPPAY, "µçÐÅÒíÖ§¸¶WAP");
-		tmp.put(PAYMETHOD_SUNINGWAPPAY, "ËÕÄþÒ×¸¶±¦Ö§¸¶");
-		tmp.put(PAYMETHOD_INTELWAPPAY, "Intel¼¯·Ö±¦Ö§¸¶");
-		tmp.put(PAYMETHOD_SPDCCCB2CPAY, "ÆÖ·¢B2CÐÅÓÃ¿¨Ö§¸¶");
-		tmp.put(PAYMETHOD_SPDCCCB2CWAPPAY, "ÆÖ·¢B2CÐÅÓÃ¿¨WAPÖ§¸¶");
-		tmp.put(PAYMETHOD_FQLPAY, "·ÖÆÚÀÖÖ§¸¶PC¶Ë");
-		tmp.put(PAYMETHOD_FQLWAPPAY, "·ÖÆÚÀÖWapÖ§¸¶");
-		tmp.put(PAYMETHOD_BOSPAY, "ÉÏº£ÒøÐÐB2CÖ§¸¶");
-		tmp.put(PAYMETHOD_BOSWAPPAY, "ÉÏÒø¿ì¸¶");
+		tmp.put(PAYMETHOD_CHINATELEAPPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_CHINATELEWAPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½WAP");
+		tmp.put(PAYMETHOD_SUNINGWAPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_INTELWAPPAY, "Intelï¿½ï¿½ï¿½Ö±ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_SPDCCCB2CPAY, "ï¿½Ö·ï¿½B2Cï¿½ï¿½ï¿½Ã¿ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_SPDCCCB2CWAPPAY, "ï¿½Ö·ï¿½B2Cï¿½ï¿½ï¿½Ã¿ï¿½WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_FQLPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½PCï¿½ï¿½");
+		tmp.put(PAYMETHOD_FQLWAPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WapÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_BOSPAY, "ï¿½Ïºï¿½ï¿½ï¿½ï¿½ï¿½B2CÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_BOSWAPPAY, "ï¿½ï¿½ï¿½ï¿½ï¿½ì¸¶");
 		
-		tmp.put(PAYMETHOD_PINGANBANKPAY, "Æ½°²Ö§¸¶");
-		tmp.put(PAYMETHOD_PINGANBANKWAPPAY, "Æ½°²WAPÖ§¸¶");
-		tmp.put(PAYMETHOD_PAYECOWAPPAY, "Ò×ÁªWAPÖ§¸¶");
-		tmp.put(PAYMETHOD_SPDCCCFASTPAYPAY, "ÆÖ·¢¿ì½ÝÖ§¸¶");
+		tmp.put(PAYMETHOD_PINGANBANKPAY, "Æ½ï¿½ï¿½Ö§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_PINGANBANKWAPPAY, "Æ½ï¿½ï¿½WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_PAYECOWAPPAY, "ï¿½ï¿½ï¿½ï¿½WAPÖ§ï¿½ï¿½");
+		tmp.put(PAYMETHOD_SPDCCCFASTPAYPAY, "ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½");
 
-		//²»ÔÚÊ¹ÓÃµÄÖ§¸¶·½Ê½
-		tmp.put(PAYMETHOD_ALIBANKPAY, "Ö§¸¶±¦ÕÐÉÌÒøÐÐWAP");
-		tmp.put(PAYMETHOD_TENPAY, "²Æ¸¶Í¨");
-		tmp.put(PAYMETHOD_HANDWEBPAY, "º²ÒøWEB");
-		tmp.put(PAYMETHOD_HANDWAPPAY, "º²ÒøWAP");		
-		//tmp.put(PAYMETHOD_HAOBAIPAY, "ºÅ°ÙÊÖ»ú¶Ë-¿Í»§¶Ë");
-		//tmp.put(PAYMETHOD_SDOPAY, "Ê¢´ó»ý·Ö");
-		//tmp.put(PAYMETHOD_IPSPAY, "»·Ñ¶PC¶Ë-ÐÅÓÃ¿¨Ö§¸¶");
-		//tmp.put(PAYMETHOD_ALLINPAY, "Í¨Áª");
-		//tmp.put(PAYMETHOD_BCWAPPAY_OLD, "½»Í¨WAP£¨ÀÏµÄ£©");
+		//ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½Ö§ï¿½ï¿½ï¿½ï¿½Ê½
+		tmp.put(PAYMETHOD_ALIBANKPAY, "Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WAP");
+		tmp.put(PAYMETHOD_TENPAY, "ï¿½Æ¸ï¿½Í¨");
+		tmp.put(PAYMETHOD_HANDWEBPAY, "ï¿½ï¿½ï¿½ï¿½WEB");
+		tmp.put(PAYMETHOD_HANDWAPPAY, "ï¿½ï¿½ï¿½ï¿½WAP");		
+		//tmp.put(PAYMETHOD_HAOBAIPAY, "ï¿½Å°ï¿½ï¿½Ö»ï¿½ï¿½ï¿½-ï¿½Í»ï¿½ï¿½ï¿½");
+		//tmp.put(PAYMETHOD_SDOPAY, "Ê¢ï¿½ï¿½ï¿½ï¿½ï¿½");
+		//tmp.put(PAYMETHOD_IPSPAY, "ï¿½ï¿½Ñ¶PCï¿½ï¿½-ï¿½ï¿½ï¿½Ã¿ï¿½Ö§ï¿½ï¿½");
+		//tmp.put(PAYMETHOD_ALLINPAY, "Í¨ï¿½ï¿½");
+		//tmp.put(PAYMETHOD_BCWAPPAY_OLD, "ï¿½ï¿½Í¨WAPï¿½ï¿½ï¿½ÏµÄ£ï¿½");
 		
 		payTextMap = UnmodifiableMap.decorate(tmp);
 	}
 	
 	public static String getPaymethodText(String paymethod){
-		if(payTextMap.get(paymethod)!=null) return payTextMap.get(paymethod);
-		if(StringUtils.equals("card", paymethod)) return "¶Ò»»È¯";
+		if(payTextMap.get(paymethod)!=null) {
+            return payTextMap.get(paymethod);
+        }
+		if(StringUtils.equals("card", paymethod)) {
+            return "ï¿½Ò»ï¿½È¯";
+        }
 		return "Î´Öª";
 	}
 	public static final boolean isValidPayMethod(String paymethod){
@@ -478,40 +482,42 @@ public abstract class PaymethodConstant implements Serializable {
 	}
 	
 	public static String getPaymethodByMercdoe(String merchantCode){
-		if(StringUtils.isBlank(merchantCode)) return null;
+		if(StringUtils.isBlank(merchantCode)) {
+            return null;
+        }
 		return merchantPaymethodMap.get(merchantCode);
 	}
 	
 	//---------------------------------------------------------------------------------------
-	/**Ö§¸¶Íø¹Ø£ºÒøÁªµç×ÓÖ§¸¶*/
+	/**Ö§ï¿½ï¿½ï¿½ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½*/
 	public static final String GATEWAY_CHINAPAY = "chinaPay";
-	/**Ö§¸¶Íø¹Ø£ºµçÐÅ¹Ì»°Ö§¸¶*/
+	/**Ö§ï¿½ï¿½ï¿½ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½Å¹Ì»ï¿½Ö§ï¿½ï¿½*/
 	public static final String GATEWAY_CHARGETELECOMPAY = "chargeTelecomPay";
 	
 	
 	
-	/**ÉÌ»§±êÊ¶£ºchinaPay*/
+	/**ï¿½Ì»ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½chinaPay*/
 	public static final String MERCHANT_CHINA2PAY = "china2Pay";
-	/**ÉÌ»§±êÊ¶£ºchinaPay*/
+	/**ï¿½Ì»ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½chinaPay*/
 	public static final String MERCHANT_CHINAPAY = "chinaPay";
-	/**ÉÌ»§±êÊ¶£ºchinaPay*/
+	/**ï¿½Ì»ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½chinaPay*/
 	public static final String MERCHANT_SRCBPAY = "srcbPay";
 	
 
-	/**ÒøÐÐ´úÂë£º0000£¬Ê²Ã´ÒøÐÐÒ²²»´ú±í*/
+	/**ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ë£º0000ï¿½ï¿½Ê²Ã´ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	public static final String BANK_NONE = "0000";
 	
-	/**ÒøÐÐ´úÂë£ºSRCB£¬ÉÏº£Å©ÉÌÒøÐÐ*/
+	/**ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ë£ºSRCBï¿½ï¿½ï¿½Ïºï¿½Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	public static final String BANK_SRCB = "SRCB";
 
 	//---------------------------------------------------------------------------------------
-	/**·¢ÆðÖ§¸¶À´Ô´£ºPC*/
+	/**ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½PC*/
 	public static final String REQSOURCE_PC = "PC";
 	
-	/**·¢ÆðÖ§¸¶À´Ô´£ºWAP*/
+	/**ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½WAP*/
 	public static final String REQSOURCE_WAP = "WAP";
 	
-	/**·¢ÆðÖ§¸¶À´Ô´£ºAPP*/
+	/**ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½APP*/
 	public static final String REQSOURCE_APP = "APP";	
 	
 }

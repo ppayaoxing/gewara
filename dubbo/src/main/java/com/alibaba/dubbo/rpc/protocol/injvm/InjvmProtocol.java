@@ -40,6 +40,7 @@ public class InjvmProtocol extends AbstractProtocol implements Protocol {
 
     public static final int DEFAULT_PORT = 0;
 
+    @Override
     public int getDefaultPort() {
         return DEFAULT_PORT;
     }
@@ -57,10 +58,12 @@ public class InjvmProtocol extends AbstractProtocol implements Protocol {
         return INSTANCE;
     }
 
+    @Override
     public <T> Exporter<T> export(Invoker<T> invoker) throws RpcException {
         return new InjvmExporter<T>(invoker, invoker.getUrl().getServiceKey(), exporterMap);
     }
 
+    @Override
     public <T> Invoker<T> refer(Class<T> serviceType, URL url) throws RpcException {
         return new InjvmInvoker<T>(serviceType, url, url.getServiceKey(), exporterMap);
     }
@@ -94,21 +97,21 @@ public class InjvmProtocol extends AbstractProtocol implements Protocol {
     public boolean isInjvmRefer(URL url) {
     	final boolean isJvmRefer;
     	String scope = url.getParameter(Constants.SCOPE_KEY);
-    	//±¾ÉíÒÑ¾­ÊÇjvmÐ­ÒéÁË£¬×ßÕý³£Á÷³Ì¾ÍÊÇÁË.
+    	//ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½jvmÐ­ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ï¿½.
     	if (Constants.LOCAL_PROTOCOL.toString().equals(url.getProtocol())) {
     		isJvmRefer = false;
     	} else if (Constants.SCOPE_LOCAL.equals(scope) || (url.getParameter("injvm", false))) {
-			//Èç¹ûÉùÃ÷Îª±¾µØÒýÓÃ
-			//scope=local || injvm=true µÈ¼Û injvm±êÇ©Î´À´·ÏÆúµô.
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			//scope=local || injvm=true ï¿½È¼ï¿½ injvmï¿½ï¿½Ç©Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 			isJvmRefer = true;
 		} else if (Constants.SCOPE_REMOTE.equals(scope)){
-			//ÉùÃ÷ÁËÊÇÔ¶³ÌÒýÓÃ£¬Ôò²»×ö±¾µØÒýÓÃ
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			isJvmRefer = false;
 		} else if (url.getParameter(Constants.GENERIC_KEY, false)){
-			//·º»¯µ÷ÓÃ²»×ß±¾µØ
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ß±ï¿½ï¿½ï¿½
 			isJvmRefer = false;
 		} else if (getExporter(exporterMap, url) != null) {
-			//Ä¬ÈÏÇé¿öÏÂÈç¹û±¾µØÓÐ·þÎñ±©Â¶£¬ÔòÒýÓÃ±¾µØ·þÎñ.
+			//Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½Ø·ï¿½ï¿½ï¿½.
 			isJvmRefer = true;
 		} else {
 			isJvmRefer = false;

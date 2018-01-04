@@ -70,6 +70,7 @@ public class ExchangeCodec extends TelnetCodec {
         return MAGIC;
     }
 
+    @Override
     public void encode(Channel channel, OutputStream os, Object msg) throws IOException {
         if (msg instanceof Request) {
             encodeRequest(channel, os, (Request) msg);
@@ -80,6 +81,7 @@ public class ExchangeCodec extends TelnetCodec {
         }
     }
 
+    @Override
     public Object decode(Channel channel, InputStream is) throws IOException {
         int readable = is.available();
         byte[] header = new byte[Math.min(readable, HEADER_LENGTH)];
@@ -87,6 +89,7 @@ public class ExchangeCodec extends TelnetCodec {
         return decode(channel, is, readable, header);
     }
     
+    @Override
     protected Object decode(Channel channel, InputStream is, int readable, byte[] header) throws IOException {
         // check magic number.
         if (readable > 0 && header[0] != MAGIC_HIGH 
@@ -121,8 +124,9 @@ public class ExchangeCodec extends TelnetCodec {
         }
 
         // limit input stream.
-        if( readable != tt )
+        if( readable != tt ) {
             is = StreamUtils.limitedInputStream(is, len);
+        }
 
         try {
             return decodeBody(channel, is, header);
@@ -203,11 +207,13 @@ public class ExchangeCodec extends TelnetCodec {
 
     protected Object getRequestData(long id) {
         DefaultFuture future = DefaultFuture.getFuture(id);
-        if (future == null)
+        if (future == null) {
             return null;
+        }
         Request req = future.getRequest();
-        if (req == null)
+        if (req == null) {
             return null;
+        }
         return req.getData();
     }
 
@@ -221,8 +227,12 @@ public class ExchangeCodec extends TelnetCodec {
         // set request and serialization flag.
         header[2] = (byte) (FLAG_REQUEST | serialization.getContentTypeId());
 
-        if (req.isTwoWay()) header[2] |= FLAG_TWOWAY;
-        if (req.isEvent()) header[2] |= FLAG_EVENT;
+        if (req.isTwoWay()) {
+            header[2] |= FLAG_TWOWAY;
+        }
+        if (req.isEvent()) {
+            header[2] |= FLAG_EVENT;
+        }
 
         // set request id.
         Bytes.long2bytes(req.getId(), header, 4);
@@ -256,7 +266,9 @@ public class ExchangeCodec extends TelnetCodec {
             Bytes.short2bytes(MAGIC, header);
             // set request and serialization flag.
             header[2] = serialization.getContentTypeId();
-            if (res.isHeartbeat()) header[2] |= FLAG_EVENT;
+            if (res.isHeartbeat()) {
+                header[2] |= FLAG_EVENT;
+            }
             // set response status.
             byte status = res.getStatus();
             header[3] = status;
@@ -273,7 +285,9 @@ public class ExchangeCodec extends TelnetCodec {
                     encodeResponseData(channel, out, res.getResult());
                 }
             }
-            else out.writeUTF(res.getErrorMessage());
+            else {
+                out.writeUTF(res.getErrorMessage());
+            }
             out.flushBuffer();
             bos.flush();
             bos.close();
@@ -285,10 +299,10 @@ public class ExchangeCodec extends TelnetCodec {
             os.write(header); // write header.
             os.write(data); // write data.
         } catch (Throwable t) {
-            // ·¢ËÍÊ§°ÜÐÅÏ¢¸øConsumer£¬·ñÔòConsumerÖ»ÄÜµÈ³¬Ê±ÁË
+            // ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Consumerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ConsumerÖ»ï¿½ÜµÈ³ï¿½Ê±ï¿½ï¿½
             if (! res.isEvent() && res.getStatus() != Response.BAD_RESPONSE) {
                 try {
-                    // FIXME ÔÚCodecÖÐ´òÓ¡³ö´íÈÕÖ¾£¿ÔÚIoHanndlerµÄcaughtÖÐÍ³Ò»´¦Àí£¿
+                    // FIXME ï¿½ï¿½Codecï¿½Ð´ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½IoHanndlerï¿½ï¿½caughtï¿½ï¿½Í³Ò»ï¿½ï¿½ï¿½ï¿½
                     logger.warn("Fail to encode response: " + res + ", send bad_response info instead, cause: " + t.getMessage(), t);
                     
                     Response r = new Response(res.getId(), res.getVersion());
@@ -302,7 +316,7 @@ public class ExchangeCodec extends TelnetCodec {
                 }
             }
             
-            // ÖØÐÂÅ×³öÊÕµ½µÄÒì³£
+            // ï¿½ï¿½ï¿½ï¿½ï¿½×³ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ì³£
             if (t instanceof IOException) {
                 throw (IOException) t;
             } else if (t instanceof RuntimeException) {

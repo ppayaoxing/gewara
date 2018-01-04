@@ -124,8 +124,9 @@ public class BeanUtil implements Util4Script{
 	 * @return <code>true</code> if the List/array/map is null or empty.
 	 */
 	public final static boolean isEmptyContainer(Object container) {
-		if (container == null)
-			return true;
+		if (container == null) {
+            return true;
+        }
 		if (container.getClass().isArray()) {
 			// Thanks to Eric Fixler for this refactor.
 			return Array.getLength(container) == 0;
@@ -146,7 +147,9 @@ public class BeanUtil implements Util4Script{
 	 * @return
 	 */
 	public static Object get(Object bean, String property) {
-		if(bean ==null) return null;
+		if(bean ==null) {
+            return null;
+        }
 		if(bean instanceof Map){
 			return ((Map)bean).get(property);
 		}
@@ -170,8 +173,9 @@ public class BeanUtil implements Util4Script{
 
 	public static List<Long> getNotNullId(final List<Long> idList) {
 		List<Long> result = new ArrayList<Long>();
-		if (idList == null || idList.isEmpty())
-			return result;
+		if (idList == null || idList.isEmpty()) {
+            return result;
+        }
 		for (Long id : idList){
 			if (id != null){
 				result.add(id);
@@ -290,8 +294,9 @@ public class BeanUtil implements Util4Script{
 
 	public static List<Long> getIdList(final String idListStr, String spliter) {
 		List<Long> result = new ArrayList<Long>();
-		if (StringUtils.isBlank(idListStr))
-			return result;
+		if (StringUtils.isBlank(idListStr)) {
+            return result;
+        }
 		String[] idList = idListStr.split(spliter);
 		for (String idStr : idList) {
 			try {
@@ -305,8 +310,9 @@ public class BeanUtil implements Util4Script{
 
 	public static List<Integer> getIntgerList(final String idListStr, String spliter) {
 		List<Integer> result = new ArrayList<Integer>();
-		if (StringUtils.isBlank(idListStr))
-			return result;
+		if (StringUtils.isBlank(idListStr)) {
+            return result;
+        }
 		String[] idList = idListStr.split(spliter);
 		for (String idStr : idList) {
 			try {
@@ -552,8 +558,9 @@ public class BeanUtil implements Util4Script{
 	}
 
 	public static String buildString(final Object bean, boolean nested) {
-		if (bean == null)
-			return null;
+		if (bean == null) {
+            return null;
+        }
 		Map map = getBeanMap(bean, nested, true);
 		return buildString(map);
 	}
@@ -566,16 +573,19 @@ public class BeanUtil implements Util4Script{
 				result.append("[");
 				Collection vlist = (Collection) map.get(key);
 				for (Object el : vlist) {
-					if (el == null)
-						continue;
-					if (isSimpleProperty(el.getClass()))
-						result.append(el);
-					else if (el instanceof Map)
-						result.append(buildString((Map) el));
+					if (el == null) {
+                        continue;
+                    }
+					if (isSimpleProperty(el.getClass())) {
+                        result.append(el);
+                    } else if (el instanceof Map) {
+                        result.append(buildString((Map) el));
+                    }
 					result.append(",");
 				}
-				if (vlist.size() > 0)
-					result.deleteCharAt(result.length() - 1);
+				if (vlist.size() > 0) {
+                    result.deleteCharAt(result.length() - 1);
+                }
 				result.append("]");
 			} else if (map.get(key) instanceof Map) {
 				result.append("{" + buildString((Map) map.get(key)) + "}");
@@ -583,8 +593,9 @@ public class BeanUtil implements Util4Script{
 				result.append(map.get(key));
 			}
 		}
-		if (result.length() > 0)
-			result.deleteCharAt(0);
+		if (result.length() > 0) {
+            result.deleteCharAt(0);
+        }
 		return result.toString();
 	}
 
@@ -630,8 +641,9 @@ public class BeanUtil implements Util4Script{
 	}
 
 	public static <T> List<T> getSubList(List<T> list, int from, int maxnum) {
-		if (list == null || list.size() <= from)
-			return new ArrayList<T>();
+		if (list == null || list.size() <= from) {
+            return new ArrayList<T>();
+        }
 		return new ArrayList(list.subList(from, Math.min(from + maxnum, list.size())));
 	}
 
@@ -644,8 +656,9 @@ public class BeanUtil implements Util4Script{
 	 */
 	public static <T> List<List<T>> partition(List<T> longList, int length) {
 		List<List<T>> result = new ArrayList<List<T>>();
-		if (longList == null || longList.isEmpty())
-			return result;
+		if (longList == null || longList.isEmpty()) {
+            return result;
+        }
 		if (longList.size() <= length) {
 			result.add(longList);
 		} else {
@@ -718,8 +731,9 @@ public class BeanUtil implements Util4Script{
 					beanMap.remove(key);
 					continue;
 				}
-				if (!BeanUtil.isSimpleProperty(pv.getClass()))
-					beanMap.remove(key);
+				if (!BeanUtil.isSimpleProperty(pv.getClass())) {
+                    beanMap.remove(key);
+                }
 			}
 			beanMap.remove("class");
 		} catch (Exception e) {
@@ -765,8 +779,9 @@ public class BeanUtil implements Util4Script{
 		if (value == null){
 			return null;
 		}
-		if (value instanceof String)
-			return (String) value;
+		if (value instanceof String) {
+            return (String) value;
+        }
 		if (value instanceof Timestamp) {
 			return DateUtil.formatTimestamp((Timestamp) value);
 		} else if (value instanceof Date) {

@@ -40,7 +40,9 @@ public class VoCopyUtil {
 		}
 		try {
 			for (T item : itemList) {
-				if(item==null) continue;
+				if(item==null) {
+                    continue;
+                }
 				Class src = item.getClass();
 				Wrapper srcWrapper = Wrapper.getWrapper(src);
 				Wrapper destWrapper = Wrapper.getWrapper(clazz);
@@ -56,8 +58,9 @@ public class VoCopyUtil {
 	}
 
 	public static <S extends BaseVo, T> ResultCode<S> copyProperties(Class<S> clazz, T item) {
-		if (item == null)
-			return ResultCode.getFailure(ResultCode.CODE_DATA_ERROR, "数据不存在！");
+		if (item == null) {
+            return ResultCode.getFailure(ResultCode.CODE_DATA_ERROR, "数据不存在！");
+        }
 		try {
 			Wrapper srcWrapper = Wrapper.getWrapper(item.getClass());
 			Wrapper destWrapper = Wrapper.getWrapper(clazz);

@@ -17,57 +17,57 @@ public class CinemaProfileVo extends BaseVo{
 	private static final long serialVersionUID = -3804714651086763962L;
 	public static final String STATUS_OPEN = "open";
 	public static final String STATUS_CLOSE = "close";
-	public static final String POPCORN_STATUS_Y ="Y";//ÓÐ±¬Ã×»¨
-	public static final String POPCORN_STATUS_N ="N";//Ã»ÓÐ±¬Ã×»¨
-	public static final String SERVICEFEE_Y ="Y";//ÓÐ·þÎñ·Ñ
-	public static final String SERVICEFEE_N ="N";//Ã»ÓÐ·þÎñ·Ñ
+	public static final String POPCORN_STATUS_Y ="Y";//ï¿½Ð±ï¿½ï¿½×»ï¿½
+	public static final String POPCORN_STATUS_N ="N";//Ã»ï¿½Ð±ï¿½ï¿½×»ï¿½
+	public static final String SERVICEFEE_Y ="Y";//ï¿½Ð·ï¿½ï¿½ï¿½ï¿½
+	public static final String SERVICEFEE_N ="N";//Ã»ï¿½Ð·ï¿½ï¿½ï¿½ï¿½
 	public static final String INSURE_STATUS_OPEN = "open";
 	public static final String INSURE_STATUS_CLOSE = "close";
 	
-	public static final String TAKEMETHOD_P = "P";//ÏÖ³¡ÅÉËÍ
-	public static final String TAKEMETHOD_W = "W";//Ó°ÔºÊÛÆ±´°¿Ú
-	public static final String TAKEMETHOD_A = "A";//¸ñÍßÀ­È¡Æ±»ú
-	public static final String TAKEMETHOD_F = "F";//¸ñÍßÀ­È«ÍøÈ¡Æ±»ú
-	public static final String TAKEMETHOD_U = "U";//ÁªºÏÔºÏß
-	public static final String TAKEMETHOD_L = "L";//Â¬Ã×°£Ó°Ôº×ÔÖúÈ¡Æ±»ú
-	public static final String TAKEMETHOD_D = "D";//Íò´ïÔºÏß×ÔÖúÈ¡Æ±»ú
-	public static final String TAKEMETHOD_J = "J";//½ðÒÝÔºÏß×ÔÖúÈ¡Æ±»ú
-	public static final String TAKEMETHOD_M = "M";//Ó°Ôº»áÔ±×ÔÖúÈ¡Æ±»ú
-	public static final String TAKEMETHOD_E = "E";//´óµØ»áÔ±×ÔÖúÈ¡Æ±»ú
-	public static final String TAKEMETHOD_T = "T";//ÌìÏÂÆ±²Ö×ÔÖúÈ¡Æ±»ú
-	public static final String TAKEMETHOD_AFT = "AFT";//£¨¸ñÍßÀ­×Ô¼ºµÄÈ¡Æ±»ú£©
+	public static final String TAKEMETHOD_P = "P";//ï¿½Ö³ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAKEMETHOD_W = "W";//Ó°Ôºï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½
+	public static final String TAKEMETHOD_A = "A";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½
+	public static final String TAKEMETHOD_F = "F";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½È¡Æ±ï¿½ï¿½
+	public static final String TAKEMETHOD_U = "U";//ï¿½ï¿½ï¿½ï¿½Ôºï¿½ï¿½
+	public static final String TAKEMETHOD_L = "L";//Â¬ï¿½×°ï¿½Ó°Ôºï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½
+	public static final String TAKEMETHOD_D = "D";//ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½
+	public static final String TAKEMETHOD_J = "J";//ï¿½ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½
+	public static final String TAKEMETHOD_M = "M";//Ó°Ôºï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½
+	public static final String TAKEMETHOD_E = "E";//ï¿½ï¿½Ø»ï¿½Ô±ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½
+	public static final String TAKEMETHOD_T = "T";//ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½
+	public static final String TAKEMETHOD_AFT = "AFT";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½ï¿½ï¿½
 	
-	private Long id;				//ÓëCinema¹²ÓÃID
-	private String notifymsg1;		//È¡Æ±¶ÌÐÅ
-	private String notifymsg2;		//ÌáÇ°3Ð¡Ê±ÌáÐÑ¶ÌÐÅ
-	private String notifymsg3;		//Î¢Æ±È¡Æ±¶ÌÐÅ
-	private String notifymsg4;		//Î¢Æ±È¡Æ±¶ÌÐÅ
-	private String notifymsg5;		//Î¢Æ±È¡Æ±¶ÌÐÅ
-	private String takemethod; 		//È¡Æ±·½Ê½: P£ºÏÖ³¡ÅÉËÍ£¬W£ºÓ°ÔºÊÛÆ±´°¿Ú£¬A£º×Ô¶¯È¡Æ±»ú
-	private Long topicid;			//È¡Æ±Ìû×Ó
-	private String takeAddress;     //È¡Æ±Î»ÖÃ
-	private String opentime;		//Ã¿Ìì¿ª·Å¹ºÆ±Ê±¼ä£¬Èç6:00¿ª·ÅÐ´ 0600
-	private String closetime;		//Ã¿Ìì¹Ø±Õ¹ºÆ±Ê±¼ä
-	private String startsale;		//Ã¿ÌìÂòÌ×²ÍµÄ¿ªÊ¼Ê±¼ä 0800
-	private String endsale;			//Ã¿ÌìÂòÌ×²ÍµÄ½áÊøÊ±¼ä 2300
-	private String popcorn;      	//ÊÇ·ñÊÇº¬ÓÐ±¬Ã×»¨Ó°Ôº
-	private String servicefee;		//·þÎñ·Ñ
-	private String status;			//¿ª·Å×´Ì¬
-	private Integer cminute;		//ÌáÇ°¶à³¤Ê±¼ä¹Ø±Õ(·ÖÖÓ)
-	private Integer openDay;         //ÌáÇ°¿ª·ÅÊ±¼ä(ÀýÈç£º1 ±íÊ¾1Ìì)
-	private String openDayTime;		 //ÌáÇ°¿ª·Å¼¸ÌìµÄ¾ßÌåÊ±¼ä(ÀýÈç£º6:00¿ª·ÅÐ´ 0600)
-	private Integer fee;			//·þÎñ·Ñ
-	private String isRefund;		//ÊÇ·ñ¿ÉÒÔÍËÆ±Y or N
-	private String isGewaRefund;	//ÊÇ·ñÖ§³ÖGewaÍË¿î£¨Y/N£©
-	private String opentype;		//Ó°Ôº¿ª·ÅÀàÐÍ£ºHFH, MTX, DX
-	private String direct;			//ÊÇ·ñÖ±Á¬Y or N
-	private String prompting;		//ÌáÊ¾ËµÃ÷
-	private String isInsure;    	//ÊÇ·ñÖ§³Ö¹ºÂòÆ½°²±£ÏÕ  N»ònullÖµ±íÊ¾²»Ö§³Ö¡£open±íÊ¾¿ªÆôÖ§³Ö£¬close±íÊ¾ÔÝÍ£¹Ø±ÕÊÛÏÕ
-	private String openPriority;  	//³¡´ÎÉèÖÃ¿ª·ÅÓÅÏÈ¼¶
-	private String globalLimit;		//È«¾ÖÆÁ±ÎÆ÷GlobalLimit£¬YÆôÓÃ£¬N£º½ûÓÃ
-	private Integer passlen;		//È¡Æ±ÃÜÂë³¤¶È
-	protected Timestamp updatetime;	//ÐÞ¸ÄÊ±¼ä	
-	private Boolean fromCache = false; //ÊÇ·ñÀ´×Ô±¾µØ»º´æ
+	private Long id;				//ï¿½ï¿½Cinemaï¿½ï¿½ï¿½ï¿½ID
+	private String notifymsg1;		//È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String notifymsg2;		//ï¿½ï¿½Ç°3Ð¡Ê±ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½
+	private String notifymsg3;		//Î¢Æ±È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String notifymsg4;		//Î¢Æ±È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String notifymsg5;		//Î¢Æ±È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String takemethod; 		//È¡Æ±ï¿½ï¿½Ê½: Pï¿½ï¿½ï¿½Ö³ï¿½ï¿½ï¿½ï¿½Í£ï¿½Wï¿½ï¿½Ó°Ôºï¿½ï¿½Æ±ï¿½ï¿½ï¿½Ú£ï¿½Aï¿½ï¿½ï¿½Ô¶ï¿½È¡Æ±ï¿½ï¿½
+	private Long topicid;			//È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String takeAddress;     //È¡Æ±Î»ï¿½ï¿½
+	private String opentime;		//Ã¿ï¿½ì¿ªï¿½Å¹ï¿½Æ±Ê±ï¿½ä£¬ï¿½ï¿½6:00ï¿½ï¿½ï¿½ï¿½Ð´ 0600
+	private String closetime;		//Ã¿ï¿½ï¿½Ø±Õ¹ï¿½Æ±Ê±ï¿½ï¿½
+	private String startsale;		//Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½×²ÍµÄ¿ï¿½Ê¼Ê±ï¿½ï¿½ 0800
+	private String endsale;			//Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½×²ÍµÄ½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ 2300
+	private String popcorn;      	//ï¿½Ç·ï¿½ï¿½Çºï¿½ï¿½Ð±ï¿½ï¿½×»ï¿½Ó°Ôº
+	private String servicefee;		//ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String status;			//ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	private Integer cminute;		//ï¿½ï¿½Ç°ï¿½à³¤Ê±ï¿½ï¿½Ø±ï¿½(ï¿½ï¿½ï¿½ï¿½)
+	private Integer openDay;         //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½(ï¿½ï¿½ï¿½ç£º1 ï¿½ï¿½Ê¾1ï¿½ï¿½)
+	private String openDayTime;		 //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Å¼ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½Ê±ï¿½ï¿½(ï¿½ï¿½ï¿½ç£º6:00ï¿½ï¿½ï¿½ï¿½Ð´ 0600)
+	private Integer fee;			//ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String isRefund;		//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±Y or N
+	private String isGewaRefund;	//ï¿½Ç·ï¿½Ö§ï¿½ï¿½Gewaï¿½Ë¿î£¨Y/Nï¿½ï¿½
+	private String opentype;		//Ó°Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½HFH, MTX, DX
+	private String direct;			//ï¿½Ç·ï¿½Ö±ï¿½ï¿½Y or N
+	private String prompting;		//ï¿½ï¿½Ê¾Ëµï¿½ï¿½
+	private String isInsure;    	//ï¿½Ç·ï¿½Ö§ï¿½Ö¹ï¿½ï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Nï¿½ï¿½nullÖµï¿½ï¿½Ê¾ï¿½ï¿½Ö§ï¿½Ö¡ï¿½openï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ö§ï¿½Ö£ï¿½closeï¿½ï¿½Ê¾ï¿½ï¿½Í£ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String openPriority;  	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½
+	private String globalLimit;		//È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½GlobalLimitï¿½ï¿½Yï¿½ï¿½ï¿½Ã£ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer passlen;		//È¡Æ±ï¿½ï¿½ï¿½ë³¤ï¿½ï¿½
+	protected Timestamp updatetime;	//ï¿½Þ¸ï¿½Ê±ï¿½ï¿½	
+	private Boolean fromCache = false; //ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ø»ï¿½ï¿½ï¿½
 
 	@Override
 	public Serializable realId() {
@@ -157,7 +157,9 @@ public class CinemaProfileVo extends BaseVo{
 	public boolean isBuyItem(Timestamp playtime){
 		if(StringUtils.isNotBlank(startsale) && StringUtils.isNotBlank(endsale)){
 			String time = DateUtil.format(playtime, "HHmm");
-			if(time.compareTo(startsale)<0 || time.compareTo(endsale)>0) return false;
+			if(time.compareTo(startsale)<0 || time.compareTo(endsale)>0) {
+                return false;
+            }
 		}
 		return true;
 	}
@@ -168,25 +170,25 @@ public class CinemaProfileVo extends BaseVo{
 		this.popcorn = popcorn;
 	}
 	public String getTakeInfo(){
-		String result = "ÔÚÎ»ÓÚÓ°ÔºµÄ¸ñÍßÀ­×ÔÖúÈ¡Æ±»úÈ¡Æ±";
+		String result = "ï¿½ï¿½Î»ï¿½ï¿½Ó°Ôºï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½È¡Æ±";
 		if(StringUtils.equals(takemethod, TAKEMETHOD_U)){
-			result = "ÔÚÎ»ÓÚÓ°ÔºµÄÁªºÍÔºÏß×ÔÖúÈ¡Æ±»úÈ¡Æ±";
+			result = "ï¿½ï¿½Î»ï¿½ï¿½Ó°Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½È¡Æ±";
 		}else if(StringUtils.equals(takemethod, TAKEMETHOD_W)){
-			result = "Ó°ÔºÊÛÆ±´°¿ÚÈ¡Æ±";
+			result = "Ó°Ôºï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½È¡Æ±";
 		}else if(StringUtils.equals(takemethod, TAKEMETHOD_P)){
-			result = "ÏÖ³¡ÅÉËÍ";
+			result = "ï¿½Ö³ï¿½ï¿½ï¿½ï¿½ï¿½";
 		}else if(StringUtils.equals(takemethod, TAKEMETHOD_L)){
-			result = "ÔÚÎ»ÓÚÓ°ÔºµÄÂ¬Ã×°£Ó°Ôº×ÔÖúÈ¡Æ±»ú";
+			result = "ï¿½ï¿½Î»ï¿½ï¿½Ó°Ôºï¿½ï¿½Â¬ï¿½×°ï¿½Ó°Ôºï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½";
 		}else if(StringUtils.equals(takemethod, TAKEMETHOD_D)){
-			result = "ÔÚÎ»ÓÚÓ°ÔºµÄÍò´ïÔºÏß×ÔÖúÈ¡Æ±»ú";
+			result = "ï¿½ï¿½Î»ï¿½ï¿½Ó°Ôºï¿½ï¿½ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½";
 		}else if(StringUtils.equals(takemethod, TAKEMETHOD_J)){
-			result = "ÔÚÎ»ÓÚÓ°ÔºµÄ½ðÒÝÔºÏß×ÔÖúÈ¡Æ±»ú";
+			result = "ï¿½ï¿½Î»ï¿½ï¿½Ó°Ôºï¿½Ä½ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½";
 		}else if(StringUtils.equals(takemethod, TAKEMETHOD_M)){
-			result = "ÔÚÎ»ÓÚÓ°ÔºµÄÓ°Ôº»áÔ±×ÔÖúÈ¡Æ±»ú";
+			result = "ï¿½ï¿½Î»ï¿½ï¿½Ó°Ôºï¿½ï¿½Ó°Ôºï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½";
 		}else if(StringUtils.equals(takemethod, TAKEMETHOD_E)){
-			result = "ÔÚÎ»ÓÚÓ°ÔºµÄ´óµØ»áÔ±×ÔÖúÈ¡Æ±»ú";
+			result = "ï¿½ï¿½Î»ï¿½ï¿½Ó°Ôºï¿½Ä´ï¿½Ø»ï¿½Ô±ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½";
 		}else if(StringUtils.equals(takemethod, TAKEMETHOD_T)){
-			result = "ÔÚÎ»ÓÚÓ°ÔºµÄÌìÏÂÆ±²Ö×ÔÖúÈ¡Æ±»ú";
+			result = "ï¿½ï¿½Î»ï¿½ï¿½Ó°Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½";
 		}
 		return result;
 	}

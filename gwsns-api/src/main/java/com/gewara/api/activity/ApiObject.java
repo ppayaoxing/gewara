@@ -15,10 +15,12 @@ public abstract class ApiObject implements Serializable {
 	
 	@Override
 	public final boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) {
+            return true;
+        }
+		if (getClass() != obj.getClass()) {
+            return false;
+        }
 		ApiObject other = (ApiObject) obj;
 		return !(this.realId() != null ? !(this.realId().equals(other.realId())) : (other.realId() != null));
 	}

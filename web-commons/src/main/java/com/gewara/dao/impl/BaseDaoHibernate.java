@@ -59,15 +59,19 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	}
 	@Override
 	public <T extends BaseObject> T getObject(Class<T> clazz, Serializable id) {
-		if(id==null||clazz==null) return null;
+		if(id==null||clazz==null) {
+            return null;
+        }
 		T o = hibernateTemplate.get(clazz, id);
 		return o;
 	}
 	@Override
 	public <T extends BaseObject> List<T> getAllObjects(Class<T> clazz) {
-		if(clazz==null) return null;
+		if(clazz==null) {
+            return null;
+        }
 		if(cachable.contains(clazz)){
-			//»º´æ¶ÔÏó
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			DetachedCriteria query = DetachedCriteria.forClass(clazz);
 			query.setProjection(Projections.id());
 			List idList = hibernateTemplate.findByCriteria(query);
@@ -79,7 +83,9 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	}
 	@Override
 	public <T extends BaseObject> T removeObject(Class<T> clazz, Serializable id) {
-		if(id==null||clazz==null) return null;
+		if(id==null||clazz==null) {
+            return null;
+        }
 		T o = getObject(clazz, id);
 		if( o!=null ) {
 			hibernateTemplate.delete(o);
@@ -95,7 +101,9 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	}
 	@Override
 	public <T extends BaseObject, S extends Serializable> List<T> getObjectList(Class<T> clazz, Collection<S> idList) {
-		if(idList == null || idList.isEmpty()) return new ArrayList<T>(0);
+		if(idList == null || idList.isEmpty()) {
+            return new ArrayList<T>(0);
+        }
 		if(cachable.contains(clazz)){
 			return getObjectListUsingCache(clazz, idList);
 		}else{
@@ -114,7 +122,7 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 			}
 			count ++;
 			if(System.currentTimeMillis() - t > DateUtil.m_minute*2 && count<100){
-				//100¸öÒÔÄÚ£¬³¬¹ý2min£¬»º´æÓÐÎÊÌâ£¬Ö±½ÓÅ×Òì³£
+				//100ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½2minï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â£¬Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ì³£
 				throw new TraceErrorException("cache too slow!!");
 			}
 		}
@@ -123,8 +131,11 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	@Override
 	public <T extends BaseObject, S extends Serializable> List<T> getObjectBatch(Class<T> clazz, String propertyName, Collection<S> valueList) {
 		List<S> vlist = null;
-		if(valueList instanceof List) vlist = (List)valueList;
-		else vlist = new ArrayList<S>(valueList);
+		if(valueList instanceof List) {
+            vlist = (List) valueList;
+        } else {
+            vlist = new ArrayList<S>(valueList);
+        }
 		List<List<S>> groupList = BeanUtil.partition(vlist, 500);
 		List<T> result = new ArrayList<T>();
 		for(List<S> group: groupList){
@@ -139,13 +150,17 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	@Override
 	public <T extends BaseObject> void removeObjectList(Collection<T> entityList) {
 		for(T entity: entityList){
-			if(entity != null) removeObject(entity);
+			if(entity != null) {
+                removeObject(entity);
+            }
 		}
 	}
 	@Override
 	public <T extends BaseObject> void saveObjectList(Collection<T> entityList) {
 		for(T entity: entityList){
-			if(entity != null) saveObject(entity);
+			if(entity != null) {
+                saveObject(entity);
+            }
 		}
 	}
 	@Override
@@ -161,7 +176,9 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);
 		query.setProjection(Projections.rowCount());
 		List result = hibernateTemplate.findByCriteria(query);
-		if(result.isEmpty()) return 0;
+		if(result.isEmpty()) {
+            return 0;
+        }
 		return Integer.parseInt("" + result.get(0));
 	}
 	@Override
@@ -200,8 +217,11 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	@Override
 	public <T extends BaseObject> List<T> getObjectList(Class<T> clazz, String orderField, boolean asc, int from, int rows) {
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);
-		if(asc) query.addOrder(Order.asc(orderField));
-		else query.addOrder(Order.desc(orderField));
+		if(asc) {
+            query.addOrder(Order.asc(orderField));
+        } else {
+            query.addOrder(Order.desc(orderField));
+        }
 		List result = hibernateTemplate.findByCriteria(query, from, rows);
 		return result;
 	}
@@ -222,13 +242,15 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 				.add(Projections.property(valuename), valuename));
 		query.setResultTransformer(DetachedCriteria.ALIAS_TO_ENTITY_MAP);
 		List entryList = hibernateTemplate.findByCriteria(query);
-		for(Object entry: entryList) result.put(((Map)entry).get(keyname), ((Map)entry).get(valuename));
+		for(Object entry: entryList) {
+            result.put(((Map) entry).get(keyname), ((Map) entry).get(valuename));
+        }
 		return result;
 	}
 	@Override
 	public <T extends BaseObject, S extends Serializable> Map getObjectPropertyMap(Class<T> clazz, String keyname, String valuename, Collection<S> idList){
 		Map result = new HashMap();
-		//TODO: ÅÐ¶Ï¶ÔÏóÊÇ·ñÊÇcache£¬ÎÞcacheÊ¹ÓÃÉÏÃæ·½·¨£¡hibernateTemplate.getSessionFactory().;
+		//TODO: ï¿½Ð¶Ï¶ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½cacheï¿½ï¿½ï¿½ï¿½cacheÊ¹ï¿½ï¿½ï¿½ï¿½ï¿½æ·½ï¿½ï¿½ï¿½ï¿½hibernateTemplate.getSessionFactory().;
 		for(S id:idList){
 			T entity = getObject(clazz, id);
 			if(entity != null) {
@@ -242,7 +264,7 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	public <T extends BaseObject> List<T> getObjectListByField(Class<T> clazz, String fieldname, Serializable fieldvalue){
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);
 		query.add(Restrictions.eq(fieldname, fieldvalue));
-		if(cachable.contains(clazz)){//»º´æ¶ÔÏó£¬ÏÈ²éÑ¯ID
+		if(cachable.contains(clazz)){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È²ï¿½Ñ¯ID
 			query.setProjection(Projections.id());
 			List idList = hibernateTemplate.findByCriteria(query);
 			return getObjectListUsingCache(clazz, idList);
@@ -258,8 +280,11 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	@Override
 	public <T extends BaseObject, S extends Serializable> List<S> getObjectPropertyList(Class<T> clazz, String propertyname, boolean isDistinct) {
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);
-		if(isDistinct) query.setProjection(Projections.distinct(Projections.property(propertyname)));
-		else query.setProjection(Projections.property(propertyname));
+		if(isDistinct) {
+            query.setProjection(Projections.distinct(Projections.property(propertyname)));
+        } else {
+            query.setProjection(Projections.property(propertyname));
+        }
 		List result = hibernateTemplate.findByCriteria(query);
 		return result;
 	}
@@ -267,8 +292,12 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 		DetachedCriteria query = DetachedCriteria.forClass(clazz);
 		query.add(Restrictions.eq(ukeyName, ukeyValue));
 		List result = hibernateTemplate.findByCriteria(query);
-		if(result.isEmpty()) return null;
-		if(result.size() > 1) throw new IllegalStateException("²éÑ¯³ö¶à¸ö¼ÇÂ¼£º" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+		if(result.isEmpty()) {
+            return null;
+        }
+		if(result.size() > 1) {
+            throw new IllegalStateException("ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+        }
 		return (T)result.get(0);
 	}
 	@Override
@@ -287,12 +316,12 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 				}
 			}else{
 				result = getObject(clazz, id);
-				if(result == null){//²»´æÔÚ£¬¿ÉÄÜÊÇID±ä»¯ÖØ²éÒ»´Î
+				if(result == null){//ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½ä»¯ï¿½Ø²ï¿½Ò»ï¿½ï¿½
 					id = getIdByUkey(clazz, ukeyName, ukeyValue);
-					if(id!=null){//¶ÔÏóid±ä¸üÁË£¬ÖØÐÂÉèÖÃ»º´æ
+					if(id!=null){//ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 						setUkey(clazz, ukeyName, ukeyValue, id);
 						result = getObject(clazz, id);
-					}else{//¶ÔÏó²»´æÔÚ£¬Çå³ý
+					}else{//ï¿½ï¿½ï¿½ó²»´ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½
 						setUkey(clazz, ukeyName, ukeyValue, null);
 					}
 				}
@@ -305,8 +334,12 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 		query.add(Restrictions.eq(ukeyName, ukeyValue));
 		query.setProjection(Projections.id());
 		List result = hibernateTemplate.findByCriteria(query);
-		if(result.isEmpty()) return null;
-		if(result.size() > 1) throw new IllegalStateException("²éÑ¯³ö¶à¸ö¼ÇÂ¼£º" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+		if(result.isEmpty()) {
+            return null;
+        }
+		if(result.size() > 1) {
+            throw new IllegalStateException("ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½" + clazz.getName() + ", ukey=" + ukeyName + ", value=" + ukeyValue);
+        }
 		return (Serializable)result.get(0);
 	}
 	@Override
@@ -337,7 +370,9 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 		Gcache<String, Serializable> ukeyCache = cachedUkeyMap.get(clazz);
 		if(ukeyCache != null){
 			Serializable idvalue = ukeyCache.getIfPresent(ukeyName + "_" + ukeyValue);
-			if(idvalue!=null) return idvalue;
+			if(idvalue!=null) {
+                return idvalue;
+            }
 		}
 		return null;
 	}
@@ -402,7 +437,9 @@ public class BaseDaoHibernate implements Dao, InitializingBean {
 	@Override
 	public <T extends BaseObject> T getObjectByUkey(Class<T> clazz, String ukeyName, Serializable ukeyValue,
 			boolean b) {
-		if(b)this.getObjectByUkey(clazz, ukeyName, ukeyValue); //TODO ¸ù¾Ýb±ê¼Ç,ÅÐ¶ÏÊÇ·ñÐèÒª»º´æ
+		if(b) {
+            this.getObjectByUkey(clazz, ukeyName, ukeyValue); //TODO ï¿½ï¿½ï¿½ï¿½bï¿½ï¿½ï¿½,ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+        }
 		return this.getObjectByUkey(clazz, ukeyName, ukeyValue);
 	}
 }

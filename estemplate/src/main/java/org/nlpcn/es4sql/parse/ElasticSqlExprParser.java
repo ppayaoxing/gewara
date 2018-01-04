@@ -40,16 +40,16 @@ public class ElasticSqlExprParser extends MySqlExprParser {
         if(lexer.token() == Token.LBRACE){
             lexer.nextToken();
             boolean foundRBrace = false;
-            if(lexer.stringVal().equals("ts")){
+            if("ts".equals(lexer.stringVal())){
                 String current = lexer.stringVal();
                 do {
-                    if(current.equals(lexer.token().RBRACE.name())){
+                    if(current.equals(Token.RBRACE.name())){
                         foundRBrace = true;
                         break;
                     }
                     lexer.nextToken();
                     current = lexer.token().name();
-                }while(!foundRBrace && !current.trim().equals(""));
+                }while(!foundRBrace && !"".equals(current.trim()));
 
                 if(foundRBrace){
                     SQLOdbcExpr sdle = new SQLOdbcExpr(lexer.stringVal());

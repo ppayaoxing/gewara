@@ -137,8 +137,9 @@ public enum Application {
         if (referrerString != null && referrerString.length() > 1) {
             String referrerStringLowercase = referrerString.toLowerCase();
             for (Application applicationInList : Application.values()) {
-                if (applicationInList.isInReferrerStringLowercase(referrerStringLowercase))
+                if (applicationInList.isInReferrerStringLowercase(referrerStringLowercase)) {
                     return applicationInList;
+                }
             }
         }
         return Application.UNKNOWN;
@@ -153,8 +154,9 @@ public enum Application {
 	 */
 	public static Application valueOf(short id) {
 		for (Application application : Application.values()) {
-			if (application.getId() == id)
-				return application;
+			if (application.getId() == id) {
+                return application;
+            }
 		}
 
 		// same behavior as standard valueOf(string) method

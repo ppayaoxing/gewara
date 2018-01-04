@@ -16,61 +16,61 @@ import com.gewara.util.JsonUtils;
 
 public class GewaOrderVo extends BaseVo{
 	private static final long serialVersionUID = 4914995483381697551L;
-	public static final String RESTATUS_DELETE = "D";// ¶©µ¥É¾³ý×´Ì¬
-	//½»Ò××´Ì¬
+	public static final String RESTATUS_DELETE = "D";// ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½×´Ì¬
+	//ï¿½ï¿½ï¿½ï¿½×´Ì¬
 	private Long id;					//ID
-	private Integer version;			//¸üÐÂ°æ±¾
-	private String ordertitle;		//¶©µ¥±êÌâ
-	private String tradeNo;			//¶©µ¥ºÅ
-	private String mobile;			//ÁªÏµÊÖ»ú
-	private Timestamp createtime;		//ÓÃ»§ÏÂµ¥Ê±¼ä
-	private Timestamp addtime;		//Ôö¼ÓÊ±¼ä£ºµÚÒ»´Î´´½¨Ê±¼ä¡¢´ý´¦Àí´´½¨Ê±¼ä¡¢»ð·ï»ËËø¶¨Ê±¼ä
-	private Timestamp updatetime;		//ÓÃ»§ÐÞ¸ÄÊ±¼ä
-	private Timestamp validtime;		//ÓÐÐ§Ê±¼ä
-	private Timestamp paidtime;		//¸¶¿îÊ±¼ä
-	private Timestamp playtime;		//³¡´ÎÊ±¼ä
-	private Timestamp taketime;		//È¡Æ±Ê±¼ä
-	private String status;			//¸¶¿î×´Ì¬
-	private Long memberid;			//¹ØÁªÓÃ»§
-	private Long partnerid;			//¹ØÁªÉÌ¼Ò
-	private String membername;		//ÓÃ»§Ãû/µ¥Î»´úÂë
-	private String paymethod;			//Ö§¸¶·½·¨:Õ¾ÄÚÕË»§¡¢ÌÔ±¦Óà¶î¡¢ÒøÐÐÖ§¸¶
-	private String paybank;			//Ö§¸¶ÒøÐÐ
-	private String payseqno;			//Íâ²¿¶©µ¥ºÅ
-	private String description2;		//ÉÌÆ·ÃèÊö
-	private Long clerkid;				//¶©µ¥¾­°ìÈË
-	private String remark;			//ÌØ±ðËµÃ÷
-	private Integer gewapaid;			//ÕË»§Óà¶îÖ§¸¶µÄ½ð¶î
-	private Integer alipaid;			//ÌÔ±¦»ò»ã¸¶Ö§¸¶µÄ½ð¶î
-	private Integer wabi;				//Íß±ÒÏû·Ñ
-	private Integer totalcost;		//×Ü³É±¾¼Û
-	private Integer totalfee;			//¶©µ¥×Ü½ð¶î
-	private Integer discount;			//¶©µ¥ÓÅ»Ý
-	private String disreason;			//ÓÅ»ÝÀíÓÉ
-	private String changehis;			//²Ù×÷ÀúÊ·¼ÇÂ¼
-	private Integer costprice;		//³É±¾¼Û
-	private Integer unitprice;		//µ¥¼Û
-	private Integer quantity;			//ÊýÁ¿
-	private String ukey;				//±êÊ¶Partner¶©µ¥Î¨Ò»ÓÃ»§
-	private String checkpass;			//È¡Æ±ÃÜÂë
-	private Integer itemfee;			//¶©µ¥¸½ÊôÆ·×Ü¼Û
-	private String otherinfo;			//ÆäËûÐÅÏ¢
-	private String citycode;			//³ÇÊÐ´úÂë
-	private Integer otherfee;			//ÊÖÐø·Ñ
-	private String settle;			//ÊÇ·ñÓëµÚÈý·½½áËã£ºY£¬N
-	private String restatus;			//ÊÇ·ñÉ¾³ý
-	private String pricategory;		//¶©µ¥·ÖÀà£¨Ä£¿é£©
-	private String category;			//¶©µ¥Àà±ð
-	private String otherFeeRemark;	//ÊÖÐø·ÑÃ÷Ï¸
+	private Integer version;			//ï¿½ï¿½ï¿½Â°æ±¾
+	private String ordertitle;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String tradeNo;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String mobile;			//ï¿½ï¿½Ïµï¿½Ö»ï¿½
+	private Timestamp createtime;		//ï¿½Ã»ï¿½ï¿½Âµï¿½Ê±ï¿½ï¿½
+	private Timestamp addtime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£ºï¿½ï¿½Ò»ï¿½Î´ï¿½ï¿½ï¿½Ê±ï¿½ä¡¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä¡¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp updatetime;		//ï¿½Ã»ï¿½ï¿½Þ¸ï¿½Ê±ï¿½ï¿½
+	private Timestamp validtime;		//ï¿½ï¿½Ð§Ê±ï¿½ï¿½
+	private Timestamp paidtime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp playtime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp taketime;		//È¡Æ±Ê±ï¿½ï¿½
+	private String status;			//ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	private Long memberid;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	private Long partnerid;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½
+	private String membername;		//ï¿½Ã»ï¿½ï¿½ï¿½/ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	private String paymethod;			//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:Õ¾ï¿½ï¿½ï¿½Ë»ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½î¡¢ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+	private String paybank;			//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String payseqno;			//ï¿½â²¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String description2;		//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+	private Long clerkid;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String remark;			//ï¿½Ø±ï¿½Ëµï¿½ï¿½
+	private Integer gewapaid;			//ï¿½Ë»ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½Ä½ï¿½ï¿½
+	private Integer alipaid;			//ï¿½Ô±ï¿½ï¿½ï¿½ã¸¶Ö§ï¿½ï¿½ï¿½Ä½ï¿½ï¿½
+	private Integer wabi;				//ï¿½ß±ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer totalcost;		//ï¿½Ü³É±ï¿½ï¿½ï¿½
+	private Integer totalfee;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
+	private Integer discount;			//ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½
+	private String disreason;			//ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String changehis;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê·ï¿½ï¿½Â¼
+	private Integer costprice;		//ï¿½É±ï¿½ï¿½ï¿½
+	private Integer unitprice;		//ï¿½ï¿½ï¿½ï¿½
+	private Integer quantity;			//ï¿½ï¿½ï¿½ï¿½
+	private String ukey;				//ï¿½ï¿½Ê¶Partnerï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½Ã»ï¿½
+	private String checkpass;			//È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private Integer itemfee;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ü¼ï¿½
+	private String otherinfo;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	private String citycode;			//ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½
+	private Integer otherfee;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String settle;			//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã£ºYï¿½ï¿½N
+	private String restatus;			//ï¿½Ç·ï¿½É¾ï¿½ï¿½
+	private String pricategory;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à£¨Ä£ï¿½é£©
+	private String category;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String otherFeeRemark;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸
 	private String express;
-	private String prepay;			//Ô¤ÊÛ¶©µ¥ Y, À´±ö¶©µ¥S, ·ÇÔ¤ÊÛ¶©µ¥N
-	private Long placeid;				//¹ØÁª³¡¹Ý£ºCinema¡¢Theatre
-	private String gatewayCode;		//Ö§¸¶Íø¹Ø´úÂë	
-	private String merchantCode;		//ÉÌ»§ºÅ±êÊ¶
-	private String origin;			//¶©µ¥À´Ô´
+	private String prepay;			//Ô¤ï¿½Û¶ï¿½ï¿½ï¿½ Y, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½S, ï¿½ï¿½Ô¤ï¿½Û¶ï¿½ï¿½ï¿½N
+	private Long placeid;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½Cinemaï¿½ï¿½Theatre
+	private String gatewayCode;		//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½	
+	private String merchantCode;		//ï¿½Ì»ï¿½ï¿½Å±ï¿½Ê¶
+	private String origin;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
 	private Long relatedid;			//mpid,goodsid,dpid(drama),pubid(pubsale),mctid(membercard)
 	private Long itemid;				//movieid,dramaid
-	private String ordertype;		//¶©µ¥ÀàÐÍ
+	private String ordertype;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String hfhpass;
 	private Long areaid;				//DramaOrder, cardid()
 	private String seats;			//SellSeatID
@@ -99,8 +99,8 @@ public class GewaOrderVo extends BaseVo{
 		this.createtime = new Timestamp(System.currentTimeMillis());
 		this.updatetime = this.createtime;
 		this.addtime = this.createtime;
-		this.paymethod = PaymethodConstant.PAYMETHOD_UNKNOWN;	//Ä¬ÈÏPNR
-		this.validtime = DateUtil.addDay(this.addtime, 1);		//Ä¬ÈÏÒ»Ìì
+		this.paymethod = PaymethodConstant.PAYMETHOD_UNKNOWN;	//Ä¬ï¿½ï¿½PNR
+		this.validtime = DateUtil.addDay(this.addtime, 1);		//Ä¬ï¿½ï¿½Ò»ï¿½ï¿½
 		this.status = OrderConstant.STATUS_NEW_UNLOCK;
 		this.pricategory = OrderConstant.ORDER_PRICATEGORY_MOVIE;
 		this.alipaid = 0;
@@ -273,7 +273,7 @@ public class GewaOrderVo extends BaseVo{
 	public boolean isNetPaid(){
 		return alipaid > 0;
 	}
-	//Ó¦¸¶¿î
+	//Ó¦ï¿½ï¿½ï¿½ï¿½
 	public Integer getDue(){
 		int due = totalfee + itemfee + otherfee - discount;
 		return due < 0? 0 : due;
@@ -460,21 +460,31 @@ public class GewaOrderVo extends BaseVo{
 		return OrderConstant.statusMap.get(getFullStatus());
 	}
 	public String getFullStatus(){
-		if(status.startsWith(OrderConstant.STATUS_NEW) && isTimeout()) return OrderConstant.STATUS_TIMEOUT;
+		if(status.startsWith(OrderConstant.STATUS_NEW) && isTimeout()) {
+            return OrderConstant.STATUS_TIMEOUT;
+        }
 		return status;
 	}
-	public String getStatusText2(){//ÏÔÊ¾¸øÓÃ»§¿´
-		if(isCancel()) return "³¬Ê±È¡Ïû";
-		if(isPaidSuccess()) return "½»Ò×³É¹¦";
-		if(StringUtils.equals(status, OrderConstant.STATUS_PAID_RETURN)) return "ÒÑÍË¿î";
-		if(isAllPaid()) return "ÒÑ¸¶¿î£¬È·ÈÏÖÐ";
+	public String getStatusText2(){//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
+		if(isCancel()) {
+            return "ï¿½ï¿½Ê±È¡ï¿½ï¿½";
+        }
+		if(isPaidSuccess()) {
+            return "ï¿½ï¿½ï¿½×³É¹ï¿½";
+        }
+		if(StringUtils.equals(status, OrderConstant.STATUS_PAID_RETURN)) {
+            return "ï¿½ï¿½ï¿½Ë¿ï¿½";
+        }
+		if(isAllPaid()) {
+            return "ï¿½Ñ¸ï¿½ï¿½î£¬È·ï¿½ï¿½ï¿½ï¿½";
+        }
 		return OrderConstant.statusMap.get(status);
 	}
 	public boolean isNew(){
 		return status.startsWith(OrderConstant.STATUS_NEW) && !isTimeout();
 	}
 	/**
-	 * ¶©µ¥×´Ì¬ÎªÈ·¶¨È¥¸¶¿î
+	 * ï¿½ï¿½ï¿½ï¿½×´Ì¬ÎªÈ·ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public boolean isNewConfirm(){
@@ -499,7 +509,7 @@ public class GewaOrderVo extends BaseVo{
 		return gewapaid+alipaid;
 	}
 	/**
-	 * ¿ÉÓÃµÖÓÃÈ¯Ö±½ÓÖ§¸¶½ð¶î£¬µÖÓÃ½ð¶î¿É³¬¹ý¶©µ¥½ð¶î
+	 * ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½È¯Ö±ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½Ã½ï¿½ï¿½É³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public boolean isZeroPay() {
@@ -513,7 +523,7 @@ public class GewaOrderVo extends BaseVo{
 		return validtime!=null && validtime.before(new Timestamp(System.currentTimeMillis()));
 	}
 	/**
-	 * ¿ÉÒÔ´¦Àí
+	 * ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public boolean canProcess(){
@@ -532,17 +542,17 @@ public class GewaOrderVo extends BaseVo{
 	public boolean surePartner(){
 		return this.partnerid>1;
 	}
-	public boolean sureOutPartner(){//Íâ²¿ÉÌ¼Ò
+	public boolean sureOutPartner(){//ï¿½â²¿ï¿½Ì¼ï¿½
 		return PartnerConstant.isOutPartner(memberid);
 	}
-	public boolean sureGewaPartner(){//ÄÚ²¿WAP,IPHONE...
+	public boolean sureGewaPartner(){//ï¿½Ú²ï¿½WAP,IPHONE...
 		return PartnerConstant.isGewaPartner(memberid, partnerid);
 	}
 	
-/*	public boolean sureOutPartner(){//Íâ²¿ÉÌ¼Ò
+/*	public boolean sureOutPartner(){//ï¿½â²¿ï¿½Ì¼ï¿½
 		return PartnerConstant.isOutPartner(memberid);
 	}
-	public boolean sureGewaPartner(){//ÄÚ²¿WAP,IPHONE...
+	public boolean sureGewaPartner(){//ï¿½Ú²ï¿½WAP,IPHONE...
 		return PartnerConstant.isGewaPartner(memberid, partnerid);
 	}
 */

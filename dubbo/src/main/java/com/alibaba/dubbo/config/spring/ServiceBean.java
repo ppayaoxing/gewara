@@ -71,19 +71,20 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
 	    return SPRING_CONTEXT;
 	}
 
-	public void setApplicationContext(ApplicationContext applicationContext) {
+	@Override
+    public void setApplicationContext(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 		SpringExtensionFactory.addApplicationContext(applicationContext);
 		if (applicationContext != null) {
 		    SPRING_CONTEXT = applicationContext;
 		    try {
-	            Method method = applicationContext.getClass().getMethod("addApplicationListener", new Class<?>[]{ApplicationListener.class}); // ¼æÈÝSpring2.0.1
+	            Method method = applicationContext.getClass().getMethod("addApplicationListener", new Class<?>[]{ApplicationListener.class}); // ï¿½ï¿½ï¿½ï¿½Spring2.0.1
 	            method.invoke(applicationContext, new Object[] {this});
 	            supportedApplicationListener = true;
 	        } catch (Throwable t) {
                 if (applicationContext instanceof AbstractApplicationContext) {
     	            try {
-    	                Method method = AbstractApplicationContext.class.getDeclaredMethod("addListener", new Class<?>[]{ApplicationListener.class}); // ¼æÈÝSpring2.0.1
+    	                Method method = AbstractApplicationContext.class.getDeclaredMethod("addListener", new Class<?>[]{ApplicationListener.class}); // ï¿½ï¿½ï¿½ï¿½Spring2.0.1
                         if (! method.isAccessible()) {
                             method.setAccessible(true);
                         }
@@ -96,10 +97,12 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
 		}
 	}
 
+    @Override
     public void setBeanName(String name) {
         this.beanName = name;
     }
 
+    @Override
     public void onApplicationEvent(ApplicationEvent event) {
         if (ContextRefreshedEvent.class.getName().equals(event.getClass().getName())) {
         	if (isDelay() && ! isExported() && ! isUnexported()) {
@@ -120,6 +123,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
         return supportedApplicationListener && (delay == null || delay.intValue() == -1);
     }
 
+    @Override
     @SuppressWarnings({ "unchecked", "deprecation" })
 	public void afterPropertiesSet() throws Exception {
         if (getProvider() == null) {
@@ -127,7 +131,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
             if (providerConfigMap != null && providerConfigMap.size() > 0) {
                 Map<String, ProtocolConfig> protocolConfigMap = applicationContext == null ? null  : BeanFactoryUtils.beansOfTypeIncludingAncestors(applicationContext, ProtocolConfig.class, false, false);
                 if ((protocolConfigMap == null || protocolConfigMap.size() == 0)
-                        && providerConfigMap.size() > 1) { // ¼æÈÝ¾É°æ±¾
+                        && providerConfigMap.size() > 1) { // ï¿½ï¿½ï¿½Ý¾É°æ±¾
                     List<ProviderConfig> providerConfigs = new ArrayList<ProviderConfig>();
                     for (ProviderConfig config : providerConfigMap.values()) {
                         if (config.isDefault() != null && config.isDefault().booleanValue()) {
@@ -251,6 +255,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
         }
     }
 
+    @Override
     public void destroy() throws Exception {
         unexport();
     }

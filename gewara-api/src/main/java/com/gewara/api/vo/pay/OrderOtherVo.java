@@ -14,13 +14,13 @@ public class OrderOtherVo extends BaseVo{
 	public static final String PAY_CARD = "ABD";
 	public static final String PAY_DISCOUNT = "M";
 	private  Long id;
-	private String takemethod;		//(A µç×ÓÆ±  ¡¢E ¿ìµÝ  ¡¢I Éí·ÝÖ¤µç×ÓÆ±¡¢ A,E,I µç×ÓÆ±+¿ìµÝ+Éí·ÝÖ¤µç×ÓÆ±)
-	private String expressid;		//¿ìµÝ·½Ê½
+	private String takemethod;		//(A ï¿½ï¿½ï¿½ï¿½Æ±  ï¿½ï¿½E ï¿½ï¿½ï¿½  ï¿½ï¿½I ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ A,E,I ï¿½ï¿½ï¿½ï¿½Æ±+ï¿½ï¿½ï¿½+ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Æ±)
+	private String expressid;		//ï¿½ï¿½Ý·ï¿½Ê½
 	private String elecard;
 	private boolean openPointPay;
 	private int minpoint;
 	private int maxpoint;
-	private boolean ewarning;		//ÊÇ·ñ°üº¬µç×ÓÆ±
+	private boolean ewarning;		//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±
 	private boolean greetings;
 	
 	public OrderOtherVo(){}
@@ -92,7 +92,9 @@ public class OrderOtherVo extends BaseVo{
 		this.greetings = greetings;
 	}
 	public boolean hasTakemethod(String... methods){
-		if(ArrayUtils.isEmpty(methods)) return false;
+		if(ArrayUtils.isEmpty(methods)) {
+            return false;
+        }
 		for (String method : methods) {
 			if(!StringUtils.contains(this.takemethod, method)){
 				return false;

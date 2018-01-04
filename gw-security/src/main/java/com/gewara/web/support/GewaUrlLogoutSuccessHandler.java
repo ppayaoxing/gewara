@@ -47,8 +47,9 @@ public class GewaUrlLogoutSuccessHandler extends AbstractAuthenticationTargetUrl
 	protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response) {
 		String partner = request.getParameter(logoutParamName);
 		if(StringUtils.isNotBlank(partner) && 
-				StringUtils.isNotBlank(logoutUrlMap.get(partner)))
-			return logoutUrlMap.get(partner);
+				StringUtils.isNotBlank(logoutUrlMap.get(partner))) {
+            return logoutUrlMap.get(partner);
+        }
 		return super.determineTargetUrl(request, response);
 	}
 
@@ -91,7 +92,7 @@ public class GewaUrlLogoutSuccessHandler extends AbstractAuthenticationTargetUrl
 	}
 	
 	public void casLogout(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		//TODO:MemberÔõÃ´×ö£¿£¿
+		//TODO:Memberï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		//request.getSession().invalidate();
 		response.sendRedirect(config.getString("ssoValidateUrl")+"logout"+"?service=" + getPath() + config.getBasePath());
 	}
@@ -105,7 +106,9 @@ public class GewaUrlLogoutSuccessHandler extends AbstractAuthenticationTargetUrl
 	}
 	private String getPath(){
 		String path = config.getString("houtaiPath");
-		if(StringUtils.isBlank(path)) path = config.getAbsPath();
+		if(StringUtils.isBlank(path)) {
+            path = config.getAbsPath();
+        }
 		return path;
 	}
 	

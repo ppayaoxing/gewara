@@ -104,7 +104,7 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 			throw new MongoDataException("mongodb: id can't be null!");
 		}
 		execUpdate(BuilderUtils.prepareUpdate(bean.getClass())
-			.setCondition(new Expression().eq(idName, id))// Õâ¸önull£¬ÐèÒª´Óbean»ñÈ¡Öµ
+			.setCondition(new Expression().eq(idName, id))// ï¿½ï¿½ï¿½nullï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½beanï¿½ï¿½È¡Öµ
 			.setUpdateFirst(true).setInsert4NotFind(true).addData(beanMap));
 	}
 
@@ -125,7 +125,7 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 	
 	private Map getObjectMap(MGObject bean) {
 		Map beanMap = BeanUtil.getBeanMap(bean);
-		if(beanMap.containsKey("_id")){//ÖØÐÂÖÃ»»ID
+		if(beanMap.containsKey("_id")){//ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ID
 			Object _id = BeanUtil.get(bean, "_id");
 			if(_id==null){
 				beanMap.remove("_id");
@@ -162,7 +162,9 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 
 	@Override
 	public <T extends MGObject> int removeObjectList(Collection<T> entityList, String idName) {
-		if(entityList.isEmpty()) return 0;
+		if(entityList.isEmpty()) {
+            return 0;
+        }
 		Class<? extends MGObject> clazz = entityList.iterator().next().getClass();
 		List idList = BeanUtil.getBeanPropertyList(entityList, idName, true);
 		return removeObjectList(clazz, idName, idList);
@@ -210,8 +212,9 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 		List<Map<String, String>> result = new ArrayList<Map<String, String>>();
 		Set<String> names = getCollections();
 		for (String namespace : names) {
-			if (StringUtils.startsWith(namespace, "system."))
-				continue;
+			if (StringUtils.startsWith(namespace, "system.")) {
+                continue;
+            }
 			Map data = new HashMap();
 			data.put(namespace, "" + getCount(namespace));
 			result.add(data);
@@ -261,7 +264,9 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 
 	@Override
 	public <T extends MGObject> void saveOrUpdateObjectList(List<T> beanList, String idName) {
-		if (beanList.isEmpty()) return;
+		if (beanList.isEmpty()) {
+            return;
+        }
 		
 		Class clazz = beanList.get(0).getClass();
 		String namespace = clazz.getCanonicalName();
@@ -281,7 +286,9 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 
 	@Override
 	public <T extends MGObject> void addObjectList(List<T> beanList, String idName) {
-		if(beanList==null||beanList.isEmpty()) return ;
+		if(beanList==null||beanList.isEmpty()) {
+            return;
+        }
 		Class<T> c=(Class<T>) beanList.get(0).getClass();
 		InsertBuilder<Map> insert = BuilderUtils.prepareInsert(c.getCanonicalName());
 		for(T bean: beanList){
@@ -426,7 +433,7 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 	}
 
 	/**
-	 * »ñÈ¡Êý¾Ý¿âÏÂµÄËùÓÐcollectionsµÄÃû³Æ¡£
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½collectionsï¿½ï¿½ï¿½ï¿½ï¿½Æ¡ï¿½
 	 * @return
 	 */
 	@Override
@@ -485,7 +492,7 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 		if(ub.getOtherSource()!=null && !ub.getOtherSource().isEmpty()){
 			if(data.isEmpty()){
 				data.putAll(ub.getOtherSource());
-			}else{//ºÏ²¢setÔªËØ
+			}else{//ï¿½Ï²ï¿½setÔªï¿½ï¿½
 				if(ub.getOtherSource().get("$set")!=null){
 					data.get("$set", Map.class).putAll((Map) ub.getOtherSource().remove("$set"));
 				}
@@ -541,9 +548,15 @@ public class MongoService3Impl implements MongoService3, InitializingBean {
 		if(fb.getProjection()!=null) {
 			fi.projection(fb.getProjection());
 		}
-		if(fb.getSort()!=null) fi.sort(fb.getSort());
-		if(fb.getFrom()>0) fi.skip(fb.getFrom());
-		if(fb.getSize()!=null && fb.getSize()>0) fi.limit(fb.getSize());
+		if(fb.getSort()!=null) {
+            fi.sort(fb.getSort());
+        }
+		if(fb.getFrom()>0) {
+            fi.skip(fb.getFrom());
+        }
+		if(fb.getSize()!=null && fb.getSize()>0) {
+            fi.limit(fb.getSize());
+        }
 		MongoCursor<Document> docs = fi.iterator();
 		MongoStats.addOp(fb.getCollectionName(), MongoStats.OP_QUERY);
 		int count = 0;

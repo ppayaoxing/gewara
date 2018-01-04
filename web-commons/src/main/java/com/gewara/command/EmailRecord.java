@@ -6,23 +6,23 @@ import java.sql.Timestamp;
 public class EmailRecord implements Serializable{
 	private static final long serialVersionUID = -6346809268260336714L;
 	public static final String SENDER_WARNING 	= "warning";
-	public static final String SENDER_GEWARA 	= "¸ñÍßÀ­Éú»îÍø";
+	public static final String SENDER_GEWARA 	= "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 	public static final String SENDER_GEWA 		= "gewara";
 
 	private Long id;
-	private String sender;			//·¢ËÍÕß
-	private String title;			//±êÌâ
-	private String content;			//ÄÚÈÝ
-	private String email;			//µØÖ·
-	private String type;			//ÓÊ¼þÀàÐÍ
-	private String mailtype;		//ÓÊ¼þÀàÐÍ
-	private String tag;				//ÀàÐÍ
-	private Long relatedid;			//¹ØÁª
-	private Timestamp sendtime;	//·¢ËÍÊ±¼ä
-	private String status;			//·¢ËÍ×´Ì¬
-	private String template;		//Ä£°å
-	private Integer sendnum;		//·¢ËÍ´ÎÊý
-	private Timestamp validtime;	//ÓÐÐ§Ê±¼ä
+	private String sender;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String title;			//ï¿½ï¿½ï¿½ï¿½
+	private String content;			//ï¿½ï¿½ï¿½ï¿½
+	private String email;			//ï¿½ï¿½Ö·
+	private String type;			//ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String mailtype;		//ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String tag;				//ï¿½ï¿½ï¿½ï¿½
+	private Long relatedid;			//ï¿½ï¿½ï¿½ï¿½
+	private Timestamp sendtime;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String status;			//ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	private String template;		//Ä£ï¿½ï¿½
+	private Integer sendnum;		//ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½
+	private Timestamp validtime;	//ï¿½ï¿½Ð§Ê±ï¿½ï¿½
 	
 	public Integer getSendnum() {
 		return sendnum;
@@ -115,10 +115,12 @@ public class EmailRecord implements Serializable{
 	}
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof EmailRecord))
-			return false;
+		if (this == o) {
+            return true;
+        }
+		if (!(o instanceof EmailRecord)) {
+            return false;
+        }
 		final EmailRecord temp = (EmailRecord) o;
 		return !(getId() != null ? !(getId().equals(temp.getId())) : (temp.getId() != null));
 	}
@@ -150,7 +152,9 @@ public class EmailRecord implements Serializable{
 		this.sender = sender;
 	}
 	public void addSendnum(){
-		if(sendnum==null) this.sendnum = 0;
+		if(sendnum==null) {
+            this.sendnum = 0;
+        }
 		this.sendnum = this.sendnum + 1;
 	}
 

@@ -60,8 +60,9 @@ public class EnumSerializer extends AbstractSerializer {
   public EnumSerializer(Class cl)
   {
     // hessian/32b[12], hessian/3ab[23]
-    if (! cl.isEnum() && cl.getSuperclass().isEnum())
-      cl = cl.getSuperclass();
+    if (! cl.isEnum() && cl.getSuperclass().isEnum()) {
+        cl = cl.getSuperclass();
+    }
 
     try {
       _name = cl.getMethod("name", new Class[0]);
@@ -70,16 +71,19 @@ public class EnumSerializer extends AbstractSerializer {
     }
   }
   
+  @Override
   public void writeObject(Object obj, AbstractHessianOutput out)
     throws IOException
   {
-    if (out.addRef(obj))
-      return;
+    if (out.addRef(obj)) {
+        return;
+    }
 
     Class cl = obj.getClass();
 
-    if (! cl.isEnum() && cl.getSuperclass().isEnum())
-      cl = cl.getSuperclass();
+    if (! cl.isEnum() && cl.getSuperclass().isEnum()) {
+        cl = cl.getSuperclass();
+    }
 
     String name = null;
     try {

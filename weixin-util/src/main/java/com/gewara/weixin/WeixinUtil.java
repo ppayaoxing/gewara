@@ -25,46 +25,48 @@ public class WeixinUtil {
 	public final static String ACCESSTOKEN_URL = "https://api.weixin.qq.com/sns/oauth2/access_token";
 	public final static String SEND_CUSTMSG_URL = "https://api.weixin.qq.com/cgi-bin/message/custom/send";
 	public final static String CREATE_QCODE_URL = "https://api.weixin.qq.com/cgi-bin/qrcode/create";
-	// Î¢ÐÅ´´½¨¿¨È¯
+	// Î¢ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½È¯
 	public final static String CARD_CREATE = "https://api.weixin.qq.com/card/create?access_token=";
 	public final static String LOCATION_BATCHADD = "https://api.weixin.qq.com/card/location/batchadd?access_token=";
 	public final static String UPDATE_MOVIETICKET = "https://api.weixin.qq.com/card/movieticket/updateuser?access_token=";
 	
-	// ºËÏú¿¨È¯½Ó¿Ú
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¯ï¿½Ó¿ï¿½
 	public final static String CONSUME_CODE = "https://api.weixin.qq.com/card/code/consume?access_token=";
-	// ¿¨È¯Ê§Ð§½Ó¿Ú
+	// ï¿½ï¿½È¯Ê§Ð§ï¿½Ó¿ï¿½
 	public final static String UNAVAILABLE_CODE = "https://api.weixin.qq.com/card/code/unavailable";
 	
 	public final static String USERINFO_URL_APP = "https://api.weixin.qq.com/sns/userinfo";
-	//Æ±¾Ý
+	//Æ±ï¿½ï¿½
 	public static final String TICKET_URL = "https://api.weixin.qq.com/cgi-bin/ticket/getticket";
 	
-	// ¶©µ¥±£´æÎ¢ÐÅÊ¹ÓÃµÄ¿¨È¯£¬ºËÏúÓÃ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¢ï¿½ï¿½Ê¹ï¿½ÃµÄ¿ï¿½È¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public final static String KEY_ORDER_CARDPASS = "wx_cardpass";
 	public final static String KEY_ORDER_CARDID = "wx_cardid";
-	// Ê¹ÓÃÎ¢ÐÅ¿¨È¯
+	// Ê¹ï¿½ï¿½Î¢ï¿½Å¿ï¿½È¯
 	public final static String KEY_USE_WEIXIN_CARD = "use_wxcard";
 	public final static String KEY_REMOTEIP = "remoteIp";
 	public final static String VALUE_USE_WEIXIN_CARD = "Y";
 	
-	public final static String CARD_ORANGE = "pwG3Ejg41PtsFHOIDzkQGlUzbr3g"; // ³ÈÈ¯¿¨È¯cardid
-	public final static String CARD_18 = "pwG3EjvDgeYUhjnByGmydG9XheGw";	 // 18Ôª¿¨È¯cardid
-	public final static String CARD_ORANGE_TEXT = "³ÈÈ¯¿¨È¯";
-	public final static String CARD_18_TEXT = "18Ôª¿¨È¯";
+	public final static String CARD_ORANGE = "pwG3Ejg41PtsFHOIDzkQGlUzbr3g"; // ï¿½ï¿½È¯ï¿½ï¿½È¯cardid
+	public final static String CARD_18 = "pwG3EjvDgeYUhjnByGmydG9XheGw";	 // 18Ôªï¿½ï¿½È¯cardid
+	public final static String CARD_ORANGE_TEXT = "ï¿½ï¿½È¯ï¿½ï¿½È¯";
+	public final static String CARD_18_TEXT = "18Ôªï¿½ï¿½È¯";
 
-	public final static String CARD_TEST = "pwG3EjoMoAVIeG79lgfeWBTJUvo8";	// ²âÊÔ¿¨È¯
-	public final static String CARD_18_TEST = "pwG3EjjjX_J2d8BA4i6YCCMg8zjw"; // ²âÊÔ×Ê¸ñÂð 
+	public final static String CARD_TEST = "pwG3EjoMoAVIeG79lgfeWBTJUvo8";	// ï¿½ï¿½ï¿½Ô¿ï¿½È¯
+	public final static String CARD_18_TEST = "pwG3EjjjX_J2d8BA4i6YCCMg8zjw"; // ï¿½ï¿½ï¿½ï¿½ï¿½Ê¸ï¿½ï¿½ï¿½ 
 
-	public final static String CARD_BY_PUFA = "pwG3EjnAp_UwANeEdPH5oUJ7Nisk"; // ÆÖ·¢Î¢ÐÅ»¥Í¨¿¨È¯
-	public final static String CARD_BY_ZSY = "pwG3EjpFQOLZNRyY88A6FpN8B8hY";  // ÖÐÊ¯ÓÍÎ¢ÐÅ»¥Í¨¿¨È¯
+	public final static String CARD_BY_PUFA = "pwG3EjnAp_UwANeEdPH5oUJ7Nisk"; // ï¿½Ö·ï¿½Î¢ï¿½Å»ï¿½Í¨ï¿½ï¿½È¯
+	public final static String CARD_BY_ZSY = "pwG3EjpFQOLZNRyY88A6FpN8B8hY";  // ï¿½ï¿½Ê¯ï¿½ï¿½Î¢ï¿½Å»ï¿½Í¨ï¿½ï¿½È¯
 
 	public static boolean isValidText(String content) {
 		return StringUtil.regMatch(content, "^[\\w-\u4e00-\u9fa5]+$", true);
 	}
 
-	// È«½Ç×ª»¯Îª°ë½Ç
+	// È«ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½
 	public static String toHalf(String input) {
-		if(StringUtils.isBlank(input)) return "";
+		if(StringUtils.isBlank(input)) {
+            return "";
+        }
 		char[] c = input.toCharArray();
 		for (int i = 0; i < c.length; i++) {
 			if (c[i] == 12288) {
@@ -81,7 +83,9 @@ public class WeixinUtil {
 	
 	public static String getContent(WeixinMsg msg){
 		String content = msg.getContent();
-		if(StringUtils.isBlank(content)) content = "";
+		if(StringUtils.isBlank(content)) {
+            content = "";
+        }
 		content = content.trim();
 		content = toHalf(content);
 		return content;
@@ -104,7 +108,7 @@ public class WeixinUtil {
 		}
 		return ErrorCode.getFailure(result.getMsg());
 	}
-	//·¢ËÍ¿Í·þÏûÏ¢
+	//ï¿½ï¿½ï¿½Í¿Í·ï¿½ï¿½ï¿½Ï¢
 	public static ErrorCode<String> sendCustomerMsg(String token, String touser, String content){
 		Map map = new HashMap<>();
 		map.put("touser", touser);
@@ -127,7 +131,7 @@ public class WeixinUtil {
 		return ErrorCode.SUCCESS;
 	}
 	
-	//´´½¨¶þÎ¬Âëticket
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½ticket
 	//return {"ticket":"XXX","expire_seconds":86400,"url":"XXX"}
 	public static ErrorCode<Map> createQCodeTicket(String token, String sceneid, Long exsecond){
 		Map map = new HashMap<>();

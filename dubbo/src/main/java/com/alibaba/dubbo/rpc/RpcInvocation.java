@@ -104,6 +104,7 @@ public class RpcInvocation implements Invocation, Serializable {
         this.invoker = invoker;
     }
     
+    @Override
     public Invoker<?> getInvoker() {
         return invoker;
     }
@@ -112,18 +113,22 @@ public class RpcInvocation implements Invocation, Serializable {
         this.invoker = invoker;
     }
 
+    @Override
     public String getMethodName() {
         return methodName;
     }
 
+    @Override
     public Class<?>[] getParameterTypes() {
         return parameterTypes;
     }
 
+    @Override
     public Object[] getArguments() {
         return arguments;
     }
 
+    @Override
     public Map<String, String> getAttachments() {
         return attachments;
     }
@@ -179,6 +184,7 @@ public class RpcInvocation implements Invocation, Serializable {
     	}
     }
 
+    @Override
     public String getAttachment(String key) {
         if (attachments == null) {
             return null;
@@ -186,6 +192,7 @@ public class RpcInvocation implements Invocation, Serializable {
         return attachments.get(key);
     }
     
+    @Override
     public String getAttachment(String key, String defaultValue) {
         if (attachments == null) {
             return defaultValue;

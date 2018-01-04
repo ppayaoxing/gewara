@@ -66,6 +66,7 @@ public class DubboCodec extends ExchangeCodec implements Codec {
 
     public static final Class<?>[] EMPTY_CLASS_ARRAY = new Class<?>[0];
 
+    @Override
     protected Object decodeBody(Channel channel, InputStream is, byte[] header) throws IOException {
         byte flag = header[2], proto = (byte) (flag & SERIALIZATION_MASK);
         Serialization s = CodecSupport.getSerialization(channel.getUrl(), proto);
@@ -179,9 +180,10 @@ public class DubboCodec extends ExchangeCodec implements Codec {
         out.writeUTF(inv.getMethodName());
         out.writeUTF(ReflectUtils.getDesc(inv.getParameterTypes()));
         Object[] args = inv.getArguments();
-        if (args != null)
-        for (int i = 0; i < args.length; i++){
-            out.writeObject(encodeInvocationArgument(channel, inv, i));
+        if (args != null) {
+            for (int i = 0; i < args.length; i++) {
+                out.writeObject(encodeInvocationArgument(channel, inv, i));
+            }
         }
         out.writeObject(inv.getAttachments());
     }

@@ -21,18 +21,18 @@ public class BaseInfoVo extends BaseEntityVo{
 	protected String transport;
 	protected Long stationid;
 	protected String stationname;
-	protected String exitnumber;//³ö¿Ú
+	protected String exitnumber;//ï¿½ï¿½ï¿½ï¿½
 	protected String googlemap;
-	protected String opentime;//ÓªÒµÊ±¼ä
+	protected String opentime;//ÓªÒµÊ±ï¿½ï¿½
 	protected String feature;
 	protected String remark;
-	protected String discount; //ÓÅ»ÝÐÅÏ¢
-	protected String coupon; //ÓÅ»ÝÈ¯
+	protected String discount; //ï¿½Å»ï¿½ï¿½ï¿½Ï¢
+	protected String coupon; //ï¿½Å»ï¿½È¯
 	protected String pointx;
 	protected String pointy;
 	protected String bpointx;
 	protected String bpointy;
-	protected String briefaddress;//Ãû³Æ¼ò³Æ
+	protected String briefaddress;//ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½
 	protected String lineidlist;
 	protected String otherinfo;
 	
@@ -114,8 +114,11 @@ public class BaseInfoVo extends BaseEntityVo{
 	public void setOtherinfo(String otherinfo) {
 		this.otherinfo = otherinfo;
 	}	
-	public String getLimg(){
-		if(StringUtils.isBlank(logo)) return "img/default_logo.png";
+	@Override
+    public String getLimg(){
+		if(StringUtils.isBlank(logo)) {
+            return "img/default_logo.png";
+        }
 		return logo;
 	}
 	public String getBrandname() {
@@ -218,7 +221,9 @@ public class BaseInfoVo extends BaseEntityVo{
 		return this.transport == null ? null : transport.replace("@", ";");
 	}
 	public String getDividePhone(){
-		if(StringUtils.isBlank(contactphone) || contactphone.length()!=8) return contactphone;
+		if(StringUtils.isBlank(contactphone) || contactphone.length()!=8) {
+            return contactphone;
+        }
 		return contactphone.substring(0,4) + " " + contactphone.substring(4);
 	}
 	public boolean havaCoupon(){
@@ -226,7 +231,9 @@ public class BaseInfoVo extends BaseEntityVo{
 	}
 	public String getLineName(Map<String, String> lineMap){
 		String result = "";
-		if(lineMap==null) return result; 
+		if(lineMap==null) {
+            return result;
+        }
 		if(StringUtils.isNotBlank(this.lineidlist)){
 			for(String lineid : lineidlist.split(",")){
 				String linename = lineMap.get(lineid);
@@ -235,7 +242,9 @@ public class BaseInfoVo extends BaseEntityVo{
 				}
 			}
 		}
-		if(StringUtils.isNotBlank(result)) return result.substring(1);
+		if(StringUtils.isNotBlank(result)) {
+            return result.substring(1);
+        }
 		return result;
 	}
 }

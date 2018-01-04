@@ -27,12 +27,16 @@ public class GewaViewContext extends ViewToolContext {
 	public void putModel(Map model) {
 		super.putAll(model);
 		if(ViewContextDebugger.isDebugEnabled()){
-			if(gvd==null) gvd = new ViewContextDebugger();
+			if(gvd==null) {
+                gvd = new ViewContextDebugger();
+            }
 			gvd.addProperty(model);
 		}
 	}
 	public String getUnUsedProperty(){
-		if(gvd==null) return null;
+		if(gvd==null) {
+            return null;
+        }
 		return gvd.getUnUsedProperty();
 	}
 }

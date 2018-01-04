@@ -56,9 +56,9 @@ public class MongoAdminServiceImpl implements MongoAdminService{
 		Map<String, Integer> result = new HashMap<String, Integer>();
 		for (Map map : queryResult) {
 			String ns = String.valueOf(map.get("ns"));
-			ns = StringUtils.substring(ns, StringUtils.indexOf(ns, '.')+1);//½ØÈ¡dbname
+			ns = StringUtils.substring(ns, StringUtils.indexOf(ns, '.')+1);//ï¿½ï¿½È¡dbname
 			if (map.get("nreturned")==null || map.get("keysExamined")==null && map.get("docsExamined")==null) {
-				return result; //²»±¨¾¯resultHelper(result, ns);
+				return result; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½resultHelper(result, ns);
 			} else{
 				int nreturned = map.get("nreturned")==null?0:Integer.parseInt(""+map.get("nreturned"));
 				int keysExamined =  map.get("keysExamined")==null?0:Integer.parseInt(""+map.get("keysExamined"));//index entries scanned 
@@ -69,7 +69,7 @@ public class MongoAdminServiceImpl implements MongoAdminService{
 					nreturned +=1;
 					keysExamined +=1;
 					boolean multi = keysExamined/nreturned > multiple;
-					if(multi){//ÅÐ¶ÏÊÇ·ñÊÇÈ«±íÉ¨
+					if(multi){//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È«ï¿½ï¿½É¨
 						MaintainInfo mi = getMaintainInfoByName(ns);
 						if(mi==null || mi.getRowcount()==null || mi.getRowcount()/keysExamined < 4){
 							resultHelper(result, ns);
@@ -153,7 +153,7 @@ public class MongoAdminServiceImpl implements MongoAdminService{
 				if(stats.get("avgObjSize")!=null){
 					info.setAvgObjSize(Double.valueOf(""+stats.get("avgObjSize")).longValue());
 				}else{
-					info.setAvgObjSize(0l);
+					info.setAvgObjSize(0L);
 				}
 				if(stats.get("storageSize")!=null){
 					info.setStorageSize(Double.valueOf("" + stats.get("storageSize")).longValue());

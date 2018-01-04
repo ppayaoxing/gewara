@@ -27,7 +27,7 @@ import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.dubbo.common.utils.StringUtils;
 
 /**
- * ¼æÈÝ2.0.5Ö®Ç°°æ±¾
+ * ï¿½ï¿½ï¿½ï¿½2.0.5Ö®Ç°ï¿½æ±¾
  * @deprecated
  * @author tony.chenl
  */
@@ -247,10 +247,12 @@ public class Parameters {
             return new Parameters(StringUtils.parseQueryString(query));
         }
         
+        @Override
         public boolean equals(Object o) {
             return parameters.equals(o);
         }
 
+        @Override
         public int hashCode() {
             return parameters.hashCode();
         }

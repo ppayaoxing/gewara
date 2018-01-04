@@ -5,10 +5,10 @@ import java.io.Serializable;
 import com.gewara.msearch.external.constant.DataType;
 
 /**
- * ÌØ±ğ×¢Òâ£¬Õë¶ÔÃ¿Ò»ÖÖÊı¾İÀàĞÍ£¬Ö»ÄÜÓĞÒ»¸öÏŞÖÆ¡£
- * ÇëÌØ±ğ¸ÃÀàµÄequals·½·¨ºÍhasCode·½·¨µÄÌØÊâĞÔ¡£
- * @author ¶­Ã÷
- * @createDate 2015Äê6ÔÂ2ÈÕ
+ * ï¿½Ø±ï¿½×¢ï¿½â£¬ï¿½ï¿½ï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Æ¡ï¿½
+ * ï¿½ï¿½ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½equalsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½hasCodeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½
+ * @author ï¿½ï¿½ï¿½ï¿½
+ * @createDate 2015ï¿½ï¿½6ï¿½ï¿½2ï¿½ï¿½
  */
 public class QueryLimit implements Serializable {
 
@@ -37,7 +37,7 @@ public class QueryLimit implements Serializable {
 	}
 
 	/**
-	 * Êı¾İÀàĞÍ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param dataType
 	 */
 	private void setDataType(DataType dataType) {
@@ -46,8 +46,8 @@ public class QueryLimit implements Serializable {
 	}
 
 	/**
-	 * ÉèÖÃÊı¾İÀàĞÍ·µ»ØµÄ×î´óÊı¾İ¼ÇÂ¼Êı
-	 * @param limit limitµÄÖµÔÚ0µ½100Ö®¼ä£¨²»°üº¬0ºÍ100£©
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¼ï¿½Â¼ï¿½ï¿½
+	 * @param limit limitï¿½ï¿½Öµï¿½ï¿½0ï¿½ï¿½100Ö®ï¿½ä£¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½100ï¿½ï¿½
 	 */
 	private void setLimit(int limit) {
 		assert(limit>0 && limit<100);
@@ -59,8 +59,8 @@ public class QueryLimit implements Serializable {
 	}
 
 	/**
-	 * ³ÇÊĞID£¬¾«È·Æ¥Åä¡£
-	 * Ä¿Ç°Ö»ÓĞcinema£¬actionÓĞĞ§
+	 * ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½È·Æ¥ï¿½ä¡£
+	 * Ä¿Ç°Ö»ï¿½ï¿½cinemaï¿½ï¿½actionï¿½ï¿½Ğ§
 	 * @param cityID
 	 */
 	public void setCityID(String cityID) {
@@ -69,8 +69,12 @@ public class QueryLimit implements Serializable {
 	
 	@Override
 	public boolean equals(Object obj){
-		if(obj==null) return false;
-		if(obj==this) return true;
+		if(obj==null) {
+            return false;
+        }
+		if(obj==this) {
+            return true;
+        }
 		if(obj instanceof QueryLimit && ((QueryLimit) obj).getDataType()==this.dataType){
 			return true;
 		}

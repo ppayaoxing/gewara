@@ -67,12 +67,15 @@ public class GwMongoClientOptions{
     	MongoClientOptions defaultOptions=MongoClientOptions.builder().build();
     	
     	MongoClientOptions.Builder builder=MongoClientOptions.builder();
-    	if(description!=null)
-    		builder.description(description);
-    	if(readPreference!=null)
-    		builder.readPreference(readPreference);
-    	if(writeConcern!=null) 
-    		builder.writeConcern(writeConcern);
+    	if(description!=null) {
+            builder.description(description);
+        }
+    	if(readPreference!=null) {
+            builder.readPreference(readPreference);
+        }
+    	if(writeConcern!=null) {
+            builder.writeConcern(writeConcern);
+        }
     	
     	if(codecRegistry!=null){
     		builder.codecRegistry(this.codecRegistry);
@@ -90,44 +93,64 @@ public class GwMongoClientOptions{
 	    	builder.codecRegistry(codecRegistry);
     	}
     	
-    	if(minConnectionsPerHost!=null) 
-    		builder.minConnectionsPerHost(minConnectionsPerHost);
-    	if(maxConnectionsPerHost!=null) 
-    		builder.connectionsPerHost(maxConnectionsPerHost);
-    	if(threadsAllowedToBlockForConnectionMultiplier!=null)
-    		builder.threadsAllowedToBlockForConnectionMultiplier(threadsAllowedToBlockForConnectionMultiplier);
-    	if(serverSelectionTimeout!=null) 
-    		builder.serverSelectionTimeout(serverSelectionTimeout);
+    	if(minConnectionsPerHost!=null) {
+            builder.minConnectionsPerHost(minConnectionsPerHost);
+        }
+    	if(maxConnectionsPerHost!=null) {
+            builder.connectionsPerHost(maxConnectionsPerHost);
+        }
+    	if(threadsAllowedToBlockForConnectionMultiplier!=null) {
+            builder.threadsAllowedToBlockForConnectionMultiplier(threadsAllowedToBlockForConnectionMultiplier);
+        }
+    	if(serverSelectionTimeout!=null) {
+            builder.serverSelectionTimeout(serverSelectionTimeout);
+        }
     	
-    	if(maxWaitTime!=null) 
-    		builder.maxWaitTime(maxWaitTime);
-    	if(maxConnectionIdleTime!=null) 
-    		builder.maxConnectionIdleTime(maxConnectionIdleTime);
-    	if(maxConnectionLifeTime!=null) 
-    		builder.maxConnectionLifeTime(maxConnectionLifeTime);
-    	if(connectTimeout!=null) 
-    		builder.connectTimeout(connectTimeout);
-    	if(socketTimeout!=null) 
-    		builder.socketTimeout(socketTimeout);
-    	if(socketKeepAlive!=null)
-    		builder.socketKeepAlive(socketKeepAlive);
-    	if(sslEnabled!=null) builder.sslEnabled(sslEnabled);
-    	if(sslInvalidHostNameAllowed!=null)
-    		builder.sslInvalidHostNameAllowed(sslInvalidHostNameAllowed);
-    	if(alwaysUseMBeans!=null)
-    		builder.alwaysUseMBeans(alwaysUseMBeans);
-    	if(heartbeatFrequency!=null) 
-    		builder.heartbeatFrequency(heartbeatFrequency);
-    	if(minHeartbeatFrequency!=null)
-    		builder.minHeartbeatFrequency(minHeartbeatFrequency);
-    	if(heartbeatConnectTimeout!=null)
-    		builder.heartbeatConnectTimeout(heartbeatConnectTimeout);
-    	if(heartbeatSocketTimeout!=null)
-    		builder.heartbeatSocketTimeout(heartbeatSocketTimeout);
-    	if(localThreshold!=null) 
-    		builder.localThreshold(localThreshold);
-    	if(requiredReplicaSetName!=null) 
-    		builder.requiredReplicaSetName(requiredReplicaSetName);
+    	if(maxWaitTime!=null) {
+            builder.maxWaitTime(maxWaitTime);
+        }
+    	if(maxConnectionIdleTime!=null) {
+            builder.maxConnectionIdleTime(maxConnectionIdleTime);
+        }
+    	if(maxConnectionLifeTime!=null) {
+            builder.maxConnectionLifeTime(maxConnectionLifeTime);
+        }
+    	if(connectTimeout!=null) {
+            builder.connectTimeout(connectTimeout);
+        }
+    	if(socketTimeout!=null) {
+            builder.socketTimeout(socketTimeout);
+        }
+    	if(socketKeepAlive!=null) {
+            builder.socketKeepAlive(socketKeepAlive);
+        }
+    	if(sslEnabled!=null) {
+            builder.sslEnabled(sslEnabled);
+        }
+    	if(sslInvalidHostNameAllowed!=null) {
+            builder.sslInvalidHostNameAllowed(sslInvalidHostNameAllowed);
+        }
+    	if(alwaysUseMBeans!=null) {
+            builder.alwaysUseMBeans(alwaysUseMBeans);
+        }
+    	if(heartbeatFrequency!=null) {
+            builder.heartbeatFrequency(heartbeatFrequency);
+        }
+    	if(minHeartbeatFrequency!=null) {
+            builder.minHeartbeatFrequency(minHeartbeatFrequency);
+        }
+    	if(heartbeatConnectTimeout!=null) {
+            builder.heartbeatConnectTimeout(heartbeatConnectTimeout);
+        }
+    	if(heartbeatSocketTimeout!=null) {
+            builder.heartbeatSocketTimeout(heartbeatSocketTimeout);
+        }
+    	if(localThreshold!=null) {
+            builder.localThreshold(localThreshold);
+        }
+    	if(requiredReplicaSetName!=null) {
+            builder.requiredReplicaSetName(requiredReplicaSetName);
+        }
     	if(dbDecoderFactory!=null){
     		builder.dbDecoderFactory(dbDecoderFactory);
     	}else{
@@ -139,10 +162,12 @@ public class GwMongoClientOptions{
     	}else{
     		
     	}
-    	if(socketFactory!=null)
-    		builder.socketFactory(socketFactory);
-    	if(cursorFinalizerEnabled!=null) 
-    		builder.cursorFinalizerEnabled(cursorFinalizerEnabled);
+    	if(socketFactory!=null) {
+            builder.socketFactory(socketFactory);
+        }
+    	if(cursorFinalizerEnabled!=null) {
+            builder.cursorFinalizerEnabled(cursorFinalizerEnabled);
+        }
 //    	if(connectionPoolSettings!=null) builder.connectionPoolSettings(connectionPoolSettings);
 //    	if(socketSettings!=null) builder.socketSettings(socketSettings);
 //    	if(serverSettings!=null) builder.serverSettings(serverSettings);

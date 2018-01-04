@@ -93,18 +93,24 @@ public class LoggerUtils {
 	}
 	public static GewaLogger getLogger(Class clazz){
 		Logger logger = LoggerFactory.getLogger(clazz);
-		if(notUseJson) return new SimpleLogger(logger);
+		if(notUseJson) {
+            return new SimpleLogger(logger);
+        }
 		return new JsonLogger(logger, GewaIpConfig.getServerip(), null);
 	}
 	public static GewaLogger getLogger(Class clazz, String serverIp, String systemId) {
 		Logger logger = LoggerFactory.getLogger(clazz);
-		if(notUseJson) return new SimpleLogger(logger);
+		if(notUseJson) {
+            return new SimpleLogger(logger);
+        }
 		return new JsonLogger(logger, serverIp, systemId);
 	}
 	
 	public static GewaLogger getLogger(String name, String serverIp, String systemId){
 		Logger logger = LoggerFactory.getLogger(name);
-		if(notUseJson) return new SimpleLogger(logger);
+		if(notUseJson) {
+            return new SimpleLogger(logger);
+        }
 		return new JsonLogger(logger, serverIp, systemId);
 	}
 	

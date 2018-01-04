@@ -28,7 +28,7 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 import com.alibaba.dubbo.rpc.cluster.LoadBalance;
 
 /**
- * Ê§°Ü°²È«£¬³öÏÖÒì³£Ê±£¬Ö±½ÓºöÂÔ£¬Í¨³£ÓÃÓÚÐ´ÈëÉó¼ÆÈÕÖ¾µÈ²Ù×÷¡£
+ * Ê§ï¿½Ü°ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£Ê±ï¿½ï¿½Ö±ï¿½Óºï¿½ï¿½Ô£ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½È²ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * <a href="http://en.wikipedia.org/wiki/Fail-safe">Fail-safe</a>
  * 
@@ -41,6 +41,7 @@ public class FailsafeClusterInvoker<T> extends AbstractClusterInvoker<T>{
         super(directory);
     }
     
+    @Override
     public Result doInvoke(Invocation invocation, List<Invoker<T>> invokers, LoadBalance loadbalance) throws RpcException {
         try {
             checkInvokers(invokers, invocation);

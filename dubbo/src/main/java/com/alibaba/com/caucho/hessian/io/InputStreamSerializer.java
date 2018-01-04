@@ -59,14 +59,15 @@ public class InputStreamSerializer extends AbstractSerializer {
   {
   }
   
+  @Override
   public void writeObject(Object obj, AbstractHessianOutput out)
     throws IOException
   {
     InputStream is = (InputStream) obj;
 
-    if (is == null)
-      out.writeNull();
-    else {
+    if (is == null) {
+        out.writeNull();
+    } else {
       byte []buf = new byte[1024];
       int len;
 

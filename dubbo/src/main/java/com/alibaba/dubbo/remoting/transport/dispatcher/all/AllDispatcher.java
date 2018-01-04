@@ -20,7 +20,7 @@ import com.alibaba.dubbo.remoting.ChannelHandler;
 import com.alibaba.dubbo.remoting.Dispatcher;
 
 /**
- * Ä¬ÈÏµÄÏß³Ì³ØÅäÖÃ
+ * Ä¬ï¿½Ïµï¿½ï¿½ß³Ì³ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author chao.liuc
  */
@@ -28,6 +28,7 @@ public class AllDispatcher implements Dispatcher {
     
     public static final String NAME = "all";
 
+    @Override
     public ChannelHandler dispatch(ChannelHandler handler, URL url) {
         return new AllChannelHandler(handler, url);
     }

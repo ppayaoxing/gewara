@@ -29,11 +29,13 @@ public abstract class AbstractZookeeperClient<TargetChildListener> implements Zo
 		this.url = url;
 	}
 
-	public URL getUrl() {
+	@Override
+    public URL getUrl() {
 		return url;
 	}
 
-	public void create(String path, boolean ephemeral) {
+	@Override
+    public void create(String path, boolean ephemeral) {
 		int i = path.lastIndexOf('/');
 		if (i > 0) {
 			create(path.substring(0, i), false);
@@ -45,11 +47,13 @@ public abstract class AbstractZookeeperClient<TargetChildListener> implements Zo
 		}
 	}
 
-	public void addStateListener(StateListener listener) {
+	@Override
+    public void addStateListener(StateListener listener) {
 		stateListeners.add(listener);
 	}
 
-	public void removeStateListener(StateListener listener) {
+	@Override
+    public void removeStateListener(StateListener listener) {
 		stateListeners.remove(listener);
 	}
 
@@ -57,7 +61,8 @@ public abstract class AbstractZookeeperClient<TargetChildListener> implements Zo
 		return stateListeners;
 	}
 
-	public List<String> addChildListener(String path, final ChildListener listener) {
+	@Override
+    public List<String> addChildListener(String path, final ChildListener listener) {
 		ConcurrentMap<ChildListener, TargetChildListener> listeners = childListeners.get(path);
 		if (listeners == null) {
 			childListeners.putIfAbsent(path, new ConcurrentHashMap<ChildListener, TargetChildListener>());
@@ -71,7 +76,8 @@ public abstract class AbstractZookeeperClient<TargetChildListener> implements Zo
 		return addTargetChildListener(path, targetListener);
 	}
 
-	public void removeChildListener(String path, ChildListener listener) {
+	@Override
+    public void removeChildListener(String path, ChildListener listener) {
 		ConcurrentMap<ChildListener, TargetChildListener> listeners = childListeners.get(path);
 		if (listeners != null) {
 			TargetChildListener targetListener = listeners.remove(listener);
@@ -87,7 +93,8 @@ public abstract class AbstractZookeeperClient<TargetChildListener> implements Zo
 		}
 	}
 
-	public void close() {
+	@Override
+    public void close() {
 		if (closed) {
 			return;
 		}

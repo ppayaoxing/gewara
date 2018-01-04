@@ -47,6 +47,7 @@ public class HashJoinElasticExecutor extends ElasticJoinExecutor {
         this.alreadyMatched = new HashSet<>();
     }
 
+    @Override
     public List<InternalSearchHit> innerRun() throws IOException, SqlParseException {
 
         Map<String, Map<String, List<Object>>> optimizationTermsFilterStructure =
@@ -131,7 +132,9 @@ public class HashJoinElasticExecutor extends ElasticJoinExecutor {
             SearchHit[] secondTableHits = searchResponse.getHits().getHits();
             fetchedSoFarFromSecondTable += secondTableHits.length;
             for (SearchHit secondTableHit : secondTableHits) {
-                if (limitReached) break;
+                if (limitReached) {
+                    break;
+                }
                 //todo: need to run on comparisons. for each comparison check if exists and add.
                 HashMap<String, List<Map.Entry<Field, Field>>> comparisons = this.hashJoinComparisonStructure.getComparisons();
 
@@ -182,7 +185,9 @@ public class HashJoinElasticExecutor extends ElasticJoinExecutor {
             if (!finishedScrolling) {
                 if (secondTableHits.length > 0 && (hintLimit == null || fetchedSoFarFromSecondTable >= hintLimit)) {
                     searchResponse = client.prepareSearchScroll(searchResponse.getScrollId()).setScroll(new TimeValue(600000)).execute().actionGet();
-                } else break;
+                } else {
+                    break;
+                }
             } else {
                 break;
             }
@@ -191,8 +196,9 @@ public class HashJoinElasticExecutor extends ElasticJoinExecutor {
     }
 
     private void copyMaps(Map<String, Object> into, Map<String, Object> from) {
-        for(Map.Entry<String,Object> keyAndValue : from.entrySet())
-            into.put(keyAndValue.getKey(),keyAndValue.getValue());
+        for(Map.Entry<String,Object> keyAndValue : from.entrySet()) {
+            into.put(keyAndValue.getKey(), keyAndValue.getValue());
+        }
     }
 
     private void createKeyToResultsAndFillOptimizationStructure(Map<String,Map<String, List<Object>>> optimizationTermsFilterStructure, TableInJoinRequestBuilder firstTableRequest) {
@@ -238,7 +244,9 @@ public class HashJoinElasticExecutor extends ElasticJoinExecutor {
         int curentNumOfResults = 0;
         SearchHit[] hits = scrollResp.getHits().hits();
 
-        if (hintLimit == null) hintLimit = MAX_RESULTS_FOR_FIRST_TABLE;
+        if (hintLimit == null) {
+            hintLimit = MAX_RESULTS_FOR_FIRST_TABLE;
+        }
 
         while (hits.length != 0 && curentNumOfResults < hintLimit) {
             curentNumOfResults += hits.length;
@@ -255,8 +263,9 @@ public class HashJoinElasticExecutor extends ElasticJoinExecutor {
     }
 
     private boolean needToOptimize(Map<String,Map<String, List<Object>>> optimizationTermsFilterStructure) {
-        if(! useQueryTermsFilterOptimization && optimizationTermsFilterStructure != null && optimizationTermsFilterStructure.size() > 0)
+        if(! useQueryTermsFilterOptimization && optimizationTermsFilterStructure != null && optimizationTermsFilterStructure.size() > 0) {
             return false;
+        }
         boolean allEmpty = true;
         for(Map<String,List<Object>> optimization : optimizationTermsFilterStructure.values()){
             if(optimization.size() > 0){
@@ -287,7 +296,9 @@ public class HashJoinElasticExecutor extends ElasticJoinExecutor {
         if (where != null) {
             boolQuery = QueryMaker.explan(where);
             boolQuery.must(orQuery);
-        } else boolQuery = orQuery;
+        } else {
+            boolQuery = orQuery;
+        }
         secondTableRequest.getRequestBuilder().setQuery(boolQuery);
     }
 
@@ -297,17 +308,21 @@ public class HashJoinElasticExecutor extends ElasticJoinExecutor {
         for (Map.Entry<Field, Field> t1ToT2 : t1ToT2FieldsComparison) {
             //todo: change to our function find if key contains '.'
             String name;
-            if (firstTable) name = t1ToT2.getKey().getName();
-            else name = t1ToT2.getValue().getName();
+            if (firstTable) {
+                name = t1ToT2.getKey().getName();
+            } else {
+                name = t1ToT2.getValue().getName();
+            }
 
             Object data = deepSearchInMap(sourceAsMap, name);
             if (firstTable && useQueryTermsFilterOptimization) {
                 updateOptimizationData(optimizationTermsFilterStructure, data, t1ToT2.getValue().getName());
             }
-            if (data == null)
+            if (data == null) {
                 key += "|null|";
-            else
+            } else {
                 key += "|" + data.toString() + "|";
+            }
         }
         return key;
     }
@@ -322,7 +337,8 @@ public class HashJoinElasticExecutor extends ElasticJoinExecutor {
             //todo: analyzed or not analyzed check..
             data = ((String) data).toLowerCase();
         }
-        if(data!=null)
+        if(data!=null) {
             values.add(data);
+        }
     }
 }

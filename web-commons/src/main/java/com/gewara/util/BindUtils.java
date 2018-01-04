@@ -32,12 +32,17 @@ public class BindUtils {
 	}
 	public static BindException bind(Object bean ,Map requestParam, boolean allow, String[] fields){
 		Map bindData = null;
-		if(allow) bindData = new HashMap();
-		else bindData = new HashMap(requestParam);
+		if(allow) {
+            bindData = new HashMap();
+        } else {
+            bindData = new HashMap(requestParam);
+        }
 		for(String field: fields){
 			Object value = requestParam.get(field); 
 			if(allow) {
-				if(requestParam.containsKey(field)) bindData.put(field, value);
+				if(requestParam.containsKey(field)) {
+                    bindData.put(field, value);
+                }
 			}else{
 				bindData.remove(field);
 			}

@@ -34,16 +34,17 @@ import com.alibaba.dubbo.monitor.MonitorService;
  */
 public abstract class AbstractMonitorFactory implements MonitorFactory {
 
-    // ×¢²áÖÐÐÄ»ñÈ¡¹ý³ÌËø
+    // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private static final ReentrantLock LOCK = new ReentrantLock();
     
-    // ×¢²áÖÐÐÄ¼¯ºÏ Map<RegistryAddress, Registry>
+    // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ Map<RegistryAddress, Registry>
     private static final Map<String, Monitor> MONITORS = new ConcurrentHashMap<String, Monitor>();
 
     public static Collection<Monitor> getMonitors() {
         return Collections.unmodifiableCollection(MONITORS.values());
     }
 
+    @Override
     public Monitor getMonitor(URL url) {
     	url = url.setPath(MonitorService.class.getName()).addParameter(Constants.INTERFACE_KEY, MonitorService.class.getName());
     	String key = url.toServiceString();
@@ -60,7 +61,7 @@ public abstract class AbstractMonitorFactory implements MonitorFactory {
             MONITORS.put(key, monitor);
             return monitor;
         } finally {
-            // ÊÍ·ÅËø
+            // ï¿½Í·ï¿½ï¿½ï¿½
             LOCK.unlock();
         }
     }

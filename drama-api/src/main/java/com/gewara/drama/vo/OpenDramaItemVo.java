@@ -18,71 +18,71 @@ public class OpenDramaItemVo extends BaseVo {
 	private Long dpid;
 	private Long dramaid;
 	private String dramaname;
-	private String name; // ³¡´ÎÃû³Æ
+	private String name; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private Long theatreid;
 	private String theatrename;
 	private Long roomid;
 	private String roomname;
-	private Timestamp playtime; // ÑÝ³öÊ±¼ä
-	private Timestamp endtime; // ÑÝ³ö½áÊøÊ±¼ä
+	private Timestamp playtime; // ï¿½Ý³ï¿½Ê±ï¿½ï¿½
+	private Timestamp endtime; // ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	private String language;
 	private String status;
-	private String partner; // ºÏ×÷»ï°é¿ª·Å×´Ì¬£ºY¶ÔÍâ¿ª·Å,N²»¶ÔÍâ¿ª·Å
-	private String checkSeat; // ÊÇ·ñ¼ì²é×ùÎ»
+	private String partner; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é¿ªï¿½ï¿½×´Ì¬ï¿½ï¿½Yï¿½ï¿½ï¿½â¿ªï¿½ï¿½,Nï¿½ï¿½ï¿½ï¿½ï¿½â¿ªï¿½ï¿½
+	private String checkSeat; // ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Î»
 	private Timestamp opentime;
 	private Timestamp closetime;
-	private Timestamp updatetime; // ¸üÐÂÊ±¼ä
-	private String opentype; // ¿ª·ÅÀàÐÍ£ºÑ¡×ù£¬¼Û¸ñ£¬
+	private Timestamp updatetime; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String opentype; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Û¸ï¿½
 	private String elecard;
 
-	private Integer minpoint; // Ê¹ÓÃ»ý·ÖÏÂÏÞ
-	private Integer maxpoint; // Ê¹ÓÃ»ý·ÖÉÏÏÞ
-	private Integer maxbuy; // ¹ºÆ±ÏÞÖÆ
-	private Integer msgMinute; // ¶ÌÐÅÌáÇ°·¢ËÍÊ±¼ä(·ÖÖÓ)
+	private Integer minpoint; // Ê¹ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer maxpoint; // Ê¹ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer maxbuy; // ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½
+	private Integer msgMinute; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 
-	private Long topicid; // È¡Æ±Ìû×Ó
-	private String takemethod; // È¡Æ±·½Ê½
-	private String takeAddress;		//È¡Æ±µØÖ·
-	private Integer remnantnum;		//ÓàÆ±ÌáÐÑÏÞÖÆÊýÁ¿
-	private String remnantnotice;	//ÓàÆ±ÌáÐÑÎÄ°¸
-	private String takemsg; // È¡Æ±ÃèÊö
-	private String buylimit; // ¹ºÂòÕÅÊýÏÞÖÆ£¬1,2,3,4,5
-	private String notifymsg1; // È¡Æ±¶ÌÐÅ
-	private String notifymsg2; // ÌáÇ°3Ð¡Ê±ÌáÐÑ¶ÌÐÅ
-	private String notifymsg3; // ÌáÇ°Ò»ÌìÌáÐÑ¶ÌÐÅ
-	private String notifyRemark; // È¡Æ±¶ÌÐÅ(¿ìµÝ)
-	private String qrcodeRemark; 	//È¡Æ±¶ÌÐÅ(¶þÎ¬Âëµç×ÓÆ±)
-	private String remark; // ÃèÊö
-	private String seatlink; // ×ùÎ»Í¼Á´½Ó
+	private Long topicid; // È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String takemethod; // È¡Æ±ï¿½ï¿½Ê½
+	private String takeAddress;		//È¡Æ±ï¿½ï¿½Ö·
+	private Integer remnantnum;		//ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String remnantnotice;	//ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½Ä°ï¿½
+	private String takemsg; // È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String buylimit; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½1,2,3,4,5
+	private String notifymsg1; // È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String notifymsg2; // ï¿½ï¿½Ç°3Ð¡Ê±ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½
+	private String notifymsg3; // ï¿½ï¿½Ç°Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½
+	private String notifyRemark; // È¡Æ±ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½)
+	private String qrcodeRemark; 	//È¡Æ±ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Î¬ï¿½ï¿½ï¿½ï¿½ï¿½Æ±)
+	private String remark; // ï¿½ï¿½ï¿½ï¿½
+	private String seatlink; // ï¿½ï¿½Î»Í¼ï¿½ï¿½ï¿½ï¿½
 	private String otherinfo;
 	private String spflag;
 	private String citycode;
-	private String expressid; // ÅäËÍ·½Ê½id
-	private String ticketfaceid; // Æ±ÃæÐÅÏ¢
+	private String expressid; // ï¿½ï¿½ï¿½Í·ï¿½Ê½id
+	private String ticketfaceid; // Æ±ï¿½ï¿½ï¿½ï¿½Ï¢
 	private String barcode;
-	private String period; // ÊÇ·ñ¹Ì¶¨Ê±¼ä
-	private String seller; // µÚÈý·½ÀàÐÍ£ºGEWA,GPTBS
-	private String sellerseq; // µÚÈý·½³¡´Î±àºÅ
+	private String period; // ï¿½Ç·ï¿½Ì¶ï¿½Ê±ï¿½ï¿½
+	private String seller; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½GEWA,GPTBS
+	private String sellerseq; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±ï¿½ï¿½
 	private String print;
-	private Integer sortnum; // ÅÅÐò×Ö¶Î
-	private String saleCycle; // Ô¤ÊÛÖÜÆÚ
-	private String showtype; // ³¡´ÎÀàÐÍ£¨ÆÕÍ¨£¬ÌØ»Ý£©
+	private Integer sortnum; // ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
+	private String saleCycle; // Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String showtype; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ø»Ý£ï¿½
 
-	private Integer eticketHour; // £¨A,E Ä¬ÈÏµç×ÓÆ±Ê±¼ä(Ð¡Ê±))
-	private Integer eticketWeekHour; // £¨A,E Ä¬ÈÏµç×ÓÆ±Ê±¼äÖÜÄ©(Ð¡Ê±))
-	private String prepay; // ÊÇ·ñÔ¤ÊÛ
-	private String crmflag; // ÉÌ»§±êÊ¶
-	private String crmMsg; // crmÌáÊ¾ÎÄ×Ö
-	private String gypMsg; // ¹«ÒæÆ±ÌáÊ¾ÎÄ×Ö
+	private Integer eticketHour; // ï¿½ï¿½A,E Ä¬ï¿½Ïµï¿½ï¿½ï¿½Æ±Ê±ï¿½ï¿½(Ð¡Ê±))
+	private Integer eticketWeekHour; // ï¿½ï¿½A,E Ä¬ï¿½Ïµï¿½ï¿½ï¿½Æ±Ê±ï¿½ï¿½ï¿½ï¿½Ä©(Ð¡Ê±))
+	private String prepay; // ï¿½Ç·ï¿½Ô¤ï¿½ï¿½
+	private String crmflag; // ï¿½Ì»ï¿½ï¿½ï¿½Ê¶
+	private String crmMsg; // crmï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+	private String gypMsg; // ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 
-	private Integer seatnum; // ×ùÎ»ÊýÁ¿
-	private Integer asellnum; // allow ÔÊÐíÂô³öÊý
-	private Integer gsellnum; // GewaÂô³öÊý
-	private Integer csellnum; // Ó°ÔºÂô³ö
-	private Integer locknum; // GewaËø¶¨Êý
+	private Integer seatnum; // ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	private Integer asellnum; // allow ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer gsellnum; // Gewaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer csellnum; // Ó°Ôºï¿½ï¿½ï¿½ï¿½
+	private Integer locknum; // Gewaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private Integer remainnum;
 
-	private String greetings; // ÊÇ·ñÖ§³ÖÎÄ×ÖÆ±Ãæ¹¦ÄÜ(Y,N)
+	private String greetings; // ï¿½Ç·ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½æ¹¦ï¿½ï¿½(Y,N)
 	private String roomnum;
 	private String fieldlogo;
 	private String idcard;
@@ -542,8 +542,9 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public boolean hasPeriod(String perod) {
-		if (StringUtils.isBlank(perod))
-			return false;
+		if (StringUtils.isBlank(perod)) {
+            return false;
+        }
 		return StringUtils.equals(this.period, perod);
 	}
 
@@ -573,7 +574,7 @@ public class OpenDramaItemVo extends BaseVo {
 
 	public String gainItemName() {
 		if (hasPeriod(OdiConstant.STATUS_BOOK)) {
-			return DateUtil.format(this.playtime, "MÔÂdÈÕ HH:mm");
+			return DateUtil.format(this.playtime, "Mï¿½ï¿½dï¿½ï¿½ HH:mm");
 		}
 		return this.name;
 	}
@@ -596,20 +597,23 @@ public class OpenDramaItemVo extends BaseVo {
 	}
 
 	public boolean hasSeller(String sell) {
-		if (StringUtils.isBlank(sell))
-			return false;
+		if (StringUtils.isBlank(sell)) {
+            return false;
+        }
 		return StringUtils.equals(this.seller, sell);
 	}
 
 	public boolean hasOpen() {
-		if (opentime == null)
-			return false;
+		if (opentime == null) {
+            return false;
+        }
 		return opentime.before(new Timestamp(System.currentTimeMillis()));
 	}
 
 	public boolean hasClosed() {
-		if (closetime == null)
-			return false;
+		if (closetime == null) {
+            return false;
+        }
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
 		return cur.after(closetime);
 	}

@@ -273,7 +273,9 @@ public class AttackTestServiceImpl implements AttackTestService, InitializingBea
 			int idx3 = ip.indexOf('.', idx2+1);
 			matcher = blackMap2.get(StringUtils.substring(ip, 0, idx3));
 		}
-		if(matcher==null) return false;
+		if(matcher==null) {
+            return false;
+        }
 		long cur = System.currentTimeMillis();
 		Long time = matcher.gainReleaseTime(uri);
 		if(time==null || time < cur){

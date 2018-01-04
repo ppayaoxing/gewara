@@ -89,8 +89,9 @@ public class UserAgent implements Serializable
         OperatingSystem os = OperatingSystem.UNKNOWN;
 
         // BOTs don't have an interesting OS for us
-        if (brow != Browser.BOT)
+        if (brow != Browser.BOT) {
             os = OperatingSystem.parseUserAgentLowercaseString(userAgentLowercaseString);
+        }
 
         this.operatingSystem = os;
         this.browser = brow;
@@ -143,7 +144,8 @@ public class UserAgent implements Serializable
 	/**
 	 * Combined string representation of both enums
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return this.operatingSystem.toString() + "-" + this.browser.toString();
 	}
 	
@@ -166,8 +168,9 @@ public class UserAgent implements Serializable
 	 */
 	public static UserAgent valueOf(String name)
 	{
-		if (name == null)
+		if (name == null) {
             throw new NullPointerException("Name is null");
+        }
 		
 		String[] elements = name.split("-");
 		
@@ -201,25 +204,33 @@ public class UserAgent implements Serializable
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) {
+            return true;
+        }
+		if (obj == null) {
+            return false;
+        }
+		if (getClass() != obj.getClass()) {
+            return false;
+        }
 		final UserAgent other = (UserAgent) obj;
 		if (browser == null) {
-			if (other.browser != null)
-				return false;
-		} else if (!browser.equals(other.browser))
-			return false;
-		if (id != other.id)
-			return false;
+			if (other.browser != null) {
+                return false;
+            }
+		} else if (!browser.equals(other.browser)) {
+            return false;
+        }
+		if (id != other.id) {
+            return false;
+        }
 		if (operatingSystem == null) {
-			if (other.operatingSystem != null)
-				return false;
-		} else if (!operatingSystem.equals(other.operatingSystem))
-			return false;
+			if (other.operatingSystem != null) {
+                return false;
+            }
+		} else if (!operatingSystem.equals(other.operatingSystem)) {
+            return false;
+        }
 		return true;
 	}	
 	

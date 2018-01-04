@@ -56,6 +56,7 @@ public class TelnetCodec extends TransportCodec {
 
     private static final List<?> EXIT   = Arrays.asList(new Object[] { new byte[] { 3 } /* Windows Ctrl+C */, new byte[] { -1, -12, -1, -3, 6 } /* Linux Ctrl+C */, new byte[] { -1, -19, -1, -3, 6 } /* Linux Pause */ });
 
+    @Override
     public void encode(Channel channel, OutputStream output, Object message) throws IOException {
         if (message instanceof String) {
             if (isClientSide(channel)) {
@@ -69,6 +70,7 @@ public class TelnetCodec extends TransportCodec {
         }
     }
     
+    @Override
     public Object decode(Channel channel, InputStream is) throws IOException {
         int readable = is.available();
         byte[] message = new byte[readable];

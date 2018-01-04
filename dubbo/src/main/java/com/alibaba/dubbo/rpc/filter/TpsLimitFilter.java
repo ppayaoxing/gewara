@@ -27,7 +27,7 @@ import com.alibaba.dubbo.rpc.filter.tps.DefaultTPSLimiter;
 import com.alibaba.dubbo.rpc.filter.tps.TPSLimiter;
 
 /**
- * ÏÞÖÆ service »ò·½·¨µÄ tps.
+ * ï¿½ï¿½ï¿½ï¿½ service ï¿½ò·½·ï¿½ï¿½ï¿½ tps.
  *
  * @author <a href="mailto:gang.lvg@alibaba-inc.com">kimi</a>
  */
@@ -36,6 +36,7 @@ public class TpsLimitFilter implements Filter {
 
     private final TPSLimiter tpsLimiter = new DefaultTPSLimiter();
 
+    @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
 
         if (!tpsLimiter.isAllowable(invoker.getUrl(), invocation)) {

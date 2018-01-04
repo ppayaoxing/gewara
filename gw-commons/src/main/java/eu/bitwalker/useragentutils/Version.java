@@ -86,31 +86,41 @@ public class Version implements Comparable<Version> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) {
+            return true;
+        }
+		if (obj == null) {
+            return false;
+        }
+		if (getClass() != obj.getClass()) {
+            return false;
+        }
 		Version other = (Version) obj;
 		if (majorVersion == null) {
-			if (other.majorVersion != null)
-				return false;
-		} else if (!majorVersion.equals(other.majorVersion))
-			return false;
+			if (other.majorVersion != null) {
+                return false;
+            }
+		} else if (!majorVersion.equals(other.majorVersion)) {
+            return false;
+        }
 		if (minorVersion == null) {
-			if (other.minorVersion != null)
-				return false;
-		} else if (!minorVersion.equals(other.minorVersion))
-			return false;
+			if (other.minorVersion != null) {
+                return false;
+            }
+		} else if (!minorVersion.equals(other.minorVersion)) {
+            return false;
+        }
 		if (version == null) {
-			if (other.version != null)
-				return false;
-		} else if (!version.equals(other.version))
-			return false;
+			if (other.version != null) {
+                return false;
+            }
+		} else if (!version.equals(other.version)) {
+            return false;
+        }
 		return true;
 	}
 
+        @Override
         public int compareTo(Version other) {
                 if (other == null) {
 	            return 1;

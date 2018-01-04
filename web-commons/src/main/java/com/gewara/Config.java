@@ -58,7 +58,7 @@ public class Config implements InitializingBean {
 	}
 
 	/**
-	 * ÊÇ·ñÊÇ²âÊÔ»·¾³
+	 * ï¿½Ç·ï¿½ï¿½Ç²ï¿½ï¿½Ô»ï¿½ï¿½ï¿½
 	 * 
 	 * @param
 	 * @return
@@ -68,7 +68,7 @@ public class Config implements InitializingBean {
 	}
 
 	/**
-	 * ÊÇ·ñÊÇ»ú·¿Ô¤·¢»·¾³
+	 * ï¿½Ç·ï¿½ï¿½Ç»ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param
 	 * @return
@@ -106,8 +106,9 @@ public class Config implements InitializingBean {
 
 	public Long getLong(String key) {
 		String result = getString(key);
-		if (StringUtils.isBlank(result))
-			return null;
+		if (StringUtils.isBlank(result)) {
+            return null;
+        }
 		return Long.parseLong(result);
 	}
 
@@ -116,7 +117,7 @@ public class Config implements InitializingBean {
 			this.configMap = configMap;
 			this.initedConfig = true;
 		} else {
-			throw new IllegalStateException("²»ÄÜÔÙ´Îµ÷ÓÃ");
+			throw new IllegalStateException("ï¿½ï¿½ï¿½ï¿½ï¿½Ù´Îµï¿½ï¿½ï¿½");
 		}
 	}
 
@@ -125,7 +126,7 @@ public class Config implements InitializingBean {
 			this.pageMap = pageMap;
 			this.initedPage = true;
 		} else {
-			throw new IllegalStateException("²»ÄÜÔÙ´Îµ÷ÓÃ");
+			throw new IllegalStateException("ï¿½ï¿½ï¿½ï¿½ï¿½Ù´Îµï¿½ï¿½ï¿½");
 		}
 	}
 
@@ -157,10 +158,12 @@ public class Config implements InitializingBean {
 
 	public ErrorCode replacePageTool(String property, Object value) {
 		Object old = pageTools.get(property);
-		if (value == null || old == null)
-			return ErrorCode.getFailure("²ÎÊý´íÎó:old »ò new Îª¿Õ");
-		if (!value.getClass().equals(old.getClass()))
-			return ErrorCode.getFailure("²ÎÊýÀàÐÍ²»¼æÈÝ");
+		if (value == null || old == null) {
+            return ErrorCode.getFailure("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:old ï¿½ï¿½ new Îªï¿½ï¿½");
+        }
+		if (!value.getClass().equals(old.getClass())) {
+            return ErrorCode.getFailure("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½");
+        }
 		Map tmp = new HashMap(pageTools);
 		tmp.put(property, value);
 		pageTools = UnmodifiableMap.decorate(tmp);

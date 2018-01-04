@@ -51,6 +51,7 @@ public class ServerPeer extends ServerDelegate implements Peer {
         this.group = group;
     }
 
+    @Override
     public void leave() throws RemotingException {
         group.leave(getUrl());
     }

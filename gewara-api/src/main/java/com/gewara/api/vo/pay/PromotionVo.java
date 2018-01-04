@@ -20,118 +20,118 @@ public class PromotionVo extends BaseVo{
 
 	private Long id;
 
-	/***»ù´¡ÐÅÏ¢----------------------------------------------------------------------------------------------*/
+	/***ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢----------------------------------------------------------------------------------------------*/
 	
-	private String extraInfo;			//À©Õ¹ÐÅÏ¢
-	private String flag;				//ÌØÊâ±êÊ¶
-	private String tag;					//¶©µ¥ÀàÐÍ£º¼ûPayConstant.APPLY_TAG*
-	private Integer sortnum;			//ÅÅÐòÊý×Ö
-	private String opentype;			//¿ª·ÅÀàÐÍ   
-	private String ptnids;				//Ö§¸¶ÇþµÀid¼¯ºÏ ÉÌ¼ÒID
-	private Integer discount;			//ÓÅ»Ý½ð¶î ÕÛ¿Û½ð¶î
-	private String distype;				//ÓÅ»Ý·½Ê½
-	private String refundEnable;		// ÊÇ·ñÖ§³ÖÍËÆ±£¬Y£º¿ÉÍË£»N£º²»¿ÉÍË
-	private String spType; 				//»î¶¯ÂëÀàÐÍ
-	private String expression;			//¼ÆËã±í´ïÊ½
-	private String specialrule;			//ÌØÊâ¹æÔò±í´ïÊ½
-	private Integer limitperiod;		//¸öÈËÏÞ¹»ÖÜÆÚ£¨·ÖÖÓ£©
-	private Integer limitnum;			//¸öÈËÏÞ¹»´ÎÊý
-	private Integer minbuy;				//Ã¿µ¥ÏÞ¹ºÊý:×îÉÙÊýÁ¿
-	private Integer buynum;				//Ã¿µ¥ÏÞ¹ºÊý:×î´óÊýÁ¿
-	private String periodtype;			//ÏÞ¹»ÖÜÆÚÀàÐÍ
-	private String uniqueby;			//Ê¹ÓÃÊ²Ã´ÏÞÖÆÎ¨Ò»ÐÔ Î¨Ò»±êÊ¶
-	private String description;			//¼òÒªËµÃ÷
-	private Timestamp timefrom;			//ÓÅ»Ý¿ªÊ¼Ê±¼ä
-	private Timestamp timeto;			//ÓÅ»Ý½áÊøÊ±¼ä	
+	private String extraInfo;			//ï¿½ï¿½Õ¹ï¿½ï¿½Ï¢
+	private String flag;				//ï¿½ï¿½ï¿½ï¿½ï¿½Ê¶
+	private String tag;					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½PayConstant.APPLY_TAG*
+	private Integer sortnum;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String opentype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   
+	private String ptnids;				//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½ ï¿½Ì¼ï¿½ID
+	private Integer discount;			//ï¿½Å»Ý½ï¿½ï¿½ ï¿½Û¿Û½ï¿½ï¿½
+	private String distype;				//ï¿½Å»Ý·ï¿½Ê½
+	private String refundEnable;		// ï¿½Ç·ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String spType; 				//ï¿½î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String expression;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
+	private String specialrule;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
+	private Integer limitperiod;		//ï¿½ï¿½ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½Ó£ï¿½
+	private Integer limitnum;			//ï¿½ï¿½ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer minbuy;				//Ã¿ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer buynum;				//Ã¿ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String periodtype;			//ï¿½Þ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String uniqueby;			//Ê¹ï¿½ï¿½Ê²Ã´ï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½ï¿½ Î¨Ò»ï¿½ï¿½Ê¶
+	private String description;			//ï¿½ï¿½ÒªËµï¿½ï¿½
+	private Timestamp timefrom;			//ï¿½Å»Ý¿ï¿½Ê¼Ê±ï¿½ï¿½
+	private Timestamp timeto;			//ï¿½Å»Ý½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½	
 	
-	private Timestamp orderTimeFrom;	// ÏÂµ¥¿ªÊ¼ÈÕÆÚ
-	private Timestamp orderTimeTo;		// ÏÂµ¥½áÊøÈÕÆÚ	
-	private String addtime1;			//ÏÂµ¥Ê±¶ÎÏÞ¶¨1£º0000
-	private String addtime2;			//ÏÂµ¥Ê±¶ÎÏÞ¶¨2£º2400
-	private String addweek;				//ÏÂµ¥ÖÜ¼¸
+	private Timestamp orderTimeFrom;	// ï¿½Âµï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+	private Timestamp orderTimeTo;		// ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
+	private String addtime1;			//ï¿½Âµï¿½Ê±ï¿½ï¿½ï¿½Þ¶ï¿½1ï¿½ï¿½0000
+	private String addtime2;			//ï¿½Âµï¿½Ê±ï¿½ï¿½ï¿½Þ¶ï¿½2ï¿½ï¿½2400
+	private String addweek;				//ï¿½Âµï¿½ï¿½Ü¼ï¿½
 	
-	private String remark;				//²»¿ÉÓÃÊ±ËµÃ÷ ²»¿ÉÓÃ±êÌâ
-	private String enableRemark;		//¿ÉÓÃÊ±µÄËµÃ÷ ¿ÉÓÃ±êÌâ
-	private String adcontent;			//¹ã¸æÄÚÈÝ ÏêÏ¸ËµÃ÷
-	private String recommendRemark;		//ÍÆ¼öÊ±µÄËµÃ÷
-	private String configMessage;   	// ÌáÊ¾ÐÅÏ¢
-	private String banner;				//¶¥²ãbannerÍ¼Æ¬
-	private String loginfrom;			//µÇÂ¼À´Ô´
-	private String citycode;			//³ÇÊÐÁÐ±í
-	private Integer fullTotalfee;		//Âú¶àÉÙ²Å²ÎÓëÓÅ»Ý£¨°üº¬£©
-	private String otherinfo;			//ÆäËûÐÅÏ¢:
-	//²»×ö¿¨binÐ£Ñé ;;;
-	//sType¡¢sText¡¢mpiIsShow¡¢exp_minnum¹«Ê½×îÐ¡¹ºÂòÊý¡¢exp_maxnum¹«Ê½×î´ó¹ºÂòÊý¡¢unCheckCardnum¡¢mpiIndex¡¢
+	private String remark;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Ëµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½
+	private String enableRemark;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ëµï¿½ï¿½ ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½
+	private String adcontent;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¸Ëµï¿½ï¿½
+	private String recommendRemark;		//ï¿½Æ¼ï¿½Ê±ï¿½ï¿½Ëµï¿½ï¿½
+	private String configMessage;   	// ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢
+	private String banner;				//ï¿½ï¿½ï¿½ï¿½bannerÍ¼Æ¬
+	private String loginfrom;			//ï¿½ï¿½Â¼ï¿½ï¿½Ô´
+	private String citycode;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+	private Integer fullTotalfee;		//ï¿½ï¿½ï¿½ï¿½ï¿½Ù²Å²ï¿½ï¿½ï¿½ï¿½Å»Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String otherinfo;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢:
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½binÐ£ï¿½ï¿½ ;;;
+	//sTypeï¿½ï¿½sTextï¿½ï¿½mpiIsShowï¿½ï¿½exp_minnumï¿½ï¿½Ê½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½exp_maxnumï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½unCheckCardnumï¿½ï¿½mpiIndexï¿½ï¿½
 	
-	/***ÒµÎñÐÅÏ¢----------------------------------------------------------------------------------------------*/
+	/***Òµï¿½ï¿½ï¿½ï¿½Ï¢----------------------------------------------------------------------------------------------*/
 		
 	
-	/***Ö§¸¶ÐÅÏ¢----------------------------------------------------------------------------------------------*/
-	private String paymethod;			//ÏÞÖÆÖ§¸¶·½Ê½
-	private String logo;				//ÒøÐÐLogo
-	private String cardbinUkey;  	 	//¿¨ºÅÑéÖ¤±êÊ¶
-	private String validateUrl;			//ÑéÖ¤Ìø×ªURL
-	private String validBackUrl;		//Ö§¸¶Í¨ÖªURLÑéÖ¤
-	private String cardUkey;			//¿¨ÑéÖ¤Î¨Ò»±êÊ¶ ¿¨ÑéÖ¤×é
-	private String cardNumUnique;  		//ÊÇ·ñÒøÐÐ¿¨´ÎÊýÑéÖ¤ ¿¨ºÅÏÞÖÆ
-	private Integer cardNumPeriodIntvel; //ÒøÐÐ¿¨Ã¿´ÎÊ¹ÓÃÏÞ¹ºÖÜÆÚ ¼ä¸ôÖÜÆÚ
-	private Integer cardNumPeriodSpan;	//ÒøÐÐ¿¨×î´óÖÜÆÚ ÏÞ¹»ÖÜÆÚ
-	private Integer cardNumLimitnum; 	//ÒøÐÐ¿¨ÏÞ¹»´ÎÊý ÏÞ¹»´ÎÊý
+	/***Ö§ï¿½ï¿½ï¿½ï¿½Ï¢----------------------------------------------------------------------------------------------*/
+	private String paymethod;			//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Ê½
+	private String logo;				//ï¿½ï¿½ï¿½ï¿½Logo
+	private String cardbinUkey;  	 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Ê¶
+	private String validateUrl;			//ï¿½ï¿½Ö¤ï¿½ï¿½×ªURL
+	private String validBackUrl;		//Ö§ï¿½ï¿½Í¨ÖªURLï¿½ï¿½Ö¤
+	private String cardUkey;			//ï¿½ï¿½ï¿½ï¿½Ö¤Î¨Ò»ï¿½ï¿½Ê¶ ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½
+	private String cardNumUnique;  		//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer cardNumPeriodIntvel; //ï¿½ï¿½ï¿½Ð¿ï¿½Ã¿ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer cardNumPeriodSpan;	//ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer cardNumLimitnum; 	//ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	/***ÆäËüÐÅÏ¢----------------------------------------------------------------------------------------------*/
-	private String bankname;			//ÒøÐÐÃû³Æ
-	private Integer extdiscount;		//Íâ²¿ÓÅ»Ý½ð¶î
-	private String channel;				//ÀàÐÍ£º»î¶¯ÓÅ»Ý/ÇþµÀºÏ×÷ÓÅ»Ý
-	private String bindmobile;			//°ó¶¨ÊÖ»ú
-	//¸ü¸Ä³É±¾¼Û£¬ÓëÈ¯µÄÂß¼­Ò»Ñù
-	private String costtype;		//³É±¾¼ÛÀàÐÍ£ºÓ°Æ¬×îµ×¼Û¼ÓxÔª£¬½áËã¼Û¼ÓxÔª  ¸ü¸Ä³É±¾¼Û
-	private Integer costnum;		//³É±¾¼ÛÔöÁ¿  ³É±¾¼ÛÉèÖÃ
-	private String verifyType;		//¶¯Ì¬ÂëÑéÖ¤ÀàÐÍ£ºÎÞ£¬¿ÉÖØ¸´Ê¹ÓÃ£¨²»¼ÇÃûÊ¹ÓÃ£©£¬²»¿ÉÖØ¸´Ê¹ÓÃ VERIFYTYPE_ONLYONE  µç×ÓÂë²ÎÓë
-	private String showCoupon;	//	ÊÇ·ñÔÚÇ°Ì¨Õ¹Ê¾£¬ÎªÁË¼æÈÝÀÏµÄÄ¬ÈÏÎªY£¬¿ÉÓÃÎªY£¬²»¿ÉÓÃÎªN£¬
-	private String excludeSpid;		//ÅÅ³ýÆäËûÌØ¼Û»î¶¯ »¥³âÆäËûÌØ¼Û»î¶¯
-	private Integer rebates;			//Ã¿±Ê¶©µ¥·µÀû ·µÀûÊý
-	private Integer rebatesmax;			//Ç°¶àÉÙÃû·µÀû ·µÀûÃû¶î
-	private String rebatestype;			//·µÀûÀàÐÍ£º³äÖµ¡¢ËÍ¿¨ 
-	private Long drawactivity;  		//ÓÃ»§¹ºÍêÆ±ºó·µ»ØÈ¯²ÉÓÃ³é½±·½Ê½·µµ½ÓÃ»§ ³é½±»î¶¯id
-	private Integer drawperiod;			//¹ºÆ±³É¹¦ÁìÈ¡·µÈ¯ÖÜÆÚ ÁìÈ¡ÖÜÆÚ
-	private Integer bindDrawCardNum;	//ÖÜÆÚÄÚÁìÈ¡´ÎÊý¿ØÖÆ ÁìÈ¡´ÎÊý
-	private Long bindgoods;				//ÔùËÍÌ×²Í °ó¶¨Ì×²Í
-	private Integer bindnum;			//Ì×²Í¹ºÆ±ÊýÁ¿ Ê¹ÓÃÊýÁ¿
-	private Integer ipLimitedOrderCount;//µ¥ipÏÞÖÆÏÂµ¥ÊýÁ¿	
-	private Long spcounterid;			//Ê¹ÓÃÊýÁ¿¿ØÖÆÆ÷µÄID
+	/***ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢----------------------------------------------------------------------------------------------*/
+	private String bankname;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer extdiscount;		//ï¿½â²¿ï¿½Å»Ý½ï¿½ï¿½
+	private String channel;				//ï¿½ï¿½ï¿½Í£ï¿½ï¿½î¶¯ï¿½Å»ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½
+	private String bindmobile;			//ï¿½ï¿½ï¿½Ö»ï¿½
+	//ï¿½ï¿½ï¿½Ä³É±ï¿½ï¿½Û£ï¿½ï¿½ï¿½È¯ï¿½ï¿½ï¿½ß¼ï¿½Ò»ï¿½ï¿½
+	private String costtype;		//ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Ó°Æ¬ï¿½ï¿½×¼Û¼ï¿½xÔªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¼ï¿½xÔª  ï¿½ï¿½ï¿½Ä³É±ï¿½ï¿½ï¿½
+	private Integer costnum;		//ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String verifyType;		//ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½Í£ï¿½ï¿½Þ£ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ê¹ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ê¹ï¿½ï¿½ VERIFYTYPE_ONLYONE  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String showCoupon;	//	ï¿½Ç·ï¿½ï¿½ï¿½Ç°Ì¨Õ¹Ê¾ï¿½ï¿½Îªï¿½Ë¼ï¿½ï¿½ï¿½ï¿½Ïµï¿½Ä¬ï¿½ï¿½ÎªYï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªYï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªNï¿½ï¿½
+	private String excludeSpid;		//ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼Û»î¶¯ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼Û»î¶¯
+	private Integer rebates;			//Ã¿ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer rebatesmax;			//Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String rebatestype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Í¿ï¿½ 
+	private Long drawactivity;  		//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ó·µ»ï¿½È¯ï¿½ï¿½ï¿½Ã³é½±ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ ï¿½é½±ï¿½î¶¯id
+	private Integer drawperiod;			//ï¿½ï¿½Æ±ï¿½É¹ï¿½ï¿½ï¿½È¡ï¿½ï¿½È¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	private Integer bindDrawCardNum;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	private Long bindgoods;				//ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ ï¿½ï¿½ï¿½×²ï¿½
+	private Integer bindnum;			//ï¿½×²Í¹ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer ipLimitedOrderCount;//ï¿½ï¿½ipï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½	
+	private Long spcounterid;			//Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
 	
-	/***ÒµÎñÐÅÏ¢----------------------------------------------------------------------------------------------*/
-	private Timestamp playTimeFrom;		// ³¡´Î¿ªÊ¼ÈÕÆÚ
-	private Timestamp playTimeTo;		// ³¡´Î½áÊøÈÕÆÚ	
-	private String excludeOpiFlg;		// ÅÅ³ýÌØÊâ³¡´ÎY£ºÅÅ³ý£¬N£º²»ÅÅ³ý	
-	private String time1;				//·ÅÓ³Ê±¶ÎÏÞ¶¨1£º0000 ³¡´ÎÊ±¶Î
-	private String time2;				//·ÅÓ³Ê±¶ÎÏÞ¶¨2£º2400 ³¡´ÎÊ±¶Î
-	private String weektype;			//³¡´ÎÖÜ¼¸ ³¡´ÎÐÇÆÚ
+	/***Òµï¿½ï¿½ï¿½ï¿½Ï¢----------------------------------------------------------------------------------------------*/
+	private Timestamp playTimeFrom;		// ï¿½ï¿½ï¿½Î¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+	private Timestamp playTimeTo;		// ï¿½ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
+	private String excludeOpiFlg;		// ï¿½Å³ï¿½ï¿½ï¿½ï¿½â³¡ï¿½ï¿½Yï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½	
+	private String time1;				//ï¿½ï¿½Ó³Ê±ï¿½ï¿½ï¿½Þ¶ï¿½1ï¿½ï¿½0000 ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String time2;				//ï¿½ï¿½Ó³Ê±ï¿½ï¿½ï¿½Þ¶ï¿½2ï¿½ï¿½2400 ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String weektype;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ü¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	private String relatedid;			//´ó·ÖÀàÁÐ±í  ³¡¹ÝID
-	private String relatedidEnable;	    // ³¡¹ÝIDÊÇ·ñ¿ÉÓÃ£¬ÎªÁË¼æÈÝÀÏµÄÄ¬ÈÏÎªY£¬¿ÉÓÃÎªY£¬²»¿ÉÓÃÎªN
-	private String categoryid;			//Ð¡·ÖÀàÁÐ±í ÏîÄ¿ID
-	private String categoryidEnable;	//	ÏîÄ¿IDÊÇ·ñ¿ÉÓÃ£¬ÎªÁË¼æÈÝÀÏµÄÄ¬ÈÏÎªY£¬¿ÉÓÃÎªY£¬²»¿ÉÓÃÎªN
-	private String itemid;				//ÏêÏ¸·ÖÀàÁÐ±í ³¡´ÎID
-	private String itemidEnable;		//	³¡´ÎIDÊÇ·ñ¿ÉÓÃ£¬ÎªÁË¼æÈÝÀÏµÄÄ¬ÈÏÎªY£¬¿ÉÓÃY£¬²»¿ÉÓÃÎªN
-	private String roomId;				// Ó°ÌüID
-	private String roomIdEnable;		// Ó°ÌüIDÊÇ·ñ¿ÉÓÃ
-	private String goodsid;				//³¡µØ·ÖÀàÁÐ±í ÎïÆ·ID
-	//±ÈÂÊ rateinfo gainGoodsBindMovieQuantity
-	private String seatType;			//×ùÎ»ÀàÐÍ Ö§³Ö×ùÎ»
-	private String edition;				//°æ±¾Êý¾Ý °æ±¾
-	private Integer price1;				//Âô¼Û·¶Î§1
-	private Integer price2;				//Âô¼Û·¶Î§2
-	private Integer pricegap;			//gewaÂô¼ÛÓë³É±¾¼Û ²î¼Û·¶Î§
-	private Integer costprice1;			//³É±¾¼Û·¶Î§1
-	private Integer costprice2;			//³É±¾¼Û·¶Î§2
-	private String fieldid;				//³¡µØ·ÖÀàÁÐ±í ³¡µØID
-	private Integer daynum;			// ÓÐÐ§ÌìÊý 
+	private String relatedid;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½  ï¿½ï¿½ï¿½ï¿½ID
+	private String relatedidEnable;	    // ï¿½ï¿½ï¿½ï¿½IDï¿½Ç·ï¿½ï¿½ï¿½Ã£ï¿½Îªï¿½Ë¼ï¿½ï¿½ï¿½ï¿½Ïµï¿½Ä¬ï¿½ï¿½ÎªYï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªYï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªN
+	private String categoryid;			//Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ ï¿½ï¿½Ä¿ID
+	private String categoryidEnable;	//	ï¿½ï¿½Ä¿IDï¿½Ç·ï¿½ï¿½ï¿½Ã£ï¿½Îªï¿½Ë¼ï¿½ï¿½ï¿½ï¿½Ïµï¿½Ä¬ï¿½ï¿½ÎªYï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªYï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªN
+	private String itemid;				//ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½ID
+	private String itemidEnable;		//	ï¿½ï¿½ï¿½ï¿½IDï¿½Ç·ï¿½ï¿½ï¿½Ã£ï¿½Îªï¿½Ë¼ï¿½ï¿½ï¿½ï¿½Ïµï¿½Ä¬ï¿½ï¿½ÎªYï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªN
+	private String roomId;				// Ó°ï¿½ï¿½ID
+	private String roomIdEnable;		// Ó°ï¿½ï¿½IDï¿½Ç·ï¿½ï¿½ï¿½ï¿½
+	private String goodsid;				//ï¿½ï¿½ï¿½Ø·ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ ï¿½ï¿½Æ·ID
+	//ï¿½ï¿½ï¿½ï¿½ rateinfo gainGoodsBindMovieQuantity
+	private String seatType;			//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ Ö§ï¿½ï¿½ï¿½ï¿½Î»
+	private String edition;				//ï¿½æ±¾ï¿½ï¿½ï¿½ï¿½ ï¿½æ±¾
+	private Integer price1;				//ï¿½ï¿½ï¿½Û·ï¿½Î§1
+	private Integer price2;				//ï¿½ï¿½ï¿½Û·ï¿½Î§2
+	private Integer pricegap;			//gewaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É±ï¿½ï¿½ï¿½ ï¿½ï¿½Û·ï¿½Î§
+	private Integer costprice1;			//ï¿½É±ï¿½ï¿½Û·ï¿½Î§1
+	private Integer costprice2;			//ï¿½É±ï¿½ï¿½Û·ï¿½Î§2
+	private String fieldid;				//ï¿½ï¿½ï¿½Ø·ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½ID
+	private Integer daynum;			// ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ 
 	
 	private BaseObject relate;
 
-	private Timestamp createtime;		//´´½¨Ê±¼ä
-	private Timestamp updatetime;		//ÊýÁ¿¸üÐÂÊ±¼ä
+	private Timestamp createtime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp updatetime;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		
 	@Override
 	public Serializable realId() {
@@ -183,13 +183,19 @@ public class PromotionVo extends BaseVo{
 		this.paymethod = paymethod;
 	}
 	public boolean isValidPaymethod(String spaymethod, String paybank){
-		if(StringUtils.isBlank(this.paymethod)) return true;
+		if(StringUtils.isBlank(this.paymethod)) {
+            return true;
+        }
 		String[] pmList = StringUtils.split(this.paymethod, ",");
 		for(String pm: pmList){
-			if(StringUtils.equals(pm, spaymethod)) return true;
+			if(StringUtils.equals(pm, spaymethod)) {
+                return true;
+            }
 			String[] pair = StringUtils.split(pm, ":");
 			if(StringUtils.equals(pair[0], spaymethod)){
-				if(pair.length==1 || pair.length>1 && StringUtils.equals(pair[1], paybank)) return true;
+				if(pair.length==1 || pair.length>1 && StringUtils.equals(pair[1], paybank)) {
+                    return true;
+                }
 			}
 		}
 		return false;
@@ -492,7 +498,7 @@ public class PromotionVo extends BaseVo{
 			day = hour/24;
 			hour = hour % 24;
 		}
-		String result = (day > 0?day+"Ìì":"") + (hour>0? hour+"Ð¡Ê±":"") + (min>0?min+"·Ö":"");
+		String result = (day > 0?day+"ï¿½ï¿½":"") + (hour>0? hour+"Ð¡Ê±":"") + (min>0?min+"ï¿½ï¿½":"");
 		return result;
 	}
 	
@@ -556,23 +562,23 @@ public class PromotionVo extends BaseVo{
 	public String gainDiscountType(){
 		String tmp = "";
 		if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERORDER)){
-			tmp = "Á¢¼õ";
+			tmp = "ï¿½ï¿½ï¿½ï¿½";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERTICKET)){
-			tmp = "Á¢¼õ";
+			tmp = "ï¿½ï¿½ï¿½ï¿½";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERCENT)){
-			tmp = "ÕÛ¿Û";
+			tmp = "ï¿½Û¿ï¿½";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_BUYONE_GIVEONE)){
-			tmp = tmp + "Âò1ËÍ1";
+			tmp = tmp + "ï¿½ï¿½1ï¿½ï¿½1";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_FIXPRICE)){
-			tmp = "£¤" + this.discount;
+			tmp = "ï¿½ï¿½" + this.discount;
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
-			tmp = "»î¶¯";
+			tmp = "ï¿½î¶¯";
 		}
 		if(StringUtils.isBlank(tmp)){
 			if(this.rebates>0){
-				tmp = "Á¢·µ";
+				tmp = "ï¿½ï¿½ï¿½ï¿½";
 			}else{
-				tmp = "ÓÅ»Ý";
+				tmp = "ï¿½Å»ï¿½";
 			}
 		}
 		return tmp;
@@ -588,21 +594,21 @@ public class PromotionVo extends BaseVo{
 		}
 		String tmp = "";
 		if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERORDER)){
-			tmp = "¼õ";
+			tmp = "ï¿½ï¿½";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERTICKET)){
-			tmp = "¼õ";
+			tmp = "ï¿½ï¿½";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERCENT)){
-			tmp = "ÕÛ";
+			tmp = "ï¿½ï¿½";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_BUYONE_GIVEONE)){
-			tmp = "ËÍ";
+			tmp = "ï¿½ï¿½";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_FIXPRICE)){
-			tmp = "»Ý";
+			tmp = "ï¿½ï¿½";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
-			tmp = "»Ý";
+			tmp = "ï¿½ï¿½";
 		}
 		if(StringUtils.isBlank(tmp)){
 			if(this.rebates>0){
-				tmp = "·µ";
+				tmp = "ï¿½ï¿½";
 			}
 		}
 		return tmp;
@@ -619,19 +625,25 @@ public class PromotionVo extends BaseVo{
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERTICKET)){
 			tmp = "discountÔª";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERCENT)){
-			tmp = "discountÕÛ";
+			tmp = "discountï¿½ï¿½";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_BUYONE_GIVEONE)){
-			tmp = "ÂòÒ»ËÍÒ»";
+			tmp = "ï¿½ï¿½Ò»ï¿½ï¿½Ò»";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_FIXPRICE)){
 			tmp = "discountÔª";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
-			tmp = "ÆäËû";
+			tmp = "ï¿½ï¿½ï¿½ï¿½";
 		}
 		if(StringUtils.isBlank(tmp)){
 			if(this.rebates>0){
-				if(hasRebatestype("Y")) tmp += "rebatesÔª";
-				if(hasRebatestype("P")) tmp += "rebates»ý·Ö";
-				if(hasRebatestype("A") || hasRebatestype("D")) tmp += "rebatesÔªÈ¯";
+				if(hasRebatestype("Y")) {
+                    tmp += "rebatesÔª";
+                }
+				if(hasRebatestype("P")) {
+                    tmp += "rebatesï¿½ï¿½ï¿½ï¿½";
+                }
+				if(hasRebatestype("A") || hasRebatestype("D")) {
+                    tmp += "rebatesÔªÈ¯";
+                }
 				tmp = StringUtils.replace(tmp, "rebates", rebatesText);
 			}
 		}
@@ -643,18 +655,18 @@ public class PromotionVo extends BaseVo{
 		String tmp = "bankname";
 		if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERORDER)){
 			if(this.discount != null && this.discount > 0){
-				tmp = tmp + "Ã¿±Ê¶©µ¥Á¢¼õdiscountÔª";
+				tmp = tmp + "Ã¿ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½discountÔª";
 			}
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERTICKET)){
 			if(this.discount != null && this.discount > 0){
-				tmp = tmp + "Ã¿ÕÅÆ±Á¢¼õdiscountÔª";
+				tmp = tmp + "Ã¿ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½discountÔª";
 			}
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERCENT)){
-			tmp = tmp + "Ã¿±Ê¶©µ¥discountÕÛÓÅ»Ý";
+			tmp = tmp + "Ã¿ï¿½Ê¶ï¿½ï¿½ï¿½discountï¿½ï¿½ï¿½Å»ï¿½";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_BUYONE_GIVEONE)){
-			tmp = tmp + "¿ÉÏíÊÜÂòÒ»ËÍÒ»";
+			tmp = tmp + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ò»";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_FIXPRICE)){
-			tmp = tmp + "Ã¿ÕÅÆ±½öÐèdiscountÔª";
+			tmp = tmp + "Ã¿ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½discountÔª";
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
 			tmp = tmp + this.description;
 		}
@@ -662,13 +674,19 @@ public class PromotionVo extends BaseVo{
 		tmp = StringUtils.replace(tmp, "discount", discountText);
 		if(this.rebates>0){
 			if((hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERTICKET) || hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERORDER)) && !(this.discount != null && this.discount > 0)){
-				tmp += "Á¢·µrebates";
+				tmp += "ï¿½ï¿½ï¿½ï¿½rebates";
 			}else{
-				tmp += ", Á¢·µrebates";
+				tmp += ", ï¿½ï¿½ï¿½ï¿½rebates";
 			}
-			if(hasRebatestype("Y")) tmp += "Ôª";
-			if(hasRebatestype("P")) tmp += "»ý·Ö";
-			if(hasRebatestype("A") || hasRebatestype("D")) tmp += "ÔªÈ¯";
+			if(hasRebatestype("Y")) {
+                tmp += "Ôª";
+            }
+			if(hasRebatestype("P")) {
+                tmp += "ï¿½ï¿½ï¿½ï¿½";
+            }
+			if(hasRebatestype("A") || hasRebatestype("D")) {
+                tmp += "ÔªÈ¯";
+            }
 			tmp = StringUtils.replace(tmp, "rebates", rebatesText);
 		}
 		return tmp;
@@ -685,7 +703,9 @@ public class PromotionVo extends BaseVo{
 		}
 		if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_PERCENT)){
 			String tmpPattern = "0";
-			if(tmp !=0 && (100-tmp)%10>0) tmpPattern = "0.0";
+			if(tmp !=0 && (100-tmp)%10>0) {
+                tmpPattern = "0.0";
+            }
 			tmpDiscount = VmBaseUtil.formatPercent(100-tmp, 10, tmpPattern);
 		}else if(hasDistype(SalesPromotionConstant.DISCOUNT_TYPE_BUYONE_GIVEONE)){
 			tmpDiscount = "X";
@@ -946,7 +966,7 @@ public class PromotionVo extends BaseVo{
 	public void setSpType(String spType) {
 		this.spType = spType;
 	}
-	//Èç¹ûÊÇ±í´ïÊ½µÄ»î¶¯²¢ÇÒÓÐ¹«Ê½ÊýÁ¿ÏÞÖÆµÄ£¬Ôò°´¹«Ê½ÊýÁ¿µÄÀ´¼ÆËãÊýÁ¿£¬Èç£º1-2ÕÅ°´ÕÛ¿Û¼Û¸ñ£¬³¬³ö2ÕÅµÄ°´Ô­¼Û
+	//ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ê½ï¿½Ä»î¶¯ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆµÄ£ï¿½ï¿½ò°´¹ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç£º1-2ï¿½Å°ï¿½ï¿½Û¿Û¼Û¸ñ£¬³ï¿½ï¿½ï¿½2ï¿½ÅµÄ°ï¿½Ô­ï¿½ï¿½
 	public Integer gainRealQuantity(int quantity){
 		if(StringUtils.equals(distype, SalesPromotionConstant.DISCOUNT_TYPE_EXPRESSION)){
 			Map<String, String> otherMap = JsonUtils.readJsonToMap(otherinfo);

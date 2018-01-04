@@ -21,7 +21,7 @@ import com.alibaba.dubbo.rpc.cluster.Cluster;
 import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
- * Ê§°Ü×Ô¶¯»Ö¸´£¬ºóÌ¨¼ÇÂ¼Ê§°ÜÇëÇó£¬¶¨Ê±ÖØ·¢£¬Í¨³£ÓÃÓÚÏûÏ¢Í¨Öª²Ù×÷¡£
+ * Ê§ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½Â¼Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬¶ï¿½Ê±ï¿½Ø·ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * <a href="http://en.wikipedia.org/wiki/Failback">Failback</a>
  * 
@@ -31,6 +31,7 @@ public class FailbackCluster implements Cluster {
 
     public final static String NAME = "failback";    
 
+    @Override
     public <T> Invoker<T> join(Directory<T> directory) throws RpcException {
         return new FailbackClusterInvoker<T>(directory);
     }

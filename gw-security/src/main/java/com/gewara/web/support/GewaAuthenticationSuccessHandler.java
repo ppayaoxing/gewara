@@ -209,8 +209,9 @@ public class GewaAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 		if (StringUtils.isNotBlank(partner)) {
 			target = successUrlMap.get(partner);
 		}
-		if (StringUtils.isNotBlank(target))
-			return target;
+		if (StringUtils.isNotBlank(target)) {
+            return target;
+        }
 		return super.determineTargetUrl(request, response);
 	}
 

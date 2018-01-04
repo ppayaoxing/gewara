@@ -14,16 +14,21 @@ public class QueryStrBuilder {
 	private String encode = "utf-8";
 	private String queryStr = "";
 	public void buildQueryStr(Map<String, String[]> params, String[] paramNames){
-		//1¡¢»ñÈ¡²éÑ¯´®
+		//1ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ñ¯ï¿½ï¿½
 		List<String> keyList = new ArrayList<String>();
 		if(params != null){
-			if(paramNames==null) keyList.addAll(params.keySet());
-			else keyList.addAll(Arrays.asList(paramNames));
+			if(paramNames==null) {
+                keyList.addAll(params.keySet());
+            } else {
+                keyList.addAll(Arrays.asList(paramNames));
+            }
 			Collections.sort(keyList);
 			for(String key: keyList){
 				Object values = params.get(key);
-				if(values==null) continue;
-				if(values instanceof String[]){//¶àÖµ
+				if(values==null) {
+                    continue;
+                }
+				if(values instanceof String[]){//ï¿½ï¿½Öµ
 					for(String value:(String[])values){
 						if(StringUtils.isNotBlank(value)){
 							try {
@@ -32,7 +37,7 @@ public class QueryStrBuilder {
 							}
 						}
 					}
-				}else{//µ¥Öµ
+				}else{//ï¿½ï¿½Öµ
 					try {
 						queryStr += "&" + key + "=" + URLEncoder.encode(""+values,encode);
 					} catch (UnsupportedEncodingException e) {
@@ -47,17 +52,23 @@ public class QueryStrBuilder {
 	public String getQueryStr(String fieldname, Object fieldvalue){
 		String value = "";
 		try {
-			if(fieldvalue != null) value = URLEncoder.encode(fieldvalue.toString(), encode);
+			if(fieldvalue != null) {
+                value = URLEncoder.encode(fieldvalue.toString(), encode);
+            }
 		} catch (UnsupportedEncodingException e) {
 		}
 		String result = this.queryStr;
 		int idx1 = StringUtils.indexOf(result, "&"+fieldname+"=");
-		if(idx1 >= 0){//Ìæ»»ÐÂÖµ
+		if(idx1 >= 0){//ï¿½æ»»ï¿½ï¿½Öµ
 			int idx2 = StringUtils.indexOf(result, '&', idx1 + 1);
-			if(idx2 == -1) idx2 = result.length();
+			if(idx2 == -1) {
+                idx2 = result.length();
+            }
 			result = result.substring(0, idx1 + 1) + fieldname + "=" + value + result.substring(idx2);
 		}else{
-			if(StringUtils.isNotBlank(value)) result += "&" + fieldname + "=" + value;
+			if(StringUtils.isNotBlank(value)) {
+                result += "&" + fieldname + "=" + value;
+            }
 		}
 		return result.substring(1);
 	}

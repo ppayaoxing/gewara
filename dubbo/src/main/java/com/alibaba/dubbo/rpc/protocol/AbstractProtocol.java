@@ -54,7 +54,8 @@ public abstract class AbstractProtocol implements Protocol {
 		return ProtocolUtils.serviceKey(port, serviceName, serviceVersion, serviceGroup);
 	}
 	
-	public void destroy() {
+	@Override
+    public void destroy() {
 	    for (Invoker<?> invoker : invokers){
 	        if (invoker != null) {
 	            invokers.remove(invoker);

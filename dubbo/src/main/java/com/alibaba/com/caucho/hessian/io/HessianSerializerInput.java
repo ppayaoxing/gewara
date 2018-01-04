@@ -114,8 +114,9 @@ public class HessianSerializerInput extends HessianInput {
     try {
       Object obj = cl.newInstance();
 
-      if (_refs == null)
-        _refs = new ArrayList();
+      if (_refs == null) {
+          _refs = new ArrayList();
+      }
       _refs.add(obj);
 
       HashMap fieldMap = getFieldMap(cl);
@@ -137,8 +138,9 @@ public class HessianSerializerInput extends HessianInput {
         }
       }
       
-      if (code != 'z')
-        throw expect("map", code);
+      if (code != 'z') {
+          throw expect("map", code);
+      }
 
       // if there's a readResolve method, call it
       try {
@@ -168,8 +170,9 @@ public class HessianSerializerInput extends HessianInput {
         Field field = fields[i];
 
         if (Modifier.isTransient(field.getModifiers()) ||
-            Modifier.isStatic(field.getModifiers()))
-          continue;
+            Modifier.isStatic(field.getModifiers())) {
+            continue;
+        }
 
         // XXX: could parameterize the handler to only deal with public
         field.setAccessible(true);

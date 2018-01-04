@@ -20,7 +20,7 @@ import com.gewara.util.WebLogger;
 
 /**
  * @author ge.biao
- * TODO:¼ì²âÏµÍ³²»½¡¿µ£¬×Ô¶¯ÏÂÏß
+ * TODO:ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 public class OpenApiRegServiceImpl implements OpenApiRegService, BeforeUpdateService {
 	private GewaLogger logger = WebLogger.getLogger(getClass());
@@ -35,7 +35,7 @@ public class OpenApiRegServiceImpl implements OpenApiRegService, BeforeUpdateSer
 	}
 	
 	/**
-	 * OPENAPI·þÎñ×¢²á´¦Àí
+	 * OPENAPIï¿½ï¿½ï¿½ï¿½×¢ï¿½á´¦ï¿½ï¿½
 	 */
 	@Override
 	public void registerOpenApi(final String path, final String data){
@@ -54,7 +54,7 @@ public class OpenApiRegServiceImpl implements OpenApiRegService, BeforeUpdateSer
 				if(!keeperService.exist(path)){
 					keeperService.addPresistentNode(path, System.currentTimeMillis()+"");
 				}
-				logger.warn("zookeeperÌí¼ÓÁÙÊ±½Úµã £º " + path + " ½ÚµãÄÚÈÝÎª£º" + data);
+				logger.warn("zookeeperï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Úµï¿½ ï¿½ï¿½ " + path + " ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½" + data);
 				keeperService.registerNode(path + "/s", data);
 				Set<String> dataList = regData.get(path);
 				if(dataList==null){
@@ -69,7 +69,7 @@ public class OpenApiRegServiceImpl implements OpenApiRegService, BeforeUpdateSer
 	}
 	@Override
 	public void unregisterOpenApi(){
-		//×¢ÏúOPENAPI
+		//×¢ï¿½ï¿½OPENAPI
 		logger.warn("unregister to openapi~~");
 		for(Map.Entry<String, Set<String>> reg: regData.entrySet()){
 			for(String data: reg.getValue()){
@@ -92,7 +92,7 @@ public class OpenApiRegServiceImpl implements OpenApiRegService, BeforeUpdateSer
 			}else{
 				try {
 					logger.warn("testOpenapi2000 failure!!");
-					Thread.sleep(3000l);
+					Thread.sleep(3000L);
 				} catch (InterruptedException e) {
 				}
 			}

@@ -18,20 +18,20 @@ public class PubSaleVo extends BaseVo {
 	public static final String SALETYPE_GOODS = "goods";
 	public static final String SALETYPE_CARD = "card";
 	private Long id;
-	private String name; 			// Ãû³Æ
-	private Integer lowerprice; 	// µÍ¼Û µ¥Î»·Ö ²»ÊÇÔª
-	private Integer curprice; 		// µ±Ç°¾ºÅÄ¼Û µ¥Î»·Ö ²»ÊÇÔª
-	private String dupprice; 		// Ã¿´ÎÌáÉý½ð¶î µ¥Î»·Ö ²»ÊÇÔª
-	private Integer needpoint; 	// Ã¿´Î¾ºÅÄÐèÒª»ý·Ö
-	private Integer countdown; 	// µ¹¼ÆÊ±
-	private Integer ordernum; 		// ÅÅÐò
-	private Timestamp begintime; 	// ¿ªÊ¼Ê±¼ä
-	private Timestamp endtime; 	// ½áÊøÊ±¼ä
+	private String name; 			// ï¿½ï¿½ï¿½ï¿½
+	private Integer lowerprice; 	// ï¿½Í¼ï¿½ ï¿½ï¿½Î»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ôª
+	private Integer curprice; 		// ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ä¼ï¿½ ï¿½ï¿½Î»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ôª
+	private String dupprice; 		// Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ôª
+	private Integer needpoint; 	// Ã¿ï¿½Î¾ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+	private Integer countdown; 	// ï¿½ï¿½ï¿½ï¿½Ê±
+	private Integer ordernum; 		// ï¿½ï¿½ï¿½ï¿½
+	private Timestamp begintime; 	// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	private Timestamp endtime; 	// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	private String status; 			// ×´Ì¬ N, Y, N_DELETE 
 	private String logo;
-	private String source;			//À´Ô´
-	private String remark; 			// ÃèÊö
-	private String description;	// ÏêÏ¸
+	private String source;			//ï¿½ï¿½Ô´
+	private String remark; 			// ï¿½ï¿½ï¿½ï¿½
+	private String description;	// ï¿½ï¿½Ï¸
 	private Integer version;
 	private String nickname;
 	private Long memberid;
@@ -40,9 +40,9 @@ public class PubSaleVo extends BaseVo {
 	private String cardpass;
 	private String citycode;
 	private Long goodsid;
-	private Integer pubperiod;			//¿ÉÅÄÖÜÆÚ
-	private Integer pubnumber;			//¿ÉÅÄÖÜÆÚ´ÎÊý
-	private Integer unitMinute;			//³É¹¦ºó·ÖÖÓÊý
+	private Integer pubperiod;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer pubnumber;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½
+	private Integer unitMinute;			//ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String expressid;
 	@Override
 	public Serializable realId() {
@@ -169,8 +169,9 @@ public class PubSaleVo extends BaseVo {
 	}
 
 	public String getLimg() {
-		if (StringUtils.isBlank(logo))
-			return "img/default_head.png";
+		if (StringUtils.isBlank(logo)) {
+            return "img/default_head.png";
+        }
 		return logo;
 	}
 
@@ -181,24 +182,31 @@ public class PubSaleVo extends BaseVo {
 
 	public boolean isProgress() {
 		Timestamp curtime = new Timestamp(System.currentTimeMillis());
-		if(endtime != null)
-			return begintime.before(curtime) && endtime.after(curtime);
+		if(endtime != null) {
+            return begintime.before(curtime) && endtime.after(curtime);
+        }
 		return begintime.before(curtime);
 	}
 	public boolean isEnd(Timestamp curtime) {
-		if(endtime == null) return false;
+		if(endtime == null) {
+            return false;
+        }
 		return endtime.before(curtime);
 	}
 	public boolean isEnd2() {
-		if(endtime == null) return false;
+		if(endtime == null) {
+            return false;
+        }
 		Timestamp curtime = new Timestamp(System.currentTimeMillis());
 		return curtime.after(endtime);
 	}
 	public boolean isEnd3() {
 		if(endtime == null){
-			if(Status.N.equals(status))
-				return true;
-			else  return false;
+			if(Status.N.equals(status)) {
+                return true;
+            } else {
+                return false;
+            }
 		}
 		Timestamp curtime = new Timestamp(System.currentTimeMillis());
 		Timestamp endt = DateUtil.addMinute(endtime, 5);
@@ -206,9 +214,11 @@ public class PubSaleVo extends BaseVo {
 	}
 	public boolean isEnd4(Timestamp curtime) {
 		if(endtime == null){
-			if(Status.N.equals(status))
-				return false;
-			else return true;
+			if(Status.N.equals(status)) {
+                return false;
+            } else {
+                return true;
+            }
 		}
 		Timestamp t = DateUtil.addSecond(curtime, -2);
 		return t.after(endtime);
@@ -274,14 +284,18 @@ public class PubSaleVo extends BaseVo {
 		this.dupprice = dupprice;
 	}
 	public Double gainRprice(Integer p){
-		if(p == null) return 0.0;
+		if(p == null) {
+            return 0.0;
+        }
 		Double d = p/100.00;
 		return d;
 	}
 	
 	public List<Double> gainDupprice(){
 		List<Double> dList = new ArrayList<Double>();
-		if(StringUtils.isBlank(this.dupprice)) return dList;
+		if(StringUtils.isBlank(this.dupprice)) {
+            return dList;
+        }
 		List<Integer> tmpList = BeanUtil.getIntgerList(this.dupprice, ",");
 		try{
 			for (Integer tmp : tmpList) {

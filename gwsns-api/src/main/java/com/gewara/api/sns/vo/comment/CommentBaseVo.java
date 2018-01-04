@@ -13,28 +13,28 @@ import com.gewara.util.BeanUtil;
 public class CommentBaseVo extends BaseVo{
 
 	private static final long serialVersionUID = 4476980910614491968L;
-	public static final String POINT_MODERATOR = "moderator";	//·¢±íÍÛÀ²»°Ìâ¼Ó»ý·Ö
-	public static final String SUSPECTED_AD_T = "T";//ÒÉËÆ×ªÆ±µÈ¹ã¸æÍÛÀ²
-	public static final String SUSPECTED_AD_F = "F";//·ÇÒÉËÆ×ªÆ±µÈ¹ã¸æÍÛÀ²
-	public static final String TYPE_ADDREPLY = "add";//»Ø¸´Êý¼ÓÒ»
-	public static final String TYPE_DOWNREPLY = "down";//»Ø¸´Êý¼õÒ»
+	public static final String POINT_MODERATOR = "moderator";	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½
+	public static final String SUSPECTED_AD_T = "T";//ï¿½ï¿½ï¿½ï¿½×ªÆ±ï¿½È¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String SUSPECTED_AD_F = "F";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªÆ±ï¿½È¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TYPE_ADDREPLY = "add";//ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½Ò»
+	public static final String TYPE_DOWNREPLY = "down";//ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½Ò»
 
 	protected Long id;
 	protected String body;
 	protected Timestamp addtime;
 	protected String tag;
 	protected Long relatedid;
-	protected Integer flowernum; //ÏÊ»¨Êý
+	protected Integer flowernum; //ï¿½Ê»ï¿½ï¿½ï¿½
 	protected String status;
 	protected Long memberid;
 	protected String nickname;
 	protected String flag;
-	protected Long transferid;//×ªÔØid
-	protected String address;//·¢±íÀ´Ô´
-	protected Integer replycount;//»Ø¸´Êý
-	protected Integer transfercount;//×ªÔØÊý
+	protected Long transferid;//×ªï¿½ï¿½id
+	protected String address;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
+	protected Integer replycount;//ï¿½Ø¸ï¿½ï¿½ï¿½
+	protected Integer transfercount;//×ªï¿½ï¿½ï¿½ï¿½
 	protected Timestamp replytime;
-	protected String topic;	// WALAÖ÷Ìâ
+	protected String topic;	// WALAï¿½ï¿½ï¿½ï¿½
 	protected Integer generalmark;
 	protected String otherinfo;
 	protected String apptype;
@@ -42,37 +42,37 @@ public class CommentBaseVo extends BaseVo{
 	protected String pointx;
 	protected String pointy;
 	protected String ip;
-	protected Integer sumTRNum;//»Ø¸´+ ×ªÔØÊýºÍ
-	protected Integer bodyLength;//·¢²¼ÍÛÀ²µÄÄÚÈÝ³¤¶È
-	protected String suspectedAd;//ÊÇ·ñÒÉËÆ¹ã¸æwala£¬ÕâÀàÍÛÀ²ÅÅ³ýÔÚÈÈÃÅÍÛÀ²Íâ
-	protected Timestamp orderTime;//ÓÃÀ´ÅÅÐòµÄÊ±¼ä£¬¸ù¾Ý»Ø¸´£¬×ª·¢»ò¶¥À´È¨ÖØ¼Ó³É
-	protected Integer recommendTop;//ÖÃ¶¥ÍÆ¼öÅÅÐò  1×ö¹ýÖÃ¶¥ÍÆ¼ö
-	protected String flowernumMember;//ÔÞÍ¬µÄÇ°10Î»ÓÃ»§
+	protected Integer sumTRNum;//ï¿½Ø¸ï¿½+ ×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected Integer bodyLength;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½
+	protected String suspectedAd;//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Æ¹ï¿½ï¿½walaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected Timestamp orderTime;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½ï¿½Ý»Ø¸ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½Ø¼Ó³ï¿½
+	protected Integer recommendTop;//ï¿½Ã¶ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½  1ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½Æ¼ï¿½
+	protected String flowernumMember;//ï¿½ï¿½Í¬ï¿½ï¿½Ç°10Î»ï¿½Ã»ï¿½
 	
-	protected String title;	//±êÌâ
-	protected String videopath;	//ÊÓÆµÂ·¾¶
-	protected String mtids;		//±êÇ©IDS
-	protected Long moderatorid;//»°Ìâid
-	protected Integer basicweight;	//»ù´¡È¨ÖØ
-	protected Integer timeweight;		//Ê±¼äÈ¨ÖØ
+	protected String title;	//ï¿½ï¿½ï¿½ï¿½
+	protected String videopath;	//ï¿½ï¿½ÆµÂ·ï¿½ï¿½
+	protected String mtids;		//ï¿½ï¿½Ç©IDS
+	protected Long moderatorid;//ï¿½ï¿½ï¿½ï¿½id
+	protected Integer basicweight;	//ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½
+	protected Integer timeweight;		//Ê±ï¿½ï¿½È¨ï¿½ï¿½
 	
-	protected String picturename;	//Í¼Æ¬Â·¾¶
-	protected String type;		//ÍÛÀ²ÀàÐÍ  ÎÊ´ðqa¡¢»°Ìâdebate
-	protected String htmltext;	//ÊÇ·ñÓÐbody
+	protected String picturename;	//Í¼Æ¬Â·ï¿½ï¿½
+	protected String type;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Ê´ï¿½qaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½debate
+	protected String htmltext;	//ï¿½Ç·ï¿½ï¿½ï¿½body
 	
-	protected Double bodyweight;	//Ö÷ÌåÈ¨ÖØÖµ
-	protected Double changeweight;//ÉçÇø¿É±äÈ¨ÖØ
-	protected Double moviechangeweight;//µçÓ°¿É±äÈ¨ÖØ
-	protected Double weightorder;	//ÉçÇøÈ¨ÖØÅÅÐò×Ö¶Î
-	protected Double movieweightorder;	//µçÓ°È¨ÖØÅÅÐò×Ö¶Î
-	protected Integer validflowernum;	//ÓÐÐ§ÔÞÊý
+	protected Double bodyweight;	//ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½Öµ
+	protected Double changeweight;//ï¿½ï¿½ï¿½ï¿½ï¿½É±ï¿½È¨ï¿½ï¿½
+	protected Double moviechangeweight;//ï¿½ï¿½Ó°ï¿½É±ï¿½È¨ï¿½ï¿½
+	protected Double weightorder;	//ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
+	protected Double movieweightorder;	//ï¿½ï¿½Ó°È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
+	protected Integer validflowernum;	//ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½
 	
-	protected List<Long> biglabelidList;	//´ó±êÇ©idList
+	protected List<Long> biglabelidList;	//ï¿½ï¿½ï¿½Ç©idList
 	protected String biglabelids;
-	protected String redUrl;//ºì°üurl
-	protected String redTag;//ºì°ütag
-	protected String redToken;//ºì°üToken
-	private Integer score;//·¢ÍÛÀ²ÔùËÍ»ý·Ö
+	protected String redUrl;//ï¿½ï¿½ï¿½url
+	protected String redTag;//ï¿½ï¿½ï¿½tag
+	protected String redToken;//ï¿½ï¿½ï¿½Token
+	private Integer score;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½
 	
 	public Integer getValidflowernum() {
 		return validflowernum;
@@ -145,10 +145,15 @@ public class CommentBaseVo extends BaseVo{
 		this.flag = flag;
 	}
 	public void addFlag(String sflag){
-		if(StringUtils.isBlank(sflag)) this.flag = sflag;
+		if(StringUtils.isBlank(sflag)) {
+            this.flag = sflag;
+        }
 		if(!StringUtils.contains(this.flag, sflag)) {
-			if(StringUtils.isBlank(this.flag)) this.flag = sflag;
-			else this.flag += "," + sflag;
+			if(StringUtils.isBlank(this.flag)) {
+                this.flag = sflag;
+            } else {
+                this.flag += "," + sflag;
+            }
 		}
 		
 	}
@@ -197,10 +202,11 @@ public class CommentBaseVo extends BaseVo{
 		return this;
 	}*/
 	public void add2Replycount(String type1){
-		if(TYPE_ADDREPLY.equals(type1))
-			this.replycount +=1;
-		else if(TYPE_DOWNREPLY.equals(type1))
-			this.replycount -=1;
+		if(TYPE_ADDREPLY.equals(type1)) {
+            this.replycount += 1;
+        } else if(TYPE_DOWNREPLY.equals(type1)) {
+            this.replycount -= 1;
+        }
 	}
 	
 	public void addTransfercount(){

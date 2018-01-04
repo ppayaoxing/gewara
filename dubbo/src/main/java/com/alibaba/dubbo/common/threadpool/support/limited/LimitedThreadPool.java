@@ -29,12 +29,13 @@ import com.alibaba.dubbo.common.threadpool.support.AbortPolicyWithReport;
 import com.alibaba.dubbo.common.utils.NamedThreadFactory;
 
 /**
- * ´ËÏß³Ì³ØÒ»Ö±Ôö³¤£¬Ö±µ½ÉÏÏÞ£¬Ôö³¤ºó²»ÊÕËõ¡£
+ * ï¿½ï¿½ï¿½ß³Ì³ï¿½Ò»Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Þ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author <a href="mailto:gang.lvg@alibaba-inc.com">kimi</a>
  */
 public class LimitedThreadPool implements ThreadPool {
 
+    @Override
     public Executor getExecutor(URL url) {
         String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);
         int cores = url.getParameter(Constants.CORE_THREADS_KEY, Constants.DEFAULT_CORE_THREADS);

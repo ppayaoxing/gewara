@@ -36,12 +36,13 @@ public class FileRouterFactory implements RouterFactory {
         this.routerFactory = routerFactory;
     }
     
+    @Override
     public Router getRouter(URL url) {
         try {
-            // File URL 转换成 其它Route URL，然后Load
+            // File URL 转锟斤拷锟斤拷 锟斤拷锟斤拷Route URL锟斤拷然锟斤拷Load
             // file:///d:/path/to/route.js?router=script ==> script:///d:/path/to/route.js?type=js&rule=<file-content>
-            String protocol = url.getParameter(Constants.ROUTER_KEY, ScriptRouterFactory.NAME); // 将原类型转为协议
-            String type = null; // 使用文件后缀做为类型
+            String protocol = url.getParameter(Constants.ROUTER_KEY, ScriptRouterFactory.NAME); // 锟斤拷原锟斤拷锟斤拷转为协锟斤拷
+            String type = null; // 使锟斤拷锟侥硷拷锟斤拷缀锟斤拷为锟斤拷锟斤拷
             String path = url.getPath();
             if (path != null) {
                 int i = path.lastIndexOf('.');

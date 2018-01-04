@@ -18,9 +18,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 /**
- * ÓÃÓÚ»ñÈ¡system.profile¼ÇÂ¼
- * @author ¶­Ã÷
- * @createDate 2015Äê11ÔÂ11ÈÕ
+ * ï¿½ï¿½ï¿½Ú»ï¿½È¡system.profileï¿½ï¿½Â¼
+ * @author ï¿½ï¿½ï¿½ï¿½
+ * @createDate 2015ï¿½ï¿½11ï¿½ï¿½11ï¿½ï¿½
  */
 public class SystemProfileBuilder {
 	private Collection<MongoCollection<Document>> profileCollections=null;
@@ -36,27 +36,29 @@ public class SystemProfileBuilder {
 	}
 	
 	/**
-	 * ÓÃÓÚÔöÁ¿²éÑ¯£¬
-	 * @param date ÉèÖÃÂý²éÑ¯¼ÇÂ¼µÄ×îÐ¡Éú³ÉÊ±¼ä¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½
+	 * @param date ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä¡£
 	 */
 	public SystemProfileBuilder setMinCreateTime(Date ts){
 		Expression expre=new Expression().gt("ts",ts);
-		if(this.condition!=null)
-			expre.bson(this.condition);
+		if(this.condition!=null) {
+            expre.bson(this.condition);
+        }
 		this.condition=expre.toBson();
 		return this;
 	}
 	public SystemProfileBuilder setType(String op){
 		Expression expre=new Expression().gt("op",op);
-		if(this.condition!=null)
-			expre.bson(this.condition);
+		if(this.condition!=null) {
+            expre.bson(this.condition);
+        }
 		this.condition=expre.toBson();
 		return this;
 	}
 	
 	/**
-	 * ÔÚ²éÑ¯½á¹ûÖÐ£¬ÒÑ¾­×Ô¶¯½«ipµØÖ·ÐÅÏ¢¼ÓÈëÁË²éÑ¯½á¹ûÖÐ¡£ 
-	 * ¿ÉÒÔÍ¨¹ýget("hostIP")»ñÈ¡IPÐÅÏ¢£¬ get("hostTag")»ñÈ¡mong·þÎñµÄ¶ÔÓÚtag value¡£
+	 * ï¿½Ú²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½Ñ¾ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ipï¿½ï¿½Ö·ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ 
+	 * ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½get("hostIP")ï¿½ï¿½È¡IPï¿½ï¿½Ï¢ï¿½ï¿½ get("hostTag")ï¿½ï¿½È¡mongï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½tag valueï¿½ï¿½
 	 * 
 	 * @param rowdataProcess
 	 */

@@ -24,32 +24,32 @@ public class BlackMatcher {
 	}
 	
 	/**
-	 * 获取指定uri对应的释放时间
+	 * 锟斤拷取指锟斤拷uri锟斤拷应锟斤拷锟酵凤拷时锟斤拷
 	 * @param uri
 	 * @return
 	 * @author leo
-	 * @addTime 2014年5月20日下午5:37:45
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:37:45
 	 */
 	public Long get(String uri){
 		return matcherMap.get(uri);
 	}
 	
 	/**
-	 * 获取默认uri ip对应的释放时间
+	 * 锟斤拷取默锟斤拷uri ip锟斤拷应锟斤拷锟酵凤拷时锟斤拷
 	 * @return
 	 * @author leo
-	 * @addTime 2014年5月20日下午5:38:28
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:38:28
 	 */
 	public Long get(){
 		return matcherMap.get(AttackConstant.ACCESS_URL_ALL);
 	}
 
 	/**
-	 * 给指定uri设定释放时间
+	 * 锟斤拷指锟斤拷uri锟借定锟酵凤拷时锟斤拷
 	 * @param uri
 	 * @param releaseTime
 	 * @author leo
-	 * @addTime 2014年5月20日下午5:37:21
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:37:21
 	 */
 	public void put(String uri, Long releaseTime){
 		if(StringUtils.isBlank(uri)){
@@ -60,31 +60,31 @@ public class BlackMatcher {
 	}
 	
 	/**
-	 * 默认给uri ip设置释放时间
+	 * 默锟较革拷uri ip锟斤拷锟斤拷锟酵凤拷时锟斤拷
 	 * @param releaseTime
 	 * @author leo
-	 * @addTime 2014年5月20日下午5:36:45
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:36:45
 	 */
 	public void put(Long releaseTime){
 		matcherMap.put(AttackConstant.ACCESS_URL_ALL, releaseTime);
 	}
 	
 	/**
-	 * 删除uri
+	 * 删锟斤拷uri
 	 * @param uri
 	 * @return
 	 * @author leo
-	 * @addTime 2014年5月20日下午5:37:45
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:37:45
 	 */
 	public void remove(String uri){
 		matcherMap.remove(uri);
 	}
 	
 	/**
-	 * 删除默认uri ip
+	 * 删锟斤拷默锟斤拷uri ip
 	 * @return
 	 * @author leo
-	 * @addTime 2014年5月20日下午5:38:28
+	 * @addTime 2014锟斤拷5锟斤拷20锟斤拷锟斤拷锟斤拷5:38:28
 	 */
 	public void remove(){
 		matcherMap.remove(AttackConstant.ACCESS_URL_ALL);
@@ -106,7 +106,9 @@ public class BlackMatcher {
 				flag = true;
 			}
 		}
-		if(flag) matcherMap = tmp;
+		if(flag) {
+            matcherMap = tmp;
+        }
 	}
 	
 	public Long gainReleaseTime(String uri){
@@ -114,7 +116,7 @@ public class BlackMatcher {
 		if(uriReleaseTime!=null){
 			return uriReleaseTime;
 		}
-		//全局
+		//全锟斤拷
 		Long ipReleaseTime = matcherMap.get(AttackConstant.ACCESS_URL_ALL);
 		return ipReleaseTime;
 	}

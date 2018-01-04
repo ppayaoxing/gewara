@@ -64,7 +64,9 @@ public class JSON
 	 */
 	public static String json(Object obj) throws IOException
 	{
-		if( obj == null ) return NULL;
+		if( obj == null ) {
+            return NULL;
+        }
 		StringWriter sw = new StringWriter();
 		try
 		{
@@ -88,10 +90,11 @@ public class JSON
 	
 	public static void json(Object obj, Writer writer, boolean writeClass) throws IOException
 	{
-		if( obj == null )
-			writer.write(NULL);
-		else
-			json(obj, new JSONWriter(writer), writeClass);
+		if( obj == null ) {
+            writer.write(NULL);
+        } else {
+            json(obj, new JSONWriter(writer), writeClass);
+        }
 	}
 
 	/**
@@ -104,7 +107,9 @@ public class JSON
 	 */
 	public static String json(Object obj, String[] properties) throws IOException
 	{
-		if( obj == null ) return NULL;
+		if( obj == null ) {
+            return NULL;
+        }
 		StringWriter sw = new StringWriter();
 		try
 		{
@@ -129,18 +134,20 @@ public class JSON
 	 */
 	public static void json(Object obj, final String[] properties, Writer writer, boolean writeClass) throws IOException
 	{
-		if( obj == null )
-			writer.write(NULL);
-		else
-			json(obj, properties, new JSONWriter(writer), writeClass);
+		if( obj == null ) {
+            writer.write(NULL);
+        } else {
+            json(obj, properties, new JSONWriter(writer), writeClass);
+        }
 	}
 
 	private static void json(Object obj, JSONWriter jb, boolean writeClass) throws IOException
 	{
-		if( obj == null )
-			jb.valueNull();
-		else
-			DEFAULT_CONVERTER.writeValue(obj, jb, writeClass);
+		if( obj == null ) {
+            jb.valueNull();
+        } else {
+            DEFAULT_CONVERTER.writeValue(obj, jb, writeClass);
+        }
 	}
 
 	private static void json(Object obj, String[] properties, JSONWriter jb, boolean writeClass) throws IOException
@@ -159,10 +166,11 @@ public class JSON
 			{
 				jb.objectItem(prop);
 				value = wrapper.getPropertyValue(obj, prop);
-				if( value == null )
-					jb.valueNull();
-				else
-					DEFAULT_CONVERTER.writeValue(value, jb, writeClass);
+				if( value == null ) {
+                    jb.valueNull();
+                } else {
+                    DEFAULT_CONVERTER.writeValue(value, jb, writeClass);
+                }
 			}
 			jb.objectEnd();
 		}

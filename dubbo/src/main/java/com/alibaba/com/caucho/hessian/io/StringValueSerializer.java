@@ -54,14 +54,16 @@ import java.io.IOException;
  * Serializing a remote object.
  */
 public class StringValueSerializer extends AbstractSerializer {
+  @Override
   public void writeObject(Object obj, AbstractHessianOutput out)
     throws IOException
   {
-    if (obj == null)
-      out.writeNull();
-    else {
-      if (out.addRef(obj))
-	return;
+    if (obj == null) {
+        out.writeNull();
+    } else {
+      if (out.addRef(obj)) {
+          return;
+      }
       
       Class cl = obj.getClass();
 

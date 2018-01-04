@@ -29,7 +29,8 @@ public class LocalCacheTools implements CacheTools{
 	}
 
 
-	public Object get(String regionName, String key) {
+	@Override
+    public Object get(String regionName, String key) {
 		String realKey = getRealKey(regionName, key);
 		Object result = cachedUkeyMap.getIfPresent(realKey);
 		if(result == null){
@@ -42,12 +43,14 @@ public class LocalCacheTools implements CacheTools{
 		return result;
 	}
 
-	public void set(String regionName, String key, Object value) {
+	@Override
+    public void set(String regionName, String key, Object value) {
 		cachedUkeyMap.put(getRealKey(regionName, key), value);
 		cacheService.set(regionName, key, value);
 	}
 
-	public void remove(String regionName, String key) {
+	@Override
+    public void remove(String regionName, String key) {
 		cachedUkeyMap.invalidate(getRealKey(regionName, key));
 		cacheService.remove(regionName, key);
 	}

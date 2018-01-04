@@ -124,6 +124,7 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Sets the serializer factory.
    */
+  @Override
   public void setSerializerFactory(SerializerFactory factory)
   {
     _serializerFactory = factory;
@@ -140,6 +141,7 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Initialize the hessian stream with the underlying input stream.
    */
+  @Override
   public void init(InputStream is)
   {
     _is = is;
@@ -150,13 +152,15 @@ public class HessianInput extends AbstractHessianInput {
     _refs = null;
     _replyFault = null;
 
-    if (_serializerFactory == null)
-      _serializerFactory = new SerializerFactory();
+    if (_serializerFactory == null) {
+        _serializerFactory = new SerializerFactory();
+    }
   }
 
   /**
    * Returns the calls method
    */
+  @Override
   public String getMethod()
   {
     return _method;
@@ -177,13 +181,15 @@ public class HessianInput extends AbstractHessianInput {
    * c major minor
    * </pre>
    */
+  @Override
   public int readCall()
     throws IOException
   {
     int tag = read();
     
-    if (tag != 'c')
-      throw error("expected hessian call ('c') at " + codeName(tag));
+    if (tag != 'c') {
+        throw error("expected hessian call ('c') at " + codeName(tag));
+    }
 
     int major = read();
     int minor = read();
@@ -194,6 +200,7 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * For backward compatibility with HessianSkeleton
    */
+  @Override
   public void skipOptionalCall()
     throws IOException
   {
@@ -203,8 +210,9 @@ public class HessianInput extends AbstractHessianInput {
       read();
       read();
     }
-    else
-      _peek = tag;
+    else {
+        _peek = tag;
+    }
   }
 
   /**
@@ -216,13 +224,15 @@ public class HessianInput extends AbstractHessianInput {
    * m b16 b8 method
    * </pre>
    */
+  @Override
   public String readMethod()
     throws IOException
   {
     int tag = read();
     
-    if (tag != 'm')
-      throw error("expected hessian method ('m') at " + codeName(tag));
+    if (tag != 'm') {
+        throw error("expected hessian method ('m') at " + codeName(tag));
+    }
     int d1 = read();
     int d2 = read();
 
@@ -230,8 +240,9 @@ public class HessianInput extends AbstractHessianInput {
     _chunkLength = d1 * 256 + d2;
     _sbuf.setLength(0);
     int ch;
-    while ((ch = parseChar()) >= 0)
-      _sbuf.append((char) ch);
+    while ((ch = parseChar()) >= 0) {
+        _sbuf.append((char) ch);
+    }
     
     _method = _sbuf.toString();
 
@@ -248,6 +259,7 @@ public class HessianInput extends AbstractHessianInput {
    * m b16 b8 method
    * </pre>
    */
+  @Override
   public void startCall()
     throws IOException
   {
@@ -269,6 +281,7 @@ public class HessianInput extends AbstractHessianInput {
    * z
    * </pre>
    */
+  @Override
   public void completeCall()
     throws IOException
   {
@@ -276,29 +289,32 @@ public class HessianInput extends AbstractHessianInput {
 
     if (tag == 'z') {
     }
-    else
-      throw error("expected end of call ('z') at " + codeName(tag) + ".  Check method arguments and ensure method overloading is enabled if necessary");
+    else {
+        throw error("expected end of call ('z') at " + codeName(tag) + ".  Check method arguments and ensure method overloading is enabled if necessary");
+    }
   }
 
   /**
    * Reads a reply as an object.
    * If the reply has a fault, throws the exception.
    */
+  @Override
   public Object readReply(Class expectedClass)
     throws Throwable
   {
     int tag = read();
     
-    if (tag != 'r')
-      error("expected hessian reply at " + codeName(tag));
+    if (tag != 'r') {
+        error("expected hessian reply at " + codeName(tag));
+    }
 
     int major = read();
     int minor = read();
 
     tag = read();
-    if (tag == 'f')
-      throw prepareFault();
-    else {
+    if (tag == 'f') {
+        throw prepareFault();
+    } else {
       _peek = tag;
     
       Object value = readObject(expectedClass);
@@ -318,22 +334,25 @@ public class HessianInput extends AbstractHessianInput {
    * r
    * </pre>
    */
+  @Override
   public void startReply()
     throws Throwable
   {
     int tag = read();
     
-    if (tag != 'r')
-      error("expected hessian reply at " + codeName(tag));
+    if (tag != 'r') {
+        error("expected hessian reply at " + codeName(tag));
+    }
 
     int major = read();
     int minor = read();
     
     tag = read();
-    if (tag == 'f')
-      throw prepareFault();
-    else
-      _peek = tag;
+    if (tag == 'f') {
+        throw prepareFault();
+    } else {
+        _peek = tag;
+    }
   }
 
   /**
@@ -378,13 +397,15 @@ public class HessianInput extends AbstractHessianInput {
    * z
    * </pre>
    */
+  @Override
   public void completeReply()
     throws IOException
   {
     int tag = read();
     
-    if (tag != 'z')
-      error("expected end of reply at " + codeName(tag));
+    if (tag != 'z') {
+        error("expected end of reply at " + codeName(tag));
+    }
   }
 
   /**
@@ -401,8 +422,9 @@ public class HessianInput extends AbstractHessianInput {
   {
     int tag = read();
     
-    if (tag != 'z')
-      error("expected end of reply at " + codeName(tag));
+    if (tag != 'z') {
+        error("expected end of reply at " + codeName(tag));
+    }
   }
 
   /**
@@ -412,6 +434,7 @@ public class HessianInput extends AbstractHessianInput {
    * H b16 b8 value
    * </pre>
    */
+  @Override
   public String readHeader()
     throws IOException
   {
@@ -423,8 +446,9 @@ public class HessianInput extends AbstractHessianInput {
 
       _sbuf.setLength(0);
       int ch;
-      while ((ch = parseChar()) >= 0)
-        _sbuf.append((char) ch);
+      while ((ch = parseChar()) >= 0) {
+          _sbuf.append((char) ch);
+      }
 
       return _sbuf.toString();
     }
@@ -441,6 +465,7 @@ public class HessianInput extends AbstractHessianInput {
    * N
    * </pre>
    */
+  @Override
   public void readNull()
     throws IOException
   {
@@ -462,6 +487,7 @@ public class HessianInput extends AbstractHessianInput {
    * F
    * </pre>
    */
+  @Override
   public boolean readBoolean()
     throws IOException
   {
@@ -515,6 +541,7 @@ public class HessianInput extends AbstractHessianInput {
    * I b32 b24 b16 b8
    * </pre>
    */
+  @Override
   public int readInt()
     throws IOException
   {
@@ -539,6 +566,7 @@ public class HessianInput extends AbstractHessianInput {
    * L b64 b56 b48 b40 b32 b24 b16 b8
    * </pre>
    */
+  @Override
   public long readLong()
     throws IOException
   {
@@ -576,6 +604,7 @@ public class HessianInput extends AbstractHessianInput {
    * D b64 b56 b48 b40 b32 b24 b16 b8
    * </pre>
    */
+  @Override
   public double readDouble()
     throws IOException
   {
@@ -600,13 +629,15 @@ public class HessianInput extends AbstractHessianInput {
    * T b64 b56 b48 b40 b32 b24 b16 b8
    * </pre>
    */
+  @Override
   public long readUTCDate()
     throws IOException
   {
     int tag = read();
 
-    if (tag != 'd')
-      throw error("expected date at " + codeName(tag));
+    if (tag != 'd') {
+        throw error("expected date at " + codeName(tag));
+    }
 
     long b64 = read();
     long b56 = read();
@@ -635,8 +666,9 @@ public class HessianInput extends AbstractHessianInput {
   {
     if (_chunkLength > 0) {
       _chunkLength--;
-      if (_chunkLength == 0 && _isLastChunk)
-        _chunkLength = END_OF_DATA;
+      if (_chunkLength == 0 && _isLastChunk) {
+          _chunkLength = END_OF_DATA;
+      }
 
       int ch = parseUTF8Char();
       return ch;
@@ -664,8 +696,9 @@ public class HessianInput extends AbstractHessianInput {
 
       // special code so successive read byte won't
       // be read as a single object.
-      if (_chunkLength == 0 && _isLastChunk)
-        _chunkLength = END_OF_DATA;
+      if (_chunkLength == 0 && _isLastChunk) {
+          _chunkLength = END_OF_DATA;
+      }
 
       return value;
       
@@ -714,9 +747,9 @@ public class HessianInput extends AbstractHessianInput {
         readLength++;
       }
       else if (_isLastChunk) {
-        if (readLength == 0)
-          return -1;
-        else {
+        if (readLength == 0) {
+            return -1;
+        } else {
           _chunkLength = END_OF_DATA;
           return readLength;
         }
@@ -739,11 +772,11 @@ public class HessianInput extends AbstractHessianInput {
       }
     }
     
-    if (readLength == 0)
-      return -1;
-    else if (_chunkLength > 0 || ! _isLastChunk)
-      return readLength;
-    else {
+    if (readLength == 0) {
+        return -1;
+    } else if (_chunkLength > 0 || ! _isLastChunk) {
+        return readLength;
+    } else {
       _chunkLength = END_OF_DATA;
       return readLength;
     }
@@ -756,6 +789,7 @@ public class HessianInput extends AbstractHessianInput {
    * S b16 b8 string value
    * </pre>
    */
+  @Override
   public String readString()
     throws IOException
   {
@@ -782,8 +816,9 @@ public class HessianInput extends AbstractHessianInput {
       _sbuf.setLength(0);
       int ch;
 
-      while ((ch = parseChar()) >= 0)
-        _sbuf.append((char) ch);
+      while ((ch = parseChar()) >= 0) {
+          _sbuf.append((char) ch);
+      }
 
       return _sbuf.toString();
 
@@ -799,6 +834,7 @@ public class HessianInput extends AbstractHessianInput {
    * S b16 b8 string value
    * </pre>
    */
+  @Override
   public org.w3c.dom.Node readNode()
     throws IOException
   {
@@ -829,6 +865,7 @@ public class HessianInput extends AbstractHessianInput {
    * B b16 b8 data value
    * </pre>
    */
+  @Override
   public byte []readBytes()
     throws IOException
   {
@@ -846,8 +883,9 @@ public class HessianInput extends AbstractHessianInput {
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
       int data;
-      while ((data = parseByte()) >= 0)
-        bos.write(data);
+      while ((data = parseByte()) >= 0) {
+          bos.write(data);
+      }
 
       return bos.toByteArray();
       
@@ -864,8 +902,9 @@ public class HessianInput extends AbstractHessianInput {
   {
     if (_chunkLength > 0) {
       _chunkLength--;
-      if (_chunkLength == 0 && _isLastChunk)
-        _chunkLength = END_OF_DATA;
+      if (_chunkLength == 0 && _isLastChunk) {
+          _chunkLength = END_OF_DATA;
+      }
 
       return read();
     }
@@ -889,8 +928,9 @@ public class HessianInput extends AbstractHessianInput {
 
       // special code so successive read byte won't
       // be read as a single object.
-      if (_chunkLength == 0 && _isLastChunk)
-        _chunkLength = END_OF_DATA;
+      if (_chunkLength == 0 && _isLastChunk) {
+          _chunkLength = END_OF_DATA;
+      }
 
       return value;
       
@@ -937,9 +977,9 @@ public class HessianInput extends AbstractHessianInput {
         readLength++;
       }
       else if (_isLastChunk) {
-        if (readLength == 0)
-          return -1;
-        else {
+        if (readLength == 0) {
+            return -1;
+        } else {
           _chunkLength = END_OF_DATA;
           return readLength;
         }
@@ -960,11 +1000,11 @@ public class HessianInput extends AbstractHessianInput {
       }
     }
     
-    if (readLength == 0)
-      return -1;
-    else if (_chunkLength > 0 || ! _isLastChunk)
-      return readLength;
-    else {
+    if (readLength == 0) {
+        return -1;
+    } else if (_chunkLength > 0 || ! _isLastChunk) {
+        return readLength;
+    } else {
       _chunkLength = END_OF_DATA;
       return readLength;
     }
@@ -985,12 +1025,14 @@ public class HessianInput extends AbstractHessianInput {
       Object key = readObject();
       Object value = readObject();
 
-      if (key != null && value != null)
-        map.put(key, value);
+      if (key != null && value != null) {
+          map.put(key, value);
+      }
     }
 
-    if (code != 'z')
-      throw expect("fault", code);
+    if (code != 'z') {
+        throw expect("fault", code);
+    }
 
     return map;
   }
@@ -998,11 +1040,13 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Reads an object from the input stream with an expected type.
    */
+  @Override
   public Object readObject(Class cl)
     throws IOException
   {
-    if (cl == null || cl == Object.class)
-      return readObject();
+    if (cl == null || cl == Object.class) {
+        return readObject();
+    }
     
     int tag = read();
     
@@ -1037,8 +1081,9 @@ public class HessianInput extends AbstractHessianInput {
       Deserializer reader;
       reader = _serializerFactory.getObjectDeserializer(type);
       
-      if (cl != reader.getType() && cl.isAssignableFrom(reader.getType()))
-        return reader.readList(this, length);
+      if (cl != reader.getType() && cl.isAssignableFrom(reader.getType())) {
+          return reader.readList(this, length);
+      }
 
       reader = _serializerFactory.getDeserializer(cl);
 
@@ -1077,6 +1122,7 @@ public class HessianInput extends AbstractHessianInput {
    * Reads an arbitrary object from the input stream when the type
    * is unknown.
    */
+  @Override
   public Object readObject()
     throws IOException
   {
@@ -1120,8 +1166,9 @@ public class HessianInput extends AbstractHessianInput {
       int data;
       _sbuf.setLength(0);
       
-      while ((data = parseChar()) >= 0)
-        _sbuf.append((char) data);
+      while ((data = parseChar()) >= 0) {
+          _sbuf.append((char) data);
+      }
 
       return _sbuf.toString();
     }
@@ -1134,8 +1181,9 @@ public class HessianInput extends AbstractHessianInput {
       int data;
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
       
-      while ((data = parseByte()) >= 0)
-        bos.write(data);
+      while ((data = parseByte()) >= 0) {
+          bos.write(data);
+      }
 
       return bos.toByteArray();
     }
@@ -1174,6 +1222,7 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Reads a remote object.
    */
+  @Override
   public Object readRemote()
     throws IOException
   {
@@ -1186,6 +1235,7 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Reads a reference.
    */
+  @Override
   public Object readRef()
     throws IOException
   {
@@ -1195,6 +1245,7 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Reads the start of a list.
    */
+  @Override
   public int readListStart()
     throws IOException
   {
@@ -1204,6 +1255,7 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Reads the start of a list.
    */
+  @Override
   public int readMapStart()
     throws IOException
   {
@@ -1213,6 +1265,7 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Returns true if this is the end of a list or a map.
    */
+  @Override
   public boolean isEnd()
     throws IOException
   {
@@ -1226,46 +1279,54 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Reads the end byte.
    */
+  @Override
   public void readEnd()
     throws IOException
   {
     int code = read();
 
-    if (code != 'z')
-      throw error("unknown code at " + codeName(code));
+    if (code != 'z') {
+        throw error("unknown code at " + codeName(code));
+    }
   }
 
   /**
    * Reads the end byte.
    */
+  @Override
   public void readMapEnd()
     throws IOException
   {
     int code = read();
 
-    if (code != 'z')
-      throw error("expected end of map ('z') at " + codeName(code));
+    if (code != 'z') {
+        throw error("expected end of map ('z') at " + codeName(code));
+    }
   }
 
   /**
    * Reads the end byte.
    */
+  @Override
   public void readListEnd()
     throws IOException
   {
     int code = read();
 
-    if (code != 'z')
-      throw error("expected end of list ('z') at " + codeName(code));
+    if (code != 'z') {
+        throw error("expected end of list ('z') at " + codeName(code));
+    }
   }
 
   /**
    * Adds a list/map reference.
    */
+  @Override
   public int addRef(Object ref)
   {
-    if (_refs == null)
-      _refs = new ArrayList();
+    if (_refs == null) {
+        _refs = new ArrayList();
+    }
     
     _refs.add(ref);
 
@@ -1275,6 +1336,7 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Adds a list/map reference.
    */
+  @Override
   public void setRef(int i, Object ref)
   {
     _refs.set(i, ref);
@@ -1283,10 +1345,12 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Resets the references for streaming.
    */
+  @Override
   public void resetReferences()
   {
-    if (_refs != null)
-      _refs.clear();
+    if (_refs != null) {
+        _refs.clear();
+    }
   }
 
   /**
@@ -1297,10 +1361,11 @@ public class HessianInput extends AbstractHessianInput {
   {
     HessianRemoteResolver resolver = getRemoteResolver();
 
-    if (resolver != null)
-      return resolver.lookup(type, url);
-    else
-      return new HessianRemote(type, url);
+    if (resolver != null) {
+        return resolver.lookup(type, url);
+    } else {
+        return new HessianRemote(type, url);
+    }
   }
 
   /**
@@ -1310,6 +1375,7 @@ public class HessianInput extends AbstractHessianInput {
    * t b16 b8
    * </pre>
    */
+  @Override
   public String readType()
     throws IOException
   {
@@ -1325,8 +1391,9 @@ public class HessianInput extends AbstractHessianInput {
 
     _sbuf.setLength(0);
     int ch;
-    while ((ch = parseChar()) >= 0)
-      _sbuf.append((char) ch);
+    while ((ch = parseChar()) >= 0) {
+        _sbuf.append((char) ch);
+    }
 
     return _sbuf.toString();
   }
@@ -1338,6 +1405,7 @@ public class HessianInput extends AbstractHessianInput {
    * l b32 b24 b16 b8
    * </pre>
    */
+  @Override
   public int readLength()
     throws IOException
   {
@@ -1442,8 +1510,9 @@ public class HessianInput extends AbstractHessianInput {
     throws IOException
   {
     while (_chunkLength <= 0) {
-      if (_isLastChunk)
-        return -1;
+      if (_isLastChunk) {
+          return -1;
+      }
 
       int code = read();
 
@@ -1481,9 +1550,9 @@ public class HessianInput extends AbstractHessianInput {
   {
     int ch = read();
 
-    if (ch < 0x80)
-      return ch;
-    else if ((ch & 0xe0) == 0xc0) {
+    if (ch < 0x80) {
+        return ch;
+    } else if ((ch & 0xe0) == 0xc0) {
       int ch1 = read();
       int v = ((ch & 0x1f) << 6) + (ch1 & 0x3f);
 
@@ -1496,8 +1565,9 @@ public class HessianInput extends AbstractHessianInput {
 
       return v;
     }
-    else
-      throw error("bad utf-8 encoding at " + codeName(ch));
+    else {
+        throw error("bad utf-8 encoding at " + codeName(ch));
+    }
   }
   
   /**
@@ -1539,6 +1609,7 @@ public class HessianInput extends AbstractHessianInput {
   /**
    * Reads bytes based on an input stream.
    */
+  @Override
   public InputStream readInputStream()
     throws IOException
   {
@@ -1561,33 +1632,40 @@ public class HessianInput extends AbstractHessianInput {
     return new InputStream() {
 	boolean _isClosed = false;
 	
-	public int read()
+	@Override
+    public int read()
 	  throws IOException
 	{
-	  if (_isClosed || _is == null)
-	    return -1;
+	  if (_isClosed || _is == null) {
+          return -1;
+      }
 
 	  int ch = parseByte();
-	  if (ch < 0)
-	    _isClosed = true;
+	  if (ch < 0) {
+          _isClosed = true;
+      }
 
 	  return ch;
 	}
 	
-	public int read(byte []buffer, int offset, int length)
+	@Override
+    public int read(byte []buffer, int offset, int length)
 	  throws IOException
 	{
-	  if (_isClosed || _is == null)
-	    return -1;
+	  if (_isClosed || _is == null) {
+          return -1;
+      }
 
 	  int len = HessianInput.this.read(buffer, offset, length);
-	  if (len < 0)
-	    _isClosed = true;
+	  if (len < 0) {
+          _isClosed = true;
+      }
 
 	  return len;
 	}
 
-	public void close()
+	@Override
+    public void close()
 	  throws IOException
 	{
 	  while (read() >= 0) {
@@ -1608,8 +1686,9 @@ public class HessianInput extends AbstractHessianInput {
     
     while (length > 0) {
       while (_chunkLength <= 0) {
-        if (_isLastChunk)
-          return readLength == 0 ? -1 : readLength;
+        if (_isLastChunk) {
+            return readLength == 0 ? -1 : readLength;
+        }
 
         int code = read();
 
@@ -1632,8 +1711,9 @@ public class HessianInput extends AbstractHessianInput {
       }
 
       int sublen = _chunkLength;
-      if (length < sublen)
-        sublen = length;
+      if (length < sublen) {
+          sublen = length;
+      }
 
       sublen = _is.read(buffer, offset, sublen);
       offset += sublen;
@@ -1659,11 +1739,13 @@ public class HessianInput extends AbstractHessianInput {
     return ch;
   }
 
+  @Override
   public void close()
   {
     _is = null;
   }
 
+  @Override
   public Reader getReader()
   {
     return null;
@@ -1676,18 +1758,20 @@ public class HessianInput extends AbstractHessianInput {
 
   protected String codeName(int ch)
   {
-    if (ch < 0)
-      return "end of file";
-    else
-      return "0x" + Integer.toHexString(ch & 0xff) + " (" + (char) + ch + ")";
+    if (ch < 0) {
+        return "end of file";
+    } else {
+        return "0x" + Integer.toHexString(ch & 0xff) + " (" + (char) +ch + ")";
+    }
   }
   
   protected IOException error(String message)
   {
-    if (_method != null)
-      return new HessianProtocolException(_method + ": " + message);
-    else
-      return new HessianProtocolException(message);
+    if (_method != null) {
+        return new HessianProtocolException(_method + ": " + message);
+    } else {
+        return new HessianProtocolException(message);
+    }
   }
 
   static {

@@ -35,7 +35,7 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.support.Parameter;
 
 /**
- * ÅäÖÃ½âÎöµÄ¹¤¾ß·½·¨¡¢¹«¹²·½·¨
+ * ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ß·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author william.liangf
  * @export
@@ -302,8 +302,9 @@ public abstract class AbstractConfig implements Serializable {
                         && method.getParameterTypes().length == 0
                         && isPrimitive(method.getReturnType())) {
                     Parameter parameter = method.getAnnotation(Parameter.class);
-                    if (parameter == null || !parameter.attribute())
+                    if (parameter == null || !parameter.attribute()) {
                         continue;
+                    }
                     String key;
                     if (parameter != null && parameter.key() != null && parameter.key().length() > 0) {
                         key = parameter.key();
@@ -445,6 +446,7 @@ public abstract class AbstractConfig implements Serializable {
     
     static {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
             public void run() {
                 if (logger.isInfoEnabled()) {
                     logger.info("Run shutdown hook now.");
@@ -488,7 +490,7 @@ public abstract class AbstractConfig implements Serializable {
             }
             buf.append(" />");
             return buf.toString();
-        } catch (Throwable t) { // ·ÀÓùÐÔÈÝ´í
+        } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½
             logger.warn(t.getMessage(), t);
             return super.toString();
         }

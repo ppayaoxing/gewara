@@ -54,11 +54,13 @@ import java.io.IOException;
  * Deserializing an object. 
  */
 abstract public class AbstractDeserializer implements Deserializer {
+  @Override
   public Class getType()
   {
     return Object.class;
   }
 
+  @Override
   public Object readObject(AbstractHessianInput in)
     throws IOException
   {
@@ -66,24 +68,28 @@ abstract public class AbstractDeserializer implements Deserializer {
 
     String className = getClass().getName();
 
-    if (obj != null)
-      throw error(className + ": unexpected object " + obj.getClass().getName() + " (" + obj + ")");
-    else
-      throw error(className + ": unexpected null value");
+    if (obj != null) {
+        throw error(className + ": unexpected object " + obj.getClass().getName() + " (" + obj + ")");
+    } else {
+        throw error(className + ": unexpected null value");
+    }
   }
   
+  @Override
   public Object readList(AbstractHessianInput in, int length)
     throws IOException
   {
     throw new UnsupportedOperationException(String.valueOf(this));
   }
   
+  @Override
   public Object readLengthList(AbstractHessianInput in, int length)
     throws IOException
   {
     throw new UnsupportedOperationException(String.valueOf(this));
   }
   
+  @Override
   public Object readMap(AbstractHessianInput in)
     throws IOException
   {
@@ -91,12 +97,14 @@ abstract public class AbstractDeserializer implements Deserializer {
 
     String className = getClass().getName();
 
-    if (obj != null)
-      throw error(className + ": unexpected object " + obj.getClass().getName() + " (" + obj + ")");
-    else
-      throw error(className + ": unexpected null value");
+    if (obj != null) {
+        throw error(className + ": unexpected object " + obj.getClass().getName() + " (" + obj + ")");
+    } else {
+        throw error(className + ": unexpected null value");
+    }
   }
   
+  @Override
   public Object readObject(AbstractHessianInput in, String []fieldNames)
     throws IOException
   {
@@ -110,9 +118,10 @@ abstract public class AbstractDeserializer implements Deserializer {
 
   protected String codeName(int ch)
   {
-    if (ch < 0)
-      return "end of file";
-    else
-      return "0x" + Integer.toHexString(ch & 0xff);
+    if (ch < 0) {
+        return "end of file";
+    } else {
+        return "0x" + Integer.toHexString(ch & 0xff);
+    }
   }
 }

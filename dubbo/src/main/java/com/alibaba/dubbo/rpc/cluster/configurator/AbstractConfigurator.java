@@ -39,10 +39,12 @@ public abstract class AbstractConfigurator implements Configurator {
         this.configuratorUrl = url;
     }
 
+    @Override
     public URL getUrl() {
         return configuratorUrl;
     }
 
+    @Override
     public URL configure(URL url) {
         if (configuratorUrl == null || configuratorUrl.getHost() == null
                 || url == null || url.getHost() == null) {
@@ -79,6 +81,7 @@ public abstract class AbstractConfigurator implements Configurator {
         return url;
     }
 
+    @Override
     public int compareTo(Configurator o) {
         if (o == null) {
             return -1;

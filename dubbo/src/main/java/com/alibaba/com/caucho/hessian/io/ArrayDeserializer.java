@@ -70,10 +70,12 @@ public class ArrayDeserializer extends AbstractListDeserializer {
       }
     }
 
-    if (_type == null)
-      _type = Object[].class;
+    if (_type == null) {
+        _type = Object[].class;
+    }
   }
 
+  @Override
   public Class getType()
   {
     return _type;
@@ -82,6 +84,7 @@ public class ArrayDeserializer extends AbstractListDeserializer {
   /**
    * Reads the array.
    */
+  @Override
   public Object readList(AbstractHessianInput in, int length)
     throws IOException
   {
@@ -91,12 +94,14 @@ public class ArrayDeserializer extends AbstractListDeserializer {
       in.addRef(data);
       
       if (_componentType != null) {
-        for (int i = 0; i < data.length; i++)
-          data[i] = in.readObject(_componentType);
+        for (int i = 0; i < data.length; i++) {
+            data[i] = in.readObject(_componentType);
+        }
       }
       else {
-        for (int i = 0; i < data.length; i++)
-          data[i] = in.readObject();
+        for (int i = 0; i < data.length; i++) {
+            data[i] = in.readObject();
+        }
       }
 
       in.readListEnd();
@@ -109,19 +114,22 @@ public class ArrayDeserializer extends AbstractListDeserializer {
       in.addRef(list);
 
       if (_componentType != null) {
-        while (! in.isEnd())
-          list.add(in.readObject(_componentType));
+        while (! in.isEnd()) {
+            list.add(in.readObject(_componentType));
+        }
       }
       else {
-        while (! in.isEnd())
-          list.add(in.readObject());
+        while (! in.isEnd()) {
+            list.add(in.readObject());
+        }
       }
 
       in.readListEnd();
 
       Object []data = createArray(list.size());
-      for (int i = 0; i < data.length; i++)
-        data[i] = list.get(i);
+      for (int i = 0; i < data.length; i++) {
+          data[i] = list.get(i);
+      }
 
       return data;
     }
@@ -130,6 +138,7 @@ public class ArrayDeserializer extends AbstractListDeserializer {
   /**
    * Reads the array.
    */
+  @Override
   public Object readLengthList(AbstractHessianInput in, int length)
     throws IOException
   {
@@ -138,12 +147,14 @@ public class ArrayDeserializer extends AbstractListDeserializer {
     in.addRef(data);
       
     if (_componentType != null) {
-      for (int i = 0; i < data.length; i++)
-	data[i] = in.readObject(_componentType);
+      for (int i = 0; i < data.length; i++) {
+          data[i] = in.readObject(_componentType);
+      }
     }
     else {
-      for (int i = 0; i < data.length; i++)
-	data[i] = in.readObject();
+      for (int i = 0; i < data.length; i++) {
+          data[i] = in.readObject();
+      }
     }
 
     return data;
@@ -151,12 +162,14 @@ public class ArrayDeserializer extends AbstractListDeserializer {
 
   protected Object []createArray(int length)
   {
-    if (_componentType != null)
-      return (Object []) Array.newInstance(_componentType, length);
-    else
-      return new Object[length];
+    if (_componentType != null) {
+        return (Object[]) Array.newInstance(_componentType, length);
+    } else {
+        return new Object[length];
+    }
   }
 
+  @Override
   public String toString()
   {
     return "ArrayDeserializer[" + _componentType + "]";

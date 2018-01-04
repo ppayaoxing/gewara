@@ -13,7 +13,9 @@ public class PrefixUriRequestMatcher implements RequestMatcher{
 	private List<String> prefixList = new ArrayList<String>();
 	@Override
 	public boolean matches(HttpServletRequest request) {
-		if(prefixList.isEmpty()) return true;
+		if(prefixList.isEmpty()) {
+            return true;
+        }
 		String uri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		if(StringUtils.isNotEmpty(ctxPath)){
@@ -24,7 +26,9 @@ public class PrefixUriRequestMatcher implements RequestMatcher{
 		}
 		
 		for(String prefix: prefixList){
-			if(uri.startsWith(prefix)) return true;
+			if(uri.startsWith(prefix)) {
+                return true;
+            }
 		}
 		return false;
 	}

@@ -75,15 +75,18 @@ public abstract class Builder<T> implements GenericDataFlags
 	private static final int MAX_FIELD_CONFIG_FILE_SIZE = 16 * 1024;
 
 	private static final Comparator<String> FNC = new Comparator<String>(){
-		public int compare(String n1, String n2){ return compareFieldName(n1, n2); }
+		@Override
+        public int compare(String n1, String n2){ return compareFieldName(n1, n2); }
 	};
 
 	private static final Comparator<Field> FC = new Comparator<Field>(){
-		public int compare(Field f1, Field f2){ return compareFieldName(f1.getName(), f2.getName()); }
+		@Override
+        public int compare(Field f1, Field f2){ return compareFieldName(f1.getName(), f2.getName()); }
 	};
 
 	private static final Comparator<Constructor> CC = new Comparator<Constructor>(){
-		public int compare(Constructor o1, Constructor o2){ return o1.getParameterTypes().length - o2.getParameterTypes().length; }
+		@Override
+        public int compare(Constructor o1, Constructor o2){ return o1.getParameterTypes().length - o2.getParameterTypes().length; }
 	};
 
 	// class-descriptor mapper
@@ -92,14 +95,17 @@ public abstract class Builder<T> implements GenericDataFlags
 	private static final Map<String, Integer> mDescMap = new ConcurrentHashMap<String, Integer>();
 
 	public static ClassDescriptorMapper DEFAULT_CLASS_DESCRIPTOR_MAPPER = new ClassDescriptorMapper(){
-		public String getDescriptor(int index)
+		@Override
+        public String getDescriptor(int index)
 		{
-			if( index < 0 || index >= mDescList.size() )
-				return null;
+			if( index < 0 || index >= mDescList.size() ) {
+                return null;
+            }
 			return mDescList.get(index);
 		}
 
-		public int getDescriptorIndex(String desc)
+		@Override
+        public int getDescriptorIndex(String desc)
 		{
 			Integer ret = mDescMap.get(desc);
 			return ret == null ? -1 : ret.intValue();
@@ -133,13 +139,17 @@ public abstract class Builder<T> implements GenericDataFlags
 
 	public static <T> Builder<T> register(Class<T> c, boolean isAllowNonSerializable)
     {
-        if( c == Object.class || c.isInterface() )
-            return (Builder<T>)GenericBuilder;
-        if( c == Object[].class )
-            return (Builder<T>)GenericArrayBuilder;
+        if( c == Object.class || c.isInterface() ) {
+            return (Builder<T>) GenericBuilder;
+        }
+        if( c == Object[].class ) {
+            return (Builder<T>) GenericArrayBuilder;
+        }
 
         Builder<T> b = (Builder<T>)BuilderMap.get(c);
-        if(null != b) return b;
+        if(null != b) {
+            return b;
+        }
         
         boolean isSerializable = Serializable.class.isAssignableFrom(c);
         if(!isAllowNonSerializable && !isSerializable) {
@@ -148,13 +158,16 @@ public abstract class Builder<T> implements GenericDataFlags
         }
         
         b = (Builder<T>)nonSerializableBuilderMap.get(c);
-        if(null != b) return b;
+        if(null != b) {
+            return b;
+        }
         
         b = newBuilder(c);
-        if(isSerializable)
+        if(isSerializable) {
             BuilderMap.put(c, b);
-        else
+        } else {
             nonSerializableBuilderMap.put(c, b);
+        }
         
         return b;
     } 
@@ -166,33 +179,38 @@ public abstract class Builder<T> implements GenericDataFlags
 
 	public static <T> void register(Class<T> c, Builder<T> b)
 	{
-	    if(Serializable.class.isAssignableFrom(c))
-	        BuilderMap.put(c, b);
-	    else
-	        nonSerializableBuilderMap.put(c, b);
+	    if(Serializable.class.isAssignableFrom(c)) {
+            BuilderMap.put(c, b);
+        } else {
+            nonSerializableBuilderMap.put(c, b);
+        }
 	}
 
 	private static <T> Builder<T> newBuilder(Class<T> c)
 	{
-		if( c.isPrimitive() )
-			throw new RuntimeException("Can not create builder for primitive type: " + c);
+		if( c.isPrimitive() ) {
+            throw new RuntimeException("Can not create builder for primitive type: " + c);
+        }
 
-		if( logger.isInfoEnabled() )
-			logger.info("create Builder for class: " + c);
+		if( logger.isInfoEnabled() ) {
+            logger.info("create Builder for class: " + c);
+        }
 
 		Builder<?> builder;
-		if( c.isArray() )
-			builder = newArrayBuilder(c);
-		else
-			builder = newObjectBuilder(c);
+		if( c.isArray() ) {
+            builder = newArrayBuilder(c);
+        } else {
+            builder = newObjectBuilder(c);
+        }
 		return (Builder<T>)builder;
 	}
 	
 	private static Builder<?> newArrayBuilder(Class<?> c)
 	{
 		Class<?> cc = c.getComponentType();
-		if( cc.isInterface() )
-			return GenericArrayBuilder;
+		if( cc.isInterface() ) {
+            return GenericArrayBuilder;
+        }
 
 		ClassLoader cl = ClassHelper.getCallerClassLoader(Builder.class);
 
@@ -270,8 +288,9 @@ public abstract class Builder<T> implements GenericDataFlags
 		cg.setClassName(bcn);
 		cg.setSuperClass(Builder.class);
 		cg.addDefaultConstructor();
-		if( builder != null )
-			cg.addField("public static " + BUILDER_CLASS_NAME + " builder;");
+		if( builder != null ) {
+            cg.addField("public static " + BUILDER_CLASS_NAME + " builder;");
+        }
 		cg.addMethod("public Class getType(){ return " + cn + ".class; }");
 		cg.addMethod(cwt.toString());
 		cg.addMethod(cpf.toString());
@@ -279,8 +298,9 @@ public abstract class Builder<T> implements GenericDataFlags
 		{
 			Class<?> wc = cg.toClass();
 			// set static field.
-			if( builder != null )
-				wc.getField("builder").set(null, builder);
+			if( builder != null ) {
+                wc.getField("builder").set(null, builder);
+            }
 			return (Builder<?>)wc.newInstance();
 		}
 		catch(RuntimeException e)
@@ -299,17 +319,21 @@ public abstract class Builder<T> implements GenericDataFlags
 
 	private static Builder<?> newObjectBuilder(final Class<?> c)
 	{
-		if( c.isEnum() )
-			return newEnumBuilder(c);
+		if( c.isEnum() ) {
+            return newEnumBuilder(c);
+        }
 
-		if( c.isAnonymousClass() )
-			throw new RuntimeException("Can not instantiation anonymous class: " + c);
+		if( c.isAnonymousClass() ) {
+            throw new RuntimeException("Can not instantiation anonymous class: " + c);
+        }
 
-		if( c.getEnclosingClass() != null && !Modifier.isStatic(c.getModifiers()) )
-			throw new RuntimeException("Can not instantiation inner and non-static class: " + c);
+		if( c.getEnclosingClass() != null && !Modifier.isStatic(c.getModifiers()) ) {
+            throw new RuntimeException("Can not instantiation inner and non-static class: " + c);
+        }
 
-		if( Throwable.class.isAssignableFrom(c) )
-			return SerializableBuilder;
+		if( Throwable.class.isAssignableFrom(c) ) {
+            return SerializableBuilder;
+        }
 
 		ClassLoader cl = ClassHelper.getCallerClassLoader(Builder.class);
 	
@@ -342,8 +366,9 @@ public abstract class Builder<T> implements GenericDataFlags
 				int len = is.available();
 				if( len > 0 )
 				{
-					if( len > MAX_FIELD_CONFIG_FILE_SIZE )
-						throw new RuntimeException("Load [" + c.getName() + "] field-config file error: File-size too larger");
+					if( len > MAX_FIELD_CONFIG_FILE_SIZE ) {
+                        throw new RuntimeException("Load [" + c.getName() + "] field-config file error: File-size too larger");
+                    }
 
 					String[] lines = IOUtils.readLines(is);
 					if( lines != null && lines.length > 0 )
@@ -353,8 +378,9 @@ public abstract class Builder<T> implements GenericDataFlags
 						{
 							fns = lines[i].split(",");
 							Arrays.sort(fns, FNC);
-							for(int j=0;j<fns.length;j++)
-								list.add(fns[j]);
+							for(int j=0;j<fns.length;j++) {
+                                list.add(fns[j]);
+                            }
 						}
 						fns = list.toArray(new String[0]);
 					}
@@ -371,8 +397,9 @@ public abstract class Builder<T> implements GenericDataFlags
 			}
 		}
 
-		Field f, fs[];
-		if( fns != null )
+		Field f;
+        Field[] fs;
+        if( fns != null )
 		{
 			fs = new Field[fns.length];
 			for(int i=0;i<fns.length;i++)
@@ -382,12 +409,14 @@ public abstract class Builder<T> implements GenericDataFlags
 				{
 					f = c.getDeclaredField(fn);
 					int mod = f.getModifiers();
-					if( Modifier.isStatic(mod) || (serializeIgnoreFinalModifier(c) && Modifier.isFinal(mod)) )
-						throw new RuntimeException("Field [" + c.getName() + "." + fn + "] is static/final field.");
+					if( Modifier.isStatic(mod) || (serializeIgnoreFinalModifier(c) && Modifier.isFinal(mod)) ) {
+                        throw new RuntimeException("Field [" + c.getName() + "." + fn + "] is static/final field.");
+                    }
 					if( Modifier.isTransient(mod) )
 					{
-						if( iss )
-							return SerializableBuilder;
+						if( iss ) {
+                            return SerializableBuilder;
+                        }
 						throw new RuntimeException("Field [" + c.getName() + "." + fn + "] is transient field.");
 					}
 					f.setAccessible(true);
@@ -415,13 +444,16 @@ public abstract class Builder<T> implements GenericDataFlags
 					int mod = tf.getModifiers();
                     if (Modifier.isStatic(mod)
                             || (serializeIgnoreFinalModifier(c) && Modifier.isFinal(mod))
-                            || tf.getName().equals("this$0") // skip static or inner-class's 'this$0' field.
+                            || "this$0".equals(tf.getName()) // skip static or inner-class's 'this$0' field.
                             || ! Modifier.isPublic(tf.getType().getModifiers()) ) //skip private inner-class field
-						continue;
+                    {
+                        continue;
+                    }
 					if( Modifier.isTransient(mod) )
 					{
-						if( iss )
-							return SerializableBuilder;
+						if( iss ) {
+                            return SerializableBuilder;
+                        }
 						continue;
 					}
 					tf.setAccessible(true);
@@ -432,8 +464,9 @@ public abstract class Builder<T> implements GenericDataFlags
 			while( t != Object.class );
 
 			fs = fl.toArray(new Field[0]);
-			if( fs.length > 1 )
-				Arrays.sort(fs, FC);
+			if( fs.length > 1 ) {
+                Arrays.sort(fs, FC);
+            }
 		}
 
 		// deal with constructors.
@@ -444,14 +477,16 @@ public abstract class Builder<T> implements GenericDataFlags
 			do
 			{
 				t = t.getSuperclass();
-				if( t == null )
-					throw new RuntimeException("Can not found Constructor?");
+				if( t == null ) {
+                    throw new RuntimeException("Can not found Constructor?");
+                }
 				cs = c.getDeclaredConstructors();
 			}
 			while( cs.length == 0 );
 		}
-		if( cs.length > 1 )
-			Arrays.sort(cs, CC);
+		if( cs.length > 1 ) {
+            Arrays.sort(cs, CC);
+        }
 
 		// writeObject code.
 		StringBuilder cwf = new StringBuilder("protected void writeObject(Object obj, ").append(GenericObjectOutput.class.getName()).append(" out) throws java.io.IOException{");
@@ -481,12 +516,14 @@ public abstract class Builder<T> implements GenericDataFlags
 		Class<?>[] pts = con.getParameterTypes();
 		for(int i=0;i<pts.length;i++)
 		{
-			if( i > 0 )
-				cni.append(',');
+			if( i > 0 ) {
+                cni.append(',');
+            }
 			cni.append(defaultArg(pts[i]));
 		}
-		if( !dn )
-			cni.append("}"); // close object array.
+		if( !dn ) {
+            cni.append("}"); // close object array.
+        }
 		cni.append("); }");
 
 		// get bean-style property metadata.
@@ -510,8 +547,9 @@ public abstract class Builder<T> implements GenericDataFlags
 			else
 			{
 				pm = pms.get(fn);
-				if( pm != null && ( pm.type != ft || pm.setter == null || pm.getter == null ) )
-					pm = null;
+				if( pm != null && ( pm.type != ft || pm.setter == null || pm.getter == null ) ) {
+                    pm = null;
+                }
 			}
 
 			crf.append("if( fc == ").append(i).append(" ) return;");
@@ -726,8 +764,9 @@ public abstract class Builder<T> implements GenericDataFlags
 		cg.addDefaultConstructor();
 		cg.addField("public static java.lang.reflect.Field[] fields;");
 		cg.addField("public static " + BUILDER_CLASS_NAME + "[] builders;");
-		if( !dn )
-			cg.addField("public static java.lang.reflect.Constructor constructor;");
+		if( !dn ) {
+            cg.addField("public static java.lang.reflect.Constructor constructor;");
+        }
 		cg.addMethod("public Class getType(){ return " + cn + ".class; }");
 		cg.addMethod(cwf.toString());
 		cg.addMethod(crf.toString());
@@ -738,8 +777,9 @@ public abstract class Builder<T> implements GenericDataFlags
 			// set static field
 			wc.getField("fields").set(null, fs);
 			wc.getField("builders").set(null, builders.toArray(new Builder<?>[0]));
-			if( !dn )
-				wc.getField("constructor").set(null, con);
+			if( !dn ) {
+                wc.getField("constructor").set(null, con);
+            }
 			return (Builder<?>)wc.newInstance();
 		}
 		catch(RuntimeException e)
@@ -805,7 +845,9 @@ public abstract class Builder<T> implements GenericDataFlags
 		for( Method m : c.getMethods() )
 		{
 			if( m.getDeclaringClass() == Object.class ) // Ignore Object's method.
-				continue;
+            {
+                continue;
+            }
 			mm.put(ReflectUtils.getDesc(m), m);
 		}
 
@@ -828,8 +870,9 @@ public abstract class Builder<T> implements GenericDataFlags
 				}
 				else
 				{
-					if( pm.type != pt )
-						continue;
+					if( pm.type != pt ) {
+                        continue;
+                    }
 				}
 				pm.getter = method.getName();
 			}
@@ -846,8 +889,9 @@ public abstract class Builder<T> implements GenericDataFlags
 				}
 				else
 				{
-					if( pm.type != pt )
-						continue;
+					if( pm.type != pt ) {
+                        continue;
+                    }
 				}
 				pm.setter = method.getName();
 			}
@@ -886,16 +930,36 @@ public abstract class Builder<T> implements GenericDataFlags
 
 	private static String defaultArg(Class<?> cl)
 	{
-	    if( boolean.class == cl ) return "false";
-	    if( int.class == cl ) return "0";
-	    if( long.class == cl ) return "0l";
-	    if( double.class == cl ) return "(double)0";
-	    if( float.class == cl ) return "(float)0";
-	    if( short.class == cl ) return "(short)0";
-	    if( char.class == cl ) return "(char)0";
-	    if( byte.class == cl ) return "(byte)0";
-	    if( byte[].class == cl ) return "new byte[]{0}";
-	    if( !cl.isPrimitive() ) return "null";
+	    if( boolean.class == cl ) {
+            return "false";
+        }
+	    if( int.class == cl ) {
+            return "0";
+        }
+	    if( long.class == cl ) {
+            return "0l";
+        }
+	    if( double.class == cl ) {
+            return "(double)0";
+        }
+	    if( float.class == cl ) {
+            return "(float)0";
+        }
+	    if( short.class == cl ) {
+            return "(short)0";
+        }
+	    if( char.class == cl ) {
+            return "(char)0";
+        }
+	    if( byte.class == cl ) {
+            return "(byte)0";
+        }
+	    if( byte[].class == cl ) {
+            return "new byte[]{0}";
+        }
+	    if( !cl.isPrimitive() ) {
+            return "null";
+        }
 	    throw new UnsupportedOperationException();
 	}
 
@@ -905,8 +969,9 @@ public abstract class Builder<T> implements GenericDataFlags
 		for(int i=0;i<l;i++)
 		{
 			int t = n1.charAt(i) - n2.charAt(i);
-			if( t != 0 )
-				return t;
+			if( t != 0 ) {
+                return t;
+            }
 		}
 		return n1.length() - n2.length();
 	}
@@ -927,9 +992,11 @@ public abstract class Builder<T> implements GenericDataFlags
 
 	public static abstract class AbstractObjectBuilder<T> extends Builder<T>
 	{
-		abstract public Class<T> getType();
+		@Override
+        abstract public Class<T> getType();
 
-		public void writeTo(T obj, GenericObjectOutput out) throws IOException
+		@Override
+        public void writeTo(T obj, GenericObjectOutput out) throws IOException
 		{
 			if( obj == null )
 			{
@@ -952,7 +1019,8 @@ public abstract class Builder<T> implements GenericDataFlags
 			}
 		}
 
-		public T parseFrom(GenericObjectInput in) throws IOException
+		@Override
+        public T parseFrom(GenericObjectInput in) throws IOException
 		{
 			byte b = in.read0();
 			switch( b )
@@ -1000,15 +1068,17 @@ public abstract class Builder<T> implements GenericDataFlags
 		@Override
 		protected void readObject(Object[] ret, GenericObjectInput in) throws IOException
 		{
-			for(int i=0;i<ret.length;i++)
-				ret[i] = in.readObject();
+			for(int i=0;i<ret.length;i++) {
+                ret[i] = in.readObject();
+            }
 		}
 		@Override
 		protected void writeObject(Object[] obj, GenericObjectOutput out) throws IOException
 		{
 			out.writeUInt(obj.length);
-			for( Object item : obj )
-				out.writeObject(item);
+			for( Object item : obj ) {
+                out.writeObject(item);
+            }
 		}
 	};
 
@@ -1042,10 +1112,12 @@ public abstract class Builder<T> implements GenericDataFlags
 		public Serializable parseFrom(GenericObjectInput in) throws IOException
 		{
 			byte b = in.read0();
-			if( b == OBJECT_NULL )
-				return null;
-			if( b != OBJECT_STREAM )
-				throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_STREAM, get " + b + ".");
+			if( b == OBJECT_NULL ) {
+                return null;
+            }
+			if( b != OBJECT_STREAM ) {
+                throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_STREAM, get " + b + ".");
+            }
 
 			UnsafeByteArrayInputStream bis = new UnsafeByteArrayInputStream(in.read0(in.readUInt()));
 			CompactedObjectInputStream ois = new CompactedObjectInputStream(bis);
@@ -1102,12 +1174,13 @@ public abstract class Builder<T> implements GenericDataFlags
 			@Override
 			public void writeTo(Boolean obj, GenericObjectOutput out) throws IOException
 			{
-				if( obj == null )
-					out.write0(VARINT_N1);
-				else if( obj.booleanValue() )
-					out.write0(VARINT_1);
-				else
-					out.write0(VARINT_0);
+				if( obj == null ) {
+                    out.write0(VARINT_N1);
+                } else if( obj.booleanValue() ) {
+                    out.write0(VARINT_1);
+                } else {
+                    out.write0(VARINT_0);
+                }
 			}
 			@Override
 			public Boolean parseFrom(GenericObjectInput in) throws IOException
@@ -1142,10 +1215,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public Byte parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return Byte.valueOf(in.readByte());
 			}
@@ -1170,10 +1245,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public Character parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return Character.valueOf((char)in.readShort());
 			}
@@ -1198,10 +1275,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public Short parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return Short.valueOf(in.readShort());
 			}
@@ -1226,10 +1305,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public Integer parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return Integer.valueOf(in.readInt());
 			}
@@ -1254,10 +1335,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public Long parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return Long.valueOf(in.readLong());
 			}
@@ -1282,10 +1365,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public Float parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return new Float(in.readFloat());
 			}
@@ -1310,10 +1395,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public Double parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return new Double(in.readDouble());
 			}
@@ -1358,23 +1445,27 @@ public abstract class Builder<T> implements GenericDataFlags
 				{
 					out.write0(OBJECT_VALUES);
 					out.writeUInt(obj.size());
-					for( Object item : obj )
-						out.writeObject(item);
+					for( Object item : obj ) {
+                        out.writeObject(item);
+                    }
 				}
 			}
 			@Override
 			public ArrayList parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUES )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUES, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUES ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUES, get " + b + ".");
+                }
 
 				int len = in.readUInt();
 				ArrayList ret = new ArrayList(len);
-				for(int i=0;i<len;i++)
-					ret.add(in.readObject());
+				for(int i=0;i<len;i++) {
+                    ret.add(in.readObject());
+                }
 				return ret;
 			}
 		});
@@ -1403,15 +1494,18 @@ public abstract class Builder<T> implements GenericDataFlags
 			public HashMap parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_MAP )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_MAP, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_MAP ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_MAP, get " + b + ".");
+                }
 
 				int len = in.readUInt();
 				HashMap ret = new HashMap(len);
-				for(int i=0;i<len;i++)
-					ret.put(in.readObject(), in.readObject());
+				for(int i=0;i<len;i++) {
+                    ret.put(in.readObject(), in.readObject());
+                }
 				return ret;
 			}
 		});
@@ -1429,23 +1523,27 @@ public abstract class Builder<T> implements GenericDataFlags
 				{
 					out.write0(OBJECT_VALUES);
 					out.writeUInt(obj.size());
-					for( Object item : obj )
-						out.writeObject(item);
+					for( Object item : obj ) {
+                        out.writeObject(item);
+                    }
 				}
 			}
 			@Override
 			public HashSet parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUES )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUES, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUES ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUES, get " + b + ".");
+                }
 
 				int len = in.readUInt();
 				HashSet ret = new HashSet(len);
-				for(int i=0;i<len;i++)
-					ret.add(in.readObject());
+				for(int i=0;i<len;i++) {
+                    ret.add(in.readObject());
+                }
 				return ret;
 			}
 		});
@@ -1470,10 +1568,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public Date parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return new Date(in.readLong());
 			}
@@ -1500,10 +1600,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public java.sql.Date parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return new java.sql.Date(in.readLong());
 			}
@@ -1528,10 +1630,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public java.sql.Timestamp parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return new java.sql.Timestamp(in.readLong());
 			}
@@ -1556,10 +1660,12 @@ public abstract class Builder<T> implements GenericDataFlags
 			public java.sql.Time parseFrom(GenericObjectInput in) throws IOException
 			{
 				byte b = in.read0();
-				if( b == OBJECT_NULL )
-					return null;
-				if( b != OBJECT_VALUE )
-					throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+				if( b == OBJECT_NULL ) {
+                    return null;
+                }
+				if( b != OBJECT_VALUE ) {
+                    throw new IOException("Input format error, expect OBJECT_NULL|OBJECT_VALUE, get " + b + ".");
+                }
 
 				return new java.sql.Time(in.readLong());
 			}

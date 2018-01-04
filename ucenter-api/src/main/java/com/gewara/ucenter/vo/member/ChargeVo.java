@@ -15,27 +15,27 @@ import com.gewara.util.StringUtil;
  */
 public class ChargeVo extends BaseVo{
 	private static final long serialVersionUID = 4914995483381697551L;
-	//½»Ò××´Ì¬
-	public static final String STATUS_NEW = "new";						//ÐÂ¶©µ¥
-	public static final String STATUS_WAITPAY = "new_wait";			//ÐÂ¶©µ¥,µÈ´ý¸¶¿î
-	public static final String STATUS_PAID = "paid_success";			//¸¶Íê¿î
-	public static final String STATUS_CANCEL = "cancel";				//¶©µ¥È¡ÏûÁË
-	private Integer version;		//¸üÐÂ°æ±¾
+	//ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	public static final String STATUS_NEW = "new";						//ï¿½Â¶ï¿½ï¿½ï¿½
+	public static final String STATUS_WAITPAY = "new_wait";			//ï¿½Â¶ï¿½ï¿½ï¿½,ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String STATUS_PAID = "paid_success";			//ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String STATUS_CANCEL = "cancel";				//ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	private Integer version;		//ï¿½ï¿½ï¿½Â°æ±¾
 	private Long id;				//ID
-	private String tradeNo;			//¶©µ¥ºÅ
-	private Timestamp addtime;		//Ôö¼ÓÊ±¼ä
-	private Timestamp updatetime;	//ÐÞ¸ÄÊ±¼ä
-	private Timestamp validtime;	//ÓÐÐ§ÈÕÆÚ	
-	private String status;			//¸¶¿î×´Ì¬
-	private Long memberid;			//¹ØÁªÓÃ»§
-	private String membername;		//ÓÃ»§Ãû
-	private String paymethod;		//Ö§¸¶·½·¨:ÌÔ±¦¡¢»ã¸¶
-	private String paybank;			//Ö§¸¶ÒøÐÐ
-	private String payseqno;		//Íâ²¿½»Ò×ºÅ
-	private Integer totalfee;    	//³äÖµ½ð¶î
-	private String chargetype;		//³äÖµÀàÐÍ:³äÖµ »ò Îª¶©µ¥¸¶¿î³äÖµ
-	private Long outorderid;		//¹ØÁª¶©µ¥id
-	private String chargeto;		//³äÖµ·½Ê½ bank, wabi
+	private String tradeNo;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Timestamp addtime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp updatetime;	//ï¿½Þ¸ï¿½Ê±ï¿½ï¿½
+	private Timestamp validtime;	//ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½	
+	private String status;			//ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	private Long memberid;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	private String membername;		//ï¿½Ã»ï¿½ï¿½ï¿½
+	private String paymethod;		//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ã¸¶
+	private String paybank;			//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String payseqno;		//ï¿½â²¿ï¿½ï¿½ï¿½×ºï¿½
+	private Integer totalfee;    	//ï¿½ï¿½Öµï¿½ï¿½ï¿½
+	private String chargetype;		//ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½Öµ ï¿½ï¿½ Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	private Long outorderid;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id
+	private String chargeto;		//ï¿½ï¿½Öµï¿½ï¿½Ê½ bank, wabi
 	
 	public ChargeVo(){
 		this.version = 0;
@@ -59,7 +59,7 @@ public class ChargeVo extends BaseVo{
 		this.chargetype = chargetype;
 	}
 	/**
-	 * @return ÕûÊýµÄ½ð¶î
+	 * @return ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½
 	 */
 	public int getFee(){
 		return totalfee;
@@ -71,16 +71,22 @@ public class ChargeVo extends BaseVo{
 		return status.equals(STATUS_PAID);
 	}
 	public String getStatusText(){
-		if(isNew()) return "µÈ´ý¸¶¿î";
-		if(isPaid()) return "³äÖµ³É¹¦";
-		if(isCancel()) return "È¡Ïû";
-		return "´ý´¦Àí";
+		if(isNew()) {
+            return "ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½";
+        }
+		if(isPaid()) {
+            return "ï¿½ï¿½Öµï¿½É¹ï¿½";
+        }
+		if(isCancel()) {
+            return "È¡ï¿½ï¿½";
+        }
+		return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 	}
 	public boolean isCancel() {
 		return status.startsWith(STATUS_CANCEL);
 	}
 	public String getDescription() {
-		return "GewaraÍøÕ¾ÕË»§³äÖµ£¬¿ÉÓÃÀ´Õ¾ÄÚÖ§¸¶";
+		return "Gewaraï¿½ï¿½Õ¾ï¿½Ë»ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½Ö§ï¿½ï¿½";
 	}
 	public int getTotalfee() {
 		return totalfee;
@@ -131,7 +137,7 @@ public class ChargeVo extends BaseVo{
 		this.paymethod = paymethod;
 	}
 	public String getOrdertitle(){
-		return "GewaraÕË»§³äÖµ" + "*¶©µ¥ºÅ£º" + tradeNo;
+		return "Gewaraï¿½Ë»ï¿½ï¿½ï¿½Öµ" + "*ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½" + tradeNo;
 	}
 	public String getPayseqno() {
 		return payseqno;
@@ -182,7 +188,9 @@ public class ChargeVo extends BaseVo{
 	}
 	
 	public boolean isOvertime(){
-		if(validtime==null) return false;
+		if(validtime==null) {
+            return false;
+        }
 		return validtime.before(DateUtil.getMillTimestamp());
 	}
 	
@@ -190,13 +198,13 @@ public class ChargeVo extends BaseVo{
 		return StringUtils.startsWith(this.status, STATUS_NEW) && isOvertime(); 
 	}
 	/**
-	 * FIXME: Ê¹ÓÃHelperÀà½â¾ö
+	 * FIXME: Ê¹ï¿½ï¿½Helperï¿½ï¿½ï¿½ï¿½
 	 * public boolean isCanInvoice(){
 		return status.equals(STATUS_PAID) && StringUtils.equals(chargeto, ChargeConstant.WABIPAY) && canInvoiceList.contains(paymethod);
 	}
 	public String getPaytext(){
 		String result = PaymethodConstant.getPaymethodText(paymethod);
-		if(PaymethodConstant.PAYMETHOD_CHARGECARD.equals(paymethod)) result="¹ó±ö¿¨"+ payseqno + "¼¤»î";
+		if(PaymethodConstant.PAYMETHOD_CHARGECARD.equals(paymethod)) result="ï¿½ï¿½ï¿½ï¿½ï¿½"+ payseqno + "ï¿½ï¿½ï¿½ï¿½";
 		return result;
 	}*/
 

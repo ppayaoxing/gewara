@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Í¨¹ýÏûÏ¢¶ÓÁÐÊµÏÖ
+ * Í¨ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
  *
  * @author gebiao(ge.biao@gewara.com)
  * @since Feb 18, 2013 2:46:02 PM
@@ -45,7 +45,7 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public void addApiCall(Map<String, String> paramsLog, long cur, boolean success) {
-        //TODO ´ý¶¨
+        //TODO ï¿½ï¿½ï¿½ï¿½
 
     }
 
@@ -58,14 +58,14 @@ public abstract class AbstractMonitorService implements MonitorService {
     }
 
     /**
-     * ¸ù¾ÝÏß³Ì³Ø´óÐ¡,³õÊ¼»¯Ïß³Ì³Ø
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³Ø´ï¿½Ð¡,ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ß³Ì³ï¿½
      *
      * @param threadSize
      */
     protected void setupConsumerThread(int threadSize) {
         //FixedPoolSize
         executor = new ThreadPoolExecutor(threadSize, threadSize, 300, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new GewaExecutorThreadFactory(this.getClass().getSimpleName()));
-        executor.allowCoreThreadTimeOut(false);//ÉèÖÃÖ÷Ïß³ÌÊÇ·ñ³¬Ê±
+        executor.allowCoreThreadTimeOut(false);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½ï¿½Ç·ï¿½Ê±
         dbLogger.warn("MonitorThread started!");
     }
 
@@ -75,7 +75,9 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public void saveChangeLog(Long userid, Class clazz, Serializable relatedid, Map changeMap) {
-        if (changeMap.isEmpty()) return;
+        if (changeMap.isEmpty()) {
+            return;
+        }
         Map<String, String> map = getLogMap("admin");
         map.put("userid", userid + "");
         map.put("tag", clazz.getSimpleName());
@@ -88,7 +90,9 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public void saveSysChangeLog(Class clazz, Serializable relatedid, Map changeMap) {
-        if (changeMap.isEmpty()) return;
+        if (changeMap.isEmpty()) {
+            return;
+        }
         Map<String, String> map = getLogMap(FLAG_ADMIN);
         map.put("userid", "0");
         map.put("changeType", "sys");
@@ -107,7 +111,9 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public void saveAddLog(Long userid, Class clazz, Serializable relatedid, Object entity) {
-        if (entity == null) return;
+        if (entity == null) {
+            return;
+        }
         Map<String, String> map = getLogMap(FLAG_ADMIN);
         map.put("userid", userid + "");
         map.put("tag", clazz.getSimpleName());
@@ -130,7 +136,7 @@ public abstract class AbstractMonitorService implements MonitorService {
         addMonitorEntry(MonitorData.DATATYPE_CHANGEHIS, map);
     }
 
-    /** ±£´æÓÃ»§Ç°Ì¨ÐÐÎª,¸ù¾ÝmemberId
+    /** ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ç°Ì¨ï¿½ï¿½Îª,ï¿½ï¿½ï¿½ï¿½memberId
      * @param memberid
      * @param action
      * @param info
@@ -138,7 +144,9 @@ public abstract class AbstractMonitorService implements MonitorService {
      */
     @Override
     public void saveMemberLogMap(Long memberid, String action, Map<String, String> info, String ip) {
-        if (info == null) info = Maps.newLinkedHashMap();
+        if (info == null) {
+            info = Maps.newLinkedHashMap();
+        }
         String curtime = DateUtil.formatTimestamp(new Timestamp(System.currentTimeMillis()));
         info.put("action", action);
         info.put("addtime", curtime);
@@ -156,8 +164,8 @@ public abstract class AbstractMonitorService implements MonitorService {
         addMonitorEntry(MonitorData.DATATYPE_MEMBERLOG, info);
     }
 
-    /** ±£´æÓÃ»§Ç°Ì¨ÐÐÎª,¸ù¾ÝµÇÂ¼Ãû³Æ
-     * @param membername: µÇÂ¼Ãû³Æ
+    /** ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ç°Ì¨ï¿½ï¿½Îª,ï¿½ï¿½ï¿½Ýµï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+     * @param membername: ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
      * @param action
      * @param info
      * @param ip
@@ -165,7 +173,9 @@ public abstract class AbstractMonitorService implements MonitorService {
     @Override
     public void saveMemberLogByName(String membername, String action, Map<String, String> info, String ip) {
         Assert.notNull(membername);
-        if (info == null) info = Maps.newLinkedHashMap();
+        if (info == null) {
+            info = Maps.newLinkedHashMap();
+        }
         String curtime = DateUtil.formatTimestamp(new Timestamp(System.currentTimeMillis()));
         info.put("action", action);
         info.put("addtime", curtime);
@@ -186,7 +196,7 @@ public abstract class AbstractMonitorService implements MonitorService {
     }
 
 
-    // -------------------------ÏµÍ³¾¯¸æÐÅÏ¢------------------
+    // -------------------------ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢------------------
     @Override
     public void saveSysWarn(String title, String content, RoleTag role) {
         saveSysWarn(null, null, title, content, role);
@@ -206,11 +216,21 @@ public abstract class AbstractMonitorService implements MonitorService {
     @Override
     public void saveSysWarn(Class clazz, Serializable relatedid, String title, String content, RoleTag role) {
         SysWarn warn = new SysWarn();
-        if (clazz != null) warn.setTag(clazz.getSimpleName());
-        if (relatedid != null) warn.setRelatedid(relatedid);
-        if (StringUtils.isNotBlank("title")) warn.setTitle(title);
-        if (StringUtils.isNotBlank("content")) warn.setContent(content);
-        if (role != null) warn.setRole(role.name());
+        if (clazz != null) {
+            warn.setTag(clazz.getSimpleName());
+        }
+        if (relatedid != null) {
+            warn.setRelatedid(relatedid);
+        }
+        if (StringUtils.isNotBlank("title")) {
+            warn.setTitle(title);
+        }
+        if (StringUtils.isNotBlank("content")) {
+            warn.setContent(content);
+        }
+        if (role != null) {
+            warn.setRole(role.name());
+        }
         Map<String, String> warnMap = BeanUtil.getSimpleStringMap(warn);
         warnMap.put("server", Config.getServerIp());
         addMonitorEntry(MonitorData.DATATYPE_SYSWARN, warnMap);
@@ -254,7 +274,9 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     private Map<String, String> getLogMap(String flag) {
         Map<String, String> map = new HashMap<String, String>();
-        if (StringUtils.isNotBlank(flag)) map.put("flag", flag);
+        if (StringUtils.isNotBlank(flag)) {
+            map.put("flag", flag);
+        }
         String curtime = DateUtil.formatTimestamp(new Timestamp(System.currentTimeMillis()));
         map.put("addtime", curtime);
         map.put("adddate", curtime.substring(0, 10));
@@ -264,14 +286,18 @@ public abstract class AbstractMonitorService implements MonitorService {
     @Override
     public void incrementCallCount(String callname) {
         AtomicInteger counter = callcountMap.get(callname);
-        if (counter == null) counter = createCounter(callname);
+        if (counter == null) {
+            counter = createCounter(callname);
+        }
         counter.incrementAndGet();
     }
 
     @Override
     public void decrementCallCount(String callname) {
         AtomicInteger counter = callcountMap.get(callname);
-        if (counter == null) counter = createCounter(callname);
+        if (counter == null) {
+            counter = createCounter(callname);
+        }
         counter.decrementAndGet();
     }
 
@@ -293,16 +319,18 @@ public abstract class AbstractMonitorService implements MonitorService {
     @Override
     public int getCallCount(String callname) {
         AtomicInteger counter = callcountMap.get(callname);
-        if (counter == null) return 0;
+        if (counter == null) {
+            return 0;
+        }
         return counter.get();
     }
 
     /**
-     * ±£´æÈÕÖ¾ÐÅÏ¢,¸ù¾ÝÒì³£ÀàÐÍ±£´æ
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½Ï¢,ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½
      *
      * @param tag
-     * @param location£ºuri »ò service¡¢job·½·¨
-     * @param title        ±êÌâ
+     * @param locationï¿½ï¿½uri ï¿½ï¿½ serviceï¿½ï¿½jobï¿½ï¿½ï¿½ï¿½
+     * @param title        ï¿½ï¿½ï¿½ï¿½
      * @param ex
      * @param otherinfo
      * @return
@@ -315,7 +343,7 @@ public abstract class AbstractMonitorService implements MonitorService {
         if (ex != null) {
             String exceptionTrace = title + "\n";
             String exceptionName = ex.getClass().getSimpleName();
-            // ¸ù¾ÝÒì³£ÀàÐÍ,½øÐÐ±£´æÏàÓ¦Òì³£µÄÏêÏ¸¶ÑÕ»ÐÅÏ¢ÐÐÊý
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ì³£ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Õ»ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
             if (ex instanceof MissingServletRequestParameterException ||
                     ex instanceof TypeMismatchException ||
                     StringUtils.contains(ex.getClass().getName(), "ClientAbortException")) {
@@ -328,7 +356,7 @@ public abstract class AbstractMonitorService implements MonitorService {
             }
             exceptionTrace += exctrace;
             if (ex instanceof IllegalStateException && ex.getCause() instanceof CharConversionException) {
-                //url±àÂë´íÎó£¬²»×öµÇ¼Ç
+                //urlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬²ï¿½ï¿½ï¿½ï¿½Ç¼ï¿½
                 return exctrace;
             }
             if (StringUtils.equals(exceptionName, "BindException")
@@ -342,7 +370,7 @@ public abstract class AbstractMonitorService implements MonitorService {
             row.put("exceptionTrace", exceptionTrace);
             row.put("exceptionType", exceptionType);
         } else {
-            row.put("exceptionName", "ÎÞ");
+            row.put("exceptionName", "ï¿½ï¿½");
             row.put("exceptionTrace", title + "\n" + location + "\n" + otherinfo);
         }
 
@@ -350,7 +378,7 @@ public abstract class AbstractMonitorService implements MonitorService {
             row.putAll(otherinfo);
         }
         if (tag == EXCEPTION_TAG.JOB) {
-            //¶¨Ê±ÈÎÎñ·Ç³£ÖØÒª
+            //ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½Òª
             exceptionType = "UNKNOWN";
         }
         row.put("tag", "" + tag);
@@ -360,12 +388,12 @@ public abstract class AbstractMonitorService implements MonitorService {
         String curtime = DateUtil.getCurFullTimestampStr();
         row.put("addtime", curtime);
         row.put("adddate", curtime.substring(0, 10));
-        //Ìí¼ÓÈÕÖ¾(´íÎóÈÕÖ¾)
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾)
         addMonitorEntry(MonitorData.DATATYPE_LOGENTRY, row);
 
         if (otherinfo != null) {
             String remoteIp = otherinfo.get("remoteIp");
-            //·Ç·¨·ÃÎÊ
+            //ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½
             if (StringUtils.isNotBlank(remoteIp) && !GewaIpConfig.isGewaInnerIp(remoteIp)) {
                 if (StringUtils.equals(exceptionType, "AttackException")) {
                     String reqUri = otherinfo.get("reqUri");
@@ -384,7 +412,7 @@ public abstract class AbstractMonitorService implements MonitorService {
     }
 
     /**
-     * Ìí¼Ó·Ç·¨·ÃÎÊÈÕÖ¾
+     * ï¿½ï¿½Ó·Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
      *
      * @param ip
      * @param resource

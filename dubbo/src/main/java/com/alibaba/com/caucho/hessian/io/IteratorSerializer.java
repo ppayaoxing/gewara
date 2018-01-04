@@ -59,12 +59,14 @@ public class IteratorSerializer extends AbstractSerializer {
 
   public static IteratorSerializer create()
   {
-    if (_serializer == null)
-      _serializer = new IteratorSerializer();
+    if (_serializer == null) {
+        _serializer = new IteratorSerializer();
+    }
 
     return _serializer;
   }
   
+  @Override
   public void writeObject(Object obj, AbstractHessianOutput out)
     throws IOException
   {
@@ -78,7 +80,8 @@ public class IteratorSerializer extends AbstractSerializer {
       out.writeObject(value);
     }
 
-    if (hasEnd)
-      out.writeListEnd();
+    if (hasEnd) {
+        out.writeListEnd();
+    }
   }
 }

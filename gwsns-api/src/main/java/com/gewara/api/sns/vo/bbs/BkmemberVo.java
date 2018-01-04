@@ -9,21 +9,21 @@ import com.gewara.api.vo.BaseVo;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ï¿½ï¿½ï¿½ï¿½02:05:17
  */
 public class BkmemberVo extends BaseVo{
-	public static final int ROLE_USER = 1; //ÆÕÍ¨ÓÃ»§
-	public static final int ROLE_BANZHU = 2; //°æÖ÷
-	public static final int ROLE_MANAGER = 4; //¹ÜÀíÔ±
-	public static final int ROLE_OWNER = 8; //ÓµÓÐÕß
+	public static final int ROLE_USER = 1; //ï¿½ï¿½Í¨ï¿½Ã»ï¿½
+	public static final int ROLE_BANZHU = 2; //ï¿½ï¿½ï¿½ï¿½
+	public static final int ROLE_MANAGER = 4; //ï¿½ï¿½ï¿½ï¿½Ô±
+	public static final int ROLE_OWNER = 8; //Óµï¿½ï¿½ï¿½ï¿½
 	private static final long serialVersionUID = 4476980910614491968L;
 	private Long id;
 	private Long memberid;
 	private String tag;
-	private String remark; //±ÈÈç£¬ÉêÇëÀíÓÉµÈ
+	private String remark; //ï¿½ï¿½ï¿½ç£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½
 	private Long relatedid;
 	private Timestamp addtime;
-	private Integer applyrole;//ÉêÇëµ±°æÖ÷
+	private Integer applyrole;//ï¿½ï¿½ï¿½ëµ±ï¿½ï¿½ï¿½ï¿½
 	private Integer role;
 	public BkmemberVo(){}
 	
@@ -78,42 +78,68 @@ public class BkmemberVo extends BaseVo{
 		this.role = role;
 	}
 	public boolean hasManagerRights(String stag, Long srelatedid) {
-		if(this.role < ROLE_MANAGER) return false;
+		if(this.role < ROLE_MANAGER) {
+            return false;
+        }
 		if(StringUtils.isBlank(stag) && StringUtils.isBlank(this.tag) || 
-				StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))){//ÏàµÈ
-			if(this.relatedid == null) return true;
+				StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))){//ï¿½ï¿½ï¿½
+			if(this.relatedid == null) {
+                return true;
+            }
 			return this.relatedid.equals(srelatedid);
 		}
-		if(StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))){//ÏàÈÝ
-			if(this.relatedid != null) return false;
+		if(StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))){//ï¿½ï¿½ï¿½ï¿½
+			if(this.relatedid != null) {
+                return false;
+            }
 			return true; 
 		}
 		return false;
 	}
 	public boolean hasRights(String stag, Long srelatedid){
-		if(this.role < ROLE_BANZHU) return false;//ÎÞÈ¨ÏÞ
+		if(this.role < ROLE_BANZHU) {
+            return false;//ï¿½ï¿½È¨ï¿½ï¿½
+        }
 		if(StringUtils.isBlank(stag) && StringUtils.isBlank(this.tag) || 
-				StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))){//ÏàµÈ
-			if(this.relatedid == null) return true;
+				StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))){//ï¿½ï¿½ï¿½
+			if(this.relatedid == null) {
+                return true;
+            }
 			return this.relatedid.equals(srelatedid);
 		}
-		if(StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))){//ÏàÈÝ
-			if(this.relatedid != null) return false;
+		if(StringUtils.isNotBlank(stag) && stag.contains(StringUtils.defaultString(this.tag))){//ï¿½ï¿½ï¿½ï¿½
+			if(this.relatedid != null) {
+                return false;
+            }
 			return true; 
 		}
 		return false;
 	}
 	public boolean isBkmember(String stag, Long srelatedid) {
-		if(!StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))) return false;
-		if(this.relatedid == null && srelatedid !=null || this.relatedid != null && srelatedid == null) return false;
-		if(this.relatedid !=null && srelatedid !=null && !this.relatedid.equals(srelatedid)) return false;
+		if(!StringUtils.defaultString(this.tag).equals(StringUtils.defaultString(stag))) {
+            return false;
+        }
+		if(this.relatedid == null && srelatedid !=null || this.relatedid != null && srelatedid == null) {
+            return false;
+        }
+		if(this.relatedid !=null && srelatedid !=null && !this.relatedid.equals(srelatedid)) {
+            return false;
+        }
 		return true;
 	}
 	public String getRolename(){
-		if(this.role == null) return "Î´Öª";
-		if(this.role == 1) return "ÆÕÍ¨³ÉÔ±";
-		if(this.role == 2) return "°æÖ÷";
-		if(this.role == 4) return "¹ÜÀíÔ±";
+		if(this.role == null) {
+            return "Î´Öª";
+        }
+		if(this.role == 1) {
+            return "ï¿½ï¿½Í¨ï¿½ï¿½Ô±";
+        }
+		if(this.role == 2) {
+            return "ï¿½ï¿½ï¿½ï¿½";
+        }
+		if(this.role == 4) {
+            return "ï¿½ï¿½ï¿½ï¿½Ô±";
+        }
 		return "Î´Öª";
 	}
 	public String getRemark() {

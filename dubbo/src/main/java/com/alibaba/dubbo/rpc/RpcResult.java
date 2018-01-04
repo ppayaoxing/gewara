@@ -46,6 +46,7 @@ public class RpcResult implements Result, Serializable {
         this.exception = exception;
     }
 
+    @Override
     public Object recreate() throws Throwable {
         if (exception != null) {
             throw exception;
@@ -57,6 +58,7 @@ public class RpcResult implements Result, Serializable {
      * @deprecated Replace to getValue()
      * @see com.alibaba.dubbo.rpc.RpcResult#getValue()
      */
+    @Override
     @Deprecated
     public Object getResult() {
         return getValue();
@@ -71,6 +73,7 @@ public class RpcResult implements Result, Serializable {
         setValue(result);
     }
 
+    @Override
     public Object getValue() {
         return result;
     }
@@ -79,6 +82,7 @@ public class RpcResult implements Result, Serializable {
         this.result = value;
     }
 
+    @Override
     public Throwable getException() {
         return exception;
     }
@@ -87,18 +91,22 @@ public class RpcResult implements Result, Serializable {
         this.exception = e;
     }
 
+    @Override
     public boolean hasException() {
         return exception != null;
     }
 
+    @Override
     public Map<String, String> getAttachments() {
         return attachments;
     }
 
+    @Override
     public String getAttachment(String key) {
         return attachments.get(key);
     }
 
+    @Override
     public String getAttachment(String key, String defaultValue) {
         String result = attachments.get(key);
         if (result == null || result.length() == 0) {

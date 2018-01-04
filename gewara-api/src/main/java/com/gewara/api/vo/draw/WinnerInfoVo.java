@@ -9,15 +9,15 @@ import com.gewara.api.vo.BaseVo;
 import com.gewara.cons.Status;
 
 /**
- * »ñ½±ÓÃ»§ÐÅÏ¢
+ * ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
  * @author Administrator
  */
 public class WinnerInfoVo extends BaseVo {
 	private static final long serialVersionUID = -7691160993786955260L;
 	public static final String TAG_SYSTEM = "system";
 	public static final String TAG_USER = "user";
-	public final static String SUM_PRIZECOUNT = "sumprizecount";//½±Æ·×ÜÊý
-	public final static String PROBABILTY_STATUS = "probabiltystatus";//ÅÐ¶Ï¼¸ÂÊÊÇÊÇ·ñÊÇµÚÒ»´ÎÉú³É
+	public final static String SUM_PRIZECOUNT = "sumprizecount";//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+	public final static String PROBABILTY_STATUS = "probabiltystatus";//ï¿½Ð¶Ï¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Çµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private Long id;
 	private Long activityid;
 	private Long memberid;
@@ -25,10 +25,10 @@ public class WinnerInfoVo extends BaseVo {
 	private Long prizeid;
 	private String mobile;
 	private Timestamp addtime;
-	private String status;//½±Æ·ÊÇ·ñÒÑ¾­ËÍ³öY:ÒÑËÍ³ö£¬N£ºÎ´ËÍ³ö
-	private String tag;//Ä¬ÈÏsystem,¹ÜÀíÔ±ºóÌ¨Ìí¼Óuser
-	private Long relatedid; 	//½±Æ·¹ØÁªID£¬Èç¿¨ID
-	private String remark;		//½±Æ·ËµÃ÷£¬Èç¿¨ºÅµÈ
+	private String status;//ï¿½ï¿½Æ·ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½Í³ï¿½Y:ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½Nï¿½ï¿½Î´ï¿½Í³ï¿½
+	private String tag;//Ä¬ï¿½ï¿½system,ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½user
+	private Long relatedid; 	//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ç¿¨ID
+	private String remark;		//ï¿½ï¿½Æ·Ëµï¿½ï¿½ï¿½ï¿½ï¿½ç¿¨ï¿½Åµï¿½
 	private String ip;
 	public WinnerInfoVo(){
 	}
@@ -136,7 +136,9 @@ public class WinnerInfoVo extends BaseVo {
 	}
 	public String getEnmobile(){
 		String result = mobile;
-		if(StringUtils.length(result)<=4) return result;
+		if(StringUtils.length(result)<=4) {
+            return result;
+        }
 		return "*******" + result.substring(result.length()-4);
 	}
 	public String getIp() {

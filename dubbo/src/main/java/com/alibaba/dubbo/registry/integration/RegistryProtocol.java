@@ -73,6 +73,7 @@ public class RegistryProtocol implements Protocol {
         this.proxyFactory = proxyFactory;
     }
 
+    @Override
     public int getDefaultPort() {
         return 9090;
     }
@@ -96,12 +97,13 @@ public class RegistryProtocol implements Protocol {
 		return overrideListeners;
 	}
 
-	//ÓÃÓÚ½â¾örmiÖØ¸´±©Â¶¶Ë¿Ú³åÍ»µÄÎÊÌâ£¬ÒÑ¾­±©Â¶¹ýµÄ·þÎñ²»ÔÙÖØÐÂ±©Â¶
+	//ï¿½ï¿½ï¿½Ú½ï¿½ï¿½rmiï¿½Ø¸ï¿½ï¿½ï¿½Â¶ï¿½Ë¿Ú³ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½â£¬ï¿½Ñ¾ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½Â¶
     //providerurl <--> exporter
     private final Map<String, ExporterChangeableWrapper<?>> bounds = new ConcurrentHashMap<String, ExporterChangeableWrapper<?>>();
     
     private final static Logger logger = LoggerFactory.getLogger(RegistryProtocol.class);
     
+    @Override
     public <T> Exporter<T> export(final Invoker<T> originInvoker) throws RpcException {
         //export invoker
         final ExporterChangeableWrapper<T> exporter = doLocalExport(originInvoker);
@@ -109,17 +111,19 @@ public class RegistryProtocol implements Protocol {
         final Registry registry = getRegistry(originInvoker);
         final URL registedProviderUrl = getRegistedProviderUrl(originInvoker);
         registry.register(registedProviderUrl);
-        // ¶©ÔÄoverrideÊý¾Ý
-        // FIXME Ìá¹©Õß¶©ÔÄÊ±£¬»áÓ°ÏìÍ¬Ò»JVM¼´±©Â¶·þÎñ£¬ÓÖÒýÓÃÍ¬Ò»·þÎñµÄµÄ³¡¾°£¬ÒòÎªsubscribedÒÔ·þÎñÃûÎª»º´æµÄkey£¬µ¼ÖÂ¶©ÔÄÐÅÏ¢¸²¸Ç¡£
+        // ï¿½ï¿½ï¿½ï¿½overrideï¿½ï¿½ï¿½ï¿½
+        // FIXME ï¿½á¹©ï¿½ß¶ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½Í¬Ò»JVMï¿½ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬Ò»ï¿½ï¿½ï¿½ï¿½ÄµÄ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªsubscribedï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½keyï¿½ï¿½ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ç¡ï¿½
         final URL overrideSubscribeUrl = getSubscribedOverrideUrl(registedProviderUrl);
         final OverrideListener overrideSubscribeListener = new OverrideListener(overrideSubscribeUrl);
         overrideListeners.put(overrideSubscribeUrl, overrideSubscribeListener);
         registry.subscribe(overrideSubscribeUrl, overrideSubscribeListener);
-        //±£Ö¤Ã¿´Îexport¶¼·µ»ØÒ»¸öÐÂµÄexporterÊµÀý
+        //ï¿½ï¿½Ö¤Ã¿ï¿½ï¿½exportï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Âµï¿½exporterÊµï¿½ï¿½
         return new Exporter<T>() {
+            @Override
             public Invoker<T> getInvoker() {
                 return exporter.getInvoker();
             }
+            @Override
             public void unexport() {
             	try {
             		exporter.unexport();
@@ -159,7 +163,7 @@ public class RegistryProtocol implements Protocol {
     }
     
     /**
-     * ¶ÔÐÞ¸ÄÁËurlµÄinvokerÖØÐÂexport
+     * ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½urlï¿½ï¿½invokerï¿½ï¿½ï¿½ï¿½export
      * @param originInvoker
      * @param newInvokerUrl
      */
@@ -169,7 +173,7 @@ public class RegistryProtocol implements Protocol {
         final ExporterChangeableWrapper<T> exporter = (ExporterChangeableWrapper<T>) bounds.get(key);
         if (exporter == null){
             logger.warn(new IllegalStateException("error state, exporter should not be null"));
-            return ;//²»´æÔÚÊÇÒì³£³¡¾° Ö±½Ó·µ»Ø 
+            return ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ Ö±ï¿½Ó·ï¿½ï¿½ï¿½ 
         } else {
             final Invoker<T> invokerDelegete = new InvokerDelegete<T>(originInvoker, newInvokerUrl);
             exporter.setExporter(protocol.export(invokerDelegete));
@@ -177,7 +181,7 @@ public class RegistryProtocol implements Protocol {
     }
 
     /**
-     * ¸ù¾ÝinvokerµÄµØÖ·»ñÈ¡registryÊµÀý
+     * ï¿½ï¿½ï¿½ï¿½invokerï¿½Äµï¿½Ö·ï¿½ï¿½È¡registryÊµï¿½ï¿½
      * @param originInvoker
      * @return
      */
@@ -191,13 +195,13 @@ public class RegistryProtocol implements Protocol {
     }
 
     /**
-     * ·µ»Ø×¢²áµ½×¢²áÖÐÐÄµÄURL£¬¶ÔURL²ÎÊý½øÐÐÒ»´Î¹ýÂË
+     * ï¿½ï¿½ï¿½ï¿½×¢ï¿½áµ½×¢ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½URLï¿½ï¿½ï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î¹ï¿½ï¿½ï¿½
      * @param originInvoker
      * @return
      */
     private URL getRegistedProviderUrl(final Invoker<?> originInvoker){
         URL providerUrl = getProviderUrl(originInvoker);
-        //×¢²áÖÐÐÄ¿´µ½µÄµØÖ·
+        //×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·
         final URL registedProviderUrl = providerUrl.removeParameters(getFilteredKeys(providerUrl)).removeParameter(Constants.MONITOR_KEY);
         return registedProviderUrl;
     }
@@ -209,7 +213,7 @@ public class RegistryProtocol implements Protocol {
     }
 
     /**
-     * Í¨¹ýinvokerµÄurl »ñÈ¡ providerUrlµÄµØÖ·
+     * Í¨ï¿½ï¿½invokerï¿½ï¿½url ï¿½ï¿½È¡ providerUrlï¿½Äµï¿½Ö·
      * @param origininvoker
      * @return
      */
@@ -224,7 +228,7 @@ public class RegistryProtocol implements Protocol {
     }
 
     /**
-     * »ñÈ¡invokerÔÚboundsÖÐ»º´æµÄkey
+     * ï¿½ï¿½È¡invokerï¿½ï¿½boundsï¿½Ð»ï¿½ï¿½ï¿½ï¿½key
      * @param originInvoker
      * @return
      */
@@ -234,6 +238,7 @@ public class RegistryProtocol implements Protocol {
         return key;
     }
     
+    @Override
     @SuppressWarnings("unchecked")
 	public <T> Invoker<T> refer(Class<T> type, URL url) throws RpcException {
         url = url.setProtocol(url.getParameter(Constants.REGISTRY_KEY, Constants.DEFAULT_REGISTRY)).removeParameter(Constants.REGISTRY_KEY);
@@ -275,7 +280,7 @@ public class RegistryProtocol implements Protocol {
         return cluster.join(directory);
     }
 
-    //¹ýÂËURLÖÐ²»ÐèÒªÊä³öµÄ²ÎÊý(ÒÔµãºÅ¿ªÍ·µÄ)
+    //ï¿½ï¿½ï¿½ï¿½URLï¿½Ð²ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½(ï¿½Ôµï¿½Å¿ï¿½Í·ï¿½ï¿½)
     private static String[] getFilteredKeys(URL url) {
         Map<String, String> params = url.getParameters();
         if (params != null && !params.isEmpty()) {
@@ -291,6 +296,7 @@ public class RegistryProtocol implements Protocol {
         }
     }
     
+    @Override
     public void destroy() {
         List<Exporter<?>> exporters = new ArrayList<Exporter<?>>(bounds.values());
         for(Exporter<?> exporter :exporters){
@@ -300,10 +306,10 @@ public class RegistryProtocol implements Protocol {
     }
     
     
-    /*ÖØÐÂexport 1.protocolÖÐµÄexporter destoryÎÊÌâ 
-     *1.ÒªÇóregistryprotocol·µ»ØµÄexporter¿ÉÒÔÕý³£destroy
-     *2.notifyºó²»ÐèÒªÖØÐÂÏò×¢²áÖÐÐÄ×¢²á 
-     *3.export ·½·¨´«ÈëµÄinvoker×îºÃÄÜÒ»Ö±×÷ÎªexporterµÄinvoker.
+    /*ï¿½ï¿½ï¿½ï¿½export 1.protocolï¿½Ðµï¿½exporter destoryï¿½ï¿½ï¿½ï¿½ 
+     *1.Òªï¿½ï¿½registryprotocolï¿½ï¿½ï¿½Øµï¿½exporterï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½destroy
+     *2.notifyï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ 
+     *3.export ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½invokerï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ö±ï¿½ï¿½Îªexporterï¿½ï¿½invoker.
      */
     private class OverrideListener implements NotifyListener {
     	
@@ -316,17 +322,18 @@ public class RegistryProtocol implements Protocol {
 		}
 
 		/*
-         *  provider ¶Ë¿ÉÊ¶±ðµÄoverride urlÖ»ÓÐÕâÁ½ÖÖ.
+         *  provider ï¿½Ë¿ï¿½Ê¶ï¿½ï¿½ï¿½override urlÖ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
          *  override://0.0.0.0/serviceName?timeout=10
          *  override://0.0.0.0/?timeout=10
          */
+        @Override
         public void notify(List<URL> urls) {
         	List<URL> result = null;
         	for (URL url : urls) {
         		URL overrideUrl = url;
         		if (url.getParameter(Constants.CATEGORY_KEY) == null
         				&& Constants.OVERRIDE_PROTOCOL.equals(url.getProtocol())) {
-        			// ¼æÈÝ¾É°æ±¾
+        			// ï¿½ï¿½ï¿½Ý¾É°æ±¾
         			overrideUrl = url.addParameter(Constants.CATEGORY_KEY, Constants.CONFIGURATORS_CATEGORY);
         		}
         		if (! UrlUtils.isMatch(subscribeUrl, overrideUrl)) {
@@ -362,7 +369,7 @@ public class RegistryProtocol implements Protocol {
         
         private URL getNewInvokerUrl(URL url, List<URL> urls){
         	List<Configurator> localConfigurators = this.configurators; // local reference
-            // ºÏ²¢override²ÎÊý
+            // ï¿½Ï²ï¿½overrideï¿½ï¿½ï¿½ï¿½
             if (localConfigurators != null && localConfigurators.size() > 0) {
                 for (Configurator configurator : localConfigurators) {
                     url = configurator.configure(url);
@@ -376,7 +383,7 @@ public class RegistryProtocol implements Protocol {
         private final Invoker<T> invoker;
         /**
          * @param invoker 
-         * @param url invoker.getUrl·µ»Ø´ËÖµ
+         * @param url invoker.getUrlï¿½ï¿½ï¿½Ø´ï¿½Öµ
          */
         public InvokerDelegete(Invoker<T> invoker, URL url){
             super(invoker, url);
@@ -392,7 +399,7 @@ public class RegistryProtocol implements Protocol {
     }
     
     /**
-     * exporter´úÀí,½¨Á¢·µ»ØµÄexporterÓëprotocol export³öµÄexporterµÄ¶ÔÓ¦¹ØÏµ£¬ÔÚoverrideÊ±¿ÉÒÔ½øÐÐ¹ØÏµÐÞ¸Ä.
+     * exporterï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½exporterï¿½ï¿½protocol exportï¿½ï¿½ï¿½ï¿½exporterï¿½Ä¶ï¿½Ó¦ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½overrideÊ±ï¿½ï¿½ï¿½Ô½ï¿½ï¿½Ð¹ï¿½Ïµï¿½Þ¸ï¿½.
      * 
      * @author chao.liuc
      *
@@ -413,6 +420,7 @@ public class RegistryProtocol implements Protocol {
             return originInvoker;
         }
 
+        @Override
         public Invoker<T> getInvoker() {
             return exporter.getInvoker();
         }
@@ -421,6 +429,7 @@ public class RegistryProtocol implements Protocol {
             this.exporter = exporter;
         }
 
+        @Override
         public void unexport() {
             String key = getCacheKey(this.originInvoker);
             bounds.remove(key);

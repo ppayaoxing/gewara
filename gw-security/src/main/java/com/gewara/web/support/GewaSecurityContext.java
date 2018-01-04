@@ -12,7 +12,9 @@ public class GewaSecurityContext extends SecurityContextImpl{
 	private String ip;
 	@Override
 	public Authentication getAuthentication() {
-		if(System.currentTimeMillis() > timeoutMill) return null;
+		if(System.currentTimeMillis() > timeoutMill) {
+            return null;
+        }
 		return super.getAuthentication();
 	}
 	public void setIp(String ip) {

@@ -12,128 +12,128 @@ import java.util.Map;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 public abstract class OpiConstant {
-	public static final String STATUS_BOOK = "Y";			//½ÓÊÜÔ¤¶©
-	public static final String STATUS_NOBOOK = "N";			//²»½ÓÊÜÔ¤¶©
-	public static final String STATUS_RECOVER = "R";		//´ÓÉ¾³ý×´Ì¬»Ö¸´£¬ÐèÒª´¦Àí
-	public static final String STATUS_DISCARD = "D";		//·ÏÆú
-	public static final String STATUS_CLOSE = "C";			//³¡´Î×´Ì¬	
-	public static final String STATUS_PAST = "P";			//³¡´Î¹ýÆÚ
-	public static final String PARTNER_OPEN = "Y";			//¶ÔÍâ¿ª·Å
-	public static final String PARTNER_CLOSE = "N";			//²»¶ÔÍâ¿ª·Å
+	public static final String STATUS_BOOK = "Y";			//ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½
+	public static final String STATUS_NOBOOK = "N";			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½
+	public static final String STATUS_RECOVER = "R";		//ï¿½ï¿½É¾ï¿½ï¿½×´Ì¬ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+	public static final String STATUS_DISCARD = "D";		//ï¿½ï¿½ï¿½ï¿½
+	public static final String STATUS_CLOSE = "C";			//ï¿½ï¿½ï¿½ï¿½×´Ì¬	
+	public static final String STATUS_PAST = "P";			//ï¿½ï¿½ï¿½Î¹ï¿½ï¿½ï¿½
+	public static final String PARTNER_OPEN = "Y";			//ï¿½ï¿½ï¿½â¿ªï¿½ï¿½
+	public static final String PARTNER_CLOSE = "N";			//ï¿½ï¿½ï¿½ï¿½ï¿½â¿ªï¿½ï¿½
 
-	//·ÏÆú
-	//public static final String OPEN_PNX = "PNX";			//¿ª·ÅÀàÐÍ£ºÓë¶«Æ±¶Ô½Ó
-	public static final String OPEN_DADI = "DADI";			//´óµØÊý×ÖÔºÏß
-	public static final String OPEN_HFH = "HFH";			//¿ª·ÅÀàÐÍ£ºÓë»ð·ï»Ë¶Ô½Ó
-	public static final String OPEN_WD = "WD";				//¿ª·ÅÀàÐÍ£ºÓëÍò´ï¶Ô½Ó
-	public static final String OPEN_VISTA = "VISTA";		//¿ª·ÅÀàÐÍ£ºÓëVista¶Ô½Ó
-	public static final String OPEN_JY = "JY";				//¿ª·ÅÀàÐÍ£ºÓëJY¶Ô½Ó
-	public static final String OPEN_FB = "FB";				//»ðÁÒÄñ
-	public static final String OPEN_XFLH = "XFLH";			//ÐÒ¸£À¶º£
-	public static final String OPEN_LMA = "LMA";			//Â¬Ã×°£
-	public static final String OPEN_NJY = "NJY";			//½ðÒÝÆ±Îñ½Ó¿Ú£¨ÐÂ×ÔÖú»ú£©
-	public static final String OPEN_TXPC = "TXPC";			//ÌìÏÂÆ±²Ö
+	//ï¿½ï¿½ï¿½ï¿½
+	//public static final String OPEN_PNX = "PNX";			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ë¶«Æ±ï¿½Ô½ï¿½
+	public static final String OPEN_DADI = "DADI";			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôºï¿½ï¿½
+	public static final String OPEN_HFH = "HFH";			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½Ë¶Ô½ï¿½
+	public static final String OPEN_WD = "WD";				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½
+	public static final String OPEN_VISTA = "VISTA";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Vistaï¿½Ô½ï¿½
+	public static final String OPEN_JY = "JY";				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½JYï¿½Ô½ï¿½
+	public static final String OPEN_FB = "FB";				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String OPEN_XFLH = "XFLH";			//ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String OPEN_LMA = "LMA";			//Â¬ï¿½×°ï¿½
+	public static final String OPEN_NJY = "NJY";			//ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½Ó¿Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String OPEN_TXPC = "TXPC";			//ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½
 	public static final String OPEN_UL = "UL";				//UL
-	public static final String OPEN_MJ = "MJ";				//ÃÀ¼Î
-	public static final String OPEN_MJY = "MJY";				//½ðÒÝ£¨2.4£©
-	public static final String OPEN_WD2 = "WD2";				//Íò´ï2
-	public static final String OPEN_FB2 = "FB2";				//»ðÁÒÄñ2
-	public static final String OPEN_DADI2 = "DADI2";				//´óµØvista
-	public static final String OPEN_YXLT = "YXLT";				//ÒøÐËÀÖÌì
-	public static final String OPEN_WM = "WM";					//ÎÖÃÀ
+	public static final String OPEN_MJ = "MJ";				//ï¿½ï¿½ï¿½ï¿½
+	public static final String OPEN_MJY = "MJY";				//ï¿½ï¿½ï¿½Ý£ï¿½2.4ï¿½ï¿½
+	public static final String OPEN_WD2 = "WD2";				//ï¿½ï¿½ï¿½2
+	public static final String OPEN_FB2 = "FB2";				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2
+	public static final String OPEN_DADI2 = "DADI2";				//ï¿½ï¿½ï¿½vista
+	public static final String OPEN_YXLT = "YXLT";				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String OPEN_WM = "WM";					//ï¿½ï¿½ï¿½ï¿½
 	public static final String OPEN_VISTA2 = "VISTA2";			//vista2
-	public static final String OPEN_MJY2 = "MJY2";				//M½ðÒÝ2 
+	public static final String OPEN_MJY2 = "MJY2";				//Mï¿½ï¿½ï¿½ï¿½2 
 	
-	//Ê¹ÓÃÖÐ
-	public static final String OPEN_GEWARA = "GEWA";		//¿ª·ÅÀàÐÍ£º²»Óë»ð·ï»Ë¶Ô½Ó
-	public static final String OPEN_MTX = "MTX";			//¿ª·ÅÀàÐÍ£ºÓëÂúÌìÐÇ¶Ô½Ó
-	public static final String OPEN_DX = "DX";				//¿ª·ÅÀàÐÍ£ºÓë¶¦ÐÂ¶Ô½Ó
-	public static final String OPEN_GPTBS = "GPTBS";		//Æ±ÎñÏµÍ³
-	public static final String OPEN_STPF = "STPF";			//³½ÐÇ£¨´óµØÐÂ°æ£©
-	public static final String OPEN_FB3 = "FB3";				//»ðÁÒÄñ3Æ½Ì¨ÖÐÐÄ
-	public static final String OPEN_XFLH2 = "XFLH2";			//ÐÒ¸£À¶º£2
+	//Ê¹ï¿½ï¿½ï¿½ï¿½
+	public static final String OPEN_GEWARA = "GEWA";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¶Ô½ï¿½
+	public static final String OPEN_MTX = "MTX";			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¶Ô½ï¿½
+	public static final String OPEN_DX = "DX";				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ë¶¦ï¿½Â¶Ô½ï¿½
+	public static final String OPEN_GPTBS = "GPTBS";		//Æ±ï¿½ï¿½ÏµÍ³
+	public static final String OPEN_STPF = "STPF";			//ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½ï¿½Â°æ£©
+	public static final String OPEN_FB3 = "FB3";				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3Æ½Ì¨ï¿½ï¿½ï¿½ï¿½
+	public static final String OPEN_XFLH2 = "XFLH2";			//ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½2
 	public static final String OPEN_M1905 = "M1905";			//1905
-	public static final String OPEN_DADI3 = "DADI3";			//´óµØÖ±ÓªÆ½Ì¨3
-	public static final String OPEN_DADI4 = "DADI4";			//´óµØÖ±ÓªÆ½Ì¨4
+	public static final String OPEN_DADI3 = "DADI3";			//ï¿½ï¿½ï¿½Ö±ÓªÆ½Ì¨3
+	public static final String OPEN_DADI4 = "DADI4";			//ï¿½ï¿½ï¿½Ö±ÓªÆ½Ì¨4
 	public static final String OPEN_CGV = "CGV";				//cgv
-	public static final String OPEN_CFC = "CFC";				//ÖÐÓ°
-	public static final String OPEN_TXPC2 = "TXPC2";			//ÌìÏÂÆ±²Ö2
-	public static final String OPEN_SDZX = "SDZX";				//Ê±´úÔÚÏß
+	public static final String OPEN_CFC = "CFC";				//ï¿½ï¿½Ó°
+	public static final String OPEN_TXPC2 = "TXPC2";			//ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½2
+	public static final String OPEN_SDZX = "SDZX";				//Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final String OPEN_VISTA3 = "VISTA3";			//VISTA RESETÆ½Ì¨
 	public static final String OPEN_WP = "WP";			//Î¢Æ±
-	public static final String OPEN_BL = "BL";			//±£Àû
-	public static final String OPEN_HFH2 = "HFH2";		//»ð·ï»Ë2
-	public static final String OPEN_CTJH = "CTJH";		//³ÈÌì¼ÎºÌ
+	public static final String OPEN_BL = "BL";			//ï¿½ï¿½ï¿½ï¿½
+	public static final String OPEN_HFH2 = "HFH2";		//ï¿½ï¿½ï¿½ï¿½2
+	public static final String OPEN_CTJH = "CTJH";		//ï¿½ï¿½ï¿½ï¿½Îºï¿½
 	public static final String OPEN_WD3 = "WD3";		//WD3
 	public static final String OPEN_CGV2 = "CGV2";	//CGV2
 	
 	public static final List<String> OPEN_LOWEST_IS_COST = Arrays.asList(
 			OPEN_STPF,OPEN_XFLH2,OPEN_M1905,OPEN_DADI3,OPEN_DADI4,OPEN_CFC,OPEN_CGV,OPEN_TXPC2,OPEN_SDZX,
-			OPEN_VISTA3,OPEN_WP,OPEN_BL,OPEN_CTJH,OPEN_WD3,OPEN_CGV2);//×îµÍ¼Û¼´½áËã¼ÛµÄÀàÐÍ
+			OPEN_VISTA3,OPEN_WP,OPEN_BL,OPEN_CTJH,OPEN_WD3,OPEN_CGV2);//ï¿½ï¿½Í¼Û¼ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ï¿½ï¿½
 
 	
-	public static final String OPERATION_DISCARD = "discard";//·ÏÆú³¡´Î
+	public static final String OPERATION_DISCARD = "discard";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	public static final String PAYOPTION = "payoption";						//Ö§¸¶Ñ¡Ïî
-	public static final String PAYCMETHODLIST = "paymethodlist";			//Ö§¸¶·½·¨
-	public static final String CARDOPTION = "cardoption";					//È¯Ñ¡Ïî
-	public static final String BATCHIDLIST = "batchidlist";					//Åú´Îid¼¯ºÏ
-	public static final String DEFAULTPAYMETHOD = "defaultpaymethod";		//Ä¬ÈÏÖ§¸¶·½Ê½
-	public static final String MEALOPTION = "mealoption";					//Ì×²ÍÏî
-	public static final String UNVALIDSEATPOS = "unvalidseatpos";			//²»ÑéÖ¤Ñ¡ÔñµÄ×ùÎ»Î»ÖÃ
-	public static final String ISREFUND = "isRefund";						//ÊÇ·ñ¿ÉÒÔÍËÆ±
-	public static final String AUTO_OPEN_INFO = "autoOpen";					//×Ô¶¯¿ª·Å
-	public static final String AUTO_OPEN_INFO_STATUS = "autoOpenStatus";	//×Ô¶¯ÉèÖÃÆ÷µÄ×´Ì¬£¬ÊÖ¶¯»¹ÊÇ×Ô¶¯¡£
-	public static final String AUTO_OPEN_SETTER_ID = "setterId";			//×Ô¶¯ÉèÖÃÆ÷ID
-	public static final String AUTO_OPEN_DISCARD = "autoOpenDiscard";					//×Ô¶¯¿ª·Å·ÏÆú¹ýµÄ³¡´Î
-	public static final String SMPNO = "smpno";								//ÌØ¶¨µÄ³¡´Î±àºÅ
-	public static final String SIGN = "sign";									//À´±ö³¡´Î±êÊ¶
-	public static final String	AREADESC = "areadesc";						//³¡´ÎÇøÓòÃèÊö
-	public static final String LYMOVIEIDS = "lymovieids";					//Á¬Ó³³¡´Î³¡´Îids
-	public static final String SHOWLABEL = "showLabel";							//ÊÇ·ñÔùËÍÖÜ±ß
+	public static final String PAYOPTION = "payoption";						//Ö§ï¿½ï¿½Ñ¡ï¿½ï¿½
+	public static final String PAYCMETHODLIST = "paymethodlist";			//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String CARDOPTION = "cardoption";					//È¯Ñ¡ï¿½ï¿½
+	public static final String BATCHIDLIST = "batchidlist";					//ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½
+	public static final String DEFAULTPAYMETHOD = "defaultpaymethod";		//Ä¬ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Ê½
+	public static final String MEALOPTION = "mealoption";					//ï¿½×²ï¿½ï¿½ï¿½
+	public static final String UNVALIDSEATPOS = "unvalidseatpos";			//ï¿½ï¿½ï¿½ï¿½Ö¤Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Î»Î»ï¿½ï¿½
+	public static final String ISREFUND = "isRefund";						//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±
+	public static final String AUTO_OPEN_INFO = "autoOpen";					//ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String AUTO_OPEN_INFO_STATUS = "autoOpenStatus";	//ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½
+	public static final String AUTO_OPEN_SETTER_ID = "setterId";			//ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
+	public static final String AUTO_OPEN_DISCARD = "autoOpenDiscard";					//ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
+	public static final String SMPNO = "smpno";								//ï¿½Ø¶ï¿½ï¿½Ä³ï¿½ï¿½Î±ï¿½ï¿½
+	public static final String SIGN = "sign";									//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±ï¿½Ê¶
+	public static final String	AREADESC = "areadesc";						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String LYMOVIEIDS = "lymovieids";					//ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Î³ï¿½ï¿½ï¿½ids
+	public static final String SHOWLABEL = "showLabel";							//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü±ï¿½
 	
-	public static final String SDIDS = "sdids";								//¹ØÁªÌØ¼Û»î¶¯id
-	public static final String SDIDSREMARK = "sdidsRemark";					//¹ØÁªÌØ¼Û»î¶¯idÌáÊ¾¸øÓÃ»§
+	public static final String SDIDS = "sdids";								//ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼Û»î¶¯id
+	public static final String SDIDSREMARK = "sdidsRemark";					//ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼Û»î¶¯idï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ã»ï¿½
 	
-	public static final String FROM_SPID = "fromSpid";						//´ÓÄ³ÖÖÇþµÀÏÂµÄ¶©µ¥
-	public static final String ADDRESS = "address";							//µØÖ·±ØÌî
-	public static final String UNOPENGEWA = "unopengewa";					//³¡´Î²»¶Ô¸ñÍßÀ­¿ª·Å
-	public static final String UNSHOWGEWA = "unshowgewa";					//³¡´Î²»¶Ô¸ñÍßÀ­ÏÔÊ¾
-	public static final String OPENCLIENT = "openclient";					//¿ª·Å¿Í»§¶Ë
+	public static final String FROM_SPID = "fromSpid";						//ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄ¶ï¿½ï¿½ï¿½
+	public static final String ADDRESS = "address";							//ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½
+	public static final String UNOPENGEWA = "unopengewa";					//ï¿½ï¿½ï¿½Î²ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String UNSHOWGEWA = "unshowgewa";					//ï¿½ï¿½ï¿½Î²ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
+	public static final String OPENCLIENT = "openclient";					//ï¿½ï¿½ï¿½Å¿Í»ï¿½ï¿½ï¿½
 	
 	public static final String MPI_OPENSTATUS_INIT = "init";
 	public static final String MPI_OPENSTATUS_OPEN = "open";
 	public static final String MPI_OPENSTATUS_CLOSE = "close";
 	public static final String MPI_OPENSTATUS_DISABLED = "disabled";		//
-	public static final String MPI_OPENSTATUS_PAST = "past";				//¹ýÆÚ
+	public static final String MPI_OPENSTATUS_PAST = "past";				//ï¿½ï¿½ï¿½ï¿½
 	
 	
-	public static final String MPITYPE_FILMFEST = "filmfest";			// µçÓ°½Ú±êÊ¶
-	public static final String MPITYPE_BAOCHANG = "baoChang";			// °ü³¡±êÊ¶
-	public static final String MPITYPE_GWBAOCHANG = "gwBaoChang";			// ¸ñÍßÀ­×Ô¼º°ü³¡±êÊ¶
+	public static final String MPITYPE_FILMFEST = "filmfest";			// ï¿½ï¿½Ó°ï¿½Ú±ï¿½Ê¶
+	public static final String MPITYPE_BAOCHANG = "baoChang";			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¶
+	public static final String MPITYPE_GWBAOCHANG = "gwBaoChang";			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¶
 
-	//×ùÎ»Í¼Ë¢ÐÂÆµÂÊ
-	public static final int SECONDS_SHOW_SEAT = 900;		//ÏÔÊ¾×ùÎ»Í¼£¬20·ÖÖÓ
-	public static final int SECONDS_ADDORDER = 300;		//ÏÂµ¥£¬5·ÖÖÓ
-	public static final int SECONDS_UPDATE_SEAT = 60;		//¸üÐÂ£¬1·ÖÖÓ
-	public static final int SECONDS_FORCEUPDATE_SEAT = 10;		//¸üÐÂ£¬10Ãë
+	//ï¿½ï¿½Î»Í¼Ë¢ï¿½ï¿½Æµï¿½ï¿½
+	public static final int SECONDS_SHOW_SEAT = 900;		//ï¿½ï¿½Ê¾ï¿½ï¿½Î»Í¼ï¿½ï¿½20ï¿½ï¿½ï¿½ï¿½
+	public static final int SECONDS_ADDORDER = 300;		//ï¿½Âµï¿½ï¿½ï¿½5ï¿½ï¿½ï¿½ï¿½
+	public static final int SECONDS_UPDATE_SEAT = 60;		//ï¿½ï¿½ï¿½Â£ï¿½1ï¿½ï¿½ï¿½ï¿½
+	public static final int SECONDS_FORCEUPDATE_SEAT = 10;		//ï¿½ï¿½ï¿½Â£ï¿½10ï¿½ï¿½
 	
-	public static final int MAX_MINUTS_TICKETS = 15;		//µçÓ°Æ±½»Ò××î´ó±£ÁôÊ±¼ä£¨·ÖÖÓ£©
-	public static final int MAX_MINUTS_TICKETS_MTX = 10; 	//ÂúÌìÐÇ×ùÎ»±£ÁôÊ±¼ä
-	public static final int MAX_MINUTS_TICKETS_PNX = 5;		//Æ±ÎñÏµÍ³×ùÎ»±£ÁôÊ±¼ä
+	public static final int MAX_MINUTS_TICKETS = 15;		//ï¿½ï¿½Ó°Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¨ï¿½ï¿½ï¿½Ó£ï¿½
+	public static final int MAX_MINUTS_TICKETS_MTX = 10; 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	public static final int MAX_MINUTS_TICKETS_PNX = 5;		//Æ±ï¿½ï¿½ÏµÍ³ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	
-	public static final int MAXSEAT_PER_ORDER = 5;			//×î´óËø×ùÊý
-	public static final int MAXSEAT_PER_ORDER_PNX = 4;		//×î´óËø×ùÊý£¨¶«Æ±£¬ÂúÌìÐÇ£©
+	public static final int MAXSEAT_PER_ORDER = 5;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final int MAXSEAT_PER_ORDER_PNX = 4;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½
 	
 	
-	public static final List<String> EDITIONS = Arrays.asList("2D","3D","IMAX2D","IMAX3D","Ë«»ú3D","¾ÞÄ»2D","¾ÞÄ»3D", "4D", "4DX", "5D", "6D");
-	public static final List<String> EDITIONS_3D = Arrays.asList("3D", "IMAX3D", "Ë«»ú3D","¾ÞÄ»3D", "4D", "4DX", "5D", "6D");
+	public static final List<String> EDITIONS = Arrays.asList("2D","3D","IMAX2D","IMAX3D","Ë«ï¿½ï¿½3D","ï¿½ï¿½Ä»2D","ï¿½ï¿½Ä»3D", "4D", "4DX", "5D", "6D");
+	public static final List<String> EDITIONS_3D = Arrays.asList("3D", "IMAX3D", "Ë«ï¿½ï¿½3D","ï¿½ï¿½Ä»3D", "4D", "4DX", "5D", "6D");
 	public static final List<String> ADV_EDITION = Arrays.asList("6D", "5D", "4DX");
 	public static final List<String> LANGUAGES = Arrays.asList(
-			"¹úÓï","Ó¢Óï","ÔÁÓï","·¨Óï","º«Óï","ÈüµÂ¿ËÓï","Î÷°àÑÀÓï","µÂÓï","¶íÓï","ÈÕÓï",
-			"Ì©Óï","Òâ´óÀûÓï","Ó¡¶ÈÓï","ÍÁ¶úÆäÓï","Ï£À°Óï","²¨Ë¹Óï","·ÒÀ¼Óï","µ¤ÂóÓï",
-			"ºÉÀ¼Óï","ÆÏÌÑÑÀÓï","²¨À¼Óï","°¢À­²®Óï","Ó¡ÄáÓï","ÎÚ¿ËÀ¼Óï","ÐÙÑÀÀûÓï","ÂíÀ´Óï",
-			"Ô½ÄÏÓï","ÉÂÎ÷»°","ÃöÄÏÓï","ÃöÄÏ»°","°ÍÎ÷Óï","Ô­°æ","²ØÓï","»¦Óï");
+			"ï¿½ï¿½ï¿½ï¿½","Ó¢ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½",
+			"Ì©ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","Ó¡ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","Ï£ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½Ë¹ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+			"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","Ó¡ï¿½ï¿½ï¿½ï¿½","ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+			"Ô½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½Ï»ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","Ô­ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½");
 	public static boolean isValidEdition(String edition){
 		return StringUtils.isNotBlank(edition) && EDITIONS.contains(edition);
 	}
@@ -141,50 +141,50 @@ public abstract class OpiConstant {
 	public static final Map<String, String> partnerTextMap;
 	public static final Map<String, String> partnerFlagMap;
 	public static final Map<String, String> takemethodMap;
-	public static final Map<String, String> invaildPartnerMap;//ÎÞÐ§µÚÈý·½Map
+	public static final Map<String, String> invaildPartnerMap;//ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Map
 	static{
 		Map<String, String> tmp = new HashMap<String, String>();
-		tmp.put(OPEN_HFH, "»ð·ï»Ë");
-		tmp.put(OPEN_MTX, "ÂúÌìÐÇ");
-		tmp.put(OPEN_DX, "¶¦ÐÂ");
-		tmp.put(OPEN_WD, "Íò´ï");
+		tmp.put(OPEN_HFH, "ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_MTX, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_DX, "ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_WD, "ï¿½ï¿½ï¿½");
 		tmp.put(OPEN_VISTA, "Vista");
-		tmp.put(OPEN_GEWARA, "¸ñÍßÀ­");
-		//tmp.put(OPEN_PNX, "¶«Æ±");
-		tmp.put(OPEN_JY, "ÀÏ½ðÒÝ");
-		tmp.put(OPEN_DADI, "´óµØ");
-		tmp.put(OPEN_FB, "»ðÁÒÄñ");
-		tmp.put(OPEN_XFLH, "ÐÒ¸£À¶º£");
-		tmp.put(OPEN_LMA, "Â¬Ã×°£");
-		tmp.put(OPEN_GPTBS, "Æ±ÎñÏµÍ³");
-		tmp.put(OPEN_NJY, "½ðÒÝ£¨ÐÂ£©");
-		tmp.put(OPEN_TXPC, "ÌìÏÂÆ±²Ö");
+		tmp.put(OPEN_GEWARA, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		//tmp.put(OPEN_PNX, "ï¿½ï¿½Æ±");
+		tmp.put(OPEN_JY, "ï¿½Ï½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_DADI, "ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_FB, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_XFLH, "ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_LMA, "Â¬ï¿½×°ï¿½");
+		tmp.put(OPEN_GPTBS, "Æ±ï¿½ï¿½ÏµÍ³");
+		tmp.put(OPEN_NJY, "ï¿½ï¿½ï¿½Ý£ï¿½ï¿½Â£ï¿½");
+		tmp.put(OPEN_TXPC, "ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½");
 		tmp.put(OPEN_UL, "ULÏµÍ³");
-		tmp.put(OPEN_MJ, "ÃÀ¼Î");
-		tmp.put(OPEN_MJY, "½ðÒÝ");
-		tmp.put(OPEN_WD2, "Íò´ï2");
-		tmp.put(OPEN_STPF, "³½ÐÇ");
-		tmp.put(OPEN_FB2, "»ðÁÒÄñ2");
-		tmp.put(OPEN_FB3, "»ðÁÒÄñ3");
-		tmp.put(OPEN_DADI2, "´óµØ2");
-		tmp.put(OPEN_YXLT, "ÒøÐËÀÖÌì");
-		tmp.put(OPEN_WM, "ÎÖÃÀ");
-		tmp.put(OPEN_XFLH2, "ÐÒ¸£À¶º£2");
-		tmp.put(OPEN_M1905, "1905µçÓ°");
-		tmp.put(OPEN_DADI3, "´óµØ3");
-		tmp.put(OPEN_DADI4, "´óµØ4");
+		tmp.put(OPEN_MJ, "ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_MJY, "ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_WD2, "ï¿½ï¿½ï¿½2");
+		tmp.put(OPEN_STPF, "ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_FB2, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2");
+		tmp.put(OPEN_FB3, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3");
+		tmp.put(OPEN_DADI2, "ï¿½ï¿½ï¿½2");
+		tmp.put(OPEN_YXLT, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_WM, "ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_XFLH2, "ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½2");
+		tmp.put(OPEN_M1905, "1905ï¿½ï¿½Ó°");
+		tmp.put(OPEN_DADI3, "ï¿½ï¿½ï¿½3");
+		tmp.put(OPEN_DADI4, "ï¿½ï¿½ï¿½4");
 		tmp.put(OPEN_CGV, "CGV");
-		tmp.put(OPEN_CFC, "ÖÐÓ°");
-		tmp.put(OPEN_TXPC2, "ÌìÏÂÆ±²Ö2");
+		tmp.put(OPEN_CFC, "ï¿½ï¿½Ó°");
+		tmp.put(OPEN_TXPC2, "ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½2");
 		tmp.put(OPEN_VISTA2, "vista2");
-		tmp.put(OPEN_SDZX, "Ê±´úÔÚÏß");
-		tmp.put(OPEN_MJY2, "M½ðÒÝ2");
+		tmp.put(OPEN_SDZX, "Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_MJY2, "Mï¿½ï¿½ï¿½ï¿½2");
 		tmp.put(OPEN_VISTA3, "VISTA3");
 		tmp.put(OPEN_WP, "Î¢Æ±");
-		tmp.put(OPEN_BL, "±£Àû");
-		tmp.put(OPEN_HFH2, "»ð·ï»Ë2");
-		tmp.put(OPEN_CTJH, "³ÈÌì¼ÎºÌ");
-		tmp.put(OPEN_WD3, "Íò´ï3");
+		tmp.put(OPEN_BL, "ï¿½ï¿½ï¿½ï¿½");
+		tmp.put(OPEN_HFH2, "ï¿½ï¿½ï¿½ï¿½2");
+		tmp.put(OPEN_CTJH, "ï¿½ï¿½ï¿½ï¿½Îºï¿½");
+		tmp.put(OPEN_WD3, "ï¿½ï¿½ï¿½3");
 		tmp.put(OPEN_CGV2, "CGV2");
 
 		partnerTextMap = MapUtils.unmodifiableMap(tmp);
@@ -233,62 +233,78 @@ public abstract class OpiConstant {
 		tmpFlag.put(OPEN_CGV2, "CGV2");
 		partnerFlagMap = MapUtils.unmodifiableMap(tmpFlag);
 		Map<String, String> tmpTakemethod = new LinkedHashMap<String, String>();
-		tmpTakemethod.put("P", "ÏÖ³¡ÅÉËÍ");
-		tmpTakemethod.put("W", "Ó°ÔºÊÛÆ±´°¿Ú");
-		tmpTakemethod.put("A", "¸ñÍßÀ­È¡Æ±»ú");
-		tmpTakemethod.put("F", "¸ñÍßÀ­È«ÍøÈ¡Æ±»ú");
-		tmpTakemethod.put("U", "ÁªºÍÔºÏß×ÔÖúÈ¡Æ±»ú");
-		tmpTakemethod.put("L", "Â¬Ã×°£Ó°Ôº×ÔÖúÈ¡Æ±»ú");
-		tmpTakemethod.put("D", "Íò´ïÔºÏß×ÔÖúÈ¡Æ±»ú");
-		tmpTakemethod.put("J", "½ðÒÝÔºÏß×ÔÖúÈ¡Æ±»ú");
-		tmpTakemethod.put("M", "Ó°Ôº»áÔ±×ÔÖúÈ¡Æ±»ú");
-		tmpTakemethod.put("E", "´óµØ»áÔ±È¡Æ±»ú");
-		tmpTakemethod.put("T", "ÌìÏÂÆ±²ÖÈ¡Æ±»ú");
+		tmpTakemethod.put("P", "ï¿½Ö³ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmpTakemethod.put("W", "Ó°Ôºï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½");
+		tmpTakemethod.put("A", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½");
+		tmpTakemethod.put("F", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½È¡Æ±ï¿½ï¿½");
+		tmpTakemethod.put("U", "ï¿½ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½");
+		tmpTakemethod.put("L", "Â¬ï¿½×°ï¿½Ó°Ôºï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½");
+		tmpTakemethod.put("D", "ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½");
+		tmpTakemethod.put("J", "ï¿½ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½");
+		tmpTakemethod.put("M", "Ó°Ôºï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½È¡Æ±ï¿½ï¿½");
+		tmpTakemethod.put("E", "ï¿½ï¿½Ø»ï¿½Ô±È¡Æ±ï¿½ï¿½");
+		tmpTakemethod.put("T", "ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½È¡Æ±ï¿½ï¿½");
 		takemethodMap = MapUtils.unmodifiableMap(tmpTakemethod);
 		
 		Map<String, String> tmpInvalidMap = new HashMap<String, String>();
-		tmpInvalidMap.put(OPEN_FB, "»ðÁÒÄñ");
-		tmpInvalidMap.put(OPEN_FB2, "»ðÁÒÄñ2");
-		tmpInvalidMap.put(OPEN_JY, "ÀÏ½ðÒÝ");
-		tmpInvalidMap.put(OPEN_DADI, "´óµØ");
-		tmpInvalidMap.put(OPEN_XFLH, "ÐÒ¸£À¶º£");
+		tmpInvalidMap.put(OPEN_FB, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		tmpInvalidMap.put(OPEN_FB2, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2");
+		tmpInvalidMap.put(OPEN_JY, "ï¿½Ï½ï¿½ï¿½ï¿½");
+		tmpInvalidMap.put(OPEN_DADI, "ï¿½ï¿½ï¿½");
+		tmpInvalidMap.put(OPEN_XFLH, "ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½");
 		invaildPartnerMap = MapUtils.unmodifiableMap(tmpInvalidMap);
 	}
 	
 	public static boolean hasPartner(String opentype){
-		if(StringUtils.equals(OPEN_GEWARA, opentype)) return false;
-		if(StringUtils.isBlank(partnerTextMap.get(opentype))) return false;
+		if(StringUtils.equals(OPEN_GEWARA, opentype)) {
+            return false;
+        }
+		if(StringUtils.isBlank(partnerTextMap.get(opentype))) {
+            return false;
+        }
 		return true;
 	}
 	
 	public static String getParnterText(String opentype){
-		if(StringUtils.isBlank(opentype)) return "";
+		if(StringUtils.isBlank(opentype)) {
+            return "";
+        }
 		String tmpText = partnerTextMap.get(opentype);
-		if(StringUtils.isNotBlank(tmpText)) return tmpText;
+		if(StringUtils.isNotBlank(tmpText)) {
+            return tmpText;
+        }
 		return "Î´Öª";
 	}
 
 	/**
-	 * ÑéÖ¤·ÅÓ³°æ±¾ÓëÓ°ÌüµÄÊÇ·ñÆ¥Åä
+	 * ï¿½ï¿½Ö¤ï¿½ï¿½Ó³ï¿½æ±¾ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Æ¥ï¿½ï¿½
 	 * @param roomPlaytype
 	 * @param opiEdition
 	 * @return
 	 */
 	public static String validateRoomPlaytype(String roomPlaytype, String opiEdition){
-		if(StringUtils.isBlank(roomPlaytype)) return "";
-		if(opiEdition.equals("3D")){
-			if(roomPlaytype.equals("3D")) return "";
-		}else if(opiEdition.equals("IMAX")){
-			if(roomPlaytype.equals("IMAX")) return "";
+		if(StringUtils.isBlank(roomPlaytype)) {
+            return "";
+        }
+		if("3D".equals(opiEdition)){
+			if("3D".equals(roomPlaytype)) {
+                return "";
+            }
+		}else if("IMAX".equals(opiEdition)){
+			if("IMAX".equals(roomPlaytype)) {
+                return "";
+            }
 		}else{//2D
-			if(roomPlaytype.equals("2D")) return "";
+			if("2D".equals(roomPlaytype)) {
+                return "";
+            }
 		}
-		return "³¡´ÎºÍÓ°Ìü·ÅÓ³°æ±¾²»Æ¥Åä£º" + roomPlaytype + "<---->" + opiEdition;
+		return "ï¿½ï¿½ï¿½Îºï¿½Ó°ï¿½ï¿½ï¿½ï¿½Ó³ï¿½æ±¾ï¿½ï¿½Æ¥ï¿½ä£º" + roomPlaytype + "<---->" + opiEdition;
 	}
 	/**
-	 * ÏÂÔØµ½ÅÅÆ¬ºó¸ÃÓ°ÌüµÄ³¡´Î×Ô¶¯×ª»»Îª¶ÔÓ¦µÄÃû³Æ
-	 * ÈçÌîÐ´ÎªË«»ú3D£¬Ö»ÒªÏÂÔØµ½µÄ³¡´ÎÎª3D£¬×Ô¶¯×ª»»ÎªË«»ú3D£¬ÏÂÔØµ½Î»2D³¡´Î²»×ª»»¡£
-	 * Èç£º¾ÞÄ»2D£¬¾ÞÄ»3D£¬ÏÂÔØµ½µÄ2D³¡´Î×Ô¶¯×ª»»Îª¾ÞÄ»2D£¬3D³¡´Î×Ô¶¯×ª»»Îª¾ÞÄ»3D¡£
+	 * ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Æ¬ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½×ªï¿½ï¿½Îªï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½Ð´ÎªË«ï¿½ï¿½3Dï¿½ï¿½Ö»Òªï¿½ï¿½ï¿½Øµï¿½ï¿½Ä³ï¿½ï¿½ï¿½Îª3Dï¿½ï¿½ï¿½Ô¶ï¿½×ªï¿½ï¿½ÎªË«ï¿½ï¿½3Dï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½Î»2Dï¿½ï¿½ï¿½Î²ï¿½×ªï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ç£ºï¿½ï¿½Ä»2Dï¿½ï¿½ï¿½ï¿½Ä»3Dï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½2Dï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½×ªï¿½ï¿½Îªï¿½ï¿½Ä»2Dï¿½ï¿½3Dï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½×ªï¿½ï¿½Îªï¿½ï¿½Ä»3Dï¿½ï¿½
 	 * @param synchEdition
 	 * @param roomDefaultEdition
 	 * @return
@@ -297,13 +313,13 @@ public abstract class OpiConstant {
 		if(StringUtils.isBlank(synchEdition) || StringUtils.isBlank(roomDefaultEdition)){
 			return synchEdition;
 		}
-		// ³¡´Î°æ±¾ºÍÓ°Ìü°æ±¾±£³ÖÒ»ÖÂ£ºÓÅÏÈË³ÐòÎª6D¡¢5D¡¢4DX
+		// ï¿½ï¿½ï¿½Î°æ±¾ï¿½ï¿½Ó°ï¿½ï¿½ï¿½æ±¾ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½Îª6Dï¿½ï¿½5Dï¿½ï¿½4DX
 		for(String edition : ADV_EDITION) {
 			if(roomDefaultEdition.contains(edition)) {
 				return edition;
 			}
 		}
-		String defaults[] = StringUtils.split(roomDefaultEdition, ",");
+        String[] defaults = StringUtils.split(roomDefaultEdition, ",");
 		for(String defaultEdition : defaults){
 			if(defaultEdition.contains(synchEdition)){
 				return defaultEdition;
@@ -312,7 +328,7 @@ public abstract class OpiConstant {
 		return synchEdition;
 	}
 	
-	//ÓÃÀ´¼ÇÂ¼×îºóÒ»´Î¸üÐÂ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ò»ï¿½Î¸ï¿½ï¿½ï¿½
 	public static String getLastChangeKey(Long mpid) {
 		return "LastChange" + mpid;
 	}

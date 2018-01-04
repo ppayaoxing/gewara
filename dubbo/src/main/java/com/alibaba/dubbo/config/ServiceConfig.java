@@ -63,18 +63,18 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
 
     private static final Map<String, Integer> RANDOM_PORT_MAP = new HashMap<String, Integer>();
 
-    // ½Ó¿ÚÀàÐÍ
+    // ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½
     private String              interfaceName;
 
     private Class<?>            interfaceClass;
 
-    // ½Ó¿ÚÊµÏÖÀàÒýÓÃ
+    // ï¿½Ó¿ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private T                   ref;
 
-    // ·þÎñÃû³Æ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private String              path;
 
-    // ·½·¨ÅäÖÃ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private List<MethodConfig>  methods;
 
     private ProviderConfig provider;
@@ -128,6 +128,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
         }
         if (delay != null && delay > 0) {
             Thread thread = new Thread(new Runnable() {
+                @Override
                 public void run() {
                     try {
                         Thread.sleep(delay);
@@ -243,7 +244,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
     }
 
     private void checkRef() {
-        // ¼ì²éÒýÓÃ²»Îª¿Õ£¬²¢ÇÒÒýÓÃ±ØÐèÊµÏÖ½Ó¿Ú
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã²ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½Êµï¿½Ö½Ó¿ï¿½
         if (ref == null) {
             throw new IllegalStateException("ref not allow null!");
         }
@@ -371,17 +372,17 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                 List<ArgumentConfig> arguments = method.getArguments();
                 if (arguments != null && arguments.size() > 0) {
                     for (ArgumentConfig argument : arguments) {
-                        //ÀàÐÍ×Ô¶¯×ª»».
+                        //ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½×ªï¿½ï¿½.
                         if(argument.getType() != null && argument.getType().length() >0){
                             Method[] methods = interfaceClass.getMethods();
-                            //±éÀúËùÓÐ·½·¨
+                            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½
                             if(methods != null && methods.length > 0){
                                 for (int i = 0; i < methods.length; i++) {
                                     String methodName = methods[i].getName();
-                                    //Æ¥Åä·½·¨Ãû³Æ£¬»ñÈ¡·½·¨Ç©Ãû.
+                                    //Æ¥ï¿½ä·½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½.
                                     if(methodName.equals(method.getName())){
                                         Class<?>[] argtypes = methods[i].getParameterTypes();
-                                        //Ò»¸ö·½·¨ÖÐµ¥¸öcallback
+                                        //Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½callback
                                         if (argument.getIndex() != -1 ){
                                             if (argtypes[argument.getIndex()].getName().equals(argument.getType())){
                                                 appendParameters(map, argument, method.getName() + "." + argument.getIndex());
@@ -389,7 +390,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                                                 throw new IllegalArgumentException("argument config error : the index attribute and type attirbute not match :index :"+argument.getIndex() + ", type:" + argument.getType());
                                             }
                                         } else {
-                                            //Ò»¸ö·½·¨ÖÐ¶à¸öcallback
+                                            //Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½callback
                                             for (int j = 0 ;j<argtypes.length ;j++) {
                                                 Class<?> argclazz = argtypes[j];
                                                 if (argclazz.getName().equals(argument.getType())){
@@ -443,7 +444,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
             protocolConfig.setRegister(false);
             map.put("notify", "false");
         }
-        // µ¼³ö·þÎñ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         String contextPath = protocolConfig.getContextpath();
         if ((contextPath == null || contextPath.length() == 0) && provider != null) {
             contextPath = provider.getContextpath();
@@ -457,14 +458,14 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
         }
 
         String scope = url.getParameter(Constants.SCOPE_KEY);
-        //ÅäÖÃÎªnone²»±©Â¶
+        //ï¿½ï¿½ï¿½ï¿½Îªnoneï¿½ï¿½ï¿½ï¿½Â¶
         if (! Constants.SCOPE_NONE.toString().equalsIgnoreCase(scope)) {
 
-            //ÅäÖÃ²»ÊÇremoteµÄÇé¿öÏÂ×ö±¾µØ±©Â¶ (ÅäÖÃÎªremote£¬Ôò±íÊ¾Ö»±©Â¶Ô¶³Ì·þÎñ)
+            //ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½remoteï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½Â¶ (ï¿½ï¿½ï¿½ï¿½Îªremoteï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ö»ï¿½ï¿½Â¶Ô¶ï¿½Ì·ï¿½ï¿½ï¿½)
             if (!Constants.SCOPE_REMOTE.toString().equalsIgnoreCase(scope)) {
                 exportLocal(url);
             }
-            //Èç¹ûÅäÖÃ²»ÊÇlocalÔò±©Â¶ÎªÔ¶³Ì·þÎñ.(ÅäÖÃÎªlocal£¬Ôò±íÊ¾Ö»±©Â¶Ô¶³Ì·þÎñ)
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½localï¿½ï¿½Â¶ÎªÔ¶ï¿½Ì·ï¿½ï¿½ï¿½.(ï¿½ï¿½ï¿½ï¿½Îªlocalï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ö»ï¿½ï¿½Â¶Ô¶ï¿½Ì·ï¿½ï¿½ï¿½)
             if (! Constants.SCOPE_LOCAL.toString().equalsIgnoreCase(scope) ){
                 if (logger.isInfoEnabled()) {
                     logger.info("Export dubbo service " + interfaceClass.getName() + " to url " + url);
@@ -523,7 +524,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                 && provider != null) {
             setProtocols(provider.getProtocols());
         }
-    	// ¼æÈÝ¾É°æ±¾
+    	// ï¿½ï¿½ï¿½Ý¾É°æ±¾
         if (protocols == null || protocols.size() == 0) {
             setProtocol(new ProtocolConfig());
         }

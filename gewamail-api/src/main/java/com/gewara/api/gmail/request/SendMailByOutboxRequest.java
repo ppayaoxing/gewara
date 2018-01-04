@@ -11,31 +11,31 @@ public class SendMailByOutboxRequest extends MsgRequest{
 	 */
 	private static final long serialVersionUID = 1202208449828370482L;
 
-	public static final String SENDER = "¸ñÍßÀ­Éú»îÍø";
+	public static final String SENDER = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 	
-	/**ÒÔÓÊÏäservice@gewara.com·¢ÓÊ¼þ*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½service@gewara.comï¿½ï¿½ï¿½Ê¼ï¿½*/
 	public static final String OUTBOX_SERVICE = "service";
-	/**ÒÔÓÊÏäoperation021@gewara.com·¢ÓÊ¼þ*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½operation021@gewara.comï¿½ï¿½ï¿½Ê¼ï¿½*/
 	public static final String OUTBOX_OPERATION021 = "operation021";
 
 	/**
-	 * ±ØÐë
-	 * Ö¸¶¨·¢¼þÏä£¬Ä¿Ç°Ö»Ö§³ÖÁ½¸ö£ºservice£¬operation021
-	 * Ïê¼û³£Á¿ : OUTBOX_*
+	 * ï¿½ï¿½ï¿½ï¿½
+	 * Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬Ä¿Ç°Ö»Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½serviceï¿½ï¿½operation021
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : OUTBOX_*
 	 * 
 	 */
 	private String outbox;
-	private String fromName; // ·¢ËÍÕßÃû³Æ£¨¼òÒªËµÃ÷£©
-	/**±ØÐë*/
-	private String to; // ÊÕ¼þÈË  Ö§³Ö;·Ö¸î
-	/**±ØÐë*/
-	private String title; // ±êÌâ
-	/**±ØÐë*/
-	private String content; // ÄÚÈÝ
-	private String template;//Ä£°å
-	private Timestamp sendTime; // ·¢ËÍÊ±¼ä
-	private Timestamp validTime;// ³¬Ê±Ê±¼ä
-	private String sendType;// ·¢ËÍÀàÐÍ
+	private String fromName; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ÒªËµï¿½ï¿½ï¿½ï¿½
+	/**ï¿½ï¿½ï¿½ï¿½*/
+	private String to; // ï¿½Õ¼ï¿½ï¿½ï¿½  Ö§ï¿½ï¿½;ï¿½Ö¸ï¿½
+	/**ï¿½ï¿½ï¿½ï¿½*/
+	private String title; // ï¿½ï¿½ï¿½ï¿½
+	/**ï¿½ï¿½ï¿½ï¿½*/
+	private String content; // ï¿½ï¿½ï¿½ï¿½
+	private String template;//Ä£ï¿½ï¿½
+	private Timestamp sendTime; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp validTime;// ï¿½ï¿½Ê±Ê±ï¿½ï¿½
+	private String sendType;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	public SendMailByOutboxRequest() {
 	}
@@ -46,7 +46,7 @@ public class SendMailByOutboxRequest extends MsgRequest{
 	
 	public SendMailByOutboxRequest(String outbox,String fromName, String to, String title, String content) {
 		this.outbox = outbox;
-		if(fromName == null || fromName.trim().equals("")){
+		if(fromName == null || "".equals(fromName.trim())){
 			this.fromName = SENDER;
 		}else{
 			this.fromName = fromName;

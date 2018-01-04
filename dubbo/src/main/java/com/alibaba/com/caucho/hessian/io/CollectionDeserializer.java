@@ -68,11 +68,13 @@ public class CollectionDeserializer extends AbstractListDeserializer {
     _type = type;
   }
   
+  @Override
   public Class getType()
   {
     return _type;
   }
   
+  @Override
   public Object readList(AbstractHessianInput in, int length)
     throws IOException
   {
@@ -80,14 +82,16 @@ public class CollectionDeserializer extends AbstractListDeserializer {
 
     in.addRef(list);
 
-    while (! in.isEnd())
-      list.add(in.readObject());
+    while (! in.isEnd()) {
+        list.add(in.readObject());
+    }
 
     in.readEnd();
 
     return list;
   }
   
+  @Override
   public Object readLengthList(AbstractHessianInput in, int length)
     throws IOException
   {
@@ -95,8 +99,9 @@ public class CollectionDeserializer extends AbstractListDeserializer {
 
     in.addRef(list);
 
-    for (; length > 0; length--)
-      list.add(in.readObject());
+    for (; length > 0; length--) {
+        list.add(in.readObject());
+    }
 
     return list;
   }
@@ -106,9 +111,9 @@ public class CollectionDeserializer extends AbstractListDeserializer {
   {
     Collection list = null;
     
-    if (_type == null)
-      list = new ArrayList();
-    else if (! _type.isInterface()) {
+    if (_type == null) {
+        list = new ArrayList();
+    } else if (! _type.isInterface()) {
       try {
         list = (Collection) _type.newInstance();
       } catch (Exception e) {
@@ -117,15 +122,15 @@ public class CollectionDeserializer extends AbstractListDeserializer {
 
     if (list != null) {
     }
-    else if (SortedSet.class.isAssignableFrom(_type))
-      list = new TreeSet();
-    else if (Set.class.isAssignableFrom(_type))
-      list = new HashSet();
-    else if (List.class.isAssignableFrom(_type))
-      list = new ArrayList();
-    else if (Collection.class.isAssignableFrom(_type))
-      list = new ArrayList();
-    else {
+    else if (SortedSet.class.isAssignableFrom(_type)) {
+        list = new TreeSet();
+    } else if (Set.class.isAssignableFrom(_type)) {
+        list = new HashSet();
+    } else if (List.class.isAssignableFrom(_type)) {
+        list = new ArrayList();
+    } else if (Collection.class.isAssignableFrom(_type)) {
+        list = new ArrayList();
+    } else {
       try {
         list = (Collection) _type.newInstance();
       } catch (Exception e) {

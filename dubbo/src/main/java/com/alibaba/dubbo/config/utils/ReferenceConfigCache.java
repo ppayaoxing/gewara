@@ -77,6 +77,7 @@ public class ReferenceConfigCache {
      * key example: <code>group1/com.alibaba.foo.FooService:1.0.0</code>.
      */
     public static final KeyGenerator DEFAULT_KEY_GENERATOR = new KeyGenerator() {
+        @Override
         public String generateKey(ReferenceConfig<?> referenceConfig) {
             String iName = referenceConfig.getInterface();
             if(StringUtils.isBlank(iName)) {
@@ -125,7 +126,9 @@ public class ReferenceConfigCache {
 
     void destroyKey(String key) {
         ReferenceConfig<?> config = cache.remove(key);
-        if(config == null) return;
+        if(config == null) {
+            return;
+        }
         config.destroy();
     }
 

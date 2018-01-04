@@ -53,6 +53,7 @@ public class ExchangeServerPeer extends ExchangeServerDelegate implements Exchan
         this.group = group;
     }
 
+    @Override
     public void leave() throws RemotingException {
         group.leave(getUrl());
     }

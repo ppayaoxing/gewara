@@ -64,10 +64,12 @@ public abstract class AbstractInvoker<T> implements Invoker<T> {
     }
 
     public AbstractInvoker(Class<T> type, URL url, Map<String, String> attachment) {
-        if (type == null)
+        if (type == null) {
             throw new IllegalArgumentException("service type == null");
-        if (url == null)
+        }
+        if (url == null) {
             throw new IllegalArgumentException("service url == null");
+        }
         this.type = type;
         this.url = url;
         this.attachment = attachment == null ? null : Collections.unmodifiableMap(attachment);
@@ -87,14 +89,17 @@ public abstract class AbstractInvoker<T> implements Invoker<T> {
         return attachment;
     }
 
+    @Override
     public Class<T> getInterface() {
         return type;
     }
 
+    @Override
     public URL getUrl() {
         return url;
     }
 
+    @Override
     public boolean isAvailable() {
         return available;
     }
@@ -103,6 +108,7 @@ public abstract class AbstractInvoker<T> implements Invoker<T> {
         this.available = available;
     }
 
+    @Override
     public void destroy() {
         if (isDestroyed()) {
             return;
@@ -115,10 +121,12 @@ public abstract class AbstractInvoker<T> implements Invoker<T> {
         return destroyed;
     }
 
+    @Override
     public String toString() {
         return getInterface() + " -> " + (getUrl() == null ? "" : getUrl().toString());
     }
 
+    @Override
     public Result invoke(Invocation inv) throws RpcException {
         if(destroyed) {
             throw new RpcException("Rpc invoker for service " + this + " on consumer " + NetUtils.getLocalHost() 

@@ -47,12 +47,12 @@ final class LazyConnectExchangeClient implements ExchangeClient{
     private final ExchangeHandler         requestHandler;
     private volatile ExchangeClient       client;
     private final Lock                    connectLock = new ReentrantLock();
-    //lazy connect Èç¹ûÃ»ÓÐ³õÊ¼»¯Ê±µÄÁ¬½Ó×´Ì¬
+    //lazy connect ï¿½ï¿½ï¿½Ã»ï¿½Ð³ï¿½Ê¼ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
     private final boolean                 initialState ;
     
     protected final  boolean requestWithWarning;
     
-    //µ±µ÷ÓÃÊ±warning£¬³öÏÖÕâ¸öwarning£¬±íÊ¾³ÌÐò¿ÉÄÜ´æÔÚbug.
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±warningï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½warningï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½bug.
     static final  String REQUEST_WITH_WARNING_KEY = "lazyclient_request_with_warning";
     
     private AtomicLong warningcount = new AtomicLong(0);
@@ -67,31 +67,36 @@ final class LazyConnectExchangeClient implements ExchangeClient{
     
 
     private void initClient() throws RemotingException {
-        if (client != null )
+        if (client != null ) {
             return;
+        }
         if (logger.isInfoEnabled()) {
             logger.info("Lazy connect to " + url);
         }
         connectLock.lock();
         try {
-            if (client != null)
+            if (client != null) {
                 return;
+            }
             this.client = Exchangers.connect(url, requestHandler);
         } finally {
             connectLock.unlock();
         }
     }
 
+    @Override
     public ResponseFuture request(Object request) throws RemotingException {
         warning(request);
         initClient();
         return client.request(request);
     }
 
+    @Override
     public URL getUrl() {
         return url;
     }
 
+    @Override
     public InetSocketAddress getRemoteAddress() {
         if (client == null){
             return InetSocketAddress.createUnresolved(url.getHost(), url.getPort());
@@ -99,6 +104,7 @@ final class LazyConnectExchangeClient implements ExchangeClient{
             return client.getRemoteAddress();
         }
     }
+    @Override
     public ResponseFuture request(Object request, int timeout) throws RemotingException {
         warning(request);
         initClient();
@@ -106,7 +112,7 @@ final class LazyConnectExchangeClient implements ExchangeClient{
     }
     
     /**
-     * Èç¹ûÅäÖÃÁËµ÷ÓÃwarning£¬ÔòÃ¿µ÷ÓÃ5000´ÎwarningÒ»´Î.
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½warningï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½5000ï¿½ï¿½warningÒ»ï¿½ï¿½.
      * @param request
      */
     private void warning(Object request){
@@ -118,11 +124,13 @@ final class LazyConnectExchangeClient implements ExchangeClient{
         }
     }
     
+    @Override
     public ChannelHandler getChannelHandler() {
         checkClient();
         return client.getChannelHandler();
     }
 
+    @Override
     public boolean isConnected() {
         if (client == null) {
             return initialState;
@@ -131,6 +139,7 @@ final class LazyConnectExchangeClient implements ExchangeClient{
         }
     }
 
+    @Override
     public InetSocketAddress getLocalAddress() {
         if (client == null){
             return InetSocketAddress.createUnresolved(NetUtils.getLocalHost(), 0);
@@ -139,52 +148,65 @@ final class LazyConnectExchangeClient implements ExchangeClient{
         }
     }
 
+    @Override
     public ExchangeHandler getExchangeHandler() {
         return requestHandler;
     }
 
+    @Override
     public void send(Object message) throws RemotingException {
         initClient();
         client.send(message);
     }
 
+    @Override
     public void send(Object message, boolean sent) throws RemotingException {
         initClient();
         client.send(message, sent);
     }
 
+    @Override
     public boolean isClosed() {
-        if (client != null)
+        if (client != null) {
             return client.isClosed();
-        else
+        } else {
             return true;
+        }
     }
 
+    @Override
     public void close() {
-        if (client != null)
+        if (client != null) {
             client.close();
+        }
     }
 
+    @Override
     public void close(int timeout) {
-        if (client != null)
+        if (client != null) {
             client.close(timeout);
+        }
     }
 
+    @Override
     public void reset(URL url) {
         checkClient();
         client.reset(url);
     }
     
+    @Override
     @Deprecated
     public void reset(Parameters parameters){
         reset(getUrl().addParameters(parameters.getParameters()));
     }
 
+    @Override
     public void reconnect() throws RemotingException {
         checkClient();
         client.reconnect();
     }
 
+    @Override
     public Object getAttribute(String key) {
         if (client == null){
             return null;
@@ -193,16 +215,19 @@ final class LazyConnectExchangeClient implements ExchangeClient{
         }
     }
 
+    @Override
     public void setAttribute(String key, Object value) {
         checkClient();
         client.setAttribute(key, value);
     }
 
+    @Override
     public void removeAttribute(String key) {
         checkClient();
         client.removeAttribute(key);
     }
 
+    @Override
     public boolean hasAttribute(String key) {
         if (client == null){
             return false;

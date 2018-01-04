@@ -33,9 +33,9 @@ public class ShowQueryAction extends QueryAction {
         }
         indexRequestBuilder = client.admin().indices().prepareGetIndex();
 
-        if(!indexName.equals("*")){
+        if(!"*".equals(indexName)){
             indexRequestBuilder.addIndices(indexName);
-            if(type!=null && !type.equals("")){
+            if(type!=null && !"".equals(type)){
                 indexRequestBuilder.setTypes(type);
             }
         }

@@ -54,14 +54,18 @@ public abstract class PictureUtil {
 
 	public static boolean isValidExtension(String file, String type) {
 		String ext = StringUtil.getFilenameExtension(file);
-		if (UPLOADTYPE_PIC.equals(type))
-			return validPicExt.contains(ext);
-		if (UPLOADTYPE_FLASH.equals(type))
-			return validFlashExt.contains(ext);
-		if (UPLOADTYPE_MOBILE.equals(type))
-			return validMobileExt.contains(ext);
-		if (UPLOADTYPE_SPORT.equals(type))
-			return validSportExt.contains(ext);
+		if (UPLOADTYPE_PIC.equals(type)) {
+            return validPicExt.contains(ext);
+        }
+		if (UPLOADTYPE_FLASH.equals(type)) {
+            return validFlashExt.contains(ext);
+        }
+		if (UPLOADTYPE_MOBILE.equals(type)) {
+            return validMobileExt.contains(ext);
+        }
+		if (UPLOADTYPE_SPORT.equals(type)) {
+            return validSportExt.contains(ext);
+        }
 		return validPicExt.contains(ext) || validFlashExt.contains(ext);
 	}
 
@@ -75,8 +79,9 @@ public abstract class PictureUtil {
 			ImageReader reader = iter.next();
 			iis.close();
 			String result = StringUtils.lowerCase(reader.getFormatName());
-			if (StringUtils.equals("jpeg", result))
-				return "jpg";
+			if (StringUtils.equals("jpeg", result)) {
+                return "jpg";
+            }
 			return result;
 		} catch (Exception e) {
 			dbLogger.error("", e);
@@ -160,7 +165,9 @@ public abstract class PictureUtil {
 	public static boolean addWaterMark(File src, File dst, File maskPath) {
 		try {
 			Info info = new Info(src.getCanonicalPath(), true);
-			if(info.getImageHeight()<240 || info.getImageWidth() <240) return false;//太小的图片不加水印
+			if(info.getImageHeight()<240 || info.getImageWidth() <240) {
+                return false;//太小的图片不加水印
+            }
 			return addWaterMark(src.getCanonicalPath(), dst.getCanonicalPath(), maskPath.getCanonicalPath());
 		} catch (Exception e) {
 			dbLogger.error("", e);
@@ -253,7 +260,9 @@ public abstract class PictureUtil {
 				}
 				tmpSrc = StringUtil.getFilepath(src) + "/scale_" + StringUtil.getFilename(src); 
 				boolean result = resize(src, tmpSrc, maxWidth, maxHeight);
-				if(!result) return false;
+				if(!result) {
+                    return false;
+                }
 			}
 			return crop(tmpSrc, dst, width, height, x, y);
 		}catch(Exception e){
@@ -383,8 +392,9 @@ public abstract class PictureUtil {
 			out.close();
 			long newLen = destFile.length();
 			double r = newLen * 1.1 / (oldLen * 1.1);
-			if (callback != null)
-				callback.onComplete(destFile, oldLen, newLen);
+			if (callback != null) {
+                callback.onComplete(destFile, oldLen, newLen);
+            }
 			return r;
 		} catch (Exception e) {
 			dbLogger.error("", e);

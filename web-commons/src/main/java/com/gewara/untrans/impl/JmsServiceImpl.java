@@ -106,7 +106,9 @@ public class JmsServiceImpl extends JmsTemplate implements JmsService, Initializ
 
 	}
 	private void sendMsg(Destination dst, String msgtag, String keyList, Object...params) {
-		if(StringUtils.isBlank(keyList) || params==null) return;
+		if(StringUtils.isBlank(keyList) || params==null) {
+            return;
+        }
 		Map msgMap = new HashMap();
 		String[] keys = keyList.split("[, ]+");
 		for(int i=0, size=Math.min(keys.length, params.length);i<size;i++){
@@ -124,7 +126,7 @@ public class JmsServiceImpl extends JmsTemplate implements JmsService, Initializ
 				@Override
 				public Message createMessage(Session session) throws JMSException {
 					Message message = session.createTextMessage(msg);
-					if(delay!=null){//ÑÓ³Ù·¢ËÍ
+					if(delay!=null){//ï¿½Ó³Ù·ï¿½ï¿½ï¿½
 						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
 					}
 					message.setStringProperty("msgtag", msgtag);
@@ -147,7 +149,7 @@ public class JmsServiceImpl extends JmsTemplate implements JmsService, Initializ
 				@Override
 				public Message createMessage(Session session) throws JMSException {
 					MapMessage message = session.createMapMessage();
-					if(delay!=null){//ÑÓ³Ù·¢ËÍ
+					if(delay!=null){//ï¿½Ó³Ù·ï¿½ï¿½ï¿½
 						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
 					}
 					message.setStringProperty("msgtag", msgtag);
@@ -197,7 +199,7 @@ public class JmsServiceImpl extends JmsTemplate implements JmsService, Initializ
 			ResourceStatsUtil.getJmsStats().register(name, cur);
 			dbLogger.warn("regester jms stats:" + name);
 		}
-		//ÐÔÄÜ
+		//ï¿½ï¿½ï¿½ï¿½
 		this.setMessageIdEnabled(false);
 		this.setMessageTimestampEnabled(false);
 	}

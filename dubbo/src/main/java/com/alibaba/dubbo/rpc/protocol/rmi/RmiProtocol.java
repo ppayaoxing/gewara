@@ -40,10 +40,12 @@ public class RmiProtocol extends AbstractProxyProtocol {
         super(RemoteAccessException.class, RemoteException.class);
     }
 
+    @Override
     public int getDefaultPort() {
         return DEFAULT_PORT;
     }
 
+    @Override
     protected <T> Runnable doExport(final T impl, Class<T> type, URL url) throws RpcException {
         final RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
         rmiServiceExporter.setRegistryPort(url.getPort());
@@ -56,6 +58,7 @@ public class RmiProtocol extends AbstractProxyProtocol {
             throw new RpcException(e.getMessage(), e);
         }
         return new Runnable() {
+            @Override
             public void run() {
                 try {
                     rmiServiceExporter.destroy();
@@ -66,6 +69,7 @@ public class RmiProtocol extends AbstractProxyProtocol {
         };
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     protected <T> T doRefer(final Class<T> serviceType, final URL url) throws RpcException {
         final RmiProxyFactoryBean rmiProxyFactoryBean = new RmiProxyFactoryBean();
@@ -78,13 +82,14 @@ public class RmiProtocol extends AbstractProxyProtocol {
         return (T) rmiProxyFactoryBean.getObject();
     }
 
+    @Override
     protected int getErrorCode(Throwable e) {
         if (e instanceof RemoteAccessException) {
             e = e.getCause();
         }
         if (e != null && e.getCause() != null) {
             Class<?> cls = e.getCause().getClass();
-            // ÊÇ¸ù¾Ý²âÊÔCase·¢ÏÖµÄÎÊÌâ£¬¶ÔRpcException.setCode½øÐÐÉèÖÃ
+            // ï¿½Ç¸ï¿½ï¿½Ý²ï¿½ï¿½ï¿½Caseï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½â£¬ï¿½ï¿½RpcException.setCodeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (SocketTimeoutException.class.equals(cls)) {
                 return RpcException.TIMEOUT_EXCEPTION;
             } else if (IOException.class.isAssignableFrom(cls)) {

@@ -30,6 +30,7 @@ public class ActivateComparator implements Comparator<Object> {
     
     public static final Comparator<Object> COMPARATOR = new ActivateComparator();
 
+    @Override
     public int compare(Object o1, Object o2) {
         if (o1 == null && o2 == null) {
             return 0;
@@ -79,7 +80,7 @@ public class ActivateComparator implements Comparator<Object> {
         }
         int n1 = a1 == null ? 0 : a1.order();
         int n2 = a2 == null ? 0 : a2.order();
-        return n1 > n2 ? 1 : -1; // ¾ÍËãn1 == n2Ò²²»ÄÜ·µ»Ø0£¬·ñÔòÔÚHashSetµÈ¼¯ºÏÖÐ£¬»á±»ÈÏÎªÊÇÍ¬Ò»Öµ¶ø¸²¸Ç
+        return n1 > n2 ? 1 : -1; // ï¿½ï¿½ï¿½ï¿½n1 == n2Ò²ï¿½ï¿½ï¿½Ü·ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½HashSetï¿½È¼ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½á±»ï¿½ï¿½Îªï¿½ï¿½Í¬Ò»Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
 }

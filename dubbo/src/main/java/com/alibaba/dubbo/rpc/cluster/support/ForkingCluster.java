@@ -21,7 +21,7 @@ import com.alibaba.dubbo.rpc.cluster.Cluster;
 import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
- * 并行调用，只要一个成功即返回，通常用于实时性要求较高的操作，但需要浪费更多服务资源。
+ * 锟斤拷锟叫碉拷锟矫ｏ拷只要一锟斤拷锟缴癸拷锟斤拷锟斤拷锟截ｏ拷通锟斤拷锟斤拷锟斤拷实时锟斤拷要锟斤拷细叩牟锟斤拷锟斤拷锟斤拷锟斤拷锟揭拷朔迅锟斤拷锟斤拷锟斤拷锟斤拷源锟斤拷
  * 
  * <a href="http://en.wikipedia.org/wiki/Fork_(topology)">Fork</a>
  * 
@@ -31,6 +31,7 @@ public class ForkingCluster implements Cluster {
     
     public final static String NAME = "forking"; 
     
+    @Override
     public <T> Invoker<T> join(Directory<T> directory) throws RpcException {
         return new ForkingClusterInvoker<T>(directory);
     }

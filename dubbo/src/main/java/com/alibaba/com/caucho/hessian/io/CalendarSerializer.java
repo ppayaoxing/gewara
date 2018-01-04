@@ -62,12 +62,13 @@ public class CalendarSerializer extends AbstractSerializer {
     return SERIALIZER;
   }
   
+  @Override
   public void writeObject(Object obj, AbstractHessianOutput out)
     throws IOException
   {
-    if (obj == null)
-      out.writeNull();
-    else {
+    if (obj == null) {
+        out.writeNull();
+    } else {
       Calendar cal = (Calendar) obj;
 
       out.writeObject(new CalendarHandle(cal.getClass(),

@@ -34,7 +34,7 @@ import com.alibaba.dubbo.rpc.RpcResult;
 import com.alibaba.dubbo.rpc.protocol.AbstractInvoker;
 
 /**
- * »ùÓÚÒÑÓÐchannelµÄinvoker. 
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½channelï¿½ï¿½invoker. 
  * 
  * @author chao.liuc
  */
@@ -54,14 +54,14 @@ class ChannelWrappedInvoker<T> extends AbstractInvoker<T> {
     @Override
     protected Result doInvoke(Invocation invocation) throws Throwable {
         RpcInvocation inv = (RpcInvocation) invocation;
-        //ÄÃ²»µ½client¶Ëexport µÄservice path.Ô¼¶¨ÎªinterfaceµÄÃû³Æ.
+        //ï¿½Ã²ï¿½ï¿½ï¿½clientï¿½ï¿½export ï¿½ï¿½service path.Ô¼ï¿½ï¿½Îªinterfaceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
         inv.setAttachment(Constants.PATH_KEY, getInterface().getName());
         inv.setAttachment(Constants.CALLBACK_SERVICE_KEY, serviceKey);
 
         ExchangeClient currentClient = new HeaderExchangeClient(new ChannelWrapper(this.channel));
 
         try {
-            if (getUrl().getMethodParameter(invocation.getMethodName(), Constants.ASYNC_KEY, false)) { // ²»¿É¿¿Òì²½
+            if (getUrl().getMethodParameter(invocation.getMethodName(), Constants.ASYNC_KEY, false)) { // ï¿½ï¿½ï¿½É¿ï¿½ï¿½ì²½
                 currentClient.send(inv,getUrl().getMethodParameter(invocation.getMethodName(), Constants.SENT_KEY, false));
                 return new RpcResult();
             }
@@ -93,70 +93,86 @@ class ChannelWrappedInvoker<T> extends AbstractInvoker<T> {
             this.url = channel.getUrl().addParameter("codec", DubboCodec.NAME);
         }
 
+        @Override
         public URL getUrl() {
             return url;
         }
 
+        @Override
         public ChannelHandler getChannelHandler() {
             return channel.getChannelHandler();
         }
 
+        @Override
         public InetSocketAddress getLocalAddress() {
             return channel.getLocalAddress();
         }
 
+        @Override
         public void close() {
             channel.close();
         }
 
+        @Override
         public boolean isClosed() {
             return channel == null ? true : channel.isClosed();
         }
 
+        @Override
         public void reset(URL url) {
             throw new RpcException("ChannelInvoker can not reset.");
         }
 
+        @Override
         public InetSocketAddress getRemoteAddress() {
             return channel.getLocalAddress();
         }
 
+        @Override
         public boolean isConnected() {
             return channel == null ? false : channel.isConnected();
         }
 
+        @Override
         public boolean hasAttribute(String key) {
             return channel.hasAttribute(key);
         }
 
+        @Override
         public Object getAttribute(String key) {
             return channel.getAttribute(key);
         }
 
+        @Override
         public void setAttribute(String key, Object value) {
             channel.setAttribute(key, value);
         }
 
+        @Override
         public void removeAttribute(String key) {
             channel.removeAttribute(key);
         }
 
+        @Override
         public void reconnect() throws RemotingException {
 
         }
 
+        @Override
         public void send(Object message) throws RemotingException {
             channel.send(message);
         }
 
+        @Override
         public void send(Object message, boolean sent) throws RemotingException {
             channel.send(message, sent);
         }
 
     }
 
+    @Override
     public void destroy() {
-        //channel×ÊÔ´µÄÇå¿ÕÓÉchannel´´½¨ÕßÇå³ý.
+        //channelï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½channelï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 //        super.destroy();
 //        try {
 //            channel.close();

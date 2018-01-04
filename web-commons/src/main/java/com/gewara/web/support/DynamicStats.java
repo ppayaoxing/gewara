@@ -25,8 +25,8 @@ public class DynamicStats {
 	private Map<String, LogCounter> counterMap = new ConcurrentHashMap<String, LogCounter>();
 	private Map<String, String> specialTypes = new HashMap<>();
 	private AtomicInteger totalProcessing = new AtomicInteger(0);
-	private long lastRemoveTime = 0; // ÉÏ´ÎÉ¾³ýÊ±¼ä
-	private long lastCleanTime = 0; // ÉÏ´ÎÇåÀíÊ±¼ä
+	private long lastRemoveTime = 0; // ï¿½Ï´ï¿½É¾ï¿½ï¿½Ê±ï¿½ï¿½
+	private long lastCleanTime = 0; // ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	private boolean init = false;
 	private String type;
 
@@ -55,7 +55,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ¼ÆÊýÆ÷ÊýÁ¿
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @return
 	 */
@@ -64,7 +64,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * µ±Ç°×Ü¹²´¦Àí´ÎÊý
+	 * ï¿½ï¿½Ç°ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @return
 	 */
@@ -73,7 +73,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * »ñÈ¡ÕýÔÚ´¦ÀíµÄÇëÇóÁÐ±í
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	 * 
 	 * @param waitmill
 	 * @return Map(url,avgwait,processing,processed)
@@ -116,7 +116,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ×¢²áÇëÇó
+	 * ×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param sourceName
 	 * @param type
@@ -138,7 +138,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ¼ÓÈë´¦Àí¶ÓÁÐ£¬Íê³ÉºóafterProcessÍË³ö´¦Àí¶ÓÁÐ
+	 * ï¿½ï¿½ï¿½ë´¦ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½Éºï¿½afterProcessï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param resourceName
 	 * @param curtime
@@ -155,7 +155,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * »ñÈ¡×ÊÔ´ÕýÔÚ´¦ÀíµÄÊýÁ¿
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ô´ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param resourceName
 	 * @return
@@ -182,7 +182,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ÍË³ö´¦Àí¶ÓÁÐ
+	 * ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param counter
 	 * @param curtime
@@ -204,7 +204,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ¸üÐÂ¼ÆÊý
+	 * ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½
 	 * 
 	 * @param uri
 	 * @param count
@@ -224,7 +224,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ¸üÐÂÇëÇó´¦ÀíÊ±¼ä
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 * 
 	 * @param uri
 	 * @param time
@@ -233,8 +233,9 @@ public class DynamicStats {
 	 */
 	public Map<String, String> updateProcessTime(String uri, long time, int clearmax) {
 		LogCounter counter = counterMap.get(uri);
-		if (counter == null)
-			return null;
+		if (counter == null) {
+            return null;
+        }
 		counter.count.incrementAndGet();
 		counter.totaltime.addAndGet(time);
 		if (time > 1000L) {
@@ -252,7 +253,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * Èç¹û¼ÆÊý´ïµ½maxnum£¬ÔòÇå³ý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ïµ½maxnumï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param maxnum
 	 * @return
@@ -263,8 +264,9 @@ public class DynamicStats {
 			List<LogCounter> counterList = new ArrayList<LogCounter>(counterMap.values());
 			for (LogCounter counter : counterList) {
 				int value = counter.count.getAndSet(0);
-				if (value > 0)
-					result.put(counter.getUrl(), value);
+				if (value > 0) {
+                    result.put(counter.getUrl(), value);
+                }
 			}
 			totalProcessing.getAndSet(0);
 			lastCleanTime = System.currentTimeMillis();
@@ -274,7 +276,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * Èç¹û¼ÆÊý´ïµ½maxnum£¬ÔòÇå³ý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ïµ½maxnumï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param maxnum
 	 * @return
@@ -301,7 +303,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * starttimeÔÚtimeBeforeÖ®Ç°½¨Á¢µÄ
+	 * starttimeï¿½ï¿½timeBeforeÖ®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param timeBefore
 	 * @return List<Map(count,url,starttime,endtime)>
@@ -325,7 +327,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * »ñÈ¡¼ÆÊýÍ³¼Æ
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½
 	 * 
 	 * @return
 	 */
@@ -333,14 +335,15 @@ public class DynamicStats {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
 		for (Entry<String, LogCounter> entry : counterMap.entrySet()) {
 			int value = entry.getValue().count.get();
-			if (value > 0)
-				result.put(entry.getKey(), value);
+			if (value > 0) {
+                result.put(entry.getKey(), value);
+            }
 		}
 		return result;
 	}
 
 	/**
-	 * ¸ù¾Ý´¦Àí´ÎÊý»ñÈ¡urlÍ³¼Æ
+	 * ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡urlÍ³ï¿½ï¿½
 	 * 
 	 * @param mincount
 	 * @param reqFields
@@ -358,7 +361,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * »ñÈ¡´ÓÎ´Ê¹ÓÃ¹ýµÄurl
+	 * ï¿½ï¿½È¡ï¿½ï¿½Î´Ê¹ï¿½Ã¹ï¿½ï¿½ï¿½url
 	 * 
 	 * @return
 	 */
@@ -373,7 +376,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * »ñÈ¡ËùÓÐ×¢²áµÄ×ÊÔ´
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
 	 * 
 	 * @return
 	 */
@@ -383,7 +386,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°¼ÆÊýµÄÍ³¼ÆÐÅÏ¢
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½Ï¢
 	 * 
 	 * @param counter
 	 * @return
@@ -410,7 +413,7 @@ public class DynamicStats {
 	}
 
 	/**
-	 * ÇëÇóÍ³¼Æ£¬²»ÇåÀíÕýÔÚ´¦Àí
+	 * ï¿½ï¿½ï¿½ï¿½Í³ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½
 	 * 
 	 * @param counter
 	 * @param cur
@@ -440,18 +443,18 @@ public class DynamicStats {
 	}
 
 	public static class LogCounter {
-		private String type; // ÀàÐÍ£ºreq or job
+		private String type; // ï¿½ï¿½ï¿½Í£ï¿½req or job
 		private String url;
 		private Long starttime;
 		private Long endtime;
-		private AtomicLong totaltime; // ³É¹¦ÇëÇóÊ±¼ä
-		private AtomicInteger count; // ³É¹¦´ÎÊý
-		private AtomicInteger count2; // ´óÓÚ1ÃëÊýÁ¿
-		private AtomicLong count2Time; // ´óÓÚ1ÃëÊ±¼ä
-		private AtomicInteger processed; // ×Ü¹²´¦Àí¹ýµÄÊýÁ¿
-		private AtomicLong processTime; // Ã¿´ÎÇëÇó£¬processTime +=
+		private AtomicLong totaltime; // ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+		private AtomicInteger count; // ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½
+		private AtomicInteger count2; // ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		private AtomicLong count2Time; // ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½
+		private AtomicInteger processed; // ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		private AtomicLong processTime; // Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½processTime +=
 										// System.currentTimeMillis();
-		private AtomicInteger processing; // µ±Ç°ÕýÔÚ´¦ÀíÊýÁ¿£¬ÇëÇóÀ´Ê±Ôö¼Ó£¬Íê³Éºó¼õÉÙ
+		private AtomicInteger processing; // ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½Éºï¿½ï¿½ï¿½ï¿½
 
 		public String getType() {
 			return type;

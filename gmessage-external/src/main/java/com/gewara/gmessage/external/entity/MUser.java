@@ -6,7 +6,7 @@ import com.gewara.gmessage.external.constant.UserType;
 
 /**
  * 
- * ÏûÏ¢µÄ½ÓÊÕ»òÕß·¢ËÍÕßµÄ¾ßÌåÐÅÏ¢
+ * ï¿½ï¿½Ï¢ï¿½Ä½ï¿½ï¿½Õ»ï¿½ï¿½ß·ï¿½ï¿½ï¿½ï¿½ßµÄ¾ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
  * @author user
  *
  */
@@ -33,7 +33,7 @@ public class MUser implements Serializable{
 		return userID;
 	}
 	
-	/**ÓÃ»§ID*/
+	/**ï¿½Ã»ï¿½ID*/
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
@@ -42,7 +42,7 @@ public class MUser implements Serializable{
 		return mobile;
 	}
 	
-	/**ÓÃ»§ÊÖ»úºÅ¡£*/
+	/**ï¿½Ã»ï¿½ï¿½Ö»ï¿½ï¿½Å¡ï¿½*/
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
@@ -51,7 +51,7 @@ public class MUser implements Serializable{
 		return name;
 	}
 	
-	/**ÓÃ»§Ãû³Æ*/
+	/**ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -60,7 +60,7 @@ public class MUser implements Serializable{
 		return userType;
 	}
 
-	/**ÓÃ»§ÀàÐÍ*/
+	/**ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
@@ -85,7 +85,9 @@ public class MUser implements Serializable{
 		case 'B':ut=UserType.BUSINESS;break;
 		case 'A':ut=UserType.MAINTAIN;break;
 		}
-		if(ut==null) return null;
+		if(ut==null) {
+            return null;
+        }
 		return new MUser(uid.substring(1),ut);
 	}
 }

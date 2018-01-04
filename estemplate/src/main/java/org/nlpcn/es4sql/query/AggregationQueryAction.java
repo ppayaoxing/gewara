@@ -150,8 +150,12 @@ public class AggregationQueryAction extends QueryAction {
 	}
 
     private AbstractAggregationBuilder wrapNestedIfNeeded(AggregationBuilder nestedBuilder, boolean reverseNested) {
-        if(!reverseNested) return nestedBuilder;
-        if(reverseNested && ! (nestedBuilder instanceof NestedBuilder)) return nestedBuilder;
+        if(!reverseNested) {
+            return nestedBuilder;
+        }
+        if(reverseNested && ! (nestedBuilder instanceof NestedBuilder)) {
+            return nestedBuilder;
+        }
         //we need to jump back to root
         return AggregationBuilders.reverseNested(nestedBuilder.getName()+"_REVERSED").subAggregation(nestedBuilder);
     }
@@ -160,8 +164,9 @@ public class AggregationQueryAction extends QueryAction {
         AggregationBuilder nestedBuilder;
         String nestedPath = field.getNestedPath();
         if(field.isReverseNested() ) {
-            if(nestedPath == null || !nestedPath.startsWith("~"))
+            if(nestedPath == null || !nestedPath.startsWith("~")) {
                 return AggregationBuilders.reverseNested(getNestedAggName(field)).path(nestedPath);
+            }
             nestedPath = nestedPath.substring(1);
         }
         nestedBuilder = AggregationBuilders.nested(getNestedAggName(field)).path(nestedPath);
@@ -187,11 +192,17 @@ public class AggregationQueryAction extends QueryAction {
 
 
     private boolean insertFilterIfExistsAfter(AggregationBuilder<?> agg, List<Field> groupBy, AggregationBuilder builder, int nextPosition) throws SqlParseException {
-        if(groupBy.size() <= nextPosition) return false;
+        if(groupBy.size() <= nextPosition) {
+            return false;
+        }
         Field filterFieldCandidate = groupBy.get(nextPosition);
-        if(! (filterFieldCandidate instanceof MethodField)) return false;
+        if(! (filterFieldCandidate instanceof MethodField)) {
+            return false;
+        }
         MethodField methodField = (MethodField) filterFieldCandidate;
-        if(!methodField.getName().toLowerCase().equals("filter")) return false;
+        if(!"filter".equals(methodField.getName().toLowerCase())) {
+            return false;
+        }
         builder.subAggregation(aggMaker.makeGroupAgg(filterFieldCandidate).subAggregation(agg));
         return true;
     }

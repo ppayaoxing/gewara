@@ -26,8 +26,9 @@ public class GetPayRecordByTradeNoRequest extends ApiRequest{
 
 	@Override
 	public boolean checkParams() {
-		if(tradeNo==null || tradeNo.trim().length()<15)
-			return false;
+		if(tradeNo==null || tradeNo.trim().length()<15) {
+            return false;
+        }
 		return true;
 	}
 

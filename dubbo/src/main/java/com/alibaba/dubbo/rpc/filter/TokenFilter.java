@@ -35,7 +35,8 @@ import com.alibaba.dubbo.rpc.RpcException;
 @Activate(group = Constants.PROVIDER, value = Constants.TOKEN_KEY)
 public class TokenFilter implements Filter {
 
-	public Result invoke(Invoker<?> invoker, Invocation inv)
+	@Override
+    public Result invoke(Invoker<?> invoker, Invocation inv)
 			throws RpcException {
 	    String token = invoker.getUrl().getParameter(Constants.TOKEN_KEY);
 	    if (ConfigUtils.isNotEmpty(token)) {

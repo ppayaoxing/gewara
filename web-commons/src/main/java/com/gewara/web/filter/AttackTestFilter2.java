@@ -34,7 +34,7 @@ import com.gewara.web.util.ParamCollectUtils;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ï¿½ï¿½ï¿½ï¿½02:05:17
  */
 public class AttackTestFilter2 extends OncePerRequestFilter {
 	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
@@ -157,7 +157,7 @@ public class AttackTestFilter2 extends OncePerRequestFilter {
 		return remoteIp;
 	}
 	/**
-	 * ¹ýÂË¹Ø¼üÂ·¾¶¹æÔò
+	 * ï¿½ï¿½ï¿½Ë¹Ø¼ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param req
 	 */
 	private void checkRegScript(HttpServletRequest req){
@@ -191,10 +191,14 @@ public class AttackTestFilter2 extends OncePerRequestFilter {
 	}
 	
 	private boolean triggerRule(String scriptTxt, Map context){
-		if(StringUtils.isBlank(scriptTxt) || BeanUtil.isEmptyContainer(context)) return false;
+		if(StringUtils.isBlank(scriptTxt) || BeanUtil.isEmptyContainer(context)) {
+            return false;
+        }
 		CachedScript script = ScriptEngineUtil.buildCachedScript(scriptTxt, true);
 		ScriptResult<Boolean> result = script.run(context);
-		if(result.hasError() || result.getRetval()==null) return false;
+		if(result.hasError() || result.getRetval()==null) {
+            return false;
+        }
 		return result.getRetval();
 	}
 

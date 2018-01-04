@@ -37,6 +37,7 @@ public class SpringStatusChecker implements StatusChecker {
     
     private static final Logger logger = LoggerFactory.getLogger(SpringStatusChecker.class);
 
+    @Override
     public Status check() {
         ApplicationContext context = ServiceBean.getSpringContext();
         if (context == null) {

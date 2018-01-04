@@ -42,7 +42,7 @@ import com.alibaba.dubbo.remoting.p2p.exchange.ExchangePeer;
  */
 public abstract class AbstractExchangeGroup implements ExchangeGroup {
 
-    // ÈÕÖ¾Êä³ö
+    // ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½
     protected static final Logger logger = LoggerFactory.getLogger(AbstractExchangeGroup.class);
     
     protected final URL url;
@@ -60,10 +60,12 @@ public abstract class AbstractExchangeGroup implements ExchangeGroup {
         this.url = url;
     }
     
+    @Override
     public URL getUrl() {
         return url;
     }
 
+    @Override
     public void close() {
         for (URL url : new ArrayList<URL>(servers.keySet())) {
             try {
@@ -81,13 +83,15 @@ public abstract class AbstractExchangeGroup implements ExchangeGroup {
         }
     }
     
+    @Override
     public Peer join(URL url, ChannelHandler handler) throws RemotingException {
         return join(url, (ExchangeHandler) handler);
     }
     
+    @Override
     public ExchangePeer join(URL url, ExchangeHandler handler) throws RemotingException {
         ExchangeServer server = servers.get(url);
-        if (server == null) { // TODO ÓÐ²¢·¢¼äÏ¶
+        if (server == null) { // TODO ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶
             server = Exchangers.bind(url, handler);
             servers.put(url, server);
             dispatcher.addChannelHandler(handler);
@@ -95,6 +99,7 @@ public abstract class AbstractExchangeGroup implements ExchangeGroup {
         return new ExchangeServerPeer(server, clients, this);
     }
 
+    @Override
     public void leave(URL url) throws RemotingException {
         Server server = servers.remove(url);
         if (server != null) {
@@ -107,7 +112,7 @@ public abstract class AbstractExchangeGroup implements ExchangeGroup {
             return null;
         }
         ExchangeClient client = clients.get(url);
-        if (client == null) { // TODO ÓÐ²¢·¢¼äÏ¶
+        if (client == null) { // TODO ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶
             client = Exchangers.connect(url, dispatcher);
             clients.put(url, client);
         }

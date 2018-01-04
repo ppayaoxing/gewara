@@ -79,7 +79,9 @@ public class JsonUtils {
 		mapper.registerModule(GewaJsonModule.GEWA_MODULE);
 		try {
 			Map result = mapper.readValue(json, Map.class);
-			if (result == null) result = new HashMap();
+			if (result == null) {
+                result = new HashMap();
+            }
 			return result;
 		} catch (Exception e) {
 			dbLogger.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
@@ -156,7 +158,9 @@ public class JsonUtils {
 		}
 		try {
 			Map result = mapper.readValue(json, Map.class);
-			if (result == null) result = new HashMap();
+			if (result == null) {
+                result = new HashMap();
+            }
 			return result;
 		} catch (Exception e) {
 			dbLogger.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
@@ -177,13 +181,15 @@ public class JsonUtils {
 		return writeObject(object, null, null, excludeNull);
 	}
 	private static String writeObject(Object object, OutputStream os, Writer writer, boolean excludeNull) {
-		if (object == null)	return null;
+		if (object == null) {
+            return null;
+        }
 		if(object instanceof Map){
 			try{((Map) object).remove(null);}catch(Exception e){}
 		}
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.disable(SerializationFeature.WRITE_NULL_MAP_VALUES);
-		//²»×Ô¶¯¹Ø±ÕÁ÷
+		//ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½Ø±ï¿½ï¿½ï¿½
 		mapper.getFactory().disable(Feature.AUTO_CLOSE_TARGET);
 		if(excludeNull) {
 			mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -206,7 +212,9 @@ public class JsonUtils {
 	}
 	
 	public static String writeMapToJson(Map<String, String> dataMap){
-		if(dataMap==null) return null;
+		if(dataMap==null) {
+            return null;
+        }
 		if(dataMap instanceof HashMap){
 			try{dataMap.remove(null);}catch(Exception e){}
 		}

@@ -66,26 +66,26 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
     
     private static final ProxyFactory proxyFactory = ExtensionLoader.getExtensionLoader(ProxyFactory.class).getAdaptiveExtension();
 
-    // ½Ó¿ÚÀàÐÍ
+    // ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½
     private String               interfaceName;
 
     private Class<?>             interfaceClass;
 
-    // ¿Í»§¶ËÀàÐÍ
+    // ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private String               client;
 
-    // µã¶ÔµãÖ±Á¬·þÎñÌá¹©µØÖ·
+    // ï¿½ï¿½Ôµï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½Ö·
     private String               url;
 
-    // ·½·¨ÅäÖÃ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private List<MethodConfig>   methods;
 
-    // È±Ê¡ÅäÖÃ
+    // È±Ê¡ï¿½ï¿½ï¿½ï¿½
     private ConsumerConfig       consumer;
     
     private String				 protocol;
 
-    // ½Ó¿Ú´úÀíÀàÒýÓÃ
+    // ï¿½Ó¿Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private transient volatile T ref;
 
     private transient volatile Invoker<?> invoker;
@@ -105,7 +105,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
             if(! ReferenceConfig.this.destroyed) {
                 logger.warn("ReferenceConfig(" + url + ") is not DESTROYED when FINALIZE");
 
-                /* ÏÈ²»×öDestroy²Ù×÷
+                /* ï¿½È²ï¿½ï¿½ï¿½Destroyï¿½ï¿½ï¿½ï¿½
                 try {
                     ReferenceConfig.this.destroy();
                 } catch (Throwable t) {
@@ -165,7 +165,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
     	if (interfaceName == null || interfaceName.length() == 0) {
     	    throw new IllegalStateException("<dubbo:reference interface=\"\" /> interface not allow null!");
     	}
-    	// »ñÈ¡Ïû·ÑÕßÈ«¾ÖÅäÖÃ
+    	// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     	checkDefault();
         appendProperties(this);
         if (getGeneric() == null && getConsumer() != null) {
@@ -223,7 +223,9 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
 					throw new IllegalStateException("Unload " + resolveFile + ", cause: " + e.getMessage(), e);
 				} finally {
 				    try {
-                        if(null != fis) fis.close();
+                        if(null != fis) {
+                            fis.close();
+                        }
                     } catch (IOException e) {
                         logger.warn(e.getMessage(), e);
                     }
@@ -316,7 +318,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
                 checkAndConvertImplicitConfig(method, map, attributes);
             }
         }
-        //attributesÍ¨¹ýÏµÍ³context½øÐÐ´æ´¢.
+        //attributesÍ¨ï¿½ï¿½ÏµÍ³contextï¿½ï¿½ï¿½Ð´æ´¢.
         StaticContext.getSystemContext().putAll(attributes);
         ref = createProxy(map);
     }
@@ -359,10 +361,10 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
 		URL tmpUrl = new URL("temp", "localhost", 0, map);
 		final boolean isJvmRefer;
         if (isInjvm() == null) {
-            if (url != null && url.length() > 0) { //Ö¸¶¨URLµÄÇé¿öÏÂ£¬²»×ö±¾µØÒýÓÃ
+            if (url != null && url.length() > 0) { //Ö¸ï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 isJvmRefer = false;
             } else if (InjvmProtocol.getInjvmProtocol().isInjvmRefer(tmpUrl)) {
-                //Ä¬ÈÏÇé¿öÏÂÈç¹û±¾µØÓÐ·þÎñ±©Â¶£¬ÔòÒýÓÃ±¾µØ·þÎñ.
+                //Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½Ø·ï¿½ï¿½ï¿½.
                 isJvmRefer = true;
             } else {
                 isJvmRefer = false;
@@ -378,7 +380,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
                 logger.info("Using injvm service " + interfaceClass.getName());
             }
 		} else {
-            if (url != null && url.length() > 0) { // ÓÃ»§Ö¸¶¨URL£¬Ö¸¶¨µÄURL¿ÉÄÜÊÇ¶Ôµã¶ÔÖ±Á¬µØÖ·£¬Ò²¿ÉÄÜÊÇ×¢²áÖÐÐÄURL
+            if (url != null && url.length() > 0) { // ï¿½Ã»ï¿½Ö¸ï¿½ï¿½URLï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½ï¿½Ç¶Ôµï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½URL
                 String[] us = Constants.SEMICOLON_SPLIT_PATTERN.split(url);
                 if (us != null && us.length > 0) {
                     for (String u : us) {
@@ -393,7 +395,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
                         }
                     }
                 }
-            } else { // Í¨¹ý×¢²áÖÐÐÄÅäÖÃÆ´×°URL
+            } else { // Í¨ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ´×°URL
             	List<URL> us = loadRegistries(false);
             	if (us != null && us.size() > 0) {
                 	for (URL u : us) {
@@ -417,14 +419,14 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
                 for (URL url : urls) {
                     invokers.add(refprotocol.refer(interfaceClass, url));
                     if (Constants.REGISTRY_PROTOCOL.equals(url.getProtocol())) {
-                        registryURL = url; // ÓÃÁË×îºóÒ»¸öregistry url
+                        registryURL = url; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½registry url
                     }
                 }
-                if (registryURL != null) { // ÓÐ ×¢²áÖÐÐÄÐ­ÒéµÄURL
-                    // ¶ÔÓÐ×¢²áÖÐÐÄµÄCluster Ö»ÓÃ AvailableCluster
+                if (registryURL != null) { // ï¿½ï¿½ ×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½ï¿½URL
+                    // ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Cluster Ö»ï¿½ï¿½ AvailableCluster
                     URL u = registryURL.addParameter(Constants.CLUSTER_KEY, AvailableCluster.NAME); 
                     invoker = cluster.join(new StaticDirectory(u, invokers));
-                }  else { // ²»ÊÇ ×¢²áÖÐÐÄµÄURL
+                }  else { // ï¿½ï¿½ï¿½ï¿½ ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½URL
                     invoker = cluster.join(new StaticDirectory(invokers));
                 }
             }
@@ -443,7 +445,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
         if (logger.isInfoEnabled()) {
             logger.info("Refer dubbo service " + interfaceClass.getName() + " from url " + invoker.getUrl());
         }
-        // ´´½¨·þÎñ´úÀí
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         return (T) proxyFactory.getProxy(invoker);
     }
 

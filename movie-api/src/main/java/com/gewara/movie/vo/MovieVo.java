@@ -8,7 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import com.gewara.movie.vo.common.BaseEntityVo;
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ï¿½ï¿½ï¿½ï¿½02:05:17
  */
 public class MovieVo extends BaseEntityVo implements Comparable<MovieVo>{
 	private static final long serialVersionUID = 7175746260709239571L;
@@ -24,31 +24,31 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo>{
 	private String type;
 	private String honor;
 	private String website;
-	private Integer videolen;	//Ó°Æ¬Ê±³¤£ºÒÔ·ÖÖÓÎªµ¥Î»
+	private Integer videolen;	//Ó°Æ¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½Îªï¿½ï¿½Î»
 	private String remark;
 	private String state;
 	private String prevideo;
-	private String highlight; //¾­µäÒ»¾ä»°
+	private String highlight; //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ä»°
 	private String playdate;
 	private Integer avgprice;
 	private Integer minprice;
 	private Integer maxprice;
 	private String imdbid;
 	private String flag;
-	private Integer boughtcount;	// ¹ºÆ±ÈË´Î
+	private Integer boughtcount;	// ï¿½ï¿½Æ±ï¿½Ë´ï¿½
 	private String otherinfo;	
-	private String edition;   //µçÓ°°æ±¾
-	private String colorEggs; //µçÓ°²Êµ°
-	private String hlogo;//ºá°åµÄlogo
-	private String offlineDate; //µçÓ°ÏÂÏßÈÕÆÚ
-	private String filmType;		//Æ¬ÖÖ£º¹ÊÊÂÆ¬¡¢¼ÍÂ¼Æ¬¡¢ÃÀÊõÆ¬¡¢¿ÆÑ§½ÌÓýÆ¬
-	private String importModel;		//Òý½øÄ£Ê½£º¹ú²ú¡¢ºÏÅÄ¡¢Âò¶Ï¡¢·ÖÕË
-	private String period;			//Äê´ú£ºÏÖ´ú¡¢½ü´ú¡¢¹Å´ú
-	private String ageLayer;		//ÄêÁä²ã£º80,90,00
-	private String characteristic;	// ÓÃ»§ÌØÕ÷:Ñ§ÉúµÈ
+	private String edition;   //ï¿½ï¿½Ó°ï¿½æ±¾
+	private String colorEggs; //ï¿½ï¿½Ó°ï¿½Êµï¿½
+	private String hlogo;//ï¿½ï¿½ï¿½ï¿½logo
+	private String offlineDate; //ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String filmType;		//Æ¬ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½ï¿½ï¿½ï¿½Â¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½Æ¬
+	private String importModel;		//ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String period;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å´ï¿½
+	private String ageLayer;		//ï¿½ï¿½ï¿½ï¿½ã£º80,90,00
+	private String characteristic;	// ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½:Ñ§ï¿½ï¿½ï¿½ï¿½
 	private String filmmark;
-	private String countryRelease;	// ¸÷¹úÉÏÓ³ÈÕÆÚ£¬ÒÔ¡°,¡±·Ö¸î
-	private String sameMovie;		// ¹ØÁªÓ°Æ¬ID£¬ÒÔ¡°,¡±·Ö¸î
+	private String countryRelease;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ú£ï¿½ï¿½Ô¡ï¿½,ï¿½ï¿½ï¿½Ö¸ï¿½
+	private String sameMovie;		// ï¿½ï¿½ï¿½ï¿½Ó°Æ¬IDï¿½ï¿½ï¿½Ô¡ï¿½,ï¿½ï¿½ï¿½Ö¸ï¿½
 	
 	public String getHlogo() {
 		return hlogo;
@@ -176,13 +176,17 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo>{
 	}
 
 	public void setWebsite(String website) {
-		if(StringUtils.isNotBlank(website) && !StringUtils.startsWith(website, "http://")) website = "http://" + website;
+		if(StringUtils.isNotBlank(website) && !StringUtils.startsWith(website, "http://")) {
+            website = "http://" + website;
+        }
 		this.website = website;
 	}
 
 	public String getLength() {
-		if(videolen==null) return "";
-		return this.videolen + "·ÖÖÓ";
+		if(videolen==null) {
+            return "";
+        }
+		return this.videolen + "ï¿½ï¿½ï¿½ï¿½";
 	}
 
 	public String getRemark() {
@@ -204,7 +208,9 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo>{
 		try{
 			int price = Integer.parseInt(priceStr);
 			for(String key: priceMap.keySet()){
-				if(price >= priceMap.get(key)[0] && price < priceMap.get(key)[1]) return key;
+				if(price >= priceMap.get(key)[0] && price < priceMap.get(key)[1]) {
+                    return key;
+                }
 			}
 		}catch(Exception e){
 		}
@@ -213,8 +219,11 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo>{
 	public String getUrl(){
 		return "movie/" + this.id;
 	}
-	public String getLimg(){
-		if(StringUtils.isBlank(logo)) return "img/default_movie.png";
+	@Override
+    public String getLimg(){
+		if(StringUtils.isBlank(logo)) {
+            return "img/default_movie.png";
+        }
 		return logo;
 	}
 	public String getHighlight() {
@@ -235,7 +244,8 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo>{
 	public void setImdbid(String imdbid) {
 		this.imdbid = imdbid;
 	}
-	public String getCname() {
+	@Override
+    public String getCname() {
 		return this.moviename;
 	}
 	public String getFlag() {
@@ -363,7 +373,9 @@ public class MovieVo extends BaseEntityVo implements Comparable<MovieVo>{
 	}
 	@Override
 	public int compareTo(MovieVo another) {
-		if(another.equals(this)) return 0; 
+		if(another.equals(this)) {
+            return 0;
+        }
 		int result = (this.getHotvalue() - another.getHotvalue()) + (this.getClickedtimes() - another.getClickedtimes()); 
 		return -result;
 	}

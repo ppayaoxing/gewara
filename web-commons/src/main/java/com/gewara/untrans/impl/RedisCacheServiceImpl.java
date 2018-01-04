@@ -17,8 +17,8 @@ import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
 /**
- * 基于sharded jedis实现的cache<br>
- * Object类型的value使用HessianSerializer,其对应的key使用string serializer
+ * 锟斤拷锟斤拷sharded jedis实锟街碉拷cache<br>
+ * Object锟斤拷锟酵碉拷value使锟斤拷HessianSerializer,锟斤拷锟接︼拷锟絢ey使锟斤拷string serializer
  * 
  * @author quzhuping
  */
@@ -35,14 +35,16 @@ public class RedisCacheServiceImpl extends AbstractCacheService {
 	 * @param key
 	 * @param mpid
 	 */
-	public <T extends BaseObject> void cleanUkey(Class<T> claszz, String key, Long mpid) {
+	@Override
+    public <T extends BaseObject> void cleanUkey(Class<T> claszz, String key, Long mpid) {
 	}
 
 	@Override
 	public Map<String, Object> getBulk(String regionName, Collection<String> keys) {
 		getRegionTime(regionName);
-		if (keys == null || keys.isEmpty())
-			return null;
+		if (keys == null || keys.isEmpty()) {
+            return null;
+        }
 		Map<String, String> keyMap = new HashMap<String, String>();
 		for (String key : keys) {
 			String newkey = getRealKey(regionName, key);
@@ -69,8 +71,9 @@ public class RedisCacheServiceImpl extends AbstractCacheService {
 
 	@Override
 	public void set(String regionName, String key, Object value, int timeoutSecond) {
-		if (StringUtils.isBlank(key) || value == null)
-			return;
+		if (StringUtils.isBlank(key) || value == null) {
+            return;
+        }
 		key = getRealKey(regionName, key);
 
 		ShardedJedis jedis = null;
@@ -88,9 +91,9 @@ public class RedisCacheServiceImpl extends AbstractCacheService {
 	}
 
 	/**
-	 * 原子加操作<br>
-	 * 由于redis的特殊性，def入参在该方法中无效，def值为0 <br>
-	 * 如果使用非零默认值，参考使用{@link AtomicCounter4RedisSharded}
+	 * 原锟接加诧拷锟斤拷<br>
+	 * 锟斤拷锟斤拷redis锟斤拷锟斤拷锟斤拷锟皆ｏ拷def锟斤拷锟斤拷诟梅锟斤拷锟斤拷锟斤拷锟叫э拷锟絛ef值为0 <br>
+	 * 锟斤拷锟绞癸拷梅锟斤拷锟侥拷锟街碉拷锟斤拷慰锟绞癸拷锟絳@link AtomicCounter4RedisSharded}
 	 */
 	@Override
 	public int incrementAndGet(String regionName, String key, int by, int def) {
@@ -110,8 +113,9 @@ public class RedisCacheServiceImpl extends AbstractCacheService {
 
 	@Override
 	public void add(String regionName, String key, Object value, int expSeconds) {
-		if (StringUtils.isBlank(key) || value == null)
-			return;
+		if (StringUtils.isBlank(key) || value == null) {
+            return;
+        }
 		key = getRealKey(regionName, key);
 
 		ShardedJedis jedis = null;
@@ -129,9 +133,9 @@ public class RedisCacheServiceImpl extends AbstractCacheService {
 	}
 
 	/**
-	 * 原子减操作<br>
-	 * 由于redis的特殊性，def入参在该方法中无效，def值为0 <br>
-	 * 如果使用非零默认值，参考使用{@link AtomicCounter4RedisSharded}
+	 * 原锟接硷拷锟斤拷锟斤拷<br>
+	 * 锟斤拷锟斤拷redis锟斤拷锟斤拷锟斤拷锟皆ｏ拷def锟斤拷锟斤拷诟梅锟斤拷锟斤拷锟斤拷锟叫э拷锟絛ef值为0 <br>
+	 * 锟斤拷锟绞癸拷梅锟斤拷锟侥拷锟街碉拷锟斤拷慰锟绞癸拷锟絳@link AtomicCounter4RedisSharded}
 	 */
 	@Override
 	public int decrAndGet(String regionName, String key, int by, int def) {
@@ -153,9 +157,9 @@ public class RedisCacheServiceImpl extends AbstractCacheService {
 	}
 
 	/**
-	 * 原子加操作<br>
-	 * 由于redis的特殊性，def参数在该方法中无效，def值为0 <br>
-	 * 如果使用非零默认值，参考使用{@link AtomicCounter4RedisSharded}
+	 * 原锟接加诧拷锟斤拷<br>
+	 * 锟斤拷锟斤拷redis锟斤拷锟斤拷锟斤拷锟皆ｏ拷def锟斤拷锟斤拷锟节该凤拷锟斤拷锟斤拷锟斤拷效锟斤拷def值为0 <br>
+	 * 锟斤拷锟绞癸拷梅锟斤拷锟侥拷锟街碉拷锟斤拷慰锟绞癸拷锟絳@link AtomicCounter4RedisSharded}
 	 */
 	@Override
 	public int incrementAndGet(String regionName, String key, int by, int def, int exp) {

@@ -11,31 +11,31 @@ public class ShowAreaVo extends BaseVo {
 	private static final long serialVersionUID = 2546956596028166852L;
 	
 	private String saseqNo;				//partner + areaserial(TheatreSeatArea-->sellerseq)
-	private String areaname;			//³¡ÇøÃû³Æ
-	private String enname;				//³¡ÇøÓ¢ÎÄÃû
-	private String partner;				//µÚÈý·½±êÊ¶
-	private String areaserial;			//µÚÈý·½³¡Çø±àºÅ
-	private String fieldserial;			//µÚÈý·½³¡µØ±àºÅ
-	private String pseqno;				//µÚÈý·½³¡´Î±àºÅ
-	private Long theatreid;				//³¡¹ÝID
-	private Long dramaid;				//ÏîÄ¿ID
-	private String fieldnum;			//³¡µØÐòºÅ
-	private String areanum;				//³¡ÇøÐòºÅ
-	private String siseqNo;				//³¡´Î±àºÅ
+	private String areaname;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String enname;				//ï¿½ï¿½ï¿½ï¿½Ó¢ï¿½ï¿½ï¿½ï¿½
+	private String partner;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¶
+	private String areaserial;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String fieldserial;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½ï¿½
+	private String pseqno;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±ï¿½ï¿½
+	private Long theatreid;				//ï¿½ï¿½ï¿½ï¿½ID
+	private Long dramaid;				//ï¿½ï¿½Ä¿ID
+	private String fieldnum;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String areanum;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String siseqNo;				//ï¿½ï¿½ï¿½Î±ï¿½ï¿½
 	
-	private String description;			//ÇøÓòÃèÊö
-	private String standing;			//ÊÇ·ñÕ¾Æ±
-	private Integer totalnum;				//Õ¾Æ±/×ùÎ»µÄ×ÜÁ¿
-	private Integer limitnum;				//ÏÞÖÆÊý
-	private Integer firstline;			//ÆðÊ¼ÐÐ
-	private Integer firstrank;			//ÆðÊ¼ÁÐ
-	private Integer linenum;			//±í¸ñ¿í¶È
-	private Integer ranknum;			//±í¸ñ¸ß¶È
-	private String hotzone;				//×ù±êÖµ
+	private String description;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String standing;			//ï¿½Ç·ï¿½Õ¾Æ±
+	private Integer totalnum;				//Õ¾Æ±/ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer limitnum;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer firstline;			//ï¿½ï¿½Ê¼ï¿½ï¿½
+	private Integer firstrank;			//ï¿½ï¿½Ê¼ï¿½ï¿½
+	private Integer linenum;			//ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer ranknum;			//ï¿½ï¿½ï¿½ß¶ï¿½
+	private String hotzone;				//ï¿½ï¿½ï¿½ï¿½Öµ
 	
-	private String status;				//×´Ì¬£º¿ÉÓÃ¡¢É¾³ý
-	private Timestamp createtime;		//´´½¨Ê±¼ä
-	private Timestamp updatetime;		//¸üÐÂÊ±¼ä
+	private String status;				//×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½É¾ï¿½ï¿½
+	private Timestamp createtime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Timestamp updatetime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	
 	public ShowAreaVo(){}
 
@@ -241,7 +241,9 @@ public class ShowAreaVo extends BaseVo {
 	}
 
 	public boolean hasStatus(String stats){
-		if(StringUtils.isBlank(stats)) return false;
+		if(StringUtils.isBlank(stats)) {
+            return false;
+        }
 		return StringUtils.equals(this.status, stats);
 	}
 }

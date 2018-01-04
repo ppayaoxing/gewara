@@ -43,6 +43,7 @@ import com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol;
 @Help(parameter = "[service.]method(args)", summary = "Invoke the service method.", detail = "Invoke the service method.")
 public class InvokeTelnetHandler implements TelnetHandler {
     
+    @Override
     @SuppressWarnings("unchecked")
     public String telnet(Channel channel, String message) {
         if (message == null || message.length() == 0) {
@@ -119,7 +120,7 @@ public class InvokeTelnetHandler implements TelnetHandler {
         Method invokeMethod = null;
         for (Method m : methods) {
             if (m.getName().equals(method) && m.getParameterTypes().length == args.size()) {
-                if (invokeMethod != null) { // ÖØÔØ
+                if (invokeMethod != null) { // ï¿½ï¿½ï¿½ï¿½
                     if (isMatch(invokeMethod.getParameterTypes(), args)) {
                         invokeMethod = m;
                         break;

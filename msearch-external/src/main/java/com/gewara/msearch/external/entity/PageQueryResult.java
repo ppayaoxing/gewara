@@ -24,7 +24,9 @@ public class PageQueryResult<K,V> {
 	}
 
 	public Collection<KVObject<K, V>> getDatas() {
-		if(datas==null) return new ArrayList<>(0);
+		if(datas==null) {
+            return new ArrayList<>(0);
+        }
 		return datas;
 	}
 

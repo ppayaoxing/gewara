@@ -58,6 +58,7 @@ public class InputStreamDeserializer extends AbstractDeserializer {
   {
   }
   
+  @Override
   public Object readObject(AbstractHessianInput in)
     throws IOException
   {

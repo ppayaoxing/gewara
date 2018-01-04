@@ -34,7 +34,7 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 import com.alibaba.dubbo.rpc.cluster.LoadBalance;
 
 /**
- * Ê§°Ü×ªÒÆ£¬µ±³öÏÖÊ§°Ü£¬ÖØÊÔÆäËü·þÎñÆ÷£¬Í¨³£ÓÃÓÚ¶Á²Ù×÷£¬µ«ÖØÊÔ»á´øÀ´¸ü³¤ÑÓ³Ù¡£
+ * Ê§ï¿½ï¿½×ªï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³Ù¡ï¿½
  * 
  * <a href="http://en.wikipedia.org/wiki/Failover">Failover</a>
  * 
@@ -49,6 +49,7 @@ public class FailoverClusterInvoker<T> extends AbstractClusterInvoker<T> {
         super(directory);
     }
 
+    @Override
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public Result doInvoke(Invocation invocation, final List<Invoker<T>> invokers, LoadBalance loadbalance) throws RpcException {
     	List<Invoker<T>> copyinvokers = invokers;
@@ -62,12 +63,12 @@ public class FailoverClusterInvoker<T> extends AbstractClusterInvoker<T> {
         List<Invoker<T>> invoked = new ArrayList<Invoker<T>>(copyinvokers.size()); // invoked invokers.
         Set<String> providers = new HashSet<String>(len);
         for (int i = 0; i < len; i++) {
-        	//ÖØÊÔÊ±£¬½øÐÐÖØÐÂÑ¡Ôñ£¬±ÜÃâÖØÊÔÊ±invokerÁÐ±íÒÑ·¢Éú±ä»¯.
-        	//×¢Òâ£ºÈç¹ûÁÐ±í·¢ÉúÁË±ä»¯£¬ÄÇÃ´invokedÅÐ¶Ï»áÊ§Ð§£¬ÒòÎªinvokerÊ¾ÀýÒÑ¾­¸Ä±ä
+        	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ñ£¬±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±invokerï¿½Ð±ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ä»¯.
+        	//×¢ï¿½â£ºï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ë±ä»¯ï¿½ï¿½ï¿½ï¿½Ã´invokedï¿½Ð¶Ï»ï¿½Ê§Ð§ï¿½ï¿½ï¿½ï¿½ÎªinvokerÊ¾ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½Ä±ï¿½
         	if (i > 0) {
         		checkWheatherDestoried();
         		copyinvokers = list(invocation);
-        		//ÖØÐÂ¼ì²éÒ»ÏÂ
+        		//ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ò»ï¿½ï¿½
         		checkInvokers(copyinvokers, invocation);
         	}
             Invoker<T> invoker = select(loadbalance, invocation, copyinvokers, invoked);

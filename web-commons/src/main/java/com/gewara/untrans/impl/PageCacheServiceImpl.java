@@ -116,12 +116,16 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 	@Override
 	public void refreashCacheMin(String pageUrl, Integer minute){
 		Integer min = cacheMinMap.get(pageUrl);
-		if(min != null) cacheMinMap.put(pageUrl, minute);
+		if(min != null) {
+            cacheMinMap.put(pageUrl, minute);
+        }
 	}
 	@Override
 	public PageView getPageView(HttpServletRequest request, String pageUrl, PageParams pageParams, String citycode) {
 		Integer cacheMin = getCacheMin(pageUrl);
-		if(cacheMin <= 0) return null;
+		if(cacheMin <= 0) {
+            return null;
+        }
 		
 		if(request!=null && StringUtils.isNotBlank(request.getParameter("CLEARPAGE"))){
 			if(processor.canClear(request)){
@@ -134,7 +138,9 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		boolean update = false;
 		PageView pv = null;
 		if(cached!=null){
-			if(cached < cur - DateUtil.m_minute) update = true; //1·ÖÖÓ¼´½«¹ýÆÚ£¬ÐèÒª¸üÐÂ
+			if(cached < cur - DateUtil.m_minute) {
+                update = true; //1ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+            }
 			String content = (String)memcachedClient.get(getContentKey(pageUrl, pageParams, citycode));
 			if(content!=null){
 				pv = new PageView(cached, content);
@@ -145,7 +151,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		if(update && request!=null){
 			String userAgent = request.getHeader("User-Agent");
 			if(!StringUtils.containsIgnoreCase(userAgent, "bot")&& 
-					!StringUtils.containsIgnoreCase(userAgent, "spid")){//»úÆ÷ÈË£¬²»×ö»º´æ
+					!StringUtils.containsIgnoreCase(userAgent, "spid")){//ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				String ip = BaseWebUtils.getRemoteIp(request);
 				sendMsg(pageUrl, pageParams, citycode, cur, cacheMin, ip);
 			}
@@ -161,7 +167,9 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		String key = getExistsKey(pageUrl, pageParams, citycode);
 		Map<String, Long> tmpMap = recentPageUrl;
 		Long last = tmpMap.get(key);
-		if(last != null && last + DateUtil.m_minute/2 > cur) return;//30ÃëÄÚ£¬²»ÖØ¸´·¢ËÍ
+		if(last != null && last + DateUtil.m_minute/2 > cur) {
+            return;//30ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
+        }
 		if(tmpMap.size() > 20000) {
 			recentPageUrl = new ConcurrentHashMap<String, Long>(20000, 0.75f, 200);
 			dbLogger.warn("clearRecentPageUrl:" + recentPageUrl.size());
@@ -186,7 +194,9 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		Long cur = System.currentTimeMillis();
 		PageView pv = null;
 		if(cached!=null){
-			if(cached < cur - DateUtil.m_minute) update = true; //1·ÖÖÓ¼´½«¹ýÆÚ£¬ÐèÒª¸üÐÂ
+			if(cached < cur - DateUtil.m_minute) {
+                update = true; //1ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+            }
 			String content = (String)memcachedClient.get(getContentKey(pageUrl, pageParams, citycode));
 			if(content!=null){
 				pv = new PageView(cached, content);
@@ -238,7 +248,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		}
 		String path = getFullPath(pageUrl);
 		HttpResult result = HttpUtils.getUrlAsString(path, params, coolieList);
-		if(result.isSuccess()){//ÓÐÐ§ÄÚÈÝ
+		if(result.isSuccess()){//ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½
 			memcachedClient.set(getExistsKey(pageUrl, pageParams, citycode), 60 * 120, System.currentTimeMillis() + DateUtil.m_minute*cacheMin);
 			memcachedClient.set(getContentKey(pageUrl, pageParams, citycode), 60 * 120, result.getResponse());
 			updateCount(KEY_PUT);
@@ -250,9 +260,9 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 				if(Debugger.isDebugEnabled("pageCache")){
 					dbLogger.warn(result.getResponse());
 				}
-				monitorService.logException(EXCEPTION_TAG.SERVICE, "pageCacheService.refreshPageView", "»ñÈ¡Ò³Ãæ»º´æ´íÎó:" + path + msg, null, params);
+				monitorService.logException(EXCEPTION_TAG.SERVICE, "pageCacheService.refreshPageView", "ï¿½ï¿½È¡Ò³ï¿½æ»ºï¿½ï¿½ï¿½ï¿½ï¿½:" + path + msg, null, params);
 			}else{
-				dbLogger.warn("»ñÈ¡Ò³Ãæ»º´æ´íÎó, url£º[" + path + "],params:" + params.toString() + ",returnResult:" + result.getStatus() + ",response:" + result.getResponse());
+				dbLogger.warn("ï¿½ï¿½È¡Ò³ï¿½æ»ºï¿½ï¿½ï¿½ï¿½ï¿½, urlï¿½ï¿½[" + path + "],params:" + params.toString() + ",returnResult:" + result.getStatus() + ",response:" + result.getResponse());
 			}
 		}
 		return false;
@@ -299,7 +309,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		BlockingQueue<Runnable> taskQueue = new ArrayBlockingQueue<Runnable>(30);
 		executor = new ThreadPoolExecutor(threadPoolSize, threadPoolSize, 0L, TimeUnit.SECONDS, taskQueue);
 		executor.allowCoreThreadTimeOut(false);
-		//µ±²¢·¢´ïµ½30£¬×ÔÉí×èÈû£¬²»»áÏûºÄJMSÏûÏ¢
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ïµ½30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½JMSï¿½ï¿½Ï¢
 		executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
 		Long cur = System.currentTimeMillis();
 		ResourceStatsUtil.getPageCacheStats().register(KEY_HIT, cur);
@@ -310,7 +320,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 		ResourceStatsUtil.getPageCacheStats().register(KEY_IGNORE, cur);
 		refreshKeyVersion();
 		if(StringUtils.equals("true", config.getString("disablePageCache"))){
-			//¹Ø±ÕÒ³Ãæ»º´æ
+			//ï¿½Ø±ï¿½Ò³ï¿½æ»ºï¿½ï¿½
 			enableCache = false;
 		}
 	}
@@ -325,13 +335,15 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 
 	@Override
 	public boolean isUseCache(HttpServletRequest request) {
-		if(!enableCache) return false;
-		//¿ÉÔö¼ÓÆäËûÂß¼­
+		if(!enableCache) {
+            return false;
+        }
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
 		if(StringUtils.isBlank(request.getParameter(NOT_USE_CACHE_KEY))) {
 			return true ;
 		}
 		String ip = BaseWebUtils.getRemoteIp(request);
-		//NOT_USE_CACHE_KEYÖ»Õë¶ÔÄÚ²¿IPÓÐÐ§
+		//NOT_USE_CACHE_KEYÖ»ï¿½ï¿½ï¿½ï¿½Ú²ï¿½IPï¿½ï¿½Ð§
 		return !(GewaIpConfig.isGewaInnerIp(ip) || GewaIpConfig.isOfficeIp(ip));
 	}
 
@@ -360,7 +372,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 				final String city = citycode;
 				final String page = pageUrl;
 				Long last = successMap.get(key);
-				if(last!=null && last+DateUtil.m_minute*5 > System.currentTimeMillis()){//5·ÖÖÓÄÚ³É¹¦´¦Àí¹ý£¬ºöÂÔ
+				if(last!=null && last+DateUtil.m_minute*5 > System.currentTimeMillis()){//5ï¿½ï¿½ï¿½ï¿½ï¿½Ú³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					updateCount(KEY_REPEAT);
 				}else{
 					String lockKey = "ppv" + Math.abs(key.hashCode()%1000);
@@ -370,7 +382,7 @@ public class PageCacheServiceImpl implements PageCacheService, InitializingBean{
 							
 							boolean refreshed = refreshPageView(page, pparam, city);
 							if(!refreshed) {
-								dbLogger.error("»ñÈ¡»º´æÊ§°Ü£¡");
+								dbLogger.error("ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
 								return false;
 							}else{
 								if(successMap.size()>50000){

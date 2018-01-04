@@ -9,13 +9,13 @@ public class TheatreRoomSeatVo  extends BaseVo implements Comparable<TheatreRoom
 	public static final String INITSTATUS_CLOSE = "C";
 	public static final String INITSTATUS_OPEN = "O";
 	private Long id;
-	private Long roomid;			//Ó°ÌüID
-	private Integer lineno;		//Ç°ÆðµÚ¼¸ÅÅ,ÏµÍ³Éú³É
-	private Integer rankno;		//×óÆðµÚ¼¸ÁÐ,ÏµÍ³Éú²ú
-	private String seatline;	//×ùÎ»ÐÐºÅ
-	private String seatrank;	//×ùÎ»ÁÐºÅ
-	private String loveInd;		//ÇéÂÂ×ù 0£ºÆÕÍ¨×ùÎ» 1£ºÇéÂÂ×ùÊ××ùÎ»±ê¼Ç 2£ºÇéÂÂ×ùµÚ¶þ×ùÎ»±ê¼Ç
-	private String initstatus;	//Ã¿´Î¿ª·Å³õÊ¼×´Ì¬
+	private Long roomid;			//Ó°ï¿½ï¿½ID
+	private Integer lineno;		//Ç°ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½,ÏµÍ³ï¿½ï¿½ï¿½ï¿½
+	private Integer rankno;		//ï¿½ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½,ÏµÍ³ï¿½ï¿½ï¿½ï¿½
+	private String seatline;	//ï¿½ï¿½Î»ï¿½Ðºï¿½
+	private String seatrank;	//ï¿½ï¿½Î»ï¿½Ðºï¿½
+	private String loveInd;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½Î» 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½
+	private String initstatus;	//Ã¿ï¿½Î¿ï¿½ï¿½Å³ï¿½Ê¼×´Ì¬
 	
 	public TheatreRoomSeatVo() {
 	}
@@ -72,12 +72,16 @@ public class TheatreRoomSeatVo  extends BaseVo implements Comparable<TheatreRoom
 		this.seatrank = seatrank;
 	}
 	public String getSeatLabel(){
-		return seatline+"ÅÅ"+seatrank+"×ù";
+		return seatline+"ï¿½ï¿½"+seatrank+"ï¿½ï¿½";
 	}
 	@Override
 	public int compareTo(TheatreRoomSeatVo o) {
-		if(this.equals(o)) return 0;
-		if(!roomid.equals(o.roomid)) return roomid.compareTo(o.roomid);
+		if(this.equals(o)) {
+            return 0;
+        }
+		if(!roomid.equals(o.roomid)) {
+            return roomid.compareTo(o.roomid);
+        }
 		return o.lineno*100 + o.rankno - lineno*100 - rankno;
 	}
 	public String getLoveInd() {

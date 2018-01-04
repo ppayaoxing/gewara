@@ -6,9 +6,9 @@ import java.util.List;
 import com.gewara.gmessage.external.constant.NoticeType;
 
 /**
- * 主要用来表示当发送消息时，消息的构成要素。
- * @author 董明
- * @createDate 2015年3月6日
+ * 锟斤拷要锟斤拷锟斤拷锟斤拷示锟斤拷锟斤拷锟斤拷锟斤拷息时锟斤拷锟斤拷息锟侥癸拷锟斤拷要锟截★拷
+ * @author 锟斤拷锟斤拷
+ * @createDate 2015锟斤拷3锟斤拷6锟斤拷
  */
 public class Message extends MessageBaseInfo {
 	private static final long serialVersionUID = -5568228175149691288L;
@@ -40,7 +40,7 @@ public class Message extends MessageBaseInfo {
 	}
 	
 	/**
-	 * 消息接收者，必填
+	 * 锟斤拷息锟斤拷锟斤拷锟竭ｏ拷锟斤拷锟斤拷
 	 * @param receivers
 	 */
 	public void setReceivers(List<MUser> receivers) {
@@ -48,7 +48,7 @@ public class Message extends MessageBaseInfo {
 	}
 	
 	/**
-	 * 消息发送人员信息，必填
+	 * 锟斤拷息锟斤拷锟斤拷锟斤拷员锟斤拷息锟斤拷锟斤拷锟斤拷
 	 * @param sender
 	 */
 	public void setSender(MUser sender) {
@@ -56,7 +56,7 @@ public class Message extends MessageBaseInfo {
 	}
 	
 	/**
-	 * 消息发送时间。单位为毫秒，必填
+	 * 锟斤拷息锟斤拷锟斤拷时锟戒。锟斤拷位为锟斤拷锟诫，锟斤拷锟斤拷
 	 * @param sendTimes
 	 */
 	public void setSendTimes(long sendTimes) {
@@ -64,7 +64,7 @@ public class Message extends MessageBaseInfo {
 	}
 	
 	/**
-	 * 消息失效时间。单位毫秒，非必填
+	 * 锟斤拷息失效时锟戒。锟斤拷位锟斤拷锟诫，锟角憋拷锟斤拷
 	 * @param effectTimes
 	 */
 	public void setExpiryTimes(Long expiryTimes) {
@@ -72,7 +72,7 @@ public class Message extends MessageBaseInfo {
 	}
 	
 	/**
-	 * 设置消息的通知内型。必须填写。
+	 * 锟斤拷锟斤拷锟斤拷息锟斤拷通知锟斤拷锟酵★拷锟斤拷锟斤拷锟斤拷写锟斤拷
 	 * @param noticeType
 	 */
 	public void setNoticeType(NoticeType... noticeType) {
@@ -80,7 +80,9 @@ public class Message extends MessageBaseInfo {
 	}
 	
 	public String getUreaid(){
-		if(getReleaseIDType()==null||getReleaseID()==null) return null;
+		if(getReleaseIDType()==null||getReleaseID()==null) {
+            return null;
+        }
 		return getReleaseIDType()+"-"+getReleaseID();
 	}
 }

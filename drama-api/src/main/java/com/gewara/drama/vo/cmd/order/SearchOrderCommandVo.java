@@ -7,15 +7,15 @@ import org.apache.commons.lang.StringUtils;
 import com.gewara.util.DateUtil;
 
 /**
- * ËÑË÷¶©µ¥Bean
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Bean
  * @author acerge(acerge@163.com)
  * @since 12:13:41 PM Oct 17, 2009
  */
 public class SearchOrderCommandVo {
-	public static final String STATUS_PAID = "paid";					//¸¶Íê¿î£¬¶©µ¥Î´±ØÊÇ³É½»µÄ
-	public static final String STATUS_PAID_FAILURE = "paid_failure";	//¸¶Íê¿î£¬¶©µ¥ÓÐ´íÎó
+	public static final String STATUS_PAID = "paid";					//ï¿½ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ç³É½ï¿½ï¿½ï¿½
+	public static final String STATUS_PAID_FAILURE = "paid_failure";	//ï¿½ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½
 
-	private String ordertype;	//¶©µ¥ÀàÐÍ
+	private String ordertype;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String pricategory;
 	private String category;
 	private String placetype;
@@ -25,13 +25,13 @@ public class SearchOrderCommandVo {
 	private Long cid;				//CinemaID
 	private Long movieid;		//MOVIEID
 	private Long orderid;		//orderID
-	private Long mpid;			//³¡´ÎID
-	private Long memberid;		//ÓÃ»§ID
-	private Integer minute;		//²éÑ¯·ÖÖÓ
-	private String mobile;		//ÊÖ»úºÅ
-	private String tradeNo;		//½»Ò×ºÅ
+	private Long mpid;			//ï¿½ï¿½ï¿½ï¿½ID
+	private Long memberid;		//ï¿½Ã»ï¿½ID
+	private Integer minute;		//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	private String mobile;		//ï¿½Ö»ï¿½ï¿½ï¿½
+	private String tradeNo;		//ï¿½ï¿½ï¿½×ºï¿½
 	private String status = STATUS_PAID;
-	private Timestamp timeFrom;//ÏÂµ¥Ê±¼ä·¶Î§
+	private Timestamp timeFrom;//ï¿½Âµï¿½Ê±ï¿½ä·¶Î§
 	private Timestamp timeTo;
 	private Long goodsid;
 	private Long ottid;
@@ -43,7 +43,7 @@ public class SearchOrderCommandVo {
 	private String takemethod;
 	private String card;
 	private String citycode;
-	private Long gymid;			//½¡Éí³¡¹Ýid 2012-04-24Ìí¼Ó
+	private Long gymid;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id 2012-04-24ï¿½ï¿½ï¿½
 	private String expressid;
 	private Long areaid;
 	private Long mctid;
@@ -148,8 +148,11 @@ public class SearchOrderCommandVo {
 		return minute;
 	}
 	public void setMinute(Integer minute) {
-		if(minute!=null && minute>14400) this.minute=14400;
-		else this.minute = minute;
+		if(minute!=null && minute>14400) {
+            this.minute = 14400;
+        } else {
+            this.minute = minute;
+        }
 	}
 	public Long getMemberid() {
 		return memberid;
@@ -196,8 +199,12 @@ public class SearchOrderCommandVo {
 		this.movieid = movieid;
 	}
 	public Long getItemid() {
-		if(itemid == null) itemid = movieid;
-		if(itemid == null) itemid = dramaid;
+		if(itemid == null) {
+            itemid = movieid;
+        }
+		if(itemid == null) {
+            itemid = dramaid;
+        }
 		return itemid;
 	}
 	public void setItemid(Long itemid) {

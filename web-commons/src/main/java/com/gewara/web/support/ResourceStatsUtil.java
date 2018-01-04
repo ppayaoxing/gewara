@@ -23,13 +23,13 @@ public class ResourceStatsUtil {
 	private static DynamicStats jmsStats = new DynamicStats("jms");
 	private static DynamicStats pageCacheStats = new DynamicStats("pageCache");
 	private static DynamicStats apiMethodStats = new DynamicStats("apiMethod");
-	//¸÷Àà´íÎóÍ³¼Æ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½
 	private static DynamicStats errorStats = new DynamicStats("errorStats");
 	private static List<ServiceCacheHelper> schList = new ArrayList<ServiceCacheHelper>();
-	//Òì²½ÇëÇóµÄUrl£¬SpringµÄDefferedResult
+	//ï¿½ì²½ï¿½ï¿½ï¿½ï¿½ï¿½Urlï¿½ï¿½Springï¿½ï¿½DefferedResult
 	
 	
-	//¼ÇÂ¼µ±Ç°ÇëÇó
+	//ï¿½ï¿½Â¼ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
 	private static Map<Integer, HttpServletRequest> requestMap = new ConcurrentHashMap<Integer, HttpServletRequest>(4096, 0.75f, 32);
 	private static AtomicInteger curreqLoc = new AtomicInteger(0);
 	public static DynamicStats getErrorStats() {
@@ -62,19 +62,21 @@ public class ResourceStatsUtil {
 	}
 
 	/**
-	 * ¼ÇÂ¼ÇëÇóÒýÓÃ
+	 * ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param request
 	 * @param multiPart
 	 * @return
 	 */
 	public static Integer recordRequest(HttpServletRequest request, boolean multiPart) {
-		if(multiPart) return -1;
+		if(multiPart) {
+            return -1;
+        }
 		Integer loc = curreqLoc.getAndIncrement();
 		requestMap.put(loc, request);
 		return loc;
 	}
 	/**
-	 * ÏÂÔØÕýÔÚ´¦ÀíµÄÇëÇó²ÎÊý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param max
 	 * @return
 	 */
@@ -94,7 +96,7 @@ public class ResourceStatsUtil {
 	}
 
 	/**
-	 * Çå³ýÇëÇóÒýÓÃ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param loc
 	 */
 	public static void clearRequest(Integer loc) {
@@ -104,7 +106,7 @@ public class ResourceStatsUtil {
 	}
 	
 	/**
-	 * ²»´æÔÚµÄURI
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½URI
 	 * @param uri
 	 */
 	public static void addUrlNoHandler(String uri){
@@ -116,7 +118,7 @@ public class ResourceStatsUtil {
 	}
 	
 	/**
-	 * ×¢²á¼à¿ØÁÐ±í
+	 * ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	 * @return
 	 */
 	public static void registerUri(Set<String> uriList, String contextPath){

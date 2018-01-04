@@ -20,7 +20,7 @@ import com.alibaba.dubbo.remoting.ChannelHandler;
 import com.alibaba.dubbo.remoting.Dispatcher;
 
 /**
- * ³ý·¢ËÍÈ«²¿Ê¹ÓÃÏß³Ì³Ø´¦Àí
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ß³Ì³Ø´ï¿½ï¿½ï¿½
  * 
  * @author chao.liuc
  */
@@ -28,6 +28,7 @@ public class ExecutionDispatcher implements Dispatcher {
     
     public static final String NAME = "execution";
 
+    @Override
     public ChannelHandler dispatch(ChannelHandler handler, URL url) {
         return new ExecutionChannelHandler(handler, url);
     }

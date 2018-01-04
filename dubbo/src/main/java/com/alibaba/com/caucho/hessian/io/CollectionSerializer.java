@@ -77,11 +77,13 @@ public class CollectionSerializer extends AbstractSerializer
     return _sendJavaType;
   }
     
+  @Override
   public void writeObject(Object obj, AbstractHessianOutput out)
     throws IOException
   {
-    if (out.addRef(obj))
-      return;
+    if (out.addRef(obj)) {
+        return;
+    }
 
     Collection list = (Collection) obj;
 
@@ -90,10 +92,11 @@ public class CollectionSerializer extends AbstractSerializer
     
     if (cl.equals(ArrayList.class)
 	|| ! _sendJavaType
-	|| ! Serializable.class.isAssignableFrom(cl))
-      hasEnd = out.writeListBegin(list.size(), null);
-    else
-      hasEnd = out.writeListBegin(list.size(), obj.getClass().getName());
+	|| ! Serializable.class.isAssignableFrom(cl)) {
+        hasEnd = out.writeListBegin(list.size(), null);
+    } else {
+        hasEnd = out.writeListBegin(list.size(), obj.getClass().getName());
+    }
 
     Iterator iter = list.iterator();
     while (iter.hasNext()) {
@@ -102,7 +105,8 @@ public class CollectionSerializer extends AbstractSerializer
       out.writeObject(value);
     }
 
-    if (hasEnd)
-      out.writeListEnd();
+    if (hasEnd) {
+        out.writeListEnd();
+    }
   }
 }

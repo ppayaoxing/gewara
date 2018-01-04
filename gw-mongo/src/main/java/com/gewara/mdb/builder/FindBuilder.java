@@ -11,9 +11,9 @@ import com.gewara.mongo.MongoDataException;
 import com.gewara.util.Util4Script;
 
 /**
- * @author ¶­Ã÷
- * @createDate 2015Äê7ÔÂ29ÈÕ
- * @param <T> µ±Ê¹ÓÃ¶ÔÏóÓ³ÉäÊ±£¬Õâ¸öT£¬ÓÃÀ´±íÊ¾Ó³ÉäµÄÀà
+ * @author ï¿½ï¿½ï¿½ï¿½
+ * @createDate 2015ï¿½ï¿½7ï¿½ï¿½29ï¿½ï¿½
+ * @param <T> ï¿½ï¿½Ê¹ï¿½Ã¶ï¿½ï¿½ï¿½Ó³ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ó³ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 public class FindBuilder<T> implements Util4Script {
 	private Class<T> mapping;
@@ -27,22 +27,28 @@ public class FindBuilder<T> implements Util4Script {
 	
 	public FindBuilder(String collectionName){
 		this.collectionName=collectionName;
-		if(this.collectionName==null) throw new MongoDataException("please check the param,the collectionName is null");
+		if(this.collectionName==null) {
+            throw new MongoDataException("please check the param,the collectionName is null");
+        }
 	}
 	public FindBuilder(Class<T> mappingClass){
 		this.collectionName=mappingClass.getCanonicalName();
-		if(this.collectionName==null) throw new MongoDataException("please check the param,don't get mappingClass's canonicalName");
+		if(this.collectionName==null) {
+            throw new MongoDataException("please check the param,don't get mappingClass's canonicalName");
+        }
 		this.mapping=mappingClass;
 	}
 	public FindBuilder(String collectionName, Class<T> mappingClass){
 		this.collectionName = collectionName;
-		if(this.collectionName==null) throw new MongoDataException("please check the param,don't get mappingClass's canonicalName");
+		if(this.collectionName==null) {
+            throw new MongoDataException("please check the param,don't get mappingClass's canonicalName");
+        }
 		this.mapping=mappingClass;
 		
 	}
 	
 	/**
-	 * ÉèÖÃÌõ¼þ£¬Õâ¸ö·½·¨»á¸²¸ÇÕâÖ®Ç°ËùÉèÖÃµÄÌõ¼þ¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¸²ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param condition
 	 * @return
 	 */
@@ -63,7 +69,9 @@ public class FindBuilder<T> implements Util4Script {
 	}
 	
 	public FindBuilder<T> addSort(String[] fields,boolean[] ascs){
-		if(fields.length!=ascs.length) throw new MongoDataException(" params length is not equal");
+		if(fields.length!=ascs.length) {
+            throw new MongoDataException(" params length is not equal");
+        }
 		for(int i=0;i<fields.length;i++){
 			addSort(fields[i],ascs[i]);
 		}
@@ -80,13 +88,15 @@ public class FindBuilder<T> implements Util4Script {
 	}
 	
 	public FindBuilder<T> setFrom(int from){
-		if(from<0) from=0;
+		if(from<0) {
+            from = 0;
+        }
 		this.from=from;
 		return this;
 	}
 	
 	/**
-	 * Ä¬ÈÏÖµÎª100.
+	 * Ä¬ï¿½ï¿½ÖµÎª100.
 	 * 
 	 * @param limit
 	 * @return
@@ -109,7 +119,9 @@ public class FindBuilder<T> implements Util4Script {
 		return mapping;
 	}
 	public Bson getQueryCondition(){
-		if(condition!=null) return condition;
+		if(condition!=null) {
+            return condition;
+        }
 		return new BsonDocument();
 	}
 	public Bson getProjection() {

@@ -8,11 +8,11 @@ import com.gewara.drama.vo.common.BaseEntityVo;
 
 public class DramaStarVo extends BaseEntityVo {
 	private static final long serialVersionUID = -505984720950483214L;
-	public static final String TYPE_STAR = "star";//ÑÝÔ±
-	public static final String TYPE_TROUPE = "troupe";//¾çÍÅ
-	public static final String TYPE_DIRECTOR="director";//µ¼ÑÝ
-	public static final String TYPE_COMMENTATOR = "commentator";// ¾çÆÀÈË
-	public static final String TAG_DRAMASTAR = "dramastar";	// Ò³ÃætagÊ¹ÓÃ
+	public static final String TYPE_STAR = "star";//ï¿½ï¿½Ô±
+	public static final String TYPE_TROUPE = "troupe";//ï¿½ï¿½ï¿½ï¿½
+	public static final String TYPE_DIRECTOR="director";//ï¿½ï¿½ï¿½ï¿½
+	public static final String TYPE_COMMENTATOR = "commentator";// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAG_DRAMASTAR = "dramastar";	// Ò³ï¿½ï¿½tagÊ¹ï¿½ï¿½
 	private Date birthday;
 	private String tag;
 	private String state;
@@ -23,14 +23,14 @@ public class DramaStarVo extends BaseEntityVo {
 	private String graduated;
 	private String job;
 	private String website;
-	private Long troupe;	// ËùÊô¾çÍÅ
-	private Date establishtime;	// ¾çÍÅÊôÐÔ(³ÉÁ¢Ê±¼ä)
-	private String startype;		// ÀàÐÍ(³ÉÔ±/ÍÅÌå)
-	private String representative;			// <!-- ´ú±í×÷ÎÞÁ¬½Ó -->
-	private String representativeRelate;	//<!-- ´ú±í×÷¹ØÁªÁ¬½Ó json¸ñÊ½ -->
-	private Integer starnum;		//³ÉÔ±ÊýÁ¿
-	private Integer worknum;		//×÷Æ·ÊýÁ¿
-	private String describe;// Ò»¾ä»°ÃèÊö
+	private Long troupe;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Date establishtime;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½)
+	private String startype;		// ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Ô±/ï¿½ï¿½ï¿½ï¿½)
+	private String representative;			// <!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
+	private String representativeRelate;	//<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ jsonï¿½ï¿½Ê½ -->
+	private Integer starnum;		//ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
+	private Integer worknum;		//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+	private String describe;// Ò»ï¿½ä»°ï¿½ï¿½ï¿½ï¿½
 	
 	public DramaStarVo(){}
 	
@@ -123,8 +123,11 @@ public class DramaStarVo extends BaseEntityVo {
 		this.worknum = worknum;
 	}
 
-	public String getLimg(){
-		if(StringUtils.isBlank(logo)) return "img/default_pic.png";
+	@Override
+    public String getLimg(){
+		if(StringUtils.isBlank(logo)) {
+            return "img/default_pic.png";
+        }
 		return logo;
 	}
 

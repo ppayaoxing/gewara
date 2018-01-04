@@ -28,7 +28,8 @@ public class AESEncrypterJCA implements AESEncrypter {
 	private byte[] salt;
 	private AESUtilsJCA utils;
 
-	public void init(String password, int keySize) {
+	@Override
+    public void init(String password, int keySize) {
 		salt = createSalt(keySize / 16);
 		utils = new AESUtilsJCA(password, keySize, salt);
 	}

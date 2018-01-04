@@ -88,8 +88,9 @@ public class X509Encryption extends HessianEnvelope {
    */
   public void setAlgorithm(String algorithm)
   {
-    if (algorithm == null)
-      throw new NullPointerException();
+    if (algorithm == null) {
+        throw new NullPointerException();
+    }
     
     _algorithm = algorithm;
   }
@@ -150,11 +151,13 @@ public class X509Encryption extends HessianEnvelope {
     _secureRandom = random;
   }
 
+  @Override
   public Hessian2Output wrap(Hessian2Output out)
     throws IOException
   {
-    if (_cert == null)
-      throw new IOException("X509Encryption.wrap requires a certificate");
+    if (_cert == null) {
+        throw new IOException("X509Encryption.wrap requires a certificate");
+    }
     
     OutputStream os = new EncryptOutputStream(out);
     
@@ -165,34 +168,41 @@ public class X509Encryption extends HessianEnvelope {
     return filterOut;
   }
 
+  @Override
   public Hessian2Input unwrap(Hessian2Input in)
     throws IOException
   {
-    if (_privateKey == null)
-      throw new IOException("X509Encryption.unwrap requires a private key");
+    if (_privateKey == null) {
+        throw new IOException("X509Encryption.unwrap requires a private key");
+    }
     
-    if (_cert == null)
-      throw new IOException("X509Encryption.unwrap requires a certificate");
+    if (_cert == null) {
+        throw new IOException("X509Encryption.unwrap requires a certificate");
+    }
     
     int version = in.readEnvelope();
 
     String method = in.readMethod();
 
-    if (! method.equals(getClass().getName()))
-      throw new IOException("expected hessian Envelope method '" +
-			    getClass().getName() + "' at '" + method + "'");
+    if (! method.equals(getClass().getName())) {
+        throw new IOException("expected hessian Envelope method '" +
+                getClass().getName() + "' at '" + method + "'");
+    }
 
     return unwrapHeaders(in);
   }
 
+  @Override
   public Hessian2Input unwrapHeaders(Hessian2Input in)
     throws IOException
   {
-    if (_privateKey == null)
-      throw new IOException("X509Encryption.unwrap requires a private key");
+    if (_privateKey == null) {
+        throw new IOException("X509Encryption.unwrap requires a private key");
+    }
     
-    if (_cert == null)
-      throw new IOException("X509Encryption.unwrap requires a certificate");
+    if (_cert == null) {
+        throw new IOException("X509Encryption.unwrap requires a certificate");
+    }
     
     InputStream is = new EncryptInputStream(in);
 
@@ -218,8 +228,9 @@ public class X509Encryption extends HessianEnvelope {
       
         KeyGenerator keyGen = KeyGenerator.getInstance(_algorithm);
 
-        if (_secureRandom != null)
-          keyGen.init(_secureRandom);
+        if (_secureRandom != null) {
+            keyGen.init(_secureRandom);
+        }
 
         SecretKey sharedKey = keyGen.generateKey();
     
@@ -236,10 +247,11 @@ public class X509Encryption extends HessianEnvelope {
       
         String keyAlgorithm = publicKey.getAlgorithm();
         Cipher keyCipher = Cipher.getInstance(keyAlgorithm);
-        if (_secureRandom != null)
-          keyCipher.init(Cipher.WRAP_MODE, _cert, _secureRandom);
-        else
-          keyCipher.init(Cipher.WRAP_MODE, _cert);
+        if (_secureRandom != null) {
+            keyCipher.init(Cipher.WRAP_MODE, _cert, _secureRandom);
+        } else {
+            keyCipher.init(Cipher.WRAP_MODE, _cert);
+        }
 
         byte []encKey = keyCipher.wrap(sharedKey);
     
@@ -257,10 +269,11 @@ public class X509Encryption extends HessianEnvelope {
         _bodyOut = _out.getBytesOutputStream();
 
         _cipher = Cipher.getInstance(_algorithm);
-        if (_secureRandom != null)
-          _cipher.init(Cipher.ENCRYPT_MODE, sharedKey, _secureRandom);
-        else
-          _cipher.init(Cipher.ENCRYPT_MODE, sharedKey);
+        if (_secureRandom != null) {
+            _cipher.init(Cipher.ENCRYPT_MODE, sharedKey, _secureRandom);
+        } else {
+            _cipher.init(Cipher.ENCRYPT_MODE, sharedKey);
+        }
     
         _cipherOut = new CipherOutputStream(_bodyOut, _cipher);
       } catch (RuntimeException e) {
@@ -272,18 +285,21 @@ public class X509Encryption extends HessianEnvelope {
       }
     }
     
+    @Override
     public void write(int ch)
       throws IOException
     {
       _cipherOut.write(ch);
     }
     
+    @Override
     public void write(byte []buffer, int offset, int length)
       throws IOException
     {
       _cipherOut.write(buffer, offset, length);
     }
 
+    @Override
     public void close()
       throws IOException
     {
@@ -324,16 +340,17 @@ public class X509Encryption extends HessianEnvelope {
         for (int i = 0; i < len; i++) {
           String header = in.readString();
 
-          if ("fingerprint".equals(header))
-            fingerprint = in.readBytes();
-          else if ("key-algorithm".equals(header))
-            keyAlgorithm = in.readString();
-          else if ("algorithm".equals(header))
-            algorithm = in.readString();
-          else if ("key".equals(header))
-            encKey = in.readBytes();
-          else
-            throw new IOException("'" + header + "' is an unexpected header");
+          if ("fingerprint".equals(header)) {
+              fingerprint = in.readBytes();
+          } else if ("key-algorithm".equals(header)) {
+              keyAlgorithm = in.readString();
+          } else if ("algorithm".equals(header)) {
+              algorithm = in.readString();
+          } else if ("key".equals(header)) {
+              encKey = in.readBytes();
+          } else {
+              throw new IOException("'" + header + "' is an unexpected header");
+          }
         }
 
         Cipher keyCipher = Cipher.getInstance(keyAlgorithm);
@@ -355,18 +372,21 @@ public class X509Encryption extends HessianEnvelope {
       }
     }
     
+    @Override
     public int read()
       throws IOException
     {
       return _cipherIn.read();
     }
     
+    @Override
     public int read(byte []buffer, int offset, int length)
       throws IOException
     {
       return _cipherIn.read(buffer, offset, length);
     }
 
+    @Override
     public void close()
       throws IOException
     {
@@ -379,8 +399,9 @@ public class X509Encryption extends HessianEnvelope {
 
 	int len = in.readInt();
 
-	if (len != 0)
-	  throw new IOException("Unexpected footer");
+	if (len != 0) {
+        throw new IOException("Unexpected footer");
+    }
 
         in.completeEnvelope();
 

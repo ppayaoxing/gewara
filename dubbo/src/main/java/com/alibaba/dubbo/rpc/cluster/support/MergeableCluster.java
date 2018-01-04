@@ -27,7 +27,8 @@ public class MergeableCluster implements Cluster {
 
     public static final String NAME = "mergeable";
 
-    public <T> Invoker<T> join( Directory<T> directory ) throws RpcException {
+    @Override
+    public <T> Invoker<T> join(Directory<T> directory ) throws RpcException {
         return new MergeableClusterInvoker<T>( directory );
     }
 

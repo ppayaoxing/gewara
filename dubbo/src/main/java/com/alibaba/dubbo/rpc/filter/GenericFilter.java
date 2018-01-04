@@ -45,6 +45,7 @@ import com.alibaba.dubbo.rpc.support.ProtocolUtils;
 @Activate(group = Constants.PROVIDER, order = -20000)
 public class GenericFilter implements Filter {
 
+    @Override
     public Result invoke(Invoker<?> invoker, Invocation inv) throws RpcException {
         if (inv.getMethodName().equals(Constants.$INVOKE) 
                 && inv.getArguments() != null

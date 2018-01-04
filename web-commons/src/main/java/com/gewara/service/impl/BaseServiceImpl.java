@@ -17,7 +17,7 @@ import com.gewara.util.GewaLogger;
 import com.gewara.util.WebLogger;
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28обнГ02:05:17
+ * @since 2007-9-28О©╫О©╫О©╫О©╫02:05:17
  */
 public class BaseServiceImpl implements BaseService{
 	protected final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
@@ -47,10 +47,11 @@ public class BaseServiceImpl implements BaseService{
 			public List doInHibernate(Session session) {
 				Query query=session.createQuery(hql);
 				query.setFirstResult(from).setMaxResults(maxnum);
-				if(params != null)
-					for (int i = 0,length=params.length; i < length; i++) {
-						query.setParameter(i, params[i]);
-					}
+				if(params != null) {
+                    for (int i = 0, length = params.length; i < length; i++) {
+                        query.setParameter(i, params[i]);
+                    }
+                }
 				return query.list();
 			}
 		});

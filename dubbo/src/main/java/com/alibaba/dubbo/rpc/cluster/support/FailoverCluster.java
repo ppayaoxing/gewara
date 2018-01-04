@@ -21,7 +21,7 @@ import com.alibaba.dubbo.rpc.cluster.Cluster;
 import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
- * Ê§°Ü×ªÒÆ£¬µ±³öÏÖÊ§°Ü£¬ÖØÊÔÆäËü·þÎñÆ÷£¬Í¨³£ÓÃÓÚ¶Á²Ù×÷£¬µ«ÖØÊÔ»á´øÀ´¸ü³¤ÑÓ³Ù¡£ 
+ * Ê§ï¿½ï¿½×ªï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³Ù¡ï¿½ 
  * 
  * <a href="http://en.wikipedia.org/wiki/Failover">Failover</a>
  * 
@@ -31,6 +31,7 @@ public class FailoverCluster implements Cluster {
 
     public final static String NAME = "failover";
 
+    @Override
     public <T> Invoker<T> join(Directory<T> directory) throws RpcException {
         return new FailoverClusterInvoker<T>(directory);
     }

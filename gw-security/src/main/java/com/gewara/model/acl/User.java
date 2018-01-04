@@ -33,11 +33,13 @@ public class User extends GewaraUser {
 
 	@Override
 	public final List<GrantedAuthority> getAuthorities() {
-		if (tmpAuth != null)
-			return tmpAuth;
+		if (tmpAuth != null) {
+            return tmpAuth;
+        }
 		tmpAuth = new ArrayList<GrantedAuthority>();
-		if (StringUtils.isBlank(rolenames))
-			return tmpAuth;
+		if (StringUtils.isBlank(rolenames)) {
+            return tmpAuth;
+        }
 		tmpAuth.addAll(AuthorityUtils.createAuthorityList(StringUtils.split(rolenames, ",")));
 		return tmpAuth;
 	}
@@ -59,8 +61,9 @@ public class User extends GewaraUser {
 			return null;
 		}
 		int index = username.indexOf('@');
-		if (index > 0)
-			return "m-" + username.substring(0, index);
+		if (index > 0) {
+            return "m-" + username.substring(0, index);
+        }
 		return "m-" + username;
 	}
 

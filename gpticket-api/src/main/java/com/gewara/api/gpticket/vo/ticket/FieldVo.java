@@ -10,15 +10,15 @@ import com.gewara.api.vo.BaseVo;
 public class FieldVo extends BaseVo {
 	private static final long serialVersionUID = 4944099097409524223L;
 	
-	private Long id;					//³¡µØID
-	private String name;				//³¡µØÃû³Æ
-	private Long theatreid;				//³¡¹ÝID
-	private String fieldnum;			//³¡µØ±àºÅ(TheareField-->fieldnum)
-	private String fieldserial;			//³¡µØÐòºÅ
+	private Long id;					//ï¿½ï¿½ï¿½ï¿½ID
+	private String name;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Long theatreid;				//ï¿½ï¿½ï¿½ï¿½ID
+	private String fieldnum;			//ï¿½ï¿½ï¿½Ø±ï¿½ï¿½(TheareField-->fieldnum)
+	private String fieldserial;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String status;
-	private String fieldtype;			//³¡µØÀàÐÍ: gewara¡¢gptbs
+	private String fieldtype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: gewaraï¿½ï¿½gptbs
 	private String logo;				//
-	private Timestamp updatetime;		//¸üÐÂÊ±¼ä
+	private Timestamp updatetime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 
 	@Override
 	public Serializable realId() {
@@ -74,7 +74,9 @@ public class FieldVo extends BaseVo {
 	}
 
 	public boolean hasStatus(String stats){
-		if(StringUtils.isBlank(stats)) return false;
+		if(StringUtils.isBlank(stats)) {
+            return false;
+        }
 		return StringUtils.equals(this.status, stats);
 	}
 	

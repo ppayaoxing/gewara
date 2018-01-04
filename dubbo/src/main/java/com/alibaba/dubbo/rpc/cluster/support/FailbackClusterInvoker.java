@@ -37,7 +37,7 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 import com.alibaba.dubbo.rpc.cluster.LoadBalance;
 
 /**
- * Ê§°Ü×Ô¶¯»Ö¸´£¬ºóÌ¨¼ÇÂ¼Ê§°ÜÇëÇó£¬¶¨Ê±ÖØ·¢£¬Í¨³£ÓÃÓÚÏûÏ¢Í¨Öª²Ù×÷¡£
+ * Ê§ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½Â¼Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬¶ï¿½Ê±ï¿½Ø·ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author tony.chenl
  */
@@ -63,11 +63,12 @@ public class FailbackClusterInvoker<T> extends AbstractClusterInvoker<T> {
                 if (retryFuture == null) {
                     retryFuture = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
 
+                        @Override
                         public void run() {
-                            // ÊÕ¼¯Í³¼ÆÐÅÏ¢
+                            // ï¿½Õ¼ï¿½Í³ï¿½ï¿½ï¿½ï¿½Ï¢
                             try {
                                 retryFailed();
-                            } catch (Throwable t) { // ·ÀÓùÐÔÈÝ´í
+                            } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½
                                 logger.error("Unexpected error occur at collect statistic", t);
                             }
                         }
@@ -95,6 +96,7 @@ public class FailbackClusterInvoker<T> extends AbstractClusterInvoker<T> {
         }
     }
 
+    @Override
     protected Result doInvoke(Invocation invocation, List<Invoker<T>> invokers, LoadBalance loadbalance) throws RpcException {
         try {
             checkInvokers(invokers, invocation);

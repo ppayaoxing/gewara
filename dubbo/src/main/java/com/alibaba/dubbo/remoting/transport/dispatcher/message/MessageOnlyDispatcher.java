@@ -20,7 +20,7 @@ import com.alibaba.dubbo.remoting.ChannelHandler;
 import com.alibaba.dubbo.remoting.Dispatcher;
 
 /**
- * 只有message receive使用线程池.
+ * 只锟斤拷message receive使锟斤拷锟竭程筹拷.
  * 
  * @author chao.liuc
  */
@@ -28,6 +28,7 @@ public class MessageOnlyDispatcher implements Dispatcher {
 
     public static final String NAME = "message";
 
+    @Override
     public ChannelHandler dispatch(ChannelHandler handler, URL url) {
         return new MessageOnlyChannelHandler(handler, url);
     }

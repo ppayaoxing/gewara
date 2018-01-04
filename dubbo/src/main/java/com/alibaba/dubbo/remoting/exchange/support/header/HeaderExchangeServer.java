@@ -53,10 +53,10 @@ public class HeaderExchangeServer implements ExchangeServer {
                                                                                                                                "dubbo-remoting-server-heartbeat",
                                                                                                                                true));
 
-    // ÐÄÌø¶¨Ê±Æ÷
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     private ScheduledFuture<?> heatbeatTimer;
 
-    // ÐÄÌø³¬Ê±£¬ºÁÃë¡£È±Ê¡0£¬²»»áÖ´ÐÐÐÄÌø¡£
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ë¡£È±Ê¡0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private int                            heartbeat;
 
     private int                            heartbeatTimeout;
@@ -82,6 +82,7 @@ public class HeaderExchangeServer implements ExchangeServer {
         return server;
     }
 
+    @Override
     public boolean isClosed() {
         return server.isClosed();
     }
@@ -96,11 +97,13 @@ public class HeaderExchangeServer implements ExchangeServer {
         return false;
     }
 
+    @Override
     public void close() {
         doClose();
         server.close();
     }
 
+    @Override
     public void close(final int timeout) {
         if (timeout > 0) {
             final long max = (long) timeout;
@@ -130,7 +133,9 @@ public class HeaderExchangeServer implements ExchangeServer {
         Collection<Channel> channels = getChannels();
         for (Channel channel : channels) {
             try {
-                if (channel.isConnected())channel.send(request, getUrl().getParameter(Constants.CHANNEL_READONLYEVENT_SENT_KEY, true));
+                if (channel.isConnected()) {
+                    channel.send(request, getUrl().getParameter(Constants.CHANNEL_READONLYEVENT_SENT_KEY, true));
+                }
             } catch (RemotingException e) {
                 logger.warn("send connot write messge error.", e);
             }
@@ -150,6 +155,7 @@ public class HeaderExchangeServer implements ExchangeServer {
         }
     }
 
+    @Override
     public Collection<ExchangeChannel> getExchangeChannels() {
         Collection<ExchangeChannel> exchangeChannels  = new ArrayList<ExchangeChannel>();
         Collection<Channel> channels = server.getChannels();
@@ -161,36 +167,44 @@ public class HeaderExchangeServer implements ExchangeServer {
         return exchangeChannels;
     }
 
+    @Override
     public ExchangeChannel getExchangeChannel(InetSocketAddress remoteAddress) {
         Channel channel = server.getChannel(remoteAddress);
         return HeaderExchangeChannel.getOrAddChannel(channel);
     }
 
+    @Override
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public Collection<Channel> getChannels() {
         return (Collection)getExchangeChannels();
     }
 
+    @Override
     public Channel getChannel(InetSocketAddress remoteAddress) {
         return getExchangeChannel(remoteAddress);
     }
 
+    @Override
     public boolean isBound() {
         return server.isBound();
     }
 
+    @Override
     public InetSocketAddress getLocalAddress() {
         return server.getLocalAddress();
     }
 
+    @Override
     public URL getUrl() {
         return server.getUrl();
     }
 
+    @Override
     public ChannelHandler getChannelHandler() {
         return server.getChannelHandler();
     }
 
+    @Override
     public void reset(URL url) {
         server.reset(url);
         try {
@@ -212,11 +226,13 @@ public class HeaderExchangeServer implements ExchangeServer {
         }
     }
     
+    @Override
     @Deprecated
     public void reset(com.alibaba.dubbo.common.Parameters parameters){
         reset(getUrl().addParameters(parameters.getParameters()));
     }
 
+    @Override
     public void send(Object message) throws RemotingException {
         if (closed) {
             throw new RemotingException(this.getLocalAddress(), null, "Failed to send message " + message + ", cause: The server " + getLocalAddress() + " is closed!");
@@ -224,6 +240,7 @@ public class HeaderExchangeServer implements ExchangeServer {
         server.send(message);
     }
 
+    @Override
     public void send(Object message, boolean sent) throws RemotingException {
         if (closed) {
             throw new RemotingException(this.getLocalAddress(), null, "Failed to send message " + message + ", cause: The server " + getLocalAddress() + " is closed!");
@@ -236,6 +253,7 @@ public class HeaderExchangeServer implements ExchangeServer {
         if (heartbeat > 0) {
             heatbeatTimer = scheduled.scheduleWithFixedDelay(
                     new HeartBeatTask( new HeartBeatTask.ChannelProvider() {
+                        @Override
                         public Collection<Channel> getChannels() {
                             return Collections.unmodifiableCollection(
                                     HeaderExchangeServer.this.getChannels() );

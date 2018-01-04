@@ -35,29 +35,30 @@ public class LeastActiveLoadBalance extends AbstractLoadBalance {
     
     private final Random random = new Random();
 
+    @Override
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {
-        int length = invokers.size(); // ×Ü¸öÊı
-        int leastActive = -1; // ×îĞ¡µÄ»îÔ¾Êı
-        int leastCount = 0; // ÏàÍ¬×îĞ¡»îÔ¾ÊıµÄ¸öÊı
-        int[] leastIndexs = new int[length]; // ÏàÍ¬×îĞ¡»îÔ¾ÊıµÄÏÂ±ê
-        int totalWeight = 0; // ×ÜÈ¨ÖØ
-        int firstWeight = 0; // µÚÒ»¸öÈ¨ÖØ£¬ÓÃÓÚÓÚ¼ÆËãÊÇ·ñÏàÍ¬
-        boolean sameWeight = true; // ÊÇ·ñËùÓĞÈ¨ÖØÏàÍ¬
+        int length = invokers.size(); // ï¿½Ü¸ï¿½ï¿½ï¿½
+        int leastActive = -1; // ï¿½ï¿½Ğ¡ï¿½Ä»ï¿½Ô¾ï¿½ï¿½
+        int leastCount = 0; // ï¿½ï¿½Í¬ï¿½ï¿½Ğ¡ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
+        int[] leastIndexs = new int[length]; // ï¿½ï¿½Í¬ï¿½ï¿½Ğ¡ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½
+        int totalWeight = 0; // ï¿½ï¿½È¨ï¿½ï¿½
+        int firstWeight = 0; // ï¿½ï¿½Ò»ï¿½ï¿½È¨ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Í¬
+        boolean sameWeight = true; // ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½Í¬
         for (int i = 0; i < length; i++) {
         	Invoker<T> invoker = invokers.get(i);
-            int active = RpcStatus.getStatus(invoker.getUrl(), invocation.getMethodName()).getActive(); // »îÔ¾Êı
-            int weight = invoker.getUrl().getMethodParameter(invocation.getMethodName(), Constants.WEIGHT_KEY, Constants.DEFAULT_WEIGHT); // È¨ÖØ
-            if (leastActive == -1 || active < leastActive) { // ·¢ÏÖ¸üĞ¡µÄ»îÔ¾Êı£¬ÖØĞÂ¿ªÊ¼
-                leastActive = active; // ¼ÇÂ¼×îĞ¡»îÔ¾Êı
-                leastCount = 1; // ÖØĞÂÍ³¼ÆÏàÍ¬×îĞ¡»îÔ¾ÊıµÄ¸öÊı
-                leastIndexs[0] = i; // ÖØĞÂ¼ÇÂ¼×îĞ¡»îÔ¾ÊıÏÂ±ê
-                totalWeight = weight; // ÖØĞÂÀÛ¼Æ×ÜÈ¨ÖØ
-                firstWeight = weight; // ¼ÇÂ¼µÚÒ»¸öÈ¨ÖØ
-                sameWeight = true; // »¹Ô­È¨ÖØÏàÍ¬±êÊ¶
-            } else if (active == leastActive) { // ÀÛ¼ÆÏàÍ¬×îĞ¡µÄ»îÔ¾Êı
-                leastIndexs[leastCount ++] = i; // ÀÛ¼ÆÏàÍ¬×îĞ¡»îÔ¾ÊıÏÂ±ê
-                totalWeight += weight; // ÀÛ¼Æ×ÜÈ¨ÖØ
-                // ÅĞ¶ÏËùÓĞÈ¨ÖØÊÇ·ñÒ»Ñù
+            int active = RpcStatus.getStatus(invoker.getUrl(), invocation.getMethodName()).getActive(); // ï¿½ï¿½Ô¾ï¿½ï¿½
+            int weight = invoker.getUrl().getMethodParameter(invocation.getMethodName(), Constants.WEIGHT_KEY, Constants.DEFAULT_WEIGHT); // È¨ï¿½ï¿½
+            if (leastActive == -1 || active < leastActive) { // ï¿½ï¿½ï¿½Ö¸ï¿½Ğ¡ï¿½Ä»ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½Ê¼
+                leastActive = active; // ï¿½ï¿½Â¼ï¿½ï¿½Ğ¡ï¿½ï¿½Ô¾ï¿½ï¿½
+                leastCount = 1; // ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Ğ¡ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
+                leastIndexs[0] = i; // ï¿½ï¿½ï¿½Â¼ï¿½Â¼ï¿½ï¿½Ğ¡ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½Â±ï¿½
+                totalWeight = weight; // ï¿½ï¿½ï¿½ï¿½ï¿½Û¼ï¿½ï¿½ï¿½È¨ï¿½ï¿½
+                firstWeight = weight; // ï¿½ï¿½Â¼ï¿½ï¿½Ò»ï¿½ï¿½È¨ï¿½ï¿½
+                sameWeight = true; // ï¿½ï¿½Ô­È¨ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Ê¶
+            } else if (active == leastActive) { // ï¿½Û¼ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Ğ¡ï¿½Ä»ï¿½Ô¾ï¿½ï¿½
+                leastIndexs[leastCount ++] = i; // ï¿½Û¼ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Ğ¡ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½Â±ï¿½
+                totalWeight += weight; // ï¿½Û¼ï¿½ï¿½ï¿½È¨ï¿½ï¿½
+                // ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½Ç·ï¿½Ò»ï¿½ï¿½
                 if (sameWeight && i > 0 
                         && weight != firstWeight) {
                     sameWeight = false;
@@ -66,21 +67,22 @@ public class LeastActiveLoadBalance extends AbstractLoadBalance {
         }
         // assert(leastCount > 0)
         if (leastCount == 1) {
-            // Èç¹ûÖ»ÓĞÒ»¸ö×îĞ¡ÔòÖ±½Ó·µ»Ø
+            // ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½ï¿½Ö±ï¿½Ó·ï¿½ï¿½ï¿½
             return invokers.get(leastIndexs[0]);
         }
         if (! sameWeight && totalWeight > 0) {
-            // Èç¹ûÈ¨ÖØ²»ÏàÍ¬ÇÒÈ¨ÖØ´óÓÚ0Ôò°´×ÜÈ¨ÖØÊıËæ»ú
+            // ï¿½ï¿½ï¿½È¨ï¿½Ø²ï¿½ï¿½ï¿½Í¬ï¿½ï¿½È¨ï¿½Ø´ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             int offsetWeight = random.nextInt(totalWeight);
-            // ²¢È·¶¨Ëæ»úÖµÂäÔÚÄÄ¸öÆ¬¶ÏÉÏ
+            // ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½Æ¬ï¿½ï¿½ï¿½ï¿½
             for (int i = 0; i < leastCount; i++) {
                 int leastIndex = leastIndexs[i];
                 offsetWeight -= getWeight(invokers.get(leastIndex), invocation);
-                if (offsetWeight <= 0)
+                if (offsetWeight <= 0) {
                     return invokers.get(leastIndex);
+                }
             }
         }
-        // Èç¹ûÈ¨ÖØÏàÍ¬»òÈ¨ÖØÎª0Ôò¾ùµÈËæ»ú
+        // ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½È¨ï¿½ï¿½Îª0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         return invokers.get(leastIndexs[random.nextInt(leastCount)]);
     }
 }

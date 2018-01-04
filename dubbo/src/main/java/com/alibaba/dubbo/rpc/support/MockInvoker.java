@@ -52,7 +52,8 @@ final public class MockInvoker<T> implements Invoker<T> {
     public MockInvoker(URL url) {
         this.url = url;
     }
-	public Result invoke(Invocation invocation) throws RpcException {
+	@Override
+    public Result invoke(Invocation invocation) throws RpcException {
     	String mock = getUrl().getParameter(invocation.getMethodName()+"."+Constants.MOCK_KEY);
     	if (invocation instanceof RpcInvocation) {
     		((RpcInvocation) invocation).setInvoker(this);
@@ -84,7 +85,7 @@ final public class MockInvoker<T> implements Invoker<T> {
             mock = mock.replace('`', '"');
             if (StringUtils.isBlank(mock)){
             	throw new RpcException(" mocked exception for Service degradation. ");
-            } else { //ÓÃ»§×Ô¶¨ÒåÀà
+            } else { //ï¿½Ã»ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
             	Throwable t = getThrowable(mock);
 				throw new RpcException(RpcException.BIZ_EXCEPTION, t);
             }
@@ -203,19 +204,23 @@ final public class MockInvoker<T> implements Invoker<T> {
         return value;
     }
     
-	public URL getUrl() {
+	@Override
+    public URL getUrl() {
 		return this.url;
 	}
 
-	public boolean isAvailable() {
+	@Override
+    public boolean isAvailable() {
 		return true;
 	}
 
-	public void destroy() {
+	@Override
+    public void destroy() {
 		//do nothing
 	}
 
-	public Class<T> getInterface() {
+	@Override
+    public Class<T> getInterface() {
 		//FIXME
 		return null;
 	}

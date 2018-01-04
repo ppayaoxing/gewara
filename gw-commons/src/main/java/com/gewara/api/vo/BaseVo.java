@@ -16,10 +16,12 @@ public abstract class BaseVo implements Serializable {
 
 	@Override
 	public final boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) {
+            return true;
+        }
+		if (getClass() != obj.getClass()) {
+            return false;
+        }
 		BaseVo other = (BaseVo) obj;
 		return !(this.realId() != null ? !(this.realId().equals(other.realId())) : (other.realId() != null));
 	}
@@ -41,7 +43,9 @@ public abstract class BaseVo implements Serializable {
 		}
 	}
 	public String getAttachByKey(String key){
-		if(attach!=null) return attach.get(key);
+		if(attach!=null) {
+            return attach.get(key);
+        }
 		return null;
 	}
 	public Map<String, String> getAttach() {

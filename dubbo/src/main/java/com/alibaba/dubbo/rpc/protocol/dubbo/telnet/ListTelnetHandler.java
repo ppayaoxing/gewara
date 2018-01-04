@@ -35,6 +35,7 @@ import com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol;
 @Help(parameter = "[-l] [service]", summary = "List services and methods.", detail = "List services and methods.")
 public class ListTelnetHandler implements TelnetHandler {
 
+    @Override
     public String telnet(Channel channel, String message) {
         StringBuilder buf = new StringBuilder();
         String service = null;

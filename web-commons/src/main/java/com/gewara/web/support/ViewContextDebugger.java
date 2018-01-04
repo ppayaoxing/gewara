@@ -34,7 +34,9 @@ public class ViewContextDebugger  {
 	
 	public void addProperty(Map model) {
 		if(debugEnabled){
-			if(unusedList==null) unusedList = new HashSet();
+			if(unusedList==null) {
+                unusedList = new HashSet();
+            }
 			unusedList.addAll(model.keySet());
 		}
 	}
@@ -54,7 +56,7 @@ public class ViewContextDebugger  {
 			if(unusedList ==null || unusedList.isEmpty()){
 				return null;
 			}
-			//È¥³ýSprringÄÚÖÃ±äÁ¿
+			//È¥ï¿½ï¿½Sprringï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½
 			Iterator pi = unusedList.iterator();
 			while(pi.hasNext()){
 				String key = "" + pi.next();

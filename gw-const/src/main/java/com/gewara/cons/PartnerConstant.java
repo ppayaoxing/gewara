@@ -3,65 +3,65 @@ package com.gewara.cons;
 import java.util.List;
 
 public class PartnerConstant {
-	public static final long GEWA_SELF = 1L;					//Gewara±¾Éí
-	public static final Long GEWAP = 50000010L;					//Gewara Wap°æ
-	public static final Long WEIXIN = 50000012L;				//Î¢ÐÅ Wap°æ
-	public static final Long IPHONE = 50000070L;				//iphoneÊÖ»ú¿Í»§¶Ë
-	public static final Long IPHONE_FILM = 50000071L;				//iphoneÊÖ»ú(µçÓ°½Ú)¿Í»§¶Ë
-	public static final Long ANDROID = 50000020L;				//androidÊÖ»ú¿Í»§¶Ë
+	public static final long GEWA_SELF = 1L;					//Gewaraï¿½ï¿½ï¿½ï¿½
+	public static final Long GEWAP = 50000010L;					//Gewara Wapï¿½ï¿½
+	public static final Long WEIXIN = 50000012L;				//Î¢ï¿½ï¿½ Wapï¿½ï¿½
+	public static final Long IPHONE = 50000070L;				//iphoneï¿½Ö»ï¿½ï¿½Í»ï¿½ï¿½ï¿½
+	public static final Long IPHONE_FILM = 50000071L;				//iphoneï¿½Ö»ï¿½(ï¿½ï¿½Ó°ï¿½ï¿½)ï¿½Í»ï¿½ï¿½ï¿½
+	public static final Long ANDROID = 50000020L;				//androidï¿½Ö»ï¿½ï¿½Í»ï¿½ï¿½ï¿½
 	
-	public static final Long GEWA_DRAMA_ANDROID = 50000080L;	//androidÑÝ³öÊÖ»ú¿Í»§¶Ë
-	public static final Long GEWA_DRAMA_IPHONE = 50000081L;		//iphoneÑÝ³öÊÖ»ú¿Í»§¶Ë
-	public static final Long GEWA_DRAMA_ADMIN_MOBILE = 50000082L;	//ÑÝ³öºóÌ¨µç»°ÏÂµ¥
-	public static final Long GEWA_DRAMA_ADMIN_OFFLINE = 50000083L;	//ÑÝ³öºóÌ¨ÏßÏÂÖ§¸¶ÏÂµ¥
+	public static final Long GEWA_DRAMA_ANDROID = 50000080L;	//androidï¿½Ý³ï¿½ï¿½Ö»ï¿½ï¿½Í»ï¿½ï¿½ï¿½
+	public static final Long GEWA_DRAMA_IPHONE = 50000081L;		//iphoneï¿½Ý³ï¿½ï¿½Ö»ï¿½ï¿½Í»ï¿½ï¿½ï¿½
+	public static final Long GEWA_DRAMA_ADMIN_MOBILE = 50000082L;	//ï¿½Ý³ï¿½ï¿½ï¿½Ì¨ï¿½ç»°ï¿½Âµï¿½
+	public static final Long GEWA_DRAMA_ADMIN_OFFLINE = 50000083L;	//ï¿½Ý³ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½Âµï¿½
 	
-	public static final Long GEWA_HTC = 50000091L;				//HTC ºÍ¸ñÍßÀ­ÓÃ»§¶ÔÓ¦openmember
-	public static final Long GEWA_WOMOVIE_PC = 50000089L;	//ÁªÍ¨¶¨ÖÆÍøÒ³°æ
-	public static final Long GEWA_WOMOVIE_ANDROID = 50000092L;	//ÁªÍ¨¶¨ÖÆ°æ
-	public static final Long GEWA_WOMOVIE_IOS = 50000093L;		//ÁªÍ¨¶¨ÖÆ°æ
-	public static final Long CMCC_ANDROID = 50000099L;			//ÒÆ¶¯¶¨ÖÆ°æandroid
-	public static final Long GEWA_CLIENT = 50000100L;			//Ð¡ÓÚµÈÓÚ´ËÖµµÄ¶¼ÊÇGewara×Ô¼ºÖÕ¶ËÓÃ»§
+	public static final Long GEWA_HTC = 50000091L;				//HTC ï¿½Í¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ó¦openmember
+	public static final Long GEWA_WOMOVIE_PC = 50000089L;	//ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
+	public static final Long GEWA_WOMOVIE_ANDROID = 50000092L;	//ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Æ°ï¿½
+	public static final Long GEWA_WOMOVIE_IOS = 50000093L;		//ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Æ°ï¿½
+	public static final Long CMCC_ANDROID = 50000099L;			//ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½Æ°ï¿½android
+	public static final Long GEWA_CLIENT = 50000100L;			//Ð¡ï¿½Úµï¿½ï¿½Ú´ï¿½Öµï¿½Ä¶ï¿½ï¿½ï¿½Gewaraï¿½Ô¼ï¿½ï¿½Õ¶ï¿½ï¿½Ã»ï¿½
 	
 	
-	public static final Long MIN_PARTNERID = 50000000L;			//½éÓÚ´ËÖµµÄÊÇpartner
-	public static final Long MAX_PARTNERID = 51000000L;			//½éÓÚ´ËÖµµÄÊÇpartner
+	public static final Long MIN_PARTNERID = 50000000L;			//ï¿½ï¿½ï¿½Ú´ï¿½Öµï¿½ï¿½ï¿½ï¿½partner
+	public static final Long MAX_PARTNERID = 51000000L;			//ï¿½ï¿½ï¿½Ú´ï¿½Öµï¿½ï¿½ï¿½ï¿½partner
 	
-	public static final Long PARTNER_CHANGTU = 50000040L;		//³©Í¾
+	public static final Long PARTNER_CHANGTU = 50000040L;		//ï¿½ï¿½Í¾
 	public static final Long PARTNER_CUS = 50000240L;			//CUS
 
-	public static final Long PARTNER_SHOKW = 50000130L;			//Áª»ª
-	public static final Long PARTNER_SPSDO = 50000145L;			//Ê¢´óÉÌ³Ç
-	public static final Long PARTNER_ONLINE = 50000150L;		//ÉÏº£ÈÈÏß
-	public static final Long PARTNER_UNION = 50000160L;			//ÒøÁª±ãÃñ
-	public static final Long PARTNER_ANXIN_TERM = 50000170L;	//°²ÐÀÖÕ¶Ë
-	public static final Long PARTNER_SRCB = 50000547L;			//ÉÏº£Å©ÉÌÒøÐÐ
-	public static final Long PARTNER_JIFUTONG = 50000630L;		//¼¯¸¶Í¨
-	public static final Long PARTNER_TAOBAO = 50000700L;		//ÌÔ±¦
-	public static final Long PARTNER_SAND = 50000800L;			//É¼µÂ½ð¿¨Í¨
-	public static final Long PARTNER_JU_XIANG = 50000501L;		//¾ÞÏóÖÕ¶Ë»ú
+	public static final Long PARTNER_SHOKW = 50000130L;			//ï¿½ï¿½ï¿½ï¿½
+	public static final Long PARTNER_SPSDO = 50000145L;			//Ê¢ï¿½ï¿½ï¿½Ì³ï¿½
+	public static final Long PARTNER_ONLINE = 50000150L;		//ï¿½Ïºï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final Long PARTNER_UNION = 50000160L;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final Long PARTNER_ANXIN_TERM = 50000170L;	//ï¿½ï¿½ï¿½ï¿½ï¿½Õ¶ï¿½
+	public static final Long PARTNER_SRCB = 50000547L;			//ï¿½Ïºï¿½Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final Long PARTNER_JIFUTONG = 50000630L;		//ï¿½ï¿½ï¿½ï¿½Í¨
+	public static final Long PARTNER_TAOBAO = 50000700L;		//ï¿½Ô±ï¿½
+	public static final Long PARTNER_SAND = 50000800L;			//É¼ï¿½Â½ï¿½Í¨
+	public static final Long PARTNER_JU_XIANG = 50000501L;		//ï¿½ï¿½ï¿½ï¿½ï¿½Õ¶Ë»ï¿½
 	public static final Long PARTNER_12580 = 50000890L;			//12580
-	public static final Long PARTNER_SHOP10086 = 50000703L;		//»¦¶¯ÉÌ³Ç
-	public static final Long PARTNER_FILMSH = 50000899L;		//ÁªºÏÔºÏß
-	public static final Long PARTNER_BOX_PAY = 50000420L;		//ºÐ×ÓÖ§¸¶      ¸ñÍßÀ­ÓÃ»§¶ÔÓ¦openmember
-	public static final Long PARTNER_PUFABANK = 50000891L;		//ÆÖ·¢ÒøÐÐ
-	public static final Long PARTNER_MOBILETICKET = 50000885L; 	//ÒÆ¶¯Æ±Îñ
+	public static final Long PARTNER_SHOP10086 = 50000703L;		//ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
+	public static final Long PARTNER_FILMSH = 50000899L;		//ï¿½ï¿½ï¿½ï¿½Ôºï¿½ï¿½
+	public static final Long PARTNER_BOX_PAY = 50000420L;		//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ó¦openmember
+	public static final Long PARTNER_PUFABANK = 50000891L;		//ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final Long PARTNER_MOBILETICKET = 50000885L; 	//ï¿½Æ¶ï¿½Æ±ï¿½ï¿½
 	public static final Long PARTNER_VERYCD = 50000900L; 		//verycd
-	public static final Long PARTNER_SXFILM = 50000901L; 		//ÉÜÐËµçÓ°Íø
-	public static final Long PARTNER_ZHOUKANG = 50000994L; 		//ÖÜ¿µÍø
-	public static final Long PARTNER_SUN0575 = 50000997L; 		//ÉÜÐËÑô¹âÍø
-	public static final Long PARTNER_SXOL = 50000886L; 			//ÉÜÐËÔÚÏß
-	public static final Long PARTNER_SRCBSHOP = 50000770L; 		//ÉÏº£Å©ÉÌÒøÐÐÍøÉÏÉÌ³Ç
-	public static final Long PARTNER_CE9 = 50000771L; 			//ÉñÖÝÔËÍ¨
-	public static final Long PARTNER_UNIONPAY = 50000772L; 		//ÖÐ¹úÒøÁª--Ö§¸¶·½Ê½ÒøÁªµÄ
+	public static final Long PARTNER_SXFILM = 50000901L; 		//ï¿½ï¿½ï¿½Ëµï¿½Ó°ï¿½ï¿½
+	public static final Long PARTNER_ZHOUKANG = 50000994L; 		//ï¿½Ü¿ï¿½ï¿½ï¿½
+	public static final Long PARTNER_SUN0575 = 50000997L; 		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final Long PARTNER_SXOL = 50000886L; 			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final Long PARTNER_SRCBSHOP = 50000770L; 		//ï¿½Ïºï¿½Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
+	public static final Long PARTNER_CE9 = 50000771L; 			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨
+	public static final Long PARTNER_UNIONPAY = 50000772L; 		//ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½--Ö§ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	public static final Long PARTNER_BAIDU=50000778L;			//°Ù¶È
-	public static final Long PARTNER_HANGZHOUAPP=50000986L;		//º¼ÖÝÒøÐÐAPP
+	public static final Long PARTNER_BAIDU=50000778L;			//ï¿½Ù¶ï¿½
+	public static final Long PARTNER_HANGZHOUAPP=50000986L;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½APP
 	public static final Long PARTNER_IMAX=50000987L;			//imax
 	
-	public static final Long PARTNER_LEWA=50000701L;			//ÀÖÍÜ¿Æ¼¼
-	public static final Long PARTNER_ALIBABAYUN=50000702L;		//°¢Àï°Í°ÍÔÆÏµÍ³
-	public static final Long PARTNER_91MOBILE=50000705L;		//91ÊÖ»úandroid
-	public static final Long PARTNER_91MOBILE_IOS=50000706L;	//91ÊÖ»úIOS
+	public static final Long PARTNER_LEWA=50000701L;			//ï¿½ï¿½ï¿½Ü¿Æ¼ï¿½
+	public static final Long PARTNER_ALIBABAYUN=50000702L;		//ï¿½ï¿½ï¿½ï¿½Í°ï¿½ï¿½ï¿½ÏµÍ³
+	public static final Long PARTNER_91MOBILE=50000705L;		//91ï¿½Ö»ï¿½android
+	public static final Long PARTNER_91MOBILE_IOS=50000706L;	//91ï¿½Ö»ï¿½IOS
 	
 	public static final Long PARTNER_WEIBO_H5 = 50000088L;
 	public static final Long PARTNER_MOVIE_TERMINAL = 50000124L;
@@ -71,66 +71,68 @@ public class PartnerConstant {
 	public static final Long PARTNER_DISNEY_PC = 51000001L;
 	public static final Long PARTNER_DISNEY_WAP = 51000002L;
 	
-	//Í£Ö¹ºÏ×÷
+	//Í£Ö¹ï¿½ï¿½ï¿½ï¿½
 	//public static final Long PARTNER_BESTV = 50000460L;
-	//public static final Long PARTNER_POINTPARK = 50000670L;		//»ý·ÖÀÖÔ°
-	//public static final Long PARTNER_QIEKE = 50000680L;			//ÇÐ¿Í
+	//public static final Long PARTNER_POINTPARK = 50000670L;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô°
+	//public static final Long PARTNER_QIEKE = 50000680L;			//ï¿½Ð¿ï¿½
 	//public static final Long PARTNER_IPTV = 50000750L;			//iptv
 	
-	//public static final Long PARTNER_ANXIN_WEB = 50000171L;		//°²ÐÀWEB
-	//public static final Long PARTNER_962288 = 50000880L;		//ÉÏº£¶ÔÍâ·þÎñÈÈÏß
-	//public static final Long PARTNER_TAIZHOU = 50000995L; 		//Ì¨ÖÝÍø
-	//public static final Long PARTNER_WOGO = 50000575L;			//ÁªÍ¨ÎÖ¹ºÉÌ³Ç
-	//public static final Long PARTNER_TTHONGHUO_CZ = 50000991L; 	//ÌìÌìºì»ðÍø ³£ÖÝÉçÇø
-	//public static final Long PARTNER_TTHONGHUO_NJ = 50000992L; 	//ÌìÌìºì»ðÍø ÄÏ¾©ÉçÇø
-	//public static final Long PARTNER_TTHONGHUO_SZ = 50000993L; 	//ÌìÌìºì»ðÍø ËÕÖÝÉçÇø
-	//public static final Long PARTNER_TTHONGHUO_NT = 50000884L; 	//ÌìÌìºì»ðÍø ÄÏÍ¨ÉçÇø
-	//public static final Long PARTNER_JIAXINGREN = 50000996L; 	//¼ÎÐËÈËÍø
+	//public static final Long PARTNER_ANXIN_WEB = 50000171L;		//ï¿½ï¿½ï¿½ï¿½WEB
+	//public static final Long PARTNER_962288 = 50000880L;		//ï¿½Ïºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_TAIZHOU = 50000995L; 		//Ì¨ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_WOGO = 50000575L;			//ï¿½ï¿½Í¨ï¿½Ö¹ï¿½ï¿½Ì³ï¿½
+	//public static final Long PARTNER_TTHONGHUO_CZ = 50000991L; 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_TTHONGHUO_NJ = 50000992L; 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¾ï¿½ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_TTHONGHUO_SZ = 50000993L; 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_TTHONGHUO_NT = 50000884L; 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_JIAXINGREN = 50000996L; 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	//public static final Long PARTNER_MACBUY = 50000161L;		//ÏßÏÂ»úÆ÷¹ºÆ±
-	//public static final Long PARTNER_MOBILETICKET_WAP = 50000521L; //ÒÆ¶¯Æ±Îñ,
-	//public static final Long PARTNER_CMWIFI = 50000301L;		//ÎÞÏß³ÇÊÐ
+	//public static final Long PARTNER_MACBUY = 50000161L;		//ï¿½ï¿½ï¿½Â»ï¿½ï¿½ï¿½ï¿½ï¿½Æ±
+	//public static final Long PARTNER_MOBILETICKET_WAP = 50000521L; //ï¿½Æ¶ï¿½Æ±ï¿½ï¿½,
+	//public static final Long PARTNER_CMWIFI = 50000301L;		//ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½
 	//public static final Long PARTNER_10086 = 50000690L;			//10086
-	//public static final Long PARTNER_CMPAY = 50000011L;		//ÊÖ»úÖ§¸¶(cmPay¶ÌÐÅÖ§¸¶)
-	//public static final Long PARTNER_ZS = 50000774L;			//ÕÆËÕwap
-	//public static final Long PARTNER_WX_CMWIFI = 50000910L; 	//ÎÞÎýÒÆ¶¯³ÇÊÐ
-	//public static final Long PARTNER_NJ_CMWIFI = 50000911L; 	//ÄÏ¾©ÒÆ¶¯³ÇÊÐ
-	//public static final Long PARTNER_JS_CMWIFI = 50000982L; 	//½­ËÕÒÆ¶¯³ÇÊÐ
-	//public static final Long PARTNER_YOUHUILA = 50000580L;	//ÓÅ»ÝÀ²
+	//public static final Long PARTNER_CMPAY = 50000011L;		//ï¿½Ö»ï¿½Ö§ï¿½ï¿½(cmPayï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½)
+	//public static final Long PARTNER_ZS = 50000774L;			//ï¿½ï¿½ï¿½ï¿½wap
+	//public static final Long PARTNER_WX_CMWIFI = 50000910L; 	//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_NJ_CMWIFI = 50000911L; 	//ï¿½Ï¾ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_JS_CMWIFI = 50000982L; 	//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_YOUHUILA = 50000580L;	//ï¿½Å»ï¿½ï¿½ï¿½
 	//public static final Long PARTNER_PPTV = 50000590L;		//PPTV
-	//public static final Long PARTNER_MTIME = 50000600L;		//Ê±¹âÍø
-	//public static final Long PARTNER_KAIXIN = 50000190L;		//¿ªÐÄ
-	//public static final Long PARTNER_MTOUCH = 50000400L;		//Ä§ÆÁ
-	//public static final Long PARTNER_XKQ = 50000510L;			//ÐÂ¿ÕÆø
-	//public static final Long PARTNER_DOUBAN = 50000120L;		//¶¹°ê
-	//public static final Long PARTNER_QQ = 50000180L;			//ÌÚÑ¶
-	//public static final Long PARTNER_ALIPAYJZH = 50000410L;	//Ö§¸¶±¦½ðÕË»§
-	//public static final Long PARTNER_SDO = 50000140L;			//Ê¢´ó
-	//public static final Long PARTNER_AVAN = 50000500L;		//·á´ï
-	//public static final Long PARTNER_MAPBAR = 50000710L;		//Í¼°É
-	//public static final Long PARTNER_CENGT = 50000740L;		//ÊÀ¼Í¸ßÍ¨
-	//public static final Long PARTNER_BAISHITONG = 50000760L;	//ºÅÂë°ÙÊÂÍ¨
-	//public static final Long PARTNER_BKM = 50000300L;			//±´¿ËÂü
-	//public static final Long PARTNER_ALIPAY2 = 50000520L;		//Ö§¸¶±¦
-	//public static final Long CMCC_XUEDIZI = 50000090L;		//ÑªµÎ×Ó¶¨ÖÆ°æ
-	//public static final Long PARTNER_ALIPAYWX = 50000720L;	//Ö§¸¶±¦ÎÞÏß
+	//public static final Long PARTNER_MTIME = 50000600L;		//Ê±ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_KAIXIN = 50000190L;		//ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_MTOUCH = 50000400L;		//Ä§ï¿½ï¿½
+	//public static final Long PARTNER_XKQ = 50000510L;			//ï¿½Â¿ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_DOUBAN = 50000120L;		//ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_QQ = 50000180L;			//ï¿½ï¿½Ñ¶
+	//public static final Long PARTNER_ALIPAYJZH = 50000410L;	//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½
+	//public static final Long PARTNER_SDO = 50000140L;			//Ê¢ï¿½ï¿½
+	//public static final Long PARTNER_AVAN = 50000500L;		//ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_MAPBAR = 50000710L;		//Í¼ï¿½ï¿½
+	//public static final Long PARTNER_CENGT = 50000740L;		//ï¿½ï¿½ï¿½Í¸ï¿½Í¨
+	//public static final Long PARTNER_BAISHITONG = 50000760L;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨
+	//public static final Long PARTNER_BKM = 50000300L;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//public static final Long PARTNER_ALIPAY2 = 50000520L;		//Ö§ï¿½ï¿½ï¿½ï¿½
+	//public static final Long CMCC_XUEDIZI = 50000090L;		//Ñªï¿½ï¿½ï¿½Ó¶ï¿½ï¿½Æ°ï¿½
+	//public static final Long PARTNER_ALIPAYWX = 50000720L;	//Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	//¸ñÍßÀ­ÏßÏÂ»úÆ÷¹ºÆ±
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â»ï¿½ï¿½ï¿½ï¿½ï¿½Æ±
 /*	public static boolean isMacBuy(Long partnerid){
 		return partnerid.equals(PARTNER_MACBUY);
 	}
 */
-	public static boolean isMobilePartner(List<String> mList, Long partnerid){//wap ºÍ ¿Í»§¶Ë
-		if(partnerid==null) return false;
+	public static boolean isMobilePartner(List<String> mList, Long partnerid){//wap ï¿½ï¿½ ï¿½Í»ï¿½ï¿½ï¿½
+		if(partnerid==null) {
+            return false;
+        }
 		return mList.contains(partnerid+"");
 	}
-	public static boolean isOutPartner(Long memberid){//Íâ²¿ÉÌ¼Ò
+	public static boolean isOutPartner(Long memberid){//ï¿½â²¿ï¿½Ì¼ï¿½
 		return memberid >= PartnerConstant.MIN_PARTNERID && memberid <= PartnerConstant.MAX_PARTNERID;
 	}
-	public static boolean isGewaPartner(Long memberid, Long partnerid){//ÄÚ²¿WAP,IPHONE...
+	public static boolean isGewaPartner(Long memberid, Long partnerid){//ï¿½Ú²ï¿½WAP,IPHONE...
 		return partnerid>1 && (memberid < PartnerConstant.MIN_PARTNERID || memberid > PartnerConstant.MAX_PARTNERID);
 	}
-	public static boolean isGewaMember(Long memberid){//ÄÚ²¿WAP,IPHONE...
+	public static boolean isGewaMember(Long memberid){//ï¿½Ú²ï¿½WAP,IPHONE...
 		return memberid < PartnerConstant.MIN_PARTNERID || memberid > PartnerConstant.MAX_PARTNERID;
 	}
 	public static boolean isDisneyPartner(Long memberid){

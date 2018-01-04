@@ -86,6 +86,7 @@ public class ExtSerializerFactory extends AbstractSerializerFactory {
    *
    * @return a serializer object for the serialization.
    */
+  @Override
   public Serializer getSerializer(Class cl)
     throws HessianProtocolException
   {
@@ -99,6 +100,7 @@ public class ExtSerializerFactory extends AbstractSerializerFactory {
    *
    * @return a deserializer object for the serialization.
    */
+  @Override
   public Deserializer getDeserializer(Class cl)
     throws HessianProtocolException
   {

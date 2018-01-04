@@ -21,9 +21,9 @@ public class SysWarn implements Serializable{
 	private String role;
 	private String adddate;
 	private String addtime;
-	private String vuser;		//view²é¿´¹ýµÄÈË
-	private String auser;		//accept½ÓÊÜ´ËÈÎÎñµÄÈË
-	private String fuser;		//fixedÍê³É´ËÈÎÎñµÄÈË
+	private String vuser;		//viewï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String auser;		//acceptï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String fuser;		//fixedï¿½ï¿½É´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String otherinfo;
 	
 	public String getOtherinfo() {
@@ -144,23 +144,35 @@ public class SysWarn implements Serializable{
 		this.role = role;
 	}
 	public void addView(String user) {
-		if(StringUtils.isBlank(vuser)) vuser = user;
-		else vuser += user;
+		if(StringUtils.isBlank(vuser)) {
+            vuser = user;
+        } else {
+            vuser += user;
+        }
 	}
 	public boolean isViewed(String user) {
 		return StringUtils.contains(vuser, user);
 	}
 	public void addAccept(String user) {
-		if(StringUtils.isBlank(auser)) auser = user;
-		else auser += user;
+		if(StringUtils.isBlank(auser)) {
+            auser = user;
+        } else {
+            auser += user;
+        }
 	}
 	public void addFixed(String user) {
-		if(StringUtils.isBlank(fuser)) fuser = user;
-		else fuser += user;
+		if(StringUtils.isBlank(fuser)) {
+            fuser = user;
+        } else {
+            fuser += user;
+        }
 	}
 	public void addOtherInfo(String other){
-		if(StringUtils.isBlank(otherinfo)) otherinfo = other;
-		else otherinfo += other;
+		if(StringUtils.isBlank(otherinfo)) {
+            otherinfo = other;
+        } else {
+            otherinfo += other;
+        }
 	}
 
 	public String getLevel() {

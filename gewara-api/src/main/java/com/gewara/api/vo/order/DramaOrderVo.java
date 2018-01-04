@@ -34,7 +34,8 @@ public class DramaOrderVo extends GewaOrderVo {
 		return null;
 	}
 
-	public Long getId() {
+	@Override
+    public Long getId() {
 		return id;
 	}
 
@@ -46,11 +47,13 @@ public class DramaOrderVo extends GewaOrderVo {
 		return theatreid;
 	}
 
-	public Long getDramaid() {
+	@Override
+    public Long getDramaid() {
 		return dramaid;
 	}
 
-	public Long getDpid() {
+	@Override
+    public Long getDpid() {
 		return dpid;
 	}
 
@@ -58,11 +61,13 @@ public class DramaOrderVo extends GewaOrderVo {
 		return ticketfaceid;
 	}
 
-	public Integer getQuantity() {
+	@Override
+    public Integer getQuantity() {
 		return quantity;
 	}
 
-	public String getCheckpass() {
+	@Override
+    public String getCheckpass() {
 		return Checkpass;
 	}
 
@@ -114,11 +119,13 @@ public class DramaOrderVo extends GewaOrderVo {
 		return Pricetype;
 	}
 
-	public Timestamp getPlaytime() {
+	@Override
+    public Timestamp getPlaytime() {
 		return playtime;
 	}
 
-	public void setId(Long id) {
+	@Override
+    public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -142,11 +149,13 @@ public class DramaOrderVo extends GewaOrderVo {
 		this.ticketfaceid = ticketfaceid;
 	}
 
-	public void setQuantity(Integer quantity) {
+	@Override
+    public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 
-	public void setCheckpass(String checkpass) {
+	@Override
+    public void setCheckpass(String checkpass) {
 		Checkpass = checkpass;
 	}
 
@@ -198,7 +207,8 @@ public class DramaOrderVo extends GewaOrderVo {
 		Pricetype = pricetype;
 	}
 
-	public void setPlaytime(Timestamp playtime) {
+	@Override
+    public void setPlaytime(Timestamp playtime) {
 		this.playtime = playtime;
 	}
 

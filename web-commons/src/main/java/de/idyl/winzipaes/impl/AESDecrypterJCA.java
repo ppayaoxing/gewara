@@ -27,10 +27,12 @@ public class AESDecrypterJCA implements AESDecrypter {
 
 	private AESUtilsJCA utils;
 
-	public void init(String password, int keySize, byte[] salt, byte[] passwordVerifier) throws ZipException {
+	@Override
+    public void init(String password, int keySize, byte[] salt, byte[] passwordVerifier) throws ZipException {
 		this.utils = new AESUtilsJCA(password, keySize, salt);
-		if (!Arrays.equals(passwordVerifier, utils.getPasswordVerifier()))
-			throw new ZipException("Password verification failed");
+		if (!Arrays.equals(passwordVerifier, utils.getPasswordVerifier())) {
+            throw new ZipException("Password verification failed");
+        }
 	}
 
 	@Override

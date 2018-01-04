@@ -182,8 +182,9 @@ public class JSONObject implements JSONNode
 	 */
 	public void putAll(String[] names, Object[] values)
 	{
-		for(int i=0,len=Math.min(names.length, values.length);i<len;i++)
-			mMap.put(names[i], values[i]);
+		for(int i=0,len=Math.min(names.length, values.length);i<len;i++) {
+            mMap.put(names[i], values[i]);
+        }
 	}
 
 	/**
@@ -193,8 +194,9 @@ public class JSONObject implements JSONNode
 	 */
 	public void putAll(Map<String, Object> map)
 	{
-		for( Map.Entry<String, Object> entry : map.entrySet() )
-			mMap.put(entry.getKey(), entry.getValue());
+		for( Map.Entry<String, Object> entry : map.entrySet() ) {
+            mMap.put(entry.getKey(), entry.getValue());
+        }
 	}
 
 	/**
@@ -203,7 +205,8 @@ public class JSONObject implements JSONNode
 	 * @param jc json converter.
 	 * @param jb json builder.
 	 */
-	public void writeJSON(JSONConverter jc, JSONWriter jb, boolean writeClass) throws IOException
+	@Override
+    public void writeJSON(JSONConverter jc, JSONWriter jb, boolean writeClass) throws IOException
 	{
 		String key;
 		Object value;
@@ -213,10 +216,11 @@ public class JSONObject implements JSONNode
 			key = entry.getKey();
 			jb.objectItem(key);
 			value = entry.getValue();
-			if( value == null )
-				jb.valueNull();
-			else
-				jc.writeValue(value, jb, writeClass);
+			if( value == null ) {
+                jb.valueNull();
+            } else {
+                jc.writeValue(value, jb, writeClass);
+            }
 		}
 		jb.objectEnd();
 	}

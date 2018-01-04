@@ -50,8 +50,9 @@ public class HashJoinComparisonStructure {
     public List<SearchHitsResult> getAllSearchHits(){
         List<SearchHitsResult> allSearchHits = new ArrayList<>();
 
-        for(HashMap<String, SearchHitsResult> comparisonHash : this.comparisonIDtoComparisonHash.values())
+        for(HashMap<String, SearchHitsResult> comparisonHash : this.comparisonIDtoComparisonHash.values()) {
             allSearchHits.addAll(comparisonHash.values());
+        }
         return allSearchHits;
     }
 

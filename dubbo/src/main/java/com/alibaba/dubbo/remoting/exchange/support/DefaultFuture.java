@@ -80,10 +80,12 @@ public class DefaultFuture implements ResponseFuture {
         CHANNELS.put(id, channel);
     }
     
+    @Override
     public Object get() throws RemotingException {
         return get(timeout);
     }
 
+    @Override
     public Object get(int timeout) throws RemotingException {
         if (timeout <= 0) {
             timeout = Constants.DEFAULT_TIMEOUT;
@@ -118,10 +120,12 @@ public class DefaultFuture implements ResponseFuture {
         CHANNELS.remove(id);
     }
 
+    @Override
     public boolean isDone() {
         return response != null;
     }
 
+    @Override
     public void setCallback(ResponseCallback callback) {
         if (isDone()) {
             invokeCallback(callback);
@@ -280,6 +284,7 @@ public class DefaultFuture implements ResponseFuture {
 
     private static class RemotingInvocationTimeoutScan implements Runnable {
 
+        @Override
         public void run() {
             while (true) {
                 try {

@@ -25,7 +25,8 @@ public class MemcachedCacheServiceImpl extends AbstractCacheService {
 	 * @param key
 	 * @param mpid
 	 */
-	public <T extends BaseObject> void cleanUkey(Class<T> claszz, String key, Long mpid) {
+	@Override
+    public <T extends BaseObject> void cleanUkey(Class<T> claszz, String key, Long mpid) {
 	}
 
 	@Override
@@ -36,8 +37,9 @@ public class MemcachedCacheServiceImpl extends AbstractCacheService {
 
 	@Override
 	public void set(String regionName, String key, Object value, int expSeconds) {
-		if (StringUtils.isBlank(key) || value == null)
-			return;
+		if (StringUtils.isBlank(key) || value == null) {
+            return;
+        }
 		key = getRealKey(regionName, key);
 		try {
 			memcachedClient.set(key, expSeconds, value);
@@ -49,8 +51,9 @@ public class MemcachedCacheServiceImpl extends AbstractCacheService {
 	@Override
 	public Object get(String regionName, String key) {
 		getRegionTime(regionName);
-		if (StringUtils.isBlank(key))
-			return null;
+		if (StringUtils.isBlank(key)) {
+            return null;
+        }
 		key = getRealKey(regionName, key);
 		try {
 			return memcachedClient.get(key);
@@ -63,8 +66,9 @@ public class MemcachedCacheServiceImpl extends AbstractCacheService {
 	@Override
 	public Map<String, Object> getBulk(String regionName, Collection<String> keys) {
 		getRegionTime(regionName);
-		if (keys == null || keys.isEmpty())
-			return null;
+		if (keys == null || keys.isEmpty()) {
+            return null;
+        }
 		Map<String, String> keyMap = new HashMap<String, String>();
 		for (String key : keys) {
 			String newkey = getRealKey(regionName, key);
@@ -73,7 +77,7 @@ public class MemcachedCacheServiceImpl extends AbstractCacheService {
 		try {
 			Map<String, Object> result = memcachedClient.getBulk(keyMap.keySet());
 			Map<String, Object> returnMap = new HashMap<String, Object>();
-			for (String newkey : result.keySet()) {// 重新使用老的key
+			for (String newkey : result.keySet()) {// 锟斤拷锟斤拷使锟斤拷锟较碉拷key
 				returnMap.put(keyMap.get(newkey), result.get(newkey));
 			}
 			return returnMap;
@@ -126,8 +130,9 @@ public class MemcachedCacheServiceImpl extends AbstractCacheService {
 
 	@Override
 	public CachePair getCachePair(String regionName, String key) {
-		if (StringUtils.isBlank(key))
-			return null;
+		if (StringUtils.isBlank(key)) {
+            return null;
+        }
 		try {
 			key = getRealKey(regionName, key);
 			CASValue<Object> casV = memcachedClient.gets(key);
@@ -145,8 +150,9 @@ public class MemcachedCacheServiceImpl extends AbstractCacheService {
 
 	@Override
 	public boolean setCachePair(String regionName, String key, long version, Object value, int expSeconds) {
-		if (StringUtils.isBlank(key) || value == null)
-			return false;
+		if (StringUtils.isBlank(key) || value == null) {
+            return false;
+        }
 		key = getRealKey(regionName, key);
 		try {
 			CASResponse ss = memcachedClient.cas(key, version, expSeconds, value);
@@ -159,8 +165,9 @@ public class MemcachedCacheServiceImpl extends AbstractCacheService {
 
 	@Override
 	public void add(String regionName, String key, Object value, int expSeconds) {
-		if (StringUtils.isBlank(key) || value == null)
-			return;
+		if (StringUtils.isBlank(key) || value == null) {
+            return;
+        }
 		key = getRealKey(regionName, key);
 		try {
 			memcachedClient.add(key, expSeconds, value);

@@ -355,7 +355,9 @@ public class UrlUtils {
     public static boolean isMatch(URL consumerUrl, URL providerUrl) {
         String consumerInterface = consumerUrl.getServiceInterface();
         String providerInterface = providerUrl.getServiceInterface();
-        if( ! (Constants.ANY_VALUE.equals(consumerInterface) || StringUtils.isEquals(consumerInterface, providerInterface)) ) return false;
+        if( ! (Constants.ANY_VALUE.equals(consumerInterface) || StringUtils.isEquals(consumerInterface, providerInterface)) ) {
+            return false;
+        }
         
         if (! isMatchCategory(providerUrl.getParameter(Constants.CATEGORY_KEY, Constants.DEFAULT_CATEGORY), 
                 consumerUrl.getParameter(Constants.CATEGORY_KEY, Constants.DEFAULT_CATEGORY))) {
@@ -386,29 +388,32 @@ public class UrlUtils {
     }
     
     public static boolean isMatchGlobPattern(String pattern, String value) {
-        if ("*".equals(pattern))
+        if ("*".equals(pattern)) {
             return true;
+        }
         if((pattern == null || pattern.length() == 0) 
-                && (value == null || value.length() == 0)) 
+                && (value == null || value.length() == 0)) {
             return true;
+        }
         if((pattern == null || pattern.length() == 0) 
-                || (value == null || value.length() == 0)) 
+                || (value == null || value.length() == 0)) {
             return false;
+        }
         
         int i = pattern.lastIndexOf('*');
-        // Ã»ÓÐÕÒµ½ÐÇºÅ
+        // Ã»ï¿½ï¿½ï¿½Òµï¿½ï¿½Çºï¿½
         if(i == -1) {
             return value.equals(pattern);
         }
-        // ÐÇºÅÔÚÄ©Î²
+        // ï¿½Çºï¿½ï¿½ï¿½Ä©Î²
         else if (i == pattern.length() - 1) {
             return value.startsWith(pattern.substring(0, i));
         }
-        // ÐÇºÅµÄ¿ªÍ·
+        // ï¿½ÇºÅµÄ¿ï¿½Í·
         else if (i == 0) {
             return value.endsWith(pattern.substring(i + 1));
         }
-        // ÐÇºÅµÄ×Ö·û´®µÄÖÐ¼ä
+        // ï¿½ÇºÅµï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½
         else {
             String prefix = pattern.substring(0, i);
             String suffix = pattern.substring(i + 1);
@@ -426,7 +431,7 @@ public class UrlUtils {
     }
 
     /**
-     * ÅÐ¶Ï value ÊÇ·ñÆ¥Åä pattern£¬pattern Ö§³Ö * Í¨Åä·û.
+     * ï¿½Ð¶ï¿½ value ï¿½Ç·ï¿½Æ¥ï¿½ï¿½ patternï¿½ï¿½pattern Ö§ï¿½ï¿½ * Í¨ï¿½ï¿½ï¿½.
      *
      * @param pattern pattern
      * @param value   value

@@ -27,7 +27,7 @@ public class GewaLoginUrlAuthenticationEntryPoint  extends LoginUrlAuthenticatio
 	public void setSsoClientService(SSOClientService ssoClientService) {
 		this.ssoClientService = ssoClientService;
 	}
-	//url Ìø×ªÓ³Éä
+	//url ï¿½ï¿½×ªÓ³ï¿½ï¿½
 	private Map<String, String> loginFormMap = new LinkedHashMap<String, String>();
 	public void setLoginFormMap(Map<String, String> loginFormMap) {
 		this.loginFormMap = loginFormMap;
@@ -44,10 +44,14 @@ public class GewaLoginUrlAuthenticationEntryPoint  extends LoginUrlAuthenticatio
 	}
 	@Override
 	protected String determineUrlToUseForThisRequest(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception){
-		if(loginFormMap == null || loginFormMap.isEmpty()) return getLoginFormUrl();
+		if(loginFormMap == null || loginFormMap.isEmpty()) {
+            return getLoginFormUrl();
+        }
 		String uri = request.getRequestURI();
 		for(String key: loginFormMap.keySet()){
-			if(StringUtils.startsWith(uri, key)) return loginFormMap.get(key);
+			if(StringUtils.startsWith(uri, key)) {
+                return loginFormMap.get(key);
+            }
 		}
 		return super.getLoginFormUrl();
 	}
@@ -75,8 +79,11 @@ public class GewaLoginUrlAuthenticationEntryPoint  extends LoginUrlAuthenticatio
 			}
 			try{
 				String params = targetUrlParameter + "=" + URLEncoder.encode(targetUrl, "utf-8");
-				if(url.indexOf("?") >0) url += "&" + params;
-				else url += "?" + params;
+				if(url.indexOf("?") >0) {
+                    url += "&" + params;
+                } else {
+                    url += "?" + params;
+                }
 			}catch(Exception e){
 			}
 		}

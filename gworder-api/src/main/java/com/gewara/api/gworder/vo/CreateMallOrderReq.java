@@ -11,7 +11,7 @@ public class CreateMallOrderReq extends CreateOrderReq{
 	private Integer totalfee;
 	private Integer otherfee;
 	private Integer usedPoint;
-	private Long sdid;			//特价活动id
+	private Long sdid;			//锟截价活动id
 	private String category;
 	private String ukey;		
 	private String citycode;
@@ -77,10 +77,12 @@ public class CreateMallOrderReq extends CreateOrderReq{
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getRemoteIp() {
+	@Override
+    public String getRemoteIp() {
 		return remoteIp;
 	}
-	public void setRemoteIp(String remoteIp) {
+	@Override
+    public void setRemoteIp(String remoteIp) {
 		this.remoteIp = remoteIp;
 	}
 	public Map<String, String> getDescMap() {

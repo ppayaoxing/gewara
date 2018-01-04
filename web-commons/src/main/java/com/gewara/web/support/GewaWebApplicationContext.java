@@ -28,7 +28,8 @@ public class GewaWebApplicationContext extends XmlWebApplicationContext{
 		executor.allowCoreThreadTimeOut(false);
 	}
 	
-	public void publishEvent(ApplicationEvent event) {
+	@Override
+    public void publishEvent(ApplicationEvent event) {
 		if(event instanceof ServletRequestHandledEvent){
 			RequestEventHolder.setEvent((ServletRequestHandledEvent) event);
 			executor.execute(new LogTask((ServletRequestHandledEvent) event));
@@ -38,7 +39,8 @@ public class GewaWebApplicationContext extends XmlWebApplicationContext{
 	}
 
 
-	protected void publishEvent(Object event, ResolvableType eventType) {
+	@Override
+    protected void publishEvent(Object event, ResolvableType eventType) {
 		if(event instanceof ServletRequestHandledEvent){
 			RequestEventHolder.setEvent((ServletRequestHandledEvent) event);
 			executor.execute(new LogTask((ServletRequestHandledEvent) event));
@@ -56,10 +58,10 @@ public class GewaWebApplicationContext extends XmlWebApplicationContext{
 		public void run() {
 			String url = event.getRequestUrl();
 			Map<String, Integer> info = ResourceStatsUtil.clearUriIfMaxClick(200);
-			if(info!=null){//²»´æÔÚ´ÎÊý³¬¶à
+			if(info!=null){//ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				init();
 				if(monitorService != null){
-					monitorService.logException(EXCEPTION_TAG.PAGE, "GewaDispatcherServlet.noHandlerFound", "²»´æÔÚµÄAcition", null, BeanUtil.toSimpleStringMap(info));
+					monitorService.logException(EXCEPTION_TAG.PAGE, "GewaDispatcherServlet.noHandlerFound", "ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Acition", null, BeanUtil.toSimpleStringMap(info));
 				}
 			}
 			if(!event.wasFailure()){

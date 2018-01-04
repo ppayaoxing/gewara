@@ -35,7 +35,8 @@ public class MapMonitorEntry implements MonitorEntry{
 	public Map<String, String> getDataMap() {
 		return rowdata;
 	}
-	public Map<String, String> getHeadMap() {
+	@Override
+    public Map<String, String> getHeadMap() {
 		return headMap;
 	}
 	public void setHeadMap(Map<String, String> headMap) {

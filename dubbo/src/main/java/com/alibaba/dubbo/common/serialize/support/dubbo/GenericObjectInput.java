@@ -60,7 +60,8 @@ public class GenericObjectInput extends GenericDataInput implements ObjectInput
 		mMapper = mapper;
 	}
 
-	public Object readObject() throws IOException
+	@Override
+    public Object readObject() throws IOException
 	{
 		String desc;
 		byte b = read0();
@@ -80,8 +81,9 @@ public class GenericObjectInput extends GenericDataInput implements ObjectInput
 			{
 				int index = readUInt();
 				desc = mMapper.getDescriptor(index);
-				if( desc == null )
-					throw new IOException("Can not find desc id: " + index );
+				if( desc == null ) {
+                    throw new IOException("Can not find desc id: " + index);
+                }
 				break;
 			}
 			default:
@@ -98,12 +100,14 @@ public class GenericObjectInput extends GenericDataInput implements ObjectInput
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public <T> T readObject(Class<T> cls) throws IOException,ClassNotFoundException
 	{
 		return (T)readObject();
 	}
 
+    @Override
     @SuppressWarnings("unchecked")
     public <T> T readObject(Class<T> cls, Type type) throws IOException,ClassNotFoundException
     {
@@ -117,12 +121,14 @@ public class GenericObjectInput extends GenericDataInput implements ObjectInput
 
 	public Object getRef(int index) throws IOException
 	{
-		if( index < 0 || index >= mRefs.size() )
-			return null;
+		if( index < 0 || index >= mRefs.size() ) {
+            return null;
+        }
 
 		Object ret = mRefs.get(index);
-		if( ret == SKIPPED_OBJECT )
-			throw new IOException("Ref skipped-object.");
+		if( ret == SKIPPED_OBJECT ) {
+            throw new IOException("Ref skipped-object.");
+        }
 		return ret;
 	}
 
@@ -183,8 +189,9 @@ public class GenericObjectInput extends GenericDataInput implements ObjectInput
 			{
 				addRef(SKIPPED_OBJECT);
 				int len = readUInt();
-				for(int i=0;i<len;i++)
-					skipAny();
+				for(int i=0;i<len;i++) {
+                    skipAny();
+                }
 				break;
 			}
 			case OBJECT_REF:
@@ -205,8 +212,9 @@ public class GenericObjectInput extends GenericDataInput implements ObjectInput
 			case OBJECT_VALUES:
 			{
 				int len = readUInt();
-				for(int i=0;i<len;i++)
-					skipAny();
+				for(int i=0;i<len;i++) {
+                    skipAny();
+                }
 				break;
 			}
 			case OBJECT_MAP:
@@ -223,16 +231,18 @@ public class GenericObjectInput extends GenericDataInput implements ObjectInput
 			{
 				readUTF();
 				int len = readUInt();
-				for(int i=0;i<len;i++)
-					skipAny();
+				for(int i=0;i<len;i++) {
+                    skipAny();
+                }
 				break;
 			}
 			case OBJECT_DESC_ID:
 			{
 				readUInt();
 				int len = readUInt();
-				for(int i=0;i<len;i++)
-					skipAny();
+				for(int i=0;i<len;i++) {
+                    skipAny();
+                }
 				break;
 			}
 			default:

@@ -46,7 +46,9 @@ public class ZookeeperServiceImpl implements ZookeeperService, DisposableBean {
 	public String getNodeData(String path) {
 		try {
 			byte[] b = client.getData().forPath(path);
-			if(b==null) return null;
+			if(b==null) {
+                return null;
+            }
 			return new String(b, ENCODING);
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
@@ -129,8 +131,9 @@ public class ZookeeperServiceImpl implements ZookeeperService, DisposableBean {
 	public Map<String, String> getChildrenData(String path) {
 		Map<String, String> result = new HashMap<String, String>();
 		List<String> children = getChildren(path);
-		if (!StringUtils.endsWith(path, "/"))
-			path += "/";
+		if (!StringUtils.endsWith(path, "/")) {
+            path += "/";
+        }
 		if (children != null) {
 			for (String child : children) {
 				result.put(child, getNodeData(path + child));
@@ -142,7 +145,7 @@ public class ZookeeperServiceImpl implements ZookeeperService, DisposableBean {
 	@Override
 	public void addMonitor(KeeperWatcher monitor){
 		synchronized(this){
-			//Í¬Ò»Â·¾¶¡¢Í¬Àà²»ÄÜÖØ¸´£¬Ö»×¢²áÒ»´Î£¡
+			//Í¬Ò»Â·ï¿½ï¿½ï¿½ï¿½Í¬ï¿½à²»ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½Ö»×¢ï¿½ï¿½Ò»ï¿½Î£ï¿½
 			for(KeeperWatcher watcher : watcherList){
 				if(StringUtils.equals(watcher.getPath(), monitor.getPath()) && 
 						watcher.getClass().equals(monitor)){
@@ -165,7 +168,7 @@ public class ZookeeperServiceImpl implements ZookeeperService, DisposableBean {
 	@Override
 	public void registerNode(String nodePath, String nodeData) {
 		registerMap.put(nodePath, nodeData);
-		//TODO:ÅÐ¶Ï½ÚµãÊý¾ÝÊÇ·ñÖØ¸´
+		//TODO:ï¿½Ð¶Ï½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ø¸ï¿½
 		addSeqNode(nodePath, nodeData);
 	}
 	
@@ -176,7 +179,7 @@ public class ZookeeperServiceImpl implements ZookeeperService, DisposableBean {
 			tmpPath = nodePath + "/s";
 		}
 		registerMap.put(tmpPath, nodeData);
-		//TODO:ÅÐ¶Ï½ÚµãÊý¾ÝÊÇ·ñÖØ¸´
+		//TODO:ï¿½Ð¶Ï½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ø¸ï¿½
 		addSeqNode(tmpPath, nodeData);
 	}
 	
@@ -192,7 +195,7 @@ public class ZookeeperServiceImpl implements ZookeeperService, DisposableBean {
 			if(StringUtils.equals(this.getNodeData(delPath), nodeData)){
 				dbLogger.warn("del Node :" + delPath);
 				this.delNode(delPath);
-				//Ö±½Óreturnµô????
+				//Ö±ï¿½ï¿½returnï¿½ï¿½????
 			}
 		}	
 	}

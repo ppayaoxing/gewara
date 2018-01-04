@@ -38,10 +38,12 @@ public final class DubboCountCodec implements Codec {
 
     private DubboCodec codec = new DubboCodec();
 
+    @Override
     public void encode(Channel channel, OutputStream output, Object msg) throws IOException {
         codec.encode(channel, output, msg);
     }
 
+    @Override
     public Object decode(Channel channel, InputStream input) throws IOException {
         UnsafeByteArrayInputStream bis = (UnsafeByteArrayInputStream)input;
         int save = bis.position();

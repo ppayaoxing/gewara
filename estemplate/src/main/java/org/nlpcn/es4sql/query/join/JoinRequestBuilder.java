@@ -37,8 +37,9 @@ public  class JoinRequestBuilder implements SqlElasticRequestBuilder {
 
     @Override
     public ActionRequest request() {
-        if(multi == null)
+        if(multi == null) {
             buildMulti();
+        }
         return multi;
 
     }

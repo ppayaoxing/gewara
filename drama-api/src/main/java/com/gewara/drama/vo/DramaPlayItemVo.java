@@ -22,22 +22,22 @@ public class DramaPlayItemVo extends BaseVo {
 	private Long roomid;
 	private String roomname;
 	private Timestamp addtime;
-	private Timestamp playtime; // ÑÝ³öÊ±¼ä
-	private Timestamp endtime; // ÑÝ³ö½áÊøÊ±¼ä
+	private Timestamp playtime; // ï¿½Ý³ï¿½Ê±ï¿½ï¿½
+	private Timestamp endtime; // ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	private String language; //
-	private String status; // ÊÇ·ñÓÐÐ§
-	private String partner; // ÊÇ·ñ¶ÔÍâ¿ª·Å
+	private String status; // ï¿½Ç·ï¿½ï¿½ï¿½Ð§
+	private String partner; // ï¿½Ç·ï¿½ï¿½ï¿½â¿ªï¿½ï¿½
 	private Long dramaStarId; //
-	private String citycode; // ³ÇÊÐ±àÂë
-	private Long batch; // Åú´Î±êÊ¶
-	private String opentype; // ¿ª·ÅÀàÐÍ£ºÑ¡×ù£¬¼Û¸ñ
-	private String period; // ÊÇ·ñ¹Ì¶¨Ê±¼ä
-	private String seller; // ÀàÐÍ£ºGEWA,GPTBS
-	private String sellerseq; // ³¡´ÎID(showItem-->siseq)
-	private Integer sortnum; // ÅÅÐò×Ö¶Î
-	private String openStatus; // ÊÇ·ñ¿ª·Å
-	private String showtype; // ³¡´ÎÀàÐÍ£¨ÆÕÍ¨£¬ÌØ»Ý£©
-	private String crmflag; // ÉÌ»§±êÊ¶
+	private String citycode; // ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
+	private Long batch; // ï¿½ï¿½ï¿½Î±ï¿½Ê¶
+	private String opentype; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Û¸ï¿½
+	private String period; // ï¿½Ç·ï¿½Ì¶ï¿½Ê±ï¿½ï¿½
+	private String seller; // ï¿½ï¿½ï¿½Í£ï¿½GEWA,GPTBS
+	private String sellerseq; // ï¿½ï¿½ï¿½ï¿½ID(showItem-->siseq)
+	private Integer sortnum; // ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
+	private String openStatus; // ï¿½Ç·ñ¿ª·ï¿½
+	private String showtype; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ø»Ý£ï¿½
+	private String crmflag; // ï¿½Ì»ï¿½ï¿½ï¿½Ê¶
 	private String roomnum;
 	private String takemethod;
 	private Integer maxbuy;
@@ -243,14 +243,16 @@ public class DramaPlayItemVo extends BaseVo {
 	}
 
 	public boolean hasPeriod(String perid) {
-		if (StringUtils.isBlank(perid))
-			return false;
+		if (StringUtils.isBlank(perid)) {
+            return false;
+        }
 		return StringUtils.equals(this.period, perid);
 	}
 
 	public boolean hasSeller(String sell) {
-		if (StringUtils.isBlank(sell))
-			return false;
+		if (StringUtils.isBlank(sell)) {
+            return false;
+        }
 		return StringUtils.equals(this.seller, sell);
 	}
 

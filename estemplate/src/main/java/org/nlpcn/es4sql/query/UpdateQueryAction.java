@@ -44,7 +44,8 @@ public class UpdateQueryAction extends QueryAction {
 		}
 	}
 
-	public BulkRequestBuilder explainAction() throws SqlParseException {
+	@Override
+    public BulkRequestBuilder explainAction() throws SqlParseException {
 		BulkRequestBuilder bulkRequest = client.prepareBulk();
 		SQLQueryExpr sqlExpr = (SQLQueryExpr) SQLUtils
 				.toMySqlExpr(this.selectSql);

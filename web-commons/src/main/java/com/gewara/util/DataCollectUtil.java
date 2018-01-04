@@ -47,8 +47,9 @@ public abstract class DataCollectUtil {
 		if (StringUtils.isNotBlank(value)){
 			try {
 				value = new String(Base64.decodeBase64(value), "UTF-8");
-				if (StringUtils.contains(value, "@"))
-					return value;
+				if (StringUtils.contains(value, "@")) {
+                    return value;
+                }
 			} catch (Exception e) {
 				dbLogger.error("" + value, e);
 			}

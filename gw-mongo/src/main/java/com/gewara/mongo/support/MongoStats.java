@@ -23,7 +23,9 @@ public class MongoStats {
 	private static Map<String/*namespace*/, TableStats> statsMap = new ConcurrentHashMap<String, TableStats>();
 	
 	public static void addOp(String namespace, String op){
-		if(!enableStats) return;
+		if(!enableStats) {
+            return;
+        }
 		TableStats stats = statsMap.get(namespace);
 		if(stats==null){
 			stats = new TableStats(namespace);

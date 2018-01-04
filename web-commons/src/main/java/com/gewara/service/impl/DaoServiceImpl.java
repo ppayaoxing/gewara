@@ -28,7 +28,7 @@ import com.google.common.collect.Lists;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ï¿½ï¿½ï¿½ï¿½02:05:17
  */
 public final class DaoServiceImpl implements DaoService {
 	@Autowired
@@ -80,8 +80,9 @@ public final class DaoServiceImpl implements DaoService {
 	@Override
 	public <T extends BaseObject> T removeObjectById(Class<T> clazz, Serializable id) {
 		T entity = baseDao.getObject(clazz, id);
-		if (entity == null)
-			return null;
+		if (entity == null) {
+            return null;
+        }
 		this.removeObject(entity);
 		return entity;
 	}
@@ -120,8 +121,9 @@ public final class DaoServiceImpl implements DaoService {
 	@Override
 	public <T extends BaseObject> void saveObjectList(T... entityList) {
 		for (T entity : entityList) {
-			if (entity != null)
-				baseDao.saveObject(entity);
+			if (entity != null) {
+                baseDao.saveObject(entity);
+            }
 		}
 	}
 
@@ -130,8 +132,9 @@ public final class DaoServiceImpl implements DaoService {
 		Map<S, T> result = new HashMap<S, T>();
 		for (S id : idList) {
 			T obj = baseDao.getObject(clazz, id);
-			if (obj != null)
-				result.put(id, obj);
+			if (obj != null) {
+                result.put(id, obj);
+            }
 		}
 		return result;
 	}
@@ -176,10 +179,11 @@ public final class DaoServiceImpl implements DaoService {
 			public List doInHibernate(Session session) {
 				Query query = session.createQuery(hql);
 				query.setFirstResult(from).setMaxResults(maxnum);
-				if (params != null)
-					for (int i = 0, length = params.length; i < length; i++) {
-						query.setParameter(i, params[i]);
-					}
+				if (params != null) {
+                    for (int i = 0, length = params.length; i < length; i++) {
+                        query.setParameter(i, params[i]);
+                    }
+                }
 				return query.list();
 			}
 		});
@@ -207,7 +211,7 @@ public final class DaoServiceImpl implements DaoService {
 
 	@Override
 	public <T extends BaseObject> void addPropertyNum(T entity, String property, Integer num) {
-		hibernateTemplate.refresh(entity); // ¶ÔÓÚ¶¯Ì¬¸üÐÂ£¬ÄþÔ¸¶à²éÒ»´ÎÒ²Òª¼õÉÙupdateÖÐµÄ×Ö¶ÎÊýÁ¿
+		hibernateTemplate.refresh(entity); // ï¿½ï¿½ï¿½Ú¶ï¿½Ì¬ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ò²Òªï¿½ï¿½ï¿½ï¿½updateï¿½Ðµï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
 		if (entity != null) {
 			try {
 				PropertyUtils.setProperty(entity, property,
@@ -232,15 +236,16 @@ public final class DaoServiceImpl implements DaoService {
 	@Override
 	public <T extends BaseObject> void addPropertiesNum(T entity, String properties, Integer... nums) {
 		if (entity != null) {
-			hibernateTemplate.refresh(entity); // ¶ÔÓÚ¶¯Ì¬¸üÐÂ£¬ÄþÔ¸¶à²éÒ»´ÎÒ²Òª¼õÉÙupdateÖÐµÄ×Ö¶ÎÊýÁ¿
+			hibernateTemplate.refresh(entity); // ï¿½ï¿½ï¿½Ú¶ï¿½Ì¬ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ò²Òªï¿½ï¿½ï¿½ï¿½updateï¿½Ðµï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
 			String[] propertyList = StringUtils.split(properties, ",");
 			addPropertiesNum(entity, propertyList, nums);
 		}
 	}
 
 	private <T extends BaseObject> void addPropertiesNum(T entity, String[] propertyList, Integer[] values) {
-		if (propertyList.length == 0 || values == null || propertyList.length != values.length)
-			return;
+		if (propertyList.length == 0 || values == null || propertyList.length != values.length) {
+            return;
+        }
 		int i = 0;
 		for (String property : propertyList) {
 			try {
@@ -272,8 +277,9 @@ public final class DaoServiceImpl implements DaoService {
 	}
 
 	private <T extends BaseObject> void updateProperties(T entity, String[] propertyList, Serializable... values) {
-		if (propertyList.length == 0 || values == null || propertyList.length != values.length)
-			return;
+		if (propertyList.length == 0 || values == null || propertyList.length != values.length) {
+            return;
+        }
 		int i = 0;
 		for (String property : propertyList) {
 			try {
@@ -296,8 +302,9 @@ public final class DaoServiceImpl implements DaoService {
 	}
 
 	private <T extends BaseObject> int updateProperties2(T entity, String[] propertyList, Serializable... values) {
-		if (propertyList.length == 0 || values == null || propertyList.length != values.length)
-			return 0;
+		if (propertyList.length == 0 || values == null || propertyList.length != values.length) {
+            return 0;
+        }
 		int i = 0;
 		ChangeEntry changeEntry = new ChangeEntry(entity);
 		for (String property : propertyList) {
@@ -336,10 +343,11 @@ public final class DaoServiceImpl implements DaoService {
 			public List doInHibernate(Session session) {
 				Query query = session.createSQLQuery(sql);
 				query.setFirstResult(from).setMaxResults(maxnum).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
-				if (params != null)
-					for (int i = 0, length = params.length; i < length; i++) {
-						query.setParameter(i, params[i]);
-					}
+				if (params != null) {
+                    for (int i = 0, length = params.length; i < length; i++) {
+                        query.setParameter(i, params[i]);
+                    }
+                }
 				return query.list();
 			}
 		});
@@ -349,8 +357,9 @@ public final class DaoServiceImpl implements DaoService {
 	@Override
 	public <T extends BaseObject> Object getObjectProperty(Class<T> clazz, Serializable id, String propertyname) {
 		T entity = baseDao.getObject(clazz, id);
-		if (entity == null)
-			return null;
+		if (entity == null) {
+            return null;
+        }
 		return BeanUtil.get(entity, propertyname);
 	}
 

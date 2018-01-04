@@ -28,7 +28,7 @@ import java.nio.ByteBuffer;
 
 public class UnsafeByteArrayOutputStream extends OutputStream
 {
-	protected byte mBuffer[];
+    protected byte[] mBuffer;
 
 	protected int mCount;
 
@@ -39,29 +39,36 @@ public class UnsafeByteArrayOutputStream extends OutputStream
 
 	public UnsafeByteArrayOutputStream(int size)
     {
-		if( size < 0 )
-			throw new IllegalArgumentException("Negative initial size: " + size);
+		if( size < 0 ) {
+            throw new IllegalArgumentException("Negative initial size: " + size);
+        }
 		mBuffer = new byte[size];
 	}
 
-	public void write(int b)
+	@Override
+    public void write(int b)
 	{
 		int newcount = mCount + 1;
-		if( newcount > mBuffer.length )
-			mBuffer = Bytes.copyOf(mBuffer, Math.max(mBuffer.length << 1, newcount));
+		if( newcount > mBuffer.length ) {
+            mBuffer = Bytes.copyOf(mBuffer, Math.max(mBuffer.length << 1, newcount));
+        }
 		mBuffer[mCount] = (byte)b;
 		mCount = newcount;
 	}
 
-	public void write(byte b[], int off, int len)
+	@Override
+    public void write(byte[] b, int off, int len)
 	{
-		if( ( off < 0 ) || ( off > b.length ) || ( len < 0 ) || ( ( off + len ) > b.length ) || ( ( off + len ) < 0 ) )
-			throw new IndexOutOfBoundsException();
-		if( len == 0 )
-			return;
+		if( ( off < 0 ) || ( off > b.length ) || ( len < 0 ) || ( ( off + len ) > b.length ) || ( ( off + len ) < 0 ) ) {
+            throw new IndexOutOfBoundsException();
+        }
+		if( len == 0 ) {
+            return;
+        }
 		int newcount = mCount + len;
-		if( newcount > mBuffer.length )
-			mBuffer = Bytes.copyOf(mBuffer, Math.max(mBuffer.length << 1, newcount));
+		if( newcount > mBuffer.length ) {
+            mBuffer = Bytes.copyOf(mBuffer, Math.max(mBuffer.length << 1, newcount));
+        }
 		System.arraycopy(b, off, mBuffer, mCount, len);
 		mCount = newcount;
 	}
@@ -91,7 +98,8 @@ public class UnsafeByteArrayOutputStream extends OutputStream
 		out.write(mBuffer, 0, mCount);
 	}
 
-	public String toString()
+	@Override
+    public String toString()
 	{
 		return new String(mBuffer, 0, mCount);
 	}
@@ -101,6 +109,7 @@ public class UnsafeByteArrayOutputStream extends OutputStream
 		return new String(mBuffer, 0, mCount, charset);
 	}
 
-	public void close() throws IOException
+	@Override
+    public void close() throws IOException
 	{}
 }

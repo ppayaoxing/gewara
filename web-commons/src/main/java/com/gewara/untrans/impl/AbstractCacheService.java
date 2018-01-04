@@ -45,14 +45,18 @@ public abstract class AbstractCacheService implements CacheService, Initializing
 
     protected Integer getRegionTime(String regionName) {
         Integer time = getCacheTime(regionName);
-        if (time == null) throw new TraceErrorException("region error!");
+        if (time == null) {
+            throw new TraceErrorException("region error!");
+        }
         return time;
     }
 
     @Override
     public void updateValue(String regionName, String key, String newvalue) {
         Object value = get(regionName, key);
-        if (value == null) return;
+        if (value == null) {
+            return;
+        }
         set(regionName, key, newvalue);
     }
 

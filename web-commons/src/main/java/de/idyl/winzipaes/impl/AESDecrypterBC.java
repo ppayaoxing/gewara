@@ -22,7 +22,8 @@ import org.bouncycastle.crypto.params.ParametersWithIV;
 public class AESDecrypterBC extends AESCryptoBase implements AESDecrypter {
 
 	// TODO consider keySize (but: we probably need to adapt the key size for the zip file as well)
-	public void init( String pwStr, int keySize, byte[] salt, byte[] pwVerification ) throws ZipException {
+	@Override
+    public void init(String pwStr, int keySize, byte[] salt, byte[] pwVerification ) throws ZipException {
 		byte[] pwBytes = pwStr.getBytes();
 		
 		super.saltBytes = salt;
@@ -73,7 +74,8 @@ public class AESDecrypterBC extends AESCryptoBase implements AESDecrypter {
 	/**
 	 * perform pseudo "in-place" encryption
 	 */
-	public void decrypt( byte[] in, int length ) {
+	@Override
+    public void decrypt(byte[] in, int length ) {
 		int pos = 0;
 		while( pos<in.length && pos<length ) {
 			decryptBlock( in, pos, length );
@@ -105,7 +107,8 @@ public class AESDecrypterBC extends AESCryptoBase implements AESDecrypter {
 		}
 	}
 
-	public byte[] getFinalAuthentication() {
+	@Override
+    public byte[] getFinalAuthentication() {
 		byte[] macBytes = new byte[ mac.getMacSize() ];
 		mac.doFinal( macBytes, 0 );
 		byte[] macBytes10 = new byte[10];

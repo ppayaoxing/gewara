@@ -54,22 +54,26 @@ import java.io.IOException;
  * Serializing a Java array.
  */
 public class ArraySerializer extends AbstractSerializer {
+  @Override
   public void writeObject(Object obj, AbstractHessianOutput out)
     throws IOException
   {
-    if (out.addRef(obj))
-      return;
+    if (out.addRef(obj)) {
+        return;
+    }
 
     Object []array = (Object []) obj;
 
     boolean hasEnd = out.writeListBegin(array.length,
 					getArrayType(obj.getClass()));
 
-    for (int i = 0; i < array.length; i++)
-      out.writeObject(array[i]);
+    for (int i = 0; i < array.length; i++) {
+        out.writeObject(array[i]);
+    }
 
-    if (hasEnd)
-      out.writeListEnd();
+    if (hasEnd) {
+        out.writeListEnd();
+    }
   }
 
   /**
@@ -77,18 +81,20 @@ public class ArraySerializer extends AbstractSerializer {
    */
   private String getArrayType(Class cl)
   {
-    if (cl.isArray())
-      return '[' + getArrayType(cl.getComponentType());
+    if (cl.isArray()) {
+        return '[' + getArrayType(cl.getComponentType());
+    }
 
     String name = cl.getName();
 
-    if (name.equals("java.lang.String"))
-      return "string";
-    else if (name.equals("java.lang.Object"))
-      return "object";
-    else if (name.equals("java.util.Date"))
-      return "date";
-    else
-      return name;
+    if ("java.lang.String".equals(name)) {
+        return "string";
+    } else if ("java.lang.Object".equals(name)) {
+        return "object";
+    } else if ("java.util.Date".equals(name)) {
+        return "date";
+    } else {
+        return name;
+    }
   }
 }

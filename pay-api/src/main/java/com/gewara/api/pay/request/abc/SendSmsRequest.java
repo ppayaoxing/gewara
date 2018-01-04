@@ -6,11 +6,11 @@ public class SendSmsRequest extends AbcRequest {
 
 	private static final long serialVersionUID = -6958225413916134949L;
 
-	private String cardno	;//½»Ò×¿¨ºÅ
-	private String cardexp	;//¿¨ÓÐÐ§ÆÚ
-	private String mobile	;//ÊÖ»úºÅÂë
+	private String cardno	;//ï¿½ï¿½ï¿½×¿ï¿½ï¿½ï¿½
+	private String cardexp	;//ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
+	private String mobile	;//ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String adddata	;//CVD2
-	private Integer amount	;//½»Ò×½ð¶î
+	private Integer amount	;//ï¿½ï¿½ï¿½×½ï¿½ï¿½
 	
 	public SendSmsRequest(){}
 	
@@ -36,19 +36,25 @@ public class SendSmsRequest extends AbcRequest {
 
 	@Override
 	public boolean checkParams() {
-		if(!super.checkParams())
-			return false;
+		if(!super.checkParams()) {
+            return false;
+        }
 		
-		if(cardno==null || cardno.length()>20)
-			return false;
-		if(cardexp==null || cardexp.length()==4)
-			return false;
-		if(mobile==null || mobile.length()!=11)
-			return false;
-		if(adddata==null || adddata.length()!=3)
-			return false;
-		if(amount==null || amount<=0)
-			return false;
+		if(cardno==null || cardno.length()>20) {
+            return false;
+        }
+		if(cardexp==null || cardexp.length()==4) {
+            return false;
+        }
+		if(mobile==null || mobile.length()!=11) {
+            return false;
+        }
+		if(adddata==null || adddata.length()!=3) {
+            return false;
+        }
+		if(amount==null || amount<=0) {
+            return false;
+        }
 		return true;
 	}
 

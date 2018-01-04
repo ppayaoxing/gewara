@@ -165,8 +165,9 @@ public class JSONArray implements JSONNode
 	 */
 	public void addAll(Object[] eles)
 	{
-		for( Object ele : eles )
-			mArray.add(ele);
+		for( Object ele : eles ) {
+            mArray.add(ele);
+        }
 	}
 
 	/**
@@ -183,15 +184,17 @@ public class JSONArray implements JSONNode
 	 * @param jc json converter
 	 * @param jb json builder.
 	 */
-	public void writeJSON(JSONConverter jc, JSONWriter jb, boolean writeClass) throws IOException
+	@Override
+    public void writeJSON(JSONConverter jc, JSONWriter jb, boolean writeClass) throws IOException
 	{
 		jb.arrayBegin();
 		for( Object item : mArray )
 		{
-			if( item == null )
-				jb.valueNull();
-			else
-				jc.writeValue(item, jb, writeClass);
+			if( item == null ) {
+                jb.valueNull();
+            } else {
+                jc.writeValue(item, jb, writeClass);
+            }
 		}
 		jb.arrayEnd();
 	}

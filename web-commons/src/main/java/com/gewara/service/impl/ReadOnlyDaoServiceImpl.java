@@ -61,10 +61,11 @@ public class ReadOnlyDaoServiceImpl implements ReadOnlyDaoService {
 			public List doInHibernate(Session session) {
 				Query query=session.createQuery(hql);
 				query.setFirstResult(from).setMaxResults(maxnum);
-				if(params != null)
-					for (int i = 0,length=params.length; i < length; i++) {
-						query.setParameter(i, params[i]);
-					}
+				if(params != null) {
+                    for (int i = 0, length = params.length; i < length; i++) {
+                        query.setParameter(i, params[i]);
+                    }
+                }
 				return query.list();
 			}
 		});
@@ -81,10 +82,11 @@ public class ReadOnlyDaoServiceImpl implements ReadOnlyDaoService {
 			public List doInHibernate(Session session) {
 				Query query=session.createSQLQuery(sql);
 				query.setFirstResult(from).setMaxResults(maxnum).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
-				if(params != null)
-					for (int i = 0,length=params.length; i < length; i++) {
-						query.setParameter(i, params[i]);
-					}
+				if(params != null) {
+                    for (int i = 0, length = params.length; i < length; i++) {
+                        query.setParameter(i, params[i]);
+                    }
+                }
 				return query.list();
 			}
 		});

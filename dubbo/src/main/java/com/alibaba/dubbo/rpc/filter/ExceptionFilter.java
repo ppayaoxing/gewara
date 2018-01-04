@@ -35,12 +35,12 @@ import com.alibaba.dubbo.rpc.service.GenericService;
 /**
  * ExceptionInvokerFilter
  * <p>
- * ¹¦ÄÜ£º
+ * ï¿½ï¿½ï¿½Ü£ï¿½
  * <ol>
- * <li>²»ÆÚÍûµÄÒì³£´òERRORÈÕÖ¾£¨Provider¶Ë£©<br>
- *     ²»ÆÚÍûµÄÈÕÖ¾¼´ÊÇ£¬Ã»ÓÐµÄ½Ó¿ÚÉÏÉùÃ÷µÄUncheckedÒì³£¡£
- * <li>Òì³£²»ÔÚAPI°üÖÐ£¬ÔòWrapÒ»²ãRuntimeException¡£<br>
- *     RPC¶ÔÓÚµÚÒ»²ãÒì³£»áÖ±½ÓÐòÁÐ»¯´«Êä(CauseÒì³£»áString»¯)£¬±ÜÃâÒì³£ÔÚClient³ö²»ÄÜ·´ÐòÁÐ»¯ÎÊÌâ¡£
+ * <li>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ERRORï¿½ï¿½Ö¾ï¿½ï¿½Providerï¿½Ë£ï¿½<br>
+ *     ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½Ç£ï¿½Ã»ï¿½ÐµÄ½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uncheckedï¿½ì³£ï¿½ï¿½
+ * <li>ï¿½ì³£ï¿½ï¿½ï¿½ï¿½APIï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½WrapÒ»ï¿½ï¿½RuntimeExceptionï¿½ï¿½<br>
+ *     RPCï¿½ï¿½ï¿½Úµï¿½Ò»ï¿½ï¿½ï¿½ì³£ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½(Causeï¿½ì³£ï¿½ï¿½Stringï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½Clientï¿½ï¿½ï¿½ï¿½ï¿½Ü·ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½â¡£
  * </ol>
  * 
  * @author william.liangf
@@ -59,6 +59,7 @@ public class ExceptionFilter implements Filter {
         this.logger = logger;
     }
     
+    @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         try {
             Result result = invoker.invoke(invocation);
@@ -66,11 +67,11 @@ public class ExceptionFilter implements Filter {
                 try {
                     Throwable exception = result.getException();
 
-                    // Èç¹ûÊÇcheckedÒì³££¬Ö±½ÓÅ×³ö
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½checkedï¿½ì³£ï¿½ï¿½Ö±ï¿½ï¿½ï¿½×³ï¿½
                     if (! (exception instanceof RuntimeException) && (exception instanceof Exception)) {
                         return result;
                     }
-                    // ÔÚ·½·¨Ç©ÃûÉÏÓÐÉùÃ÷£¬Ö±½ÓÅ×³ö
+                    // ï¿½Ú·ï¿½ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½×³ï¿½
                     try {
                         Method method = invoker.getInterface().getMethod(invocation.getMethodName(), invocation.getParameterTypes());
                         Class<?>[] exceptionClassses = method.getExceptionTypes();
@@ -83,28 +84,28 @@ public class ExceptionFilter implements Filter {
                         return result;
                     }
 
-                    // Î´ÔÚ·½·¨Ç©ÃûÉÏ¶¨ÒåµÄÒì³££¬ÔÚ·þÎñÆ÷¶Ë´òÓ¡ERRORÈÕÖ¾
+                    // Î´ï¿½Ú·ï¿½ï¿½ï¿½Ç©ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë´ï¿½Ó¡ERRORï¿½ï¿½Ö¾
                     logger.error("Got unchecked and undeclared exception which called by " + RpcContext.getContext().getRemoteHost()
                             + ". service: " + invoker.getInterface().getName() + ", method: " + invocation.getMethodName()
                             + ", exception: " + exception.getClass().getName() + ": " + exception.getMessage(), exception);
 
-                    // Òì³£ÀàºÍ½Ó¿ÚÀàÔÚÍ¬Ò»jar°üÀï£¬Ö±½ÓÅ×³ö
+                    // ï¿½ì³£ï¿½ï¿½Í½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Í¬Ò»jarï¿½ï¿½ï¿½ï£¬Ö±ï¿½ï¿½ï¿½×³ï¿½
                     String serviceFile = ReflectUtils.getCodeBase(invoker.getInterface());
                     String exceptionFile = ReflectUtils.getCodeBase(exception.getClass());
                     if (serviceFile == null || exceptionFile == null || serviceFile.equals(exceptionFile)){
                         return result;
                     }
-                    // ÊÇJDK×Ô´øµÄÒì³££¬Ö±½ÓÅ×³ö
+                    // ï¿½ï¿½JDKï¿½Ô´ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½Ö±ï¿½ï¿½ï¿½×³ï¿½
                     String className = exception.getClass().getName();
                     if (className.startsWith("java.") || className.startsWith("javax.")) {
                         return result;
                     }
-                    // ÊÇDubbo±¾ÉíµÄÒì³££¬Ö±½ÓÅ×³ö
+                    // ï¿½ï¿½Dubboï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½Ö±ï¿½ï¿½ï¿½×³ï¿½
                     if (exception instanceof RpcException) {
                         return result;
                     }
 
-                    // ·ñÔò£¬°ü×°³ÉRuntimeExceptionÅ×¸ø¿Í»§¶Ë
+                    // ï¿½ï¿½ï¿½ò£¬°ï¿½×°ï¿½ï¿½RuntimeExceptionï¿½×¸ï¿½ï¿½Í»ï¿½ï¿½ï¿½
                     String excepStr = StringUtils.toString(exception);
                     if(!StringUtils.isBlank(excepStr)){
                     	if(excepStr.length() > 200){
@@ -128,7 +129,7 @@ public class ExceptionFilter implements Filter {
         }
     }
 
-    public static void main(String args[]){
+    public static void main(String[] args){
     	String a = "agbcd";
     	System.out.println(a.substring(0, a.length()));
     }

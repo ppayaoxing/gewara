@@ -5,24 +5,24 @@ import java.io.Serializable;
 import com.gewara.gmessage.external.constant.MCategory;
 
 /**
- * ÏûÏ¢·¢ËÍ×´Ì¬²éÑ¯²ÎÊý
+ * ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
  * 
- * @author ¶­Ã÷
- * @createDate 2015Äê12ÔÂ3ÈÕ
+ * @author ï¿½ï¿½ï¿½ï¿½
+ * @createDate 2015ï¿½ï¿½12ï¿½ï¿½3ï¿½ï¿½
  */
 public class SendStateQueryParam implements Serializable{
 
 	private static final long serialVersionUID = 2804118341623987745L;
 
-	/** Ò³Âë£¬Ä¬ÈÏµÚÒ»Ò³ */
-	private int pageNo = 1;// Ò³Âë£¬Ä¬ÈÏµÚÒ»Ò³
+	/** Ò³ï¿½ë£¬Ä¬ï¿½Ïµï¿½Ò»Ò³ */
+	private int pageNo = 1;// Ò³ï¿½ë£¬Ä¬ï¿½Ïµï¿½Ò»Ò³
 
-	/** Ã¿Ò³µÄ¼ÇÂ¼Êý¡£Ä¬ÈÏ50 */
-	private int pageSize = 50;// Ã¿Ò³µÄ¼ÇÂ¼Êý¡£Ä¬ÈÏ50£»
+	/** Ã¿Ò³ï¿½Ä¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½50 */
+	private int pageSize = 50;// Ã¿Ò³ï¿½Ä¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½50ï¿½ï¿½
 
-	private MCategory category = null; // ÏûÏ¢ÖÖÀà
-	private String relateIDType = null;// ÒµÎñÖ÷¼üÀàÐÍ
-	private String relateID = null;// ÒµÎñÖ÷¼üID
+	private MCategory category = null; // ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
+	private String relateIDType = null;// Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String relateID = null;// Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
 
 	public int getPageNo() {
 		return pageNo;
@@ -65,7 +65,9 @@ public class SendStateQueryParam implements Serializable{
 	}
 	
 	public String getUreaid(){
-		if(relateIDType==null||relateID==null) return null;
+		if(relateIDType==null||relateID==null) {
+            return null;
+        }
 		return relateIDType+"-"+relateID;
 	}
 

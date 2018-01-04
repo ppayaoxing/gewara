@@ -17,7 +17,9 @@ import com.gewara.util.LoggerUtils;
 public class ResultUtil {
 	private static final transient GewaLogger dbLogger = LoggerUtils.getLogger(MongoService3Impl.class);
 	public static <T> T toBean(Class<T> beanClass, Document doc){
-		if(beanClass==null) throw new MongoDataException("please set the mapping bean type");
+		if(beanClass==null) {
+            throw new MongoDataException("please set the mapping bean type");
+        }
 		Map<String, Class> listProperties = ClassMetaInfo.getWritableListPropertyInfo(beanClass);
 		return toBean(beanClass, listProperties, doc);
 	}
@@ -27,17 +29,23 @@ public class ResultUtil {
 		return map;
 	}
 	public static <T> List<T>  toBeans(Class<T> beanClass, List<Document> result){
-		if(beanClass==null) throw new MongoDataException("please set the mapping bean type");
+		if(beanClass==null) {
+            throw new MongoDataException("please set the mapping bean type");
+        }
 		List<T> list=new ArrayList<>(result.size());
 		Map<String, Class> listProperties = ClassMetaInfo.getWritableListPropertyInfo(beanClass);
 		for(Document doc:result){
 			T b=ResultUtil.toBean(beanClass, listProperties, doc);
-			if(b!=null) list.add(b);
+			if(b!=null) {
+                list.add(b);
+            }
 		}
 		return list;
 	}
 	public static <T> T toBean(Class<T> beanClass, Map<String, Class> listProperties, Document doc){
-		if(beanClass==null) throw new MongoDataException("please set the mapping bean type");
+		if(beanClass==null) {
+            throw new MongoDataException("please set the mapping bean type");
+        }
 		if(beanClass.equals(Map.class)){
 			return (T) toMap(doc);
 		}else{

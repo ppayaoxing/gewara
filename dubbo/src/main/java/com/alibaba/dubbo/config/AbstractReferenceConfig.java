@@ -32,18 +32,18 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
 
     private static final long serialVersionUID = -2786526984373031126L;
 
-    // ======== ÒýÓÃÈ±Ê¡Öµ£¬µ±ÒýÓÃÊôÐÔÎ´ÉèÖÃÊ±Ê¹ÓÃ¸ÃÈ±Ê¡ÖµÌæ´ú  ========
+    // ======== ï¿½ï¿½ï¿½ï¿½È±Ê¡Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½Ê±Ê¹ï¿½Ã¸ï¿½È±Ê¡Öµï¿½ï¿½ï¿½  ========
     
-    // ¼ì²é·þÎñÌá¹©ÕßÊÇ·ñ´æÔÚ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
     protected Boolean             check;
 
-    // ÊÇ·ñ¼ÓÔØÊ±¼´¿Ì³õÊ¼»¯
+    // ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ì³ï¿½Ê¼ï¿½ï¿½
     protected Boolean             init;
 
-    // ÊÇ·ñÊ¹ÓÃ·º½Ó¿Ú
+    // ï¿½Ç·ï¿½Ê¹ï¿½Ã·ï¿½ï¿½Ó¿ï¿½
     protected String             generic;
 
-    // ÓÅÏÈ´ÓJVMÄÚ»ñÈ¡ÒýÓÃÊµÀý
+    // ï¿½ï¿½ï¿½È´ï¿½JVMï¿½Ú»ï¿½È¡ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
     protected Boolean             injvm;
     
     // lazy create connection
@@ -53,13 +53,13 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
     
     protected Boolean             sticky;
     
-    //stubÊÇ·ñÖ§³ÖeventÊÂ¼þ. //TODO slove merge problem 
+    //stubï¿½Ç·ï¿½Ö§ï¿½ï¿½eventï¿½Â¼ï¿½. //TODO slove merge problem 
     protected Boolean             stubevent ;//= Constants.DEFAULT_STUB_EVENT;
 
-    // °æ±¾
+    // ï¿½æ±¾
     protected String               version;
 
-    // ·þÎñ·Ö×é
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     protected String               group;
 
     public Boolean isCheck() {
@@ -99,7 +99,7 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
 
     /**
      * @return
-     * @deprecated Í¨¹ýscope½øÐÐÅÐ¶Ï£¬scope=local
+     * @deprecated Í¨ï¿½ï¿½scopeï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï£ï¿½scope=local
      */
     @Deprecated
     public Boolean isInjvm() {
@@ -108,18 +108,20 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
     
     /**
      * @param injvm
-     * @deprecated Í¨¹ýscopeÉèÖÃ£¬scope=local±íÊ¾Ê¹ÓÃinjvmÐ­Òé.
+     * @deprecated Í¨ï¿½ï¿½scopeï¿½ï¿½ï¿½Ã£ï¿½scope=localï¿½ï¿½Ê¾Ê¹ï¿½ï¿½injvmÐ­ï¿½ï¿½.
      */
     @Deprecated 
     public void setInjvm(Boolean injvm) {
         this.injvm = injvm;
     }
 
+    @Override
     @Parameter(key = Constants.REFERENCE_FILTER_KEY, append = true)
     public String getFilter() {
         return super.getFilter();
     }
 
+    @Override
     @Parameter(key = Constants.INVOKER_LISTENER_KEY, append = true)
     public String getListener() {
         return super.getListener();

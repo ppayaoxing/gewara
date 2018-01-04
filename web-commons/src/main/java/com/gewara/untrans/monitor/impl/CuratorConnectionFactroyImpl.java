@@ -49,7 +49,8 @@ public class CuratorConnectionFactroyImpl implements CuratorConnectionFactroy, I
 				.connectionTimeoutMs(sessionTimeout);
 		client = builder.build();
 		client.getConnectionStateListenable().addListener(new ConnectionStateListener() {
-			public void stateChanged(CuratorFramework c, ConnectionState s) {
+			@Override
+            public void stateChanged(CuratorFramework c, ConnectionState s) {
 				setState(s);
 				dbLogger.warn("zookeeper connection " + s);
 			}

@@ -90,6 +90,7 @@ public class HessianDebugOutputStream extends OutputStream
   /**
    * Writes a character.
    */
+  @Override
   public void write(int ch)
     throws IOException
   {
@@ -100,6 +101,7 @@ public class HessianDebugOutputStream extends OutputStream
     _state.next(ch);
   }
 
+  @Override
   public void flush()
     throws IOException
   {
@@ -109,14 +111,16 @@ public class HessianDebugOutputStream extends OutputStream
   /**
    * closes the stream.
    */
+  @Override
   public void close()
     throws IOException
   {
     OutputStream os = _os;
     _os = null;
 
-    if (os != null)
-      os.close();
+    if (os != null) {
+        os.close();
+    }
 
     _state.println();
   }
@@ -138,10 +142,12 @@ public class HessianDebugOutputStream extends OutputStream
 	_log.log(_level, _sb.toString());
 	_sb.setLength(0);
       }
-      else
-	_sb.append((char) ch);
+      else {
+          _sb.append((char) ch);
+      }
     }
 
+    @Override
     public void write(char []buffer, int offset, int length)
     {
       for (int i = 0; i < length; i++) {
@@ -151,15 +157,18 @@ public class HessianDebugOutputStream extends OutputStream
 	  _log.log(_level, _sb.toString());
 	  _sb.setLength(0);
 	}
-	else
-	  _sb.append((char) ch);
+	else {
+        _sb.append((char) ch);
+    }
       }
     }
 
+    @Override
     public void flush()
     {
     }
 
+    @Override
     public void close()
     {
     }

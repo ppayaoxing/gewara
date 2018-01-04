@@ -32,12 +32,14 @@ import com.alibaba.dubbo.remoting.transport.AbstractCodec;
  */
 public class TransportCodec extends AbstractCodec {
 
+    @Override
     public void encode(Channel channel, OutputStream output, Object message) throws IOException {
         ObjectOutput objectOutput = getSerialization(channel).serialize(channel.getUrl(), output);
         encodeData(channel, objectOutput, message);
         objectOutput.flushBuffer();
     }
 
+    @Override
     public Object decode(Channel channel, InputStream input) throws IOException {
         return decodeData(channel, getSerialization(channel).deserialize(channel.getUrl(), input));
     }

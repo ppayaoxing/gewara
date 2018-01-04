@@ -54,10 +54,12 @@ public class RedisProtocol extends AbstractProtocol {
 
     public static final int DEFAULT_PORT = 6379;
 
+    @Override
     public int getDefaultPort() {
         return DEFAULT_PORT;
     }
 
+    @Override
     public <T> Exporter<T> export(final Invoker<T> invoker) throws RpcException {
         throw new UnsupportedOperationException("Unsupported export redis service. url: " + invoker.getUrl());
     }
@@ -66,26 +68,34 @@ public class RedisProtocol extends AbstractProtocol {
         return ExtensionLoader.getExtensionLoader(Serialization.class).getExtension(url.getParameter(Constants.SERIALIZATION_KEY, "java"));
     }
 
+    @Override
     public <T> Invoker<T> refer(final Class<T> type, final URL url) throws RpcException {
         try {
             GenericObjectPool.Config config = new GenericObjectPool.Config();
             config.testOnBorrow = url.getParameter("test.on.borrow", true);
             config.testOnReturn = url.getParameter("test.on.return", false);
             config.testWhileIdle = url.getParameter("test.while.idle", false);
-            if (url.getParameter("max.idle", 0) > 0)
+            if (url.getParameter("max.idle", 0) > 0) {
                 config.maxIdle = url.getParameter("max.idle", 0);
-            if (url.getParameter("min.idle", 0) > 0)
+            }
+            if (url.getParameter("min.idle", 0) > 0) {
                 config.minIdle = url.getParameter("min.idle", 0);
-            if (url.getParameter("max.active", 0) > 0)
+            }
+            if (url.getParameter("max.active", 0) > 0) {
                 config.maxActive = url.getParameter("max.active", 0);
-            if (url.getParameter("max.wait", 0) > 0)
+            }
+            if (url.getParameter("max.wait", 0) > 0) {
                 config.maxWait = url.getParameter("max.wait", 0);
-            if (url.getParameter("num.tests.per.eviction.run", 0) > 0)
+            }
+            if (url.getParameter("num.tests.per.eviction.run", 0) > 0) {
                 config.numTestsPerEvictionRun = url.getParameter("num.tests.per.eviction.run", 0);
-            if (url.getParameter("time.between.eviction.runs.millis", 0) > 0)
+            }
+            if (url.getParameter("time.between.eviction.runs.millis", 0) > 0) {
                 config.timeBetweenEvictionRunsMillis = url.getParameter("time.between.eviction.runs.millis", 0);
-            if (url.getParameter("min.evictable.idle.time.millis", 0) > 0)
+            }
+            if (url.getParameter("min.evictable.idle.time.millis", 0) > 0) {
                 config.minEvictableIdleTimeMillis = url.getParameter("min.evictable.idle.time.millis", 0);
+            }
             final JedisPool jedisPool = new JedisPool(config, url.getHost(), url.getPort(DEFAULT_PORT), 
                 url.getParameter(Constants.TIMEOUT_KEY, Constants.DEFAULT_TIMEOUT));
             final int expiry = url.getParameter("expiry", 0);
@@ -93,6 +103,7 @@ public class RedisProtocol extends AbstractProtocol {
             final String set = url.getParameter("set", Map.class.equals(type) ? "put" : "set");
             final String delete = url.getParameter("delete", Map.class.equals(type) ? "remove" : "delete");
             return new AbstractInvoker<T>(type, url) {
+                @Override
                 protected Result doInvoke(Invocation invocation) throws Throwable {
                     Jedis resource = null;
                     try {
@@ -154,6 +165,7 @@ public class RedisProtocol extends AbstractProtocol {
                     }
                 }
 
+                @Override
                 public void destroy() {
                     super.destroy();
                     try {

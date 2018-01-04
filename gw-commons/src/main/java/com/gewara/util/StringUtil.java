@@ -36,8 +36,9 @@ public class StringUtil implements Util4Script {
 
 	public static String md5(String text, int length) {
 		String result = md5(text);
-		if (result.length() > length)
-			result = result.substring(0, length);
+		if (result.length() > length) {
+            result = result.substring(0, length);
+        }
 		return result;
 	}
 
@@ -86,18 +87,26 @@ public class StringUtil implements Util4Script {
 	 * @return
 	 */
 	public static String enabbr(String input, int size) {
-		if (StringUtils.isBlank(input))
-			return null;
+		if (StringUtils.isBlank(input)) {
+            return null;
+        }
 		int bytelength = getByteLength(input);
-		if (bytelength < size) return input;
+		if (bytelength < size) {
+            return input;
+        }
 		StringBuilder sb = new StringBuilder(size);
 		int count = 0;
 		for(int i=0;i<input.length();i++){
 			char c = input.charAt(i);
 			sb.append(c);
-			if(c > 128) count += 2;
-			else count ++;
-			if(count >= size) break;
+			if(c > 128) {
+                count += 2;
+            } else {
+                count++;
+            }
+			if(count >= size) {
+                break;
+            }
 		}
 		return sb.toString();
 	}
@@ -110,22 +119,28 @@ public class StringUtil implements Util4Script {
 	 * @return
 	 */
 	public static String enabbrstr(String input, int size, String addStr) {
-		if (StringUtils.isBlank(input))
-			return null;
+		if (StringUtils.isBlank(input)) {
+            return null;
+        }
 		int bytelength = getByteLength(input);
-		if (bytelength < size) return input;
+		if (bytelength < size) {
+            return input;
+        }
 		String ss = enabbr(input, size);
 		return ss + addStr;
 	}
 
 	public static int getByteLength(String input) {
-		if (input == null)
-			return 0;
+		if (input == null) {
+            return 0;
+        }
 		int length = input.length();
 		int byteLength = length;
-		for (int i = 0; i < length; i++)
-			if (input.charAt(i) > 128)
-				byteLength++;
+		for (int i = 0; i < length; i++) {
+            if (input.charAt(i) > 128) {
+                byteLength++;
+            }
+        }
 		return byteLength;
 	}
 
@@ -150,14 +165,16 @@ public class StringUtil implements Util4Script {
 	}
 
 	public static String toUnicode(String original) {
-		if (original == null)
-			return null;
+		if (original == null) {
+            return null;
+        }
 		String result = "";
 		for (int i = 0, length = original.length(); i < length; i++) {
-			if (original.charAt(i) > 0 && original.charAt(i) < 256)
-				result += original.charAt(i);
-			else
-				result += "\\u" + Integer.toHexString(original.charAt(i)).toUpperCase();
+			if (original.charAt(i) > 0 && original.charAt(i) < 256) {
+                result += original.charAt(i);
+            } else {
+                result += "\\u" + Integer.toHexString(original.charAt(i)).toUpperCase();
+            }
 		}
 		return result;
 	}
@@ -188,15 +205,19 @@ public class StringUtil implements Util4Script {
 	}
 
 	public static String getRandomString(int length, boolean includeUpper, boolean includeLower, boolean includeDigital) {
-		if (length > 100)
-			length = 100;
+		if (length > 100) {
+            length = 100;
+        }
 		String s = "";
-		if (includeUpper)
-			s += upper;
-		if (includeLower)
-			s += lower;
-		if (includeDigital)
-			s += digital;
+		if (includeUpper) {
+            s += upper;
+        }
+		if (includeLower) {
+            s += lower;
+        }
+		if (includeDigital) {
+            s += digital;
+        }
 		if (length > 100){
 			throw new TraceErrorException("生成的字符串长度必须<100！");
 		}
@@ -217,8 +238,9 @@ public class StringUtil implements Util4Script {
 	}
 
 	public static String getSearchKey(String qryStr) {
-		if (StringUtils.isBlank(qryStr))
-			return "";
+		if (StringUtils.isBlank(qryStr)) {
+            return "";
+        }
 		String result = substitute(qryStr, "[^ \\w$\\u4e00-\\u9fa5]+", "", true);
 		result = result.replaceAll("AND", "and").replaceAll("OR", "or").replaceAll("NOT", "not");
 		return result.trim();
@@ -230,8 +252,9 @@ public class StringUtil implements Util4Script {
 
 	public static String md5WithKey(String str, int length) {
 		String result = md5WithKey(str);
-		if (result.length() > length)
-			return result.substring(0, length);
+		if (result.length() > length) {
+            return result.substring(0, length);
+        }
 		return result;
 	}
 
@@ -251,8 +274,9 @@ public class StringUtil implements Util4Script {
 	 */
 	public static String parse2HTML(String txt) {
 		String reg = "(http://(([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?))";
-		if (StringUtils.isBlank(txt))
-			return "";
+		if (StringUtils.isBlank(txt)) {
+            return "";
+        }
 		return txt.replaceAll(" ", "&nbsp;").replaceAll("\n", "<br />").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
 				.replaceAll(reg, "<a href='$1' target='_blank'>$2</a>");
 	}
@@ -270,8 +294,9 @@ public class StringUtil implements Util4Script {
 			return null;
 		}
 		int separatorIndex = path.lastIndexOf('/');
-		if (separatorIndex == -1)
-			separatorIndex = path.lastIndexOf('\\');
+		if (separatorIndex == -1) {
+            separatorIndex = path.lastIndexOf('\\');
+        }
 		return (separatorIndex != -1 ? path.substring(separatorIndex + 1) : path);
 	}
 
@@ -288,8 +313,9 @@ public class StringUtil implements Util4Script {
 			return null;
 		}
 		int separatorIndex = path.lastIndexOf('/');
-		if (separatorIndex == -1)
-			separatorIndex = path.lastIndexOf('\\');
+		if (separatorIndex == -1) {
+            separatorIndex = path.lastIndexOf('\\');
+        }
 		return (separatorIndex != -1 ? path.substring(0, separatorIndex) : "");
 	}
 
@@ -321,10 +347,12 @@ public class StringUtil implements Util4Script {
 	}
 
 	public static String insertStr(String src, String insert) {
-		if (StringUtils.isBlank(src))
-			return "";
-		if (StringUtils.isBlank(insert))
-			return src;
+		if (StringUtils.isBlank(src)) {
+            return "";
+        }
+		if (StringUtils.isBlank(insert)) {
+            return src;
+        }
 		String result = "";
 		for (char c : src.toCharArray()) {
 			result += c + insert;
@@ -356,8 +384,9 @@ public class StringUtil implements Util4Script {
 		Matcher matcher = pattern.matcher(src);
 		while (matcher.find()) {
 			String s = matcher.group();
-			if (!unique || !result.contains(s))
-				result.add(s);
+			if (!unique || !result.contains(s)) {
+                result.add(s);
+            }
 		}
 		return result;
 	}
@@ -365,8 +394,9 @@ public class StringUtil implements Util4Script {
 	public static String findFirstByRegex(String src, String reg) {
 		Pattern pattern = Pattern.compile(reg, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(src);
-		if (matcher.find())
-			return matcher.group();
+		if (matcher.find()) {
+            return matcher.group();
+        }
 		return "";
 	}
 
@@ -401,8 +431,9 @@ public class StringUtil implements Util4Script {
 				c[i] = (char) 32;
 				continue;
 			}
-			if (c[i] > 65280 && c[i] < 65375)
-				c[i] = (char) (c[i] - 65248);
+			if (c[i] > 65280 && c[i] < 65375) {
+                c[i] = (char) (c[i] - 65248);
+            }
 		}
 		return new String(c);
 	}

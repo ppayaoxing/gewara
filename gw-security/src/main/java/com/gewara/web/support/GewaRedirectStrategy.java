@@ -9,7 +9,7 @@ import org.springframework.security.web.RedirectStrategy;
 
 import com.gewara.util.BaseWebUtils;
 /**
- * µÇÂ¼Ìø×ª£¬ÒªÇóÖ§³ÖPOST
+ * ï¿½ï¿½Â¼ï¿½ï¿½×ªï¿½ï¿½Òªï¿½ï¿½Ö§ï¿½ï¿½POST
  * @author acerge(acerge@163.com)
  * @since 7:38:30 PM Jan 11, 2011
  */
@@ -23,7 +23,9 @@ public class GewaRedirectStrategy implements RedirectStrategy {
 		if(idx>0){
 			params = BaseWebUtils.encodeParam(redirectUrl.substring(idx+1), "utf-8");
 			redirectUrl = redirectUrl.substring(0, idx);
-			if(StringUtils.isNotBlank(params)) redirectUrl += "?" + params;
+			if(StringUtils.isNotBlank(params)) {
+                redirectUrl += "?" + params;
+            }
 		}
 		//HttpUtils.parseQueryStr(queryString, encode)
 		//redirectUrl = response.encodeRedirectURL(redirectUrl);

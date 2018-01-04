@@ -61,12 +61,13 @@ public class EnumDeserializer extends AbstractDeserializer {
   public EnumDeserializer(Class cl)
   {
     // hessian/33b[34], hessian/3bb[78]
-    if (cl.isEnum())
-      _enumType = cl;
-    else if (cl.getSuperclass().isEnum())
-      _enumType = cl.getSuperclass();
-    else
-      throw new RuntimeException("Class " + cl.getName() + " is not an enum");
+    if (cl.isEnum()) {
+        _enumType = cl;
+    } else if (cl.getSuperclass().isEnum()) {
+        _enumType = cl.getSuperclass();
+    } else {
+        throw new RuntimeException("Class " + cl.getName() + " is not an enum");
+    }
 
     try {
       _valueOf = _enumType.getMethod("valueOf",
@@ -76,11 +77,13 @@ public class EnumDeserializer extends AbstractDeserializer {
     }
   }
   
+  @Override
   public Class getType()
   {
     return _enumType;
   }
   
+  @Override
   public Object readMap(AbstractHessianInput in)
     throws IOException
   {
@@ -89,10 +92,11 @@ public class EnumDeserializer extends AbstractDeserializer {
     while (! in.isEnd()) {
       String key = in.readString();
 
-      if (key.equals("name"))
-        name = in.readString();
-      else
-	in.readObject();
+      if ("name".equals(key)) {
+          name = in.readString();
+      } else {
+          in.readObject();
+      }
     }
 
     in.readMapEnd();
@@ -104,16 +108,18 @@ public class EnumDeserializer extends AbstractDeserializer {
     return obj;
   }
   
+  @Override
   public Object readObject(AbstractHessianInput in, String []fieldNames)
     throws IOException
   {
     String name = null;
 
     for (int i = 0; i < fieldNames.length; i++) {
-      if ("name".equals(fieldNames[i]))
-        name = in.readString();
-      else
-	in.readObject();
+      if ("name".equals(fieldNames[i])) {
+          name = in.readString();
+      } else {
+          in.readObject();
+      }
     }
 
     Object obj = create(name);
@@ -126,8 +132,9 @@ public class EnumDeserializer extends AbstractDeserializer {
   private Object create(String name)
     throws IOException
   {
-    if (name == null)
-      throw new IOException(_enumType.getName() + " expects name.");
+    if (name == null) {
+        throw new IOException(_enumType.getName() + " expects name.");
+    }
 
     try {
       return _valueOf.invoke(null, _enumType, name);

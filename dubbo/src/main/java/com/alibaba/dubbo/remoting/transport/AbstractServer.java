@@ -81,6 +81,7 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
     
     protected abstract void doClose() throws Throwable;
 
+    @Override
     public void reset(URL url) {
         if (url == null) {
             return;
@@ -132,6 +133,7 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
         super.setUrl(getUrl().addParameters(url.getParameters()));
     }
 
+    @Override
     public void send(Object message, boolean sent) throws RemotingException {
         Collection<Channel> channels = getChannels();
         for (Channel channel : channels) {
@@ -141,6 +143,7 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
         }
     }
     
+    @Override
     public void close() {
         if (logger.isInfoEnabled()) {
             logger.info("Close " + getClass().getSimpleName() + " bind " + getBindAddress() + ", export " + getLocalAddress());
@@ -158,11 +161,13 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
         }
     }
     
+    @Override
     public void close(int timeout) {
         ExecutorUtil.gracefulShutdown(executor ,timeout);
         close();
     }
 
+    @Override
     public InetSocketAddress getLocalAddress() {
         return localAddress;
     }

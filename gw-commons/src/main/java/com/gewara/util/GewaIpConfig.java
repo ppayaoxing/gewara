@@ -16,11 +16,11 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * ×Ô¶¯ÅäÖÃ±¾»úIP£º
- * 1£©×Ô¶¯É¨Ãè 192.168.2., 192.168.8., 192.168.3., 172.28., 172.22.,10.47.,10.147.
- * 2£©×Ô¶¯É¨Ãèsearchip.txtÎÄ¼þÖÐ°üº¬µÄIP
+ * ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½IPï¿½ï¿½
+ * 1ï¿½ï¿½ï¿½Ô¶ï¿½É¨ï¿½ï¿½ 192.168.2., 192.168.8., 192.168.3., 172.28., 172.22.,10.47.,10.147.
+ * 2ï¿½ï¿½ï¿½Ô¶ï¿½É¨ï¿½ï¿½searchip.txtï¿½Ä¼ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½IP
  * @author ge.biao(acerge@163.com)
- * @since 2016Äê9ÔÂ19ÈÕÏÂÎç4:59:38
+ * @since 2016ï¿½ï¿½9ï¿½ï¿½19ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4:59:38
  */
 public abstract class GewaIpConfig {
 	private static final transient GewaLogger dbLogger = LoggerUtils.getLogger(GewaIpConfig.class);
@@ -28,7 +28,7 @@ public abstract class GewaIpConfig {
 	private static final String serverIp;
 	private static final String hostname;
 	private static final List<String> searchList;
-	//»ú·¿ÄÚÍøIP
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IP
 	private static final List<String> innerLocalIp;
 
 	private static final List<String> officeIp = Arrays.asList("101.95.157.134", "124.74.105.54");
@@ -100,7 +100,7 @@ public abstract class GewaIpConfig {
 		return aliyunIpList.contains(ip);
 	}
 	/**
-	 * ÊÇ·ñÊÇ»ú·¿ÄÚÍøIP
+	 * ï¿½Ç·ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IP
 	 * @param ip
 	 * @return
 	 */
@@ -117,21 +117,21 @@ public abstract class GewaIpConfig {
 	}
 
 	public static final boolean isLocalIp(String ip) {
-		// ±¾µØ
-		return ip.contains("192.168.") || ip.equals("127.0.0.1") || ip.endsWith(":1")/*win10 local*/;
+		// ï¿½ï¿½ï¿½ï¿½
+		return ip.contains("192.168.") || "127.0.0.1".equals(ip) || ip.endsWith(":1")/*win10 local*/;
 	}
 	public static final boolean isGewaLocalIp(String ip) {
-		// ±¾µØ
-		return ip.contains("192.168.") || ip.equals("127.0.0.1") || ip.endsWith(":1")/*win10 local*/;
+		// ï¿½ï¿½ï¿½ï¿½
+		return ip.contains("192.168.") || "127.0.0.1".equals(ip) || ip.endsWith(":1")/*win10 local*/;
 	}
 
 	/**
-	 * ÊÇ¿ª·¢ÈËÔ±»·¾³µÄ»úÆ÷
+	 * ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public static final boolean isDevServer() {
-		// ±¾µØ
-		return serverIp.contains("192.168.") || serverIp.equals("127.0.0.1") || serverIp.endsWith(":1")/*win10 local*/;
+		// ï¿½ï¿½ï¿½ï¿½
+		return serverIp.contains("192.168.") || "127.0.0.1".equals(serverIp) || serverIp.endsWith(":1")/*win10 local*/;
 	}
 
 	public static void filterIp(String ip){
@@ -151,7 +151,9 @@ public abstract class GewaIpConfig {
 	}
 	public static boolean isGewaServerIp(String ip){
 		for(String search: searchList){
-			if(StringUtils.startsWith(ip, search)) return true;
+			if(StringUtils.startsWith(ip, search)) {
+                return true;
+            }
 		}
 		return false;
 	}
@@ -175,7 +177,7 @@ public abstract class GewaIpConfig {
 				Enumeration<InetAddress> addrList = ni.getInetAddresses();
 				while(addrList.hasMoreElements()){
 					InetAddress addr = addrList.nextElement();
-					if(addr instanceof Inet4Address) {//Ö»×öIPV4
+					if(addr instanceof Inet4Address) {//Ö»ï¿½ï¿½IPV4
 						hostMap.put(addr.getHostAddress(), addr.getHostName());
 					}
 				}

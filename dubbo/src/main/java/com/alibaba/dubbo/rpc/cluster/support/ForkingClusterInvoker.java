@@ -35,7 +35,7 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 import com.alibaba.dubbo.rpc.cluster.LoadBalance;
 
 /**
- * ²¢ÐÐµ÷ÓÃ£¬Ö»ÒªÒ»¸ö³É¹¦¼´·µ»Ø£¬Í¨³£ÓÃÓÚÊµÊ±ÐÔÒªÇó½Ï¸ßµÄ²Ù×÷£¬µ«ÐèÒªÀË·Ñ¸ü¶à·þÎñ×ÊÔ´¡£
+ * ï¿½ï¿½ï¿½Ðµï¿½ï¿½Ã£ï¿½Ö»ÒªÒ»ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø£ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÊµÊ±ï¿½ï¿½Òªï¿½ï¿½Ï¸ßµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ë·Ñ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½
  * 
  * <a href="http://en.wikipedia.org/wiki/Fork_(topology)">Fork</a>
  * 
@@ -49,6 +49,7 @@ public class ForkingClusterInvoker<T> extends AbstractClusterInvoker<T>{
         super(directory);
     }
 
+    @Override
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public Result doInvoke(final Invocation invocation, List<Invoker<T>> invokers, LoadBalance loadbalance) throws RpcException {
         checkInvokers(invokers, invocation);
@@ -60,9 +61,9 @@ public class ForkingClusterInvoker<T> extends AbstractClusterInvoker<T>{
         } else {
             selected = new ArrayList<Invoker<T>>();
             for (int i = 0; i < forks; i++) {
-                //ÔÚinvokerÁÐ±í(ÅÅ³ýselected)ºó,Èç¹ûÃ»ÓÐÑ¡¹»,Ôò´æÔÚÖØ¸´Ñ­»·ÎÊÌâ.¼ûselectÊµÏÖ.
+                //ï¿½ï¿½invokerï¿½Ð±ï¿½(ï¿½Å³ï¿½selected)ï¿½ï¿½,ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ñ¡ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.ï¿½ï¿½selectÊµï¿½ï¿½.
                 Invoker<T> invoker = select(loadbalance, invocation, invokers, selected);
-                if(!selected.contains(invoker)){//·ÀÖ¹ÖØ¸´Ìí¼Óinvoker
+                if(!selected.contains(invoker)){//ï¿½ï¿½Ö¹ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½invoker
                     selected.add(invoker);
                 }
             }
@@ -72,6 +73,7 @@ public class ForkingClusterInvoker<T> extends AbstractClusterInvoker<T>{
         final BlockingQueue<Object> ref = new LinkedBlockingQueue<Object>();
         for (final Invoker<T> invoker : selected) {
             executor.execute(new Runnable() {
+                @Override
                 public void run() {
                     try {
                         Result result = invoker.invoke(invocation);

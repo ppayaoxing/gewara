@@ -41,6 +41,7 @@ import com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol;
 @Help(parameter = "[service] [method] [times]", summary = "Count the service.", detail = "Count the service.")
 public class CountTelnetHandler implements TelnetHandler {
 
+    @Override
     public String telnet(final Channel channel, String message) {
         String service = (String) channel.getAttribute(ChangeTelnetHandler.SERVICE_KEY);
         if ((service == null || service.length() == 0)
@@ -85,6 +86,7 @@ public class CountTelnetHandler implements TelnetHandler {
                 final Invoker<?> inv = invoker;
                 final String prompt = channel.getUrl().getParameter("prompt", "telnet");
                 Thread thread = new Thread(new Runnable() {
+                    @Override
                     public void run() {
                         for (int i = 0; i < t; i ++) {
                             String result = count(inv, mtd);

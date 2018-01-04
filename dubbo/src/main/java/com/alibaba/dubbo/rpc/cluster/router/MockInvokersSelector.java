@@ -26,21 +26,22 @@ import com.alibaba.dubbo.rpc.RpcException;
 import com.alibaba.dubbo.rpc.cluster.Router;
 
 /**
- * mock invokerÑ¡ÔñÆ÷
+ * mock invokerÑ¡ï¿½ï¿½ï¿½ï¿½
  * @author chao.liuc
  *
  */
 public class MockInvokersSelector implements Router {
 
-	public <T> List<Invoker<T>> route(final List<Invoker<T>> invokers,
-			URL url, final Invocation invocation) throws RpcException {
+	@Override
+    public <T> List<Invoker<T>> route(final List<Invoker<T>> invokers,
+                                      URL url, final Invocation invocation) throws RpcException {
 		if (invocation.getAttachments() == null) {
 			return getNormalInvokers(invokers);
 		} else {
 			String value = invocation.getAttachments().get(Constants.INVOCATION_NEED_MOCK);
-			if (value == null) 
-				return getNormalInvokers(invokers);
-			else if (Boolean.TRUE.toString().equalsIgnoreCase(value)){
+			if (value == null) {
+                return getNormalInvokers(invokers);
+            } else if (Boolean.TRUE.toString().equalsIgnoreCase(value)){
 				return getMockedInvokers(invokers);
 			} 
 		}
@@ -85,10 +86,12 @@ public class MockInvokersSelector implements Router {
 		return hasMockProvider;
 	}
 
+    @Override
     public URL getUrl() {
         return null;
     }
 
+    @Override
     public int compareTo(Router o) {
         return 1;
     }

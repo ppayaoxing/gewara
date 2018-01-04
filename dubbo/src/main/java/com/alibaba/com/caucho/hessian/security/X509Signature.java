@@ -83,8 +83,9 @@ public class X509Signature extends HessianEnvelope {
    */
   public void setAlgorithm(String algorithm)
   {
-    if (algorithm == null)
-      throw new NullPointerException();
+    if (algorithm == null) {
+        throw new NullPointerException();
+    }
     
     _algorithm = algorithm;
   }
@@ -145,14 +146,17 @@ public class X509Signature extends HessianEnvelope {
     _secureRandom = random;
   }
 
+  @Override
   public Hessian2Output wrap(Hessian2Output out)
     throws IOException
   {
-    if (_privateKey == null)
-      throw new IOException("X509Signature.wrap requires a private key");
+    if (_privateKey == null) {
+        throw new IOException("X509Signature.wrap requires a private key");
+    }
     
-    if (_cert == null)
-      throw new IOException("X509Signature.wrap requires a certificate");
+    if (_cert == null) {
+        throw new IOException("X509Signature.wrap requires a certificate");
+    }
     
     OutputStream os = new SignatureOutputStream(out);
     
@@ -163,28 +167,33 @@ public class X509Signature extends HessianEnvelope {
     return filterOut;
   }
 
+  @Override
   public Hessian2Input unwrap(Hessian2Input in)
     throws IOException
   {
-    if (_cert == null)
-      throw new IOException("X509Signature.unwrap requires a certificate");
+    if (_cert == null) {
+        throw new IOException("X509Signature.unwrap requires a certificate");
+    }
     
     int version = in.readEnvelope();
 
     String method = in.readMethod();
 
-    if (! method.equals(getClass().getName()))
-      throw new IOException("expected hessian Envelope method '" +
-			    getClass().getName() + "' at '" + method + "'");
+    if (! method.equals(getClass().getName())) {
+        throw new IOException("expected hessian Envelope method '" +
+                getClass().getName() + "' at '" + method + "'");
+    }
 
     return unwrapHeaders(in);
   }
 
+  @Override
   public Hessian2Input unwrapHeaders(Hessian2Input in)
     throws IOException
   {
-    if (_cert == null)
-      throw new IOException("X509Signature.unwrap requires a certificate");
+    if (_cert == null) {
+        throw new IOException("X509Signature.unwrap requires a certificate");
+    }
     
     InputStream is = new SignatureInputStream(in);
 
@@ -206,8 +215,9 @@ public class X509Signature extends HessianEnvelope {
       try {
         KeyGenerator keyGen = KeyGenerator.getInstance(_algorithm);
 
-        if (_secureRandom != null)
-          keyGen.init(_secureRandom);
+        if (_secureRandom != null) {
+            keyGen.init(_secureRandom);
+        }
 
         SecretKey sharedKey = keyGen.generateKey();
     
@@ -251,6 +261,7 @@ public class X509Signature extends HessianEnvelope {
       }
     }
 
+    @Override
     public void write(int ch)
       throws IOException
     {
@@ -258,6 +269,7 @@ public class X509Signature extends HessianEnvelope {
       _mac.update((byte) ch);
     }
 
+    @Override
     public void write(byte []buffer, int offset, int length)
       throws IOException
     {
@@ -265,14 +277,16 @@ public class X509Signature extends HessianEnvelope {
       _mac.update(buffer, offset, length);
     }
 
+    @Override
     public void close()
       throws IOException
     {
       Hessian2Output out = _out;
       _out = null;
 
-      if (out == null)
-	return;
+      if (out == null) {
+          return;
+      }
       
       _bodyOut.close();
 
@@ -310,16 +324,17 @@ public class X509Signature extends HessianEnvelope {
         for (int i = 0; i < len; i++) {
           String header = in.readString();
 
-          if ("fingerprint".equals(header))
-            fingerprint = in.readBytes();
-          else if ("key-algorithm".equals(header))
-            keyAlgorithm = in.readString();
-          else if ("algorithm".equals(header))
-            algorithm = in.readString();
-          else if ("key".equals(header))
-            encKey = in.readBytes();
-          else
-            throw new IOException("'" + header + "' is an unexpected header");
+          if ("fingerprint".equals(header)) {
+              fingerprint = in.readBytes();
+          } else if ("key-algorithm".equals(header)) {
+              keyAlgorithm = in.readString();
+          } else if ("algorithm".equals(header)) {
+              algorithm = in.readString();
+          } else if ("key".equals(header)) {
+              encKey = in.readBytes();
+          } else {
+              throw new IOException("'" + header + "' is an unexpected header");
+          }
         }
 
         Cipher keyCipher = Cipher.getInstance(keyAlgorithm);
@@ -339,32 +354,37 @@ public class X509Signature extends HessianEnvelope {
       }
     }
     
+    @Override
     public int read()
       throws IOException
     {
       int ch = _bodyIn.read();
 
-      if (ch < 0)
-	return ch;
+      if (ch < 0) {
+          return ch;
+      }
 
       _mac.update((byte) ch);
 
       return ch;
     }
     
+    @Override
     public int read(byte []buffer, int offset, int length)
       throws IOException
     {
       int len = _bodyIn.read(buffer, offset, length);
 
-      if (len < 0)
-	return len;
+      if (len < 0) {
+          return len;
+      }
 
       _mac.update(buffer, offset, len);
 
       return len;
     }
 
+    @Override
     public void close()
       throws IOException
     {
@@ -380,25 +400,29 @@ public class X509Signature extends HessianEnvelope {
 	for (int i = 0; i < len; i++) {
 	  String header = in.readString();
 
-	  if ("signature".equals(header))
-	    signature = in.readBytes();
+	  if ("signature".equals(header)) {
+          signature = in.readBytes();
+      }
 	}
 
         in.completeEnvelope();
         in.close();
           
 
-	if (signature == null)
-	  throw new IOException("Expected signature");
+	if (signature == null) {
+        throw new IOException("Expected signature");
+    }
 
 	byte []sig = _mac.doFinal();
 
-	if (sig.length != signature.length)
-	  throw new IOException("mismatched signature");
+	if (sig.length != signature.length) {
+        throw new IOException("mismatched signature");
+    }
 
 	for (int i = 0; i < sig.length; i++) {
-	  if (signature[i] != sig[i])
-	    throw new IOException("mismatched signature");
+	  if (signature[i] != sig[i]) {
+          throw new IOException("mismatched signature");
+      }
 	}
 
 	// XXX: save principal

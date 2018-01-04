@@ -26,6 +26,7 @@ import com.alibaba.dubbo.rpc.cluster.Merger;
  */
 public class ListMerger implements Merger<List<?>> {
 
+    @Override
     public List<Object> merge(List<?>... items) {
         List<Object> result = new ArrayList<Object>();
         for (List<?> item : items) {

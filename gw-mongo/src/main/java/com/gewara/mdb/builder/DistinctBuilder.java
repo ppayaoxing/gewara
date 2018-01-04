@@ -7,9 +7,9 @@ import com.gewara.mdb.operation.Expression;
 import com.mongodb.client.model.Filters;
 
 /**
- * »ñÈ¡Ä³Ò»¸ö×Ö¶Î²»ÖØ¸´µÄÖµ¡£
- * @author ¶­Ã÷
- * @createDate 2015Äê8ÔÂ10ÈÕ
+ * ï¿½ï¿½È¡Ä³Ò»ï¿½ï¿½ï¿½Ö¶Î²ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½Öµï¿½ï¿½
+ * @author ï¿½ï¿½ï¿½ï¿½
+ * @createDate 2015ï¿½ï¿½8ï¿½ï¿½10ï¿½ï¿½
  * @see AggregationBuilder
  */
 public class DistinctBuilder {
@@ -23,7 +23,7 @@ public class DistinctBuilder {
 	}
 	
 	/**
-	 * ÉèÖÃÌõ¼ş£¬Õâ¸ö·½·¨»á¸²¸ÇÕâÖ®Ç°ËùÉèÖÃµÄÌõ¼ş¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¸²ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param condition
 	 * @return
 	 */
@@ -33,7 +33,7 @@ public class DistinctBuilder {
 	}
 	
 	/**
-	 * ²éÕÒÖ¸¶¨IDµÄÎÄµµµÄ¡£¸Ã²ÎÊıµÄÉèÖÃ»áÊ¹ConditionÉèÖÃµÄÌõ¼şÊ§Ğ§¡£
+	 * ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½IDï¿½ï¿½ï¿½Äµï¿½ï¿½Ä¡ï¿½ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ê¹Conditionï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ê§Ğ§ï¿½ï¿½
 	 * @param ids
 	 * @return
 	 */
@@ -54,8 +54,12 @@ public class DistinctBuilder {
 	
 
 	public Bson getQueryCondition(){
-		if(ids!=null) return ids;
-		if(condition!=null) return condition;
+		if(ids!=null) {
+            return ids;
+        }
+		if(condition!=null) {
+            return condition;
+        }
 		return new BsonDocument();
 	}
 

@@ -26,6 +26,7 @@ import com.alibaba.dubbo.rpc.cluster.Merger;
  */
 public class SetMerger implements Merger<Set<?>> {
 
+    @Override
     public Set<Object> merge(Set<?>... items) {
 
         Set<Object> result = new HashSet<Object>();

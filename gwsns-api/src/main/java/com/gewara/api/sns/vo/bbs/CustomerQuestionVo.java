@@ -13,29 +13,29 @@ import com.gewara.api.vo.BaseVo;
 import com.gewara.model.BaseObject;
 
 /**
- *  @function ÓÃ»§ÌáÎÊ,½¨Òé,bug
+ *  @function ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½,bug
  * 	@author bob.hu
  *	@date	2011-03-11 11:00:46
  */
 public class CustomerQuestionVo extends BaseVo {
 	/***
-	 * È¨ÏÞ
+	 * È¨ï¿½ï¿½
 	 */
 	public static final String CustomerPermission = "customer";
 
 	/**
-	 *	ÓÃ»§ÌáÎÊµÄÀàÐÍ ·þÎñÆÀ¼Û/¸Ä½ø½¨Òé/ÆäËü
+	 *	ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 */
-	public static final String TAG_EVALUATE = "evaluate"; //·þÎñÆÀ¼Û
-	public static final String TAG_ADVISE = "advise"; //¸Ä½ø½¨Òé
-	public static final String TAG_ADVISE_DRAMA = "adviseDrama"; //ÑÝ³ö½¨Òé
-	public static final String TAG_MOBILE = "mobile";	//ÊÖ»ú¿Í»§¶Ë
-	public static final String TAG_OTHER = "other"; //ÆäËü
+	public static final String TAG_EVALUATE = "evaluate"; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAG_ADVISE = "advise"; //ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAG_ADVISE_DRAMA = "adviseDrama"; //ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String TAG_MOBILE = "mobile";	//ï¿½Ö»ï¿½ï¿½Í»ï¿½ï¿½ï¿½
+	public static final String TAG_OTHER = "other"; //ï¿½ï¿½ï¿½ï¿½
 	public static final List<String> TAG_LIST = Arrays.asList(new String[]{ "evaluate", "advise", "mobile", "other","adviseDrama"});
 	
 	/**
-	 *  Ìû×Ó×´Ì¬ ´ý½â¾ö/ ÒÑ»Ø¸´/ ÒÑ¹Ø±Õ
+	 *  ï¿½ï¿½ï¿½ï¿½×´Ì¬ ï¿½ï¿½ï¿½ï¿½ï¿½/ ï¿½Ñ»Ø¸ï¿½/ ï¿½Ñ¹Ø±ï¿½
 	 * */
 	public static final String Y_NEW = "Y_NEW";
 	public static final String Y_TREAT = "Y_TREAT";	
@@ -56,7 +56,7 @@ public class CustomerQuestionVo extends BaseVo {
 	private Timestamp updatetime;
 	private String citycode;
 	private BaseObject member;
-	private String feedbackType;//·´À¡¹éÊôÀàÐÍ
+	private String feedbackType;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	private static final long serialVersionUID = 1365933982357637583L;
 
@@ -171,10 +171,16 @@ public class CustomerQuestionVo extends BaseVo {
 	}
 	
 	public String getStatusText(){
-		if(StringUtils.equals(status, Y_NEW))return "´ý»Ø¸´";
-		if(StringUtils.equals(status, Y_TREAT))return "ÒÑ»Ø¸´";
-		if(StringUtils.equals(status, Y_STOP))return "ÒÑ¹Ø±Õ";
-		return "´ý»Ø¸´";
+		if(StringUtils.equals(status, Y_NEW)) {
+            return "ï¿½ï¿½ï¿½Ø¸ï¿½";
+        }
+		if(StringUtils.equals(status, Y_TREAT)) {
+            return "ï¿½Ñ»Ø¸ï¿½";
+        }
+		if(StringUtils.equals(status, Y_STOP)) {
+            return "ï¿½Ñ¹Ø±ï¿½";
+        }
+		return "ï¿½ï¿½ï¿½Ø¸ï¿½";
 	}
 	
 	public String getFromFlag(){
@@ -182,7 +188,7 @@ public class CustomerQuestionVo extends BaseVo {
 		return AddressConstant.addressMap.get(stype);
 	}
 	
-	public boolean getPic() {// ÓÐÎÞÍ¼Æ¬
+	public boolean getPic() {// ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
 		return StringUtils.contains(this.body, "<img");
 	}
 	public String getFeedbackType() {

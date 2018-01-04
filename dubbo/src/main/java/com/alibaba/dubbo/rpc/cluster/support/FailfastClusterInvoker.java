@@ -27,7 +27,7 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 import com.alibaba.dubbo.rpc.cluster.LoadBalance;
 
 /**
- * ¿ìËÙÊ§°Ü£¬Ö»·¢ÆðÒ»´Îµ÷ÓÃ£¬Ê§°ÜÁ¢¼´±¨´í£¬Í¨³£ÓÃÓÚ·ÇÃÝµÈÐÔµÄÐ´²Ù×÷¡£
+ * ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Îµï¿½ï¿½Ã£ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½Ýµï¿½ï¿½Ôµï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail-fast</a>
  * 
@@ -40,6 +40,7 @@ public class FailfastClusterInvoker<T> extends AbstractClusterInvoker<T>{
         super(directory);
     }
     
+    @Override
     public Result doInvoke(Invocation invocation, List<Invoker<T>> invokers, LoadBalance loadbalance) throws RpcException {
         checkInvokers(invokers, invocation);
         Invoker<T> invoker = select(loadbalance, invocation, invokers, null);

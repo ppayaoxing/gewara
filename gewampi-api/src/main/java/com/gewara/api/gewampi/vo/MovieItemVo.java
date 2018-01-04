@@ -19,68 +19,68 @@ import com.gewara.util.StringUtil;
 public class MovieItemVo extends BaseVo implements Comparable<MovieItemVo>{
 	private static final long serialVersionUID = 7825970506234199792L;
 	
-	protected Long id;			//³¡´ÎID
+	protected Long id;			//ï¿½ï¿½ï¿½ï¿½ID
 	protected Long mpid;			//
 	protected Long movieid;		//Ó°Æ¬ID
 	protected Long cinemaid;		//Ó°ÔºID
-	protected String language;	//ÓïÑÔ
-	protected Date playdate;		//·ÅÓ³ÈÕÆÚ
-	protected String showtime;	//·ÅÓ³Ê±¼ä
-	protected Integer price;		//Ó°Ôº¼Û
-	protected Integer lowest;		//×îµÍÆ±¼Û
-	protected Integer gewaprice;	//¸ñÍßÂô¼Û
-	protected String edition;		//°æ±¾
-	protected Long roomid;		//Ó°Ìü
+	protected String language;	//ï¿½ï¿½ï¿½ï¿½
+	protected Date playdate;		//ï¿½ï¿½Ó³ï¿½ï¿½ï¿½ï¿½
+	protected String showtime;	//ï¿½ï¿½Ó³Ê±ï¿½ï¿½
+	protected Integer price;		//Ó°Ôºï¿½ï¿½
+	protected Integer lowest;		//ï¿½ï¿½ï¿½Æ±ï¿½ï¿½
+	protected Integer gewaprice;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected String edition;		//ï¿½æ±¾
+	protected Long roomid;		//Ó°ï¿½ï¿½
 	protected String roomnum;
-	protected String opentype;	//¿ª·ÅÀàÐÍ
-	protected String citycode;	//³ÇÊÐ
-	protected String seqNo;		//Íâ²¿¹ØÁªID
-	protected Long batch;				//Åú´Î±êÊ¶
-	protected Timestamp createtime;	//´´½¨Ê±¼ä
-	protected String openStatus;		//¿ª·Å×´Ì¬£ºinit£º³õÊ¼×´Ì¬£¬open£ºÒÑ¿ª·Å£¬close£ºÒÔºóÒ²²»¿ª·Å
-	protected String mpitype;			//³¡´ÎÀàÐÍ filmfest µçÓ°½Ú³¡´Î
+	protected String opentype;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected String citycode;	//ï¿½ï¿½ï¿½ï¿½
+	protected String seqNo;		//ï¿½â²¿ï¿½ï¿½ï¿½ï¿½ID
+	protected Long batch;				//ï¿½ï¿½ï¿½Î±ï¿½Ê¶
+	protected Timestamp createtime;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	protected String openStatus;		//ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½initï¿½ï¿½ï¿½ï¿½Ê¼×´Ì¬ï¿½ï¿½openï¿½ï¿½ï¿½Ñ¿ï¿½ï¿½Å£ï¿½closeï¿½ï¿½ï¿½Ôºï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected String mpitype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ filmfest ï¿½ï¿½Ó°ï¿½Ú³ï¿½ï¿½ï¿½
 	
-	//ÒÔÏÂÎªopiÊôÐÔ
-	protected Long openid;			//					------>Ô­opiÀïµÄid
+	//ï¿½ï¿½ï¿½ï¿½Îªopiï¿½ï¿½ï¿½ï¿½
+	protected Long openid;			//					------>Ô­opiï¿½ï¿½ï¿½id
 	protected String moviename;
 	protected String cinemaname;
 	protected String roomname;
-	protected Timestamp playtime;   //				------>Ô­opiÀïµÄplaytime
-	protected Integer costprice; 		//³É±¾¼Û£¨Æ±Ãæ¼Û£©
-	protected Integer fee;				//·þÎñ·Ñ
-	protected String status;			//×´Ì¬£º¿ÉÔ¤¶©£¬²»¿ÉÔ¤¶¨µÈ Y[¿ÉÔ¤¶©]N[²»¿ÉÔ¤¶©]D[É¾³ý]
-	protected String partner;			//ºÏ×÷»ï°é¿ª·Å×´Ì¬£ºY¶ÔÍâ¿ª·Å,N²»¶ÔÍâ¿ª·Å
-	protected Timestamp opentime;		//¿ª·Å¹ºÆ±Ê±¼ä
-	protected Timestamp closetime;		//¹Ø±Õ¹ºÆ±Ê±¼ä
-	protected String elecard;			//1)¿ÉÓÃµÄµÖÓÃÈ¯ÀàÐÍABC£¬2) M±íÊ¾²ÎÓëÉÌ¼ÒÌØÊâÓÅ»Ý»î¶¯
+	protected Timestamp playtime;   //				------>Ô­opiï¿½ï¿½ï¿½playtime
+	protected Integer costprice; 		//ï¿½É±ï¿½ï¿½Û£ï¿½Æ±ï¿½ï¿½Û£ï¿½
+	protected Integer fee;				//ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected String status;			//×´Ì¬ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ Y[ï¿½ï¿½Ô¤ï¿½ï¿½]N[ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½]D[É¾ï¿½ï¿½]
+	protected String partner;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é¿ªï¿½ï¿½×´Ì¬ï¿½ï¿½Yï¿½ï¿½ï¿½â¿ªï¿½ï¿½,Nï¿½ï¿½ï¿½ï¿½ï¿½â¿ªï¿½ï¿½
+	protected Timestamp opentime;		//ï¿½ï¿½ï¿½Å¹ï¿½Æ±Ê±ï¿½ï¿½
+	protected Timestamp closetime;		//ï¿½Ø±Õ¹ï¿½Æ±Ê±ï¿½ï¿½
+	protected String elecard;			//1)ï¿½ï¿½ï¿½ÃµÄµï¿½ï¿½ï¿½È¯ï¿½ï¿½ï¿½ï¿½ABCï¿½ï¿½2) Mï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å»Ý»î¶¯
 
-	protected String spflag;			//ÌØ¼Û»î¶¯±êÊ¶
+	protected String spflag;			//ï¿½Ø¼Û»î¶¯ï¿½ï¿½Ê¶
 	
-	protected String buylimit;			//¹ºÂòÕÅÊýÏÞÖÆ£¬1,2,3,4,5
-	protected Long topicid;				//È¡Æ±Ìû×Ó
-	protected String dayotime;			//day open time Ã¿ÈÕ¿ª·ÅÊ±¼ä
-	protected String dayctime;			//day close time Ã¿ÈÕ¹Ø±ÕÊ±¼ä
-	protected Integer givepoint;		//¸ø»ý·Ö£ºÕý±íÊ¾Ôö¼Ó»ý·Ö£¬¸º±íÊ¾¼õ»ý·Ö
-	protected String expressid;			//¿ìµÝ·½Ê½
+	protected String buylimit;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½1,2,3,4,5
+	protected Long topicid;				//È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	protected String dayotime;			//day open time Ã¿ï¿½Õ¿ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	protected String dayctime;			//day close time Ã¿ï¿½Õ¹Ø±ï¿½Ê±ï¿½ï¿½
+	protected Integer givepoint;		//ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ó»ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected String expressid;			//ï¿½ï¿½Ý·ï¿½Ê½
 	protected Integer lockminute;
 	protected Integer maxseat;
 	protected String roomtype;
 	protected String otherinfo;
-	protected String remark;			//±¸×¢
-	protected Timestamp updatetime;	//¸üÐÂÊ±¼ä
-	protected Integer seatnum;		//×ùÎ»ÊýÁ¿
-	protected Integer asellnum;		//allow ÔÊÐíÂô³öÊý
-	protected Integer gsellnum;		//GewaÂô³öÊý
-	protected Integer csellnum;		//Ó°ÔºÂô³ö
-	protected Integer locknum;		//GewaËø¶¨Êý
+	protected String remark;			//ï¿½ï¿½×¢
+	protected Timestamp updatetime;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	protected Integer seatnum;		//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	protected Integer asellnum;		//allow ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected Integer gsellnum;		//Gewaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	protected Integer csellnum;		//Ó°Ôºï¿½ï¿½ï¿½ï¿½
+	protected Integer locknum;		//Gewaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	//
 	protected String characteristic;
 	
 	
-	//=======================ºó¼ÓµÄ£¬ÇøÓòÆ±¼ÛÖ§³Ö==================================================================================
-	private String isMultiPrice;	//ÊÇ·ñÖ§³ÖÇøÓòÆ±¼Û
-	private String areaPrices;		//ÇøÓòÆ±¼Û
+	//=======================ï¿½ï¿½ÓµÄ£ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½Ö§ï¿½ï¿½==================================================================================
+	private String isMultiPrice;	//ï¿½Ç·ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½
+	private String areaPrices;		//ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½
 	
 	public MovieItemVo(){}
 	@Override
@@ -89,16 +89,22 @@ public class MovieItemVo extends BaseVo implements Comparable<MovieItemVo>{
 	}
 	/**
 	 * @param playItemList
-	 * @return »ñÈ¡Î´¹ýÊ±µÄÅÅÆ¬
+	 * @return ï¿½ï¿½È¡Î´ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Æ¬
 	 */
 	public static List<MovieItemVo> getCurrent(Date date, List<MovieItemVo> playItemList) {
 		Date today = DateUtil.getBeginningTimeOfDay(new Date());
-		if(date.after(today)) return playItemList;
-		if(date.before(today)) return new ArrayList<MovieItemVo>();
+		if(date.after(today)) {
+            return playItemList;
+        }
+		if(date.before(today)) {
+            return new ArrayList<MovieItemVo>();
+        }
 		String time = DateUtil.format(new Date(), "HH:mm");
 		List<MovieItemVo> result = new ArrayList<MovieItemVo>();
 		for(MovieItemVo mpi:playItemList){
-			if(mpi.showtime.compareTo(time) > 0) result.add(mpi);
+			if(mpi.showtime.compareTo(time) > 0) {
+                result.add(mpi);
+            }
 		}
 		return result;
 	}
@@ -152,11 +158,21 @@ public class MovieItemVo extends BaseVo implements Comparable<MovieItemVo>{
 
 	@Override
 	public int compareTo(MovieItemVo another) {
-		if(this == another) return 0;
-		if(another==null) return 1;
-		if(this.playdate.after(another.playdate)) return 1;
-		if(this.playdate.before(another.playdate)) return -1;
-		if(!this.showtime.equals(another.showtime)) return this.showtime.compareTo(another.showtime);
+		if(this == another) {
+            return 0;
+        }
+		if(another==null) {
+            return 1;
+        }
+		if(this.playdate.after(another.playdate)) {
+            return 1;
+        }
+		if(this.playdate.before(another.playdate)) {
+            return -1;
+        }
+		if(!this.showtime.equals(another.showtime)) {
+            return this.showtime.compareTo(another.showtime);
+        }
 		return StringUtils.isBlank(this.roomname) ? (StringUtils.isBlank(another.roomname) ? 0 : -1) : (StringUtils.isBlank(another.roomname) ? 1 : this.roomname.compareTo(another.roomname));
 	}
 	public Long getBatch() {
@@ -531,7 +547,9 @@ public class MovieItemVo extends BaseVo implements Comparable<MovieItemVo>{
 			return "2";
 		}
 		Integer remain = this.seatnum - this.gsellnum - this.csellnum - this.locknum;
-		if(remain == 0) return "0";
+		if(remain == 0) {
+            return "0";
+        }
 		if(0 < remain && remain < 10) {
 			return "1";
 		}
@@ -542,19 +560,19 @@ public class MovieItemVo extends BaseVo implements Comparable<MovieItemVo>{
 			return "";
 		}
 		if(seatnum==null || asellnum==null ||  gsellnum==null || csellnum==null || locknum==null){
-			return "Ñ¡×ù¹ºÆ±";
+			return "Ñ¡ï¿½ï¿½ï¿½ï¿½Æ±";
 		}
 		/*Integer remain = this.seatnum - this.gsellnum - this.csellnum - this.locknum;
 		if(remain <= 0) {
-			return "Âô¹âÁË¡­";
+			return "ï¿½ï¿½ï¿½ï¿½ï¿½Ë¡ï¿½";
 		}else if(remain < 10) {
-			return "×ùÎ»½ôÕÅ";
+			return "ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½";
 		}*/
 		Timestamp curtime = DateUtil.getCurFullTimestamp();
-		String resText = "Ñ¡×ù¹ºÆ±";
+		String resText = "Ñ¡ï¿½ï¿½ï¿½ï¿½Æ±";
 		if(opentime!=null){
 			if(opentime.after(curtime) && DateUtil.formatDate(curtime).equals(DateUtil.formatDate(opentime))){
-				resText = DateUtil.format(opentime, "HH:mm")+"ÊÛÆ±";
+				resText = DateUtil.format(opentime, "HH:mm")+"ï¿½ï¿½Æ±";
 			}
 		}
 		return resText;
@@ -564,7 +582,9 @@ public class MovieItemVo extends BaseVo implements Comparable<MovieItemVo>{
 	}
 	
 	public boolean hasOpentype(String type){
-		if(StringUtils.isBlank(type)) return false;
+		if(StringUtils.isBlank(type)) {
+            return false;
+        }
 		return StringUtils.equals(this.opentype, type);
 	}
 	
@@ -613,7 +633,7 @@ public class MovieItemVo extends BaseVo implements Comparable<MovieItemVo>{
 		}
 		return playtime;
 	}
-	//ÏÂÃæµÄ·½·¨Ö»ÔÚºóÌ¨ÓÃ
+	//ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½Ö»ï¿½Úºï¿½Ì¨ï¿½ï¿½
 	public boolean isOpen(){
 		if(hasOpenid()){
 			return opentime!=null && opentime.before(new Timestamp(System.currentTimeMillis()));

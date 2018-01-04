@@ -26,8 +26,9 @@ public class AbcRequest extends ApiRequest {
 
 	@Override
 	public boolean checkParams() {
-		if(orderid==null)
-			return false;
+		if(orderid==null) {
+            return false;
+        }
 		return true;
 	}
 

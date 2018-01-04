@@ -7,30 +7,30 @@ import org.apache.commons.lang.StringUtils;
 public class OrderCommandVo implements Serializable {
 
 	private static final long serialVersionUID = -3829651039853670498L;
-	private String takemethod; // È¡Æ±·½Ê½
+	private String takemethod; // È¡Æ±ï¿½ï¿½Ê½
 	private String citycode;
-	private String realname; // ÓÃ»§ÕæÊµÐÕÃû
+	private String realname; // ï¿½Ã»ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½
 	private String telphone;
-	private String address; // ¿ìµÝµØÖ·
-	private String seqno; // ³¡´Î±àºÅ
-	private String mobile; // ÊÖ»úºÅ
-	private Long orderid; // ¶©µ¥ºÅ
-	private String areaseqno; // ÇøÓò±àºÅ
-	private String opentype; // ¶©µ¥ÀàÐÍ£ºÑ¡×ù¡¢¼Û¸ñ
-	private String greetings; // ¶©µ¥ÎÄ×Ö¸öÐÔ»¯
-	private String seatLabel; // old interface: ×ùÎ»×ù±ê areasq:1:2,areasq:1:3 ¼Û¸ñÊý¾Ý: areasq:priceid:quantity areaseq:234:5,areaseq:235:2
-	// new interface: {"type":seat or price,"seatIds": "×ùÎ»×ù±êareasq:1:2,areasq:1:3¼Û¸ñÊý¾Ýareasq:priceid:quantity areaseq:234:5,areaseq:235:2",
-	// "packTicketId":"Ì×Æ±±àºÅ","discountInfo":"ÕÛ¿ÛÐÅÏ¢","discountTotal":""}
+	private String address; // ï¿½ï¿½Ýµï¿½Ö·
+	private String seqno; // ï¿½ï¿½ï¿½Î±ï¿½ï¿½
+	private String mobile; // ï¿½Ö»ï¿½ï¿½ï¿½
+	private Long orderid; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String areaseqno; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String opentype; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Û¸ï¿½
+	private String greetings; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ô»ï¿½
+	private String seatLabel; // old interface: ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ areasq:1:2,areasq:1:3 ï¿½Û¸ï¿½ï¿½ï¿½ï¿½ï¿½: areasq:priceid:quantity areaseq:234:5,areaseq:235:2
+	// new interface: {"type":seat or price,"seatIds": "ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½areasq:1:2,areasq:1:3ï¿½Û¸ï¿½ï¿½ï¿½ï¿½ï¿½areasq:priceid:quantity areaseq:234:5,areaseq:235:2",
+	// "packTicketId":"ï¿½ï¿½Æ±ï¿½ï¿½ï¿½","discountInfo":"ï¿½Û¿ï¿½ï¿½ï¿½Ï¢","discountTotal":""}
 	private String usertype;
 	private String bindMobile;
 	
-	private Integer ticketnum;		//¶©µ¥Æ±Êý
-	private Double totalfee;		//¶©µ¥×Ü½ð¶î
-	private Double payfee;			//¶©µ¥Ö§¸¶½ð¶î
+	private Integer ticketnum;		//ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½
+	private Double totalfee;		//ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
+	private Double payfee;			//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String checkpass;
-	private String idnumber;		//Éí·ÝÖ¤ÐÅÏ¢
-	private Long configid;			//¶þ¼¶ÇþµÀÓÃ
-	private String clientIp;		//¿Í»§¶ËIP
+	private String idnumber;		//ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Ï¢
+	private Long configid;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String clientIp;		//ï¿½Í»ï¿½ï¿½ï¿½IP
 
 	public OrderCommandVo(String seqno, Long orderid, String mobile, String areaseqno, String opentype, String seatLabel) {
 		this.seqno = seqno;
@@ -83,8 +83,9 @@ public class OrderCommandVo implements Serializable {
 	}
 
 	public boolean hasOpentype(String type) {
-		if (StringUtils.isBlank(type))
-			return false;
+		if (StringUtils.isBlank(type)) {
+            return false;
+        }
 		return StringUtils.equals(this.opentype, type);
 	}
 

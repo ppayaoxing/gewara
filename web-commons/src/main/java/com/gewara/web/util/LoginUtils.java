@@ -12,44 +12,48 @@ import com.gewara.util.PKCoderUtil;
 import com.gewara.util.StringUtil;
 
 public abstract class LoginUtils {
-	//public static final String LOG_TYPE_LOGIN = "login";			// µÇÂ¼ÎÊÌâ
-	//public static final String LOG_TYPE_LOGOUT = "logout";			// ÓÃ»§ÍË³ö
-	//public static final String LOG_TYPE_USERLOGIN = "userlogin";	// ºóÌ¨µÇÂ¼ÎÊÌâ
+	//public static final String LOG_TYPE_LOGIN = "login";			// ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+	//public static final String LOG_TYPE_LOGOUT = "logout";			// ï¿½Ã»ï¿½ï¿½Ë³ï¿½
+	//public static final String LOG_TYPE_USERLOGIN = "userlogin";	// ï¿½ï¿½Ì¨ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
 	
 
 	public static final String SESS_COOKIE_NAME = Config.SESSION_COOKIE_NAME;
 	public static final String COOKIE_NAME_TRACE = "_gwtc_"; 
-	public static final String ERROR_PASSORNAME = "passOrName"; 	//ÓÃ»§Ãû»òÃÜÂë´íÎó£¡
-	public static final String ERROR_USERNAME = "username"; 		//ÓÃ»§Ãû²»´æÔÚ
-	public static final String ERROR_PASSWORD = "password"; 		//ÃÜÂë´íÎó
-	public static final String ERROR_CAPTCHA = "captcha"; 			//ÑéÖ¤Âë´íÎó
-	public static final String ERROR_REJECTED = "rejected"; 		//ÓÃ»§Ãû±»½ûÓÃ
-	public static final String ERROR_LOGOUT = "logout";				//ÍË³ö
-	public static final String ERROR_IPCHANGE = "ipChange";			//ip¸ü¸Ä
+	public static final String ERROR_PASSORNAME = "passOrName"; 	//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String ERROR_USERNAME = "username"; 		//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String ERROR_PASSWORD = "password"; 		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String ERROR_CAPTCHA = "captcha"; 			//ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String ERROR_REJECTED = "rejected"; 		//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String ERROR_LOGOUT = "logout";				//ï¿½Ë³ï¿½
+	public static final String ERROR_IPCHANGE = "ipChange";			//ipï¿½ï¿½ï¿½ï¿½
 	
 	private static String encKey = "skTeis@2";
 	public static String getTraceId(String memberid){
 		return PKCoderUtil.encryptString(""+memberid, encKey);
 	}
 	public static String getUserIdByTraceId(String traceId){
-		if(StringUtil.isHexDataStr(traceId)){//ºÏ·¨µÄ²ÅÈ¡Öµ
+		if(StringUtil.isHexDataStr(traceId)){//ï¿½Ï·ï¿½ï¿½Ä²ï¿½È¡Öµ
 			return PKCoderUtil.decryptString(traceId, encKey);
 		}
 		return null;
 	}
 	public static String getUserIdByFullTrace(HttpServletRequest request){
 		String track = BaseWebUtils.getCookieValue(request, COOKIE_NAME_TRACE);
-		if(StringUtils.isBlank(track)) return null;
+		if(StringUtils.isBlank(track)) {
+            return null;
+        }
 		String userId = getUserIdByTraceId(StringUtils.split(track, ".")[0]);
 		return userId;
 	}
 	public static String[] getTracePair(HttpServletRequest request){
 		String track = BaseWebUtils.getCookieValue(request, COOKIE_NAME_TRACE);
-		if(StringUtils.isBlank(track)) return null;
+		if(StringUtils.isBlank(track)) {
+            return null;
+        }
 		String[] tracePair = StringUtils.split(track, "@");
 		return tracePair;
 	}
-	//µÇÂ¼cacheKey
+	//ï¿½ï¿½Â¼cacheKey
 	public static final String KEY_TIMEOUT_ = "TIMEOUT_";
 	
 	public static boolean isValidSessid(String ukey){
@@ -61,7 +65,9 @@ public abstract class LoginUtils {
 		return mykey.equals(ukey.substring(24));
 	}
 	private static boolean isMemberEncode(String memberEncode){
-		if(StringUtils.isBlank(memberEncode)) return false;
+		if(StringUtils.isBlank(memberEncode)) {
+            return false;
+        }
 		if(StringUtils.contains(memberEncode, ",")){
 			String[] encodes = memberEncode.split(",");
 			if(StringUtils.equals(encodes[0], encodes[1])){

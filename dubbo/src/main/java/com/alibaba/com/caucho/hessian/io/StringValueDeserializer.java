@@ -68,11 +68,13 @@ public class StringValueDeserializer extends AbstractDeserializer {
     }
   }
   
+  @Override
   public Class getType()
   {
     return _cl;
   }
   
+  @Override
   public Object readMap(AbstractHessianInput in)
     throws IOException
   {
@@ -81,10 +83,11 @@ public class StringValueDeserializer extends AbstractDeserializer {
     while (! in.isEnd()) {
       String key = in.readString();
 
-      if (key.equals("value"))
-        value = in.readString();
-      else
-	in.readObject();
+      if ("value".equals(key)) {
+          value = in.readString();
+      } else {
+          in.readObject();
+      }
     }
 
     in.readMapEnd();
@@ -96,16 +99,18 @@ public class StringValueDeserializer extends AbstractDeserializer {
     return object;
   }
   
+  @Override
   public Object readObject(AbstractHessianInput in, String []fieldNames)
     throws IOException
   {
     String value = null;
 
     for (int i = 0; i < fieldNames.length; i++) {
-      if ("value".equals(fieldNames[i]))
-        value = in.readString();
-      else
-	in.readObject();
+      if ("value".equals(fieldNames[i])) {
+          value = in.readString();
+      } else {
+          in.readObject();
+      }
     }
 
     Object object = create(value);
@@ -118,8 +123,9 @@ public class StringValueDeserializer extends AbstractDeserializer {
   private Object create(String value)
     throws IOException
   {
-    if (value == null)
-      throw new IOException(_cl.getName() + " expects name.");
+    if (value == null) {
+        throw new IOException(_cl.getName() + " expects name.");
+    }
 
     try {
       return _constructor.newInstance(new Object[] { value });

@@ -20,37 +20,37 @@ public class DramaVo extends BaseEntityVo{
 	private String length;
 	private String state;
 	private String highlight;
-	private String dramatype;//»°¾çÀàÐÍ
+	private String dramatype;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	private String citycode;
 	private String dramaalias;
 	private String playwright;
 	private String website;
-	private String actorstext;//Ö÷ÑÝÎÄ±¾
-	private String directortext;//µ¼ÑÝÎÄ±¾
-	private String troupecompany;//³öÆ·¾çÉç
-	private String troupecompanytext;//³öÆ·¾çÉçÎÄ±¾
-	private String dramacompany;//³öÆ··½
+	private String actorstext;//ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
+	private String directortext;//ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
+	private String troupecompany;//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
+	private String troupecompanytext;//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
+	private String dramacompany;//ï¿½ï¿½Æ·ï¿½ï¿½
 	private String dramadata;//
-	private String playinfo; //·ÅÓ³Ê±¼ä
-	private Integer boughtcount;	// ¹ºÆ±ÈË´Î
-	private String actorcontent;	//ÑÝÔ±µÄ½éÉÜ
+	private String playinfo; //ï¿½ï¿½Ó³Ê±ï¿½ï¿½
+	private Integer boughtcount;	// ï¿½ï¿½Æ±ï¿½Ë´ï¿½
+	private String actorcontent;	//ï¿½ï¿½Ô±ï¿½Ä½ï¿½ï¿½ï¿½
 	
 	private String otherinfo;
-	private String pretype;			//Ô¤ÊÛÀàÐÍ
-	private String saleCycle;		//Ô¤ÊÛÖÜÆÚ
-	private String prices;			//¼Û¸ñÊý¾Ý"ÒÑ, ¸ô¿ª"
-	private String performDesc;		//ÑÝ³öËµÃ÷
-	private String prepay;			//ÊÇ·ñÔ¤ÊÛ
-	private String prepayDesc;		//Ô¤ÊÛÎÄ×ÖËµÃ÷ÄÚÈÝ
-	private String calendarExt;		//ÈÕÀúÏÔÊ¾
-	private String warmPrompt;		//ÎÂÜ°ÌáÊ¾
+	private String pretype;			//Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String saleCycle;		//Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String prices;			//ï¿½Û¸ï¿½ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½"
+	private String performDesc;		//ï¿½Ý³ï¿½Ëµï¿½ï¿½
+	private String prepay;			//ï¿½Ç·ï¿½Ô¤ï¿½ï¿½
+	private String prepayDesc;		//Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String calendarExt;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
+	private String warmPrompt;		//ï¿½ï¿½Ü°ï¿½ï¿½Ê¾
 	private String separate;
 	private String promo;
-	private String crmMsg;			//CRMÌáÊ¾ÎÄ×Ö
-	private String gypMsg;			//¹«ÒæÆ±ÌáÊ¾ÎÄ×Ö
-	private String show;				//ÏîÄ¿ÏÔÊ¾/Òþ²Ø×´Ì¬
-	private String partner;         //¹©Ó¦ÉÌ
+	private String crmMsg;			//CRMï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+	private String gypMsg;			//ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+	private String show;				//ï¿½ï¿½Ä¿ï¿½ï¿½Ê¾/ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	private String partner;         //ï¿½ï¿½Ó¦ï¿½ï¿½
 	
 	public String getShow() {
 		return show;
@@ -263,8 +263,11 @@ public class DramaVo extends BaseEntityVo{
 		return res;
 	}
 	
-	public String getLimg() {
-		if(StringUtils.isBlank(logo)) return "img/default_head.png";
+	@Override
+    public String getLimg() {
+		if(StringUtils.isBlank(logo)) {
+            return "img/default_head.png";
+        }
 		return logo;
 	}
 	public String getWarmPrompt() {

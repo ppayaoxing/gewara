@@ -53,7 +53,7 @@ import com.alibaba.dubbo.registry.support.FailbackRegistry;
  */
 public class MulticastRegistry extends FailbackRegistry {
 
-    // ÈÕÖ¾Êä³ö
+    // ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½
     private static final Logger logger = LoggerFactory.getLogger(MulticastRegistry.class);
 
     private static final int DEFAULT_MULTICAST_PORT = 1234;
@@ -89,6 +89,7 @@ public class MulticastRegistry extends FailbackRegistry {
             mutilcastSocket.setLoopbackMode(false);
             mutilcastSocket.joinGroup(mutilcastAddress);
             Thread thread = new Thread(new Runnable() {
+                @Override
                 public void run() {
                     byte[] buf = new byte[2048];
                     DatagramPacket recv = new DatagramPacket(buf, buf.length);
@@ -118,10 +119,11 @@ public class MulticastRegistry extends FailbackRegistry {
         this.cleanPeriod = url.getParameter(Constants.SESSION_TIMEOUT_KEY, Constants.DEFAULT_SESSION_TIMEOUT);
         if (url.getParameter("clean", true)) {
             this.cleanFuture = cleanExecutor.scheduleWithFixedDelay(new Runnable() {
+                @Override
                 public void run() {
                     try {
-                        clean(); // Çå³ý¹ýÆÚÕß
-                    } catch (Throwable t) { // ·ÀÓùÐÔÈÝ´í
+                        clean(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½
                         logger.error("Unexpected exception occur at clean expired provider, cause: " + t.getMessage(), t);
                     }
                 }
@@ -216,8 +218,8 @@ public class MulticastRegistry extends FailbackRegistry {
                     if (UrlUtils.isMatch(url, u)) {
                         String host = remoteAddress != null && remoteAddress.getAddress() != null 
                                 ? remoteAddress.getAddress().getHostAddress() : url.getIp();
-                        if (url.getParameter("unicast", true) // Ïû·ÑÕßµÄ»úÆ÷ÊÇ·ñÖ»ÓÐÒ»¸ö½ø³Ì
-                                && ! NetUtils.getLocalHost().equals(host)) { // Í¬»úÆ÷¶à½ø³Ì²»ÄÜÓÃunicastµ¥²¥ÐÅÏ¢£¬·ñÔòÖ»»áÓÐÒ»¸ö½ø³ÌÊÕµ½ÐÅÏ¢
+                        if (url.getParameter("unicast", true) // ï¿½ï¿½ï¿½ï¿½ï¿½ßµÄ»ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                                && ! NetUtils.getLocalHost().equals(host)) { // Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì²ï¿½ï¿½ï¿½ï¿½ï¿½unicastï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½Ï¢
                             unicast(Constants.REGISTER + " " + u.toFullString(), host);
                         } else {
                             broadcast(Constants.REGISTER + " " + u.toFullString());
@@ -255,14 +257,17 @@ public class MulticastRegistry extends FailbackRegistry {
         }
     }
     
+    @Override
     protected void doRegister(URL url) {
         broadcast(Constants.REGISTER + " " + url.toFullString());
     }
 
+    @Override
     protected void doUnregister(URL url) {
         broadcast(Constants.UNREGISTER + " " + url.toFullString());
     }
 
+    @Override
     protected void doSubscribe(URL url, NotifyListener listener) {
         if (Constants.ANY_VALUE.equals(url.getServiceInterface())) {
             admin = true;
@@ -276,6 +281,7 @@ public class MulticastRegistry extends FailbackRegistry {
         }
     }
 
+    @Override
     protected void doUnsubscribe(URL url, NotifyListener listener) {
         if (! Constants.ANY_VALUE.equals(url.getServiceInterface())
                 && url.getParameter(Constants.REGISTER_KEY, true)) {
@@ -284,6 +290,7 @@ public class MulticastRegistry extends FailbackRegistry {
         broadcast(Constants.UNSUBSCRIBE + " " + url.toFullString());
     }
 
+    @Override
     public boolean isAvailable() {
         try {
             return mutilcastSocket != null;
@@ -292,6 +299,7 @@ public class MulticastRegistry extends FailbackRegistry {
         }
     }
 
+    @Override
     public void destroy() {
         super.destroy();
         try {
@@ -361,26 +369,31 @@ public class MulticastRegistry extends FailbackRegistry {
         return list;
     }
 
+    @Override
     public void register(URL url) {
         super.register(url);
         registered(url);
     }
 
+    @Override
     public void unregister(URL url) {
         super.unregister(url);
         unregistered(url);
     }
 
+    @Override
     public void subscribe(URL url, NotifyListener listener) {
         super.subscribe(url, listener);
         subscribed(url, listener);
     }
 
+    @Override
     public void unsubscribe(URL url, NotifyListener listener) {
         super.unsubscribe(url, listener);
         received.remove(url);
     }
 
+    @Override
     public List<URL> lookup(URL url) {
         List<URL> urls= new ArrayList<URL>();
         Map<String, List<URL>> notifiedUrls = getNotified().get(url);

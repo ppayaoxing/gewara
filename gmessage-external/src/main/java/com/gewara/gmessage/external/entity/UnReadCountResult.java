@@ -3,7 +3,7 @@ package com.gewara.gmessage.external.entity;
 
 import java.io.Serializable;
 /**
- * Î´¶ÁÏûÏ¢Í³¼Æ
+ * Î´ï¿½ï¿½ï¿½ï¿½Ï¢Í³ï¿½ï¿½
  *
  */
 public class UnReadCountResult implements Serializable {
@@ -35,11 +35,21 @@ public class UnReadCountResult implements Serializable {
 		this.interaction=interaction;
 		this.instant=instant;
 		
-		if(this.system<0) this.system=0;
-		if(this.interaction<0) this.interaction=0;
-		if(this.instant<0) this.instant=0;
-		if(this.recommend<0) this.recommend=0;
-		if(this.comment<0) this.comment=0;
+		if(this.system<0) {
+            this.system = 0;
+        }
+		if(this.interaction<0) {
+            this.interaction = 0;
+        }
+		if(this.instant<0) {
+            this.instant = 0;
+        }
+		if(this.recommend<0) {
+            this.recommend = 0;
+        }
+		if(this.comment<0) {
+            this.comment = 0;
+        }
 	}
 	
 	public long getComment() {
@@ -97,7 +107,7 @@ public class UnReadCountResult implements Serializable {
 		this.system = system;
 	}
 	
-	/**»¥¶¯ÏûÏ¢*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢*/
 	public long getInteraction() {
 		return interaction;
 	}
@@ -106,7 +116,7 @@ public class UnReadCountResult implements Serializable {
 		this.interaction = interaction;
 	}
 	
-	/**¼´Ê±ÏûÏ¢*/
+	/**ï¿½ï¿½Ê±ï¿½ï¿½Ï¢*/
 	public long getInstant() {
 		return instant;
 	}
@@ -114,7 +124,7 @@ public class UnReadCountResult implements Serializable {
 		this.instant = instant;
 	}
 	
-	/**ÓÃ»§ID*/
+	/**ï¿½Ã»ï¿½ID*/
 	public String getUserID() {
 		return userID;
 	}

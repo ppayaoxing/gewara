@@ -27,7 +27,9 @@ public class ErrorCode<T> implements Serializable{
 	public static ErrorCode SUCCESS = new ErrorCode(CODE_SUCCESS, "操作成功！", null);
 	@Override
 	public boolean equals(Object another){
-		if(another == null || !(another instanceof ErrorCode)) return false;
+		if(another == null || !(another instanceof ErrorCode)) {
+            return false;
+        }
 		return this.errcode== ((ErrorCode)another).errcode;
 	}
 	public boolean isSuccess(){

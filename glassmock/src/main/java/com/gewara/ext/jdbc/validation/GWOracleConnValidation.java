@@ -101,7 +101,9 @@ public class GWOracleConnValidation {
 						}
 					}
 				}
-				if(!isValid) invalidTimes ++;
+				if(!isValid) {
+                    invalidTimes++;
+                }
 				return isValid;
 			}else{
 				start = false;

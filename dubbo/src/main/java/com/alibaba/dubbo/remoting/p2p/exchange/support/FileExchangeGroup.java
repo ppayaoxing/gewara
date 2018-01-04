@@ -44,10 +44,10 @@ public class FileExchangeGroup extends AbstractExchangeGroup {
     
     private volatile long last;
 
-    // ¶¨Ê±ÈÎÎñÖ´ÐÐÆ÷
+    // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3, new NamedThreadFactory("FileGroupModifiedChecker", true));
 
-    // ÖØÁ¬¶¨Ê±Æ÷£¬¶¨Ê±¼ì²éÁ¬½ÓÊÇ·ñ¿ÉÓÃ£¬²»¿ÉÓÃÊ±£¬ÎÞÏÞ´ÎÖØÁ¬
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½
     private final ScheduledFuture<?> checkModifiedFuture;
 
     public FileExchangeGroup(URL url){
@@ -58,17 +58,19 @@ public class FileExchangeGroup extends AbstractExchangeGroup {
             throw new IllegalStateException("The group file not exists. file: " + path);
         }
         checkModifiedFuture = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
+            @Override
             public void run() {
-                // ¼ì²âÎÄ¼þ±ä¸ü
+                // ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½
                 try {
                     check();
-                } catch (Throwable t) { // ·ÀÓùÐÔÈÝ´í
+                } catch (Throwable t) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½
                     logger.error("Unexpected error occur at reconnect, cause: " + t.getMessage(), t);
                 }
             }
         }, 2000, 2000, TimeUnit.MILLISECONDS);
     }
 
+    @Override
     public void close() {
         super.close();
         try {

@@ -67,14 +67,16 @@ public class GewaAuthenticationFailureHandler implements AuthenticationFailureHa
 			if(exception instanceof InvalidCookieException){
 				errortype = "captcha";
 			}else if(exception instanceof DisabledException){
-				//msg = "ÄãµÄÓÃ»§Ãû±»½ûÓÃ£¬ÇëÁªÏµ¿Í·þ£¡";
+				//msg = "ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½Í·ï¿½ï¿½ï¿½";
 				errortype = LoginUtils.ERROR_REJECTED;
-			}else if(exception instanceof BadCredentialsException){//ÃÜÂë´íÎó
+			}else if(exception instanceof BadCredentialsException){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				errortype = LoginUtils.ERROR_PASSWORD;
-			}else if(exception instanceof AuthenticationServiceException){//ÓÃ»§²»´æÔÚ.
+			}else if(exception instanceof AuthenticationServiceException){//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 				errortype = LoginUtils.ERROR_USERNAME;
 			}	
-			if(StringUtils.isNotBlank(errortype)) params +="&errortype=" + URLEncoder.encode(errortype, "utf-8");
+			if(StringUtils.isNotBlank(errortype)) {
+                params += "&errortype=" + URLEncoder.encode(errortype, "utf-8");
+            }
 			failure += "?" + params;
 			String targetUrl = request.getParameter(targetUrlParameter);
 			if(StringUtils.isNotBlank(targetUrl)) {
@@ -84,7 +86,7 @@ public class GewaAuthenticationFailureHandler implements AuthenticationFailureHa
 				}catch(Exception e){
 				}
 			}
-			//¼ÇÂ¼ÈÕÖ¾
+			//ï¿½ï¿½Â¼ï¿½ï¿½Ö¾
 			Map<String, String> result = new HashMap();
 			String ip = BaseWebUtils.getRemoteIp(request);
 			String userAgent = request.getHeader("user-agent");

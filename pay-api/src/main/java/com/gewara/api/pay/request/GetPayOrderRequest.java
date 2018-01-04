@@ -28,8 +28,9 @@ public class GetPayOrderRequest extends ApiRequest {
 
 	@Override
 	public boolean checkParams() {
-		if(tradeNo==null || tradeNo.trim().length()==0)
-			return false;
+		if(tradeNo==null || tradeNo.trim().length()==0) {
+            return false;
+        }
 		return true;
 	}
 

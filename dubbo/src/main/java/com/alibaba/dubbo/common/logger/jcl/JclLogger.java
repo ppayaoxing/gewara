@@ -7,9 +7,9 @@ import org.apache.commons.logging.Log;
 import com.alibaba.dubbo.common.logger.Logger;
 
 /**
- * ÊÊÅäCommonsLogging£¬ÒÀÀµÓÚcommons-logging.jar
+ * ï¿½ï¿½ï¿½ï¿½CommonsLoggingï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½commons-logging.jar
  * <br/>
- * ÓÐ¹ØCommonsLoggingÏêÏ¸ÐÅÏ¢Çë²ÎÔÄ£º<a target="_blank" href="http://www.apache.org/">http://www.apache.org/</a>
+ * ï¿½Ð¹ï¿½CommonsLoggingï¿½ï¿½Ï¸ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ä£ï¿½<a target="_blank" href="http://www.apache.org/">http://www.apache.org/</a>
  *
  * @author liangfei0201@163.com
  *
@@ -24,83 +24,103 @@ public class JclLogger implements Logger, Serializable {
 		this.logger = logger;
 	}
 
+    @Override
     public void trace(String msg) {
         logger.trace(msg);
     }
 
+    @Override
     public void trace(Throwable e) {
         logger.trace(e);
     }
 
+    @Override
     public void trace(String msg, Throwable e) {
         logger.trace(msg, e);
     }
 
-	public void debug(String msg) {
+	@Override
+    public void debug(String msg) {
 		logger.debug(msg);
 	}
 
+    @Override
     public void debug(Throwable e) {
         logger.debug(e);
     }
 
-	public void debug(String msg, Throwable e) {
+	@Override
+    public void debug(String msg, Throwable e) {
 		logger.debug(msg, e);
 	}
 
-	public void info(String msg) {
+	@Override
+    public void info(String msg) {
 		logger.info(msg);
 	}
 
+    @Override
     public void info(Throwable e) {
         logger.info(e);
     }
 
-	public void info(String msg, Throwable e) {
+	@Override
+    public void info(String msg, Throwable e) {
 		logger.info(msg, e);
 	}
 
-	public void warn(String msg) {
+	@Override
+    public void warn(String msg) {
 		logger.warn(msg);
 	}
 
+    @Override
     public void warn(Throwable e) {
         logger.warn(e);
     }
 
-	public void warn(String msg, Throwable e) {
+	@Override
+    public void warn(String msg, Throwable e) {
 		logger.warn(msg, e);
 	}
 
-	public void error(String msg) {
+	@Override
+    public void error(String msg) {
 		logger.error(msg);
 	}
 
+    @Override
     public void error(Throwable e) {
         logger.error(e);
     }
 
-	public void error(String msg, Throwable e) {
+	@Override
+    public void error(String msg, Throwable e) {
 		logger.error(msg, e);
 	}
 
+    @Override
     public boolean isTraceEnabled() {
         return logger.isTraceEnabled();
     }
 
-	public boolean isDebugEnabled() {
+	@Override
+    public boolean isDebugEnabled() {
 		return logger.isDebugEnabled();
 	}
 
-	public boolean isInfoEnabled() {
+	@Override
+    public boolean isInfoEnabled() {
 		return logger.isInfoEnabled();
 	}
 
-	public boolean isWarnEnabled() {
+	@Override
+    public boolean isWarnEnabled() {
 		return logger.isWarnEnabled();
 	}
 
-	public boolean isErrorEnabled() {
+	@Override
+    public boolean isErrorEnabled() {
 		return logger.isErrorEnabled();
 	}
 

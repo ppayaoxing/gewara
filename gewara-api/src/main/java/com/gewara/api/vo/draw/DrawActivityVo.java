@@ -25,8 +25,8 @@ public class DrawActivityVo extends BaseVo {
 	private Timestamp addtime;
 	private String showsite;
 	private String otherinfo;
-	private Integer limitnum;			//限制次数
-	private String projectid;			//项目id
+	private Integer limitnum;			//锟斤拷锟狡达拷锟斤拷
+	private String projectid;			//锟斤拷目id
 	
 	public DrawActivityVo(){
 		
@@ -119,11 +119,15 @@ public class DrawActivityVo extends BaseVo {
 	}
 	
 	public boolean isOpen(){
-		if(starttime==null) return false;
+		if(starttime==null) {
+            return false;
+        }
 		return starttime.before(new Timestamp(System.currentTimeMillis()));
 	}
 	public boolean isClosed() {
-		if(endtime==null) return true;
+		if(endtime==null) {
+            return true;
+        }
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
 		return cur.after(endtime);
 	}

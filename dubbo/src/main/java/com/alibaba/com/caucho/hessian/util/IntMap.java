@@ -118,10 +118,11 @@ public class IntMap {
     while (true) {
       Object mapKey = keys[hash];
 
-      if (mapKey == null)
-        return NULL;
-      else if (mapKey == key || mapKey.equals(key))
-        return _values[hash];
+      if (mapKey == null) {
+          return NULL;
+      } else if (mapKey == key || mapKey.equals(key)) {
+          return _values[hash];
+      }
 
       hash = (hash + 1) % mask;
     }
@@ -138,13 +139,14 @@ public class IntMap {
     int mask = _mask = newKeys.length - 1;
 
     Object []keys = _keys;
-    int values[] = _values;
+      int[] values = _values;
 
     for (int i = keys.length - 1; i >= 0; i--) {
       Object key = keys[i];
 
-      if (key == null || key == DELETED)
-        continue;
+      if (key == null || key == DELETED) {
+          continue;
+      }
 
       int hash = key.hashCode() % mask & mask;
 
@@ -182,8 +184,9 @@ public class IntMap {
 
         _size++;
 
-        if (keys.length <= 4 * _size)
-          resize(4 * keys.length);
+        if (keys.length <= 4 * _size) {
+            resize(4 * keys.length);
+        }
 
         return NULL;
       }
@@ -213,9 +216,9 @@ public class IntMap {
     while (true) {
       Object mapKey = _keys[hash];
 
-      if (mapKey == null)
-        return NULL;
-      else if (mapKey == key) {
+      if (mapKey == null) {
+          return NULL;
+      } else if (mapKey == key) {
         _keys[hash] = DELETED;
 
         _size--;
@@ -227,6 +230,7 @@ public class IntMap {
     }
   }
 
+  @Override
   public String toString()
   {
     StringBuffer sbuf = new StringBuffer();
@@ -236,8 +240,9 @@ public class IntMap {
 
     for (int i = 0; i <= _mask; i++) {
       if (_keys[i] != null && _keys[i] != DELETED) {
-        if (! isFirst)
-          sbuf.append(", ");
+        if (! isFirst) {
+            sbuf.append(", ");
+        }
 
         isFirst = false;
         sbuf.append(_keys[i]);

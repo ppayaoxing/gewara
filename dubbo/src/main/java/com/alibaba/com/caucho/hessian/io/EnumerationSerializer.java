@@ -59,12 +59,14 @@ public class EnumerationSerializer extends AbstractSerializer {
 
   public static EnumerationSerializer create()
   {
-    if (_serializer == null)
-      _serializer = new EnumerationSerializer();
+    if (_serializer == null) {
+        _serializer = new EnumerationSerializer();
+    }
 
     return _serializer;
   }
   
+  @Override
   public void writeObject(Object obj, AbstractHessianOutput out)
     throws IOException
   {
@@ -78,7 +80,8 @@ public class EnumerationSerializer extends AbstractSerializer {
       out.writeObject(value);
     }
 
-    if (hasEnd)
-      out.writeListEnd();
+    if (hasEnd) {
+        out.writeListEnd();
+    }
   }
 }

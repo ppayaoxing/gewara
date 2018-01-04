@@ -57,22 +57,26 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
     }
     
     public AbstractClusterInvoker(Directory<T> directory, URL url) {
-        if (directory == null)
+        if (directory == null) {
             throw new IllegalArgumentException("service directory == null");
+        }
         
         this.directory = directory ;
-        //sticky ÐèÒª¼ì²â avaliablecheck 
+        //sticky ï¿½ï¿½Òªï¿½ï¿½ï¿½ avaliablecheck 
         this.availablecheck = url.getParameter(Constants.CLUSTER_AVAILABLE_CHECK_KEY, Constants.DEFAULT_CLUSTER_AVAILABLE_CHECK) ;
     }
 
+    @Override
     public Class<T> getInterface() {
         return directory.getInterface();
     }
 
+    @Override
     public URL getUrl() {
         return directory.getUrl();
     }
 
+    @Override
     public boolean isAvailable() {
         Invoker<T> invoker = stickyInvoker;
         if (invoker != null) {
@@ -81,23 +85,25 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
         return directory.isAvailable();
     }
 
+    @Override
     public void destroy() {
         directory.destroy();
         destroyed = true;
     }
 
     /**
-     * Ê¹ÓÃloadbalanceÑ¡Ôñinvoker.</br>
-     * a)ÏÈlbÑ¡Ôñ£¬Èç¹ûÔÚselectedÁÐ±íÖÐ »òÕß ²»¿ÉÓÃÇÒ×ö¼ìÑéÊ±£¬½øÈëÏÂÒ»²½(ÖØÑ¡),·ñÔòÖ±½Ó·µ»Ø</br>
-     * b)ÖØÑ¡ÑéÖ¤¹æÔò£ºselected > available .±£Ö¤ÖØÑ¡³öµÄ½á¹û¾¡Á¿²»ÔÚselectÖÐ£¬²¢ÇÒÊÇ¿ÉÓÃµÄ 
+     * Ê¹ï¿½ï¿½loadbalanceÑ¡ï¿½ï¿½invoker.</br>
+     * a)ï¿½ï¿½lbÑ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½selectedï¿½Ð±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½(ï¿½ï¿½Ñ¡),ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó·ï¿½ï¿½ï¿½</br>
+     * b)ï¿½ï¿½Ñ¡ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½selected > available .ï¿½ï¿½Ö¤ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½selectï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½Ãµï¿½ 
      * 
-     * @param availablecheck Èç¹ûÉèÖÃtrue£¬ÔÚÑ¡ÔñµÄÊ±ºòÏÈÑ¡invoker.available == true
-     * @param selected ÒÑÑ¡¹ýµÄinvoker.×¢Òâ£ºÊäÈë±£Ö¤²»ÖØ¸´
+     * @param availablecheck ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½trueï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ñ¡invoker.available == true
+     * @param selected ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½invoker.×¢ï¿½â£ºï¿½ï¿½ï¿½ë±£Ö¤ï¿½ï¿½ï¿½Ø¸ï¿½
      * 
      */
     protected Invoker<T> select(LoadBalance loadbalance, Invocation invocation, List<Invoker<T>> invokers, List<Invoker<T>> selected) throws RpcException {
-        if (invokers == null || invokers.size() == 0)
+        if (invokers == null || invokers.size() == 0) {
             return null;
+        }
         String methodName = invocation == null ? "" : invocation.getMethodName();
         
         boolean sticky = invokers.get(0).getUrl().getMethodParameter(methodName,Constants.CLUSTER_STICKY_KEY, Constants.DEFAULT_CLUSTER_STICKY) ;
@@ -122,17 +128,19 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
     }
     
     private Invoker<T> doselect(LoadBalance loadbalance, Invocation invocation, List<Invoker<T>> invokers, List<Invoker<T>> selected) throws RpcException {
-        if (invokers == null || invokers.size() == 0)
+        if (invokers == null || invokers.size() == 0) {
             return null;
-        if (invokers.size() == 1)
+        }
+        if (invokers.size() == 1) {
             return invokers.get(0);
-        // Èç¹ûÖ»ÓÐÁ½¸öinvoker£¬ÍË»¯³ÉÂÖÑ­
+        }
+        // ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½invokerï¿½ï¿½ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½Ñ­
         if (invokers.size() == 2 && selected != null && selected.size() > 0) {
             return selected.get(0) == invokers.get(0) ? invokers.get(1) : invokers.get(0);
         }
         Invoker<T> invoker = loadbalance.select(invokers, getUrl(), invocation);
         
-        //Èç¹û selectedÖÐ°üº¬£¨ÓÅÏÈÅÐ¶Ï£© »òÕß ²»¿ÉÓÃ&&availablecheck=true ÔòÖØÊÔ.
+        //ï¿½ï¿½ï¿½ selectedï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï£ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&&availablecheck=true ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
         if( (selected != null && selected.contains(invoker))
                 ||(!invoker.isAvailable() && getUrl()!=null && availablecheck)){
             try{
@@ -140,10 +148,10 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
                 if(rinvoker != null){
                     invoker =  rinvoker;
                 }else{
-                    //¿´ÏÂµÚÒ»´ÎÑ¡µÄÎ»ÖÃ£¬Èç¹û²»ÊÇ×îºó£¬Ñ¡+1Î»ÖÃ.
+                    //ï¿½ï¿½ï¿½Âµï¿½Ò»ï¿½ï¿½Ñ¡ï¿½ï¿½Î»ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡+1Î»ï¿½ï¿½.
                     int index = invokers.indexOf(invoker);
                     try{
-                        //×îºóÔÚ±ÜÃâÅö×²
+                        //ï¿½ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½×²
                         invoker = index <invokers.size()-1?invokers.get(index+1) :invoker;
                     }catch (Exception e) {
                         logger.warn(e.getMessage()+" may because invokers list dynamic change, ignore.",e);
@@ -157,7 +165,7 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
     } 
     
     /**
-     * ÖØÑ¡£¬ÏÈ´Ó·ÇselectedµÄÁÐ±íÖÐÑ¡Ôñ£¬Ã»ÓÐÔÚ´ÓselectedÁÐ±íÖÐÑ¡Ôñ.
+     * ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½È´Ó·ï¿½selectedï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ú´ï¿½selectedï¿½Ð±ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½.
      * @param loadbalance
      * @param invocation
      * @param invokers
@@ -169,11 +177,11 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
                                 List<Invoker<T>> invokers, List<Invoker<T>> selected ,boolean availablecheck)
             throws RpcException {
         
-        //Ô¤ÏÈ·ÖÅäÒ»¸ö£¬Õâ¸öÁÐ±íÊÇÒ»¶¨»áÓÃµ½µÄ.
+        //Ô¤ï¿½È·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½.
         List<Invoker<T>> reselectInvokers = new ArrayList<Invoker<T>>(invokers.size()>1?(invokers.size()-1):invokers.size());
         
-        //ÏÈ´Ó·ÇselectÖÐÑ¡
-        if( availablecheck ){ //Ñ¡isAvailable µÄ·Çselect
+        //ï¿½È´Ó·ï¿½selectï¿½ï¿½Ñ¡
+        if( availablecheck ){ //Ñ¡isAvailable ï¿½Ä·ï¿½select
             for(Invoker<T> invoker : invokers){
                 if(invoker.isAvailable()){
                     if(selected ==null || !selected.contains(invoker)){
@@ -184,7 +192,7 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
             if(reselectInvokers.size()>0){
                 return  loadbalance.select(reselectInvokers, getUrl(), invocation);
             }
-        }else{ //Ñ¡È«²¿·Çselect
+        }else{ //Ñ¡È«ï¿½ï¿½ï¿½ï¿½select
             for(Invoker<T> invoker : invokers){
                 if(selected ==null || !selected.contains(invoker)){
                     reselectInvokers.add(invoker);
@@ -194,11 +202,11 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
                 return  loadbalance.select(reselectInvokers, getUrl(), invocation);
             }
         }
-        //×îºó´ÓselectÖÐÑ¡¿ÉÓÃµÄ. 
+        //ï¿½ï¿½ï¿½ï¿½selectï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Ãµï¿½. 
         {
             if(selected != null){
                 for(Invoker<T> invoker : selected){
-                    if((invoker.isAvailable()) //ÓÅÏÈÑ¡available 
+                    if((invoker.isAvailable()) //ï¿½ï¿½ï¿½ï¿½Ñ¡available 
                             && !reselectInvokers.contains(invoker)){
                         reselectInvokers.add(invoker);
                     }
@@ -211,6 +219,7 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
         return null;
     }
     
+    @Override
     public Result invoke(final Invocation invocation) throws RpcException {
 
         checkWheatherDestoried();

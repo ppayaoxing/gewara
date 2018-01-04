@@ -6,12 +6,12 @@ public class MoneyPayRequest extends AbcRequest {
 
 	private static final long serialVersionUID = -5582901218651779910L;
 	
-	private String cardno		;//½»Ò×¿¨ºÅ
-	private String cardexp		;//¿¨ÓÐÐ§ÆÚ
+	private String cardno		;//ï¿½ï¿½ï¿½×¿ï¿½ï¿½ï¿½
+	private String cardexp		;//ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 	private String adddata		;//CVD2
-	private Integer amount		;//½»Ò×½ð¶î
-	private Integer totalAmount	;//¶©µ¥×Ü½ð¶î
-	private String checkcode	;//ÑéÖ¤Âë
+	private Integer amount		;//ï¿½ï¿½ï¿½×½ï¿½ï¿½
+	private Integer totalAmount	;//ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
+	private String checkcode	;//ï¿½ï¿½Ö¤ï¿½ï¿½
 	
 	public MoneyPayRequest(){}
 	
@@ -39,21 +39,28 @@ public class MoneyPayRequest extends AbcRequest {
 
 	@Override
 	public boolean checkParams() {
-		if(!super.checkParams())
-			return false;
+		if(!super.checkParams()) {
+            return false;
+        }
 		
-		if(cardno==null || cardno.length()>=20)
-			return false;
-		if(cardexp==null || cardno.length()==4)
-			return false;
-		if(amount==null || amount<=0)
-			return false;
-		if(totalAmount==null || totalAmount<=0)
-			return false;
-		if(adddata==null || adddata.length()!=3)
-			return false;
-		if(checkcode==null || checkcode.length()!=6)
-			return false;
+		if(cardno==null || cardno.length()>=20) {
+            return false;
+        }
+		if(cardexp==null || cardno.length()==4) {
+            return false;
+        }
+		if(amount==null || amount<=0) {
+            return false;
+        }
+		if(totalAmount==null || totalAmount<=0) {
+            return false;
+        }
+		if(adddata==null || adddata.length()!=3) {
+            return false;
+        }
+		if(checkcode==null || checkcode.length()!=6) {
+            return false;
+        }
 		return true;
 	}
 

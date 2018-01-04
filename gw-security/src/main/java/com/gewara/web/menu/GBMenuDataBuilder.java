@@ -78,8 +78,9 @@ public class GBMenuDataBuilder<T extends SecurityModule> {
 					sb.append("'children':[");
 					boolean hasSub = false;
 					for (T subMenu : subList) {
-						if (isAllowed(subMenu))
-							hasSub = true;
+						if (isAllowed(subMenu)) {
+                            hasSub = true;
+                        }
 						buildMenuData(subMenu, sb);
 					}
 					if (hasSub) {
@@ -88,13 +89,15 @@ public class GBMenuDataBuilder<T extends SecurityModule> {
 					sb.append("]");
 				} else {
 					String href = "";
-					if (StringUtils.startsWith(menu.getModuleurl(), "http://"))
-						href = menu.getModuleurl();
-					else
-						href = basePath + menu.getModuleurl();
+					if (StringUtils.startsWith(menu.getModuleurl(), "http://")) {
+                        href = menu.getModuleurl();
+                    } else {
+                        href = basePath + menu.getModuleurl();
+                    }
 					sb.append("'href':'" + href + "',");
-					if (StringUtils.isNotBlank(menu.getTarget()))
-						sb.append("'target':'" + menu.getTarget() + "',");
+					if (StringUtils.isNotBlank(menu.getTarget())) {
+                        sb.append("'target':'" + menu.getTarget() + "',");
+                    }
 					sb.append("'isClass':true,'iconCls':'icon-cls','cls':'cls','leaf':true");
 				}
 				sb.append("},");
@@ -120,21 +123,24 @@ public class GBMenuDataBuilder<T extends SecurityModule> {
 		return subModuleList;
 	}
 	private void buildMenuData(T menu, StringBuilder sb) {
-		if (!isAllowed(menu))
-			return;
+		if (!isAllowed(menu)) {
+            return;
+        }
 		sb.append("{");
 		sb.append("'id':'" + menu.getMenucode() + "',");
 		sb.append("'text':'" + menu.getMenutitle() + "',");
 		String href = "";
 		if (StringUtils.isNotBlank(menu.getModuleurl())) {
-			if (menu.getModuleurl().startsWith("http://"))
-				href = menu.getModuleurl();
-			else
-				href = basePath + menu.getModuleurl().substring(1);
+			if (menu.getModuleurl().startsWith("http://")) {
+                href = menu.getModuleurl();
+            } else {
+                href = basePath + menu.getModuleurl().substring(1);
+            }
 			sb.append("'href':'" + href + "',");
 		}
-		if (StringUtils.isNotBlank(menu.getTarget()))
-			sb.append("'target':'" + menu.getTarget() + "',");
+		if (StringUtils.isNotBlank(menu.getTarget())) {
+            sb.append("'target':'" + menu.getTarget() + "',");
+        }
 		sb.append("'isClass':true,'iconCls':'icon-cls','cls':'cls','leaf':true");
 		sb.append("},");
 	}
@@ -147,12 +153,14 @@ public class GBMenuDataBuilder<T extends SecurityModule> {
 	private boolean isAllowed(T menu) {
 		String menuRoles = menu.getRolenames();
 		// 无角色，默认允许
-		if (StringUtils.isBlank(menuRoles))
-			return false;
+		if (StringUtils.isBlank(menuRoles)) {
+            return false;
+        }
 		String[] mroles = StringUtils.split(menuRoles, ",");
 		for (int i = 0; i < mroles.length; i++) {
-			if (roles.contains(mroles[i]))
-				return true;
+			if (roles.contains(mroles[i])) {
+                return true;
+            }
 		}
 		return false;
 	}
@@ -171,8 +179,11 @@ public class GBMenuDataBuilder<T extends SecurityModule> {
 						if(isAllowed(subMenu)) {
 							Map tmpMap = BeanUtil.getBeanMapWithKey(subMenu, "menutitle", "target", "display");
 							String href = "";
-							if(subMenu.getModuleurl().startsWith("http://")) href = subMenu.getModuleurl();
-							else if(StringUtils.isNotBlank(subMenu.getModuleurl())) href = basePath + subMenu.getModuleurl().substring(1);
+							if(subMenu.getModuleurl().startsWith("http://")) {
+                                href = subMenu.getModuleurl();
+                            } else if(StringUtils.isNotBlank(subMenu.getModuleurl())) {
+                                href = basePath + subMenu.getModuleurl().substring(1);
+                            }
 							tmpMap.put("href", href);
 							subList.add(tmpMap);
 						}

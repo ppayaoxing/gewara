@@ -11,21 +11,21 @@ public class FieldAreaVo extends BaseVo{
 	private static final long serialVersionUID = 1589781612588775506L;
 	
 	private Long id;					// 
-	private String name;				//ÇøÓòÃû³Æ
-	private Long theatreid;				//³¡¹ÝID
-	private String fieldnum;			//³¡µØÐòºÅ(TheareField-->fieldnum)
-	private String fieldserial;			//µÚÈý·½³¡µØID
-	private String areanum;				//ÇøÓò±àºÅ(TheatreRoom-->num)
-	private String areaserial;			//ÇøÓòÐòºÅ
-	private Integer firstline;			//ÆðÊ¼ÐÐ×ù±ê
-	private Integer firstrank;			//ÆðÊ¼ÁÐ×ù±ê
-	private Integer linenum;			//×ùÎ»ÐÐÊý
-	private Integer ranknum;			//×ùÎ»ÁÐÊý
-	private Integer seatnum;			//×ùÎ»ÊýÁ¿
-	private String areatype;			//ÀàÐÍ£ºgptbs
+	private String name;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Long theatreid;				//ï¿½ï¿½ï¿½ï¿½ID
+	private String fieldnum;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(TheareField-->fieldnum)
+	private String fieldserial;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID
+	private String areanum;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(TheatreRoom-->num)
+	private String areaserial;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer firstline;			//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer firstrank;			//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer linenum;			//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	private Integer ranknum;			//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	private Integer seatnum;			//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	private String areatype;			//ï¿½ï¿½ï¿½Í£ï¿½gptbs
 	private String status;				//
-	private String hotzone;				//×ù±ê
-	private Timestamp updatetime;		//¸üÐÂÊ±¼ä
+	private String hotzone;				//ï¿½ï¿½ï¿½ï¿½
+	private Timestamp updatetime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	
 	public FieldAreaVo(){}
 
@@ -155,7 +155,9 @@ public class FieldAreaVo extends BaseVo{
 	}
 
 	public boolean hasStatus(String stats){
-		if(StringUtils.isBlank(stats)) return false;
+		if(StringUtils.isBlank(stats)) {
+            return false;
+        }
 		return StringUtils.equals(this.status, stats);
 	}
 

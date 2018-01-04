@@ -74,46 +74,62 @@ public class ClassUtils {
     }
     
     public static Class<?> _forName(String className) throws ClassNotFoundException {
-        if ("boolean".equals(className))
+        if ("boolean".equals(className)) {
             return boolean.class;
-        if ("byte".equals(className))
+        }
+        if ("byte".equals(className)) {
             return byte.class;
-        if ("char".equals(className))
+        }
+        if ("char".equals(className)) {
             return char.class;
-        if ("short".equals(className))
+        }
+        if ("short".equals(className)) {
             return short.class;
-        if ("int".equals(className))
+        }
+        if ("int".equals(className)) {
             return int.class;
-        if ("long".equals(className))
+        }
+        if ("long".equals(className)) {
             return long.class;
-        if ("float".equals(className))
+        }
+        if ("float".equals(className)) {
             return float.class;
-        if ("double".equals(className))
+        }
+        if ("double".equals(className)) {
             return double.class;
-        if ("boolean[]".equals(className))
+        }
+        if ("boolean[]".equals(className)) {
             return boolean[].class;
-        if ("byte[]".equals(className))
+        }
+        if ("byte[]".equals(className)) {
             return byte[].class;
-        if ("char[]".equals(className))
+        }
+        if ("char[]".equals(className)) {
             return char[].class;
-        if ("short[]".equals(className))
+        }
+        if ("short[]".equals(className)) {
             return short[].class;
-        if ("int[]".equals(className))
+        }
+        if ("int[]".equals(className)) {
             return int[].class;
-        if ("long[]".equals(className))
+        }
+        if ("long[]".equals(className)) {
             return long[].class;
-        if ("float[]".equals(className))
+        }
+        if ("float[]".equals(className)) {
             return float[].class;
-        if ("double[]".equals(className))
+        }
+        if ("double[]".equals(className)) {
             return double[].class;
+        }
         try {
             return arrayForName(className);
         } catch (ClassNotFoundException e) {
-            if (className.indexOf('.') == -1) { // ³¢ÊÔjava.lang°ü
+            if (className.indexOf('.') == -1) { // ï¿½ï¿½ï¿½ï¿½java.langï¿½ï¿½
                 try {
                     return arrayForName("java.lang." + className);
                 } catch (ClassNotFoundException e2) {
-                    // ºöÂÔ³¢ÊÔÒì³£, Å×³öÔ­Ê¼Òì³£
+                    // ï¿½ï¿½ï¿½Ô³ï¿½ï¿½ï¿½ï¿½ì³£, ï¿½×³ï¿½Ô­Ê¼ï¿½ì³£
                 }
             }
             throw e;
@@ -254,9 +270,9 @@ public class ClassUtils {
         try {
             ParameterizedType parameterizedType = ((ParameterizedType) cls.getGenericInterfaces()[0]);
             Object genericClass = parameterizedType.getActualTypeArguments()[i];
-            if (genericClass instanceof ParameterizedType) { // ´¦Àí¶à¼¶·ºÐÍ
+            if (genericClass instanceof ParameterizedType) { // ï¿½ï¿½ï¿½ï¿½à¼¶ï¿½ï¿½ï¿½ï¿½
                 return (Class<?>) ((ParameterizedType) genericClass).getRawType();
-            } else if (genericClass instanceof GenericArrayType) { // ´¦ÀíÊý×é·ºÐÍ
+            } else if (genericClass instanceof GenericArrayType) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é·ºï¿½ï¿½
                 return (Class<?>) ((GenericArrayType) genericClass).getGenericComponentType();
             } else if (genericClass != null) {
                 return (Class<?>) genericClass;

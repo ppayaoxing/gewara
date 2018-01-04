@@ -35,7 +35,9 @@ public class MethodField extends Field {
 
     public Map<String,Object> getParamsAsMap(){
         Map<String,Object> paramsAsMap = new HashMap<>();
-        if(this.params == null ) return paramsAsMap;
+        if(this.params == null ) {
+            return paramsAsMap;
+        }
         for(KVValue kvValue : this.params){
             paramsAsMap.put(kvValue.key,kvValue.value);
         }
@@ -72,7 +74,9 @@ public class MethodField extends Field {
 
     @Override
     public String getNestedPath() {
-        if(!this.isNested()) return null;
+        if(!this.isNested()) {
+            return null;
+        }
         if(this.isReverseNested()){
             String reverseNestedPath = this.getParamsAsMap().get("reverse_nested").toString();
             return reverseNestedPath.isEmpty() ? null : reverseNestedPath;

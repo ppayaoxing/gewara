@@ -7,69 +7,69 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 
 public class OrderConstant {
-	public static final String CHANGEHIS_KEY_CHANGESEAT = "changeSeat";			//¸ü¸Ä×ùÎ»
-	public static final String CHANGEHIS_KEY_SUCCESSCHANGE = "successChange";	//³É¹¦¶©µ¥¸ü»»×ùÎ»
-	public static final String CHANGEHIS_KEY_MPITO = "mpito";					//¸ü»»³¡´Îµ½
-	public static final String CHANGEHIS_KEY_MPIFROM = "mpifrom";				//´Ó³¡´ÎÀ´
-	public static final String CHANGEHIS_KEY_RECONFIRMS = "reconfirms";			//ÖØÐÂÈ·ÈÏ¶©µ¥´ÎÊý
-	public static final String CHANGEHIS_KEY_MOBILE_BUYTIMES = "buytimes";		//¸ÃÊÖ»úÀúÊ·¶©µ¥ÊýÁ¿
-	public static final String CHANGEHIS_KEY_MEMBER_BUYTIMES = "mbtimes";		//¸ÃÓÃ»§ÀúÊ·¶©µ¥ÊýÁ¿
-	public static final String CHANGEHIS_KEY_PROCESSTIMES = "processtimes";		//¸Ã¶©µ¥´¦Àí´ÎÊý
+	public static final String CHANGEHIS_KEY_CHANGESEAT = "changeSeat";			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»
+	public static final String CHANGEHIS_KEY_SUCCESSCHANGE = "successChange";	//ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»
+	public static final String CHANGEHIS_KEY_MPITO = "mpito";					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½
+	public static final String CHANGEHIS_KEY_MPIFROM = "mpifrom";				//ï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String CHANGEHIS_KEY_RECONFIRMS = "reconfirms";			//ï¿½ï¿½ï¿½ï¿½È·ï¿½Ï¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String CHANGEHIS_KEY_MOBILE_BUYTIMES = "buytimes";		//ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ê·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String CHANGEHIS_KEY_MEMBER_BUYTIMES = "mbtimes";		//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ê·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String CHANGEHIS_KEY_PROCESSTIMES = "processtimes";		//ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final String CHANGEHIS_KEY_PROCESSMSG = "processError";		//
 	public static final String CHANGEHIS_KEY_PROCESSCODE = "processCode";		//
 
 	
-	public static final String OTHERKEY_CREDENTIALSID = "credentialsId";		//ÉÌ¼ÒÈÏÖ¤ID
-	public static final String OTHERKEY_BINDMEMBER = "bindMember";				//µç»°ÏÂµ¥°ó¶¨ÓÃ»§
-	public static final String OTHERKEY_TELEPHONE = "telephone";				//µç»°ÏÂµ¥½ÓÌýµç»°
-	public static final String OTHERKEY_BINDMOBILE = "bindMobile";				//µç»°ÏÂµ¥°ó¶¨ÊÖ»ú
-	public static final String OTHERKEY_USE_INSURE = "isUseInsure"; 			//¶©µ¥Ê¹ÓÃÆ½°²ÍËÆ±±£ÏÕ
-	public static final String OTHERKEY_CREATEMEMBER = "createMember";			//µç»°ÏÂµ¥ÊÇ·ñ´´½¨
-	public static final String OTHERKEY_DELAY_CARDNO = "delayCardNo";      		//µç×ÓÆ±È¯ÓÐ³¥ÑÓÆÚÆ±È¯ºÅ
-	public static final String OTHERKEY_TAKEMETHOD_ID = "takemethodID";			//Éí·ÝÖ¤µç×ÓÆ±
-	public static final String OTHERKEY_CHARITY = "charity";							//¹«ÒæÆ±±êÊ¶
-	public static final String OTHERKEY_GREETINGS = "greetings";				//¸öÐÔ»¯Æ±Ãæ
-	public static final String OTHERKEY_DISTYPE = "p_distype";						//ÀàÐÍ
+	public static final String OTHERKEY_CREDENTIALSID = "credentialsId";		//ï¿½Ì¼ï¿½ï¿½ï¿½Ö¤ID
+	public static final String OTHERKEY_BINDMEMBER = "bindMember";				//ï¿½ç»°ï¿½Âµï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	public static final String OTHERKEY_TELEPHONE = "telephone";				//ï¿½ç»°ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç»°
+	public static final String OTHERKEY_BINDMOBILE = "bindMobile";				//ï¿½ç»°ï¿½Âµï¿½ï¿½ï¿½ï¿½Ö»ï¿½
+	public static final String OTHERKEY_USE_INSURE = "isUseInsure"; 			//ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½
+	public static final String OTHERKEY_CREATEMEMBER = "createMember";			//ï¿½ç»°ï¿½Âµï¿½ï¿½Ç·ñ´´½ï¿½
+	public static final String OTHERKEY_DELAY_CARDNO = "delayCardNo";      		//ï¿½ï¿½ï¿½ï¿½Æ±È¯ï¿½Ð³ï¿½ï¿½ï¿½ï¿½ï¿½Æ±È¯ï¿½ï¿½
+	public static final String OTHERKEY_TAKEMETHOD_ID = "takemethodID";			//ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Æ±
+	public static final String OTHERKEY_CHARITY = "charity";							//ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½Ê¶
+	public static final String OTHERKEY_GREETINGS = "greetings";				//ï¿½ï¿½ï¿½Ô»ï¿½Æ±ï¿½ï¿½
+	public static final String OTHERKEY_DISTYPE = "p_distype";						//ï¿½ï¿½ï¿½ï¿½
 	public static final String OTHERKEY_DISCOUNT = "p_discount";					//
 	public static final String OTHERKEY_DISAMOUNT = "p_disamount";				
-	public static final String OTHERKEY_CARDNO = "cardno";						//µç×ÓÆ±È¯¿¨ºÅ
-	public static final String OTHERKEY_SHARECODE = "sharecode";				//·ÖÏíID
-	public static final String OTHERKEY_CONVERTSTATUS = "convertStatus";	//×ª»»×´Ì¬
-	public static final String OTHERKEY_EXTERNALORDERNO  = "externalOrderNo";			//Íâ²¿¶©µ¥ºÅ
-	public static final String OTHERKEY_COUNTRY_CODE  = "countryCode";			//¹ú¼Ò±àÂë
-	public static final String OTHERKEY_CUST_FIRSTNAME  = "firstName";			//¿Í»§ÐÕ
-	public static final String OTHERKEY_CUST_LASTNAME  = "lastName";			//¿Í»§Ãû
-	public static final String OTHERKEY_CLIENTIP = "clientIp";					//¿Í»§IP
+	public static final String OTHERKEY_CARDNO = "cardno";						//ï¿½ï¿½ï¿½ï¿½Æ±È¯ï¿½ï¿½ï¿½ï¿½
+	public static final String OTHERKEY_SHARECODE = "sharecode";				//ï¿½ï¿½ï¿½ï¿½ID
+	public static final String OTHERKEY_CONVERTSTATUS = "convertStatus";	//×ªï¿½ï¿½×´Ì¬
+	public static final String OTHERKEY_EXTERNALORDERNO  = "externalOrderNo";			//ï¿½â²¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String OTHERKEY_COUNTRY_CODE  = "countryCode";			//ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½
+	public static final String OTHERKEY_CUST_FIRSTNAME  = "firstName";			//ï¿½Í»ï¿½ï¿½ï¿½
+	public static final String OTHERKEY_CUST_LASTNAME  = "lastName";			//ï¿½Í»ï¿½ï¿½ï¿½
+	public static final String OTHERKEY_CLIENTIP = "clientIp";					//ï¿½Í»ï¿½IP
 
 	
-	public static final String STATUS_NEW = "new";						//ÐÂ¶©µ¥£¬×ùÎ»ÒÑËø¶¨
-	public static final String STATUS_NEW_UNLOCK = "new_unlock";		//ÐÂ¶©µ¥£¬Î´Ëø¶¨£¨ÁÙÊ±×´Ì¬£©
-	public static final String STATUS_NEW_CONFIRM = "new_confirm";		//ÐÂ¶©µ¥£¬È·ÈÏÈ¥¸¶¿î
-	public static final String STATUS_PAID = "paid";					//¸¶Íê¿î£¬¶©µ¥Î´±ØÊÇ³É½»µÄ
-	public static final String STATUS_PAID_FAILURE = "paid_failure";	//¸¶Íê¿î£¬¶©µ¥ÓÐ´íÎó
-	public static final String STATUS_PAID_SPECIAL = "paid_special";	//¸¶Íê¿î£¬¶©µ¥ÓÐ²»³É¹¦£¬Ò²²»ÍË¿î£¬×öÁËÌØÊâ´¦Àí£¬±ÈÈç²¹³¥È¯
-	public static final String STATUS_PAID_UNFIX = "paid_failure_unfix";//¸¶Íê¿î£¬¶©µ¥×ùÎ»Î´È·ÈÏ
-	public static final String STATUS_PAID_SUCCESS = "paid_success";	//¸¶¿îºó£¬¶©µ¥³É½»
-	public static final String STATUS_PAID_RETURN = "paid_return";		//¸¶Íê¿î£¬¶©µ¥È¡ÏûÍË¿îµ½Óà¶î
-	public static final String STATUS_EMAIL_ID = "email_id";				//ÓÊ¼þID
+	public static final String STATUS_NEW = "new";						//ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String STATUS_NEW_UNLOCK = "new_unlock";		//ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±×´Ì¬ï¿½ï¿½
+	public static final String STATUS_NEW_CONFIRM = "new_confirm";		//ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½
+	public static final String STATUS_PAID = "paid";					//ï¿½ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ç³É½ï¿½ï¿½ï¿½
+	public static final String STATUS_PAID_FAILURE = "paid_failure";	//ï¿½ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½
+	public static final String STATUS_PAID_SPECIAL = "paid_special";	//ï¿½ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½É¹ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½Ë¿î£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â´¦ï¿½ï¿½ï¿½ï¿½ï¿½ç²¹ï¿½ï¿½È¯
+	public static final String STATUS_PAID_UNFIX = "paid_failure_unfix";//ï¿½ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»Î´È·ï¿½ï¿½
+	public static final String STATUS_PAID_SUCCESS = "paid_success";	//ï¿½ï¿½ï¿½ï¿½ó£¬¶ï¿½ï¿½ï¿½ï¿½É½ï¿½
+	public static final String STATUS_PAID_RETURN = "paid_return";		//ï¿½ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ë¿îµ½ï¿½ï¿½ï¿½
+	public static final String STATUS_EMAIL_ID = "email_id";				//ï¿½Ê¼ï¿½ID
 
-	public static final String STATUS_CANCEL = "cancel";					//¶©µ¥È¡ÏûÁË
-	public static final String STATUS_SYS_CANCEL = "cancel_sys";		//ÏµÍ³È¡Ïû
-	public static final String STATUS_SYS_CHANGE_CANCEL = "cancel_sys_change";	//³É¹¦¶©µ¥ÏµÍ³»»×ùÈ¡Ïû
-	public static final String STATUS_REPEAT = "cancel_repeat";			//ÖØ¸´¶©µ¥
-	public static final String STATUS_USER_CANCEL = "cancel_user";		//ÓÃ»§È¡ÏûÁË
-	public static final String STATUS_TIMEOUT = "cancel_timeout";		//³¬Ê±È¡Ïû
+	public static final String STATUS_CANCEL = "cancel";					//ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	public static final String STATUS_SYS_CANCEL = "cancel_sys";		//ÏµÍ³È¡ï¿½ï¿½
+	public static final String STATUS_SYS_CHANGE_CANCEL = "cancel_sys_change";	//ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½
+	public static final String STATUS_REPEAT = "cancel_repeat";			//ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String STATUS_USER_CANCEL = "cancel_user";		//ï¿½Ã»ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	public static final String STATUS_TIMEOUT = "cancel_timeout";		//ï¿½ï¿½Ê±È¡ï¿½ï¿½
 	public static final Map<String, String> statusMap = new HashMap<String, String>();
 	public static final Map<String, String> manualOrderMap;
 	
-	public static final String UNIQUE_BY_MEMBERID = "memberid";			//¶©µ¥²ÎÓë»î¶¯Î¨Ò»ÐÔ±êÊ¶£ºÊ¹ÓÃÓÃ»§Î¨Ò»ÐÔ
-	public static final String UNIQUE_BY_MOBILE = "mobile";				//¶©µ¥²ÎÓë»î¶¯Î¨Ò»ÐÔ±êÊ¶£ºÊ¹ÓÃÊÖ»ú
-	public static final String UNIQUE_BY_MEMBER_AND_MOBILE = "all";	//¶©µ¥²ÎÓë»î¶¯Î¨Ò»ÐÔ±êÊ¶£ºÊ¹ÓÃÊÖ»ú+ÕËºÅ
-	public static final String UNIQUE_BY_PARTNERNAME = "partnername";	//¶©µ¥²ÎÓë»î¶¯Î¨Ò»ÐÔ±êÊ¶£ºÊ¹ÓÃÊÖ»ú+ÕËºÅ
-	public static final String UNIQUE_BY_DEVICEID = "deviceid";				//ÓÃ»§id+mobile+Éè±¸id
+	public static final String UNIQUE_BY_MEMBERID = "memberid";			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯Î¨Ò»ï¿½Ô±ï¿½Ê¶ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ã»ï¿½Î¨Ò»ï¿½ï¿½
+	public static final String UNIQUE_BY_MOBILE = "mobile";				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯Î¨Ò»ï¿½Ô±ï¿½Ê¶ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ö»ï¿½
+	public static final String UNIQUE_BY_MEMBER_AND_MOBILE = "all";	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯Î¨Ò»ï¿½Ô±ï¿½Ê¶ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ö»ï¿½+ï¿½Ëºï¿½
+	public static final String UNIQUE_BY_PARTNERNAME = "partnername";	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯Î¨Ò»ï¿½Ô±ï¿½Ê¶ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ö»ï¿½+ï¿½Ëºï¿½
+	public static final String UNIQUE_BY_DEVICEID = "deviceid";				//ï¿½Ã»ï¿½id+mobile+ï¿½è±¸id
 	
-	public static final String ORDER_EXPRESSNO = "expressNo";			//¿ìµÝ¶©µ¥ºÅ
-	public static final String ORDER_EXPRESSMode = "expressMode";			//¿ìµÝ¶©µ¥ºÅ
+	public static final String ORDER_EXPRESSNO = "expressNo";			//ï¿½ï¿½Ý¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String ORDER_EXPRESSMode = "expressMode";			//ï¿½ï¿½Ý¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static final String SYSBANK_BUY = "buy";
 	public static final String SYSBANK_GIFT = "gift";
 	
@@ -77,103 +77,103 @@ public class OrderConstant {
 	
 	public static final String ORDER_HASLOVESEAT = "hasLoveSeat";
 	
-	//ÅàÑµÉÌ»§È·ÈÏ¶©µ¥
+	//ï¿½ï¿½Ñµï¿½Ì»ï¿½È·ï¿½Ï¶ï¿½ï¿½ï¿½
 	public static final String TRAINING_ORDER_IS_SURE = "isSure";
 	
-	//ÓëÉÌ¼Ò½áËã×´Ì¬
+	//ï¿½ï¿½ï¿½Ì¼Ò½ï¿½ï¿½ï¿½×´Ì¬
 	public static final String SETTLE_NONE = "O";	//Î´Öª
-	public static final String SETTLE_N = "N";		//²»½áËã
-	public static final String SETTLE_Y = "Y";		//½áËã
+	public static final String SETTLE_N = "N";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String SETTLE_Y = "Y";		//ï¿½ï¿½ï¿½ï¿½
 	
-	public static final String DISCOUNT_STATUS_Y = "Y";		//ÒÑÊ¹ÓÃ³É¹¦
-	public static final String DISCOUNT_STATUS_N = "N";		//Î´Ê¹ÓÃ³É¹¦
+	public static final String DISCOUNT_STATUS_Y = "Y";		//ï¿½ï¿½Ê¹ï¿½Ã³É¹ï¿½
+	public static final String DISCOUNT_STATUS_N = "N";		//Î´Ê¹ï¿½Ã³É¹ï¿½
 	
-	public static final String PREPAY_Y = "Y";		//Ô¤ÊÛ¶©µ¥
-	public static final String PREPAY_N = "N";		//·ÇÔ¤ÊÛ¶©µ¥
-	public static final String PREPAY_S = "S";		//À´±ö¶©µ¥
-	public static final String PREPAY_G = "G";		//ÑÝ³öÇÀÆ±
-	public static final String PREPAY_T = "T";		//ÑÝ³öÍÅÏú
-	public static final String PREPAY_P = "P";		//ÑÝ³öÌØ»ÝÆ±
-	public static final String PREPAY_C = "C";		//CRMÉÌ»§
-	public static final String PREPAY_A = "A";		//×Ô¶¯Ñ¡×ù¶©µ¥
+	public static final String PREPAY_Y = "Y";		//Ô¤ï¿½Û¶ï¿½ï¿½ï¿½
+	public static final String PREPAY_N = "N";		//ï¿½ï¿½Ô¤ï¿½Û¶ï¿½ï¿½ï¿½
+	public static final String PREPAY_S = "S";		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PREPAY_G = "G";		//ï¿½Ý³ï¿½ï¿½ï¿½Æ±
+	public static final String PREPAY_T = "T";		//ï¿½Ý³ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String PREPAY_P = "P";		//ï¿½Ý³ï¿½ï¿½Ø»ï¿½Æ±
+	public static final String PREPAY_C = "C";		//CRMï¿½Ì»ï¿½
+	public static final String PREPAY_A = "A";		//ï¿½Ô¶ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	//¶©µ¥ÀàÐÍ
-	public static final String ORDER_TYPE_TICKET = "ticket";		//µçÓ°Æ±
-	public static final String ORDER_TYPE_GOODS = "goods";			//ÎïÆ·
-	public static final String ORDER_TYPE_DRAMA = "drama";			//»°¾ç
-	public static final String ORDER_TYPE_PUBSALE = "pubsale";		//¾ºÅÄ
-	public static final String ORDER_TYPE_GUARANTEE = "guarantee";	//±£Ö¤½ð
-	public static final String ORDER_TYPE_MALL = "mall";			//ÉÌ³Ç
-	public static final String ORDER_TYPE_BAOCHANG = "baoChang";	//°ü³¡
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String ORDER_TYPE_TICKET = "ticket";		//ï¿½ï¿½Ó°Æ±
+	public static final String ORDER_TYPE_GOODS = "goods";			//ï¿½ï¿½Æ·
+	public static final String ORDER_TYPE_DRAMA = "drama";			//ï¿½ï¿½ï¿½ï¿½
+	public static final String ORDER_TYPE_PUBSALE = "pubsale";		//ï¿½ï¿½ï¿½ï¿½
+	public static final String ORDER_TYPE_GUARANTEE = "guarantee";	//ï¿½ï¿½Ö¤ï¿½ï¿½
+	public static final String ORDER_TYPE_MALL = "mall";			//ï¿½Ì³ï¿½
+	public static final String ORDER_TYPE_BAOCHANG = "baoChang";	//ï¿½ï¿½ï¿½ï¿½
 	
-	//¶©µ¥Ä£¿é
-	public static final String ORDER_PRICATEGORY_MOVIE = "movie";		//µçÓ°Ä£¿é	
-	public static final String ORDER_PRICATEGORY_DRAMA = "drama";		//ÑÝ³öÄ£¿é	
-	public static final String ORDER_PRICATEGORY_ACTIVITY = "activity";	//»î¶¯Ä£¿é	
-	public static final String ORDER_PRICATEGORY_PUBSALE = "pubsale";	//¾ºÅÄÄ£¿é	
-	public static final String ORDER_PRICATEGORY_POINT = "point";		//»ý·Ö¶Ô¶ÒÄ£¿é	
-	public static final String ORDER_PRICATEGORY_MAll = "mall";			//ÉÌ³ÇÄ£¿é	
-	//Ô¶³Ì¶©µ¥×´Ì¬
-	public static final String REMOTE_STATUS_NEW = "N";		//ÐÂ¶©µ¥
-	public static final String REMOTE_STATUS_LOCK = "0";		//×ùÎ»Ëø¶¨
-	public static final String REMOTE_STATUS_FIXED = "1";		//¶©µ¥³É¹¦
-	public static final String REMOTE_STATUS_UNLOCK = "2";		//×ùÎ»½âËø
-	public static final String REMOTE_STATUS_FAILED = "F";		//Ê§°Ü
-	public static final String REMOTE_STATUS_ERROR = "X";		//´íÎó
-	public static final String REMOTE_STATUS_CANCEL = "C";		//ÍËÆ± 
+	//ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
+	public static final String ORDER_PRICATEGORY_MOVIE = "movie";		//ï¿½ï¿½Ó°Ä£ï¿½ï¿½	
+	public static final String ORDER_PRICATEGORY_DRAMA = "drama";		//ï¿½Ý³ï¿½Ä£ï¿½ï¿½	
+	public static final String ORDER_PRICATEGORY_ACTIVITY = "activity";	//ï¿½î¶¯Ä£ï¿½ï¿½	
+	public static final String ORDER_PRICATEGORY_PUBSALE = "pubsale";	//ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½	
+	public static final String ORDER_PRICATEGORY_POINT = "point";		//ï¿½ï¿½ï¿½Ö¶Ô¶ï¿½Ä£ï¿½ï¿½	
+	public static final String ORDER_PRICATEGORY_MAll = "mall";			//ï¿½Ì³ï¿½Ä£ï¿½ï¿½	
+	//Ô¶ï¿½Ì¶ï¿½ï¿½ï¿½×´Ì¬
+	public static final String REMOTE_STATUS_NEW = "N";		//ï¿½Â¶ï¿½ï¿½ï¿½
+	public static final String REMOTE_STATUS_LOCK = "0";		//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	public static final String REMOTE_STATUS_FIXED = "1";		//ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½
+	public static final String REMOTE_STATUS_UNLOCK = "2";		//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	public static final String REMOTE_STATUS_FAILED = "F";		//Ê§ï¿½ï¿½
+	public static final String REMOTE_STATUS_ERROR = "X";		//ï¿½ï¿½ï¿½ï¿½
+	public static final String REMOTE_STATUS_CANCEL = "C";		//ï¿½ï¿½Æ± 
 	public static final String REMOTE_STATUS_UNKNOWN = "U";		//Î´Öª
 
-	public static final String CHECKMARK_N = "N";		//Î´¼ì²é
-	public static final String CHECKMARK_Y = "Y";		//¼ì²é
+	public static final String CHECKMARK_N = "N";		//Î´ï¿½ï¿½ï¿½
+	public static final String CHECKMARK_Y = "Y";		//ï¿½ï¿½ï¿½
 	
-	//¶©µ¥²úÉúÆäËû·ÑÓÃµÄÔ­Òò
-	public static final String OTHERFEE_REASON_UMPAY = "umPay";						//»°·ÑÖ§¸¶ÊÖÐø·Ñ
-	public static final String OTHERFEE_REASON_UMPAY_SH = "umPay_sh";				//»°·ÑÖ§¸¶ÊÖÐø·Ñ
-	public static final String OTHERFEE_REASON_EXPRESS = "express";					//¿ìµÝ·ÑÓÃ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ô­ï¿½ï¿½
+	public static final String OTHERFEE_REASON_UMPAY = "umPay";						//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String OTHERFEE_REASON_UMPAY_SH = "umPay_sh";				//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String OTHERFEE_REASON_EXPRESS = "express";					//ï¿½ï¿½Ý·ï¿½ï¿½ï¿½
 	
 	
-	public static final Long CARD_DELAY_GOODSID = 152385164L;//ÏßÉÏÂôÆ·id    152385164
+	public static final Long CARD_DELAY_GOODSID = 152385164L;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·id    152385164
 	
-	public static final String MANUAL_STATUS_NEW = "new";			//ÐÂ¶©µ¥Î´ÉóºË
-	public static final String MANUAL_STATUS_CHECK = "checked";     //ÉóºËÍ¨¹ý
-	public static final String MANUAL_STATUS_CANCEL = "cancel";     //×÷·Ï
-	public static final String MANUAL_STATUS_PAY = "pay";			//ÉóºËÍ¨¹ýÒÑ¸¶¿î
-	public static final String MANUAL_STATUS_NOISSUE = "noissue";	//Î´³öÆ±
-	public static final String MANUAL_STATUS_CANISSUE = "canissue";	//¿É³öÆ±
-	public static final String MANUAL_STATUS_ISSUE = "issue";		//ÒÑ³öÆ±
+	public static final String MANUAL_STATUS_NEW = "new";			//ï¿½Â¶ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½
+	public static final String MANUAL_STATUS_CHECK = "checked";     //ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
+	public static final String MANUAL_STATUS_CANCEL = "cancel";     //ï¿½ï¿½ï¿½ï¿½
+	public static final String MANUAL_STATUS_PAY = "pay";			//ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ñ¸ï¿½ï¿½ï¿½
+	public static final String MANUAL_STATUS_NOISSUE = "noissue";	//Î´ï¿½ï¿½Æ±
+	public static final String MANUAL_STATUS_CANISSUE = "canissue";	//ï¿½É³ï¿½Æ±
+	public static final String MANUAL_STATUS_ISSUE = "issue";		//ï¿½Ñ³ï¿½Æ±
 	
-	public static final String MANUAL_SETTLETYPE_NORM = "norm";		//ÊÖ¶¯¶©µ¥½áËãÀàÐÍ£º±ê×¼
-	public static final String MANUAL_SETTLETYPE_MANUAL = "manual"; //ÊÖ¶¯¶©µ¥½áËãÀàÐÍ£ºÊÖ¶¯
+	public static final String MANUAL_SETTLETYPE_NORM = "norm";		//ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½×¼
+	public static final String MANUAL_SETTLETYPE_MANUAL = "manual"; //ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Ö¶ï¿½
 	
 	public static final Integer MINPOINT = 500;
 	public static final Integer MAXPOINT = 10000;
 	
-	public static final String PUBSALE_MSG = "¸ñÍßÀ­Éú»îÍøÎÂÜ°ÌáÊ¾£ºÄú²ÎÓëµÄ¸ñÍßÀ­Éú»îÍø¾ºÅÄ»î¶¯ÒÑ¾ºÅÄ³É¹¦£¬ÇëÄúÔÚÓÐÐ§Ê±¼äÄÚ¶Ô¸Ã¶©µ¥½øÐÐÈ·ÈÏ¼°Ö§¸¶£¬Ð»Ð»£¡";
+	public static final String PUBSALE_MSG = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü°ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»î¶¯ï¿½Ñ¾ï¿½ï¿½Ä³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§Ê±ï¿½ï¿½ï¿½Ú¶Ô¸Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½Ï¼ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Ð»Ð»ï¿½ï¿½";
 
 	static{
-		statusMap.put(STATUS_CANCEL, "¶©µ¥±»È¡Ïû");
-		statusMap.put(STATUS_REPEAT, "ÖØ¸´¶©µ¥");
-		statusMap.put(STATUS_USER_CANCEL, "ÓÃ»§È¡Ïû");
-		statusMap.put(STATUS_SYS_CANCEL, "ÏµÍ³È¡Ïû");
-		statusMap.put(STATUS_SYS_CHANGE_CANCEL, "ÏµÍ³»»×ùÈ¡Ïû");
-		statusMap.put(STATUS_NEW, "ÐÂ¶©µ¥");
-		statusMap.put(STATUS_NEW_CONFIRM, "µÈ´ý¸¶¿î");
-		statusMap.put(STATUS_NEW_UNLOCK, "ÁÙÊ±¶©µ¥");
-		statusMap.put(STATUS_PAID, "¸¶¿î³É¹¦");
-		statusMap.put(STATUS_PAID_SUCCESS, "½»Ò×³É¹¦");
-		statusMap.put(STATUS_PAID_FAILURE, "¶©µ¥´ý´¦Àí");
-		statusMap.put(STATUS_PAID_SPECIAL, "¶©µ¥ÌØÊâ´¦Àí");
-		statusMap.put(STATUS_PAID_UNFIX, "×ùÎ»´ý´¦Àí");
-		statusMap.put(STATUS_PAID_RETURN, "ÍË¿îÈ¡Ïû");
-		statusMap.put(STATUS_TIMEOUT, "³¬Ê±È¡Ïû");
+		statusMap.put(STATUS_CANCEL, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½");
+		statusMap.put(STATUS_REPEAT, "ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½");
+		statusMap.put(STATUS_USER_CANCEL, "ï¿½Ã»ï¿½È¡ï¿½ï¿½");
+		statusMap.put(STATUS_SYS_CANCEL, "ÏµÍ³È¡ï¿½ï¿½");
+		statusMap.put(STATUS_SYS_CHANGE_CANCEL, "ÏµÍ³ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½");
+		statusMap.put(STATUS_NEW, "ï¿½Â¶ï¿½ï¿½ï¿½");
+		statusMap.put(STATUS_NEW_CONFIRM, "ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½");
+		statusMap.put(STATUS_NEW_UNLOCK, "ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½");
+		statusMap.put(STATUS_PAID, "ï¿½ï¿½ï¿½ï¿½É¹ï¿½");
+		statusMap.put(STATUS_PAID_SUCCESS, "ï¿½ï¿½ï¿½×³É¹ï¿½");
+		statusMap.put(STATUS_PAID_FAILURE, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		statusMap.put(STATUS_PAID_SPECIAL, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â´¦ï¿½ï¿½");
+		statusMap.put(STATUS_PAID_UNFIX, "ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		statusMap.put(STATUS_PAID_RETURN, "ï¿½Ë¿ï¿½È¡ï¿½ï¿½");
+		statusMap.put(STATUS_TIMEOUT, "ï¿½ï¿½Ê±È¡ï¿½ï¿½");
 		Map<String, String> tmpManualOrderMap = new HashMap<String, String>();
-		tmpManualOrderMap.put(MANUAL_STATUS_NEW, "Î´ÉóºË");
-		tmpManualOrderMap.put(MANUAL_STATUS_CHECK, "ÉóºËÍ¨¹ý");
-		tmpManualOrderMap.put(MANUAL_STATUS_CANCEL, "×÷·Ï");
-		tmpManualOrderMap.put(MANUAL_STATUS_PAY, "ÉóºËÍ¨¹ýÒÑ¸¶¿î");
-		tmpManualOrderMap.put(MANUAL_STATUS_NOISSUE, "Î´³öÆ±");
-		tmpManualOrderMap.put(MANUAL_STATUS_CANISSUE, "¿É³öÆ±");
-		tmpManualOrderMap.put(MANUAL_STATUS_ISSUE, "ÒÑ³öÆ±");
+		tmpManualOrderMap.put(MANUAL_STATUS_NEW, "Î´ï¿½ï¿½ï¿½");
+		tmpManualOrderMap.put(MANUAL_STATUS_CHECK, "ï¿½ï¿½ï¿½Í¨ï¿½ï¿½");
+		tmpManualOrderMap.put(MANUAL_STATUS_CANCEL, "ï¿½ï¿½ï¿½ï¿½");
+		tmpManualOrderMap.put(MANUAL_STATUS_PAY, "ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ñ¸ï¿½ï¿½ï¿½");
+		tmpManualOrderMap.put(MANUAL_STATUS_NOISSUE, "Î´ï¿½ï¿½Æ±");
+		tmpManualOrderMap.put(MANUAL_STATUS_CANISSUE, "ï¿½É³ï¿½Æ±");
+		tmpManualOrderMap.put(MANUAL_STATUS_ISSUE, "ï¿½Ñ³ï¿½Æ±");
 		manualOrderMap = MapUtils.unmodifiableMap(tmpManualOrderMap);
 	}
 	public static Map convert2Chinese(Map params){
@@ -183,18 +183,20 @@ public class OrderConstant {
 		}
 		for(Object key : params.keySet()){
 			if("address".equals(key)){
-				map.put("ÊÕ»õµØÖ·", params.get("address"));
+				map.put("ï¿½Õ»ï¿½ï¿½ï¿½Ö·", params.get("address"));
 				continue;
 			}
 			if("remark".equals(key)){
-				if(StringUtils.isNotBlank((String)params.get(key))) map.put("±¸×¢", params.get(key));
+				if(StringUtils.isNotBlank((String)params.get(key))) {
+                    map.put("ï¿½ï¿½×¢", params.get(key));
+                }
 				continue;
 			}
 			if("preType".equals(key)){
 				continue;
 			}
 			if("category".equals(key)){
-				map.put("ÎïÆ·Àà±ð", params.get("category"));
+				map.put("ï¿½ï¿½Æ·ï¿½ï¿½ï¿½", params.get("category"));
 				continue;
 			}
 			map.put(key, params.get(key));

@@ -70,6 +70,7 @@ public class LogPageHandler implements PageHandler {
 	    }
     }
 
+    @Override
     public Page handle(URL url) {
         long size = 0;
 		String content = "";

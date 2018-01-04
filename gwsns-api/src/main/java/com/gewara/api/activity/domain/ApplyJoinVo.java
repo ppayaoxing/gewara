@@ -8,30 +8,30 @@ import com.gewara.api.activity.ApiObject;
 
 public class ApplyJoinVo extends ApiObject{
 
-	public static final String O = "O";//Î´¼ÇÂ¼Ê¤¸º¹ØÏµµÄ±È·Ö
+	public static final String O = "O";//Î´ï¿½ï¿½Â¼Ê¤ï¿½ï¿½ï¿½ï¿½Ïµï¿½Ä±È·ï¿½
 	public static final String MARK_WIN = "win";//Ô¼Õ½Ê¤
-	public static final String MARK_LOSE = "lose";//Ô¼Õ½Êä
+	public static final String MARK_LOSE = "lose";//Ô¼Õ½ï¿½ï¿½
 	public static final String MARK_TIE = "tie";//Ô¼Õ½Æ½
 	private static final long serialVersionUID = -4502423276846683786L;
 	private Long id;
-	private Long relatedid;		//»î¶¯id
-	private Timestamp addtime;	//±¨ÃûÊ±¼ä
-	private Integer joinnum;	//²Î¼ÓÈËÊý
-	private String contactway;	//ÁªÏµ·½Ê½
-	private Integer admin;		//1²ÎÓëÈËÊÇ·¢ÆðÈË£¬memberidºÍ»î¶¯µÄmemberidÏàÍ¬£¬0ÊÇÆÕÍ¨²ÎÓëÕß
-	private Long memberid;		//²Î¼Ó
-	private String realname;	//ÕæÊµÐÕÃû
-	private String sex; 		//ÐÔ±ð
-	private Integer needpay;	//ÐèÒªÖ§¸¶·ÑÓÃ
-	private Date joindate;		//²Î¼Ó»î¶¯ÈÕÆÚ
-	private Integer score;		//Ô¼Õ½ÓÃ
-	private String mark;		//Ô¼Õ½ÓÃ
-	private String status;		//Ö»ÔÚÔ¼Õ½ÖÐÓÃµ½ N£ºÎ´ÌîÐ´±È·Ö¼ÇÂ¼£¬Oµ¥·½ÃæÌîÐ´±È·Ö¼ÇÂ¼£¬YË«·½¶¼ÌîÐ´ÁË±È·Ö¼ÇÂ¼
-	private String headpicUrl;  //ÓÃ»§Í·ÏñµØÖ·
-	private String nickName;	//ÓÃ»§êÇ³Æ
-	private String address;		//µØÖ·
+	private Long relatedid;		//ï¿½î¶¯id
+	private Timestamp addtime;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private Integer joinnum;	//ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String contactway;	//ï¿½ï¿½Ïµï¿½ï¿½Ê½
+	private Integer admin;		//1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ë£ï¿½memberidï¿½Í»î¶¯ï¿½ï¿½memberidï¿½ï¿½Í¬ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Long memberid;		//ï¿½Î¼ï¿½
+	private String realname;	//ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½
+	private String sex; 		//ï¿½Ô±ï¿½
+	private Integer needpay;	//ï¿½ï¿½ÒªÖ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Date joindate;		//ï¿½Î¼Ó»î¶¯ï¿½ï¿½ï¿½ï¿½
+	private Integer score;		//Ô¼Õ½ï¿½ï¿½
+	private String mark;		//Ô¼Õ½ï¿½ï¿½
+	private String status;		//Ö»ï¿½ï¿½Ô¼Õ½ï¿½ï¿½ï¿½Ãµï¿½ Nï¿½ï¿½Î´ï¿½ï¿½Ð´ï¿½È·Ö¼ï¿½Â¼ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½È·Ö¼ï¿½Â¼ï¿½ï¿½YË«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½Ë±È·Ö¼ï¿½Â¼
+	private String headpicUrl;  //ï¿½Ã»ï¿½Í·ï¿½ï¿½ï¿½Ö·
+	private String nickName;	//ï¿½Ã»ï¿½ï¿½Ç³ï¿½
+	private String address;		//ï¿½ï¿½Ö·
 	private String otherinfo;	
-	private String birthday;    //³öÉúÄêÔÂ
+	private String birthday;    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	public String getNickName() {
 		return nickName;
@@ -147,7 +147,9 @@ public class ApplyJoinVo extends ApiObject{
 		this.memberid = memberid;
 	}
 	public Integer getNeedpay() {
-		if(needpay == null) needpay = 0;
+		if(needpay == null) {
+            needpay = 0;
+        }
 		return needpay;
 	}
 	public void setNeedpay(Integer needpay) {

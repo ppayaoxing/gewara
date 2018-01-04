@@ -65,7 +65,9 @@ public class IPUtil {
 	}
 	
 	private static void init() {
-		if(init.get()) return;
+		if(init.get()) {
+            return;
+        }
 		boolean first = init.compareAndSet(false, true);
 		if(!first) {
 			return;
@@ -183,12 +185,15 @@ public class IPUtil {
 		int start = 0, end = ipData.ipList.length, mid = -1;
 		while (start != end && start + 1 != end) {
 			mid = (start + end) / 2;
-			if (ipData.ipList[mid] == ipNum)
-				return mid;
-			if (ipData.ipList[mid + 1] == ipNum)
-				return mid + 1;
-			if (ipNum > ipData.ipList[mid] && ipNum < ipData.ipList[mid + 1])
-				return mid;
+			if (ipData.ipList[mid] == ipNum) {
+                return mid;
+            }
+			if (ipData.ipList[mid + 1] == ipNum) {
+                return mid + 1;
+            }
+			if (ipNum > ipData.ipList[mid] && ipNum < ipData.ipList[mid + 1]) {
+                return mid;
+            }
 			if (ipNum > ipData.ipList[mid]) {
 				start = mid;
 			} else {

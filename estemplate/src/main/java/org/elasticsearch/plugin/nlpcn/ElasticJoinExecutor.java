@@ -70,7 +70,9 @@ public abstract class ElasticJoinExecutor {
 
     //use our deserializer instead of results toXcontent because the source field is differnet from sourceAsMap.
     public String resultAsString() throws IOException {
-        if(this.results == null) return null;
+        if(this.results == null) {
+            return null;
+        }
         Object[] searchHits;
         searchHits = new Object[(int) this.results.totalHits()];
         int i = 0;
@@ -130,9 +132,11 @@ public abstract class ElasticJoinExecutor {
     protected Map<String,Object> mapWithAliases(Map<String, Object> source, String alias) {
         Map<String,Object> mapWithAliases = new HashMap<>();
         for(Map.Entry<String,Object> fieldNameToValue : source.entrySet()) {
-            if(!aliasesOnReturn.contains(fieldNameToValue.getKey()))
+            if(!aliasesOnReturn.contains(fieldNameToValue.getKey())) {
                 mapWithAliases.put(alias + "." + fieldNameToValue.getKey(), fieldNameToValue.getValue());
-            else mapWithAliases.put(fieldNameToValue.getKey(),fieldNameToValue.getValue());
+            } else {
+                mapWithAliases.put(fieldNameToValue.getKey(), fieldNameToValue.getValue());
+            }
         }
         return mapWithAliases;
     }
@@ -164,8 +168,12 @@ public abstract class ElasticJoinExecutor {
             Map<String,Object> currentObject = fieldsMap;
             for(int i=0;i<path.length-1 ;i++){
                 Object valueFromCurrentMap = currentObject.get(path[i]);
-                if(valueFromCurrentMap == null) return null;
-                if(!Map.class.isAssignableFrom(valueFromCurrentMap.getClass())) return null;
+                if(valueFromCurrentMap == null) {
+                    return null;
+                }
+                if(!Map.class.isAssignableFrom(valueFromCurrentMap.getClass())) {
+                    return null;
+                }
                 currentObject = (Map<String, Object>) valueFromCurrentMap;
             }
             return currentObject.get(path[path.length-1]);
@@ -178,7 +186,7 @@ public abstract class ElasticJoinExecutor {
     protected void addUnmatchedResults(List<InternalSearchHit> combinedResults, Collection<SearchHitsResult> firstTableSearchHits, List<Field> secondTableReturnedFields,int currentNumOfIds, int totalLimit,String t1Alias,String t2Alias) {
         boolean limitReached = false;
         for(SearchHitsResult hitsResult : firstTableSearchHits){
-            if(!hitsResult.isMatchedWithOtherTable())
+            if(!hitsResult.isMatchedWithOtherTable()) {
                 for (InternalSearchHit hit : hitsResult.getSearchHits()) {
 
                     //todo: decide which id to put or type. or maby its ok this way. just need to doc.
@@ -191,7 +199,10 @@ public abstract class ElasticJoinExecutor {
                     }
 
                 }
-            if(limitReached) break;
+            }
+            if(limitReached) {
+                break;
+            }
         }
     }
 
@@ -231,11 +242,14 @@ public abstract class ElasticJoinExecutor {
                 .setScroll(new TimeValue(60000))
                 .setSize(MAX_RESULTS_ON_ONE_FETCH);
         boolean ordered = tableRequest.getOriginalSelect().isOrderdSelect();
-        if(!ordered) scrollRequest.setSearchType(SearchType.SCAN);
+        if(!ordered) {
+            scrollRequest.setSearchType(SearchType.SCAN);
+        }
         responseWithHits = scrollRequest.get();
         //on ordered select - not using SCAN , elastic returns hits on first scroll
-        if(!ordered)
+        if(!ordered) {
             responseWithHits = client.prepareSearchScroll(responseWithHits.getScrollId()).setScroll(new TimeValue(600000)).get();
+        }
         return responseWithHits;
     }
 

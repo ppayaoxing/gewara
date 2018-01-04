@@ -27,7 +27,7 @@ import com.gewara.web.support.ResourceStatsUtil;
 
 /**
  * @author ge.biao
- * ¶àÌ¨jms·þÎñÆ÷Ñ­»··¢ËÍ
+ * ï¿½ï¿½Ì¨jmsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 public class RandomJmsServiceImpl implements JmsService, InitializingBean{
 	private final transient GewaLogger dbLogger = WebLogger.getLogger(getClass());
@@ -51,20 +51,20 @@ public class RandomJmsServiceImpl implements JmsService, InitializingBean{
 	public void afterPropertiesSet() {
 		Assert.isTrue(StringUtils.isNotBlank(jmsServers), "jmsServers can't be null!!");
 		//failover:(tcp://192.168.8.109:9521,tcp://192.168.8.108:9521)?randomize=false
-		//0,È¥³ýfailover
+		//0,È¥ï¿½ï¿½failover
 		int idx = jmsServers.indexOf('(');
 		if(idx>0){
 			int idx2 = jmsServers.indexOf(')');
 			jmsServers = jmsServers.substring(idx + 1, idx2);
 		}
-		//1,ÕûÀí
+		//1,ï¿½ï¿½ï¿½ï¿½
 		List<String> servers = new ArrayList<String>();
 		for(String server: StringUtils.split(jmsServers, ",")){
 			if(StringUtils.isNotBlank(server)){
 				servers.add(server.trim());
 			}
 		}
-		//2,Öð¸ö
+		//2,ï¿½ï¿½ï¿½
 		for(String server: servers){
 			List<String> list = new ArrayList<String>(servers);
 			list.remove(server);
@@ -145,7 +145,9 @@ public class RandomJmsServiceImpl implements JmsService, InitializingBean{
 
 	}
 	private void sendMsg(String dst, String msgtag, String keyList, Object...params) {
-		if(StringUtils.isBlank(keyList) || params==null) return;
+		if(StringUtils.isBlank(keyList) || params==null) {
+            return;
+        }
 		Map msgMap = new HashMap();
 		String[] keys = keyList.split("[, ]+");
 		for(int i=0, size=Math.min(keys.length, params.length);i<size;i++){
@@ -164,7 +166,7 @@ public class RandomJmsServiceImpl implements JmsService, InitializingBean{
 				@Override
 				public Message createMessage(Session session) throws JMSException {
 					Message message = session.createTextMessage(msg);
-					if(delay!=null){//ÑÓ³Ù·¢ËÍ
+					if(delay!=null){//ï¿½Ó³Ù·ï¿½ï¿½ï¿½
 						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
 					}
 					message.setStringProperty("msgtag", msgtag);
@@ -189,7 +191,7 @@ public class RandomJmsServiceImpl implements JmsService, InitializingBean{
 				@Override
 				public Message createMessage(Session session) throws JMSException {
 					MapMessage message = session.createMapMessage();
-					if(delay!=null){//ÑÓ³Ù·¢ËÍ
+					if(delay!=null){//ï¿½Ó³Ù·ï¿½ï¿½ï¿½
 						message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, delay);
 					}
 					message.setStringProperty("msgtag", msgtag);

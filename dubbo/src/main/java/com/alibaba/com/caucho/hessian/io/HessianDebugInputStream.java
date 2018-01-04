@@ -71,8 +71,9 @@ public class HessianDebugInputStream extends InputStream
   {
     _is = is;
 
-    if (dbg == null)
-      dbg = new PrintWriter(System.out);
+    if (dbg == null) {
+        dbg = new PrintWriter(System.out);
+    }
 
     _state = new HessianDebugState(dbg);
   }
@@ -93,6 +94,7 @@ public class HessianDebugInputStream extends InputStream
   /**
    * Reads a character.
    */
+  @Override
   public int read()
     throws IOException
   {
@@ -100,9 +102,9 @@ public class HessianDebugInputStream extends InputStream
 
     InputStream is = _is;
 
-    if (is == null)
-      return -1;
-    else {
+    if (is == null) {
+        return -1;
+    } else {
       ch = is.read();
     }
 
@@ -114,14 +116,16 @@ public class HessianDebugInputStream extends InputStream
   /**
    * closes the stream.
    */
+  @Override
   public void close()
     throws IOException
   {
     InputStream is = _is;
     _is = null;
 
-    if (is != null)
-      is.close();
+    if (is != null) {
+        is.close();
+    }
     
     _state.println();
   }
@@ -143,10 +147,12 @@ public class HessianDebugInputStream extends InputStream
 	_log.log(_level, _sb.toString());
 	_sb.setLength(0);
       }
-      else
-	_sb.append((char) ch);
+      else {
+          _sb.append((char) ch);
+      }
     }
 
+    @Override
     public void write(char []buffer, int offset, int length)
     {
       for (int i = 0; i < length; i++) {
@@ -156,15 +162,18 @@ public class HessianDebugInputStream extends InputStream
 	  _log.log(_level, _sb.toString());
 	  _sb.setLength(0);
 	}
-	else
-	  _sb.append((char) ch);
+	else {
+        _sb.append((char) ch);
+    }
       }
     }
 
+    @Override
     public void flush()
     {
     }
 
+    @Override
     public void close()
     {
     }

@@ -59,11 +59,15 @@ public class PageParams {
 	}
 	public void addDateStr(String key, String value) {
 		Date date = DateUtil.parseDate(value);
-		if(date!=null) params.put(key, value);
+		if(date!=null) {
+            params.put(key, value);
+        }
 	}
 	public void addTimestampStr(String key, String value) {
 		Date date = DateUtil.parseTimestamp(value);
-		if(date!=null) params.put(key, value);
+		if(date!=null) {
+            params.put(key, value);
+        }
 	}
 	public void addDate(HttpServletRequest req, String paramName){
 		String value = req.getParameter(paramName);

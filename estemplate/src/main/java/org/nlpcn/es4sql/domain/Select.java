@@ -103,7 +103,9 @@ public class Select extends Query {
     }
 
     private void fillSubQueriesFromWhereRecursive(Where where) {
-        if(where == null) return;
+        if(where == null) {
+            return;
+        }
         if(where instanceof Condition){
             Condition condition = (Condition) where;
             if ( condition.getValue() instanceof SubQueryExpression){
@@ -121,8 +123,9 @@ public class Select extends Query {
             }
         }
         else {
-            for(Where innerWhere : where.getWheres())
+            for(Where innerWhere : where.getWheres()) {
                 fillSubQueriesFromWhereRecursive(innerWhere);
+            }
         }
     }
 

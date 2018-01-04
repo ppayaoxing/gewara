@@ -34,7 +34,8 @@ public class StreamUtils
 		return new InputStream(){
 			private int mPosition = 0, mMark = 0, mLimit = Math.min(limit, is.available());
 
-			public int read() throws IOException
+			@Override
+            public int read() throws IOException
 			{
 				if( mPosition < mLimit )
 				{
@@ -44,64 +45,78 @@ public class StreamUtils
 				return -1;
 		    }
 
-			public int read(byte b[], int off, int len) throws IOException
+			@Override
+            public int read(byte[] b, int off, int len) throws IOException
 			{
-				if( b == null )
-				    throw new NullPointerException();
+				if( b == null ) {
+                    throw new NullPointerException();
+                }
 
-				if( off < 0 || len < 0 || len > b.length - off )
-				    throw new IndexOutOfBoundsException();
+				if( off < 0 || len < 0 || len > b.length - off ) {
+                    throw new IndexOutOfBoundsException();
+                }
 
-				if( mPosition >= mLimit )
-				    return -1;
+				if( mPosition >= mLimit ) {
+                    return -1;
+                }
 
-				if( mPosition + len > mLimit )
-				    len = mLimit - mPosition;
+				if( mPosition + len > mLimit ) {
+                    len = mLimit - mPosition;
+                }
 
-				if( len <= 0 )
-				    return 0;
+				if( len <= 0 ) {
+                    return 0;
+                }
 
 				is.read(b, off, len);
 				mPosition += len;
 				return len;
 		    }
 
-			public long skip(long len) throws IOException
+			@Override
+            public long skip(long len) throws IOException
 		    {
-				if( mPosition + len > mLimit )
-					len = mLimit - mPosition;
+				if( mPosition + len > mLimit ) {
+                    len = mLimit - mPosition;
+                }
 
-				if( len <= 0 )
-					return 0;
+				if( len <= 0 ) {
+                    return 0;
+                }
 
 				is.skip(len);
 				mPosition += len;
 				return len;
 		    }
 
-			public int available()
+			@Override
+            public int available()
 			{
 				return mLimit - mPosition;
 			}
 
-			public boolean markSupported()
+			@Override
+            public boolean markSupported()
 		    {
 		    	return is.markSupported();
 			}
 
-			public void mark(int readlimit)
+			@Override
+            public void mark(int readlimit)
 			{
 				is.mark(readlimit);
 				mMark = mPosition;
 			}
 
-			public void reset() throws IOException
+			@Override
+            public void reset() throws IOException
 			{
 				is.reset();
 				mPosition = mMark;
 			}
 
-			public void close() throws IOException
+			@Override
+            public void close() throws IOException
 			{}
 		};
 	}
@@ -133,7 +148,9 @@ public class StreamUtils
                     }
                     
                     if(!mInReset) {
-                        if(mDry) return -1;
+                        if(mDry) {
+                            return -1;
+                        }
                         
                         if(null == mMarkBuffer) {
                             mMarkBuffer = new byte[markBufferSize];
@@ -202,7 +219,9 @@ public class StreamUtils
             public int available() throws IOException {
                 int available = is.available();
                 
-                if(mInMarked && mInReset) available += mCount - mPosition;
+                if(mInMarked && mInReset) {
+                    available += mCount - mPosition;
+                }
                 
                 return available;
             }

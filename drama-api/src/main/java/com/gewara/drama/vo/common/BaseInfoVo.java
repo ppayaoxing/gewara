@@ -31,10 +31,10 @@ public class BaseInfoVo extends BaseEntityVo{
 	protected String email;
 	protected Long stationid;
 	protected String stationname;
-	protected String exitnumber;//³ö¿Ú
+	protected String exitnumber;//ï¿½ï¿½ï¿½ï¿½
 	protected String googlemap;
-	protected String opentime;//ÓªÒµÊ±¼ä
-	protected String briefaddress;//Ãû³Æ¼ò³Æ
+	protected String opentime;//ÓªÒµÊ±ï¿½ï¿½
+	protected String briefaddress;//ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½
 	protected String lineidlist;
 	
 	public String getBrandname() {
@@ -214,7 +214,9 @@ public class BaseInfoVo extends BaseEntityVo{
 	
 	public String getLineName(Map<String, String> lineMap){
 		String result = "";
-		if(lineMap==null) return result; 
+		if(lineMap==null) {
+            return result;
+        }
 		if(StringUtils.isNotBlank(this.lineidlist)){
 			for(String lineid : lineidlist.split(",")){
 				String linename = lineMap.get(lineid);
@@ -223,7 +225,9 @@ public class BaseInfoVo extends BaseEntityVo{
 				}
 			}
 		}
-		if(StringUtils.isNotBlank(result)) return result.substring(1);
+		if(StringUtils.isNotBlank(result)) {
+            return result.substring(1);
+        }
 		return result;
 	}
 	

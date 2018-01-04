@@ -10,32 +10,32 @@ import com.gewara.api.vo.BaseVo;
 public class TheatreSeatAreaVo extends BaseVo {
 	private static final long serialVersionUID = -7924268455854109433L;
 	private Long id; //
-	private Long dpid; // ³¡´ÎID
+	private Long dpid; // ï¿½ï¿½ï¿½ï¿½ID
 	private Long theatreid;
 	private Long dramaid;
-	private String areaname; // ÇøÓòÃû³Æ
+	private String areaname; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String enname; //
-	private String seller; // ÀàÐÍ:¶ÔÓ¦DramaPlayItem seller
-	private String sellerseq; // ÇøÓò±àºÅ£¨ShowArea-->saseqNo£©
-	private String fieldnum; // ³¡µØÐòºÅ
-	private String roomnum; // ÇøÓòÐòºÅ
-	private String description; // ÇøÓòÃèÊö
-	private String standing; // ÊÇ·ñÕ¾Æ±
-	private Integer total; // Õ¾Æ±/×ùÎ»×ÜÁ¿
-	private Integer limitnum; // ÏÞÖÆÊý
-	private Integer firstline; // ÆðÊ¼ÐÐ
-	private Integer firstrank; // ÆðÊ¼ÁÐ
-	private Integer linenum; // ±í¸ñ¿í¶È
-	private Integer ranknum; // ±í¸ñ¸ß¶È
-	private String hotzone; // ×ù±êÖµ
-	private String mobilehotzone; // ×ø±êÖµ
-	private String status; // ×´Ì¬£º¿ÉÓÃ¡¢É¾³ý
-	private String seatmap; // ×ùÎ»Í¼
+	private String seller; // ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½Ó¦DramaPlayItem seller
+	private String sellerseq; // ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½ShowArea-->saseqNoï¿½ï¿½
+	private String fieldnum; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String roomnum; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String description; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String standing; // ï¿½Ç·ï¿½Õ¾Æ±
+	private Integer total; // Õ¾Æ±/ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	private Integer limitnum; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer firstline; // ï¿½ï¿½Ê¼ï¿½ï¿½
+	private Integer firstrank; // ï¿½ï¿½Ê¼ï¿½ï¿½
+	private Integer linenum; // ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer ranknum; // ï¿½ï¿½ï¿½ß¶ï¿½
+	private String hotzone; // ï¿½ï¿½ï¿½ï¿½Öµ
+	private String mobilehotzone; // ï¿½ï¿½ï¿½ï¿½Öµ
+	private String status; // ×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½É¾ï¿½ï¿½
+	private String seatmap; // ï¿½ï¿½Î»Í¼
 	private Timestamp addtime;
 	private Timestamp updatetime;
-	private Integer gsellnum; // GewaÂô³öÊý
-	private Integer csellnum; // ³¡¹ÝÂô³öÊý
-	private Integer locknum; // GewaËø¶¨Êý
+	private Integer gsellnum; // Gewaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer csellnum; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Integer locknum; // Gewaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private Integer remainnum;
 	private String svgpath;
 	private String otherinfo;
@@ -270,14 +270,16 @@ public class TheatreSeatAreaVo extends BaseVo {
 	}
 
 	public boolean hasStatus(String stats) {
-		if (StringUtils.isBlank(stats))
-			return false;
+		if (StringUtils.isBlank(stats)) {
+            return false;
+        }
 		return StringUtils.equals(this.status, stats);
 	}
 
 	public boolean hasSeller(String sell) {
-		if (StringUtils.isBlank(sell))
-			return false;
+		if (StringUtils.isBlank(sell)) {
+            return false;
+        }
 		return StringUtils.equals(this.seller, sell);
 	}
 

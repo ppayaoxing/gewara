@@ -236,16 +236,18 @@ public enum OperatingSystem {
         //if (versionRegexString != null) { // not implemented yet
         //    this.versionRegEx = Pattern.compile(versionRegexString);
         //}
-        if (this.parent == null)
+        if (this.parent == null) {
             addTopLevelOperatingSystem(this);
-        else
+        } else {
             this.parent.children.add(this);
+        }
     }
 
 	// create collection of top level operating systems during initialization
 	private static void addTopLevelOperatingSystem(OperatingSystem os) {
-		if(topLevelOperatingSystems == null)
-			topLevelOperatingSystems = new ArrayList<OperatingSystem>();	
+		if(topLevelOperatingSystems == null) {
+            topLevelOperatingSystems = new ArrayList<OperatingSystem>();
+        }
 		topLevelOperatingSystems.add(os);
 	}
 	
@@ -394,8 +396,9 @@ public enum OperatingSystem {
 	{
 		for (OperatingSystem operatingSystem : OperatingSystem.values())
 		{
-			if (operatingSystem.getId() == id)
-				return operatingSystem;
+			if (operatingSystem.getId() == id) {
+                return operatingSystem;
+            }
 		}
 		
 		// same behavior as standard valueOf(string) method

@@ -74,8 +74,9 @@ public final class ClassGenerator
 
 	public static ClassPool getClassPool(ClassLoader loader)
 	{
-		if( loader == null )
-			return ClassPool.getDefault();
+		if( loader == null ) {
+            return ClassPool.getDefault();
+        }
 
 		ClassPool pool = POOL_MAP.get(loader);
 		if( pool == null )
@@ -123,8 +124,9 @@ public final class ClassGenerator
 
 	public ClassGenerator addInterface(String cn)
 	{
-		if( mInterfaces == null )
-			mInterfaces = new HashSet<String>();
+		if( mInterfaces == null ) {
+            mInterfaces = new HashSet<String>();
+        }
 		mInterfaces.add(cn);
 		return this;
 	}
@@ -148,8 +150,9 @@ public final class ClassGenerator
 
 	public ClassGenerator addField(String code)
 	{
-		if( mFields == null )
-			mFields = new ArrayList<String>();
+		if( mFields == null ) {
+            mFields = new ArrayList<String>();
+        }
 		mFields.add(code);
 		return this;
 	}
@@ -175,8 +178,9 @@ public final class ClassGenerator
 
 	public ClassGenerator addMethod(String code)
 	{
-		if( mMethods == null )
-			mMethods = new ArrayList<String>();
+		if( mMethods == null ) {
+            mMethods = new ArrayList<String>();
+        }
 		mMethods.add(code);
 		return this;
 	}
@@ -193,8 +197,9 @@ public final class ClassGenerator
 		sb.append('(');
 		for(int i=0;i<pts.length;i++)
 		{
-			if( i > 0 )
-				sb.append(',');
+			if( i > 0 ) {
+                sb.append(',');
+            }
 			sb.append(ReflectUtils.getName(pts[i]));
 			sb.append(" arg").append(i);
 		}
@@ -204,8 +209,9 @@ public final class ClassGenerator
 			sb.append(" throws ");
 			for(int i=0;i<ets.length;i++)
 			{
-				if( i > 0 )
-					sb.append(',');
+				if( i > 0 ) {
+                    sb.append(',');
+                }
 				sb.append(ReflectUtils.getName(ets[i]));
 			}
 		}
@@ -223,16 +229,18 @@ public final class ClassGenerator
 	{
 		String desc = name + ReflectUtils.getDescWithoutMethodName(m);
 		addMethod(':' + desc);
-		if( mCopyMethods == null )
-			mCopyMethods = new ConcurrentHashMap<String, Method>(8);
+		if( mCopyMethods == null ) {
+            mCopyMethods = new ConcurrentHashMap<String, Method>(8);
+        }
 		mCopyMethods.put(desc, m);
 		return this;
 	}
 
 	public ClassGenerator addConstructor(String code)
 	{
-		if( mConstructors == null )
-			mConstructors = new LinkedList<String>();
+		if( mConstructors == null ) {
+            mConstructors = new LinkedList<String>();
+        }
 		mConstructors.add(code);
 		return this;
 	}
@@ -249,8 +257,9 @@ public final class ClassGenerator
 		sb.append('(');
 		for(int i=0;i<pts.length;i++)
 		{
-			if( i > 0 )
-				sb.append(',');
+			if( i > 0 ) {
+                sb.append(',');
+            }
 			sb.append(ReflectUtils.getName(pts[i]));
 			sb.append(" arg").append(i);
 		}
@@ -260,8 +269,9 @@ public final class ClassGenerator
 			sb.append(" throws ");
 			for(int i=0;i<ets.length;i++)
 			{
-				if( i > 0 )
-					sb.append(',');
+				if( i > 0 ) {
+                    sb.append(',');
+                }
 				sb.append(ReflectUtils.getName(ets[i]));
 			}
 		}
@@ -273,8 +283,9 @@ public final class ClassGenerator
 	{
 		String desc = ReflectUtils.getDesc(c);
 		addConstructor(":"+desc);
-		if( mCopyConstructors == null )
-			mCopyConstructors = new ConcurrentHashMap<String, Constructor<?>>(4);
+		if( mCopyConstructors == null ) {
+            mCopyConstructors = new ConcurrentHashMap<String, Constructor<?>>(4);
+        }
 		mCopyConstructors.put(desc, c);
 		return this;
 	}
@@ -291,35 +302,46 @@ public final class ClassGenerator
 
 	public Class<?> toClass()
 	{
-		if( mCtc != null )
-			mCtc.detach();
+		if( mCtc != null ) {
+            mCtc.detach();
+        }
 		long id = CLASS_NAME_COUNTER.getAndIncrement();
 		try
 		{
 			CtClass ctcs = mSuperClass == null ? null : mPool.get(mSuperClass);
-			if( mClassName == null )
-				mClassName = ( mSuperClass == null || javassist.Modifier.isPublic(ctcs.getModifiers())
-						? ClassGenerator.class.getName() : mSuperClass + "$sc" ) + id;
+			if( mClassName == null ) {
+                mClassName = (mSuperClass == null || javassist.Modifier.isPublic(ctcs.getModifiers())
+                        ? ClassGenerator.class.getName() : mSuperClass + "$sc") + id;
+            }
 			mCtc = mPool.makeClass(mClassName);
-			if( mSuperClass != null )
-				mCtc.setSuperclass(ctcs);
+			if( mSuperClass != null ) {
+                mCtc.setSuperclass(ctcs);
+            }
 			mCtc.addInterface(mPool.get(DC.class.getName())); // add dynamic class tag.
-			if( mInterfaces != null )
-				for( String cl : mInterfaces ) mCtc.addInterface(mPool.get(cl));
-			if( mFields != null )
-				for( String code : mFields ) mCtc.addField(CtField.make(code, mCtc));
+			if( mInterfaces != null ) {
+                for (String cl : mInterfaces) {
+                    mCtc.addInterface(mPool.get(cl));
+                }
+            }
+			if( mFields != null ) {
+                for (String code : mFields) {
+                    mCtc.addField(CtField.make(code, mCtc));
+                }
+            }
 			if( mMethods != null )
 			{
 				for( String code : mMethods )
 				{
-					if( code.charAt(0) == ':' )
-						mCtc.addMethod(CtNewMethod.copy(getCtMethod(mCopyMethods.get(code.substring(1))), code.substring(1, code.indexOf('(')), mCtc, null));
-					else
-						mCtc.addMethod(CtNewMethod.make(code, mCtc));
+					if( code.charAt(0) == ':' ) {
+                        mCtc.addMethod(CtNewMethod.copy(getCtMethod(mCopyMethods.get(code.substring(1))), code.substring(1, code.indexOf('(')), mCtc, null));
+                    } else {
+                        mCtc.addMethod(CtNewMethod.make(code, mCtc));
+                    }
 				}
 			}
-			if( mDefaultConstructor )
-				mCtc.addConstructor(CtNewConstructor.defaultConstructor(mCtc));
+			if( mDefaultConstructor ) {
+                mCtc.addConstructor(CtNewConstructor.defaultConstructor(mCtc));
+            }
 			if( mConstructors != null )
 			{
 				for( String code : mConstructors )
@@ -353,13 +375,27 @@ public final class ClassGenerator
 
 	public void release()
 	{
-		if( mCtc != null ) mCtc.detach();
-		if( mInterfaces != null ) mInterfaces.clear();
-		if( mFields != null ) mFields.clear();
-		if( mMethods != null ) mMethods.clear();
-		if( mConstructors != null ) mConstructors.clear();
-		if( mCopyMethods != null ) mCopyMethods.clear();
-		if( mCopyConstructors != null ) mCopyConstructors.clear();
+		if( mCtc != null ) {
+            mCtc.detach();
+        }
+		if( mInterfaces != null ) {
+            mInterfaces.clear();
+        }
+		if( mFields != null ) {
+            mFields.clear();
+        }
+		if( mMethods != null ) {
+            mMethods.clear();
+        }
+		if( mConstructors != null ) {
+            mConstructors.clear();
+        }
+		if( mCopyMethods != null ) {
+            mCopyMethods.clear();
+        }
+		if( mCopyConstructors != null ) {
+            mCopyConstructors.clear();
+        }
 	}
 
 	private CtClass getCtClass(Class<?> c) throws NotFoundException
@@ -379,9 +415,15 @@ public final class ClassGenerator
 
 	private static String modifier(int mod)
 	{
-		if( Modifier.isPublic(mod) ) return "public";
-		if( Modifier.isProtected(mod) ) return "protected";
-		if( Modifier.isPrivate(mod) ) return "private";
+		if( Modifier.isPublic(mod) ) {
+            return "public";
+        }
+		if( Modifier.isProtected(mod) ) {
+            return "protected";
+        }
+		if( Modifier.isPrivate(mod) ) {
+            return "private";
+        }
 		return "";
 	}
 }

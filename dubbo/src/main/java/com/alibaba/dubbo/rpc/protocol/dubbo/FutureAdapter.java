@@ -43,18 +43,22 @@ public class FutureAdapter<V> implements Future<V> {
         return future;
     }
 
+    @Override
     public boolean cancel(boolean mayInterruptIfRunning) {
         return false;
     }
 
+    @Override
     public boolean isCancelled() {
         return false;
     }
 
+    @Override
     public boolean isDone() {
         return future.isDone();
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public V get() throws InterruptedException, ExecutionException {
         try {
@@ -66,6 +70,7 @@ public class FutureAdapter<V> implements Future<V> {
         }
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
         int timeoutInMillis = (int) unit.convert(timeout, TimeUnit.MILLISECONDS);

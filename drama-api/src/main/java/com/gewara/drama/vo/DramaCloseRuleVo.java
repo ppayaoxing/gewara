@@ -12,31 +12,31 @@ import com.gewara.util.BeanUtil;
 
 public class DramaCloseRuleVo  extends BaseVo{
 	private static final long serialVersionUID = -1337926425282216885L;
-	public static final String RULETYPE_DPI = "dpi";			//³¡´Î
-	public static final String RULETYPE_DRAMA = "drama";		//ÑÝ³öÏîÄ¿
-	public static final String RULETYPE_CITY = "city";			//³ÇÊÐ
-	public static final String RULETYPE_SEATTYPE = "seattype";	//¼Û¸ñÀàÐÍ
-	public static final String RULETYPE_ROOMNUM = "roomnum";	//ÇøÓò
-	public static final String MATCH_INCLUDE = "include";		//°üº¬
-	public static final String MATCH_EXCLUDE = "exclude";		//ÅÅ³ý
+	public static final String RULETYPE_DPI = "dpi";			//ï¿½ï¿½ï¿½ï¿½
+	public static final String RULETYPE_DRAMA = "drama";		//ï¿½Ý³ï¿½ï¿½ï¿½Ä¿
+	public static final String RULETYPE_CITY = "city";			//ï¿½ï¿½ï¿½ï¿½
+	public static final String RULETYPE_SEATTYPE = "seattype";	//ï¿½Û¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String RULETYPE_ROOMNUM = "roomnum";	//ï¿½ï¿½ï¿½ï¿½
+	public static final String MATCH_INCLUDE = "include";		//ï¿½ï¿½ï¿½ï¿½
+	public static final String MATCH_EXCLUDE = "exclude";		//ï¿½Å³ï¿½
 	private Long id;
-	private String ruletype;			//¹æÔòÀàÐÍ£ºÖ»ÏÞÏîÄ¿¡¢³¡´Î¡¢¼Û¸ñ¡¢ÇøÓò
-	private String partnerids;			//ÉÌ¼ÒID
-	private String dramaids;			//ÑÝ³öID£º²»¿ª·ÅÏîÄ¿
-	private String seattypes;			//¼Û¸ñÀàÐÍ£º²»¿ª·Å¼Û¸ñ
-	private String roomnums;			//ÇøÓòÐòºÅ£º²»¿ª·ÅÇøÓò
-	private String dpids;				//³¡´ÎID£º²»¿ª·Å³¡´Î
-	private String citys;				//³ÇÊÐ´úÂë£º²»¿ª·Å³¡´Î
-	private String pmatch;				//partner match model °üº¬»¹ÊÇÅÅ³ýÉÌ¼Ò 
-	private String dmatch;				//drama match model °üº¬»¹ÊÇÅÅ³ýÏîÄ¿
-	private String imatch;				//dpi match model °üº¬»¹ÊÇÅÅ³ý³¡´Î
-	private String smatch;				//seattype match model °üº¬»¹ÊÇÅÅ³ý¼Û¸ñ
-	private String rmatch;				//roomnum match model °üº¬»¹ÊÇÅÅ³ýÇøÓò
-	private String cmatch;				//city match model °üº¬»¹ÊÇÅÅ³ý³ÇÊÐ
-	private Timestamp opentime;			//¿ªÊ¼Ê±¼ä
-	private Timestamp closetime;		//½áÊøÊ±¼ä
-	private String description;			//ÆÁ±ÎÃèÊö
-	private Timestamp updatetime;		//¸üÐÂÊ±¼ä
+	private String ruletype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½Î¡ï¿½ï¿½Û¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String partnerids;			//ï¿½Ì¼ï¿½ID
+	private String dramaids;			//ï¿½Ý³ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
+	private String seattypes;			//ï¿½Û¸ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¼Û¸ï¿½
+	private String roomnums;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String dpids;				//ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½
+	private String citys;				//ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ë£ºï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½
+	private String pmatch;				//partner match model ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½Ì¼ï¿½ 
+	private String dmatch;				//drama match model ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½Ä¿
+	private String imatch;				//dpi match model ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String smatch;				//seattype match model ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½Û¸ï¿½
+	private String rmatch;				//roomnum match model ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String cmatch;				//city match model ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Timestamp opentime;			//ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	private Timestamp closetime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String description;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Timestamp updatetime;		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	@Override
 	public Serializable realId() {
 		return id;
@@ -159,35 +159,49 @@ public class DramaCloseRuleVo  extends BaseVo{
 		return StringUtils.equals(pmatch, MATCH_EXCLUDE)?!matchPartner:matchPartner;
 	}
 	public boolean matchDrama(Long dramaid) {
-		if(StringUtils.isBlank(dramaids)) return false;
+		if(StringUtils.isBlank(dramaids)) {
+            return false;
+        }
 		List<Long> dramaidList = BeanUtil.getIdList(dramaids, ",");
 		boolean match = dramaidList.contains(dramaid);
 		return StringUtils.equals(dmatch, MATCH_EXCLUDE)?!match:match;
 	}
 	public boolean matchCity(String citycode) {
-		if(StringUtils.isBlank(citys)) return false;
+		if(StringUtils.isBlank(citys)) {
+            return false;
+        }
 		String[] idList = citys.split(",");
 		List<String> cityList = Arrays.asList(idList);
 		boolean match = cityList.contains(citycode);
 		return StringUtils.equals(cmatch, MATCH_EXCLUDE)?!match:match;
 	}
 	public boolean matchDpid(Long dpid) {
-		if(StringUtils.isBlank(dpids)) return false;
+		if(StringUtils.isBlank(dpids)) {
+            return false;
+        }
 		List<Long> dpidList = BeanUtil.getIdList(dpids, ",");
 		boolean match = dpidList.contains(dpid);
 		return StringUtils.equals(imatch, MATCH_EXCLUDE)?!match:match;
 	}
 	public boolean matchRoomnum(Long dpid, String roomnum) {
-		if(StringUtils.isBlank(roomnums)) return false;
+		if(StringUtils.isBlank(roomnums)) {
+            return false;
+        }
 		boolean match = matchArea(roomnum);
-		if(StringUtils.isBlank(dpids)) return match;
+		if(StringUtils.isBlank(dpids)) {
+            return match;
+        }
 		boolean match2 = matchDpid(dpid);
 		return match2&match;
 	}
 	public boolean matchSeattype(Long dpid, String seattype) {
-		if(StringUtils.isBlank(seattypes)) return false;
+		if(StringUtils.isBlank(seattypes)) {
+            return false;
+        }
 		boolean match = matchPrice(seattype);
-		if(StringUtils.isBlank(dpids)) return match;
+		if(StringUtils.isBlank(dpids)) {
+            return match;
+        }
 		boolean match2 = matchDpid(dpid);
 		return match2&match;
 	}

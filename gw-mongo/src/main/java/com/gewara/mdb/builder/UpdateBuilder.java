@@ -17,8 +17,8 @@ import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.result.UpdateResult;
 
 /**
- * @author ¶­Ã÷
- * @createDate 2015Äê7ÔÂ30ÈÕ
+ * @author ï¿½ï¿½ï¿½ï¿½
+ * @createDate 2015ï¿½ï¿½7ï¿½ï¿½30ï¿½ï¿½
  * @param <T>
  */
 public class UpdateBuilder<T> {
@@ -26,8 +26,8 @@ public class UpdateBuilder<T> {
 	private Class<T> sourceType=null;
 	
 	private Bson condition=null;
-	private Document source=new Document();//ÕâÀïµÄÔªËØ¶¼ÊÇÐèÒª $set²Ù×÷·ûµÄ¡£
-	private Document otherSource=new Document();//ÕâÀï·ÅÖÃµÄ¶¼ÊÇºÍ$set²Ù×÷·ûÍ¬Ò»¼¶µÄ¡£
+	private Document source=new Document();//ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½Òª $setï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½
+	private Document otherSource=new Document();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÃµÄ¶ï¿½ï¿½Çºï¿½$setï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬Ò»ï¿½ï¿½ï¿½Ä¡ï¿½
 	
 	private UpdateOptions updateOptions=new UpdateOptions().upsert(false);
 	private boolean updateMany=true;
@@ -44,7 +44,7 @@ public class UpdateBuilder<T> {
 	
 	
 	/**
-	 * ½«ÏÖÓÐµÄÌõ¼þºÍÌí¼Ó½øÀ´µÄcondition×é³ÉÒ»¸öAndµÄ¹ØÏµ¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½conditionï¿½ï¿½ï¿½Ò»ï¿½ï¿½Andï¿½Ä¹ï¿½Ïµï¿½ï¿½
 	 * @param condition
 	 * @return
 	 */
@@ -58,7 +58,7 @@ public class UpdateBuilder<T> {
 	}
 	
 	/**
-	 * ½«ÏÖÓÐµÄÌõ¼þºÍÌí¼Ó½øÀ´µÄcondition×é³ÉÒ»¸öORµÄ¹ØÏµ¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½conditionï¿½ï¿½ï¿½Ò»ï¿½ï¿½ORï¿½Ä¹ï¿½Ïµï¿½ï¿½
 	 * @param condition
 	 * @return
 	 */
@@ -74,7 +74,7 @@ public class UpdateBuilder<T> {
 	
 	
 	/**
-	 * ÉèÖÃÌõ¼þ£¬Õâ¸ö·½·¨»á¸²¸ÇÕâÖ®Ç°ËùÉèÖÃµÄÌõ¼þ¡£
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¸²ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param condition
 	 * @return
 	 */
@@ -84,7 +84,7 @@ public class UpdateBuilder<T> {
 	}
 	
 	/**
-	 * Ìí¼ÓÐèÒª¸üÐÂµÄ×Ö¶ÎÒÔ¼°ÆäÖµ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Âµï¿½ï¿½Ö¶ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Öµ
 	 * @param field
 	 * @param value
 	 * @return
@@ -134,7 +134,7 @@ public class UpdateBuilder<T> {
 	}
 	
 	/**
-	 * Ä¬ÈÏÊÇ¸üÐÂ¶àÌõ¼ÇÂ¼¡£ÉèÖÃÎªtrueºó£¬½«Ö»¸üÐÂÒ»Ìõ¼ÇÂ¼
+	 * Ä¬ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªtrueï¿½ó£¬½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Â¼
 	 * 
 	 * @param updateMany
 	 * @return
@@ -145,7 +145,7 @@ public class UpdateBuilder<T> {
 	}
 	
 	/**
-	 * µ±Ã»ÓÐ·ûºÏÌõ¼þµÄ¼ÇÂ¼Ê±£¬Ìí¼Ó¸Ã¼ÇÂ¼¡£
+	 * ï¿½ï¿½Ã»ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â¼Ê±ï¿½ï¿½ï¿½ï¿½Ó¸Ã¼ï¿½Â¼ï¿½ï¿½
 	 * @param insert
 	 * @return
 	 */
@@ -171,7 +171,9 @@ public class UpdateBuilder<T> {
 	}
 
 	public Bson getQueryCondition(){
-		if(condition!=null) return condition;
+		if(condition!=null) {
+            return condition;
+        }
 		return new BsonDocument();
 	}
 

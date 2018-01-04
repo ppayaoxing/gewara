@@ -16,16 +16,16 @@ public class RequestStatsGroup implements CommandProcessorGroup{
 	@Override
 	public List<CommandProcessor> getCommandList() {
 		List<CommandProcessor> commandList = new ArrayList<CommandProcessor>();
-		commandList.add(new InnerCommand("aurl", "[minreq=10]£ºÏÔÊ¾ÏîÄ¿ËùÓÐµÄURL´¦ÀíÇëÇóÊý"));
-		commandList.add(new InnerCommand("burl", "ÏÔÊ¾²»´æÔÚÍøÖ··ÃÎÊÊý"));
-		commandList.add(new InnerCommand("unused", "ÉÏ´ÎÆô¶¯ÖÁÏÖÔÚ´ÓÄ©·ÃÎÊ¹ýµÄurl"));
-		commandList.add(new InnerCommand("req", "Î´´¦ÀíÍêµÄÇëÇó"));
-		commandList.add(new InnerCommand("dreq", "[max=100]£ºÏÂÔØµ±Ç°Î´Íê³ÉÇëÇó²ÎÊý"));
-		commandList.add(new InnerCommand("call", "ÕýÔÚÔËÐÐµÄ·½·¨£¨jms¡¢job£©"));
-		commandList.add(new InnerCommand("jms", "JMS·¢ËÍÏûÏ¢Í³¼Æ"));
-		commandList.add(new InnerCommand("pc", "PageCacheÒ³Ãæ»º´æ"));
-		commandList.add(new InnerCommand("sc", "ServiceCache»º´æ"));
-		commandList.add(new InnerCommand("api","ÕýÔÚ´¦ÀíµÄdubboµ÷ÓÃ"));
+		commandList.add(new InnerCommand("aurl", "[minreq=10]ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Ðµï¿½URLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
+		commandList.add(new InnerCommand("burl", "ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
+		commandList.add(new InnerCommand("unused", "ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½Ä©ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½url"));
+		commandList.add(new InnerCommand("req", "Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
+		commandList.add(new InnerCommand("dreq", "[max=100]ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½Ç°Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
+		commandList.add(new InnerCommand("call", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½jmsï¿½ï¿½jobï¿½ï¿½"));
+		commandList.add(new InnerCommand("jms", "JMSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Í³ï¿½ï¿½"));
+		commandList.add(new InnerCommand("pc", "PageCacheÒ³ï¿½æ»ºï¿½ï¿½"));
+		commandList.add(new InnerCommand("sc", "ServiceCacheï¿½ï¿½ï¿½ï¿½"));
+		commandList.add(new InnerCommand("api","ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½dubboï¿½ï¿½ï¿½ï¿½"));
 		return commandList;
 	}
 	private class InnerCommand extends AbstractCommandProcessor{
@@ -39,15 +39,21 @@ public class RequestStatsGroup implements CommandProcessorGroup{
 			String reply = "";
 			if(StringUtils.equalsIgnoreCase("req", cmdMsg.getCmd())){
 				int waitmill = 0;
-				if(StringUtils.isNotBlank(cmdMsg.getParams())) waitmill = Integer.parseInt(cmdMsg.getParams());
+				if(StringUtils.isNotBlank(cmdMsg.getParams())) {
+                    waitmill = Integer.parseInt(cmdMsg.getParams());
+                }
 				return getReq(waitmill);
 			}else if(StringUtils.equalsIgnoreCase("aurl", cmdMsg.getCmd())){
 				int mincount = 10;
-				if(StringUtils.isNotBlank(cmdMsg.getParams())) mincount = Integer.parseInt(cmdMsg.getParams());
+				if(StringUtils.isNotBlank(cmdMsg.getParams())) {
+                    mincount = Integer.parseInt(cmdMsg.getParams());
+                }
 				reply = getAllUrl(mincount);
 			}else if(StringUtils.equalsIgnoreCase("dreq", cmdMsg.getCmd())){
 				int maxcount = 100;
-				if(StringUtils.isNotBlank(cmdMsg.getParams())) maxcount = Integer.parseInt(cmdMsg.getParams());
+				if(StringUtils.isNotBlank(cmdMsg.getParams())) {
+                    maxcount = Integer.parseInt(cmdMsg.getParams());
+                }
 				reply = getReqParams(maxcount);
 			}else if(StringUtils.equalsIgnoreCase("burl", cmdMsg.getCmd())){
 				reply = getBadUrl();
@@ -91,7 +97,9 @@ public class RequestStatsGroup implements CommandProcessorGroup{
 	
 	private String getReqParams(int maxcount) {
 		List<Map> result = ResourceStatsUtil.dumpRequest(maxcount);
-		if(result.isEmpty()) return CommandProcessor.NODATA;
+		if(result.isEmpty()) {
+            return CommandProcessor.NODATA;
+        }
 		StringBuilder sb = new StringBuilder("\n");
 		for(Map row:result){
 			for(Object key:row.keySet()){
@@ -103,7 +111,9 @@ public class RequestStatsGroup implements CommandProcessorGroup{
 	}
 	private String getReq(int waitmill){
 		List<Map> result = ResourceStatsUtil.getUriStats().getProcessingList(waitmill);
-		if(result.isEmpty()) return CommandProcessor.NODATA;
+		if(result.isEmpty()) {
+            return CommandProcessor.NODATA;
+        }
 		StringBuilder reply = new StringBuilder("\n").append(StringUtils.join(result.get(0).keySet(), "\t")).append("\n");
 		for(Map row:result){
 			reply.append(StringUtils.join(row.values(), "\t")).append("\n");
@@ -112,7 +122,9 @@ public class RequestStatsGroup implements CommandProcessorGroup{
 	}
 	private String getCall(int waitmill){
 		List<Map> result = ResourceStatsUtil.getCallStats().getProcessingList(waitmill);
-		if(result.isEmpty()) return CommandProcessor.NODATA;
+		if(result.isEmpty()) {
+            return CommandProcessor.NODATA;
+        }
 		StringBuilder reply = new StringBuilder("\n").append(StringUtils.join(result.get(0).keySet(), "\t")).append("\n");
 		for(Map row:result){
 			reply.append(StringUtils.join(row.values(), "\t")).append("\n");
@@ -121,7 +133,9 @@ public class RequestStatsGroup implements CommandProcessorGroup{
 	}
 	private String getJms(int waitmill){
 		List<Map> result = ResourceStatsUtil.getJmsStats().getProcessingList(waitmill);
-		if(result.isEmpty()) return CommandProcessor.NODATA;
+		if(result.isEmpty()) {
+            return CommandProcessor.NODATA;
+        }
 		StringBuilder reply = new StringBuilder("\n").append(StringUtils.join(result.get(0).keySet(), "\t")).append("\n");
 		for(Map row:result){
 			reply.append(StringUtils.join(row.values(), "\t")).append("\n");
@@ -165,7 +179,9 @@ public class RequestStatsGroup implements CommandProcessorGroup{
 	}
 	private String getBadUrl(){
 		Map<String, Integer> result = ResourceStatsUtil.getBadUrlStats().getStatsMap();
-		if(result.isEmpty()) return CommandProcessor.NODATA;
+		if(result.isEmpty()) {
+            return CommandProcessor.NODATA;
+        }
 		StringBuilder sb = new StringBuilder("\n");
 		for(String key:result.keySet()){
 			sb.append(StringUtils.rightPad(key, 80)).append("\t").append(result.get(key)).append("\n");

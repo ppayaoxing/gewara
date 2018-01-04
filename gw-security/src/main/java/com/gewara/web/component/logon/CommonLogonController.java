@@ -50,13 +50,15 @@ public class CommonLogonController implements ApplicationContextAware {
 
 	private final User getLogonUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth == null)
-			return null;
-		if (auth.isAuthenticated() && !auth.getName().equals("anonymous")) {// 登录
+		if (auth == null) {
+            return null;
+        }
+		if (auth.isAuthenticated() && !"anonymous".equals(auth.getName())) {// 登录
 			GewaraUser user = (GewaraUser) auth.getPrincipal();
 			// refresh(user);
-			if (user instanceof User)
-				return (User) user;
+			if (user instanceof User) {
+                return (User) user;
+            }
 		}
 		return null;
 	}

@@ -13,14 +13,14 @@ public class TheatreFieldVo extends BaseVo {
 
 	private Long id;
 	private Long theatreid;
-	private String name;				//³¡µØÃû³Æ
-	private String fieldnum;			//³¡µØ±àºÅ
-	private String fieldtype;			//³¡µØÀàÐÍ: GEWA¡¢GPTBS
+	private String name;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String fieldnum;			//ï¿½ï¿½ï¿½Ø±ï¿½ï¿½
+	private String fieldtype;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: GEWAï¿½ï¿½GPTBS
 	private String logo;				//Í¼Æ¬
 	private String mobilelogo;			//Í¼Æ¬
-	private String description;			//ÃèÊö
+	private String description;			//ï¿½ï¿½ï¿½ï¿½
 	private String status;				//
-	private String sortarea;			//×Ô¶¯Ñ¡×ùÓÅÏÈÇøÓòË³Ðò
+	private String sortarea;			//ï¿½Ô¶ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½
 	private Timestamp addtime;
 	private Timestamp updatetime;
 	
@@ -118,7 +118,9 @@ public class TheatreFieldVo extends BaseVo {
 	}
 	
 	public boolean hasFieldtype(String type){
-		if(StringUtils.isBlank(type)) return false;
+		if(StringUtils.isBlank(type)) {
+            return false;
+        }
 		return StringUtils.equals(this.fieldtype, type);
 	}
 	

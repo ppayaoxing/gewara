@@ -20,8 +20,8 @@ public class UpdateMStateParam implements Serializable{
 	
 	/**
 	 * 
-	 * @param receiver 不可为空。 
-	 * @param opertionType 1或-1； 
+	 * @param receiver 锟斤拷锟斤拷为锟秸★拷 
+	 * @param opertionType 1锟斤拷-1锟斤拷 
 	 */
 	public UpdateMStateParam(MUser receiver,int opertionType){
 		this.receiver=receiver;
@@ -39,7 +39,7 @@ public class UpdateMStateParam implements Serializable{
 
 
 	/**
-	 * 操作类型： 1表示 已读操作， -1表示删除操作。
+	 * 锟斤拷锟斤拷锟斤拷锟酵ｏ拷 1锟斤拷示 锟窖讹拷锟斤拷锟斤拷锟斤拷 -1锟斤拷示删锟斤拷锟斤拷锟斤拷锟斤拷
 	 * @return
 	 */
 	public Integer getOpertionType() {
@@ -62,29 +62,33 @@ public class UpdateMStateParam implements Serializable{
 	}
 	
 	public String getUreaid(){
-		if(realeaIDType==null||realeaID==null) return null;
+		if(realeaIDType==null||realeaID==null) {
+            return null;
+        }
 		return realeaIDType+"-"+realeaID;
 	}
 	
 	/**
-	 * 根据用户消息ID列表，更新用户消息状态，
-	 * @param messageIDs 用户消息ID列表
+	 * 锟斤拷锟斤拷锟矫伙拷锟斤拷息ID锟叫憋拷锟斤拷锟斤拷锟矫伙拷锟斤拷息状态锟斤拷
+	 * @param messageIDs 锟矫伙拷锟斤拷息ID锟叫憋拷
 	 */
 	public void setMessageIDs(Collection<Long> messageIDs) {
 		this.messageIDs = messageIDs;
 	}
 	
 	public void addMessageIDs(long messageID){
-		if(this.messageIDs==null)  this.messageIDs=new HashSet<>();
+		if(this.messageIDs==null) {
+            this.messageIDs = new HashSet<>();
+        }
 		this.messageIDs.add(messageID);
 	}
 
 
 	/**
-	 * 根据关联的 目标ID及其类型进行更新消息状态。
-	 * 特别注意，该条件和用户消息ID列表的关系是或的关系。
-	 * @param realeaID  用户消息中关联的 关联目标ID
-	 * @param realeaIDType 用户消息中关联的 关联目标ID的类型
+	 * 锟斤拷锟捷癸拷锟斤拷锟斤拷 目锟斤拷ID锟斤拷锟斤拷锟斤拷锟酵斤拷锟叫革拷锟斤拷锟斤拷息状态锟斤拷
+	 * 锟截憋拷注锟解，锟斤拷锟斤拷锟斤拷锟斤拷锟矫伙拷锟斤拷息ID锟叫憋拷墓锟较碉拷腔锟侥癸拷系锟斤拷
+	 * @param realeaID  锟矫伙拷锟斤拷息锟叫癸拷锟斤拷锟斤拷 锟斤拷锟斤拷目锟斤拷ID
+	 * @param realeaIDType 锟矫伙拷锟斤拷息锟叫癸拷锟斤拷锟斤拷 锟斤拷锟斤拷目锟斤拷ID锟斤拷锟斤拷锟斤拷
 	 */
 	public void setRealeaID(MCategory category,String realeaID,String realeaIDType) {
 		this.category=category;

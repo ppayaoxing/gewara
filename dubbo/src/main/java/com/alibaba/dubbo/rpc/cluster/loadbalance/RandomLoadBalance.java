@@ -34,22 +34,23 @@ public class RandomLoadBalance extends AbstractLoadBalance {
 
     private final Random random = new Random();
 
+    @Override
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {
-        int length = invokers.size(); // ×Ü¸öÊı
-        int totalWeight = 0; // ×ÜÈ¨ÖØ
-        boolean sameWeight = true; // È¨ÖØÊÇ·ñ¶¼Ò»Ñù
+        int length = invokers.size(); // ï¿½Ü¸ï¿½ï¿½ï¿½
+        int totalWeight = 0; // ï¿½ï¿½È¨ï¿½ï¿½
+        boolean sameWeight = true; // È¨ï¿½ï¿½ï¿½Ç·ï¿½Ò»ï¿½ï¿½
         for (int i = 0; i < length; i++) {
             int weight = getWeight(invokers.get(i), invocation);
-            totalWeight += weight; // ÀÛ¼Æ×ÜÈ¨ÖØ
+            totalWeight += weight; // ï¿½Û¼ï¿½ï¿½ï¿½È¨ï¿½ï¿½
             if (sameWeight && i > 0
                     && weight != getWeight(invokers.get(i - 1), invocation)) {
-                sameWeight = false; // ¼ÆËãËùÓĞÈ¨ÖØÊÇ·ñÒ»Ñù
+                sameWeight = false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½Ç·ï¿½Ò»ï¿½ï¿½
             }
         }
         if (totalWeight > 0 && ! sameWeight) {
-            // Èç¹ûÈ¨ÖØ²»ÏàÍ¬ÇÒÈ¨ÖØ´óÓÚ0Ôò°´×ÜÈ¨ÖØÊıËæ»ú
+            // ï¿½ï¿½ï¿½È¨ï¿½Ø²ï¿½ï¿½ï¿½Í¬ï¿½ï¿½È¨ï¿½Ø´ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             int offset = random.nextInt(totalWeight);
-            // ²¢È·¶¨Ëæ»úÖµÂäÔÚÄÄ¸öÆ¬¶ÏÉÏ
+            // ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½Æ¬ï¿½ï¿½ï¿½ï¿½
             for (int i = 0; i < length; i++) {
                 offset -= getWeight(invokers.get(i), invocation);
                 if (offset < 0) {
@@ -57,7 +58,7 @@ public class RandomLoadBalance extends AbstractLoadBalance {
                 }
             }
         }
-        // Èç¹ûÈ¨ÖØÏàÍ¬»òÈ¨ÖØÎª0Ôò¾ùµÈËæ»ú
+        // ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½È¨ï¿½ï¿½Îª0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         return invokers.get(random.nextInt(length));
     }
 

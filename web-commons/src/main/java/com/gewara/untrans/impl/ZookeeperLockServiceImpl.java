@@ -61,7 +61,7 @@ public class ZookeeperLockServiceImpl implements LockService, InitializingBean {
 	}
 
 	/**
-	 * TODO ´ý¶¨
+	 * TODO ï¿½ï¿½ï¿½ï¿½
 	 */
 	@Override
 	public AtomicCounter getAtomicCounter(String ticketTradeNO) {
@@ -102,8 +102,9 @@ public class ZookeeperLockServiceImpl implements LockService, InitializingBean {
 						dbLogger.warn("", e);
 					}
 				}
-				if (haslock)
-					return ErrorCode.getSuccessReturn(retval);
+				if (haslock) {
+                    return ErrorCode.getSuccessReturn(retval);
+                }
 				return ErrorCode.getFailure("zkLockFailure,haslock:" + haslock);
 			}
 
@@ -143,8 +144,9 @@ public class ZookeeperLockServiceImpl implements LockService, InitializingBean {
 						dbLogger.warn("", e);
 					}
 				}
-				if (haslock)
-					return ErrorCode.getSuccessReturn(retval);
+				if (haslock) {
+                    return ErrorCode.getSuccessReturn(retval);
+                }
 				return ErrorCode.getFailure("lockFailure");
 			}
 

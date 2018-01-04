@@ -39,7 +39,8 @@ public class JavaObjectOutput extends NativeJavaObjectOutput
 		super(compact ? new CompactedObjectOutputStream(os) : new ObjectOutputStream(os));
 	}
 
-	public void writeUTF(String v) throws IOException
+	@Override
+    public void writeUTF(String v) throws IOException
 	{
 		if( v == null )
 		{
@@ -52,7 +53,8 @@ public class JavaObjectOutput extends NativeJavaObjectOutput
 		}
 	}
 
-	public void writeObject(Object obj) throws IOException
+	@Override
+    public void writeObject(Object obj) throws IOException
 	{
 		if( obj == null )
 		{
@@ -65,7 +67,8 @@ public class JavaObjectOutput extends NativeJavaObjectOutput
 		}
 	}
 
-	public void flushBuffer() throws IOException
+	@Override
+    public void flushBuffer() throws IOException
 	{
 		getObjectOutputStream().flush();
 	}

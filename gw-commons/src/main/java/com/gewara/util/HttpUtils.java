@@ -581,14 +581,16 @@ public class HttpUtils {
 
 	public static String getFullUrl(String url, Map<String, String> params, String encode) {
 		if (params != null) {
-			if (url.indexOf('?') == -1)
-				url += "?";
-			else
-				url += "&";
+			if (url.indexOf('?') == -1) {
+                url += "?";
+            } else {
+                url += "&";
+            }
 			for (String name : params.keySet()) {
 				try {
-					if (StringUtils.isNotBlank(params.get(name)))
-						url += name + "=" + URLEncoder.encode(params.get(name), encode) + "&";
+					if (StringUtils.isNotBlank(params.get(name))) {
+                        url += name + "=" + URLEncoder.encode(params.get(name), encode) + "&";
+                    }
 				} catch (UnsupportedEncodingException e) {
 				}
 			}
@@ -743,8 +745,9 @@ public class HttpUtils {
 				dbLogger.error("", e);
 			} finally {
 				try {
-					if (os != null)
-						os.close();
+					if (os != null) {
+                        os.close();
+                    }
 				} catch (Exception e) {
 				}
 			}
@@ -770,8 +773,9 @@ public class HttpUtils {
 	 */
 	public static Map<String, String> parseQueryStr(String queryString, String encode) {
 		Map<String, String> map = new LinkedHashMap<String, String>();
-		if (StringUtils.isBlank(queryString))
-			return map;
+		if (StringUtils.isBlank(queryString)) {
+            return map;
+        }
 		Matcher matcher = QUERY_MAP_PATTERN.matcher(queryString);
 		String key = null, value;
 		int end = 0;
@@ -819,7 +823,9 @@ public class HttpUtils {
 	}
 	private static HttpEntity getEntity(HttpResponse response) {
 		HttpEntity entity = response.getEntity();
-		if(entity == null) return null;
+		if(entity == null) {
+            return null;
+        }
 		Header header = entity.getContentEncoding();
 		if (header != null) {
 			for (HeaderElement element : header.getElements()) {

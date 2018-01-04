@@ -71,7 +71,7 @@ public class ConditionRouter implements Router, Comparable<Router> {
             String thenRule = i < 0 ? rule.trim() : rule.substring(i + 2).trim();
             Map<String, MatchPair> when = StringUtils.isBlank(whenRule) || "true".equals(whenRule) ? new HashMap<String, MatchPair>() : parseRule(whenRule);
             Map<String, MatchPair> then = StringUtils.isBlank(thenRule) || "false".equals(thenRule) ? null : parseRule(thenRule);
-            // NOTE: WhenÌõ¼þÊÇÔÊÐíÎª¿ÕµÄ£¬Íâ²¿ÒµÎñÀ´±£Ö¤ÀàËÆµÄÔ¼ÊøÌõ¼þ
+            // NOTE: Whenï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ÕµÄ£ï¿½ï¿½â²¿Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½Æµï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             this.whenCondition = when;
             this.thenCondition = then;
         } catch (ParseException e) {
@@ -79,6 +79,7 @@ public class ConditionRouter implements Router, Comparable<Router> {
         }
     }
 
+    @Override
     public <T> List<Invoker<T>> route(List<Invoker<T>> invokers, URL url, Invocation invocation)
             throws RpcException {
         if (invokers == null || invokers.size() == 0) {
@@ -110,10 +111,12 @@ public class ConditionRouter implements Router, Comparable<Router> {
         return invokers;
     }
 
+    @Override
     public URL getUrl() {
         return url;
     }
 
+    @Override
     public int compareTo(Router o) {
         if (o == null || o.getClass() != ConditionRouter.class) {
             return 1;
@@ -150,20 +153,20 @@ public class ConditionRouter implements Router, Comparable<Router> {
         if(StringUtils.isBlank(rule)) {
             return condition;
         }        
-        // Æ¥Åä»ò²»Æ¥ÅäKey-Value¶Ô
+        // Æ¥ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½Key-Valueï¿½ï¿½
         MatchPair pair = null;
-        // ¶à¸öValueÖµ
+        // ï¿½ï¿½ï¿½ValueÖµ
         Set<String> values = null;
         final Matcher matcher = ROUTE_PATTERN.matcher(rule);
-        while (matcher.find()) { // Öð¸öÆ¥Åä
+        while (matcher.find()) { // ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½
             String separator = matcher.group(1);
             String content = matcher.group(2);
-            // ±í´ïÊ½¿ªÊ¼
+            // ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Ê¼
             if (separator == null || separator.length() == 0) {
                 pair = new MatchPair();
                 condition.put(content, pair);
             }
-            // KV¿ªÊ¼
+            // KVï¿½ï¿½Ê¼
             else if ("&".equals(separator)) {
                 if (condition.get(content) == null) {
                     pair = new MatchPair();
@@ -172,35 +175,38 @@ public class ConditionRouter implements Router, Comparable<Router> {
                     condition.put(content, pair);
                 }
             }
-            // KVµÄValue²¿·Ö¿ªÊ¼
+            // KVï¿½ï¿½Valueï¿½ï¿½ï¿½Ö¿ï¿½Ê¼
             else if ("=".equals(separator)) {
-                if (pair == null)
+                if (pair == null) {
                     throw new ParseException("Illegal route rule \""
                             + rule + "\", The error char '" + separator
                             + "' at index " + matcher.start() + " before \""
                             + content + "\".", matcher.start());
+                }
 
                 values = pair.matches;
                 values.add(content);
             }
-            // KVµÄValue²¿·Ö¿ªÊ¼
+            // KVï¿½ï¿½Valueï¿½ï¿½ï¿½Ö¿ï¿½Ê¼
             else if ("!=".equals(separator)) {
-                if (pair == null)
+                if (pair == null) {
                     throw new ParseException("Illegal route rule \""
                             + rule + "\", The error char '" + separator
                             + "' at index " + matcher.start() + " before \""
                             + content + "\".", matcher.start());
+                }
 
                 values = pair.mismatches;
                 values.add(content);
             }
-            // KVµÄValue²¿·ÖµÄ¶à¸öÌõÄ¿
-            else if (",".equals(separator)) { // Èç¹ûÎª¶ººÅ±íÊ¾
-                if (values == null || values.size() == 0)
+            // KVï¿½ï¿½Valueï¿½ï¿½ï¿½ÖµÄ¶ï¿½ï¿½ï¿½ï¿½Ä¿
+            else if (",".equals(separator)) { // ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Å±ï¿½Ê¾
+                if (values == null || values.size() == 0) {
                     throw new ParseException("Illegal route rule \""
                             + rule + "\", The error char '" + separator
                             + "' at index " + matcher.start() + " before \""
                             + content + "\".", matcher.start());
+                }
                 values.add(content);
             } else {
                 throw new ParseException("Illegal route rule \"" + rule

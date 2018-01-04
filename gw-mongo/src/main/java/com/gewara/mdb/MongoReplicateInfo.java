@@ -23,11 +23,11 @@ final class MongoReplicateInfo {
 	private  MongoClient _mongoClient;
 	private  List<String> _dblist=null;
 	private  Map<String,MongoDatabase> _mdatabases=new LinkedHashMap<>();
-	private  List<HostInfo> hosts = new ArrayList<>(0);//¼¯ÈºÖÐÃ¿Ì¨»úÆ÷
+	private  List<HostInfo> hosts = new ArrayList<>(0);//ï¿½ï¿½Èºï¿½ï¿½Ã¿Ì¨ï¿½ï¿½ï¿½ï¿½
 	
 	/**
-	 * ³õÊ¼»¯mongoClient¡£
-	 * ÕâÀï³õÊ¼»¯µÄ¶¼ÊÇ¾²Ì¬±äÁ¿¡£
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½mongoClientï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½Ç¾ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param hosts1
 	 * @param accounts
 	 * @param options
@@ -43,8 +43,8 @@ final class MongoReplicateInfo {
 	
 	
 	/**
-	 * ³õÊ¼»¯mongoClient¡£
-	 * ÕâÀï³õÊ¼»¯µÄ¶¼ÊÇ¾²Ì¬±äÁ¿¡£
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½mongoClientï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½Ç¾ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param hosts1
 	 * @param accounts
 	 * @param options
@@ -52,11 +52,13 @@ final class MongoReplicateInfo {
 	 */
 	protected synchronized  void initMongoClient(GwMongoClientOptions options,String mechanism, List<HostInfo> hosts1, List<GWMongoAccount> accounts){
 		if(_mongoClient!=null){
-			logger.warn("MongoClientÒÑ¾­±»³õÊ¼»¯£¬Çë²»ÒªÖØ¸´£¡(±¾´Î³õÊ¼»¯ÒªÇóÒÑ±»ºöÂÔ)");
+			logger.warn("MongoClientï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ë²»Òªï¿½Ø¸ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Î³ï¿½Ê¼ï¿½ï¿½Òªï¿½ï¿½ï¿½Ñ±ï¿½ï¿½ï¿½ï¿½ï¿½)");
 			return;
 		}
 		
-		if(mechanism==null) mechanism="default";
+		if(mechanism==null) {
+            mechanism = "default";
+        }
 		
 		this.hosts=Collections.unmodifiableList(hosts1);
 		
@@ -79,7 +81,9 @@ final class MongoReplicateInfo {
 			}
 			mcs.add(mc);
 		}
-		if(options==null) options=new GwMongoClientOptions();
+		if(options==null) {
+            options = new GwMongoClientOptions();
+        }
 		MongoClientOptions mcOptions=options.toMongoClientOptions();
 		_mongoClient=new  MongoClient(hostList, mcs, mcOptions);
 		for(String dbName:_dblist){
@@ -89,7 +93,7 @@ final class MongoReplicateInfo {
 	}
 	
 	/**
-	 * ·µ»ØÄ³¸ö¼¯ÈºµÄËùÓÐ»úÆ÷ÐÅÏ¢
+	 * ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 * @param replicate
 	 * @return
 	 */

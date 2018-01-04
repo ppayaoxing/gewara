@@ -13,7 +13,7 @@ public class ConsistentHash<T> {
     private int numberOfReplicas=1024;
     private HashFunction hashFunction= Hashing.md5(); //guava
     private List<T> nodes;
-    private volatile boolean init=false; //±êÖ¾ÊÇ·ñ³õÊ¼»¯Íê³É
+    private volatile boolean init=false; //ï¿½ï¿½Ö¾ï¿½Ç·ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
     public ConsistentHash(int numberOfReplicas,List<T> nodes){
         this.numberOfReplicas=numberOfReplicas;
@@ -23,13 +23,15 @@ public class ConsistentHash<T> {
     }
 
     public T getNodeByKey(String key){
-        if(!init)throw new RuntimeException("init uncomplete...");
+        if(!init) {
+            throw new RuntimeException("init uncomplete...");
+        }
 
         byte[] digest=hashFunction.hashString(key, Charset.forName("UTF-8")).asBytes();
         long hash=hash(digest,0);
-        //Èç¹ûÕÒµ½Õâ¸ö½Úµã£¬Ö±½ÓÈ¡½Úµã£¬·µ»Ø
+        //ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Úµã£¬Ö±ï¿½ï¿½È¡ï¿½Úµã£¬ï¿½ï¿½ï¿½ï¿½
         if(!ketamaNodes.containsKey(hash)){
-            //µÃµ½´óÓÚµ±Ç°keyµÄÄÇ¸ö×ÓMap£¬È»ºó´ÓÖÐÈ¡³öµÚÒ»¸ökey£¬¾ÍÊÇ´óÓÚÇÒÀëËü×î½üµÄÄÇ¸ökey
+            //ï¿½Ãµï¿½ï¿½ï¿½ï¿½Úµï¿½Ç°keyï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½Mapï¿½ï¿½È»ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½keyï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½key
             SortedMap<Long,T> tailMap=ketamaNodes.tailMap(hash);
             if(tailMap.isEmpty()){
                 hash=ketamaNodes.firstKey();
@@ -48,13 +50,13 @@ public class ConsistentHash<T> {
     }
 
     private void init(){
-        //¶ÔËùÓÐ½Úµã£¬Éú³ÉnumberOfReplicas¸öÐéÄâ½Úµã
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ð½Úµã£¬ï¿½ï¿½ï¿½ï¿½numberOfReplicasï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
         for(T node:nodes){
-            //Ã¿ËÄ¸öÐéÄâ½ÚµãÎª1×é
+            //Ã¿ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Îª1ï¿½ï¿½
             for(int i=0;i<numberOfReplicas/4;i++){
-                //ÎªÕâ×éÐéÄâ½áµãµÃµ½Î©Ò»Ãû³Æ
+                //Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½Î©Ò»ï¿½ï¿½ï¿½ï¿½
                 byte[] digest=hashFunction.hashString(node.toString() +i, Charset.forName("UTF-8")).asBytes();
-                //Md5ÊÇÒ»¸ö16×Ö½Ú³¤¶ÈµÄÊý×é£¬½«16×Ö½ÚµÄÊý×éÃ¿ËÄ¸ö×Ö½ÚÒ»×é£¬·Ö±ð¶ÔÓ¦Ò»¸öÐéÄâ½áµã£¬Õâ¾ÍÊÇÎªÊ²Ã´ÉÏÃæ°ÑÐéÄâ½áµãËÄ¸ö»®·ÖÒ»×éµÄÔ­Òò
+                //Md5ï¿½ï¿½Ò»ï¿½ï¿½16ï¿½Ö½Ú³ï¿½ï¿½Èµï¿½ï¿½ï¿½ï¿½é£¬ï¿½ï¿½16ï¿½Ö½Úµï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½Ä¸ï¿½ï¿½Ö½ï¿½Ò»ï¿½é£¬ï¿½Ö±ï¿½ï¿½Ó¦Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÊ²Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ô­ï¿½ï¿½
                 for(int h=0;h<4;h++){
                     Long k = hash(digest,h);
                     ketamaNodes.put(k,node);

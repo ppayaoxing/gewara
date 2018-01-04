@@ -39,17 +39,18 @@ public class RoundRobinLoadBalance extends AbstractLoadBalance {
 
     private final ConcurrentMap<String, AtomicPositiveInteger> weightSequences = new ConcurrentHashMap<String, AtomicPositiveInteger>();
 
+    @Override
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {
         String key = invokers.get(0).getUrl().getServiceKey() + "." + invocation.getMethodName();
-        int length = invokers.size(); // ×Ü¸öÊý
-        int maxWeight = 0; // ×î´óÈ¨ÖØ
-        int minWeight = Integer.MAX_VALUE; // ×îÐ¡È¨ÖØ
+        int length = invokers.size(); // ï¿½Ü¸ï¿½ï¿½ï¿½
+        int maxWeight = 0; // ï¿½ï¿½ï¿½È¨ï¿½ï¿½
+        int minWeight = Integer.MAX_VALUE; // ï¿½ï¿½Ð¡È¨ï¿½ï¿½
         for (int i = 0; i < length; i++) {
             int weight = getWeight(invokers.get(i), invocation);
-            maxWeight = Math.max(maxWeight, weight); // ÀÛ¼Æ×î´óÈ¨ÖØ
-            minWeight = Math.min(minWeight, weight); // ÀÛ¼Æ×îÐ¡È¨ÖØ
+            maxWeight = Math.max(maxWeight, weight); // ï¿½Û¼ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½
+            minWeight = Math.min(minWeight, weight); // ï¿½Û¼ï¿½ï¿½ï¿½Ð¡È¨ï¿½ï¿½
         }
-        if (maxWeight > 0 && minWeight < maxWeight) { // È¨ÖØ²»Ò»Ñù
+        if (maxWeight > 0 && minWeight < maxWeight) { // È¨ï¿½Ø²ï¿½Ò»ï¿½ï¿½
             AtomicPositiveInteger weightSequence = weightSequences.get(key);
             if (weightSequence == null) {
                 weightSequences.putIfAbsent(key, new AtomicPositiveInteger());
@@ -57,7 +58,7 @@ public class RoundRobinLoadBalance extends AbstractLoadBalance {
             }
             int currentWeight = weightSequence.getAndIncrement() % maxWeight;
             List<Invoker<T>> weightInvokers = new ArrayList<Invoker<T>>();
-            for (Invoker<T> invoker : invokers) { // É¸Ñ¡È¨ÖØ´óÓÚµ±Ç°È¨ÖØ»ùÊýµÄInvoker
+            for (Invoker<T> invoker : invokers) { // É¸Ñ¡È¨ï¿½Ø´ï¿½ï¿½Úµï¿½Ç°È¨ï¿½Ø»ï¿½ï¿½ï¿½ï¿½ï¿½Invoker
                 if (getWeight(invoker, invocation) > currentWeight) {
                     weightInvokers.add(invoker);
                 }
@@ -75,7 +76,7 @@ public class RoundRobinLoadBalance extends AbstractLoadBalance {
             sequences.putIfAbsent(key, new AtomicPositiveInteger());
             sequence = sequences.get(key);
         }
-        // È¡Ä£ÂÖÑ­
+        // È¡Ä£ï¿½ï¿½Ñ­
         return invokers.get(sequence.getAndIncrement() % length);
     }
 

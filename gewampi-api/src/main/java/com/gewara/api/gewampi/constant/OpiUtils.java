@@ -14,24 +14,37 @@ public class OpiUtils {
 	 */
 	public static String getStatusStr(MovieItemVo opi){
 		if(!opi.hasOpenid()){
-			return "±¾³¡´ÎÎ´¿ª·Å¹ºÆ±";
+			return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Å¹ï¿½Æ±";
 		}
 		Timestamp curtime = new Timestamp(System.currentTimeMillis());
-		if(opi.getPlaytime().before(curtime)) return "±¾³¡´ÎÒÑ¾­¹ýÊ±";
+		if(opi.getPlaytime().before(curtime)) {
+            return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Ê±";
+        }
 
 		String time = DateUtil.format(curtime, "HHmm");
 		boolean open = opi.getOpentime().before(curtime) && opi.getClosetime().after(curtime) 
 				&& opi.getStatus().equals(OpiConstant.STATUS_BOOK) 
 				&& StringUtil.between(time, opi.getDayotime(), opi.getDayctime())
 				&& opi.getGsellnum() < opi.getAsellnum();
-		if(open) return "ÊÛÆ±ÖÐ";
-		if(!opi.getStatus().equals(OpiConstant.STATUS_BOOK)) return "±¾³¡´ÎÔÝ²»¿ª·Å¶©Æ±";
-		if(opi.getOpentime().after(curtime)) return "±¾³¡´Î" + DateUtil.formatTimestamp(opi.getOpentime()) + "¿ª·Å¶©Æ±";
-		if(opi.getClosetime().before(curtime)) return "±¾³¡´ÎÒÑ¹Ø±Õ¶©Æ±";
-		if(opi.getGsellnum() >= opi.getAsellnum()) return "±¾³¡´Î×ùÎ»ÒÑÊÛÍê";
-		if(!StringUtil.between(time, opi.getDayotime(), opi.getDayctime())) 
-			return "±¾³¡´ÎÖ»ÔÚÃ¿Ìì" + opi.getDayotime().substring(0,2) + ":" + opi.getDayotime().substring(2,4) + 
-				"~" + opi.getDayctime().substring(0,2) + ":" + opi.getDayctime().substring(2,4) + "¿ª·Å";
+		if(open) {
+            return "ï¿½ï¿½Æ±ï¿½ï¿½";
+        }
+		if(!opi.getStatus().equals(OpiConstant.STATUS_BOOK)) {
+            return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½Å¶ï¿½Æ±";
+        }
+		if(opi.getOpentime().after(curtime)) {
+            return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + DateUtil.formatTimestamp(opi.getOpentime()) + "ï¿½ï¿½ï¿½Å¶ï¿½Æ±";
+        }
+		if(opi.getClosetime().before(curtime)) {
+            return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹Ø±Õ¶ï¿½Æ±";
+        }
+		if(opi.getGsellnum() >= opi.getAsellnum()) {
+            return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+        }
+		if(!StringUtil.between(time, opi.getDayotime(), opi.getDayctime())) {
+            return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ã¿ï¿½ï¿½" + opi.getDayotime().substring(0, 2) + ":" + opi.getDayotime().substring(2, 4) +
+                    "~" + opi.getDayctime().substring(0, 2) + ":" + opi.getDayctime().substring(2, 4) + "ï¿½ï¿½ï¿½ï¿½";
+        }
 		return "Î´Öª";
 	}
 }

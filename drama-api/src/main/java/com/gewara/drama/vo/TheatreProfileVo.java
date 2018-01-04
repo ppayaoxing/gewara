@@ -10,18 +10,18 @@ import com.gewara.api.vo.BaseVo;
 public class TheatreProfileVo extends BaseVo{
 	private static final long serialVersionUID = 8293331615143909101L;
 	private Long id;
-	private Long topicid;			//È¡Æ±Ìû×Ó
-	private String notifymsg1;		//È¡Æ±¶ÌÐÅ
-	private String notifymsg2;		//ÌáÇ°3Ð¡Ê±ÌáÐÑ¶ÌÐÅ
-	private String notifymsg3;		//ÌáÇ°Ò»ÌìÌáÐÑ¶ÌÐÅ
-	private String notifyRemark;	//È¡Æ±¶ÌÐÅ(¿ìµÝ)
-	private String qrcodeRemark; 	//È¡Æ±¶ÌÐÅ(¶þÎ¬Âëµç×ÓÆ±)
-	private String takemethod;		//È¡Æ±·½Ê½
-	private String takemsg;			//È¡Æ±ÃèÊö
-	private String opentype;		//³¡¹Ý¿ª·ÅÀàÐÍ£ºGPTBS, GEWA
-	private String status;			//¿ª·Å×´Ì¬
-	private Integer eticketHour;		//£¨A,E Ä¬ÈÏµç×ÓÆ±Ê±¼ä(Ð¡Ê±))
-	private Integer eticketWeekHour;	//£¨A,E Ä¬ÈÏµç×ÓÆ±Ê±¼äÖÜÄ©(Ð¡Ê±))
+	private Long topicid;			//È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String notifymsg1;		//È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String notifymsg2;		//ï¿½ï¿½Ç°3Ð¡Ê±ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½
+	private String notifymsg3;		//ï¿½ï¿½Ç°Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½
+	private String notifyRemark;	//È¡Æ±ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½)
+	private String qrcodeRemark; 	//È¡Æ±ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Î¬ï¿½ï¿½ï¿½ï¿½ï¿½Æ±)
+	private String takemethod;		//È¡Æ±ï¿½ï¿½Ê½
+	private String takemsg;			//È¡Æ±ï¿½ï¿½ï¿½ï¿½
+	private String opentype;		//ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½GPTBS, GEWA
+	private String status;			//ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	private Integer eticketHour;		//ï¿½ï¿½A,E Ä¬ï¿½Ïµï¿½ï¿½ï¿½Æ±Ê±ï¿½ï¿½(Ð¡Ê±))
+	private Integer eticketWeekHour;	//ï¿½ï¿½A,E Ä¬ï¿½Ïµï¿½ï¿½ï¿½Æ±Ê±ï¿½ï¿½ï¿½ï¿½Ä©(Ð¡Ê±))
 	
 	private Timestamp addtime;
 	private Timestamp updatetime;
@@ -128,7 +128,9 @@ public class TheatreProfileVo extends BaseVo{
 		this.updatetime = updatetime;
 	}
 	public boolean hasOpentype(String htype){
-		if(StringUtils.isBlank(htype)) return false;
+		if(StringUtils.isBlank(htype)) {
+            return false;
+        }
 		return StringUtils.equals(opentype, htype);
 	}
 }

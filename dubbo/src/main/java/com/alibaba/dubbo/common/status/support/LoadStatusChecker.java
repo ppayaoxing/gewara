@@ -31,6 +31,7 @@ import com.alibaba.dubbo.common.status.StatusChecker;
 @Activate
 public class LoadStatusChecker implements StatusChecker {
 
+    @Override
     public Status check() {
     	OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
     	double load;

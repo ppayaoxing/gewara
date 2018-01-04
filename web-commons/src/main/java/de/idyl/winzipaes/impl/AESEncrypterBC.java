@@ -42,7 +42,8 @@ public class AESEncrypterBC extends AESCryptoBase implements AESEncrypter {
 	 * Setup AES encryption based on pwBytes using WinZipAES approach
 	 * with SALT and pwVerification bytes based on password+salt.
 	 */
-	public void init( String pwStr, int keySize ) throws ZipException {
+	@Override
+    public void init(String pwStr, int keySize ) throws ZipException {
 		byte[] pwBytes = pwStr.getBytes();
 		PBEParametersGenerator generator = new PKCS5S2ParametersGenerator();
 		this.saltBytes = createSalt();
@@ -87,7 +88,8 @@ public class AESEncrypterBC extends AESCryptoBase implements AESEncrypter {
 	/**
 	 * perform pseudo "in-place" encryption
 	 */
-	public void encrypt( byte[] in, int length ) {
+	@Override
+    public void encrypt(byte[] in, int length ) {
 		int pos = 0;
 		while( pos<in.length && pos<length ) {
 			encryptBlock( in, pos, length );
@@ -120,17 +122,20 @@ public class AESEncrypterBC extends AESCryptoBase implements AESEncrypter {
 	}
 
 	/** 16 bytes (AES-256) set in constructor */
-	public byte[] getSalt() {
+	@Override
+    public byte[] getSalt() {
 		return saltBytes;
 	}
 
 	/** 2 bytes for password verification set in constructor */
-	public byte[] getPwVerification() {
+	@Override
+    public byte[] getPwVerification() {
 		return pwVerificationBytes;
 	}
 
 	/** 10 bytes */
-	public byte[] getFinalAuthentication() {
+	@Override
+    public byte[] getFinalAuthentication() {
 		// MAC / based on encIn + PASSWORD + SALT (encryption was successful)
 		byte[] macBytes = new byte[ mac.getMacSize() ];
 		mac.doFinal( macBytes, 0 );

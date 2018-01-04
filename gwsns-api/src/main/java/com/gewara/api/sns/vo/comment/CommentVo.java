@@ -9,22 +9,22 @@ import com.gewara.api.sns.constant.Status;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ï¿½ï¿½ï¿½ï¿½02:05:17
  */
 public class CommentVo extends CommentBaseVo {
 	private static final long serialVersionUID = 1L;
 
 	
 
-	public static final String RECOMMEND_TAG_D = "D";//×î¶¾Éà
-	public static final String RECOMMEND_TAG_N = "N";//×îÄæÌì
-	public static final String RECOMMEND_TAG_Z = "Z";//×îÕùÒé
-	public static final String RECOMMEND_TAG_H = "H";//×îÄÚº­
-	public static final String RECOMMEND_TAG_X = "X";//×îÏ¬Àû
-	public static final String RECOMMEND_TAG_W = "W";//Î§¹Û
-	public static final String RECOMMEND_TAG_Y = "Y";//ºÃ°ñÑù
+	public static final String RECOMMEND_TAG_D = "D";//ï¿½î¶¾ï¿½ï¿½
+	public static final String RECOMMEND_TAG_N = "N";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String RECOMMEND_TAG_Z = "Z";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public static final String RECOMMEND_TAG_H = "H";//ï¿½ï¿½ï¿½Úºï¿½
+	public static final String RECOMMEND_TAG_X = "X";//ï¿½ï¿½Ï¬ï¿½ï¿½
+	public static final String RECOMMEND_TAG_W = "W";//Î§ï¿½ï¿½
+	public static final String RECOMMEND_TAG_Y = "Y";//ï¿½Ã°ï¿½ï¿½ï¿½
 	public static final String RECOMMEND_TAG_R = "R";//wenner
-	public static final String OHTERINFO_RECOMMEND_TAG = "recommendTag";//Î§¹Û
+	public static final String OHTERINFO_RECOMMEND_TAG = "recommendTag";//Î§ï¿½ï¿½
 	
 	public CommentVo() {
 	}
@@ -79,7 +79,9 @@ public class CommentVo extends CommentBaseVo {
 	
 	public String getFromFlag2(){
 		String str = AddressConstant.addressMap.get(this.address);
-		if(StringUtils.equals(str, "ÊÖ»ú¶ÌÐÅ")) return "ÊÖ»ú";
+		if(StringUtils.equals(str, "ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½")) {
+            return "ï¿½Ö»ï¿½";
+        }
 		return str;
 	}
 

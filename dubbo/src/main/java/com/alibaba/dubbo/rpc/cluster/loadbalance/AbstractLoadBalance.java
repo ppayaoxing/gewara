@@ -30,11 +30,14 @@ import com.alibaba.dubbo.rpc.cluster.LoadBalance;
  */
 public abstract class AbstractLoadBalance implements LoadBalance {
 
+    @Override
     public <T> Invoker<T> select(List<Invoker<T>> invokers, URL url, Invocation invocation) {
-        if (invokers == null || invokers.size() == 0)
+        if (invokers == null || invokers.size() == 0) {
             return null;
-        if (invokers.size() == 1)
+        }
+        if (invokers.size() == 1) {
             return invokers.get(0);
+        }
         return doSelect(invokers, url, invocation);
     }
 
