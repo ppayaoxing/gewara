@@ -8,13 +8,13 @@ import java.util.Map;
 
 public class TheatreSeatConstant implements Serializable {
 	private static final long serialVersionUID = -3625538381513198225L;
-	public static final String STATUS_NEW = "A";//ĞÂ×ùÎ»
-	public static final String STATUS_SELLING = "W";//ÊÛ³öÎ´¸¶¿î
-	public static final String STATUS_SOLD = "S";//ÊÛ³ö
+	public static final String STATUS_NEW = "A";//æ–°åº§ä½
+	public static final String STATUS_SELLING = "W";//å”®å‡ºæœªä»˜æ¬¾
+	public static final String STATUS_SOLD = "S";//å”®å‡º
 	
-	public static final String STATUS_LOCKB 	= "B";//Ó°ÔºÊÛ³öËø¶¨(×Ô¼º²Ù×÷)
-	public static final String STATUS_LOCKC 	= "C";//±£Áô×ùÎ»Ëø¶¨
-	public static final String STATUS_LOCKD 	= "D";//ÔùÆ±Ëø¶¨
+	public static final String STATUS_LOCKB 	= "B";//å½±é™¢å”®å‡ºé”å®š(è‡ªå·±æ“ä½œ)
+	public static final String STATUS_LOCKC 	= "C";//ä¿ç•™åº§ä½é”å®š
+	public static final String STATUS_LOCKD 	= "D";//èµ ç¥¨é”å®š
 	
 	public static final String SEATMAP_KEY = "ODI_AREA_SEATMAP_";
 	public static final String SEATMAP_UPDATE = "ODI_AREA_SEATMAP_UPDATE_";
@@ -22,9 +22,9 @@ public class TheatreSeatConstant implements Serializable {
 	private static final Map<String, String> statusTextMap = new HashMap<String, String>();
 	public static final List<String> STATUS_LOCK_LIST = Arrays.asList(STATUS_LOCKB, STATUS_LOCKC, STATUS_LOCKD);
 	static{
-		statusTextMap.put("B", "³¡¹İÊÛ³öËø¶¨");
-		statusTextMap.put("C", "±£Áô×ùÎ»Ëø¶¨");
-		statusTextMap.put("D", "ÔùÆ±Ëø¶¨");
+		statusTextMap.put("B", "åœºé¦†å”®å‡ºé”å®š");
+		statusTextMap.put("C", "ä¿ç•™åº§ä½é”å®š");
+		statusTextMap.put("D", "èµ ç¥¨é”å®š");
 	}
 
 }

@@ -10,23 +10,23 @@ import org.apache.commons.collections.map.UnmodifiableMap;
 public abstract class OtherFeeRefundConstant implements Serializable {
 
 	private static final long serialVersionUID = 6682861817043274469L;
-	public static final String STATUS_APPLY = "apply"; 		//ÉêÇë
-	public static final String STATUS_ACCEPT = "accept"; 	//½ÓÊÜ
-	public static final String STATUS_REJECT = "reject"; 	//¾Ü¾øÍË¿î
-	public static final String STATUS_SUCCESS = "success";	//ÍË¿î³É¹¦
+	public static final String STATUS_APPLY = "apply"; 		//ç”³è¯·
+	public static final String STATUS_ACCEPT = "accept"; 	//æ¥å—
+	public static final String STATUS_REJECT = "reject"; 	//æ‹’ç»é€€æ¬¾
+	public static final String STATUS_SUCCESS = "success";	//é€€æ¬¾æˆåŠŸ
 	
-	public static final String ORIGIN_EXPRESS = "express";		//¿ìµİ·Ñ
-	public static final String ORIGIN_INSURE = "insure";		//±£ÏÕ·Ñ
-	public static final String ORIGIN_UMPAY = "umpay";			//ÒÆ¶¯ÊÖĞø·Ñ
-	public static final String ORIGIN_CHANGE = "change";		//¸ü»»¶©µ¥²úÉú¶àÓàµÄ·ÑÓÃ
+	public static final String ORIGIN_EXPRESS = "express";		//å¿«é€’è´¹
+	public static final String ORIGIN_INSURE = "insure";		//ä¿é™©è´¹
+	public static final String ORIGIN_UMPAY = "umpay";			//ç§»åŠ¨æ‰‹ç»­è´¹
+	public static final String ORIGIN_CHANGE = "change";		//æ›´æ¢è®¢å•äº§ç”Ÿå¤šä½™çš„è´¹ç”¨
 	
-	//ÍË¿îÔ­Òò
-	public static final String REASON_MEMBER = "member";				//ÓÃ»§Ô­Òò
-	public static final String REASON_EXPRESS_MERGE = "expressMerge";	//¿ìµİºÏ²¢
-	public static final String REASON_EXPRESS_LOSE = "expressLose";		//¿ìµİ¶ªÊ§
-	public static final String REASON_UNKNOWN = "unknown";				//Î´Öª
+	//é€€æ¬¾åŸå› 
+	public static final String REASON_MEMBER = "member";				//ç”¨æˆ·åŸå› 
+	public static final String REASON_EXPRESS_MERGE = "expressMerge";	//å¿«é€’åˆå¹¶
+	public static final String REASON_EXPRESS_LOSE = "expressLose";		//å¿«é€’ä¸¢å¤±
+	public static final String REASON_UNKNOWN = "unknown";				//æœªçŸ¥
 	
-	//ÕË»§ÍË¿î Y£ºĞèÒª£¬N£º²»ĞèÒª£¬O£ºÎ´Öª, ²Î¼ûÃèÊö(Other)£¬S: ÒÑÌá½»ÕËÎñ(Submit) R£º²ÆÎñÒÑ¾­·µ»¹(Refund)£¬F£º²ÆÎñ·µ»¹³ö´í(Failure)
+	//è´¦æˆ·é€€æ¬¾ Yï¼šéœ€è¦ï¼ŒNï¼šä¸éœ€è¦ï¼ŒOï¼šæœªçŸ¥, å‚è§æè¿°(Other)ï¼ŒS: å·²æäº¤è´¦åŠ¡(Submit) Rï¼šè´¢åŠ¡å·²ç»è¿”è¿˜(Refund)ï¼ŒFï¼šè´¢åŠ¡è¿”è¿˜å‡ºé”™(Failure)
 	public static final String RETBACK_Y = "Y";
 	public static final String RETBACK_N = "N";
 	public static final String RETBACK_OTHER = "O";
@@ -41,17 +41,17 @@ public abstract class OtherFeeRefundConstant implements Serializable {
 	public static final Map<String, String> retbackMap;
 	static{
 		Map<String, String> tmpStatus = new HashMap<String, String>();
-		tmpStatus.put(STATUS_APPLY, "ÉêÇë");
-		tmpStatus.put(STATUS_ACCEPT, "½ÓÊÜ");
-		tmpStatus.put(STATUS_REJECT, "¾Ü¾øÍË¿î");
-		tmpStatus.put(STATUS_SUCCESS, "ÍË¿î³É¹¦");
+		tmpStatus.put(STATUS_APPLY, "ç”³è¯·");
+		tmpStatus.put(STATUS_ACCEPT, "æ¥å—");
+		tmpStatus.put(STATUS_REJECT, "æ‹’ç»é€€æ¬¾");
+		tmpStatus.put(STATUS_SUCCESS, "é€€æ¬¾æˆåŠŸ");
 		statusTextMap = UnmodifiableMap.decorate(tmpStatus);
 		
 		Map<String, String> tmp = new HashMap<String, String>();
-		tmp.put(ORIGIN_EXPRESS, "¿ìµİÍË¿î");
-		tmp.put(ORIGIN_INSURE, "±£ÏÕÍË¿î");
-		tmp.put(ORIGIN_UMPAY, "ÒÆ¶¯ÊÖĞø·ÑÍË¿î");
-		tmp.put(ORIGIN_CHANGE, "¸ü»»¶©µ¥Óà·ÑÍË¿î");
+		tmp.put(ORIGIN_EXPRESS, "å¿«é€’é€€æ¬¾");
+		tmp.put(ORIGIN_INSURE, "ä¿é™©é€€æ¬¾");
+		tmp.put(ORIGIN_UMPAY, "ç§»åŠ¨æ‰‹ç»­è´¹é€€æ¬¾");
+		tmp.put(ORIGIN_CHANGE, "æ›´æ¢è®¢å•ä½™è´¹é€€æ¬¾");
 		originTextMap = UnmodifiableMap.decorate(tmp);
 		Map<String, String> tmpOrigin = new HashMap<String, String>();
 		tmpOrigin.put(OtherFeeDetailConstant.FEETYPE_E, ORIGIN_EXPRESS);
@@ -60,19 +60,19 @@ public abstract class OtherFeeRefundConstant implements Serializable {
 		tmpOrigin.put(OtherFeeDetailConstant.FEETYPE_C, ORIGIN_CHANGE);
 		shortOrignMap = UnmodifiableMap.decorate(tmpOrigin);
 		Map<String, String> tmpReason = new LinkedHashMap<String, String>();
-		tmpReason.put(REASON_EXPRESS_MERGE, "¿ìµİºÏ²¢");
-		tmpReason.put(REASON_EXPRESS_LOSE, "¿ìµİ¶ªÊ§");
-		tmpReason.put(REASON_MEMBER, "ÓÃ»§Ô­Òò");
-		tmpReason.put(REASON_UNKNOWN, "Î´Öª");
+		tmpReason.put(REASON_EXPRESS_MERGE, "å¿«é€’åˆå¹¶");
+		tmpReason.put(REASON_EXPRESS_LOSE, "å¿«é€’ä¸¢å¤±");
+		tmpReason.put(REASON_MEMBER, "ç”¨æˆ·åŸå› ");
+		tmpReason.put(REASON_UNKNOWN, "æœªçŸ¥");
 		reasonTextMap = UnmodifiableMap.decorate(tmpReason);
 		
 		Map<String, String> tmpRetback = new LinkedHashMap<String, String>();
-		tmpRetback.put(RETBACK_Y, "ĞèÒª");
-		tmpRetback.put(RETBACK_N, "²»ĞèÒª");
-		tmpRetback.put(RETBACK_OTHER, "²Î¼ûÃèÊö");
-		tmpRetback.put(RETBACK_SUBMIT, "ÒÑÌá½»²ÆÎñ");
-		tmpRetback.put(RETBACK_REFUND, "²ÆÎñ³É¹¦");
-		tmpRetback.put(RETBACK_FAILURE, "²ÆÎñÊ§°Ü");
+		tmpRetback.put(RETBACK_Y, "éœ€è¦");
+		tmpRetback.put(RETBACK_N, "ä¸éœ€è¦");
+		tmpRetback.put(RETBACK_OTHER, "å‚è§æè¿°");
+		tmpRetback.put(RETBACK_SUBMIT, "å·²æäº¤è´¢åŠ¡");
+		tmpRetback.put(RETBACK_REFUND, "è´¢åŠ¡æˆåŠŸ");
+		tmpRetback.put(RETBACK_FAILURE, "è´¢åŠ¡å¤±è´¥");
 		retbackMap = UnmodifiableMap.decorate(tmpRetback);
 	}
 }

@@ -3,22 +3,22 @@ package com.gewara.drama.constant;
 
 public abstract class Status {
 
-	public static final String Y = "Y";							//¶ÔÍâÏÔÊ¾
-	public static final String Y_NEW = "Y_NEW";				//ĞÂÌû×Ó¡¢ÎÊ´ğ¡¢»Ø¸´...
-	public static final String Y_LOCK = "Y_LOCK";			//Ëø
-	public static final String Y_DOWN = "Y_DOWN";			//ÏÂ³ÁÌû×Ó
+	public static final String Y = "Y";							//å¯¹å¤–æ˜¾ç¤º
+	public static final String Y_NEW = "Y_NEW";				//æ–°å¸–å­ã€é—®ç­”ã€å›å¤...
+	public static final String Y_LOCK = "Y_LOCK";			//é”
+	public static final String Y_DOWN = "Y_DOWN";			//ä¸‹æ²‰å¸–å­
 	public static final String Y_LOCK_DOWN = "Y_LD";
 	
-	public static final String DEL = "D";						//É¾³ı
-	public static final String N = "N";							//¶ÔÍâ²»ÏÔÊ¾
-	public static final String N_DELETE = "N_DELETE";		//±»É¾³ı
-	public static final String N_FILTER = "N_FILTER";		//±»¹Ø¼ü×Ö¹ıÂË
-	public static final String N_ACCUSE = "N_ACCUSE";		//¾Ù±¨ÊôÊµ
-	public static final String N_NIGHT = "N_NIGHT";			//Ò¹¼ä·¢Ìû
+	public static final String DEL = "D";						//åˆ é™¤
+	public static final String N = "N";							//å¯¹å¤–ä¸æ˜¾ç¤º
+	public static final String N_DELETE = "N_DELETE";		//è¢«åˆ é™¤
+	public static final String N_FILTER = "N_FILTER";		//è¢«å…³é”®å­—è¿‡æ»¤
+	public static final String N_ACCUSE = "N_ACCUSE";		//ä¸¾æŠ¥å±å®
+	public static final String N_NIGHT = "N_NIGHT";			//å¤œé—´å‘å¸–
 	
-	public static final String N_ERROR = "N_ERR";			//³öÏÖ´íÎó
+	public static final String N_ERROR = "N_ERR";			//å‡ºç°é”™è¯¯
 	
-	public static final String Y_STOP = "Y_STOP";			//»î¶¯Í£Ö¹±¨Ãû
-	public static final String Y_PROCESS = "Y_PROCESS";	//»î¶¯¿ÉÒÔ±¨Ãû
-	public static final String Y_TREAT = "Y_TREAT";			//»î¶¯ÕıÔÚ´¦Àí
+	public static final String Y_STOP = "Y_STOP";			//æ´»åŠ¨åœæ­¢æŠ¥å
+	public static final String Y_PROCESS = "Y_PROCESS";	//æ´»åŠ¨å¯ä»¥æŠ¥å
+	public static final String Y_TREAT = "Y_TREAT";			//æ´»åŠ¨æ­£åœ¨å¤„ç†
 }

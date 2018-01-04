@@ -6,13 +6,13 @@ import java.util.Map;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
 public class OtherFeeDetailConstant {
-	public static final String FEETYPE_E = "E";		//¿ìµİ·Ñ
-	public static final String FEETYPE_U = "U";		//ÒÆ¶¯ÊÖĞø·Ñ
-	public static final String FEETYPE_C = "C";		//¸ü»»¶©µ¥²úÉú¶àÓàµÄ·ÑÓÃ
-	public static final String FEETYPE_I = "I";		//Æ½°²ÍËÆ±±£ÏÕ·ÑÓÃ
+	public static final String FEETYPE_E = "E";		//å¿«é€’è´¹
+	public static final String FEETYPE_U = "U";		//ç§»åŠ¨æ‰‹ç»­è´¹
+	public static final String FEETYPE_C = "C";		//æ›´æ¢è®¢å•äº§ç”Ÿå¤šä½™çš„è´¹ç”¨
+	public static final String FEETYPE_I = "I";		//å¹³å®‰é€€ç¥¨ä¿é™©è´¹ç”¨
 	
-	public static final String INSURE_USER_NAME =  "insureUName"; //¹ºÂò±£ÏÕÓÃ»§ĞÕÃû
-	public static final String INSURE_USER_BIRTHDAY =  "insureUBirthday";//¹ºÂò±£ÏÕÓÃ»§ÉúÈÕ
+	public static final String INSURE_USER_NAME =  "insureUName"; //è´­ä¹°ä¿é™©ç”¨æˆ·å§“å
+	public static final String INSURE_USER_BIRTHDAY =  "insureUBirthday";//è´­ä¹°ä¿é™©ç”¨æˆ·ç”Ÿæ—¥
 	
 	public static final String STATUS_NEW = "new";
 	public static final String STATUS_SUCCESS = "success";

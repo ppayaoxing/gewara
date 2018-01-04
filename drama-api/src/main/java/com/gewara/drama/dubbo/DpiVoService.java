@@ -11,7 +11,7 @@ import com.gewara.drama.vo.OpenDramaItemVo;
 public interface DpiVoService {
 
 	/**
-	 * 查询场次信息
+	 * 鏌ヨ鍦烘淇℃伅
 	 * @param dpid
 	 * @return
 	 */

@@ -7,16 +7,16 @@ public abstract class OrderNoteConstant {
 	public static String STATUS_P = "P";
 	public static String STATUS_R = "R";
 	
-	public static String RESULT_S = "S";	//ÒÑÍ¬²½
+	public static String RESULT_S = "S";	//å·²åŒæ­¥
 	
 	public static final String CONVERTTYPE_INIT = "init";
 	public static final String CONVERTTYPE_CONVERT = "convert";
-	public static final String CONVERTTYPE_REFUND = "refund";		//ÍË¿î
+	public static final String CONVERTTYPE_REFUND = "refund";		//é€€æ¬¾
 	
-	public static final String CONVERTTICKET_PEOPLE = "people";		//ÈË¹¤¶Ò»»
-	public static final String CONVERTTICKET_POS = "pos";				//POS»ú¶Ò»»
+	public static final String CONVERTTICKET_PEOPLE = "people";		//äººå·¥å…‘æ¢
+	public static final String CONVERTTICKET_POS = "pos";				//POSæœºå…‘æ¢
 	
-	public static final List<String> VALID_CONVERTTYPELIST = Arrays.asList(CONVERTTYPE_REFUND, CONVERTTICKET_PEOPLE, CONVERTTICKET_POS); //ÑéÖ¤²Ù×÷ÀàĞÍ
+	public static final List<String> VALID_CONVERTTYPELIST = Arrays.asList(CONVERTTYPE_REFUND, CONVERTTICKET_PEOPLE, CONVERTTICKET_POS); //éªŒè¯æ“ä½œç±»å‹
 	
 	
 }
