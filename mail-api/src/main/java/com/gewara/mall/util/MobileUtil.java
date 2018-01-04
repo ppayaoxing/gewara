@@ -19,9 +19,9 @@ import com.gewara.mall.vo.mobile.MobileInfo;
 import com.gewara.util.HttpResult;
 import com.gewara.util.HttpUtils;
 import com.gewara.util.JsonUtils;
-//ÊÖ»ú¹éÊôµØ²éÑ¯
+//æ‰‹æœºå½’å±åœ°æŸ¥è¯¢
 public class MobileUtil {
-	//Ê¹ÓÃlun.li@gewara.comµÇÂ½showapi.com
+	//ä½¿ç”¨lun.li@gewara.comç™»é™†showapi.com
 	public static final String APPID = "2440";
 	public static final String SECRET = "2703ea38b023468099941a827cb4818a";
 	public static final String URL4MOBILE = "http://route.showapi.com/6-1";
@@ -66,8 +66,8 @@ public class MobileUtil {
         }
         br.close();
         br2.close();
-        System.out.println("È¡Ç°7Î»È¥ÖØºó¹²"+mobileList.size()+"¸öÊÖ»úºÅ");
-        System.out.println("¹²"+cityList.size()+"¸ö³ÇÊĞ¶ÔÕÕ±í");
+        System.out.println("å–å‰7ä½å»é‡åå…±"+mobileList.size()+"ä¸ªæ‰‹æœºå·");
+        System.out.println("å…±"+cityList.size()+"ä¸ªåŸå¸‚å¯¹ç…§è¡¨");
         StringBuilder result=new StringBuilder();
         for(String m:mobileList){
         	ResultCode<MobileApiRes> code= getQryRes(m);
@@ -92,9 +92,9 @@ public class MobileUtil {
         FileWriter  fw=new FileWriter("D://mobileInfo/mobile_area.txt");
         fw.write(result.toString());
         fw.close();
-        System.out.println("ÔËĞĞ½áÊø");
+        System.out.println("è¿è¡Œç»“æŸ");
         long endSecond = new Date().getTime();
-        System.out.println("ÓÃÊ±£º"+((endSecond-startSecond)/60000)+"·ÖÖÓ");
+        System.out.println("ç”¨æ—¶ï¼š"+((endSecond-startSecond)/60000)+"åˆ†é’Ÿ");
 	}
 	
 }

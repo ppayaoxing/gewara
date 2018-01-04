@@ -41,9 +41,9 @@ public class MobileTest {
 			MobileInfo info = showapiresult.getShowapi_res_body();
 			String cityName=info.getCity();
 			String pronCode=info.getProvCode();
-			System.out.println("城市:"+cityName);
-			System.out.println("省份代码:"+pronCode);
-			System.out.println("省份名称:"+info.getProv());
+			System.out.println("鍩庡競:"+cityName);
+			System.out.println("鐪佷唤浠ｇ爜:"+pronCode);
+			System.out.println("鐪佷唤鍚嶇О:"+info.getProv());
 		}	
 	}
 

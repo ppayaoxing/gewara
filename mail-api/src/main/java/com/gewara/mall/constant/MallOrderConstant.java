@@ -6,96 +6,96 @@ import java.util.Map;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
 public class MallOrderConstant {
-	//ĞÂ¶©µ¥
+	//æ–°è®¢å•
 	public static final String STATUS_NEW = "new";									
-	//È¡Ïû¶©µ¥
+	//å–æ¶ˆè®¢å•
 	public static final String STATUS_CANCEL = "cancel";							
-	//ÖØ¸´¶©µ¥
+	//é‡å¤è®¢å•
 	public static final String STATUS_REPEAT = "cancel_repeat";
-	//³¬Ê±È¡Ïû
+	//è¶…æ—¶å–æ¶ˆ
 	public static final String STATUS_TIMEOUT = "cancel_timeout";
-	//È¥¸¶¿î
+	//å»ä»˜æ¬¾
 	public static final String STATUS_NEW_CONFIRM = "new_confirm";	
-	//ÒÑÖ§¸¶´ı´¦Àí
+	//å·²æ”¯ä»˜å¾…å¤„ç†
 	public static final String STATUS_PAID_FAILURE = "paid_failure";				
-	//½»Ò×³É¹¦£¨²»°üÀ¨ÎïÁ÷×´Ì¬£©
+	//äº¤æ˜“æˆåŠŸï¼ˆä¸åŒ…æ‹¬ç‰©æµçŠ¶æ€ï¼‰
 	public static final String STATUS_PAID_SUCCESS = "paid_success";				
-	//ÍË¿î¶©µ¥
+	//é€€æ¬¾è®¢å•
 	public static final String STATUS_PAID_RETURN = "paid_return";
-	//²¿·ÖÍË¿î
+	//éƒ¨åˆ†é€€æ¬¾
 	public static final String STATUS_PAID_RETURN_PART = "paid_return_part";
 	
-	//¶¨½ğÍê³É
+	//å®šé‡‘å®Œæˆ
 	public static final String MALL_STATUS_PAID_DEPOSIT = "paid_deposit";
-	//Î²¿îÍê³É
+	//å°¾æ¬¾å®Œæˆ
 	public static final String MALL_STATUS_PAID_RETAINAGE = "paid_retainage";
-	//TODO »»»õ¶©µ¥
+	//TODO æ¢è´§è®¢å•
 	public static final String MALL_STATUS_PAID_EXCHANGE = "paid_exchange";			
 	
-	//³õÊ¼
+	//åˆå§‹
 	public static final String EXP_STATUS_INIT = "init";
-	//µÈ´ı·¢»õ
+	//ç­‰å¾…å‘è´§
 	public static final String EXP_STATUS_WAITSEND = "waitSend";
-	//¿ìµİ¹«Ë¾ÒÑÀ¿¼ş
+	//å¿«é€’å…¬å¸å·²æ½ä»¶
 	public static final String EXP_EXPRESS_RECEIVE = "expressReceive";
-	//Âô¼ÒÒÑ·¢»õ
+	//å–å®¶å·²å‘è´§
 	public static final String EXP_STATUS_SENDED = "sended";
-	//Âò¼ÒÒÑÊÕ»õ
+	//ä¹°å®¶å·²æ”¶è´§
 	public static final String EXP_STATUS_RECEVIVE = "receive";
 		
-	//È«²¿·¢»õ
+	//å…¨éƒ¨å‘è´§
 	public static final String EXP_STATUS_SENDED4ALL = "sended4All";
-	//²¿·Ö·¢»õ
+	//éƒ¨åˆ†å‘è´§
 	public static final String EXP_STATUS_SENDED4PART = "sended4Part";
-	//È«²¿ÊÕ»õ
+	//å…¨éƒ¨æ”¶è´§
 	public static final String EXP_STATUS_RECEVIVE4ALL = "receive4All";
-	//²¿·ÖÊÕ»õ
+	//éƒ¨åˆ†æ”¶è´§
 	public static final String EXP_STATUS_RECEVIVE4PART = "receive4Part";
-	//¿ìµİ¹«Ë¾ÒÑÀ¿¼ş
+	//å¿«é€’å…¬å¸å·²æ½ä»¶
 	public static final String EXP_STATUS_EXPRESS_RECEVIVE = "expressReceive";
 	
-	//ÆÕÍ¨ÉÌÆ·
+	//æ™®é€šå•†å“
 	public static final String CATEGORY_PRODUCT = "product";
-	//Ô¤ÊÛ¶¨½ğ
+	//é¢„å”®å®šé‡‘
 	public static final String CATEGORY_PRESELL_DEPOSIT = "presell_deposit";
-	//Ô¤ÊÛÎ²¿î
+	//é¢„å”®å°¾æ¬¾
 	public static final String CATEGORY_PRESELL_RETAINAGE = "presell_retainage";
 	
 	public static Map<String, String>  orderStatusMap;
 	public static Map<String, String>  expStatusMap;
 	static{
 		LinkedHashMap<String, String> linkedstatusMap = new LinkedHashMap<>();
-		linkedstatusMap.put(STATUS_NEW, "´ı¸¶¿î");
-		linkedstatusMap.put(STATUS_CANCEL, "È¡Ïû¶©µ¥");
-		linkedstatusMap.put(STATUS_REPEAT, "ÖØ¸´¶©µ¥");
-		linkedstatusMap.put(STATUS_TIMEOUT, "³¬Ê±È¡Ïû");
+		linkedstatusMap.put(STATUS_NEW, "å¾…ä»˜æ¬¾");
+		linkedstatusMap.put(STATUS_CANCEL, "å–æ¶ˆè®¢å•");
+		linkedstatusMap.put(STATUS_REPEAT, "é‡å¤è®¢å•");
+		linkedstatusMap.put(STATUS_TIMEOUT, "è¶…æ—¶å–æ¶ˆ");
 		
-		linkedstatusMap.put(STATUS_NEW_CONFIRM, "µÈ´ı¸¶¿î");
-		linkedstatusMap.put(STATUS_CANCEL, "È¡Ïû¶©µ¥");
-		linkedstatusMap.put(STATUS_REPEAT, "ÖØ¸´¶©µ¥");
-		linkedstatusMap.put(STATUS_TIMEOUT, "³¬Ê±È¡Ïû");
+		linkedstatusMap.put(STATUS_NEW_CONFIRM, "ç­‰å¾…ä»˜æ¬¾");
+		linkedstatusMap.put(STATUS_CANCEL, "å–æ¶ˆè®¢å•");
+		linkedstatusMap.put(STATUS_REPEAT, "é‡å¤è®¢å•");
+		linkedstatusMap.put(STATUS_TIMEOUT, "è¶…æ—¶å–æ¶ˆ");
 		
 		
-		linkedstatusMap.put(STATUS_PAID_FAILURE, "´ı´¦Àí");
-		linkedstatusMap.put(STATUS_PAID_SUCCESS, "¶©µ¥³É¹¦");
-		linkedstatusMap.put(STATUS_PAID_RETURN, "ÍË¿î¶©µ¥");
-		linkedstatusMap.put(STATUS_PAID_RETURN_PART, "²¿·ÖÍË¿î");
+		linkedstatusMap.put(STATUS_PAID_FAILURE, "å¾…å¤„ç†");
+		linkedstatusMap.put(STATUS_PAID_SUCCESS, "è®¢å•æˆåŠŸ");
+		linkedstatusMap.put(STATUS_PAID_RETURN, "é€€æ¬¾è®¢å•");
+		linkedstatusMap.put(STATUS_PAID_RETURN_PART, "éƒ¨åˆ†é€€æ¬¾");
 		
-		linkedstatusMap.put(MALL_STATUS_PAID_DEPOSIT, "¶¨½ğÍê³É");
-		linkedstatusMap.put(MALL_STATUS_PAID_RETAINAGE, "Î²¿îÍê³É");
-		linkedstatusMap.put(MALL_STATUS_PAID_EXCHANGE, "»»»õ¶©µ¥");
+		linkedstatusMap.put(MALL_STATUS_PAID_DEPOSIT, "å®šé‡‘å®Œæˆ");
+		linkedstatusMap.put(MALL_STATUS_PAID_RETAINAGE, "å°¾æ¬¾å®Œæˆ");
+		linkedstatusMap.put(MALL_STATUS_PAID_EXCHANGE, "æ¢è´§è®¢å•");
 		orderStatusMap = UnmodifiableMap.decorate(linkedstatusMap);
 		
 		expStatusMap = new LinkedHashMap<>();
-		expStatusMap.put(EXP_STATUS_WAITSEND, "µÈ´ı·¢»õ");
-		expStatusMap.put(EXP_STATUS_SENDED, "Âô¼ÒÒÑ·¢»õ");
-		expStatusMap.put(EXP_STATUS_RECEVIVE, "Âò¼ÒÒÑÊÕ»õ");
+		expStatusMap.put(EXP_STATUS_WAITSEND, "ç­‰å¾…å‘è´§");
+		expStatusMap.put(EXP_STATUS_SENDED, "å–å®¶å·²å‘è´§");
+		expStatusMap.put(EXP_STATUS_RECEVIVE, "ä¹°å®¶å·²æ”¶è´§");
 		
-		expStatusMap.put(EXP_STATUS_SENDED4ALL, "Âô¼ÒÒÑ·¢»õ");
-		expStatusMap.put(EXP_STATUS_SENDED4PART, "²¿·Ö·¢»õ");
-		expStatusMap.put(EXP_STATUS_RECEVIVE4ALL, "Âò¼ÒÒÑÊÕ»õ");
-		expStatusMap.put(EXP_STATUS_RECEVIVE4PART, "²¿·ÖÊÕ»õ");
-		expStatusMap.put(EXP_STATUS_EXPRESS_RECEVIVE, "¿ìµİ¹«Ë¾ÒÑÀ¿¼ş");
+		expStatusMap.put(EXP_STATUS_SENDED4ALL, "å–å®¶å·²å‘è´§");
+		expStatusMap.put(EXP_STATUS_SENDED4PART, "éƒ¨åˆ†å‘è´§");
+		expStatusMap.put(EXP_STATUS_RECEVIVE4ALL, "ä¹°å®¶å·²æ”¶è´§");
+		expStatusMap.put(EXP_STATUS_RECEVIVE4PART, "éƒ¨åˆ†æ”¶è´§");
+		expStatusMap.put(EXP_STATUS_EXPRESS_RECEVIVE, "å¿«é€’å…¬å¸å·²æ½ä»¶");
 	}
 	public static final String NS_HC_MOVIEORDER_ = "order4Movie";
 	public static String getMovieHcTable(Long movieId){
