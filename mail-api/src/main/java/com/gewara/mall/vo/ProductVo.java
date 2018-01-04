@@ -12,50 +12,50 @@ import com.gewara.util.JsonUtils;
 public class ProductVo extends BaseVo {
 	private static final long serialVersionUID = 3124980986021558566L;
 	private Long id;
-	private Integer version;					//¸üĞÂ°æ±¾
-	private String name;						//Ãû³Æ
-	private String fullName;					//È«³Æ
-	private String logo;						//Í¼Æ¬
-	private String introduction;				//½éÉÜ
-	private String productCode;				//ÉÌÆ·»õºÅ
-	private String note;						//×¢ÒâÊÂÏî
-	private String source;					//×÷Æ·À´Ô´
-	private Long categoryId;					//ÉÌÆ··ÖÀà
-	private String categoryPath;				//·ÖÀàÂ·¾¶
-	private Long attributeId1;				//ÊÛÂôÊôĞÔ1
-	private Long attributeId2;				//ÊÛÂôÊôĞÔ2
-	private Integer skuCount;					//sku¸öÊı
-	private Integer stock;					//¿â´æ
-	private Integer sold;						//ÒÑÏúÊÛ
-	private Integer price;					//¼Û¸ñ
-	private Long brandId;						//Æ·ÅÆ
-	private String status;					//×´Ì¬
-	private String parameter;					//ÉÌÆ·²ÎÊı json¸ñÊ½Êı¾İ£º{"°åĞÍ":"ĞŞÉí","Ğä³¤","¶ÌĞä"}
+	private Integer version;					//æ›´æ–°ç‰ˆæœ¬
+	private String name;						//åç§°
+	private String fullName;					//å…¨ç§°
+	private String logo;						//å›¾ç‰‡
+	private String introduction;				//ä»‹ç»
+	private String productCode;				//å•†å“è´§å·
+	private String note;						//æ³¨æ„äº‹é¡¹
+	private String source;					//ä½œå“æ¥æº
+	private Long categoryId;					//å•†å“åˆ†ç±»
+	private String categoryPath;				//åˆ†ç±»è·¯å¾„
+	private Long attributeId1;				//å”®å–å±æ€§1
+	private Long attributeId2;				//å”®å–å±æ€§2
+	private Integer skuCount;					//skuä¸ªæ•°
+	private Integer stock;					//åº“å­˜
+	private Integer sold;						//å·²é”€å”®
+	private Integer price;					//ä»·æ ¼
+	private Long brandId;						//å“ç‰Œ
+	private String status;					//çŠ¶æ€
+	private String parameter;					//å•†å“å‚æ•° jsonæ ¼å¼æ•°æ®ï¼š{"æ¿å‹":"ä¿®èº«","è¢–é•¿","çŸ­è¢–"}
 	
-	private String people;					//ÈËÎï   ¸ÖÌúÏÀ¡¢ÂÌ¾ŞÈË
-	private String crowd;						//ÈËÈº   Í¬ÊÂ¡¢¹ëÃÛ¡¢¶ÔÏó
+	private String people;					//äººç‰©   é’¢é“ä¾ ã€ç»¿å·¨äºº
+	private String crowd;						//äººç¾¤   åŒäº‹ã€é—ºèœœã€å¯¹è±¡
 	
-	//¹ØÁªÏÖÓĞ¸ñÍßÀ­Êı¾İ
+	//å…³è”ç°æœ‰æ ¼ç“¦æ‹‰æ•°æ®
 	private String tag;						//movie,drama
-	private Long relatedId;					//µçÓ°id,Ñİ³öid
-	private String otherInfo;					//ÆäËûĞÅÏ¢
-	private String keywords;					//¹Ø¼ü×Ö
+	private Long relatedId;					//ç”µå½±id,æ¼”å‡ºid
+	private String otherInfo;					//å…¶ä»–ä¿¡æ¯
+	private String keywords;					//å…³é”®å­—
 	
-	private String sevenDayRefund;			//7ÌìÍË»õ
-	private String packageList;				//°ü×°Çåµ¥
-	private String afterSaleService;			//ÊÛºó·şÎñ
-	private Long shippingTemplateId;			//ÔË·ÑÄ£°åID
-	private Long vendorId;					//¹©Ó¦ÉÌid
-	private Long shipperId;					//·¢»õÉÌID
-	private String elecard;					//1)¿ÉÓÃµÄµÖÓÃÈ¯ÀàĞÍD£¬2) M±íÊ¾²ÎÓëÉÌ¼ÒÌØÊâÓÅ»İ»î¶¯
-	private Long boughtMovieId;				//¹ºÂò¹ıÄ³¸öµçÓ°µÄ£¬²Å¿ÉÒÔ¹ºÂò
-	private Integer limitBuyQty;				//×î´ó¿É¹ºÂòÊıÁ¿
+	private String sevenDayRefund;			//7å¤©é€€è´§
+	private String packageList;				//åŒ…è£…æ¸…å•
+	private String afterSaleService;			//å”®åæœåŠ¡
+	private Long shippingTemplateId;			//è¿è´¹æ¨¡æ¿ID
+	private Long vendorId;					//ä¾›åº”å•†id
+	private Long shipperId;					//å‘è´§å•†ID
+	private String elecard;					//1)å¯ç”¨çš„æŠµç”¨åˆ¸ç±»å‹Dï¼Œ2) Mè¡¨ç¤ºå‚ä¸å•†å®¶ç‰¹æ®Šä¼˜æƒ æ´»åŠ¨
+	private Long boughtMovieId;				//è´­ä¹°è¿‡æŸä¸ªç”µå½±çš„ï¼Œæ‰å¯ä»¥è´­ä¹°
+	private Integer limitBuyQty;				//æœ€å¤§å¯è´­ä¹°æ•°é‡
 	
-	private String saleModel;					//ÏúÊÛÄ£Ê½
-	private Timestamp onSaleTime;				//¶¨Ê±ÉÏ¼ÜÊ±¼ä
-	private Timestamp offSaleTime;			//¶¨Ê±ÏÂ¼ÜÊ±¼ä
-	private String sellType;				//ÏÖ½ğ¡¢ÏÖ½ğ+»ı·Ö¡¢»ı·Ö
-	private Integer point;					//»ı·Ö
+	private String saleModel;					//é”€å”®æ¨¡å¼
+	private Timestamp onSaleTime;				//å®šæ—¶ä¸Šæ¶æ—¶é—´
+	private Timestamp offSaleTime;			//å®šæ—¶ä¸‹æ¶æ—¶é—´
+	private String sellType;				//ç°é‡‘ã€ç°é‡‘+ç§¯åˆ†ã€ç§¯åˆ†
+	private Integer point;					//ç§¯åˆ†
 	
 	public ProductVo(){}
 	

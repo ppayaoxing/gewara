@@ -4,25 +4,25 @@ import com.gewara.api.vo.ResultCode;
 
 public interface MallVoService {
 	/**
-	 * »ñÈ¡Ö§¸¶ÑéÖ¤ĞÅÏ¢
+	 * è·å–æ”¯ä»˜éªŒè¯ä¿¡æ¯
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<String> getPayinfoByTradeNo(String tradeNo);
 	/**
-	 * »ñÈ¡½»Ò×³É¹¦ºóÒª¸øÓÃ»§·¢µÄÊÖ»ú¶ÌĞÅÄÚÈİ
+	 * è·å–äº¤æ˜“æˆåŠŸåè¦ç»™ç”¨æˆ·å‘çš„æ‰‹æœºçŸ­ä¿¡å†…å®¹
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<String> getSmsContentByTradeNo(String tradeNo);
 	/**
-	 * ¶©µ¥ÖĞĞÄÍ¨ÖªmallÏµÍ³¸Ã±Ê¶©µ¥¸¶¿î£¬mallÏµÍ³·µ»Ø¸Ã±Ê¶©µ¥ÊÇ·ñÄÜ´¦Àí³É¹¦
+	 * è®¢å•ä¸­å¿ƒé€šçŸ¥mallç³»ç»Ÿè¯¥ç¬”è®¢å•ä»˜æ¬¾ï¼Œmallç³»ç»Ÿè¿”å›è¯¥ç¬”è®¢å•æ˜¯å¦èƒ½å¤„ç†æˆåŠŸ
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode processOrderConfirm(String tradeNo);
 	/**
-	 * ĞŞ¸Ä¶©µ¥¿ìµİµØÖ·
+	 * ä¿®æ”¹è®¢å•å¿«é€’åœ°å€
 	 * @param userId
 	 * @param mallOrderId
 	 * @param mobile

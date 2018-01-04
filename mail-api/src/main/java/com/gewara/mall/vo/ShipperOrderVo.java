@@ -9,21 +9,21 @@ import org.apache.commons.lang.StringUtils;
 
 import com.gewara.api.vo.BaseVo;
 import com.gewara.mall.constant.MallOrderConstant;
-//¸ù¾İ·¢»õÉÌÉú³É¶©µ¥(°ü¹üµ¥)
+//æ ¹æ®å‘è´§å•†ç”Ÿæˆè®¢å•(åŒ…è£¹å•)
 public class ShipperOrderVo extends BaseVo{
 	private static final long serialVersionUID = 3765934532987492193L;
 	private Long id;	
-	private Long mallOrderId;						//¶©µ¥id
-	private String shipperOrderNo;					//¶©µ¥ºÅ
-	private Long shipperId;							//·¢»õÉÌµÄId
-	private Integer shippingFee;					//»õÔË·ÑÓÃ
-	private String expressNo;						//ÔËµ¥ºÅ
-	private String expressType;						//¿ìµİÀàĞÍ
-	private String expressStatus;					//ÎïÁ÷×´Ì¬
-	private String remark;							//ÉÌ¼Ò±¸×¢
-	private Timestamp sendTime;						//·¢»õÊ±¼ä
+	private Long mallOrderId;						//è®¢å•id
+	private String shipperOrderNo;					//è®¢å•å·
+	private Long shipperId;							//å‘è´§å•†çš„Id
+	private Integer shippingFee;					//è´§è¿è´¹ç”¨
+	private String expressNo;						//è¿å•å·
+	private String expressType;						//å¿«é€’ç±»å‹
+	private String expressStatus;					//ç‰©æµçŠ¶æ€
+	private String remark;							//å•†å®¶å¤‡æ³¨
+	private Timestamp sendTime;						//å‘è´§æ—¶é—´
 	
-	private List<OrderProductVo> orderProductList=new ArrayList<OrderProductVo>();		//²éÑ¯µÄÊ±ºòÊ¹ÓÃ
+	private List<OrderProductVo> orderProductList=new ArrayList<OrderProductVo>();		//æŸ¥è¯¢çš„æ—¶å€™ä½¿ç”¨
 	
 	@Override
 	public Serializable realId() {

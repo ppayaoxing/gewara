@@ -13,33 +13,33 @@ import com.gewara.mall.constant.MallOrderConstant;
 public class MallOrderVo extends BaseVo{
 
 	/**
-	 * ¶©µ¥
+	 * è®¢å•
 	 */
 	private static final long serialVersionUID = -551269625866654797L;
 	private Long id;
-	private String mobile;							//»áÔ±µç»°
-	private Integer totalFee;						//¶©µ¥×Ü½ğ¶î
-	private Integer totalCost;						//¶©µ¥³É±¾×Ü½ğ¶î	
-	private Integer usedPoint;						//Ê¹ÓÃµÄ»ı·ÖÊıÁ¿
-	private Integer shippingFee;					//»õÔË·ÑÓÃ
-	private Long memberId;							//»áÔ±id
-	private Long partnerId;							//À´Ô´
-	private String memberRemark;					//ÓÃ»§±¸×¢
-	private String remark;							//ÏµÍ³±¸×¢
-	private String description;						//¶©µ¥ÃèÊö
-	private Timestamp validTime;					//ÓĞĞ§ÆÚ
+	private String mobile;							//ä¼šå‘˜ç”µè¯
+	private Integer totalFee;						//è®¢å•æ€»é‡‘é¢
+	private Integer totalCost;						//è®¢å•æˆæœ¬æ€»é‡‘é¢	
+	private Integer usedPoint;						//ä½¿ç”¨çš„ç§¯åˆ†æ•°é‡
+	private Integer shippingFee;					//è´§è¿è´¹ç”¨
+	private Long memberId;							//ä¼šå‘˜id
+	private Long partnerId;							//æ¥æº
+	private String memberRemark;					//ç”¨æˆ·å¤‡æ³¨
+	private String remark;							//ç³»ç»Ÿå¤‡æ³¨
+	private String description;						//è®¢å•æè¿°
+	private Timestamp validTime;					//æœ‰æ•ˆæœŸ
 	
-	private String status;							//mall¶©µ¥×´Ì¬,±È¶©µ¥µÈÖĞĞÄ¶©µ¥×´Ì¬¸üÏ¸»¯
-	private String category;						//¶©µ¥ÀàĞÍÇø·Ö£ºproduct,presell_deposit,presell_retainage
-	private Long parentMallOrderId;					//¹ØÁª¸¸¼¶¶©µ¥µÄID,Èç£ºÔ¤ÊÛµÄÎ²¿î²úÉúµÄ¶©µ¥
-	private String otherInfo;						//ÆäËûĞÅÏ¢ json¸ñÊ½
-	//ÒÔÏÂÊÇ¹ØÁª¶©µ¥ÖĞĞÄÊı¾İ
-	/** ¶©µ¥idÓÉmallÏµÍ³²úÉú£¬´«µİ¸øÉÏº£ÏµÍ³relatedid */
-	private Long shOrderId;							//ÉÏº£ÏµÍ³¶©µ¥id
-	private String shStatus;						//ÉÏº£ÏµÍ³¶©µ¥×´Ì¬
-	private String tradeNo;							//ÉÏº£½»Ò×Á÷Ë®ºÅ
+	private String status;							//mallè®¢å•çŠ¶æ€,æ¯”è®¢å•ç­‰ä¸­å¿ƒè®¢å•çŠ¶æ€æ›´ç»†åŒ–
+	private String category;						//è®¢å•ç±»å‹åŒºåˆ†ï¼šproduct,presell_deposit,presell_retainage
+	private Long parentMallOrderId;					//å…³è”çˆ¶çº§è®¢å•çš„ID,å¦‚ï¼šé¢„å”®çš„å°¾æ¬¾äº§ç”Ÿçš„è®¢å•
+	private String otherInfo;						//å…¶ä»–ä¿¡æ¯ jsonæ ¼å¼
+	//ä»¥ä¸‹æ˜¯å…³è”è®¢å•ä¸­å¿ƒæ•°æ®
+	/** è®¢å•idç”±mallç³»ç»Ÿäº§ç”Ÿï¼Œä¼ é€’ç»™ä¸Šæµ·ç³»ç»Ÿrelatedid */
+	private Long shOrderId;							//ä¸Šæµ·ç³»ç»Ÿè®¢å•id
+	private String shStatus;						//ä¸Šæµ·ç³»ç»Ÿè®¢å•çŠ¶æ€
+	private String tradeNo;							//ä¸Šæµ·äº¤æ˜“æµæ°´å·
 	
-	private String expressStatus;					//ÎïÁ÷×´Ì¬(²éÑ¯¶©µ¥µÄÊ¹ÓÃ)
+	private String expressStatus;					//ç‰©æµçŠ¶æ€(æŸ¥è¯¢è®¢å•çš„ä½¿ç”¨)
 	public MallOrderVo() {
 		
 	}
@@ -157,7 +157,7 @@ public class MallOrderVo extends BaseVo{
 	public void setUsedPoint(Integer usedPoint) {
 		this.usedPoint = usedPoint;
 	}
-	//ÊÇ·ñÒÑ¾­¸¶¿î
+	//æ˜¯å¦å·²ç»ä»˜æ¬¾
 	public boolean isPaid(){
 		return StringUtils.startsWith(shStatus, "paid");
 	}

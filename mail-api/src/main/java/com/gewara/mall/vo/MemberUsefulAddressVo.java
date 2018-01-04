@@ -8,9 +8,9 @@ import com.gewara.api.vo.BaseVo;
 public class MemberUsefulAddressVo extends BaseVo{
 
 	private static final long serialVersionUID = 2836157511625416677L;
-	// Ä¬ÈÏµØÖ·
+	// é»˜è®¤åœ°å€
 	public static final String DEFAULT_ADDRESS = "Y";
-	// ·ÇÄ¬ÈÏµØÖ·
+	// éé»˜è®¤åœ°å€
 	public static final String NOT_DEFAULT_ADDRESS = "N";
 	private Long id;
 	private Long memberid;
@@ -27,7 +27,7 @@ public class MemberUsefulAddressVo extends BaseVo{
 	private String cityname;
 	private String countycode;
 	private String countyname;
-	// Ä¬ÈÏµØÖ·£ºYÊÇ£¬N²»ÊÇ
+	// é»˜è®¤åœ°å€ï¼šYæ˜¯ï¼ŒNä¸æ˜¯
 	private String defaultAddress;
 	
 	public MemberUsefulAddressVo(){
@@ -41,7 +41,7 @@ public class MemberUsefulAddressVo extends BaseVo{
 		this.id = id;
 	}
 	/**
-	 * memberid ÓĞ¿ÉÄÜÎª¿Õ
+	 * memberid æœ‰å¯èƒ½ä¸ºç©º
 	 */
 	public Long getMemberid() {
 		return memberid;

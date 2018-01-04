@@ -6,21 +6,21 @@ import com.gewara.api.vo.BaseVo;
 
 public class MallOrderItemVo extends BaseVo {
 	/**
-	 * ¶©µ¥ÀàÄ¿
+	 * è®¢å•ç±»ç›®
 	 */
 	private static final long serialVersionUID = -456661946584735116L;
 
 	private Long id;								//id
-	private Long shipperOrderId;						//·¢»õÉÌ¶©µ¥ID
-	private Long mallOrderId;						//¶©µ¥id
-	private Long productId;							//ÉÌÆ·id
-	private Integer qty;							//¹ºÂòÊıÁ¿
-	private Integer unitPrice;						//µ¥¼Û
-	private Integer totalFee;						//×Ü¼Û£¨unitPrice*qty£©
-	private Integer costPrice;						//½áËã¼Û
-	private Integer totalCost;						//¶©µ¥³É±¾×Ü½ğ¶î
-	private Integer usedPoint;						//Ê¹ÓÃµÄ»ı·ÖÊıÁ¿
-	private Long skuId;								//ÉÌÆ·sku id
+	private Long shipperOrderId;						//å‘è´§å•†è®¢å•ID
+	private Long mallOrderId;						//è®¢å•id
+	private Long productId;							//å•†å“id
+	private Integer qty;							//è´­ä¹°æ•°é‡
+	private Integer unitPrice;						//å•ä»·
+	private Integer totalFee;						//æ€»ä»·ï¼ˆunitPrice*qtyï¼‰
+	private Integer costPrice;						//ç»“ç®—ä»·
+	private Integer totalCost;						//è®¢å•æˆæœ¬æ€»é‡‘é¢
+	private Integer usedPoint;						//ä½¿ç”¨çš„ç§¯åˆ†æ•°é‡
+	private Long skuId;								//å•†å“sku id
 	private String attributeName1;					
 	private String attributeName2;
 	public MallOrderItemVo() {

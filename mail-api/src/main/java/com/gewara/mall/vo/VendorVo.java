@@ -8,7 +8,7 @@ import com.gewara.api.vo.BaseVo;
 public class VendorVo extends BaseVo{
 
 	/**
-	 * ¹©Ó¦ÉÌ
+	 * ä¾›åº”å•†
 	 */
 	private static final long serialVersionUID = 5944928545021109753L;
 
@@ -20,7 +20,7 @@ public class VendorVo extends BaseVo{
 	private String telephone;
 	private String address;
 	private String zip;
-	private Timestamp addTime;        			//´´½¨Ê±¼ä
+	private Timestamp addTime;        			//åˆ›å»ºæ—¶é—´
 	
 	public VendorVo(){
 		

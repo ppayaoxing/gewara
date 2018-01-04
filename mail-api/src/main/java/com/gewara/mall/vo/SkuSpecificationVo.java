@@ -9,16 +9,16 @@ public class SkuSpecificationVo extends BaseVo {
 	private static final long serialVersionUID = 7964278333868311752L;
 
 	/**
-	 * ÊÛÂôÊôĞÔ
+	 * å”®å–å±æ€§
 	 */
 	private Long id;
-	private Long productId;								//ÉÌÆ·id
+	private Long productId;								//å•†å“id
 	private Long skuId;									//SKU id
-	private String skey; 								//SKU Î¨Ò»±êÊ¾  (productid+attributeValueId1+attributeValueId2 or productid+attributeValueId1)
-	private Long attributeId1;							//ÊÛÂôÊôĞÔ1
-	private Long attributeValueId1;						//ÊÛÂôÊôĞÔÖµ1
-	private Long attributeId2;							//ÊÛÂôÊôĞÔ2
-	private Long attributeValueId2;						//ÊÛÂôÊôĞÔÖµ2	
+	private String skey; 								//SKU å”¯ä¸€æ ‡ç¤º  (productid+attributeValueId1+attributeValueId2 or productid+attributeValueId1)
+	private Long attributeId1;							//å”®å–å±æ€§1
+	private Long attributeValueId1;						//å”®å–å±æ€§å€¼1
+	private Long attributeId2;							//å”®å–å±æ€§2
+	private Long attributeValueId2;						//å”®å–å±æ€§å€¼2	
 	
 	public SkuSpecificationVo(){}
 	

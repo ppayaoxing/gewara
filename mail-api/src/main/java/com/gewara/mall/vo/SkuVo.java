@@ -7,17 +7,17 @@ import com.gewara.api.vo.BaseVo;
 public class SkuVo extends BaseVo{
 	private static final long serialVersionUID = 8217681262266417529L;
 	private Long id;
-	private Integer version;						//¸üĞÂ°æ±¾
-	private Long productId;							//ÉÌÆ·id
-	private Integer unitPrice;						//µ¥¼Û
-	private Integer costPrice;						//³É±¾¼Û
-	private Integer stock;							//¿â´æ
-	private Integer sold;							//ÒÑÊÛ¿â´æ
-	private String status;							//SKU×´Ì¬
-	private String otherInfo;						//ÆäËûĞÅÏ¢json¸ñÊ½
-	private Integer retainage;						//Ô¤ÊÛµÄÎ²¿î
-	private Integer point;							//»ı·Ö
-	private Integer pointPrice;						//»ı·Ö»»Ëã¼Û¸ñ
+	private Integer version;						//æ›´æ–°ç‰ˆæœ¬
+	private Long productId;							//å•†å“id
+	private Integer unitPrice;						//å•ä»·
+	private Integer costPrice;						//æˆæœ¬ä»·
+	private Integer stock;							//åº“å­˜
+	private Integer sold;							//å·²å”®åº“å­˜
+	private String status;							//SKUçŠ¶æ€
+	private String otherInfo;						//å…¶ä»–ä¿¡æ¯jsonæ ¼å¼
+	private Integer retainage;						//é¢„å”®çš„å°¾æ¬¾
+	private Integer point;							//ç§¯åˆ†
+	private Integer pointPrice;						//ç§¯åˆ†æ¢ç®—ä»·æ ¼
 	public SkuVo(){
 		
 	}

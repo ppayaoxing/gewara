@@ -13,51 +13,51 @@ import com.gewara.mall.vo.SkuVo;
 
 public interface MallQueryVoService {
 	/**
-	 * »ñÈ¡ÉÌÆ·ĞÅÏ¢
-	 * @param productId ÉÌÆ·Id
+	 * è·å–å•†å“ä¿¡æ¯
+	 * @param productId å•†å“Id
 	 * @return
 	 */
 	ResultCode<ProductVo> getProductVo(Long productId);
 	/**
-	 * »ñÈ¡¶©µ¥¹ºÂòµÄÃ¿¸öÀàÄ¿
+	 * è·å–è®¢å•è´­ä¹°çš„æ¯ä¸ªç±»ç›®
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<List<MallOrderItemVo>> getMallOrderItemVoList(String tradeNo);
 	/**
-	 * »ñÈ¡ÉÌÆ·ÁĞ±í
+	 * è·å–å•†å“åˆ—è¡¨
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<List<ProductVo>> getProductVoList(String tradeNo);
 	/**
-	 * »ñÈ¡SKUĞÅÏ¢
+	 * è·å–SKUä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
 	ResultCode<SkuVo> getSkuVo(Long id);
 	
 	/**
-	 * »ñÈ¡SKUĞÅÏ¢ÁĞ±í
+	 * è·å–SKUä¿¡æ¯åˆ—è¡¨
 	 * @param id
 	 * @return
 	 */
 	ResultCode<List<SkuVo>> getSkuVoList(List<Long> idList);
 	/**
-	 * ¸ü¼Ó¶©µ¥ºÅ»ñÈ¡skuÁĞ±í
+	 * æ›´åŠ è®¢å•å·è·å–skuåˆ—è¡¨
 	 * @param tradeNo
 	 * @return
 	 */
 	ResultCode<List<SkuVo>> getSkuVoList(String tradeNo);
 	
 	/**
-	 * »ñÈ¡ÉÌ³¡×Ü¶©µ¥
+	 * è·å–å•†åœºæ€»è®¢å•
 	 * @param command
 	 * @return
 	 */
 	ResultCode<List<OrderDetailShowVo>> getOrderDetailShowVoList(OrderParamsVo command,int from,int maxnum);
 	/**
-	 * »ñÈ¡ÉÌ³Ç²ğ·Ö¶©µ¥
+	 * è·å–å•†åŸæ‹†åˆ†è®¢å•
 	 * @param mallOrderId
 	 * @param shipperOrderNo
 	 * @return
@@ -65,19 +65,19 @@ public interface MallQueryVoService {
 	ResultCode<List<ShipperOrderVo>> getShipperOrderVoList(Long mallOrderId,String shipperOrderNo);
 	
 	/**
-	 * »ñÈ¡ÉÌ³Ç²ğ·Ö¶©µ¥Ã÷Ï¸
+	 * è·å–å•†åŸæ‹†åˆ†è®¢å•æ˜ç»†
 	 * @param shipperOrderId
 	 * @return
 	 */
 	ResultCode<OrderDetailShowVo> getOrderDetailShowVo(Long shipperOrderId);
 	/**
-	 * »ñÈ¡ÉÌ³Ç¶©µ¥Ã÷Ï¸
+	 * è·å–å•†åŸè®¢å•æ˜ç»†
 	 * @param mallOrderId
 	 * @return
 	 */
 	ResultCode<OrderDetailShowVo> getOrderDetailShowVoByMallOrderId(Long mallOrderId);
 	/**
-	 * »ñÈ¡¶©µ¥µÄ¿ìµİµØÖ·
+	 * è·å–è®¢å•çš„å¿«é€’åœ°å€
 	 * @param mallOrderId
 	 * @return
 	 */
