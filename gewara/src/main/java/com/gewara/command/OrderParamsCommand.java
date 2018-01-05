@@ -17,11 +17,11 @@ public class OrderParamsCommand implements Serializable {
 	private String paymethod;
 	private String category;
 	private String citycode;
-	private Long placeid;				//³¡¹İID
-	private Long itemid;				//ÏîÄ¿ID
-	private Long relatedid;				//³¡´ÎID
+	private Long placeid;				//åœºé¦†ID
+	private Long itemid;				//é¡¹ç›®ID
+	private Long relatedid;				//åœºæ¬¡ID
 	private String express;
-	private String expressstatus;		//¿ìµİ×´Ì¬
+	private String expressstatus;		//å¿«é€’çŠ¶æ€
 	
 	private String order;
 	private Boolean asc = false;

@@ -65,9 +65,13 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 
     @Override
     public GoodsOrder addGoodsOrder(Goods goods, Member member, String mobile, int quantity, String address, ApiUser partner) throws OrderException {
-        if (goods.getMaxbuy() < quantity) throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "Ã¿µ¥×î¶à¹ºÂò:" + goods.getMaxbuy());
+        if (goods.getMaxbuy() < quantity) {
+            throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "æ¯å•æœ€å¤šè´­ä¹°:" + goods.getMaxbuy());
+        }
         ErrorCode<GoodsOrder> code = addBaseGoodsOrder(goods, member, mobile, quantity, partner, null);
-        if (!code.isSuccess()) throw new OrderException(code.getErrcode(), code.getMsg());
+        if (!code.isSuccess()) {
+            throw new OrderException(code.getErrcode(), code.getMsg());
+        }
         GoodsOrder order = code.getRetval();
         Map<String, String> descMap = VmUtils.readJsonToMap(order.getDescription2());
         if (GoodsConstant.GOODS_TAG_POINT.equals(goods.getTag()) && goods.isNeedDeliver() && StringUtils.isNotBlank(address)) {
@@ -79,18 +83,28 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         } else if (GoodsConstant.GOODS_TAG_BMH.equals(goods.getTag())) {
             order.setPricategory(OrderConstant.ORDER_PRICATEGORY_MOVIE);
             Cinema cinema = baseDao.getObject(Cinema.class, goods.getRelatedid());
-            if (cinema != null) order.setCitycode(cinema.getCitycode());
-            if (StringUtils.isNotBlank(address)) descMap.put("address", address);
-            if (cinema != null) order.setPlaceid(cinema.getId());
+            if (cinema != null) {
+                order.setCitycode(cinema.getCitycode());
+            }
+            if (StringUtils.isNotBlank(address)) {
+                descMap.put("address", address);
+            }
+            if (cinema != null) {
+                order.setPlaceid(cinema.getId());
+            }
         } else if (GoodsConstant.GOODS_TAG_BMH_SPORT.equals(goods.getTag()) || StringUtils.equals(GoodsConstant.GOODS_TYPE_SPORT, goods.getTag())) {
             order.setPricategory(OrderConstant.ORDER_PRICATEGORY_SPORT);
             Sport sport = baseDao.getObject(Sport.class, goods.getRelatedid());
-            if (sport != null) order.setCitycode(sport.getCitycode());
+            if (sport != null) {
+                order.setCitycode(sport.getCitycode());
+            }
             order.setPlaceid(sport.getId());
         } else if (GoodsConstant.GOODS_TAG_BMH_THEATRE.equals(goods.getTag())) {
             order.setPricategory(OrderConstant.ORDER_PRICATEGORY_DRAMA);
             Theatre theatre = baseDao.getObject(Theatre.class, goods.getRelatedid());
-            if (theatre != null) order.setCitycode(theatre.getCitycode());
+            if (theatre != null) {
+                order.setCitycode(theatre.getCitycode());
+            }
             order.setPlaceid(theatre.getId());
         }
         if (StringUtils.isBlank(order.getCitycode())) {
@@ -104,10 +118,10 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
     @Override
     public GoodsOrder addCardDelayOrder(Goods goods, Member member, String mobile, ElecCard card) throws OrderException {
         if (!card.canDelay()) {
-            throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "¸Ã¿¨ºÅÄÜ½øĞĞÓĞ³¥ÑÓÆÚ²Ù×÷£¡");
+            throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "è¯¥å¡å·èƒ½è¿›è¡Œæœ‰å¿å»¶æœŸæ“ä½œï¼");
         }
         if (goods.getMaxbuy() < 1) {
-            throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "Ã¿µ¥×î¶à¹ºÂò:" + goods.getMaxbuy());
+            throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "æ¯å•æœ€å¤šè´­ä¹°:" + goods.getMaxbuy());
         }
         ErrorCode<GoodsOrder> code = addBaseGoodsOrder(goods, member, mobile, 1, null, null);
         if (!code.isSuccess()) {
@@ -136,12 +150,18 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 
     @Override
     public ErrorCode<GoodsOrder> addSportGoodsOrder(SportGoods goods, Member member, String mobile, int quantity, String address) {
-        if (goods.getMaxbuy() < quantity) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "Ã¿µ¥×î¶à¹ºÂò:" + goods.getMaxbuy());
+        if (goods.getMaxbuy() < quantity) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ¯å•æœ€å¤šè´­ä¹°:" + goods.getMaxbuy());
+        }
         ErrorCode<GoodsOrder> code = addBaseGoodsOrder(goods, member, mobile, quantity, null, null);
-        if (!code.isSuccess()) return code;
+        if (!code.isSuccess()) {
+            return code;
+        }
         GoodsOrder order = code.getRetval();
         Sport sport = baseDao.getObject(Sport.class, goods.getRelatedid());
-        if (sport != null) order.setCitycode(sport.getCitycode());
+        if (sport != null) {
+            order.setCitycode(sport.getCitycode());
+        }
         if (StringUtils.isBlank(order.getCitycode())) {
             order.setCitycode(goods.getCitycode());
         }
@@ -159,9 +179,15 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 
     @Override
     public ErrorCode<GoodsOrder> addTicketGoodsOrder(TicketGoods goods, Member member, String mobile, Integer quantity, Long disid, Long priceid, ApiUser partner, String ukey) {
-        if (priceid == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¼Û¸ñ´íÎó£¡");
-        if (quantity == null || quantity < 1) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ÊıÁ¿ÓĞ´íÎó£¡");
-        if (!goods.hasBooking()) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "³¡´ÎÒÑ¹Ø±Õ¹ºÆ±£¡");
+        if (priceid == null) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ä»·æ ¼é”™è¯¯ï¼");
+        }
+        if (quantity == null || quantity < 1) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ•°é‡æœ‰é”™è¯¯ï¼");
+        }
+        if (!goods.hasBooking()) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "åœºæ¬¡å·²å…³é—­è´­ç¥¨ï¼");
+        }
         List<GoodsCommand> commandList = new ArrayList<GoodsCommand>();
         GoodsCommand command = new GoodsCommand();
         command.setQuantity(quantity);
@@ -191,22 +217,24 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
             if (command.getGoodsid() == null || command.getGspid() == null
                     || command.getQuantity() == null || command.getQuantity() < 1
                     || !GoodsConstant.CHECK_GOODSLIST.contains(command.getTag())) {
-                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "³¡´Î»ò¼Û¸ñ´íÎó£¡");
+                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "åœºæ¬¡æˆ–ä»·æ ¼é”™è¯¯ï¼");
             }
             int quantity = 0;
             goods = baseDao.getObject(TicketGoods.class, command.getGoodsid());
-            if (goods == null || !goods.hasBooking()) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, goods.getGoodsname() + "³¡´ÎÒÑ¹Ø±Õ¹ºÆ±£¡");
+            if (goods == null || !goods.hasBooking()) {
+                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, goods.getGoodsname() + "åœºæ¬¡å·²å…³é—­è´­ç¥¨ï¼");
+            }
             if (categoryid == null) {
                 categoryid = goods.getCategoryid();
             } else if (!categoryid.equals(goods.getCategoryid())) {
-                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "²»ÄÜ¿çÏîÄ¿¹ºÆ±£¡");
+                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ä¸èƒ½è·¨é¡¹ç›®è´­ç¥¨ï¼");
             }
             String tmpMethod = JsonUtils.getJsonValueByKey(goods.getOtherinfo(), "defaultpaymethod");
             if (StringUtils.isNotBlank(tmpMethod)) {
                 if (StringUtils.isBlank(paymethod)) {
                     paymethod = tmpMethod;
                 } else if (!StringUtils.equals(paymethod, tmpMethod)) {
-                    return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "Ö§¸¶·½Ê½ÏŞÖÆ£¡");
+                    return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ”¯ä»˜æ–¹å¼é™åˆ¶ï¼");
                 }
             }
             if (StringUtils.equals(command.getTag(), GoodsConstant.CHECK_GOODS_PRICE)) {
@@ -214,12 +242,18 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                 quantity = command.getQuantity();
             } else if (StringUtils.equals(command.getTag(), GoodsConstant.CHECK_GOODS_DISCOUNT)) {
                 discount = baseDao.getObject(GoodsDisQuantity.class, command.getGspid());
-                if (discount == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¹ºÂòÌ×Æ±´íÎó£¡");
+                if (discount == null) {
+                    return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "è´­ä¹°å¥—ç¥¨é”™è¯¯ï¼");
+                }
                 goodsPrice = baseDao.getObject(GoodsPrice.class, discount.getGspid());
                 quantity = command.getQuantity() * discount.getQuantity();
             }
-            if (goodsPrice == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¹ºÆ±¼Û¸ñ´íÎó£¡");
-            if (!goodsPrice.hasBooking()) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¹ºÂôÊ§°Ü£¬¼Û¸ñ¿â´æ²»×ã£¡");
+            if (goodsPrice == null) {
+                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "è´­ç¥¨ä»·æ ¼é”™è¯¯ï¼");
+            }
+            if (!goodsPrice.hasBooking()) {
+                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "è´­å–å¤±è´¥ï¼Œä»·æ ¼åº“å­˜ä¸è¶³ï¼");
+            }
             Integer priceQuantity = priceQuantityMap.get(goodsPrice.getId());
             if (priceQuantity == null) {
                 priceQuantity = quantity;
@@ -232,18 +266,22 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
             } else {
                 goodsQuantity += quantity;
             }
-            if (goods.getMaxbuy() < goodsQuantity) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, goods.getGoodsname() + "¹ºÆ±Êı²»ÄÜ´óÓÚ" + goods.getMaxbuy());
+            if (goods.getMaxbuy() < goodsQuantity) {
+                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, goods.getGoodsname() + "è´­ç¥¨æ•°ä¸èƒ½å¤§äº" + goods.getMaxbuy());
+            }
             goodsQuantityMap.put(goods.getId(), goodsQuantity);
             priceSet.add(goodsPrice);
             priceQuantityMap.put(goodsPrice.getId(), priceQuantity);
             String msg = GoodsPriceHelper.getGoodsPriceDisabledReason(goodsPrice, discount, priceQuantity);
-            if (StringUtils.isNotBlank(msg)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, msg);
-            BuyItem item = newBuyItem(goods, goodsPrice, discount, quantity);
-            String tmp = goodsPrice.getPrice() + "Ôª";
-            if (discount != null) {
-                tmp = discount.getPrice() + "(" + goodsPrice.getPrice() + " x " + discount.getQuantity() + ")Ôª";
+            if (StringUtils.isNotBlank(msg)) {
+                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, msg);
             }
-            String summary = goods.getGoodsname() + "¡¾" + tmp + (StringUtils.isBlank(goodsPrice.getRemark()) ? "" : goodsPrice.getRemark()) + "¡¿";
+            BuyItem item = newBuyItem(goods, goodsPrice, discount, quantity);
+            String tmp = goodsPrice.getPrice() + "å…ƒ";
+            if (discount != null) {
+                tmp = discount.getPrice() + "(" + goodsPrice.getPrice() + " x " + discount.getQuantity() + ")å…ƒ";
+            }
+            String summary = goods.getGoodsname() + "ã€" + tmp + (StringUtils.isBlank(goodsPrice.getRemark()) ? "" : goodsPrice.getRemark()) + "ã€‘";
             item.setSummary(summary);
             itemList.add(item);
         }
@@ -258,7 +296,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
     @Override
     public ErrorCode<GoodsOrder> addTicketGoodsOrder(List<GoodsCommand> commandList, Member member, String mobile, ApiUser partner, String ukey) {
         if (CollectionUtils.isEmpty(commandList)) {
-            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "³¡´Î»ò¼Û¸ñ´íÎó£¡");
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "åœºæ¬¡æˆ–ä»·æ ¼é”™è¯¯ï¼");
         }
         Long memberid = null;
         if (member != null) {
@@ -269,17 +307,23 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         }
         GoodsOrder lastPaidFailure = getLastPaidFailureOrder(memberid, ukey);
         if (lastPaidFailure != null) {
-            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "Äú»¹ÓĞÒ»¸ö¶©µ¥µÈ´ı´¦Àí£¬¶©µ¥ºÅÎª" + lastPaidFailure.getTradeNo() + "£¬ÇëÉÔºóÔÙÏÂĞÂ¶©µ¥£¡");
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ‚¨è¿˜æœ‰ä¸€ä¸ªè®¢å•ç­‰å¾…å¤„ç†ï¼Œè®¢å•å·ä¸º" + lastPaidFailure.getTradeNo() + "ï¼Œè¯·ç¨åå†ä¸‹æ–°è®¢å•ï¼");
         }
         ErrorCode<List<BuyItem>> codeItem = getBuyItem(commandList);
-        if (!codeItem.isSuccess()) return ErrorCode.getFailure(codeItem.getErrcode(), codeItem.getMsg());
+        if (!codeItem.isSuccess()) {
+            return ErrorCode.getFailure(codeItem.getErrcode(), codeItem.getMsg());
+        }
         List<BuyItem> itemList = codeItem.getRetval();
         List<GoodsOrder> orderList = paymentService.getUnpaidOrderList(GoodsOrder.class, memberid, ukey);
-        if (!orderList.isEmpty()) cancelUnpaidOrderList(orderList);
+        if (!orderList.isEmpty()) {
+            cancelUnpaidOrderList(orderList);
+        }
         GoodsCommand command = commandList.get(0);
         TicketGoods goods = baseDao.getObject(TicketGoods.class, command.getGoodsid());
         ErrorCode<GoodsOrder> code = addBaseGoodsOrder(goods, member, mobile, command.getQuantity(), partner, ukey);
-        if (!code.isSuccess()) return code;
+        if (!code.isSuccess()) {
+            return code;
+        }
         GoodsOrder order = code.getRetval();
         order.setPlaceid(goods.getRelatedid());
         order.setItemid(goods.getItemid());
@@ -341,26 +385,40 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         } else {
             memberid = partner.getId();
         }
-        //²éÕÒÖ§¸¶³É¹¦µ«¶©µ¥×´Ì¬²»ÕıÈ·
+        //æŸ¥æ‰¾æ”¯ä»˜æˆåŠŸä½†è®¢å•çŠ¶æ€ä¸æ­£ç¡®
         GoodsOrder lastPaidFailure = getLastPaidFailureOrder(memberid, ukey);
         if (lastPaidFailure != null) {
-            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "Äú»¹ÓĞÒ»¸ö¶©µ¥µÈ´ı´¦Àí£¬¶©µ¥ºÅÎª" + lastPaidFailure.getTradeNo() + "£¬ÇëÉÔºóÔÙÏÂĞÂ¶©µ¥£¡");
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ‚¨è¿˜æœ‰ä¸€ä¸ªè®¢å•ç­‰å¾…å¤„ç†ï¼Œè®¢å•å·ä¸º" + lastPaidFailure.getTradeNo() + "ï¼Œè¯·ç¨åå†ä¸‹æ–°è®¢å•ï¼");
         }
-        //²éÕÒÎ´Ö§¸¶¶©µ¥²¢È¡Ïû
+        //æŸ¥æ‰¾æœªæ”¯ä»˜è®¢å•å¹¶å–æ¶ˆ
         List<GoodsOrder> orderList = paymentService.getUnpaidOrderList(GoodsOrder.class, memberid, ukey);
-        if (!orderList.isEmpty()) cancelUnpaidOrderList(orderList);
+        if (!orderList.isEmpty()) {
+            cancelUnpaidOrderList(orderList);
+        }
         GoodsPrice goodsPrice = baseDao.getObject(GoodsPrice.class, gspId);
-        if (goodsPrice == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¹ºÆ±¼Û¸ñ´íÎó£¡");
-        if (!goodsPrice.hasBooking()) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¹ºÂôÊ§°Ü£¬¼Û¸ñ¿â´æ²»×ã£¡");
-        //Ìí¼ÓÎïÆ·¶©µ¥
+        if (goodsPrice == null) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "è´­ç¥¨ä»·æ ¼é”™è¯¯ï¼");
+        }
+        if (!goodsPrice.hasBooking()) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "è´­å–å¤±è´¥ï¼Œä»·æ ¼åº“å­˜ä¸è¶³ï¼");
+        }
+        //æ·»åŠ ç‰©å“è®¢å•
         TrainingGoods goods = baseDao.getObject(TrainingGoods.class, goodsId);
-        if (goods == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "²»´æÔÚ´ËÉÌÆ·£¡");
+        if (goods == null) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ä¸å­˜åœ¨æ­¤å•†å“ï¼");
+        }
         ErrorCode<GoodsOrder> code = addBaseGoodsOrder(goods, member, mobile, quantity, partner, ukey);
-        if (!code.isSuccess()) return code;
-        if (goods.getMaxbuy() < quantity) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, goods.getGoodsname() + "¹ºÆ±Êı²»ÄÜ´óÓÚ" + goods.getMaxbuy());
-        //ÅĞ¶ÏÎïÆ·¿â´æÊÇ·ñ³ä×ã
+        if (!code.isSuccess()) {
+            return code;
+        }
+        if (goods.getMaxbuy() < quantity) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, goods.getGoodsname() + "è´­ç¥¨æ•°ä¸èƒ½å¤§äº" + goods.getMaxbuy());
+        }
+        //åˆ¤æ–­ç‰©å“åº“å­˜æ˜¯å¦å……è¶³
         String msg = GoodsPriceHelper.getTrainingGoodsPriceDisabledReason(goods, goodsPrice, quantity);
-        if (StringUtils.isNotBlank(msg)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, msg);
+        if (StringUtils.isNotBlank(msg)) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, msg);
+        }
         GoodsOrder order = code.getRetval();
         order.setPlaceid(goods.getRelatedid());
         order.setItemid(goods.getItemid());
@@ -376,21 +434,23 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         order.setUnitprice(goodsPrice.getPrice());
         order.setTotalfee(order.getOrderAmount());
         int costprice = 0;
-        if (goodsPrice.getCostprice() != null) costprice = goodsPrice.getCostprice();
+        if (goodsPrice.getCostprice() != null) {
+            costprice = goodsPrice.getCostprice();
+        }
         order.setCostprice(costprice);
         order.setTotalcost(costprice * quantity);
         order.setValidtime(validtime);
         Map<String, String> descMap = VmUtils.readJsonToMap(order.getDescription2());
-        descMap.put("¼Û¸ñÃû³Æ", goodsPrice.getRemark());
+        descMap.put("ä»·æ ¼åç§°", goodsPrice.getRemark());
         order.setDescription2(JsonUtils.writeMapToJson(descMap));
         baseDao.saveObject(order);
         BuyItem item = newBuyItem(goods, goodsPrice, quantity);
         item.setOrderid(order.getId());
         item.setMemberid(order.getMemberid());
-        String tmp = goodsPrice.getPrice() + "Ôª";
-        String summary = goods.getGoodsname() + "¡¾" + tmp + (StringUtils.isBlank(goodsPrice.getRemark()) ? "" : goodsPrice.getRemark()) + "¡¿";
+        String tmp = goodsPrice.getPrice() + "å…ƒ";
+        String summary = goods.getGoodsname() + "ã€" + tmp + (StringUtils.isBlank(goodsPrice.getRemark()) ? "" : goodsPrice.getRemark()) + "ã€‘";
         item.setSummary(summary);
-        //¸üĞÂ¼Û¸ñÊıÁ¿
+        //æ›´æ–°ä»·æ ¼æ•°é‡
         GoodsPriceHelper.updateGoodsPriceAddCounter(goodsPrice, quantity);
         goods.setAllowaddnum(goods.getAllowaddnum() - quantity);
         baseDao.saveObjectList(item, goodsPrice, goods);
@@ -414,7 +474,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                 }
             }
         } catch (Exception e) {
-            dbLogger.warn("±£´æÅàÑµĞÅÏ¢³ö´í:gid_" + goodsId + "_orderId_" + orderId + "_infoList_" + infoList + StringUtil.getExceptionTrace(e, 3));
+            dbLogger.warn("ä¿å­˜åŸ¹è®­ä¿¡æ¯å‡ºé”™:gid_" + goodsId + "_orderId_" + orderId + "_infoList_" + infoList + StringUtil.getExceptionTrace(e, 3));
         }
     }
 
@@ -441,7 +501,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         item.setCheckpass(checkpass);
         item.setOtherinfo(JsonUtils.writeMapToJson(otherInfoMap));
         Map<String, String> descMap = new HashMap<String, String>();
-        descMap.put("Ê±¼ä", DateUtil.format(goods.getTotime(), "yyyy-MM-dd HH:mm"));
+        descMap.put("æ—¶é—´", DateUtil.format(goods.getTotime(), "yyyy-MM-dd HH:mm"));
         item.setDescription(JsonUtils.writeMapToJson(descMap));
         return item;
     }
@@ -484,15 +544,21 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         item.setCheckpass(checkpass);
         item.setOtherinfo(JsonUtils.writeMapToJson(otherInfoMap));
         Map<String, String> descMap = new HashMap<String, String>();
-        descMap.put("Ê±¼ä", DateUtil.format(goods.getFromvalidtime(), "yyyy-MM-dd HH:mm"));
+        descMap.put("æ—¶é—´", DateUtil.format(goods.getFromvalidtime(), "yyyy-MM-dd HH:mm"));
         item.setDescription(JsonUtils.writeMapToJson(descMap));
         return item;
     }
 
     private ErrorCode<GoodsOrder> addBaseGoodsOrder(BaseGoods goods, Member member, String mobile, int quantity, ApiUser partner, String ukey) {
-        if (!goods.hasBooking()) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "³¡´Î»òÎïÆ·ÒÑ¹Ø±Õ£¬²»ÄÜ¹ºÆ±£¡");
-        if (!ValidateUtil.isMobile(mobile)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ÊÖ»úºÅ¸ñÊ½´íÎó£¡");
-        if (quantity <= 0) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¹ºÂôÊıÁ¿´íÎó£¡");
+        if (!goods.hasBooking()) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "åœºæ¬¡æˆ–ç‰©å“å·²å…³é—­ï¼Œä¸èƒ½è´­ç¥¨ï¼");
+        }
+        if (!ValidateUtil.isMobile(mobile)) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ‰‹æœºå·æ ¼å¼é”™è¯¯ï¼");
+        }
+        if (quantity <= 0) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "è´­å–æ•°é‡é”™è¯¯ï¼");
+        }
         GoodsOrder order = null;
         if (member != null) {
             order = new GoodsOrder(member.getId(), member.getNickname(), goods);
@@ -516,7 +582,9 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
             order.setPartnerid(PartnerConstant.GEWA_SELF);
         }
         int costprice = 0;
-        if (goods.getCostprice() != null) costprice = goods.getCostprice();
+        if (goods.getCostprice() != null) {
+            costprice = goods.getCostprice();
+        }
         order.setCostprice(costprice);
         order.setTotalcost(costprice * quantity);
         String randomNum = nextRandomNum(DateUtil.addDay(goods.getFromtime(), 15), 8, "0");
@@ -524,52 +592,72 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         order.setCategory(goods.getGoodstype());
         order.setUkey(ukey);
         Map<String, String> descMap = VmUtils.readJsonToMap(order.getDescription2());
-        descMap.put("ÎïÆ·Ãû³Æ", goods.getGoodsname());
+        descMap.put("ç‰©å“åç§°", goods.getGoodsname());
         order.setDescription2(JsonUtils.writeMapToJson(descMap));
         return ErrorCode.getSuccessReturn(order);
     }
 
     @Override
     public ErrorCode<GoodsOrder> addActivityGoodsOrder(ActivityGoods goods, Member member, ApiUser partner, String mobile, int quantity, String realname, String address, Timestamp jointime) {
-        if (StringUtils.isBlank(realname)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ÁªÏµÈË²»ÄÜÎª¿Õ£¡");
-        if (goods.isNeedDeliver() && StringUtils.isBlank(address)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "µØÖ·²»ÄÜÎª¿Õ£¡");
-        if (isOverQuantity(goods)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ÉÌÆ·¿â´æÊıÁ¿²»×ã£¬ÇëÁªÏµ¹ÜÀíÔ±£¡");
-        if (jointime == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "²Î¼ÓÈÕÆÚ²»ÄÜÎª¿Õ£¡");
-        if (goods.getMaxbuy() < quantity) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "Ã¿µ¥×î¶à¹ºÂò:" + goods.getMaxbuy());
+        if (StringUtils.isBlank(realname)) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "è”ç³»äººä¸èƒ½ä¸ºç©ºï¼");
+        }
+        if (goods.isNeedDeliver() && StringUtils.isBlank(address)) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "åœ°å€ä¸èƒ½ä¸ºç©ºï¼");
+        }
+        if (isOverQuantity(goods)) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "å•†å“åº“å­˜æ•°é‡ä¸è¶³ï¼Œè¯·è”ç³»ç®¡ç†å‘˜ï¼");
+        }
+        if (jointime == null) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "å‚åŠ æ—¥æœŸä¸èƒ½ä¸ºç©ºï¼");
+        }
+        if (goods.getMaxbuy() < quantity) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ¯å•æœ€å¤šè´­ä¹°:" + goods.getMaxbuy());
+        }
         Integer allowaddnum = goods.getAllowaddnum();
         if (allowaddnum != null) {
-            if (allowaddnum < quantity) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ÏÂµ¥ÈËÊı¹ı¶à£¬Äú¿ÉµÈ15·ÖÖÓÄÚÎ´Ö§¸¶µÄ¶©µ¥ÊÍ·ÅÃû¶î£¡");
+            if (allowaddnum < quantity) {
+                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ä¸‹å•äººæ•°è¿‡å¤šï¼Œæ‚¨å¯ç­‰15åˆ†é’Ÿå†…æœªæ”¯ä»˜çš„è®¢å•é‡Šæ”¾åé¢ï¼");
+            }
             goods.setAllowaddnum(allowaddnum - quantity);
         }
         int limitnum = goods.getLimitnum() + quantity;
-        if (limitnum > goods.getQuantity()) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "Ö§¸¶Ãû¶îÒÑÂú£¬»î¶¯ÒÑ½áÊø£¡");
+        if (limitnum > goods.getQuantity()) {
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ”¯ä»˜åé¢å·²æ»¡ï¼Œæ´»åŠ¨å·²ç»“æŸï¼");
+        }
         Long memberid = null;
         memberid = member.getId();
         String ukey = String.valueOf(memberid);
         GoodsOrder lastPaidFailure = getLastPaidFailureOrder(memberid, ukey);
         if (lastPaidFailure != null) {
-            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "Äú»¹ÓĞÒ»¸ö¶©µ¥µÈ´ı´¦Àí£¬¶©µ¥ºÅÎª" + lastPaidFailure.getTradeNo() + "£¬ÇëÉÔºóÔÙÏÂĞÂ¶©µ¥£¡");
+            return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ‚¨è¿˜æœ‰ä¸€ä¸ªè®¢å•ç­‰å¾…å¤„ç†ï¼Œè®¢å•å·ä¸º" + lastPaidFailure.getTradeNo() + "ï¼Œè¯·ç¨åå†ä¸‹æ–°è®¢å•ï¼");
         }
         List<GoodsOrder> orderList = paymentService.getUnpaidOrderList(
                 GoodsOrder.class, member.getId(), null);
-        if (!orderList.isEmpty()) cancelUnpaidOrderList(orderList);
+        if (!orderList.isEmpty()) {
+            cancelUnpaidOrderList(orderList);
+        }
         ErrorCode<GoodsOrder> code = addBaseGoodsOrder(goods, member, mobile, quantity, partner, null);
-        if (!code.isSuccess()) return code;
+        if (!code.isSuccess()) {
+            return code;
+        }
         GoodsOrder order = code.getRetval();
         order.setPricategory(OrderConstant.ORDER_PRICATEGORY_ACTIVITY);
         Map<String, String> decMap = JsonUtils.readJsonToMap(order.getDescription2());
-        decMap.put("ÕæÊµĞÕÃû", realname);
-        decMap.put("²Î¼ÓÈËÊı", quantity + "");
-        decMap.put("²Î¼ÓÈÕÆÚ", DateUtil.format(jointime, "yyyy-MM-dd"));
+        decMap.put("çœŸå®å§“å", realname);
+        decMap.put("å‚åŠ äººæ•°", quantity + "");
+        decMap.put("å‚åŠ æ—¥æœŸ", DateUtil.format(jointime, "yyyy-MM-dd"));
         order.setOtherinfo(JsonUtils.addJsonKeyValue(order.getOtherinfo(), "playtime", DateUtil.format(jointime, "yyyy-MM-dd HH:mm:ss")));
-        if (StringUtils.isNotBlank(address)) decMap.put("address", address);
+        if (StringUtils.isNotBlank(address)) {
+            decMap.put("address", address);
+        }
         order.setDescription2(JsonUtils.writeMapToJson(decMap));
         order.setCitycode(goods.getCitycode());
         order.setValidtime(DateUtil.addMinute(order.getAddtime(), 15));
         String[] opkeyList = ActivityGoodsHelper.getUniqueKey(goods, order);
         for (String opkey : opkeyList) {
             if (!operationService.isAllowOperation(opkey, OperationService.ONE_MINUTE * 30 * 24 * 60, 1)) {
-                return ErrorCode.getFailure(30 + "ÌìÄÚ×î¶àÓÅ»İ" + 1 + "´Î£¡");
+                return ErrorCode.getFailure(30 + "å¤©å†…æœ€å¤šä¼˜æƒ " + 1 + "æ¬¡ï¼");
             }
         }
         order.setOtherinfo(JsonUtils.addJsonKeyValue(order.getOtherinfo(), OrderConstant.OTHERKEY_CREDENTIALSID, goods.getClerkid() + ""));
@@ -578,31 +666,42 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
     }
 
     /**
-     * ²éÑ¯ÉÌÆ·¶©µ¥ÁĞ±í,¸ù¾İÉÌÆ·idºÍmemberid
+     * æŸ¥è¯¢å•†å“è®¢å•åˆ—è¡¨,æ ¹æ®å•†å“idå’Œmemberid
      *
-     * @param goodsId  ÉÌÆ·id
-     * @param memberId ÓÃ»§id
-     * @param status   ×´Ì¬
-     * @param like     ÊÇ·ñÄ£ºı²éÑ¯
-     * @param order    ÅÅĞò×Ö¶Î true:"addtime"  false:"paidtime"
-     * @param maxnum   ²éÑ¯ÁĞ±íÊıÁ¿
+     * @param goodsId  å•†å“id
+     * @param memberId ç”¨æˆ·id
+     * @param status   çŠ¶æ€
+     * @param like     æ˜¯å¦æ¨¡ç³ŠæŸ¥è¯¢
+     * @param order    æ’åºå­—æ®µ true:"addtime"  false:"paidtime"
+     * @param maxnum   æŸ¥è¯¢åˆ—è¡¨æ•°é‡
      * @return
      */
     @Override
     public List<GoodsOrder> getGoodsOrderList(Long goodsId, Long memberId, String status, boolean like, boolean order, int maxnum) {
         DetachedCriteria query = DetachedCriteria.forClass(GoodsOrder.class);
         query.add(Restrictions.eq("goodsid", goodsId));
-        if (memberId != null) query.add(Restrictions.eq("memberid", memberId));
-        if (StringUtils.isNotBlank(status)) {
-            if (like) query.add(Restrictions.like("status", status, MatchMode.START));
-            else query.add(Restrictions.eq("status", status));
+        if (memberId != null) {
+            query.add(Restrictions.eq("memberid", memberId));
         }
-        if (order) query.addOrder(Order.desc("addtime"));
-        else query.addOrder(Order.desc("paidtime"));
+        if (StringUtils.isNotBlank(status)) {
+            if (like) {
+                query.add(Restrictions.like("status", status, MatchMode.START));
+            } else {
+                query.add(Restrictions.eq("status", status));
+            }
+        }
+        if (order) {
+            query.addOrder(Order.desc("addtime"));
+        } else {
+            query.addOrder(Order.desc("paidtime"));
+        }
 
         List<GoodsOrder> result = Lists.newArrayList();
-        if (maxnum > 0) result = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query, 0, maxnum);
-        else result = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
+        if (maxnum > 0) {
+            result = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query, 0, maxnum);
+        } else {
+            result = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
+        }
 
         return result;
     }
@@ -611,10 +710,14 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
     public Integer getGoodsOrderQuantity(Long goodsId, String status) {
         DetachedCriteria query = DetachedCriteria.forClass(GoodsOrder.class);
         query.add(Restrictions.eq("goodsid", goodsId));
-        if (StringUtils.isNotBlank(status)) query.add(Restrictions.eq("status", status));
+        if (StringUtils.isNotBlank(status)) {
+            query.add(Restrictions.eq("status", status));
+        }
         query.setProjection(Projections.sum("quantity"));
         List result = hibernateTemplate.findByCriteria(query);
-        if (result.get(0) == null) return 0;
+        if (result.get(0) == null) {
+            return 0;
+        }
         return Integer.parseInt(result.get(0) + "");
     }
 
@@ -623,10 +726,14 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         query.add(Restrictions.ge("addtime", startTime));
         query.add(Restrictions.lt("addtime", endTime));
         query.add(Restrictions.eq("goodsid", goodsId));
-        if (StringUtils.isNotBlank(status)) query.add(Restrictions.eq("status", status));
+        if (StringUtils.isNotBlank(status)) {
+            query.add(Restrictions.eq("status", status));
+        }
         query.setProjection(Projections.sum("quantity"));
         List result = hibernateTemplate.findByCriteria(query);
-        if (result.get(0) == null) return 0;
+        if (result.get(0) == null) {
+            return 0;
+        }
         return Integer.parseInt(result.get(0) + "");
     }
 
@@ -638,7 +745,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                 order.setStatus(OrderConstant.STATUS_REPEAT);
                 order.setValidtime(validtime);
                 baseDao.saveObject(order);
-                dbLogger.warn("È¡ÏûÎ´Ö§¸¶¶©µ¥£º" + order.getTradeNo());
+                dbLogger.warn("å–æ¶ˆæœªæ”¯ä»˜è®¢å•ï¼š" + order.getTradeNo());
             }
         }
         return true;
@@ -653,7 +760,9 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         query.add(Restrictions.gt("validtime", DateUtil.getCurFullTimestamp()));
         query.addOrder(Order.desc("addtime"));
         List<GoodsOrder> result = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
-        if (result.isEmpty()) return null;
+        if (result.isEmpty()) {
+            return null;
+        }
         return result.get(0);
     }
 
@@ -673,7 +782,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
             order.setUpdatetime(curtime);
             order.setModifytime(curtime);
             baseDao.saveObject(order);
-            dbLogger.warn("ÓÃ»§È¡Ïû¶©µ¥£º" + order.getTradeNo());
+            dbLogger.warn("ç”¨æˆ·å–æ¶ˆè®¢å•ï¼š" + order.getTradeNo());
             return ErrorCode.SUCCESS;
         } else {
             return ErrorCodeConstant.NORIGHTS;
@@ -689,7 +798,9 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
             List<BuyItem> itemList = baseDao.getObjectListByField(BuyItem.class, "orderid", order.getId());
             List<Long> idList = BeanUtil.getBeanPropertyList(itemList, "relatedid", true);
             List<BaseGoods> goodsList = baseDao.getObjectList(BaseGoods.class, idList);
-            if (!goodsList.contains(goods)) goodsList.add(goods);
+            if (!goodsList.contains(goods)) {
+                goodsList.add(goods);
+            }
             int maxday = 60;
             if (goods instanceof Goods) {
                 if (GoodsConstant.GOODS_TAG_BMH.equals(goods.getTag())) {
@@ -698,8 +809,12 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                     Sport sport = baseDao.getObject(Sport.class, goods.getRelatedid());
                     if (sport != null) {
                         ErrorCode<String> code = sportUntransService.updateCuOrder(order, null);
-                        if (!code.isSuccess()) return code;
-                    } else return ErrorCode.getFailure("ÎïÆ·¹ØÁªÔË¶¯³¡¹İÓĞÎó");
+                        if (!code.isSuccess()) {
+                            return code;
+                        }
+                    } else {
+                        return ErrorCode.getFailure("ç‰©å“å…³è”è¿åŠ¨åœºé¦†æœ‰è¯¯");
+                    }
                 }
             } else if (goods instanceof ActivityGoods) {
                 Integer limitnum = goods.getLimitnum();
@@ -708,7 +823,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                 String[] opkeyList = ActivityGoodsHelper.getUniqueKey((ActivityGoods) goods, order);
                 for (String opkey : opkeyList) {
                     if (!operationService.updateOperation(opkey, OperationService.ONE_MINUTE * 30 * 24 * 60, 1)) {
-                        return ErrorCode.getFailure(30 + "ÌìÄÚ×î¶àÓÅ»İ" + 1 + "´Î£¡");
+                        return ErrorCode.getFailure(30 + "å¤©å†…æœ€å¤šä¼˜æƒ " + 1 + "æ¬¡ï¼");
                     }
                 }
             } else if (goods instanceof TicketGoods) {
@@ -750,7 +865,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                     }
                 }
 
-                //¸üĞÂÂô³öÊıÁ¿
+                //æ›´æ–°å–å‡ºæ•°é‡
                 List result = GoodsPriceHelper.updateGoodsPriceSellCounter(priceQuantityMap, priceDisMap);
                 baseDao.saveObjectList(result);
                 createOrderNote(order, goodsMap);
@@ -780,7 +895,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                     }
                     priceQuantityMap.put(goodsPrice, tmpQuantity);
                 }
-                //¸üĞÂÂô³öÊıÁ¿
+                //æ›´æ–°å–å‡ºæ•°é‡
                 List result = GoodsPriceHelper.updateGoodsPriceSellCounter(priceQuantityMap, new HashMap());
                 baseDao.saveObjectList(result);
                 createOrderNote(order, goods, itemList);
@@ -790,7 +905,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
             processOrderExtra(order);
             return ErrorCode.SUCCESS;
         } else {
-            return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "¶©µ¥×´Ì¬²»ÕıÈ·£¡");
+            return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "è®¢å•çŠ¶æ€ä¸æ­£ç¡®ï¼");
         }
     }
 
@@ -857,18 +972,26 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
     @Override
     public ErrorCode usePoint(Long orderId, Long memberId, int usePoint) {
         ErrorCode<String> pcode = pointService.validUsePoint(memberId);
-        if (!pcode.isSuccess()) return ErrorCode.getFailure(pcode.getMsg());
+        if (!pcode.isSuccess()) {
+            return ErrorCode.getFailure(pcode.getMsg());
+        }
         GoodsOrder order = baseDao.getObject(GoodsOrder.class, orderId);
         ErrorCode code = paymentService.validUse(order);
-        if (!code.isSuccess()) return code;
+        if (!code.isSuccess()) {
+            return code;
+        }
         List<Discount> discountList = paymentService.getOrderDiscountList(order);
         MemberInfo info = baseDao.getObject(MemberInfo.class, memberId);
-        if (info.getPointvalue() < usePoint) return ErrorCode.getFailure("ÄúµÄ»ı·Ö²»¹»£¡");
+        if (info.getPointvalue() < usePoint) {
+            return ErrorCode.getFailure("æ‚¨çš„ç§¯åˆ†ä¸å¤Ÿï¼");
+        }
         List<BuyItem> itemList = baseDao.getObjectListByField(BuyItem.class, "orderid", order.getId());
         List<Long> idList = BeanUtil.getBeanPropertyList(itemList, "relatedid", true);
         List<BaseGoods> goodsList = baseDao.getObjectList(BaseGoods.class, idList);
         BaseGoods bgoods = baseDao.getObject(BaseGoods.class, order.getGoodsid());
-        if (!goodsList.contains(bgoods)) goodsList.add(bgoods);
+        if (!goodsList.contains(bgoods)) {
+            goodsList.add(bgoods);
+        }
         boolean openPointPay = false;
         int minpoint = 0, maxpoint = 0;
         for (BaseGoods goods : goodsList) {
@@ -878,30 +1001,35 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                 minpoint = Math.max(minpoint, goods.getMinpoint());
             }
         }
-        if (!openPointPay) return ErrorCode.getFailure("ÄãÑ¡ÔñµÄÉÌÆ·²»Ö§³Ö»ı·ÖÓÅ»İ£¡");
-        if (maxpoint < usePoint) return ErrorCode.getFailure("ÄúÊ¹ÓÃµÄ»ı·Ö³¬³öÉÏÏŞ" + maxpoint);
+        if (!openPointPay) {
+            return ErrorCode.getFailure("ä½ é€‰æ‹©çš„å•†å“ä¸æ”¯æŒç§¯åˆ†ä¼˜æƒ ï¼");
+        }
+        if (maxpoint < usePoint) {
+            return ErrorCode.getFailure("æ‚¨ä½¿ç”¨çš„ç§¯åˆ†è¶…å‡ºä¸Šé™" + maxpoint);
+        }
         int amount = usePoint / ConfigConstant.POINT_RATIO;
         usePoint = amount * ConfigConstant.POINT_RATIO;
         if (usePoint < minpoint || amount == 0) {
-            return ErrorCode.getFailure("ÄúÊ¹ÓÃµÄ»ı·ÖÉÙÓÚÏÂÏŞ" + minpoint);
+            return ErrorCode.getFailure("æ‚¨ä½¿ç”¨çš„ç§¯åˆ†å°‘äºä¸‹é™" + minpoint);
         }
 
         for (Discount discount : discountList) {
-            if (discount.getTag().equals(PayConstant.DISCOUNT_TAG_POINT))
-                return ErrorCode.getFailure("ÄúÒÑ¾­Ê¹ÓÃ¹ı»ı·Ö£¬ÈçÓĞ¸Ä±ä£¬ÇëÏÈÈ¡Ïû£¡");
+            if (discount.getTag().equals(PayConstant.DISCOUNT_TAG_POINT)) {
+                return ErrorCode.getFailure("æ‚¨å·²ç»ä½¿ç”¨è¿‡ç§¯åˆ†ï¼Œå¦‚æœ‰æ”¹å˜ï¼Œè¯·å…ˆå–æ¶ˆï¼");
+            }
             if (PayConstant.CARDTYPE_D.equals(discount.getCardtype())) {
-                return ErrorCode.getFailure("»ı·Ö²»ÄÜºÍÓÅ»İÈ¯Ò»ÆğÊ¹ÓÃ£¡");
+                return ErrorCode.getFailure("ç§¯åˆ†ä¸èƒ½å’Œä¼˜æƒ åˆ¸ä¸€èµ·ä½¿ç”¨ï¼");
             }
             if (PayConstant.CARDTYPE_PARTNER.equals(discount.getCardtype())) {
-                return ErrorCode.getFailure("ÒÑ¾­Ê¹ÓÃÁËÆäËûÓÅ»İ£¬²»ÄÜÍ¬Ê±Ê¹ÓÃ»ı·Ö£¡");
+                return ErrorCode.getFailure("å·²ç»ä½¿ç”¨äº†å…¶ä»–ä¼˜æƒ ï¼Œä¸èƒ½åŒæ—¶ä½¿ç”¨ç§¯åˆ†ï¼");
             }
         }
 
         Discount discount = new Discount(order.getId(), PayConstant.DISCOUNT_TAG_POINT, memberId, PayConstant.CARDTYPE_POINT);
-        discount.setDescription(usePoint + "»ı·ÖµÖÓÃ" + amount + "Ôª");
+        discount.setDescription(usePoint + "ç§¯åˆ†æŠµç”¨" + amount + "å…ƒ");
         discount.setAmount(amount);
         baseDao.saveObject(discount);
-        GewaOrderHelper.useDiscount(order, discountList, discount);//¼ÓÈë
+        GewaOrderHelper.useDiscount(order, discountList, discount);//åŠ å…¥
         baseDao.saveObject(order);
         return ErrorCode.SUCCESS;
     }
@@ -914,13 +1042,27 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
     @Override
     public List<GoodsOrder> getGoodsOrderList(Long relatedid, Long placeid, String status, String tradeNo, String mobile, Timestamp starttime, Timestamp endtime) {
         DetachedCriteria query = DetachedCriteria.forClass(GoodsOrder.class);
-        if (relatedid != null) query.add(Restrictions.eq("goodsid", relatedid));
-        if (placeid != null) query.add(Restrictions.eq("placeid", placeid));
-        if (StringUtils.isNotBlank(status)) query.add(Restrictions.eq("status", status));
-        if (StringUtils.isNotBlank(tradeNo)) query.add(Restrictions.eq("tradeNo", tradeNo));
-        if (StringUtils.isNotBlank(mobile)) query.add(Restrictions.eq("mobile", mobile));
-        if (starttime != null) query.add(Restrictions.ge("addtime", starttime));
-        if (endtime != null) query.add(Restrictions.le("addtime", endtime));
+        if (relatedid != null) {
+            query.add(Restrictions.eq("goodsid", relatedid));
+        }
+        if (placeid != null) {
+            query.add(Restrictions.eq("placeid", placeid));
+        }
+        if (StringUtils.isNotBlank(status)) {
+            query.add(Restrictions.eq("status", status));
+        }
+        if (StringUtils.isNotBlank(tradeNo)) {
+            query.add(Restrictions.eq("tradeNo", tradeNo));
+        }
+        if (StringUtils.isNotBlank(mobile)) {
+            query.add(Restrictions.eq("mobile", mobile));
+        }
+        if (starttime != null) {
+            query.add(Restrictions.ge("addtime", starttime));
+        }
+        if (endtime != null) {
+            query.add(Restrictions.le("addtime", endtime));
+        }
         query.addOrder(Order.desc("addtime"));
         List<GoodsOrder> orderList = (List<GoodsOrder>) hibernateTemplate.findByCriteria(query);
         return orderList;
@@ -937,11 +1079,17 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                 query.add(Restrictions.or(Restrictions.like("tradeNo", "3", MatchMode.START), Restrictions.gt("itemfee", 0)));
             }
         }
-        if (memberid != null) query.add(Restrictions.eq("memberid", memberid));
-        if (StringUtils.isNotBlank(mobile)) query.add(Restrictions.eq("mobile", mobile));
+        if (memberid != null) {
+            query.add(Restrictions.eq("memberid", memberid));
+        }
+        if (StringUtils.isNotBlank(mobile)) {
+            query.add(Restrictions.eq("mobile", mobile));
+        }
         query.setProjection(Projections.rowCount());
         List list = hibernateTemplate.findByCriteria(query);
-        if (list.size() == 0) return 0;
+        if (list.size() == 0) {
+            return 0;
+        }
         return Integer.valueOf(list.get(0) + "");
     }
 
@@ -951,7 +1099,9 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
             Goods goods = baseDao.getObject(Goods.class, gift.getGoodsid());
             if (StringUtils.isNotBlank(goods.getPartners())) {
                 List<String> partneridList = Arrays.asList(goods.getPartners().split(","));
-                if (!partneridList.contains(partnerid + "")) return false;
+                if (!partneridList.contains(partnerid + "")) {
+                    return false;
+                }
             }
         }
         if (StringUtils.isNotBlank(gift.getWeek())) {
@@ -983,7 +1133,9 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                 return false;
             }
         } else if (gift.getMovieid() != null) {
-            if (!gift.getMovieid().equals(opi.getMovieid())) return false;
+            if (!gift.getMovieid().equals(opi.getMovieid())) {
+                return false;
+            }
         }
         boolean isOver = isOverQuantity(goods);
         return !isOver;
@@ -992,10 +1144,14 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
     @Override
     public GoodsGift getBindGoodsGift(OpenPlayItem opi, Long partnerid) {
         List<GoodsGift> goodsGiftList = getBindGoodsGift(opi.getCinemaid(), partnerid);
-        if (goodsGiftList.size() == 0) return null;
+        if (goodsGiftList.size() == 0) {
+            return null;
+        }
         GoodsGift gift = null;
         for (GoodsGift g : goodsGiftList) {
-            if (isValidGoodsGift(opi, g, partnerid)) return g;
+            if (isValidGoodsGift(opi, g, partnerid)) {
+                return g;
+            }
         }
         return gift;
     }
@@ -1010,22 +1166,28 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 
     @Override
     public GoodsGift getBindGoodsGift(List<GoodsGift> goodsGiftList, OpenPlayItem opi, Long partnerid) {
-        if (goodsGiftList == null || goodsGiftList.size() == 0) return null;
+        if (goodsGiftList == null || goodsGiftList.size() == 0) {
+            return null;
+        }
         GoodsGift gift = null;
         for (GoodsGift g : goodsGiftList) {
-            if (isValidGoodsGift(opi, g, partnerid)) return g;
+            if (isValidGoodsGift(opi, g, partnerid)) {
+                return g;
+            }
         }
         return gift;
     }
 
     @Override
     public boolean isOverQuantity(BaseGoods goods) {
-        if (goods.getQuantity() == null) return false;
+        if (goods.getQuantity() == null) {
+            return false;
+        }
         Integer sum = getGoodsOrderQuantity(goods.getId(), OrderConstant.STATUS_PAID_SUCCESS);
         return sum >= goods.getQuantity();
     }
 
-    //ÎïÆ·ÕÛ¿Û
+    //ç‰©å“æŠ˜æ‰£
     @Override
     public ErrorCode<OrderContainer> useSpecialDiscount(Long orderId, SpecialDiscount sd, OrderCallback callback) {
         GoodsOrder order = baseDao.getObject(GoodsOrder.class, orderId);
@@ -1033,7 +1195,9 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         List<BuyItem> itemList = baseDao.getObjectListByField(BuyItem.class, "orderid", order.getId());
         List<Long> idList = BeanUtil.getBeanPropertyList(itemList, "relatedid", true);
         List<BaseGoods> goodsList = baseDao.getObjectList(BaseGoods.class, idList);
-        if (!goodsList.contains(goods)) goodsList.add(goods);
+        if (!goodsList.contains(goods)) {
+            goodsList.add(goods);
+        }
         Spcounter spcounter = paymentService.getSpdiscountCounter(sd);
         ErrorCode<Discount> discount = getSpdiscount(spcounter, order, sd, goodsList, itemList);
         if (discount.isSuccess()) {
@@ -1044,9 +1208,13 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
             if (StringUtils.isNotBlank(sd.getPaymethod())) {
                 String[] pay = StringUtils.split(sd.getPaymethod(), ":");
                 order.setPaymethod(pay[0]);
-                if (pay.length > 1) order.setPaybank(pay[1]);
+                if (pay.length > 1) {
+                    order.setPaybank(pay[1]);
+                }
             }
-            if (callback != null) callback.processOrder(sd, order);
+            if (callback != null) {
+                callback.processOrder(sd, order);
+            }
             baseDao.saveObject(order);
             OrderContainer container = new GoodsOrderContainer(order, goodsList);
             container.setOrder(order);
@@ -1058,13 +1226,15 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         return ErrorCode.getFailure(discount.getMsg());
     }
 
-    //ÎïÆ·ÕÛ¿Û
+    //ç‰©å“æŠ˜æ‰£
     private ErrorCode<Discount> getSpdiscount(Spcounter spcounter, GoodsOrder order, SpecialDiscount sd, List<BaseGoods> goodsList, List<BuyItem> itemList) {
         SpecialDiscountHelper sdh = new GoodsSpecialDiscountHelper(order, goodsList, itemList);
         Map<String, String> otherInfoMap = getOtherInfoMap(goodsList);
         PayValidHelper valHelp = new PayValidHelper(otherInfoMap);
         ErrorCode<Integer> discountAmount = paymentService.getSpdiscountAmount(sdh, order, sd, spcounter, valHelp);
-        if (!discountAmount.isSuccess()) return ErrorCode.getFailure(discountAmount.getMsg());
+        if (!discountAmount.isSuccess()) {
+            return ErrorCode.getFailure(discountAmount.getMsg());
+        }
         Discount discount = new Discount(order.getId(), PayConstant.DISCOUNT_TAG_PARTNER, sd.getId(), PayConstant.CARDTYPE_PARTNER);
         discount.setAmount(discountAmount.getRetval());
         discount.setGoodsid(order.getGoodsid());
@@ -1084,14 +1254,22 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 
     @Override
     public ErrorCode<GoodsOrder> addGoodsOrderByBuyItem(TicketOrder torder) {
-        if (torder.getItemfee() == 0) return ErrorCode.getFailure("Ã»ÓĞ¹ºÆ±Ì×²Í£¡");
-        if (!StringUtils.equals(torder.getStatus(), OrderConstant.STATUS_PAID_SUCCESS)) return ErrorCode.getFailure("·Ç³É¹¦µÄ¶©µ¥£¡");
-        //TODO:ÖØĞÂ´¦Àí£¬¶à¸öBuyItem
+        if (torder.getItemfee() == 0) {
+            return ErrorCode.getFailure("æ²¡æœ‰è´­ç¥¨å¥—é¤ï¼");
+        }
+        if (!StringUtils.equals(torder.getStatus(), OrderConstant.STATUS_PAID_SUCCESS)) {
+            return ErrorCode.getFailure("éæˆåŠŸçš„è®¢å•ï¼");
+        }
+        //TODO:é‡æ–°å¤„ç†ï¼Œå¤šä¸ªBuyItem
         BuyItem buyitem = baseDao.getObjectByUkey(BuyItem.class, "orderid", torder.getId(), false);
-        if (buyitem == null) return ErrorCode.getFailure("¹ºÂòµÄÌ×²Í²»´æÔÚ£¡");
+        if (buyitem == null) {
+            return ErrorCode.getFailure("è´­ä¹°çš„å¥—é¤ä¸å­˜åœ¨ï¼");
+        }
         String tradeNo = PayUtil.FLAG_GOODS + StringUtils.substring(torder.getTradeNo(), PayUtil.FLAG_GOODS.length());
         GewaOrder order = baseDao.getObjectByUkey(GewaOrder.class, "tradeNo", tradeNo, false);
-        if (order != null) return ErrorCode.getFailure("ÒÑ¾­Ìí¼Ó¹ı£¡");
+        if (order != null) {
+            return ErrorCode.getFailure("å·²ç»æ·»åŠ è¿‡ï¼");
+        }
         BaseGoods goods = baseDao.getObject(BaseGoods.class, buyitem.getRelatedid());
         int cp = Integer.valueOf(torder.getCheckpass());
         cp++;
@@ -1113,16 +1291,18 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         goodsOrder.setPricategory(OrderConstant.ORDER_PRICATEGORY_MOVIE);
         goodsOrder.setCategory(goods.getGoodstype());
         int costprice = 0;
-        if (goods.getCostprice() != null) costprice = goods.getCostprice();
+        if (goods.getCostprice() != null) {
+            costprice = goods.getCostprice();
+        }
         goodsOrder.setCostprice(costprice);
         goodsOrder.setTotalcost(costprice * buyitem.getQuantity());
-        goodsOrder.setRemark("ÏµÍ³Éú³ÉÌ×²Í¶©µ¥,¹ØÁª¶©µ¥ºÅ" + torder.getTradeNo());
+        goodsOrder.setRemark("ç³»ç»Ÿç”Ÿæˆå¥—é¤è®¢å•,å…³è”è®¢å•å·" + torder.getTradeNo());
         baseDao.saveObject(goodsOrder);
 
         buyitem.setCheckpass(newpass);
         baseDao.saveObject(buyitem);
 
-        dbLogger.warn("ÏµÍ³Éú³ÉÌ×²Í¶©µ¥: " + tradeNo);
+        dbLogger.warn("ç³»ç»Ÿç”Ÿæˆå¥—é¤è®¢å•: " + tradeNo);
         return ErrorCode.getSuccessReturn(goodsOrder);
     }
 
@@ -1157,7 +1337,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 
     @Override
     public OrderContainer processOrderPay(GewaOrder order) throws OrderException {
-        return processOrderPayInternal(order);//ÎŞ»ı·Ö
+        return processOrderPayInternal(order);//æ— ç§¯åˆ†
     }
 
     @Override
@@ -1167,33 +1347,51 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
     }
 
     private ErrorCode<GoodsOrderContainer> useElecCard(GoodsOrder order, ElecCard card, Long memberid) {
-        if (!order.isNew()) return ErrorCode.getFailure("¶©µ¥×´Ì¬´íÎó£¨" + order.getStatusText() + "£©£¡");
+        if (!order.isNew()) {
+            return ErrorCode.getFailure("è®¢å•çŠ¶æ€é”™è¯¯ï¼ˆ" + order.getStatusText() + "ï¼‰ï¼");
+        }
         BaseGoods goods = baseDao.getObject(BaseGoods.class, order.getGoodsid());
         if (goods instanceof TicketGoods) {
             TicketGoods ticketGoods = (TicketGoods) goods;
-            if (!card.validTag(ticketGoods.getCategory())) return ErrorCode.getFailure("±¾È¯²»ÄÜÔÚ¸Ã°æ¿éÊ¹ÓÃ£¡");
+            if (!card.validTag(ticketGoods.getCategory())) {
+                return ErrorCode.getFailure("æœ¬åˆ¸ä¸èƒ½åœ¨è¯¥ç‰ˆå—ä½¿ç”¨ï¼");
+            }
         } else if (goods instanceof TrainingGoods) {
-            //ÔË¶¯„»Æ±
-            if (!card.validTag(TagConstant.TAG_SPORT)) return ErrorCode.getFailure("±¾È¯²»ÄÜÔÚ¸Ã°æ¿éÊ¹ÓÃ£¡");
+            //è¿åŠ¨åŠµç¥¨
+            if (!card.validTag(TagConstant.TAG_SPORT)) {
+                return ErrorCode.getFailure("æœ¬åˆ¸ä¸èƒ½åœ¨è¯¥ç‰ˆå—ä½¿ç”¨ï¼");
+            }
         } else {
-            if (!card.validTag(PayConstant.APPLY_TAG_GOODS)) return ErrorCode.getFailure("±¾È¯²»ÄÜÔÚ¸Ã°æ¿éÊ¹ÓÃ£¡");
+            if (!card.validTag(PayConstant.APPLY_TAG_GOODS)) {
+                return ErrorCode.getFailure("æœ¬åˆ¸ä¸èƒ½åœ¨è¯¥ç‰ˆå—ä½¿ç”¨ï¼");
+            }
         }
         ErrorCode validCode = paymentService.validUse(order);
-        if (!validCode.isSuccess()) return validCode;
+        if (!validCode.isSuccess()) {
+            return validCode;
+        }
         List<BuyItem> itemList = baseDao.getObjectListByField(BuyItem.class, "orderid", order.getId());
         List<Long> idList = BeanUtil.getBeanPropertyList(itemList, "relatedid", true);
         List<BaseGoods> goodsList = baseDao.getObjectList(BaseGoods.class, idList);
-        if (!goodsList.contains(goods)) goodsList.add(goods);
+        if (!goodsList.contains(goods)) {
+            goodsList.add(goods);
+        }
         ErrorCode<List<BaseGoods>> codeUse = checkGoodsList(card, goodsList);
-        if (!codeUse.isSuccess()) return ErrorCode.getFailure(codeUse.getMsg());
+        if (!codeUse.isSuccess()) {
+            return ErrorCode.getFailure(codeUse.getMsg());
+        }
         goodsList = codeUse.getRetval();
         Long batchid = card.getEbatch().getId();
         Map<String, String> otherInfoMap = getOtherInfoMap(goodsList);
         boolean isSupportCard = new PayValidHelper(otherInfoMap).supportCard(batchid);
-        if (!isSupportCard) return ErrorCode.getFailure("¸Ã³¡´Î²»Ö§³Ö¸ÃÈ¯µÄÊ¹ÓÃ£¡");
+        if (!isSupportCard) {
+            return ErrorCode.getFailure("è¯¥åœºæ¬¡ä¸æ”¯æŒè¯¥åˆ¸çš„ä½¿ç”¨ï¼");
+        }
 
         ErrorCode<Discount> code = getDiscount(order, itemList, goodsList, card, memberid);
-        if (!code.isSuccess()) return ErrorCode.getFailure(code.getMsg());
+        if (!code.isSuccess()) {
+            return ErrorCode.getFailure(code.getMsg());
+        }
         Discount discount = code.getRetval();
         baseDao.saveObject(discount);
         List<Discount> discountList = paymentService.getOrderDiscountList(order);
@@ -1215,74 +1413,82 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                 newGoodsList.add(goods);
             }
         }
-        if (newGoodsList.isEmpty()) return code;
+        if (newGoodsList.isEmpty()) {
+            return code;
+        }
         return ErrorCode.getSuccessReturn(newGoodsList);
     }
 
     private ErrorCode checkBaseGoods(ElecCard card, BaseGoods goods) {
         if (!StringUtils.contains(goods.getElecard(), card.getCardtype())) {
-            return ErrorCode.getFailure("´Ë¶Ò»»È¯²»¿ÉÔÚ±¾³¡´ÎÊ¹ÓÃ");
+            return ErrorCode.getFailure("æ­¤å…‘æ¢åˆ¸ä¸å¯åœ¨æœ¬åœºæ¬¡ä½¿ç”¨");
         }
         if (StringUtils.isNotBlank(card.getWeektype())) {
             String week = "" + DateUtil.getWeek(goods.getFromvalidtime());
             if (card.getWeektype().indexOf(week) < 0) {
-                return ErrorCode.getFailure("´Ë¶Ò»»È¯Ö»ÄÜÔÚÖÜ" + card.getWeektype() + "Ê¹ÓÃ£¡");
+                return ErrorCode.getFailure("æ­¤å…‘æ¢åˆ¸åªèƒ½åœ¨å‘¨" + card.getWeektype() + "ä½¿ç”¨ï¼");
             }
         }
         return ErrorCode.SUCCESS;
     }
 
     private ErrorCode getDiscount(GoodsOrder order, List<BuyItem> itemList, List<BaseGoods> goodsList, ElecCard card, Long memberid) {
-        //1¡¢ÅĞ¶Ï¿¨ÊÇ·ñÓĞĞ§
-        if (!card.available()) return ErrorCode.getFailure("´Ë¶Ò»»È¯ÒÑ¾­ÓÃÍê»òÊ§Ğ§£¡");
-        if (order.sureOutPartner()) {//·ÇGewaÉÌ¼Ò
-            if (memberid != null && !memberid.equals(card.getPossessor()))
-                return ErrorCode.getFailure("²»ÄÜÓÃ±ğÈËµÄ¶Ò»»È¯£¡");
-            if (card.getPossessor() != null) return ErrorCode.getFailure("´Ë¿¨±ØĞëµÇÂ¼ºóÊ¹ÓÃ");
+        //1ã€åˆ¤æ–­å¡æ˜¯å¦æœ‰æ•ˆ
+        if (!card.available()) {
+            return ErrorCode.getFailure("æ­¤å…‘æ¢åˆ¸å·²ç»ç”¨å®Œæˆ–å¤±æ•ˆï¼");
+        }
+        if (order.sureOutPartner()) {//éGewaå•†å®¶
+            if (memberid != null && !memberid.equals(card.getPossessor())) {
+                return ErrorCode.getFailure("ä¸èƒ½ç”¨åˆ«äººçš„å…‘æ¢åˆ¸ï¼");
+            }
+            if (card.getPossessor() != null) {
+                return ErrorCode.getFailure("æ­¤å¡å¿…é¡»ç™»å½•åä½¿ç”¨");
+            }
         } else/*Gewa*/ if (card.getPossessor() != null && !card.getPossessor().equals(memberid)) {
-            return ErrorCode.getFailure("²»ÄÜÓÃ±ğÈËµÄ¶Ò»»È¯£¡");
+            return ErrorCode.getFailure("ä¸èƒ½ç”¨åˆ«äººçš„å…‘æ¢åˆ¸ï¼");
         }
         ElecCardBatch batch = card.getEbatch();
         if (StringUtils.isNotBlank(card.getValidcinema()) && order.getPlaceid() != null) {
             List<Long> cidList = BeanUtil.getIdList(card.getValidcinema(), ",");
             if (!cidList.contains(order.getPlaceid())) {
-                return ErrorCode.getFailure("´Ë¶Ò»»È¯²»ÄÜÔÚ´Ë³¡¹İÊ¹ÓÃ£¡");
+                return ErrorCode.getFailure("æ­¤å…‘æ¢åˆ¸ä¸èƒ½åœ¨æ­¤åœºé¦†ä½¿ç”¨ï¼");
             }
         }
-        if (!card.isUseCurTime()) {//Ê±¼ä¶ÎÏŞÖÆ
+        if (!card.isUseCurTime()) {//æ—¶é—´æ®µé™åˆ¶
             String opentime = batch.getAddtime1();
             String closetime = batch.getAddtime2();
-            return ErrorCode.getFailure("´Ë¶Ò»»È¯Ö»ÄÜÔÚ" + opentime + "ÖÁ" + closetime + "Ê±¶ÎÄÚÊ¹ÓÃ£¡");
+            return ErrorCode.getFailure("æ­¤å…‘æ¢åˆ¸åªèƒ½åœ¨" + opentime + "è‡³" + closetime + "æ—¶æ®µå†…ä½¿ç”¨ï¼");
         }
 
         if (StringUtils.isNotBlank(card.getValidmovie()) && order.getItemid() != null) {
             List<Long> cidList = BeanUtil.getIdList(card.getValidmovie(), ",");
             if (!cidList.contains(order.getItemid())) {
-                return ErrorCode.getFailure("´ËÏîÄ¿²»ÄÜÊ¹ÓÃ´Ë¶Ò»»È¯£¡");
+                return ErrorCode.getFailure("æ­¤é¡¹ç›®ä¸èƒ½ä½¿ç”¨æ­¤å…‘æ¢åˆ¸ï¼");
             }
         }
         if (StringUtils.isNotBlank(card.getValiditem())) {
             List<Long> cidList = BeanUtil.getIdList(card.getValiditem(), ",");
             if (!cidList.contains(order.getGoodsid())) {
-                return ErrorCode.getFailure("±¾³¡´Î²»ÄÜÊ¹ÓÃ´Ë¶Ò»»È¯£¡");
+                return ErrorCode.getFailure("æœ¬åœºæ¬¡ä¸èƒ½ä½¿ç”¨æ­¤å…‘æ¢åˆ¸ï¼");
             }
         }
         List<Discount> discountList = paymentService.getOrderDiscountList(order);
         String validpartner = batch.getValidpartner();
         if (StringUtils.isNotBlank(validpartner)) {
             if (!VmUtils.contains(validpartner.split(","), order.getPartnerid() + "")) {
-                return ErrorCode.getFailure("´Ë¶Ò»»È¯²»ÊÊÓÃÓÚ¸Ã¶©µ¥£¡");
+                return ErrorCode.getFailure("æ­¤å…‘æ¢åˆ¸ä¸é€‚ç”¨äºè¯¥è®¢å•ï¼");
             }
         }
-        //2)³É±¾¼Û¡¢Ö§¸¶·½Ê½¸ü¸Ä
+        //2)æˆæœ¬ä»·ã€æ”¯ä»˜æ–¹å¼æ›´æ”¹
         if ("D".equals(card.getCardtype()) && discountList.size() > 0) {
-            return ErrorCode.getFailure("´ËÀàÈ¯²»ÄÜÖØ¸´Ê¹ÓÃ»òÓëÆäËûÓÅ»İ·½Ê½¹²ÓÃ£¡");
+            return ErrorCode.getFailure("æ­¤ç±»åˆ¸ä¸èƒ½é‡å¤ä½¿ç”¨æˆ–ä¸å…¶ä»–ä¼˜æƒ æ–¹å¼å…±ç”¨ï¼");
         }
         for (Discount discount : discountList) {
-            if (discount.getRelatedid().equals(card.getId()))
-                return ErrorCode.getFailure("´Ë¶Ò»»È¯ÒÑÊ¹ÓÃ£¡");
+            if (discount.getRelatedid().equals(card.getId())) {
+                return ErrorCode.getFailure("æ­¤å…‘æ¢åˆ¸å·²ä½¿ç”¨ï¼");
+            }
             if ("ABC".contains(discount.getCardtype()) && !card.getCardtype().equals(discount.getCardtype())) {
-                return ErrorCode.getFailure("´Ë¶Ò»»È¯²»ÄÜÓëÆäËûÓÅ»İ·½Ê½¹²ÓÃ£¡");
+                return ErrorCode.getFailure("æ­¤å…‘æ¢åˆ¸ä¸èƒ½ä¸å…¶ä»–ä¼˜æƒ æ–¹å¼å…±ç”¨ï¼");
             }
         }
         int amount = 0;
@@ -1291,7 +1497,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         if (batch.getCardtype().equals(PayConstant.CARDTYPE_C) ||
                 batch.getCardtype().equals(PayConstant.CARDTYPE_D)) {
             amount = batch.getAmount();
-            description = card.getCardno() + "µÖÓÃ" + amount + "Ôª";
+            description = card.getCardno() + "æŠµç”¨" + amount + "å…ƒ";
         } else if (batch.getCardtype().equals(PayConstant.CARDTYPE_A) ||
                 batch.getCardtype().equals(PayConstant.CARDTYPE_B)) {
             Map<Long, BaseGoods> goodsMap = BeanUtil.beanListToMap(goodsList, "id");
@@ -1302,7 +1508,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                 BuyItem item = iterator.next();
                 BaseGoods goods = goodsMap.get(item.getRelatedid());
                 if (goods == null) {
-                    //Ìõ¼ş²»Âú×ãµÄÉ¾³ı
+                    //æ¡ä»¶ä¸æ»¡è¶³çš„åˆ é™¤
                     iterator.remove();
                 }
                 Map<String, String> otherInfoMap = JsonUtils.readJsonToMap(item.getOtherinfo());
@@ -1314,7 +1520,7 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                         quantity += tmpQuantity;
                         List<Discount> disList = disMap.get(item.getDisid());
                         if (disList != null && disList.size() >= tmpQuantity) {
-                            //ÒÑ¾­¶Ò»»¹ıµÄÉ¾³ı
+                            //å·²ç»å…‘æ¢è¿‡çš„åˆ é™¤
                             iterator.remove();
                         }
                     }
@@ -1322,17 +1528,19 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                     quantity += item.getQuantity();
                     List<Discount> disList = disMap.get(item.getSmallitemid());
                     if (disList != null && disList.size() >= item.getQuantity()) {
-                        //ÒÑ¾­¶Ò»»¹ıµÄÉ¾³ı
+                        //å·²ç»å…‘æ¢è¿‡çš„åˆ é™¤
                         iterator.remove();
                     }
                 }
             }
             if (itemList.isEmpty() || discountList.size() >= quantity) {
-                return ErrorCode.getFailure("ÒÑ¾­Ã»ÓĞÆ±¿ÉÒÔÊ¹ÓÃ¶Ò»»È¯£¡");
+                return ErrorCode.getFailure("å·²ç»æ²¡æœ‰ç¥¨å¯ä»¥ä½¿ç”¨å…‘æ¢åˆ¸ï¼");
             }
             BuyItem item = itemList.get(0);
             GoodsPrice goodsPrice = baseDao.getObject(GoodsPrice.class, item.getSmallitemid());
-            if (goodsPrice == null) return ErrorCode.getFailure("¶Ò»»³ö´í£¡");
+            if (goodsPrice == null) {
+                return ErrorCode.getFailure("å…‘æ¢å‡ºé”™ï¼");
+            }
             if (item.getDisid() != null) {
                 amount = Integer.parseInt(JsonUtils.getJsonValueByKey(item.getOtherinfo(), BuyItemConstant.OTHERINFO_KEY_DISPRICE));
                 goodsid = item.getDisid();
@@ -1342,21 +1550,23 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
             }
             if (amount > card.getEbatch().getAmount()) {
                 if (batch.getCardtype().equals(PayConstant.CARDTYPE_B)) {
-                    //²¹²îÈ¯
+                    //è¡¥å·®åˆ¸
                     amount = batch.getAmount();
-                    description = card.getCardno() + "µÖÖµ" + amount + "Ôª";
-                } else {//AÈ¯³¬¶î
+                    description = card.getCardno() + "æŠµå€¼" + amount + "å…ƒ";
+                } else {//Aåˆ¸è¶…é¢
                     String msg = StringUtils.isNotBlank(card.getEbatch().getLimitdesc()) ? card.getEbatch().getLimitdesc() :
-                            "±¾È¯ÏŞÖÆÎªÖ»ÄÜµÖÓÃ" + card.getEbatch().getAmount() + "ÔªÄÚµÄÆ±£¡";
+                            "æœ¬åˆ¸é™åˆ¶ä¸ºåªèƒ½æŠµç”¨" + card.getEbatch().getAmount() + "å…ƒå†…çš„ç¥¨ï¼";
                     return ErrorCode.getFailure(msg);
                 }
             } else {
-                description = card.getCardno() + "µÖÓÃÒ»ÕÅÆ±";
+                description = card.getCardno() + "æŠµç”¨ä¸€å¼ ç¥¨";
             }
         } else {
-            return ErrorCode.getFailure("´ËÖÖÈ¯²»ÄÜÊ¹ÓÃ£¡");
+            return ErrorCode.getFailure("æ­¤ç§åˆ¸ä¸èƒ½ä½¿ç”¨ï¼");
         }
-        if (amount <= 0) return ErrorCode.getFailure("Ê¹ÓÃ´Ë¶Ò»»È¯µÃ²»µ½ÈÎºÎÓÅ»İ£¬Çë¿´Ê¹ÓÃËµÃ÷£¡");
+        if (amount <= 0) {
+            return ErrorCode.getFailure("ä½¿ç”¨æ­¤å…‘æ¢åˆ¸å¾—ä¸åˆ°ä»»ä½•ä¼˜æƒ ï¼Œè¯·çœ‹ä½¿ç”¨è¯´æ˜ï¼");
+        }
         Discount discount = new Discount(order.getId(), PayConstant.DISCOUNT_TAG_ECARD, card.getId(), card.getCardtype());
         discount.setDescription(description);
         discount.setGoodsid(goodsid);
@@ -1371,12 +1581,17 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         List<BuyItem> itemList = baseDao.getObjectListByField(BuyItem.class, "orderid", order.getId());
         List<Long> idList = BeanUtil.getBeanPropertyList(itemList, "relatedid", true);
         List<BaseGoods> goodsList = baseDao.getObjectList(BaseGoods.class, idList);
-        if (!goodsList.contains(goods)) goodsList.add(goods);
+        if (!goodsList.contains(goods)) {
+            goodsList.add(goods);
+        }
         for (BaseGoods baseGoods : goodsList) {
             if (StringUtils.isNotBlank(baseGoods.getExpressid())) {
                 OrderAddress orderAddress = baseDao.getObject(OrderAddress.class, order.getTradeNo());
-                if (orderAddress == null) return ErrorCode.getFailure("Çë·µ»ØÉÏÒ»²½£¬ÌîĞ´ÊÕ¼şÈË¼°ÊÕ¼şµØÖ·£¡");
-                else break;
+                if (orderAddress == null) {
+                    return ErrorCode.getFailure("è¯·è¿”å›ä¸Šä¸€æ­¥ï¼Œå¡«å†™æ”¶ä»¶äººåŠæ”¶ä»¶åœ°å€ï¼");
+                } else {
+                    break;
+                }
             }
         }
         if (goods instanceof TicketGoods) {
@@ -1401,15 +1616,15 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
                 }
                 int limitnum = goodsPrice.getAllowaddnum() + tmpQuantity;
                 if (goodsPrice.getQuantity() <= goodsPrice.getSellquantity() || limitnum < tmpQuantity) {
-                    return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, goodsPrice.getPrice() + "ÔªÉÌÆ·¿â´æÊıÁ¿²»×ã£¬ÇëÁªÏµ¹ÜÀíÔ±£¡");
+                    return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, goodsPrice.getPrice() + "å…ƒå•†å“åº“å­˜æ•°é‡ä¸è¶³ï¼Œè¯·è”ç³»ç®¡ç†å‘˜ï¼");
                 }
                 if (discount != null) {
                     int disQuantity = tmpQuantity / discount.getQuantity();
                     if (discount.getAllownum() < discount.getSellordernum() + disQuantity) {
-                        return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, discount.getPrice() + "Ôª(" + goodsPrice.getPrice() + " x " + discount.getQuantity() + ")ÓÅ»İ¿â´æÊıÁ¿²»×ã£¬²»ÄÜ¹ºÆ±ÓÅ»İ£¡");
+                        return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, discount.getPrice() + "å…ƒ(" + goodsPrice.getPrice() + " x " + discount.getQuantity() + ")ä¼˜æƒ åº“å­˜æ•°é‡ä¸è¶³ï¼Œä¸èƒ½è´­ç¥¨ä¼˜æƒ ï¼");
                     }
                 }
-                /* Éú³É¶©µ¥Ç°ÕâÑùÅĞ¶ÏÃ»ÎÊÌâ£¬Éú³É¶©µ¥Ö®ºóallowaddnumÊıÁ¿±»¼õÉÙÁË£¬´Ë´¦»¹ÕâÑùÅĞ¶Ï»á³öÏÖÁÙ½çµãÎÊÌâ
+                /* ç”Ÿæˆè®¢å•å‰è¿™æ ·åˆ¤æ–­æ²¡é—®é¢˜ï¼Œç”Ÿæˆè®¢å•ä¹‹åallowaddnumæ•°é‡è¢«å‡å°‘äº†ï¼Œæ­¤å¤„è¿˜è¿™æ ·åˆ¤æ–­ä¼šå‡ºç°ä¸´ç•Œç‚¹é—®é¢˜
                 String msg = GoodsPriceHelper.getGoodsPriceDisabledReason(goodsPrice, discount, tmpQuantity);
 				if(StringUtils.isNotBlank(msg)){
 					return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, msg);
@@ -1417,7 +1632,9 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
             }
         } else {
             int limitnum = goods.getLimitnum() + order.getQuantity();
-            if (goods.getQuantity() != null && goods.getQuantity() != 0 && limitnum > goods.getQuantity()) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "Ö§¸¶Ãû¶îÒÑÂú£¡");
+            if (goods.getQuantity() != null && goods.getQuantity() != 0 && limitnum > goods.getQuantity()) {
+                return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ”¯ä»˜åé¢å·²æ»¡ï¼");
+            }
         }
 
         return ErrorCode.getSuccessReturn(goods);
@@ -1425,15 +1642,25 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
 
     @Override
     public <T extends BaseGoods> List<GoodsOrder> getGoodsOrderList(Class<T> clazz, SearchOrderCommand soc) {
-        if (soc.hasBlankCond()) return new ArrayList<GoodsOrder>();
+        if (soc.hasBlankCond()) {
+            return new ArrayList<GoodsOrder>();
+        }
         DetachedCriteria query = DetachedCriteria.forClass(GoodsOrder.class, "o");
-        if (StringUtils.isNotBlank(soc.getMobile())) query.add(Restrictions.eq("o.mobile", soc.getMobile()));
-        if (StringUtils.isNotBlank(soc.getTradeNo())) query.add(Restrictions.eq("o.tradeNo", soc.getTradeNo()));
+        if (StringUtils.isNotBlank(soc.getMobile())) {
+            query.add(Restrictions.eq("o.mobile", soc.getMobile()));
+        }
+        if (StringUtils.isNotBlank(soc.getTradeNo())) {
+            query.add(Restrictions.eq("o.tradeNo", soc.getTradeNo()));
+        }
         if (StringUtils.isNotBlank(soc.getCitycode())) {
             query.add(Restrictions.or(Restrictions.eq("o.citycode", soc.getCitycode()), Restrictions.isNull("o.citycode")));
         }
-        if (StringUtils.isNotBlank(soc.getPricategory())) query.add(Restrictions.eq("o.pricategory", soc.getPricategory()));
-        if (StringUtils.isNotBlank(soc.getCategory())) query.add(Restrictions.eq("o.category", soc.getCategory()));
+        if (StringUtils.isNotBlank(soc.getPricategory())) {
+            query.add(Restrictions.eq("o.pricategory", soc.getPricategory()));
+        }
+        if (StringUtils.isNotBlank(soc.getCategory())) {
+            query.add(Restrictions.eq("o.category", soc.getCategory()));
+        }
         if (soc.getMinute() != null) {
             Timestamp from = DateUtil.addMinute(new Timestamp(System.currentTimeMillis()), -soc.getMinute());
             query.add(Restrictions.ge("o.addtime", from));
@@ -1444,22 +1671,30 @@ public class GoodsOrderServiceImpl extends GewaOrderServiceImpl implements Goods
         if (soc.getTimeTo() != null) {
             query.add(Restrictions.le("o.addtime", soc.getTimeTo()));
         }
-        if (StringUtils.isNotBlank(soc.getOrdertype())) {//¿ÉÄÜÓĞ¹ıÊ±×Ô¶¯È¡ÏûµÄÕËµ¥
+        if (StringUtils.isNotBlank(soc.getOrdertype())) {//å¯èƒ½æœ‰è¿‡æ—¶è‡ªåŠ¨å–æ¶ˆçš„è´¦å•
             if (soc.getOrdertype().equals(OrderConstant.STATUS_CANCEL)) {
                 query.add(Restrictions.or(Restrictions.like("o.status", soc.getOrdertype(), MatchMode.START),
                         Restrictions.and(Restrictions.like("o.status", OrderConstant.STATUS_NEW, MatchMode.START),
                                 Restrictions.lt("o.validtime", new Timestamp(System.currentTimeMillis())))));
             } else {
                 query.add(Restrictions.like("o.status", soc.getOrdertype(), MatchMode.START));
-                if (StringUtils.startsWith(soc.getOrdertype(), OrderConstant.STATUS_NEW)) {//¿ÉÄÜÓĞ¹ıÊ±×Ô¶¯È¡ÏûµÄÕËµ¥
+                if (StringUtils.startsWith(soc.getOrdertype(), OrderConstant.STATUS_NEW)) {//å¯èƒ½æœ‰è¿‡æ—¶è‡ªåŠ¨å–æ¶ˆçš„è´¦å•
                     query.add(Restrictions.ge("o.validtime", new Timestamp(System.currentTimeMillis())));
                 }
             }
         }
-        if (soc.getPlaceid() != null) query.add(Restrictions.eq("o.placeid", soc.getPlaceid()));
-        if (soc.getItemid() != null) query.add(Restrictions.eq("o.itemid", soc.getItemid()));
-        if (soc.getOrderid() != null) query.add(Restrictions.eq("o.id", soc.getOrderid()));
-        if (soc.getMpid() != null) query.add(Restrictions.eq("o.goodsid", soc.getMpid()));
+        if (soc.getPlaceid() != null) {
+            query.add(Restrictions.eq("o.placeid", soc.getPlaceid()));
+        }
+        if (soc.getItemid() != null) {
+            query.add(Restrictions.eq("o.itemid", soc.getItemid()));
+        }
+        if (soc.getOrderid() != null) {
+            query.add(Restrictions.eq("o.id", soc.getOrderid()));
+        }
+        if (soc.getMpid() != null) {
+            query.add(Restrictions.eq("o.goodsid", soc.getMpid()));
+        }
         DetachedCriteria sub = DetachedCriteria.forClass(clazz, "b");
         if (StringUtils.isNotBlank(soc.getExpressid()) || StringUtils.isNotBlank(soc.getPlacetype()) || StringUtils.isNotBlank(soc.getPlacetype())) {
             if (StringUtils.isNotBlank(soc.getExpressid())) {

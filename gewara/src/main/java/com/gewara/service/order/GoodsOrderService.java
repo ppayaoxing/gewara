@@ -30,15 +30,15 @@ import com.gewara.support.ErrorCode;
 
 public interface GoodsOrderService extends GewaOrderService{
 	/**
-	 * ĞÂÔö¶©µ¥
+	 * æ–°å¢è®¢å•
 	 * @param goods
 	 * @param member
-	 * @param quantity ¹ºÂòÊıÁ¿
+	 * @param quantity è´­ä¹°æ•°é‡
 	 * @return
 	 */
 	GoodsOrder addGoodsOrder(Goods goods, Member member, String mobile, int quantity, String address) throws OrderException;
 	/**
-	 * µç×ÓÆ±È¯¿¨ÑÓÆÚÓĞ³¥ÉêÇë¶©µ¥
+	 * ç”µå­ç¥¨åˆ¸å¡å»¶æœŸæœ‰å¿ç”³è¯·è®¢å•
 	 * @param goods
 	 * @param member
 	 * @param mobile
@@ -53,17 +53,17 @@ public interface GoodsOrderService extends GewaOrderService{
 	ErrorCode<GoodsOrder> addActivityGoodsOrder(ActivityGoods goods, Member member, ApiUser partner, String mobile, int quantity, String realname, String address, Timestamp jointime);
 	ErrorCode<GoodsOrder> addTicketGoodsOrder(TicketGoods goods, Member member, String mobile, Integer quantity, Long disid, Long priceid, ApiUser partner, String ukey);
 	ErrorCode<GoodsOrder> addTicketGoodsOrder(List<GoodsCommand> commandList, Member member, String mobile, ApiUser partner, String ukey);
-	//ÔË¶¯»ú¹¹Ìí¼Ó¶©µ¥
+	//è¿åŠ¨æœºæ„æ·»åŠ è®¢å•
 	ErrorCode<GoodsOrder> addTrainingGoodsOrder(Long goodsId, Long gspId, Integer quantity, String mobile, String infoList,  Member member, ApiUser partner, String ukey);
 	/**
-	 * ¸ù¾İÉÌÆ·¼°¶©µ¥×´Ì¬²éÑ¯¶©µ¥×ÜµÄ¹ºÂòÊıÁ¿
+	 * æ ¹æ®å•†å“åŠè®¢å•çŠ¶æ€æŸ¥è¯¢è®¢å•æ€»çš„è´­ä¹°æ•°é‡
 	 * @param goodsId
 	 * @param status
 	 * @return
 	 */
 	Integer getGoodsOrderQuantity(Long goodsId, String status);
 	/**
-	 * È¡ÏûÎ´¸¶¿îµÄ¶©µ¥
+	 * å–æ¶ˆæœªä»˜æ¬¾çš„è®¢å•
 	 * @param mpid
 	 * @param id
 	 * @return
@@ -73,14 +73,14 @@ public interface GoodsOrderService extends GewaOrderService{
 	ErrorCode cancelGoodsOrder(GoodsOrder order, Member member);
 	GoodsOrder getLastPaidFailureOrder(Long memberid, String ukey);
 	/**
-	 * È·ÈÏGoodsOrder
+	 * ç¡®è®¤GoodsOrder
 	 * @param order
 	 */
 	ErrorCode<String> processGoodsOrder(GoodsOrder order);
 	ErrorCode usePoint(Long orderId, Long memberId, int usePoint);
 	
 	/**
-	 * ²éÑ¯¶©µ¥
+	 * æŸ¥è¯¢è®¢å•
 	 * @param relatedid
 	 * @param status
 	 * @param tradeNo
@@ -92,20 +92,20 @@ public interface GoodsOrderService extends GewaOrderService{
 	List<GoodsOrder> getGoodsOrderList(Long relatedid, String status, String tradeNo, String mobile, Timestamp starttime, Timestamp endtime);
 	List<GoodsOrder> getGoodsOrderList(Long relatedid, Long placeid, String status, String tradeNo, String mobile, Timestamp starttime, Timestamp endtime);
 	/**
-	 * ¸ù¾İÓÃ»§id»òÕßÊÖ»úºÅ²éÑ¯³É¹¦¶©µ¥µÄÊıÁ¿
+	 * æ ¹æ®ç”¨æˆ·idæˆ–è€…æ‰‹æœºå·æŸ¥è¯¢æˆåŠŸè®¢å•çš„æ•°é‡
 	 * @param memberid
 	 * @param mobile
 	 * @return
 	 */
 	Integer getGewaorderCountByMobile(Long memberid, String mobile, String ordertype);
 
-	/**²éÑ¯ÉÌÆ·ÁĞ±í,¸ù¾İÉÌÆ·idºÍmemberid
-	 * @param goodsId ÉÌÆ·id
-	 * @param memberId ÓÃ»§id
-	 * @param status ×´Ì¬
-	 * @param like ÊÇ·ñÄ£ºı²éÑ¯
-	 * @param order ÊÇ·ñÅÅĞò
-	 * @param maxnum ²éÑ¯ÁĞ±íÊıÁ¿
+	/**æŸ¥è¯¢å•†å“åˆ—è¡¨,æ ¹æ®å•†å“idå’Œmemberid
+	 * @param goodsId å•†å“id
+	 * @param memberId ç”¨æˆ·id
+	 * @param status çŠ¶æ€
+	 * @param like æ˜¯å¦æ¨¡ç³ŠæŸ¥è¯¢
+	 * @param order æ˜¯å¦æ’åº
+	 * @param maxnum æŸ¥è¯¢åˆ—è¡¨æ•°é‡
 	 * @return
 	 */
 	List<GoodsOrder> getGoodsOrderList(Long goodsId, Long memberId,
@@ -115,7 +115,7 @@ public interface GoodsOrderService extends GewaOrderService{
 	GoodsGift getBindGoodsGift(List<GoodsGift> goodsGiftList, OpenPlayItem opi, Long partnerid);
 	boolean isValidGoodsGift(OpenPlayItem opi, GoodsGift gift, Long partnerid);
 	/**
-	 * //³¬¹ı¿â´æÊıÁ¿
+	 * //è¶…è¿‡åº“å­˜æ•°é‡
 	 * @param goods
 	 * @return
 	 */
@@ -124,7 +124,7 @@ public interface GoodsOrderService extends GewaOrderService{
 	ErrorCode<GoodsOrderContainer> useElecCard(Long orderId, ElecCard card, Long memberid);
 	Map<String, String> getOtherInfoMap(List<BaseGoods> goodsList);
 	/**
-	 * ÏµÍ³Ìí¼Ó¶©µ¥(ÓÃ»§¹ºÂòÁËÌ×²Í)
+	 * ç³»ç»Ÿæ·»åŠ è®¢å•(ç”¨æˆ·è´­ä¹°äº†å¥—é¤)
 	 * @param torder
 	 * @return
 	 */
@@ -132,14 +132,14 @@ public interface GoodsOrderService extends GewaOrderService{
 	
 	OrderContainer processOrderPay(GewaOrder order) throws OrderException;
 	/**
-	 * ²éÑ¯¶©µ¥
+	 * æŸ¥è¯¢è®¢å•
 	 * @param order
 	 * @return
 	 */
 	ErrorCode<BaseGoods> checkOrder(GoodsOrder order);
 	String getExpressid(GoodsOrder order);
 	/**
-	 * »ñÈ¡Ò»Ìå»úÏÂÔØĞèÒªµÄ¶©µ¥
+	 * è·å–ä¸€ä½“æœºä¸‹è½½éœ€è¦çš„è®¢å•
 	 * @param order
 	 * @param orderNote
 	 * @param goods

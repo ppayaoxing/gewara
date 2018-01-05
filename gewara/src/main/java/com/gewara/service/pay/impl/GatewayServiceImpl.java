@@ -162,7 +162,7 @@ public class GatewayServiceImpl extends BaseServiceImpl implements GatewayServic
 	public ErrorCode<PayMerchant> findMerchant(String cityCode,String gatewayCode,String merchantCode){
 		PayGateway payGateway = baseDao.getObjectByUkey(PayGateway.class, "gatewayCode", gatewayCode);
 		if(payGateway == null){
-			ErrorCode.getFailure("Ö§¸¶Íø¹Ø²»´æÔÚ");
+			ErrorCode.getFailure("æ”¯ä»˜ç½‘å…³ä¸å­˜åœ¨");
 		}
 		ErrorCode<PayMerchant> code = null;
 		if(StringUtils.equals(payGateway.getRouteStatus(), PayGateway.ROUTE_TYPE_CITY)){
@@ -177,10 +177,10 @@ public class GatewayServiceImpl extends BaseServiceImpl implements GatewayServic
 	}
 	
 	/**
-	 * ¸ù¾İ³ÇÊĞÖ¸¶¨µÄÉÌ»§±êÊ¶£¬²éÕÒÉÌ»§
+	 * æ ¹æ®åŸå¸‚æŒ‡å®šçš„å•†æˆ·æ ‡è¯†ï¼ŒæŸ¥æ‰¾å•†æˆ·
 	 * 
-	 * @param cityCode  ³ÇÊĞ ´úÂë
-	 * @param gatewayId Ö§¸¶Íø¹Øid
+	 * @param cityCode  åŸå¸‚ ä»£ç 
+	 * @param gatewayId æ”¯ä»˜ç½‘å…³id
 	 * @return
 	 *
 	 * @author leo.li
@@ -191,7 +191,7 @@ public class GatewayServiceImpl extends BaseServiceImpl implements GatewayServic
 		Map<String,List<PayCityMerchant>> cmListMap = BeanUtil.groupBeanList(cmList, "areaType");
 		
 		String merchantCode = null;
-		//³ÇÊĞÓÅÏÈ
+		//åŸå¸‚ä¼˜å…ˆ
 		List<PayCityMerchant> clist = cmListMap.get(PayCityMerchant.AREATYPE_C);
 		if(clist != null && !clist.isEmpty()){
 			for(PayCityMerchant cm : clist){
@@ -204,7 +204,7 @@ public class GatewayServiceImpl extends BaseServiceImpl implements GatewayServic
 		}
 		
 		
-		//ÔÙÊ¡
+		//å†çœ
 		City city = baseDao.getObject(City.class, cityCode);
 		List<PayCityMerchant> plist = cmListMap.get(PayCityMerchant.AREATYPE_P);
 		if(plist != null && !plist.isEmpty()){
@@ -217,29 +217,29 @@ public class GatewayServiceImpl extends BaseServiceImpl implements GatewayServic
 			}
 		}		
 		
-		//×îºóÈ¡Ä¬ÈÏ
+		//æœ€åå–é»˜è®¤
 		return findDefaultMerchant(gatewayId);
 		
 	}
 	
 	private ErrorCode<PayMerchant> findMerchantByMerCode(String merchantCode){
 		if(StringUtils.isBlank(merchantCode)){
-			return ErrorCode.getFailure("Ö§¸¶Í¨µÀ²»´æÔÚ");
+			return ErrorCode.getFailure("æ”¯ä»˜é€šé“ä¸å­˜åœ¨");
 		}
 		PayMerchant merchant = baseDao.getObjectByUkey(PayMerchant.class, "merchantCode", merchantCode);
 		if(merchant == null){
-			return ErrorCode.getFailure("Ö§¸¶Í¨µÀ²»´æÔÚ");
+			return ErrorCode.getFailure("æ”¯ä»˜é€šé“ä¸å­˜åœ¨");
 		}
 		return ErrorCode.getSuccessReturn(merchant);
 	}
 	
 	/**
-	 * »ñÈ¡ÉÌ»§±êÊ¶
-	 * ÉÌ»§ÏÈ°´id£¬´ÓĞ¡µ½´óÅÅĞò
-	 * Èç¹ûÉèÁËÄ¬ÈÏ£¬È¡µÚÒ»¸öÉèÁËÄ¬ÈÏµÄÉÌ»§£¬·µ»Ø
-	 * Èç¹ûÃ»ÓĞÉèÄ¬ÈÏ£¬Ö±½ÓÈ¡µÚÒ»¸ö£¬·µ»Ø
+	 * è·å–å•†æˆ·æ ‡è¯†
+	 * å•†æˆ·å…ˆæŒ‰idï¼Œä»å°åˆ°å¤§æ’åº
+	 * å¦‚æœè®¾äº†é»˜è®¤ï¼Œå–ç¬¬ä¸€ä¸ªè®¾äº†é»˜è®¤çš„å•†æˆ·ï¼Œè¿”å›
+	 * å¦‚æœæ²¡æœ‰è®¾é»˜è®¤ï¼Œç›´æ¥å–ç¬¬ä¸€ä¸ªï¼Œè¿”å›
 	 * 
-	 * @param gatewayId Ö§¸¶Íø¹Øid
+	 * @param gatewayId æ”¯ä»˜ç½‘å…³id
 	 * @return
 	 *
 	 * @author leo.li
@@ -248,7 +248,7 @@ public class GatewayServiceImpl extends BaseServiceImpl implements GatewayServic
 	private ErrorCode<PayMerchant> findDefaultMerchant(Long gatewayId){		
 		List<PayMerchant> merchantList = baseDao.getObjectListByField(PayMerchant.class, "gatewayId", gatewayId);
 		if(merchantList == null || merchantList.isEmpty()){
-			return ErrorCode.getFailure("Ö§¸¶Í¨µÀ²»´æÔÚ");
+			return ErrorCode.getFailure("æ”¯ä»˜é€šé“ä¸å­˜åœ¨");
 		}
 		Collections.sort(merchantList, new PropertyComparator("id", true, true));
 		PayMerchant merchant = null;
@@ -258,7 +258,7 @@ public class GatewayServiceImpl extends BaseServiceImpl implements GatewayServic
 				break;
 			}
 		}
-		if(merchant == null){//Ã»ÓĞÉèÄ¬ÈÏÈ¡µÚÒ»¸ö
+		if(merchant == null){//æ²¡æœ‰è®¾é»˜è®¤å–ç¬¬ä¸€ä¸ª
 			merchant = merchantList.get(0);
 		}
 		return ErrorCode.getSuccessReturn(merchant);
@@ -269,7 +269,7 @@ public class GatewayServiceImpl extends BaseServiceImpl implements GatewayServic
 	public ErrorCode<PayMerchant> findDefaultMerchant(String gatewayCode){
 		PayGateway payGateway = baseDao.getObjectByUkey(PayGateway.class, "gatewayCode", gatewayCode);
 		if(payGateway == null){
-			ErrorCode.getFailure("Ö§¸¶Íø¹Ø²»´æÔÚ");
+			ErrorCode.getFailure("æ”¯ä»˜ç½‘å…³ä¸å­˜åœ¨");
 		}
 		return findDefaultMerchant(payGateway.getId());
 	}

@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * 商品过滤帮助类
+ * @author sunder
  */
 public class GoodsFilterHelper {
     /**
@@ -18,12 +19,16 @@ public class GoodsFilterHelper {
      * @param partnerid
      */
     public static void goodsFilter(List<Goods> goodsList, Long partnerid) {
-        if (goodsList == null || partnerid == null) return;
+        if (goodsList == null || partnerid == null) {
+            return;
+        }
         List<Goods> removeList = Lists.newArrayList();
         for (Goods goods : goodsList) {
             if (StringUtils.isNotBlank(goods.getPartners())) {
                 List<String> partneridList = Arrays.asList(goods.getPartners().split(","));
-                if (!partneridList.contains(partnerid + "")) removeList.add(goods);
+                if (!partneridList.contains(partnerid + "")) {
+                    removeList.add(goods);
+                }
             }
         }
         goodsList.removeAll(removeList);

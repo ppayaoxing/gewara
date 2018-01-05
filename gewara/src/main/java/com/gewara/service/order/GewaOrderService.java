@@ -16,7 +16,7 @@ import com.gewara.support.ErrorCode;
 public interface GewaOrderService {
 	String nextRandomNum(Timestamp validtime, int length, String leftPad);
 	/**
-	 * Ôö¼Ó¶©µ¥À´Ô´
+	 * å¢åŠ è®¢å•æ¥æº
 	 * @param tradeNo
 	 * @param origin
 	 */
@@ -26,7 +26,7 @@ public interface GewaOrderService {
 	ErrorCode<GewaOrder> removeDiscount(GewaOrder order, Long discountId);
 	SpecialDiscount getSpdiscountBySpflag(String spflag);
 	/**
-	 * µÖÓÃÈ¯¸¶ÇåÕËÄ¿
+	 * æŠµç”¨åˆ¸ä»˜æ¸…è´¦ç›®
 	 * @param order
 	 * @return
 	 */
@@ -36,7 +36,7 @@ public interface GewaOrderService {
 	ErrorCode cancelOrderNote(GewaOrder order);
 	
 	/**
-	 * Ëã¿ìµİ·Ñ¸üĞÂ¶©µ¥¼Û¸ñĞÅÏ¢ otherfee
+	 * ç®—å¿«é€’è´¹æ›´æ–°è®¢å•ä»·æ ¼ä¿¡æ¯ otherfee
 	 * @param order
 	 * @param expressConfig
 	 * @param provincecode
@@ -47,7 +47,7 @@ public interface GewaOrderService {
 	ErrorCode clearExpressFee(GewaOrder order);
 	
 	/**
-	 * Ëã¿ìµİ·Ñ
+	 * ç®—å¿«é€’è´¹
 	 * @param order
 	 * @param expressConfig
 	 * @param provincecode
@@ -63,7 +63,7 @@ public interface GewaOrderService {
 	Integer getUmpayfee(GewaOrder order);
 	
 	/**
-	 * ¸ü»»¶©µ¥²úÉú¶àÓàµÄ·ÑÓÃ
+	 * æ›´æ¢è®¢å•äº§ç”Ÿå¤šä½™çš„è´¹ç”¨
 	 * @param order
 	 * @return
 	 */

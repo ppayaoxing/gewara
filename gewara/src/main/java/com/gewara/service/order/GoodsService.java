@@ -20,7 +20,7 @@ public interface GoodsService {
 	<T extends BaseGoods> List<T> getGoodsList(Class<T> clazz, String citycode, String tag, Long relatedid, String status, boolean isTotime, boolean limitRelease, boolean isGtZero, String order, boolean asc, int from, int maxnum);
 	<T extends BaseGoods> List<T> getGoodsList(Class<T> clazz, String tag, Long relatedid, boolean isTotime, boolean limitRelease, boolean isGtZero, String order, boolean asc, boolean isGift);
 	/**
-	 * ¹ºÂòÄ³ÎïÆ·ÓÃ»§µÄÊıÁ¿
+	 * è´­ä¹°æŸç‰©å“ç”¨æˆ·çš„æ•°é‡
 	 * @param gid
 	 * @return
 	 */
@@ -30,7 +30,7 @@ public interface GoodsService {
 	<T extends BaseGoods> Integer countByGoodsListByStatusAndTag(Class<T> clazz, String status, String tag);
 	
 	/**
-	 *  ¸ù¾İActivityid Æ¥Åä goods
+	 *  æ ¹æ®Activityid åŒ¹é… goods
 	 */
 	<T extends BaseGoods> Integer getBuyGoodsCount(Class<T> clazz, Long gid, Timestamp time, Long relatedid, String tag);
 	
@@ -41,43 +41,43 @@ public interface GoodsService {
 	Integer getSportGoodsReleasetimeCount(Long sportid, Long itemid);
 	Integer getSportGoodsCount();
 	
-	//¸ù¾İÓ°Ôº²éÑ¯×îÓÅ»İµÄÉÌÆ·
+	//æ ¹æ®å½±é™¢æŸ¥è¯¢æœ€ä¼˜æƒ çš„å•†å“
 	<T extends BaseGoods> T  getGoodsByTagAndRelatedid(Class<T> clazz, String tag, Long relatedid, boolean isTotime, boolean limitRelease, boolean isGtZero);
 	
 	/**
-	 * ĞÂÔö»òĞŞ¸Ä»î¶¯ÉÌÆ·Êı¾İ
-	 * @param userid	¹ÜÀíÔ±ID
-	 * @param gid		ÉÌÆ·ID
-	 * @param dataMap	Êı¾İ
+	 * æ–°å¢æˆ–ä¿®æ”¹æ´»åŠ¨å•†å“æ•°æ®
+	 * @param userid	ç®¡ç†å‘˜ID
+	 * @param gid		å•†å“ID
+	 * @param dataMap	æ•°æ®
 	 * @return	
 	 */
 	ErrorCode<ActivityGoods> saveOrUpdateActivityGoods(Long userid, Long gid, Map<String, String> dataMap);
 	ErrorCode<TicketGoods> saveCommonTicket(Long gid, String citycode, String goodsname, String tag, Long relatedid, String itemtype, Long itemid,Long starid, 
 			Long roomid, Timestamp fromvalidtime, Timestamp tovalidtime, String language, String summary, String description, Integer maxbuy, String period, User user);
 	/**
-	 * ¸ù¾İ³ÇÊĞ±àÂë²éÑ¯Í¨Æ±
-	 * @param citycode		³ÇÊĞ±àÂë
-	 * @param tag			³¡¹İÀàĞÍ
-	 * @param relatedid		³¡¹İID	
-	 * @param itemtype		ÏîÄ¿ÀàĞÍ
-	 * @param itemid	ÏîÈÕID
-	 * @param isTovaltime	ÊÇ·ñÓĞĞ§
-	 * @param isGtZero		ÊÇ·ñ´óÓÚ0
+	 * æ ¹æ®åŸå¸‚ç¼–ç æŸ¥è¯¢é€šç¥¨
+	 * @param citycode		åŸå¸‚ç¼–ç 
+	 * @param tag			åœºé¦†ç±»å‹
+	 * @param relatedid		åœºé¦†ID	
+	 * @param itemtype		é¡¹ç›®ç±»å‹
+	 * @param itemid	é¡¹æ—¥ID
+	 * @param isTovaltime	æ˜¯å¦æœ‰æ•ˆ
+	 * @param isGtZero		æ˜¯å¦å¤§äº0
 	 * @return
 	 */
 	List<TicketGoods> getTicketGoodsList(String citycode, String tag, Long relatedid, String itemtype, Long itemid, boolean isTovaltime, boolean isGtZero);
 	List<Map<String, String>> getTicketGoodsMapList(String citycode, String tag, Long relatedid, String itemtype, Long itemid, String period, Timestamp fromvalidtime, boolean isGtZero);
 	/**
-	 * ¸ù¾İ³ÇÊĞ±àÂë²éÑ¯Í¨Æ±£¬¸ù¾İgoodssortË³ĞòÅÅĞò
-	 * @param citycode		³ÇÊĞ±àÂë
-	 * @param tag			³¡¹İÀàĞÍ
-	 * @param relatedid		³¡¹İID	
-	 * @param itemtype		ÏîÄ¿ÀàĞÍ
-	 * @param itemid	ÏîÈÕID
-	 * @param isTovaltime	ÊÇ·ñÓĞĞ§
-	 * @param isGtZero		ÊÇ·ñ´óÓÚ0
-	 * @param from			²éÑ¯ĞĞ
-	 * @param maxnum		×î´óÊı¾İ
+	 * æ ¹æ®åŸå¸‚ç¼–ç æŸ¥è¯¢é€šç¥¨ï¼Œæ ¹æ®goodssorté¡ºåºæ’åº
+	 * @param citycode		åŸå¸‚ç¼–ç 
+	 * @param tag			åœºé¦†ç±»å‹
+	 * @param relatedid		åœºé¦†ID	
+	 * @param itemtype		é¡¹ç›®ç±»å‹
+	 * @param itemid	é¡¹æ—¥ID
+	 * @param isTovaltime	æ˜¯å¦æœ‰æ•ˆ
+	 * @param isGtZero		æ˜¯å¦å¤§äº0
+	 * @param from			æŸ¥è¯¢è¡Œ
+	 * @param maxnum		æœ€å¤§æ•°æ®
 	 * @return
 	 */
 	List<TicketGoods> getTicketGoodsList(String citycode, String tag, Long relatedid, String itemtype, Long itemid, boolean isTovaltime, boolean isGtZero, int from, int maxnum);
@@ -85,9 +85,9 @@ public interface GoodsService {
 	
 	List<GoodsPrice> getGoodsPriceList(Long goodsid);
 	/**
-	 * Ä³¼Û¸ñµÄÓÅ»İ
-	 * @param goodspriceId  ¼Û¸ñID
-	 * @return ·µ»ØÓÅ»İ¼¯ºÏ
+	 * æŸä»·æ ¼çš„ä¼˜æƒ 
+	 * @param goodspriceId  ä»·æ ¼ID
+	 * @return è¿”å›ä¼˜æƒ é›†åˆ
 	 */
 	List<GoodsDisQuantity> getGoodsDisList(Long goodspriceId);
 	List<GoodsDisQuantity> getGoodsDisListByGoodsid(Long goodsid);

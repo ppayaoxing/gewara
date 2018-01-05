@@ -16,74 +16,74 @@ import com.gewara.model.pay.TicketOrder;
 
 public interface OrderQueryService{
 	/**
-	 *    @function ¸ù¾İÓÃ»§ID + Ê±¼äÏŞ¶¨ ²éÑ¯¶©µ¥¼ÇÂ¼, ²»¿¼ÂÇ×´Ì¬, º¬·ÖÒ³ 
+	 *    @function æ ¹æ®ç”¨æˆ·ID + æ—¶é—´é™å®š æŸ¥è¯¢è®¢å•è®°å½•, ä¸è€ƒè™‘çŠ¶æ€, å«åˆ†é¡µ 
 	 * 	@author bob.hu
 	 *		@date	2011-04-26 11:04:04
 	 */
 	List<GewaOrder> getOrderListByMemberId(Long memberid, Integer days, int from, int maxnum);
 	Integer getOrderCountByMemberId(Long memberid, Integer days);
 	/**
-	 * »òÈ¡µ±Ç°´ı´¦Àí¶©µ¥¸öÊı
+	 * æˆ–å–å½“å‰å¾…å¤„ç†è®¢å•ä¸ªæ•°
 	 * @return
 	 */
 	int getPaidFailureOrderCount();
 	String getMemberOrderHis(Long memberid);
 	/**
-	 * ×ùÎ»´ı´¦Àí¶©µ¥
+	 * åº§ä½å¾…å¤„ç†è®¢å•
 	 * @param from
 	 * @param maxnum
 	 * @return
 	 */
 	List<TicketOrder> getPaidUnfixOrderList(int from, int maxnum);
 	/**
-	 * ²éÑ¯³¡´ÎµÄËùÓĞ¶©µ¥ºÅ
+	 * æŸ¥è¯¢åœºæ¬¡çš„æ‰€æœ‰è®¢å•å·
 	 * @param mpid
 	 * @param status
 	 * @return
 	 */
 	List<String> getTradeNoListByMpid(String orderType, Long mpid, String status);
 	/**
-	 * Ä³ÓÃ»§µÄµ±Ç°ÓĞĞ§¶©µ¥(È¥µôÖØ¸´µÄ)
+	 * æŸç”¨æˆ·çš„å½“å‰æœ‰æ•ˆè®¢å•(å»æ‰é‡å¤çš„)
 	 * @param memberId
 	 * @return
 	 */
 	<T extends GewaOrder> List<T> getOrderListByMemberId(Class<T> clazz, Long memberId, String status, int days, int from, int maxnum);
 	/**
-	 * ·µ»ØÓÃ»§×îºóÎ´Ö§¸¶µÄ¶©µ¥
+	 * è¿”å›ç”¨æˆ·æœ€åæœªæ”¯ä»˜çš„è®¢å•
 	 * @param memberid
 	 * @return
 	 */
 	<T extends GewaOrder> T getLastUnpaidOrder(Long memberid);
 
 	/**
-	 * ËÑË÷¶©µ¥
+	 * æœç´¢è®¢å•
 	 * @param soc
 	 * @return
 	 */
 	List<TicketOrder> getTicketOrderList(SearchOrderCommand soc);
 	
 	/**
-	 * ²éÑ¯³¡´ÎµÄ¶©µ¥
+	 * æŸ¥è¯¢åœºæ¬¡çš„è®¢å•
 	 * @param mpid
 	 * @param status
 	 * @return
 	 */
 	List<TicketOrder> getTicketOrderListByMpid(Long mpid, String status);
 	/**
-	 * »ñÈ¡Ä³³¡´ÎµÄ¶©µ¥ÊıÁ¿
+	 * è·å–æŸåœºæ¬¡çš„è®¢å•æ•°é‡
 	 * @param mpid
 	 * @return
 	 */
 	Integer getTicketOrderCountByMpid(Long mpid);
 	/**
-	 * »ñÈ¡ÓÃ»§¶©¹ıÆ±µÄÓ°Æ¬
+	 * è·å–ç”¨æˆ·è®¢è¿‡ç¥¨çš„å½±ç‰‡
 	 * @param memberid
 	 * @param maxnum
 	 * @return
 	 */
 	List<Movie> getMemberOrderMovieList(Long memberid,int maxnum);
 	/**
-	 * »ñÈ¡ÓÃ»§¶©¹ıÆ±µÄÓ°Ôº
+	 * è·å–ç”¨æˆ·è®¢è¿‡ç¥¨çš„å½±é™¢
 	 * @param memberid
 	 * @param maxnum
 	 * @return
@@ -100,7 +100,7 @@ public interface OrderQueryService{
 	
 	List<GewaOrder> getPreferentialOrder(Long memberid,List<Long> spIdList);
 	/**
-	 * ²éÕÒ¶©µ¥
+	 * æŸ¥æ‰¾è®¢å•
 	 * @param user
 	 * @param soc
 	 * @return
@@ -111,7 +111,7 @@ public interface OrderQueryService{
 	List<GewaOrder> getOrderAppsourceListByDate(CooperUser partner, Timestamp dateFrom, Timestamp dateTo, String appsource);
 	
 	/**
-	 * ²éÑ¯µçÓ°¶©µ¥ÊıÁ¿
+	 * æŸ¥è¯¢ç”µå½±è®¢å•æ•°é‡
 	 * @param memberid
 	 * @param fromtime
 	 * @param totime
@@ -121,7 +121,7 @@ public interface OrderQueryService{
 	Integer getMemberTicketCountByMemberid(Long memberid, Timestamp fromtime, Timestamp totime, String status, String citycode);
 	
 	/**
-	 * ²éÑ¯ÎŞÓÅ»İµÄÔË¶¯¶©µ¥ÊıÁ¿		(Ã»ÓĞÊ¹ÓÃ»ı·Ö¡¢µÖÖµ¡¢µÖÓÃÈ¯¼°ÓÅ»İ»î¶¯)
+	 * æŸ¥è¯¢æ— ä¼˜æƒ çš„è¿åŠ¨è®¢å•æ•°é‡		(æ²¡æœ‰ä½¿ç”¨ç§¯åˆ†ã€æŠµå€¼ã€æŠµç”¨åˆ¸åŠä¼˜æƒ æ´»åŠ¨)
 	 * @param memberid
 	 * @param fromtime
 	 * @param totime
@@ -131,7 +131,7 @@ public interface OrderQueryService{
 	
 	List<GewaOrder> getTicketOrderListByPayMethod(Timestamp starttime,Timestamp endtime,String paymethod,String tradeNo);
 	/**
-	 * »ñÈ¡Ö¸¶¨Ó°Æ¬+Ö¸¶¨»áÔ±¼¯ºÏ>ÒÑÖ§¸¶¶©µ¥Á¿
+	 * è·å–æŒ‡å®šå½±ç‰‡+æŒ‡å®šä¼šå‘˜é›†åˆ>å·²æ”¯ä»˜è®¢å•é‡
 	 * @param memberids
 	 * @param movieid
 	 * @return
@@ -139,14 +139,14 @@ public interface OrderQueryService{
 	Integer getMUOrderCountByMbrids(List<Long> memberids, Long movieid, Timestamp fromtime, Timestamp totime);
 
 	/**
-	 * »ñÈ¡¶©µ¥³¬Ê±Ê±¼ä
+	 * è·å–è®¢å•è¶…æ—¶æ—¶é—´
 	 * @param tradeNo
 	 * @return
 	 */
 	Long getOrderValidTime(String tradeNo);
 	Long getOrderValidTimeById(Long orderid);
 	/**
-	 * ²éÑ¯Ö¸¶¨Ó°Ôº¶©µ¥ÊıÁ¿
+	 * æŸ¥è¯¢æŒ‡å®šå½±é™¢è®¢å•æ•°é‡
 	 * @param cinemaId
 	 * @param fromtime
 	 * @param totime
@@ -162,7 +162,7 @@ public interface OrderQueryService{
 	<T extends GewaOrder> Integer getOrderCount(Class<T> clazz, OrderParamsCommand command);
 	
 	/**
-	 * ²éÑ¯ÂôÆ·¶©µ¥
+	 * æŸ¥è¯¢å–å“è®¢å•
 	 * @param clazz
 	 * @param command
 	 * @param from
@@ -172,7 +172,7 @@ public interface OrderQueryService{
 	<T extends BaseGoods> List<GoodsOrder> getGoodsOrderList(Class<T> clazz, OrderParamsCommand command, int from, int maxnum);
 	
 	/**
-	 * ²éÑ¯Ó°Æ±¶©µ¥
+	 * æŸ¥è¯¢å½±ç¥¨è®¢å•
 	 * @param clazz
 	 * @param command
 	 * @param from
@@ -181,7 +181,7 @@ public interface OrderQueryService{
 	 */
 	List<TicketOrder> getTicketOrderList(OrderParamsCommand command, String place, String item, int from, int maxnum);
 	/**
-	 * »ñÈ¡ÓÃ»§µÄµÚÒ»¸ö¶©µ¥
+	 * è·å–ç”¨æˆ·çš„ç¬¬ä¸€ä¸ªè®¢å•
 	 * @param memberid
 	 * @return
 	 */

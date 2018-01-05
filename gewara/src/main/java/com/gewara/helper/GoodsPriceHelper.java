@@ -15,6 +15,9 @@ import com.gewara.model.goods.GoodsPrice;
 import com.gewara.support.MultiPropertyComparator;
 import com.gewara.util.StringUtil;
 
+/**
+ * @author sunder
+ */
 public class GoodsPriceHelper {
 	private List<GoodsPrice> goodsPriceList = new ArrayList<GoodsPrice>();
 	private List<GoodsDisQuantity> disList = new ArrayList<GoodsDisQuantity>();
@@ -142,13 +145,13 @@ public class GoodsPriceHelper {
 	public static String getGoodsPriceDisabledReason(GoodsPrice goodsPrice, GoodsDisQuantity discount, int quantity){
 		if(goodsPrice.getQuantity() <= goodsPrice.getSellquantity() 
 				|| goodsPrice.getAllowaddnum() <quantity){
-			return goodsPrice.getPrice() + "ÔªÉÌÆ·ÒÑÇÀ¹â£¡";
+			return goodsPrice.getPrice() + "å…ƒå•†å“å·²æŠ¢å…‰ï¼";
 		}else if(goodsPrice.getAllowaddnum() <= 0){
-			return goodsPrice.getPrice() + "ÔªÏÂµ¥ÈËÊý¹ý¶à£¬Äú¿ÉµÈ15·ÖÖÓÄÚÎ´Ö§¸¶µÄ¶©µ¥ÊÍ·ÅÃû¶î£¡";
+			return goodsPrice.getPrice() + "å…ƒä¸‹å•äººæ•°è¿‡å¤šï¼Œæ‚¨å¯ç­‰15åˆ†é’Ÿå†…æœªæ”¯ä»˜çš„è®¢å•é‡Šæ”¾åé¢ï¼";
 		}else if(discount != null){
 			int disQuantity = quantity /discount.getQuantity();
 			if(discount.getAllownum() <discount.getSellordernum()+disQuantity){
-				return discount.getPrice() + "Ôª("+ goodsPrice.getPrice() + " x " +discount.getQuantity()+ ")ÓÅ»Ý¿â´æÊýÁ¿²»×ã£¬²»ÄÜ¹ºÆ±ÓÅ»Ý£¡";
+				return discount.getPrice() + "å…ƒ("+ goodsPrice.getPrice() + " x " +discount.getQuantity()+ ")ä¼˜æƒ åº“å­˜æ•°é‡ä¸è¶³ï¼Œä¸èƒ½è´­ç¥¨ä¼˜æƒ ï¼";
 			}
 		}
 		return "";
@@ -156,9 +159,9 @@ public class GoodsPriceHelper {
 	public static String getTrainingGoodsPriceDisabledReason(TrainingGoods trainingGoods, GoodsPrice goodsPrice, int quantity){
 		if(trainingGoods.getQuantity() <= trainingGoods.getSales() 
 				|| trainingGoods.getAllowaddnum() < quantity){
-			return trainingGoods.getGoodsname() + "¸ÃÉÌÆ·ÒÑÇÀ¹â£¡";
+			return trainingGoods.getGoodsname() + "è¯¥å•†å“å·²æŠ¢å…‰ï¼";
 		}else if(trainingGoods.getAllowaddnum() <= 0){
-			return trainingGoods.getGoodsname() + "ÉÌÆ·ÏÂµ¥ÈËÊý¹ý¶à£¬Äú¿ÉµÈ15·ÖÖÓÄÚÎ´Ö§¸¶µÄ¶©µ¥ÊÍ·ÅÃû¶î£¡";
+			return trainingGoods.getGoodsname() + "å•†å“ä¸‹å•äººæ•°è¿‡å¤šï¼Œæ‚¨å¯ç­‰15åˆ†é’Ÿå†…æœªæ”¯ä»˜çš„è®¢å•é‡Šæ”¾åé¢ï¼";
 		}
 		return getGoodsPriceDisabledReason(goodsPrice, null, quantity);
 	}

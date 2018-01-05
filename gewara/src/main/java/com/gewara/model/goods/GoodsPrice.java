@@ -12,7 +12,7 @@ import com.gewara.model.BaseObject;
 
 public class GoodsPrice extends BaseObject{
 	private static final long serialVersionUID = 4488601662449254057L;
-	public static String[] disallowBindField = new String[]{//²»ÔÊĞí°ó¶¨µÄ×Ö¶Î
+	public static String[] disallowBindField = new String[]{//ä¸å…è®¸ç»‘å®šçš„å­—æ®µ
 		"quantity", "sellquantity", "sellordernum", "allowaddnum"
 	};
 	private Long id;
@@ -21,14 +21,14 @@ public class GoodsPrice extends BaseObject{
 	private Integer price;
 	private Integer costprice;
 	private Integer oriprice;
-	private String section;				//ÇøÓò
+	private String section;				//åŒºåŸŸ
 	private String status;
 	private String remark;
-	private Integer quantity;			//ÄÃÆ±ÊıÁ¿
-	private Integer allowaddnum;		//×î´ó¶©µ¥Ãû¶î
-	private Integer sellquantity;		//Âô³öÊıÁ¿
-	private Integer sellordernum;		//Âô³ö¶©µ¥±ÊÊı
-	private Timestamp updatetime;		//¸üĞÂÊ±¼ä
+	private Integer quantity;			//æ‹¿ç¥¨æ•°é‡
+	private Integer allowaddnum;		//æœ€å¤§è®¢å•åé¢
+	private Integer sellquantity;		//å–å‡ºæ•°é‡
+	private Integer sellordernum;		//å–å‡ºè®¢å•ç¬”æ•°
+	private Timestamp updatetime;		//æ›´æ–°æ—¶é—´
 	private Integer version;
 	
 	public String getStatus() {

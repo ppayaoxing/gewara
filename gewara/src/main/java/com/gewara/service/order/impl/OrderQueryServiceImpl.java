@@ -61,7 +61,7 @@ import com.gewara.util.DateUtil;
 
 
 /**
- * ¶©µ¥²éÑ¯Ä£¿é
+ * è®¢å•æŸ¥è¯¢æ¨¡å—
  * @author acerge(acerge@163.com)
  * @since 7:44:11 PM Mar 16, 2011
  */
@@ -101,7 +101,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 	}
 	@Override
 	public List<TicketOrder> getPaidUnfixOrderList(int from, int maxnum){
-		//paidFailure¡¢8Ğ¡Ê±Ö®ÄÚÖ§¸¶µÄ¡¢updatetime>cur-5min µÄ¶©µ¥
+		//paidFailureã€8å°æ—¶ä¹‹å†…æ”¯ä»˜çš„ã€updatetime>cur-5min çš„è®¢å•
 		String query = "from TicketOrder t where t.status = ? and t.paidtime > ? and t.updatetime < ? and t.changehis not like ? order by t.paidtime";
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
 		List<TicketOrder> failureList = queryByRowsRange(query, from, maxnum, OrderConstant.STATUS_PAID_UNFIX, 
@@ -124,7 +124,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 		return orderHis.get(0);
 	}
 	/**
-	 *    @function ¸ù¾İÓÃ»§ID + Ê±¼äÏŞ¶¨ ²éÑ¯¶©µ¥¼ÇÂ¼, ²»¿¼ÂÇ×´Ì¬, º¬·ÖÒ³ 
+	 *    @function æ ¹æ®ç”¨æˆ·ID + æ—¶é—´é™å®š æŸ¥è¯¢è®¢å•è®°å½•, ä¸è€ƒè™‘çŠ¶æ€, å«åˆ†é¡µ 
 	 * 	@author bob.hu
 	 *		@date	2011-04-26 11:04:04
 	 */
@@ -140,7 +140,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 						Restrictions.like("status", OrderConstant.STATUS_PAID, MatchMode.START)));
 		query.add(Restrictions.ne("paymethod", PaymethodConstant.PAYMETHOD_SYSPAY));
 		query.add(Restrictions.eq("memberid", memberid));
-		if(days != 0){// days==0, ²»¿¼ÂÇÊ±¼äÏŞ¶¨
+		if(days != 0){// days==0, ä¸è€ƒè™‘æ—¶é—´é™å®š
 			query.add(Restrictions.ge("addtime", qtime));
 		}
 		query.add(Restrictions.or(Restrictions.ne("restatus", GewaOrder.RESTATUS_DELETE), Restrictions.isNull("restatus")));
@@ -160,7 +160,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 						Restrictions.like("status", OrderConstant.STATUS_PAID, MatchMode.START)));
 		query.add(Restrictions.ne("paymethod", PaymethodConstant.PAYMETHOD_SYSPAY));
 		query.add(Restrictions.eq("memberid", memberid));
-		if(days != 0){// days==0, ²»¿¼ÂÇÊ±¼äÏŞ¶¨
+		if(days != 0){// days==0, ä¸è€ƒè™‘æ—¶é—´é™å®š
 			query.add(Restrictions.ge("addtime", qtime));
 		}
 		query.add(Restrictions.or(Restrictions.ne("restatus", GewaOrder.RESTATUS_DELETE), Restrictions.isNull("restatus")));
@@ -170,7 +170,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 	}
 	
 	/**
-	 *	¶©µ¥Ò³ÃæÁĞ±í(°üº¬Î´¸¶¿î¶©µ¥ºÍ½»Ò×³É¹¦¶©µ¥) 
+	 *	è®¢å•é¡µé¢åˆ—è¡¨(åŒ…å«æœªä»˜æ¬¾è®¢å•å’Œäº¤æ˜“æˆåŠŸè®¢å•) 
 	 */
 	@Override
 	public <T extends GewaOrder> List<T> getOrderListByMemberId(Class<T> clazz, Long memberId, String status, int days, int from, int maxnum) {
@@ -215,14 +215,14 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 			Timestamp from = DateUtil.addMinute(new Timestamp(System.currentTimeMillis()), -soc.getMinute());
 			query.add(Restrictions.ge("addtime", from));
 		}
-		if(StringUtils.isNotBlank(soc.getOrdertype())){//¿ÉÄÜÓĞ¹ıÊ±×Ô¶¯È¡ÏûµÄÕËµ¥
+		if(StringUtils.isNotBlank(soc.getOrdertype())){//å¯èƒ½æœ‰è¿‡æ—¶è‡ªåŠ¨å–æ¶ˆçš„è´¦å•
 			if(soc.getOrdertype().equals(OrderConstant.STATUS_CANCEL)){
 				query.add(Restrictions.or(Restrictions.like("status", soc.getOrdertype(), MatchMode.START),
 						Restrictions.and(Restrictions.like("status", OrderConstant.STATUS_NEW, MatchMode.START), 
 								Restrictions.lt("validtime", new Timestamp(System.currentTimeMillis())))));
 			}else{
 				query.add(Restrictions.like("status", soc.getOrdertype(), MatchMode.START));
-				if(StringUtils.startsWith(soc.getOrdertype(), OrderConstant.STATUS_NEW)){//¿ÉÄÜÓĞ¹ıÊ±×Ô¶¯È¡ÏûµÄÕËµ¥
+				if(StringUtils.startsWith(soc.getOrdertype(), OrderConstant.STATUS_NEW)){//å¯èƒ½æœ‰è¿‡æ—¶è‡ªåŠ¨å–æ¶ˆçš„è´¦å•
 					query.add(Restrictions.ge("validtime", new Timestamp(System.currentTimeMillis())));
 				}
 			}
@@ -330,7 +330,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 	@Override
 	public List<TicketOrder> getTicketOrderList(CooperUser partner, SearchOrderCommand soc) {
 		DetachedCriteria query = DetachedCriteria.forClass(TicketOrder.class, "t");
-		if(soc.getTimeFrom()==null || soc.getTimeTo()==null){//°´Ê±¼ä·¶Î§
+		if(soc.getTimeFrom()==null || soc.getTimeTo()==null){//æŒ‰æ—¶é—´èŒƒå›´
 			return new ArrayList<TicketOrder>();
 		}
 		query.add(Restrictions.ge("t.addtime", soc.getTimeFrom()));
@@ -347,7 +347,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 	@Override
 	public List<Map> getTicketOrderListByDate(CooperUser partner, SearchOrderCommand soc){
 		DetachedCriteria query = DetachedCriteria.forClass(TicketOrder.class, "t");
-		if(soc.getTimeFrom()==null || soc.getTimeTo()==null){//°´Ê±¼ä·¶Î§
+		if(soc.getTimeFrom()==null || soc.getTimeTo()==null){//æŒ‰æ—¶é—´èŒƒå›´
 			return new ArrayList<Map>();
 		} else{
 			if(soc.getTimeFrom()==null) soc.setTimeFrom(DateUtil.addDay(soc.getTimeTo(), -1));
@@ -374,7 +374,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 	@Override
 	public List<GewaOrder> getOrderOriginListByDate(CooperUser partner,SearchOrderCommand soc) {
 		List<GewaOrder> orderList = new ArrayList<GewaOrder>();
-		if(soc.getTimeFrom() == null || soc.getTimeTo()==null || StringUtils.isBlank(partner.getOrigin())){//°´Ê±¼ä·¶Î§
+		if(soc.getTimeFrom() == null || soc.getTimeTo()==null || StringUtils.isBlank(partner.getOrigin())){//æŒ‰æ—¶é—´èŒƒå›´
 			return orderList;
 		}
 		if(StringUtils.isNotBlank(soc.getTradeNo())){
@@ -400,7 +400,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 	@Override
 	public List<GewaOrder> getOrderAppsourceListByDate(CooperUser partner,Timestamp dateFrom, Timestamp dateTo, String appsource) {
 		List<GewaOrder> orderList = new ArrayList<GewaOrder>();
-		if(dateFrom == null || dateTo==null || StringUtils.isBlank(partner.getAppsource())){//°´Ê±¼ä·¶Î§
+		if(dateFrom == null || dateTo==null || StringUtils.isBlank(partner.getAppsource())){//æŒ‰æ—¶é—´èŒƒå›´
 			return orderList;
 		}
 		List<String> partneridList = Arrays.asList(StringUtils.split(partner.getPartnerids(), ","));
@@ -443,7 +443,7 @@ public class OrderQueryServiceImpl extends BaseServiceImpl implements OrderQuery
 	@Override
 	public Integer getNoPreferentialSportOrderCount(Long memberid, Timestamp fromtime, Timestamp totime, String status){
 		DetachedCriteria query = DetachedCriteria.forClass(SportOrder.class);
-		query.add(Restrictions.eq("discount", 0));//TODO:Âß¼­ÓĞÎÊÌâ£ºdiscount=0£¬µ«ÓĞÆäËûÀàËÆ¼ÓwabiµÄ·µÀû»î¶¯
+		query.add(Restrictions.eq("discount", 0));//TODO:é€»è¾‘æœ‰é—®é¢˜ï¼šdiscount=0ï¼Œä½†æœ‰å…¶ä»–ç±»ä¼¼åŠ wabiçš„è¿”åˆ©æ´»åŠ¨
 		query.add(Restrictions.eq("memberid", memberid));
 		query.add(Restrictions.eq("status", status));
 		query.add(Restrictions.ge("addtime", fromtime));

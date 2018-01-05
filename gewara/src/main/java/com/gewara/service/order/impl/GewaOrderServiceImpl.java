@@ -112,13 +112,13 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 	}
 	@Override
 	public ErrorCode<GewaOrder> removeDiscount(GewaOrder order, Long discountId){
-		if(!order.isNew()) return ErrorCode.getFailure("¶©µ¥×´Ì¬´íÎó£¨" + order.getStatusText() + "£©£¡");
-		if(order.getStatus().equals(OrderConstant.STATUS_NEW_CONFIRM)) return ErrorCode.getFailure("ÒÑÈ·ÈÏµÄ¶©µ¥²»ÄÜĞŞ¸Ä£¡");
-		if(order.isAllPaid() || order.isCancel()) return ErrorCode.getFailure("²»ÄÜ²Ù×÷ÒÑÖ§¸¶»òÒÑ£¨¹ıÊ±£©È¡ÏûµÄ¶©µ¥£¡");
+		if(!order.isNew()) return ErrorCode.getFailure("è®¢å•çŠ¶æ€é”™è¯¯ï¼ˆ" + order.getStatusText() + "ï¼‰ï¼");
+		if(order.getStatus().equals(OrderConstant.STATUS_NEW_CONFIRM)) return ErrorCode.getFailure("å·²ç¡®è®¤çš„è®¢å•ä¸èƒ½ä¿®æ”¹ï¼");
+		if(order.isAllPaid() || order.isCancel()) return ErrorCode.getFailure("ä¸èƒ½æ“ä½œå·²æ”¯ä»˜æˆ–å·²ï¼ˆè¿‡æ—¶ï¼‰å–æ¶ˆçš„è®¢å•ï¼");
 		Map<String, String> otherinfoMap = VmUtils.readJsonToMap(order.getOtherinfo());
 		if(StringUtils.isNotBlank(otherinfoMap.get(PayConstant.KEY_CHANGECOST)) || 
 				StringUtils.isNotBlank(otherinfoMap.get(PayConstant.KEY_BINDGOODS))){
-			return ErrorCode.getFailure("´ËÓÅ»İÎŞ·¨È¡Ïû£¡Äú¿ÉÑ¡Ôñ¹Ø±Õ´ËÒ³ÃæºóÖØĞÂÏÂ¶©µ¥¡£");
+			return ErrorCode.getFailure("æ­¤ä¼˜æƒ æ— æ³•å–æ¶ˆï¼æ‚¨å¯é€‰æ‹©å…³é—­æ­¤é¡µé¢åé‡æ–°ä¸‹è®¢å•ã€‚");
 		}
 		List<Discount> discountList = paymentService.getOrderDiscountList(order);
 		Discount cur = null;
@@ -138,11 +138,11 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 			baseDao.saveObject(order);
 			return ErrorCode.getSuccessReturn(order);
 		}
-		return ErrorCode.getFailure("´Ë¶Ò»»È¯Ã»ÓĞÊ¹ÓÃ");
+		return ErrorCode.getFailure("æ­¤å…‘æ¢åˆ¸æ²¡æœ‰ä½¿ç”¨");
 		
 	}
 	/**
-	 * ¶©µ¥È¡ÏûµÈÃû¶î»Ö¸´
+	 * è®¢å•å–æ¶ˆç­‰åé¢æ¢å¤
 	 * @param tradeNo
 	 */
 	protected void restoreSdCounterByTrade(String tradeNo){
@@ -194,7 +194,7 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 					cpsOrder.setOrder_time(DateUtil.formatTimestamp(order.getAddtime()));
 					cpsOrder.setP_info(order.getDescription2());
 					cpsOrder.setStatus("new");
-					// ÏÈÉèÖÃÎª0£¬·ñÔò360µ±ÌìµÄ¶©µ¥Í¬²½Îª³ö´í
+					// å…ˆè®¾ç½®ä¸º0ï¼Œå¦åˆ™360å½“å¤©çš„è®¢å•åŒæ­¥ä¸ºå‡ºé”™
 					cpsOrder.setAmount(0);
 					if (order instanceof TicketOrder) {
 						TicketOrder ticketOrder = (TicketOrder)order;
@@ -269,25 +269,25 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 	public void zeropayGewaOrder(GewaOrder order) throws OrderException {
 		if(order.isPaidSuccess() || order.isPaidFailure() || order.isPaidUnfix()) return;
 		if(order.isZeroPay()){
-			//1,¼ì²é¿¨
+			//1,æ£€æŸ¥å¡
 			List<Discount> discountList = paymentService.getOrderDiscountList(order);
 			for(Discount discount: discountList){
 				if(PayConstant.DISCOUNT_TAG_ECARD.equals(discount.getTag())){
 					ElecCard card = baseDao.getObject(ElecCard.class, discount.getRelatedid());
 					if(card.isUsed()){
-						dbLogger.error("order:Ö§¸¶¶©µ¥" + order.getTradeNo() + "Ê§°Ü£¬µÖÓÃÈ¯Ê¹ÓÃÓĞÎÊÌâ£¨ÖØ¸´Ê¹ÓÃ£¿£©£¡");
-						throw new OrderException(ApiConstant.CODE_DATA_ERROR, "µÖÓÃÈ¯" + card.getCardno() + "ÒÑ¾­Ê¹ÓÃ¹ı");
+						dbLogger.error("order:æ”¯ä»˜è®¢å•" + order.getTradeNo() + "å¤±è´¥ï¼ŒæŠµç”¨åˆ¸ä½¿ç”¨æœ‰é—®é¢˜ï¼ˆé‡å¤ä½¿ç”¨ï¼Ÿï¼‰ï¼");
+						throw new OrderException(ApiConstant.CODE_DATA_ERROR, "æŠµç”¨åˆ¸" + card.getCardno() + "å·²ç»ä½¿ç”¨è¿‡");
 					}
 				}else if(PayConstant.DISCOUNT_TAG_POINT.equals(discount.getTag())){
 					//ignore
 				}else if(PayConstant.DISCOUNT_TAG_PARTNER.equals(discount.getTag())){
-					//ignore ÉÌ¼ÒÓÅ»İ
+					//ignore å•†å®¶ä¼˜æƒ 
 				}
 			}
-			//2,¸ü¸Ä×´Ì¬
+			//2,æ›´æ”¹çŠ¶æ€
 			Timestamp curTime = new Timestamp(System.currentTimeMillis());
-			dbLogger.warn(order.getTradeNo() + "GewaPayÖ§¸¶Ç°×´Ì¬£º" + order.getStatus());
-			order.setStatus(OrderConstant.STATUS_PAID_FAILURE); //ÏÈÉèÖÃ³É´Ë×´Ì¬£¬µÚ¶ş²½Éè³Épaid_success
+			dbLogger.warn(order.getTradeNo() + "GewaPayæ”¯ä»˜å‰çŠ¶æ€ï¼š" + order.getStatus());
+			order.setStatus(OrderConstant.STATUS_PAID_FAILURE); //å…ˆè®¾ç½®æˆæ­¤çŠ¶æ€ï¼Œç¬¬äºŒæ­¥è®¾æˆpaid_success
 			order.setPaidtime(curTime);
 			order.setUpdatetime(curTime);
 			order.setModifytime(curTime);
@@ -298,21 +298,21 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 	 * @param order
 	 * @param discountList
 	 * @param pointRatio
-	 * @param deductPoint ĞèÒª¼õÉÙµÄ»ı·Ö
+	 * @param deductPoint éœ€è¦å‡å°‘çš„ç§¯åˆ†
 	 * @throws OrderException
 	 */
 	protected OrderContainer processOrderPayInternal(GewaOrder order) throws OrderException{
 		if(order.getStatus().startsWith(OrderConstant.STATUS_PAID)){
-			if(order.isNotAllPaid()) throw new OrderException(ApiConstant.CODE_PAY_ERROR, "¶©µ¥¸¶¿î½ğ¶î²»×ã£¡");
-			if(order.isPaidFailure()){//¸¶Ç®ÁË£¬µ«×´Ì¬»¹ÊÇÎ´³É¹¦£¬×ö¼ì²é
+			if(order.isNotAllPaid()) throw new OrderException(ApiConstant.CODE_PAY_ERROR, "è®¢å•ä»˜æ¬¾é‡‘é¢ä¸è¶³ï¼");
+			if(order.isPaidFailure()){//ä»˜é’±äº†ï¼Œä½†çŠ¶æ€è¿˜æ˜¯æœªæˆåŠŸï¼Œåšæ£€æŸ¥
 				OrderContainer container = new OrderContainer();
 				Map<String, String> changeHisMap = JsonUtils.readJsonToMap(order.getChangehis());
 				String successChange = changeHisMap.get(OrderConstant.CHANGEHIS_KEY_SUCCESSCHANGE);
-				//ÊÇ·ñÊÇ³É¹¦¶©µ¥´ú´¦Àí success = "true" ÊÇ¾ÍÊÇÌø¹ı»ı·Ö£¬ÌØ¼Û»î¶¯
+				//æ˜¯å¦æ˜¯æˆåŠŸè®¢å•ä»£å¤„ç† success = "true" æ˜¯å°±æ˜¯è·³è¿‡ç§¯åˆ†ï¼Œç‰¹ä»·æ´»åŠ¨
 				final boolean checkChange = Boolean.parseBoolean(successChange);
-				//1¡¢¸üĞÂµÖÓÃÈ¯
-				//int count = 0; //ÓÅ»İÈ¯Ê¹ÓÃ´ÎÊı
-				int pdeduct = 0; //»ı·ÖÊ¹ÓÃºÍ
+				//1ã€æ›´æ–°æŠµç”¨åˆ¸
+				//int count = 0; //ä¼˜æƒ åˆ¸ä½¿ç”¨æ¬¡æ•°
+				int pdeduct = 0; //ç§¯åˆ†ä½¿ç”¨å’Œ
 				SpecialDiscount sd = null;
 				List<Discount> discountList = paymentService.getOrderDiscountList(order);
 				Map<Long, ElecCard> useCardMap = new HashMap<Long, ElecCard>();
@@ -320,14 +320,14 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 					if(PayConstant.DISCOUNT_TAG_ECARD.equals(discount.getTag())){
 						ElecCard card = baseDao.getObject(ElecCard.class, discount.getRelatedid());
 						if(card.isUsed() && !order.getId().equals(card.getOrderid())){
-							dbLogger.error("order:Ö§¸¶¶©µ¥" + order.getTradeNo() + "Ê§°Ü£¬µÖÓÃÈ¯Ê¹ÓÃÓĞÎÊÌâ£¨ÖØ¸´Ê¹ÓÃ£¿£©£¡");
-							throw new OrderException(ApiConstant.CODE_PAY_ERROR, "µÖÓÃÈ¯" + card.getCardno() + "ÒÑ¾­Ê¹ÓÃ¹ı");
+							dbLogger.error("order:æ”¯ä»˜è®¢å•" + order.getTradeNo() + "å¤±è´¥ï¼ŒæŠµç”¨åˆ¸ä½¿ç”¨æœ‰é—®é¢˜ï¼ˆé‡å¤ä½¿ç”¨ï¼Ÿï¼‰ï¼");
+							throw new OrderException(ApiConstant.CODE_PAY_ERROR, "æŠµç”¨åˆ¸" + card.getCardno() + "å·²ç»ä½¿ç”¨è¿‡");
 						}
 						card.setStatus(ElecCardConstant.STATUS_USED);
 						card.setOrderid(order.getId());
 						baseDao.saveObject(card);
 						useCardMap.put(discount.getId(), card);
-					}else if(PayConstant.DISCOUNT_TAG_POINT.equals(discount.getTag())){//·µ»Ø»ı·ÖÊ¹ÓÃ¼ÇÂ¼
+					}else if(PayConstant.DISCOUNT_TAG_POINT.equals(discount.getTag())){//è¿”å›ç§¯åˆ†ä½¿ç”¨è®°å½•
 						pdeduct += ConfigConstant.POINT_RATIO * discount.getAmount();
 					}else if(PayConstant.DISCOUNT_TAG_PARTNER.equals(discount.getTag())){
 						sd = baseDao.getObject(SpecialDiscount.class, discount.getRelatedid());
@@ -339,7 +339,7 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 							if(StringUtils.isNotBlank(spcodeStr)){
 								SpCode spcode = baseDao.getObject(SpCode.class, Long.valueOf(spcodeStr));
 								if(spcode.getUsedcount() > 0){
-									throw new OrderException(ApiConstant.CODE_PAY_ERROR, "µç×ÓÂëÒÑ¾­Ê¹ÓÃ¹ı£¡");
+									throw new OrderException(ApiConstant.CODE_PAY_ERROR, "ç”µå­ç å·²ç»ä½¿ç”¨è¿‡ï¼");
 								}
 								spcode.setUsedcount(spcode.getUsedcount() + 1);
 								baseDao.saveObject(spcode);
@@ -354,11 +354,11 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 					container.setUseCardMap(useCardMap);
 				}
 				if(!checkChange && (sd!=null && (StringUtils.isNotBlank(sd.getValidBackUrl()) || StringUtils.equals("true",sd.getCardNumUnique())))){
-					dbLogger.warn(sd.getFlag()+"ÑéÖ¤Êı¾İ£º" + order.getTradeNo());
+					dbLogger.warn(sd.getFlag()+"éªŒè¯æ•°æ®ï¼š" + order.getTradeNo());
 					if(StringUtils.equals("true",sd.getCardNumUnique())){
 						boolean result = cooperateService.addCardnumOperation(order.getTradeNo(), order.getOtherinfo(),sd.getId());
 						if(!result){
-							throw new OrderException(ApiConstant.CODE_DATA_ERROR, "Ö§¸¶¶©µ¥" + order.getTradeNo() + "Ê§°Ü£¬" + result);
+							throw new OrderException(ApiConstant.CODE_DATA_ERROR, "æ”¯ä»˜è®¢å•" + order.getTradeNo() + "å¤±è´¥ï¼Œ" + result);
 						}
 					}
 					if(StringUtils.isNotBlank(sd.getValidBackUrl())){
@@ -370,21 +370,21 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 						params.put("addtime", DateUtil.formatTimestamp(order.getAddtime()));
 						//TODO:8080 using container config
 						HttpResult code = HttpUtils.postUrlAsString("http://localhost:8080/" + sd.getValidBackUrl(), params);
-						dbLogger.warn(sd.getFlag()+"»ñÈ¡·µ»ØÑéÖ¤£º" + code.getMsg()  + ":" + code.getResponse());
+						dbLogger.warn(sd.getFlag()+"è·å–è¿”å›éªŒè¯ï¼š" + code.getMsg()  + ":" + code.getResponse());
 						if(code.isSuccess()){
 							String res = code.getResponse();
 							if(!StringUtils.contains(res, "success")){
-								throw new OrderException(ApiConstant.CODE_DATA_ERROR, "Ö§¸¶¶©µ¥" + order.getTradeNo() + "Ê§°Ü£¬" + res);
+								throw new OrderException(ApiConstant.CODE_DATA_ERROR, "æ”¯ä»˜è®¢å•" + order.getTradeNo() + "å¤±è´¥ï¼Œ" + res);
 							}
 						}else{
-							throw new OrderException(ApiConstant.CODE_DATA_ERROR, "ÑéÖ¤ÇëÇó´íÎó£¬ÇëÖØÊÔ:" + order.getTradeNo());
+							throw new OrderException(ApiConstant.CODE_DATA_ERROR, "éªŒè¯è¯·æ±‚é”™è¯¯ï¼Œè¯·é‡è¯•:" + order.getTradeNo());
 						}
 					}
 				}
 				if(!checkChange && !order.sureOutPartner()  && pdeduct > 0){
-					//¼ì²é»ı·Ö
+					//æ£€æŸ¥ç§¯åˆ†
 					MemberInfo info = baseDao.getObject(MemberInfo.class, order.getMemberid());
-					if(info.getPointvalue() < pdeduct) throw new OrderException(ApiConstant.CODE_DATA_ERROR, "»ı·Ö²»¹»£¬ĞèÒª" + pdeduct + "»ı·Ö£¬µ«Ö»ÓĞ" + info.getPointvalue());
+					if(info.getPointvalue() < pdeduct) throw new OrderException(ApiConstant.CODE_DATA_ERROR, "ç§¯åˆ†ä¸å¤Ÿï¼Œéœ€è¦" + pdeduct + "ç§¯åˆ†ï¼Œä½†åªæœ‰" + info.getPointvalue());
 					pointService.addPointInfo(order.getMemberid(), -pdeduct, order.getTradeNo(), PointConstant.TAG_TRADE);
 				}
 				order.setStatus(OrderConstant.STATUS_PAID_UNFIX);
@@ -393,11 +393,11 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 				container.setOrder(order);
 				return container;
 			}else{
-				//²»×ö´¦Àí
+				//ä¸åšå¤„ç†
 				return null;
 			}
 		}else{
-			throw new OrderException(ApiConstant.CODE_DATA_ERROR, "¶©µ¥×´Ì¬²»ÕıÈ·£¡");
+			throw new OrderException(ApiConstant.CODE_DATA_ERROR, "è®¢å•çŠ¶æ€ä¸æ­£ç¡®ï¼");
 		}
 		
 	}
@@ -406,14 +406,14 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 	public OrderExtra processOrderExtra(GewaOrder order){
 		Map<String, String> changeHisMap = JsonUtils.readJsonToMap(order.getChangehis());
 		String successChange = changeHisMap.get(OrderConstant.CHANGEHIS_KEY_SUCCESSCHANGE);
-		//ÊÇ·ñÊÇ³É¹¦¶©µ¥´ú´¦Àí success = "true" ÊÇ¾Í¸ü¸ÄOrderExtra 
+		//æ˜¯å¦æ˜¯æˆåŠŸè®¢å•ä»£å¤„ç† success = "true" æ˜¯å°±æ›´æ”¹OrderExtra 
 		final boolean checkChange = !Boolean.parseBoolean(successChange);
 		OrderExtra orderExtra = baseDao.getObject(OrderExtra.class, order.getId());
 		if(!checkChange && orderExtra == null){
 			final String updateSql = "update OrderExtra set id=? where tradeno=? ";
 			int update = hibernateTemplate.bulkUpdate(updateSql, order.getId(), order.getTradeNo());
 			hibernateTemplate.flush();
-			dbLogger.warn("update_orderExtra £º"+ order.getTradeNo() + ",update:" + update);
+			dbLogger.warn("update_orderExtra ï¼š"+ order.getTradeNo() + ",update:" + update);
 			orderExtra = baseDao.getObject(OrderExtra.class, order.getId());
 		}
 		if(orderExtra == null){
@@ -475,14 +475,14 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 	
 	@Override
 	public ErrorCode<ExpressProvince> getExpressFee(ExpressConfig expressConfig, String provincecode){
-		if(expressConfig == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "ÅäËÍ·½Ê½²»ÄÜÎª¿Õ£¡");
-		if(StringUtils.isBlank(provincecode)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¿ìµİ³ÇÊĞ±àÂë²»ÄÜÎª¿Õ£¡");
+		if(expressConfig == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "é…é€æ–¹å¼ä¸èƒ½ä¸ºç©ºï¼");
+		if(StringUtils.isBlank(provincecode)) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "å¿«é€’åŸå¸‚ç¼–ç ä¸èƒ½ä¸ºç©ºï¼");
 		Province province= baseDao.getObject(Province.class, provincecode);
-		if(province == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "³ÇÊĞ±àÂë´íÎó£¡");
+		if(province == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "åŸå¸‚ç¼–ç é”™è¯¯ï¼");
 		List<ExpressProvince> provinceList = baseDao.getObjectListByField(ExpressProvince.class, "expressid", expressConfig.getId());
 		Map<String, ExpressProvince> provinceMap = BeanUtil.beanListToMap(provinceList, "provincecode");
 		ExpressProvince expressProvince = provinceMap.get(provincecode);
-		if(expressProvince == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, province.getProvincename() +"£¬²»Ö§³Ö¿ìµİ£¡ÈçĞè°ïÖúÇë²¦´ò£º4000-406506");
+		if(expressProvince == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, province.getProvincename() +"ï¼Œä¸æ”¯æŒå¿«é€’ï¼å¦‚éœ€å¸®åŠ©è¯·æ‹¨æ‰“ï¼š4000-406506");
 		return ErrorCode.getSuccessReturn(expressProvince);
 	}
 	
@@ -492,10 +492,10 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 		if(!code.isSuccess()) return ErrorCode.getFailure(code.getErrcode(), code.getMsg());
 		ExpressProvince province = code.getRetval();
 		int price = province.getExpressfee();
-		String reason = "¿ìµİ·Ñ" + province.getExpressfee();
-		// ÃâÔË·Ñ±ØĞë´óÓÚ 0;
+		String reason = "å¿«é€’è´¹" + province.getExpressfee();
+		// å…è¿è´¹å¿…é¡»å¤§äº 0;
 		if(province.getFreelimit()> 0 && order.getDue()>= province.getFreelimit()){
-			reason = reason + ",Âú" +province.getFreelimit() +"ÃâÔË·Ñ"; 
+			reason = reason + ",æ»¡" +province.getFreelimit() +"å…è¿è´¹"; 
 			price = 0;
 		}
 		List<OtherFeeDetail> feeList = baseDao.getObjectListByField(OtherFeeDetail.class, "orderid", order.getId());
@@ -507,7 +507,7 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 			feeDetail.setFee(price);
 			feeDetail.setReason(reason);
 		}
-		//¼ÆËã¿ìµİ·Ñ
+		//è®¡ç®—å¿«é€’è´¹
 		feeMap.put(OtherFeeDetail.FEETYPE_E, feeDetail);
 		GewaOrderHelper.refreshOtherfee(order, feeMap.values());
 		Map<String, String> otherFeeMap = JsonUtils.readJsonToMap(order.getOtherFeeRemark());
@@ -558,21 +558,21 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 	
 	@Override
 	public ErrorCode<Integer> computeUmpayfee(GewaOrder order){
-		if(!ValidateUtil.isYdMobile(order.getMobile())) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "»°·ÑÖ§¸¶½öÖ§³ÖÒÆ¶¯ÊÖ»ú");
-		//if(!StringUtils.equals(order.getCitycode(), AdminCityContant.CITYCODE_SH)) return showJsonError(model, "½öÖ§³ÖÉÏº£ÒÆ¶¯ÊÖ»ú");
+		if(!ValidateUtil.isYdMobile(order.getMobile())) return ErrorCode.getFailure(ApiConstant.CODE_DATA_ERROR, "è¯è´¹æ”¯ä»˜ä»…æ”¯æŒç§»åŠ¨æ‰‹æœº");
+		//if(!StringUtils.equals(order.getCitycode(), AdminCityContant.CITYCODE_SH)) return showJsonError(model, "ä»…æ”¯æŒä¸Šæµ·ç§»åŠ¨æ‰‹æœº");
 		
 		List<OtherFeeDetail> feeList = baseDao.getObjectListByField(OtherFeeDetail.class, "orderid", order.getId());
 		Map<String, OtherFeeDetail> feeMap = BeanUtil.beanListToMap(feeList, "feetype");
 		OtherFeeDetail feeDetail = feeMap.get(OtherFeeDetail.FEETYPE_U);
 		if(feeDetail == null){
 			int umpayfee = getUmpayfee(order);
-			String reason = "»°·ÑÖ§¸¶ÊÖĞø·Ñ" + umpayfee+"Ôª";
+			String reason = "è¯è´¹æ”¯ä»˜æ‰‹ç»­è´¹" + umpayfee+"å…ƒ";
 			feeDetail = new OtherFeeDetail(order.getId(), OtherFeeDetail.FEETYPE_U, umpayfee, reason);
-			//¼ÆËã»°·ÑÖ§¸¶ÊÖĞø·Ñ
+			//è®¡ç®—è¯è´¹æ”¯ä»˜æ‰‹ç»­è´¹
 			feeMap.put(OtherFeeDetail.FEETYPE_U, feeDetail);
 			GewaOrderHelper.refreshOtherfee(order, feeMap.values());
 			Map<String, String> otherMap = VmUtils.readJsonToMap(order.getOtherinfo());
-			otherMap.put("otherfeeTitle", "»°·ÑÖ§¸¶ÊÖĞø·Ñ" + umpayfee+"Ôª");
+			otherMap.put("otherfeeTitle", "è¯è´¹æ”¯ä»˜æ‰‹ç»­è´¹" + umpayfee+"å…ƒ");
 			order.setOtherinfo(JsonUtils.writeMapToJson(otherMap));
 			Map<String, String> otherFeeMap = JsonUtils.readJsonToMap(order.getOtherFeeRemark());
 			otherFeeMap.put(OtherFeeDetail.FEETYPE_U, umpayfee +"");
@@ -596,7 +596,7 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 			cartype = PayConstant.CARDTYPE_INNER_SPORT;
 		}
 		if(StringUtils.isBlank(cartype)){
-			return ErrorCode.getFailure("³É¹¦¶©µ¥Ôİ²»Ö§³Ö»»³¡´Î£¡");
+			return ErrorCode.getFailure("æˆåŠŸè®¢å•æš‚ä¸æ”¯æŒæ¢åœºæ¬¡ï¼");
 		}
 		if(StringUtils.isNotBlank(successChange) && Boolean.parseBoolean(successChange)){
 			GewaOrder oldOrder = baseDao.getObjectByUkey(GewaOrder.class, "tradeNo", changeHisMap.get(OrderConstant.CHANGEHIS_KEY_CHANGESEAT));
@@ -607,14 +607,14 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 					List<OtherFeeDetail> feeList = baseDao.getObjectListByField(OtherFeeDetail.class, "orderid", order.getId());
 					Map<String, OtherFeeDetail> feeMap = BeanUtil.beanListToMap(feeList, "feetype");
 					OtherFeeDetail feeDetail = feeMap.get(OtherFeeDetail.FEETYPE_C);
-					String reason = "¸ü»»¶©µ¥²úÉú·ÑÓÃ" + subAmount + "Ôª";
+					String reason = "æ›´æ¢è®¢å•äº§ç”Ÿè´¹ç”¨" + subAmount + "å…ƒ";
 					if(feeDetail == null){
 						feeDetail = new OtherFeeDetail(order.getId(), OtherFeeDetail.FEETYPE_C, subAmount, reason);
 					}else{
 						feeDetail.setFee(subAmount);
 						feeDetail.setReason(reason);
 					}
-					//¸ü»»¶©µ¥²úÉú¶àÓàµÄ·ÑÓÃ
+					//æ›´æ¢è®¢å•äº§ç”Ÿå¤šä½™çš„è´¹ç”¨
 					feeMap.put(OtherFeeDetail.FEETYPE_C, feeDetail);
 					GewaOrderHelper.refreshOtherfee(order, feeMap.values());
 					Map<String, String> otherFeeMap = JsonUtils.readJsonToMap(order.getOtherFeeRemark());
@@ -625,7 +625,7 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 				}else if(subAmount > 0){
 					List<Discount> discountList = paymentService.getOrderDiscountList(order);
 					Discount discount = new Discount(order.getId(), PayConstant.DISCOUNT_TAG_INNER,  order.getMemberid(), cartype);
-					discount.setDescription("¸ñÍßÀ­ÓÅ»İ" + subAmount + "Ôª");
+					discount.setDescription("æ ¼ç“¦æ‹‰ä¼˜æƒ " + subAmount + "å…ƒ");
 					discount.setAmount(subAmount);
 					baseDao.saveObject(discount);
 					GewaOrderHelper.useDiscount(order, discountList, discount);
@@ -640,7 +640,7 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 		if(StringUtils.isBlank(memberUsefulAddress.getProvincecode())
 				|| StringUtils.isBlank(memberUsefulAddress.getCitycode())
 				|| StringUtils.isBlank(memberUsefulAddress.getCountycode())){
-				return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "µØÖ·ÓĞ´íÎó£¡");
+				return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "åœ°å€æœ‰é”™è¯¯ï¼");
 			}
 		return ErrorCode.SUCCESS;
 	}
@@ -670,7 +670,7 @@ public class GewaOrderServiceImpl extends BaseServiceImpl implements GewaOrderSe
 	}
 	
 	/**
-	 * Í¬²½360µÄ¶©µ¥
+	 * åŒæ­¥360çš„è®¢å•
 	 * @return
 	 */
 	@Override
