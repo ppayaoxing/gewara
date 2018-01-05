@@ -1,29 +1,29 @@
 package com.gewara.jms;
 
 public interface JmsConstant {
-	String TAG_ORDER = "order";									//¶©µ¥ĞÅÏ¢
-	String TAG_UPADATE_PAGE_CACHE = "update_page_cache";		//¸üĞÂÒ³Ãæ»º´æ
-	String TAG_SHARE2Out = "share2Out";							//·ÖÏíÎ¢²©
-	String TAG_SHARECUSTOM = "shareCustom";						//·ÖÏíÎ¢²©×Ô¶¨Òå
-	String TAG_SAVELOG = "saveLog";								//·¢ËÍÈÕÖ¾
-	String TAG_CHARGE = "charge";								//³äÖµ
+	String TAG_ORDER = "order";									//è®¢å•ä¿¡æ¯
+	String TAG_UPADATE_PAGE_CACHE = "update_page_cache";		//æ›´æ–°é¡µé¢ç¼“å­˜
+	String TAG_SHARE2Out = "share2Out";							//åˆ†äº«å¾®åš
+	String TAG_SHARECUSTOM = "shareCustom";						//åˆ†äº«å¾®åšè‡ªå®šä¹‰
+	String TAG_SAVELOG = "saveLog";								//å‘é€æ—¥å¿—
+	String TAG_CHARGE = "charge";								//å……å€¼
 	
-	String TAG_TERMINALBARCODE = "terminalbarcode";				//ÖÕ¶Ë¶şÎ¬ÂëÈ¡Æ±
+	String TAG_TERMINALBARCODE = "terminalbarcode";				//ç»ˆç«¯äºŒç»´ç å–ç¥¨
 	
-	String QUEUE_PAY = "paidOrderQueue";						//Ö§¸¶Íê³ÉµÄ¶ÓÁĞ
-	String QUEUE_CHARGE = "paidChargeQueue";					//Ö§¸¶Íê³ÉµÄ¶ÓÁĞ
-	String QUEUE_SUCCORDER = "addOrderQueue";					//³É¹¦¶©µ¥¶ÓÁĞ
-	String QUEUE_UPDATECACHE = "updateCacheQueue";				//¸üĞÂ»º´æ
-	String QUEUE_SHARE = "shareQueue";							//·ÖÏí¶ÓÁĞ
-	String QUEUE_ORDER_ACTIVITYGOODS = "activityGoodsQueue";	//»î¶¯¶©µ¥¶ÓÁĞ
-	String QUEUE_ORDER_GYM = "gymOrderQueue";					//½¡Éí¶©µ¥¶ÓÁĞ
-	String QUEUE_TICKETPLAYITEM = "ticketPlayItemQueue";		//¶©Æ±ÏµÍ³ÅÅÆ¬¸üĞÂ
+	String QUEUE_PAY = "paidOrderQueue";						//æ”¯ä»˜å®Œæˆçš„é˜Ÿåˆ—
+	String QUEUE_CHARGE = "paidChargeQueue";					//æ”¯ä»˜å®Œæˆçš„é˜Ÿåˆ—
+	String QUEUE_SUCCORDER = "addOrderQueue";					//æˆåŠŸè®¢å•é˜Ÿåˆ—
+	String QUEUE_UPDATECACHE = "updateCacheQueue";				//æ›´æ–°ç¼“å­˜
+	String QUEUE_SHARE = "shareQueue";							//åˆ†äº«é˜Ÿåˆ—
+	String QUEUE_ORDER_ACTIVITYGOODS = "activityGoodsQueue";	//æ´»åŠ¨è®¢å•é˜Ÿåˆ—
+	String QUEUE_ORDER_GYM = "gymOrderQueue";					//å¥èº«è®¢å•é˜Ÿåˆ—
+	String QUEUE_TICKETPLAYITEM = "ticketPlayItemQueue";		//è®¢ç¥¨ç³»ç»Ÿæ’ç‰‡æ›´æ–°
 	
-	String QUEUE_TICKETREMOTEORDER = "ticketRemoteOrderQueue";	//ÂúÌìĞÇ´¦Àí¶©µ¥¶ÓÁĞ	
+	String QUEUE_TICKETREMOTEORDER = "ticketRemoteOrderQueue";	//æ»¡å¤©æ˜Ÿå¤„ç†è®¢å•é˜Ÿåˆ—	
 
-	String QUEUE_SPIDERPLAYITEM = "spiderPlayItemQueue";		//SpiderÏµÍ³ÅÅÆ¬¸üĞÂ
+	String QUEUE_SPIDERPLAYITEM = "spiderPlayItemQueue";		//Spiderç³»ç»Ÿæ’ç‰‡æ›´æ–°
 	
-	String QUEUE_TERMINAL_ORDER = "terminalOrderQueue";			//¶©µ¥½»Ò×³É¹¦Í¨Öªµ½ÖÕ¶Ë»ú
+	String QUEUE_TERMINAL_ORDER = "terminalOrderQueue";			//è®¢å•äº¤æ˜“æˆåŠŸé€šçŸ¥åˆ°ç»ˆç«¯æœº
 	
-	String QUEUE_GPTICKETREMOTEORDER= "gpticketRemoteOrderQueue";	//Ñİ³ö¶©µ¥ÍËÆ±Í¨Öª
+	String QUEUE_GPTICKETREMOTEORDER= "gpticketRemoteOrderQueue";	//æ¼”å‡ºè®¢å•é€€ç¥¨é€šçŸ¥
 }
