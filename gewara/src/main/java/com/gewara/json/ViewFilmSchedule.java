@@ -23,7 +23,7 @@ public class ViewFilmSchedule extends MGObject {
 	
 	private String playTime;
 	
-	private String type;// movie ∆¨µ•  schedule »’≥Ã 
+	private String type;// movie ÁâáÂçï  schedule Êó•Á®ã 
 	
 	private String source;
 

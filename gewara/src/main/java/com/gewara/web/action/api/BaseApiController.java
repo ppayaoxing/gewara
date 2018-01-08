@@ -72,7 +72,7 @@ import com.gewara.xmlbind.activity.RemoteActivity;
 import com.gewara.xmlbind.bbs.Comment;
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 public abstract class BaseApiController {
 	public static final String SUCCESS="success";
@@ -200,10 +200,10 @@ public abstract class BaseApiController {
 	}
 	
 	/**
-	 * ½á¹ûÏûÏ¢ÊÓÍ¼·µ»Ø
+	 * ç»“æœæ¶ˆæ¯è§†å›¾è¿”å›
 	 * @param model
-	 * @param resultType ½á¹û
-	 * @param msg ÏûÏ¢
+	 * @param resultType ç»“æœ
+	 * @param msg æ¶ˆæ¯
 	 * @return
 	 */
 	protected String getMsgResult(ModelMap model,String resultType,String msg){
@@ -232,7 +232,7 @@ public abstract class BaseApiController {
 			apiAuth.setChecked(true);
 		}else{
 			apiAuth.setCode(ApiConstant.CODE_SIGN_ERROR);
-			apiAuth.setMsg("Ğ£Ñé´íÎó£¡");
+			apiAuth.setMsg("æ ¡éªŒé”™è¯¯ï¼");
 			apiAuth.setChecked(false);
 		}
 		return apiAuth;
@@ -266,7 +266,9 @@ public abstract class BaseApiController {
 		Collections.sort(keyList);
 		StringBuilder sb = new StringBuilder();
 		for (String key : keyList) {
-			if("key".equals(key) || "encryptCode".equals(key))continue;
+			if("key".equals(key) || "encryptCode".equals(key)) {
+				continue;
+			}
 			sb.append("&").append(key).append("=").append(params.get(key)[0]);
 		}
 		String paramsStr = sb.toString().replaceFirst("&", "");
@@ -276,7 +278,7 @@ public abstract class BaseApiController {
 			apiAuth.setChecked(true);
 		}else{
 			apiAuth.setCode(ApiConstant.CODE_SIGN_ERROR);
-			apiAuth.setMsg("Ğ£Ñé´íÎó£¡");
+			apiAuth.setMsg("æ ¡éªŒé”™è¯¯ï¼");
 			apiAuth.setChecked(false);
 		}
 		return apiAuth;
@@ -286,44 +288,74 @@ public abstract class BaseApiController {
 		String newdeviceid = request.getParameter("newdeviceid");
 		AppSourceCount asc = new AppSourceCount(appSource);
 		BindUtils.bindData(asc, request.getParameterMap());
-		if(StringUtils.isNotBlank(appSource)) asc.setAppSource(appSource);
-		if(memberid!=null) asc.setMemberid(memberid);
-		if(orderid!=null) asc.setOrderid(orderid);
-		if(partnerid!=null) asc.setPartnerid(partnerid);
-		if(StringUtils.isNotBlank(citycode)) asc.setCitycode(citycode);
-		if(StringUtils.isNotBlank(tradeno)) asc.setTradeno(tradeno);
-		if(StringUtils.isNotBlank(type)) asc.setType(type);
-		if(StringUtils.isNotBlank(apptype)) asc.setApptype(apptype);
-		if(StringUtils.isNotBlank(newdeviceid)) asc.setNewdeviceid(newdeviceid);
-		if(StringUtils.isNotBlank(originStr)) asc.setOrderOrigin(originStr);
+		if(StringUtils.isNotBlank(appSource)) {
+			asc.setAppSource(appSource);
+		}
+		if(memberid!=null) {
+			asc.setMemberid(memberid);
+		}
+		if(orderid!=null) {
+			asc.setOrderid(orderid);
+		}
+		if(partnerid!=null) {
+			asc.setPartnerid(partnerid);
+		}
+		if(StringUtils.isNotBlank(citycode)) {
+			asc.setCitycode(citycode);
+		}
+		if(StringUtils.isNotBlank(tradeno)) {
+			asc.setTradeno(tradeno);
+		}
+		if(StringUtils.isNotBlank(type)) {
+			asc.setType(type);
+		}
+		if(StringUtils.isNotBlank(apptype)) {
+			asc.setApptype(apptype);
+		}
+		if(StringUtils.isNotBlank(newdeviceid)) {
+			asc.setNewdeviceid(newdeviceid);
+		}
+		if(StringUtils.isNotBlank(originStr)) {
+			asc.setOrderOrigin(originStr);
+		}
 		monitorService.addMonitorEntry(AppConstant.TABLE_APPSOURCE, BeanUtil.getSimpleStringMap(asc));
 	}
 	protected void logAppSource(HttpServletRequest request, String citycode, Long memberid, String type, String apptype) {
 		logAppSource(request, citycode, memberid, null,null, null, type, apptype, null);
 	}
 	protected void logAppSourceOrder(HttpServletRequest request, GewaOrder order, String apptype, String orderOrigin) {
-		if(order==null) return;
+		if(order==null) {
+			return;
+		}
 		logAppSource(request, order.getCitycode(), order.getMemberid(), order.getId(), order.getTradeNo(), order.getPartnerid(), AppSourceCount.TYPE_ORDER, apptype, orderOrigin);
 	}
 	protected void getCommCommentData(ModelMap model, List<Comment> commentList, String haveface) {
-		if(commentList==null || commentList.isEmpty()) return;
+		if(commentList==null || commentList.isEmpty()) {
+			return;
+		}
 		Map<Long,Integer> isBuyMap = new HashMap<Long, Integer>();
 		Map<Long, Comment> transferMap = new HashMap<Long, Comment>();
-		Map<Long /*ÍÛÀ²id*/,String/*Í¼Æ¬µØÖ·*/> picMap = new HashMap<Long, String>();
+		Map<Long /*å“‡å•¦id*/,String/*å›¾ç‰‡åœ°å€*/> picMap = new HashMap<Long, String>();
 		Map<Long, Object> relateMap = new HashMap<Long, Object>();
 		Map<Long, Object> bodyMap = new HashMap<Long, Object>();
 		for(Comment comment: commentList){
-			if(StringUtils.isNotBlank(comment.getPicturename()))  picMap.put(comment.getId(), comment.getPicturename());
+			if(StringUtils.isNotBlank(comment.getPicturename())) {
+				picMap.put(comment.getId(), comment.getPicturename());
+			}
 			if(comment.getTransferid()!=null){
 				Comment c = commentService.getCommentById(comment.getTransferid());
 				if(null!=c){
 					transferMap.put(comment.getId(), c);
-					if(StringUtils.isNotBlank(c.getPicturename()))  picMap.put(c.getId(), c.getPicturename());
+					if(StringUtils.isNotBlank(c.getPicturename())) {
+						picMap.put(c.getId(), c.getPicturename());
+					}
 				}
 			}
 			if(StringUtils.isNotBlank(comment.getTag()) && comment.getRelatedid()!=null){
 				Object relate = relateService.getRelatedObject(comment.getTag(), comment.getRelatedid());
-				if(relate!=null) relateMap.put(comment.getId(), relate);
+				if(relate!=null) {
+					relateMap.put(comment.getId(), relate);
+				}
 			}
 			bodyMap.put(comment.getId(), getCommentBody(comment, haveface));
 		}
@@ -355,7 +387,9 @@ public abstract class BaseApiController {
 		return content;
 	}
 	protected String getCommentBody(Comment comment, String haveface){
-		if(comment==null) return "";
+		if(comment==null) {
+			return "";
+		}
 		String body = VmUtils.getHtmlText(comment.getBody(), 5000);
 		/*if(StringUtils.isNotBlank(body)){
 			body = body.replaceAll("#([^(#|\'|\"|\\\\)]+)#", "");
@@ -379,13 +413,17 @@ public abstract class BaseApiController {
 		return general / 10 + "." + general % 10;
 	}
 	protected void putRelateMap(List<RemoteActivity> activityList, ModelMap model){
-		if(activityList==null || activityList.isEmpty()) return;
+		if(activityList==null || activityList.isEmpty()) {
+			return;
+		}
 		Map<Long, MemberInfo> infoMap = new HashMap<Long, MemberInfo>();
 		Map<Long, Object> relateMap = new HashMap<Long, Object>();
 		Map<Long, Object> categoryMap = new HashMap<Long, Object>();
 		for(RemoteActivity activity : activityList){
 			MemberInfo info = daoService.getObject(MemberInfo.class, activity.getMemberid());
-			if(info != null) infoMap.put(activity.getId(),info);
+			if(info != null) {
+				infoMap.put(activity.getId(), info);
+			}
 			if(activity.getRelatedid() != null && StringUtils.isNotBlank(activity.getTag())){
 				Object relate = relateService.getRelatedObject(activity.getTag(), activity.getRelatedid());
 				relateMap.put(activity.getId(), relate);
@@ -401,7 +439,7 @@ public abstract class BaseApiController {
 		model.put("activityList", activityList);
 	}
 	protected String notSupport(ModelMap model){
-		return getErrorXmlView(model, ApiConstant.CODE_DATA_ERROR, "±¾°æ±¾²»Ö§³Ö£¬ÇëÏÂÔØ×îĞÂ°æ±¾¿Í»§¶Ë£¡");
+		return getErrorXmlView(model, ApiConstant.CODE_DATA_ERROR, "æœ¬ç‰ˆæœ¬ä¸æ”¯æŒï¼Œè¯·ä¸‹è½½æœ€æ–°ç‰ˆæœ¬å®¢æˆ·ç«¯ï¼");
 	}
 	protected String getPlaceGeneralmark(BaseEntity bean){
 		Integer generalmark = MarkHelper.getSingleMarkStar(bean, "general");
@@ -429,8 +467,8 @@ public abstract class BaseApiController {
 	protected ErrorCode validLoginLimit(String ip){
 		ErrorCode code = operationService.updateLoginLimitInCache(ip, getLoginLimitNum());
 		if(!code.isSuccess()){
-			dbLogger.warn("·Ç·¨µÇÂ¼£º" + ip);
-			return ErrorCode.getFailure("µÇÂ¼·±Ã¦ÇëÉÔºóÔÙÊÔ£¡");
+			dbLogger.warn("éæ³•ç™»å½•ï¼š" + ip);
+			return ErrorCode.getFailure("ç™»å½•ç¹å¿™è¯·ç¨åå†è¯•ï¼");
 		}
 		return ErrorCode.getSuccess("");
 	}
@@ -451,15 +489,17 @@ public abstract class BaseApiController {
 	}
 	
 	protected void sendWarning(final String msg, Member member, String... mobiles){
-		if(ArrayUtils.isEmpty(mobiles)) return;
+		if(ArrayUtils.isEmpty(mobiles)) {
+			return;
+		}
 		Timestamp cur = DateUtil.getCurFullTimestamp();
 		for (String mobile : mobiles) {
 			if(ValidateUtil.isMobile(mobile)){
-				String tmp = "ÄãÓÚ"+DateUtil.getCurTimeStr()+" ÔÚ¸ñÍßÀ­Éú»îÍøÉèÖÃÁË°ó¶¨" + msg + "£¬Èç¹ûÊÇÄã±¾ÈË²Ù×÷£¬Çë²»±ØÀí»á´Ë¶ÌĞÅ£¡";
+				String tmp = "ä½ äº"+DateUtil.getCurTimeStr()+" åœ¨æ ¼ç“¦æ‹‰ç”Ÿæ´»ç½‘è®¾ç½®äº†ç»‘å®š" + msg + "ï¼Œå¦‚æœæ˜¯ä½ æœ¬äººæ“ä½œï¼Œè¯·ä¸å¿…ç†ä¼šæ­¤çŸ­ä¿¡ï¼";
 				SMSRecord sms = new SMSRecord(MemberConstant.ACTION_BINDMOBILE + "_" + member.getId(), mobile, tmp, cur, DateUtil.addHour(cur, 2), SmsConstant.SMSTYPE_NOW);
 				untransService.sendMsgAtServer(sms, false);
 			}else if(ValidateUtil.isEmail(mobile)){
-				String tmp = "ÄãÓÚ" + DateUtil.formatTime(cur) + "ÔÚ¸ñÍßÀ­Éú»îÍøÉèÖÃÁË°ó¶¨" + msg + "£¬Èç¹ûÊÇÄã±¾ÈË²Ù×÷£¬Çë²»±ØÀí»á´ËÓÊ¼ş£¡";
+				String tmp = "ä½ äº" + DateUtil.formatTime(cur) + "åœ¨æ ¼ç“¦æ‹‰ç”Ÿæ´»ç½‘è®¾ç½®äº†ç»‘å®š" + msg + "ï¼Œå¦‚æœæ˜¯ä½ æœ¬äººæ“ä½œï¼Œè¯·ä¸å¿…ç†ä¼šæ­¤é‚®ä»¶ï¼";
 				gewaMailService.sendAdviseEmail(member.getNickname(), tmp, mobile);
 			}
 		}

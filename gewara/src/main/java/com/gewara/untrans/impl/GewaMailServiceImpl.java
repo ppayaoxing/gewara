@@ -40,7 +40,7 @@ import com.gewara.xmlbind.gym.CardItem;
 
 /**
  * @author <a href="mailto:acerge@163.com">gebiao(acerge)</a>
- * @since 2007-9-28ÏÂÎç02:05:17
+ * @since 2007-9-28ä¸‹åˆ02:05:17
  */
 @Service("gewaMailService")
 public class GewaMailServiceImpl implements GewaMailService{
@@ -73,7 +73,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 			model.put("cinemaid", opi.getCinemaid()+"");
 			model.put("moviename", opi.getMoviename());
 			model.put("cinemaname", opi.getCinemaname());
-			String title = "¹ÛÓ°½áÊø£¬·¢±íÆÀÂÛÓ®È¡»ı·Ö";
+			String title = "è§‚å½±ç»“æŸï¼Œå‘è¡¨è¯„è®ºèµ¢å–ç§¯åˆ†";
 			String template = "mail/commentMail.vm";
 	
 			String content = JsonUtils.writeMapToJson(model);
@@ -103,7 +103,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 			model.put("theatreid", odi.getTheatreid()+"");
 			model.put("dramaname", odi.getDramaname());
 			model.put("theatrename", odi.getTheatrename());
-			String title = "¹Û¾ç½áÊø£¬·¢±íÆÀÂÛÓ®È¡»ı·Ö";
+			String title = "è§‚å‰§ç»“æŸï¼Œå‘è¡¨è¯„è®ºèµ¢å–ç§¯åˆ†";
 			String template = "mail/dramaMail.vm";
 			String content = JsonUtils.writeMapToJson(model);
 			EmailRecord er = new EmailRecord(EmailRecord.SENDER_GEWARA, title, content, member.getEmail());
@@ -127,7 +127,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 			model.put("realname", otherInfoMap.get("realname"));
 			model.put("telphone", otherInfoMap.get("telphone"));
 			model.put("due", order.getDue());
-			String title = "³É¹¦¹ºÂò½¡Éí¿¨";
+			String title = "æˆåŠŸè´­ä¹°å¥èº«å¡";
 			String template = "mail/gymMail.vm";
 			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, title, template, model, member.getEmail());
 		}
@@ -151,7 +151,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 			Map model = new HashMap();
 			model.put("nickname", member.getNickname());
 			model.put("returnUrl", returnUrl);
-			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "»¶Ó­Äú×¢²á¸ñÍßÀ­Éú»îÍø", "mail/welcome.vm", model, member.getEmail());
+			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "æ¬¢è¿æ‚¨æ³¨å†Œæ ¼ç“¦æ‹‰ç”Ÿæ´»ç½‘", "mail/welcome.vm", model, member.getEmail());
 		}
 	}
 	@Override
@@ -161,14 +161,14 @@ public class GewaMailServiceImpl implements GewaMailService{
 			model.put("nickname",  member.getNickname());
 			model.put("order", BeanUtil.getBeanMapWithKey(order,"paymethod", "due", "quantity"));
 			Map<String, String> descMap = JsonUtils.readJsonToMap(order.getDescription2());
-			model.put("moviename", descMap.get("Ó°Æ¬"));
-			model.put("mpi", descMap.get("³¡´Î"));
+			model.put("moviename", descMap.get("å½±ç‰‡"));
+			model.put("mpi", descMap.get("åœºæ¬¡"));
 			int point  = order.getDue();
 			if(StringUtils.equals(order.getPaymethod(), PaymethodConstant.PAYMETHOD_GEWAPAY)) point = order.getDue()-order.getWabi();
 			if(point<0) point = 0;
 			model.put("point", point);
 			model.put("cinema", BeanUtil.getBeanMapWithKey(cinema, "name" ,"countyname", "address"));
-			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "³É¹¦¹ºÂòµçÓ°Æ±", "mail/mail.vm", model, member.getEmail());
+			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "æˆåŠŸè´­ä¹°ç”µå½±ç¥¨", "mail/mail.vm", model, member.getEmail());
 		}
 	}
 	@Override
@@ -179,7 +179,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 		Map model = new HashMap();
 		model.put("nickname", member.getNickname());
 		model.put("queryStr", queryStr);
-		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "ÄãµÄµÇÂ½ÓÊÏä¸ü¸ÄÉêÇë", "mail/exchangeEmail.vm", model, newEmail);
+		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "ä½ çš„ç™»é™†é‚®ç®±æ›´æ”¹ç”³è¯·", "mail/exchangeEmail.vm", model, newEmail);
 	}
 	@Override
 	public void sendSecurityEmail(Member member, String email){
@@ -191,7 +191,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 			Map model = new HashMap();
 			model.put("nickname", member.getNickname());
 			model.put("queryStr", queryStr);
-			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "ÄãÉèÖÃ°²È«µÇÂ½ÓÊÏä", "mail/securityEmail.vm", model, email);
+			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "ä½ è®¾ç½®å®‰å…¨ç™»é™†é‚®ç®±", "mail/securityEmail.vm", model, email);
 		}
 	}
 	@Override
@@ -204,7 +204,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 			Map model = new HashMap();
 			model.put("nickname", member.getNickname());
 			model.put("returnUrl", returnUrl);
-			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "½â³ıÊÖ»ú°ó¶¨", "mail/removeMobile.vm", model, member.getEmail());
+			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "è§£é™¤æ‰‹æœºç»‘å®š", "mail/removeMobile.vm", model, member.getEmail());
 		}
 	}
 	@Override
@@ -214,7 +214,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 		Map model = new HashMap();
 		model.put("nickname", nickname);
 		model.put("returnUrl", returnUrl);
-		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "ÕÒ»ØµÇÂ¼ÃÜÂë", "mail/getPassword.vm", model, email);
+		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "æ‰¾å›ç™»å½•å¯†ç ", "mail/getPassword.vm", model, email);
 	}
 	@Override
 	public void sendValidateEmail(Member member, String uuid) {
@@ -224,7 +224,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 		Map model = new HashMap();
 		model.put("nickname", member.getNickname());
 		model.put("returnUrl", returnUrl);
-		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "ĞŞ¸ÄµÇÂ¼ÃÜÂë", "mail/validateEmail.vm", model, email);
+		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "ä¿®æ”¹ç™»å½•å¯†ç ", "mail/validateEmail.vm", model, email);
 	}
 	@Override
 	public void sendSeniorRecognitionEmail(String nickname, Long memberid,String email) {
@@ -234,7 +234,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 		Map model = new HashMap();
 		model.put("nickname", nickname);
 		model.put("returnUrl", returnUrl);
-		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "ÓÊÏäÑéÖ¤", "mail/seniorRecognition.vm", model,email);
+		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "é‚®ç®±éªŒè¯", "mail/seniorRecognition.vm", model,email);
 	}
 	@Override
 	public void sendModifyCinemaMail(GewaraUser user,Long relatedid,String url,String msg) {
@@ -244,7 +244,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 		map.put("message",msg);
 		map.put("url", url);
 		
-		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "ÉÌ¼ÒĞŞ¸ÄÓ°ÔºĞÅÏ¢", "mail/modifyCinemaMail.vm", map, EMAIL_ADDRESS_EDIT);
+		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "å•†å®¶ä¿®æ”¹å½±é™¢ä¿¡æ¯", "mail/modifyCinemaMail.vm", map, EMAIL_ADDRESS_EDIT);
 	}
 	@Override
 	public void sendAdviseEmail(String membername, String body, String email) {
@@ -253,7 +253,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 			model.put("nickname", membername);
 			model.put("body", body);
 			model.put("email", email);
-			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "·´À¡½¨ÒéĞÅÏ¢»Ø¸´", "mail/adviseEmail.vm", model, email);
+			mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "åé¦ˆå»ºè®®ä¿¡æ¯å›å¤", "mail/adviseEmail.vm", model, email);
 		}
 	}
 	@Override
@@ -261,7 +261,7 @@ public class GewaMailServiceImpl implements GewaMailService{
 		Map model = new HashMap();
 		model.put("nickname", nickname);
 		model.put("count", count);
-		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "¸ñÍßÀ­ÓÅ»İÈ¯¹ıÆÚÌáĞÑ", "mail/cardWarn.vm", model, email);
+		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, "æ ¼ç“¦æ‹‰ä¼˜æƒ åˆ¸è¿‡æœŸæé†’", "mail/cardWarn.vm", model, email);
 	}
 
 }

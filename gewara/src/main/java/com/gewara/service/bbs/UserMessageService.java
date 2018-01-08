@@ -22,7 +22,7 @@ public interface UserMessageService {
 	boolean isSendMsg(Long memberid);
 	void initSysMsgList(List<SysMessageAction> sysMsgList);
 	/**
-	 * ÓÃ»§ÓëÓÃ»§Ö®¼äµÄË½ĞÅ
+	 * ç”¨æˆ·ä¸ç”¨æˆ·ä¹‹é—´çš„ç§ä¿¡
 	 * @param frommemberid
 	 * @param tomemberid
 	 * @param from
@@ -31,7 +31,7 @@ public interface UserMessageService {
 	 */
 	List<UserMessageAction> getUserMessageActionByFromidToid(Long frommemberid, Long tomemberid, Timestamp addtime, int from, int maxnum);
 	/**
-	 * ÎÒµÄÈ«²¿Ë½ĞÅ
+	 * æˆ‘çš„å…¨éƒ¨ç§ä¿¡
 	 * @param memberid
 	 * @param from
 	 * @param maxnum
@@ -40,7 +40,7 @@ public interface UserMessageService {
 	List<UserMessageAction> getUserMessageActionByMemberid(Long memberid, int from, int maxnum);
 	
 	/**
-	 *  ¸ù¾İÓÃ»§Id, ×´Ì¬ ·ÖÒ³²éÑ¯
+	 *  æ ¹æ®ç”¨æˆ·Id, çŠ¶æ€ åˆ†é¡µæŸ¥è¯¢
 	 * @param memberId
 	 * @param status
 	 * @param first
@@ -50,19 +50,19 @@ public interface UserMessageService {
 	Integer countMessagesByMemIdAndStatus(Long memberId, String status);
 	List<UserMessageAction> getMessagesByMemIdAndStatus(Long memberId, String status, int isread, int from, int maxnum);
 	/**
-	 *  ¹«¸æÁĞ±í(µ¥Ìõ¼ÇÂ¼)
+	 *  å…¬å‘Šåˆ—è¡¨(å•æ¡è®°å½•)
 	 */
 	UserMessageAction getPublicNotice();
 	
 	/**
-	 * ÊÇ·ñÒÑ¾­·¢ËÍÉêÇë¡¢ÑûÇë
+	 * æ˜¯å¦å·²ç»å‘é€ç”³è¯·ã€é‚€è¯·
 	 * @param commuid
 	 * @param memberid
 	 * @return
 	 */
 	boolean isExistSysMessageAction(Long commuid, Long memberid, String action, boolean flag);
 	/**
-	 * ¸ù¾İcommuid,memberid,action,status²éÑ¯ÊÇ´æÔÚÊı¾İ
+	 * æ ¹æ®commuid,memberid,action,statusæŸ¥è¯¢æ˜¯å­˜åœ¨æ•°æ®
 	 * @param commuid
 	 * @param memberid
 	 * @param action
@@ -73,17 +73,17 @@ public interface UserMessageService {
 	Integer getCountMessageByMessageActionId(Long id);
 	
 	/**
-	 * ²éÑ¯ÊÕ¼şÏäÎ´¶ÁĞÅÏ¢ÊıÁ¿
+	 * æŸ¥è¯¢æ”¶ä»¶ç®±æœªè¯»ä¿¡æ¯æ•°é‡
 	 */
 	Integer getNotReadMessage(Long memberid,Integer isRead);
 	
 	/**
-	 * ²éÑ¯ÏµÍ³ĞÅÏ¢Î´¶ÁÊıÁ¿
+	 * æŸ¥è¯¢ç³»ç»Ÿä¿¡æ¯æœªè¯»æ•°é‡
 	 */
 	Integer getNotReadSysMessage(Long memberid,Long isRead);
 	List<SysMessageAction> getNotReadSysMessageList(Long memberid,Long isRead);
 	/**
-	 * ¸ù¾İactionid,action,status²éÑ¯ÏµÍ³ÏûÏ¢ÁĞ±í
+	 * æ ¹æ®actionid,action,statusæŸ¥è¯¢ç³»ç»Ÿæ¶ˆæ¯åˆ—è¡¨
 	 * @param actionid
 	 * @param action
 	 * @param stauts
@@ -92,7 +92,7 @@ public interface UserMessageService {
 	List<SysMessageAction> getSysMessageActionListByActionidAndActionAndStatus(Long actionid, String action, String stauts, int from, int maxnum);
 	
 	/**
-	 *  20101109 Ìí¼Ó·¢ËÍÏµÍ³ÏûÏ¢Ä£°å
+	 *  20101109 æ·»åŠ å‘é€ç³»ç»Ÿæ¶ˆæ¯æ¨¡æ¿
 	 */
 	void sendSiteMSG(Long tomemberid, String action, Long actionid, String body);
 	

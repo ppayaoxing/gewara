@@ -10,135 +10,135 @@ public abstract class MongoData {
 	public static final Integer Stringtype = 2;
 	public static final Integer Nulltype = 10;
 	/**
-	 *Mongo ±íÃû(ÒÔNS_±êÊ¶µÄ³£Á¿)
+	 *Mongo è¡¨å(ä»¥NS_æ ‡è¯†çš„å¸¸é‡)
 	 **/
-	//1¡¢¾ÛºÏÊı¾İ
-	public static final String NS_MEMBER_INFO = "memberInfo";	//ÓÃ»§´¢´æ±í
-	public static final String NS_MEMBERCOUNT = "member.count";					//ÓÃ»§¾ÛºÏÊı¾İ
-	public static final String NS_LASTORDER = "member.last.order";					//ÓÃ»§×îºóÒ»´Î¶©µ¥Êı¾İ
-	public static final String NS_FIRSTORDER = "member.first.order";					//ÓÃ»§µÚÒ»´Î¶©µ¥Êı¾İ
-	//2¡¢ÒµÎñÊı¾İ
-	public static final String NS_ACTION_MULTYWSMSG = "websiteMsg.multy"; 		// ±íÃû Õë¶Ô²¿·ÖÓÃ»§Èº·¢Õ¾ÄÚĞÅ Mongo±êÊ¶
-	public static final String NS_RECOMMEND_MEMBER = "recommend.member";	//ÍÆ¼öÓÃ»§±í
-	public static final String NS_APPLYBETA_MEMBER = "beta.member";	//ÓÃ»§ÄÚ²â±í
-	public static final String NS_PROMPT_INFO = "promptinfo";	//ÌáÊ¾ĞÅÏ¢±í
-	public static final String NS_INDEX_DATASHEET = "index.datasheet";		//µçÓ°Ê×Ò³Êı¾İÍ³¼Æ
-	public static final String NS_EXPLAIN="explain";	//ºóÌ¨Ê¹ÓÃ°ïÖú
+	//1ã€èšåˆæ•°æ®
+	public static final String NS_MEMBER_INFO = "memberInfo";	//ç”¨æˆ·å‚¨å­˜è¡¨
+	public static final String NS_MEMBERCOUNT = "member.count";					//ç”¨æˆ·èšåˆæ•°æ®
+	public static final String NS_LASTORDER = "member.last.order";					//ç”¨æˆ·æœ€åä¸€æ¬¡è®¢å•æ•°æ®
+	public static final String NS_FIRSTORDER = "member.first.order";					//ç”¨æˆ·ç¬¬ä¸€æ¬¡è®¢å•æ•°æ®
+	//2ã€ä¸šåŠ¡æ•°æ®
+	public static final String NS_ACTION_MULTYWSMSG = "websiteMsg.multy"; 		// è¡¨å é’ˆå¯¹éƒ¨åˆ†ç”¨æˆ·ç¾¤å‘ç«™å†…ä¿¡ Mongoæ ‡è¯†
+	public static final String NS_RECOMMEND_MEMBER = "recommend.member";	//æ¨èç”¨æˆ·è¡¨
+	public static final String NS_APPLYBETA_MEMBER = "beta.member";	//ç”¨æˆ·å†…æµ‹è¡¨
+	public static final String NS_PROMPT_INFO = "promptinfo";	//æç¤ºä¿¡æ¯è¡¨
+	public static final String NS_INDEX_DATASHEET = "index.datasheet";		//ç”µå½±é¦–é¡µæ•°æ®ç»Ÿè®¡
+	public static final String NS_EXPLAIN="explain";	//åå°ä½¿ç”¨å¸®åŠ©
 	public static final String NS_PARTNER_CONTACT = "partner.contact";
 	public static final String NS_DIARY = "DIARY_BODY";
-	public static final String NS_KEFU_REPLYTEMPLATE = "kefu.replytemplate"; 	// ¿Í·ş»Ø¸´Ä£°å
+	public static final String NS_KEFU_REPLYTEMPLATE = "kefu.replytemplate"; 	// å®¢æœå›å¤æ¨¡æ¿
 	public static final String NS_ACTION_PARTNER  = "partner.action";
-	public static final String NS_TICKET_MACHINE_IMAGES = "ticket_machine_images"; // ºóÌ¨Í¼Æ¬
-	public static final String NS_TICKET_MACHINE_ERROR = "ticket_machine_error";	//Ò»Ìå»ú´íÎó
-	public static final String NS_EQUIPMENTSTATUS = "EQUIPMENT_STATUS";			//Ò»Ìå»ú×´Ì¬¼à¿Ø
+	public static final String NS_TICKET_MACHINE_IMAGES = "ticket_machine_images"; // åå°å›¾ç‰‡
+	public static final String NS_TICKET_MACHINE_ERROR = "ticket_machine_error";	//ä¸€ä½“æœºé”™è¯¯
+	public static final String NS_EQUIPMENTSTATUS = "EQUIPMENT_STATUS";			//ä¸€ä½“æœºçŠ¶æ€ç›‘æ§
 	public static final String NS_JOB_NAMESPACE = "gewa.job";
 	public static final String NS_PRIMITIVE = "java.primitive";
 	public static final String NS_SIGN = "gewa.sign";
 	public static final String NS_TREASURE = "gewa.treasure";
-	public static final String NS_MEMBER_MOBILE= "member_139email"; //139ÓÊÏä
+	public static final String NS_MEMBER_MOBILE= "member_139email"; //139é‚®ç®±
 	public static final String NS_INTEGRAL = "integral";
-	public static final String NS_MEMBER_TRAINING_INFO = "member_training_info";		//ÓÃ»§ÅàÑµĞÅÏ¢
-	public static final String NS_CITY_ROOM_CHARACTERISTIC= "city_room_characteristic"; //¸÷¸ö³ÇÊĞÓµÓĞµÄÓ°ÌüÌØÉ«
+	public static final String NS_MEMBER_TRAINING_INFO = "member_training_info";		//ç”¨æˆ·åŸ¹è®­ä¿¡æ¯
+	public static final String NS_CITY_ROOM_CHARACTERISTIC= "city_room_characteristic"; //å„ä¸ªåŸå¸‚æ‹¥æœ‰çš„å½±å…ç‰¹è‰²
 	
-	public static final String NS_UNIONPAY_WALLET_MAPPING= "unionpayWalletMapping";  //ÒøÁªÇ®°üµç×ÓÆ±Æ±È¯Ó³Éä
-	public static final String NS_UNIONPAY_WALLET_URL= "unionpayWalletSPUrl";  //ÒøÁªÇ®°üµç×ÓÆ±×¨Ìâ¶¯Ì¬url±ä¶¯
+	public static final String NS_UNIONPAY_WALLET_MAPPING= "unionpayWalletMapping";  //é“¶è”é’±åŒ…ç”µå­ç¥¨ç¥¨åˆ¸æ˜ å°„
+	public static final String NS_UNIONPAY_WALLET_URL= "unionpayWalletSPUrl";  //é“¶è”é’±åŒ…ç”µå­ç¥¨ä¸“é¢˜åŠ¨æ€urlå˜åŠ¨
 	
-	public static final String NS_AUTO_SETTER_SEND_EMAIL= "autoSetterEmail";  //½áËãÈ·ÈÏÓÊ¼ş
-	public static final String NS_AUTO_SETTER_LIMIT = "autoSetterLimit";	//×Ô¶¯ÉèÖÃÆ÷Ê±¼äÏŞÖÆĞÅÏ¢
+	public static final String NS_AUTO_SETTER_SEND_EMAIL= "autoSetterEmail";  //ç»“ç®—ç¡®è®¤é‚®ä»¶
+	public static final String NS_AUTO_SETTER_LIMIT = "autoSetterLimit";	//è‡ªåŠ¨è®¾ç½®å™¨æ—¶é—´é™åˆ¶ä¿¡æ¯
 
-	//3¡¢×¨ÌâÊı¾İ
-	public static final String NS_MAINSUBJECT = "subject.main";					// ×¨Ìâ
-	public static final String NS_CHINAPAY_ACTIVITY = "chinapay_activity";		//ÒøÁª»î¶¯
+	//3ã€ä¸“é¢˜æ•°æ®
+	public static final String NS_MAINSUBJECT = "subject.main";					// ä¸“é¢˜
+	public static final String NS_CHINAPAY_ACTIVITY = "chinapay_activity";		//é“¶è”æ´»åŠ¨
 	public static final String NS_DISNEY_JOIN= "disney_join";
 	public static final String NS_DISNEY_MEMBER = "disney_member";
-	public static final String NS_ACTIVITY_SINGLES = "actvity_singles";			//¹â¹÷±í(mongo°æ)
-	public static final String NS_ACTIVITY_PUBLIC_CINEMA ="public_cinema";		//ÇéÈË½Ú×¨Ìâ(Õâ´Î×÷Îª¹«ÓÃ±í)
+	public static final String NS_ACTIVITY_SINGLES = "actvity_singles";			//å…‰æ£è¡¨(mongoç‰ˆ)
+	public static final String NS_ACTIVITY_PUBLIC_CINEMA ="public_cinema";		//æƒ…äººèŠ‚ä¸“é¢˜(è¿™æ¬¡ä½œä¸ºå…¬ç”¨è¡¨)
 	
-	public static final String NS_YQ = "invite_code";							//ÑûÇë
+	public static final String NS_YQ = "invite_code";							//é‚€è¯·
 
-	public static final String NS_GBD_WINNER = "gbd_winner";					//¹ã·¢ĞÅÓÃ¿¨ÉêÇëÓÃ»§
-	public static final String NS_ABC_CHARGE = "abc.charge";					//Å©ÒµÒøĞĞºÏ×÷ºóÌ¨³äÖµ¼ÇÂ¼£¬£¨ÖØÒª£©
-	public static final String NS_WCAN_CHARGE = "wcan.charge";					//ÍşÄÜ»ı·Ö¶Ò»»Íß±Ò³äÖµ¼ÇÂ¼£¬£¨ÖØÒª£©
-	public static final String NS_GBD_WINNER_DATE = "gbd_winner_date";			//¹ã·¢ĞÅÓÃ¿¨ÈÕÆÚ
+	public static final String NS_GBD_WINNER = "gbd_winner";					//å¹¿å‘ä¿¡ç”¨å¡ç”³è¯·ç”¨æˆ·
+	public static final String NS_ABC_CHARGE = "abc.charge";					//å†œä¸šé“¶è¡Œåˆä½œåå°å……å€¼è®°å½•ï¼Œï¼ˆé‡è¦ï¼‰
+	public static final String NS_WCAN_CHARGE = "wcan.charge";					//å¨èƒ½ç§¯åˆ†å…‘æ¢ç“¦å¸å……å€¼è®°å½•ï¼Œï¼ˆé‡è¦ï¼‰
+	public static final String NS_GBD_WINNER_DATE = "gbd_winner_date";			//å¹¿å‘ä¿¡ç”¨å¡æ—¥æœŸ
 	public static final String NS_GEWA_CUP_NAMESPACE="gewa.cup";
 	public static final String NS_ACTION_NAMESPACE = "gf.partner.action";
-	public static final String NS_API_WARNCALLBACK = "api.warncallback";		// ÉÌ¼ÒÎŞ·¨Õı³£³öÆ±Ê±»Øµ÷
+	public static final String NS_API_WARNCALLBACK = "api.warncallback";		// å•†å®¶æ— æ³•æ­£å¸¸å‡ºç¥¨æ—¶å›è°ƒ
 	public static final String NS_PAY_CARDNUMBER = "pay_cardnumber";
-	public static final String NS_FLASH_PICTRUE = "flash_pictrue";				//flashÍ¼Æ¬(mongo±í)
-	public static final String NS_ACTIVITY_COMMON_PICTRUE = "common_pictrue";	//ÓÃ»§ÉÏ´«Í¼Æ¬±í
-	public static final String NS_ACTIVITY_COMMON_MEMBER = "common_member";		//ÓÃ»§ĞÅÏ¢±í
-	public static final String NS_SYSMESSAGEACTION = "sysMessageAction";			//Õ¾ÄÚĞÅ¶¨Ê±·¢ËÍ
-	public static final String NS_WINNING_RECEIPT_INFO = "winningReceiptInfo";	//ÓÃ»§ÖĞ½±
-	public static final String NS_POSTCARD_INFO = "postcardInfo";		//Ã÷ĞÅÆ¬ĞÅÏ¢
-	public static final String NS_FILMFEST_FIFTEEN = "film_fifteen";	//µÚ15½ìµçÓ°½Ú¼ÆËã³¡´ÎÔ¤¶©Êı±í
-	public static final String NS_SINGLEDAY = "single_day";				// µ¥Éí½Ú³¡´Î
-	public static final String NS_BUYTICKET_RANKING = "buy_ticket_ranking";				// µ¥Éí½Ú³¡´Î
+	public static final String NS_FLASH_PICTRUE = "flash_pictrue";				//flashå›¾ç‰‡(mongoè¡¨)
+	public static final String NS_ACTIVITY_COMMON_PICTRUE = "common_pictrue";	//ç”¨æˆ·ä¸Šä¼ å›¾ç‰‡è¡¨
+	public static final String NS_ACTIVITY_COMMON_MEMBER = "common_member";		//ç”¨æˆ·ä¿¡æ¯è¡¨
+	public static final String NS_SYSMESSAGEACTION = "sysMessageAction";			//ç«™å†…ä¿¡å®šæ—¶å‘é€
+	public static final String NS_WINNING_RECEIPT_INFO = "winningReceiptInfo";	//ç”¨æˆ·ä¸­å¥–
+	public static final String NS_POSTCARD_INFO = "postcardInfo";		//æ˜ä¿¡ç‰‡ä¿¡æ¯
+	public static final String NS_FILMFEST_FIFTEEN = "film_fifteen";	//ç¬¬15å±Šç”µå½±èŠ‚è®¡ç®—åœºæ¬¡é¢„è®¢æ•°è¡¨
+	public static final String NS_SINGLEDAY = "single_day";				// å•èº«èŠ‚åœºæ¬¡
+	public static final String NS_BUYTICKET_RANKING = "buy_ticket_ranking";				// å•èº«èŠ‚åœºæ¬¡
 	
-	public static final String NS_GFBANK_ORDER = "gfbank.order";			//Ê¹ÓÃ¹ã·¢ÒøĞĞÖ§¸¶²¢Ê¹ÓÃÓÅ»İ»î¶¯µÄ¶©µ¥
-	public static final String NS_GFBANK_USER = "gfbank.user";				//Ç©Ô¼¹ã·¢ÒøĞĞÍøÒøµÄÓÃ»§[Ã¿ÖÜ¹ã·¢ÒøĞĞ»á¸ø³öÃûµ¥]
+	public static final String NS_GFBANK_ORDER = "gfbank.order";			//ä½¿ç”¨å¹¿å‘é“¶è¡Œæ”¯ä»˜å¹¶ä½¿ç”¨ä¼˜æƒ æ´»åŠ¨çš„è®¢å•
+	public static final String NS_GFBANK_USER = "gfbank.user";				//ç­¾çº¦å¹¿å‘é“¶è¡Œç½‘é“¶çš„ç”¨æˆ·[æ¯å‘¨å¹¿å‘é“¶è¡Œä¼šç»™å‡ºåå•]
 
-	public static final String NS_SUBJECT_COUNT = "activity.count"; 		//°×É«ÇéÈË½Ú»î¶¯ÈËÊı
-	public static final String NS_PRICETIER = "price.tier"; 				//¼Û¸ñÀà±ğ
-	public static final String NS_CITYPRICETIER = "cityprice.tier"; 		//³ÇÊĞËùÔÚÀà±ğ
-	public static final String NS_VOUCHERCARD_TYPE = "vouchercard_type"; 	//¶Ò»»È¯ÖÖÀà
-	public static final String NS_VOUCHERCARD_ISSUERID = "vouchercard_issuerid";//µç×ÓÆ±È¯·¢ĞĞÈËÅäÖÃ
+	public static final String NS_SUBJECT_COUNT = "activity.count"; 		//ç™½è‰²æƒ…äººèŠ‚æ´»åŠ¨äººæ•°
+	public static final String NS_PRICETIER = "price.tier"; 				//ä»·æ ¼ç±»åˆ«
+	public static final String NS_CITYPRICETIER = "cityprice.tier"; 		//åŸå¸‚æ‰€åœ¨ç±»åˆ«
+	public static final String NS_VOUCHERCARD_TYPE = "vouchercard_type"; 	//å…‘æ¢åˆ¸ç§ç±»
+	public static final String NS_VOUCHERCARD_ISSUERID = "vouchercard_issuerid";//ç”µå­ç¥¨åˆ¸å‘è¡Œäººé…ç½®
 	public static final String NS_VOUCHERCARD_CINEMA = "vouchercard_cinema";
 	
-	public static final String NS_MACHINECONFIG = "machine.machineconfig";	//Ò»Ìå»ú¹Ø»úÊ±¼äÅäÖÃ  add by taiqichao
-	public static final String NS_OPI_LOCKNUM = "opilockstat";				//³¡´ÎËø¶¨×ùÎ»ÊıÁ¿Í³¼Æ
+	public static final String NS_MACHINECONFIG = "machine.machineconfig";	//ä¸€ä½“æœºå…³æœºæ—¶é—´é…ç½®  add by taiqichao
+	public static final String NS_OPI_LOCKNUM = "opilockstat";				//åœºæ¬¡é”å®šåº§ä½æ•°é‡ç»Ÿè®¡
 	public static final String NS_CCBPOS_ACTIVITY = "ccbPosActivity";
-	public static final String NS_CCBPOS_GZ_ACTIVITY = "ccbPosGZActivity"; //¹ãÖİ½¨ÉèÒøĞĞ»î¶¯
-	public static final String NS_CCBPOS_EVERYDAYTWICE= "ccbEveryDayTwice"; //¹ãÖİ½¨ÉèÒøĞĞ»î¶¯
-	public static final String NS_CCBPOS_WEEKONE= "ccbWeekOne"; 			//¹ãÖİ½¨ÉèÒøĞĞ»î¶¯--Ò»ÖÜÒ»´Î
+	public static final String NS_CCBPOS_GZ_ACTIVITY = "ccbPosGZActivity"; //å¹¿å·å»ºè®¾é“¶è¡Œæ´»åŠ¨
+	public static final String NS_CCBPOS_EVERYDAYTWICE= "ccbEveryDayTwice"; //å¹¿å·å»ºè®¾é“¶è¡Œæ´»åŠ¨
+	public static final String NS_CCBPOS_WEEKONE= "ccbWeekOne"; 			//å¹¿å·å»ºè®¾é“¶è¡Œæ´»åŠ¨--ä¸€å‘¨ä¸€æ¬¡
 	public static final String NS_CCBPOS_CARDBIN = "ccbPosCardbin";
-	public static final String NS_CCBPOS_CARDBIN_2013 = "ccbPosCardbin2013"; //½¨ĞĞ   ĞÂµÄ»î¶¯Ç°8ºó4¿¨bin
+	public static final String NS_CCBPOS_CARDBIN_2013 = "ccbPosCardbin2013"; //å»ºè¡Œ   æ–°çš„æ´»åŠ¨å‰8å4å¡bin
 	public static final String NS_CCBPOS_ORDER = "ccbPosOrder";
 	public static final String NS_UNIONPAYFAST_CARDBIN = "unionPayFastCardbin";
 	
-	public static final String NS_COMMON_WHITEDAY = "subject_whiteday";	//Õã½­Ê¡°×É«ÇéÈË½Ú×¨Ìâ
-	public static final String NS_COMMON_WHITEDAY_DRAWTIMES = "subject_whiteday_drawTimes";	//Õã½­Ê¡°×É«ÇéÈË½Ú×¨Ìâ ÓÃ»§»ñÈ¡µÄÃâ·Ñ³é½±»ú»á
-	public static final String NS_COMMON_MOTORSHOW_DRAWTIMES = "subject_motorShow_drawTimes";	//Õã½­Ê¡°×É«ÇéÈË½Ú×¨Ìâ ÓÃ»§»ñÈ¡µÄÃâ·Ñ³é½±»ú»á
+	public static final String NS_COMMON_WHITEDAY = "subject_whiteday";	//æµ™æ±Ÿçœç™½è‰²æƒ…äººèŠ‚ä¸“é¢˜
+	public static final String NS_COMMON_WHITEDAY_DRAWTIMES = "subject_whiteday_drawTimes";	//æµ™æ±Ÿçœç™½è‰²æƒ…äººèŠ‚ä¸“é¢˜ ç”¨æˆ·è·å–çš„å…è´¹æŠ½å¥–æœºä¼š
+	public static final String NS_COMMON_MOTORSHOW_DRAWTIMES = "subject_motorShow_drawTimes";	//æµ™æ±Ÿçœç™½è‰²æƒ…äººèŠ‚ä¸“é¢˜ ç”¨æˆ·è·å–çš„å…è´¹æŠ½å¥–æœºä¼š
 	
-	public static final String NS_COMMON_VOTE = "common_vote";	//Í¨ÓÃÍ¶Æ±³ÌĞò
-	public static final String NS_WEIXIN = "weixin";			//Î¢ĞÅ
-	public static final String NS_TIMERIFT = "time_rift";	//Ê¢´óÊ±¿ÕÁÑºÛÌØÈ¨Âë
+	public static final String NS_COMMON_VOTE = "common_vote";	//é€šç”¨æŠ•ç¥¨ç¨‹åº
+	public static final String NS_WEIXIN = "weixin";			//å¾®ä¿¡
+	public static final String NS_TIMERIFT = "time_rift";	//ç››å¤§æ—¶ç©ºè£‚ç—•ç‰¹æƒç 
 	public static final String NS_BADEGG = "bad_egg";
 	public static final String NS_REGEXP = "reg_exp";
 	public static final String NS_DRAWDAYCOUNT = "drawcount"; 
 
-	//ºóÌ¨ÓÃ»§ÃÜÂë±£»¤
-	public static final String FIELD_REAL_NAME = "realName";				//ÖĞ½±ĞÕÃû
-	public static final String FIELD_RECEIPT_ADDRESS = "receiptAddress";	//ÊÕ»õµØÖ·
-	public static final String FIELD_TELEPHONE = "telephone";				//ÁªÏµµç»°
-	public static final String FIELD_EMAIL = "email";						//µç×ÓÓÊÏä
-	public static final String FIELD_SEX = "sex";							//ĞÔ±ğ
+	//åå°ç”¨æˆ·å¯†ç ä¿æŠ¤
+	public static final String FIELD_REAL_NAME = "realName";				//ä¸­å¥–å§“å
+	public static final String FIELD_RECEIPT_ADDRESS = "receiptAddress";	//æ”¶è´§åœ°å€
+	public static final String FIELD_TELEPHONE = "telephone";				//è”ç³»ç”µè¯
+	public static final String FIELD_EMAIL = "email";						//ç”µå­é‚®ç®±
+	public static final String FIELD_SEX = "sex";							//æ€§åˆ«
 	
 
-	//public static final String NS_APPCLIENT_DOWNRECORD = "appclientDownRecord";//¿Í»§
-	//public static final String NS_PSBCBANK_USER = "psbcbank.user";		//ÓÊÕş´¢ĞîÒøĞĞÍøÒøµÄÓÃ»§2012-07-05µ½ÆÚ
+	//public static final String NS_APPCLIENT_DOWNRECORD = "appclientDownRecord";//å®¢æˆ·
+	//public static final String NS_PSBCBANK_USER = "psbcbank.user";		//é‚®æ”¿å‚¨è“„é“¶è¡Œç½‘é“¶çš„ç”¨æˆ·2012-07-05åˆ°æœŸ
 
-	//ÓÃ»§²Ù×÷¾ÛºÏÊı¾İ
+	//ç”¨æˆ·æ“ä½œèšåˆæ•°æ®
 	public static final String SYSTEM_ID = "_id";
-	public static final String DEFAULT_ID_NAME  = "id";						// ¹«ÓÃ×Ö¶Î ID_NAME
+	public static final String DEFAULT_ID_NAME  = "id";						// å…¬ç”¨å­—æ®µ ID_NAME
 	public static final String ACTION_MEMBERID = "memberid";
-	public static final String ACTION_USERID = "userid";					// ¹«ÓÃ×Ö¶Î
+	public static final String ACTION_USERID = "userid";					// å…¬ç”¨å­—æ®µ
 	public static final String ACTION_MEMBERNAME = "membername";
-	public static final String ACTION_BODY = "body";							// ¹«ÓÃ×Ö¶Î
-	public static final String ACTION_ADDTIME = "addtime";						// ¹«ÓÃ×Ö¶Î
-	public static final String ACTION_MODIFYTIME = "modifytime";				// ¹«ÓÃ×Ö¶Î
-	public static final String ACTION_TAG = "tag";								// ¹«ÓÃ×Ö¶Î
-	public static final String ACTION_RELATEDID = "relatedid";					// ¹ØÁªID
-	public static final String ACTION_PARENTID = "parentid";					// ¹ØÁªID
-	public static final String ACTION_ORDERNUM = "ordernum";					// ÅÅĞò
-	public static final String ACTION_TITLE = "title";							// ±êÌâ
-	public static final String ACTION_SUBJECT = "subject";						// Ö÷Ìâ
+	public static final String ACTION_BODY = "body";							// å…¬ç”¨å­—æ®µ
+	public static final String ACTION_ADDTIME = "addtime";						// å…¬ç”¨å­—æ®µ
+	public static final String ACTION_MODIFYTIME = "modifytime";				// å…¬ç”¨å­—æ®µ
+	public static final String ACTION_TAG = "tag";								// å…¬ç”¨å­—æ®µ
+	public static final String ACTION_RELATEDID = "relatedid";					// å…³è”ID
+	public static final String ACTION_PARENTID = "parentid";					// å…³è”ID
+	public static final String ACTION_ORDERNUM = "ordernum";					// æ’åº
+	public static final String ACTION_TITLE = "title";							// æ ‡é¢˜
+	public static final String ACTION_SUBJECT = "subject";						// ä¸»é¢˜
 	public static final String ACTION_TYPE = "type";
 	public static final String ACTION_ADDRESS = "address";
-	public static final String ACTION_SIGNNAME = "signname";					//¹â¹÷½Ú
-	public static final String ACTION_SUPPORT="support";						//Ö§³ÖÈËÊı
-	public static final String ACTION_SUBJECT_TYPE = "subjecttype";				//×¨ÌâÀàĞÍ
-	public static final String ACTION_CONTENT = "content";						//ÄÚÈİ
-	public static final String ACTION_CONTENT2 = "content2";					//ÄÚÈİ2
+	public static final String ACTION_SIGNNAME = "signname";					//å…‰æ£èŠ‚
+	public static final String ACTION_SUPPORT="support";						//æ”¯æŒäººæ•°
+	public static final String ACTION_SUBJECT_TYPE = "subjecttype";				//ä¸“é¢˜ç±»å‹
+	public static final String ACTION_CONTENT = "content";						//å†…å®¹
+	public static final String ACTION_CONTENT2 = "content2";					//å†…å®¹2
 	public static final String ACTION_PROVINCE="province";
 	public static final String ACTION_PROVINCE_NAME="provincename";
 	public static final String ACTION_CITYCODE="citycode";
@@ -146,27 +146,27 @@ public abstract class MongoData {
 	public static final String ACTION_MULTYWSMSG_MSGID = "msgid";
 	public static final String ACTION_MULTYWSMSG_ISREAD = "isread";
 	public static final String ACTION_MULTYWSMSG_ISDEL = "isdel";
-	public static final String ACTION_PICTRUE_URL = "picurl";					//Í¼Æ¬Â·¾¶
+	public static final String ACTION_PICTRUE_URL = "picurl";					//å›¾ç‰‡è·¯å¾„
 	public static final String ACTION_COUNT="count";
-	public static final String ACTION_TO_NAME = "toname";						//ÊÕ¼şÈË
-	public static final String ACTION_FROM_NAME = "fromname";					//¼Ä¼şÈË
-	public static final String ACTION_FROM_ADDRESS = "fromaddress";				//¼Ä¼şÈËµØÖ·
-	public static final String ACTION_TO_POSTCODE = "topostcode";				//ÊÕ¼şÈËÓÊ±à
-	public static final String ACTION_FROM_POSTCODE = "frompostcode";			//¼Ä¼şÈËÓÊ±à
+	public static final String ACTION_TO_NAME = "toname";						//æ”¶ä»¶äºº
+	public static final String ACTION_FROM_NAME = "fromname";					//å¯„ä»¶äºº
+	public static final String ACTION_FROM_ADDRESS = "fromaddress";				//å¯„ä»¶äººåœ°å€
+	public static final String ACTION_TO_POSTCODE = "topostcode";				//æ”¶ä»¶äººé‚®ç¼–
+	public static final String ACTION_FROM_POSTCODE = "frompostcode";			//å¯„ä»¶äººé‚®ç¼–
 	public static final String ACTION_NAME = "name";
 	public static final String ACTION_ENDTIME="endtime";
 	public static final String ACTION_STARTTIME="starttime";
-	public static final String ACTION_CHECK_TIME="checktime"; //ÉóºËÈÕÆÚ
+	public static final String ACTION_CHECK_TIME="checktime"; //å®¡æ ¸æ—¥æœŸ
 	
-	public static final String ACTION_ATTACH_MOVIE_ID = "attachmovieid";//Ó°ÆÀµÄid
-	public static final String ACTION_ATTACH_MOVIE_MOVIEID = "movieid";//µçÓ°µÄID
-	public static final String ACTION_LUCK = "luck";//ĞÒÔËÓÃ»§
-	public static final String ACTION_STATUS = "status";//×´Ì¬
+	public static final String ACTION_ATTACH_MOVIE_ID = "attachmovieid";//å½±è¯„çš„id
+	public static final String ACTION_ATTACH_MOVIE_MOVIEID = "movieid";//ç”µå½±çš„ID
+	public static final String ACTION_LUCK = "luck";//å¹¸è¿ç”¨æˆ·
+	public static final String ACTION_STATUS = "status";//çŠ¶æ€
 	public static final String ACTION_REMARK = "remark";
 	public static final String ACTION_TRADENO = "tradeNo";
-	public static final String ACTION_ATTACH_MOVIE_DESCRIPTION = "description";//ÄÚÈİ
-	public static final String ACTION_ATTACH_MOVIE_POINTVALUE = "pointvalue";//¼Ó»ı·ÖÖµ
-	public static final String ACTION_LOTTERY_CODE="lotterycode";//³é½±Âë
+	public static final String ACTION_ATTACH_MOVIE_DESCRIPTION = "description";//å†…å®¹
+	public static final String ACTION_ATTACH_MOVIE_POINTVALUE = "pointvalue";//åŠ ç§¯åˆ†å€¼
+	public static final String ACTION_LOTTERY_CODE="lotterycode";//æŠ½å¥–ç 
 	public static final String ACTION_NOTREADCOUNT = "notreadcount";
 	public static final String ACTION_OTHERINFO = "otherinfo";
 	
@@ -199,7 +199,7 @@ public abstract class MongoData {
 	public static final String SIGNNAME_HUAJU = "huaju";
 	public static final String SIGNNAME_HUODONG = "huodong";
 	
-	// Í³Ò»×¨Ìâ signname
+	// ç»Ÿä¸€ä¸“é¢˜ signname
 	public static final String SIGNNAME_XINWEN_01 = "xinwen_01";
 	public static final String SIGNNAME_XINWEN_02 = "xinwen_02";
 	public static final String SIGNNAME_XINWEN_03 = "xinwen_03";
@@ -207,10 +207,10 @@ public abstract class MongoData {
 	
 	public static final String ACTION_TYPE_SUBJECT = "subject";
 	public static final String ACTION_TYPE_RECOMMEND = "recommend";
-	public static final String ACTION_TYPE_SIMPLETEMPLATE = "simpletemplate"; // µ¥Ò»Ó°Æ¬¹Ì¶¨Ä£°å
-	public static final String ACTION_TYPE_UNIONTEMPLATE = "uniontemplate";	// Í³Ò»×¨ÌâÄ£°å
-	public static final String ACTION_TYPE_SUBUNIONTEMPLATE = "subuniontemplate";	// Í³Ò»×¨ÌâÄ£°å
-	public static final String ACTION_TYPE_VIEWINGGROUPTEMPLATE = "viewinggrouptemplate";//Í³Ò»¹ÛÓ°ÍÅ×¨ÌâÄ£°å
+	public static final String ACTION_TYPE_SIMPLETEMPLATE = "simpletemplate"; // å•ä¸€å½±ç‰‡å›ºå®šæ¨¡æ¿
+	public static final String ACTION_TYPE_UNIONTEMPLATE = "uniontemplate";	// ç»Ÿä¸€ä¸“é¢˜æ¨¡æ¿
+	public static final String ACTION_TYPE_SUBUNIONTEMPLATE = "subuniontemplate";	// ç»Ÿä¸€ä¸“é¢˜æ¨¡æ¿
+	public static final String ACTION_TYPE_VIEWINGGROUPTEMPLATE = "viewinggrouptemplate";//ç»Ÿä¸€è§‚å½±å›¢ä¸“é¢˜æ¨¡æ¿
 	
 	
 	public static final String ACTION_BOARD = "board";
@@ -223,30 +223,30 @@ public abstract class MongoData {
 	public static final String ACTION_NEWSBOARD = "newsboard";
 	public static final String ACTION_NAVIGATION = "navigation";
 	public static final String ACTION_WALATITLE = "walatitle";
-	public static final String ACTION_JSONINFO = "jsoninfo";		// ´æjsonÊı¾İ
-	public static final String ACTION_SUBJECTTYPE = "subjecttype";	// ×¨ÌâÀàĞÍ: movie / drama etc..
+	public static final String ACTION_JSONINFO = "jsoninfo";		// å­˜jsonæ•°æ®
+	public static final String ACTION_SUBJECTTYPE = "subjecttype";	// ä¸“é¢˜ç±»å‹: movie / drama etc..
 	public static final String ACTION_LINKCOLOR = "linkcolor";
-	public static final String ACTION_SEOKEYWORDS ="seokeywords";			//¹Ø¼ü×Ö
-	public static final String ACTION_SEODESCRIPTION ="seodescription";		//¹Ø¼üÃèÊö
-	/******¹ÛÓ°ÍÅ×Ö¶Î*********/
-	public static final String ACTION_SP_ACTIVIES = "sp_activies";//±¨Ãû»î¶¯
-	public static final String ACTION_VIEWBGCOLOR = "viewbgcolor";//±³¾°ÑÕÉ«
-	public static final String ACTION_VIEWREPORT = "viewReport";//¹ÛÓ°±¨¸æACTION_ATTACH_MOVIE_MOVIEID
-	public static final String ACTION_VOTEID = "voteid";//Í¶Æ±ID
-	//¹ÛÓ°ÍÅÃ÷ĞÇ×Ö¶Î
-	public static final String ACTION_STARSEX = "starsex";//Ã÷ĞÇĞÔ±ğ
-	public static final String ACTION_CONSTELLATION = "constellation";//Ã÷ĞÇĞÇ×ù
-	public static final String ACTION_BIRTHDAY = "birthday";//ÉúÈÕ
-	public static final String ACTION_BIRTHPLACE = "birthplace";//³öÉúµØ
+	public static final String ACTION_SEOKEYWORDS ="seokeywords";			//å…³é”®å­—
+	public static final String ACTION_SEODESCRIPTION ="seodescription";		//å…³é”®æè¿°
+	/******è§‚å½±å›¢å­—æ®µ*********/
+	public static final String ACTION_SP_ACTIVIES = "sp_activies";//æŠ¥åæ´»åŠ¨
+	public static final String ACTION_VIEWBGCOLOR = "viewbgcolor";//èƒŒæ™¯é¢œè‰²
+	public static final String ACTION_VIEWREPORT = "viewReport";//è§‚å½±æŠ¥å‘ŠACTION_ATTACH_MOVIE_MOVIEID
+	public static final String ACTION_VOTEID = "voteid";//æŠ•ç¥¨ID
+	//è§‚å½±å›¢æ˜æ˜Ÿå­—æ®µ
+	public static final String ACTION_STARSEX = "starsex";//æ˜æ˜Ÿæ€§åˆ«
+	public static final String ACTION_CONSTELLATION = "constellation";//æ˜æ˜Ÿæ˜Ÿåº§
+	public static final String ACTION_BIRTHDAY = "birthday";//ç”Ÿæ—¥
+	public static final String ACTION_BIRTHPLACE = "birthplace";//å‡ºç”Ÿåœ°
 	
-	/******Ê¢´óÊ±¿ÕÁÑ·ìÌØÈ¨ÂëÄ£¿é*********/
+	/******ç››å¤§æ—¶ç©ºè£‚ç¼ç‰¹æƒç æ¨¡å—*********/
 	public static final String ACTION_SEQ ="seq";
 	public static final String ACTION_PRIVILEGED_CODE = "privilegedcode";
 	public static final String ACTION_IS_USED = "isused";
 	public static final String ACTION_MEMBER_ID = "memberid";
 	public static final String ACTION_USED_TIME = "usedtime";
 	
-	// ×¨Ìâ×ÓÄ£¿é±àºÅ
+	// ä¸“é¢˜å­æ¨¡å—ç¼–å·
 	public static final String L_UNIONSUB_XINWEN1 	= "L_xinwen_01";	// 
 	public static final String L_UNIONSUB_XINWEN2 	= "L_xinwen_02";
 	public static final String L_UNIONSUB_XINWEN3 	= "L_xinwen_03";
@@ -281,67 +281,67 @@ public abstract class MongoData {
 	public static final String B_UNIONSUB_JUZHAO2 = "B_juzhao2";
 	public static final String B_UNIONSUB_BIANJI	= "B_bianji";
 	
-	//¶Ô±È×¨ÌâÄ£¿é
+	//å¯¹æ¯”ä¸“é¢˜æ¨¡å—
 	public static final String L_COMPARE_MOVIE = "L_movie";
 	public static final String R_COMPARE_MOVIE = "R_movie";
 	public static final String L_COMPARE_NEWS = "L_news";
 	public static final String R_COMPARE_NEWS = "R_news";
 	
-	public static final String SINGLES_FOREIGNID = "singles_foreignid";//Íâ¼üID
-	public static final String SINGLES_CINEMAURL = "singles_cinemaurl";//Á´½Ó
-	public static final String SINGLE_TIMES = "singles_time"; //Ê±¼ä
+	public static final String SINGLES_FOREIGNID = "singles_foreignid";//å¤–é”®ID
+	public static final String SINGLES_CINEMAURL = "singles_cinemaurl";//é“¾æ¥
+	public static final String SINGLE_TIMES = "singles_time"; //æ—¶é—´
 	
-	public static final String DOUBLE_FESTIVAL_THIRTEEN="DF_thirteen";	//Ë«µ©½Ú¸ö»î¶¯²ÎÊı
+	public static final String DOUBLE_FESTIVAL_THIRTEEN="DF_thirteen";	//åŒæ—¦èŠ‚ä¸ªæ´»åŠ¨å‚æ•°
 	public static final String DOUBLE_FESTIVAL_POM="DF_pom";
 	public static final String DOUBLE_FESTIVAL_TREE="DF_tree";
 	public static final String DOUBLE_FESTIVAL_PARTY="DF_party";
 	
-	public static final String VALENTINE_SWEET_IMAGE = "sweet_image";	//ÇéÈË½Ú£¨ÌğÃÛÓ°Ïñ£©
-	public static final String VALENTINE_SESSION_CINEMA = "session_cinema";	//ÇéÈË½Ú×¨³¡
-	public static final String VALENTINE_MOVIE_DAREN = "movie_daren";	//µçÓ°´ïÈË
-	public static final String VALENTINE_ACTIVITY_DAREN = "activity_daren";//»î¶¯´ïÈË
-	public static final String VALENTINE_PHONE_DAREN = "phone_daren";	//ÊÖ»ú´ïÈË
-	public static final String VALENTINE_SCENE_LOVE = "scene_love";		//ÏÖ³¡¶÷°®
-	public static final String VALENTINE_HAPPY = "happy";			//É¹ĞÒ¸£
+	public static final String VALENTINE_SWEET_IMAGE = "sweet_image";	//æƒ…äººèŠ‚ï¼ˆç”œèœœå½±åƒï¼‰
+	public static final String VALENTINE_SESSION_CINEMA = "session_cinema";	//æƒ…äººèŠ‚ä¸“åœº
+	public static final String VALENTINE_MOVIE_DAREN = "movie_daren";	//ç”µå½±è¾¾äºº
+	public static final String VALENTINE_ACTIVITY_DAREN = "activity_daren";//æ´»åŠ¨è¾¾äºº
+	public static final String VALENTINE_PHONE_DAREN = "phone_daren";	//æ‰‹æœºè¾¾äºº
+	public static final String VALENTINE_SCENE_LOVE = "scene_love";		//ç°åœºæ©çˆ±
+	public static final String VALENTINE_HAPPY = "happy";			//æ™’å¹¸ç¦
 	
-	public static final String WHITE_DAY = "whiteday";//°×É«ÇéÈË½Ú
+	public static final String WHITE_DAY = "whiteday";//ç™½è‰²æƒ…äººèŠ‚
 
-	public static final String ANNUALSELECTION = "annualSelection";	//×¨Ìâ»Ø¹Ë
-	public static final String ANNUALSELECTION_AD = "ad";			//×¨Ìâ»Ø¹Ë¹ã¸æ
-	public static final String ANNUALSELECTION_CRITICS = "critics";	//Ó°ÆÀ
-	public static final String ANNUALSELECTION_CITY_OF_LOVE = "cityOfLove";	//¶¼ÊĞ°®Çé
-	public static final String ANNUALSELECTION_SAME_ART = "sameArt";		//ËùÎ½ÎÄÒÕ
-	public static final String ANNUALSELECTION_IDOL_INVINCIBLE = "idolInvincible";	//Å¼ÏñÎŞµĞ
-	public static final String ANNUALSELECTION_REJUVENATE = "rejuvenate";			//·µÀÏ»¹Í¯
-	public static final String ANNUALSELECTION_ANNUAL_JUXIAN= "annualJuxian";		//Äê¶È¾ŞÏ×
+	public static final String ANNUALSELECTION = "annualSelection";	//ä¸“é¢˜å›é¡¾
+	public static final String ANNUALSELECTION_AD = "ad";			//ä¸“é¢˜å›é¡¾å¹¿å‘Š
+	public static final String ANNUALSELECTION_CRITICS = "critics";	//å½±è¯„
+	public static final String ANNUALSELECTION_CITY_OF_LOVE = "cityOfLove";	//éƒ½å¸‚çˆ±æƒ…
+	public static final String ANNUALSELECTION_SAME_ART = "sameArt";		//æ‰€è°“æ–‡è‰º
+	public static final String ANNUALSELECTION_IDOL_INVINCIBLE = "idolInvincible";	//å¶åƒæ— æ•Œ
+	public static final String ANNUALSELECTION_REJUVENATE = "rejuvenate";			//è¿”è€è¿˜ç«¥
+	public static final String ANNUALSELECTION_ANNUAL_JUXIAN= "annualJuxian";		//å¹´åº¦å·¨çŒ®
 	
-	public static final String ALIENBATTLEFIELD = "alienBattlefield";	//ÒìĞÇÕ½³¡£¨µÏË¹Äá£©
-	public static final String PEPSICOLA = "pepsiCola"; //°ÙÊÂ¿ÉÀÖºÏ×÷×¨Ìâ
+	public static final String ALIENBATTLEFIELD = "alienBattlefield";	//å¼‚æ˜Ÿæˆ˜åœºï¼ˆè¿ªæ–¯å°¼ï¼‰
+	public static final String PEPSICOLA = "pepsiCola"; //ç™¾äº‹å¯ä¹åˆä½œä¸“é¢˜
 	
-	public static final String BATTLESHIP = "battleship";		//³¬¼¶Õ½½¢
+	public static final String BATTLESHIP = "battleship";		//è¶…çº§æˆ˜èˆ°
 	
-	//public static final String WYWK_ACTIVITY = "wywkActivity";	//Íø°É»î¶¯
-	//public static final String WYWK_IP = "wywkIP";	//Íø°ÉIP
+	//public static final String WYWK_ACTIVITY = "wywkActivity";	//ç½‘å§æ´»åŠ¨
+	//public static final String WYWK_IP = "wywkIP";	//ç½‘å§IP
 	
-	public static final String AVENGERS_ACTIVITY = "avengersActivity";	//¸´³ğÕßÁªÃË
+	public static final String AVENGERS_ACTIVITY = "avengersActivity";	//å¤ä»‡è€…è”ç›Ÿ
 	public static final String TAG_AVENGER = "TAG_AVENGER";
 	public static final String JAZZ_TYPE = "jazz";
 	
-	public static final String TITANIC = "titanic";				//Ì©Ì¹Äá¿ËºÅ
-	public static final String TITANIC_POSTCARD = "postcard";	//Ã÷ĞÅÆ¬
-	public static final String TITANIC_VOTE = "vote";			//Í¶Æ±
-	public static final String TITANIC_CHILDACTIVITY = "childActivity"; //·ÖÕ¾»î¶¯
+	public static final String TITANIC = "titanic";				//æ³°å¦å°¼å…‹å·
+	public static final String TITANIC_POSTCARD = "postcard";	//æ˜ä¿¡ç‰‡
+	public static final String TITANIC_VOTE = "vote";			//æŠ•ç¥¨
+	public static final String TITANIC_CHILDACTIVITY = "childActivity"; //åˆ†ç«™æ´»åŠ¨
 	public static final String TITANIC_CHILDATYPE ="childType";
-	public static final String SITES_HANGZHOU = "hangzhou"; //º¼Öİ·ÖÕ¾
+	public static final String SITES_HANGZHOU = "hangzhou"; //æ­å·åˆ†ç«™
 	
-	public static final String GYM_BELLYDANCE = "bellydanceGYM";	//½¡Éí¶ÇÆ¤Îè
-	public static final String SPORT_POOL_PARTY = "poolparty";		//Ó¾³ØÅÉ¶Ô
-	public static final String DRAMA_REDCAT = "drama_redcat"; //»°¾çºìÌºÃ¨
-	public static final String DRAMA_MUSICCAT = "drama_musiccat"; //ÒôÀÖ¾ç-Ã¨
+	public static final String GYM_BELLYDANCE = "bellydanceGYM";	//å¥èº«è‚šçš®èˆ
+	public static final String SPORT_POOL_PARTY = "poolparty";		//æ³³æ± æ´¾å¯¹
+	public static final String DRAMA_REDCAT = "drama_redcat"; //è¯å‰§çº¢æ¯¯çŒ«
+	public static final String DRAMA_MUSICCAT = "drama_musiccat"; //éŸ³ä¹å‰§-çŒ«
 	
-	public static final String MESSAGE_FANS_ADD = "add";		//Ìí¼ÓfansÊı
+	public static final String MESSAGE_FANS_ADD = "add";		//æ·»åŠ fansæ•°
 	public static final String MESSAGE_FANS = "fans";
-	public static final String MESSAGE_FANS_REMOVE = "remove";	//ÒÆ³ıfansÊı
+	public static final String MESSAGE_FANS_REMOVE = "remove";	//ç§»é™¤fansæ•°
 	
 	public static final String IDNAME_YQ = "HT";
 	public static final String FIELD_GW = "GW";
@@ -356,29 +356,29 @@ public abstract class MongoData {
 	public static final String GEWA_CUP_MEMBERID="memberid";
 	public static final String GEWA_CUP_ORDERID="orderid";
 	
-	public static final String GEWA_CUP_YEARS_2013 = "gewaCup2013";		//¾Ù°ìÄê·İ
-	public static final String GEWA_CUP_YEARS_2012 = "gewaCup2012";		//¾Ù°ìÄê·İ
-	public static final String GEWA_CUP_ANSWER = "answer";				//¾Ù±¨
-	public static final String GEWA_CUP_BOY_SINGLE = "boysingle";		//ÄĞµ¥
-	public static final String GEWA_CUP_BOY_DOUBLE = "boydouble";		//ÄĞË«
-	public static final String GEWA_CUP_GIRL_SINGLE = "girlsingle";		//Å®µ¥
-	public static final String GEWA_CUP_GIRL_DOUBLE = "girldouble";		//Å®Ë«
-	public static final String GEWA_CUP_MIXED_DOUBLE = "mixeddouble";	//»ìË«
+	public static final String GEWA_CUP_YEARS_2013 = "gewaCup2013";		//ä¸¾åŠå¹´ä»½
+	public static final String GEWA_CUP_YEARS_2012 = "gewaCup2012";		//ä¸¾åŠå¹´ä»½
+	public static final String GEWA_CUP_ANSWER = "answer";				//ä¸¾æŠ¥
+	public static final String GEWA_CUP_BOY_SINGLE = "boysingle";		//ç”·å•
+	public static final String GEWA_CUP_BOY_DOUBLE = "boydouble";		//ç”·åŒ
+	public static final String GEWA_CUP_GIRL_SINGLE = "girlsingle";		//å¥³å•
+	public static final String GEWA_CUP_GIRL_DOUBLE = "girldouble";		//å¥³åŒ
+	public static final String GEWA_CUP_MIXED_DOUBLE = "mixeddouble";	//æ··åŒ
 	
 	
 	
-	//Ê×Ò³Êı¾İÍ³¼Æ
-	public static final String INDEX_KEY = "index"; //È«Õ¾Ê×Ò³key
-	public static final String INDEX_TICKET_COUNT = "ticketcount"; //µçÓ°Æ±Êı
-	public static final String INDEX_DRAMA_COUNT = "dramacount";	//»°¾çÆ±Êı
-	public static final String INDEX_SPORT_COUNT = "sportcount";	//ÔË¶¯Æ±Êı
-	public static final String INDEX_POINT_COUNT = "pointcount";	//Áì»ı·ÖÊı
-	public static final String INDEX_COMMENT_COUNT = "commentcount";	//ÍÛÀ²Êı
-	public static final String INDEX_DIARY_COUNT = "diarycount";	//Ìû×ÓÊı£¨Ó°ÆÀ¡¢¾çÆÀ¡¢ÔË¶¯ĞÄµÃ£©
-	public static final String INDEX_ALL_DIARY_COUNT = "alldiarycount"; //Ìû×Ó×ÜÊı
-	public static final String INDEX_JOIN_ACTIVITY_COUNT = "joinactivitycount"; //²Î¼Ó»î¶¯ÈËÊı
+	//é¦–é¡µæ•°æ®ç»Ÿè®¡
+	public static final String INDEX_KEY = "index"; //å…¨ç«™é¦–é¡µkey
+	public static final String INDEX_TICKET_COUNT = "ticketcount"; //ç”µå½±ç¥¨æ•°
+	public static final String INDEX_DRAMA_COUNT = "dramacount";	//è¯å‰§ç¥¨æ•°
+	public static final String INDEX_SPORT_COUNT = "sportcount";	//è¿åŠ¨ç¥¨æ•°
+	public static final String INDEX_POINT_COUNT = "pointcount";	//é¢†ç§¯åˆ†æ•°
+	public static final String INDEX_COMMENT_COUNT = "commentcount";	//å“‡å•¦æ•°
+	public static final String INDEX_DIARY_COUNT = "diarycount";	//å¸–å­æ•°ï¼ˆå½±è¯„ã€å‰§è¯„ã€è¿åŠ¨å¿ƒå¾—ï¼‰
+	public static final String INDEX_ALL_DIARY_COUNT = "alldiarycount"; //å¸–å­æ€»æ•°
+	public static final String INDEX_JOIN_ACTIVITY_COUNT = "joinactivitycount"; //å‚åŠ æ´»åŠ¨äººæ•°
 	
-	public static final String NS_TELE_MOBILE = "teleSms"; //µçĞÅ¶ÌĞÅ
+	public static final String NS_TELE_MOBILE = "teleSms"; //ç”µä¿¡çŸ­ä¿¡
 	
 	public static String buildId(){
 		return buildId(2);

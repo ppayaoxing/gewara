@@ -15,13 +15,13 @@ import com.gewara.model.pay.TicketOrder;
 import com.gewara.xmlbind.ticket.WdOrder;
 
 /**
- * no sqlÏà¹ØÒµÎñ·½·¨·â×°
+ * no sqlç›¸å…³ä¸šåŠ¡æ–¹æ³•å°è£…
  * @author gebiao(ge.biao@gewara.com)
  * @since Dec 28, 2012 3:36:46 PM
  */
 public interface NosqlService {
 	/**
-	 * ÓÃ»§Ç©µ½£¬¾­Î³¶È
+	 * ç”¨æˆ·ç­¾åˆ°ï¼Œç»çº¬åº¦
 	 * @param id
 	 * @param x  
 	 * @param y
@@ -30,7 +30,7 @@ public interface NosqlService {
 	void memberSignBaiDu(Long memberid, Double bpointx, Double bpointy);
 	void memberSign(Long memberid, Double pointx, Double pointy, String address);
 	/**
-	 * °´¾­Î³¶È×î´ó×îĞ¡Öµ²éÑ¯ÓÃ»§ÁĞ±í
+	 * æŒ‰ç»çº¬åº¦æœ€å¤§æœ€å°å€¼æŸ¥è¯¢ç”¨æˆ·åˆ—è¡¨
 	 * @param pointx
 	 * @param pointy
 	 * @param r
@@ -47,7 +47,7 @@ public interface NosqlService {
 	PlayItemMessage getPlayItemMessage(Long memberid, String tag, Long relatedid, Date playdate, Long categoryid);
 	List<PlayItemMessage> getSendPlayItemMessageList(String tag, String status, String type, int from, int maxnum);
 	/**
-	 * »ñÈ¡ÌáĞÑ¶ÌĞÅ
+	 * è·å–æé†’çŸ­ä¿¡
 	 * @param memberid
 	 * @param categoryid
 	 * @return
@@ -55,7 +55,7 @@ public interface NosqlService {
 	PlayItemMessage addPlayItemMessage(Long memberid, String tag, Long relatedid, Date playdate, Long categoryid, String mobile, String type, String msg);
 	PlayItemMessage addPlayItemMessage(Long memberid, String tag, Long relatedid, Date playdate, Long categoryid, String mobile, String flag, String type, String msg);
 	/**
-	 * µçÓ°³¡´ÎÃèÊö
+	 * ç”µå½±åœºæ¬¡æè¿°
 	 * @param movieid
 	 * @param citycode
 	 * @param maxnum
@@ -64,33 +64,33 @@ public interface NosqlService {
 	List<MovieMpiRemark> getMovieMpiRemarkList(Long movieid, String citycode, int maxnum);
 	
 	/**
-	 * »ñÈ¡×Ô¶¯ÉèÖÃÆ÷Í¨ÓÃ¼ÙÈÕµÈÊ±¼äÏŞÖÆ
+	 * è·å–è‡ªåŠ¨è®¾ç½®å™¨é€šç”¨å‡æ—¥ç­‰æ—¶é—´é™åˆ¶
 	 * @return
 	 */
 	Map<String,String> getAutoSetterLimit();
 	/**
-	 * »ñÈ¡Ó°Ìü×ßÀÈ£¬¹ıµÀ¡¢Ç½ÌåÎ»ÖÃ
+	 * è·å–å½±å…èµ°å»Šï¼Œè¿‡é“ã€å¢™ä½“ä½ç½®
 	 * @param roomId
 	 * @return
 	 */
 	Map<String,String> getOuterRingSeatByRoomId(Long roomId);
 	
 	/**
-	 * ¸ñÍßÀ­Ã¿ÈÕ¹ºÆ±ÅÅĞĞ
+	 * æ ¼ç“¦æ‹‰æ¯æ—¥è´­ç¥¨æ’è¡Œ
 	 * @return
 	 */
 	List<Map> getBuyTicketRanking();
 	/**
-	 * 16½ìµçÓ°½Ú Ìí¼ÓÆ¬µ¥»òÈÕ³Ì
-	 * @param mpi ÅÅÆ¬
+	 * 16å±Šç”µå½±èŠ‚ æ·»åŠ ç‰‡å•æˆ–æ—¥ç¨‹
+	 * @param mpi æ’ç‰‡
 	 * @param tag
-	 * @param movieId µçÓ°id
+	 * @param movieId ç”µå½±id
 	 * @return
 	 */
 	ViewFilmSchedule addViewFilmSchedule(MoviePlayItem mpi,String tag,Long movieId,long memberId,String source);
 	
 	/**
-	 * ±£´æÃ¿ÌìÍò´ïÍ¬²½µÄ¶©µ¥ºÍ¸ñÍßÀ­¶©µ¥Æ¥Åä²»ÉÏµÄ¶©µ¥
+	 * ä¿å­˜æ¯å¤©ä¸‡è¾¾åŒæ­¥çš„è®¢å•å’Œæ ¼ç“¦æ‹‰è®¢å•åŒ¹é…ä¸ä¸Šçš„è®¢å•
 	 * @param gewaOrderList
 	 * @param wdOrderList
 	 */

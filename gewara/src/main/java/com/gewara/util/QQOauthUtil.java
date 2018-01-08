@@ -14,6 +14,9 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.lang.StringUtils;
 
 
+/**
+ * @author summer
+ */
 public class QQOauthUtil {
 	public static final int ONE = 1;
    public static final int TWO = 2;
@@ -99,17 +102,24 @@ public class QQOauthUtil {
 	}
 	public static String getParameters(Map<String,String> params, boolean isEncode) throws Exception{
 		StringBuilder str = new StringBuilder();
-		if(params==null) return "";
+		if(params==null) {
+            return "";
+        }
 		List keyList = Arrays.asList(params.keySet().toArray());
 		Collections.sort(keyList);
 		for (int i = 0; i < keyList.size(); i++) {
-			if(isEncode)
-				str.append(keyList.get(i) + "=" + URLEncoder.encode(params.get(keyList.get(i)),"utf-8"));
-			else
-				str.append(keyList.get(i) + "=" + params.get(keyList.get(i)));
-			if(i<keyList.size()-1) str.append("&");
+			if(isEncode) {
+                str.append(keyList.get(i) + "=" + URLEncoder.encode(params.get(keyList.get(i)), "utf-8"));
+            } else {
+                str.append(keyList.get(i) + "=" + params.get(keyList.get(i)));
+            }
+			if(i<keyList.size()-1) {
+                str.append("&");
+            }
 		}
-		if(!isEncode) return URLEncoder.encode(str.toString(), "utf-8");
+		if(!isEncode) {
+            return URLEncoder.encode(str.toString(), "utf-8");
+        }
 		return str.toString();
 	}
 	
@@ -134,7 +144,9 @@ public class QQOauthUtil {
    public static boolean verifyOpenID(String openid, String timestamp, String oauth_signature) throws Exception{
    	String str = openid + timestamp;
    	String signature = getBase64Mac(str, APP_KEY);
-   	if(StringUtils.isBlank(oauth_signature)) return false;
+   	if(StringUtils.isBlank(oauth_signature)) {
+        return false;
+    }
    	return StringUtils.equals(signature,URLDecoder.decode(oauth_signature, "UTF-8"));
 	}
    

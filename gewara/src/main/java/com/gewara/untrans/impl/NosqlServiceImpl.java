@@ -43,16 +43,19 @@ public class NosqlServiceImpl implements NosqlService{
 	@Autowired
 	private MongoService mongoService;
 	public void ensureMongoTable(){
-		//TODO:œﬁ÷∆mongodbµƒ±Ì «÷Æ«∞æÕΩ®π˝µƒ
+		//TODO:ÈôêÂà∂mongodbÁöÑË°®ÊòØ‰πãÂâçÂ∞±Âª∫ËøáÁöÑ
 	}
 	@Override
 	public void memberSign(Long memberid, Double pointx, Double pointy) {
 		memberSign(memberid, pointx, pointy, null);
 	}
 	
+	@Override
 	public void memberSignBaiDu(Long memberid, Double bpointx, Double bpointy){
 		MemberSign sign = mongoService.getObject(MemberSign.class, "memberid", memberid);
-		if(sign == null) sign = new MemberSign(memberid);
+		if(sign == null) {
+			sign = new MemberSign(memberid);
+		}
 		sign.setBpointx(bpointx);
 		sign.setBpointy(bpointy);
 		mongoService.saveOrUpdateObject(sign, "memberid");
@@ -60,10 +63,14 @@ public class NosqlServiceImpl implements NosqlService{
 	@Override
 	public void memberSign(Long memberid, Double pointx, Double pointy, String address) {
 		MemberSign sign = mongoService.getObject(MemberSign.class, "memberid", memberid);
-		if(sign == null) sign = new MemberSign(memberid);
+		if(sign == null) {
+			sign = new MemberSign(memberid);
+		}
 		sign.setPointx(pointx);
 		sign.setPointy(pointy);
-		if(StringUtils.isNotBlank(address)) sign.setAddress(address);
+		if(StringUtils.isNotBlank(address)) {
+			sign.setAddress(address);
+		}
 		mongoService.saveOrUpdateObject(sign, "memberid");
 	}
 	@Override
@@ -99,7 +106,9 @@ public class NosqlServiceImpl implements NosqlService{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", appid);
 		List<MobileUpGrade> mug = mongoService.getObjectList(MobileUpGrade.class, params, "addTime", false, 0, 1);
-		if (mug.size() > 0) return mug.get(0);
+		if (mug.size() > 0) {
+			return mug.get(0);
+		}
 		return null;
 	}
 	@Override
@@ -156,7 +165,9 @@ public class NosqlServiceImpl implements NosqlService{
 		remind.setMemberid(memberid);
 		remind.setFlag(flag);
 		remind.setPlaydate(playdate);
-		if(StringUtils.isNotBlank(msg)) remind.setMsg(msg);
+		if(StringUtils.isNotBlank(msg)) {
+			remind.setMsg(msg);
+		}
 		mongoService.saveOrUpdateObject(remind, MongoData.DEFAULT_ID_NAME);
 		return remind;
 	}
@@ -257,10 +268,10 @@ public class NosqlServiceImpl implements NosqlService{
 		List<WDOrderContrast> list = new ArrayList<WDOrderContrast>();
 		for(TicketOrder order : gewaOrderList){
 			WDOrderContrast wc = new WDOrderContrast(ObjectId.uuid(),DateUtil.formatDate(addDate),order.getCinemaid(),
-					order.getTradeNo(),"GEWA",JsonUtils.getJsonValueByKey(order.getDescription2(), "”∞∆±"),order.getQuantity(),
-					order.getTotalcost(),JsonUtils.getJsonValueByKey(order.getDescription2(), "”∞∆¨"),DateUtil.formatTimestamp(order.getPlaytime()),
+					order.getTradeNo(),"GEWA",JsonUtils.getJsonValueByKey(order.getDescription2(), "ÂΩ±Á•®"),order.getQuantity(),
+					order.getTotalcost(),JsonUtils.getJsonValueByKey(order.getDescription2(), "ÂΩ±Áâá"),DateUtil.formatTimestamp(order.getPlaytime()),
 					DateUtil.formatTimestamp(order.getAddtime()));
-			wc.setRoomName(JsonUtils.getJsonValueByKey(order.getDescription2(), "”∞Ã¸"));
+			wc.setRoomName(JsonUtils.getJsonValueByKey(order.getDescription2(), "ÂΩ±ÂéÖ"));
 			mongoService.saveOrUpdateObject(wc, MongoData.SYSTEM_ID);
 			list.add(wc);
 		}

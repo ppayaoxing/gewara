@@ -8,31 +8,31 @@ import org.apache.commons.lang.StringUtils;
 
 public class IQiYiAuthUtils {
 	public static final String API_KEY = "7cef6275ed934b4fb3483d8b01cd0222";
-	/** ×¨¼­ĞÅÏ¢½Ó¿Ú*/
+	/** ä¸“è¾‘ä¿¡æ¯æ¥å£*/
 	public static final String URL_IQIYI_ALBUM = "http://expand.video.iqiyi.com/api/album/info.json";
-	/** ×¨¼­ËÑË÷½Ó¿Ú*/
+	/** ä¸“è¾‘æœç´¢æ¥å£*/
 	public static final String URL_IQIYI_SEARCH = "http://expand.video.iqiyi.com/api/search/list.json";
-	/** ×¨¼­ÁĞ±í½Ó¿Ú*/
+	/** ä¸“è¾‘åˆ—è¡¨æ¥å£*/
 	public static final String URL_IQIYI_ALBUM_LIST = "http://expand.video.iqiyi.com/api/album/list.json";
 	
-	/** ÊÓÆµĞÅÏ¢½Ó¿Ú*/
+	/** è§†é¢‘ä¿¡æ¯æ¥å£*/
 	public static final String URL_IQIYI_VEDIO = "http://expand.video.iqiyi.com/api/video/info.json";
-	/** ¸ù¾İ¸üĞÂÊ±¼ä¶Î²éÑ¯ÊÓÆµĞÅÏ¢½Ó¿Ú*/
+	/** æ ¹æ®æ›´æ–°æ—¶é—´æ®µæŸ¥è¯¢è§†é¢‘ä¿¡æ¯æ¥å£*/
 	public static final String URL_IQIYI_VEDIO_LIST = "http://expand.video.iqiyi.com/api/video/list.json";
 	/**
-	 ÆµµÀÁĞ±í
+	 é¢‘é“åˆ—è¡¨
 	 */
 	public static final String URL_IQIYI_CATEGORY_LIST = "http://expand.video.iqiyi.com/api/category/list.json";
-	/**¸ù¾İÊ±¼ä»ñÈ¡×¨¼­ÁĞ±í*/
+	/**æ ¹æ®æ—¶é—´è·å–ä¸“è¾‘åˆ—è¡¨*/
 	public static final String URL_IQIYI_ALBUM_LIST_DATE = "http://expand.video.iqiyi.com/api/album/udlist.json";
-	/**ÅÅĞĞ°ñ */
+	/**æ’è¡Œæ¦œ */
 	public static final String URL_IQIYI_TOP = "http://expand.video.iqiyi.com/api/top/list.json";
-	/** À´Ô´ÁĞ±í*/
+	/** æ¥æºåˆ—è¡¨*/
 	public static final String URL_IQIYI_SOURCE_LIST = "http://expand.video.iqiyi.com/api/s/list.json";
 	
 	
 	/**
-	 * ÆµµÀÁĞ±í
+	 * é¢‘é“åˆ—è¡¨
 	 * @return
 	 */
 	public static String getCategoryList(){
@@ -45,10 +45,10 @@ public class IQiYiAuthUtils {
 		return null;
 	}
 	/**
-	 * ×¨¼­ËÑË÷
-	 * @param keywords ¹Ø¼ü×Ö
-	 * @param pageNo ÆğÊ¼Ò³  
-	 * @param pageSize ÌõÊı
+	 * ä¸“è¾‘æœç´¢
+	 * @param keywords å…³é”®å­—
+	 * @param pageNo èµ·å§‹é¡µ  
+	 * @param pageSize æ¡æ•°
 	 * @return
 	 */
 	public static String searchAlbum(String keywords,String threeCategory,int pageNo,int pageSize,String categoryIds){
@@ -83,7 +83,7 @@ public class IQiYiAuthUtils {
 		return null;
 	}
 	/**
-	 * »ñÈ¡×¨¼­ÁĞ±í
+	 * è·å–ä¸“è¾‘åˆ—è¡¨
 	 * @param keywords
 	 * @param categoryId
 	 * @param scode
@@ -106,8 +106,8 @@ public class IQiYiAuthUtils {
 		return null;
 	}
 	/**
-	 * ×¨¼­ÏêÇé
-	 * @param albumId ×¨¼­id
+	 * ä¸“è¾‘è¯¦æƒ…
+	 * @param albumId ä¸“è¾‘id
 	 * @return
 	 */
 	public static String getAlbumDetail(String albumId){
@@ -121,8 +121,8 @@ public class IQiYiAuthUtils {
 		return null;
 	}
 	/**
-	 * ÊÓÆµĞÅÏ¢
-	 * @param tvId ÊÓÆµid
+	 * è§†é¢‘ä¿¡æ¯
+	 * @param tvId è§†é¢‘id
 	 * @return
 	 */
 	public static String getVedioInfo(String tvId){
@@ -136,7 +136,7 @@ public class IQiYiAuthUtils {
 		return null;
 	}
 	/**
-	 * ¸ù¾İÊ±¼ä²éÑ¯ÊÓÆµÁĞ±í
+	 * æ ¹æ®æ—¶é—´æŸ¥è¯¢è§†é¢‘åˆ—è¡¨
 	 * @param startTime
 	 * @param endTime
 	 * @param pageNo
@@ -161,8 +161,8 @@ public class IQiYiAuthUtils {
 		return null;
 	}
 	/**
-	 * ÅÅĞĞ°ñÊı¾İ
-	 * @param topType ÆÀ·Ö£º 0 £¬ÈÕ£º 1 £¬ÖÜ£º 2£¬ÔÂ£º 3£¬×Ü£º 4
+	 * æ’è¡Œæ¦œæ•°æ®
+	 * @param topType è¯„åˆ†ï¼š 0 ï¼Œæ—¥ï¼š 1 ï¼Œå‘¨ï¼š 2ï¼Œæœˆï¼š 3ï¼Œæ€»ï¼š 4
 	 * @param categoryId
 	 * @param limit
 	 * @return
@@ -180,7 +180,7 @@ public class IQiYiAuthUtils {
 		return null;
 	}
 	/**
-	 * »ñÈ¡À´Ô´ÁĞ±í
+	 * è·å–æ¥æºåˆ—è¡¨
 	 * @param categoryId
 	 * @param keyWord
 	 * @param pageNo
