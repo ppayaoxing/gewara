@@ -7,6 +7,9 @@ import org.apache.commons.lang.StringUtils;
 
 import com.gewara.model.BaseObject;
 
+/**
+ * @author sunder
+ */
 public class PayMerchant extends BaseObject{
 
 	/**
@@ -16,18 +19,51 @@ public class PayMerchant extends BaseObject{
 	
 	public static final String DEFAULT_Y = "Y";//
 	public static final String DEFAULT_N = "N";//
-	
-	private Long id;	//Ö÷¼ü
-	private Long gatewayId;	//Ö§ÅäÅäÖÃID
-	private String merchantCode;	//ÉÌ»§ºÅ±êÊ¶
-	private String cityCode;	//³ÇÊĞ
-	private String acquiringBank;	//ÊÕµ¥ĞĞ
-	private String description;	//ÉÌ»§ºÅËµÃ÷
-	private String status;	//ÉÌ»§ºÅ×´Ì¬£ºNO_USE£ºÎ´ÆôÓÃ£»IN_USE£ºÊ¹ÓÃÖĞ£»DESUETUDE£º·ÏÆú£»
-	private Timestamp updateTime;	//Í¬²½Ê±¼ä	
-	private String isDefault;	//ÊÇ·ñÄ¬ÈÏ
-	private Timestamp modifyTime;	//ĞŞ¸ÄÊ±¼ä
-	private String modifyUser;	//×îºóĞŞ¸ÄÈË
+
+	/**
+	 * //ä¸»é”®
+	 */
+	private Long id;
+	/**
+	 * //æ”¯é…é…ç½®ID
+	 */
+	private Long gatewayId;
+	/**
+	 * //å•†æˆ·å·æ ‡è¯†
+	 */
+	private String merchantCode;
+	/**
+	 * //åŸå¸‚
+	 */
+	private String cityCode;
+	/**
+	 * 	//æ”¶å•è¡Œ
+	 */
+	private String acquiringBank;
+	/**
+	 * //å•†æˆ·å·è¯´æ˜
+	 */
+	private String description;
+	/**
+	 * 	//å•†æˆ·å·çŠ¶æ€ï¼šNO_USEï¼šæœªå¯ç”¨ï¼›IN_USEï¼šä½¿ç”¨ä¸­ï¼›DESUETUDEï¼šåºŸå¼ƒï¼›
+	 */
+	private String status;
+	/**
+	 * 	//åŒæ­¥æ—¶é—´
+	 */
+	private Timestamp updateTime;
+	/**
+	 * //æ˜¯å¦é»˜è®¤
+	 */
+	private String isDefault;
+	/**
+	 * 	//ä¿®æ”¹æ—¶é—´
+	 */
+	private Timestamp modifyTime;
+	/**
+	 * 	//æœ€åä¿®æ”¹äºº
+	 */
+	private String modifyUser;
 	
 	public PayMerchant(){
 		this.updateTime = new Timestamp(System.currentTimeMillis());

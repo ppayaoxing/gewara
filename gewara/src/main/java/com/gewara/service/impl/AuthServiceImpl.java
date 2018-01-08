@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import com.gewara.model.acl.Role;
 import com.gewara.service.AuthService;
 
+/**
+ * @author sunder
+ */
 @Service("authService")
 public class AuthServiceImpl extends BaseServiceImpl implements AuthService{
 
