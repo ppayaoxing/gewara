@@ -8,28 +8,28 @@ import java.util.Map;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
 public class BindConstant {
-	public static final String KEY_BINDTIME = "bindTime";	//°ó¶¨ÊÖ»úÊ±¼ä£¬ÊÖ»ú×¢²áÖ±½ÓÊÇ×¢²áÊ±¼ä
+	public static final String KEY_BINDTIME = "bindTime";	//ç»‘å®šæ‰‹æœºæ—¶é—´ï¼Œæ‰‹æœºæ³¨å†Œç›´æ¥æ˜¯æ³¨å†Œæ—¶é—´
 
-	public static final String TAG_REGISTERCODE = "registercode"; 	//»ñÈ¡ÊÖ»ú×¢²á¡¢¿ìËÙµÇÂ¼¶¯Ì¬Âë
-	//public static final String TAG_DYNAMICCODE = "dynamiccode"; 	//ÓëTAG_REGISTERCODEºÏ²¢
+	public static final String TAG_REGISTERCODE = "registercode"; 	//è·å–æ‰‹æœºæ³¨å†Œã€å¿«é€Ÿç™»å½•åŠ¨æ€ç 
+	//public static final String TAG_DYNAMICCODE = "dynamiccode"; 	//ä¸TAG_REGISTERCODEåˆå¹¶
 	
-	public static final String TAG_BINDMOBILE = "bindMobile"; 		//ÊÖ»ú½â°ó
+	public static final String TAG_BINDMOBILE = "bindMobile"; 		//æ‰‹æœºè§£ç»‘
 	
-	public static final String TAG_ACCOUNT_BACKPASS = "account_backpass"; //ÊÖ»úÕÒ»ØÖ§¸¶ÃÜÂë
-	public static final String TAG_DYNAMICCODE_CARD = "dynamiccode_card"; //¼¤»îÆ±È¯µÄÊÖ»ú¶¯Ì¬Âë
-	public static final String TAG_BACKPASS = "backpass"; 		//ÊÖ»úÕÒ»ØÃÜÂë
-	public static final String TAG_MODIFYPASS = "modifypass"; 	//ĞŞ¸ÄÃÜÂë
+	public static final String TAG_ACCOUNT_BACKPASS = "account_backpass"; //æ‰‹æœºæ‰¾å›æ”¯ä»˜å¯†ç 
+	public static final String TAG_DYNAMICCODE_CARD = "dynamiccode_card"; //æ¿€æ´»ç¥¨åˆ¸çš„æ‰‹æœºåŠ¨æ€ç 
+	public static final String TAG_BACKPASS = "backpass"; 		//æ‰‹æœºæ‰¾å›å¯†ç 
+	public static final String TAG_MODIFYPASS = "modifypass"; 	//ä¿®æ”¹å¯†ç 
 
-	public static final String TAG_SETPAYPASS = "setpaypass"; 	//ÉèÖÃÖ§¸¶ÃÜÂë
-	public static final String TAG_MDYPAYPASS = "mdypaypass"; 	//ĞŞ¸ÄÖ§¸¶ÃÜÂë
-	public static final String TAG_CHGBINDMOBILE = "chgbindMobile"; //ĞŞ¸ÄÊÖ»ú°ó¶¨
-	public static final String TAG_DRAWMOBILE = "drawMobile"; 		//³é½±ÊÖ»úÑéÖ¤
-	public static final String TAG_CCBANKCODE = "ccbankcode";	//½¨ÉèÒøĞĞ¶¯Ì¬Âë
-	public static final String TAG_GETPAYPASS = "getpaypass"; 	//ÕÒ»ØÖ§¸¶ÃÜÂë TODO:ÓëTAG_ACCOUNT_BACKPASSµÄÇø±ğ£¿£¿
-	public static final String TAG_VDEMAIL_BY_UPDATEPWD = "vdemailbyuppwd"; //ĞŞ¸ÄÃÜÂëÇ°ÖÃÓÊÏä°²È«ÑéÖ¤
+	public static final String TAG_SETPAYPASS = "setpaypass"; 	//è®¾ç½®æ”¯ä»˜å¯†ç 
+	public static final String TAG_MDYPAYPASS = "mdypaypass"; 	//ä¿®æ”¹æ”¯ä»˜å¯†ç 
+	public static final String TAG_CHGBINDMOBILE = "chgbindMobile"; //ä¿®æ”¹æ‰‹æœºç»‘å®š
+	public static final String TAG_DRAWMOBILE = "drawMobile"; 		//æŠ½å¥–æ‰‹æœºéªŒè¯
+	public static final String TAG_CCBANKCODE = "ccbankcode";	//å»ºè®¾é“¶è¡ŒåŠ¨æ€ç 
+	public static final String TAG_GETPAYPASS = "getpaypass"; 	//æ‰¾å›æ”¯ä»˜å¯†ç  TODO:ä¸TAG_ACCOUNT_BACKPASSçš„åŒºåˆ«ï¼Ÿï¼Ÿ
+	public static final String TAG_VDEMAIL_BY_UPDATEPWD = "vdemailbyuppwd"; //ä¿®æ”¹å¯†ç å‰ç½®é‚®ç®±å®‰å…¨éªŒè¯
 
 	
-	//TODO:×éÖ¯×¨ÃÅ³£Á¿»ò´æÈëÊı¾İ¿â
+	//TODO:ç»„ç»‡ä¸“é—¨å¸¸é‡æˆ–å­˜å…¥æ•°æ®åº“
 	public static final List<String> VALID_TAG_LIST = Arrays.asList(
 			TAG_REGISTERCODE,
 			TAG_BINDMOBILE,
@@ -46,26 +46,26 @@ public class BindConstant {
 			TAG_VDEMAIL_BY_UPDATEPWD
 		);
 
-	//Ä¬ÈÏ¶ÌĞÅ
-	public static final String DEFAULT_TEMPLATE = "checkpass¶¯Ì¬Âë£¬Ê¹ÓÃºÍ30·ÖÖÓ¹ıÆÚÎŞĞ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÎªÈ·±£ÕË»§°²È«£¬ÇëÖÂµç4000406506";
-	public static final String ADMIN_MOBILE_TEMPLATE = "checkpass¸ĞĞ»Ê¹ÓÃ¸ñÍßÀ­µç»°¹ºÆ±·şÎñ£¬´ËÑéÖ¤ÂëÓÃÓÚĞ£ÑéÓÃ»§ĞÅÏ¢ÊÇ·ñºÏ·¨£¬Èç·Ç±¾ÈË²Ù×÷ÇëºöÂÔ´ËĞÅÏ¢»òÁªÏµ¸ñÍßÀ­¿Í·ş×ÉÑ¯£º4000-406-506";
-	public static final int VALID_MIN = 30;			//ÓĞĞ§Ê±³¤(MINUTE)
+	//é»˜è®¤çŸ­ä¿¡
+	public static final String DEFAULT_TEMPLATE = "checkpassåŠ¨æ€ç ï¼Œä½¿ç”¨å’Œ30åˆ†é’Ÿè¿‡æœŸæ— æ•ˆï¼›éæœ¬äººæˆ–æˆæƒæ“ä½œï¼Œä¸ºç¡®ä¿è´¦æˆ·å®‰å…¨ï¼Œè¯·è‡´ç”µ4000406506";
+	public static final String ADMIN_MOBILE_TEMPLATE = "checkpassæ„Ÿè°¢ä½¿ç”¨æ ¼ç“¦æ‹‰ç”µè¯è´­ç¥¨æœåŠ¡ï¼Œæ­¤éªŒè¯ç ç”¨äºæ ¡éªŒç”¨æˆ·ä¿¡æ¯æ˜¯å¦åˆæ³•ï¼Œå¦‚éæœ¬äººæ“ä½œè¯·å¿½ç•¥æ­¤ä¿¡æ¯æˆ–è”ç³»æ ¼ç“¦æ‹‰å®¢æœå’¨è¯¢ï¼š4000-406-506";
+	public static final int VALID_MIN = 30;			//æœ‰æ•ˆæ—¶é•¿(MINUTE)
 	public static final int MAX_CHECKNUM = 5;
 	public static final int MAX_SENDNUM = 99999;
 	
 	private static final Map<String, Integer> SENDNUM_MAP;
 	private static final Map<String, Integer> MAXCHECK_MAP;
 	private static final Map<String, String> TEMPLATE_MAP;
-	//Ä¬ÈÏ×î´ó·¢ËÍÊıÁ¿
+	//é»˜è®¤æœ€å¤§å‘é€æ•°é‡
 	
 	static{
 		Map<String, String> tmp = new HashMap<String, String>();
-		tmp.put(TAG_REGISTERCODE, "checkpass×¢²á¶¯Ì¬Âë£¬Ê¹ÓÃºÍ30·ÖÖÓ¹ıÆÚÎŞĞ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÎªÈ·±£ÕË»§°²È«£¬ÇëÖÂµç4000406506");
-		tmp.put(TAG_CCBANKCODE, "checkpassÖ§¸¶¶¯Ì¬Âë£¬Ê¹ÓÃºÍ30·ÖÖÓ¹ıÆÚÎŞĞ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÎªÈ·±£ÕË»§°²È«£¬ÇëÖÂµç4000406506");
+		tmp.put(TAG_REGISTERCODE, "checkpassæ³¨å†ŒåŠ¨æ€ç ï¼Œä½¿ç”¨å’Œ30åˆ†é’Ÿè¿‡æœŸæ— æ•ˆï¼›éæœ¬äººæˆ–æˆæƒæ“ä½œï¼Œä¸ºç¡®ä¿è´¦æˆ·å®‰å…¨ï¼Œè¯·è‡´ç”µ4000406506");
+		tmp.put(TAG_CCBANKCODE, "checkpassæ”¯ä»˜åŠ¨æ€ç ï¼Œä½¿ç”¨å’Œ30åˆ†é’Ÿè¿‡æœŸæ— æ•ˆï¼›éæœ¬äººæˆ–æˆæƒæ“ä½œï¼Œä¸ºç¡®ä¿è´¦æˆ·å®‰å…¨ï¼Œè¯·è‡´ç”µ4000406506");
 		TEMPLATE_MAP = UnmodifiableMap.decorate(tmp);
 		
 		Map<String, Integer> tmp2 = new HashMap<String, Integer>();
-		tmp2.put(TAG_REGISTERCODE, 20);		//×¢²áÂëÒ»ÊÖ»úÖ»ÔÊĞí·¢20´Î
+		tmp2.put(TAG_REGISTERCODE, 20);		//æ³¨å†Œç ä¸€æ‰‹æœºåªå…è®¸å‘20æ¬¡
 		tmp2.put(TAG_MODIFYPASS, 20);
 		tmp2.put(TAG_BINDMOBILE, 20);
 		SENDNUM_MAP = UnmodifiableMap.decorate(tmp2);

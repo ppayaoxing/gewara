@@ -6,7 +6,7 @@ package com.gewara.job;
 
 public interface SportOrderJob {
 	/**
-	 * ÍÆËÍ¶©µ¥
+	 * æ¨é€è®¢å•
 	 */
 	void sendOrder();
 	

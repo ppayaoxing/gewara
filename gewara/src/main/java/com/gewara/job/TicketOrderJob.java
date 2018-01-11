@@ -3,16 +3,16 @@ package com.gewara.job;
 
 public interface TicketOrderJob {
 	/**
-	 *¶¨Ê±¸üÕı¡°´ı´¦Àí£¨paidFailure£©¶©µ¥¡± 
+	 *å®šæ—¶æ›´æ­£â€œå¾…å¤„ç†ï¼ˆpaidFailureï¼‰è®¢å•â€ 
 	 */
 	void correctOrder();
 	void checkHfhOrder();
 	/**
-	 * ¶¨Ê±´«ËÍ¶©µ¥
+	 * å®šæ—¶ä¼ é€è®¢å•
 	 */
 	void sendCallbackOrder();
 	/**
-	 * Ã»ÓĞÍ¨ÖªµÄ¶©µ¥
+	 * æ²¡æœ‰é€šçŸ¥çš„è®¢å•
 	 */
 	void unNotifyOrder();
 	//void addOpiUpdate(Long mpid, boolean isFinished);

@@ -10,17 +10,17 @@ public abstract class DiaryConstant implements Serializable {
 
 	private static final long serialVersionUID = 7800942669108910128L;
 
-	// ÏÂÃæÊÇÈÕÖ¾µÄÀàĞÍ£ºÒ»°ãÌû¡¢Í¶Æ±Ìû×Ó¡¢Ó°ÆÀ
-	public static final String DIARY_TYPE_ALL = ""; // ËùÓĞ
-	public static final String DIARY_TYPE_COMMENT = "comment"; // Ó°ÆÀ¡¢ĞÄµÃ£¬¾çÆÀµÈ
-	public static final String DIARY_TYPE_TOPIC_DIARY = "topic_diary"; // Ò»°ãÌû×Ó
-	public static final String DIARY_TYPE_TOPIC_VOTE_RADIO = "topic_vote_radio"; // Í¶Æ±£¨µ¥Ñ¡£©
-	public static final String DIARY_TYPE_TOPIC_VOTE_MULTI = "topic_vote_multi"; // Í¶Æ±£¨¶àÑ¡£©
-	public static final String DIARY_TYPE_TOPIC = "topic"; // ËùÓĞÌû×Ó
-	public static final String DIARY_TYPE_TOPIC_VOTE = "topic_vote"; // Í¶Æ±
-	public static final String DIVISION_Y = "Y";	// Ó°ÆÀ
-	public static final String DIVISION_N = "N";	// ¹ØÁª¶à¸ö
-	public static final String DIVISION_A = "A";	// È«²¿
+	// ä¸‹é¢æ˜¯æ—¥å¿—çš„ç±»å‹ï¼šä¸€èˆ¬å¸–ã€æŠ•ç¥¨å¸–å­ã€å½±è¯„
+	public static final String DIARY_TYPE_ALL = ""; // æ‰€æœ‰
+	public static final String DIARY_TYPE_COMMENT = "comment"; // å½±è¯„ã€å¿ƒå¾—ï¼Œå‰§è¯„ç­‰
+	public static final String DIARY_TYPE_TOPIC_DIARY = "topic_diary"; // ä¸€èˆ¬å¸–å­
+	public static final String DIARY_TYPE_TOPIC_VOTE_RADIO = "topic_vote_radio"; // æŠ•ç¥¨ï¼ˆå•é€‰ï¼‰
+	public static final String DIARY_TYPE_TOPIC_VOTE_MULTI = "topic_vote_multi"; // æŠ•ç¥¨ï¼ˆå¤šé€‰ï¼‰
+	public static final String DIARY_TYPE_TOPIC = "topic"; // æ‰€æœ‰å¸–å­
+	public static final String DIARY_TYPE_TOPIC_VOTE = "topic_vote"; // æŠ•ç¥¨
+	public static final String DIVISION_Y = "Y";	// å½±è¯„
+	public static final String DIVISION_N = "N";	// å…³è”å¤šä¸ª
+	public static final String DIVISION_A = "A";	// å…¨éƒ¨
 	public static final Map<String, String> DIARY_TYPE_MAP;
 	static {
 		Map<String, String> tmp = new HashMap<String, String>();

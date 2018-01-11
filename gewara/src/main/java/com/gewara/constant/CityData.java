@@ -13,12 +13,12 @@ public class CityData {
 	private static final Map<String, String> proMap;
 	static{
 		Map<String, String> tmpMap = new LinkedHashMap<String, String>();
-		tmpMap.put("0000", "Ö±Ï½ÊĞ");
-		tmpMap.put("44", "¹ã¶«Ê¡");
-		tmpMap.put("32", "½­ËÕÊ¡");
-		tmpMap.put("33", "Õã½­Ê¡");
-		tmpMap.put("42", "ºş±±Ê¡");
-		tmpMap.put("51", "ËÄ´¨Ê¡");
+		tmpMap.put("0000", "ç›´è¾–å¸‚");
+		tmpMap.put("44", "å¹¿ä¸œçœ");
+		tmpMap.put("32", "æ±Ÿè‹çœ");
+		tmpMap.put("33", "æµ™æ±Ÿçœ");
+		tmpMap.put("42", "æ¹–åŒ—çœ");
+		tmpMap.put("51", "å››å·çœ");
 		proMap = UnmodifiableMap.decorate(tmpMap);
 	}
 	public static Map<String, String> getOtherCityNames(){
@@ -51,7 +51,7 @@ public class CityData {
 		return key;
 	}*/
 	
-	//µØÍ¼ÉÏÊ¹ÓÃ
+	//åœ°å›¾ä¸Šä½¿ç”¨
 	public static String[] getCenter(String citycode){
 		Map<String, String[]> pointMap = AdminCityContant.getCitycodeBPointMap();
 		String[] str = pointMap.get(citycode);
