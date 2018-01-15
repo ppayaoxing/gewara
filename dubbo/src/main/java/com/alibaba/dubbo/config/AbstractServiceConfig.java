@@ -24,7 +24,7 @@ import com.alibaba.dubbo.rpc.ExporterListener;
 
 /**
  * AbstractServiceConfig
- * 
+ *
  * @author william.liangf
  * @export
  */
@@ -32,42 +32,42 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
 
     private static final long      serialVersionUID = 1L;
 
-    // 锟斤拷锟斤拷姹�
+    // 服务版本
     protected String               version;
 
-    // 锟斤拷锟斤拷锟斤拷锟�
+    // 服务分组
     protected String               group;
 
-    // 锟斤拷锟斤拷锟角凤拷锟窖撅拷deprecated
+    // 服务是否已经deprecated
     protected Boolean              deprecated;
 
-    // 锟接迟憋拷露
+    // 延迟暴露
     protected Integer              delay;
 
-    // 锟角凤拷露
+    // 是否暴露
     protected Boolean              export;
 
-    // 权锟斤拷
+    // 权重
     protected Integer              weight;
 
-    // 应锟斤拷锟侥碉拷
+    // 应用文档
     protected String               document;
 
-    // 锟斤拷注锟斤拷锟斤拷锟斤拷锟斤拷注锟斤拷啥锟教拷幕锟斤拷蔷锟教拷姆锟斤拷锟�
+    // 在注册中心上注册成动态的还是静态的服务
     protected Boolean              dynamic;
 
-    // 锟角凤拷使锟斤拷锟斤拷锟斤拷
+    // 是否使用令牌
     protected String               token;
 
-    // 锟斤拷锟斤拷锟斤拷志
+    // 访问日志
     protected String               accesslog;
 
-    // 锟斤拷锟斤拷执锟斤拷锟斤拷锟斤拷锟斤拷
+    // 允许执行请求数
     private Integer                executes;
 
     protected List<ProtocolConfig> protocols;
 
-    // 锟角凤拷注锟斤拷
+    // 是否注册
     private Boolean                register;
 
     public String getVersion() {
@@ -88,13 +88,13 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
         this.group = group;
     }
 
-	public Integer getDelay() {
-		return delay;
-	}
+    public Integer getDelay() {
+        return delay;
+    }
 
-	public void setDelay(Integer delay) {
-	    this.delay = delay;
-	}
+    public void setDelay(Integer delay) {
+        this.delay = delay;
+    }
 
     public Boolean getExport() {
         return export;
@@ -103,34 +103,34 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
     public void setExport(Boolean export) {
         this.export = export;
     }
-    
+
     public Integer getWeight() {
         return weight;
     }
-    
+
     public void setWeight(Integer weight) {
         this.weight = weight;
     }
-    
+
     @Parameter(escaped = true)
     public String getDocument() {
         return document;
     }
-    
+
     public void setDocument(String document) {
         this.document = document;
     }
 
-	public String getToken() {
-		return token;
-	}
+    public String getToken() {
+        return token;
+    }
 
-	public void setToken(String token) {
-	    checkName("token", token);
-		this.token = token;
-	}
-	
-	public void setToken(Boolean token) {
+    public void setToken(String token) {
+        checkName("token", token);
+        this.token = token;
+    }
+
+    public void setToken(Boolean token) {
         if (token == null) {
             setToken((String) null);
         } else {
@@ -178,7 +178,7 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
     public void setAccesslog(String accesslog) {
         this.accesslog = accesslog;
     }
-    
+
     public void setAccesslog(Boolean accesslog) {
         if (accesslog == null) {
             setAccesslog((String) null);
@@ -190,18 +190,16 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
     public Integer getExecutes() {
         return executes;
     }
-    
+
     public void setExecutes(Integer executes) {
         this.executes = executes;
     }
 
-    @Override
     @Parameter(key = Constants.SERVICE_FILTER_KEY, append = true)
     public String getFilter() {
         return super.getFilter();
     }
 
-    @Override
     @Parameter(key = Constants.EXPORTER_LISTENER_KEY, append = true)
     public String getListener() {
         return super.getListener();

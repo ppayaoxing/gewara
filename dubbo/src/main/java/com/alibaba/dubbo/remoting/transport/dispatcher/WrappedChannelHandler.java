@@ -15,8 +15,7 @@
  */
 package com.alibaba.dubbo.remoting.transport.dispatcher;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.common.URL;
@@ -32,17 +31,21 @@ import com.alibaba.dubbo.remoting.RemotingException;
 import com.alibaba.dubbo.remoting.transport.ChannelHandlerDelegate;
 
 public class WrappedChannelHandler implements ChannelHandlerDelegate {
-    
+
     protected static final Logger logger = LoggerFactory.getLogger(WrappedChannelHandler.class);
 
-    protected static final ExecutorService SHARED_EXECUTOR = Executors.newCachedThreadPool(new NamedThreadFactory("DubboSharedHandler", true));
-    
+    protected static final ExecutorService SHARED_EXECUTOR = new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+            60L, TimeUnit.SECONDS,
+            new SynchronousQueue<Runnable>(),
+            new NamedThreadFactory("DubboSharedHandler", true));
+
     protected final ExecutorService executor;
-    
+
+
     protected final ChannelHandler handler;
 
     protected final URL url;
-    
+
     public WrappedChannelHandler(ChannelHandler handler, URL url) {
         this.handler = handler;
         this.url = url;
@@ -55,11 +58,11 @@ public class WrappedChannelHandler implements ChannelHandlerDelegate {
         DataStore dataStore = ExtensionLoader.getExtensionLoader(DataStore.class).getDefaultExtension();
         dataStore.put(componentKey, Integer.toString(url.getPort()), executor);
     }
-    
+
     public void close() {
         try {
             if (executor instanceof ExecutorService) {
-                ((ExecutorService)executor).shutdown();
+                ((ExecutorService) executor).shutdown();
             }
         } catch (Throwable t) {
             logger.warn("fail to destroy thread pool of server: " + t.getMessage(), t);
@@ -90,11 +93,11 @@ public class WrappedChannelHandler implements ChannelHandlerDelegate {
     public void caught(Channel channel, Throwable exception) throws RemotingException {
         handler.caught(channel, exception);
     }
-    
+
     public ExecutorService getExecutor() {
         return executor;
     }
-    
+
     @Override
     public ChannelHandler getHandler() {
         if (handler instanceof ChannelHandlerDelegate) {
@@ -103,7 +106,7 @@ public class WrappedChannelHandler implements ChannelHandlerDelegate {
             return handler;
         }
     }
-    
+
     public URL getUrl() {
         return url;
     }

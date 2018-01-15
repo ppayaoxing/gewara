@@ -32,7 +32,7 @@ import com.gewara.util.JsonUtils;
 
 public class GewaraSsoClient {
 	/**
-	 * 锟斤拷sso锟斤拷取menu锟斤拷源
+	 * 从sso获取menu资源
 	 * 
 	 * @param url
 	 * @param serviceName
@@ -44,7 +44,7 @@ public class GewaraSsoClient {
 		params.put("SYSTEMID", "");
 		HttpResult result = HttpUtils.getUrlAsString(url, params);
 		int i=0;
-		while(!result.isSuccess() && i<10){//锟斤拷锟斤拷10锟斤拷
+		while(!result.isSuccess() && i<10){//重试10次
 			result = HttpUtils.getUrlAsString(url, params);
 			i ++;
 		}
@@ -59,7 +59,7 @@ public class GewaraSsoClient {
 		params.put("SYSTEMID", "");
 		HttpResult result = HttpUtils.getUrlAsString(url, params);
 		int i=0;
-		while(!result.isSuccess() && i<10){//锟斤拷锟斤拷10锟斤拷
+		while(!result.isSuccess() && i<10){//重试10次
 			result = HttpUtils.getUrlAsString(url, params);
 			i ++;
 		}
@@ -68,7 +68,7 @@ public class GewaraSsoClient {
 	}
 
 	/**
-	 * 锟斤拷录锟斤拷锟斤拷锟斤拷锟矫伙拷锟斤拷息
+	 * 登录并返回用户信息
 	 * 
 	 * @param servletRequest
 	 * @param servletResponse
@@ -78,9 +78,9 @@ public class GewaraSsoClient {
 	 */
 	public final Assertion loginValidationSso(final ServletRequest servletRequest, final ServletResponse servletResponse)
 			throws IOException, ServletException {
-		// 锟叫讹拷锟角凤拷锟矫伙拷锟斤拷录锟斤拷锟斤拷锟斤拷锟矫伙拷械锟铰硷拷锟阶拷锟絪so
+		// 判断是否用户登录过，如果没有登录跳转到sso
 		loginSso(servletRequest, servletResponse);
-		// 锟斤拷证锟斤拷录锟缴癸拷锟斤拷锟矫伙拷锟斤拷息锟斤拷锟斤拷锟斤拷锟斤拷锟矫伙拷锟斤拷息锟斤拷权锟斤拷
+		// 验证登录成功的用户信息，并返回用户信息和权限
 		return validationSso(servletRequest, servletResponse);
 	}
 
@@ -229,9 +229,9 @@ public class GewaraSsoClient {
 	/** Instance of commons logging for logging purposes. */
 	protected final Log log = LogFactory.getLog(GewaraSsoClient.class);
 
-	/** 锟斤拷锟斤拷tk锟斤拷锟斤拷锟斤拷. */
+	/** 返回tk的名称. */
 	private String artifactParameterName = "ticket";
-	/** 锟斤拷锟襟本碉拷service锟斤拷锟斤拷锟斤拷 */
+	/** 请求本地service的名称 */
 	private String serviceParameterName = "service";
 	/**
 	 * Represents the constant for where the assertion will be located in
@@ -269,11 +269,11 @@ public class GewaraSsoClient {
 	private boolean redirectAfterValidation = false;
 
 	/**
-	 * CAS锟斤拷锟斤拷锟铰糒ogin
+	 * CAS服务登录Login
 	 */
 	private String casServerLoginUrl;
 	/**
-	 * 锟斤拷锟斤拷serverName The name of the server. Should be in the following format:
+	 * 本地serverName The name of the server. Should be in the following format:
 	 * {protocol}:{hostName}:{port}. Standard ports can be excluded.
 	 */
 	private String serverName;
@@ -347,7 +347,7 @@ public class GewaraSsoClient {
 	}
 
 	/**
-	 * 锟斤拷锟斤拷casserver锟斤拷url
+	 * 或者casserver的url
 	 * 
 	 * @param request
 	 * @param response
@@ -363,9 +363,8 @@ public class GewaraSsoClient {
 		if (StringUtils.isNotBlank(xfwd)) {
 			String[] ips = xfwd.split(",");
 			for (String ip : ips) {
-				if (!"127.0.0.1".equals(StringUtils.trim(ip)) && !"localhost".equals(StringUtils.trim(ip))) {
-                    return ip;
-                }
+				if (!StringUtils.trim(ip).equals("127.0.0.1") && !StringUtils.trim(ip).equals("localhost"))
+					return ip;
 			}
 		}
 		return request.getRemoteAddr();

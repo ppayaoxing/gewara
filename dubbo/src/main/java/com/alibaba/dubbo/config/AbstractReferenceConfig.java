@@ -23,7 +23,7 @@ import com.alibaba.dubbo.rpc.support.ProtocolUtils;
 
 /**
  * AbstractConsumerConfig
- * 
+ *
  * @see com.alibaba.dubbo.config.ReferenceConfig
  * @author william.liangf
  * @export
@@ -32,34 +32,34 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
 
     private static final long serialVersionUID = -2786526984373031126L;
 
-    // ======== 锟斤拷锟斤拷缺省值锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷未锟斤拷锟斤拷时使锟矫革拷缺省值锟斤拷锟�  ========
-    
-    // 锟斤拷锟斤拷锟斤拷锟结供锟斤拷锟角凤拷锟斤拷锟�
+    // ======== 引用缺省值，当引用属性未设置时使用该缺省值替代  ========
+
+    // 检查服务提供者是否存在
     protected Boolean             check;
 
-    // 锟角凤拷锟斤拷锟绞憋拷锟斤拷坛锟绞硷拷锟�
+    // 是否加载时即刻初始化
     protected Boolean             init;
 
-    // 锟角凤拷使锟矫凤拷锟接匡拷
+    // 是否使用泛接口
     protected String             generic;
 
-    // 锟斤拷锟饺达拷JVM锟节伙拷取锟斤拷锟斤拷实锟斤拷
+    // 优先从JVM内获取引用实例
     protected Boolean             injvm;
-    
+
     // lazy create connection
     protected Boolean             lazy;
 
     protected String              reconnect;
-    
+
     protected Boolean             sticky;
-    
-    //stub锟角凤拷支锟斤拷event锟铰硷拷. //TODO slove merge problem 
+
+    //stub是否支持event事件. //TODO slove merge problem
     protected Boolean             stubevent ;//= Constants.DEFAULT_STUB_EVENT;
 
-    // 锟芥本
+    // 版本
     protected String               version;
 
-    // 锟斤拷锟斤拷锟斤拷锟�
+    // 服务分组
     protected String               group;
 
     public Boolean isCheck() {
@@ -99,29 +99,27 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
 
     /**
      * @return
-     * @deprecated 通锟斤拷scope锟斤拷锟斤拷锟叫断ｏ拷scope=local
+     * @deprecated 通过scope进行判断，scope=local
      */
     @Deprecated
     public Boolean isInjvm() {
         return injvm;
     }
-    
+
     /**
      * @param injvm
-     * @deprecated 通锟斤拷scope锟斤拷锟矫ｏ拷scope=local锟斤拷示使锟斤拷injvm协锟斤拷.
+     * @deprecated 通过scope设置，scope=local表示使用injvm协议.
      */
-    @Deprecated 
+    @Deprecated
     public void setInjvm(Boolean injvm) {
         this.injvm = injvm;
     }
 
-    @Override
     @Parameter(key = Constants.REFERENCE_FILTER_KEY, append = true)
     public String getFilter() {
         return super.getFilter();
     }
 
-    @Override
     @Parameter(key = Constants.INVOKER_LISTENER_KEY, append = true)
     public String getListener() {
         return super.getListener();
@@ -162,7 +160,7 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
     public Boolean getStubevent() {
         return stubevent;
     }
-    
+
     @Parameter(key = Constants.RECONNECT_KEY)
     public String getReconnect() {
         return reconnect;

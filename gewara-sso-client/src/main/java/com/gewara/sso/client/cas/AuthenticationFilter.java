@@ -23,7 +23,7 @@ import org.jasig.cas.client.validation.Assertion;
 public class AuthenticationFilter  {
 
 	/**
-	 * CAS锟斤拷锟斤拷锟铰糒ogin
+	 * CAS服务登录Login
 	 */
 	private String casServerLoginUrl;
 
@@ -38,10 +38,10 @@ public class AuthenticationFilter  {
 	private boolean gateway = false;
 	
 	
-	/** 锟斤拷锟斤拷tk锟斤拷锟斤拷锟斤拷. */
+	/** 返回tk的名称. */
     private String artifactParameterName = "ticket";
 
-    /** 锟斤拷锟襟本碉拷service锟斤拷锟斤拷锟斤拷 */
+    /** 请求本地service的名称 */
     private String serviceParameterName = "service";
     
     /** Sets where response.encodeUrl should be called on service urls when constructed. */
@@ -99,7 +99,7 @@ public class AuthenticationFilter  {
 	}
 
 	/**
-	 * 锟斤拷始锟斤拷
+	 * 初始化
 	 * 
 	 */
 	public void init() {
@@ -150,7 +150,7 @@ public class AuthenticationFilter  {
 	}
 
 	/**
-	 * 锟斤拷锟斤拷casserver锟斤拷url
+	 * 或者casserver的url
 	 * @param request
 	 * @param response
 	 * @return
@@ -274,7 +274,7 @@ public class AuthenticationFilter  {
     }
     
     protected final boolean parseBoolean(final String value) {
-    	return ((value != null) && "true".equalsIgnoreCase(value));
+    	return ((value != null) && value.equalsIgnoreCase("true"));
     }
     
     private boolean ignoreInitConfiguration = false;

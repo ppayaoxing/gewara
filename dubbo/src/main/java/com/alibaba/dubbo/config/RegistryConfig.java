@@ -23,77 +23,77 @@ import com.alibaba.dubbo.registry.support.AbstractRegistryFactory;
 
 /**
  * RegistryConfig
- * 
+ *
  * @author william.liangf
  * @export
  */
 public class RegistryConfig extends AbstractConfig {
 
-	private static final long serialVersionUID = 5508512956753757169L;
-	
-	public static final String NO_AVAILABLE = "N/A";
+    private static final long serialVersionUID = 5508512956753757169L;
 
-    // 注锟斤拷锟斤拷锟侥碉拷址
+    public static final String NO_AVAILABLE = "N/A";
+
+    // 注册中心地址
     private String            address;
-    
-	// 注锟斤拷锟斤拷锟侥碉拷录锟矫伙拷锟斤拷
+
+    // 注册中心登录用户名
     private String            username;
 
-    // 注锟斤拷锟斤拷锟侥碉拷录锟斤拷锟斤拷
+    // 注册中心登录密码
     private String            password;
 
-    // 注锟斤拷锟斤拷锟斤拷缺省锟剿匡拷
+    // 注册中心缺省端口
     private Integer           port;
-    
-    // 注锟斤拷锟斤拷锟斤拷协锟斤拷
+
+    // 注册中心协议
     private String            protocol;
 
-    // 锟酵伙拷锟斤拷实锟斤拷
+    // 客户端实现
     private String            transporter;
-    
+
     private String            server;
-    
+
     private String            client;
 
     private String            cluster;
-    
+
     private String            group;
 
-	private String            version;
+    private String            version;
 
-    // 注锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷时时锟斤拷(锟斤拷锟斤拷)
+    // 注册中心请求超时时间(毫秒)
     private Integer           timeout;
 
-    // 注锟斤拷锟斤拷锟侥会话锟斤拷时时锟斤拷(锟斤拷锟斤拷)
+    // 注册中心会话超时时间(毫秒)
     private Integer           session;
-    
-    // 锟斤拷态注锟斤拷锟斤拷锟斤拷锟叫憋拷娲拷募锟�
+
+    // 动态注册中心列表存储文件
     private String            file;
-    
-    // 停止时锟饺猴拷锟斤拷锟酵ㄖ憋拷锟�
+
+    // 停止时等候完成通知时间
     private Integer           wait;
-    
-    // 锟斤拷锟斤拷时锟斤拷锟阶拷锟斤拷锟斤拷锟斤拷欠锟斤拷锟斤拷
+
+    // 启动时检查注册中心是否存在
     private Boolean           check;
 
-    // 锟节革拷注锟斤拷锟斤拷锟斤拷锟斤拷注锟斤拷锟角讹拷态锟侥伙拷锟角撅拷态锟侥凤拷锟斤拷
+    // 在该注册中心上注册是动态的还是静态的服务
     private Boolean           dynamic;
-    
-    // 锟节革拷注锟斤拷锟斤拷锟斤拷锟较凤拷锟斤拷锟角凤拷露
+
+    // 在该注册中心上服务是否暴露
     private Boolean           register;
-    
-    // 锟节革拷注锟斤拷锟斤拷锟斤拷锟较凤拷锟斤拷锟角凤拷锟斤拷锟斤拷
+
+    // 在该注册中心上服务是否引用
     private Boolean           subscribe;
 
-    // 锟皆讹拷锟斤拷锟斤拷锟�
+    // 自定义参数
     private Map<String, String> parameters;
 
-    // 锟角凤拷为缺省
+    // 是否为缺省
     private Boolean             isDefault;
-    
+
     public RegistryConfig() {
     }
-    
+
     public RegistryConfig(String address) {
         setAddress(address);
     }
@@ -160,18 +160,17 @@ public class RegistryConfig extends AbstractConfig {
     @Deprecated
     public void setWait(Integer wait) {
         this.wait = wait;
-        if( wait!=null && wait>0) {
+        if( wait!=null && wait>0)
             System.setProperty(Constants.SHUTDOWN_WAIT_KEY, String.valueOf(wait));
-        }
     }
-    
-    public Boolean isCheck() {
-		return check;
-	}
 
-	public void setCheck(Boolean check) {
-		this.check = check;
-	}
+    public Boolean isCheck() {
+        return check;
+    }
+
+    public void setCheck(Boolean check) {
+        this.check = check;
+    }
 
     public String getFile() {
         return file;
@@ -192,7 +191,7 @@ public class RegistryConfig extends AbstractConfig {
     public String getTransport() {
         return getTransporter();
     }
-    
+
     /**
      * @deprecated
      * @see #setTransporter(String)
@@ -202,7 +201,7 @@ public class RegistryConfig extends AbstractConfig {
     public void setTransport(String transport) {
         setTransporter(transport);
     }
-    
+
     public String getTransporter() {
         return transporter;
     }
@@ -214,11 +213,11 @@ public class RegistryConfig extends AbstractConfig {
         }*/
         this.transporter = transporter;
     }
-    
+
     public String getServer() {
         return server;
     }
-    
+
     public void setServer(String server) {
         checkName("server", server);
         /*if(server != null && server.length() > 0 && ! ExtensionLoader.getExtensionLoader(Transporter.class).hasExtension(server)){
@@ -226,11 +225,11 @@ public class RegistryConfig extends AbstractConfig {
         }*/
         this.server = server;
     }
-    
+
     public String getClient() {
         return client;
     }
-    
+
     public void setClient(String client) {
         checkName("client", client);
         /*if(client != null && client.length() > 0 && ! ExtensionLoader.getExtensionLoader(Transporter.class).hasExtension(client)){
@@ -239,13 +238,13 @@ public class RegistryConfig extends AbstractConfig {
         this.client = client;
     }
 
-	public Integer getTimeout() {
-		return timeout;
-	}
+    public Integer getTimeout() {
+        return timeout;
+    }
 
-	public void setTimeout(Integer timeout) {
-		this.timeout = timeout;
-	}
+    public void setTimeout(Integer timeout) {
+        this.timeout = timeout;
+    }
 
     public Integer getSession() {
         return session;
@@ -270,22 +269,22 @@ public class RegistryConfig extends AbstractConfig {
     public void setRegister(Boolean register) {
         this.register = register;
     }
-    
+
     public Boolean isSubscribe() {
         return subscribe;
     }
-    
+
     public void setSubscribe(Boolean subscribe) {
         this.subscribe = subscribe;
     }
 
     public String getCluster() {
-		return cluster;
-	}
+        return cluster;
+    }
 
-	public void setCluster(String cluster) {
-		this.cluster = cluster;
-	}
+    public void setCluster(String cluster) {
+        this.cluster = cluster;
+    }
 
     public String getGroup() {
         return group;

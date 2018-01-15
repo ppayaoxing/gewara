@@ -27,7 +27,7 @@ import com.alibaba.dubbo.common.utils.ClassHelper;
 
 /**
  * Version
- * 
+ *
  * @author william.liangf
  */
 public final class Version {
@@ -43,14 +43,14 @@ public final class Version {
     private static final boolean COMPATIBLE = hasResource("com/taobao/remoting/impl/ConnectionRequest.class");
 
     static {
-        // 妫�鏌ユ槸鍚﹀瓨鍦ㄩ噸澶嶇殑jar鍖�
-    	Version.checkDuplicate(Version.class);
-	}
+        // 检查是否存在重复的jar包
+        Version.checkDuplicate(Version.class);
+    }
 
     public static String getVersion(){
-    	return VERSION;
+        return VERSION;
     }
-    
+
     public static boolean isInternalVersion() {
         return INTERNAL;
     }
@@ -58,7 +58,7 @@ public final class Version {
     public static boolean isCompatibleVersion() {
         return COMPATIBLE;
     }
-    
+
     private static boolean hasResource(String path) {
         try {
             return Version.class.getClassLoader().getResource(path) != null;
@@ -66,16 +66,16 @@ public final class Version {
             return false;
         }
     }
-    
+
     public static String getVersion(Class<?> cls, String defaultVersion) {
         try {
-            // 棣栧厛鏌ユ壘MANIFEST.MF瑙勮寖涓殑鐗堟湰鍙�
+            // 首先查找MANIFEST.MF规范中的版本号
             String version = cls.getPackage().getImplementationVersion();
             if (version == null || version.length() == 0) {
                 version = cls.getPackage().getSpecificationVersion();
             }
             if (version == null || version.length() == 0) {
-                // 濡傛灉瑙勮寖涓病鏈夌増鏈彿锛屽熀浜巎ar鍖呭悕鑾峰彇鐗堟湰鍙�
+                // 如果规范中没有版本号，基于jar包名获取版本号
                 CodeSource codeSource = cls.getProtectionDomain().getCodeSource();
                 if(codeSource == null) {
                     logger.info("No codeSource for class " + cls.getName() + " when getVersion, use default version " + defaultVersion);
@@ -104,10 +104,10 @@ public final class Version {
                     }
                 }
             }
-            // 杩斿洖鐗堟湰鍙凤紝濡傛灉涓虹┖杩斿洖缂虹渷鐗堟湰鍙�
+            // 返回版本号，如果为空返回缺省版本号
             return version == null || version.length() == 0 ? defaultVersion : version;
-        } catch (Throwable e) { // 闃插尽鎬у閿�
-            // 蹇界暐寮傚父锛岃繑鍥炵己鐪佺増鏈彿
+        } catch (Throwable e) { // 防御性容错
+            // 忽略异常，返回缺省版本号
             logger.error("return default version, ignore exception " + e.getMessage(), e);
             return defaultVersion;
         }
@@ -117,36 +117,36 @@ public final class Version {
         checkDuplicate(cls.getName().replace('.', '/') + ".class", failOnError);
     }
 
-	public static void checkDuplicate(Class<?> cls) {
-		checkDuplicate(cls, false);
-	}
+    public static void checkDuplicate(Class<?> cls) {
+        checkDuplicate(cls, false);
+    }
 
-	public static void checkDuplicate(String path, boolean failOnError) {
-		try {
-			// 鍦–lassPath鎼滄枃浠�
-			Enumeration<URL> urls = ClassHelper.getCallerClassLoader(Version.class).getResources(path);
-			Set<String> files = new HashSet<String>();
-			while (urls.hasMoreElements()) {
-				URL url = urls.nextElement();
-				if (url != null) {
-					String file = url.getFile();
-					if (file != null && file.length() > 0) {
-						files.add(file);
-					}
-				}
-			}
-			// 濡傛灉鏈夊涓紝灏辫〃绀洪噸澶�
-			if (files.size() > 1) {
+    public static void checkDuplicate(String path, boolean failOnError) {
+        try {
+            // 在ClassPath搜文件
+            Enumeration<URL> urls = ClassHelper.getCallerClassLoader(Version.class).getResources(path);
+            Set<String> files = new HashSet<String>();
+            while (urls.hasMoreElements()) {
+                URL url = urls.nextElement();
+                if (url != null) {
+                    String file = url.getFile();
+                    if (file != null && file.length() > 0) {
+                        files.add(file);
+                    }
+                }
+            }
+            // 如果有多个，就表示重复
+            if (files.size() > 1) {
                 String error = "Duplicate class " + path + " in " + files.size() + " jar " + files;
                 if (failOnError) {
                     throw new IllegalStateException(error);
                 } else {
-				    logger.error(error);
+                    logger.error(error);
                 }
-			}
-		} catch (Throwable e) { // 闃插尽鎬у閿�
-			logger.error(e.getMessage(), e);
-		}
-	}
+            }
+        } catch (Throwable e) { // 防御性容错
+            logger.error(e.getMessage(), e);
+        }
+    }
 
 }
