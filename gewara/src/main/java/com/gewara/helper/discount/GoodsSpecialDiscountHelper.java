@@ -41,25 +41,25 @@ public class GoodsSpecialDiscountHelper extends SpecialDiscountHelper{
 	}
 	@Override
 	public String getOrderFirstDisabledReason(SpecialDiscount sd, Spcounter spcounter, List<Cpcounter> cpcounterList) {
-		//×¢Òâ£¬spcounter²»ÄÜÎª¿Õ
+		//æ³¨æ„ï¼Œspcounterä¸èƒ½ä¸ºç©º
 		String rs = getSpcounterDisabledReason(spcounter, cpcounterList, order.getCitycode(), order.getPartnerid(), order.getQuantity());
 		if(StringUtils.isNotBlank(rs)) return rs;
 		if(order.getQuantity() > sd.getBuynum())
-			return "±¾´Î»î¶¯Ã¿´ÎÏŞÁ¿" + sd.getBuynum() + "¸ö£¡";
+			return "æœ¬æ¬¡æ´»åŠ¨æ¯æ¬¡é™é‡" + sd.getBuynum() + "ä¸ªï¼";
 		if(order.getQuantity() < sd.getMinbuy())
-			return "±¾»î¶¯µ¥±Ê¶©µ¥×îÉÙ¹ºÂò" + sd.getBuynum() + "ÕÅ£¡";
+			return "æœ¬æ´»åŠ¨å•ç¬”è®¢å•æœ€å°‘è´­ä¹°" + sd.getBuynum() + "å¼ ï¼";
 		if(StringUtils.isNotBlank(sd.getAddweek())){
 			String addweek = "" + DateUtil.getWeek(order.getAddtime());
-			if(!StringUtils.contains(sd.getAddweek(), addweek)) return "±¾»î¶¯½öÏŞÖÜ" + sd.getAddweek() + "¹ºÂò£¡";
+			if(!StringUtils.contains(sd.getAddweek(), addweek)) return "æœ¬æ´»åŠ¨ä»…é™å‘¨" + sd.getAddweek() + "è´­ä¹°ï¼";
 		}
 
 		if(order.getAddtime().before(sd.getTimefrom()) || order.getAddtime().after(sd.getTimeto()))
-			return "±¾´Î»î¶¯Ê±¼äÎª" + DateUtil.formatTimestamp(sd.getTimefrom()) + "ÖÁ" + DateUtil.formatTimestamp(sd.getTimeto());
+			return "æœ¬æ¬¡æ´»åŠ¨æ—¶é—´ä¸º" + DateUtil.formatTimestamp(sd.getTimefrom()) + "è‡³" + DateUtil.formatTimestamp(sd.getTimeto());
 		
 		String add_time = DateUtil.format(order.getAddtime(), "HHmm");
 		if(add_time.compareTo(sd.getAddtime1())< 0 || add_time.compareTo(sd.getAddtime2())>0){
-			return "±¾»î¶¯½öÏŞ" + sd.getTime1().substring(0,2) + ":" + sd.getTime1().substring(2) +"¡«" + 
-			sd.getTime2().substring(0,2) + ":" + sd.getTime2().substring(2) + "¹ºÂò£¡";
+			return "æœ¬æ´»åŠ¨ä»…é™" + sd.getTime1().substring(0,2) + ":" + sd.getTime1().substring(2) +"ï½" + 
+			sd.getTime2().substring(0,2) + ":" + sd.getTime2().substring(2) + "è´­ä¹°ï¼";
 		}
 		return "";
 	}
@@ -69,23 +69,23 @@ public class GoodsSpecialDiscountHelper extends SpecialDiscountHelper{
 	}
 
 	private static String getFullDisabledReason(Spcounter spcounter, List<Cpcounter> cpcounterList, SpecialDiscount sd, GoodsOrder order, List<BaseGoods> goodsList) {
-		//Ìø¹ıgewaprice, timefrom, timeto, time1, time2, pricegap, price1, price2¼ì²â
+		//è·³è¿‡gewaprice, timefrom, timeto, time1, time2, pricegap, price1, price2æ£€æµ‹
 		String reason = "";
 		if(StringUtils.isNotBlank(sd.getPaymethod())){
 			String[] pay = sd.getPaymethod().split(":");
-			if(!StringUtils.equals(pay[0], order.getPaymethod())) reason += "Ö§¸¶·½Ê½²»Ö§³Ö£¡";
+			if(!StringUtils.equals(pay[0], order.getPaymethod())) reason += "æ”¯ä»˜æ–¹å¼ä¸æ”¯æŒï¼";
 			if(pay.length > 1 && !StringUtils.equals(pay[1], order.getPaybank())){
-				reason += "Ö§¸¶Íø¹Ø²»Ö§³Ö£¡";
+				reason += "æ”¯ä»˜ç½‘å…³ä¸æ”¯æŒï¼";
 			}
 		}
 		if(!isEnabledByFromToTime(sd, order.getAddtime()))
-			reason += "±¾»î¶¯Ê±¼äÎª" + DateUtil.formatTimestamp(sd.getTimefrom()) + "ÖÁ" + DateUtil.formatTimestamp(sd.getTimeto()) + "£¡";
-		//×¢Òâ£¬spcounter²»ÄÜÎª¿Õ
+			reason += "æœ¬æ´»åŠ¨æ—¶é—´ä¸º" + DateUtil.formatTimestamp(sd.getTimefrom()) + "è‡³" + DateUtil.formatTimestamp(sd.getTimeto()) + "ï¼";
+		//æ³¨æ„ï¼Œspcounterä¸èƒ½ä¸ºç©º
 		String rs = getSpcounterDisabledReason(spcounter, cpcounterList, order.getCitycode(), order.getPartnerid(), order.getQuantity());
 		if(StringUtils.isNotBlank(rs)) reason += rs;
 		if(order.getQuantity() > sd.getBuynum()|| order.getQuantity() < sd.getMinbuy()){
-			if(sd.getBuynum() == sd.getMinbuy()) reason += "±¾»î¶¯µ¥±Ê¶©±ØĞë¹ºÂò" + sd.getBuynum() + "ÕÅ£¡";
-			else reason += "±¾»î¶¯µ¥±Ê¶©Ö»ÄÜ¹ºÂò" + sd.getMinbuy() + "¡«" + sd.getBuynum() + "ÕÅ£¡";
+			if(sd.getBuynum() == sd.getMinbuy()) reason += "æœ¬æ´»åŠ¨å•ç¬”è®¢å¿…é¡»è´­ä¹°" + sd.getBuynum() + "å¼ ï¼";
+			else reason += "æœ¬æ´»åŠ¨å•ç¬”è®¢åªèƒ½è´­ä¹°" + sd.getMinbuy() + "ï½" + sd.getBuynum() + "å¼ ï¼";
 		}
 		reason += getGoodsFullDisabledReason(sd, goodsList, order.getAddtime());
 		return reason;
@@ -102,16 +102,16 @@ public class GoodsSpecialDiscountHelper extends SpecialDiscountHelper{
 		String reason = "";
 		Long itemid = (Long) BeanUtil.get(goods, "itemid");
 		Long roomid = (Long) BeanUtil.get(goods, "roomid");
-		if(itemid != null  && !isEnabledByCategoryid(sd, itemid)) reason += "±¾»î¶¯²»Ö§³Ö¸ÃÓ°Æ¬£¡";
-		if(!isEnabledByAddweek(sd, addtime))  reason += "±¾»î¶¯½öÏŞÖÜ" + sd.getAddweek() + "¹ºÂò£¡";
+		if(itemid != null  && !isEnabledByCategoryid(sd, itemid)) reason += "æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥å½±ç‰‡ï¼";
+		if(!isEnabledByAddweek(sd, addtime))  reason += "æœ¬æ´»åŠ¨ä»…é™å‘¨" + sd.getAddweek() + "è´­ä¹°ï¼";
 		if(!isEnabledByAddtime(sd, addtime)){
-			reason += "±¾»î¶¯½öÏŞ" + sd.getAddtime1().substring(0,2) + ":" + sd.getAddtime1().substring(2) +"¡«" + 
-			sd.getAddtime2().substring(0,2) + ":" + sd.getAddtime2().substring(2) + "¹ºÂò£¡";
+			reason += "æœ¬æ´»åŠ¨ä»…é™" + sd.getAddtime1().substring(0,2) + ":" + sd.getAddtime1().substring(2) +"ï½" + 
+			sd.getAddtime2().substring(0,2) + ":" + sd.getAddtime2().substring(2) + "è´­ä¹°ï¼";
 		}
 		if(roomid != null && StringUtils.isNotBlank(sd.getFieldid())){
 			List<Long> roomidList = BeanUtil.getIdList(sd.getFieldid(), ",");
 			if(!roomidList.contains(roomid)){
-				reason += "±¾»î¶¯²»Ö§³Ö¸ÃÌü£¡";
+				reason += "æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥å…ï¼";
 			}
 		}
 		return reason;
@@ -130,10 +130,10 @@ public class GoodsSpecialDiscountHelper extends SpecialDiscountHelper{
 	private ErrorCode getSpdiscountOpentype(SpecialDiscount sd, BaseGoods goods){
 		if (StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_SPECIAL)) {
 			if (!StringUtils.contains(goods.getSpflag(), sd.getFlag())) {
-				return ErrorCode.getFailure("±¾³¡´Î²»Ö§³Ö´Ë»î¶¯£¡");
+				return ErrorCode.getFailure("æœ¬åœºæ¬¡ä¸æ”¯æŒæ­¤æ´»åŠ¨ï¼");
 			}
 		} else if (!StringUtils.contains(goods.getElecard(), PayConstant.CARDTYPE_PARTNER)) {
-			return ErrorCode.getFailure("±¾³¡´Î²»Ö§³Ö´Ë»î¶¯£¡");
+			return ErrorCode.getFailure("æœ¬åœºæ¬¡ä¸æ”¯æŒæ­¤æ´»åŠ¨ï¼");
 		}
 		return ErrorCode.SUCCESS;
 	}
@@ -141,16 +141,16 @@ public class GoodsSpecialDiscountHelper extends SpecialDiscountHelper{
 	
 	@Override
 	public ErrorCode<Integer> getSpdiscountAmount(SpecialDiscount sd, Spcounter spcounter, List<Cpcounter> cpcounterList, PayValidHelper pvh) {
-		if(order.getDiscount() > 0) return ErrorCode.getFailure("²»ÄÜºÍÆäËûÓÅ»İ·½Ê½¹²ÓÃ£¡");
-		if(sd==null) return ErrorCode.getFailure("±¾»î¶¯²»´æÔÚ");
+		if(order.getDiscount() > 0) return ErrorCode.getFailure("ä¸èƒ½å’Œå…¶ä»–ä¼˜æƒ æ–¹å¼å…±ç”¨ï¼");
+		if(sd==null) return ErrorCode.getFailure("æœ¬æ´»åŠ¨ä¸å­˜åœ¨");
 		if(StringUtils.equals(order.getStatus(), OrderConstant.STATUS_NEW_CONFIRM)){
-			return ErrorCode.getFailure("ÒÑ¾­È·ÈÏµÄ¶©µ¥²»ÄÜĞŞ¸Ä£¡");
+			return ErrorCode.getFailure("å·²ç»ç¡®è®¤çš„è®¢å•ä¸èƒ½ä¿®æ”¹ï¼");
 		}
 		if(StringUtils.startsWith(order.getStatus(), OrderConstant.STATUS_PAID)){
-			return ErrorCode.getFailure("ÒÑ¾­Ö§¸¶µÄ¶©µ¥²»ÄÜĞŞ¸Ä£¡");
+			return ErrorCode.getFailure("å·²ç»æ”¯ä»˜çš„è®¢å•ä¸èƒ½ä¿®æ”¹ï¼");
 		}
 		if(StringUtils.startsWith(order.getStatus(), OrderConstant.STATUS_CANCEL)){
-			return ErrorCode.getFailure("ÒÑ¾­È¡ÏûµÄ¶©µ¥²»ÄÜĞŞ¸Ä£¡");
+			return ErrorCode.getFailure("å·²ç»å–æ¶ˆçš„è®¢å•ä¸èƒ½ä¿®æ”¹ï¼");
 		}
 		return validSpdiscountWithoutStatus(sd, spcounter, cpcounterList, pvh);
 	}
@@ -161,13 +161,13 @@ public class GoodsSpecialDiscountHelper extends SpecialDiscountHelper{
 		String umpayfee = otherFeeMap.get(OtherFeeDetail.FEETYPE_U);
 		if (StringUtils.isNotBlank(umpayfee) && Integer.parseInt(umpayfee)>0) {
 			if (!pvh.supportPaymethod(order.getPaymethod()))
-				return ErrorCode.getFailure("´Ë»î¶¯²»Ö§³ÖÄúÑ¡ÔñµÄÖ§¸¶·½Ê½£¡");
+				return ErrorCode.getFailure("æ­¤æ´»åŠ¨ä¸æ”¯æŒæ‚¨é€‰æ‹©çš„æ”¯ä»˜æ–¹å¼ï¼");
 			pvh = new PayValidHelper(order.getPaymethod());
 		}
 		ErrorCode<List<BaseGoods>> enable = isEnabled(sd, pvh);
 		if (!enable.isSuccess()) {
 			if(isShowMsg()) return ErrorCode.getFailure(enable.getMsg());
-			return ErrorCode.getFailure("²»Ö§³Ö´Ë»î¶¯");
+			return ErrorCode.getFailure("ä¸æ”¯æŒæ­¤æ´»åŠ¨");
 		}
 		ErrorCode<List<BaseGoods>> openCode = getSpdiscountOpentype(sd, enable.getRetval());
 		if(!openCode.isSuccess()) return ErrorCode.getFailure(openCode.getMsg());
@@ -240,11 +240,11 @@ public class GoodsSpecialDiscountHelper extends SpecialDiscountHelper{
 			if(StringUtils.equals(order.getCategory(), GoodsConstant.GOODS_TYPE_TICKET)){
 				for (BuyItem item : itemList){
 					BaseGoods goods = goodsMap.get(item.getRelatedid());
-					//¸ÃÎïÆ·»ò³¡´Î²»´æÔÚÓÅ»İ
+					//è¯¥ç‰©å“æˆ–åœºæ¬¡ä¸å­˜åœ¨ä¼˜æƒ 
 					if(goods == null || item.getDisid() != null) continue;
 					int quantity = item.getQuantity()/2;
 					int unitprice = item.getUnitprice();
-					/* Ì×Æ±²»Ö§³ÖÂòÒ»ËÍÒ»
+					/* å¥—ç¥¨ä¸æ”¯æŒä¹°ä¸€é€ä¸€
 					 * if(item.getDisid() != null){
 						Map<String, String> otherInfoMap = JsonUtils.readJsonToMap(item.getOtherinfo());
 						String disquantity = otherInfoMap.get(BuyItemConstant.OTHERINFO_KEY_DISQUANTITY);
@@ -261,16 +261,16 @@ public class GoodsSpecialDiscountHelper extends SpecialDiscountHelper{
 				amount = order.getUnitprice();
 			}
 		}
-		if(amount <= 0) return ErrorCode.getFailure("´Ë¶©µ¥ÎŞÓÅ»İ£¡");
+		if(amount <= 0) return ErrorCode.getFailure("æ­¤è®¢å•æ— ä¼˜æƒ ï¼");
 		if(amount > order.getTotalfee()) amount = order.getTotalfee();
 		return ErrorCode.getSuccessReturn(amount);
 	}
 	
 	@Override
 	public ErrorCode<List<BaseGoods>> isEnabled(SpecialDiscount sd, PayValidHelper pvh) {
-		//³É±¾¼ÛÏŞÖÆ£ºcostprice1, costprice2??
+		//æˆæœ¬ä»·é™åˆ¶ï¼šcostprice1, costprice2??
 		if(order.getUnitprice() > sd.getPrice2()  || order.getUnitprice() < sd.getPrice1()){
-			return ErrorCode.getFailure("Âô¼Û·¶Î§²»Ö§³Ö£¡");
+			return ErrorCode.getFailure("å–ä»·èŒƒå›´ä¸æ”¯æŒï¼");
 		}
 		return isEnabled(sd, goodsList, pvh);
 	}
@@ -289,37 +289,37 @@ public class GoodsSpecialDiscountHelper extends SpecialDiscountHelper{
 	}
 	
 	public static ErrorCode isEnabled(SpecialDiscount sd, BaseGoods goods, PayValidHelper pvh){
-		if (sd == null) return ErrorCode.getFailure("±¾»î¶¯²»´æÔÚ");
+		if (sd == null) return ErrorCode.getFailure("æœ¬æ´»åŠ¨ä¸å­˜åœ¨");
 		if(StringUtils.isNotBlank(sd.getPaymethod()) && 
 				StringUtils.isNotBlank(goods.getOtherinfo())){
 			if(pvh == null) pvh = new PayValidHelper(JsonUtils.readJsonToMap(goods.getOtherinfo()));
 			String[] pay = StringUtils.split(sd.getPaymethod());
-			if(!pvh.supportPaymethod(pay[0])) return ErrorCode.getFailure("Ö§¸¶ÏŞÖÆ£¡");
+			if(!pvh.supportPaymethod(pay[0])) return ErrorCode.getFailure("æ”¯ä»˜é™åˆ¶ï¼");
 		}
 		if(StringUtils.isNotBlank(sd.getCitycode())){
 			if(!StringUtils.equals(AdminCityContant.CITYCODE_ALL, sd.getCitycode()) && 
 					!StringUtils.equals(goods.getCitycode(), sd.getCitycode())){
-				return ErrorCode.getFailure("³ÇÊĞ²»Ö§³Ö£¡");
+				return ErrorCode.getFailure("åŸå¸‚ä¸æ”¯æŒï¼");
 			}
 		}
 		if(goods.getRelatedid() != null){
 			if(!isEnabledByRelatedid(sd, goods.getRelatedid())){
-				return ErrorCode.getFailure("³¡¹İ²»Ö§³Ö£¡");
+				return ErrorCode.getFailure("åœºé¦†ä¸æ”¯æŒï¼");
 			}
 		}
 		if(goods instanceof TicketGoods){
 			Long categoryid = (Long) BeanUtil.get(goods, "categoryid");
 			if(!isEnabledByCategoryid(sd, categoryid)){
-				return ErrorCode.getFailure("ÏîÄ¿²»Ö§³Ö£¡");
+				return ErrorCode.getFailure("é¡¹ç›®ä¸æ”¯æŒï¼");
 			}
 		}else if(goods instanceof SportGoods){
 			Long categoryid = (Long) BeanUtil.get(goods, "itemid");
 			if(!isEnabledByCategoryid(sd, categoryid)){
-				return ErrorCode.getFailure("ÏîÄ¿²»Ö§³Ö£¡");
+				return ErrorCode.getFailure("é¡¹ç›®ä¸æ”¯æŒï¼");
 			}
 		}
 		if(!isEnabledByItemid(sd, goods.getId())){
-			return ErrorCode.getFailure("ÎïÆ·²»Ö§³Ö£¡");
+			return ErrorCode.getFailure("ç‰©å“ä¸æ”¯æŒï¼");
 		}
 		
 		return ErrorCode.SUCCESS;

@@ -17,12 +17,7 @@ package com.alibaba.dubbo.monitor.dubbo;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 import com.alibaba.dubbo.common.URL;
@@ -35,54 +30,54 @@ import com.alibaba.dubbo.rpc.Invoker;
 
 /**
  * DubboMonitor
- * 
+ *
  * @author william.liangf
  */
 public class DubboMonitor implements Monitor {
-    
-    private static final Logger logger = LoggerFactory.getLogger(DubboMonitor.class);
-    
-    private static final int LENGTH = 10;
-    
-    // 锟斤拷时锟斤拷锟斤拷执锟斤拷锟斤拷
-    private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3, new NamedThreadFactory("DubboMonitorSendTimer", true));
 
-    // 统锟斤拷锟斤拷息锟秸硷拷锟斤拷时锟斤拷
+    private static final Logger logger = LoggerFactory.getLogger(DubboMonitor.class);
+
+    private static final int LENGTH = 10;
+
+    // 定时任务执行器
+    private final ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(3, new NamedThreadFactory("DubboMonitorSendTimer", true));
+
+    // 统计信息收集定时器
     private final ScheduledFuture<?> sendFuture;
-    
+
     private final Invoker<MonitorService> monitorInvoker;
 
     private final MonitorService monitorService;
 
     private final long monitorInterval;
-    
+
     private final ConcurrentMap<Statistics, AtomicReference<long[]>> statisticsMap = new ConcurrentHashMap<Statistics, AtomicReference<long[]>>();
 
     public DubboMonitor(Invoker<MonitorService> monitorInvoker, MonitorService monitorService) {
         this.monitorInvoker = monitorInvoker;
         this.monitorService = monitorService;
         this.monitorInterval = monitorInvoker.getUrl().getPositiveParameter("interval", 60000);
-        // 锟斤拷锟斤拷统锟斤拷锟斤拷息锟秸硷拷锟斤拷时锟斤拷
+        // 启动统计信息收集定时器
         sendFuture = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                // 锟秸硷拷统锟斤拷锟斤拷息
+                // 收集统计信息
                 try {
                     send();
-                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
+                } catch (Throwable t) { // 防御性容错
                     logger.error("Unexpected error occur at send statistic, cause: " + t.getMessage(), t);
                 }
             }
         }, monitorInterval, monitorInterval, TimeUnit.MILLISECONDS);
     }
-    
+
     public void send() {
         if (logger.isInfoEnabled()) {
             logger.info("Send statistics to monitor " + getUrl());
         }
         String timestamp = String.valueOf(System.currentTimeMillis());
         for (Map.Entry<Statistics, AtomicReference<long[]>> entry : statisticsMap.entrySet()) {
-            // 锟斤拷取锟斤拷统锟斤拷锟斤拷锟斤拷
+            // 获取已统计数据
             Statistics statistics = entry.getKey();
             AtomicReference<long[]> reference = entry.getValue();
             long[] numbers = reference.get();
@@ -96,13 +91,13 @@ public class DubboMonitor implements Monitor {
             long maxOutput = numbers[7];
             long maxElapsed = numbers[8];
             long maxConcurrent = numbers[9];
-             
-            // 锟斤拷锟酵伙拷锟斤拷锟斤拷息
+
+            // 发送汇总信息
             URL url = statistics.getUrl()
                     .addParameters(MonitorService.TIMESTAMP, timestamp,
                             MonitorService.SUCCESS, String.valueOf(success),
-                            MonitorService.FAILURE, String.valueOf(failure), 
-                            MonitorService.INPUT, String.valueOf(input), 
+                            MonitorService.FAILURE, String.valueOf(failure),
+                            MonitorService.INPUT, String.valueOf(input),
                             MonitorService.OUTPUT, String.valueOf(output),
                             MonitorService.ELAPSED, String.valueOf(elapsed),
                             MonitorService.CONCURRENT, String.valueOf(concurrent),
@@ -110,10 +105,10 @@ public class DubboMonitor implements Monitor {
                             MonitorService.MAX_OUTPUT, String.valueOf(maxOutput),
                             MonitorService.MAX_ELAPSED, String.valueOf(maxElapsed),
                             MonitorService.MAX_CONCURRENT, String.valueOf(maxConcurrent)
-                            );
+                    );
             monitorService.collect(url);
-            
-            // 锟斤拷锟斤拷锟斤拷统锟斤拷锟斤拷锟斤拷
+
+            // 减掉已统计数据
             long[] current;
             long[] update = new long[LENGTH];
             do {
@@ -136,24 +131,24 @@ public class DubboMonitor implements Monitor {
             } while (! reference.compareAndSet(current, update));
         }
     }
-    
+
     @Override
     public void collect(URL url) {
-        // 锟斤拷写统锟狡憋拷锟斤拷
+        // 读写统计变量
         int success = url.getParameter(MonitorService.SUCCESS, 0);
         int failure = url.getParameter(MonitorService.FAILURE, 0);
         int input = url.getParameter(MonitorService.INPUT, 0);
         int output = url.getParameter(MonitorService.OUTPUT, 0);
         int elapsed = url.getParameter(MonitorService.ELAPSED, 0);
         int concurrent = url.getParameter(MonitorService.CONCURRENT, 0);
-        // 锟斤拷始锟斤拷原锟斤拷锟斤拷锟斤拷
+        // 初始化原子引用
         Statistics statistics = new Statistics(url);
         AtomicReference<long[]> reference = statisticsMap.get(statistics);
         if (reference == null) {
             statisticsMap.putIfAbsent(statistics, new AtomicReference<long[]>());
             reference = statisticsMap.get(statistics);
         }
-        // CompareAndSet锟斤拷锟斤拷锟斤拷锟斤拷统锟斤拷锟斤拷锟斤拷
+        // CompareAndSet并发加入统计数据
         long[] current;
         long[] update = new long[LENGTH];
         do {
@@ -184,10 +179,10 @@ public class DubboMonitor implements Monitor {
         } while (! reference.compareAndSet(current, update));
     }
 
-	@Override
+    @Override
     public List<URL> lookup(URL query) {
-		return monitorService.lookup(query);
-	}
+        return monitorService.lookup(query);
+    }
 
     @Override
     public URL getUrl() {

@@ -3,14 +3,14 @@ package com.gewara.xmlbind.drama.gptbs;
 import java.io.Serializable;
 
 import com.gewara.model.BaseObject;
-//³¡´Î¼Û¸ñ
+//åœºæ¬¡ä»·æ ¼
 public class SchedulePrice extends BaseObject{
 	private static final long serialVersionUID = -3760191427326507862L;
 	private Long id;				//ID
-	private Long ticketPriceId;		//Æ±¼ÛID
-	private Long scheduleAreaId;	//³¡´ÎÇøÓòId
-	private Integer ticketLimit;		//ÏŞÖÆÊı
-	private Integer ticketTotal;		//Õ¾Æ±×ÜÁ¿
+	private Long ticketPriceId;		//ç¥¨ä»·ID
+	private Long scheduleAreaId;	//åœºæ¬¡åŒºåŸŸId
+	private Integer ticketLimit;		//é™åˆ¶æ•°
+	private Integer ticketTotal;		//ç«™ç¥¨æ€»é‡
 	public Serializable realId() {
 		return id;
 	}

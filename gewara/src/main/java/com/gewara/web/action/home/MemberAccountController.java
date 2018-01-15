@@ -194,7 +194,7 @@ public class MemberAccountController extends BaseHomeController {
 	private TicketDiscountService ticketDiscountService;
 	
 		
-	//°²È«ÖĞĞÄ
+	//å®‰å…¨ä¸­å¿ƒ
 	@RequestMapping("/home/acct/safetyCenter.xhtml")
 	public String safetyCenter(ModelMap model, HttpServletRequest request) {
 		Member member = getLogonMember();
@@ -228,7 +228,7 @@ public class MemberAccountController extends BaseHomeController {
 		return "home/acct/accountSafety/safetyCenter.vm";
 	}
 	
-	//°ó¶¨ÊÖ»ú
+	//ç»‘å®šæ‰‹æœº
 	@RequestMapping("/home/acct/bindMobile.xhtml")
 	public String bindMobile(ModelMap model,HttpServletRequest request){
 		boolean isNeedCaptha = bindMobileService.isNeedToken(TokenType.BindMobile, WebUtils.getRemoteIp(request), 2);
@@ -263,7 +263,7 @@ public class MemberAccountController extends BaseHomeController {
 		model.put("needCaptcha", isNeedCaptha);
 		return "home/acct/accountSafety/validDrawMobile.vm";
 	}
-	//ĞŞ¸Ä°ó¶¨ÊÖ»ú
+	//ä¿®æ”¹ç»‘å®šæ‰‹æœº
 	@RequestMapping("/home/acct/changeBindMobile.xhtml")
 	public String changeBindMobile(String authType, ModelMap model, HttpServletRequest request){
 		boolean isNeedCaptha = false;
@@ -274,7 +274,7 @@ public class MemberAccountController extends BaseHomeController {
 		model.put("needCaptcha", isNeedCaptha);
 		Member member = getLogonMember();
 		if(!memberService.canChangeMobile(member)){
-			model.put("msg", "ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜĞŞ¸Ä°ó¶¨£¡");
+			model.put("msg", "æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½ä¿®æ”¹ç»‘å®šï¼");
 			return "redirect:/home/acct/safetyCenter.xhtml";			
 		}
 		if(!member.isBindMobile()){
@@ -294,7 +294,7 @@ public class MemberAccountController extends BaseHomeController {
 			}else if(StringUtils.equals(authType, "paypass")){
 				return "home/acct/accountSafety/chgBMPassAuth.vm";
 			}
-			return alertMessage(model, "·Ç·¨ÇëÇó£¡", "index.xhtml");
+			return alertMessage(model, "éæ³•è¯·æ±‚ï¼", "index.xhtml");
 		}
 	}
 
@@ -310,12 +310,12 @@ public class MemberAccountController extends BaseHomeController {
 			jsonMap.put("refreshCaptcha", "true");
 			model.put("iscaptcha", iscaptcha);
 			if(StringUtils.isBlank(captcha)){
-				errorMap.put("captcha", "ÇëÊäÈëÑéÖ¤Âë£¡");
+				errorMap.put("captcha", "è¯·è¾“å…¥éªŒè¯ç ï¼");
 				return showJsonError(model, jsonMap);
 			}else{
 				boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha,ip);
 				if(!isValidCaptcha){
-					errorMap.put("captcha", "ÑéÖ¤Âë´íÎó£¡");
+					errorMap.put("captcha", "éªŒè¯ç é”™è¯¯ï¼");
 					return showJsonError(model, jsonMap);
 				}
 			}
@@ -329,71 +329,71 @@ public class MemberAccountController extends BaseHomeController {
 		boolean allow = operationService.isAllowOperation(opkey, 5, OperationService.ONE_DAY, 10);
 		if(!allow){
 			dbLogger.warn(BindConstant.TAG_CHGBINDMOBILE+" ip:" + ip);
-			return showJsonError(model, "Äú²Ù×÷¹ıÓÚÆµ·±£¬ÇëÉÔºóÔÙÊÔ£¡");
+			return showJsonError(model, "æ‚¨æ“ä½œè¿‡äºé¢‘ç¹ï¼Œè¯·ç¨åå†è¯•ï¼");
 		}
 		operationService.updateOperation(opkey, 5, OperationService.ONE_DAY, 10);
 		
 		if(!memberService.canChangeMobile(member)){
-			errorMap.put("msg", "ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜĞŞ¸Ä°ó¶¨£¡");
+			errorMap.put("msg", "æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½ä¿®æ”¹ç»‘å®šï¼");
 			return showJsonError(model, jsonMap);
 		}
 		if (!ValidateUtil.isMobile(mobile)){
-			errorMap.put("mobile", "ÊÖ»úºÅ¸ñÊ½´íÎó£¡");
+			errorMap.put("mobile", "æ‰‹æœºå·æ ¼å¼é”™è¯¯ï¼");
 			return showJsonError(model,jsonMap );
 		}
 		if (StringUtils.isBlank(realname)){
-			errorMap.put("realname", "ÕæÊµĞÕÃû²»ÄÜÎª¿Õ£¡");
+			errorMap.put("realname", "çœŸå®å§“åä¸èƒ½ä¸ºç©ºï¼");
 			return showJsonError(model, jsonMap);
 		}
 		if (StringUtil.getByteLength(realname) > 30){
-			errorMap.put("realname",  "ÕæÊµĞÕÃû¹ı³¤£¡");
+			errorMap.put("realname",  "çœŸå®å§“åè¿‡é•¿ï¼");
 			return showJsonError(model,jsonMap);
 		}
 		if (StringUtils.isBlank(idcard)){
-			errorMap.put("idcard", "Ö¤¼şºÅÂë²»ÄÜÎª¿Õ£¡");
+			errorMap.put("idcard", "è¯ä»¶å·ç ä¸èƒ½ä¸ºç©ºï¼");
 			return showJsonError(model,jsonMap);
 		}
 		if (!StringUtil.regMatch(idcard, "^[A-Za-z0-9_]{6,30}$", true)){
-			errorMap.put("idcard", "Ö¤¼şºÅÂë¸ñÊ½²»ÕıÈ·,Ö»ÄÜÊÇ×ÖÄ¸£¬Êı×Ö£¬ÏÂ»®Ïß£¬³¤¶È6¡ª30Î»£¡");
+			errorMap.put("idcard", "è¯ä»¶å·ç æ ¼å¼ä¸æ­£ç¡®,åªèƒ½æ˜¯å­—æ¯ï¼Œæ•°å­—ï¼Œä¸‹åˆ’çº¿ï¼Œé•¿åº¦6â€”30ä½ï¼");
 			return showJsonError(model,jsonMap );
 		}
 		if (certtype == null || StringUtil.getByteLength(certtype + "") != 1){
-			errorMap.put("certtype", "Ö¤¼şÀàĞÍ²»ÕıÈ·£¡");
+			errorMap.put("certtype", "è¯ä»¶ç±»å‹ä¸æ­£ç¡®ï¼");
 			return showJsonError(model, jsonMap);
 		}
 		if (StringUtils.isNotBlank(password)) {
 			if (!StringUtil.regMatch(password, "^[a-zA-Z0-9]{6,18}$", true)){
-				errorMap.put("password", "ÃÜÂë¸ñÊ½´íÎó£¡");
+				errorMap.put("password", "å¯†ç æ ¼å¼é”™è¯¯ï¼");
 				return showJsonError(model, jsonMap);
 			}
 		} else {
-			errorMap.put("password", "ÃÜÂë²»ÄÜÎª¿Õ£¡");
+			errorMap.put("password", "å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 			return showJsonError(model,jsonMap );
 		}
 		
 		MemberAccount account = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
 		if(account == null){
-			return showJsonError(model, "¸ÃÓÃ»§ÉĞÎ´ÉèÖÃÖ§¸¶ÃÜÂë£¡");
+			return showJsonError(model, "è¯¥ç”¨æˆ·å°šæœªè®¾ç½®æ”¯ä»˜å¯†ç ï¼");
 		}
 
 		if (!StringUtils.equals(realname, account.getRealname())) {
-			errorMap.put("realname", "ÕæÊµĞÕÃû´íÎó£¡");
+			errorMap.put("realname", "çœŸå®å§“åé”™è¯¯ï¼");
 			return showJsonError(model,jsonMap );
 		}
 		if (!StringUtils.equals(mobile,member.getMobile())) {
-			errorMap.put("mobile", "Ô­ÊÖ»úºÅ´íÎó£¡");
+			errorMap.put("mobile", "åŸæ‰‹æœºå·é”™è¯¯ï¼");
 			return showJsonError(model,jsonMap );
 		}
 		if (certtype!=account.getCerttype()) {
-			errorMap.put("certtype", "Ö¤¼şÀàĞÍ´íÎó£¡");
+			errorMap.put("certtype", "è¯ä»¶ç±»å‹é”™è¯¯ï¼");
 			return showJsonError(model, jsonMap);
 		}
 		if (!StringUtils.equals(paymentService.getEncryptIdcard(StringUtil.ToDBC(idcard)), account.getEncryidcard())) {
-			errorMap.put("idcard", "Ö¤¼şºÅ´íÎó£¡");
+			errorMap.put("idcard", "è¯ä»¶å·é”™è¯¯ï¼");
 			return showJsonError(model, jsonMap);
 		}
 		if(!PayUtil.passEquals(password, account.getPassword())){
-			errorMap.put("password", "Ö§¸¶ÃÜÂë´íÎó£¡");
+			errorMap.put("password", "æ”¯ä»˜å¯†ç é”™è¯¯ï¼");
 			return showJsonError(model, jsonMap);
 		}
 		
@@ -405,7 +405,7 @@ public class MemberAccountController extends BaseHomeController {
 	public String chgBMOldMblAuth(String checkpass,ModelMap model){
 		Member member = getLogonMember();
 		if(StringUtils.isBlank(checkpass)) {
-			return showJsonError(model,"¶¯Ì¬Âë´íÎó£¡");
+			return showJsonError(model,"åŠ¨æ€ç é”™è¯¯ï¼");
 		}
 		ErrorCode code = bindMobileService.checkBindMobile(BindConstant.TAG_CHGBINDMOBILE, member.getMobile(), checkpass);
 		if(!code.isSuccess()){
@@ -427,11 +427,11 @@ public class MemberAccountController extends BaseHomeController {
 			jsonMap.put("refreshCaptcha", "true");
 			model.put("iscaptcha", iscaptcha);
 			if(StringUtils.isBlank(captcha)){
-				errorMap.put("captcha", "ÇëÊäÈëÑéÖ¤Âë£¡");
+				errorMap.put("captcha", "è¯·è¾“å…¥éªŒè¯ç ï¼");
 				return showJsonError(model, jsonMap);
 			}else{
 				boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha,ip);
-				errorMap.put("captcha", "ÑéÖ¤Âë´íÎó£¡");
+				errorMap.put("captcha", "éªŒè¯ç é”™è¯¯ï¼");
 				if(!isValidCaptcha) return showJsonError(model, jsonMap);
 			}
 		}
@@ -441,13 +441,13 @@ public class MemberAccountController extends BaseHomeController {
 		}
 		
 		if(!memberService.canChangeMobile(member)){
-			return showJsonError(model, "ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜĞŞ¸Ä°ó¶¨£¡");
+			return showJsonError(model, "æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½ä¿®æ”¹ç»‘å®šï¼");
 		}
 		
 		ErrorCode<SMSRecord> code = bindMobileService.refreshBindMobile(BindConstant.TAG_CHGBINDMOBILE, member.getMobile(), ip);
 		if(!code.isSuccess()) return showJsonError(model, code.getMsg());
 		untransService.sendMsgAtServer(code.getRetval(), false);
-		jsonMap.put("retval", "³É¹¦·¢ËÍ¶¯Ì¬Âë£¡");
+		jsonMap.put("retval", "æˆåŠŸå‘é€åŠ¨æ€ç ï¼");
 		return showJsonSuccess(model,jsonMap);
 	}
 	@RequestMapping("/home/acct/chgBMPassAuth.xhtml")
@@ -462,12 +462,12 @@ public class MemberAccountController extends BaseHomeController {
 			jsonMap.put("refreshCaptcha", "true");
 			model.put("iscaptcha", iscaptcha);
 			if(StringUtils.isBlank(captcha)){
-				errorMap.put("captcha", "ÇëÊäÈëÑéÖ¤Âë£¡");
+				errorMap.put("captcha", "è¯·è¾“å…¥éªŒè¯ç ï¼");
 				return showJsonError(model, jsonMap);
 			}else{
 				boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha,ip);
 				if(!isValidCaptcha){
-					errorMap.put("captcha", "ÑéÖ¤Âë´íÎó£¡");
+					errorMap.put("captcha", "éªŒè¯ç é”™è¯¯ï¼");
 					return showJsonError(model, jsonMap);
 				}
 			}
@@ -480,26 +480,26 @@ public class MemberAccountController extends BaseHomeController {
 		boolean allow = operationService.isAllowOperation(opkey, 5, OperationService.ONE_DAY, 10);
 		if(!allow){
 			dbLogger.warn(BindConstant.TAG_CHGBINDMOBILE+" ip:" + ip);
-			return showJsonError(model, "Äú²Ù×÷¹ıÓÚÆµ·±£¬ÇëÉÔºóÔÙÊÔ£¡");
+			return showJsonError(model, "æ‚¨æ“ä½œè¿‡äºé¢‘ç¹ï¼Œè¯·ç¨åå†è¯•ï¼");
 		}
 		operationService.updateOperation(opkey, 5, OperationService.ONE_DAY, 10);
 		
 		
 		if(!memberService.canChangeMobile(member)){
-			errorMap.put("msg", "ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜĞŞ¸Ä°ó¶¨£¡");
+			errorMap.put("msg", "æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½ä¿®æ”¹ç»‘å®šï¼");
 			return showJsonError(model, jsonMap);
 		}
 		if (!ValidateUtil.isPassword(password)) {
-			errorMap.put("password", "ÃÜÂë¸ñÊ½´íÎó£¡");
+			errorMap.put("password", "å¯†ç æ ¼å¼é”™è¯¯ï¼");
 			return showJsonError(model, jsonMap);
 		}
 		
 		MemberAccount account = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
 		if(account == null){
-			return showJsonError(model, "ÄúÉĞÎ´ÉèÖÃÖ§¸¶ÃÜÂë£¡");
+			return showJsonError(model, "æ‚¨å°šæœªè®¾ç½®æ”¯ä»˜å¯†ç ï¼");
 		}
 		if(!PayUtil.passEquals(password, account.getPassword())){
-			errorMap.put("password", "Ö§¸¶ÃÜÂë´íÎó£¡");
+			errorMap.put("password", "æ”¯ä»˜å¯†ç é”™è¯¯ï¼");
 			return showJsonError(model, jsonMap);
 		}
 		
@@ -519,12 +519,12 @@ public class MemberAccountController extends BaseHomeController {
 			jsonMap.put("refreshCaptcha", "true");
 			model.put("iscaptcha", iscaptcha);
 			if(StringUtils.isBlank(captcha)){
-				errorMap.put("captcha", "ÇëÊäÈëÑéÖ¤Âë£¡");
+				errorMap.put("captcha", "è¯·è¾“å…¥éªŒè¯ç ï¼");
 				return showJsonError(model, jsonMap);
 			}else{
 				boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha,ip);
 				if(!isValidCaptcha){
-					errorMap.put("captcha", "ÑéÖ¤Âë´íÎó£¡");
+					errorMap.put("captcha", "éªŒè¯ç é”™è¯¯ï¼");
 					return showJsonError(model, jsonMap);
 				}
 			}
@@ -535,60 +535,60 @@ public class MemberAccountController extends BaseHomeController {
 		}
 		
 		if(!memberService.canChangeMobile(member)){
-			errorMap.put("msg", "ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜĞŞ¸Ä°ó¶¨£¡");
+			errorMap.put("msg", "æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½ä¿®æ”¹ç»‘å®šï¼");
 			return showJsonError(model, jsonMap);
 		}
 		if (!ValidateUtil.isMobile(mobile)){
-			errorMap.put("mobile", "ÊÖ»úºÅ¸ñÊ½´íÎó£¡");
+			errorMap.put("mobile", "æ‰‹æœºå·æ ¼å¼é”™è¯¯ï¼");
 			return showJsonError(model,jsonMap );
 		}
 		if (StringUtils.isBlank(realname)){
-			errorMap.put("realname", "ÕæÊµĞÕÃû²»ÄÜÎª¿Õ£¡");
+			errorMap.put("realname", "çœŸå®å§“åä¸èƒ½ä¸ºç©ºï¼");
 			return showJsonError(model, jsonMap);
 		}
 		if (StringUtil.getByteLength(realname) > 30){
-			errorMap.put("realname",  "ÕæÊµĞÕÃû¹ı³¤£¡");
+			errorMap.put("realname",  "çœŸå®å§“åè¿‡é•¿ï¼");
 			return showJsonError(model,jsonMap);
 		}
 		if (StringUtils.isBlank(idcard)){
-			errorMap.put("idcard", "Ö¤¼şºÅÂë²»ÄÜÎª¿Õ£¡");
+			errorMap.put("idcard", "è¯ä»¶å·ç ä¸èƒ½ä¸ºç©ºï¼");
 			return showJsonError(model,jsonMap);
 		}
 		if (!StringUtil.regMatch(idcard, "^[A-Za-z0-9_]{6,30}$", true)){
-			errorMap.put("idcard", "Ö¤¼şºÅÂë¸ñÊ½²»ÕıÈ·,Ö»ÄÜÊÇ×ÖÄ¸£¬Êı×Ö£¬ÏÂ»®Ïß£¬³¤¶È6¡ª30Î»£¡");
+			errorMap.put("idcard", "è¯ä»¶å·ç æ ¼å¼ä¸æ­£ç¡®,åªèƒ½æ˜¯å­—æ¯ï¼Œæ•°å­—ï¼Œä¸‹åˆ’çº¿ï¼Œé•¿åº¦6â€”30ä½ï¼");
 			return showJsonError(model,jsonMap );
 		}
 		if (certtype == null || StringUtil.getByteLength(certtype + "") != 1){
-			errorMap.put("certtype", "Ö¤¼şÀàĞÍ²»ÕıÈ·£¡");
+			errorMap.put("certtype", "è¯ä»¶ç±»å‹ä¸æ­£ç¡®ï¼");
 			return showJsonError(model, jsonMap);
 		}
 		
 		MemberAccount account = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
 		if(account == null){
-			return showJsonError(model, "ÄúÉĞÎ´ÉèÖÃÖ§¸¶ÃÜÂë£¡");
+			return showJsonError(model, "æ‚¨å°šæœªè®¾ç½®æ”¯ä»˜å¯†ç ï¼");
 		}
 
 		if (!StringUtils.equals(realname, account.getRealname())) {
-			errorMap.put("realname", "ÕæÊµĞÕÃû´íÎó£¡");
+			errorMap.put("realname", "çœŸå®å§“åé”™è¯¯ï¼");
 			return showJsonError(model,jsonMap );
 		}
 		if (!StringUtils.equals(mobile,member.getMobile())) {
-			errorMap.put("mobile", "Ô­ÊÖ»úºÅ´íÎó£¡");
+			errorMap.put("mobile", "åŸæ‰‹æœºå·é”™è¯¯ï¼");
 			return showJsonError(model,jsonMap );
 		}
 		if (certtype!=account.getCerttype()) {
-			errorMap.put("certtype", "Ö¤¼şÀàĞÍ´íÎó£¡");
+			errorMap.put("certtype", "è¯ä»¶ç±»å‹é”™è¯¯ï¼");
 			return showJsonError(model, jsonMap);
 		}
 		if (!StringUtils.equals(paymentService.getEncryptIdcard(StringUtil.ToDBC(idcard)), account.getEncryidcard())) {
-			errorMap.put("idcard", "Ö¤¼şºÅ´íÎó£¡");
+			errorMap.put("idcard", "è¯ä»¶å·é”™è¯¯ï¼");
 			return showJsonError(model, jsonMap);
 		}
 		String opkey = BindConstant.TAG_CHGBINDMOBILE + member.getId();
 		boolean allow = operationService.isAllowOperation(opkey, 5, OperationService.ONE_DAY, 10);
 		if(!allow){
 			dbLogger.warn(BindConstant.TAG_CHGBINDMOBILE+" ip:" + ip);
-			return showJsonError(model, "Äú²Ù×÷¹ıÓÚÆµ·±£¬ÇëÉÔºóÔÙÊÔ£¡");
+			return showJsonError(model, "æ‚¨æ“ä½œè¿‡äºé¢‘ç¹ï¼Œè¯·ç¨åå†è¯•ï¼");
 		}
 		operationService.updateOperation(opkey, 5, OperationService.ONE_DAY, 10);
 		
@@ -603,61 +603,61 @@ public class MemberAccountController extends BaseHomeController {
 		Member member = getLogonMember();
 		MemberAccount account = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
 		/*if(account == null) 
-			return show404(model, "ÇëÏÈÉèÖÃÖ§¸¶ÃÜÂë£¡");*/
+			return show404(model, "è¯·å…ˆè®¾ç½®æ”¯ä»˜å¯†ç ï¼");*/
 		if(!StringUtils.equals(encode, PayUtil.md5WithKey(member.getId()+"",account==null?null:account.getEncryidcard(),member.getMobile(),account==null?null:account.getPassword())))
-			return show404(model, "·Ç·¨²Ù×÷£¡");
+			return show404(model, "éæ³•æ“ä½œï¼");
 		return "home/acct/accountSafety/newBM.vm";
 	}
-	//¸ü¸Ä°ó¶¨ÊÖ»ú
+	//æ›´æ”¹ç»‘å®šæ‰‹æœº
 	@RequestMapping("/home/acct/sendChgBm.xhtml")
 	public String sendChgBm(@CookieValue(LOGIN_COOKIE_NAME)String sessid,  
 			HttpServletRequest request, String mobile, String checkpass, String encode, ModelMap model){
 		Member member = getLogonMember();
-		if(!StringUtils.isNotBlank(encode)) return showJsonError(model, "·Ç·¨²Ù×÷£¡");
+		if(!StringUtils.isNotBlank(encode)) return showJsonError(model, "éæ³•æ“ä½œï¼");
 		MemberAccount account = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
-		//TODO:Ê²Ã´¶«¶«£¿£¿
+		//TODO:ä»€ä¹ˆä¸œä¸œï¼Ÿï¼Ÿ
 		if(!StringUtils.equals(encode, PayUtil.md5WithKey(member.getId()+"",account==null? null:account.getEncryidcard(), member.getMobile(), account==null?null:account.getPassword())))
-			return showJsonError(model, "·Ç·¨²Ù×÷£¡");
+			return showJsonError(model, "éæ³•æ“ä½œï¼");
 		
-		if(StringUtils.isBlank(checkpass))return showJsonError(model, "ÊÖ»ú¶¯Ì¬Âë²»ÄÜÎª¿Õ£¡");
-		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "ÊÖ»úºÅÂë¸ñÊ½²»ÕıÈ·£¡");
+		if(StringUtils.isBlank(checkpass))return showJsonError(model, "æ‰‹æœºåŠ¨æ€ç ä¸èƒ½ä¸ºç©ºï¼");
+		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "æ‰‹æœºå·ç æ ¼å¼ä¸æ­£ç¡®ï¼");
 		String oldMobile = member.getMobile();
 
 		ErrorCode code = memberService.changeBind(member, mobile, checkpass, WebUtils.getRemoteIp(request));
 		if(!code.isSuccess()) return showJsonError(model, code.getMsg());
 		loginService.updateMemberAuth(sessid, member);
 		
-		sendWarning("ÊÖ»úºÅ", member, oldMobile, member.getEmail());
+		sendWarning("æ‰‹æœºå·", member, oldMobile, member.getEmail());
 		return showJsonSuccess(model);
 	}
 	
-	//°ó¶¨ÊÖ»ú
+	//ç»‘å®šæ‰‹æœº
 	@RequestMapping("/home/acct/sendBindMobile.xhtml")
 	public String sendBindMobile(@CookieValue(LOGIN_COOKIE_NAME)String sessid,  
 			HttpServletRequest request, String mobile, String checkpass, String password, ModelMap model){
 		Member member = getLogonMember();
-		if(StringUtils.isBlank(checkpass))return showJsonError(model, "ÊÖ»ú¶¯Ì¬Âë²»ÄÜÎª¿Õ£¡");
-		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "ÊÖ»úºÅÂë¸ñÊ½²»ÕıÈ·£¡");
-		if(member.isBindMobile()) return showJsonError(model,"ÄúÒÑ°ó¶¨ÊÖ»ú£¡");
+		if(StringUtils.isBlank(checkpass))return showJsonError(model, "æ‰‹æœºåŠ¨æ€ç ä¸èƒ½ä¸ºç©ºï¼");
+		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "æ‰‹æœºå·ç æ ¼å¼ä¸æ­£ç¡®ï¼");
+		if(member.isBindMobile()) return showJsonError(model,"æ‚¨å·²ç»‘å®šæ‰‹æœºï¼");
 		boolean exists = memberService.isMemberMobileExists(mobile);
-		if(exists) return showJsonError(model, "¸ÃºÅÂëÒÑ°ó¶¨ÆäËûÕÊºÅ£¬Çë¸ü»»ÆäËûÊÖ»úºÅÂë£¡");
+		if(exists) return showJsonError(model, "è¯¥å·ç å·²ç»‘å®šå…¶ä»–å¸å·ï¼Œè¯·æ›´æ¢å…¶ä»–æ‰‹æœºå·ç ï¼");
 		MemberAccount memberAccount = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
 		if(memberAccount != null && !memberAccount.isNopassword()){
-			if(StringUtils.isBlank(password)) return showJsonError(model, "Ö§¸¶ÃÜÂë²»ÄÜ¿Õ£¡");
-			if(!StringUtils.equals(memberAccount.getPassword(), PayUtil.getPass(password))) return showJsonError(model, "Ö§¸¶ÃÜÂë´íÎó£¡");
+			if(StringUtils.isBlank(password)) return showJsonError(model, "æ”¯ä»˜å¯†ç ä¸èƒ½ç©ºï¼");
+			if(!StringUtils.equals(memberAccount.getPassword(), PayUtil.getPass(password))) return showJsonError(model, "æ”¯ä»˜å¯†ç é”™è¯¯ï¼");
 		}
 		ErrorCode code = memberService.bindMobile(member, mobile, checkpass, WebUtils.getRemoteIp(request));
 		if(!code.isSuccess()) return showJsonError(model, code.getMsg());
 		loginService.updateMemberAuth(sessid, member);
 
-		sendWarning("ÊÖ»úºÅ", member, member.getMobile(),member.getEmail());
+		sendWarning("æ‰‹æœºå·", member, member.getMobile(),member.getEmail());
 		return showJsonSuccess(model);
 	}
-	//ÑéÖ¤³é½±ÊÖ»ú
+	//éªŒè¯æŠ½å¥–æ‰‹æœº
 	@RequestMapping("/ajax/mobile/validDrawMobile.xhtml")
 	public String validDrawMobile(HttpServletRequest request, HttpServletResponse response, String mobile, String checkpass, ModelMap model){
-		if(StringUtils.isBlank(checkpass))return showJsonError(model, "ÊÖ»ú¶¯Ì¬Âë²»ÄÜÎª¿Õ£¡");
-		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "ÊÖ»úºÅÂë¸ñÊ½²»ÕıÈ·£¡");
+		if(StringUtils.isBlank(checkpass))return showJsonError(model, "æ‰‹æœºåŠ¨æ€ç ä¸èƒ½ä¸ºç©ºï¼");
+		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "æ‰‹æœºå·ç æ ¼å¼ä¸æ­£ç¡®ï¼");
 		ErrorCode code = bindMobileService.checkBindMobile(BindConstant.TAG_DRAWMOBILE, mobile, checkpass);
 		if(!code.isSuccess()) return showJsonError(model, code.getMsg());
 		Map<String, String> logInfo = new HashMap<String, String>();
@@ -671,7 +671,7 @@ public class MemberAccountController extends BaseHomeController {
 		monitorService.saveMemberLogMap(member.getId(), MemberConstant.ACTION_VDDRAWMOBILE, logInfo, WebUtils.getRemoteIp(request));
 		return showJsonSuccess(model,StringUtil.md5(mobile + "drawmobileauthsh", "utf-8"));
 	}
-	//ÉèÖÃÃÜÂë
+	//è®¾ç½®å¯†ç 
 	@RequestMapping("/home/acct/setPass.xhtml")
 	public String setPass(ModelMap model,HttpServletRequest request) {
 		Member member = getLogonMember();
@@ -680,12 +680,12 @@ public class MemberAccountController extends BaseHomeController {
 		}
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
 		if(!StringUtils.equals(VmUtils.getJsonValueByKey(memberInfo.getOtherinfo(), MemberConstant.TAG_SOURCE), "fail")) 
-		return show404(model, "¸ÃÓÃ»§ÒÑÉèÖÃ¹ıµÇÂ¼ÃÜÂë£¡");
+		return show404(model, "è¯¥ç”¨æˆ·å·²è®¾ç½®è¿‡ç™»å½•å¯†ç ï¼");
 		
 		return "home/acct/accountSafety/setPass.vm";
 	}
 	
-	//ĞŞ¸ÄµÇÂ¼ÓÊÏä
+	//ä¿®æ”¹ç™»å½•é‚®ç®±
 	@RequestMapping("/home/acct/goUpEmail.xhtml")
 	public String goUpEmail(ModelMap model,HttpServletRequest request) {
 		Member member = getLogonMember();
@@ -699,7 +699,7 @@ public class MemberAccountController extends BaseHomeController {
 		return "home/acct/accountSafety/upEmail.vm";
 	}
 	
-	//ĞŞ¸ÄÃÜÂëÇ°ÖÃÑéÖ¤Ò³Ãæ
+	//ä¿®æ”¹å¯†ç å‰ç½®éªŒè¯é¡µé¢
 	@RequestMapping("/home/acct/goUpPass.xhtml")
 	public String goUpPass(ModelMap model,HttpServletRequest request) {
 		boolean isNeedCaptha = bindMobileService.isNeedToken(TokenType.SendVDEmail, WebUtils.getRemoteIp(request), 2);
@@ -722,17 +722,17 @@ public class MemberAccountController extends BaseHomeController {
 		return "home/acct/accountSafety/goUpPass.vm";
 	}
 
-	//ÑéÖ¤ÓÊÏäÁ´½ÓÓĞĞ§ĞÔ£¬ÈçÓĞĞ§Ìø×ªµ½ÃÜ¸ÄÒ³Ãæ
+	//éªŒè¯é‚®ç®±é“¾æ¥æœ‰æ•ˆæ€§ï¼Œå¦‚æœ‰æ•ˆè·³è½¬åˆ°å¯†æ”¹é¡µé¢
 	@RequestMapping("/mbrIdtAuthEml.xhtml")
 	public String mbrIdtAuthEml(@CookieValue(value = LOGIN_COOKIE_NAME, required = false)String sessid, ModelMap model, Long memberid, String encode, String uuid,HttpServletRequest request){
-		if(StringUtils.isBlank(encode) || memberid == null|| StringUtils.isBlank(uuid)) return show404(model, "Á¬½Ó´íÎó£¡");
+		if(StringUtils.isBlank(encode) || memberid == null|| StringUtils.isBlank(uuid)) return show404(model, "è¿æ¥é”™è¯¯ï¼");
 		ValidEmail validEmail = mongoService.getObject(ValidEmail.class, MongoData.DEFAULT_ID_NAME, uuid);
 		if(validEmail == null){
 			dbLogger.error("ip:" + WebUtils.getRemoteIp(request) + ", memberid:" + memberid);
-			return show404(model, "´ËÁ´½ÓÎŞĞ§£¡");
+			return show404(model, "æ­¤é“¾æ¥æ— æ•ˆï¼");
 		}
 		Member member = daoService.getObject(Member.class, memberid);
-		if(member==null) return show404(model, "ÓÃ»§²»´æÔÚ£¡");
+		if(member==null) return show404(model, "ç”¨æˆ·ä¸å­˜åœ¨ï¼");
 		
 		Member logMember = loginService.getLogonMemberBySessid(WebUtils.getRemoteIp(request), sessid);
 		if(logMember == null || !logMember.equals(member)){
@@ -743,26 +743,26 @@ public class MemberAccountController extends BaseHomeController {
 		if(StringUtils.isNotBlank(checkMsg)) return show404(model, checkMsg);
 		String email = member.getEmail();
 		Long cur = System.currentTimeMillis();
-		if(cur > validEmail.getValidtime()) return show404(model, "Á¬½ÓÒÑ³¬Ê±£¬ÇëÖØĞÂ»ñÈ¡£¡");
-		if(!StringUtils.equals(PayUtil.md5WithKey(email, "" + member.getId(), uuid), encode)) return show404(model, "´ËÁ´½ÓÎŞĞ§£¡");
+		if(cur > validEmail.getValidtime()) return show404(model, "è¿æ¥å·²è¶…æ—¶ï¼Œè¯·é‡æ–°è·å–ï¼");
+		if(!StringUtils.equals(PayUtil.md5WithKey(email, "" + member.getId(), uuid), encode)) return show404(model, "æ­¤é“¾æ¥æ— æ•ˆï¼");
 		model.put("type","email");
 		return "home/acct/accountSafety/upPass.vm";
 	}
-	//ÑéÖ¤¶¯Ì¬ÂëÓĞĞ§ĞÔ£¬ÈçÓĞĞ§Ìø×ªµ½ÃÜ¸ÄÒ³Ãæ
+	//éªŒè¯åŠ¨æ€ç æœ‰æ•ˆæ€§ï¼Œå¦‚æœ‰æ•ˆè·³è½¬åˆ°å¯†æ”¹é¡µé¢
 	@RequestMapping("/home/acct/mbrIdtAuthCkPs.xhtml")
 	public String mbrIdtAuthCkPs(String checkpass,ModelMap model){
 		Member member = getLogonMember();
 		if(StringUtils.isBlank(checkpass)) {
-			return show404(model, "·Ç·¨²Ù×÷£¡");
+			return show404(model, "éæ³•æ“ä½œï¼");
 		}
 		ErrorCode code = bindMobileService.preCheckBindMobile(BindConstant.TAG_MODIFYPASS, member.getMobile(), checkpass);
 		if(!code.isSuccess()){
-			return show404(model, "·Ç·¨²Ù×÷£¡");
+			return show404(model, "éæ³•æ“ä½œï¼");
 		}
 		model.put("type","mobile");
 		return "home/acct/accountSafety/upPass.vm";
 	}
-	//ÊÖ»ú¶¯Ì¬ÂëÑéÖ¤Ò³Ãæ
+	//æ‰‹æœºåŠ¨æ€ç éªŒè¯é¡µé¢
 	@RequestMapping("/home/acct/mbrMobileAuth.xhtml")
 	public String mbrMobileAuth(HttpServletRequest request,ModelMap model){
 		boolean isNeedCaptha = bindMobileService.isNeedToken(TokenType.LoadCheckPass, WebUtils.getRemoteIp(request), 2);
@@ -775,7 +775,7 @@ public class MemberAccountController extends BaseHomeController {
 	public String validateCheckPass(String checkpass,ModelMap model){
 		Member member = getLogonMember();
 		if(StringUtils.isBlank(checkpass)) {
-			return showJsonError(model,"¶¯Ì¬Âë´íÎó£¡");
+			return showJsonError(model,"åŠ¨æ€ç é”™è¯¯ï¼");
 		}
 		ErrorCode code = bindMobileService.preCheckBindMobile(BindConstant.TAG_MODIFYPASS, member.getMobile(), checkpass);
 		if(!code.isSuccess()){
@@ -784,7 +784,7 @@ public class MemberAccountController extends BaseHomeController {
 		model.put("checkpass", checkpass);
 		return showJsonSuccess(model);
 	}
-	//·¢ËÍÑéÖ¤ÓÊ¼ş
+	//å‘é€éªŒè¯é‚®ä»¶
 	@RequestMapping("/home/acct/sendVDEmail.xhtml")
 	public String sendVDEmail(ModelMap model, HttpServletRequest request, String captchaId, String captcha){
 		Member member = getLogonMember();
@@ -797,11 +797,11 @@ public class MemberAccountController extends BaseHomeController {
 			jsonMap.put("refreshCaptcha", "true");
 			model.put("iscaptcha", iscaptcha);
 			if(StringUtils.isBlank(captcha)){
-				errorMap.put("captcha", "ÇëÊäÈëÑéÖ¤Âë£¡");
+				errorMap.put("captcha", "è¯·è¾“å…¥éªŒè¯ç ï¼");
 				return showJsonError(model, jsonMap);
 			}else{
 				boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha,ip);
-				errorMap.put("captcha", "ÑéÖ¤Âë´íÎó£¡");
+				errorMap.put("captcha", "éªŒè¯ç é”™è¯¯ï¼");
 				if(!isValidCaptcha) return showJsonError(model, jsonMap);
 			}
 		}
@@ -812,14 +812,14 @@ public class MemberAccountController extends BaseHomeController {
 		
 		String email = member.getEmail();
 		if (StringUtils.isBlank(email)) {
-			return showJsonError(model,"Î´°ó¶¨ÓÊÏä£¡");
+			return showJsonError(model,"æœªç»‘å®šé‚®ç®±ï¼");
 		}
 		Long memberid = member.getId();
 		String opkey = BindConstant.TAG_VDEMAIL_BY_UPDATEPWD + memberid;
 		boolean allow = operationService.isAllowOperation(opkey, 60, OperationService.ONE_DAY, 5);
 		if(!allow){
 			dbLogger.warn(BindConstant.TAG_VDEMAIL_BY_UPDATEPWD+" ip :" + ip + ", memberid:" + memberid);
-			return showJsonError(model, "²Ù×÷¹ıÓÚÆµ·±£¬ÇëÉÔºóÔÙÊÔ£¡");
+			return showJsonError(model, "æ“ä½œè¿‡äºé¢‘ç¹ï¼Œè¯·ç¨åå†è¯•ï¼");
 		}
 		String checkMsg = checkMemberResource(member);
 		if(StringUtils.isNotBlank(checkMsg)) return showJsonError(model, checkMsg);
@@ -830,10 +830,10 @@ public class MemberAccountController extends BaseHomeController {
 		gewaMailService.sendValidateEmail(member,validEmail.getId());
 		operationService.updateOperation(opkey,60, OperationService.ONE_DAY, 5);
 		dbLogger.warn("Success send ValidateEmail By Modfiy Password - memberid:" + member.getId() + ", ip:" + ip);
-		jsonMap.put("retval", "ÈÏÖ¤ÓÊ¼şÒÑ·¢ÖÁÄúµÄÓÊÏä£¬Çëµã»÷ÓÊ¼şÖĞµÄÈÏÖ¤Á´½ÓÍê³ÉÈÏÖ¤£¡");
+		jsonMap.put("retval", "è®¤è¯é‚®ä»¶å·²å‘è‡³æ‚¨çš„é‚®ç®±ï¼Œè¯·ç‚¹å‡»é‚®ä»¶ä¸­çš„è®¤è¯é“¾æ¥å®Œæˆè®¤è¯ï¼");
 		return showJsonSuccess(model,jsonMap);
 	}
-	//»ñÈ¡¶¯Ì¬Âë
+	//è·å–åŠ¨æ€ç 
 	@RequestMapping("/home/acct/loadCheckPass.xhtml")
 	public String loadCheckPass(HttpServletRequest request, String captchaId, String captcha, ModelMap model){
 		Member member = getLogonMember();
@@ -846,11 +846,11 @@ public class MemberAccountController extends BaseHomeController {
 			jsonMap.put("refreshCaptcha", "true");
 			model.put("iscaptcha", iscaptcha);
 			if(StringUtils.isBlank(captcha)){
-				errorMap.put("captcha", "ÇëÊäÈëÑéÖ¤Âë£¡");
+				errorMap.put("captcha", "è¯·è¾“å…¥éªŒè¯ç ï¼");
 				return showJsonError(model, jsonMap);
 			}else{
 				boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha,ip);
-				errorMap.put("captcha", "ÑéÖ¤Âë´íÎó£¡");
+				errorMap.put("captcha", "éªŒè¯ç é”™è¯¯ï¼");
 				if(!isValidCaptcha) return showJsonError(model, jsonMap);
 			}
 		}
@@ -864,7 +864,7 @@ public class MemberAccountController extends BaseHomeController {
 		ErrorCode<SMSRecord> code = bindMobileService.refreshBindMobile(BindConstant.TAG_MODIFYPASS, member.getMobile(), ip);
 		if(!code.isSuccess()) return showJsonError(model, code.getMsg());
 		untransService.sendMsgAtServer(code.getRetval(), false);
-		jsonMap.put("retval", "³É¹¦·¢ËÍ¶¯Ì¬Âë£¡");
+		jsonMap.put("retval", "æˆåŠŸå‘é€åŠ¨æ€ç ï¼");
 		return showJsonSuccess(model,jsonMap);
 	}
 	
@@ -873,17 +873,17 @@ public class MemberAccountController extends BaseHomeController {
 		if(StringUtils.equals(memberInfo.getSource(), MemberConstant.REGISTER_APP) || StringUtils.equals(memberInfo.getSource(), MemberConstant.REGISTER_CODE)){
 			Map<String,String> otherInfoMap = JsonUtils.readJsonToMap(memberInfo.getOtherinfo());
 			if(StringUtils.equals(otherInfoMap.get(MemberConstant.TAG_SOURCE), "fail")){
-				return "¸ÃÕÊºÅ»¹Ã»ÓĞÉèÖÃµÇÂ¼ÃÜÂë£¬ÇëÏÈÊ¹ÓÃÊÖ»ú¶¯Ì¬ÂëµÇÂ¼ºóÉèÖÃÃÜÂë£¡";
+				return "è¯¥å¸å·è¿˜æ²¡æœ‰è®¾ç½®ç™»å½•å¯†ç ï¼Œè¯·å…ˆä½¿ç”¨æ‰‹æœºåŠ¨æ€ç ç™»å½•åè®¾ç½®å¯†ç ï¼";
 			}
 		}
 		return null;
 	}
 
-	//»ñÈ¡°ó¶¨ÊÖ»úÑéÖ¤Âë
+	//è·å–ç»‘å®šæ‰‹æœºéªŒè¯ç 
 	@RequestMapping("/home/acct/bmckps.xhtml")
 	public String loadBMCkPs(String captchaId, String captcha, @RequestParam("mobile")String mobile, String tag, ModelMap model, HttpServletRequest request){
-		if(StringUtils.isBlank(mobile))return showJsonError(model, "ÊÖ»úºÅ²»ÄÜÎª¿Õ£¡");
-		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "ÊÖ»úºÅÂë¸ñÊ½²»ÕıÈ·£¡");
+		if(StringUtils.isBlank(mobile))return showJsonError(model, "æ‰‹æœºå·ä¸èƒ½ä¸ºç©ºï¼");
+		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "æ‰‹æœºå·ç æ ¼å¼ä¸æ­£ç¡®ï¼");
 		Member member = getLogonMember();
 		String ip = WebUtils.getRemoteIp(request);
 		Map jsonMap = new HashMap();
@@ -894,11 +894,11 @@ public class MemberAccountController extends BaseHomeController {
 			jsonMap.put("refreshCaptcha", "true");
 			model.put("iscaptcha", iscaptcha);
 			if(StringUtils.isBlank(captcha)){
-				errorMap.put("captcha", "ÇëÊäÈëÑéÖ¤Âë£¡");
+				errorMap.put("captcha", "è¯·è¾“å…¥éªŒè¯ç ï¼");
 				return showJsonError(model, jsonMap);
 			}else{
 				boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha,ip);
-				errorMap.put("captcha", "ÑéÖ¤Âë´íÎó£¡");
+				errorMap.put("captcha", "éªŒè¯ç é”™è¯¯ï¼");
 				if(!isValidCaptcha) return showJsonError(model, jsonMap);
 			}
 		}
@@ -909,37 +909,37 @@ public class MemberAccountController extends BaseHomeController {
 		
 		if(StringUtils.equals(tag, "change") && member.isBindMobile()){
 			if(StringUtils.equals(member.getMobile(), mobile)) 
-				return showJsonError(model, "¸ü¸Ä°ó¶¨µÄÊÖ»úºÅÂë²»ÄÜÓëÔ­À´µÄÊÖ»úºÅÏàÍ¬£¡");
+				return showJsonError(model, "æ›´æ”¹ç»‘å®šçš„æ‰‹æœºå·ç ä¸èƒ½ä¸åŸæ¥çš„æ‰‹æœºå·ç›¸åŒï¼");
 			boolean exists = memberService.isMemberMobileExists(mobile);
-			if(exists) return showJsonError(model, "¸ÃºÅÂëÒÑ±»ÆäËûÕÊºÅ°ó¶¨£¬Çë¸ü»»ºÅÂë£¡");
+			if(exists) return showJsonError(model, "è¯¥å·ç å·²è¢«å…¶ä»–å¸å·ç»‘å®šï¼Œè¯·æ›´æ¢å·ç ï¼");
 			if(!memberService.canChangeMobile(member)){
-				return showJsonError(model, "ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜĞŞ¸Ä°ó¶¨£¡");			
+				return showJsonError(model, "æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½ä¿®æ”¹ç»‘å®šï¼");			
 			}
 		}else{
 			boolean exists = memberService.isMemberMobileExists(mobile);
-			if(exists) return showJsonError(model, "¸ÃºÅÂëÒÑ±»ÆäËûÕÊºÅ°ó¶¨£¬Çë¸ü»»ºÅÂë£¡");
+			if(exists) return showJsonError(model, "è¯¥å·ç å·²è¢«å…¶ä»–å¸å·ç»‘å®šï¼Œè¯·æ›´æ¢å·ç ï¼");
 		}
 		
 		String msgTemplate = "";
 		if(StringUtils.equals(tag, "change")){
-			msgTemplate = "¸ü¸ÄÊÖ»ú°ó¶¨ÑéÖ¤Âë£ºcheckpass";
+			msgTemplate = "æ›´æ”¹æ‰‹æœºç»‘å®šéªŒè¯ç ï¼šcheckpass";
 		}else{
-			msgTemplate = "ÊÖ»ú°ó¶¨ÑéÖ¤Âë£ºcheckpass";
+			msgTemplate = "æ‰‹æœºç»‘å®šéªŒè¯ç ï¼šcheckpass";
 		}
 		ErrorCode<SMSRecord> code = bindMobileService.refreshBindMobile(BindConstant.TAG_BINDMOBILE, mobile, ip, msgTemplate);
 		if(!code.isSuccess()) return showJsonError(model, code.getMsg());
 		untransService.sendMsgAtServer(code.getRetval(), false);
-		jsonMap.put("retval", "³É¹¦·¢ËÍ¶¯Ì¬Âë£¡");
+		jsonMap.put("retval", "æˆåŠŸå‘é€åŠ¨æ€ç ï¼");
 		return showJsonSuccess(model,jsonMap);
 	}
 	
-	//»ñÈ¡³é½±ÊÖ»úÑéÖ¤Âë
+	//è·å–æŠ½å¥–æ‰‹æœºéªŒè¯ç 
 	@RequestMapping("/ajax/mobile/dmckps.xhtml")
 	public String loadDMCkPs(String validCode,String captchaId, String captcha, @RequestParam("mobile")String mobile,ModelMap model, HttpServletRequest request){
 		if(StringUtils.isBlank(validCode)||!StringUtils.equals(validCode, StringUtil.md5(mobile + "drawmobileauthzt", "utf-8")))
-			return showJsonError(model, "·ÇÖ¸¶¨¿Í»§£¡");
-		if(StringUtils.isBlank(mobile))return showJsonError(model, "ÊÖ»úºÅ²»ÄÜÎª¿Õ£¡");
-		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "ÊÖ»úºÅÂë¸ñÊ½²»ÕıÈ·£¡");
+			return showJsonError(model, "éæŒ‡å®šå®¢æˆ·ï¼");
+		if(StringUtils.isBlank(mobile))return showJsonError(model, "æ‰‹æœºå·ä¸èƒ½ä¸ºç©ºï¼");
+		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "æ‰‹æœºå·ç æ ¼å¼ä¸æ­£ç¡®ï¼");
 		String ip = WebUtils.getRemoteIp(request);
 		Map jsonMap = new HashMap();
 		Map errorMap = new HashMap();
@@ -949,11 +949,11 @@ public class MemberAccountController extends BaseHomeController {
 			jsonMap.put("refreshCaptcha", "true");
 			model.put("iscaptcha", iscaptcha);
 			if(StringUtils.isBlank(captcha)){
-				errorMap.put("captcha", "ÇëÊäÈëÑéÖ¤Âë£¡");
+				errorMap.put("captcha", "è¯·è¾“å…¥éªŒè¯ç ï¼");
 				return showJsonError(model, jsonMap);
 			}else{
 				boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha,ip);
-				errorMap.put("captcha", "ÑéÖ¤Âë´íÎó£¡");
+				errorMap.put("captcha", "éªŒè¯ç é”™è¯¯ï¼");
 				if(!isValidCaptcha) return showJsonError(model, jsonMap);
 			}
 		}
@@ -965,17 +965,17 @@ public class MemberAccountController extends BaseHomeController {
 		ErrorCode<SMSRecord> code = bindMobileService.refreshBindMobile(BindConstant.TAG_DRAWMOBILE, mobile, ip);
 		if(!code.isSuccess()) return showJsonError(model, code.getMsg());
 		untransService.sendMsgAtServer(code.getRetval(), false);
-		jsonMap.put("retval", "³É¹¦·¢ËÍ¶¯Ì¬Âë£¡");
+		jsonMap.put("retval", "æˆåŠŸå‘é€åŠ¨æ€ç ï¼");
 		return showJsonSuccess(model,jsonMap);
 	}
 
-	//ÓÃ»§Ö°Î»
+	//ç”¨æˆ·èŒä½
 	@RequestMapping("/home/acct/position.xhtml")
 	public String position(ModelMap model){
 		Member member = getLogonMember();
 		model.putAll(controllerService.getCommonData(model, member, member.getId()));
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
-		if(memberInfo == null) return showError(model, "ÓÃ»§Òì³££¡");
+		if(memberInfo == null) return showError(model, "ç”¨æˆ·å¼‚å¸¸ï¼");
 		Jobs jobs = memberService.getMemberPosition(memberInfo.getExpvalue());
 		Jobs nextJobs = memberService.getMemberNextPosition(memberInfo.getExpvalue());
 		List<JobsUp> jobsUpList = memberService.getJobsUpByMemberId(member.getId());
@@ -988,7 +988,7 @@ public class MemberAccountController extends BaseHomeController {
 		return "home/acct/position.vm";
 	}
 
-	//ĞŞ¸ÄÊÖ»ú 
+	//ä¿®æ”¹æ‰‹æœº 
 	@RequestMapping("/home/acct/upMobile.xhtml")
 	public String upMobile(ModelMap model){
 		Member member = getLogonMember();
@@ -997,42 +997,42 @@ public class MemberAccountController extends BaseHomeController {
 		return "home/acct/upMobile.vm";
 	}
 	
-	//»ñÈ¡ÊÖ»úÑéÖ¤Âë
+	//è·å–æ‰‹æœºéªŒè¯ç 
 	@RequestMapping("/home/bindmobile/receive.xhtml")
 	public String bindMobie(@RequestParam("mobile")String mobile, String tag, ModelMap model, HttpServletRequest request){
-		if(StringUtils.isBlank(mobile))return showJsonError(model, "ÊÖ»úºÅ²»ÄÜÎª¿Õ£¡");
-		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "ÊÖ»úºÅÂë¸ñÊ½²»ÕıÈ·£¡");
+		if(StringUtils.isBlank(mobile))return showJsonError(model, "æ‰‹æœºå·ä¸èƒ½ä¸ºç©ºï¼");
+		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "æ‰‹æœºå·ç æ ¼å¼ä¸æ­£ç¡®ï¼");
 		Member member = getLogonMember();
 		if(StringUtils.equals(tag, "change")&& member.isBindMobile()){
 			if(StringUtils.equals(member.getMobile(), mobile)) 
-				return showJsonError(model, "¸ü¸Ä°ó¶¨µÄÊÖ»úºÅÂë²»ÄÜÓëÔ­À´µÄÊÖ»úºÅÏàÍ¬£¡");
+				return showJsonError(model, "æ›´æ”¹ç»‘å®šçš„æ‰‹æœºå·ç ä¸èƒ½ä¸åŸæ¥çš„æ‰‹æœºå·ç›¸åŒï¼");
 			boolean exists = memberService.isMemberMobileExists(mobile);
-			if(exists) return showJsonError(model, "¸ÃºÅÂëÒÑ±»ÆäËûÕÊºÅ°ó¶¨£¬Çë¸ü»»ºÅÂë£¡");
+			if(exists) return showJsonError(model, "è¯¥å·ç å·²è¢«å…¶ä»–å¸å·ç»‘å®šï¼Œè¯·æ›´æ¢å·ç ï¼");
 			if(!memberService.canChangeMobile(member)){
-				return showJsonError(model, "ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜĞŞ¸Ä°ó¶¨£¡");			
+				return showJsonError(model, "æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½ä¿®æ”¹ç»‘å®šï¼");			
 			}
 		}else{
 			if(StringUtils.isBlank(member.getMobile())){
 				boolean exists = memberService.isMemberMobileExists(mobile);
-				if(exists) return showJsonError(model, "¸ÃºÅÂëÒÑ±»ÆäËûÕÊºÅ°ó¶¨£¬Çë¸ü»»ºÅÂë£¡");
+				if(exists) return showJsonError(model, "è¯¥å·ç å·²è¢«å…¶ä»–å¸å·ç»‘å®šï¼Œè¯·æ›´æ¢å·ç ï¼");
 			}else{
-				if(!StringUtils.equals(member.getMobile(), mobile))return showJsonError(model, "½â³ıµÄÓÃ»§ÊÖ»ú²»ÏàÆ¥Åä£¡");
+				if(!StringUtils.equals(member.getMobile(), mobile))return showJsonError(model, "è§£é™¤çš„ç”¨æˆ·æ‰‹æœºä¸ç›¸åŒ¹é…ï¼");
 				MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
-				if(StringUtils.equals(memberInfo.getSource(), MemberConstant.REGISTER_MOBLIE)) return showJsonError(model, "ÊÖ»ú×¢²áÓÃ»§²»ÄÜ½â³ı°ó¶¨ÊÖ»ú£¡");
-				if(StringUtils.isBlank(member.getEmail())) return showJsonError(model, "ÇëÉèÖÃ°²È«ÓÊÏä£¡");
+				if(StringUtils.equals(memberInfo.getSource(), MemberConstant.REGISTER_MOBLIE)) return showJsonError(model, "æ‰‹æœºæ³¨å†Œç”¨æˆ·ä¸èƒ½è§£é™¤ç»‘å®šæ‰‹æœºï¼");
+				if(StringUtils.isBlank(member.getEmail())) return showJsonError(model, "è¯·è®¾ç½®å®‰å…¨é‚®ç®±ï¼");
 				if(!memberService.canChangeMobile(member)){
-					return showJsonError(model, "ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜ½â³ı°ó¶¨£¡");			
+					return showJsonError(model, "æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½è§£é™¤ç»‘å®šï¼");			
 				}
 			}
 		}
 		String msgTemplate = "";
 		if(StringUtils.equals(tag, "change")){
-			msgTemplate = "checkpass¸ü¸Ä¶¯Ì¬Âë";
+			msgTemplate = "checkpassæ›´æ”¹åŠ¨æ€ç ";
 		}else{
-			if(StringUtils.isBlank(member.getMobile())) msgTemplate = "checkpass°ó¶¨¶¯Ì¬Âë";
-			else msgTemplate = "checkpass½â³ı¶¯Ì¬Âë";
+			if(StringUtils.isBlank(member.getMobile())) msgTemplate = "checkpassç»‘å®šåŠ¨æ€ç ";
+			else msgTemplate = "checkpassè§£é™¤åŠ¨æ€ç ";
 		}
-		msgTemplate += "£¬Ê¹ÓÃºÍ30·ÖÖÓ¹ıÆÚÎŞĞ§£»·Ç±¾ÈË»òÊÚÈ¨²Ù×÷£¬ÎªÈ·±£ÕË»§°²È«£¬ÇëÖÂµç4000406506";
+		msgTemplate += "ï¼Œä½¿ç”¨å’Œ30åˆ†é’Ÿè¿‡æœŸæ— æ•ˆï¼›éæœ¬äººæˆ–æˆæƒæ“ä½œï¼Œä¸ºç¡®ä¿è´¦æˆ·å®‰å…¨ï¼Œè¯·è‡´ç”µ4000406506";
 		ErrorCode<SMSRecord> code = bindMobileService.refreshBindMobile(BindConstant.TAG_BINDMOBILE, mobile, WebUtils.getRemoteIp(request), msgTemplate);
 		if(!code.isSuccess()) return showJsonError(model, code.getMsg());
 
@@ -1040,45 +1040,45 @@ public class MemberAccountController extends BaseHomeController {
 		return showJsonSuccess(model);
 	}
 	
-	//°ó¶¨ÓÃ»§ĞŞ¸ÄÒÑ°ó¶¨ÓÊÏä
+	//ç»‘å®šç”¨æˆ·ä¿®æ”¹å·²ç»‘å®šé‚®ç®±
 	@RequestMapping("/home/acct/sendExchangeEmail.xhtml")
 	public String sendExchangeEmail(HttpServletRequest request, String captchaId, String captcha, String email1, String email2, String password, ModelMap model){
 		Member member = getLogonMember();
 		String oldEmail = member.getEmail();
 		boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha, WebUtils.getRemoteIp(request));
-		if(!isValidCaptcha) return showJsonError(model, "ÑéÖ¤Âë´íÎó£¡");
-		if(StringUtils.equals(oldEmail, email1)) return showJsonError(model, "¸ü¸ÄµÄÓÊÏäµØÖ·²»ÄÜÓëµ±Ç°ÓÊÏäµØÖ·Ò»ÖÂ£¡"); 
-		if(StringUtils.isBlank(password)) return showJsonError(model, "ÇëÊäÈëµÇÂ¼ÃÜÂë£¡");
-		if(StringUtils.isBlank(email1) || StringUtils.isBlank(email2)) return showJsonError(model, "ÇëÊäÈë¸ü¸ÄÓÊÏäµØÖ·£¡");
-		if(!StringUtils.equals(email1, email2)) return showJsonError(model, "ÇëÈ·ÈÏ¸ü¸ÄÓÊÏäÒ»ÖÂ!");
+		if(!isValidCaptcha) return showJsonError(model, "éªŒè¯ç é”™è¯¯ï¼");
+		if(StringUtils.equals(oldEmail, email1)) return showJsonError(model, "æ›´æ”¹çš„é‚®ç®±åœ°å€ä¸èƒ½ä¸å½“å‰é‚®ç®±åœ°å€ä¸€è‡´ï¼"); 
+		if(StringUtils.isBlank(password)) return showJsonError(model, "è¯·è¾“å…¥ç™»å½•å¯†ç ï¼");
+		if(StringUtils.isBlank(email1) || StringUtils.isBlank(email2)) return showJsonError(model, "è¯·è¾“å…¥æ›´æ”¹é‚®ç®±åœ°å€ï¼");
+		if(!StringUtils.equals(email1, email2)) return showJsonError(model, "è¯·ç¡®è®¤æ›´æ”¹é‚®ç®±ä¸€è‡´!");
 		/*MemberAccount memberAccount = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
-		if(memberAccount == null || memberAccount.isNopassword()) return showJsonError(model, "ÏÈ´´½¨ÕÊºÅ»òÉèÖÃÖ§¸¶ÃÜÂë£¡");*/
-		if(!StringUtils.equals(StringUtil.md5(password), member.getPassword())) return showJsonError(model, "µÇÂ¼ÃÜÂë²»ÕıÈ·£¡");
+		if(memberAccount == null || memberAccount.isNopassword()) return showJsonError(model, "å…ˆåˆ›å»ºå¸å·æˆ–è®¾ç½®æ”¯ä»˜å¯†ç ï¼");*/
+		if(!StringUtils.equals(StringUtil.md5(password), member.getPassword())) return showJsonError(model, "ç™»å½•å¯†ç ä¸æ­£ç¡®ï¼");
 		boolean match = ValidateUtil.isEmail(email1);
-		if(!match) return showJsonError(model, "ÓÊ¼ş¸ñÊ½²»ÕıÈ·!");
-		if(memberService.getMemberByEmail(email1)!=null)return showJsonError(model, "¸ÃÓÊÏäÒÑ¾­×¢²á£¡");
+		if(!match) return showJsonError(model, "é‚®ä»¶æ ¼å¼ä¸æ­£ç¡®!");
+		if(memberService.getMemberByEmail(email1)!=null)return showJsonError(model, "è¯¥é‚®ç®±å·²ç»æ³¨å†Œï¼");
 		gewaMailService.sendChangeEmail(member,email1);
 		
-		dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_ACCOUNT, "[ÓÃ»§ĞŞ¸ÄÓÊÏä]ÓÃ»§:"+member.getId()+"Ô­ÓÊÏä:"+oldEmail+"ĞÂÓÊÏä:"+email1+"[IP:]"+WebUtils.getRemoteIp(request));
+		dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_ACCOUNT, "[ç”¨æˆ·ä¿®æ”¹é‚®ç®±]ç”¨æˆ·:"+member.getId()+"åŸé‚®ç®±:"+oldEmail+"æ–°é‚®ç®±:"+email1+"[IP:]"+WebUtils.getRemoteIp(request));
 		monitorService.saveMemberLog(member.getId(), MemberConstant.ACTION_MODEMAIL, null, WebUtils.getRemoteIp(request));
-		return showJsonSuccess(model, "ÓÊ¼şÒÑ·¢ËÍ£¬Çë½ÓÊÕÓÊ¼şÍê³ÉĞŞ¸ÄÓÊÏä!");
+		return showJsonSuccess(model, "é‚®ä»¶å·²å‘é€ï¼Œè¯·æ¥æ”¶é‚®ä»¶å®Œæˆä¿®æ”¹é‚®ç®±!");
 	}
-	//ÊÖ»ú °ó¶¨ÓÃ»§ ÉèÖÃ°ó¶¨ÓÊÏä
+	//æ‰‹æœº ç»‘å®šç”¨æˆ· è®¾ç½®ç»‘å®šé‚®ç®±
 	@RequestMapping("/home/acct/sendSecurityEmail.xhtml")
 	public String sendSecurityEmail(HttpServletRequest request, String captchaId, String captcha, String email, String password, ModelMap model){
 		Member member = getLogonMember();
-		if(StringUtils.isBlank(password)) return showJsonError(model, "µÇÂ¼ÃÜÂë²»ÄÜÎª¿Õ£¡");
+		if(StringUtils.isBlank(password)) return showJsonError(model, "ç™»å½•å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 		boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha, WebUtils.getRemoteIp(request));
-		if(!isValidCaptcha) return showJsonError(model, "ÑéÖ¤Âë´íÎó£¡");
+		if(!isValidCaptcha) return showJsonError(model, "éªŒè¯ç é”™è¯¯ï¼");
 		boolean match = ValidateUtil.isEmail(email);
-		if(!match) return showJsonError(model, "ÓÊÏä¸ñÊ½²»ÕıÈ·,ÇëÖØĞÂÊäÈë!");
-		if(memberService.getMemberByEmail(email) != null)return showJsonError(model, "ÓÊÏäµØÖ·ÒÑ±»Ê¹ÓÃ£¬Çë»»Ò»¸ö£¡");
+		if(!match) return showJsonError(model, "é‚®ç®±æ ¼å¼ä¸æ­£ç¡®,è¯·é‡æ–°è¾“å…¥!");
+		if(memberService.getMemberByEmail(email) != null)return showJsonError(model, "é‚®ç®±åœ°å€å·²è¢«ä½¿ç”¨ï¼Œè¯·æ¢ä¸€ä¸ªï¼");
 	/*	MemberAccount memberAccount = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId());
-		if(memberAccount == null || memberAccount.isNopassword()) return showJsonError(model, "ÏÈ´´½¨ÕÊºÅ»òÉèÖÃÖ§¸¶ÃÜÂë£¡");*/
-		if(!StringUtils.equals(member.getPassword(), StringUtil.md5(password))) return showJsonError(model, "µÇÂ¼ÃÜÂë´íÎó£¡");
+		if(memberAccount == null || memberAccount.isNopassword()) return showJsonError(model, "å…ˆåˆ›å»ºå¸å·æˆ–è®¾ç½®æ”¯ä»˜å¯†ç ï¼");*/
+		if(!StringUtils.equals(member.getPassword(), StringUtil.md5(password))) return showJsonError(model, "ç™»å½•å¯†ç é”™è¯¯ï¼");
 		gewaMailService.sendSecurityEmail(member,email);
 		monitorService.saveMemberLog(member.getId(), MemberConstant.ACTION_MODEMAIL, null, WebUtils.getRemoteIp(request));
-		return showJsonSuccess(model, "ÓÊ¼şÒÑ·¢ËÍ£¬Çë½ÓÊÕÓÊ¼şÍê³É°²È«ÓÊÏäÉèÖÃ!");
+		return showJsonSuccess(model, "é‚®ä»¶å·²å‘é€ï¼Œè¯·æ¥æ”¶é‚®ä»¶å®Œæˆå®‰å…¨é‚®ç®±è®¾ç½®!");
 	}
 	
 	@RequestMapping("/home/acct/securityEmail.xhtml")
@@ -1086,15 +1086,15 @@ public class MemberAccountController extends BaseHomeController {
 			Long id, String email, String random, String encode, String op,HttpServletRequest request, ModelMap model){
 		Member member = getLogonMember();
 		String vkey = PayUtil.md5WithKey(random, email, ""+id);
-		if(!StringUtils.equals(vkey, encode)) return show404(model, "Á¬½Ó´íÎó£¡");
-		if(!member.getId().equals(id)) return show404(model, "Á¬½Ó´íÎó£¡");
+		if(!StringUtils.equals(vkey, encode)) return show404(model, "è¿æ¥é”™è¯¯ï¼");
+		if(!member.getId().equals(id)) return show404(model, "è¿æ¥é”™è¯¯ï¼");
 		Long time = new Long(random.split("@")[1]);
-		if((DateUtil.addDay(new Date(), -1)).getTime() > time) return show404(model, "Á¬½Ó´íÎó£¡");
+		if((DateUtil.addDay(new Date(), -1)).getTime() > time) return show404(model, "è¿æ¥é”™è¯¯ï¼");
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
 		if(!memberInfo.isAllNewTaskFinished() && !memberInfo.isFinishedTask(MemberConstant.TASK_CONFIRMREG)
 				&&! memberInfo.isRegisterSource(MemberConstant.REGISTER_EMAIL)){
 			boolean isExistsMember = memberService.isMemberExists(email, member.getId());
-			if(isExistsMember) return show404(model, "¸ÃÓÊÏäÒÑ´æÔÚ£¡");
+			if(isExistsMember) return show404(model, "è¯¥é‚®ç®±å·²å­˜åœ¨ï¼");
 			String oldEmail = member.getEmail();
 			member.setEmail(email.toLowerCase());
 			daoService.saveObject(member);
@@ -1106,15 +1106,15 @@ public class MemberAccountController extends BaseHomeController {
 				logInfo.put("newEmail", member.getEmail());
 			}
 			monitorService.saveMemberLogMap(member.getId(), MemberConstant.ACTION_MODEMAIL, logInfo, WebUtils.getRemoteIp(request));
-			sendWarning("ÓÊÏä", member, oldEmail, member.getMobile());
-		}else return show404(model, "Á¬½Ó´íÎó£¡");
+			sendWarning("é‚®ç®±", member, oldEmail, member.getMobile());
+		}else return show404(model, "è¿æ¥é”™è¯¯ï¼");
 		if(StringUtils.equals(op, "mdyeml")){
-			model.put("title", "ĞŞ¸ÄÓÊÏäÑéÖ¤");
-			model.put("msg", "ĞŞ¸ÄÓÊÏäÑéÖ¤³É¹¦£¡");
+			model.put("title", "ä¿®æ”¹é‚®ç®±éªŒè¯");
+			model.put("msg", "ä¿®æ”¹é‚®ç®±éªŒè¯æˆåŠŸï¼");
 		}
 		if(StringUtils.equals(op, "bindeml")){
-			model.put("title", "°ó¶¨ÓÊÏäÑéÖ¤");
-			model.put("msg", "°ó¶¨ÓÊÏäÑéÖ¤³É¹¦£¡");
+			model.put("title", "ç»‘å®šé‚®ç®±éªŒè¯");
+			model.put("msg", "ç»‘å®šé‚®ç®±éªŒè¯æˆåŠŸï¼");
 		}
 		if (StringUtils.isNotBlank(op)) {
 			return "home/acct/accountSafety/successPage.vm";			
@@ -1122,36 +1122,36 @@ public class MemberAccountController extends BaseHomeController {
 		return "redirect:/home/sns/personIndex.xhtml";
 	}
 	
-	//°ó¶¨ÊÖ»ú
+	//ç»‘å®šæ‰‹æœº
 	@RequestMapping("/home/acct/sendExchangeMobile.xhtml")
 	public String sendExchangeMobile(@CookieValue(LOGIN_COOKIE_NAME)String sessid, 
 			HttpServletRequest request, String mobile, String mobile2, 
-			String tag, String password/*Ö§¸¶ÃÜÂë*/, ModelMap model){
+			String tag, String password/*æ”¯ä»˜å¯†ç */, ModelMap model){
 		Member member = getLogonMember();
 		boolean allow = operationService.updateOperation(BindConstant.TAG_BINDMOBILE + "_" + member.getId(), 30);
 		if(!allow){
 			dbLogger.warn(BindConstant.TAG_BINDMOBILE + "_" + member.getId() + ":" + WebUtils.getRemoteIp(request));
-			return showJsonError(model, "²Ù×÷¹ıÓÚÆµ·±£¡");
+			return showJsonError(model, "æ“ä½œè¿‡äºé¢‘ç¹ï¼");
 		}
 		boolean checked = StringUtils.isNotBlank(tag)?!CHECK_LIST.contains(tag):false;
 		if(checked){
-			dbLogger.warn("ÓÃ»§ID:" + member.getId() + ",°ó¶¨»òĞŞ¸ÄÊÖ»úºÅÂë");
-			return showJsonError(model, "²ÎÊı´íÎó£¡");
+			dbLogger.warn("ç”¨æˆ·ID:" + member.getId() + ",ç»‘å®šæˆ–ä¿®æ”¹æ‰‹æœºå·ç ");
+			return showJsonError(model, "å‚æ•°é”™è¯¯ï¼");
 		}
-		if(StringUtils.isBlank(mobile2))return showJsonError(model, "ÊÖ»ú¶¯Ì¬Âë²»ÄÜÎª¿Õ£¡");
-		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "ÊÖ»úºÅÂë¸ñÊ½²»ÕıÈ·£¡");
+		if(StringUtils.isBlank(mobile2))return showJsonError(model, "æ‰‹æœºåŠ¨æ€ç ä¸èƒ½ä¸ºç©ºï¼");
+		if(!ValidateUtil.isMobile(mobile)) return showJsonError(model, "æ‰‹æœºå·ç æ ¼å¼ä¸æ­£ç¡®ï¼");
 		
 		boolean exists = memberService.isMemberMobileExists(mobile);
-		if(exists) return showJsonError(model, "¸ÃºÅÂëÒÑ°ó¶¨ÆäËûÕÊºÅ£¬Çë¸ü»»ÆäËûÊÖ»úºÅÂë£¡");
+		if(exists) return showJsonError(model, "è¯¥å·ç å·²ç»‘å®šå…¶ä»–å¸å·ï¼Œè¯·æ›´æ¢å…¶ä»–æ‰‹æœºå·ç ï¼");
 		MemberAccount memberAccount = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
 		if(StringUtils.equals(tag, "change")){
-			if(StringUtils.isBlank(password)) return showJsonError(model, "Ö§¸¶ÃÜÂë²»ÄÜ¿Õ£¡");
-			if(memberAccount == null || memberAccount.isNopassword()) return showJsonError(model, "ÏÈ´´½¨ÕÊºÅ»òÉèÖÃÖ§¸¶ÃÜÂë£¡");
-			if(!StringUtils.equals(memberAccount.getPassword(), PayUtil.getPass(password))) return showJsonError(model, "Ö§¸¶ÃÜÂë´íÎó£¡");
+			if(StringUtils.isBlank(password)) return showJsonError(model, "æ”¯ä»˜å¯†ç ä¸èƒ½ç©ºï¼");
+			if(memberAccount == null || memberAccount.isNopassword()) return showJsonError(model, "å…ˆåˆ›å»ºå¸å·æˆ–è®¾ç½®æ”¯ä»˜å¯†ç ï¼");
+			if(!StringUtils.equals(memberAccount.getPassword(), PayUtil.getPass(password))) return showJsonError(model, "æ”¯ä»˜å¯†ç é”™è¯¯ï¼");
 		}else{
 			/*if(memberAccount != null){
-				if(StringUtils.isBlank(password)) return showJsonError(model, "Ö§¸¶ÃÜÂë²»ÄÜ¿Õ£¡");
-				if(!StringUtils.equals(memberAccount.getPassword(), PayUtil.getPass(password))) return showJsonError(model, "Ö§¸¶ÃÜÂë´íÎó£¡");
+				if(StringUtils.isBlank(password)) return showJsonError(model, "æ”¯ä»˜å¯†ç ä¸èƒ½ç©ºï¼");
+				if(!StringUtils.equals(memberAccount.getPassword(), PayUtil.getPass(password))) return showJsonError(model, "æ”¯ä»˜å¯†ç é”™è¯¯ï¼");
 			}*/
 		}
 		String oldMobile = member.getMobile();
@@ -1163,17 +1163,17 @@ public class MemberAccountController extends BaseHomeController {
 		daoService.saveObject(member);
 		loginService.updateMemberAuth(sessid, member);
 		
-		sendWarning("ÊÖ»úºÅ", member, oldMobile, member.getEmail());
+		sendWarning("æ‰‹æœºå·", member, oldMobile, member.getEmail());
 		return showJsonSuccess(model);
 	}
 	
-	//½â³ıÊÖ»ú°ó¶¨
+	//è§£é™¤æ‰‹æœºç»‘å®š
 	@RequestMapping("/home/acct/relieveMobile.xhtml")
 	public String unBindMobile(@CookieValue(LOGIN_COOKIE_NAME)String sessid, 
 			HttpServletRequest request, String mobile, String mobile2, ModelMap model){
 		Member member = getLogonMember();
 		if(StringUtils.equals(mobile, member.getMobile())){
-			return showJsonError(model, "ÊÖ»úºÅ²»Æ¥Åä£¡");
+			return showJsonError(model, "æ‰‹æœºå·ä¸åŒ¹é…ï¼");
 		}
 		ErrorCode result = memberService.unbindMobile(member, mobile2, WebUtils.getRemoteIp(request));
 		if(result.isSuccess()){
@@ -1183,21 +1183,21 @@ public class MemberAccountController extends BaseHomeController {
 			return showJsonError(model, result.getMsg());
 		}
 	}
-	//ĞŞ¸ÄÓÊÏäĞÅÏ¢
+	//ä¿®æ”¹é‚®ç®±ä¿¡æ¯
 	@RequestMapping("/home/acct/exchangeEmail.xhtml")
 	public String exchangeEmail(@CookieValue(LOGIN_COOKIE_NAME)String sessid, 
 			Long id, String email, String random, String encode, HttpServletRequest request, ModelMap model){
 		String vkey = PayUtil.md5WithKey(random, email, ""+id);
-		if(!StringUtils.equals(vkey, encode)) return showError(model, "Á¬½Ó´íÎó¡£");
+		if(!StringUtils.equals(vkey, encode)) return showError(model, "è¿æ¥é”™è¯¯ã€‚");
 		Long time = new Long(random.split("@")[1]);
-		if((DateUtil.addDay(new Date(), -1)).getTime() > time) return showError(model, "Á¬½Ó´íÎó¡£");
-		if(memberService.getMemberByEmail(email)!=null)return showJsonError(model, "Á¬½Ó´íÎó£¬¸ÃÓÊÏäÒÑ¾­×¢²á£¡");
+		if((DateUtil.addDay(new Date(), -1)).getTime() > time) return showError(model, "è¿æ¥é”™è¯¯ã€‚");
+		if(memberService.getMemberByEmail(email)!=null)return showJsonError(model, "è¿æ¥é”™è¯¯ï¼Œè¯¥é‚®ç®±å·²ç»æ³¨å†Œï¼");
 		Member member = daoService.getObject(Member.class,id);
 		String oldEmail=member.getEmail();
 		member.setEmail(email.toLowerCase());
 		daoService.saveObject(member);
 		loginService.updateMemberAuth(sessid, member);
-		model.put("msg", "ĞŞ¸ÄÓÊÏä³É¹¦£¬ÇëÖØĞÂµÇÂ¼£¡");
+		model.put("msg", "ä¿®æ”¹é‚®ç®±æˆåŠŸï¼Œè¯·é‡æ–°ç™»å½•ï¼");
 		if(StringUtils.equals(email.split("@")[1], "139.com")){
 			Map paraMap = new HashMap();
 			paraMap.put(MongoData.ACTION_MEMBERID, member.getId());
@@ -1223,48 +1223,48 @@ public class MemberAccountController extends BaseHomeController {
 			logInfo.put("newEmail", member.getEmail());
 		}
 		monitorService.saveMemberLogMap(member.getId(), MemberConstant.ACTION_MODEMAIL, logInfo, WebUtils.getRemoteIp(request));
-		sendWarning("ÓÊÏä", member, oldEmail, member.getMobile());
+		sendWarning("é‚®ç®±", member, oldEmail, member.getMobile());
 //		return "redirect:/login.xhtml";
-		return alertMessage(model,"ĞŞ¸ÄÓÊÏä³É¹¦£¬ÇëÖØĞÂµÇÂ¼£¡","login.xhtml");
+		return alertMessage(model,"ä¿®æ”¹é‚®ç®±æˆåŠŸï¼Œè¯·é‡æ–°ç™»å½•ï¼","login.xhtml");
 	}
-	//ÊÖ»ú¶¯Ì¬ÂëÑéÖ¤ĞŞ¸ÄÃÜÂë
+	//æ‰‹æœºåŠ¨æ€ç éªŒè¯ä¿®æ”¹å¯†ç 
 	@RequestMapping("/home/acct/sendExchangePassByCkPs.xhtml")
 	public String sendExchangePassByCkPs(@CookieValue(LOGIN_COOKIE_NAME)String sessid,  
 			String checkpass,String password, String password1, String password2, ModelMap model, HttpServletRequest request){
 		Member member = getLogonMember();
 		if(member == null) {
-			return showJsonError(model, "ÇëÏÈµÇÂ¼£¡");
+			return showJsonError(model, "è¯·å…ˆç™»å½•ï¼");
 		}
 		if(StringUtils.isBlank(checkpass)) {
-			return showJsonError(model,"¶¯Ì¬Âë²»ÄÜÎª¿Õ£¡");
+			return showJsonError(model,"åŠ¨æ€ç ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		if(StringUtils.isBlank(password1)) {
-			return showJsonError(model,"µ±Ç°ÃÜÂë²»ÄÜÎª¿Õ£¡");
+			return showJsonError(model,"å½“å‰å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		if(StringUtils.isBlank(password1)) {
-			return showJsonError(model,"ĞŞ¸ÄÃÜÂë²»ÄÜÎª¿Õ£¡");
+			return showJsonError(model,"ä¿®æ”¹å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		if(StringUtils.isBlank(password2)) {
-			return showJsonError(model,"È·ÈÏÃÜÂë²»ÄÜÎª¿Õ£¡");
+			return showJsonError(model,"ç¡®è®¤å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		if(!StringUtils.equals(password1, password2)) {
-			return showJsonError(model,"È·ÈÏÃÜÂëÓëĞŞ¸ÄÃÜÂë²»Ò»ÖÂ£¡");
+			return showJsonError(model,"ç¡®è®¤å¯†ç ä¸ä¿®æ”¹å¯†ç ä¸ä¸€è‡´ï¼");
 		}
 		if(!ValidateUtil.isPassword(password1)){
-			return showJsonError(model,"ÃÜÂë¸ñÊ½²»ÕıÈ·,Ö»ÄÜÊÇ×ÖÄ¸£¬Êı×Ö£¬ÏÂ»®Ïß£¬³¤¶È6¡ª14Î»£¡");
+			return showJsonError(model,"å¯†ç æ ¼å¼ä¸æ­£ç¡®,åªèƒ½æ˜¯å­—æ¯ï¼Œæ•°å­—ï¼Œä¸‹åˆ’çº¿ï¼Œé•¿åº¦6â€”14ä½ï¼");
 		}
 		if(StringUtils.isNotBlank(member.getEmail())){
 			boolean danger = baoKuService.isDanger(member.getEmail(), password1);
-			if(danger) return showJsonError(model, "¸ÃÕÊ»§ÉèÖÃµÄÃÜÂë´æÔÚ°²È«·çÏÕ£¬²»ÄÜÉèÖÃÎª¸ÃÃÜÂë£¡");
+			if(danger) return showJsonError(model, "è¯¥å¸æˆ·è®¾ç½®çš„å¯†ç å­˜åœ¨å®‰å…¨é£é™©ï¼Œä¸èƒ½è®¾ç½®ä¸ºè¯¥å¯†ç ï¼");
 		}
 		ErrorCode code = bindMobileService.preCheckBindMobile(BindConstant.TAG_MODIFYPASS, member.getMobile(), checkpass);
 		if(!code.isSuccess()){
 			return showJsonError(model, code.getMsg());
 		}
 		String md5pass = StringUtil.md5(password);
-		if(!StringUtils.equals(md5pass, member.getPassword())) return showJsonError(model, "Ô­ÃÜÂë´íÎó£¡");
+		if(!StringUtils.equals(md5pass, member.getPassword())) return showJsonError(model, "åŸå¯†ç é”™è¯¯ï¼");
 		if(StringUtils.equals(password, password1)) {
-			return showJsonError(model,"ĞŞ¸ÄÃÜÂë²»ÄÜÓëµ±Ç°ÃÜÂëÒ»ÖÂ£¡");
+			return showJsonError(model,"ä¿®æ”¹å¯†ç ä¸èƒ½ä¸å½“å‰å¯†ç ä¸€è‡´ï¼");
 		}
 		bindMobileService.checkBindMobile(BindConstant.TAG_MODIFYPASS, member.getMobile(), checkpass);
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
@@ -1277,36 +1277,36 @@ public class MemberAccountController extends BaseHomeController {
 		loginService.updateMemberAuth(sessid, member);
 		return showJsonSuccess(model);
 	}
-	//ÓÊ¼şÑéÖ¤ĞŞ¸ÄÃÜÂë
+	//é‚®ä»¶éªŒè¯ä¿®æ”¹å¯†ç 
 	@RequestMapping("/home/acct/sendExchangePassByEml.xhtml")
 	public String sendExchangePass(@CookieValue(LOGIN_COOKIE_NAME)String sessid, 
 			String password, String password1, String password2, HttpServletRequest request, ModelMap model,String encode, String uuid){
 		Member member = getLogonMember();
-		if(member == null) return showJsonError(model, "ÇëÏÈµÇÂ¼£¡");
+		if(member == null) return showJsonError(model, "è¯·å…ˆç™»å½•ï¼");
 		String email = member.getEmail();
 		String ip = WebUtils.getRemoteIp(request);
 		ValidEmail validEmail = mongoService.getObject(ValidEmail.class, "id", uuid);
 		if(validEmail == null){
 			dbLogger.error("ip: " + ip + ", memberid: " + member.getId());
-			return showJsonError(model, "·Ç·¨²Ù×÷£¡");
+			return showJsonError(model, "éæ³•æ“ä½œï¼");
 		}
 		Long cur = System.currentTimeMillis();
-		if(cur > validEmail.getValidtime()) return showJsonError(model, "¸ÃÁ´½ÓÒÑÊ§Ğ§£¬ÇëÖØĞÂ»ñÈ¡ĞŞ¸ÄÃÜÂëÁ´½Ó£¡");
+		if(cur > validEmail.getValidtime()) return showJsonError(model, "è¯¥é“¾æ¥å·²å¤±æ•ˆï¼Œè¯·é‡æ–°è·å–ä¿®æ”¹å¯†ç é“¾æ¥ï¼");
 		if(!StringUtils.equals(StringUtil.md5(email + StringUtils.substring(member.getPassword(), 8, 24)), validEmail.getValidcode())){
-			return showJsonError(model, "Ğ£Ñé´íÎó£¡");
+			return showJsonError(model, "æ ¡éªŒé”™è¯¯ï¼");
 		}
 		String checkMsg = checkMemberResource(member);
 		if(StringUtils.isNotBlank(checkMsg)) return showJsonError(model, checkMsg);
-		if(!StringUtils.equals(PayUtil.md5WithKey(email, "" + member.getId(), uuid),encode)) return showJsonError(model, "´ËÁ´½ÓÎŞĞ§£¡");
+		if(!StringUtils.equals(PayUtil.md5WithKey(email, "" + member.getId(), uuid),encode)) return showJsonError(model, "æ­¤é“¾æ¥æ— æ•ˆï¼");
 		
 		String md5pass = StringUtil.md5(password);
-		if(password1==null||password2==null||!StringUtils.equals(password1, password2))return showJsonError(model, "Êı¾İ´íÎó£¡");
-		if(!StringUtils.equals(md5pass,member.getPassword())) return showJsonError(model, "Ô­ÃÜÂë´íÎó£¡");
+		if(password1==null||password2==null||!StringUtils.equals(password1, password2))return showJsonError(model, "æ•°æ®é”™è¯¯ï¼");
+		if(!StringUtils.equals(md5pass,member.getPassword())) return showJsonError(model, "åŸå¯†ç é”™è¯¯ï¼");
 		boolean match = ValidateUtil.isVariable(password1, 6, 14);
-		if(!match)return showJsonError(model, "ÃÜÂë¸ñÊ½²»ÕıÈ·!");
+		if(!match)return showJsonError(model, "å¯†ç æ ¼å¼ä¸æ­£ç¡®!");
 		if(StringUtils.isNotBlank(email)){
 			boolean danger = baoKuService.isDanger(email, password1);
-			if(danger) return showJsonError(model, "¸ÃÕÊ»§ÉèÖÃµÄÃÜÂë´æÔÚ°²È«·çÏÕ£¬²»ÄÜÉèÖÃÎª¸ÃÃÜÂë£¡");
+			if(danger) return showJsonError(model, "è¯¥å¸æˆ·è®¾ç½®çš„å¯†ç å­˜åœ¨å®‰å…¨é£é™©ï¼Œä¸èƒ½è®¾ç½®ä¸ºè¯¥å¯†ç ï¼");
 		}
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
 		Map<String, String> otherInfoMap = JsonUtils.readJsonToMap(memberInfo.getOtherinfo());
@@ -1338,32 +1338,32 @@ public class MemberAccountController extends BaseHomeController {
 		return "home/acct/accountSafety/successPage.vm";
 	}
 	/**
-	 *  20110221 ĞŞ¸ÄÓÃ»§ÖĞĞÄÒ³Ãæ, Ê¹ÓÃajaxLoad, ¼ÓÔØËùÓĞ×ÊÁÏÒ³Ãæ
+	 *  20110221 ä¿®æ”¹ç”¨æˆ·ä¸­å¿ƒé¡µé¢, ä½¿ç”¨ajaxLoad, åŠ è½½æ‰€æœ‰èµ„æ–™é¡µé¢
 	 */
 	@RequestMapping("/home/acct/memberinfo.xhtml")
 	public String memberinfoall(ModelMap model, String tag){
 		Member member = getLogonMember();
 		model.putAll(controllerService.getCommonData(model, member, member.getId()));
-		// »ù±¾ĞÅÏ¢
+		// åŸºæœ¬ä¿¡æ¯
 		if("base".equals(tag)){
 			addMemberBaseData(model);
 			return "home/acct/memberinfo_base.vm";
 		}
-		// ÁªÏµ·½Ê½
+		// è”ç³»æ–¹å¼
 		else if(("contact").equals(tag)){
 			return "home/acct/memberinfo_contact.vm";
 		}
-		// ĞËÈ¤°®ºÃ
+		// å…´è¶£çˆ±å¥½
 		else if(("favor").equals(tag)){
 			favorInfo(model, member);
 			return "home/acct/memberinfo_favor.vm";
 		}
-		// ½ÌÓıĞÅÏ¢
+		// æ•™è‚²ä¿¡æ¯
 		else if(("edu").equals(tag)){
 			eduInfo(model, member);
 			return "home/acct/memberinfo_edu.vm";
 		}
-		// Ö°ÒµĞÅÏ¢
+		// èŒä¸šä¿¡æ¯
 		else if(("job").equals(tag)){
 			jobInfo(model, member);
 			return "home/acct/memberinfo_job.vm";
@@ -1374,10 +1374,10 @@ public class MemberAccountController extends BaseHomeController {
 	
 	
 	/**
-	 * ÓÃ»§×ÊÁÏ - »ù±¾ĞÅÏ¢
+	 * ç”¨æˆ·èµ„æ–™ - åŸºæœ¬ä¿¡æ¯
 	 */
 	private void addMemberBaseData(ModelMap model){
-		//ÊÇ·ñĞèÒª·¢ËÍ¸ß¼¶È·ÈÏÓÊ¼ş
+		//æ˜¯å¦éœ€è¦å‘é€é«˜çº§ç¡®è®¤é‚®ä»¶
 		MemberInfo memberInfo = (MemberInfo) model.get("memberInfo");
 		if(memberInfo!=null && StringUtils.isNotBlank(memberInfo.getNewtask())){
 			model.put("sendReg",StringUtils.contains(memberInfo.getNewtask(), "confirmreg"));
@@ -1394,7 +1394,7 @@ public class MemberAccountController extends BaseHomeController {
 			}
 			model.put("dates", dates);
 			
-			// »ñÈ¡ÓÃ»§¾Ó×¡µØ
+			// è·å–ç”¨æˆ·å±…ä½åœ°
 			String liveplace = placeService.getLocationPair(memberInfo.getId(), " - ");
 			model.put("liveplace", liveplace);
 		}
@@ -1405,27 +1405,27 @@ public class MemberAccountController extends BaseHomeController {
 			String nickname, String year,String month,String day, String realname, String sign, String sex, String liveprovince,
 			String livecity, String livecounty, String liveindexarea, ModelMap model){
 		Member member = getLogonMember();
-		if(StringUtils.isBlank(nickname)) return showJsonError(model, "ÓÃ»§êÇ³Æ²»ÄÜÎª¿Õ£¡");
+		if(StringUtils.isBlank(nickname)) return showJsonError(model, "ç”¨æˆ·æ˜µç§°ä¸èƒ½ä¸ºç©ºï¼");
 		String key = blogService.filterAllKey(nickname);
-		if(StringUtils.isNotBlank(key))return showJsonError(model, "º¬ÓĞ·Ç·¨¹Ø¼ü×Ö!");
+		if(StringUtils.isNotBlank(key))return showJsonError(model, "å«æœ‰éæ³•å…³é”®å­—!");
 		boolean matchNickname = ValidateUtil.isCNVariable(nickname, 2, 15);
-		if(!matchNickname) return showJsonError(model,"ÓÃ»§êÇ³Æ¸ñÊ½²»ÕıÈ·£¬²»ÄÜ°üº¬ÌØÊâ·ûºÅ£¡");
+		if(!matchNickname) return showJsonError(model,"ç”¨æˆ·æ˜µç§°æ ¼å¼ä¸æ­£ç¡®ï¼Œä¸èƒ½åŒ…å«ç‰¹æ®Šç¬¦å·ï¼");
 		boolean bNickname=memberService.isMemberExists(nickname, member.getId());
-		if(bNickname) return showJsonError(model, "ÄúÊäÈëµÄêÇ³ÆÒÑ±»Õ¼ÓÃ£¡");
+		if(bNickname) return showJsonError(model, "æ‚¨è¾“å…¥çš„æ˜µç§°å·²è¢«å ç”¨ï¼");
 		if(StringUtils.isNotBlank(mobile)){
 			boolean match = ValidateUtil.isMobile(mobile);
-			if(!match) return showJsonError(model,"ÄúÊäÈëµÄÊÖ»úºÅ¸ñÊ½²»ÕıÈ·£¡");
+			if(!match) return showJsonError(model,"æ‚¨è¾“å…¥çš„æ‰‹æœºå·æ ¼å¼ä¸æ­£ç¡®ï¼");
 			boolean b = memberService.isMemberMobileExists(mobile);
-			if(b) return showJsonError(model, "ÄúÊäÈëµÄÊÖ»úºÅÒÑ¾­´æÔÚ");
+			if(b) return showJsonError(model, "æ‚¨è¾“å…¥çš„æ‰‹æœºå·å·²ç»å­˜åœ¨");
 		}
-		if(StringUtils.isBlank(realname)) return showJsonError(model, "ÕæÊµĞÕÃû²»ÄÜÎª¿Õ£¡");
+		if(StringUtils.isBlank(realname)) return showJsonError(model, "çœŸå®å§“åä¸èƒ½ä¸ºç©ºï¼");
 		boolean matchRealname = ValidateUtil.isCNVariable(realname, 2, 15);
-		if(!matchRealname) return showJsonError(model,"ÕæÊµĞÕÃû¸ñÊ½²»ÕıÈ·£¬²»ÄÜ°üº¬ÌØÊâ·ûºÅ£¡");
-		if(StringUtils.isBlank(sex)) return showJsonError(model, "ĞÔ±ğ²»ÄÜÎª¿Õ£¡");
+		if(!matchRealname) return showJsonError(model,"çœŸå®å§“åæ ¼å¼ä¸æ­£ç¡®ï¼Œä¸èƒ½åŒ…å«ç‰¹æ®Šç¬¦å·ï¼");
+		if(StringUtils.isBlank(sex)) return showJsonError(model, "æ€§åˆ«ä¸èƒ½ä¸ºç©ºï¼");
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
 		ChangeEntry changeEntry = new ChangeEntry(memberInfo);
-		//ÕâÀï²»ÓÃStringUtils.isNotBlankÅĞ¶ÏµÄÔ­ÒòÊÇÒ³Ãæjs¼ÓÔØÊ¡ÊĞ£¬µ±²»×öĞŞ¸ÄÊ±¾Í»áÕÒ²»µ½ÕâĞ©ÔªËØ;
-		//¿ÉÒÔÎª¿Õ°×ÊÇ¿ÉÄÜÖ»Ñ¡ÁËÊ¡ºóÃæ¾Í²»Ñ¡ÁË
+		//è¿™é‡Œä¸ç”¨StringUtils.isNotBlankåˆ¤æ–­çš„åŸå› æ˜¯é¡µé¢jsåŠ è½½çœå¸‚ï¼Œå½“ä¸åšä¿®æ”¹æ—¶å°±ä¼šæ‰¾ä¸åˆ°è¿™äº›å…ƒç´ ;
+		//å¯ä»¥ä¸ºç©ºç™½æ˜¯å¯èƒ½åªé€‰äº†çœåé¢å°±ä¸é€‰äº†
 		if(liveprovince != null) memberInfo.setLiveprovince(liveprovince);
 		if(livecity != null) memberInfo.setLivecity(livecity);
 		if(livecounty != null) memberInfo.setLivecounty(livecounty);
@@ -1433,7 +1433,7 @@ public class MemberAccountController extends BaseHomeController {
 		memberInfo.setUpdatetime(new Timestamp(System.currentTimeMillis()));
 		String birthDay = year+"-"+month+"-"+day;
 		if(!DateUtil.isValidDate(birthDay)){
-			return showJsonError(model, "ÉúÈÕ¸ñÊÔÓĞ´íÎó£¡");
+			return showJsonError(model, "ç”Ÿæ—¥æ ¼è¯•æœ‰é”™è¯¯ï¼");
 		}
 		memberInfo.setBirthday(birthDay);
 		member.setNickname(XSSFilter.filterAttr(nickname));
@@ -1443,9 +1443,9 @@ public class MemberAccountController extends BaseHomeController {
 		memberInfo.setSex(sex);
 		memberInfo = XSSFilter.filterObjAttrs(memberInfo, "liveprovince","livecity","livecounty","liveindexarea","nickname","realname","sign","sex");
 		if(WebUtils.checkPropertyAll(memberInfo)) {
-			return showJsonError(model, "º¬ÓĞ·Ç·¨×Ö·û£¡");
+			return showJsonError(model, "å«æœ‰éæ³•å­—ç¬¦ï¼");
 		}
-		//TODO:ÓÃ»§Ç°Ì¨ÁìÈ¡£ºĞŞ¸ÄºóµÄÓÃ»§×ÊÁÏ,email,êÇ³Æ¡¢ÉúÈÕ¡¢ÊÖ»ú¡¢ÕæÊµÃû³Æ²»ÄÜÎª¿Õ ĞÂÊÖÈÎÎñ
+		//TODO:ç”¨æˆ·å‰å°é¢†å–ï¼šä¿®æ”¹åçš„ç”¨æˆ·èµ„æ–™,email,æ˜µç§°ã€ç”Ÿæ—¥ã€æ‰‹æœºã€çœŸå®åç§°ä¸èƒ½ä¸ºç©º æ–°æ‰‹ä»»åŠ¡
 /*		if(StringUtils.isNotBlank(memberInfo.getBirthday()) && StringUtils.isNotBlank(memberInfo.getRealname())
 				&& StringUtils.isNotBlank(member.getMobile())  && StringUtils.isNotBlank(member.getEmail()) 
 				&& StringUtils.isNotBlank(member.getNickname()) ){
@@ -1455,16 +1455,16 @@ public class MemberAccountController extends BaseHomeController {
 		try{
 			daoService.saveObjectList(member, memberInfo);
 		}catch(Exception e){
-			return showJsonError(model, "ÄúÌîĞ´µÄ×ÊÁÏÓĞÎó£¬±£´æ×ÊÁÏÊ§°Ü£¡");
+			return showJsonError(model, "æ‚¨å¡«å†™çš„èµ„æ–™æœ‰è¯¯ï¼Œä¿å­˜èµ„æ–™å¤±è´¥ï¼");
 		}
-		// »ñÈ¡ÓÃ»§¾Ó×¡µØ
+		// è·å–ç”¨æˆ·å±…ä½åœ°
 		String liveplace = placeService.getLocationPair(memberInfo.getId(), " - ");
 		
-		// Çå³ıÒÑÓĞMember»º´æ
+		// æ¸…é™¤å·²æœ‰Memberç¼“å­˜
 		cacheService.remove(CacheConstant.REGION_ONEHOUR, "MI" + memberInfo.getId());
 		addCacheMember(model, memberInfo.getId());
 		loginService.updateMemberAuth(sessid, member);
-		// Ìí¼ÓĞŞ¸Älog
+		// æ·»åŠ ä¿®æ”¹log
 		monitorService.saveChangeLog(member.getId(), MemberInfo.class, memberInfo.getId(), changeEntry.getChangeMap(memberInfo));
 		return showJsonSuccess(model, liveplace);
 	}
@@ -1472,24 +1472,24 @@ public class MemberAccountController extends BaseHomeController {
 	public String updateMemberContachInfo(ModelMap model,String address,String phone,String msn,String qq,String postcode){
 		if(StringUtils.isNotBlank(postcode)){
 			boolean matchPostCode = ValidateUtil.isNumber(postcode);
-			if(!matchPostCode || (postcode.length() == 6? false: true)) return showJsonError(model, "ÄúÊäÈëµÄÓÊ±à¸ñÊ½²»¶Ô,Ö»ÄÜÊÇ6Î»Êı×Ö");
+			if(!matchPostCode || (postcode.length() == 6? false: true)) return showJsonError(model, "æ‚¨è¾“å…¥çš„é‚®ç¼–æ ¼å¼ä¸å¯¹,åªèƒ½æ˜¯6ä½æ•°å­—");
 		}
 		if(StringUtils.isNotBlank(phone)){
 			boolean matchPhone = ValidateUtil.isPhone(phone);
 			if(!matchPhone ){
 				 matchPhone = ValidateUtil.isMobile(phone);
-				 if(!matchPhone) return showJsonError(model, "ÄúÊäÈëµÄµç»°¸ñÊ½²»ÕıÈ·!");
+				 if(!matchPhone) return showJsonError(model, "æ‚¨è¾“å…¥çš„ç”µè¯æ ¼å¼ä¸æ­£ç¡®!");
 			}
 		}
 		if(StringUtils.isNotBlank(qq)){
 			boolean matchQq = ValidateUtil.isNumber(qq, 5, 11);
-			if(!matchQq) return showJsonError(model, "ÄúÊäÈëµÄQQºÅ¸ñÊ½²»ÕıÈ·");
+			if(!matchQq) return showJsonError(model, "æ‚¨è¾“å…¥çš„QQå·æ ¼å¼ä¸æ­£ç¡®");
 		}
 		if(StringUtils.isNotBlank(msn)){
 			boolean matchMsn = ValidateUtil.isEmail(msn);
-			if(!matchMsn)return showJsonError(model, "MSN¸ñÊ½²»ÕıÈ·!");
+			if(!matchMsn)return showJsonError(model, "MSNæ ¼å¼ä¸æ­£ç¡®!");
 		}
-		if(WebUtils.checkString(address)) return showJsonError(model, "µØÖ·º¬ÓĞ·Ç·¨×Ö·û£¡");
+		if(WebUtils.checkString(address)) return showJsonError(model, "åœ°å€å«æœ‰éæ³•å­—ç¬¦ï¼");
 		Member member = getLogonMember();
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
 		memberInfo.setAddress(XSSFilter.filterAttr(address));
@@ -1501,14 +1501,14 @@ public class MemberAccountController extends BaseHomeController {
 		return showJsonSuccess(model);
 	}
 	/**
-	 * ÓÃ»§×ÊÁÏ - ĞËÈ¤°®ºÃ
+	 * ç”¨æˆ·èµ„æ–™ - å…´è¶£çˆ±å¥½
 	 */
 	private void favorInfo(ModelMap model, Member member){
-		// ĞËÈ¤°®ºÃ±êÇ©ÁĞ±í(È¡³öËæ»úN¸ö)
+		// å…´è¶£çˆ±å¥½æ ‡ç­¾åˆ—è¡¨(å–å‡ºéšæœºNä¸ª)
 		List<FavoriteTag> list = favoriteTagService.getRandomFavorList(12);
 		model.put("list", list);
 		
-		// ÎÒµÄĞËÈ¤°®ºÃ, ·Ö¸îºó´æÈëList
+		// æˆ‘çš„å…´è¶£çˆ±å¥½, åˆ†å‰²åå­˜å…¥List
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
 		String favorTags = memberInfo.getFavortag() == null ? "" : memberInfo.getFavortag();
 		if(StringUtils.isNotBlank(favorTags)){
@@ -1516,7 +1516,7 @@ public class MemberAccountController extends BaseHomeController {
 			model.put("myfavTags", myfavTags);
 		}
 	}
-	// Ëæ»úÁĞ±í
+	// éšæœºåˆ—è¡¨
 	@RequestMapping("/home/acct/randomintrest.xhtml")
 	public String randomintrest(ModelMap model){
 		Member member = getLogonMember();
@@ -1528,12 +1528,12 @@ public class MemberAccountController extends BaseHomeController {
 	@RequestMapping("/home/acct/updateFavorInfo.xhtml")
 	public String updateFavorInfo(ModelMap model, String tag){
 		if(StringUtils.isBlank(tag)) return showJsonError_DATAERROR(model);
-		if(WebUtils.checkString(tag)) return showJsonError(model, "±êÇ©º¬ÓĞ·Ç·¨×Ö·û£¡");
+		if(WebUtils.checkString(tag)) return showJsonError(model, "æ ‡ç­¾å«æœ‰éæ³•å­—ç¬¦ï¼");
 		tag = cleanProperty(tag);
 		Member member = getLogonMember();
-		// ÓÃ»§×Ô¼ºÂ¼Èë
+		// ç”¨æˆ·è‡ªå·±å½•å…¥
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
-		// ¹ıÂË '|', 'null' µÈ×Ö·û
+		// è¿‡æ»¤ '|', 'null' ç­‰å­—ç¬¦
 		String favorTags = memberInfo.getFavortag();
 		if(StringUtils.isBlank(favorTags)){
 			favorTags = "";
@@ -1547,7 +1547,7 @@ public class MemberAccountController extends BaseHomeController {
 			memberInfo.setFavortag(favorTags);
 			daoService.saveObject(memberInfo);
 		}
-		// µã»÷¹«ÓÃÂ¼Èë: Ê×ÏÈÅĞ¶ÏÊı¾İ¿âÖĞÊÇ·ñÓĞÓĞtag, ÓĞÔò²é³öÀ´ count++, Ã»ÓĞÔònewÒ»¸ö·ÅÈë
+		// ç‚¹å‡»å…¬ç”¨å½•å…¥: é¦–å…ˆåˆ¤æ–­æ•°æ®åº“ä¸­æ˜¯å¦æœ‰æœ‰tag, æœ‰åˆ™æŸ¥å‡ºæ¥ count++, æ²¡æœ‰åˆ™newä¸€ä¸ªæ”¾å…¥
 		FavoriteTag favoriteTag = daoService.getObject(FavoriteTag.class, tag);
 		if(favoriteTag == null){
 			favoriteTag = new FavoriteTag(tag);
@@ -1576,10 +1576,10 @@ public class MemberAccountController extends BaseHomeController {
 		return showJsonSuccess(model);
 	}
 	/**
-	 * ÓÃ»§×ÊÁÏ - ½ÌÓıĞÅÏ¢
+	 * ç”¨æˆ·èµ„æ–™ - æ•™è‚²ä¿¡æ¯
 	 */
 	private void eduInfo(ModelMap model, Member member){
-		// ²éÑ¯ÁĞ±í
+		// æŸ¥è¯¢åˆ—è¡¨
 		List<MemberInfoMore> memberinfomoreList = memberService.getMemberinfoMoreList(member.getId(), TagConstant.TAG_EDU);
 		model.put("memberinfomoreList", memberinfomoreList);
 		model.put("provinceList",placeService.getAllProvinces());
@@ -1607,7 +1607,7 @@ public class MemberAccountController extends BaseHomeController {
 		Map<String, String[]> dataMap = request.getParameterMap();
 		MemberInfoMore memberInfoMore = new MemberInfoMore();
 		BindUtils.bindData(memberInfoMore, dataMap);
-		if(WebUtils.checkPropertyAll(memberInfoMore)) return showJsonError(model, "º¬ÓĞ·Ç·¨×Ö·û£¡");
+		if(WebUtils.checkPropertyAll(memberInfoMore)) return showJsonError(model, "å«æœ‰éæ³•å­—ç¬¦ï¼");
 		memberInfoMore = cleanPropertyAll(memberInfoMore);
 		Member member = getLogonMember();
 		memberInfoMore.setMemberid(member.getId());
@@ -1629,7 +1629,7 @@ public class MemberAccountController extends BaseHomeController {
 		Member member = getLogonMember();
 		MemberInfoMore memberInfoMore = daoService.getObject(MemberInfoMore.class, id);
 		if(!VmUtils.eq(memberInfoMore.getMemberid(), member.getId())){
-			return showJsonError(model, "·Ç·¨²Ù×÷£¡");
+			return showJsonError(model, "éæ³•æ“ä½œï¼");
 		}
 		if(memberInfoMore != null){
 			daoService.removeObject(memberInfoMore);
@@ -1638,17 +1638,17 @@ public class MemberAccountController extends BaseHomeController {
 	}
 	
 	/**
-	 * ÓÃ»§×ÊÁÏ - Ö°ÒµĞÅÏ¢
+	 * ç”¨æˆ·èµ„æ–™ - èŒä¸šä¿¡æ¯
 	 */
 	private void jobInfo(ModelMap model, Member member){
-		// ²éÑ¯ÁĞ±í
+		// æŸ¥è¯¢åˆ—è¡¨
 		List<MemberInfoMore> memberinfomoreList = memberService.getMemberinfoMoreList(member.getId(), TagConstant.TAG_JOB);
 		model.put("memberinfomoreList", memberinfomoreList);
 		model.put("provinceList",placeService.getAllProvinces());
 	}
 	
 	/**
-	 * ¸öÈË×ÊÁÏÖĞµÄÒşË½ÉèÖÃ
+	 * ä¸ªäººèµ„æ–™ä¸­çš„éšç§è®¾ç½®
 	 */
 	@RequestMapping("/home/acct/updateHideSet.xhtml")
 	public String updateMemberInfoHideSet(HttpServletRequest request,ModelMap model){
@@ -1668,13 +1668,13 @@ public class MemberAccountController extends BaseHomeController {
 		try{
 			daoService.updateObject(memberinfo);
 		}catch(Exception e){
-			return showJsonError(model,"Êı¾İ¸üĞÂÊ§°Ü£¡");
+			return showJsonError(model,"æ•°æ®æ›´æ–°å¤±è´¥ï¼");
 		}
 		return showJsonSuccess(model);
 	}
 	
 	/**
-	 * ²éÑ¯¸öÈËÒşË½ÉèÖÃ×ÊÁÏ
+	 * æŸ¥è¯¢ä¸ªäººéšç§è®¾ç½®èµ„æ–™
 	 */
 	@RequestMapping("/home/acct/searchHideSet.xhtml")
 	public String searchMemberInfoHideSet(ModelMap model){
@@ -1687,13 +1687,13 @@ public class MemberAccountController extends BaseHomeController {
 	}
 	
 	/**
-	 * ĞŞ¸ÄÓÊÏäµØÖ·
+	 * ä¿®æ”¹é‚®ç®±åœ°å€
 	 */
 	@RequestMapping("/home/acct/updateMemberEmail.xhtml")
 	public String updateMemberEmail(@CookieValue(LOGIN_COOKIE_NAME)String sessid, String email, HttpServletRequest request, ModelMap model){
 		boolean match = ValidateUtil.isEmail(email);
 		Member member = getLogonMember();
-		if(!match) return showJsonError(model, "Email¸ñÊ½²»ºÏ·¨");
+		if(!match) return showJsonError(model, "Emailæ ¼å¼ä¸åˆæ³•");
 		boolean exists = memberService.isMemberExists(email, member.getId());
 		if(exists) return showJsonError(model, "failure");
 		String oldEmail = member.getEmail();
@@ -1706,16 +1706,16 @@ public class MemberAccountController extends BaseHomeController {
 			logInfo.put("newEmail", member.getEmail());
 		}
 		monitorService.saveMemberLogMap(member.getId(), MemberConstant.ACTION_MODEMAIL, logInfo, WebUtils.getRemoteIp(request));
-		sendWarning("ÓÊÏä", member, oldEmail, member.getMobile());
+		sendWarning("é‚®ç®±", member, oldEmail, member.getMobile());
 		return showJsonError(model, "updatefailure");
 	}
 	/**
-	 * ÉÏ´«Í·ÏñÍ¼Æ¬
+	 * ä¸Šä¼ å¤´åƒå›¾ç‰‡
 	 */
 	@RequestMapping("/home/acct/uploadHeadLogo.xhtml")
 	public String uploadHeadLogo(String paramchk, String successFile, ModelMap model) throws Exception{
 		String mycheck = StringUtil.md5(successFile + config.getString("uploadKey"));
-		if(!mycheck.equals(paramchk)) return forwardMessage(model, "Ğ£Ñé´íÎó");
+		if(!mycheck.equals(paramchk)) return forwardMessage(model, "æ ¡éªŒé”™è¯¯");
 		Map jsonMap = new HashMap();
 		jsonMap.put("filename", successFile);
 		jsonMap.put("success", true);
@@ -1723,7 +1723,7 @@ public class MemberAccountController extends BaseHomeController {
 		return "common/showUploadResult.vm";
 	}
 	/**
-	 * Í·Ïñ¼ôÇĞ
+	 * å¤´åƒå‰ªåˆ‡
 	 */
 	@RequestMapping("/home/acct/updateHead.xhtml")
 	public String updateHead(double imgW, double imgH, double imgleft, double imgtop, String filename, ModelMap model,
@@ -1734,14 +1734,14 @@ public class MemberAccountController extends BaseHomeController {
 		String fromPath = gewaPicService.getTempFilePath(filename);
 		gewaPicService.saveToLocal(new File(fromPath), picname);
 		String tmpPath = gewaPicService.getTempFilePath("wh_"+filename);
-		PictureUtil.resize(fromPath, tmpPath, (int)imgW, (int)imgH); //¸Ä±ä´óĞ¡
-		PictureUtil.crop(tmpPath, fromPath, 90, 90, (int)imgleft, (int)imgtop); //¼ôÇĞ
+		PictureUtil.resize(fromPath, tmpPath, (int)imgW, (int)imgH); //æ”¹å˜å¤§å°
+		PictureUtil.crop(tmpPath, fromPath, 90, 90, (int)imgleft, (int)imgtop); //å‰ªåˆ‡
 		gewaPicService.addToRemoteFile(new File(fromPath), member.getId(), "member", member.getId(), headPath + filename);
 		MemberInfo mi = daoService.getObject(MemberInfo.class, member.getId());
 		mi.setHeadpic(headPath + filename);
 		mi.setUpdatetime(new Timestamp(System.currentTimeMillis()));
 		
-		//TODO:ÓÃ»§Ç°Ì¨ÈÏÁì
+		//TODO:ç”¨æˆ·å‰å°è®¤é¢†
 		/*
 		if(!mi.isFinishedTask(MemberConstant.TASK_UPDATE_HEAD_PIC)){
 			memberService.saveNewTask(mi, MemberConstant.TASK_UPDATE_HEAD_PIC);
@@ -1749,7 +1749,7 @@ public class MemberAccountController extends BaseHomeController {
 		daoService.saveObject(mi);
 		cacheService.remove(CacheConstant.REGION_ONEHOUR, "MI" + mi.getId());
 		addCacheMember(model, mi.getId());
-		dbLogger.warn("ÓÃ»§¸ü»»Í·Ïñ£º"+member.getNickname()+"("+member.getId()+")" + " ip:"+ WebUtils.getIpAndPort(WebUtils.getRemoteIp(request), request));
+		dbLogger.warn("ç”¨æˆ·æ›´æ¢å¤´åƒï¼š"+member.getNickname()+"("+member.getId()+")" + " ip:"+ WebUtils.getIpAndPort(WebUtils.getRemoteIp(request), request));
 		File f = new File(fromPath);
 		if(f.exists()) f.delete();
 		f = new File(tmpPath);
@@ -1765,28 +1765,28 @@ public class MemberAccountController extends BaseHomeController {
 		model.putAll(controllerService.getCommonData(model, member, member.getId()));
 		return "home/acct/changeHead.vm";
 	}
-	/*//·¢ËÍĞŞ¸ÄÖ§¸¶ÃÜÂëÓÊ¼ş
+	/*//å‘é€ä¿®æ”¹æ”¯ä»˜å¯†ç é‚®ä»¶
 	@RequestMapping("/home/acct/changePayPass.xhtml")
 	public String changePayPass(ModelMap model, String tag){
 		Member member = getLogonMember();
 		String time = "" + (System.currentTimeMillis() + DateUtil.m_hour * 4);
-		if(StringUtils.isBlank(member.getEmail())) return showJsonError(model, "ÇëÉèÖÃ°²È«ÓÊÏä£¡");
+		if(StringUtils.isBlank(member.getEmail())) return showJsonError(model, "è¯·è®¾ç½®å®‰å…¨é‚®ç®±ï¼");
 		MemberInfo memberInfo = daoService.getObject(MemberInfo.class, member.getId());
 		if(!StringUtils.equals(memberInfo.getSource(),MemberConstant.REGISTER_EMAIL) && !memberInfo.isBindSuccess())
-			return showJsonError(model, "ÇëÉèÖÃ°²È«ÓÊÏä£¡");
+			return showJsonError(model, "è¯·è®¾ç½®å®‰å…¨é‚®ç®±ï¼");
 		String encode = PayUtil.md5WithKey(time+PayUtil.md5WithKey(member.getEmail())+member.getId());
 		String queryStr = "validtime=" + time + "&encode="+encode + "&tag="+tag;
 		model.put("nickname", member.getNickname());
 		model.put("queryStr", queryStr);
 		model.put("tag", tag);
-		String title = "ÄãµÄÕÒ»ØÖ§¸¶ÃÜÂëÉêÇë";
+		String title = "ä½ çš„æ‰¾å›æ”¯ä»˜å¯†ç ç”³è¯·";
 		if(StringUtils.equals(tag, "idcard")){
-			title = "ÄãµÄĞŞ¸ÄÉí·İÑéÖ¤ÉêÇë";
+			title = "ä½ çš„ä¿®æ”¹èº«ä»½éªŒè¯ç”³è¯·";
 		}
 		mailService.sendTemplateEmail(EmailRecord.SENDER_GEWARA, title, "mail/changePayPass.vm", model, member.getEmail());
 		return showJsonSuccess(model);
 	}*/
-	//ĞŞ¸ÄÖ§¸¶ÃÜÂë
+	//ä¿®æ”¹æ”¯ä»˜å¯†ç 
 /*	@RequestMapping(value="/home/acct/upPayPass.xhtml", method=RequestMethod.GET)
 	public String upPayPass(ModelMap model, String validtime, String encode, String tag){
 		Member member = getLogonMember();
@@ -1794,15 +1794,15 @@ public class MemberAccountController extends BaseHomeController {
 		try {
 			s = Long.valueOf(validtime);
 		} catch (Exception e) {
-			return showError(model, "²ÎÊı´íÎó£¬ÇëÈ·ÈÏÄãµÄÁ´½ÓÀ´Ô´£¡");
+			return showError(model, "å‚æ•°é”™è¯¯ï¼Œè¯·ç¡®è®¤ä½ çš„é“¾æ¥æ¥æºï¼");
 		}
 		if(System.currentTimeMillis() > s) return "home/acct/forgetPasswordstep2.vm";
-		if(StringUtils.isBlank(member.getEmail())) return show404(model, "ÇëÉèÖÃ°²È«ÓÊÏä£¡");
+		if(StringUtils.isBlank(member.getEmail())) return show404(model, "è¯·è®¾ç½®å®‰å…¨é‚®ç®±ï¼");
 		String encode2 = PayUtil.md5WithKey(validtime+PayUtil.md5WithKey(member.getEmail())+member.getId());
 		if(!encode.equals(encode2)) return "home/acct/forgetPasswordstep2.vm";
 		model.putAll(controllerService.getCommonData(model, member, member.getId()));
 		MemberAccount memberAccount = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
-		//½âÃÜÕËºÅÉí·İÖ¤ºÅ
+		//è§£å¯†è´¦å·èº«ä»½è¯å·
 		if(memberAccount!=null&&StringUtils.isNotBlank(memberAccount.getEncryidcard())){
 			String encryidcard = paymentService.getDecryptIdcard(memberAccount.getEncryidcard());
 			memberAccount.setEncryidcard(encryidcard);
@@ -1816,32 +1816,32 @@ public class MemberAccountController extends BaseHomeController {
 /*	@RequestMapping(value="/home/acct/upPayPass.xhtml", method=RequestMethod.POST)
 	public String upPayPass(ModelMap model, String validtime, String encode, String password, String password2, String realname, String idcard, HttpServletRequest request){
 		Member member = getLogonMember();
-		if(System.currentTimeMillis() > Long.valueOf(validtime)) return showJsonError(model, "´ËÁ´½ÓÒÑÊ§Ğ§£¡");
-		if(StringUtils.isBlank(member.getEmail())) return showJsonError(model, "ÇëÉèÖÃ°²È«ÓÊÏä£¡");
+		if(System.currentTimeMillis() > Long.valueOf(validtime)) return showJsonError(model, "æ­¤é“¾æ¥å·²å¤±æ•ˆï¼");
+		if(StringUtils.isBlank(member.getEmail())) return showJsonError(model, "è¯·è®¾ç½®å®‰å…¨é‚®ç®±ï¼");
 		String encode2 = PayUtil.md5WithKey(validtime+PayUtil.md5WithKey(member.getEmail())+member.getId());
-		if(!encode.equals(encode2)) return showJsonError(model, "´ËÁ´½ÓÒÑÊ§Ğ§£¡");
+		if(!encode.equals(encode2)) return showJsonError(model, "æ­¤é“¾æ¥å·²å¤±æ•ˆï¼");
 		if(StringUtils.isBlank(password)) {
-			return showJsonError(model, "Ö§¸¶ÃÜÂë²»ÄÜÎª¿Õ£¡");
+			return showJsonError(model, "æ”¯ä»˜å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		if(StringUtils.isBlank(password2)) {
-			return showJsonError(model, "È·ÈÏÖ§¸¶ÃÜÂë²»ÄÜÎª¿Õ£¡");
+			return showJsonError(model, "ç¡®è®¤æ”¯ä»˜å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		if(!StringUtils.equals(password, password2)) {
-			return showJsonError(model, "Ö§¸¶ÃÜÂëÓëÈ·ÈÏÖ§¸¶ÃÜÂë²»Ò»ÖÂ£¡");
+			return showJsonError(model, "æ”¯ä»˜å¯†ç ä¸ç¡®è®¤æ”¯ä»˜å¯†ç ä¸ä¸€è‡´ï¼");
 		}
 		if(StringUtils.equals(password, "123456")){
-			return showJsonError(model, "Ö§¸¶ÃÜÂë¹ıÓÚ¼òµ¥£¡");
+			return showJsonError(model, "æ”¯ä»˜å¯†ç è¿‡äºç®€å•ï¼");
 		}
 		if(!ValidateUtil.isPassword(password)){
-			return showJsonError(model, "Ö§¸¶ÃÜÂë¸ñÊ½²»ÕıÈ·,Ö»ÄÜÊÇ×ÖÄ¸£¬Êı×Ö£¬ÏÂ»®Ïß£¬³¤¶È6¡ª14Î»£¡");
+			return showJsonError(model, "æ”¯ä»˜å¯†ç æ ¼å¼ä¸æ­£ç¡®,åªèƒ½æ˜¯å­—æ¯ï¼Œæ•°å­—ï¼Œä¸‹åˆ’çº¿ï¼Œé•¿åº¦6â€”14ä½ï¼");
 		}
 		if(StringUtils.isNotBlank(idcard)&&(idcard.length()<6||idcard.length()>30)){
-			return showJsonError(model, "Ö¤¼şºÅÂë¸ñÊ½²»ÕıÈ·,Ö»ÄÜÊÇ×ÖÄ¸£¬Êı×Ö£¬ÏÂ»®Ïß£¬³¤¶È6¡ª30Î»£¡");
+			return showJsonError(model, "è¯ä»¶å·ç æ ¼å¼ä¸æ­£ç¡®,åªèƒ½æ˜¯å­—æ¯ï¼Œæ•°å­—ï¼Œä¸‹åˆ’çº¿ï¼Œé•¿åº¦6â€”30ä½ï¼");
 		}
 		MemberAccount memberAccount = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
-		if(memberAccount == null) return showJsonError(model, "ÇëÏÈ´´½¨Ö§¸¶ÕÊºÅ£¡");
+		if(memberAccount == null) return showJsonError(model, "è¯·å…ˆåˆ›å»ºæ”¯ä»˜å¸å·ï¼");
 		if(StringUtils.equals(StringUtil.md5(password), member.getPassword())){
-			return showJsonError(model, "Ö§¸¶ÃÜÂë²»ÄÜ¸úµÇÂ¼ÃÜÂëÏàÍ¬£¡");
+			return showJsonError(model, "æ”¯ä»˜å¯†ç ä¸èƒ½è·Ÿç™»å½•å¯†ç ç›¸åŒï¼");
 		}
 		memberAccount.setPassword(PayUtil.getPass(password));
 		if(StringUtils.isNotBlank(realname) && StringUtils.isNotBlank(idcard)){
@@ -1854,7 +1854,7 @@ public class MemberAccountController extends BaseHomeController {
 		monitorService.saveMemberLog(member.getId(), MemberConstant.ACTION_MODPAYPWD, null, WebUtils.getRemoteIp(request));
 		return showJsonSuccess(model);
 	}*/
-	//ĞÂÊÖ¹ºÆ±³É¹¦ÁìÈ¡5ÔªÓÅ»İÈ¯  
+	//æ–°æ‰‹è´­ç¥¨æˆåŠŸé¢†å–5å…ƒä¼˜æƒ åˆ¸  
 	@RequestMapping("/home/acct/receivePoint.xhtml")
 	public String receivePoint(ModelMap model){
 		Member member = getLogonMember();
@@ -1866,43 +1866,43 @@ public class MemberAccountController extends BaseHomeController {
 			if(allow){
 				ErrorCode code = drawActivityService.sendNewTaskCardPrize(info, member);
 				if(code.isSuccess()){
-					return showJsonSuccess(model, "ÓÅ»İÈ¯ÁìÈ¡³É¹¦,ÓĞĞ§ÆÚÎª90Ìì£¡");
+					return showJsonSuccess(model, "ä¼˜æƒ åˆ¸é¢†å–æˆåŠŸ,æœ‰æ•ˆæœŸä¸º90å¤©ï¼");
 				}
 				return showJsonError(model, code.getMsg());
 			}else{
-				return showJsonError(model, "²Ù×÷¹ıÓÚÆµ·±!");
+				return showJsonError(model, "æ“ä½œè¿‡äºé¢‘ç¹!");
 			}
 		}catch(Exception e){
-			return showJsonError(model, "³öÏÖ´íÎó!");
+			return showJsonError(model, "å‡ºç°é”™è¯¯!");
 		}
 	}
 	
 	/**
-	 *  partnerÁìÈ¡5ÔªÓÅ»İÈ¯  
+	 *  partneré¢†å–5å…ƒä¼˜æƒ åˆ¸  
 	 *  2011-02-14
 	 *  Administrator
 	 */
-	private static final String TAG_PARTNER = "partner5Coupon";//³é½±»î¶¯±êÊ¶
+	private static final String TAG_PARTNER = "partner5Coupon";//æŠ½å¥–æ´»åŠ¨æ ‡è¯†
 	@RequestMapping("/home/receive5Coupon.xhtml")
 	public String receive5Coupon(ModelMap model, HttpServletRequest request, HttpServletResponse response){
 		Member member = getLogonMember();
-		if(member==null)  return showError(model, "Äú»¹Ã»µÇÂ¼£¬Çë·µ»ØµÇÂ¼£¡");
+		if(member==null)  return showError(model, "æ‚¨è¿˜æ²¡ç™»å½•ï¼Œè¯·è¿”å›ç™»å½•ï¼");
 		model.put("member", member);
 		
 		String[] cookies = WebUtils.getCookie4ProtectedPage(request, "partnerReg");
 		if(cookies != null){
-			// ÅĞ¶ÏÊÇ·ñÒÑ¾­ÁìÈ¡¹ı
+			// åˆ¤æ–­æ˜¯å¦å·²ç»é¢†å–è¿‡
 			String opkey = TAG_PARTNER + cookies[1] + member.getId();
 			if(!operationService.isAllowOperation(opkey, OperationService.ONE_DAY)){
-				return showJsonError(model, "ÄúÒÑ¾­ÁìÈ¡¹ıÁË£¡");
+				return showJsonError(model, "æ‚¨å·²ç»é¢†å–è¿‡äº†ï¼");
 			}
-			// °ó¶¨ÓÅ»İÈ¯
+			// ç»‘å®šä¼˜æƒ åˆ¸
 			GewaOrder order = daoService.getObject(GewaOrder.class, new Long(cookies[1]));
 			if(order != null){
 				bindCoupon(member, order.getMobile());
-				// ÉèÖÃUserOperation, ±£´æÓÃ»§²Ù×÷¼ÇÂ¼
+				// è®¾ç½®UserOperation, ä¿å­˜ç”¨æˆ·æ“ä½œè®°å½•
 				operationService.updateOperation(opkey, OperationService.ONE_DAY);
-				// Çå¿Õcookie
+				// æ¸…ç©ºcookie
 				String path1 = config.getBasePath() + "home/member/register2.xhtml";
 				String path2 = config.getBasePath() + "home/receive5Coupon.xhtml";
 				WebUtils.clearCookie(response, path1, "partnerReg");
@@ -1912,15 +1912,15 @@ public class MemberAccountController extends BaseHomeController {
 		return "redirect:/home/acct/cardList.xhtml";
 	}
 	private void bindCoupon(Member member, String mobile){
-		// °ó¶¨ÓÅ»İÈ¯
+		// ç»‘å®šä¼˜æƒ åˆ¸
 		DrawActivity da = daoService.getObjectByUkey(DrawActivity.class, "tag", TAG_PARTNER, true);
 		VersionCtl mvc = daoService.getObject(VersionCtl.class, TAG_PARTNER + member.getId());
 		if(mvc == null) {
 			mvc = new VersionCtl(TAG_PARTNER + member.getId());
 			daoService.saveObject(mvc);
 		}
-		Prize prize = drawActivityService.runDrawPrize(da, mvc, false);//³é³ö½±Æ·
-		WinnerInfo winner = drawActivityService.addWinner(prize, member.getId(), member.getNickname(), member.getMobile(), null);//¸ø½±Æ·
+		Prize prize = drawActivityService.runDrawPrize(da, mvc, false);//æŠ½å‡ºå¥–å“
+		WinnerInfo winner = drawActivityService.addWinner(prize, member.getId(), member.getNickname(), member.getMobile(), null);//ç»™å¥–å“
 		winner.setMobile(mobile);
 		drawActivityService.sendPrize(prize, winner, false);
 	}
@@ -1986,14 +1986,14 @@ public class MemberAccountController extends BaseHomeController {
 		}
 		return "home/acct/cardListTable.vm";
 	}
-	//Í¨¹ıÆ±È¯ÃÜÂë²éÕÒÈ¯
+	//é€šè¿‡ç¥¨åˆ¸å¯†ç æŸ¥æ‰¾åˆ¸
 	@RequestMapping("/home/acct/ajaxCardTableByCardPass.xhtml")
 	public String ajaxCardTableByCardPass(String cardpass, String captchaId, String captcha, HttpServletRequest request, ModelMap model){
-		if(StringUtils.isBlank(captcha)) return showJsonError(model, "ÇëÊäÈëÑéÖ¤Âë£¡");
+		if(StringUtils.isBlank(captcha)) return showJsonError(model, "è¯·è¾“å…¥éªŒè¯ç ï¼");
 		boolean isValidCaptcha = controllerService.validateCaptcha(captchaId, captcha, WebUtils.getRemoteIp(request));
-		if(!isValidCaptcha) return showJsonError(model, "ÑéÖ¤Âë´íÎó£¡");
+		if(!isValidCaptcha) return showJsonError(model, "éªŒè¯ç é”™è¯¯ï¼");
 		ElecCard card = elecCardService.getElecCardByPass(StringUtils.trim(cardpass));
-		if(card == null) return showJsonError(model, "Æ±È¯²éÑ¯´íÎó£¡");
+		if(card == null) return showJsonError(model, "ç¥¨åˆ¸æŸ¥è¯¢é”™è¯¯ï¼");
 		if(card.needActivation()){
 			Map jsonMap = new HashMap();
 			jsonMap.put("activation", "true");
@@ -2024,9 +2024,9 @@ public class MemberAccountController extends BaseHomeController {
 			model.put("movieList", itemList);
 		}
 		if(StringUtils.isNotBlank(elecCardBatch.getWeektype())){
-			model.put("strweek", "ÖÜ" + elecCardBatch.getWeektype());
+			model.put("strweek", "å‘¨" + elecCardBatch.getWeektype());
 		}else{
-			model.put("strweek", "²»ÏŞ");
+			model.put("strweek", "ä¸é™");
 		}
 		model.put("isMovieCard", isMovieCard);
 		model.put("isDramaCard", isDramaCard);
@@ -2036,7 +2036,7 @@ public class MemberAccountController extends BaseHomeController {
 		return "home/acct/card.vm";
 	}
 	
-	//Æ±È¯¼¤»îÒ³
+	//ç¥¨åˆ¸æ¿€æ´»é¡µ
 	@RequestMapping("/home/acct/activationCard.xhtml")
 	public String activationCard(String cardpass, ModelMap model){
 		Member member = getLogonMember();
@@ -2044,12 +2044,12 @@ public class MemberAccountController extends BaseHomeController {
 		model.put("logonMember", member);
 		return "home/acct/cardActivation.vm";
 	}
-	//¼¤»îÆ±È¯
+	//æ¿€æ´»ç¥¨åˆ¸
 	@RequestMapping("/home/acct/ajaxActivationCard.xhtml")
 	public String activationCard(String checkpass, String cardPass, ModelMap model){
 		Member member=getLogonMember();
 		if(StringUtils.isBlank(checkpass)) {
-			return showJsonError(model,"¶¯Ì¬Âë²»ÄÜÎª¿Õ£¡");
+			return showJsonError(model,"åŠ¨æ€ç ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		ErrorCode code = elecCardService.checkActivationCard(member, cardPass, checkpass);
 		if(!code.isSuccess()) return showJsonError(model,code.getMsg());
@@ -2059,8 +2059,8 @@ public class MemberAccountController extends BaseHomeController {
 	public String showOrder(long orderId, String msg, ModelMap model) {
 		Member member = getLogonMember();
 		GewaOrder order = daoService.getObject(GewaOrder.class, orderId);
-		if(order == null) return show404(model, "¸Ã¶©µ¥²»´æÔÚ£¡");
-		if (!order.getMemberid().equals(member.getId())) return show404(model, "²»ÄÜ²é¿´ËûÈËµÄ¶©µ¥£¡");
+		if(order == null) return show404(model, "è¯¥è®¢å•ä¸å­˜åœ¨ï¼");
+		if (!order.getMemberid().equals(member.getId())) return show404(model, "ä¸èƒ½æŸ¥çœ‹ä»–äººçš„è®¢å•ï¼");
 		model.put("order", order);
 		initRelatedOrder(order, model);
 		model.putAll(controllerService.getCommonData(model, member, member.getId()));
@@ -2111,23 +2111,23 @@ public class MemberAccountController extends BaseHomeController {
 		model.put("cMap", cMap);
 	}
 	
-	// Ajax ¸ÄĞ´ÉÏÃæ showOrder() ·½·¨
+	// Ajax æ”¹å†™ä¸Šé¢ showOrder() æ–¹æ³•
 	@RequestMapping("/gewapay/ajaxShowOrder.xhtml")
 	public String ajaxShowOrder(long orderId, ModelMap model) {
 		Member member = getLogonMember();
 		GewaOrder order = daoService.getObject(GewaOrder.class, orderId);
 		if (!order.getMemberid().equals(member.getId()))
-			return show404(model, "²»ÄÜ²é¿´ËûÈËµÄ¶©µ¥£¡");
+			return show404(model, "ä¸èƒ½æŸ¥çœ‹ä»–äººçš„è®¢å•ï¼");
 		model.put("order", order);
 		return "home/acct/ajaxorderDetail.vm";
 	}
 	
-	//Ajax »ñÈ¡ÎÒ¸ĞĞËÈ¤µÄµçÓ°Ôº
+	//Ajax è·å–æˆ‘æ„Ÿå…´è¶£çš„ç”µå½±é™¢
 	@RequestMapping("/ajax/acct/getInterestCinemaList.xhtml")
 	public String getInterestCinemaList(@CookieValue(value=LOGIN_COOKIE_NAME, required=false)String sessid, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		Member member = loginService.getLogonMemberBySessid(WebUtils.getRemoteIp(request), sessid);
 		Map jsonMap = new HashMap();
-		if(member==null) return showJsonError(model, "ÇëµÇÂ¼");
+		if(member==null) return showJsonError(model, "è¯·ç™»å½•");
 		Long memberid = member.getId();
 		String citycode = WebUtils.getAndSetDefault(request, response);
 		if(StringUtils.isBlank(citycode)) citycode = "310000";
@@ -2140,7 +2140,7 @@ public class MemberAccountController extends BaseHomeController {
 			if(cinemaList.size()>4) cinemaList.subList(0, 4);
 		}
 		List<Map> cinemaMapList = BeanUtil.getBeanMapList(cinemaList, "id", "name", "booking", "realBriefname");
-		if(cinemaMapList.isEmpty())return showJsonError(model, "Ã»ÓĞ¸ĞĞËÈ¤Ó°Ôº");
+		if(cinemaMapList.isEmpty())return showJsonError(model, "æ²¡æœ‰æ„Ÿå…´è¶£å½±é™¢");
 		jsonMap.put("interest", cinemaMapList);
 		return showJsonSuccess(model, jsonMap);
 	}
@@ -2155,16 +2155,16 @@ public class MemberAccountController extends BaseHomeController {
 		MemberAccount memberAccount = daoService.getObjectByUkey(MemberAccount.class, "memberid", member.getId(), false);
 		model.put("memberAccount", memberAccount);
 		if(StringUtils.equals(tag, "remove")&&member.isBindMobile()){
-			if(StringUtils.equals(memberInfo.getSource(), MemberConstant.REGISTER_MOBLIE)) return showJsonError(model, "ÊÖ»ú×¢²áÓÃ»§²»ÄÜ½â³ı°ó¶¨ÊÖ»ú£¡");
-			if(StringUtils.isBlank(member.getEmail())||!memberInfo.isBindSuccess()) return showJsonError(model, "ÇëÉèÖÃ°²È«ÓÊÏä£¡");
+			if(StringUtils.equals(memberInfo.getSource(), MemberConstant.REGISTER_MOBLIE)) return showJsonError(model, "æ‰‹æœºæ³¨å†Œç”¨æˆ·ä¸èƒ½è§£é™¤ç»‘å®šæ‰‹æœºï¼");
+			if(StringUtils.isBlank(member.getEmail())||!memberInfo.isBindSuccess()) return showJsonError(model, "è¯·è®¾ç½®å®‰å…¨é‚®ç®±ï¼");
 			if(!memberService.canChangeMobile(member)){
-				return showJsonError(model, "ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜ½â³ı°ó¶¨£¡");			
+				return showJsonError(model, "æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½è§£é™¤ç»‘å®šï¼");			
 			}
 			msg = velocityTemplate.parseTemplate("home/action/removeBindMobile.vm", model);
 		}else if(StringUtils.equals(tag, "change")&&StringUtils.isNotBlank(member.getMobile())){
-			if(memberAccount== null || memberAccount.isNopassword()) return showJsonError(model, "ÏÈ´´½¨ÕÊºÅ»òÉèÖÃÖ§¸¶ÃÜÂë£¡");
+			if(memberAccount== null || memberAccount.isNopassword()) return showJsonError(model, "å…ˆåˆ›å»ºå¸å·æˆ–è®¾ç½®æ”¯ä»˜å¯†ç ï¼");
 			if(!memberService.canChangeMobile(member)){
-				return showJsonError(model, "ÊÖ»ú°ó¶¨ºó7ÌìÄÚ²»ÄÜĞŞ¸Ä°ó¶¨£¡");			
+				return showJsonError(model, "æ‰‹æœºç»‘å®šå7å¤©å†…ä¸èƒ½ä¿®æ”¹ç»‘å®šï¼");			
 			}
 			msg = velocityTemplate.parseTemplate("home/action/changeBindMobile.vm", model);
 		}else{

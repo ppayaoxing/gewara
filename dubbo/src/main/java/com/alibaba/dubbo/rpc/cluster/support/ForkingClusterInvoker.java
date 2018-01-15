@@ -15,42 +15,37 @@
  */
 package com.alibaba.dubbo.rpc.cluster.support;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.common.utils.NamedThreadFactory;
-import com.alibaba.dubbo.rpc.Invocation;
-import com.alibaba.dubbo.rpc.Invoker;
-import com.alibaba.dubbo.rpc.Result;
-import com.alibaba.dubbo.rpc.RpcContext;
-import com.alibaba.dubbo.rpc.RpcException;
+import com.alibaba.dubbo.rpc.*;
 import com.alibaba.dubbo.rpc.cluster.Directory;
 import com.alibaba.dubbo.rpc.cluster.LoadBalance;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
- * 锟斤拷锟叫碉拷锟矫ｏ拷只要一锟斤拷锟缴癸拷锟斤拷锟斤拷锟截ｏ拷通锟斤拷锟斤拷锟斤拷实时锟斤拷要锟斤拷细叩牟锟斤拷锟斤拷锟斤拷锟斤拷锟揭拷朔迅锟斤拷锟斤拷锟斤拷锟斤拷源锟斤拷
- * 
+ * 并行调用，只要一个成功即返回，通常用于实时性要求较高的操作，但需要浪费更多服务资源。
+ * <p>
  * <a href="http://en.wikipedia.org/wiki/Fork_(topology)">Fork</a>
- * 
+ *
  * @author william.liangf
  */
-public class ForkingClusterInvoker<T> extends AbstractClusterInvoker<T>{
+public class ForkingClusterInvoker<T> extends AbstractClusterInvoker<T> {
 
-    private final ExecutorService executor = Executors.newCachedThreadPool(new NamedThreadFactory("forking-cluster-timer", true)); 
+    private final ExecutorService executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE / 2,
+            60L, TimeUnit.SECONDS,
+            new SynchronousQueue<Runnable>(),
+            new NamedThreadFactory("forking-cluster-timer", true));
 
     public ForkingClusterInvoker(Directory<T> directory) {
         super(directory);
     }
 
     @Override
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Result doInvoke(final Invocation invocation, List<Invoker<T>> invokers, LoadBalance loadbalance) throws RpcException {
         checkInvokers(invokers, invocation);
         final List<Invoker<T>> selected;
@@ -61,14 +56,14 @@ public class ForkingClusterInvoker<T> extends AbstractClusterInvoker<T>{
         } else {
             selected = new ArrayList<Invoker<T>>();
             for (int i = 0; i < forks; i++) {
-                //锟斤拷invoker锟叫憋拷(锟脚筹拷selected)锟斤拷,锟斤拷锟矫伙拷锟窖★拷锟�,锟斤拷锟斤拷锟斤拷馗锟窖拷锟斤拷锟斤拷锟�.锟斤拷select实锟斤拷.
+                //在invoker列表(排除selected)后,如果没有选够,则存在重复循环问题.见select实现.
                 Invoker<T> invoker = select(loadbalance, invocation, invokers, selected);
-                if(!selected.contains(invoker)){//锟斤拷止锟截革拷锟斤拷锟絠nvoker
+                if (!selected.contains(invoker)) {//防止重复添加invoker
                     selected.add(invoker);
                 }
             }
         }
-        RpcContext.getContext().setInvokers((List)selected);
+        RpcContext.getContext().setInvokers((List) selected);
         final AtomicInteger count = new AtomicInteger();
         final BlockingQueue<Object> ref = new LinkedBlockingQueue<Object>();
         for (final Invoker<T> invoker : selected) {
@@ -78,7 +73,7 @@ public class ForkingClusterInvoker<T> extends AbstractClusterInvoker<T>{
                     try {
                         Result result = invoker.invoke(invocation);
                         ref.offer(result);
-                    } catch(Throwable e) {
+                    } catch (Throwable e) {
                         int value = count.incrementAndGet();
                         if (value >= selected.size()) {
                             ref.offer(e);
@@ -91,7 +86,7 @@ public class ForkingClusterInvoker<T> extends AbstractClusterInvoker<T>{
             Object ret = ref.poll(timeout, TimeUnit.MILLISECONDS);
             if (ret instanceof Throwable) {
                 Throwable e = (Throwable) ret;
-                throw new RpcException(e instanceof RpcException ? ((RpcException)e).getCode() : 0, "Failed to forking invoke provider " + selected + ", but no luck to perform the invocation. Last error is: " + e.getMessage(), e.getCause() != null ? e.getCause() : e);
+                throw new RpcException(e instanceof RpcException ? ((RpcException) e).getCode() : 0, "Failed to forking invoke provider " + selected + ", but no luck to perform the invocation. Last error is: " + e.getMessage(), e.getCause() != null ? e.getCause() : e);
             }
             return (Result) ret;
         } catch (InterruptedException e) {

@@ -49,9 +49,9 @@ public class YunDaHttpServiceImpl implements YunDaHttpService {
 	private String password;
 	
 	public ErrorCode<ExpressOrder> qryExpress(ExpressOrder expressOrder){
-		if(expressOrder == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR,"¿ìµİĞÅÏ¢²»ÄÜÎª¿Õ£¡");
+		if(expressOrder == null) return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR,"å¿«é€’ä¿¡æ¯ä¸èƒ½ä¸ºç©ºï¼");
 		if(StringUtils.isBlank(expressOrder.getExpressnote())){
-			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¿ìµİµ¥ºÅ²»ÄÜÎª¿Õ£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "å¿«é€’å•å·ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("mailno", expressOrder.getExpressnote());
@@ -70,7 +70,7 @@ public class YunDaHttpServiceImpl implements YunDaHttpService {
 			return ErrorCode.getSuccessReturn(expressOrder);
 		}catch (Exception e) {
 			dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_API, QUERY, e);
-			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¿ìµİĞÅÏ¢Êı¾İ´íÎó£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "å¿«é€’ä¿¡æ¯æ•°æ®é”™è¯¯ï¼");
 		}
 	}
 	
@@ -80,10 +80,10 @@ public class YunDaHttpServiceImpl implements YunDaHttpService {
 	
 	public ErrorCode saveOrUpdateExpress(OrderExtra order, GewaConfig gewaConfig){
 		if(order == null){
-			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¶©µ¥»ò¿ìµİµ¥´íÎó£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "è®¢å•æˆ–å¿«é€’å•é”™è¯¯ï¼");
 		}
 		if(!order.hasExpressType(OrderExtraConstant.EXPRESS_YUNDA)){
-			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¿ì¶©µ¥ÀàĞÍ´íÎó£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "å¿«è®¢å•ç±»å‹é”™è¯¯ï¼");
 		}
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("partnerid", partnerid);
@@ -92,9 +92,9 @@ public class YunDaHttpServiceImpl implements YunDaHttpService {
 		String xmldata = surround("orderid", order.getTradeno());
 		xmldata += surround("mailno", order.getExpressnote());
 		xmldata += surround("customerid", partnerid);
-		xmldata += senderXml(gewaConfig);	//·¢¼şÈËĞÅÏ¢
+		xmldata += senderXml(gewaConfig);	//å‘ä»¶äººä¿¡æ¯
 		OrderAddress orderAddress = daoService.getObject(OrderAddress.class, order.getTradeno());
-		xmldata += receiverXml(orderAddress);		//ÊÕ¼şÈËĞÅÏ¢
+		xmldata += receiverXml(orderAddress);		//æ”¶ä»¶äººä¿¡æ¯
 		try {
 			xmldata = surround("order", xmldata);
 			xmldata = surround("orders", xmldata);
@@ -103,7 +103,7 @@ public class YunDaHttpServiceImpl implements YunDaHttpService {
 			params.put("validation", StringUtil.md5(base64XmlData + partnerid + password));
 		} catch (Exception e) {
 			dbLogger.warn("", e);
-			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "Êı¾İbase64±àÂë´íÎó£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ•°æ®base64ç¼–ç é”™è¯¯ï¼");
 		}
 		HttpResult result = HttpUtils.postUrlAsString(yunDaApiUrl + INTERFACE, params, TIME_OUT);
 		if(!result.isSuccess()){
@@ -136,7 +136,7 @@ public class YunDaHttpServiceImpl implements YunDaHttpService {
 	
 	public ErrorCode updateExpressStatus(OrderExtra order, String status){
 		if(order == null){
-			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "¶©µ¥´íÎó,²»ÄÜÎª¿Õ£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "è®¢å•é”™è¯¯,ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("partnerid", partnerid);
@@ -154,7 +154,7 @@ public class YunDaHttpServiceImpl implements YunDaHttpService {
 			params.put("validation", StringUtil.md5(base64XmlData + partnerid + password));
 		} catch (Exception e) {
 			dbLogger.warn("", e);
-			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "Êı¾İbase64±àÂë´íÎó£¡");
+			return ErrorCode.getFailure(ApiConstant.CODE_SIGN_ERROR, "æ•°æ®base64ç¼–ç é”™è¯¯ï¼");
 		}
 		HttpResult result = HttpUtils.postUrlAsString(yunDaApiUrl + INTERFACE, params, TIME_OUT);
 		if(!result.isSuccess()){

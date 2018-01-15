@@ -6,19 +6,19 @@ import java.util.Date;
 import java.util.List;
 
 public class ApiOpenTimeTable{
-	public static final String STATUS_BOOK = "Y"; // ½ÓÊÜÔ¤¶©
-	public static final String STATUS_NOBOOK = "N"; // ²»½ÓÊÜÔ¤¶©
-	public static final String STATUS_DISCARD = "D"; // ·ÏÆú
+	public static final String STATUS_BOOK = "Y"; // æ¥å—é¢„è®¢
+	public static final String STATUS_NOBOOK = "N"; // ä¸æ¥å—é¢„è®¢
+	public static final String STATUS_DISCARD = "D"; // åºŸå¼ƒ
 	private Long id;
-	private Long sportid; // ³¡¹İID
-	private Long itemid; // ÏîÄ¿ID
-	private String sportname; // ³¡¹İÃû
-	private String itemname; // ÏîÄ¿Ãû
-	private Date playdate; // ÈÕÆÚ
-	private String status; // ×´Ì¬
-	private Timestamp opentime;//¿ª·ÅÊ±¼ä
-	private Timestamp closetime;//¹Ø±ÕÊ±¼ä
-	private List<ApiOpenTimeItem> sportOpenTimeList = new ArrayList<ApiOpenTimeItem>();// ³¡µØÍ¼
+	private Long sportid; // åœºé¦†ID
+	private Long itemid; // é¡¹ç›®ID
+	private String sportname; // åœºé¦†å
+	private String itemname; // é¡¹ç›®å
+	private Date playdate; // æ—¥æœŸ
+	private String status; // çŠ¶æ€
+	private Timestamp opentime;//å¼€æ”¾æ—¶é—´
+	private Timestamp closetime;//å…³é—­æ—¶é—´
+	private List<ApiOpenTimeItem> sportOpenTimeList = new ArrayList<ApiOpenTimeItem>();// åœºåœ°å›¾
 	public void addSportOpenTime(ApiOpenTimeItem openTimeItem){
 		sportOpenTimeList.add(openTimeItem);
 	}

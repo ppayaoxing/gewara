@@ -39,19 +39,19 @@ public class GymSpecialDiscountHelper extends SpecialDiscountHelper{
 		String reason = "";
 		if(StringUtils.isNotBlank(sd.getPaymethod())){
 			String[] pay = sd.getPaymethod().split(":");
-			if(!StringUtils.equals(pay[0], order.getPaymethod())) reason += "Ö§¸¶·½Ê½²»Ö§³Ö£¡";
+			if(!StringUtils.equals(pay[0], order.getPaymethod())) reason += "æ”¯ä»˜æ–¹å¼ä¸æ”¯æŒï¼";
 			if(pay.length > 1 && !StringUtils.equals(pay[1], order.getPaybank())){
-				reason += "Ö§¸¶Íø¹Ø²»Ö§³Ö£¡";
+				reason += "æ”¯ä»˜ç½‘å…³ä¸æ”¯æŒï¼";
 			}
 		}
 		if(order.getAddtime().before(sd.getTimefrom()) || order.getAddtime().after(sd.getTimeto()))
-			reason += "±¾»î¶¯Ê±¼äÎª" + DateUtil.formatTimestamp(sd.getTimefrom()) + "ÖÁ" + DateUtil.formatTimestamp(sd.getTimeto()) + "£¡";
-		//×¢Òâ£¬spcounter²»ÄÜÎª¿Õ
+			reason += "æœ¬æ´»åŠ¨æ—¶é—´ä¸º" + DateUtil.formatTimestamp(sd.getTimefrom()) + "è‡³" + DateUtil.formatTimestamp(sd.getTimeto()) + "ï¼";
+		//æ³¨æ„ï¼Œspcounterä¸èƒ½ä¸ºç©º
 		String rs = getSpcounterDisabledReason(spcounter, cpcounterList, order.getCitycode(), order.getPartnerid(), order.getQuantity());
 		if(StringUtils.isNotBlank(rs)) reason += rs;
 		if(order.getQuantity() > sd.getBuynum()|| order.getQuantity() < sd.getMinbuy()){
-			if(sd.getBuynum() == sd.getMinbuy()) reason += "±¾»î¶¯µ¥±Ê¶©±ØĞë¹ºÂò" + sd.getBuynum() + "ÕÅ£¡";
-			else reason += "±¾»î¶¯µ¥±Ê¶©Ö»ÄÜ¹ºÂò" + sd.getMinbuy() + "¡«" + sd.getBuynum() + "ÕÅ£¡";
+			if(sd.getBuynum() == sd.getMinbuy()) reason += "æœ¬æ´»åŠ¨å•ç¬”è®¢å¿…é¡»è´­ä¹°" + sd.getBuynum() + "å¼ ï¼";
+			else reason += "æœ¬æ´»åŠ¨å•ç¬”è®¢åªèƒ½è´­ä¹°" + sd.getMinbuy() + "ï½" + sd.getBuynum() + "å¼ ï¼";
 		}
 		reason += getOttFullDisabledReason(sd, item, order.getAddtime());
 		return reason;
@@ -59,23 +59,23 @@ public class GymSpecialDiscountHelper extends SpecialDiscountHelper{
 	@Override
 	public String getOrderFirstDisabledReason(SpecialDiscount sd, Spcounter spcounter, List<Cpcounter> cpcounterList) {
 		if(order.getAddtime().before(sd.getTimefrom()) || order.getAddtime().after(sd.getTimeto())){
-			return "±¾»î¶¯Ê±¼äÎª" + DateUtil.formatTimestamp(sd.getTimefrom()) + "ÖÁ" + DateUtil.formatTimestamp(sd.getTimeto()) + "£¡";
+			return "æœ¬æ´»åŠ¨æ—¶é—´ä¸º" + DateUtil.formatTimestamp(sd.getTimefrom()) + "è‡³" + DateUtil.formatTimestamp(sd.getTimeto()) + "ï¼";
 		}
-		//×¢Òâ£¬spcounter²»ÄÜÎª¿Õ
+		//æ³¨æ„ï¼Œspcounterä¸èƒ½ä¸ºç©º
 		String rs = getSpcounterDisabledReason(spcounter, cpcounterList, order.getCitycode(), order.getPartnerid(), order.getQuantity());
 		if(StringUtils.isNotBlank(rs)) return rs;
 		if(order.getQuantity() > sd.getBuynum()|| order.getQuantity() < sd.getMinbuy()){
-			if(sd.getBuynum() == sd.getMinbuy()) return "±¾»î¶¯µ¥±Ê¶©±ØĞë¹ºÂò" + sd.getBuynum() + "ÕÅ£¡";
-			else return "±¾»î¶¯µ¥±Ê¶©Ö»ÄÜ¹ºÂò" + sd.getMinbuy() + "¡«" + sd.getBuynum() + "ÕÅ£¡";
+			if(sd.getBuynum() == sd.getMinbuy()) return "æœ¬æ´»åŠ¨å•ç¬”è®¢å¿…é¡»è´­ä¹°" + sd.getBuynum() + "å¼ ï¼";
+			else return "æœ¬æ´»åŠ¨å•ç¬”è®¢åªèƒ½è´­ä¹°" + sd.getMinbuy() + "ï½" + sd.getBuynum() + "å¼ ï¼";
 		}
 		return getOttFirstDisabledReason(sd, item, order.getAddtime());
 	}
 
 	@Override
 	public ErrorCode<Integer> getSpdiscountAmount(SpecialDiscount sd, Spcounter spcounter, List<Cpcounter> cpcounterList, PayValidHelper pvh) {
-		if(sd==null) return ErrorCode.getFailure("±¾»î¶¯²»´æÔÚ");
+		if(sd==null) return ErrorCode.getFailure("æœ¬æ´»åŠ¨ä¸å­˜åœ¨");
 		if(StringUtils.equals(order.getStatus(), OrderConstant.STATUS_NEW_CONFIRM)){
-			return ErrorCode.getFailure("ÒÑ¾­È·ÈÏµÄ¶©µ¥²»ÄÜĞŞ¸Ä£¡");
+			return ErrorCode.getFailure("å·²ç»ç¡®è®¤çš„è®¢å•ä¸èƒ½ä¿®æ”¹ï¼");
 		}
 		return validSpdiscountWithoutStatus(sd, spcounter, cpcounterList, pvh);
 	}
@@ -85,40 +85,40 @@ public class GymSpecialDiscountHelper extends SpecialDiscountHelper{
 		String umpayfee = otherFeeMap.get(OtherFeeDetail.FEETYPE_U);
 		if (StringUtils.isNotBlank(umpayfee) && Integer.parseInt(umpayfee)>0) {
 			if (!pvh.supportPaymethod(order.getPaymethod()))
-				ErrorCode.getFailure("´Ë»î¶¯²»Ö§³ÖÄúÑ¡ÔñµÄÖ§¸¶·½Ê½£¡");
+				ErrorCode.getFailure("æ­¤æ´»åŠ¨ä¸æ”¯æŒæ‚¨é€‰æ‹©çš„æ”¯ä»˜æ–¹å¼ï¼");
 			pvh = new PayValidHelper(order.getPaymethod());
 		}
 		if(discountList.size() > 0){
-			return ErrorCode.getFailure("²»ÄÜºÍÆäËûÓÅ»İ·½Ê½¹²ÓÃ£¡");
+			return ErrorCode.getFailure("ä¸èƒ½å’Œå…¶ä»–ä¼˜æƒ æ–¹å¼å…±ç”¨ï¼");
 		}
 		ErrorCode enable = isEnabled(sd, pvh);
 		if (!enable.isSuccess()) {
 			if(isShowMsg()) return ErrorCode.getFailure(enable.getMsg());
-			return ErrorCode.getFailure("±¾½¡Éí¿¨²»Ö§³Ö´Ë»î¶¯");
+			return ErrorCode.getFailure("æœ¬å¥èº«å¡ä¸æ”¯æŒæ­¤æ´»åŠ¨");
 		}
 		if(StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_SPECIAL)){
 			if(!StringUtils.contains(item.getSpflag(), sd.getFlag())){
-				return ErrorCode.getFailure("±¾½¡Éí¿¨²»Ö§³Ö´Ë»î¶¯£¡");
+				return ErrorCode.getFailure("æœ¬å¥èº«å¡ä¸æ”¯æŒæ­¤æ´»åŠ¨ï¼");
 			}
 		}else if (!StringUtils.contains(item.getElecard(), PayConstant.CARDTYPE_PARTNER)) {
-			return ErrorCode.getFailure("±¾½¡Éí¿¨²»Ö§³Ö´Ë»î¶¯£¡");
+			return ErrorCode.getFailure("æœ¬å¥èº«å¡ä¸æ”¯æŒæ­¤æ´»åŠ¨ï¼");
 		}
 		
-		if(StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_GEWA)){//ÒâÍâÇé¿ö
-			if(order.surePartner()) return ErrorCode.getFailure("±¾½¡Éí¿¨²»Ö§³Ö´Ë»î¶¯£¡");//¶©µ¥À´×ÔWAP»òÉÌ¼Ò
-		}else if(StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_WAP)){//WAP»î¶¯
-			if(!order.sureGewaPartner()) return ErrorCode.getFailure("±¾»î¶¯²»Ö§³Ö·ÇÊÖ»úÓÃ»§¶©µ¥£¡"); 
+		if(StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_GEWA)){//æ„å¤–æƒ…å†µ
+			if(order.surePartner()) return ErrorCode.getFailure("æœ¬å¥èº«å¡ä¸æ”¯æŒæ­¤æ´»åŠ¨ï¼");//è®¢å•æ¥è‡ªWAPæˆ–å•†å®¶
+		}else if(StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_WAP)){//WAPæ´»åŠ¨
+			if(!order.sureGewaPartner()) return ErrorCode.getFailure("æœ¬æ´»åŠ¨ä¸æ”¯æŒéæ‰‹æœºç”¨æˆ·è®¢å•ï¼"); 
 			List<Long> ptnidList = BeanUtil.getIdList(sd.getPtnids(), ",");
 			if(!ptnidList.contains(order.getPartnerid())){
-				return ErrorCode.getFailure("±¾»î¶¯²»Ö§³Ö¸Ã¿Í»§¶Ë£¡");
+				return ErrorCode.getFailure("æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥å®¢æˆ·ç«¯ï¼");
 			}
-		}else if(StringUtils.equals(SpecialDiscount.OPENTYPE_PARTNER, sd.getOpentype())){//ÉÌ¼Ò»î¶¯
+		}else if(StringUtils.equals(SpecialDiscount.OPENTYPE_PARTNER, sd.getOpentype())){//å•†å®¶æ´»åŠ¨
 			if(!order.getPartnerid().equals(Long.valueOf(sd.getPtnids()))){
-				return ErrorCode.getFailure("±¾½¡Éí¿¨²»Ö§³Ö´Ë»î¶¯£¡");
+				return ErrorCode.getFailure("æœ¬å¥èº«å¡ä¸æ”¯æŒæ­¤æ´»åŠ¨ï¼");
 			}
-			//ÉÌ¼Ò¶©µ¥£¬Ö±½ÓÅĞ¶ÏÖ§¸¶·½Ê½ÊÇ·ñÕıÈ·
+			//å•†å®¶è®¢å•ï¼Œç›´æ¥åˆ¤æ–­æ”¯ä»˜æ–¹å¼æ˜¯å¦æ­£ç¡®
 			if(!sd.isValidPaymethod(order.getPaymethod(), order.getPaybank())){
-				return ErrorCode.getFailure("Ö§¸¶·½Ê½²»ÕıÈ·£¬²»ÄÜ²ÎÓë´Ë»î¶¯£¡");
+				return ErrorCode.getFailure("æ”¯ä»˜æ–¹å¼ä¸æ­£ç¡®ï¼Œä¸èƒ½å‚ä¸æ­¤æ´»åŠ¨ï¼");
 			}
 		}
 		
@@ -138,28 +138,28 @@ public class GymSpecialDiscountHelper extends SpecialDiscountHelper{
 			amount = order.getTotalfee()/2;
 
 		}
-		if(amount == 0 && sd.getRebates()==0) return ErrorCode.getFailure("´Ë¶©µ¥ÎŞÓÅ»İ£¡");
+		if(amount == 0 && sd.getRebates()==0) return ErrorCode.getFailure("æ­¤è®¢å•æ— ä¼˜æƒ ï¼");
 		if(amount > order.getTotalfee()) amount = order.getTotalfee();
 		return ErrorCode.getSuccessReturn(amount);
 	}
 	public static String getOttFirstDisabledReason(SpecialDiscount sd, CardItem item, Timestamp addtime) {
-		if(!isEnabledByAddweek(sd, addtime)) return "±¾»î¶¯½öÏŞÖÜ" + sd.getAddweek() + "¹ºÂò£¡";
-		if(!isEnabledByRelatedid(sd, item.getGymid())) return "±¾»î¶¯²»Ö§³Ö¸Ã³¡¹İÊ¹ÓÃ£¡";
-		if(!isEnabledByItemid(sd, item.getId())) return "±¾»î¶¯²»Ö§³Ö¸Ã¿¨Ê¹ÓÃ£¡";
+		if(!isEnabledByAddweek(sd, addtime)) return "æœ¬æ´»åŠ¨ä»…é™å‘¨" + sd.getAddweek() + "è´­ä¹°ï¼";
+		if(!isEnabledByRelatedid(sd, item.getGymid())) return "æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥åœºé¦†ä½¿ç”¨ï¼";
+		if(!isEnabledByItemid(sd, item.getId())) return "æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥å¡ä½¿ç”¨ï¼";
 		if(!isEnabledByAddtime(sd, addtime)){
-			return "±¾»î¶¯½öÏŞ" + sd.getAddtime1().substring(0,2) + ":" + sd.getAddtime1().substring(2) +"¡«" + 
-			sd.getAddtime2().substring(0,2) + ":" + sd.getAddtime2().substring(2) + "¹ºÂò£¡";
+			return "æœ¬æ´»åŠ¨ä»…é™" + sd.getAddtime1().substring(0,2) + ":" + sd.getAddtime1().substring(2) +"ï½" + 
+			sd.getAddtime2().substring(0,2) + ":" + sd.getAddtime2().substring(2) + "è´­ä¹°ï¼";
 		}
 		return "";
 	}
 	private static String getOttFullDisabledReason(SpecialDiscount sd, CardItem item, Timestamp addtime) {
 		String reason = "";
-		if(!isEnabledByAddweek(sd, addtime)) reason += "±¾»î¶¯½öÏŞÖÜ" + sd.getAddweek() + "¹ºÂò£¡";
-		if(!isEnabledByRelatedid(sd, item.getGymid())) reason += "±¾»î¶¯²»Ö§³Ö¸Ã³¡¹İÊ¹ÓÃ£¡";
-		if(!isEnabledByItemid(sd, item.getId())) reason += "±¾»î¶¯²»Ö§³Ö¸Ã¿¨Ê¹ÓÃ£¡";
+		if(!isEnabledByAddweek(sd, addtime)) reason += "æœ¬æ´»åŠ¨ä»…é™å‘¨" + sd.getAddweek() + "è´­ä¹°ï¼";
+		if(!isEnabledByRelatedid(sd, item.getGymid())) reason += "æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥åœºé¦†ä½¿ç”¨ï¼";
+		if(!isEnabledByItemid(sd, item.getId())) reason += "æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥å¡ä½¿ç”¨ï¼";
 		if(!isEnabledByAddtime(sd, addtime)){
-			reason += "±¾»î¶¯½öÏŞ" + sd.getAddtime1().substring(0,2) + ":" + sd.getAddtime1().substring(2) +"¡«" + 
-			sd.getAddtime2().substring(0,2) + ":" + sd.getAddtime2().substring(2) + "¹ºÂò£¡";
+			reason += "æœ¬æ´»åŠ¨ä»…é™" + sd.getAddtime1().substring(0,2) + ":" + sd.getAddtime1().substring(2) +"ï½" + 
+			sd.getAddtime2().substring(0,2) + ":" + sd.getAddtime2().substring(2) + "è´­ä¹°ï¼";
 		}
 		return reason;
 	}
@@ -169,16 +169,16 @@ public class GymSpecialDiscountHelper extends SpecialDiscountHelper{
 	}
 
 	public static ErrorCode isEnabled(SpecialDiscount sd, CardItem item, PayValidHelper pvh) {
-		if (sd == null) return ErrorCode.getFailure("±¾»î¶¯²»´æÔÚ");
-		if(!isEnabledByRelatedid(sd, item.getGymid()))	return ErrorCode.getFailure("³¡¹İ²»Ö§³Ö£¡");
+		if (sd == null) return ErrorCode.getFailure("æœ¬æ´»åŠ¨ä¸å­˜åœ¨");
+		if(!isEnabledByRelatedid(sd, item.getGymid()))	return ErrorCode.getFailure("åœºé¦†ä¸æ”¯æŒï¼");
 		if(StringUtils.isNotBlank(sd.getPaymethod()) && 
 				StringUtils.isNotBlank(item.getOtherinfo())){
 			String[] pay = StringUtils.split(sd.getPaymethod());
-			if(!pvh.supportPaymethod(pay[0])) return ErrorCode.getFailure("Ö§¸¶ÏŞÖÆ£¡");
+			if(!pvh.supportPaymethod(pay[0])) return ErrorCode.getFailure("æ”¯ä»˜é™åˆ¶ï¼");
 		}
-		if(!isEnabledByPrice(sd, item.getPrice())) return ErrorCode.getFailure("Âô¼Û·¶Î§²»Ö§³Ö£¡");
-		if(!isEnabledByPricegap(sd, item.getPrice() - item.getCostprice())) return ErrorCode.getFailure("³É±¾²î¶î²»Ö§³Ö£¡");
-		if(!isEnabledByCostprice(sd, item.getCostprice())) return ErrorCode.getFailure("³É±¾·¶Î§²»Ö§³Ö£¡");
+		if(!isEnabledByPrice(sd, item.getPrice())) return ErrorCode.getFailure("å–ä»·èŒƒå›´ä¸æ”¯æŒï¼");
+		if(!isEnabledByPricegap(sd, item.getPrice() - item.getCostprice())) return ErrorCode.getFailure("æˆæœ¬å·®é¢ä¸æ”¯æŒï¼");
+		if(!isEnabledByCostprice(sd, item.getCostprice())) return ErrorCode.getFailure("æˆæœ¬èŒƒå›´ä¸æ”¯æŒï¼");
 		return ErrorCode.SUCCESS;
 	}
 }

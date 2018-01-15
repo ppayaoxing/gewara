@@ -51,7 +51,7 @@ import com.gewara.util.LoggerUtils;
 import com.gewara.util.StringUtil;
 
 /**
- * ´¦ÀíÀÖ¹ÛËøÖØÊÔÂß¼­
+ * å¤„ç†ä¹è§‚é”é‡è¯•é€»è¾‘
  * @author gebiao(ge.biao@gewara.com)
  * @since Feb 21, 2013 8:41:16 PM
  */
@@ -84,7 +84,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 	@Override
 	public ErrorCode<OrderContainer> useSpecialDiscount(String ordertype, Long orderid, SpecialDiscount sd, String clientIP){
 		if(StringUtils.isNotBlank(sd.getVerifyType())){
-			return ErrorCode.getFailure("ÇëÊäÈëµç×ÓÂë£¡");
+			return ErrorCode.getFailure("è¯·è¾“å…¥ç”µå­ç ï¼");
 		}
 		return useSpecialDiscount(ordertype, orderid, sd, null, clientIP);
 	}
@@ -92,10 +92,10 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 	public ErrorCode<OrderContainer> useSpecialDiscountBySpCodePass(String ordertype, Long orderid, String clientIP, Long memberid, String spcodePass) {
 		SpCode spcode = ticketDiscountService.getSpCodeByPass(spcodePass);
 		if(spcode==null){
-			return ErrorCode.getFailure("ÄúµÄµç×ÓÂë²»´æÔÚ»ò³¬Ê±");
+			return ErrorCode.getFailure("æ‚¨çš„ç”µå­ç ä¸å­˜åœ¨æˆ–è¶…æ—¶");
 		}
 		if(spcode.getMemberid()!=null && !memberid.equals(spcode.getMemberid())){
-			return ErrorCode.getFailure("´Ëµç×ÓÂë²»´æÔÚ»ò±»ËûÈËÕ¼ÓÃ£¡");
+			return ErrorCode.getFailure("æ­¤ç”µå­ç ä¸å­˜åœ¨æˆ–è¢«ä»–äººå ç”¨ï¼");
 		}
 		SpecialDiscount sd = daoService.getObject(SpecialDiscount.class, spcode.getSdid());
 		return useSpecialDiscount(ordertype, orderid, sd, clientIP, spcode);
@@ -104,7 +104,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 	public ErrorCode<OrderContainer> useSpecialDiscountBySpCodeId(String ordertype, Long orderid, String clientIP, Long memberid, Long spcodeId) {
 		SpCode spcode = daoService.getObject(SpCode.class, spcodeId);
 		if(spcode==null || spcode.getMemberid()==null || !memberid.equals(spcode.getMemberid())){
-			return ErrorCode.getFailure("´Ëµç×ÓÂë²»´æÔÚ»ò±»ËûÈËÕ¼ÓÃ£¡");
+			return ErrorCode.getFailure("æ­¤ç”µå­ç ä¸å­˜åœ¨æˆ–è¢«ä»–äººå ç”¨ï¼");
 		}
 		SpecialDiscount sd = daoService.getObject(SpecialDiscount.class, spcode.getSdid());
 		return useSpecialDiscount(ordertype, orderid, sd, clientIP, spcode);
@@ -112,7 +112,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 	private ErrorCode<OrderContainer> useSpecialDiscount(String ordertype, Long orderid, SpecialDiscount sd, String clientIP, final SpCode spcode) {
 		if(sd.getVerifyType().equals(SpecialDiscount.VERIFYTYPE_ONLYONE)){
 			if(spcode.getUsedcount() > 0){
-				return ErrorCode.getFailure("´Ëµç×ÓÂëÒÑÊ¹ÓÃ¹ı£¬²»ÄÜÔÙ´ÎÊ¹ÓÃ£¡");
+				return ErrorCode.getFailure("æ­¤ç”µå­ç å·²ä½¿ç”¨è¿‡ï¼Œä¸èƒ½å†æ¬¡ä½¿ç”¨ï¼");
 			}
 		}
 		return useSpecialDiscountFull(ordertype, orderid, sd, new OrderCallback(){
@@ -128,7 +128,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 	@Override
 	public ErrorCode<OrderContainer> useSpecialDiscount(String ordertype, Long orderid, SpecialDiscount sd, OrderCallback callback, String clientIP){
 		if(StringUtils.isNotBlank(sd.getVerifyType())){
-			return ErrorCode.getFailure("ÇëÊäÈëµç×ÓÂë£¡");
+			return ErrorCode.getFailure("è¯·è¾“å…¥ç”µå­ç ï¼");
 		}
 		return useSpecialDiscountFull(ordertype, orderid, sd, callback, clientIP);
 	}
@@ -146,7 +146,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 			map.put("tag", "ipInvalid");
 			map.put("category", "special");
 			monitorService.addSysLog(SysLogType.monitor, map);
-			return ErrorCode.getFailure("ÏµÍ³·±Ã¦£¬ÇëÖØÊÔ!");
+			return ErrorCode.getFailure("ç³»ç»Ÿç¹å¿™ï¼Œè¯·é‡è¯•!");
 		}
 		
 		for(int i=0; i < 3;i++){
@@ -156,16 +156,16 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 			}catch(OrderException e){
 				return ErrorCode.getFailure(e.getMsg());
 			}catch(Throwable e){
-				//·ÇÀÖ¹ÛËøÒì³£
+				//éä¹è§‚é”å¼‚å¸¸
 				if(!isUpdateErrorException(e)){
 					dbLogger.warn(StringUtil.getExceptionTrace(e, 10));					
-					return ErrorCode.getFailure("Ê¹ÓÃ³ö´í£¡");
+					return ErrorCode.getFailure("ä½¿ç”¨å‡ºé”™ï¼");
 				}else{
 					dbLogger.warn("retrySpecialDiscount:" + sd.getId() + ":" + i + "," + StringUtil.getExceptionTrace(e, 3));
 				}
 			}
 		}
-		return ErrorCode.getFailure("Ê¹ÓÃ³ö´í£¡");
+		return ErrorCode.getFailure("ä½¿ç”¨å‡ºé”™ï¼");
 	}
 	
 	private ErrorCode<OrderContainer> useSpecialDiscountRepeat(String ordertype, Long orderid, SpecialDiscount sd, OrderCallback callback) throws Throwable {
@@ -191,7 +191,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 			map.put("memberid", String.valueOf(order.getMemberid()));
 			map.put("quantity", String.valueOf(order.getQuantity()));
 			map.put("result", "Y");
-			orderMonitorService.addOrderChangeLog(order.getTradeNo(), "Ê¹ÓÃÌØ¼Û", map, order.getMemberid());
+			orderMonitorService.addOrderChangeLog(order.getTradeNo(), "ä½¿ç”¨ç‰¹ä»·", map, order.getMemberid());
 		}else{
 			map.put("result", "N");
 			map.put("message", result.getMsg());
@@ -210,7 +210,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 				paymentService.updateSpdiscountPaidCount(sd, order);
 				return;
 			}catch(Throwable e){
-				//·ÇÀÖ¹ÛËøÒì³£
+				//éä¹è§‚é”å¼‚å¸¸
 				if(!isUpdateErrorException(e)){
 					throw e;
 				}else{
@@ -230,14 +230,14 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 	}
 	
 	/**
-	 * ÌØ¼Û»î¶¯¶©µ¥Õ¹Ê¾ºóÌ¨,ÎªÁË´¦Àí·½±ãËùÓĞ¶©µ¥Í³Ò»ÓÃTicketOrderÔÚController²ã×öÅĞ¶Ï
+	 * ç‰¹ä»·æ´»åŠ¨è®¢å•å±•ç¤ºåå°,ä¸ºäº†å¤„ç†æ–¹ä¾¿æ‰€æœ‰è®¢å•ç»Ÿä¸€ç”¨TicketOrderåœ¨Controllerå±‚åšåˆ¤æ–­
 	 * 
 	 * @param discountIdList
-	 *            ÌØ¼Û»î¶¯ID
+	 *            ç‰¹ä»·æ´»åŠ¨ID
 	 * @param fromTime
-	 *            ²éÑ¯¿ªÊ¼Ê±¼ä
+	 *            æŸ¥è¯¢å¼€å§‹æ—¶é—´
 	 * @param endTime
-	 *            ²éÑ¯½áÊøÊ±¼ä
+	 *            æŸ¥è¯¢ç»“æŸæ—¶é—´
 	 * @return
 	 */
 	@Override
@@ -260,7 +260,7 @@ public class SpecialDiscountServiceImpl implements SpecialDiscountService{
 	}
 	
 	/**
-	 * ÌØ¼Û»î¶¯¶©µ¥Õ¹Ê¾ºóÌ¨µÄ²éÑ¯
+	 * ç‰¹ä»·æ´»åŠ¨è®¢å•å±•ç¤ºåå°çš„æŸ¥è¯¢
 	 */
 	private <T extends GewaOrder> DetachedCriteria getOrderByDiscountIdsCriteria(Class<T> clazz, List<Long> discountIdList, Date fromTime, Date endTime) {
 		DetachedCriteria query = DetachedCriteria.forClass(clazz, "t");

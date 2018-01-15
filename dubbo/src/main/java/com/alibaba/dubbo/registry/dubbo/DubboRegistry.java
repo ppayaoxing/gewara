@@ -16,10 +16,7 @@
 package com.alibaba.dubbo.registry.dubbo;
 
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.alibaba.dubbo.common.Constants;
@@ -36,42 +33,42 @@ import com.alibaba.dubbo.rpc.Invoker;
 
 /**
  * DubboRegistry
- * 
+ *
  * @author william.liangf
  */
 public class DubboRegistry extends FailbackRegistry {
 
-    private final static Logger logger = LoggerFactory.getLogger(DubboRegistry.class); 
+    private final static Logger logger = LoggerFactory.getLogger(DubboRegistry.class);
 
-    // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�3锟斤拷(锟斤拷位锟斤拷锟斤拷)
+    // 重连检测周期3秒(单位毫秒)
     private static final int RECONNECT_PERIOD_DEFAULT = 3 * 1000;
-    
-    // 锟斤拷时锟斤拷锟斤拷执锟斤拷锟斤拷
-    private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1, new NamedThreadFactory("DubboRegistryReconnectTimer", true));
 
-    // 锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷锟斤拷欠锟斤拷锟矫ｏ拷锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟睫达拷锟斤拷锟斤拷
+    // 定时任务执行器
+    private final ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(1, new NamedThreadFactory("DubboRegistryReconnectTimer", true));
+
+    // 重连定时器，定时检查连接是否可用，不可用时，无限次重连
     private final ScheduledFuture<?> reconnectFuture;
 
-    // 锟酵伙拷锟剿伙拷取锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟酵伙拷锟斤拷实锟斤拷锟侥达拷锟斤拷锟斤拷锟教ｏ拷锟斤拷止锟截革拷锟侥客伙拷锟斤拷
+    // 客户端获取过程锁，锁定客户端实例的创建过程，防止重复的客户端
     private final ReentrantLock clientLock = new ReentrantLock();
-    
+
     private final Invoker<RegistryService> registryInvoker;
-    
+
     private final RegistryService registryService;
-    
+
     public DubboRegistry(Invoker<RegistryService> registryInvoker, RegistryService registryService) {
         super(registryInvoker.getUrl());
         this.registryInvoker = registryInvoker;
         this.registryService = registryService;
-        // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷
+        // 启动重连定时器
         int reconnectPeriod = registryInvoker.getUrl().getParameter(Constants.REGISTRY_RECONNECT_PERIOD_KEY, RECONNECT_PERIOD_DEFAULT);
         reconnectFuture = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                // 锟斤拷獠拷锟斤拷锟阶拷锟斤拷锟斤拷锟�
+                // 检测并连接注册中心
                 try {
                     connect();
-                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
+                } catch (Throwable t) { // 防御性容错
                     logger.error("Unexpected error occur at reconnect, cause: " + t.getMessage(), t);
                 }
             }
@@ -80,7 +77,7 @@ public class DubboRegistry extends FailbackRegistry {
 
     protected final void connect() {
         try {
-            // 锟斤拷锟斤拷欠锟斤拷锟斤拷锟斤拷锟�
+            // 检查是否已连接
             if (isAvailable()) {
                 return;
             }
@@ -89,7 +86,7 @@ public class DubboRegistry extends FailbackRegistry {
             }
             clientLock.lock();
             try {
-                // 双锟截硷拷锟斤拷欠锟斤拷锟斤拷锟斤拷锟�
+                // 双重检查是否已连接
                 if (isAvailable()) {
                     return;
                 }
@@ -97,17 +94,17 @@ public class DubboRegistry extends FailbackRegistry {
             } finally {
                 clientLock.unlock();
             }
-        } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟斤拷锟届常锟斤拷锟饺达拷锟铰达拷锟斤拷锟斤拷
-             if (getUrl().getParameter(Constants.CHECK_KEY, true)) {
-                 if (t instanceof RuntimeException) {
-                     throw (RuntimeException) t;
-                 }
-                 throw new RuntimeException(t.getMessage(), t);
-             }
-             logger.error("Failed to connect to registry " + getUrl().getAddress() + " from provider/consumer " + NetUtils.getLocalHost() + " use dubbo " + Version.getVersion() + ", cause: " + t.getMessage(), t);
+        } catch (Throwable t) { // 忽略所有异常，等待下次重试
+            if (getUrl().getParameter(Constants.CHECK_KEY, true)) {
+                if (t instanceof RuntimeException) {
+                    throw (RuntimeException) t;
+                }
+                throw new RuntimeException(t.getMessage(), t);
+            }
+            logger.error("Failed to connect to registry " + getUrl().getAddress() + " from provider/consumer " + NetUtils.getLocalHost() + " use dubbo " + Version.getVersion() + ", cause: " + t.getMessage(), t);
         }
     }
-    
+
     @Override
     public boolean isAvailable() {
         if (registryInvoker == null) {
@@ -115,12 +112,12 @@ public class DubboRegistry extends FailbackRegistry {
         }
         return registryInvoker.isAvailable();
     }
-    
+
     @Override
     public void destroy() {
         super.destroy();
         try {
-            // 取锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷
+            // 取消重连定时器
             if (! reconnectFuture.isCancelled()) {
                 reconnectFuture.cancel(true);
             }
@@ -129,12 +126,12 @@ public class DubboRegistry extends FailbackRegistry {
         }
         registryInvoker.destroy();
     }
-    
+
     @Override
     protected void doRegister(URL url) {
         registryService.register(url);
     }
-    
+
     @Override
     protected void doUnregister(URL url) {
         registryService.unregister(url);
@@ -144,7 +141,7 @@ public class DubboRegistry extends FailbackRegistry {
     protected void doSubscribe(URL url, NotifyListener listener) {
         registryService.subscribe(url, listener);
     }
-    
+
     @Override
     protected void doUnsubscribe(URL url, NotifyListener listener) {
         registryService.unsubscribe(url, listener);
@@ -154,5 +151,5 @@ public class DubboRegistry extends FailbackRegistry {
     public List<URL> lookup(URL url) {
         return registryService.lookup(url);
     }
-    
+
 }

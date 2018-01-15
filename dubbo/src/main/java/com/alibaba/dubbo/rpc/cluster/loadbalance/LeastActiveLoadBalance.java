@@ -26,40 +26,40 @@ import com.alibaba.dubbo.rpc.RpcStatus;
 
 /**
  * LeastActiveLoadBalance
- * 
+ *
  * @author william.liangf
  */
 public class LeastActiveLoadBalance extends AbstractLoadBalance {
 
     public static final String NAME = "leastactive";
-    
+
     private final Random random = new Random();
 
     @Override
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {
-        int length = invokers.size(); // 锟杰革拷锟斤拷
-        int leastActive = -1; // 锟斤拷小锟侥伙拷跃锟斤拷
-        int leastCount = 0; // 锟斤拷同锟斤拷小锟斤拷跃锟斤拷锟侥革拷锟斤拷
-        int[] leastIndexs = new int[length]; // 锟斤拷同锟斤拷小锟斤拷跃锟斤拷锟斤拷锟铰憋拷
-        int totalWeight = 0; // 锟斤拷权锟斤拷
-        int firstWeight = 0; // 锟斤拷一锟斤拷权锟截ｏ拷锟斤拷锟斤拷锟节硷拷锟斤拷锟角凤拷锟斤拷同
-        boolean sameWeight = true; // 锟角凤拷锟斤拷锟斤拷权锟斤拷锟斤拷同
+        int length = invokers.size(); // 总个数
+        int leastActive = -1; // 最小的活跃数
+        int leastCount = 0; // 相同最小活跃数的个数
+        int[] leastIndexs = new int[length]; // 相同最小活跃数的下标
+        int totalWeight = 0; // 总权重
+        int firstWeight = 0; // 第一个权重，用于于计算是否相同
+        boolean sameWeight = true; // 是否所有权重相同
         for (int i = 0; i < length; i++) {
-        	Invoker<T> invoker = invokers.get(i);
-            int active = RpcStatus.getStatus(invoker.getUrl(), invocation.getMethodName()).getActive(); // 锟斤拷跃锟斤拷
-            int weight = invoker.getUrl().getMethodParameter(invocation.getMethodName(), Constants.WEIGHT_KEY, Constants.DEFAULT_WEIGHT); // 权锟斤拷
-            if (leastActive == -1 || active < leastActive) { // 锟斤拷锟街革拷小锟侥伙拷跃锟斤拷锟斤拷锟斤拷锟铰匡拷始
-                leastActive = active; // 锟斤拷录锟斤拷小锟斤拷跃锟斤拷
-                leastCount = 1; // 锟斤拷锟斤拷统锟斤拷锟斤拷同锟斤拷小锟斤拷跃锟斤拷锟侥革拷锟斤拷
-                leastIndexs[0] = i; // 锟斤拷锟铰硷拷录锟斤拷小锟斤拷跃锟斤拷锟铰憋拷
-                totalWeight = weight; // 锟斤拷锟斤拷锟桔硷拷锟斤拷权锟斤拷
-                firstWeight = weight; // 锟斤拷录锟斤拷一锟斤拷权锟斤拷
-                sameWeight = true; // 锟斤拷原权锟斤拷锟斤拷同锟斤拷识
-            } else if (active == leastActive) { // 锟桔硷拷锟斤拷同锟斤拷小锟侥伙拷跃锟斤拷
-                leastIndexs[leastCount ++] = i; // 锟桔硷拷锟斤拷同锟斤拷小锟斤拷跃锟斤拷锟铰憋拷
-                totalWeight += weight; // 锟桔硷拷锟斤拷权锟斤拷
-                // 锟叫讹拷锟斤拷锟斤拷权锟斤拷锟角凤拷一锟斤拷
-                if (sameWeight && i > 0 
+            Invoker<T> invoker = invokers.get(i);
+            int active = RpcStatus.getStatus(invoker.getUrl(), invocation.getMethodName()).getActive(); // 活跃数
+            int weight = invoker.getUrl().getMethodParameter(invocation.getMethodName(), Constants.WEIGHT_KEY, Constants.DEFAULT_WEIGHT); // 权重
+            if (leastActive == -1 || active < leastActive) { // 发现更小的活跃数，重新开始
+                leastActive = active; // 记录最小活跃数
+                leastCount = 1; // 重新统计相同最小活跃数的个数
+                leastIndexs[0] = i; // 重新记录最小活跃数下标
+                totalWeight = weight; // 重新累计总权重
+                firstWeight = weight; // 记录第一个权重
+                sameWeight = true; // 还原权重相同标识
+            } else if (active == leastActive) { // 累计相同最小的活跃数
+                leastIndexs[leastCount ++] = i; // 累计相同最小活跃数下标
+                totalWeight += weight; // 累计总权重
+                // 判断所有权重是否一样
+                if (sameWeight && i > 0
                         && weight != firstWeight) {
                     sameWeight = false;
                 }
@@ -67,13 +67,13 @@ public class LeastActiveLoadBalance extends AbstractLoadBalance {
         }
         // assert(leastCount > 0)
         if (leastCount == 1) {
-            // 锟斤拷锟街伙拷锟揭伙拷锟斤拷锟叫★拷锟街憋拷臃锟斤拷锟�
+            // 如果只有一个最小则直接返回
             return invokers.get(leastIndexs[0]);
         }
         if (! sameWeight && totalWeight > 0) {
-            // 锟斤拷锟饺拷夭锟斤拷锟酵拷锟饺拷卮锟斤拷锟�0锟斤拷锟斤拷权锟斤拷锟斤拷锟斤拷锟�
+            // 如果权重不相同且权重大于0则按总权重数随机
             int offsetWeight = random.nextInt(totalWeight);
-            // 锟斤拷确锟斤拷锟斤拷锟街碉拷锟斤拷锟斤拷母锟狡拷锟斤拷锟�
+            // 并确定随机值落在哪个片断上
             for (int i = 0; i < leastCount; i++) {
                 int leastIndex = leastIndexs[i];
                 offsetWeight -= getWeight(invokers.get(leastIndex), invocation);
@@ -82,7 +82,7 @@ public class LeastActiveLoadBalance extends AbstractLoadBalance {
                 }
             }
         }
-        // 锟斤拷锟饺拷锟斤拷锟酵拷锟饺拷锟轿�0锟斤拷锟斤拷锟斤拷锟斤拷
+        // 如果权重相同或权重为0则均等随机
         return invokers.get(leastIndexs[random.nextInt(leastCount)]);
     }
 }

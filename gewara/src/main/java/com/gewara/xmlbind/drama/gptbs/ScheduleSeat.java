@@ -3,21 +3,21 @@ package com.gewara.xmlbind.drama.gptbs;
 import java.io.Serializable;
 
 import com.gewara.model.BaseObject;
-//³¡´Î×ùÎ»
+//åœºæ¬¡åº§ä½
 public class ScheduleSeat extends BaseObject{
 	private static final long serialVersionUID = -1102028537356157035L;
 	private Long id;				//ID
-	private String lineno;			//ÅÅ
-	private String rankno;			//×ù(ÁĞ)
-	private Integer x;				//ÎïÀí×ø±êX
-	private Integer y;				//ÎïÀí×ø±êY
-	private Long ticketPriceId;		//¼Û¸ñID
-	private Long venueAreaId;		//³¡´ÎÇøÓòID
-	private Long ticketPoolId;		//Æ±³ØID
-	private Long scheduleId;		//³¡´ÎID
-	private Integer status;			//×´Ì¬
-	private Long programId;			//ÏîÄ¿ID
-	private Integer serialNum;		//ĞòºÅ
+	private String lineno;			//æ’
+	private String rankno;			//åº§(åˆ—)
+	private Integer x;				//ç‰©ç†åæ ‡X
+	private Integer y;				//ç‰©ç†åæ ‡Y
+	private Long ticketPriceId;		//ä»·æ ¼ID
+	private Long venueAreaId;		//åœºæ¬¡åŒºåŸŸID
+	private Long ticketPoolId;		//ç¥¨æ± ID
+	private Long scheduleId;		//åœºæ¬¡ID
+	private Integer status;			//çŠ¶æ€
+	private Long programId;			//é¡¹ç›®ID
+	private Integer serialNum;		//åºå·
 	public Serializable realId() {
 		return id;
 	}

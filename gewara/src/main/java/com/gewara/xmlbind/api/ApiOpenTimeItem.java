@@ -2,15 +2,15 @@ package com.gewara.xmlbind.api;
 
 
 
-//ÀàËÆÓ°Ôº×ùÎ»
+//ç±»ä¼¼å½±é™¢åº§ä½
 public class ApiOpenTimeItem{
 	private Long id;
-	private Long ottid;			//³¡´ÎID
-	private Long fieldid;		//³¡µØID
-	private String fieldname;	//³¡µØÃû
-	private String hour;			//Ê±¼äµã
-	private Integer norprice;	//±ê×¼¼Û
-	private String status;		//³¡µØ×´Ì¬
+	private Long ottid;			//åœºæ¬¡ID
+	private Long fieldid;		//åœºåœ°ID
+	private String fieldname;	//åœºåœ°å
+	private String hour;			//æ—¶é—´ç‚¹
+	private Integer norprice;	//æ ‡å‡†ä»·
+	private String status;		//åœºåœ°çŠ¶æ€
 	private String playtime;	
 	
 	public boolean equals(Object o) {

@@ -36,21 +36,21 @@ public class RandomLoadBalance extends AbstractLoadBalance {
 
     @Override
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {
-        int length = invokers.size(); // 锟杰革拷锟斤拷
-        int totalWeight = 0; // 锟斤拷权锟斤拷
-        boolean sameWeight = true; // 权锟斤拷锟角凤拷一锟斤拷
+        int length = invokers.size(); // 总个数
+        int totalWeight = 0; // 总权重
+        boolean sameWeight = true; // 权重是否都一样
         for (int i = 0; i < length; i++) {
             int weight = getWeight(invokers.get(i), invocation);
-            totalWeight += weight; // 锟桔硷拷锟斤拷权锟斤拷
+            totalWeight += weight; // 累计总权重
             if (sameWeight && i > 0
                     && weight != getWeight(invokers.get(i - 1), invocation)) {
-                sameWeight = false; // 锟斤拷锟斤拷锟斤拷锟斤拷权锟斤拷锟角凤拷一锟斤拷
+                sameWeight = false; // 计算所有权重是否一样
             }
         }
         if (totalWeight > 0 && ! sameWeight) {
-            // 锟斤拷锟饺拷夭锟斤拷锟酵拷锟饺拷卮锟斤拷锟�0锟斤拷锟斤拷权锟斤拷锟斤拷锟斤拷锟�
+            // 如果权重不相同且权重大于0则按总权重数随机
             int offset = random.nextInt(totalWeight);
-            // 锟斤拷确锟斤拷锟斤拷锟街碉拷锟斤拷锟斤拷母锟狡拷锟斤拷锟�
+            // 并确定随机值落在哪个片断上
             for (int i = 0; i < length; i++) {
                 offset -= getWeight(invokers.get(i), invocation);
                 if (offset < 0) {
@@ -58,7 +58,7 @@ public class RandomLoadBalance extends AbstractLoadBalance {
                 }
             }
         }
-        // 锟斤拷锟饺拷锟斤拷锟酵拷锟饺拷锟轿�0锟斤拷锟斤拷锟斤拷锟斤拷
+        // 如果权重相同或权重为0则均等随机
         return invokers.get(random.nextInt(length));
     }
 

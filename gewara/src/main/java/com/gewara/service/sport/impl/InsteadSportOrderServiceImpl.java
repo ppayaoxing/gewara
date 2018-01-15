@@ -96,36 +96,36 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 		Timestamp cur = DateUtil.getCurFullTimestamp();
 		Timestamp pause = Timestamp.valueOf(gewaConfig.getContent());
 		if(cur.before(pause)){
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "ÔİÍ£ÊÛÆ±ÖÁ" + DateUtil.format(pause, "HH:mm"));
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "æš‚åœå”®ç¥¨è‡³" + DateUtil.format(pause, "HH:mm"));
 		}
 		if(ott == null) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "¸Ã³¡´Î²»´æÔÚ£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "è¯¥åœºæ¬¡ä¸å­˜åœ¨ï¼");
 		}
 		List<Long> fieldidList = BeanUtil.getIdList(fields, ",");
 		if(fieldidList.size()==0) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "ÇëÑ¡Ôñ³¡µØ¼°Ê±¼ä£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "è¯·é€‰æ‹©åœºåœ°åŠæ—¶é—´ï¼");
 		}
 		if(fieldidList.size()>4) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "Ã¿´Î×î¶àÑ¡4¸öÊ±¼ä¶Î£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "æ¯æ¬¡æœ€å¤šé€‰4ä¸ªæ—¶é—´æ®µï¼");
 		}
-		//»ñÈ¡¸Ä³¡¹İµÄÏŞÖÆÊ±¼ä cpf
+		//è·å–æ”¹åœºé¦†çš„é™åˆ¶æ—¶é—´ cpf
 		Sport2Item sport2Item = sportService.getSport2Item(ott.getSportid(), ott.getItemid());
 		if(!sport2Item.isOpen()) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "ÇëÔÚ¿ª·ÅÊ±¼äÄÚ½øĞĞÔ¤¶©£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "è¯·åœ¨å¼€æ”¾æ—¶é—´å†…è¿›è¡Œé¢„è®¢ï¼");
 		}
-		//»ñÈ¡¸Ä³¡¹İµÄÏŞÖÆÊ±¼ä cpf
+		//è·å–æ”¹åœºé¦†çš„é™åˆ¶æ—¶é—´ cpf
 		if(!ott.isBooking()) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "Ôİ²»½ÓÊÜÔ¤¶¨£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "æš‚ä¸æ¥å—é¢„å®šï¼");
 		}
 		if(!ott.hasField()) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "·Ç·¨´íÎó£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "éæ³•é”™è¯¯ï¼");
 		}
-		if(ott.getPlaydate().compareTo(DateUtil.getBeginningTimeOfDay(new Date()))==0) { //Ê±¼ä¹ıÊ±
+		if(ott.getPlaydate().compareTo(DateUtil.getBeginningTimeOfDay(new Date()))==0) { //æ—¶é—´è¿‡æ—¶
 			Integer limitMinutes = sport2Item.getLimitminutes();
 			for(Long id : fieldidList ){
 				OpenTimeItem item = baseDao.getObject(OpenTimeItem.class, id);
 				if(item.getHour().compareTo(item.gainZhour(limitMinutes))<0) {
-					throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "ÒÑ¹ıÆÚ²»ÄÜ¹ºÂò£¡");
+					throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "å·²è¿‡æœŸä¸èƒ½è´­ä¹°ï¼");
 				}
 			}
 		}
@@ -141,7 +141,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			List<OpenTimeSale> saleList = baseDao.getObjectList(OpenTimeSale.class, otsIdList);
 			for (OpenTimeSale sale : saleList) {
 				if(sale.hasBooking()) {
-					throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "¾º¼Û³¡´Î£¬·Ç·¨¹ºÆ±£¡");
+					throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "ç«ä»·åœºæ¬¡ï¼Œéæ³•è´­ç¥¨ï¼");
 				}
 			}
 		}
@@ -150,7 +150,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, code2.getMsg());
 		}
 		if(fieldidList.size() != oldSportOrder.getQuantity()){
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "³¡µØÊıÓë¶©µ¥Êı²»ÏàµÈ£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "åœºåœ°æ•°ä¸è®¢å•æ•°ä¸ç›¸ç­‰ï¼");
 		}
 		return this.changeSportOrderByField(ott, oldSportOrder, otiList, user);
 	}
@@ -160,7 +160,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			OpenTimeItem oti, String starttime, Integer quantity, Integer time, User user)
 			throws OrderException {
 		if((!ott.hasInning() || !oti.hasInning()) && (!ott.hasPeriod() || !oti.hasPeriod())) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "³¡´Î»ò³¡µØÊı¾İ´íÎó£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "åœºæ¬¡æˆ–åœºåœ°æ•°æ®é”™è¯¯ï¼");
 		}
 		Timestamp cur = DateUtil.getCurFullTimestamp();
 		Date curDate = DateUtil.getDateFromTimestamp(cur);
@@ -170,36 +170,36 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 		String hour = DateUtil.format(validDate, "HH:mm");
 		if(DateUtil.getDiffDay(ott.getPlaydate(), curDate2) == 0){
 			if(oti.getEndhour().compareTo(hour)<=0) {
-				throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "ÒÑ¹ıÆÚ²»ÄÜ¹ºÂò£¡");
+				throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "å·²è¿‡æœŸä¸èƒ½è´­ä¹°ï¼");
 			}
 		}
 		if(StringUtils.isBlank(starttime)) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "¿ªÊ¼Ê±¼ä¶Î²»ÄÜÎª¿Õ£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "å¼€å§‹æ—¶é—´æ®µä¸èƒ½ä¸ºç©ºï¼");
 		}
 		if(quantity == null) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "Ñ¡ÔñÈËÊı²»ÄÜÎª¿Õ£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "é€‰æ‹©äººæ•°ä¸èƒ½ä¸ºç©ºï¼");
 		}
 		if(quantity <1 ||quantity >4) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "Ô¤¶©ÈËÊıÖ»ÄÜÊÇ1-4¸ö£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "é¢„è®¢äººæ•°åªèƒ½æ˜¯1-4ä¸ªï¼");
 		}
 		List<String> timeList = SportOrderHelper.getStarttimeList(ott.getPlaydate(), oti);
 		if(!timeList.contains(starttime)) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "Èë³¡Ê±¼ä²»ÔÚ¸Ã³¡´ÎÊ±¼ä¶ÎÒÔÄÚ£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "å…¥åœºæ—¶é—´ä¸åœ¨è¯¥åœºæ¬¡æ—¶é—´æ®µä»¥å†…ï¼");
 		}
 		if(ott.hasPeriod()){
 			if(time == null) {
-				throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "Ê±³¤²»ÄÜÎª¿Õ£¡");
+				throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "æ—¶é•¿ä¸èƒ½ä¸ºç©ºï¼");
 			}
 			List<Integer> periodList = SportOrderHelper.getPeriodList(ott.getPlaydate(), oti);
 			if(!periodList.contains(time)) {
-				throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "Ê±³¤´íÎó£¡");
+				throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "æ—¶é•¿é”™è¯¯ï¼");
 			}
 		}else{
 			time = oti.getUnitMinute();
 		}
 		int count = sportOrderService.getSellTimeTableCount(oti.getId(), starttime);
 		if(quantity+ count > oti.getQuantity()) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "¿ÉÔ¤¶©ÈËÊıÒÑÂú£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "å¯é¢„è®¢äººæ•°å·²æ»¡ï¼");
 		}
 		return this.updateSportOrderByPeriod(ott, oldSportOrder, oti, starttime, quantity, time, user);
 	}
@@ -216,7 +216,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 		Timestamp invalid = new Timestamp(System.currentTimeMillis() - 1000);
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
 		Timestamp validtime = DateUtil.addMinute(cur, OpenTimeTableConstant.MAX_MINUTS_TICKETS);
-		//ÏÈ½«ÀÏ¶©µ¥ºÅ¸Äµô
+		//å…ˆå°†è€è®¢å•å·æ”¹æ‰
 		oldSportOrder.setTradeNo(oldSportOrder.getTradeNo() + StringUtil.getRandomString(3, true, true, false) + "X");
 		oldSportOrder.setStatus(OrderConstant.STATUS_SYS_CANCEL);
 		oldSportOrder.setGewapaid(0);
@@ -234,10 +234,10 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			oldSportOrder.addChangehis(OrderConstant.CHANGEHIS_KEY_MPITO, ""+ott.getId());
 		}
 		baseDao.saveObject(oldSportOrder);
-		//Ç¿ÖÆÏÈÖ´ĞĞ¸üĞÂÀÏ¶©µ¥
+		//å¼ºåˆ¶å…ˆæ‰§è¡Œæ›´æ–°è€è®¢å•
 		hibernateTemplate.flush();
 
-		//È¡Ïû·¢¶ÌĞÅºÍ·¢ÓÊ¼ş
+		//å–æ¶ˆå‘çŸ­ä¿¡å’Œå‘é‚®ä»¶
 		List<SMSRecord> smsList = baseDao.getObjectListByField(SMSRecord.class, "tradeNo", oldSportOrder.getTradeNo());
 		List<SMSRecord> delSmsList = new ArrayList<SMSRecord>();
 		for (SMSRecord smsRecord : smsList) {
@@ -245,7 +245,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			if(!StringUtils.contains(smsRecord.getStatus(), Status.Y)){
 				smsRecord.setStatus( SmsConstant.STATUS_D + smsRecord.getStatus());
 				delSmsList.add(smsRecord);
-				dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_ORDER_PAY, "¶©µ¥¸ü»»ºóÈ¡Ïû¶ÌĞÅID£º"+smsRecord.getId()+"  ¶©µ¥ºÅ£º"+smsRecord.getTradeNo());
+				dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_ORDER_PAY, "è®¢å•æ›´æ¢åå–æ¶ˆçŸ­ä¿¡IDï¼š"+smsRecord.getId()+"  è®¢å•å·ï¼š"+smsRecord.getTradeNo());
 			}
 		}
 		baseDao.saveObjectList(delSmsList);
@@ -269,10 +269,10 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 		List<SportOrder2TimeItem> o2tList = new ArrayList<SportOrder2TimeItem>();
 		for(OpenTimeItem oti : otiList){
 			if(oti.getPrice()<=0) {
-				throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "¼Û¸ñÓĞ´íÎó£¬ÇëÑ¡ÔñÆäËü³¡µØ");
+				throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "ä»·æ ¼æœ‰é”™è¯¯ï¼Œè¯·é€‰æ‹©å…¶å®ƒåœºåœ°");
 			}
 			oti.setValidtime(validtime);
-			oti.setRemark(StringUtils.substring("[¶©" + sportOrder.getMembername() +"]" + StringUtils.defaultString(oti.getRemark()), 0, 500));
+			oti.setRemark(StringUtils.substring("[è®¢" + sportOrder.getMembername() +"]" + StringUtils.defaultString(oti.getRemark()), 0, 500));
 			oti.setMemberid(sportOrder.getMemberid());
 			total += oti.getPrice();
 			unitprice = oti.getPrice();
@@ -284,7 +284,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			o2tList.add(new SportOrder2TimeItem(sportOrder.getId(), oti.getId()));
 		}
 		if(total<=0) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "¼Û¸ñÓĞ´íÎó£¬ÇëÑ¡ÔñÆäËü³¡µØ");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "ä»·æ ¼æœ‰é”™è¯¯ï¼Œè¯·é€‰æ‹©å…¶å®ƒåœºåœ°");
 		}
 		baseDao.saveObjectList(otiList);
 		baseDao.saveObjectList(o2tList);
@@ -294,10 +294,10 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 		sportOrder.setTotalfee(total);
 		sportOrder.setTotalcost(sumcost);
 		setOrderDescription(sportOrder, ott, null, otiList, minhour);
-		setOrderOtherinfo(sportOrder, sumcost); 	//¼ÇÂ¼×Ü³É±¾
+		setOrderOtherinfo(sportOrder, sumcost); 	//è®°å½•æ€»æˆæœ¬
 		sportOrder.setCitycode(ott.getCitycode());
 		if(!sportOrder.getOttid().equals(ott.getId())){
-			//³¡´Î±ä»»
+			//åœºæ¬¡å˜æ¢
 			sportOrder.addChangehis(OrderConstant.CHANGEHIS_KEY_MPIFROM, ""+sportOrder.getOttid());
 			sportOrder.setOttid(ott.getId());
 			sportOrder.setSportid(ott.getSportid());
@@ -327,7 +327,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 					card.setOrderid(sportOrder.getId());
 					baseDao.saveObject(card);
 				}
-				//ÈçÊ¹ÓÃ³É¹¦£¬Òª¸Ä±ä×´Ì¬
+				//å¦‚ä½¿ç”¨æˆåŠŸï¼Œè¦æ”¹å˜çŠ¶æ€
 				if(StringUtils.equals(discount.getStatus(), OrderConstant.DISCOUNT_STATUS_Y)){
 					discount.setStatus(OrderConstant.DISCOUNT_STATUS_N);
 					baseDao.saveObject(discount);
@@ -369,7 +369,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			List<Long> remoteIdList = BeanUtil.getBeanPropertyList(otiList, "rotiid", true);
 			ErrorCode<String> codeRemote = remoteSportService.lockOrder(ott, remoteIdList, OpenTimeTableConstant.ITEM_TYPE_COM);
 			if(!codeRemote.isSuccess()){
-				sportUntransService.cancelSportOrder(sportOrder, sportOrder.getMemberid(), "Ô¶³ÌËø¶¨Ê§°ÜÈ¡Ïû¶©µ¥");
+				sportUntransService.cancelSportOrder(sportOrder, sportOrder.getMemberid(), "è¿œç¨‹é”å®šå¤±è´¥å–æ¶ˆè®¢å•");
 				throw new OrderException(ApiConstant.CODE_SIGN_ERROR, codeRemote.getMsg());
 			}
 		}
@@ -380,7 +380,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			OpenTimeItem oti, String starttime, Integer quantity, Integer time, User user)
 			throws OrderException {
 		if(quantity != oldSportOrder.getQuantity()){
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "ÈËÊıÓë¶©µ¥Êı²»ÏàµÈ£¡");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "äººæ•°ä¸è®¢å•æ•°ä¸ç›¸ç­‰ï¼");
 		}
 		SportOrder sportOrder = new SportOrder();
 		try {
@@ -391,7 +391,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 		Timestamp invalid = new Timestamp(System.currentTimeMillis() - 1000);
 		Timestamp cur = new Timestamp(System.currentTimeMillis());
 		Timestamp validtime = DateUtil.addMinute(cur, OpenTimeTableConstant.MAX_MINUTS_TICKETS);
-		//ÏÈ½«ÀÏ¶©µ¥ºÅ¸Äµô
+		//å…ˆå°†è€è®¢å•å·æ”¹æ‰
 		oldSportOrder.setTradeNo(oldSportOrder.getTradeNo() + StringUtil.getRandomString(3, true, true, false) + "X");
 		oldSportOrder.setStatus(OrderConstant.STATUS_SYS_CANCEL);
 		oldSportOrder.setGewapaid(0);
@@ -401,12 +401,12 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			oldSportOrder.addChangehis(OrderConstant.CHANGEHIS_KEY_MPITO, ""+ott.getId());
 		}
 		baseDao.saveObject(oldSportOrder);
-		//Ç¿ÖÆÏÈÖ´ĞĞ¸üĞÂÀÏ¶©µ¥
+		//å¼ºåˆ¶å…ˆæ‰§è¡Œæ›´æ–°è€è®¢å•
 		hibernateTemplate.flush();
 		Timestamp t = DateUtil.addDay(new Timestamp(ott.getPlaydate().getTime()),1);
 		String randomNum = nextRandomNum(t, 8, "0");
 
-		//È¡Ïû·¢¶ÌĞÅºÍ·¢ÓÊ¼ş
+		//å–æ¶ˆå‘çŸ­ä¿¡å’Œå‘é‚®ä»¶
 		List<SMSRecord> smsList = baseDao.getObjectListByField(SMSRecord.class, "tradeNo", oldSportOrder.getTradeNo());
 		List<SMSRecord> delSmsList = new ArrayList<SMSRecord>();
 		for (SMSRecord smsRecord : smsList) {
@@ -414,7 +414,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			if(!StringUtils.contains(smsRecord.getStatus(), Status.Y)){
 				smsRecord.setStatus( SmsConstant.STATUS_D + smsRecord.getStatus());
 				delSmsList.add(smsRecord);
-				dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_ORDER_PAY, "¶©µ¥¸ü»»ºóÈ¡Ïû¶ÌĞÅID£º"+smsRecord.getId()+"  ¶©µ¥ºÅ£º"+smsRecord.getTradeNo());
+				dbLogger.warnWithType(LogTypeConstant.LOG_TYPE_ORDER_PAY, "è®¢å•æ›´æ¢åå–æ¶ˆçŸ­ä¿¡IDï¼š"+smsRecord.getId()+"  è®¢å•å·ï¼š"+smsRecord.getTradeNo());
 			}
 		}
 		baseDao.saveObjectList(delSmsList);
@@ -429,7 +429,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			sumcost = tmpHour * sumcost;
 		}
 		if(total<=0) {
-			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "¼Û¸ñÓĞ´íÎó£¬ÇëÑ¡ÔñÆäËü³¡µØ");
+			throw new OrderException(ApiConstant.CODE_SIGN_ERROR, "ä»·æ ¼æœ‰é”™è¯¯ï¼Œè¯·é€‰æ‹©å…¶å®ƒåœºåœ°");
 		}
 		sportOrder.setId(null);
 		sportOrder.setUnitprice(oti.getPrice());
@@ -440,7 +440,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 		sportOrder.setModifytime(cur);
 		sportOrder.setTotalcost(sumcost);
 		String endtime = setOrderDescription(sportOrder, ott, oti, starttime, time);
-		setOrderOtherinfo(sportOrder, sumcost); 	//¼ÇÂ¼×Ü³É±¾
+		setOrderOtherinfo(sportOrder, sumcost); 	//è®°å½•æ€»æˆæœ¬
 		sportOrder.setValidtime(validtime);
 		sportOrder.setAddtime(cur);
 		sportOrder.setUpdatetime(cur);
@@ -449,7 +449,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 		sportOrder.setCheckpass(randomNum);
 		baseDao.saveObject(sportOrder);
 		if(!sportOrder.getOttid().equals(ott.getId())){
-			//³¡´Î±ä»»
+			//åœºæ¬¡å˜æ¢
 			sportOrder.addChangehis(OrderConstant.CHANGEHIS_KEY_MPIFROM, ""+sportOrder.getOttid());
 			sportOrder.setOttid(ott.getId());
 			sportOrder.setSportid(ott.getSportid());
@@ -485,7 +485,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 					card.setOrderid(sportOrder.getId());
 					baseDao.saveObject(card);
 				}
-				//ÈçÊ¹ÓÃ³É¹¦£¬Òª¸Ä±ä×´Ì¬
+				//å¦‚ä½¿ç”¨æˆåŠŸï¼Œè¦æ”¹å˜çŠ¶æ€
 				if(StringUtils.equals(discount.getStatus(), OrderConstant.DISCOUNT_STATUS_Y)){
 					discount.setStatus(OrderConstant.DISCOUNT_STATUS_N);
 					baseDao.saveObject(discount);
@@ -532,7 +532,7 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			if(!oti.hasAvailable()) msg = "[" + oti.getFieldname() + oti.getHour() + "]";
 		}
 		if(StringUtils.isBlank(msg)) return ErrorCode.SUCCESS;
-		return ErrorCode.getFailure(msg+"±»Õ¼ÓÃ");
+		return ErrorCode.getFailure(msg+"è¢«å ç”¨");
 	}
 	
 	private ErrorCode validateOpenTimeItem(OpenTimeTable ott, List<OpenTimeItem> otiList){
@@ -543,8 +543,8 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			for (String bindKey : bindOtiMap.keySet()) {
 				if(!bindKey.equals("0")){
 					List<OpenTimeItem> boaList = bindOtiAllMap.get(bindKey);
-					if(boaList == null || boaList.isEmpty()) return ErrorCode.getFailure("³¡µØÉèÖÃÓĞÎó£¬ÇëÑ¡ÆäËû³¡µØ£¡");
-					if(!otiList.containsAll(boaList)) return ErrorCode.getFailure("±ØĞëÔ¤¶©Í¬Ò»³¡µØµÄ"+boaList.size()+"¸öÁ¬ĞøµÄÊ±¼ä¶Î£¡");
+					if(boaList == null || boaList.isEmpty()) return ErrorCode.getFailure("åœºåœ°è®¾ç½®æœ‰è¯¯ï¼Œè¯·é€‰å…¶ä»–åœºåœ°ï¼");
+					if(!otiList.containsAll(boaList)) return ErrorCode.getFailure("å¿…é¡»é¢„è®¢åŒä¸€åœºåœ°çš„"+boaList.size()+"ä¸ªè¿ç»­çš„æ—¶é—´æ®µï¼");
 				}
 			}
 		}
@@ -553,10 +553,10 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 	
 	private void setOrderDescription(SportOrder order, OpenTimeTable ott, MemberCardInfo card, List<OpenTimeItem> otiList, String minhour){
 		Map<String, String> descMap = VmUtils.readJsonToMap(order.getDescription2());
-		descMap.put("ÔË¶¯¹İÃû", ott.getSportname());
-		descMap.put("ÔË¶¯ÏîÄ¿", ott.getItemname());
-		descMap.put("Ê±¼ä", DateUtil.format(ott.getPlaydate(),"yyyy-MM-dd") + " " + minhour + ":00");
-		descMap.put("ÏêÏ¸", SportOrderHelper.getFieldText(otiList));
+		descMap.put("è¿åŠ¨é¦†å", ott.getSportname());
+		descMap.put("è¿åŠ¨é¡¹ç›®", ott.getItemname());
+		descMap.put("æ—¶é—´", DateUtil.format(ott.getPlaydate(),"yyyy-MM-dd") + " " + minhour + ":00");
+		descMap.put("è¯¦ç»†", SportOrderHelper.getFieldText(otiList));
 		if(card!=null){
 			descMap.put(MemberCardConstant.VIPCARD, card.getMemberCardCode());
 		}
@@ -571,17 +571,17 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 
 	private String setOrderDescription(SportOrder order, OpenTimeTable ott, OpenTimeItem oti, String starttime, Integer time){
 		Map<String, String> descMap = VmUtils.readJsonToMap(order.getDescription2());
-		descMap.put("ÔË¶¯¹İÃû", ott.getSportname());
-		descMap.put("ÔË¶¯ÏîÄ¿", ott.getItemname());
+		descMap.put("è¿åŠ¨é¦†å", ott.getSportname());
+		descMap.put("è¿åŠ¨é¡¹ç›®", ott.getItemname());
 		String startDate = DateUtil.format(ott.getPlaydate(),"yyyy-MM-dd") + " " + starttime + ":00";
-		descMap.put("Ô¤¼Æµ½´ïÊ±¼ä", startDate);
+		descMap.put("é¢„è®¡åˆ°è¾¾æ—¶é—´", startDate);
 		String otiDate = DateUtil.format(ott.getPlaydate(),"yyyy-MM-dd") + " " + oti.getHour() + " - " +
 										DateUtil.format(ott.getPlaydate(),"yyyy-MM-dd") + " " + oti.getEndhour();
-		descMap.put("Ê±¼ä", otiDate);
+		descMap.put("æ—¶é—´", otiDate);
 		if((ott.hasPeriod() || ott.hasInning()) && oti.hasUnitTime()){
-			descMap.put("Ê±³¤", time + "·ÖÖÓ");
+			descMap.put("æ—¶é•¿", time + "åˆ†é’Ÿ");
 		}else{
-			descMap.put("Ê±³¤", "²»ÏŞÊ±");
+			descMap.put("æ—¶é•¿", "ä¸é™æ—¶");
 		}
 		Timestamp curTime = DateUtil.parseTimestamp(startDate);
 		String endtime = "";
@@ -594,11 +594,11 @@ public class InsteadSportOrderServiceImpl extends GewaOrderServiceImpl implement
 			endtime = DateUtil.format(endTime, "HH:mm");
 		}
 		if(oti.hasPeriod()){
-			remark = starttime + "-" + endtime + " " + order.getQuantity() +"ÈË  "+ order.getTotalfee()+"Ôª";
+			remark = starttime + "-" + endtime + " " + order.getQuantity() +"äºº  "+ order.getTotalfee()+"å…ƒ";
 		}else if(oti.hasInning()){
-			remark = starttime + "-" + endtime + " " + order.getQuantity() +"¾Ö "+ order.getTotalfee()+"Ôª";
+			remark = starttime + "-" + endtime + " " + order.getQuantity() +"å±€ "+ order.getTotalfee()+"å…ƒ";
 		}
-		descMap.put("ÏêÏ¸", remark);
+		descMap.put("è¯¦ç»†", remark);
 		order.setDescription2(JsonUtils.writeMapToJson(descMap));
 		return endtime;
 	}

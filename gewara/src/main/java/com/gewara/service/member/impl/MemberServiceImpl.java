@@ -4,13 +4,7 @@
 package com.gewara.service.member.impl;
 
 import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
@@ -705,7 +699,7 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 		//升级记录与通知
 		Jobs jobBefore = getMemberPosition(beforeExp);
 		Jobs jobAfter = getMemberPosition(afterExp);
-		if(jobBefore.getId() != jobAfter.getId()){
+		if(!Objects.equals(jobBefore.getId(), jobAfter.getId())){
 			saveJobUp(memberId, jobAfter.getId(), jobAfter.getPosition());
 		}
 	}

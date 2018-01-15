@@ -44,20 +44,20 @@ public class SportSpecialDiscountHelper extends SpecialDiscountHelper{
 		String reason = "";
 		if(StringUtils.isNotBlank(sd.getPaymethod())){
 			String[] pay = sd.getPaymethod().split(":");
-			if(!StringUtils.equals(pay[0], sorder.getPaymethod())) reason += "Ö§¸¶·½Ê½²»Ö§³Ö£¡";
+			if(!StringUtils.equals(pay[0], sorder.getPaymethod())) reason += "æ”¯ä»˜æ–¹å¼ä¸æ”¯æŒï¼";
 			if(pay.length > 1 && !StringUtils.equals(pay[1], sorder.getPaybank())){
-				reason += "Ö§¸¶Íø¹Ø²»Ö§³Ö£¡";
+				reason += "æ”¯ä»˜ç½‘å…³ä¸æ”¯æŒï¼";
 			}
 		}
 		if(sorder.getAddtime().before(sd.getTimefrom()) || sorder.getAddtime().after(sd.getTimeto()))
-			reason += "±¾»î¶¯Ê±¼äÎª" + DateUtil.formatTimestamp(sd.getTimefrom()) + "ÖÁ" + DateUtil.formatTimestamp(sd.getTimeto()) + "£¡";
-		//×¢Òâ£¬spcounter²»ÄÜÎª¿Õ
+			reason += "æœ¬æ´»åŠ¨æ—¶é—´ä¸º" + DateUtil.formatTimestamp(sd.getTimefrom()) + "è‡³" + DateUtil.formatTimestamp(sd.getTimeto()) + "ï¼";
+		//æ³¨æ„ï¼Œspcounterä¸èƒ½ä¸ºç©º
 		String rs = getSpcounterDisabledReason(spcounter, cpcounterList, sorder.getCitycode(), sorder.getPartnerid(), sorder.getQuantity());
 		if(StringUtils.isNotBlank(rs)) reason += rs;
 
 		if(sorder.getQuantity() > sd.getBuynum()|| sorder.getQuantity() < sd.getMinbuy()){
-			if(sd.getBuynum() == sd.getMinbuy()) reason += "±¾»î¶¯µ¥±Ê¶©±ØĞë¹ºÂò" + sd.getBuynum() + "ÕÅ£¡";
-			else reason += "±¾»î¶¯¶©µ¥Ö»ÄÜÔ¤¶¨" + sd.getMinbuy() + "¡«" + sd.getBuynum() + "¸öµ¥Î»£¡";
+			if(sd.getBuynum() == sd.getMinbuy()) reason += "æœ¬æ´»åŠ¨å•ç¬”è®¢å¿…é¡»è´­ä¹°" + sd.getBuynum() + "å¼ ï¼";
+			else reason += "æœ¬æ´»åŠ¨è®¢å•åªèƒ½é¢„å®š" + sd.getMinbuy() + "ï½" + sd.getBuynum() + "ä¸ªå•ä½ï¼";
 		}
 		reason += getOttFullDisabledReason(sd, table, sorder.getAddtime());
 		return reason;
@@ -65,30 +65,30 @@ public class SportSpecialDiscountHelper extends SpecialDiscountHelper{
 	@Override
 	public String getOrderFirstDisabledReason(SpecialDiscount sd, Spcounter spcounter, List<Cpcounter> cpcounterList) {
 		if(order.getAddtime().before(sd.getTimefrom()) || order.getAddtime().after(sd.getTimeto())){
-			return "±¾»î¶¯Ê±¼äÎª" + DateUtil.formatTimestamp(sd.getTimefrom()) + "ÖÁ" + DateUtil.formatTimestamp(sd.getTimeto()) + "£¡";
+			return "æœ¬æ´»åŠ¨æ—¶é—´ä¸º" + DateUtil.formatTimestamp(sd.getTimefrom()) + "è‡³" + DateUtil.formatTimestamp(sd.getTimeto()) + "ï¼";
 		}
-		//×¢Òâ£¬spcounter²»ÄÜÎª¿Õ
+		//æ³¨æ„ï¼Œspcounterä¸èƒ½ä¸ºç©º
 		String rs = getSpcounterDisabledReason(spcounter, cpcounterList, order.getCitycode(), order.getPartnerid(), order.getQuantity());
 		if(StringUtils.isNotBlank(rs)) return rs;
 
 		if(order.getQuantity() > sd.getBuynum()|| order.getQuantity() < sd.getMinbuy()){
-			if(sd.getBuynum() == sd.getMinbuy()) return "±¾»î¶¯µ¥±Ê¶©±ØĞë¹ºÂò" + sd.getBuynum() + "ÕÅ£¡";
-			else return "±¾»î¶¯¶©µ¥Ö»ÄÜÔ¤¶¨" + sd.getMinbuy() + "¡«" + sd.getBuynum() + "¸öµ¥Î»£¡";
+			if(sd.getBuynum() == sd.getMinbuy()) return "æœ¬æ´»åŠ¨å•ç¬”è®¢å¿…é¡»è´­ä¹°" + sd.getBuynum() + "å¼ ï¼";
+			else return "æœ¬æ´»åŠ¨è®¢å•åªèƒ½é¢„å®š" + sd.getMinbuy() + "ï½" + sd.getBuynum() + "ä¸ªå•ä½ï¼";
 		}
 		return getOttFirstDisabledReason(sd, ott, order.getAddtime());
 	}
 
 	@Override
 	public ErrorCode<Integer> getSpdiscountAmount(SpecialDiscount sd, Spcounter spcounter, List<Cpcounter> cpcounterList, PayValidHelper pvh) {
-		if(sd==null) return ErrorCode.getFailure("±¾»î¶¯²»´æÔÚ");
+		if(sd==null) return ErrorCode.getFailure("æœ¬æ´»åŠ¨ä¸å­˜åœ¨");
 		if(StringUtils.equals(order.getStatus(), OrderConstant.STATUS_NEW_CONFIRM)){
-			return ErrorCode.getFailure("ÒÑ¾­È·ÈÏµÄ¶©µ¥²»ÄÜĞŞ¸Ä£¡");
+			return ErrorCode.getFailure("å·²ç»ç¡®è®¤çš„è®¢å•ä¸èƒ½ä¿®æ”¹ï¼");
 		}
 		if(StringUtils.startsWith(order.getStatus(), OrderConstant.STATUS_PAID)){
-			return ErrorCode.getFailure("ÒÑ¾­Ö§¸¶µÄ¶©µ¥²»ÄÜĞŞ¸Ä£¡");
+			return ErrorCode.getFailure("å·²ç»æ”¯ä»˜çš„è®¢å•ä¸èƒ½ä¿®æ”¹ï¼");
 		}
 		if(StringUtils.startsWith(order.getStatus(), OrderConstant.STATUS_CANCEL)){
-			return ErrorCode.getFailure("ÒÑ¾­È¡ÏûµÄ¶©µ¥²»ÄÜĞŞ¸Ä£¡");
+			return ErrorCode.getFailure("å·²ç»å–æ¶ˆçš„è®¢å•ä¸èƒ½ä¿®æ”¹ï¼");
 		}
 		return validSpdiscountWithoutStatus(sd, spcounter, cpcounterList, pvh);
 	}
@@ -98,40 +98,40 @@ public class SportSpecialDiscountHelper extends SpecialDiscountHelper{
 		String umpayfee = otherFeeMap.get(OtherFeeDetail.FEETYPE_U);
 		if (StringUtils.isNotBlank(umpayfee) && Integer.parseInt(umpayfee)>0) {
 			if (!pvh.supportPaymethod(order.getPaymethod()))
-				ErrorCode.getFailure("´Ë»î¶¯²»Ö§³ÖÄúÑ¡ÔñµÄÖ§¸¶·½Ê½£¡");
+				ErrorCode.getFailure("æ­¤æ´»åŠ¨ä¸æ”¯æŒæ‚¨é€‰æ‹©çš„æ”¯ä»˜æ–¹å¼ï¼");
 			pvh = new PayValidHelper(order.getPaymethod());
 		}
 		if(discountList.size() > 0){
-			return ErrorCode.getFailure("²»ÄÜºÍÆäËûÓÅ»İ·½Ê½¹²ÓÃ£¡");
+			return ErrorCode.getFailure("ä¸èƒ½å’Œå…¶ä»–ä¼˜æƒ æ–¹å¼å…±ç”¨ï¼");
 		}
 		ErrorCode enable = isEnabled(sd, pvh);
 		if (!enable.isSuccess()) {
 			if(isShowMsg()) return ErrorCode.getFailure(enable.getMsg());
-			return ErrorCode.getFailure("±¾³¡´Î²»Ö§³Ö´Ë»î¶¯");
+			return ErrorCode.getFailure("æœ¬åœºæ¬¡ä¸æ”¯æŒæ­¤æ´»åŠ¨");
 		}
 		if(StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_SPECIAL)){
 			if(!StringUtils.contains(ott.getSpflag(), sd.getFlag())){
-				return ErrorCode.getFailure("±¾³¡´Î²»Ö§³Ö´Ë»î¶¯£¡");
+				return ErrorCode.getFailure("æœ¬åœºæ¬¡ä¸æ”¯æŒæ­¤æ´»åŠ¨ï¼");
 			}
 		} else if (!StringUtils.contains(ott.getElecard(), PayConstant.CARDTYPE_PARTNER)) {
-			return ErrorCode.getFailure("±¾³¡´Î²»Ö§³Ö´Ë»î¶¯£¡");
+			return ErrorCode.getFailure("æœ¬åœºæ¬¡ä¸æ”¯æŒæ­¤æ´»åŠ¨ï¼");
 		}
 		
-		if(StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_GEWA)){//ÒâÍâÇé¿ö
-			if(order.surePartner()) return ErrorCode.getFailure("±¾³¡´Î²»Ö§³Ö´Ë»î¶¯£¡");//¶©µ¥À´×ÔWAP»òÉÌ¼Ò
-		}else if(StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_WAP)){//WAP»î¶¯
-			if(!order.sureGewaPartner()) return ErrorCode.getFailure("±¾»î¶¯²»Ö§³Ö·ÇÊÖ»úÓÃ»§¶©µ¥£¡"); 
+		if(StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_GEWA)){//æ„å¤–æƒ…å†µ
+			if(order.surePartner()) return ErrorCode.getFailure("æœ¬åœºæ¬¡ä¸æ”¯æŒæ­¤æ´»åŠ¨ï¼");//è®¢å•æ¥è‡ªWAPæˆ–å•†å®¶
+		}else if(StringUtils.equals(sd.getOpentype(), SpecialDiscount.OPENTYPE_WAP)){//WAPæ´»åŠ¨
+			if(!order.sureGewaPartner()) return ErrorCode.getFailure("æœ¬æ´»åŠ¨ä¸æ”¯æŒéæ‰‹æœºç”¨æˆ·è®¢å•ï¼"); 
 			List<Long> ptnidList = BeanUtil.getIdList(sd.getPtnids(), ",");
 			if(!ptnidList.contains(order.getPartnerid())){
-				return ErrorCode.getFailure("±¾»î¶¯²»Ö§³Ö¸Ã¿Í»§¶Ë£¡");
+				return ErrorCode.getFailure("æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥å®¢æˆ·ç«¯ï¼");
 			}
-		}else if(StringUtils.equals(SpecialDiscount.OPENTYPE_PARTNER, sd.getOpentype())){//ÉÌ¼Ò»î¶¯
+		}else if(StringUtils.equals(SpecialDiscount.OPENTYPE_PARTNER, sd.getOpentype())){//å•†å®¶æ´»åŠ¨
 			if(!order.getPartnerid().equals(Long.valueOf(sd.getPtnids()))){
-				return ErrorCode.getFailure("±¾³¡´Î²»Ö§³Ö´Ë»î¶¯£¡");
+				return ErrorCode.getFailure("æœ¬åœºæ¬¡ä¸æ”¯æŒæ­¤æ´»åŠ¨ï¼");
 			}
-			//ÉÌ¼Ò¶©µ¥£¬Ö±½ÓÅĞ¶ÏÖ§¸¶·½Ê½ÊÇ·ñÕıÈ·
+			//å•†å®¶è®¢å•ï¼Œç›´æ¥åˆ¤æ–­æ”¯ä»˜æ–¹å¼æ˜¯å¦æ­£ç¡®
 			if(!sd.isValidPaymethod(order.getPaymethod(), order.getPaybank())){
-				return ErrorCode.getFailure("Ö§¸¶·½Ê½²»ÕıÈ·£¬²»ÄÜ²ÎÓë´Ë»î¶¯£¡");
+				return ErrorCode.getFailure("æ”¯ä»˜æ–¹å¼ä¸æ­£ç¡®ï¼Œä¸èƒ½å‚ä¸æ­¤æ´»åŠ¨ï¼");
 			}
 		}
 		
@@ -160,42 +160,42 @@ public class SportSpecialDiscountHelper extends SpecialDiscountHelper{
 				}
 			}
 		}
-		if(amount == 0 && sd.getRebates()==0) return ErrorCode.getFailure("´Ë¶©µ¥ÎŞÓÅ»İ£¡");
+		if(amount == 0 && sd.getRebates()==0) return ErrorCode.getFailure("æ­¤è®¢å•æ— ä¼˜æƒ ï¼");
 		if(amount > order.getTotalfee()) amount = order.getTotalfee();
 		return ErrorCode.getSuccessReturn(amount);
 	}
 	private String getOttFirstDisabledReason(SpecialDiscount sd, OpenTimeTable table, Timestamp addtime) {
-		if(!isEnabledByCategoryid(sd, table.getItemid())) return "±¾»î¶¯²»Ö§³Ö¸ÃÏîÄ¿£¡";
-		if(!isEnabledByAddweek(sd, addtime)) return "±¾»î¶¯½öÏŞÖÜ" + sd.getAddweek() + "¹ºÂò£¡";
-		if(!isEnabledByWeektype(sd, table.getPlaydate())) return "±¾»î¶¯½öÏŞÖÜ" + sd.getWeektype() + "µÄ³¡´Î£¡";
+		if(!isEnabledByCategoryid(sd, table.getItemid())) return "æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥é¡¹ç›®ï¼";
+		if(!isEnabledByAddweek(sd, addtime)) return "æœ¬æ´»åŠ¨ä»…é™å‘¨" + sd.getAddweek() + "è´­ä¹°ï¼";
+		if(!isEnabledByWeektype(sd, table.getPlaydate())) return "æœ¬æ´»åŠ¨ä»…é™å‘¨" + sd.getWeektype() + "çš„åœºæ¬¡ï¼";
 		if(StringUtils.isNotBlank(sd.getFieldid())){
 			List<Long> sdFieldIdList = BeanUtil.getIdList(sd.getFieldid(), ",");
 			List<Long> fieldList = BeanUtil.getBeanPropertyList(otiList, Long.class, "fieldid", true);
 			if(!sdFieldIdList.isEmpty()&& ListUtils.intersection(sdFieldIdList, fieldList).isEmpty())
-				return "±¾»î¶¯ÏŞÖÆ²»ÄÜÔÚÕâĞ©³¡µØÊ¹ÓÃ£¡";
+				return "æœ¬æ´»åŠ¨é™åˆ¶ä¸èƒ½åœ¨è¿™äº›åœºåœ°ä½¿ç”¨ï¼";
 		}
 		String add_time = DateUtil.format(addtime, "HHmm");
 		if(sd.getAddtime2().compareTo(add_time)<=0  || sd.getAddtime1().compareTo(add_time) > 0){
-			return "±¾»î¶¯½öÏŞ" + sd.getAddtime1().substring(0,2) + ":" + sd.getAddtime1().substring(2) +"¡«" + 
-			sd.getAddtime2().substring(0,2) + ":" + sd.getAddtime2().substring(2) + "¹ºÂò£¡";
+			return "æœ¬æ´»åŠ¨ä»…é™" + sd.getAddtime1().substring(0,2) + ":" + sd.getAddtime1().substring(2) +"ï½" + 
+			sd.getAddtime2().substring(0,2) + ":" + sd.getAddtime2().substring(2) + "è´­ä¹°ï¼";
 		}
 		if(StringUtils.isNotBlank(sd.getTime1()) && StringUtils.isNotBlank(sd.getTime2())){
 			for (OpenTimeItem item : otiList) {
 				if(!table.hasInning()&&(sd.getTime2().compareTo(StringUtils.replace(item.getEndhour(),":",""))<=0 || sd.getTime1().compareTo(StringUtils.replace(item.getHour(),":",""))>0))
-					return "±¾»î¶¯½öÏŞ³¡µØ»òÊ±¶ÎÎª" +sd.getTime1().substring(0,2) + ":" + sd.getTime1().substring(2) +"¡«" + 
-						sd.getTime2().substring(0,2) + ":" + sd.getTime2().substring(2) + "¹ºÂò£¡";
+					return "æœ¬æ´»åŠ¨ä»…é™åœºåœ°æˆ–æ—¶æ®µä¸º" +sd.getTime1().substring(0,2) + ":" + sd.getTime1().substring(2) +"ï½" + 
+						sd.getTime2().substring(0,2) + ":" + sd.getTime2().substring(2) + "è´­ä¹°ï¼";
 			}
 		}
 		return "";
 	}
 	public String getOttFullDisabledReason(SpecialDiscount sd, OpenTimeTable table, Timestamp addtime) {
 		String reason = "";
-		if(!isEnabledByCategoryid(sd, table.getItemid())) reason += "±¾»î¶¯²»Ö§³Ö¸ÃÔË¶¯ÏîÄ¿£¡";
-		if(!isEnabledByAddweek(sd, addtime)) reason += "±¾»î¶¯½öÏŞÖÜ" + sd.getAddweek() + "¹ºÂò£¡";
-		if(!isEnabledByWeektype(sd, table.getPlaydate()))reason += "±¾»î¶¯½öÏŞÖÜ" + sd.getWeektype() + "µÄ³¡´Î£¡";
+		if(!isEnabledByCategoryid(sd, table.getItemid())) reason += "æœ¬æ´»åŠ¨ä¸æ”¯æŒè¯¥è¿åŠ¨é¡¹ç›®ï¼";
+		if(!isEnabledByAddweek(sd, addtime)) reason += "æœ¬æ´»åŠ¨ä»…é™å‘¨" + sd.getAddweek() + "è´­ä¹°ï¼";
+		if(!isEnabledByWeektype(sd, table.getPlaydate()))reason += "æœ¬æ´»åŠ¨ä»…é™å‘¨" + sd.getWeektype() + "çš„åœºæ¬¡ï¼";
 		if(!isEnabledByAddtime(sd, addtime)){
-			reason += "±¾»î¶¯½öÏŞ" + sd.getAddtime1().substring(0,2) + ":" + sd.getAddtime1().substring(2) +"¡«" + 
-			sd.getAddtime2().substring(0,2) + ":" + sd.getAddtime2().substring(2) + "¹ºÂò£¡";
+			reason += "æœ¬æ´»åŠ¨ä»…é™" + sd.getAddtime1().substring(0,2) + ":" + sd.getAddtime1().substring(2) +"ï½" + 
+			sd.getAddtime2().substring(0,2) + ":" + sd.getAddtime2().substring(2) + "è´­ä¹°ï¼";
 		}
 		return reason;
 	}
@@ -205,26 +205,26 @@ public class SportSpecialDiscountHelper extends SpecialDiscountHelper{
 	}
 
 	private ErrorCode isEnabled(SpecialDiscount sd, OpenTimeTable table, PayValidHelper pvh) {
-		if (sd == null) return ErrorCode.getFailure("±¾»î¶¯²»´æÔÚ");
-		if(!isEnabledByCitycode(sd, table.getCitycode())) return ErrorCode.getFailure("³ÇÊĞ²»Ö§³Ö£¡");
-		if(!isEnabledByRelatedid(sd,table.getSportid())) return ErrorCode.getFailure("³¡¹İ²»Ö§³Ö£¡");
-		if(!isEnabledByCategoryid(sd, table.getItemid())) return ErrorCode.getFailure("ÏîÄ¿²»Ö§³Ö£¡");
-		if(!isEnabledByItemid(sd, table.getId())) return ErrorCode.getFailure("³¡´Î²»Ö§³Ö£¡");
+		if (sd == null) return ErrorCode.getFailure("æœ¬æ´»åŠ¨ä¸å­˜åœ¨");
+		if(!isEnabledByCitycode(sd, table.getCitycode())) return ErrorCode.getFailure("åŸå¸‚ä¸æ”¯æŒï¼");
+		if(!isEnabledByRelatedid(sd,table.getSportid())) return ErrorCode.getFailure("åœºé¦†ä¸æ”¯æŒï¼");
+		if(!isEnabledByCategoryid(sd, table.getItemid())) return ErrorCode.getFailure("é¡¹ç›®ä¸æ”¯æŒï¼");
+		if(!isEnabledByItemid(sd, table.getId())) return ErrorCode.getFailure("åœºæ¬¡ä¸æ”¯æŒï¼");
 		if(StringUtils.isNotBlank(sd.getPaymethod()) && 
 				StringUtils.isNotBlank(table.getOtherinfo())){
 			String[] pay = StringUtils.split(sd.getPaymethod());
-			if(!pvh.supportPaymethod(pay[0])) return ErrorCode.getFailure("Ö§¸¶ÏŞÖÆ£¡");
+			if(!pvh.supportPaymethod(pay[0])) return ErrorCode.getFailure("æ”¯ä»˜é™åˆ¶ï¼");
 		}
 		if(order!=null) {
-			if(!isEnabledByPrice(sd, order.getUnitprice()))	return ErrorCode.getFailure("Âô¼Û·¶Î§²»Ö§³Ö£¡");
-			if(!isEnabledByPricegap(sd, order.getUnitprice() - order.getCostprice())) return ErrorCode.getFailure("³É±¾²î¶î²»Ö§³Ö£¡");
-			if(!isEnabledByCostprice(sd, order.getCostprice())) return ErrorCode.getFailure("³É±¾·¶Î§²»Ö§³Ö£¡");
+			if(!isEnabledByPrice(sd, order.getUnitprice()))	return ErrorCode.getFailure("å–ä»·èŒƒå›´ä¸æ”¯æŒï¼");
+			if(!isEnabledByPricegap(sd, order.getUnitprice() - order.getCostprice())) return ErrorCode.getFailure("æˆæœ¬å·®é¢ä¸æ”¯æŒï¼");
+			if(!isEnabledByCostprice(sd, order.getCostprice())) return ErrorCode.getFailure("æˆæœ¬èŒƒå›´ä¸æ”¯æŒï¼");
 		}
 		return ErrorCode.SUCCESS;
 	}
 	public static interface OrderCallback {
 		/**
-		 * baseDao.saveObject(order)Ç°Ãæµ÷
+		 * baseDao.saveObject(order)å‰é¢è°ƒ
 		 * 
 		 * @param order
 		 *

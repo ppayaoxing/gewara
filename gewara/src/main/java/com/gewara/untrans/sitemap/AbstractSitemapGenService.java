@@ -55,11 +55,11 @@ public abstract class AbstractSitemapGenService implements SitemapGenService, Ap
 	public void genSitemap(){
 		File xmlFile = new File(getRealPath(this.getFileName()));
 		try {
-			if(xmlFile.exists()) xmlFile.delete();//��֣�Ϊ��׷�����ݣ�
+			if(xmlFile.exists()) xmlFile.delete();//奇怪，为何追加内容？
 			Writer writer = new BufferedWriter(new FileWriter(xmlFile));
-			writerHeader(writer);//1. дͷ
+			writerHeader(writer);//1. 写头
 			writeUrlList(writer);
-			writeEnd(writer);//дβ
+			writeEnd(writer);//写尾
 			writer.close();
 			gewaPicService.saveToRemote(xmlFile, this.getFileName(), true);
 		} catch (IOException e) {
