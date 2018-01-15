@@ -27,12 +27,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.common.URL;
@@ -48,37 +43,37 @@ import com.alibaba.dubbo.registry.support.FailbackRegistry;
 
 /**
  * MulticastRegistry
- * 
+ *
  * @author william.liangf
  */
 public class MulticastRegistry extends FailbackRegistry {
 
-    // 锟斤拷志锟斤拷锟�
+    // 日志输出
     private static final Logger logger = LoggerFactory.getLogger(MulticastRegistry.class);
 
     private static final int DEFAULT_MULTICAST_PORT = 1234;
 
     private final InetAddress mutilcastAddress;
-    
+
     private final MulticastSocket mutilcastSocket;
 
     private final int mutilcastPort;
 
     private final ConcurrentMap<URL, Set<URL>> received = new ConcurrentHashMap<URL, Set<URL>>();
 
-    private final ScheduledExecutorService cleanExecutor = Executors.newScheduledThreadPool(1, new NamedThreadFactory("DubboMulticastRegistryCleanTimer", true));
+    private final ScheduledExecutorService cleanExecutor = new ScheduledThreadPoolExecutor(1, new NamedThreadFactory("DubboMulticastRegistryCleanTimer", true));
 
     private final ScheduledFuture<?> cleanFuture;
 
     private final int cleanPeriod;
-    
+
     private volatile boolean admin = false;
 
     public MulticastRegistry(URL url) {
         super(url);
         if (url.isAnyHost()) {
-    		throw new IllegalStateException("registry address == null");
-    	}
+            throw new IllegalStateException("registry address == null");
+        }
         if (! isMulticastAddress(url.getHost())) {
             throw new IllegalArgumentException("Invalid multicast address " + url.getHost() + ", scope: 224.0.0.0 - 239.255.255.255");
         }
@@ -122,8 +117,8 @@ public class MulticastRegistry extends FailbackRegistry {
                 @Override
                 public void run() {
                     try {
-                        clean(); // 锟斤拷锟斤拷锟斤拷锟斤拷锟�
-                    } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
+                        clean(); // 清除过期者
+                    } catch (Throwable t) { // 防御性容错
                         logger.error("Unexpected exception occur at clean expired provider, cause: " + t.getMessage(), t);
                     }
                 }
@@ -132,7 +127,7 @@ public class MulticastRegistry extends FailbackRegistry {
             this.cleanFuture = null;
         }
     }
-    
+
     private static boolean isMulticastAddress(String ip) {
         int i = ip.indexOf('.');
         if (i > 0) {
@@ -144,7 +139,7 @@ public class MulticastRegistry extends FailbackRegistry {
         }
         return false;
     }
-    
+
     private void clean() {
         if (admin) {
             for (Set<URL> providers : new HashSet<Set<URL>>(received.values())) {
@@ -159,11 +154,11 @@ public class MulticastRegistry extends FailbackRegistry {
             }
         }
     }
-    
+
     private boolean isExpired(URL url) {
         if (! url.getParameter(Constants.DYNAMIC_KEY, true)
-        		|| url.getPort() <= 0
-        		|| Constants.CONSUMER_PROTOCOL.equals(url.getProtocol())
+                || url.getPort() <= 0
+                || Constants.CONSUMER_PROTOCOL.equals(url.getProtocol())
                 || Constants.ROUTE_PROTOCOL.equals(url.getProtocol())
                 || Constants.OVERRIDE_PROTOCOL.equals(url.getProtocol())) {
             return false;
@@ -216,10 +211,10 @@ public class MulticastRegistry extends FailbackRegistry {
             if (urls != null && urls.size() > 0) {
                 for (URL u : urls) {
                     if (UrlUtils.isMatch(url, u)) {
-                        String host = remoteAddress != null && remoteAddress.getAddress() != null 
+                        String host = remoteAddress != null && remoteAddress.getAddress() != null
                                 ? remoteAddress.getAddress().getHostAddress() : url.getIp();
-                        if (url.getParameter("unicast", true) // 锟斤拷锟斤拷锟竭的伙拷锟斤拷锟角凤拷只锟斤拷一锟斤拷锟斤拷锟斤拷
-                                && ! NetUtils.getLocalHost().equals(host)) { // 同锟斤拷锟斤拷锟斤拷锟斤拷滩锟斤拷锟斤拷锟絬nicast锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷锟斤拷只锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟秸碉拷锟斤拷息
+                        if (url.getParameter("unicast", true) // 消费者的机器是否只有一个进程
+                                && ! NetUtils.getLocalHost().equals(host)) { // 同机器多进程不能用unicast单播信息，否则只会有一个进程收到信息
                             unicast(Constants.REGISTER + " " + u.toFullString(), host);
                         } else {
                             broadcast(Constants.REGISTER + " " + u.toFullString());
@@ -230,7 +225,7 @@ public class MulticastRegistry extends FailbackRegistry {
         }/* else if (msg.startsWith(UNSUBSCRIBE)) {
         }*/
     }
-    
+
     private void broadcast(String msg) {
         if (logger.isInfoEnabled()) {
             logger.info("Send broadcast message: " + msg + " to " + mutilcastAddress + ":" + mutilcastPort);
@@ -243,7 +238,7 @@ public class MulticastRegistry extends FailbackRegistry {
             throw new IllegalStateException(e.getMessage(), e);
         }
     }
-    
+
     private void unicast(String msg, String host) {
         if (logger.isInfoEnabled()) {
             logger.info("Send unicast message: " + msg + " to " + host + ":" + mutilcastPort);
@@ -256,7 +251,7 @@ public class MulticastRegistry extends FailbackRegistry {
             throw new IllegalStateException(e.getMessage(), e);
         }
     }
-    
+
     @Override
     protected void doRegister(URL url) {
         broadcast(Constants.REGISTER + " " + url.toFullString());

@@ -37,20 +37,20 @@ import com.alibaba.dubbo.remoting.p2p.exchange.ExchangePeer;
 
 /**
  * AbstractGroup
- * 
+ *
  * @author william.liangf
  */
 public abstract class AbstractExchangeGroup implements ExchangeGroup {
 
-    // 锟斤拷志锟斤拷锟�
+    // ��־���
     protected static final Logger logger = LoggerFactory.getLogger(AbstractExchangeGroup.class);
-    
+
     protected final URL url;
-    
+
     protected final Map<URL, ExchangeServer> servers = new ConcurrentHashMap<URL, ExchangeServer>();
 
     protected final Map<URL, ExchangeClient> clients = new ConcurrentHashMap<URL, ExchangeClient>();
-    
+
     protected final ExchangeHandlerDispatcher dispatcher = new ExchangeHandlerDispatcher();
 
     public AbstractExchangeGroup(URL url){
@@ -59,7 +59,7 @@ public abstract class AbstractExchangeGroup implements ExchangeGroup {
         }
         this.url = url;
     }
-    
+
     @Override
     public URL getUrl() {
         return url;
@@ -82,16 +82,16 @@ public abstract class AbstractExchangeGroup implements ExchangeGroup {
             }
         }
     }
-    
+
     @Override
     public Peer join(URL url, ChannelHandler handler) throws RemotingException {
         return join(url, (ExchangeHandler) handler);
     }
-    
+
     @Override
     public ExchangePeer join(URL url, ExchangeHandler handler) throws RemotingException {
         ExchangeServer server = servers.get(url);
-        if (server == null) { // TODO 锟叫诧拷锟斤拷锟斤拷隙
+        if (server == null) { // TODO �в�����϶
             server = Exchangers.bind(url, handler);
             servers.put(url, server);
             dispatcher.addChannelHandler(handler);
@@ -112,7 +112,7 @@ public abstract class AbstractExchangeGroup implements ExchangeGroup {
             return null;
         }
         ExchangeClient client = clients.get(url);
-        if (client == null) { // TODO 锟叫诧拷锟斤拷锟斤拷隙
+        if (client == null) { // TODO �в�����϶
             client = Exchangers.connect(url, dispatcher);
             clients.put(url, client);
         }

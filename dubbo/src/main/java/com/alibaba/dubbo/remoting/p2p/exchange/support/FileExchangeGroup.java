@@ -20,10 +20,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 import com.alibaba.dubbo.common.URL;
 import com.alibaba.dubbo.common.utils.IOUtils;
@@ -35,19 +32,19 @@ import com.alibaba.dubbo.remoting.p2p.exchange.ExchangePeer;
 
 /**
  * FileGroup
- * 
+ *
  * @author william.liangf
  */
 public class FileExchangeGroup extends AbstractExchangeGroup {
-    
+
     private final File file;
-    
+
     private volatile long last;
 
-    // 锟斤拷时锟斤拷锟斤拷执锟斤拷锟斤拷
-    private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3, new NamedThreadFactory("FileGroupModifiedChecker", true));
+    // 定时任务执行器
+    private final ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(3, new NamedThreadFactory("FileGroupModifiedChecker", true));
 
-    // 锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷锟斤拷欠锟斤拷锟矫ｏ拷锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟睫达拷锟斤拷锟斤拷
+    // 重连定时器，定时检查连接是否可用，不可用时，无限次重连
     private final ScheduledFuture<?> checkModifiedFuture;
 
     public FileExchangeGroup(URL url){
@@ -60,10 +57,10 @@ public class FileExchangeGroup extends AbstractExchangeGroup {
         checkModifiedFuture = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                // 锟斤拷锟斤拷募锟斤拷锟斤拷
+                // 检测文件变更
                 try {
                     check();
-                } catch (Throwable t) { // 锟斤拷锟斤拷锟斤拷锟捷达拷
+                } catch (Throwable t) { // 防御性容错
                     logger.error("Unexpected error occur at reconnect, cause: " + t.getMessage(), t);
                 }
             }
@@ -89,7 +86,7 @@ public class FileExchangeGroup extends AbstractExchangeGroup {
             changed();
         }
     }
-    
+
     private void changed() throws RemotingException {
         try {
             String[] lines = IOUtils.readLines(file);
@@ -117,7 +114,7 @@ public class FileExchangeGroup extends AbstractExchangeGroup {
         }
         return peer;
     }
-    
+
     @Override
     public void leave(URL url) throws RemotingException {
         super.leave(url);
