@@ -29,8 +29,8 @@ import com.alibaba.dubbo.common.threadpool.support.AbortPolicyWithReport;
 import com.alibaba.dubbo.common.utils.NamedThreadFactory;
 
 /**
- * 锟斤拷锟竭程筹拷一直锟斤拷锟斤拷锟斤拷直锟斤拷锟斤拷锟睫ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
- * 
+ * 此线程池一直增长，直到上限，增长后不收缩。
+ *
  * @author <a href="mailto:gang.lvg@alibaba-inc.com">kimi</a>
  */
 public class LimitedThreadPool implements ThreadPool {
@@ -41,11 +41,11 @@ public class LimitedThreadPool implements ThreadPool {
         int cores = url.getParameter(Constants.CORE_THREADS_KEY, Constants.DEFAULT_CORE_THREADS);
         int threads = url.getParameter(Constants.THREADS_KEY, Constants.DEFAULT_THREADS);
         int queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);
-        return new ThreadPoolExecutor(cores, threads, Long.MAX_VALUE, TimeUnit.MILLISECONDS, 
-        		queues == 0 ? new SynchronousQueue<Runnable>() : 
-        			(queues < 0 ? new LinkedBlockingQueue<Runnable>() 
-        					: new LinkedBlockingQueue<Runnable>(queues)),
-        		new NamedThreadFactory(name, true), new AbortPolicyWithReport(name, url));
+        return new ThreadPoolExecutor(cores, threads, Long.MAX_VALUE, TimeUnit.MILLISECONDS,
+                queues == 0 ? new SynchronousQueue<Runnable>() :
+                        (queues < 0 ? new LinkedBlockingQueue<Runnable>()
+                                : new LinkedBlockingQueue<Runnable>(queues)),
+                new NamedThreadFactory(name, true), new AbortPolicyWithReport(name, url));
     }
 
 }

@@ -28,8 +28,8 @@ import com.alibaba.dubbo.common.threadpool.support.AbortPolicyWithReport;
 import com.alibaba.dubbo.common.utils.NamedThreadFactory;
 
 /**
- * 锟斤拷锟竭程池匡拷锟斤拷锟斤拷锟斤拷锟竭程匡拷锟斤拷一锟斤拷锟接猴拷锟斤拷眨锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷麓锟斤拷锟斤拷叱蹋锟斤拷锟皆达拷冢锟�<code>Executors.newCachedThreadPool()</code>
- * 
+ * ���̳߳ؿ��������߳̿���һ���Ӻ���գ����������´����̣߳���Դ�ڣ�<code>Executors.newCachedThreadPool()</code>
+ *
  * @see java.util.concurrent.Executors#newCachedThreadPool()
  * @author william.liangf
  */
@@ -42,11 +42,11 @@ public class CachedThreadPool implements ThreadPool {
         int threads = url.getParameter(Constants.THREADS_KEY, Integer.MAX_VALUE);
         int queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);
         int alive = url.getParameter(Constants.ALIVE_KEY, Constants.DEFAULT_ALIVE);
-        return new ThreadPoolExecutor(cores, threads, alive, TimeUnit.MILLISECONDS, 
-        		queues == 0 ? new SynchronousQueue<Runnable>() : 
-        			(queues < 0 ? new LinkedBlockingQueue<Runnable>() 
-        					: new LinkedBlockingQueue<Runnable>(queues)),
-        		new NamedThreadFactory(name, true), new AbortPolicyWithReport(name, url));
+        return new ThreadPoolExecutor(cores, threads, alive, TimeUnit.MILLISECONDS,
+                queues == 0 ? new SynchronousQueue<Runnable>() :
+                        (queues < 0 ? new LinkedBlockingQueue<Runnable>()
+                                : new LinkedBlockingQueue<Runnable>(queues)),
+                new NamedThreadFactory(name, true), new AbortPolicyWithReport(name, url));
     }
 
 }

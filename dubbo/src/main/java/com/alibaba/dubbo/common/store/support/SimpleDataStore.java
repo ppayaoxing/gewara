@@ -29,9 +29,9 @@ import com.alibaba.dubbo.common.store.DataStore;
  */
 public class SimpleDataStore implements DataStore {
 
-    // <é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·è¯†, <é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·, é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å€¼>>
+    // <×é¼þÀàÃû»ò±êÊ¶, <Êý¾ÝÃû, Êý¾ÝÖµ>>
     private ConcurrentMap<String, ConcurrentMap<String, Object>> data =
-        new ConcurrentHashMap<String, ConcurrentMap<String,Object>>();
+            new ConcurrentHashMap<String, ConcurrentMap<String,Object>>();
 
     @Override
     public Map<String, Object> get(String componentName) {

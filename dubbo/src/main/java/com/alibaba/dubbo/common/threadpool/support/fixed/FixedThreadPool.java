@@ -28,8 +28,8 @@ import com.alibaba.dubbo.common.threadpool.support.AbortPolicyWithReport;
 import com.alibaba.dubbo.common.utils.NamedThreadFactory;
 
 /**
- * 锟斤拷锟竭程筹拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷锟教讹拷锟斤拷小锟斤拷锟竭筹拷锟斤拷锟斤拷锟斤拷锟斤拷锟轿猴拷锟斤拷锟斤拷锟斤拷锟斤拷源锟节ｏ拷<code>Executors.newFixedThreadPool()</code>
- * 
+ * 此线程池启动时即创建固定大小的线程数，不做任何伸缩，来源于：<code>Executors.newFixedThreadPool()</code>
+ *
  * @see java.util.concurrent.Executors#newFixedThreadPool(int)
  * @author william.liangf
  */
@@ -40,11 +40,11 @@ public class FixedThreadPool implements ThreadPool {
         String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);
         int threads = url.getParameter(Constants.THREADS_KEY, Constants.DEFAULT_THREADS);
         int queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);
-        return new ThreadPoolExecutor(threads, threads, 0, TimeUnit.MILLISECONDS, 
-        		queues == 0 ? new SynchronousQueue<Runnable>() : 
-        			(queues < 0 ? new LinkedBlockingQueue<Runnable>() 
-        					: new LinkedBlockingQueue<Runnable>(queues)),
-        		new NamedThreadFactory(name, true), new AbortPolicyWithReport(name, url));
+        return new ThreadPoolExecutor(threads, threads, 0, TimeUnit.MILLISECONDS,
+                queues == 0 ? new SynchronousQueue<Runnable>() :
+                        (queues < 0 ? new LinkedBlockingQueue<Runnable>()
+                                : new LinkedBlockingQueue<Runnable>(queues)),
+                new NamedThreadFactory(name, true), new AbortPolicyWithReport(name, url));
     }
 
 }

@@ -15,19 +15,19 @@
  */
 package com.alibaba.dubbo.common.extension.support;
 
-import java.util.Comparator;
-
 import com.alibaba.dubbo.common.extension.Activate;
 import com.alibaba.dubbo.common.extension.ExtensionLoader;
 import com.alibaba.dubbo.common.extension.SPI;
 
+import java.util.Comparator;
+
 /**
  * OrderComparetor
- * 
+ *
  * @author william.liangf
  */
 public class ActivateComparator implements Comparator<Object> {
-    
+
     public static final Comparator<Object> COMPARATOR = new ActivateComparator();
 
     @Override
@@ -46,8 +46,8 @@ public class ActivateComparator implements Comparator<Object> {
         }
         Activate a1 = o1.getClass().getAnnotation(Activate.class);
         Activate a2 = o2.getClass().getAnnotation(Activate.class);
-        if ((a1.before().length > 0 || a1.after().length > 0  
-                || a2.before().length > 0 || a2.after().length > 0) 
+        if ((a1.before().length > 0 || a1.after().length > 0
+                || a2.before().length > 0 || a2.after().length > 0)
                 && o1.getClass().getInterfaces().length > 0
                 && o1.getClass().getInterfaces()[0].isAnnotationPresent(SPI.class)) {
             ExtensionLoader<?> extensionLoader = ExtensionLoader.getExtensionLoader(o1.getClass().getInterfaces()[0]);
@@ -80,7 +80,6 @@ public class ActivateComparator implements Comparator<Object> {
         }
         int n1 = a1 == null ? 0 : a1.order();
         int n2 = a2 == null ? 0 : a2.order();
-        return n1 > n2 ? 1 : -1; // 锟斤拷锟斤拷n1 == n2也锟斤拷锟杰凤拷锟斤拷0锟斤拷锟斤拷锟斤拷锟斤拷HashSet锟饺硷拷锟斤拷锟叫ｏ拷锟结被锟斤拷为锟斤拷同一值锟斤拷锟斤拷锟斤拷
+        return n1 > n2 ? 1 : -1; // ����n1 == n2Ҳ���ܷ���0��������HashSet�ȼ����У��ᱻ��Ϊ��ͬһֵ������
     }
-
 }
