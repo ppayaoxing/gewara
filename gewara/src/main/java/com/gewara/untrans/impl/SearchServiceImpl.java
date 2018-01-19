@@ -65,7 +65,7 @@ import com.gewara.util.VmUtils;
 
 /**
  * @ClassName SearchServiceImpl
- * @Description Õ¾ÄÚËÑË÷·şÎñ
+ * @Description ç«™å†…æœç´¢æœåŠ¡
  * @author weihonglin pau.wei2011@gmail.com
  * @date Aug 10, 2012
  */
@@ -133,8 +133,9 @@ public class SearchServiceImpl implements SearchService {
 			List<GewaSearchKey> skList = JsonUtils.readJsonToObjectList(GewaSearchKey.class, (String) map.get(ROWS_SK_LIST));
 			if (skList != null && !skList.isEmpty()) {
 				for (GewaSearchKey key : skList) {
-					if (StringUtils.isNotBlank(key.getName()))
+					if (StringUtils.isNotBlank(key.getName())) {
 						skListStr.add(StringUtils.trim(key.getName()));
+					}
 				}
 			}
 			return skListStr;
@@ -279,7 +280,7 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	/*
-	 * ÅúÁ¿Ç¨ÒÆÊı¾İ(¾ÉGewasearchkey±íÊı¾İÇ¨ÒÆ)
+	 * æ‰¹é‡è¿ç§»æ•°æ®(æ—§Gewasearchkeyè¡¨æ•°æ®è¿ç§»)
 	 */
 	@Override
 	public String saveBatchSearchKey(Long timenum) {
@@ -304,7 +305,7 @@ public class SearchServiceImpl implements SearchService {
 			}
 		}
 		double costTime = (new Timestamp(System.currentTimeMillis()).getTime() - starttime.getTime()) * 1.00 / (1000.00);
-		String msg = "ÅúÁ¿Ç¨ÒÆÊı¾İ:" + num + "Ìõ" + "  ÏûºÄ£º" + costTime + "Ãë";
+		String msg = "æ‰¹é‡è¿ç§»æ•°æ®:" + num + "æ¡" + "  æ¶ˆè€—ï¼š" + costTime + "ç§’";
 		logger.info(msg);
 		return msg;
 	}
@@ -325,14 +326,15 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	public GewaSearchKey wrapSearchKey(Object obj) {
-		if (obj == null)
+		if (obj == null) {
 			return null;
+		}
 		GewaSearchKey gewaSearchKey = null;
 		if (obj instanceof GewaQuestion) {
 			GewaQuestion question = (GewaQuestion) obj;
 			String category = "gewaquestion";
 			Long relatedid = question.getId();
-			String skey = warpSearchField(new String[] { "ÖªµÀ", question.getTitle(), question.getMembername() });
+			String skey = warpSearchField(new String[] { "çŸ¥é“", question.getTitle(), question.getMembername() });
 			gewaSearchKey = new GewaSearchKey(category + relatedid, question.getTitle(), question.getTag(), relatedid, category, skey,
 					GewaSearchKey.getSortByCategory(category), question.getStatus(), DateUtil.getCurDateMills(question.getAddtime()),
 					question.getCitycode());
@@ -341,7 +343,7 @@ public class SearchServiceImpl implements SearchService {
 			String tag = "cinema";
 			String category = "movie";
 			Long relatedid = movie.getId();
-			String skey = warpSearchField(new String[] { "µçÓ°", movie.getMoviename(), movie.getEnglishname(), movie.getMoviealias(),
+			String skey = warpSearchField(new String[] { "ç”µå½±", movie.getMoviename(), movie.getEnglishname(), movie.getMoviealias(),
 					PinYinUtils.getFirstSpell(movie.getMoviealias()), movie.getActors(), movie.getDirector(), movie.getType(), movie.getHighlight() });
 			gewaSearchKey = new GewaSearchKey(category + relatedid, movie.getName(), tag, relatedid, category, skey,
 					GewaSearchKey.getSortByCategory(category), Status.Y, DateUtil.getCurDateMills(movie.getAddtime()), CITY_CODE_ALL);
@@ -357,14 +359,14 @@ public class SearchServiceImpl implements SearchService {
 			Diary diary = (Diary) obj;
 			String scategory = "diary";
 			Long srelatedid = diary.getId();
-			String skey = warpSearchField(new String[] { "ÂÛÌ³,Ìû×Ó", diary.getCname(), diary.getMembername() });
+			String skey = warpSearchField(new String[] { "è®ºå›,å¸–å­", diary.getCname(), diary.getMembername() });
 			gewaSearchKey = new GewaSearchKey(scategory + srelatedid, diary.getCname(), diary.getTag(), srelatedid, scategory, skey,
 					GewaSearchKey.getSortByCategory(scategory), diary.getStatus(), DateUtil.getCurDateMills(diary.getAddtime()), diary.getCitycode());
 		} else if (obj instanceof News) {
 			News news = (News) obj;
 			String category = "news";
 			Long relatedid = news.getId();
-			String skey = warpSearchField(new String[] { "×ÊÑ¶,ĞÂÎÅ", news.getTitle(), news.getSummary() });
+			String skey = warpSearchField(new String[] { "èµ„è®¯,æ–°é—»", news.getTitle(), news.getSummary() });
 			gewaSearchKey = new GewaSearchKey(category + relatedid, news.getTitle(), news.getTag(), relatedid, category, skey,
 					GewaSearchKey.getSortByCategory(category), Status.Y, DateUtil.getCurDateMills(news.getAddtime()), news.getCitycode());
 		} else if (obj instanceof SportItem) {
@@ -372,7 +374,7 @@ public class SearchServiceImpl implements SearchService {
 			String tag = "sport";
 			String category = "sportservice";
 			Long relatedid = sportItem.getId();
-			String skey = warpSearchField(new String[] { "ÔË¶¯ÏîÄ¿", sportItem.getName(), sportItem.getItemname(), sportItem.getEnglishname(),
+			String skey = warpSearchField(new String[] { "è¿åŠ¨é¡¹ç›®", sportItem.getName(), sportItem.getItemname(), sportItem.getEnglishname(),
 					PinYinUtils.getFirstSpell(sportItem.getItemname()), sportItem.getContent() });
 			gewaSearchKey = new GewaSearchKey(category + relatedid, sportItem.getName(), tag, relatedid, category, skey,
 					GewaSearchKey.getSortByCategory(category), Status.Y, DateUtil.getCurDateMills(sportItem.getUpdatetime()), CITY_CODE_ALL);
@@ -388,14 +390,14 @@ public class SearchServiceImpl implements SearchService {
 			Video video = (Video) obj;
 			String category = "video";
 			Long relatedid = video.getId();
-			String skey = "ÊÓÆµ," + video.getVideotitle();
+			String skey = "è§†é¢‘," + video.getVideotitle();
 			gewaSearchKey = new GewaSearchKey(category + relatedid, video.getVideotitle(), video.getTag(), relatedid, category, skey,
 					GewaSearchKey.getSortByCategory(category), Status.Y, DateUtil.getCurDateMills(video.getAddtime()), CITY_CODE_ALL);
 		} else if (obj instanceof Commu) {
 			Commu c = (Commu) obj;
 			String scategory = "commu";
 			Long srelatedid = c.getId();
-			String skey = warpSearchField(new String[] { "ÉçÇø,È¦×Ó", c.getName(), c.getInfo() });
+			String skey = warpSearchField(new String[] { "ç¤¾åŒº,åœˆå­", c.getName(), c.getInfo() });
 			gewaSearchKey = new GewaSearchKey(scategory + srelatedid, c.getName(), c.getTag(), srelatedid, scategory, skey,
 					GewaSearchKey.getSortByCategory(scategory), c.getStatus(), DateUtil.getCurDateMills(c.getAddtime()), c.getCitycode());
 		} else if (obj instanceof Drama) {
@@ -403,7 +405,7 @@ public class SearchServiceImpl implements SearchService {
 			String tag = "theatre";
 			String category = "drama";
 			Long relatedid = drama.getId();
-			String skey = warpSearchField(new String[] { "»°¾ç,¾çÄ¿", drama.getDramaname(), drama.getEnglishname(), drama.getDramaalias(),
+			String skey = warpSearchField(new String[] { "è¯å‰§,å‰§ç›®", drama.getDramaname(), drama.getEnglishname(), drama.getDramaalias(),
 					drama.getActors(), drama.getDirector(), drama.getType() });
 			gewaSearchKey = new GewaSearchKey(category + relatedid, drama.getName(), tag, relatedid, category, skey,
 					GewaSearchKey.getSortByCategory(category), Status.Y, DateUtil.getCurDateMills(drama.getAddtime()), drama.getCitycode());
@@ -412,7 +414,7 @@ public class SearchServiceImpl implements SearchService {
 			String tag = "drama";
 			String category = "dramastar";
 			Long relatedid = dramaStar.getId();
-			String skey = warpSearchField(new String[] { "¾çÉç,»°¾çÈËÎï,Ã÷ĞÇ", dramaStar.getName(), dramaStar.getEnglishname(),
+			String skey = warpSearchField(new String[] { "å‰§ç¤¾,è¯å‰§äººç‰©,æ˜æ˜Ÿ", dramaStar.getName(), dramaStar.getEnglishname(),
 					PinYinUtils.getFirstSpell(dramaStar.getName()), dramaStar.getContent(), dramaStar.getJob() });
 			gewaSearchKey = new GewaSearchKey(category + relatedid, dramaStar.getName(), tag, relatedid, category, skey,
 					GewaSearchKey.getSortByCategory(category), Status.Y, DateUtil.getCurDateMills(dramaStar.getAddtime()), CITY_CODE_ALL);
@@ -459,7 +461,7 @@ public class SearchServiceImpl implements SearchService {
 						}
 					}
 				}
-				saveSearchKeyList(sks);// ÅúÁ¿ÖØ¹¹Ë÷Òı
+				saveSearchKeyList(sks);// æ‰¹é‡é‡æ„ç´¢å¼•
 				logger.warn(clazz.getName() + " group: " + i++);
 			}
 			return allIds.size();
@@ -476,32 +478,38 @@ public class SearchServiceImpl implements SearchService {
 			sb = new StringBuilder(baseInfo.getName());
 		}
 		if (!StringUtils.isAsciiPrintable(baseInfo.getName())) {
-			if (StringUtils.isNotBlank(baseInfo.getEnglishname()))
+			if (StringUtils.isNotBlank(baseInfo.getEnglishname())) {
 				sb.append("," + baseInfo.getEnglishname());
+			}
 		}
 		if (StringUtils.isNotBlank(baseInfo.getCountycode())) {
 			sb.append("," + placeService.getCountyname(baseInfo.getCountycode()));
 		}
 		sb.append(baseInfo.getAddress());
 		if (baseInfo instanceof Cinema) {
-			if (baseInfo.getName().indexOf("Ó°³Ç") < 0)
-				sb.append(",Ó°³Ç");
-			if (baseInfo.getName().indexOf("µçÓ°Ôº") < 0)
-				sb.append(",µçÓ°Ôº");
-			if (baseInfo.getName().indexOf("Ó°¶¼") < 0)
-				sb.append(",Ó°¶¼");
+			if (baseInfo.getName().indexOf("å½±åŸ") < 0) {
+				sb.append(",å½±åŸ");
+			}
+			if (baseInfo.getName().indexOf("ç”µå½±é™¢") < 0) {
+				sb.append(",ç”µå½±é™¢");
+			}
+			if (baseInfo.getName().indexOf("å½±éƒ½") < 0) {
+				sb.append(",å½±éƒ½");
+			}
 			if (StringUtils.isNotBlank(baseInfo.getFeature())) {
-				sb.append("," + baseInfo.getFeature());// Ó°ÔºÌØÉ«
+				sb.append("," + baseInfo.getFeature());// å½±é™¢ç‰¹è‰²
 			}
 		} else if (baseInfo instanceof Theatre) {
-			if (baseInfo.getName().indexOf("»°¾çÔº") < 0)
-				sb.append(",»°¾çÔº");
+			if (baseInfo.getName().indexOf("è¯å‰§é™¢") < 0) {
+				sb.append(",è¯å‰§é™¢");
+			}
 			if (StringUtils.isNotBlank(baseInfo.getFeature())) {
-				sb.append("," + baseInfo.getFeature());// ¾çÔºÌØÉ«
+				sb.append("," + baseInfo.getFeature());// å‰§é™¢ç‰¹è‰²
 			}
 		} else if (baseInfo instanceof Sport) {
-			if (baseInfo.getName().indexOf("ÔË¶¯³¡¹İ") < 0)
-				sb.append(",ÔË¶¯³¡¹İ");
+			if (baseInfo.getName().indexOf("è¿åŠ¨åœºé¦†") < 0) {
+				sb.append(",è¿åŠ¨åœºé¦†");
+			}
 		}
 		return sb.toString().toLowerCase();
 	}
@@ -723,6 +731,6 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public Set<String> getSearchKeyList(String tag, String skey, int maxnum) {
-		return searchKey(null, null, tag, null, skey, maxnum);// tag´óÀà£¬¼æÈİºÏ×÷ÉÌ
+		return searchKey(null, null, tag, null, skey, maxnum);// tagå¤§ç±»ï¼Œå…¼å®¹åˆä½œå•†
 	}
 }

@@ -31,38 +31,38 @@ import com.alibaba.dubbo.registry.RegistryService;
 
 /**
  * AbstractRegistryFactory. (SPI, Singleton, ThreadSafe)
- * 
+ *
  * @see com.alibaba.dubbo.registry.RegistryFactory
  * @author william.liangf
  */
 public abstract class AbstractRegistryFactory implements RegistryFactory {
 
-    // 锟斤拷志锟斤拷锟�
+    // ��־���
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractRegistryFactory.class);
 
-    // 注锟斤拷锟斤拷锟侥伙拷取锟斤拷锟斤拷锟斤拷
+    // ע�����Ļ�ȡ������
     private static final ReentrantLock LOCK = new ReentrantLock();
 
-    // 注锟斤拷锟斤拷锟侥硷拷锟斤拷 Map<RegistryAddress, Registry>
+    // ע�����ļ��� Map<RegistryAddress, Registry>
     private static final Map<String, Registry> REGISTRIES = new ConcurrentHashMap<String, Registry>();
 
     /**
-     * 锟斤拷取锟斤拷锟斤拷注锟斤拷锟斤拷锟斤拷
-     * 
-     * @return 锟斤拷锟斤拷注锟斤拷锟斤拷锟斤拷
+     * ��ȡ����ע������
+     *
+     * @return ����ע������
      */
     public static Collection<Registry> getRegistries() {
         return Collections.unmodifiableCollection(REGISTRIES.values());
     }
 
     /**
-     * 锟截憋拷锟斤拷锟斤拷锟窖达拷锟斤拷注锟斤拷锟斤拷锟斤拷
+     * �ر������Ѵ���ע������
      */
     public static void destroyAll() {
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Close all registries " + getRegistries());
         }
-        // 锟斤拷锟斤拷注锟斤拷锟斤拷锟侥关闭癸拷锟斤拷
+        // ����ע�����Ĺرչ���
         LOCK.lock();
         try {
             for (Registry registry : getRegistries()) {
@@ -74,18 +74,18 @@ public abstract class AbstractRegistryFactory implements RegistryFactory {
             }
             REGISTRIES.clear();
         } finally {
-            // 锟酵凤拷锟斤拷
+            // �ͷ���
             LOCK.unlock();
         }
     }
 
     @Override
     public Registry getRegistry(URL url) {
-    	url = url.setPath(RegistryService.class.getName())
-    			.addParameter(Constants.INTERFACE_KEY, RegistryService.class.getName())
-    			.removeParameters(Constants.EXPORT_KEY, Constants.REFER_KEY);
-    	String key = url.toServiceString();
-        // 锟斤拷锟斤拷注锟斤拷锟斤拷锟侥伙拷取锟斤拷锟教ｏ拷锟斤拷证注锟斤拷锟斤拷锟侥碉拷一实锟斤拷
+        url = url.setPath(RegistryService.class.getName())
+                .addParameter(Constants.INTERFACE_KEY, RegistryService.class.getName())
+                .removeParameters(Constants.EXPORT_KEY, Constants.REFER_KEY);
+        String key = url.toServiceString();
+        // ����ע�����Ļ�ȡ���̣���֤ע�����ĵ�һʵ��
         LOCK.lock();
         try {
             Registry registry = REGISTRIES.get(key);
@@ -99,7 +99,7 @@ public abstract class AbstractRegistryFactory implements RegistryFactory {
             REGISTRIES.put(key, registry);
             return registry;
         } finally {
-            // 锟酵凤拷锟斤拷
+            // �ͷ���
             LOCK.unlock();
         }
     }
